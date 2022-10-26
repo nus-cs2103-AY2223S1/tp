@@ -61,7 +61,7 @@ management tasks done faster than traditional GUI apps.
 
     * **`list buyer/supplier/delivery`** : Lists buyer/supplier/delivery.
 
-    * `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colour:blue t/Singapore` : Adds
+    * **`add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colour:blue t/Singapore`** : Adds
       a buyer named `Hong Yi` who is looking for a ragdoll to the PetCode.
 
     * **`delete-b 1`** : Deletes the first contact from the buyer contacts list.
@@ -501,7 +501,7 @@ is especially useful for checking which Order belongs to which Buyer, and which 
 
 Format: `check LIST_PARAMETER INDEX`
 
-:exclamation:**Please take note of the following:**
+:exclamation: **Please take note of the following:**
 * This command does not support the Deliverers list. 
 * The input index has to be a valid index.
 
