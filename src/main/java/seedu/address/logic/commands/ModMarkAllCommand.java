@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
 public class ModMarkAllCommand extends ModCommand {
 
     public static final String COMMAND_WORD = "mark all";
-    public static final String MESSAGE_SUCCESS = "Successfully marked all mods of all batchmates as taken.\n";
+    public static final String MESSAGE_SUCCESS = "Successfully marked all mods of all batchmates as taken.";
 
     /**
      * Constructs a command that marks all mods of all batchmates as taken.
