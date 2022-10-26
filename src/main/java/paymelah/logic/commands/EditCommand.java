@@ -2,10 +2,10 @@ package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static paymelah.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static paymelah.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -18,10 +18,10 @@ import paymelah.logic.parser.ParserUtil.PersonDescriptor;
 import paymelah.model.Model;
 import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
-import paymelah.model.person.Email;
 import paymelah.model.person.Name;
 import paymelah.model.person.Person;
 import paymelah.model.person.Phone;
+import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 
 /**
@@ -37,12 +37,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_TELEGRAM + "@JohnDoe_123";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,12 +95,12 @@ public class EditCommand extends Command {
 
         Name updatedName = personDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = personDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = personDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Telegram updatedTelegram = personDescriptor.getTelegram().orElse(personToEdit.getTelegram());
         Address updatedAddress = personDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = personDescriptor.getTags().orElse(personToEdit.getTags());
         DebtList updatedDebts = personToEdit.getDebts(); // edit command does not allow editing debts
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedDebts);
+        return new Person(updatedName, updatedPhone, updatedTelegram, updatedAddress, updatedTags, updatedDebts);
     }
 
     @Override

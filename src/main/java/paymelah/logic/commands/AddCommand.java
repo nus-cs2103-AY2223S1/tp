@@ -2,10 +2,10 @@ package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static paymelah.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import paymelah.logic.commands.exceptions.CommandException;
 import paymelah.model.Model;
@@ -22,13 +22,13 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_TELEGRAM + "TELEGRAM "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_TELEGRAM + "@JohnDoes_123 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
