@@ -229,8 +229,8 @@ Format: `mod find MODULE [MORE_MODULES]...`
 * Only full words will be matched. e.g. `cs21` will not return batchmates with the mods `CS2100` and `CS2101`.
 
 Examples:
-* `mod find cs2100` returns batchmates with the module `cs2100`.
-* `mod find cs2101 cs2103t` returns batchmates with both modules `cs2101` and `cs2103t`.
+* `mod find cs2100` returns batchmates with the module `CS2100`.
+* `mod find cs2101 cs2103t` returns batchmates with both modules `CS2101` and `CS2103t`.
 
 ### Find modules taken or taking: `mod find taken` or `mod find taking`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -242,10 +242,10 @@ Finds batchmates who have taken or are taking all the specified modules.
 Format: `mod find taken MODULE [MORE_MODULES]...` or `mod find taking MODULE [MORE_MODULES]...`
 
 Examples:
-* `mod find taken cs2100` returns batchmates who have taken `cs2100`.
-* `mod find taken cs2101 cs2103t` returns batchmates who have taken both `cs2101` and `cs2103t`.
-* `mod find taking cs2100` returns batchmates who are taking `cs2100`.
-* `mod find taking cs2101 cs2103t` returns batchmates who are taking both `cs2101` and `cs2103t`.
+* `mod find taken cs2100` returns batchmates who have taken `CS2100`.
+* `mod find taken cs2101 cs2103t` returns batchmates who have taken both `CS2101` and `CS2103T`.
+* `mod find taking cs2100` returns batchmates who are taking `CS2100`.
+* `mod find taking cs2101 cs2103t` returns batchmates who are taking both `CS2101` and `CS2103T`.
 
 ### Exiting the program : `exit`
 
