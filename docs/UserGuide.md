@@ -63,11 +63,15 @@ NUScheduler is a desktop app for **managing contacts, optimised for use via a Co
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Opens a help window displaying all the recognised commands, and a link to access the user guide.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Open the help window using <kbd>F1</kbd> on your keyboard
+</div>
 
 ### Adding a profile: `profile -a`
 
