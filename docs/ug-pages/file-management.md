@@ -13,7 +13,7 @@ RC4HDB currently supports the following file management functionalities:
 * [**Switching**](#switching-to-a-different-data-file--file-switch) between different data folders
 * [**Importing**](#importing-from-csv-file--file-import) of resident data from a [CSV](glossary.md#csv) file.
 
-All file commands have a `FILE_NAME` field that requires you to input a name for the file you are targeting.
+:information source: All file commands operate in the [data directory]().
 
 ### File Command Format:
 * All file commands have a `FOLDER_NAME` field, which signifies the name of the folder to be targeted.
@@ -53,7 +53,7 @@ Examples:
 
 ### Deleting an existing data file : `file delete`
 
-Deletes the specified data file if it exists.
+Deletes the specified folder if it exists.
 
 Format: `file delete FOLDER_NAME`
 * Does not delete the file if it is the data file that is currently open. You may switch to a different file before deleting the previously open data file.
@@ -71,11 +71,11 @@ Examples:
 
 Switches the current data file to the file specified.
 
-Format: `file switch FILE_NAME`
+Format: `file switch FOLDER_NAME`
 * Does not create a new file if the specified file does not exist.
 * The file must be a `.json` file.
 
-:information source: `FILE_NAME` must follow this [format](#file-command-format).
+:information source: `FOLDER_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file switch rc4_data_2022` will switch the current data file to `rc4_data_2022.json`.
@@ -89,7 +89,7 @@ Examples:
 
 RC4HDB provides users with the ability to import data from `.csv` files. In order for RC4HDB to find your files, place them in the data folder, `[JAR file location]/data`.
 
-Format: `file import FILE_NAME`
+Format: `file import FOLDER_NAME`
 
 :information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
 
