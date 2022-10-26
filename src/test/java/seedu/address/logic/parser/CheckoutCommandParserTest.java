@@ -1,13 +1,19 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CheckoutCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 class CheckoutCommandParserTest {
+    private CheckoutCommandParser parser = new CheckoutCommandParser();
 
     @Test
     void parse_emptyString_throwsParseException() {
@@ -17,6 +23,13 @@ class CheckoutCommandParserTest {
     @Test
     void parse_nullString_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new CheckoutCommandParser().parse(null));
+    }
+
+    @Test
+    void parse_validString_parseSuccessful() {
+        String validString = "test";
+        Path validPath = Paths.get("data", "test.json");
+        assertParseSuccess(parser, validString, new CheckoutCommand(validPath));
     }
 
 }

@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -11,18 +14,15 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.*;
 import seedu.address.model.person.Person;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.Storage;
+import seedu.address.storage.*;
 
 class CheckoutCommandTest {
 
-    private final Path validPath = Paths.get("data", "addressbook.json");
+    private final Path validPath = Paths.get("data", "test.json");
+    private final UserPrefsStorage validUserPrefsStorage = new JsonUserPrefsStorage(Paths.get("preferences.json"));
     private final ModelStub modelStub = new ModelStub();
     private final StorageStub storageStub = new StorageStub();
 
@@ -41,6 +41,39 @@ class CheckoutCommandTest {
     public void execute_nullStorage_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
             new CheckoutCommand(validPath).execute(modelStub, null));
+    }
+
+    @Test
+    public void execute_allValidParameters_checkoutSuccessful() throws CommandException {
+        Storage validStorage = new StorageManager(new JsonAddressBookStorage(validPath), validUserPrefsStorage);
+        Model validModel = new ModelManager();
+
+        CommandResult commandResult = new CheckoutCommand(validPath).execute(validModel, validStorage);
+
+        assertEquals(CheckoutCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(validPath, validModel.getAddressBookFilePath());
+    }
+
+    @Test
+    public void equals() {
+        final CheckoutCommand checkoutJuneCommand = new CheckoutCommand(validPath);
+        final CheckoutCommand checkoutJulyCommand = new CheckoutCommand(Paths.get("data", "june-2022.json"));
+
+        // same object -> returns true
+        assertTrue(checkoutJuneCommand.equals(checkoutJuneCommand));
+
+        // same values -> returns true
+        final CheckoutCommand checkoutJuneCommandCopy = new CheckoutCommand(validPath);
+        assertTrue(checkoutJuneCommand.equals(checkoutJuneCommandCopy));
+
+        // different types -> returns false
+        assertFalse(checkoutJuneCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(checkoutJuneCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(checkoutJuneCommand.equals(checkoutJulyCommand));
     }
 
     /**
