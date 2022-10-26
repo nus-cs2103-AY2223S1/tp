@@ -31,7 +31,7 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult<Item> execute(Model model) throws CommandException {
         requireNonNull(model);
 
         List<Item> lastShownList = model.getCurrentList();
@@ -40,14 +40,14 @@ public class ViewCommand extends Command {
         }
         Item itemToDisplayInformation = lastShownList.get(index.getZeroBased());
 
-        return new CommandResult(itemToDisplayInformation.toString());
+        return CommandResult.from(itemToDisplayInformation);
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ViewCommand // instanceof handles nulls
-                && index.equals(((ViewCommand) other).index)); // state check
+        return other == this
+                || (other instanceof ViewCommand
+                && index.equals(((ViewCommand) other).index));
     }
 
     public static String getUsage() {

@@ -11,6 +11,7 @@ What you should expect to find:
 * Important points to note
 
 **Note:**
+
 * For each command, "Format" indicates the syntax of the command.
 * Square brackets indicates an optional parameter.
 * In most commands, if more parameters are provided, we take the last value provided.

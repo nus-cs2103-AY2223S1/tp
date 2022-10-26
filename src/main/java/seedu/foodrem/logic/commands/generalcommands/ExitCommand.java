@@ -10,11 +10,38 @@ import seedu.foodrem.model.Model;
  * Terminates the program.
  */
 public class ExitCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Exiting FoodRem as requested ...";
-
     @Override
-    public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_SUCCESS, false, true);
+    public CommandResult<String> execute(Model model) {
+        return new CommandResult<>() {
+            @Override
+            public String getOutput() {
+                return "Exiting FoodRem as requested ...";
+            }
+
+            @Override
+            public boolean shouldExit() {
+                return true;
+            }
+
+            // TODO: Test this
+            @Override
+            public boolean equals(Object other) {
+                if (other == this) {
+                    return true;
+                }
+                if (!(other instanceof CommandResult)) {
+                    return false;
+                }
+
+                CommandResult<?> asType = (CommandResult<?>) other;
+                try {
+                    return getOutput().equals(asType.getOutput())
+                            && super.equals(asType);
+                } catch (UnsupportedOperationException e) {
+                    return false;
+                }
+            }
+        };
     }
 
     public static String getUsage() {

@@ -16,6 +16,8 @@ import seedu.foodrem.model.UserPrefs;
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
 public class ListCommandTest {
+    private static final String EXPECTED_SUCCESS_MESSAGE = "Listed all items";
+
     private Model model;
     private Model expectedModel;
 
@@ -27,12 +29,12 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model, EXPECTED_SUCCESS_MESSAGE, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model, EXPECTED_SUCCESS_MESSAGE, expectedModel);
     }
 }

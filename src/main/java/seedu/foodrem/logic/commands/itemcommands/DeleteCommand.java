@@ -12,13 +12,12 @@ import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Deletes an item identified using it's displayed index from FoodRem.
  */
 public class DeleteCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Deleted Item:\n%1$s";
-
     private final Index index;
 
     public DeleteCommand(Index index) {
@@ -26,7 +25,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Item> lastShownList = model.getCurrentList();
 
@@ -36,7 +35,8 @@ public class DeleteCommand extends Command {
 
         Item itemToDelete = lastShownList.get(index.getZeroBased());
         model.deleteItem(itemToDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, itemToDelete));
+        return CommandResult.from(new ItemWithMessage(itemToDelete,
+                "Successfully deleted the following item:"));
     }
 
     public static String getUsage() {
@@ -45,8 +45,8 @@ public class DeleteCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && index.equals(((DeleteCommand) other).index)); // state check
+        return other == this
+                || (other instanceof DeleteCommand
+                && index.equals(((DeleteCommand) other).index));
     }
 }

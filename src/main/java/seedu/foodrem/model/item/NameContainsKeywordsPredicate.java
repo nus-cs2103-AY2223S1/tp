@@ -23,8 +23,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Item> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-            || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-            && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+        return other == this
+            || (other instanceof NameContainsKeywordsPredicate
+            && keywords.equals(((NameContainsKeywordsPredicate) other).keywords));
     }
 }

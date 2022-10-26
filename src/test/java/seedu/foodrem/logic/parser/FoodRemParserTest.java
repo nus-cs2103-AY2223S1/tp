@@ -19,6 +19,7 @@ import seedu.foodrem.logic.commands.itemcommands.DecrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
+import seedu.foodrem.logic.commands.itemcommands.FilterTagCommand;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
@@ -176,6 +177,14 @@ public class FoodRemParserTest {
     public void parseCommand_listTag() {
         assertTrue(parser.parseCommand(CommandType.LIST_TAG_COMMAND.getCommandWord())
                 instanceof ListTagCommand);
+    }
+
+    @Test
+    public void parseCommand_filterTag() {
+        assertTrue(parser.parseCommand(CommandType.FILTER_TAG_COMMAND.getCommandWord()
+                + " "
+                + CliSyntax.PREFIX_NAME
+                + "fruits") instanceof FilterTagCommand);
     }
 
     // Others

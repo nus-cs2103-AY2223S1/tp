@@ -13,13 +13,12 @@ import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemQuantity;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Increments the quantity of an item by a specified amount.
  */
 public class DecrementCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Decremented Item:\n%1$s";
-
     private final Index index;
     private final ItemQuantity quantity;
 
@@ -61,7 +60,7 @@ public class DecrementCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Item> lastShownList = model.getCurrentList();
 
@@ -73,15 +72,16 @@ public class DecrementCommand extends Command {
         Item decrementedItem = createDecrementedItem(itemToDecrement, quantity);
 
         model.setItem(itemToDecrement, decrementedItem);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, decrementedItem));
+        return CommandResult.from(new ItemWithMessage(decrementedItem,
+                "Decremented successfully and updated item as follows:"));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DecrementCommand // instanceof handles nulls
+        return other == this
+                || (other instanceof DecrementCommand
                 && index.equals(((DecrementCommand) other).index)
-                && quantity.equals(((DecrementCommand) other).quantity)); // state check
+                && quantity.equals(((DecrementCommand) other).quantity));
     }
 
     public static String getUsage() {

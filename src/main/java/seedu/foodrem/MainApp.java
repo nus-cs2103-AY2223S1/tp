@@ -39,11 +39,11 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
-    protected Ui ui;
-    protected Logic logic;
-    protected Storage storage;
-    protected Model model;
-    protected Config config;
+    private Ui ui;
+    private Storage storage;
+    private Model model;
+
+    private String initialMessage = "Welcome to FoodRem!";
 
     @Override
     public void init() throws Exception {
@@ -51,7 +51,7 @@ public class MainApp extends Application {
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
-        config = initConfig(appParameters.getConfigPath());
+        Config config = initConfig(appParameters.getConfigPath());
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
@@ -62,8 +62,7 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
-
+        Logic logic = new LogicManager(model, storage);
         ui = new UiManager(logic);
     }
 
@@ -73,19 +72,21 @@ public class MainApp extends Application {
      * or an empty foodRem will be used instead if errors occur when reading {@code storage}'s foodRem.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyFoodRem> foodRemOptional;
         ReadOnlyFoodRem initialData;
         try {
-            foodRemOptional = storage.readFoodRem();
+            Optional<ReadOnlyFoodRem> foodRemOptional = storage.readFoodRem();
             if (foodRemOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample FoodRem");
+                initialMessage = "Data file not found. Will be starting with a sample FoodRem.";
+                logger.info(initialMessage);
             }
             initialData = foodRemOptional.orElseGet(SampleDataUtil::getSampleFoodRem);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty FoodRem");
+            initialMessage = "Data file not in the correct format. Will be starting with an empty FoodRem.";
+            logger.warning(initialMessage);
             initialData = new FoodRem();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty FoodRem");
+            initialMessage = "Problem while reading from the file. Will be starting with an empty FoodRem";
+            logger.warning(initialMessage);
             initialData = new FoodRem();
         }
 
@@ -167,12 +168,12 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting FoodRem " + MainApp.VERSION);
-        ui.start(primaryStage);
+        ui.start(primaryStage, initialMessage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Food Rem ] =============================");
+        logger.info("============================ [ Stopping FoodRem ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

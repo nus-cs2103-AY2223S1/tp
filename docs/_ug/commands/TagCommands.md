@@ -1,5 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-{Insert an image of tags}
+Example of Tags:
+
+![Tags](images/TagImage.png)
 
 #### Create a new tag: `newtag`
 
@@ -49,12 +51,9 @@ Carrots
 
 #### Tag an item: `tag`
 
-**Format**: `tag INDEX n/TAG_NAME `
+**Format**: `tag INDEX n/TAG_NAME`
 
 > Tags the item at the specified index
-
-**Format**: `tag n/TAG_NAME id/INDEX`
-> Tags an item (based on its index on the list) with a tag that exists in FoodRem.
 
 **Example Input:**
 
@@ -81,7 +80,7 @@ Tags: {Vegetables}
 
 #### Untag an item: `untag`
 
-**Format**: `untag n/TAG_NAME id/INDEX`
+**Format**: `untag INDEX n/TAG_NAME`
 
 > Untags the item at the specified index
 
@@ -114,8 +113,9 @@ Tags: {}
 
 > Renames a tag currently in FoodRem.
 
-**Note:**
-* The first `TAG_NAME` in the command refers to the current tag you wish to rename while the second `TAG_NAME` refers to the new name you wish to rename the current tag to.
+```info
+The first `TAG_NAME` in the command refers to the current tag you wish to rename while the second `TAG_NAME` refers to the new name you wish to rename the current tag to.
+```
 
 **Example Input:**
 
@@ -173,11 +173,13 @@ filtertag n/fruits
 Command Output Box:
 
 ```text
-Items filtered by tag: fruits
+Filtered by tag: fruits
+2 items left after filtering!
 ```
 
 List Box:
 
 ```text
 1. Apples 8 kg (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
+2. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
 ```

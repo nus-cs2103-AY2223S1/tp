@@ -13,7 +13,6 @@ import seedu.foodrem.model.item.ItemRemark;
 import seedu.foodrem.testutil.MessageToUser;
 
 class RemarkCommandParserTest {
-
     private final RemarkCommandParser parser = new RemarkCommandParser();
 
     private final String invalidFormatMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.getUsage());

@@ -1,5 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-{Insert an image of items}
+Example of Item:
+
+![Item](images/ItemImage.png)
 
 #### Create a new item: `new`
 
@@ -7,7 +9,7 @@
 
 > Creates a new item with the provided item name
 
-**Note:**
+```info
 * All fields apart from `ITEM_NAME` are optional.
 * The `BOUGHT_DATE` ideally should not be after the `EXPIRY_DATE` but we will allow that. 
 * The format for `BOUGHT_DATE` and `EXPIRY_DATE` should follow: "dd-mm-yyyy".
@@ -21,6 +23,7 @@
 * `PRICE` do not require you to include the currency. Only include the value.
 * You cannot create an item with a tag immediately.
 * If two or more of the same parameters are provided, the last parameter will be taken.
+```
 
 **Example Input:**
 
@@ -51,8 +54,9 @@ Tags: {}
 
 > List all items in FoodRem.
 
-**Note:**
+```info
 * This command is useful to view all items again after using the [Find Command](#Find)
+```
 
 **Example Input:**
 
@@ -79,18 +83,21 @@ List Box:
 ---
 
 #### Search for an item: `find`
+
 **Format:** `find KEYWORD [KEYWORDS]...`
 
 > Finds all items in FoodRem whose names contain any of the specified keywords
 
-**Note:**
+```info
 * The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
 * The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
 * The order of the `KEYWORDS` do not matter (e.g "rose apple" will match "apple rose").
 * The result will be items in which `ITEM_NAME` contain any one of the `KEYWORDS` provided.
 * You can use the [List Command](#List) to display all items again.
+```
 
 **Example Input:**
+
 ```text
 find potato carrot cucumbers
 ```
@@ -112,12 +119,14 @@ List Box:
 ---
 
 #### Sort all items by an attribute: `sort`
-**Format:**: `sort [n/] [qty/] [u/] [bgt/] [exp/] [p/] [r/]`
+
+**Format:** `sort [n/] [qty/] [u/] [bgt/] [exp/] [p/] [r/]`
 
 > Sorts the list of currently displayed items by the provided criteria
 
-**Note:**
-* Only one of the sorting criteria must be provided.
+```info
+* Only one sorting criteria is to be provided.
+```
 
 **Example Input:**
 
@@ -144,12 +153,14 @@ List Box:
 ---
 
 #### View the information of an item: `view`
+
 **Format:** `view INDEX`
 
 > Displays the item at the specified index
 
-**Note:**
+```info
 * Displayed information includes the name, quantity, unit, bought date, expiry date, price, remarks and tags of items.
+```
 
 **Example Input:**
 
@@ -179,9 +190,10 @@ Tags: {vegetables}
 
 > Increments the quantity of the item at the specified index
 
-**Note:**
+```info
 * If a quantity is not provided, the item quantity will be incremented by 1.
 * If two or more `QUANTITY` are provided, the last `QUANTITY` will be taken.
+```
 
 **Example Input:**
 
@@ -211,9 +223,10 @@ Tags: {vegetables}
 **Format:**: `dec INDEX [qty/QUANTITY]`
 > Decrements the quantity of the item at the specified index.
 
-**Note:**
+```info
 * If a quantity is not provided, the item quantity will be decremented by 1.
 * If two or more `QUANTITY` are provided, the last `QUANTITY` will be taken.
+```
 
 **Example Input:**
 
@@ -239,13 +252,13 @@ Tags: {vegetables}
 ---
 
 #### Edit the information of an item: `edit`
+
 Command: `edit ITEM_INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE] [p/PRICE] [r/REMARKS]`
 
 > Updates the details of the item at the specified index
 
-**Note:**
+```info
 * All fields are optional. However, you need to include at least one parameter.
-* The `BOUGHT_DATE` ideally should not be after the `EXPIRY_DATE` but we will allow that.
 * The format for `BOUGHT_DATE` and `EXPIRY_DATE` should follow: "dd-mm-yyyy".
   * dd: Day of the month. For example, "10" would represent the 10th day of the month.
   * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
@@ -257,6 +270,7 @@ Command: `edit ITEM_INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE
 * `PRICE` do not require you to include the currency. Only include the value.
 * You cannot create an item with a tag immediately.
 * If two or more of the same parameters are provided, the last parameter will be taken.
+```
 
 **Example Input:**
 
@@ -278,18 +292,22 @@ Price: $6
 Remarks: No Remarks
 Tags: {vegetables}
 ```
+
 ---
 
 #### Add a remark to an item: `rmk`
+
 Command: `rmk ITEM_INDEX [r/REMARKS]`
 
 > Adds a remark to the item at the specified index
 
-**Note:**
+```info
 * If no remark is provided, the current remark will be cleared.
 * If two or more `REMARKS` are provided, the last `REMARKS` will be taken.
+```
 
 **Example Input:**
+
 ```text
 rmk 1 r/For Party
 ```
@@ -297,8 +315,9 @@ rmk 1 r/For Party
 **Expected Output:**
 
 Command Output Box:
+
 ```text
-Deleted Item:
+Remark Added:
 Name: Onions
 Quantity: 100 kg
 Bought Date: 10-10-2022

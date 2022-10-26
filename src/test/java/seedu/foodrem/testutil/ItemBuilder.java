@@ -43,8 +43,8 @@ public class ItemBuilder {
         name = new ItemName(DEFAULT_NAME);
         quantity = new ItemQuantity(DEFAULT_QUANTITY);
         unit = new ItemUnit(DEFAULT_ITEM_UNIT);
-        boughtDate = new ItemBoughtDate(DEFAULT_BOUGHT_DATE);
-        expiryDate = new ItemExpiryDate(DEFAULT_EXPIRY_DATE);
+        boughtDate = ItemBoughtDate.of(DEFAULT_BOUGHT_DATE);
+        expiryDate = ItemExpiryDate.of(DEFAULT_EXPIRY_DATE);
         price = new ItemPrice(DEFAULT_PRICE);
         remarks = new ItemRemark(DEFAULT_REMARKS);
         tags = new HashSet<>();
@@ -92,7 +92,7 @@ public class ItemBuilder {
      * Sets the item bought date of the {@link Item} that we are building.
      */
     public ItemBuilder withItemBoughtDate(String boughtDate) {
-        this.boughtDate = new ItemBoughtDate(boughtDate);
+        this.boughtDate = ItemBoughtDate.of(boughtDate);
         return this;
     }
 
@@ -100,7 +100,7 @@ public class ItemBuilder {
      * Sets the item expiry date of the {@link Item} that we are building.
      */
     public ItemBuilder withItemExpiryDate(String expiryDate) {
-        this.expiryDate = new ItemExpiryDate(expiryDate);
+        this.expiryDate = ItemExpiryDate.of(expiryDate);
         return this;
     }
 

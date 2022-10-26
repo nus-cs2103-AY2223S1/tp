@@ -47,8 +47,44 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, message);
+    public CommandResult<String> execute(Model model) {
+        return new CommandResult<>() {
+            @Override
+            public String getOutput() {
+                return SHOWING_HELP_MESSAGE;
+            }
+
+            @Override
+            public boolean shouldShowHelp() {
+                return true;
+            }
+
+            @Override
+            public String getHelpText() {
+                assert message != null;
+                return message;
+            }
+
+            // TODO: Test this
+            @Override
+            public boolean equals(Object other) {
+                if (other == this) {
+                    return true;
+                }
+                if (!(other instanceof CommandResult)) {
+                    return false;
+                }
+
+                CommandResult<?> asType = (CommandResult<?>) other;
+                try {
+                    return getOutput().equals(asType.getOutput())
+                            && getHelpText().equals(asType.getHelpText())
+                            && super.equals(asType);
+                } catch (UnsupportedOperationException e) {
+                    return false;
+                }
+            }
+        };
     }
 
     public static String getUsage() {
@@ -57,8 +93,8 @@ public class HelpCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof HelpCommand // instanceof handles nulls
-                && message.equals(((HelpCommand) other).message)); // state check
+        return other == this
+                || (other instanceof HelpCommand
+                && message.equals(((HelpCommand) other).message));
     }
 }

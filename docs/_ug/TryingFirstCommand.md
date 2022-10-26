@@ -2,7 +2,7 @@
 
 Now, let us try out a command.
 
-The format for commands are not identical. 
+The format for commands are not identical.
 
 One of the available commands in FoodRem is the command to create a new item.
 
@@ -47,11 +47,11 @@ Let us try another command!
 
 After creating the potatoes item, you decided to buy 40 kg more of potatoes.
 
-Format: `inc id/INDEX [qty/QUANTITY]`
+Format: `inc INDEX [qty/QUANTITY]`
 
 `inc` tells FoodRem that this is the command to increment the quantity of an item. Suppose the `INDEX` for potatoes is `1` in the application, the command you would like to enter into the command box would be:
 
-`inc id/12 qty/40`
+`inc 1 qty/40`
 
 You should now have a better understanding of how commands are formatted and used. All commands are consolidated in the [Command Summary](#command-summary).
 

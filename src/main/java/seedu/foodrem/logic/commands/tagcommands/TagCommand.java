@@ -13,17 +13,12 @@ import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Tags an item with a Tag.
  */
 public class TagCommand extends Command {
-    // TODO: Test this command
-    private static final String MESSAGE_SUCCESS = "Item tagged successfully.\n%1$s";
-    private static final String ERROR_DUPLICATE = "This item has already been tagged with this tag";
-    private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
-    private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
-
     private final Index index;
     private final Tag tag;
 
@@ -37,48 +32,35 @@ public class TagCommand extends Command {
         this.tag = new Tag(tagName);
     }
 
-    /**
-     * Creates and returns a {@code Item} with the tagSet of {@code itemToEdit}
-     * edited
-     */
-    private static Item createTaggedItem(Item itemToTag, Tag tag) {
-        assert itemToTag != null;
+    @Override
+    public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
+        Item itemToTag = validateAndGetTargetItem(model, tag, index);
+        Set<Tag> itemTags = itemToTag.getTagSet();
+        if (itemTags.contains(tag)) {
+            throw new CommandException("This item has already been tagged with this tag");
+        }
+        itemTags.add(tag);
+        Item newTagSetItem = Item.createItemWithTags(itemToTag, itemTags);
 
-        itemToTag.addItemTag(tag);
-        Set<Tag> newTagSet = itemToTag.getTagSet();
+        model.setItem(itemToTag, newTagSetItem);
 
-        return new Item(itemToTag.getName(),
-                itemToTag.getQuantity(),
-                itemToTag.getUnit(),
-                itemToTag.getBoughtDate(),
-                itemToTag.getExpiryDate(),
-                itemToTag.getPrice(),
-                itemToTag.getRemarks(),
-                newTagSet);
+        return CommandResult.from(
+                new ItemWithMessage(newTagSetItem, "Item tagged successfully. View updated item below:"));
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
+    static Item validateAndGetTargetItem(Model model, Tag tag, Index index) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasTag(tag)) {
-            throw new CommandException(ERROR_NOT_FOUND_TAG);
+            throw new CommandException("This tag does not exist");
         }
 
         List<Item> lastShownList = model.getCurrentList();
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(ERROR_NOT_FOUND_ITEM);
+            throw new CommandException("The item index does not exist");
         }
 
-        Item itemToTag = lastShownList.get(index.getZeroBased());
-        if (itemToTag.containsTag(tag)) {
-            throw new CommandException(ERROR_DUPLICATE);
-        }
-
-        Item newTagSetItem = createTaggedItem(itemToTag, tag);
-
-        model.setItem(itemToTag, newTagSetItem);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newTagSetItem));
+        return lastShownList.get(index.getZeroBased());
     }
 
     public static String getUsage() {
@@ -87,8 +69,7 @@ public class TagCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                // instanceof handles nulls
+        return other == this
                 || (other instanceof TagCommand
                 && index.equals(((TagCommand) other).index)
                 && tag.equals(((TagCommand) other).tag));

@@ -56,15 +56,19 @@ class JsonSerializableFoodRem {
             if (foodRem.hasItem(item)) {
                 throw new IllegalArgumentException(MESSAGE_DUPLICATE_ITEMS);
             }
+            for (Tag tag : item.getTagSet()) {
+                if (!foodRem.hasTag(tag)) {
+                    foodRem.addTag(tag);
+                }
+            }
             foodRem.addItem(item);
         }
 
         for (JsonAdaptedTag jsonAdaptedTag : tagList) {
             Tag tag = jsonAdaptedTag.toModelType();
-            if (foodRem.hasTag(tag)) {
-                throw new IllegalArgumentException(MESSAGE_DUPLICATE_TAGS);
+            if (!foodRem.hasTag(tag)) {
+                foodRem.addTag(tag);
             }
-            foodRem.addTag(tag);
         }
         return foodRem;
     }

@@ -18,20 +18,14 @@ import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.model.item.Item;
 
 class ViewCommandTest {
-
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
     @Test
     void execute_success() {
         Item expectedItem = model.getCurrentList().get(0);
-
-        String expectedMessage = expectedItem.toString();
-
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_ITEM);
-
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
-
-        assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(viewCommand, model, expectedItem, expectedModel);
     }
 
     @Test
@@ -48,10 +42,8 @@ class ViewCommandTest {
         ViewCommand incrementCommandDifferentIndexFirst = new ViewCommand(Index.fromOneBased(1));
         ViewCommand incrementCommandDifferentIndexSecond = new ViewCommand(Index.fromOneBased(2));
 
-
         // Exactly the same
         assertEquals(incrementCommandSameFirst, incrementCommandSameSecond);
-
         // Different index
         assertNotEquals(incrementCommandDifferentIndexFirst, incrementCommandDifferentIndexSecond);
     }

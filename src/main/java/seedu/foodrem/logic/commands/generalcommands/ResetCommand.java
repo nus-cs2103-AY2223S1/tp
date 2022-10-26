@@ -12,13 +12,11 @@ import seedu.foodrem.model.Model;
  * Resets FoodRem.
  */
 public class ResetCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "FoodRem has been reset!";
-
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult<String> execute(Model model) {
         requireNonNull(model);
         model.setFoodRem(new FoodRem());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return CommandResult.from("FoodRem has been reset!");
     }
 
     public static String getUsage() {

@@ -24,8 +24,12 @@ import seedu.foodrem.model.ReadOnlyUserPrefs;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.ItemBuilder;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 public class NewCommandTest {
+    private static final String EXPECTED_SUCCESS_MESSAGE = "New item added as follows:";
+    private static final String EXPECTED_FAILURE_DUPLICATE_ITEM = "This item already exists in FoodRem";
+
     @Test
     public void constructor_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new NewCommand(null));
@@ -36,9 +40,8 @@ public class NewCommandTest {
         ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
         Item validItem = new ItemBuilder().build();
 
-        CommandResult commandResult = new NewCommand(validItem).execute(modelStub);
-
-        assertEquals(String.format(NewCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
+        CommandResult<ItemWithMessage> commandResult = new NewCommand(validItem).execute(modelStub);
+        assertEquals(new ItemWithMessage(validItem, EXPECTED_SUCCESS_MESSAGE), commandResult.getOutput());
         assertEquals(List.of(validItem), modelStub.itemsAdded);
     }
 
@@ -48,7 +51,7 @@ public class NewCommandTest {
         NewCommand newCommand = new NewCommand(validItem);
         ModelStub modelStub = new ModelStubWithItem(validItem);
 
-        assertThrows(CommandException.class, NewCommand.MESSAGE_DUPLICATE_ITEM, () -> newCommand.execute(modelStub));
+        assertThrows(CommandException.class, EXPECTED_FAILURE_DUPLICATE_ITEM, () -> newCommand.execute(modelStub));
     }
 
     @Test
@@ -60,17 +63,13 @@ public class NewCommandTest {
 
         // same object -> returns true
         assertEquals(addPotatoCommand, addPotatoCommand);
-
         // same values -> returns true
         NewCommand addPotatoCommandCopy = new NewCommand(potatoes);
         assertEquals(addPotatoCommand, addPotatoCommandCopy);
-
         // different types -> returns false
         assertNotEquals(1, addPotatoCommand);
-
         // null -> returns false
         assertNotEquals(null, addPotatoCommand);
-
         // different item -> returns false
         assertNotEquals(addPotatoCommand, addCucumberCommand);
     }
@@ -78,7 +77,7 @@ public class NewCommandTest {
     /**
      * A default model stub that have all the methods failing.
      */
-    private static class ModelStub implements Model {
+    public static class ModelStub implements Model {
         @Override
         public boolean hasTag(Tag tag) {
             throw new AssertionError("This method should not be called.");

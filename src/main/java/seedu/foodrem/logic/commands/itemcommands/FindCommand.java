@@ -21,10 +21,10 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult<String> execute(Model model) {
         requireNonNull(model);
         model.updateFilteredItemList(predicate);
-        return new CommandResult(
+        return CommandResult.from(
                 String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, model.getCurrentList().size()));
     }
 
@@ -34,8 +34,8 @@ public class FindCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+        return other == this
+                || (other instanceof FindCommand
+                && predicate.equals(((FindCommand) other).predicate));
     }
 }

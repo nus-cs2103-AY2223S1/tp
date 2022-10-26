@@ -6,16 +6,16 @@
 
 **Delete Inventory Item:**
 
-1. As a purchasing manager, I can delete items in my inventory.
+1. As a purchasing manager, I can delete an item from my inventory.
 
-**Update inventory items:**
+**Update Inventory Item:**
 
 1. As a purchasing manager, I can rename my inventory items, so that I can update items with an incorrect name.
-1. As a purchasing manager, I can set the inventory quantity of my items.
-1. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items.
-1. As a purchasing manager, I can set the date my inventory will expire, so that I know when certain items need to be consumed or used.
-1. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.
-1. As a purchasing manager, I can decrease the inventory quantity of my items.
+1. As a purchasing manager, I can edit the inventory quantity of my items, to adjust for their purchase or usage.
+1. As a purchasing manager, I can edit the date I bought an item, so that I know how long I have been keeping certain items.
+1. As a purchasing manager, I can edit the date my inventory will expire, so that I know when certain items need to be used.
+1. As a purchasing manager, I can increase the inventory quantity of my items, so that I can quickly increase its stock when I obtain item(s).
+1. As a purchasing manager, I can decrease the inventory quantity of my items, so I can quickly decrease its stock when I use up item(s).
 
 **View Inventory Items:**
 
@@ -29,6 +29,8 @@
 1. As a purchasing manager, I can sort items by quantity.
 1. As a purchasing manager, I can sort items by bought date.
 1. As a purchasing manager, I can sort items by expiry date.
+1. As a purchasing manager, I can sort items by price.
+1. As a purchasing manager, I can sort items by remarks.
 
 **Tag Management System:**
 
@@ -39,7 +41,6 @@
 1. As a purchasing manager, I can add a tag to an item.
 1. As a purchasing manager, I can remove a tag from an item.
 1. As a purchasing manager, I can search for items based on the tags they have.
-
 
 **Miscellaneous:**
 

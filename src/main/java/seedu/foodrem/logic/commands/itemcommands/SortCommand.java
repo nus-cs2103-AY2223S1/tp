@@ -31,10 +31,10 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult<String> execute(Model model) {
         requireNonNull(model);
         model.updateSortedItemList(comparator);
-        return new CommandResult(String.format(Messages.MESSAGE_ITEMS_SORTED_OVERVIEW,
+        return CommandResult.from(String.format(Messages.MESSAGE_ITEMS_SORTED_OVERVIEW,
                 model.getCurrentList().size()));
     }
 
@@ -44,9 +44,9 @@ public class SortCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof SortCommand // instanceof handles nulls
+        return other == this
+                || (other instanceof SortCommand
                 && comparator.getClass().getSimpleName()
-                .equals(((SortCommand) other).comparator.getClass().getSimpleName())); // state check
+                .equals(((SortCommand) other).comparator.getClass().getSimpleName()));
     }
 }

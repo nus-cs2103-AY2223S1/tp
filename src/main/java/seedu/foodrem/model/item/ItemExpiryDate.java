@@ -16,22 +16,41 @@ public class ItemExpiryDate {
     public static final String EXPIRY_DATE_PATTERN_REGEX = "dd-MM-uuuu";
     public static final DateTimeFormatter EXPIRY_DATE_FORMATTER = DateTimeFormatter
             .ofPattern(EXPIRY_DATE_PATTERN_REGEX);
+
+    private static final ItemExpiryDate NOT_SET_EXPIRY_DATE = new ItemExpiryDate(LocalDate.MIN);
+
     private final LocalDate expiryDate;
 
     /**
      * Constructs an expiryDate.
      *
+     * @param date a string that represents the expiryDate of the
+     *             format {@link ItemExpiryDate#EXPIRY_DATE_FORMATTER}
+     */
+    private ItemExpiryDate(LocalDate date) {
+        expiryDate = date;
+    }
+
+    /**
+     * Produces a expiryDate object.
+     *
      * @param dateString a string that represents the expiryDate of the
      *                   format {@link ItemExpiryDate#EXPIRY_DATE_FORMATTER}
      */
-    public ItemExpiryDate(String dateString) {
+    public static ItemExpiryDate of(String dateString) {
         requireNonNull(dateString);
         if (dateString.isBlank()) {
-            expiryDate = null;
-            return;
+            return NOT_SET_EXPIRY_DATE;
         }
         ItemExpiryDateValidator.validate(dateString);
-        expiryDate = LocalDate.parse(dateString, EXPIRY_DATE_FORMATTER);
+        return new ItemExpiryDate(LocalDate.parse(dateString, EXPIRY_DATE_FORMATTER));
+    }
+
+    /**
+     * Returns true if the expiry date is not set, false otherwise.
+     */
+    public boolean isNotSet() {
+        return this == NOT_SET_EXPIRY_DATE;
     }
 
     /**
@@ -40,21 +59,10 @@ public class ItemExpiryDate {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof ItemExpiryDate)) {
-            return false;
-        }
-
-        ItemExpiryDate date = (ItemExpiryDate) other;
-
-        if (date.expiryDate == null && expiryDate == null) {
-            return true;
-        }
-
-        return expiryDate.equals(((ItemExpiryDate) other).expiryDate);
+        return other == this
+                || (other != NOT_SET_EXPIRY_DATE
+                && other instanceof ItemExpiryDate
+                && expiryDate.equals(((ItemExpiryDate) other).expiryDate));
     }
 
     /**
@@ -82,6 +90,6 @@ public class ItemExpiryDate {
      */
     @Override
     public String toString() {
-        return expiryDate == null ? "" : expiryDate.format(EXPIRY_DATE_FORMATTER);
+        return this == NOT_SET_EXPIRY_DATE ? "" : expiryDate.format(EXPIRY_DATE_FORMATTER);
     }
 }
