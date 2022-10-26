@@ -30,7 +30,8 @@ public class SortCommand extends Command {
      */
     public static enum Type {
         NAME,
-        CLASS
+        CLASS,
+        OWED
     };
 
     /**
@@ -66,6 +67,12 @@ public class SortCommand extends Command {
                 return Person::compareToByClassAsc;
             } else {
                 return Person::compareToByClassDesc;
+            }
+        case OWED:
+            if (order.equals(Order.ASC)) {
+                return Person::compareToByMoneyOwedAsc;
+            } else {
+                return Person::compareToByMoneyOwedDesc;
             }
         default:
             // default sorting is to sort by Name Asc

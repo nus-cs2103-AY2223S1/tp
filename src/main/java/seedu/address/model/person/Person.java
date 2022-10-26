@@ -308,7 +308,34 @@ public class Person {
         }
     }
 
+    /**
+     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * When they have same amount of {@code moneyOwed}, they are compared by their {@code name} in ascending order.
+     */
+    public int compareToByMoneyOwedAsc(Person person) {
+        int result = this.moneyOwed.compareTo(person.moneyOwed);
+        if (result == 0) {
+            return this.compareToByNameAsc(person);
+        } else {
+            return result;
+        }
+    }
+
+    /**
+     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * When they have same amount of {@code moneyOwed}, they are compared by their {@code name} in ascending order.
+     */
+    public int compareToByMoneyOwedDesc(Person person) {
+        int result = -1 * this.moneyOwed.compareTo(person.moneyOwed);
+        if (result == 0) {
+            return this.compareToByNameAsc(person);
+        } else {
+            return result;
+        }
+    }
+
     public int compareToByDisplayClass(Person person) {
+        requireAllNonNull(this.displayedClass, person.displayedClass);
         return this.displayedClass.compareToByStartTime(person.displayedClass);
     }
 

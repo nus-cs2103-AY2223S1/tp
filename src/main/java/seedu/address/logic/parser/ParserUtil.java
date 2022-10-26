@@ -347,6 +347,8 @@ public class ParserUtil {
             return Type.NAME;
         case "CLASS":
             return Type.CLASS;
+        case "OWED":
+            return Type.OWED;
         default:
             throw new ParseException(SortCommand.MESSAGE_UNKNOWN_TYPE_KEYWORD);
         }
