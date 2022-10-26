@@ -12,8 +12,6 @@ import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_REMOTE;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TASK_AAPL;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TASK_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 
@@ -76,11 +74,11 @@ public class TypicalInternships {
     public static final Internship AAPL = new InternshipBuilder().withName(VALID_NAME_AAPL)
             .withPosition(VALID_POSITION_AAPL).withStatus(VALID_STATUS_AAPL)
             .withEmail(VALID_EMAIL_AAPL).withWebsite(VALID_WEBSITE_AAPL)
-            .withTasks(VALID_TASK_AAPL).withSalary(VALID_SALARY_AAPL).withTags(VALID_TAG_REMOTE).build();
+            .withSalary(VALID_SALARY_AAPL).withTags(VALID_TAG_REMOTE).build();
     public static final Internship MSFT = new InternshipBuilder().withName(VALID_NAME_MSFT)
             .withPosition(VALID_POSITION_MSFT).withStatus(VALID_STATUS_MSFT).withSalary(VALID_SALARY_MSFT)
             .withEmail(VALID_EMAIL_MSFT).withWebsite(VALID_WEBSITE_MSFT)
-            .withTasks(VALID_TASK_MSFT).withSalary(VALID_SALARY_MSFT)
+            .withSalary(VALID_SALARY_MSFT)
             .withTags(VALID_TAG_REMOTE, VALID_TAG_URGENT).build();
 
     public static final String KEYWORD_MATCHING_ADBE = "Adobe"; // A keyword that matches ADBE
