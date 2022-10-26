@@ -33,10 +33,12 @@ public class DeleteContactCommandTest {
 
         String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
+        CommandResult commandResult = new CommandResult(expectedMessage, true, false);
+
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
-        assertCommandSuccess(deleteContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteContactCommand, model, commandResult, expectedModel);
     }
 
     @Test
@@ -56,11 +58,13 @@ public class DeleteContactCommandTest {
 
         String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
+        CommandResult commandResult = new CommandResult(expectedMessage, true, false);
+
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(deleteContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteContactCommand, model, commandResult, expectedModel);
     }
 
     @Test

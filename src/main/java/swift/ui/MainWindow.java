@@ -182,6 +182,8 @@ public class MainWindow extends UiPart<Stage> {
     private void handleTaskTab() {
         logic.showAllLists();
 
+        System.out.println(logic.getAddressBook());
+
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getFilteredBridgeList(),
                 logic.getFilteredPersonList());
         listPanelPlaceholder.getChildren().remove(personListPanel.getRoot());
@@ -200,7 +202,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
 
         if (taskListPanel != null) {
-            listPanelPlaceholder.getChildren().remove(taskListPanel.getRoot());
+            System.out.println("handleContactTab: " + taskListPanel);
+            listPanelPlaceholder.getChildren().removeAll();
         }
 
         listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -237,11 +240,11 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isListContact()) {
+            if (commandResult.isContactCommand()) {
                 handleContactTab();
             }
 
-            if (commandResult.isListTask() || commandResult.isAddTask()) {
+            if (commandResult.isTaskCommand()) {
                 handleTaskTab();
             }
 

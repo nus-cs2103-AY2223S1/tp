@@ -41,11 +41,13 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
+        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         System.out.println(model.getFilteredTaskList());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editTaskCommand, model, commandResult, expectedModel);
     }
 
     @Test
@@ -61,10 +63,12 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
+        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setTask(lastTask, editedTask);
 
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editTaskCommand, model, commandResult, expectedModel);
     }
 
     @Test
@@ -74,9 +78,11 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
+        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editTaskCommand, model, commandResult, expectedModel);
     }
 
     @Test
@@ -90,10 +96,12 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
+        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editTaskCommand, model, commandResult, expectedModel);
     }
 
     @Test

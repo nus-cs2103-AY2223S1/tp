@@ -46,7 +46,7 @@ public class ListTaskCommandTest {
     public void execute_listIsNotFiltered_showsSameList() {
         String expectedMessage = String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, 2);
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false,
-                false, true, false);
+                false, true);
         assertCommandSuccess(new ListTaskCommand(), model, expectedCommandResult, expectedModel);
     }
 
@@ -55,7 +55,7 @@ public class ListTaskCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         String expectedMessage = String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, 2);
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false,
-                false, true, false);
+                false, true);
         assertCommandSuccess(new ListTaskCommand(), model, expectedCommandResult, expectedModel);
     }
 }

@@ -37,12 +37,14 @@ public class SelectTaskCommandTest {
         SelectTaskCommand selectTaskCommand = new SelectTaskCommand(INDEX_THIRD_TASK);
         String expectedMessage = SelectTaskCommand.MESSAGE_SELECT_TASK_SUCCESS;
 
+        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList((p) -> p.getId().equals(UUID.fromString(PERSON2_UUID)));
         expectedModel.updateFilteredTaskList((t) -> t.getId().equals(UUID.fromString(TASK3_UUID)));
         expectedModel.updateFilteredBridgeList((b) -> b.getTaskId().equals(UUID.fromString(TASK3_UUID)));
 
-        assertCommandSuccess(selectTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(selectTaskCommand, model, commandResult, expectedModel);
     }
 
     @Test
@@ -60,12 +62,14 @@ public class SelectTaskCommandTest {
         SelectTaskCommand selectTaskCommand = new SelectTaskCommand(INDEX_FIRST_TASK);
         String expectedMessage = SelectTaskCommand.MESSAGE_SELECT_TASK_SUCCESS;
 
+        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList(p -> p.getId().equals(UUID.fromString(PERSON1_UUID)));
         expectedModel.updateFilteredTaskList(t -> t.getId().equals(UUID.fromString(TASK1_UUID)));
         expectedModel.updateFilteredBridgeList(b -> b.getTaskId().equals(UUID.fromString(TASK1_UUID)));
 
-        assertCommandSuccess(selectTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(selectTaskCommand, model, commandResult, expectedModel);
     }
 
     @Test

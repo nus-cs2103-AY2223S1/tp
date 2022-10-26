@@ -36,12 +36,14 @@ public class SelectContactCommandTest {
         SelectContactCommand selectContactCommand = new SelectContactCommand(INDEX_SECOND_PERSON);
         String expectedMessage = SelectContactCommand.MESSAGE_SELECT_CONTACT_SUCCESS;
 
+        CommandResult commandResult = new CommandResult(expectedMessage, true, false);
+
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList((p) -> p.getId().equals(UUID.fromString(PERSON2_UUID)));
         expectedModel.updateFilteredTaskList((t) -> t.getId().equals(UUID.fromString(TASK3_UUID)));
         expectedModel.updateFilteredBridgeList((b) -> b.getPersonId().equals(UUID.fromString(PERSON2_UUID)));
 
-        assertCommandSuccess(selectContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(selectContactCommand, model, commandResult, expectedModel);
     }
 
     @Test
@@ -59,12 +61,14 @@ public class SelectContactCommandTest {
         SelectContactCommand selectContactCommand = new SelectContactCommand(INDEX_FIRST_PERSON);
         String expectedMessage = SelectContactCommand.MESSAGE_SELECT_CONTACT_SUCCESS;
 
+        CommandResult commandResult = new CommandResult(expectedMessage, true, false);
+
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList((p) -> p.getId().equals(UUID.fromString(PERSON1_UUID)));
         expectedModel.updateFilteredTaskList((t) -> !t.getId().equals(UUID.fromString(TASK3_UUID)));
         expectedModel.updateFilteredBridgeList((b) -> b.getPersonId().equals(UUID.fromString(PERSON1_UUID)));
 
-        assertCommandSuccess(selectContactCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(selectContactCommand, model, commandResult, expectedModel);
     }
 
     @Test
