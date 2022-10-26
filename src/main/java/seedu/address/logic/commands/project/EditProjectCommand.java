@@ -30,13 +30,13 @@ public class EditProjectCommand extends ProjectCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Edits a project in the address book. "
+            + ": Edits a project in the address book. \n"
             + "Parameters: "
             + PREFIX_PROJECT_ID + "PROJECT_ID "
             + PREFIX_NAME + "NAME "
             + PREFIX_CLIENT_ID + "CLIENT_ID "
             + PREFIX_REPOSITORY + "REPOSITORY "
-            + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_DEADLINE + "DEADLINE \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_PROJECT_ID + "1 "

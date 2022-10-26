@@ -8,11 +8,11 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
 import seedu.address.model.Pin;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
-import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
+import seedu.address.model.issue.Title;
 import seedu.address.model.list.NotFoundException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
@@ -24,7 +24,7 @@ class JsonAdaptedIssue {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Issue's %s field is missing!";
 
-    private final String description;
+    private final String title;
     private final String priority;
     private final String deadline;
     private final String status;
@@ -36,14 +36,14 @@ class JsonAdaptedIssue {
      * Constructs a {@code JsonAdaptedIssue} with the given issue details.
      */
     @JsonCreator
-    public JsonAdaptedIssue(@JsonProperty("description") String description,
+    public JsonAdaptedIssue(@JsonProperty("title") String title,
                             @JsonProperty("priority") String priority,
                              @JsonProperty("deadline") String deadline,
                             @JsonProperty("status") String status,
                             @JsonProperty("issueId") String issueId,
                             @JsonProperty("project") String project,
                             @JsonProperty("pin") String pin) {
-        this.description = description;
+        this.title = title;
         this.priority = priority;
         this.deadline = deadline;
         this.status = status;
@@ -56,7 +56,7 @@ class JsonAdaptedIssue {
      * Converts a given {@code Issue} into this class for Jackson use.
      */
     public JsonAdaptedIssue(Issue source) {
-        description = source.getDescription().toString();
+        title = source.getTitle().toString();
         priority = source.getPriority().toString();
         deadline = source.getDeadline().toString();
         status = source.getStatus().toString();
@@ -72,14 +72,14 @@ class JsonAdaptedIssue {
      */
     public Issue toModelType(AddressBook addressBook) throws IllegalValueException {
 
-        if (description == null) {
+        if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Description.class.getSimpleName()));
+                    Title.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(description)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        if (!Title.isValidTitle(title)) {
+            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDescription = new Description(description);
+        final Title modelTitle = new Title(title);
 
         if (priority == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -144,7 +144,7 @@ class JsonAdaptedIssue {
 
         assert modelIssueId.getIdInt() >= 0 : "Issue ID should be positive";
 
-        return new Issue(modelDescription, modelDeadline, modelPriority, modelStatus,
+        return new Issue(modelTitle, modelDeadline, modelPriority, modelStatus,
                 modelProject, modelIssueId, modelPin);
     }
 

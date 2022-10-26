@@ -3,11 +3,11 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_ID;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_MOBILE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
-import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -103,8 +103,8 @@ public class ClientCommandParser implements Parser<ClientCommand> {
      */
     private AddClientCommand parseAddClientCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT_PHONE,
-                        PREFIX_CLIENT_EMAIL, PREFIX_PROJECT_ID);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_MOBILE,
+                        PREFIX_EMAIL, PREFIX_PROJECT_ID);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PROJECT_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -115,13 +115,13 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
         ClientPhone phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
-        if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
-            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
+        if (arePrefixesPresent(argMultimap, PREFIX_MOBILE)) {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_MOBILE).get());
         }
 
         ClientEmail email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
-        if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
-            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+        if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
         ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, phone, email,
@@ -142,7 +142,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
     private EditClientCommand parseEditClientCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_CLIENT_ID, PREFIX_NAME,
-                        PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE);
+                        PREFIX_EMAIL, PREFIX_MOBILE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -153,7 +153,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         ClientPhone newPhone = null;
         ClientId newClientId = ParserUtil.parseClientId(argMultimap.getValue(PREFIX_CLIENT_ID).get());
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE)) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE)) {
             throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,
                     EditClientCommand.MESSAGE_USAGE));
         }
@@ -162,12 +162,12 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             newName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         }
 
-        if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
-            newPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
+        if (anyPrefixesPresent(argMultimap, PREFIX_MOBILE)) {
+            newPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_MOBILE).get());
         }
 
-        if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
-            newEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+        if (anyPrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+            newEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
         return new EditClientCommand(newClientId, newName, newEmail, newPhone);
@@ -205,7 +205,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         try {
 
             ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE);
+                    ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE);
 
             String trimmedArgs = arguments.trim();
 
@@ -220,14 +220,14 @@ public class ClientCommandParser implements Parser<ClientCommand> {
                         argMultimap.getAllValues(PREFIX_NAME)));
             }
 
-            if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
+            if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
                 return new FindClientByEmailCommand(new EmailContainsKeywordsPredicate(
-                        argMultimap.getAllValues(PREFIX_CLIENT_EMAIL)));
+                        argMultimap.getAllValues(PREFIX_EMAIL)));
             }
 
-            //implies arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE) is true
+            //implies arePrefixesPresent(argMultimap, PREFIX_MOBILE) is true
             return new FindClientByPhoneCommand(new PhoneContainsKeywordsPredicate(
-                    argMultimap.getAllValues(PREFIX_CLIENT_PHONE)));
+                    argMultimap.getAllValues(PREFIX_MOBILE)));
 
         } catch (ParseException pe) {
             throw new ParseException(
@@ -250,16 +250,21 @@ public class ClientCommandParser implements Parser<ClientCommand> {
                     SortClientCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_NAME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_CLIENT_ID, PREFIX_NAME);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT_ID)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortClientCommand.MESSAGE_USAGE));
         }
 
+        if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
+            sortPrefix = PREFIX_CLIENT_ID;
+            key = ParserUtil.parseClientNameSort(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+        }
+
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             sortPrefix = PREFIX_NAME;
-            key = ParserUtil.parseClientNameSort(argMultimap.getValue(PREFIX_NAME).get());
+            key = ParserUtil.parseClientIdSort(argMultimap.getValue(PREFIX_NAME).get());
         }
 
         return new SortClientCommand(sortPrefix, key);

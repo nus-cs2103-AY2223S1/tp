@@ -12,11 +12,11 @@ import seedu.address.model.project.ProjectTest;
 
 public class IssueTest {
 
-    private static final Issue defaultIssue = new Issue(new Description("Default"),
+    private static final Issue defaultIssue = new Issue(new Title("Default"),
             Deadline.EmptyDeadline.EMPTY_DEADLINE, Priority.NONE, Status.EmptyStatus.EMPTY_STATUS,
             ProjectTest.getDefaultProject(), IssueId.EmptyIssueId.EMPTY_ISSUE_ID, new Pin(false));
 
-    private static final Issue otherIssue = new Issue(new Description("Other"),
+    private static final Issue otherIssue = new Issue(new Title("Other"),
             Deadline.EmptyDeadline.EMPTY_DEADLINE, Priority.NONE, Status.EmptyStatus.EMPTY_STATUS,
             ProjectTest.getDefaultProject(), IssueId.EmptyIssueId.EMPTY_ISSUE_ID, new Pin(false));
 
@@ -36,9 +36,9 @@ public class IssueTest {
     }
 
     @Test
-    public void constructor_invalidDescription_throwsIllegalArgumentException() {
-        String invalidDescription = "";
-        assertThrows(IllegalArgumentException.class, () -> new Issue(new Description(invalidDescription),
+    public void constructor_invalidTitle_throwsIllegalArgumentException() {
+        String invalidTitle = "";
+        assertThrows(IllegalArgumentException.class, () -> new Issue(new Title(invalidTitle),
                 new Deadline("2022-10-12"), Priority.LOW, new Status(true),
                 ProjectTest.getDefaultProject(), new IssueId(1), new Pin(false)));
     }
@@ -46,7 +46,7 @@ public class IssueTest {
     @Test
     public void constructor_invalidDeadline_throwsIllegalArgumentException() {
         String invalidDeadline = "12-02-2022";
-        assertThrows(IllegalArgumentException.class, () -> new Issue(new Description("finish up two classes"),
+        assertThrows(IllegalArgumentException.class, () -> new Issue(new Title("finish up two classes"),
                 new Deadline(invalidDeadline), Priority.LOW, new Status(true),
                 ProjectTest.getDefaultProject(), new IssueId(1), new Pin(false)));
     }

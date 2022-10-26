@@ -88,3 +88,15 @@
 .status-bar {
     -fx-background-color: #FFD7C0;
 }
+
+#copyRepoButton {
+    -fx-background-color: #B3E5FC
+}
+
+#copyRepoButton:hover {
+    -fx-background-color: #81D4FA
+}
+
+#repository {
+    -fx-padding: 0;
+}
