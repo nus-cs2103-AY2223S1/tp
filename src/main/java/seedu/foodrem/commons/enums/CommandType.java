@@ -79,7 +79,8 @@ public enum CommandType {
                     + "[" + PREFIX_ITEM_UNIT + "UNIT] "
                     + "[" + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT_DATE] "
                     + "[" + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY_DATE] "
-                    + "[" + PREFIX_ITEM_PRICE + "PRICE]\n\n"
+                    + "[" + PREFIX_ITEM_PRICE + "PRICE]"
+                    + "[" + PREFIX_ITEM_REMARKS + "REMARKS]\n\n"
                     + "Examples:\n"
                     + getCommandWord() + " 1 "
                     + PREFIX_ITEM_QUANTITY + "1000 "
@@ -135,7 +136,6 @@ public enum CommandType {
         }
     },
     NEW_COMMAND("new") {
-        // TODO: Ensure remarks is added
         @Override
         public String getUsage() {
             return getCommandWord() + ": Creates a new item with the provided item name. "
@@ -143,11 +143,12 @@ public enum CommandType {
                     + "Format:\n"
                     + getCommandWord() + " "
                     + PREFIX_NAME + "NAME "
-                    + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY" + "] "
-                    + "[" + PREFIX_ITEM_UNIT + "UNIT" + "] "
-                    + "[" + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT_DATE" + "] "
-                    + "[" + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY_DATE" + "] "
-                    + "[" + PREFIX_ITEM_PRICE + "PRICE" + "]\n\n"
+                    + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
+                    + "[" + PREFIX_ITEM_UNIT + "UNIT] "
+                    + "[" + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT_DATE] "
+                    + "[" + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY_DATE] "
+                    + "[" + PREFIX_ITEM_PRICE + "PRICE]"
+                    + "[" + PREFIX_ITEM_REMARKS + "REMARKS]\n\n"
                     + "Examples:\n"
                     + getCommandWord() + " "
                     + PREFIX_NAME + "Potatoes\n"
@@ -157,7 +158,8 @@ public enum CommandType {
                     + PREFIX_ITEM_UNIT + "kg "
                     + PREFIX_ITEM_BOUGHT_DATE + "11-11-2022 "
                     + PREFIX_ITEM_EXPIRY_DATE + "21-11-2022 "
-                    + PREFIX_ITEM_PRICE + "10";
+                    + PREFIX_ITEM_PRICE + "10"
+                    + PREFIX_ITEM_REMARKS + "For Salad";
         }
     },
     REMARK_COMMAND("rmk") {
@@ -190,11 +192,10 @@ public enum CommandType {
         }
     },
     VIEW_COMMAND("view") {
-        // TODO: Ensure remarks is added
         @Override
         public String getUsage() {
             return getCommandWord() + ": Displays the information of " + THE_ITEM_IN_LIST
-                    + "The name, quantity, bought date, expiry date, unit, price and associated tags "
+                    + "The name, quantity, bought date, expiry date, unit, price, remarks and associated tags "
                     + "of the items will be displayed.\n\n"
                     + "Format:\n"
                     + getCommandWord() + " INDEX\n\n"
