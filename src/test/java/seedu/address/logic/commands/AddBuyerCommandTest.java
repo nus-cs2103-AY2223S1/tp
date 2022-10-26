@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.ui.PersonListPanel;
 
 public class AddBuyerCommandTest {
 
@@ -81,6 +83,11 @@ public class AddBuyerCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+        @Override
+        public void setPersonListPanel(PersonListPanel personListPanel) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -158,6 +165,21 @@ public class AddBuyerCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Buyer> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Buyer> getSortedPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedPersonList(Comparator<Buyer> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Buyer> getLastShownBuyersList() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -1,7 +1,5 @@
 package seedu.address;
 
-import static seedu.address.model.util.SampleDataUtil.getSamplePropertyModel;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -193,6 +191,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting PersonBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        model.setPersonListPanel(ui.getMainWindow().getPersonListPanel());
     }
 
     @Override

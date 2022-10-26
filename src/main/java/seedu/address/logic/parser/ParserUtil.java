@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.sortcomparators.Order;
 import seedu.address.model.address.Address;
 import seedu.address.model.buyer.Email;
 import seedu.address.model.buyer.Name;
@@ -207,5 +208,20 @@ public class ParserUtil {
             throw new ParseException(PropertyName.MESSAGE_CONSTRAINTS);
         }
         return new PropertyName(trimmedPropertyName);
+    }
+
+    /**
+     * Parses a {@code String order} into an {@code Order}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Order parseOrder(String order) throws ParseException {
+        requireNonNull(order);
+        String trimmedOrder = order.trim();
+        if (!Order.isValidOrder(trimmedOrder)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+        }
+        return new Order(trimmedOrder);
     }
 }

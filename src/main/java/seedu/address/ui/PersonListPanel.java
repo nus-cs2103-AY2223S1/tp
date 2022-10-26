@@ -20,13 +20,27 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<Buyer> personListView;
 
+    private ObservableList<Buyer> currentlyDisplayedBuyerList;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Buyer> buyerList) {
+    public PersonListPanel(ObservableList<Buyer> filteredBuyerList) {
         super(FXML);
-        personListView.setItems(buyerList);
+        personListView.setItems(filteredBuyerList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        currentlyDisplayedBuyerList = filteredBuyerList;
+    }
+
+    /**
+     * Updates the current PersonListPanel with a new source list
+     */
+    public void setNewList(ObservableList<Buyer> newList) {
+        if (currentlyDisplayedBuyerList.equals(newList)) {
+            return;
+        }
+        personListView.setItems(newList);
+        currentlyDisplayedBuyerList = newList;
     }
 
     /**
