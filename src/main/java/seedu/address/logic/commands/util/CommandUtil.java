@@ -17,7 +17,7 @@ public class CommandUtil {
     public static final String[] ACCEPTABLE_ALL_PARAMETER = new String[]{"ALL", "A", "-A", "/A"};
 
     public static final String[] ACCEPTABLE_SORT_ORDER_SIZE_PARAMETER = new String[]{
-        "ORDERS", "ORDER", "O", "-O", "/O"};
+        "ORDERS", "ORDER"};
 
     public static final String[] ACCEPTABLE_SORT_PET_LIST_SIZE_PARAMETER = new String[]{"PETS", "PET"};
 
