@@ -123,12 +123,23 @@ public class TypicalExercises {
     /**
      * Returns an {@code ExerciseTracker} with two exercises with the different Names and different Weights.
      */
-    public static ExerciseTracker getDifferentExerciseDifferentWeightsExerciseTracker() {
-        return listToExerciseTracker(getDifferentExerciseDifferentWeights());
+    public static ExerciseTracker getTwoDifferentExercisesExerciseTracker() {
+        return listToExerciseTracker(getTwoDifferentExercises());
     }
 
-    public static List<Exercise> getDifferentExerciseDifferentWeights() {
+    public static List<Exercise> getTwoDifferentExercises() {
         return new ArrayList<>(Arrays.asList(SQUAT_LIGHT, DEADLIFT_LIGHT));
+    }
+
+    /**
+     * Returns an {@code ExerciseTracker} with two exercises with the different Names and different Weights.
+     */
+    public static ExerciseTracker twoDifferentExercisesTwoDifferentWeightsExerciseTracker() {
+        return listToExerciseTracker(twoDifferentExercisesTwoDifferentWeights());
+    }
+
+    public static List<Exercise> twoDifferentExercisesTwoDifferentWeights() {
+        return new ArrayList<>(Arrays.asList(SQUAT_LIGHT, SQUAT_HEAVY, DEADLIFT_LIGHT, DEADLIFT_HEAVY));
     }
 
     /**

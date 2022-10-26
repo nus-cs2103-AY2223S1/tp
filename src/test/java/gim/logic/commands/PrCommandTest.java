@@ -1,13 +1,15 @@
 package gim.logic.commands;
 
+import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.DEADLIFT_HEAVY;
 import static gim.testutil.TypicalExercises.DEADLIFT_LIGHT;
 import static gim.testutil.TypicalExercises.SQUAT_HEAVY;
 import static gim.testutil.TypicalExercises.SQUAT_LIGHT;
-import static gim.testutil.TypicalExercises.getDifferentExerciseDifferentWeightsExerciseTracker;
 import static gim.testutil.TypicalExercises.getNoExerciseExerciseTracker;
 import static gim.testutil.TypicalExercises.getOneExerciseExerciseTracker;
 import static gim.testutil.TypicalExercises.getSameExerciseNameDifferentWeightsExerciseTracker;
+import static gim.testutil.TypicalExercises.getTwoDifferentExercisesExerciseTracker;
+import static gim.testutil.TypicalExercises.twoDifferentExercisesTwoDifferentWeightsExerciseTracker;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
@@ -35,6 +37,11 @@ public class PrCommandTest {
     public void setUp() {
         nameSet = new HashSet<>();
         expectedList = new ArrayList<>();
+    }
+
+    @Test
+    public void constructor_nullExercise_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new PrCommand(null));
     }
 
     @Test
@@ -79,8 +86,8 @@ public class PrCommandTest {
     }
 
     @Test
-    public void execute_differentExerciseDifferentWeights_showsBothExercises() {
-        model = new ModelManager(getDifferentExerciseDifferentWeightsExerciseTracker(), new UserPrefs());
+    public void execute_twoDifferentExercises_showsBothExercises() {
+        model = new ModelManager(getTwoDifferentExercisesExerciseTracker(), new UserPrefs());
 
         nameSet.add(DEADLIFT_LIGHT.getName());
         nameSet.add(SQUAT_LIGHT.getName());
@@ -88,6 +95,24 @@ public class PrCommandTest {
 
         expectedList.add(DEADLIFT_LIGHT);
         expectedList.add(SQUAT_LIGHT);
+        String expectedMessage = String.format(PrCommand.MESSAGE_SUCCESS,
+                PrCommand.prettyStringifyArrayList(expectedList));
+
+        assertEquals(new CommandResult(expectedMessage), result);
+    }
+
+    @Test
+    public void execute_twoDifferentExercisesTwoDifferentWeights_showsTwoHeavierExercises() {
+        model = new ModelManager(twoDifferentExercisesTwoDifferentWeightsExerciseTracker(), new UserPrefs());
+
+        nameSet.add(DEADLIFT_LIGHT.getName());
+        nameSet.add(DEADLIFT_HEAVY.getName());
+        nameSet.add(SQUAT_LIGHT.getName());
+        nameSet.add(SQUAT_HEAVY.getName());
+        CommandResult result = new PrCommand(nameSet).execute(model);
+
+        expectedList.add(DEADLIFT_HEAVY);
+        expectedList.add(SQUAT_HEAVY);
         String expectedMessage = String.format(PrCommand.MESSAGE_SUCCESS,
                 PrCommand.prettyStringifyArrayList(expectedList));
 
