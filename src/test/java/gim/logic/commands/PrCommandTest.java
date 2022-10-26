@@ -45,13 +45,12 @@ public class PrCommandTest {
     }
 
     @Test
-    public void execute_noExercise_showsNothing() {
+    public void execute_noExercise_showsFailureMessage() {
         model = new ModelManager(getNoExerciseExerciseTracker(), new UserPrefs());
 
         CommandResult result = new PrCommand(nameSet).execute(model);
 
-        String expectedMessage = String.format(PrCommand.MESSAGE_SUCCESS,
-                PrCommand.prettyStringifyArrayList(expectedList));
+        String expectedMessage = PrCommand.MESSAGE_FAILURE;
 
         assertEquals(new CommandResult(expectedMessage), result);
     }

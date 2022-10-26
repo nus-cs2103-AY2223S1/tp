@@ -34,6 +34,8 @@ public class PrCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listing PRs:\n%s";
 
+    public static final String MESSAGE_FAILURE = "Exercise(s) not registered in system!\nTry adding it first!";
+
     private final Set<Name> nameSet;
 
     /**
@@ -92,6 +94,9 @@ public class PrCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         ArrayList<Exercise> outputList = generateOutputArrayList(nameSet, model);
+        if (outputList.isEmpty()) {
+            return new CommandResult(MESSAGE_FAILURE);
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, prettyStringifyArrayList(outputList)));
     }
 
