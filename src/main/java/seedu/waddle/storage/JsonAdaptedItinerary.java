@@ -12,9 +12,9 @@ import seedu.waddle.model.item.Item;
 import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.ItineraryDuration;
-import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
 
 /**
@@ -60,7 +60,7 @@ class JsonAdaptedItinerary {
      * Converts a given {@code Itinerary} into this class for Jackson use.
      */
     public JsonAdaptedItinerary(Itinerary source) {
-        name = source.getName().fullName;
+        name = source.getName().description;
         country = source.getCountry().country;
         startDate = source.getStartDate().date.toString();
         duration = source.getDuration().toString();
@@ -82,12 +82,13 @@ class JsonAdaptedItinerary {
     public Itinerary toModelType() throws IllegalValueException {
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!Description.isValidDescription(name)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final Description modelName = new Description(name);
 
         if (country == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Country.class.getSimpleName()));

@@ -3,9 +3,9 @@ package seedu.waddle.testutil;
 import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.ItineraryDuration;
-import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
 
 /**
@@ -19,7 +19,7 @@ public class ItineraryBuilder {
     public static final String DEFAULT_PEOPLE = "1";
     public static final String DEFAULT_BUDGET = "100.00";
 
-    private Name name;
+    private Description name;
     private Country country;
     private Date startDate;
     private ItineraryDuration duration;
@@ -30,7 +30,7 @@ public class ItineraryBuilder {
      * Creates a {@code ItineraryBuilder} with the default details.
      */
     public ItineraryBuilder() {
-        name = new Name(DEFAULT_NAME);
+        name = new Description(DEFAULT_NAME);
         country = new Country(DEFAULT_COUNTRY);
         startDate = new Date(DEFAULT_START_DATE);
         duration = new ItineraryDuration(DEFAULT_DURATION);
@@ -54,7 +54,7 @@ public class ItineraryBuilder {
      * Sets the {@code Name} of the {@code Itinerary} that we are building.
      */
     public ItineraryBuilder withName(String name) {
-        this.name = new Name(name);
+        this.name = new Description(name);
         return this;
     }
 

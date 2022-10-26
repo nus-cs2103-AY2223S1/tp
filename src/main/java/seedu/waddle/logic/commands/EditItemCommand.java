@@ -21,6 +21,7 @@ import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
+import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
@@ -71,7 +72,7 @@ public class EditItemCommand extends Command {
         EditItemDescriptor editItemDescriptor) {
         assert itemToEdit != null;
 
-        String updatedDescription = editItemDescriptor.getDescription().orElse(itemToEdit.getDescription());
+        Description updatedDescription = editItemDescriptor.getDescription().orElse(itemToEdit.getDescription());
         Priority updatedPriority = editItemDescriptor.getPriority().orElse(itemToEdit.getPriority());
         Cost updatedCost = editItemDescriptor.getCost().orElse(itemToEdit.getCost());
         Duration updatedDuration = editItemDescriptor.getDuration().orElse(itemToEdit.getDuration());
@@ -142,7 +143,7 @@ public class EditItemCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditItemDescriptor {
-        private String description;
+        private Description description;
         private Priority priority;
         private Cost cost;
         private Duration duration;
@@ -170,11 +171,11 @@ public class EditItemCommand extends Command {
             return CollectionUtil.isAnyNonNull(description, priority, cost, duration, startTime);
         }
 
-        public Optional<String> getDescription() {
+        public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
         }
 
-        public void setDescription(String description) {
+        public void setDescription(Description description) {
             this.description = description;
         }
 

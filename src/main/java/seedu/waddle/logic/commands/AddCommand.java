@@ -3,8 +3,8 @@ package seedu.waddle.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_BUDGET;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITINERARY_DURATION;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 
@@ -21,14 +21,14 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Itinerary to waddle. "
             + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_DESCRIPTION + "NAME] "
             + "[" + PREFIX_COUNTRY + "COUNTRY] "
             + "[" + PREFIX_START_DATE + "START DATE] "
             + "[" + PREFIX_ITINERARY_DURATION + "DURATION] "
             + "[" + PREFIX_PEOPLE + "PEOPLE] "
             + "[" + PREFIX_BUDGET + "BUDGET]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Summer Trip "
+            + PREFIX_DESCRIPTION + "Summer Trip "
             + PREFIX_COUNTRY + "India "
             + PREFIX_START_DATE + "2022-10-28 "
             + PREFIX_ITINERARY_DURATION + "15 "

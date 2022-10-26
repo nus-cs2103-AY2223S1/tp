@@ -3,8 +3,8 @@ package seedu.waddle.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_BUDGET;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITINERARY_DURATION;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.waddle.model.Model.PREDICATE_SHOW_ALL_ITINERARIES;
@@ -20,9 +20,9 @@ import seedu.waddle.model.Model;
 import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.ItineraryDuration;
-import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
 
 /**
@@ -36,7 +36,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed itinerary list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_DESCRIPTION + "NAME] "
             + "[" + PREFIX_COUNTRY + "COUNTRY] "
             + "[" + PREFIX_START_DATE + "START DATE] "
             + "[" + PREFIX_ITINERARY_DURATION + "DURATION] "
@@ -73,7 +73,7 @@ public class EditCommand extends Command {
                                                    EditItineraryDescriptor editItineraryDescriptor) {
         assert itineraryToEdit != null;
 
-        Name updatedName = editItineraryDescriptor.getName().orElse(itineraryToEdit.getName());
+        Description updatedName = editItineraryDescriptor.getName().orElse(itineraryToEdit.getName());
         Country updatedCountry = editItineraryDescriptor.getCountry().orElse(itineraryToEdit.getCountry());
         Date updatedStartDate = editItineraryDescriptor.getStartDate().orElse(itineraryToEdit.getStartDate());
         ItineraryDuration updatedDuration = editItineraryDescriptor.getDuration()
@@ -132,7 +132,7 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditItineraryDescriptor {
-        private Name name;
+        private Description name;
         private Country country;
         private Date startDate;
         private ItineraryDuration duration;
@@ -162,11 +162,11 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, country, startDate, duration, people, budget);
         }
 
-        public Optional<Name> getName() {
+        public Optional<Description> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setName(Name name) {
+        public void setName(Description name) {
             this.name = name;
         }
 
