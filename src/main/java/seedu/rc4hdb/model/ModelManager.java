@@ -262,7 +262,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setObservableBookings(VenueName venueName) {
+    public void setObservableBookings(VenueName venueName) throws VenueNotFoundException {
         this.observableBookingList.setAll(venueBook.getBookings(venueName));
     }
 

@@ -162,7 +162,7 @@ public interface Model {
     /**
      * Sets the venue corresponding to {@code venueName} to be displayed on {@link seedu.rc4hdb.ui.BookingTableView}.
      */
-    void setObservableBookings(VenueName venueName);
+    void setObservableBookings(VenueName venueName) throws VenueNotFoundException;
 
     /**
      * Returns an observable list of the fields to be shown when invoking {@code show}.

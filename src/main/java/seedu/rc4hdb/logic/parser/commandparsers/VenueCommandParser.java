@@ -12,6 +12,7 @@ import seedu.rc4hdb.logic.commands.venuecommands.UnbookCommand;
 import seedu.rc4hdb.logic.commands.venuecommands.VenueAddCommand;
 import seedu.rc4hdb.logic.commands.venuecommands.VenueCommand;
 import seedu.rc4hdb.logic.commands.venuecommands.VenueDeleteCommand;
+import seedu.rc4hdb.logic.commands.venuecommands.VenueViewCommand;
 import seedu.rc4hdb.logic.parser.ParserUtil;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
@@ -45,6 +46,9 @@ public class VenueCommandParser implements CommandParser<VenueCommand> {
 
         case VenueDeleteCommand.COMMAND_WORD:
             return new VenueDeleteCommand(ParserUtil.parseVenueName(args));
+
+        case VenueViewCommand.COMMAND_WORD:
+            return new VenueViewCommand(ParserUtil.parseVenueName(args));
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -102,7 +102,7 @@ public class UniqueVenueList implements Iterable<Venue> {
     /**
      * Gets the unmodifiable list of bookings that are associated to the venue with {@code venueName}.
      */
-    public ObservableList<Booking> getBookings(VenueName venueName) {
+    public ObservableList<Booking> getBookings(VenueName venueName) throws VenueNotFoundException {
         requireNonNull(venueName);
         return getVenueWithName(venueName).getObservableBookings();
     }
