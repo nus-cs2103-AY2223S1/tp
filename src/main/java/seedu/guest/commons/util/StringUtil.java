@@ -12,6 +12,8 @@ import java.util.Arrays;
  */
 public class StringUtil {
 
+    private static String SPLIT_REGEX = "\\s+";
+
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
      *   Ignores case, but a full word match is required.
@@ -29,10 +31,10 @@ public class StringUtil {
 
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+        checkArgument(preppedWord.split(SPLIT_REGEX).length == 1, "Word parameter should be a single word");
 
         String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String[] wordsInPreppedSentence = preppedSentence.split(SPLIT_REGEX);
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
@@ -59,13 +61,56 @@ public class StringUtil {
         if (preppedDate.isEmpty()) {
             return false;
         }
-        checkArgument(preppedDate.split("\\s+").length == 1, "date parameter should be a single date");
+        checkArgument(preppedDate.split(SPLIT_REGEX).length == 1, "Date parameter should be a single date");
 
         String preppedSentence = sentence.replace("-", "");
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String[] datesInPreppedSentence = preppedSentence.split(SPLIT_REGEX);
 
-        return Arrays.stream(wordsInPreppedSentence)
+        return Arrays.stream(datesInPreppedSentence)
                 .anyMatch(preppedDate::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code isRoomClean}.
+     *   Ignores case, but must be either 'yes', 'no', 'y' or 'n'.
+     *   <br>examples:<pre>
+     *       containsIsRoomCleanIgnoreCase("yes", "y") == true
+     *       containsIsRoomCleanIgnoreCase("yes", "yes") == true
+     *       containsIsRoomCleanIgnoreCase("yes", "yEs") == true
+     *       containsIsRoomCleanIgnoreCase("no", "n") == true
+     *       containsIsRoomCleanIgnoreCase("no", "no") == true
+     *       containsIsRoomCleanIgnoreCase("no", "nO") == true
+     *       containsIsRoomCleanIgnoreCase("yes", "yep") == false //not in the correct format
+     *       containsIsRoomCleanIgnoreCase("no", "nope") == false //not in the correct format
+     *       </pre>
+     * @param sentence cannot be null
+     * @param isRoomClean cannot be null, cannot be empty, must be a single isRoomClean
+     */
+    public static boolean containsIsRoomCleanIgnoreCase(String sentence, String isRoomClean) {
+
+        String abbreviatedRoomClean = "y";
+        String standardisedRoomClean = "yes";
+        String abbreviatedRoomUnclean = "n";
+        String standardisedRoomUnclean = "no";
+
+        requireNonNull(sentence);
+        requireNonNull(isRoomClean);
+
+        String preppedIsRoomClean = isRoomClean.trim().toLowerCase();
+        checkArgument(!preppedIsRoomClean.isEmpty(), "IsRoomClean parameter cannot be empty");
+        checkArgument(preppedIsRoomClean.split(SPLIT_REGEX).length == 1,
+                "IsRoomClean parameter should be a single IsRoomClean");
+        if (preppedIsRoomClean.equals(abbreviatedRoomClean)) {
+            preppedIsRoomClean = standardisedRoomClean;
+        } else if (preppedIsRoomClean.equals(abbreviatedRoomUnclean)) {
+            preppedIsRoomClean = standardisedRoomUnclean;
+        }
+
+        String preppedSentence = sentence;
+        String[] isRoomCleansInPreppedSentence = preppedSentence.split(SPLIT_REGEX);
+
+        return Arrays.stream(isRoomCleansInPreppedSentence)
+                .anyMatch(preppedIsRoomClean::equalsIgnoreCase);
     }
 
     /**

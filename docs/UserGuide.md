@@ -150,6 +150,7 @@ Constraints of parameters:
 * `ROOM` should only contain alphanumeric characters and a hyphen.
 * `DATE_RANGE` should follow the format dd/MM/yy - dd/MM/yy.
 * `NUMBER_OF_GUESTS` should only contain numbers, and it should be at least 1 and at most 4.
+* `IS_ROOM_CLEAN` should only contain case insensitive 'yes', 'no', 'y', 'n'.
 * `REQUEST` is an optional field, and it should be at most 500 characters long.
 
 Examples:

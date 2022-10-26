@@ -24,6 +24,11 @@ public class GuestContainsKeywordsPredicate implements Predicate<Guest> {
                 keyword));
     }
 
+    private boolean compareIsRoomClean(String sentence) {
+        return keywords.stream().anyMatch(keyword -> StringUtil.containsIsRoomCleanIgnoreCase(sentence,
+                keyword));
+    }
+
     @Override
     public boolean test(Guest guest) {
         return compareWord(guest.getName().fullName)
@@ -31,9 +36,9 @@ public class GuestContainsKeywordsPredicate implements Predicate<Guest> {
                 || compareWord(guest.getEmail().toString())
                 || compareWord(guest.getRoom().toString())
                 || compareWord(guest.getNumberOfGuests().toString())
-                || compareWord(guest.getIsRoomClean().toString())
                 || compareWord(guest.getBill().toString())
                 || compareWord(guest.getRequest().toString())
+                || compareIsRoomClean(guest.getIsRoomClean().toString())
                 || compareDate(guest.getDateRange().toString());
     }
 
