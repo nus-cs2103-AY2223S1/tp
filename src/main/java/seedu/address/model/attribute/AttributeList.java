@@ -1,5 +1,9 @@
 package seedu.address.model.attribute;
 
+import seedu.address.model.attribute.exceptions.AttributeException;
+import seedu.address.model.attribute.exceptions.AttributeNotFoundException;
+import seedu.address.model.attribute.exceptions.DuplicateAttributeException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,16 +27,28 @@ public class AttributeList {
     /**
      * Adds a field to the list of fields.
      *
-     * @param field A Field instance to be added to the list.
+     * @param attribute A Field instance to be added to the list.
      */
     public void addAttribute(Attribute<?> attribute) {
         attributeList.add(attribute);
     }
 
+    public Attribute<?> checkForAttributeName(String attributeName) {
+        List<Attribute<?>> lst = attributeList.stream()
+                .filter(attr -> attr.isNameMatch(attributeName))
+                .collect(Collectors.toList());
+        if (lst.isEmpty()) {
+            return null;
+        }
+        return lst.get(0);
+    }
+
     /**
      * Adds a field to the list of fields by a given field name.
      *
-     * @param fieldName the name of the Field instance to be added to the list.
+     * @param <T> type of value
+     * @param attributeName the name of the Field instance to be added to the list.
+     * @param value the value of the field.
      */
     public <T> void addAttribute(String attributeName, T value) {
         AbstractAttribute<T> attribute = new AbstractAttribute<T>(attributeName, value) {
@@ -44,7 +60,11 @@ public class AttributeList {
         this.addAttribute(attribute);
     }
 
-    public void addAttribute(String attributeName) {
+    public void addAttribute(String attributeName) throws AttributeException {
+        if (this.checkForAttributeName(attributeName) != null) {
+            String existingName = this.checkForAttributeName(attributeName).getAttributeType();
+            throw new DuplicateAttributeException(existingName, attributeName);
+        }
         AbstractAttribute<String> attribute = new AbstractAttribute<>(attributeName, null) {
             @Override
             public Map<String, Object> toSaveableData() {
@@ -55,13 +75,13 @@ public class AttributeList {
     }
 
     public void deleteAttribute(String type) {
-        attributeList.removeIf(attr -> attr.getAttributeType().equals(type));
+        attributeList.removeIf(attr -> attr.isNameMatch(type));
     }
 
     /**
      * Removes a field from the list of fields.
      *
-     * @param field A field to be removed from the list.
+     * @param attribute A field to be removed from the list.
      * @return true if the Field was removed successfully, false otherwise.
      */
     public boolean removeAttribute(Attribute<?> attribute) {
@@ -71,7 +91,7 @@ public class AttributeList {
     /**
      * Removes a field from the list of fields.
      *
-     * @param fieldName The name of the field to be removed from the list.
+     * @param attributeName The name of the field to be removed from the list.
      */
     public void removeField(String attributeName) {
         List<Attribute<?>> attributesToRemove = attributeList.stream()
@@ -83,8 +103,8 @@ public class AttributeList {
     /**
      * Updates the Field object with a new Field object.
      *
-     * @param oldField The old Field object from the Person.
-     * @param newField The new Field object to be updated.
+     * @param oldAttribute The old Field object from the Person.
+     * @param newAttribute The new Field object to be updated.
      */
     public void updateAttribute(Attribute<?> oldAttribute, Attribute<?> newAttribute) {
         int index = attributeList.indexOf(oldAttribute);
@@ -110,7 +130,7 @@ public class AttributeList {
      * Adds all items from a given list of fields to the list stored in the
      * Fields object.
      *
-     * @param fields A list of fields to add.
+     * @param attributeList A list of fields to add.
      */
     public void addAll(List<Attribute<?>> attributeList) {
         this.attributeList.addAll(attributeList);
@@ -119,7 +139,7 @@ public class AttributeList {
     /**
      * Adds all items from a given Fields instance.
      *
-     * @param fields A Fields object containing field information to be added from.
+     * @param attributeList A Fields object containing field information to be added from.
      */
     public void addAll(AttributeList attributeList) {
         if (attributeList != null && !attributeList.isEmpty()) {

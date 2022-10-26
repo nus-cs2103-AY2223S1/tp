@@ -25,6 +25,14 @@ public interface Attribute<T> {
     T getAttributeContent();
 
     /**
+     * Checks whether a string has the same name as the attribute, regardless
+     * of the case.
+     *
+     * @return true if the string is equal to the attribute name, false otherwise
+     */
+    boolean isNameMatch(String name);
+
+    /**
      * Returns true if the attribute can be displayed in the menu screen.
      */
     boolean isVisibleInMenu();

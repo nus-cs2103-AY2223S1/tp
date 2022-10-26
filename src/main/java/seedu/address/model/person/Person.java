@@ -46,33 +46,6 @@ public class Person extends AbstractDisplayItem {
     }
 
     /**
-     * Retrieves the Fields instance of the Person.
-     *
-     * @return the Fields instance of the Person.
-     */
-    public AttributeList getFields() {
-        return this.attributes;
-    }
-
-    /**
-     * Adds a Field to the Fields of the Person.
-     *
-     * @param fieldName the field name to be added.
-     */
-    public void addField(String fieldName) {
-        attributes.addAttribute(fieldName);
-    }
-
-    /**
-     * Removes a field from the Fields of the Person
-     *
-     * @param fieldName the field name to be removed.
-     */
-    public void removeField(String fieldName) {
-        attributes.removeField(fieldName);
-    }
-
-    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */

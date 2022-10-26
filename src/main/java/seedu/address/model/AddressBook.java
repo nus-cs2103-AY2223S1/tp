@@ -217,6 +217,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.addField(fieldName);
     }
 
+    public void addPersonAttribute( )
+
     /**
      * Removes a {@code field} from each person in the address book.
      * Field must already exist in the address book.
