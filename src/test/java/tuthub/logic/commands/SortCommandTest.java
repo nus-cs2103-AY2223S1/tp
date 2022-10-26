@@ -21,7 +21,6 @@ import tuthub.logic.parser.Prefix;
 import tuthub.model.Model;
 import tuthub.model.ModelManager;
 import tuthub.model.UserPrefs;
-import tuthub.model.tutor.NameContainsKeywordsPredicate;
 import tuthub.model.tutor.SortByRatingComparator;
 import tuthub.model.tutor.SortByTeachingNominationComparator;
 
@@ -36,7 +35,7 @@ public class SortCommandTest {
         SortByRatingComparator secondComparator =
                 new SortByRatingComparator("d");
 
-        Prefix firstPrefix = new Prefix("a/");
+        Prefix firstPrefix = new Prefix("r/");
         Prefix secondPrefix = new Prefix("tn/");
 
         SortCommand sortFirstCommand = new SortCommand("a", firstPrefix,
@@ -119,12 +118,5 @@ public class SortCommandTest {
         assertCommandSuccess(command4, model, expectedMessage4, expectedModel);
         assertEquals(Arrays.asList(CARL, ALICE, GEORGE, ELLE, FIONA, BENSON, DANIEL),
                 model.getFilteredTutorList());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
