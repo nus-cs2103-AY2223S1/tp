@@ -66,7 +66,7 @@ Test
   * [Upcoming features]
 * [FAQ](ug-pages/faq.md#faq)
 * [Glossary](ug-pages/glossary.md)
-* [Authors]()
+* [Authors](ug-pages/authors.md)
 * [Command Summary](ug-pages/command-summary.md#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
