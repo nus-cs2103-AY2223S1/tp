@@ -45,7 +45,7 @@ public class EntryCard extends UiPart<Region> {
         this.entry = entry;
         id.setText(displayedIndex + ". ");
         description.setText(entry.getDescription().fullDescription);
-        amount.setText(entry.getAmount().toString());
+        amount.setText(entry.getAmount().toFormattedString());
         date.setText(entry.getDate().toString());
         tags.getChildren().add(new Label(entry.getTag().tagName));
         // entry.getTag().stream()
