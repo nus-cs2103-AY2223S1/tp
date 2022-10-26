@@ -16,13 +16,9 @@ import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
  */
 public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
-    private static final String FXML = "HelpWindow.fxml";
 
-    @FXML
-    private Button copyButton;
-
-    @FXML
-    private Label helpMessage;
+    @FXML private Button copyButton;
+    @FXML private Label helpMessage;
 
     /**
      * Creates a new HelpWindow.
@@ -30,7 +26,7 @@ public class HelpWindow extends UiPart<Stage> {
      * @param root Stage to use as the root of the HelpWindow.
      */
     public HelpWindow(Stage root) {
-        super(FXML, root);
+        super("HelpWindow.fxml", root);
     }
 
     /**

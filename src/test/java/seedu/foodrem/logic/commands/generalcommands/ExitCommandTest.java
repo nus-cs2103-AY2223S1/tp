@@ -13,15 +13,21 @@ import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.testutil.TypicalFoodRem;
 
 class ExitCommandTest {
-
     private final Model model = new ModelManager(TypicalFoodRem.getTypicalFoodRem(), new UserPrefs());
 
     @Test
-    void execute() {
-        CommandResult commandResult = new ExitCommand().execute(model);
+    void testCommandResult() {
+        CommandResult<?> commandResult = new ExitCommand().execute(model);
 
-        assertFalse(commandResult.isShowHelp());
-        assertTrue(commandResult.isExit());
-        assertEquals(commandResult.getFeedbackToUser(), "Exiting FoodRem as requested ...");
+        assertFalse(commandResult.shouldShowHelp());
+        assertTrue(commandResult.shouldExit());
+        assertEquals(commandResult.getOutput(), "Exiting FoodRem as requested ...");
+    }
+
+    @Test
+    void testCommandResultEquals() {
+        CommandResult<?> firstResult = new ExitCommand().execute(model);
+        CommandResult<?> secondResult = new ExitCommand().execute(model);
+        assertEquals(firstResult, secondResult);
     }
 }

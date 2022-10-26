@@ -2,90 +2,66 @@ package seedu.foodrem.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Objects;
-
 /**
  * Represents the result of a command execution.
  */
-public class CommandResult {
-    private final String feedbackToUser;
-
-    private final String helpText;
-
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
-
-    /** The application should exit. */
-    private final boolean exit;
-
+public abstract class CommandResult<T> {
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified output.
+     * @param output the output to eventually display to the user.
+     * @return a {@code CommandResult} that holds the output.
      */
-    private CommandResult(String feedbackToUser, String helpText, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.helpText = requireNonNull(helpText);
-        this.showHelp = showHelp;
-        this.exit = exit;
+    public static <T> CommandResult<T> from(T output) {
+        requireNonNull(output);
+        return new CommandResult<>() {
+            @Override
+            public T getOutput() {
+                return output;
+            }
+
+            // TODO: Test this
+            @Override
+            public boolean equals(Object other) {
+                if (other == this) {
+                    return true;
+                }
+                if (!(other instanceof CommandResult)) {
+                    return false;
+                }
+
+                CommandResult<?> asType = (CommandResult<?>) other;
+                try {
+                    return getOutput().equals(asType.getOutput())
+                            && super.equals(asType);
+                } catch (UnsupportedOperationException e) {
+                    return false;
+                }
+            }
+        };
     }
 
-    /**
-     * Constructs a {@code CommandResult} with the specified fields.
-     */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, "", showHelp, exit);
+    public T getOutput() {
+        throw new UnsupportedOperationException();
     }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * a {@code helpText} to display to user and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser, String helpText) {
-        this(feedbackToUser, helpText, true, false);
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, "", false, false);
-    }
-
-    public String getFeedbackToUser() {
-        return feedbackToUser;
-    }
-
     public String getHelpText() {
-        return helpText;
+        throw new UnsupportedOperationException();
+    }
+    public boolean shouldShowHelp() {
+        return false;
+    }
+    public boolean shouldExit() {
+        return false;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
-    }
-
-    public boolean isExit() {
-        return exit;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof CommandResult)) {
-            return false;
-        }
-
-        CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+    protected boolean equals(CommandResult<?> other) {
+        // To be called by derived classes
+        return shouldShowHelp() == other.shouldShowHelp()
+                && shouldExit() == other.shouldExit();
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+    public boolean equals(Object obj) {
+        // To be overridden by derived classes
+        return false;
     }
 }

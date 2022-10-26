@@ -39,11 +39,9 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
-    protected Ui ui;
-    protected Logic logic;
-    protected Storage storage;
-    protected Model model;
-    protected Config config;
+    private Ui ui;
+    private Storage storage;
+    private Model model;
 
     private String initialMessage = "Welcome to FoodRem!";
 
@@ -53,7 +51,7 @@ public class MainApp extends Application {
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
-        config = initConfig(appParameters.getConfigPath());
+        Config config = initConfig(appParameters.getConfigPath());
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
@@ -64,8 +62,7 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
-
+        Logic logic = new LogicManager(model, storage);
         ui = new UiManager(logic);
     }
 
@@ -176,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Food Rem ] =============================");
+        logger.info("============================ [ Stopping FoodRem ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

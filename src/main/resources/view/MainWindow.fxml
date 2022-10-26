@@ -11,7 +11,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/8" title="FoodRem" minWidth="450" minHeight="450" onCloseRequest="#handleExit">
+         xmlns="http://javafx.com/javafx/8" title="FoodRem" minWidth="700" minHeight="450" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/foodrem.png"/>
   </icons>
@@ -34,10 +34,10 @@
         <!-- Main Body -->
         <HBox spacing="16" styleClass="main-body">
           <!-- Left Column -->
-          <VBox spacing="12">
+          <VBox spacing="12" VBox.vgrow="ALWAYS">
             <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="command-placeholder"/>
-            <VBox fx:id="personList" styleClass="list-placeholder" VBox.vgrow="ALWAYS">
-              <StackPane fx:id="itemListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <VBox fx:id="personList" styleClass="list-placeholder" >
+              <StackPane fx:id="itemListPanelPlaceholder" />
             </VBox>
           </VBox>
 
