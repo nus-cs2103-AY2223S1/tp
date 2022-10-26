@@ -157,6 +157,40 @@ Classes used by multiple components are in the `seedu.phu.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature
+
+#### Proposed Implementation
+The implementation of the add command involves creating a new `Internship` objects and storing them in the 
+InternshipBook.json using the `JsonAdaptedInternship` class.
+
+The add command has the following fields:
+- `n/` prefix followed by the name of the company
+- `p/` prefix followed by the name of the position
+- `pr/` prefix followed by the application status (Optional)
+- `d/` prefix followed by important dates to be taken note of (Optional)
+- `ph/` prefix followed by the phone number of the HR (Optional)
+- `e/` prefix followed by the email of the HR (Optional)
+- `web/` prefix followed by the website link for more internship details (Optional)
+- `r/` prefix followed by any additional remarks (Optional)
+- `t/` prefix followed by relevant tags (Optional)
+
+The system will validate the parameters supplied by the user. When input validation fails, error message specifying the
+first identified error will be shown to the user.
+
+The following sequence diagram shows how the add command works.
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+#### Design Considerations
+**Whether an internship application can be added without all attributes**:
+* **Alternative 1 (current choice)**: Allow for optional parameters with default values
+    * Pros: Enhances users' convenience
+    * Cons: Modifications of `equals` method for optional parameters required
+  
+* **Alternative 2** All parameters must be filled up
+    * Pros: Easier to implement
+    * Cons: Lengthy command
+
 ### List feature
 
 #### Proposed Implementation
