@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.BaseCommandUtil;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -56,8 +57,15 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void execute_commandWithoutFlag_throwsParseException() {
+        String deleteCommand = "delete 9";
+        String expectedMessage = String.format(BaseCommandUtil.getErrorMessage(BaseCommandUtil.DELETE_COMMAND));
+        assertParseException(deleteCommand, expectedMessage);
+    }
+
+    @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "deletep 9";
+        String deleteCommand = "delete -p 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 

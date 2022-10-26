@@ -185,19 +185,19 @@ Then,
 - `find -i c/ABC Pte Ltd` returns **SBS Transit Ltd**, **SMRT Trains Ltd** and **ABC Pte Ltd**
 
 
-### Deleting a person by index : `deletep`
+### Deleting a person by index : `delete -p`
 
 Deletes the specified person from InterNUS.
 
-Format: `deletep INDEX`
+Format: `delete -p INDEX`
 
 * Deletes the person with the specific `INDEX` in the person list.
 * The index refers to the index number shown in the currently displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `listp` followed by `deletep 2` deletes the 2nd person in InterNUS.
-* `findp Betsy` followed by `deletep 1` deletes the 1st person in the results of the `find` command.
+* `list -p` followed by `delete -p 2` deletes the 2nd person in InterNUS.
+* `find -p Betsy` followed by `delete -p 1` deletes the 1st person in the results of the `find` command.
 
 ### Deleting an internship by index : `delete -i`
 
@@ -273,10 +273,10 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 | **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [t/TAG]… [l/LINK_INDEX] [c/COMPANY]` <br> e.g., `add -p n/James Ho e/jamesho@example.com p/22224444 l/3 c/Meta` |
 | **Add internship**    | `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `addi n/TikTok r/Data Engineer s/rejected l/1`               |
 | **Clear**             | `clear`                                                                                                                                            |
-| **Delete person**     | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                              |
+| **Delete person**     | `delete -p INDEX`<br> e.g., `delete -p 3`                                                                                                          |
 | **Delete internship** | `delete -i INDEX`<br> e.g., `delete -i 1`                                                                                                          |
 | **Edit person**       | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                   |
-| **Edit internship**   | `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`<br> e.g.,`edit -i 2 s/REJECTED`, `edit -i 3 d/2023-01-01 13:30`   |
+| **Edit internship**   | `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`<br> e.g.,`edit -i 2 s/REJECTED`, `edit -i 3 d/2023-01-01 13:30`                 |
 | **Find person**       | `findp KEYWORD` <br> e.g., `findp James`                                                                                                           |
 | **Find internship**   | `findi KEYWORD` <br> e.g., `findi Google`                                                                                                          |
 | **List persons**      | `listp`                                                                                                                                            |
