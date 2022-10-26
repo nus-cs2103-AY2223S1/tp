@@ -19,8 +19,8 @@ public class MakeStatsCommand extends Command {
 
     public static final String COMMAND_WORD = "makeStats";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Generates the Statistics of the Event at the index"
-        + "specified by user. Type of statistics shown is based off a user input parameter.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Generates the statistics of the Event at the index"
+        + "specified by the user. Type of statistics shown is based off a user input parameter.\n"
         + "Parameters INDEX " + PREFIX_TYPE + "TYPE \n"
         + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TYPE + "g";
 
