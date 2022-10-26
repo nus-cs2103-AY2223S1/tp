@@ -111,7 +111,7 @@ public class HelpWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.info("Showing help page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
     }

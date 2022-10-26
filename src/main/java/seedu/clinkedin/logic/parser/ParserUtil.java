@@ -351,9 +351,6 @@ public class ParserUtil {
         UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
 
         for (String[] detail: person) {
-            for (String s: detail) {
-                System.out.println(s);
-            }
             String check = detail[0];
             String tagType = null;
             if (check.startsWith("Tag:")) {

@@ -3,6 +3,7 @@ package seedu.clinkedin.logic.parser;
 import static seedu.clinkedin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PATH;
 
+import java.io.File;
 import java.util.stream.Stream;
 
 import seedu.clinkedin.logic.commands.ExportCommand;
@@ -28,6 +29,14 @@ public class ExportCommandParser implements Parser<ExportCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE));
         }
         String filePath = argMultimap.getValue(PREFIX_PATH).get().trim();
+        File file = new File(filePath);
+
+        if (filePath.equals("") || file.getName().trim().equals("") || file.getName().trim().equals(".csv")) {
+            throw new ParseException("File name cannot be empty!");
+        }
+        if (file.getName().trim().startsWith(".")) {
+            throw new ParseException("File name cannot begin with period(.)!");
+        }
         ParserUtil.FileType fileType = ParserUtil.getFileType(argMultimap.getValue(PREFIX_PATH).get().trim());
         return new ExportCommand(filePath, fileType);
     }

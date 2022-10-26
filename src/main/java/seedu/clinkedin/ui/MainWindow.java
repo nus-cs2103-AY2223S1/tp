@@ -122,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
         personCountDisplayPlaceholder.getChildren().add(personCountDisplay.getRoot());
 
         resultDisplay = new ResultDisplay();
-        exportWindow = new ExportWindow(logic, this.resultDisplay);
+        exportWindow = new ExportWindow(this);
 
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -194,7 +194,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.clinkedin.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText, boolean isDisplay) throws CommandException,
+            ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -215,9 +216,18 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            if (isDisplay) {
+                resultDisplay.setFeedbackToUser(e.getMessage());
+            }
             personCountDisplay.setPersonCountMessage(logic.getFilteredPersonList(), logic.getAddressBook());
             throw e;
         }
+    }
+
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        return executeCommand(commandText, true);
+    }
+    public CommandResult executeFromWindow(String command) throws CommandException, ParseException {
+        return this.executeCommand(command, false);
     }
 }

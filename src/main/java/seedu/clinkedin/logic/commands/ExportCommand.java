@@ -59,7 +59,7 @@ public class ExportCommand extends Command {
         try {
             exportToCsvFile(filePath, data);
         } catch (IOException ioe) {
-            throw new CommandException(ioe.getMessage());
+            throw new CommandException("Couldn't export file! Check file path and try again!");
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, filePath));
     }
