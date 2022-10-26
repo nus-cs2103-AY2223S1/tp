@@ -15,7 +15,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new FindCommand object
  */
 public class SortCommandParser implements Parser<SortCommand> {
-    private static final String DEFAULT_SORT_ORDER = "asc";
+    private static final String GENERAL_DEFAULT_SORT_ORDER = "asc";
+    private static final String OWED_DEFAULT_SORT_ORDER = "desc";
 
     /**
      * Parses the given {@code String args} of arguments in the context of the SortCommand
@@ -27,23 +28,29 @@ public class SortCommandParser implements Parser<SortCommand> {
         requireNonNull(args);
         String[] splitArguments = args.trim().split(" ");
         String typeString = splitArguments[0];
-        String orderString;
-        if (splitArguments.length == 1) {
-            orderString = DEFAULT_SORT_ORDER;
-        } else if (splitArguments.length == 2) {
-            orderString = splitArguments[1];
-        } else {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
-        }
         Type type;
-        Order order;
         try {
             type = ParserUtil.parseSortType(typeString);
         } catch (ParseException pe) {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_UNKNOWN_TYPE_KEYWORD), pe);
         }
+
+        String orderString;
+        if (splitArguments.length == 1) {
+            if (type.equals(Type.OWED)) {
+                orderString = OWED_DEFAULT_SORT_ORDER;
+            } else {
+                orderString = GENERAL_DEFAULT_SORT_ORDER;
+            }
+        } else if (splitArguments.length == 2) {
+            orderString = splitArguments[1];
+        } else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        }
+
+        Order order;
         try {
             order = ParserUtil.parseSortOrder(orderString);
         } catch (ParseException pe) {
