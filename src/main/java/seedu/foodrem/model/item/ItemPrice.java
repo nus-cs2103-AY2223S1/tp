@@ -39,6 +39,14 @@ public class ItemPrice {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        return Double.hashCode(itemPrice);
+    }
+
+    /**
      * Compares two item price. The method returns 0 if the item price is equal to the other item price.
      * A value less than 0 is returned if the item price is less than the other item price and
      * a value greater than 0 if the item price is greater than the other item price.
