@@ -6,25 +6,27 @@ The COMMAND_WORD is a text indicating a command word of a command
 ```
 
 **Valid Examples:**
-- exit
-- help
-- reset
-- dec
-- del
-- edit
-- find
-- inc
-- list
-- new
-- rmk
-- sort
-- view
-- deletetag
-- listtag
-- newtag
-- renametag
-- tag
-- untag
+
+* exit
+* help
+* reset
+* dec
+* del
+* edit
+* find
+* inc
+* list
+* new
+* rmk
+* sort
+* view
+* deletetag
+* listtag
+* newtag
+* renametag
+* tag
+* untag
 
 **Invalid Examples:**
-- Anything else
+
+* Anything else
