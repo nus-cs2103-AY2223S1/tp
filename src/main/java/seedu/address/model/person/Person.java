@@ -77,7 +77,7 @@ public class Person {
     }
 
     public Set<Remark> getRemarks() {
-        return Collections.unmodifiableSet(remarksList);
+        return remarksList;
     }
 
     public SubjectHandler getSubjectHandler() {
@@ -95,6 +95,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setRemarks(Set<Remark> remarksList) {
+        remarksList = (remarksList != null) ? new HashSet<>(remarksList) : null;
     }
 
     /**
