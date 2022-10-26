@@ -93,6 +93,11 @@ public class DebtList {
         if (!contains(toMark)) {
             throw new DebtNotFoundException();
         }
+
+        if (toMark.isPaid()) {
+            return this;
+        }
+
         DebtList edited = new DebtList(this);
         edited.debts.remove(toMark);
         edited.debts.add(toMark.setPaid(true));
@@ -111,6 +116,11 @@ public class DebtList {
         if (!contains(toUnmark)) {
             throw new DebtNotFoundException();
         }
+
+        if (!toUnmark.isPaid()) {
+            return this;
+        }
+
         DebtList edited = new DebtList(this);
         edited.debts.remove(toUnmark);
         edited.debts.add(toUnmark.setPaid(false));
