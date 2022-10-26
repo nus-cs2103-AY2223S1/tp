@@ -18,6 +18,7 @@ public abstract class EventCommand extends Command {
             + PREFIX_OPTION + AddProfilesToEventCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + DeleteEventCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + EditEventCommand.COMMAND_OPTION + ", "
+            + PREFIX_OPTION + FindEventCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + ViewUpcomingEventsCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + ViewEventsCommand.COMMAND_OPTION + ".";
 

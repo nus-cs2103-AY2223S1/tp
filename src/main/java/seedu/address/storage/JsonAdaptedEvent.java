@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.event.Attendees;
@@ -112,7 +113,15 @@ class JsonAdaptedEvent {
 
         final Set<Tag> modelTags = new HashSet<>(eventTags);
 
-        return new Event(modelTitle, modelStart, modelEnd, modelTags, modelAttendees);
+        if (modelStart.hasTime() != modelEnd.hasTime()) {
+            throw new IllegalValueException(Messages.MESSAGE_EVENTS_HAS_TIME);
+        }
+
+        if (!modelStart.isBeforeOrEqual(modelEnd)) {
+            throw new IllegalValueException(Messages.MESSAGE_EVENTS_INVALID_START_END);
+        }
+
+        return new Event(modelTitle, modelStart, modelEnd, modelTags);
     }
 
 }
