@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.RefreshStatsCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -129,7 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         inventoryPanel = new InventoryPanel(logic.getFilteredSupplyItemList(), logic::increaseSupplyItemHandler,
-                logic::decreaseSupplyItemHandler, logic::changeIncDecAmountHandler);
+                logic::decreaseSupplyItemHandler, logic::changeIncDecAmountHandler, this::executeCommand);
         inventoryPanelPlaceholder.getChildren().add(inventoryPanel.getRoot());
 
         statsCard = new StatsCard(logic.getFilteredSupplyItemList(), logic.getFilteredTaskList());
@@ -205,8 +206,11 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (!commandText.equals(RefreshStatsCommand.COMMAND_WORD)) {
+                logger.info("Result: " + commandResult.getFeedbackToUser());
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -11,6 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.RefreshStatsCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -43,7 +44,10 @@ public class LogicManager implements Logic {
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
-        logger.info("----------------[USER COMMAND][" + commandText + "]");
+        // Removes log for refreshing Stats panel
+        if (!commandText.equals(RefreshStatsCommand.COMMAND_WORD)) {
+            logger.info("----------------[USER COMMAND][" + commandText + "]");
+        }
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);

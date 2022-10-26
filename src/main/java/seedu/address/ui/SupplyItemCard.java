@@ -23,6 +23,7 @@ public class SupplyItemCard extends UiPart<Region> {
      */
     private static final String FXML = "SupplyItemCard.fxml";
     private static final int MAX_LENGTH = 5;
+    private static final String DEFAULT_TEXT_FIELD_VALUE = "1";
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -133,8 +134,8 @@ public class SupplyItemCard extends UiPart<Region> {
                 changeIncDecHandler.accept(parsedAmount);
             }
         } catch (NumberFormatException e) {
-            // No changes to value in TextField
-            return;
+            // When TextField value is blank
+            amountInput.setText(DEFAULT_TEXT_FIELD_VALUE);
         }
     }
 }
