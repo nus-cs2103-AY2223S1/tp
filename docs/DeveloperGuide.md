@@ -303,7 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                              | see my students' mastery check completion status                | know which students I have not seen for mastery check                           |
 | `* * *`  | user                              | update my students' mastery check completion status             | can keep track of which students I have already seen for mastery check          |
 | `* * *`  | user                              | see the duration and students involved for my lessons           | can keep track of when and who I have to meet in order to make preparations       |
-| `* *`    | first time user                   | see the app being populated with sample students and tasks      | can try out the functions of the app                                            |
+| `* *`    | first time user                   | see the app being populated with sample students, tasks and lessons      | can try out the functions of the app                                            |
 | `* *`    | user ready to start using the app | clear all current data                                          | can get rid of the sample data used for exploring the app and input my own data |
 | `* *`    | user                              | add attendance for lessons                                      | can keep track of who attended the lesson                                       |
 | `* *`    | user                              | keep track of my students' level of participation               | can prompt students who are less active in participation                        |
