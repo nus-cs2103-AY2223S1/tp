@@ -72,6 +72,7 @@ management tasks done faster than traditional GUI apps.
 
 1. Refer to the [Commands](#commands) Section below for details of each command.
 
+[Go back to [Table of Contents](#table-of-contents)]
 --------------------------------------------------------------------------------------------------------------------
 
 ## Commands
@@ -107,6 +108,8 @@ management tasks done faster than traditional GUI apps.
 * Contact refers to a person added to the address book. It can be of the following three categories: Buyer, Supplier, and Deliverer.
 * Item refers to an Order or Pet. An Order refers to the order placed by Buyer. A Pet refers to the pet sold by a Supplier.
 
+[Go back to [Table of Contents](#table-of-contents)]
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -114,6 +117,9 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
 
 ### Adding a contact or item: `add`
 
@@ -131,6 +137,9 @@ Kindly refer to the [Summaries](#summaries) section for more information.
 
 :exclamation:If you are a beginner, we highly recommend you to use the [Add Command using the popup window](#adding-a-person-with-a-popup-window--add) instead of the usual 
 CLI interface.
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
 
 #### Adding a BUYER: `add-b`
 
@@ -162,6 +171,9 @@ Examples:
 * To add a buyer with two
   orders: `add-b n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore o/add-o o_s/Pending o_r/add-r o_a/1 o_s/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery o/add-o  o_s/Negotiating o_r/add-r o_a/3 o_s/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty `
 
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
 #### Adding a DELIVERER: `add-d`
 
 Adds a deliverer to your contact list. A deliverer delivers pets from suppliers to buyers.
@@ -171,6 +183,9 @@ Format: `add-d n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 Examples:
 
 * To add a single deliverer: `add-d n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore`
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
 
 #### Adding a SUPPLIER: `add-s`
 
@@ -192,6 +207,9 @@ Examples:
 
 * To add a single supplier: `add-s n/Carol Pet House p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 t/discount for more than one purchase`
 * To add a supplier with two pets for sale: `add-s n/Carol Pet House p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 t/discount for more than one purchase pt/add-pt pt_n/Page pt_d/2022-1-1 pt_c/pink pt_cp/pure pink pt_h/41 pt_s/pig pt_cert/US certified pt_v/true pt_w/102 pt_p/270 pt_t/good pt_t/young pt/add-pt pt_n/Snupy pt_d/2021-05-31 pt_c/white pt_cp/dotted pt_h/89.3 pt_cert/US certified pt_s/rabbit pt_v/false pt_w/32 pt_p/330 pt_t/short-sighted`
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
 
 #### Adding an ORDER TO A BUYER: `add-o`
 
@@ -215,6 +233,9 @@ Examples:
 * `add-o o_s/Pending o_r/add-r o_a/1 o_s/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
 * `add-o  o_s/Negotiating o_r/add-r o_a/3 o_s/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
 
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
 #### Adding a PET TO A SUPPLIER : `add-pt`
 
 When a new pet comes up to stock, you may want to add it to its supplier. Now is the time!
@@ -226,6 +247,9 @@ index just in the display list. You may want to use the [List Command](#listing-
 if you have filtered the list.
 
 For more information about the prefixes, kindly navigate to the summary table [here](#list-of-prefixes).
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
 
 #### Adding a person WITH A POPUP WINDOW : `add`
 
@@ -276,6 +300,9 @@ The error message and the correct format of the input will be shown in the **mai
 
 </div>
 
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
 ### Listing contacts or items : `list`
 
 Displays the specified type of contacts or items. This command is especially useful when you want to find the index of a contact / item.
@@ -299,6 +326,9 @@ Examples:
 * `list-o`, lists all Orders.
 * `list/p`, lists all Pets.
 
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
 ### Deleting a contact or item : `delete`
 
 Deletes a contact / item at the specified index of the respective contact / item list.
@@ -320,6 +350,9 @@ Examples:
 * `delete-d 1`, deletes Deliverer contact at index 1 of Deliverer Contacts List, if index is found.
 * `delete-o 1`, deletes Order at index 1 of Orders List, if index is found.
 * `delete-p 1`, deletes Pet at index 1 of Pets List, if index is found.
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
 
 ### Finding a contact using keywords : `find`
 
@@ -346,6 +379,9 @@ Examples:
 * `find e/blackball@furry.com`
 * `find p/98986668`
 
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
 #### Finding a BUYER : `find-b`
 
 Displays all buyers who match ONE specific attribute. Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table) 
@@ -358,6 +394,9 @@ Examples:
 * `find-b a/6th College Ave West`
 * `find-b e/blackball@furry.com`
 * `find-b p/98986668`
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
 
 #### Finding a DELIVERER : `find-d`
 
@@ -372,6 +411,9 @@ Examples:
 * `find-d e/blackball@furry.com`
 * `find-d p/98986668`
 
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
 #### Finding a SUPPLIER : `find-s`
 
 Displays all suppliers who match ONE specific attribute. Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
@@ -385,10 +427,16 @@ Examples:
 * `find-s e/blackball@furry.com`
 * `find-s p/98986668`
 
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
 ### Filtering lists by tags : `filter`
 
 Displays contacts / items based on the specified tag(s). This command is especially useful when you want to coordinate 
 sales between a Buyer and Supplier.
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
 
 #### Filtering CONTACTS : `filter`
 
@@ -400,6 +448,9 @@ Examples:
 
 * `filter t/cat`
 * `filter t/dog t/second-hand`
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
 
 #### Filtering ORDERS : `filter-o`
 
@@ -419,6 +470,9 @@ Examples:
 * `filter-o os/Pending`
 * `filter-o as/Negotiating p/90-900`
 * `filter-o ar/good with children os/Delivering p/80-100`
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
 
 ### Filtering PETS : `filter-p`
 
@@ -440,6 +494,9 @@ Examples:
 * `filter-p c/white`
 * `filter-p c/black v/true`
 * `filter-p c/black n/doraemon p/50 s/cat v/true`
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
 
 ### Sorting contacts : `sort`
 
@@ -494,6 +551,9 @@ Examples:
 * `sort s n /loc`
 * `sort -o pr s p`
 
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
 ### Checking which item belongs to which contact : `check`
 
 Checks a contact at specified index, the application will display different windows for each list input. This command 
@@ -523,17 +583,26 @@ Examples: (Assuming all are valid indexes)
 * `sort o 2`
 * `sort /p 4`
 
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the PetCode.
 
 Format: `clear`
 
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
 
 ## How data is stored
 ### Saving the data
@@ -557,6 +626,7 @@ start with an empty data file at the next run.
 
 _Details coming soon ..._
 
+[Go back to [Table of Contents](#table-of-contents)]
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -565,6 +635,7 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous PetCode home folder.
 
+[Go back to [Table of Contents](#table-of-contents)]
 --------------------------------------------------------------------------------------------------------------------
 
 ## Summaries
@@ -623,3 +694,5 @@ These prefixes are for you to indicate different fields when you add a new perso
 | **Help**                     | `help`                                                                                                                                                                                                     |
 | **List**                     | `list all`, `list buyer`, `list supplier`, `list delivery`, `list order`, `list pet`                                                                                                                       |
 | **Sort**                     | `Sort t/TAG Asc/Desc, [t/TAG] [Asc/Desc]…​`<br> e.g., `Sort t/priority Desc, t/country Desc`                                                                                                               |
+
+[Go back to [Table of Contents](#table-of-contents)]
