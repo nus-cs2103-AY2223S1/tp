@@ -94,7 +94,7 @@ public class Attendance {
      * @param command the command with which to parse attendance
      */
     public void updateAttendance(String command) {
-        checkArgument(isValidAttendance(command), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidAttendance(command), MESSAGE_CONSTRAINTS);
         // e.g. "1/3/2022 1" -> sets attendance to 1 for 1/3/2022
         String[] commandSplit = command.split(" ");
         String date = commandSplit[1];

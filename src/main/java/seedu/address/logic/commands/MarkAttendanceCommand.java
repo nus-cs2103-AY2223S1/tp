@@ -41,7 +41,7 @@ public class MarkAttendanceCommand extends Command {
         List<Person> latestList = model.getFilteredPersonList();
         for (Person person: latestList) {
             if (indexNumbers.stream().anyMatch(ind -> ind.equals(person.getIndexNumberValue()))) {
-                person.getAttendance().updateAttendance(date + " 1");
+                person.getAttendance().updateAttendance("date/" + date + " attendance/1");
             }
         }
         return new CommandResult(MESSAGE_MARK_ATTENDANCE_SUCCESS);
