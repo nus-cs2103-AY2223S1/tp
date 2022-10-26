@@ -1,27 +1,48 @@
 package seedu.address.logic.parser;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
  * E.g. 't/' in 'add James t/ friend'.
+ * A prefix can contain multiple aliases such as 'name/', 'n/', '-n'. They all
+ * indicate the same prefix.
  */
 public class Prefix {
-    private final String prefix;
+    private final ArrayList<String> aliases;
 
-    public Prefix(String prefix) {
-        this.prefix = prefix;
+    /**
+     * Construct a Prefix instance with a list of aliases.
+     *
+     * @param aliases a list of aliases to the prefix
+     */
+    public Prefix(String... aliases) {
+        assert aliases.length > 0 : "Must have at least one valid prefix";
+        this.aliases = new ArrayList<>(Arrays.asList(aliases));
     }
 
-    public String getPrefix() {
-        return prefix;
+    /**
+     * Returns the primary alias of the prefix, which is the first element in aliases array.
+     */
+    public String getAlias() {
+        return aliases.get(0);
+    }
+
+    /**
+     * Returns all aliases to this prefix.
+     */
+    public ArrayList<String> getAliases() {
+        return aliases;
     }
 
     public String toString() {
-        return getPrefix();
+        return getAlias();
     }
 
     @Override
     public int hashCode() {
-        return prefix == null ? 0 : prefix.hashCode();
+        return aliases == null ? 0 : aliases.hashCode();
     }
 
     @Override
@@ -34,6 +55,6 @@ public class Prefix {
         }
 
         Prefix otherPrefix = (Prefix) obj;
-        return otherPrefix.getPrefix().equals(getPrefix());
+        return otherPrefix.getAliases().equals(getAliases());
     }
 }

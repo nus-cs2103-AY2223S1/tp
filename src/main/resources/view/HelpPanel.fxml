@@ -1,39 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox styleClass="help-panel" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane styleClass="help-panel">
-            <columnConstraints>
-                <ColumnConstraints hgrow="NEVER" minWidth="10.0" fillWidth="true"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" fillWidth="true"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <children>
-                <Label styleClass="command-text" text="init &lt;my-github-username&gt;"/>
-                <Label text="Initialize contact book with GitHub integration" GridPane.columnIndex="1"/>
-                <Label styleClass="command-text" text="add &lt;@github-username&gt;" GridPane.rowIndex="1"/>
-                <Label text="Add user to contact book" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <Label styleClass="command-text" text="delete &lt;@github-username&gt;" GridPane.rowIndex="2"/>
-                <Label text="Delete user from contact book" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <Label styleClass="command-text" text="search &lt;keyword&gt;" GridPane.rowIndex="3"/>
-                <Label text="Displays the users/repos that match the keyword " GridPane.columnIndex="1"
-                       GridPane.rowIndex="3"/>
-                <Label styleClass="command-text" text="help" GridPane.rowIndex="4"/>
-                <Label text="Shows help page to the user " GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-            </children>
-        </GridPane>
+        <HBox>
+            <TextField editable="false" styleClass="command-text" text="add"/>
+            <Label text="Adds person to contact book" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox>
+            <TextField editable="false" styleClass="command-text" text="delete"/>
+            <Label text="Deletes person from contact book" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox>
+            <TextField editable="false" styleClass="command-text" text="find"/>
+            <Label text="Displays the persons that match the keyword" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox>
+            <TextField editable="false" styleClass="command-text" text="sort"/>
+            <Label text="Sorts the persons" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox>
+            <TextField editable="false" styleClass="command-text" text="reset"/>
+            <Label text="Resets search condition" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox>
+            <TextField editable="false" styleClass="command-text" text="back"/>
+            <Label text="Back to the previous page" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox>
+            <TextField editable="false" styleClass="command-text" text="clear"/>
+            <Label text="Clears all entries from contact book" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox>
+            <TextField editable="false" styleClass="command-text" text="help"/>
+            <Label text="Shows help page" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox>
+            <TextField editable="false" styleClass="command-text" text="exit"/>
+            <Label text="Exit application"/>
+        </HBox>
     </children>
 </VBox>
