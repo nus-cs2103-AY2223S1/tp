@@ -77,8 +77,8 @@ public class AddressBookParser {
         case PredictionCommand.COMMAND_WORD:
             return new PredictionCommandParser().parse(arguments);
 
-        /*case MarkAttendanceCommand.COMMAND_WORD:
-            return new MarkAttendanceCommandParser().parse(arguments);*/
+        case MarkAttendanceCommand.COMMAND_WORD:
+            return new MarkAttendanceCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

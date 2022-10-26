@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-public class MarkAttendanceCommand {
+public class MarkAttendanceCommand extends Command {
 
     public static final String COMMAND_WORD = "markAtt";
 
@@ -34,12 +34,13 @@ public class MarkAttendanceCommand {
 
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Predicate<Person> personIsInClassPredicate = model.createPersonIsInClassPredicate(studentClass);
-        model.updateFilteredPersonList(personIsInClassPredicate);
+        //Predicate<Person> personIsInClassPredicate = model.createPersonIsInClassPredicate(studentClass);
+        //model.updateFilteredPersonList(personIsInClassPredicate);
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         List<Person> latestList = model.getFilteredPersonList();
         for (Person person: latestList) {
-            if (indexNumbers.stream().anyMatch(ind -> ind == person.getIndexNumberValue())) {
+            if (indexNumbers.stream().anyMatch(ind -> ind.equals(person.getIndexNumberValue()))) {
                 person.getAttendance().updateAttendance(date + " 1");
             }
         }

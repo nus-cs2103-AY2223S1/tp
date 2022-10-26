@@ -5,19 +5,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX_NUMBERS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
 
-import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.logic.commands.FindNameCommand;
 import seedu.address.logic.commands.MarkAttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.FindCommandPredicate;
 
-public class MarkAttendanceCommandParser {
+public class MarkAttendanceCommandParser implements Parser<MarkAttendanceCommand> {
 
     public MarkAttendanceCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        //String[] findCommandKeywords = new String[3];
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(

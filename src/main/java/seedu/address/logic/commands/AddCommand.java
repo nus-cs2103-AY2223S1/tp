@@ -33,6 +33,7 @@ public class AddCommand extends Command {
                                                + "[" + PREFIX_REMARK + "REMARK]...\n"
                                                + "Example: " + COMMAND_WORD + " "
                                                + PREFIX_NAME + "John Doe "
+                                               + PREFIX_INDEX_NUMBERS + "28 "
                                                + PREFIX_PHONE + "98765432 "
                                                + PREFIX_EMAIL + "johnd@example.com "
                                                + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
