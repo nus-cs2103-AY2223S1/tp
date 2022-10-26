@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a reason for loan change of a person.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Reason {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -13,6 +17,11 @@ public class Reason {
 
     public final String reason;
 
+    /**
+     * Constructor for a Reason object
+     *
+     * @param reason Reason of the loan change.
+     */
     public Reason(String reason) {
         requireNonNull(reason);
         checkArgument(isValidReason(reason), MESSAGE_CONSTRAINTS);
