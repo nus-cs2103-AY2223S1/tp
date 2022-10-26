@@ -27,7 +27,8 @@ public class NameOrDescContainsKeywordsPredicate implements Predicate<Activity> 
                 }
             }
         }
-        return keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(activity.getName().fullName, keyword)
+        return keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                activity.getName().fullName, keyword)
             || StringUtil.containsWordIgnoreCase(activity.getDescription().value, keyword));
     }
 

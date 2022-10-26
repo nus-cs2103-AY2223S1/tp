@@ -15,7 +15,8 @@ public class RateAboveCommand extends Command {
 
     public static final String COMMAND_WORD = "r/above";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all activities whose rate is above certain value\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": List all activities whose rate is above certain value\n"
             + "Parameters: int rateBound...\n"
             + "Example: " + COMMAND_WORD + " 3";
     public static final String RESPOND_MESSAGE = "List all activities whose rate is above ";

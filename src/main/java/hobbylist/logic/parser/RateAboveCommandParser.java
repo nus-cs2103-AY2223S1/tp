@@ -2,7 +2,6 @@ package hobbylist.logic.parser;
 
 import static hobbylist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import hobbylist.logic.commands.FindCommand;
 import hobbylist.logic.commands.RateAboveCommand;
 import hobbylist.logic.parser.exceptions.ParseException;
 
@@ -15,7 +14,7 @@ public class RateAboveCommandParser {
      * Parses the given {@code String} of arguments in the context of the RateAboveCommand
      * and returns a RateCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format or rate value
-     * is out of bound.
+     *     is out of bound.
      */
     public RateAboveCommand parse(String args) throws ParseException {
         int i = 0;
