@@ -68,7 +68,7 @@ public class CommandSuggestorTest {
     public void suggestCommand_validCommandWithInvalidPrefix_failure() {
         assertThrows(CommandException.class, () -> commandSuggestor.suggestCommand("add_task a"));
     }
-    
+
     @Test
     public void suggestCommand_validCommandWithIndex_success() {
         String expectedSuggestion = DeleteTaskCommand.COMMAND_WORD + " <task_index>";
