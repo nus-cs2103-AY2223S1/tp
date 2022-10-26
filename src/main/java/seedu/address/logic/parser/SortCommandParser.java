@@ -18,8 +18,8 @@ public class SortCommandParser implements Parser<SortCommand> {
     private static final String DEFAULT_SORT_ORDER = "asc";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String args} of arguments in the context of the SortCommand
+     * and returns a SortCommand object for execution.
      *
      * @throws ParseException If the user input does not conform the expected format.
      */
@@ -33,7 +33,6 @@ public class SortCommandParser implements Parser<SortCommand> {
         } else if (splitArguments.length == 2) {
             orderString = splitArguments[1];
         } else {
-            // todo: error message to be updated
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }

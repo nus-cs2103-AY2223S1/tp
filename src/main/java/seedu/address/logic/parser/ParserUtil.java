@@ -222,7 +222,7 @@ public class ParserUtil {
     }
 
     /**
-     * Helper method to parse {@String date} as part of {@code parseClass}.
+     * Helper method to parse {@code String date} as part of {@code parseClass}.
      */
     public static LocalDate parseDate(String date) throws ParseException {
         LocalDate result;
@@ -235,7 +235,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@String date} and returns LocalDate object.
+     * Parses a {@code String date} and returns LocalDate object.
      */
     public static LocalDate parseDateToFind(String date) throws ParseException {
         requireNonNull(date);
@@ -254,7 +254,7 @@ public class ParserUtil {
     }
 
     /**
-     * Helper method to parse {@String time} as part of {@code parseClass}.
+     * Helper method to parse {@code String time} as part of {@code parseClass}.
      */
     private static LocalTime parseTime(String time) throws ParseException {
         Integer hour = Integer.valueOf(time.substring(0, 2));
@@ -325,7 +325,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code arg} into a {@code Order}.
+     * Parses {@code String arg} into a {@code Order}.
      */
     public static Order parseSortOrder(String arg) throws ParseException {
         switch (arg.toUpperCase()) {
@@ -339,7 +339,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code arg} into a {@code Type}.
+     * Parses {@code String arg} into a {@code Type}.
      */
     public static Type parseSortType(String arg) throws ParseException {
         switch (arg) {

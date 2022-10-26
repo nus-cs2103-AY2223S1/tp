@@ -14,9 +14,9 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all persons with the given order";
+    public static final String MESSAGE_SUCCESS = "Sorted all students with the given order";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts the persons by the given argument type and order. "
+            + ": Sorts the students by the given argument type and order. "
             + "Parameters: ARGUMENT ORDER\n"
             + "ARGUMENT can be either 'NAME', 'CLASS' and 'OWED'\nORDER can be either 'ASC' OR 'DESC'\n"
             + "Example: " + COMMAND_WORD + " NAME ASC";
@@ -47,7 +47,8 @@ public class SortCommand extends Command {
     }
 
     /**
-     * Generates a Comparator for Person based on parameters
+     * Generates a Comparator for Person based on parameters.
+     *
      * @param type type of attribute to be compared
      * @param order order of sorting
      */
