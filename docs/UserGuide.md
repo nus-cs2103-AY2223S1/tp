@@ -134,7 +134,7 @@ SOCompiler data are saved in the hard disk automatically after any command that 
 
 Adds a contact to the contact list.
 
-Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`
+Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM] [m/MODULE_CODE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
@@ -144,15 +144,15 @@ A contact can have any number of tags (including 0)
 
 Examples:
 
-* `addp n/John Doe p/98765432 e/johnd@example.com m/CS2040S t/Labmate t/Friend`
-* `addp t/Family p/95647581 e/jessie@example.com n/Jessica Lim`
+* `addp n/John Doe p/98765432 e/johnd@example.com tg/@johndoe m/CS2040S t/Labmate t/Friend`
+* `addp t/Family p/95647581 e/jessie@example.com tg/@jessica n/Jessica Lim`
 * `addp n/BobMcGhee`
 
 ### Editing a contact : `editp`
 
 Edits an existing contact in the contact list.
 
-Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`
+Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM] [m/MODULE_CODE] [t/TAG]…​`
 
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list.
   The index **must be a positive integer** 1, 2, 3, …​

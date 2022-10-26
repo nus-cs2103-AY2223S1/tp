@@ -11,6 +11,7 @@ import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PersonModuleCodeContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
+import seedu.address.model.person.TelegramContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose fields contain any of the argument keywords.
@@ -37,20 +38,23 @@ public class FindPersonCommand extends Command {
         requireNonNull(model);
         //filter by name first
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(keywords));
-        int current_Filter = 1;
+        int currentFilter = 1;
         //while filtered list is still empty, keep trying new field
-        while (current_Filter < 4) {
+        while (currentFilter < 5) {
             if (model.getFilteredPersonList().size() != 0) {
                 break;
-            } else if (current_Filter == 1) {
+            } else if (currentFilter == 1) {
                 model.updateFilteredPersonList(new PersonModuleCodeContainsKeywordsPredicate(keywords));
-                current_Filter++;
-            } else if (current_Filter == 2) {
+                currentFilter++;
+            } else if (currentFilter == 2) {
                 model.updateFilteredPersonList(new EmailContainsKeywordsPredicate(keywords));
-                current_Filter++;
-            } else {
+                currentFilter++;
+            } else if (currentFilter == 3) {
                 model.updateFilteredPersonList(new PhoneContainsKeywordsPredicate(keywords));
-                current_Filter++;
+                currentFilter++;
+            } else {
+                model.updateFilteredPersonList(new TelegramContainsKeywordsPredicate(keywords));
+                currentFilter++;
             }
         }
         return new CommandResult(
