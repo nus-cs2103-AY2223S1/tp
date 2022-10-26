@@ -1,7 +1,5 @@
 package friday.logic.commands;
 
-import static friday.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
-
 import java.util.List;
 
 import friday.commons.core.Messages;
@@ -11,7 +9,7 @@ import friday.model.Model;
 import friday.model.student.Student;
 
 /**
- * class to handle mark mastery check
+ * Marks the Mastery Check of an existing student in FRIDAY as passed.
  */
 public class MarkMasteryCheckCommand extends Command {
     public static final String COMMAND_WORD = "mark";
@@ -42,7 +40,6 @@ public class MarkMasteryCheckCommand extends Command {
             studentToMark.getMasteryCheck().markAsPassed();
         }
 
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(generateSuccessMessage(studentToMark));
     }
 

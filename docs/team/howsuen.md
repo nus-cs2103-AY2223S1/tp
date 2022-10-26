@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added functionality to add remarks to students.
   * What it does: Allows users to add comments and notes on their students in addition to their related information.
   * Justification: This feature is significant in improving users' experience with the product because it acts as a centralised hub for users to easily write notes about their students to remind them of their individual circumstances.
-  * Highlights: Initial implementation requires users to type prefix `r/` to indicate the start of the remark comment. 
+  * Highlights: Initial implementation requires users to type prefix `r/` to indicate the start of the remark comment.
   * Credits: This feature was adapted from **[Tutorial 2 - Adding a new Command](https://nus-cs2103-ay2223s1.github.io/tp/tutorials/AddRemark.html)** for **AB3**.
 
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=howsuen&breakdown=true)
@@ -39,15 +39,15 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the `edit` feature
     * Added documentation for the `remark` feature [\#106](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/106)
-    * Added documentation for the `grade` feature
+    * Added documentation for the `grade` feature [\#116](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/116)
     * Reformatted Command Summary
   * Developer Guide:
     * Added Non-functional requirements
-    * Refactored names to be updated for Friday [\#106](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/106)
+    * Refactored names to update for FRIDAY [\#106](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/106)
     * Updated UML Diagrams
-    * Added documentation for the `grade` feature, such as the use case of `grade`.
+    * Added documentation for the `grade` feature.
   * README:
     * Designed and added UI Mockup for FRIDAY
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#97](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/97)
+  * PRs reviewed (with non-trivial review comments): [\#97](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/97), [\#118](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/118)

@@ -2,7 +2,7 @@ package friday.logic.commands;
 
 import static friday.logic.commands.CommandTestUtil.assertCommandFailure;
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static friday.testutil.TypicalStudents.getTypicalAddressBook;
+import static friday.testutil.TypicalStudents.getTypicalFriday;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ public class UnaliasCommandTest {
     private static final Alias VALID_ALIAS = new Alias("ls");
     private static final Alias VALID_ALIAS_2 = new Alias("a");
     private static final ReservedKeyword VALID_KEYWORD = new ReservedKeyword(ListCommand.COMMAND_WORD);
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFriday(), new UserPrefs());
 
     @Test
     public void execute_unaliasAcceptedByModel_removeSuccessful() {

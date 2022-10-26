@@ -127,7 +127,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Student` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Friday`, which `Student` references. This allows `Friday` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -142,7 +142,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both FRIDAY data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `FridayStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -159,21 +159,21 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedFriday`. It extends `Friday` with an undo/redo history, stored internally as an `FridayStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current FRIDAY state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous FRIDAY state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone FRIDAY state from its history.
+* `VersionedFriday#commit()` — Saves the current FRIDAY state in its history.
+* `VersionedFriday#undo()` — Restores the previous FRIDAY state from its history.
+* `VersionedFriday#redo()` — Restores a previously undone FRIDAY state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitFriday()`, `Model#undoFriday()` and `Model#redoFriday()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial FRIDAY state, and the `currentStatePointer` pointing to that single FRIDAY state.
+Step 1. The user launches the application for the first time. The `VersionedFriday` will be initialized with the initial FRIDAY state, and the `currentStatePointer` pointing to that single FRIDAY state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the FRIDAY. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the FRIDAY after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted FRIDAY state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the FRIDAY. The `delete` command calls `Model#commitFriday()`, causing the modified state of the FRIDAY after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted FRIDAY state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -244,22 +244,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Implementation
 
-The sort command will be executed by `SortCommand`. `SortCommandParser` uses `Prefix`es and `Order`s in `CliSyntax` to 
-parse the user input and decide what comparator is passed to `SortCommand`. The sorted list is stored as `sortedStudents` 
-in `ModelManager`, and is updated every time `SortCommand` is run. To assist with the sorting, classes `Name`, `TelegramHandle`, 
+The sort command will be executed by `SortCommand`. `SortCommandParser` uses `Prefix`es and `Order`s in `CliSyntax` to
+parse the user input and decide what comparator is passed to `SortCommand`. The sorted list is stored as `sortedStudents`
+in `ModelManager`, and is updated every time `SortCommand` is run. To assist with the sorting, classes `Name`, `TelegramHandle`,
 `Consultation`, and `MasteryCheck` implement the `Comparable` interface, where the natural ordering of `String` and `LocalDate`
-are used to implement the `compareTo` method. 
+are used to implement the `compareTo` method.
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
-Step 1. The user launches the application. FRIDAY will initialise an `ObservableList` named `students` and a `SortedList` 
-named `sortedStudents` according to the data file. 
+Step 1. The user launches the application. FRIDAY will initialise an `ObservableList` named `students` and a `SortedList`
+named `sortedStudents` according to the data file.
 
-Step 2. The user executes `sort n/asc` command to sort the students by name in ascending order. `SortCommandParser` will
+Step 2. The user executes `sort n/a` command to sort the students by name in ascending order. `SortCommandParser` will
 check that the command is valid, and pass a `comparator` that orders the student names alphabetically to `SortCommand`.
 
 Step 3. `SortCommand` will call `Model#updateSortedStudentList(Comparator<Student> comparator)` to update `sortedStudents`
-with the given `comparator`. The list `students` is then set to `sortedStudents`, and 
+with the given `comparator`. The list `students` is then set to `sortedStudents`, and
 `StudentListPanel#setList(ObservableList<Student> studentList)` is called to refresh the UI `ListView` with the new
 `students` list.
 
@@ -288,9 +288,9 @@ _{To add activity diagram}_
 **Aspect: How to sort empty details**
 
 * Students with empty details are sorted last in ascending order, and first in descending order
-    * Pros: When sorting in ascending order, students with empty details are shown at the bottom to reduce clutter. 
-            Users can sort a detail in descending order to see which students have the detail empty. 
-    * Cons: Top of the list may be cluttered with empty details when sorted in descending order. 
+    * Pros: When sorting in ascending order, students with empty details are shown at the bottom to reduce clutter.
+            Users can sort a detail in descending order to see which students have the detail empty.
+    * Cons: Top of the list may be cluttered with empty details when sorted in descending order.
 
 
 ### \[Proposed\] Alias feature
@@ -302,7 +302,7 @@ in-built command names (e.g. add, delete) will be stored in a constant `reserved
 
 Given below is an example usage scenario and how the alias mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager` 
+Step 1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager`
 with an empty `UniqueAliasList`.
 
 Step 2. The user executes `alias list ls` command to add an alias `ls` for the command `list`. The `alias` command 
@@ -310,9 +310,9 @@ will check that `list` is in the `reservedCommandList` and `ls` is not in the `U
 are fulfilled, an `Alias("list","ls")` object will be created and will be added to the `UniqueAliasList` with
 `Model#addAlias(Alias toadd)`.
 
-Step 3. The user executes `ls` using the alias of the `list` command. The `AliasManager` will check that 
-the alias `ls` is assigned to a command (in this case it is `list`) in `AddressBookParser`. `commandWord` in 
-`AddressBookParser` will then be assigned the name of the command in the `reservedCommandList` and the `ListCommand` 
+Step 3. The user executes `ls` using the alias of the `list` command. The `AliasManager` will check that
+the alias `ls` is assigned to a command (in this case it is `list`) in `AddressBookParser`. `commandWord` in
+`AddressBookParser` will then be assigned the name of the command in the `reservedCommandList` and the `ListCommand`
 is then executed.
 
 _{To add sequence diagram}_
@@ -325,9 +325,47 @@ _{To add activity diagram}_
 
 _{To add other design considerations}_
 
-### \[Proposed\] Find feature
+### Grade Feature
 
-#### Proposed Implementation
+#### Implementation
+The `grade` command is executed by `GradeCommand`. In CS1101S, the 5 main examinations are Reading Assessment 1, Reading Assessment 2, Practical Assessment, Midterm exam, and Final exam, which are denoted by "ra1", "ra2", "pa", "mt", and "ft" respectively.
+
+For each student, there are 5 grades, each with the result scored by the student, in percentages between 0% and 100% inclusive, and the name of the examination it is associated with.
+The grades are then stored in a `GradesList` which is unique for every student and has a fixed length of 5 for every student managed by the user.
+
+Given below is an example usage scenario and how the grading mechanism behaves at each step.
+
+Step 1. The user executes the `grade 5 ra1/90 pa/69.90` command to edit the grades of Reading Assessment 1 and 
+Practical Assessment for the 5th student in FRIDAY. `GradeCommandParser` checks that the command is valid, and searches for the specific scores from the user's input using the `Prefix` of the examinations. `GradeCommandParser` then creates a new `EditGradeDescriptor` which is then used to create the new `GradeCommand`.
+
+Step 2. The `GradeCommand` will access the `GradesList` of the specified student and the individual grades specified by the user. The `GradesList` is updated, where Reading Assessment 1 and Practical Assessment examinations are updated with the new scores, and the other examinations have the same scores as before.
+
+{Sequence Diagram}
+
+{Activity Diagram}
+
+#### Design considerations:
+
+**Aspect: Should we allow users to determine the examinations:**
+* **Alternative 1 (current choice): Fix the examinations in the list of grades for every student**
+  * Pros: Standardised for every student, without the need to check, create or delete examinations for every student, and easy to implement.
+  * Cons: Less freedom for users. Unaccounted for unforeseen circumstances (e.g. There is a change in the assessments for the CS1101S module).
+* **Alternative 2: Allow users to create and delete their own examinations**
+  * Pros: Provides freedom for users and flexibility for changes in the grading system of the module.
+  * Cons: Not standardised for every student, and more prone to user error, as each examination will thus need to create new unique prefixes and identity to know which examination it is referring to.
+
+**Aspect: Should we allow users to set the scores of each grade in their own way (e.g. "99%", "A", "65/70", etc.):**
+* **Alternative 1 (current choice): Standardise scoring of each grade in terms of percentage:**
+  * Pros: Standardised and neat for every assessment and for every student, applicable for the 5 assessments in the CS1101S module, and easy to implement.
+  * Cons: Less flexible for assessments whereby percentage scores are not applicable. (e.g. Pass/Fail assessments, alphabetical grading, etc.), and the possible need to manually calculate the percentage.
+
+* **Alternative 2: Users can input the scores in any String they desire:**
+  * Pros: More flexibility and freedom for user
+  * Cons: Very difficult to check for valid scores due to large number of possibility, not standardised for every student and grade, less able to compare the students' strengths and weaknesses in certain assessments, and difficult to implement.
+
+### Find feature
+
+#### Implementation
 The find command is executed similar to all other commands. It goes through the parser and is interpreted using the
 logic established. However, it is unique in the sense that it will look through all the possible fields and data
 and return matches.
@@ -337,14 +375,9 @@ Example of current implementation of find feature
 Step 1. The user launches the application for the first time. FRIDAY will initialise a list of all the fields
 and their data into a list of students.
 
-Step 2. When user types in the find command the logic will tell the program to go through all the fields for every 
-student inside the student class and return the student if there is a successful match in any of the fields 
+Step 2. When user types in the find command the logic will tell the program to go through all the fields for every
+student inside the student class and return the student if there is a successful match in any of the fields
 
-#### Design considerations:
-
-**Aspect: How find command is implemented:**
-
-_{To add other design considerations}_
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -631,13 +664,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The given order is invalid.
 
-    * 1b1. FRIDAY shows an error message. 
+    * 1b1. FRIDAY shows an error message.
 
       Use case resumes at step 1.
 
-* 1c. More than one criterion is given. 
+* 1c. More than one criterion is given.
 
-    * 1c1. FRIDAY shows an error message. 
+    * 1c1. FRIDAY shows an error message.
 
       Use case resumes at step 1.
 
@@ -656,7 +689,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends 
+  Use case ends
 
 * 3a. The given index is invalid.
 
@@ -665,6 +698,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The Mastery Check of the student has already been marked as passed.
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Unmark a student's Mastery Check.**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to unmark the Mastery Check of a specific student
+4. FRIDAY unmarks the student's Mastery Check as passed
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The Mastery Check of the student has not yet been marked as passed.
 
     * 3b1. FRIDAY shows an error message.
 
@@ -684,9 +744,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY. 
+* **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY.
 * **Reading Assessment**: Assessments in the form of online quiz with Multiple-Choice Questions (MCQ). There are a total of two reading assessments, namely RA1 and RA2, throughout the semester. Reading Assessments have weightage in the students' final grade for the module.
-* **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants). 
+* **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants).
 There are two Mastery Checks through the semester. Students will be assessed by their knowledge of the topics covered by presenting to their teaching assistant in pairs.
 Since users have to arrange dates to meet with their students to conduct the Mastery Checks, FRIDAY allows users to record the scheduled dates for each student.
 --------------------------------------------------------------------------------------------------------------------

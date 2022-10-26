@@ -26,23 +26,23 @@ import javafx.collections.ObservableList;
 
 public class MasteryCheckBookTest {
 
-    private final Friday addressBook = new Friday();
+    private final Friday friday = new Friday();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getStudentList());
+        assertEquals(Collections.emptyList(), friday.getStudentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> friday.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Friday newData = TypicalStudents.getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyFriday_replacesData() {
+        Friday newData = TypicalStudents.getTypicalFriday();
+        friday.resetData(newData);
+        assertEquals(newData, friday);
     }
 
     @Test
@@ -53,49 +53,49 @@ public class MasteryCheckBookTest {
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         List<Student> newStudents = Arrays.asList(TypicalStudents.ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newStudents);
+        FridayStub newData = new FridayStub(newStudents);
 
-        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> friday.resetData(newData));
     }
 
     @Test
     public void hasStudent_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
+        assertThrows(NullPointerException.class, () -> friday.hasStudent(null));
     }
 
     @Test
-    public void hasStudent_studentNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasStudent(TypicalStudents.ALICE));
+    public void hasStudent_studentNotInFriday_returnsFalse() {
+        assertFalse(friday.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
-    public void hasStudent_studentInAddressBook_returnsTrue() {
-        addressBook.addStudent(TypicalStudents.ALICE);
-        assertTrue(addressBook.hasStudent(TypicalStudents.ALICE));
+    public void hasStudent_studentInFriday_returnsTrue() {
+        friday.addStudent(TypicalStudents.ALICE);
+        assertTrue(friday.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
-    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addStudent(TypicalStudents.ALICE);
+    public void hasStudent_studentWithSameIdentityFieldsInFriday_returnsTrue() {
+        friday.addStudent(TypicalStudents.ALICE);
         Student editedAlice = new StudentBuilder(TypicalStudents.ALICE)
                 .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasStudent(editedAlice));
+        assertTrue(friday.hasStudent(editedAlice));
     }
 
     @Test
     public void getStudentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> friday.getStudentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose students list can violate interface constraints.
+     * A stub ReadOnlyFriday whose students list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyFriday {
+    private static class FridayStub implements ReadOnlyFriday {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Student> students) {
+        FridayStub(Collection<Student> students) {
             this.students.setAll(students);
         }
 

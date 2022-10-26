@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ progress, optimized for 
-use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can 
+FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ progress, optimized for
+use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can
 type fast, FRIDAY can get your contact management tasks done faster than traditional GUI apps.
 
 ### Table of Contents
@@ -23,10 +23,11 @@ type fast, FRIDAY can get your contact management tasks done faster than traditi
    3. Consultation dates
    4. Dates of Mastery Checks
    6. Remarks
-4. Edit grades of students
+4. Record grades of students
 5. Find individual student details
 6. View all students
 7. Mark Mastery Checks of students
+8. Unmark Mastery Checks of students
 8. Sort students
 9. Add aliases
 10. Delete aliases
@@ -117,9 +118,9 @@ The index of the student can be seen from the student list.<br>
 The remark is optional. Not including the remark (i.e. `remark INDEX`) will remove any existing remark from the student.<br>
 </div>
 
-### Editing grades for a student: `grade`
+### Recording grades for a student: `grade`
 
-Edits the grades of the assessments and examinations for a specified student.
+Records the grades of the assessments and examinations for a specified student.
 
 Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]`
 
@@ -129,6 +130,8 @@ The scores of the assessments, Reading Assessment 1 (RA1), Reading Assessment 2 
 The scores are optional, but there should be at least one parameter.
 </div>
 
+Example after entering `grade 1 ra1/90 ra2/80 pa/100 mt/85 ft/78`:
+![GradeCommand.png](images/GradeCommand.png)
 
 ### Finding individual student details: `find`
 
@@ -139,8 +142,14 @@ Format: `find k/Keywords`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
 Note: Multiple keywords can be entered.
-Note: when searching for exam grade use format `find [ra1:RA1_SCORE] [ra2:RA2_SCORE]`
+Note: when searching for exam grade use format `find [exam_name:EXAM_SCORE]`
 </div>
+
+Example:
+![FindCommand.png](images/FindCommand.png)
+
+Outcome:
+![FindCommandOutcome.png](images/FindCommandOutcome.png)
 
 ### Viewing all students: `list`
 
@@ -158,6 +167,16 @@ Format: `mark INDEX`
 The index of the student can be seen from the student list.<br>
 </div>
 
+### Unmarking a student's Mastery Check: `unmark`
+
+Unmarks the Mastery Check of a specified student.
+
+Format: `unmark INDEX`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index of the student can be seen from the student list.<br>
+</div>
+
 ### Sorting students: `sort`
 
 Sorts all students in FRIDAY with the given criteria, in ascending or descending order.
@@ -165,7 +184,7 @@ Sorts all students in FRIDAY with the given criteria, in ascending or descending
 Format: `sort CRITERIA/ORDER`
 
 * `CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (consultation), `m` (Mastery Check), or the following grades: `ra1`, `ra2`, `mt`, `pa`, `mt`, and `ft`
-* `ORDER` can be `asc` (ascending) or `desc` (descending)
+* `ORDER` can be `a` (ascending) or `d` (descending)
 * Names and Telegram handles are sorted in alphabetical order
 * Consultations and Mastery Checks are sorted by time
 * Grades are sorted in numerical order
@@ -224,9 +243,10 @@ Format: `help`
 | **Delete a student**                         | `delete i/INDEX`                                                                                         |
 | **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`                |
 | **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                                |
-| **Edit the grades for a student**            | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]` |
+| **Record the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]` |
 | **Find a student's details**                 | `find k/keyword`                                                                                         |
 | **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                                             |
+| **Unmark a student's Mastery Check**         | `unmark INDEX`                                                                                           |
 | **View all students**                        | `list`                                                                                                   |
 | **Sort students**                            | `sort CRITERIA/ORDER`                                                                                    |
 | **Add Alias**                                | `alias a/ALIAS k/KEYWORD`                                                                                |

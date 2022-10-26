@@ -5,7 +5,7 @@ import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static friday.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static friday.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static friday.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static friday.testutil.TypicalStudents.getTypicalAddressBook;
+import static friday.testutil.TypicalStudents.getTypicalFriday;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,7 +28,7 @@ public class GradeCommandTest {
 
     private static final String GRADE_STUB = "99.99";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFriday(), new UserPrefs());
 
     @Test
     public void execute_allGradesSpecifiedUnfilteredList_success() {
