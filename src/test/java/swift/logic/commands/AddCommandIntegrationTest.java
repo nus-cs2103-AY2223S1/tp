@@ -7,11 +7,15 @@ import static swift.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import swift.commons.core.index.Index;
 import swift.model.Model;
 import swift.model.ModelManager;
 import swift.model.UserPrefs;
 import swift.model.person.Person;
 import swift.testutil.PersonBuilder;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -32,8 +36,11 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
+        String expectedMessage = String.format(AddContactCommand.MESSAGE_SUCCESS, validPerson);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, true, false);
+
         assertCommandSuccess(new AddContactCommand(validPerson), model,
-                String.format(AddContactCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+                expectedCommandResult, expectedModel);
     }
 
     @Test
