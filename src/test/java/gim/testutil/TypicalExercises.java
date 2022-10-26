@@ -10,6 +10,7 @@ import static gim.logic.commands.CommandTestUtil.VALID_SETS_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
+import static gim.testutil.ExerciseTrackerBuilder.listToExerciseTracker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,6 +62,16 @@ public class TypicalExercises {
             .withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
             .build();
 
+    // Manually added (for PrCommand Testing)
+    public static final Exercise SQUAT_LIGHT = new ExerciseBuilder().withName("Squat").withWeight("50")
+            .withSets("1").withReps("1").build();
+    public static final Exercise SQUAT_HEAVY = new ExerciseBuilder().withName("Squat").withWeight("100")
+            .withSets("1").withReps("1").build();
+    public static final Exercise DEADLIFT_LIGHT = new ExerciseBuilder().withName("Deadlift").withWeight("70")
+            .withSets("1").withReps("1").build();
+    public static final Exercise DEADLIFT_HEAVY = new ExerciseBuilder().withName("Deadlift").withWeight("120")
+            .withSets("1").withReps("1").build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalExercises() {} // prevents instantiation
@@ -69,11 +80,7 @@ public class TypicalExercises {
      * Returns an {@code ExerciseTracker} with all the typical exercises.
      */
     public static ExerciseTracker getTypicalExerciseTracker() {
-        ExerciseTracker exerciseTracker = new ExerciseTracker();
-        for (Exercise exercise : getTypicalExercises()) {
-            exerciseTracker.addExercise(exercise);
-        }
-        return exerciseTracker;
+        return listToExerciseTracker(getTypicalExercises());
     }
 
     public static List<Exercise> getTypicalExercises() {
@@ -81,14 +88,54 @@ public class TypicalExercises {
     }
 
     /**
+     * Returns an {@code ExerciseTracker} with no exercises.
+     */
+    public static ExerciseTracker getNoExerciseExerciseTracker() {
+        return listToExerciseTracker(getNoExercise());
+    }
+
+    public static List<Exercise> getNoExercise() {
+        return new ArrayList<>();
+    }
+
+    /**
+     * Returns an {@code ExerciseTracker} with one exercise.
+     */
+    public static ExerciseTracker getOneExerciseExerciseTracker() {
+        return listToExerciseTracker(getOneExercise());
+    }
+
+    public static List<Exercise> getOneExercise() {
+        return new ArrayList<>(List.of(SQUAT_LIGHT));
+    }
+
+    /**
+     * Returns an {@code ExerciseTracker} with two exercises with the same Name but different Weights.
+     */
+    public static ExerciseTracker getSameExerciseNameDifferentWeightsExerciseTracker() {
+        return listToExerciseTracker(getSameExerciseDifferentWeights());
+    }
+
+    public static List<Exercise> getSameExerciseDifferentWeights() {
+        return new ArrayList<>(Arrays.asList(SQUAT_LIGHT, SQUAT_HEAVY));
+    }
+
+    /**
+     * Returns an {@code ExerciseTracker} with two exercises with the different Names and different Weights.
+     */
+    public static ExerciseTracker getDifferentExerciseDifferentWeightsExerciseTracker() {
+        return listToExerciseTracker(getDifferentExerciseDifferentWeights());
+    }
+
+    public static List<Exercise> getDifferentExerciseDifferentWeights() {
+        return new ArrayList<>(Arrays.asList(SQUAT_LIGHT, DEADLIFT_LIGHT));
+    }
+
+    /**
      * Returns an {@code ExerciseTracker} with unsorted same exercises but different dates.
      */
     public static ExerciseTracker getUnsortedSameExercisesDifferentDatesExerciseTracker() {
-        ExerciseTracker exerciseTracker = new ExerciseTracker();
-        for (Exercise exercise : getUnsortedSameExercisesDifferentDates()) {
-            exerciseTracker.addExercise(exercise);
-        }
-        return exerciseTracker;
+        return listToExerciseTracker(getUnsortedSameExercisesDifferentDates());
     }
 
     public static List<Exercise> getUnsortedSameExercisesDifferentDates() {
@@ -99,11 +146,7 @@ public class TypicalExercises {
      * Returns an {@code ExerciseTracker} with sorted same exercises but different dates.
      */
     public static ExerciseTracker getSortedSameExercisesDifferentDatesExerciseTracker() {
-        ExerciseTracker exerciseTracker = new ExerciseTracker();
-        for (Exercise exercise : getSortedSameExercisesDifferentDates()) {
-            exerciseTracker.addExercise(exercise);
-        }
-        return exerciseTracker;
+        return listToExerciseTracker(getSortedSameExercisesDifferentDates());
     }
 
     public static List<Exercise> getSortedSameExercisesDifferentDates() {
@@ -114,11 +157,7 @@ public class TypicalExercises {
      * Returns an {@code ExerciseTracker} with unsorted different exercises but same dates.
      */
     public static ExerciseTracker getUnsortedDifferentExercisesSameDatesExerciseTracker() {
-        ExerciseTracker exerciseTracker = new ExerciseTracker();
-        for (Exercise exercise : getUnsortedDifferentExercisesSameDates()) {
-            exerciseTracker.addExercise(exercise);
-        }
-        return exerciseTracker;
+        return listToExerciseTracker(getUnsortedDifferentExercisesSameDates());
     }
 
     public static List<Exercise> getUnsortedDifferentExercisesSameDates() {
@@ -129,11 +168,7 @@ public class TypicalExercises {
      * Returns an {@code ExerciseTracker} with sorted different exercises but same dates.
      */
     public static ExerciseTracker getSortedDifferentExercisesSameDatesExerciseTracker() {
-        ExerciseTracker exerciseTracker = new ExerciseTracker();
-        for (Exercise exercise : getSortedDifferentExercisesSameDates()) {
-            exerciseTracker.addExercise(exercise);
-        }
-        return exerciseTracker;
+        return listToExerciseTracker(getSortedDifferentExercisesSameDates());
     }
 
     public static List<Exercise> getSortedDifferentExercisesSameDates() {
@@ -144,11 +179,7 @@ public class TypicalExercises {
      * Returns an {@code ExerciseTracker} with unsorted different exercises and different dates.
      */
     public static ExerciseTracker getUnsortedDifferentExercisesDifferentDatesExerciseTracker() {
-        ExerciseTracker exerciseTracker = new ExerciseTracker();
-        for (Exercise exercise : getUnsortedDifferentExercisesDifferentDates()) {
-            exerciseTracker.addExercise(exercise);
-        }
-        return exerciseTracker;
+        return listToExerciseTracker(getUnsortedDifferentExercisesDifferentDates());
     }
 
     public static List<Exercise> getUnsortedDifferentExercisesDifferentDates() {
@@ -159,11 +190,7 @@ public class TypicalExercises {
      * Returns an {@code ExerciseTracker} with sorted different exercises and different dates.
      */
     public static ExerciseTracker getSortedDifferentExercisesDifferentDatesExerciseTracker() {
-        ExerciseTracker exerciseTracker = new ExerciseTracker();
-        for (Exercise exercise : getSortedDifferentExercisesDifferentDates()) {
-            exerciseTracker.addExercise(exercise);
-        }
-        return exerciseTracker;
+        return listToExerciseTracker(getSortedDifferentExercisesDifferentDates());
     }
 
     public static List<Exercise> getSortedDifferentExercisesDifferentDates() {
@@ -174,11 +201,7 @@ public class TypicalExercises {
      * Returns an {@code ExerciseTracker} with a sample unsorted exercises.
      */
     public static ExerciseTracker getSampleUnsortedExercisesExerciseTracker() {
-        ExerciseTracker exerciseTracker = new ExerciseTracker();
-        for (Exercise exercise : getSampleUnsortedExercises()) {
-            exerciseTracker.addExercise(exercise);
-        }
-        return exerciseTracker;
+        return listToExerciseTracker(getSampleUnsortedExercises());
     }
 
     public static List<Exercise> getSampleUnsortedExercises() {
