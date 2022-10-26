@@ -73,6 +73,9 @@ public class UserInfoWrapper {
         return userJson.getString(IMAGE_LOCATION_KEY);
     }
 
+    /**
+     * @throws IOException Exception thrown when trying to save image to file
+     */
     public void downloadAvatar() throws IOException {
         UserInfoRoute.UserAvatarRequest userAvatarRequest = userInfoRoute.createAvatarRequest(unirest, getAvatarUrl());
         byte[] image = userAvatarRequest.getAvatarImage();

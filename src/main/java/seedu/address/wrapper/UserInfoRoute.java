@@ -44,6 +44,11 @@ public final class UserInfoRoute {
         return new UserInfoRequest(unirest, BASE_GITHUB_URL + this.path);
     }
 
+    /**
+     * @param unirest Unirest instance to carry out all further requests
+     * @param url     URL pointing to user avatar
+     * @return
+     */
     public UserAvatarRequest createAvatarRequest(UnirestInstance unirest, String url) {
         requireAllNonNull(unirest);
 
