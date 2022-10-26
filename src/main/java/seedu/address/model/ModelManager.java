@@ -12,13 +12,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.exceptions.NextStateNotFoundException;
-import seedu.address.model.exceptions.PreviousStateNotFoundException;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.customer.Reward;
 import seedu.address.model.customer.exceptions.PersonNotFoundException;
+import seedu.address.model.exceptions.NextStateNotFoundException;
+import seedu.address.model.exceptions.PreviousStateNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -49,7 +49,6 @@ public class ModelManager implements Model {
             }
         }
         this.addressBook = new AddressBook(addressBook);
-        
         this.versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCustomers = new FilteredList<>(this.addressBook.getPersonList());

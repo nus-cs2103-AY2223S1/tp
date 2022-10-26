@@ -10,10 +10,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLD;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalEmails.EMAIL_FIRST_PERSON;
 import static seedu.address.testutil.TypicalEmails.EMAIL_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalPhones.PHONE_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPhones.PHONE_SECOND_PERSON;
 
@@ -29,8 +29,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Phone;
-import seedu.address.testutil.EditCustomerDescriptorBuilder;
 import seedu.address.testutil.CustomerBuilder;
+import seedu.address.testutil.EditCustomerDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.

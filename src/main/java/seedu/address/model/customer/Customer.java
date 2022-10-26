@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Customer {
 
-    public static final Tag birthdayTag = new Tag("BDAY");
+    public static final Tag BIRTHDAY_TAG = new Tag("BDAY");
 
     // Identity fields
     private final Name name;
@@ -72,8 +72,8 @@ public class Customer {
      * Adds a birthday tag to a Customer.
      */
     public void addBirthdayTag() {
-        if (!tags.contains(birthdayTag)) {
-            this.tags.add(birthdayTag);
+        if (!tags.contains(BIRTHDAY_TAG)) {
+            this.tags.add(BIRTHDAY_TAG);
         }
     }
 
@@ -81,7 +81,7 @@ public class Customer {
      * Removes the birthday tag from a Customer (if any).
      */
     public void removeBirthdayTag() {
-        this.tags.remove(birthdayTag);
+        this.tags.remove(BIRTHDAY_TAG);
     }
 
     /**

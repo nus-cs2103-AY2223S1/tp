@@ -5,13 +5,13 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.exceptions.NextStateNotFoundException;
-import seedu.address.model.exceptions.PreviousStateNotFoundException;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.customer.Reward;
 import seedu.address.model.customer.exceptions.PersonNotFoundException;
+import seedu.address.model.exceptions.NextStateNotFoundException;
+import seedu.address.model.exceptions.PreviousStateNotFoundException;
 
 /**
  * The API of the Model component.
@@ -78,7 +78,8 @@ public interface Model {
     /**
      * Replaces the given customer {@code target} with {@code editedCustomer}.
      * {@code target} must exist in the address book.
-     * The customer identity of {@code editedCustomer} must not be the same as another existing customer in the address book.
+     * The customer identity of {@code editedCustomer} must not be the same as another existing customer
+     * in the address book.
      */
     void setPerson(Customer target, Customer editedCustomer);
 

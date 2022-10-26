@@ -13,8 +13,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Phone;
 
 

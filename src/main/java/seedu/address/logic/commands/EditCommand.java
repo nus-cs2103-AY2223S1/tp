@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REWARD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.model.customer.Customer.birthdayTag;
+import static seedu.address.model.customer.Customer.BIRTHDAY_TAG;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -111,10 +111,10 @@ public class EditCommand extends Command {
         Customer editedCustomer = createEditedPerson(customerToEdit, editPersonDescriptor);
         LocalDate currentDate = LocalDate.now();
         String currentMonth = String.valueOf(currentDate.getMonth().getValue());
-        if (editedCustomer.getTags().contains(birthdayTag)
+        if (editedCustomer.getTags().contains(BIRTHDAY_TAG)
                 && !editedCustomer.getBirthdayMonth().value.equals(currentMonth)) {
             editedCustomer.removeBirthdayTag();
-        } else if (!editedCustomer.getTags().contains(birthdayTag)
+        } else if (!editedCustomer.getTags().contains(BIRTHDAY_TAG)
                 && editedCustomer.getBirthdayMonth().value.equals(currentMonth)) {
             editedCustomer.addBirthdayTag();
         }

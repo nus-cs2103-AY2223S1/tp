@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEmails.EMAIL_FIRST_PERSON;
-import static seedu.address.testutil.TypicalEmails.EMAIL_SECOND_PERSON;
 import static seedu.address.testutil.TypicalCustomers.ALICE_INCREMENT;
 import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEmails.EMAIL_FIRST_PERSON;
+import static seedu.address.testutil.TypicalEmails.EMAIL_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPhones.PHONE_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPhones.PHONE_SECOND_PERSON;
 
@@ -18,8 +18,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Phone;
 
 /**

@@ -15,10 +15,11 @@ import seedu.address.model.customer.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A customer is considered unique by comparing using {@code Customer#isSamePerson(Customer)}. As such, adding and updating of
- * persons uses Customer#isSamePerson(Customer) for equality so as to ensure that the customer being added or updated is
- * unique in terms of identity in the UniqueCustomerList. However, the removal of a customer uses Customer#equals(Object) so
- * as to ensure that the customer with exactly the same fields will be removed.
+ * A customer is considered unique by comparing using {@code Customer#isSamePerson(Customer)}.
+ * As such, adding and updating ofpersons uses Customer#isSamePerson(Customer) for equality so as to ensure
+ * that the customer being added or updated is unique in terms of identity in the UniqueCustomerList.
+ * However, the removal of a customer uses Customer#equals(Object) so as to ensure that the customer with
+ * exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

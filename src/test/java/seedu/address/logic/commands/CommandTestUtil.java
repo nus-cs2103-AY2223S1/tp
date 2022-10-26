@@ -19,8 +19,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.customer.NameContainsKeywordsPredicate;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
 
 /**

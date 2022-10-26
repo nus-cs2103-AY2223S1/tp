@@ -20,12 +20,12 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.exceptions.NextStateNotFoundException;
-import seedu.address.model.exceptions.PreviousStateNotFoundException;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.customer.Reward;
+import seedu.address.model.exceptions.NextStateNotFoundException;
+import seedu.address.model.exceptions.PreviousStateNotFoundException;
 import seedu.address.testutil.CustomerBuilder;
 
 public class AddCommandTest {

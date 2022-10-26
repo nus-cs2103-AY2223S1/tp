@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.model.customer.Customer.BIRTHDAY_TAG;
+
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -13,8 +15,6 @@ import javafx.scene.layout.Region;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.tag.Tag;
 
-import static seedu.address.model.customer.Customer.birthdayTag;
-
 /**
  * An UI component that displays information of a {@code Customer}.
  */
@@ -22,16 +22,16 @@ public class CustomerCard extends UiPart<Region> {
 
     private static final String FXML = "CustomerListCard.fxml";
 
-    private static final HashMap<String, String> colourMap= new HashMap<>() {{
-        put("DIAMOND", " -fx-background-color: ba68c8; ");
-        put("PLATINUM", " -fx-background-color: a5d6a7; ");
-        put("GOLD", " -fx-background-color: c9b037; ");
-        put("SILVER", " -fx-background-color: c0c0c0; ");
-        put("BRONZE", " -fx-background-color: cd7f32; ");
-        put("WARNING", " -fx-background-color: ff6600; ");
-        put("BANNED", " -fx-background-color: dd0000; ");
-        put(birthdayTag.tagName, " -fx-background-color: ff69b4; ");
-    }};
+    private static final HashMap<String, String> colourMap = new HashMap<>() {{
+            put("DIAMOND", " -fx-background-color: ba68c8; ");
+            put("PLATINUM", " -fx-background-color: a5d6a7; ");
+            put("GOLD", " -fx-background-color: c9b037; ");
+            put("SILVER", " -fx-background-color: c0c0c0; ");
+            put("BRONZE", " -fx-background-color: cd7f32; ");
+            put("WARNING", " -fx-background-color: ff6600; ");
+            put("BANNED", " -fx-background-color: dd0000; ");
+            put(BIRTHDAY_TAG.tagName, " -fx-background-color: ff69b4; ");
+        }};
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

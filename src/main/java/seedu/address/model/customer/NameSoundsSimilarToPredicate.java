@@ -149,7 +149,8 @@ public class NameSoundsSimilarToPredicate implements Predicate<Customer> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.customer.NameSoundsSimilarToPredicate // instanceof handles nulls
+                || (other instanceof seedu.address.model.customer
+                .NameSoundsSimilarToPredicate // instanceof handles nulls
                 && keywords.equals((
                         (seedu.address.model.customer.NameSoundsSimilarToPredicate) other).keywords
                 )); // state check

@@ -31,8 +31,8 @@ import seedu.address.model.customer.Email;
 import seedu.address.model.customer.MultiSearchPredicate;
 import seedu.address.model.customer.Phone;
 import seedu.address.testutil.CustomerBuilder;
-import seedu.address.testutil.EditCustomerDescriptorBuilder;
 import seedu.address.testutil.CustomerUtil;
+import seedu.address.testutil.EditCustomerDescriptorBuilder;
 
 public class AddressBookParserTest {
 
