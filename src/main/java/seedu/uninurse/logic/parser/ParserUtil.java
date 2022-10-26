@@ -283,11 +283,14 @@ public class ParserUtil {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
 
-        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+        if (!DateTime.isValidDateTime(trimmedDateTime) && !DateTime.isValidDate(trimmedDateTime)) {
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
 
-        return new Task(trimmedTaskDescription, new DateTime(trimmedDateTime));
+        DateTime dateTime1 = trimmedDateTime.contains(" ")
+                ? new DateTime(trimmedDateTime) : DateTime.ofDate(trimmedDateTime);
+
+        return new Task(trimmedTaskDescription, dateTime1);
     }
 
     private static Task parseRecurringTask(String taskDescription, String dateTime, String recurAndFreq)
@@ -300,7 +303,7 @@ public class ParserUtil {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
 
-        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+        if (!DateTime.isValidDateTime(trimmedDateTime) && !DateTime.isValidDate(trimmedDateTime)) {
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
 
@@ -308,7 +311,10 @@ public class ParserUtil {
             throw new ParseException(RecurringTask.MESSAGE_CONSTRAINTS);
         }
 
-        return RecurringTask.parseRecurringTask(trimmedTaskDescription, new DateTime(trimmedDateTime),
+        DateTime dateTime1 = trimmedDateTime.contains(" ")
+                ? new DateTime(trimmedDateTime) : DateTime.ofDate(trimmedDateTime);
+
+        return RecurringTask.parseRecurringTask(trimmedTaskDescription, dateTime1,
                 trimmedRecurAndFreq);
     }
 
