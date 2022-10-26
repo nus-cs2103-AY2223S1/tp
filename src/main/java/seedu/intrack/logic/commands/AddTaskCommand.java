@@ -24,7 +24,7 @@ public class AddTaskCommand extends Command {
             + "Parameters: DESCRIPTION /at TIME (must be in the format dd-MM-yyyy HH:mm)\n"
             + "Example: " + COMMAND_WORD + " Technical Interview /at 04-11-2022 17:00";
 
-    public static final String MESSAGE_UPDATE_TASK_SUCCESS = "Added task: %1$s";
+    public static final String MESSAGE_ADD_TASK_SUCCESS = "Added task: %1$s";
 
     private final Task task;
 
@@ -57,7 +57,7 @@ public class AddTaskCommand extends Command {
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
-        return new CommandResult(String.format(MESSAGE_UPDATE_TASK_SUCCESS, editedInternship));
+        return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, editedInternship));
     }
 
     @Override

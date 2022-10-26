@@ -132,6 +132,14 @@ public class InternshipBuilder {
     }
 
     /**
+     * Sets {@code List<Task> tasks} to the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withTaskList(List<Task> tasks) {
+        this.tasks = tasks;
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Internship} that we are building.
      */
     public InternshipBuilder withTags(String ... tags) {
