@@ -134,6 +134,7 @@ public class DeleteTagCommand extends Command {
                 model.decreaseTagCount(toDelete);
             }
         }
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS,
                 editPersonDescriptor.getTags().orElse(new HashSet<>())));
     }

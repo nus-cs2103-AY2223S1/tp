@@ -54,6 +54,7 @@ public class DeleteTaskCommand extends Command {
             model.decreaseTagCount(tag);
         }
         model.deleteTask(taskToDelete);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 

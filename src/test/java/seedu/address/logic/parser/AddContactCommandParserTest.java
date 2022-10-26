@@ -19,6 +19,8 @@ import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -26,7 +28,11 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.UUID;
+
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
 import seedu.address.logic.commands.contact.AddContactCommand;
 import seedu.address.logic.parser.contact.AddContactCommandParser;
@@ -43,38 +49,47 @@ public class AddContactCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Person expectedPerson = new PersonBuilder(BOB).withTags().build();
+        UUID bobUuid = UUID.fromString(VALID_ID_BOB);
 
-        // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + REMARK_DESC_BOB, new AddContactCommand(expectedPerson));
+        try (MockedStatic<UUID> uuidStub = Mockito.mockStatic(UUID.class)) {
+            uuidStub.when(UUID::randomUUID).thenReturn(bobUuid);
 
-        // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + REMARK_DESC_BOB, new AddContactCommand(expectedPerson));
+            // whitespace only preamble
+            assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                    + ADDRESS_DESC_BOB + REMARK_DESC_BOB, new AddContactCommand(expectedPerson));
 
-        // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + REMARK_DESC_BOB, new AddContactCommand(expectedPerson));
+            // multiple names - last name accepted
+            assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                    + ADDRESS_DESC_BOB + REMARK_DESC_BOB, new AddContactCommand(expectedPerson));
 
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + REMARK_DESC_BOB, new AddContactCommand(expectedPerson));
+            // multiple phones - last phone accepted
+            assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                    + ADDRESS_DESC_BOB + REMARK_DESC_BOB, new AddContactCommand(expectedPerson));
 
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + REMARK_DESC_BOB, new AddContactCommand(expectedPerson));
+            // multiple emails - last email accepted
+            assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
+                    + ADDRESS_DESC_BOB + REMARK_DESC_BOB, new AddContactCommand(expectedPerson));
 
-        // multiple remarks - last remark accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + REMARK_DESC_AMY + REMARK_DESC_BOB, new AddContactCommand(expectedPerson));
+            // multiple addresses - last address accepted
+            assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
+                    + ADDRESS_DESC_BOB + REMARK_DESC_BOB, new AddContactCommand(expectedPerson));
+
+            // multiple remarks - last remark accepted
+            assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                    + REMARK_DESC_AMY + REMARK_DESC_BOB, new AddContactCommand(expectedPerson));
+        }
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withRemark("").withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddContactCommand(expectedPerson));
+        UUID amyUuid = UUID.fromString(VALID_ID_AMY);
+        try (MockedStatic<UUID> uuidStub = Mockito.mockStatic(UUID.class)) {
+            uuidStub.when(UUID::randomUUID).thenReturn(amyUuid);
+            assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+                    new AddContactCommand(expectedPerson));
+        }
     }
 
     @Test

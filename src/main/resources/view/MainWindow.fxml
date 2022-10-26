@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="YellowBook" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -33,20 +33,20 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="stack-pane">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="stack-pane"
                    minHeight="100" prefHeight="100" maxHeight="100">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="ALWAYS" fx:id="tabContainerPlaceholder" styleClass="pane-with-border"
+        <StackPane VBox.vgrow="ALWAYS" fx:id="tabContainerPlaceholder" styleClass="stack-pane"
                    minHeight="100">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />

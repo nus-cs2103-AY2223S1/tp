@@ -25,13 +25,13 @@ public class FilterContactCommandParser implements Parser<FilterContactCommand> 
      */
     public FilterContactCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        List<String> tags = List.of(trimmedArgs.split(" "));
 
-        if (tags.isEmpty()) {
+        if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterContactCommand.MESSAGE_USAGE));
         }
 
+        List<String> tags = List.of(trimmedArgs.split(" "));
         return new FilterContactCommand(new PersonContainsKeywordsPredicate(ParserUtil.parseTags(tags)));
     }
 }

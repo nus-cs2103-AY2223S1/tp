@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.person.Address;
@@ -18,6 +19,7 @@ import seedu.address.model.tag.Tag;
  * corresponding field value of the person.
  */
 public class EditPersonDescriptor {
+    private UUID id;
     private Name name;
     private Phone phone;
     private Email email;
@@ -32,6 +34,7 @@ public class EditPersonDescriptor {
      * A defensive copy of {@code tags} is used internally.
      */
     public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        setId(toCopy.id);
         setName(toCopy.name);
         setPhone(toCopy.phone);
         setEmail(toCopy.email);
@@ -45,6 +48,14 @@ public class EditPersonDescriptor {
      */
     public boolean isAnyFieldEdited() {
         return CollectionUtil.isAnyNonNull(name, phone, email, address, remark, tags);
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Optional<UUID> getId() {
+        return Optional.ofNullable(id);
     }
 
     public void setName(Name name) {
@@ -119,7 +130,8 @@ public class EditPersonDescriptor {
         // state check
         EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-        return getName().equals(e.getName())
+        return getId().equals(e.getId())
+                && getName().equals(e.getName())
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
                 && getAddress().equals(e.getAddress())

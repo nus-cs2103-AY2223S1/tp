@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -79,11 +80,11 @@ public class Task {
     }
 
     /**
-     * Returns an icon representing if the task is done.
-     * @return String representation of an icon.
+     * Returns a string representing if the task is done.
+     * @return String representation of a task completion.
      */
-    public String getStatusIcon() {
-        return (isDone ? "[X]" : "[ ]");
+    public String getStatusForDisplay() {
+        return (isDone ? "completed" : "incomplete");
     }
 
     /**
@@ -116,6 +117,17 @@ public class Task {
         return (descriptionKeywords.isEmpty() || descriptionKeywords.stream().anyMatch(description::equalsIgnoreCase))
                 && (deadlineKeywords.isEmpty() || deadlineKeywords.contains(deadline))
                 && (tags.isEmpty() || !Collections.disjoint(tags, this.tags));
+    }
+
+    /**
+     * Returns true if the task deadline is earlier than or on the day of the given deadline.
+     *
+     * @param deadline The deadline to check against.
+     * @return boolean indicating if task deadline is before or on the day of the given deadline.
+     */
+    public boolean deadlinesUpToAndIncluding(Deadline deadline) {
+        requireNonNull(deadline);
+        return this.deadline.compareTo(deadline) <= 0;
     }
 
     /**

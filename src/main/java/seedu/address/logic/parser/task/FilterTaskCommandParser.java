@@ -25,13 +25,13 @@ public class FilterTaskCommandParser implements Parser<FilterTaskCommand> {
      */
     public FilterTaskCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        List<String> tags = List.of(trimmedArgs.split(" "));
 
-        if (tags.isEmpty()) {
+        if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTaskCommand.MESSAGE_USAGE));
         }
 
+        List<String> tags = List.of(trimmedArgs.split(" "));
         return new FilterTaskCommand(new TaskContainsKeywordsPredicate(ParserUtil.parseTags(tags)));
     }
 }
