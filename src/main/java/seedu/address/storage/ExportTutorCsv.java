@@ -33,6 +33,10 @@ public class ExportTutorCsv {
         SequenceWriter seqW = csvMapper.writer().writeValues(new File("data/tutors.csv"));
         seqW.write(Arrays.asList("name", "phone", "email", "address", "qualification", "institution", "tagged",
                 "tuitionClasses"));
+        if (jsonTree.isEmpty()) {
+            seqW.close();
+            return;
+        }
 
         ArrayList<JsonNode> list = new ArrayList<>();
         jsonTree.elements().next().elements().forEachRemaining(list::add);
@@ -57,7 +61,8 @@ public class ExportTutorCsv {
 
     /**
      * Transforms {@code JsonNode} of tuitionClasses field to a string.
-     * @param fullClassList JsonNode of tuitionClasses that cannot be represented by a string properly.
+     * @param fullClassList JsonNode of tuitionClasses that contains additional information
+     *                      and cannot be represented by a string properly.
      * @return A string representation of an {@code ArrayList} containing the names of the tuitionClass.
      */
     private String handleTuitionClass(JsonNode fullClassList) {

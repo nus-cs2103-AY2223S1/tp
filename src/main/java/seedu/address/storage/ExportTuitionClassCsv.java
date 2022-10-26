@@ -32,6 +32,10 @@ public class ExportTuitionClassCsv {
         CsvMapper csvMapper = new CsvMapper();
         SequenceWriter seqW = csvMapper.writer().writeValues(new File("data/tuitionClasses.csv"));
         seqW.write(Arrays.asList("name", "subject", "level", "day", "startTime", "endTime", "tagged"));
+        if (jsonTree.isEmpty()) {
+            seqW.close();
+            return;
+        }
 
         ArrayList<JsonNode> list = new ArrayList<>();
         jsonTree.elements().next().elements().forEachRemaining(list::add);
