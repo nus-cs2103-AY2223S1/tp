@@ -317,6 +317,22 @@ Action | Format, Examples
 **Undo** | `undo`
 **Redo** | `redo`
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Prefix Summary
+
+Prefix | Symbolize
+--------| -----
+**n/** | Company Name
+**p/** | Position
+**pr/** | Application Process
+**d/** | Date
+**web/** | Website
+**ph/** | Phone Number
+**e/** | Email
+**r/** | Remark
+**t/** | Tags
+**c/** | Category
 
 ## Acknowledgements
 * This project is adapted from **[AddressBook 3(AB3)](https://github.com/se-edu/addressbook-level3)**
