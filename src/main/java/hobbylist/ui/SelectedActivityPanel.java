@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
  * Panel displaying the details of selected activity.
@@ -30,6 +31,8 @@ public class SelectedActivityPanel extends UiPart<Region> {
     private Label status;
     @FXML
     private Label rating;
+    @FXML
+    private Label review;
 
     public SelectedActivityPanel() {
         super(FXML);
@@ -44,7 +47,6 @@ public class SelectedActivityPanel extends UiPart<Region> {
         name.setText(selected.getName().fullName);
         description.setText(selected.getDescription().value);
         description.setWrapText(true);
-        date.setText(selected.getDate().get(0).toDisplayedString());
         if (!tags.getChildren().isEmpty()) {
             tags.getChildren().clear();
         }
@@ -55,11 +57,21 @@ public class SelectedActivityPanel extends UiPart<Region> {
             Label tagLabel = (Label) child;
             tagLabel.setStyle("-fx-background-color: " + intToHexColor(tagLabel.getText()));
         });
+        if (!selected.getDate().isEmpty()) {
+            date.setText(selected.getDate().get(0).toDisplayedString());
+        } else {
+            date.setText("");
+        }
         status.setText(selected.getStatus().toString());
-        if (selected.getRating() > 0) {
+        if (selected.getRating() != 0) {
             rating.setText(String.format("%d / 5", selected.getRating()));
         } else {
-            rating.setText("-");
+            rating.setText("");
+        }
+        if (selected.getReview().isPresent()) {
+            review.setText(selected.getReview().get().value);
+        } else {
+            review.setText("");
         }
     }
 
@@ -68,12 +80,13 @@ public class SelectedActivityPanel extends UiPart<Region> {
      */
     public void setNoActivityDetails() {
         name.setText("NO ACTIVITY SELECTED");
-        description.setText("-");
-        date.setText("-");
-        status.setText("-");
-        rating.setText("-");
     }
 
+    /**
+     * Generate different color Strings for different tags
+     * @param tag
+     * @return
+     */
     private static String intToHexColor(String tag) {
         return String.format("#%06X", (0xFFFFFF & tag.hashCode()));
 

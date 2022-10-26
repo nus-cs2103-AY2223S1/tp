@@ -85,7 +85,6 @@ public class ActivityCard extends UiPart<Region> {
 
     private String intToHexColor(String tag) {
         return String.format("#%06X", (0xFFFFFF & tag.hashCode()));
-
     }
 
     public static void setStatusLabel(Label label, Status status) {

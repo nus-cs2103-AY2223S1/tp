@@ -36,6 +36,21 @@
                </Label>
             </children>
          </HBox>
+            <HBox layoutX="15.0" layoutY="137.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0">
+                <children>
+                    <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="cell_small_label" text="Tags:">
+                        <padding>
+                            <Insets left="10.0" top="5.0" />
+                        </padding>
+                    </Label>
+                    <!--            <FlowPane fx:id="date" />-->
+                    <FlowPane fx:id="tags" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="160.0">
+                        <padding>
+                            <Insets top="5.0" />
+                        </padding>
+                    </FlowPane>
+                </children>
+            </HBox>
          <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0">
             <children>
                <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="cell_small_label" text="Date:">
@@ -78,21 +93,20 @@
                    </Label>
             </children>
          </HBox>
-         <HBox layoutX="15.0" layoutY="137.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0">
-            <children>
-               <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="cell_small_label" text="Tags:">
-                  <padding>
-                     <Insets left="10.0" top="5.0" />
-                  </padding>
-               </Label>
-      <!--            <FlowPane fx:id="date" />-->
-                  <FlowPane fx:id="tags" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefHeight="30.0" prefWidth="160.0">
-                  <padding>
-                     <Insets top="5.0" />
-                  </padding>
-               </FlowPane>
-            </children>
-         </HBox>
+            <HBox layoutX="15.0" layoutY="107.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0">
+                <children>
+                    <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="cell_small_label" text="Review:">
+                        <padding>
+                            <Insets left="10.0" top="5.0" />
+                        </padding>
+                    </Label>
+                    <Label id="review" fx:id="review" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0">
+                        <padding>
+                            <Insets top="5.0" />
+                        </padding>
+                    </Label>
+                </children>
+            </HBox>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
