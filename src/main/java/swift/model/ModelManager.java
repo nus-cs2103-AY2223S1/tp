@@ -201,6 +201,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<PersonTaskBridge> getUnfilteredBridgeList() {
+        return addressBook.getBridgeList();
+    }
+
+    @Override
     public void updateFilteredBridgeList(Predicate<PersonTaskBridge> predicate) {
         requireNonNull(predicate);
         filteredBridges.setPredicate(predicate);
@@ -215,6 +220,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Person> getUnfilteredPersonList() {
+        return addressBook.getPersonList();
     }
 
     @Override

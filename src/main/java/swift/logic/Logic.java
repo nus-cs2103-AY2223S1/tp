@@ -35,11 +35,17 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered list of persons */
+    ObservableList<Person> getUnfilteredPersonList();
+
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
 
     /** Returns an unmodifiable view of the filtered list of bridge */
     ObservableList<PersonTaskBridge> getFilteredBridgeList();
+
+    /** Returns an unmodifiable view of the unfiltered list of bridge */
+    ObservableList<PersonTaskBridge> getUnfilteredBridgeList();
 
     /**
      * Returns the user prefs' address book file path.
@@ -55,9 +61,4 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
-
-    /**
-     * Show all tasks, contacts, and bridges.
-     */
-    void showAllLists();
 }

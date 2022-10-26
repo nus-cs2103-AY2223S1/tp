@@ -71,6 +71,12 @@ public class LogicManager implements Logic {
         return model.getFilteredPersonList();
     }
 
+
+    @Override
+    public ObservableList<Person> getUnfilteredPersonList() {
+        return model.getUnfilteredPersonList();
+    }
+
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return model.getFilteredTaskList();
@@ -79,6 +85,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<PersonTaskBridge> getFilteredBridgeList() {
         return model.getFilteredBridgeList();
+    }
+
+    @Override
+    public ObservableList<PersonTaskBridge> getUnfilteredBridgeList() {
+        return model.getUnfilteredBridgeList();
     }
 
     @Override
@@ -94,12 +105,5 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public void showAllLists() {
-        model.updateFilteredBridgeList(PREDICATE_SHOW_ALL_BRIDGE);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 }
