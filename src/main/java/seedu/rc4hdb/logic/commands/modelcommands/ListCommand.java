@@ -13,8 +13,11 @@ import seedu.rc4hdb.model.Model;
  * Lists the residents in the database.
  */
 public class ListCommand extends ColumnManipulatorCommand {
+    public static final String LIST_MESSAGE_SUCCESS = "Successfully listed all residents. ";
+    public static final String LIST_MESSAGE_SUCCESS_ONLY_SPECIFIED_COLUMNS_SHOWN = LIST_MESSAGE_SUCCESS
+            + "Only specified columns are displayed.\n"
+            + "Use list to display all residents and columns. ";
     public static final String COMMAND_WORD = "list";
-    public static final String COMMAND_PAST_TENSE = "listed only";
     public static final String COMMAND_PRESENT_TENSE = COMMAND_WORD;
     public static final String INCLUDE_SPECIFIER = "/i";
     public static final String EXCLUDE_SPECIFIER = "/e";
@@ -49,9 +52,9 @@ public class ListCommand extends ColumnManipulatorCommand {
         model.setHiddenFields(fieldsToHide);
 
         if (fieldsToShow.equals(ColumnManipulatorCommand.ALL_FIELDS)) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, COMMAND_PAST_TENSE));
+            return new CommandResult(LIST_MESSAGE_SUCCESS);
         } else {
-            return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW, COMMAND_PAST_TENSE));
+            return new CommandResult(LIST_MESSAGE_SUCCESS_ONLY_SPECIFIED_COLUMNS_SHOWN);
         }
     }
 }
