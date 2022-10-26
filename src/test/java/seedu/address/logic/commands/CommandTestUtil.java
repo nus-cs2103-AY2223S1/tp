@@ -162,7 +162,8 @@ public class CommandTestUtil {
 
         Record record = model.getFilteredRecordList().get(targetIndex.getZeroBased());
         final String[] splitRecord = record.record.split(" ");
-        model.updateFilteredRecordList(new RecordContainsKeywordsPredicate(Arrays.asList(splitRecord[0])));
+        model.updateFilteredRecordList(new RecordContainsKeywordsPredicate(
+                Arrays.asList(splitRecord[0]), Arrays.asList(), ""));
 
         assertEquals(1, model.getFilteredRecordList().size());
     }

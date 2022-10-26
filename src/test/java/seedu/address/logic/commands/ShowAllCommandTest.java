@@ -72,6 +72,7 @@ public class ShowAllCommandTest {
      * Returns a {@code RecordContainsKeywordsPredicate}.
      */
     private RecordContainsKeywordsPredicate prepareRecordPredicate() {
-        return new RecordContainsKeywordsPredicate(Arrays.asList(testString.split("\\s+")));
+        return new RecordContainsKeywordsPredicate(
+                Arrays.asList(testString.split("\\s+")), Arrays.asList(), "");
     }
 }

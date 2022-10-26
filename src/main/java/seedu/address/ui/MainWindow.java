@@ -116,7 +116,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param isPersonPanel Flag to indicate is updatePanel a PersonListPanel
      * @param updatedPanel the updatedPanel to replace the old panel
      */
-    void updatePanel(Boolean isPersonPanel, UiPart<Region> updatedPanel) {
+    void updatePanel(boolean isPersonPanel, UiPart<Region> updatedPanel) {
         assert updatedPanel instanceof PersonListPanel
                 || updatedPanel instanceof RecordListPanel;
         personListPanel.getRoot().setVisible(isPersonPanel);

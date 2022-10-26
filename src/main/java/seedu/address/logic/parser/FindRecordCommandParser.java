@@ -5,8 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORD;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindRecordCommand;
@@ -50,6 +52,20 @@ public class FindRecordCommandParser implements Parser<FindRecordCommand> {
     private static boolean somePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
+    /**
+     * Returns true if find date is a valid month and date
+     * @param date date to be validated
+     */
+    public static boolean isValidFindDate(String date) {
+        DateTimeFormatter validateDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+        try {
+            LocalDateTime.parse("01-" + date + " 1400", validateDate);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
 }
 
-// cannot input empty prefix but can leave out prefix

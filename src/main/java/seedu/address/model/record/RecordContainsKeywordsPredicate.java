@@ -1,10 +1,8 @@
 package seedu.address.model.record;
 
-import static seedu.address.logic.commands.FindRecordCommand.FIND_DATE_FORMAT;
+import static seedu.address.logic.commands.FindRecordCommand.FIND_RECORD_DATE_FORMAT;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
@@ -16,10 +14,6 @@ public class RecordContainsKeywordsPredicate implements Predicate<Record> {
     private final List<String> recordKeywords;
     private final List<String> medicationKeywords;
     private final String dateKeyword;
-
-    public RecordContainsKeywordsPredicate(List<String> recordKeywords) {
-        this(recordKeywords, new ArrayList<>(), "");
-    }
 
     /**
      * Constructs a {@code RecordContainsKeywordsPredicate} with the specified fields for
@@ -43,7 +37,7 @@ public class RecordContainsKeywordsPredicate implements Predicate<Record> {
                 .anyMatch(keyword -> record.getMedications().stream()
                         .anyMatch(meds -> StringUtil.containsWordIgnoreCase(meds.toString(), keyword)));
 
-        String recordDate = record.getRecordDate().format(FIND_DATE_FORMAT);
+        String recordDate = record.getRecordDate().format(FIND_RECORD_DATE_FORMAT);
         boolean dateMatch = dateKeyword.isBlank()
                 || dateKeyword.equals(recordDate);
 

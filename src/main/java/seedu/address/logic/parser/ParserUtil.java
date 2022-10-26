@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
@@ -236,13 +235,13 @@ public class ParserUtil {
      */
     public static String parseDateKeyword(String dateToParse) throws ParseException {
         String trimmedArgs = dateToParse.trim();
-        Boolean matcher = trimmedArgs.matches("^(?=(?:[^-]*-){1}[^-]*$)(?=(?:\\D*\\d){6}\\D*$).*$");
+        boolean matcher = trimmedArgs.matches("^(?=(?:[^-]*-){1}[^-]*$)(?=(?:\\D*\\d){6}\\D*$).*$");
 
         if (trimmedArgs.equals(FindRecordCommandParser.PREFIX_NOT_SPECIFIED)) {
             return "";
         } else if (trimmedArgs.isBlank()) {
             throw new ParseException(FindRecordCommand.MESSAGE_EMPTY_PREFIX);
-        } else if (matcher) {
+        } else if (matcher && FindRecordCommandParser.isValidFindDate(trimmedArgs)) {
             return trimmedArgs;
         } else {
             throw new ParseException(FindRecordCommand.MESSAGE_INVALID_FIND_DATE_FORMAT);

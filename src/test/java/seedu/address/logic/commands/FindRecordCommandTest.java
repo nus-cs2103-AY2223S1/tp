@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalPersons.RECORD2;
 import static seedu.address.testutil.TypicalPersons.RECORD3;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,25 @@ import seedu.address.testutil.TestUtil;
 public class FindRecordCommandTest {
     private Model model = TestUtil.prepareModel();
     private Model expectedModel = TestUtil.prepareModel();
-    private final List<String> EMPTY_LIST = Arrays.asList();
+    private final List<String> emptyList = Arrays.asList();
+
+    /**
+     * Parses {@code userInput} into a {@code RecordContainsKeywordsPredicate}.
+     */
+    public static RecordContainsKeywordsPredicate preparePredicateWithOnePrefix(String userInput) {
+        return new RecordContainsKeywordsPredicate(
+                Arrays.asList(userInput.split("\\s+")), Arrays.asList(), "");
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code RecordContainsKeywordsPredicate}.
+     */
+    public static RecordContainsKeywordsPredicate preparePredicateWithMultiplePrefix(
+            String record, String medication, String date) {
+        List<String> recordKeywords = Arrays.asList(record.split("\\s+"));
+        List<String> medicationKeywords = Arrays.asList(medication.split("\\s+"));
+        return new RecordContainsKeywordsPredicate(recordKeywords, medicationKeywords, date);
+    }
 
     @Test
     public void equals() {
@@ -53,7 +70,7 @@ public class FindRecordCommandTest {
     }
 
     @Test
-    public void execute_unspecifiedPrefix_AllRecordsFound() {
+    public void execute_unspecifiedPrefix_allRecordsFound() {
         String expectedMessage = String.format(MESSAGE_RECORDS_LISTED_OVERVIEW, 3);
         RecordContainsKeywordsPredicate predicate = preparePredicateWithOnePrefix(" ");
         FindRecordCommand command = new FindRecordCommand(predicate);
@@ -90,23 +107,6 @@ public class FindRecordCommandTest {
         FindRecordCommand command = new FindRecordCommand(predicate);
         expectedModel.updateFilteredRecordList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(EMPTY_LIST, model.getFilteredRecordList());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code RecordContainsKeywordsPredicate}.
-     */
-    private RecordContainsKeywordsPredicate preparePredicateWithOnePrefix(String userInput) {
-        return new RecordContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code RecordContainsKeywordsPredicate}.
-     */
-    private RecordContainsKeywordsPredicate preparePredicateWithMultiplePrefix(
-            String record, String medication, String date) {
-        List<String> recordKeywords = Arrays.asList(record.split("\\s+"));
-        List<String> medicationKeywords = Arrays.asList(medication.split("\\s+"));
-        return new RecordContainsKeywordsPredicate(recordKeywords, medicationKeywords, date);
+        assertEquals(emptyList, model.getFilteredRecordList());
     }
 }
