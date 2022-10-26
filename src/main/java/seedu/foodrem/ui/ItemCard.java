@@ -29,6 +29,7 @@ public class ItemCard extends UiPart<Region> {
     @FXML private Label name;
     @FXML private Label id;
     @FXML private Label quantity;
+    @FXML private Label price;
     @FXML private Label bought;
     @FXML private Label expires;
     @FXML private HBox tags;
@@ -41,6 +42,7 @@ public class ItemCard extends UiPart<Region> {
         this.item = item;
         id.setText(displayedIndex + ".");
         name.setText(item.getName().toString());
+        price.setText("$" + item.getPrice());
         bought.setText(String.format("Bought: %s", ItemView.buildBoughtDateStringFrom(item)));
         expires.setText(String.format("Expires: %s", ItemView.buildExpiryDateStringFrom(item)));
 

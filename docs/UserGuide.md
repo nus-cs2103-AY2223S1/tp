@@ -19,9 +19,9 @@ show-toc: true
 
 {% include_relative _ug/HowToUseUserGuide.md %}
 
-## Quick Start
+## Installation
 
-{% include_relative _ug/QuickStart.md %}
+{% include_relative _ug/Installation.md %}
 
 ## Using FoodRem
 

@@ -13,6 +13,7 @@
           <Label fx:id="name"/>
         </HBox>
         <Label fx:id="quantity"/>
+        <Label fx:id="price"/>
       </HBox>
       <HBox spacing="5">
         <Label fx:id="bought" styleClass="item-listview-data"/>
