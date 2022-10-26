@@ -340,7 +340,7 @@ Format: `scores s/SESSION_NAME`
 
 Example:
 
-- `scores s/Assignment 1` will show the grades of all students for the session `Assignment 1`, as can be seen below.
+- `scores s/Assignment 1` will show the grades of all students for the session `Assignment 1`, as shown below.
   <br/>   
   <img src="images/scoresAssignment1Result.PNG" width="600"/>
   
@@ -352,7 +352,7 @@ Example:
 
 {% include note.html content="
 
-View the grade for a student within the focused class.
+View all session grades of a student within the focused class.
 
 " %}
 
