@@ -2,7 +2,6 @@
 .error {
     /* The error class should always override the default text-fill style */
     -fx-border-color: -pw-error !important;
-    -fx-border-width: 0 0 4 0 !important;
 }
 
 .list-cell:empty {
@@ -38,20 +37,24 @@
     -fx-effect: -pw-shadow;
     -fx-border-radius: 16px;
     -fx-background-radius: 16px;
-    -fx-padding: 16px;
+    -fx-padding: 8 16;
     -fx-background-insets: 0;
-    -fx-border-color: #1F1D36;
+    -fx-border-color: transparent;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Light";
+    -fx-font-family: "Poppins Light";
     -fx-font-size: 16px;
     -fx-text-fill: -pw-white;
+    -fx-border-width: 0 0 4 0;
 }
 
 #resultDisplay .content {
     -fx-background-color: -pw-surface;
     -fx-background-radius: 0;
-    -fx-font-size: 16px;
+}
+
+#resultDisplay {
+    -fx-font-size: 12px;
 }
 
 #tags {
@@ -80,6 +83,7 @@
 #graphPanelPlaceholder,
 #entryList {
     -fx-effect: -pw-shadow;
+    -fx-background-radius: 8px;
 }
 
 #graphPanelPlaceholder {

@@ -1,20 +1,16 @@
 @font-face {
-    font-family: Regular;
     src: url("Fonts/Poppins-Regular.ttf");
 }
 
 @font-face {
-    font-family: Bold;
     src: url("Fonts/Poppins-Bold.ttf");
 }
 
 @font-face {
-    font-family: SemiBold;
     src: url("Fonts/Poppins-SemiBold.ttf");
 }
 
 @font-face {
-    font-family: Light;
     src: url("Fonts/Poppins-Light.ttf");
 }
 
@@ -29,7 +25,7 @@
     -pw-black: #000000;
     -pw-error: #A13333;
 
-    -pw-shadow: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 8, 0.5, 0.0, 0.0);
+    -pw-shadow: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 16, 0.5, 0.0, 0.0);
 }
 
 .background {
@@ -43,28 +39,28 @@
 
 .label {
     -fx-font-size: 16px;
-    -fx-font-family: "SemiBold";
+    -fx-font-family: "Poppins SemiBold";
     -fx-text-fill: -pw-black;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 16px;
-    -fx-font-family: "SemiBold";
+    -fx-font-family: "Poppins SemiBold";
     -fx-text-fill: -pw-white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32px;
-    -fx-font-family: "Light";
+    -fx-font-family: Poppins Light;
     -fx-text-fill: -pw-white;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 16px;
-    -fx-font-family: "SemiBold";
+    -fx-font-family: "Poppins SemiBold";
 }
 
 /* Tab Pane */
@@ -126,7 +122,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 24px;
-    -fx-font-family: "Light";
+    -fx-font-family: Poppins Light;
     -fx-text-fill: -pw-white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -158,6 +154,7 @@
     -fx-background-insets: 8px;
     -fx-background-radius: 16px;
     -fx-border-radius: 16px;
+    -fx-padding: 4px;
     -fx-background-color: transparent;
 }
 
@@ -171,13 +168,13 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "SemiBold";
+    -fx-font-family: "Poppins SemiBold";
     -fx-font-size: 16px;
     -fx-text-fill: -pw-white;
 }
 
 .cell_small_label {
-    -fx-font-family: "Regular";
+    -fx-font-family: Poppins Regular;
     -fx-font-size: 12px;
     -fx-text-fill: -pw-white;
 }
@@ -192,7 +189,7 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Light";
+    -fx-font-family: Poppins Light;
     -fx-font-size: 16px;
     -fx-text-fill: -pw-white;
 }
@@ -207,7 +204,7 @@
 
 
 .status-bar .label {
-    -fx-font-family: "Light";
+    -fx-font-family: Poppins Light;
     -fx-text-fill: -pw-black;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -247,7 +244,7 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Light";
+    -fx-font-family: Poppins Light;
     -fx-text-fill: -pw-black;
     -fx-opacity: 0.9;
 }
@@ -280,7 +277,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: -pw-primary;
-    -fx-font-family: "Regular";
+    -fx-font-family: Poppins Regular;
     -fx-font-size: 16px;
     -fx-text-fill: -pw-white;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -344,7 +341,7 @@
 
 .scroll-bar .thumb {
     -fx-background-color: derive(-pw-surface, 50%);
-    -fx-background-insets: 3;
+    -fx-background-insets: 2;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
