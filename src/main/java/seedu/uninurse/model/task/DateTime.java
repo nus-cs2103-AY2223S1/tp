@@ -42,6 +42,11 @@ public class DateTime {
         dateTime = LocalDateTime.parse(validDateTime, DATE_TIME_FORMATTER);
     }
 
+    private DateTime(LocalDateTime localDateTime) {
+        requireNonNull(localDateTime);
+        dateTime = localDateTime;
+    }
+
     /**
      * returns if the Date is today's date.
      */
@@ -50,6 +55,10 @@ public class DateTime {
 
         return today.getDayOfYear() == dateTime.getDayOfYear()
                 && today.getYear() == dateTime.getYear();
+    }
+
+    public boolean isPastDate() {
+        return dateTime.isBefore(LocalDateTime.now());
     }
 
     /**
@@ -83,6 +92,25 @@ public class DateTime {
             return true;
         } catch (DateTimeParseException dtpe) {
             return false;
+        }
+    }
+
+    /**
+     * Returns a {@code DateTime} that is {@code freq} many {@code Recurrence} from
+     * this {@code DateTime}.
+     */
+    public DateTime plusDuration(Recurrence recur, int freq) {
+        switch (recur) {
+        case DAYS:
+            return new DateTime(dateTime.plusDays(freq));
+        case WEEKS:
+            return new DateTime(dateTime.plusWeeks(freq));
+        case MONTHS:
+            return new DateTime(dateTime.plusMonths(freq));
+        case YEARS:
+            return new DateTime(dateTime.plusYears(freq));
+        default:
+            return new DateTime();
         }
     }
 
@@ -133,4 +161,5 @@ public class DateTime {
                 && this.dateTime.getHour() == o.dateTime.getHour()
                 && this.dateTime.getMinute() == o.dateTime.getMinute();
     }
+
 }

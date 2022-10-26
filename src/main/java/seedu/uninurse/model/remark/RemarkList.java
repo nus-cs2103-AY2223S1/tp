@@ -9,7 +9,6 @@ import java.util.List;
 import seedu.uninurse.model.GenericList;
 import seedu.uninurse.model.remark.exceptions.DuplicateRemarkException;
 import seedu.uninurse.model.remark.exceptions.RemarkNotFoundException;
-import seedu.uninurse.model.remark.exceptions.UnmodifiedRemarkException;
 
 /**
  * Represents a unique list of remarks for a particular patient.
@@ -62,10 +61,12 @@ public class RemarkList implements GenericList<Remark> {
     public RemarkList edit(int index, Remark editedRemark) {
         try {
             List<Remark> updatedRemarks = new ArrayList<>(internalRemarkList);
-            if (updatedRemarks.get(index).equals(editedRemark)) {
-                throw new UnmodifiedRemarkException();
-            }
             updatedRemarks.set(index, editedRemark);
+
+            if (internalRemarkList.contains(editedRemark)) {
+                throw new DuplicateRemarkException();
+            }
+
             return new RemarkList(updatedRemarks);
         } catch (IndexOutOfBoundsException e) {
             throw new RemarkNotFoundException();

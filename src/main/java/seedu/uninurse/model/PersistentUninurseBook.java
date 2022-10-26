@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.uninurse.commons.core.Config;
-import seedu.uninurse.logic.commands.CommandResult;
 
 /**
  * Versions of UninurseBookSnapshot after every command.
@@ -73,24 +72,26 @@ public class PersistentUninurseBook {
     /**
      * Makes a snapshot of the current UninurseBook.
      */
-    public void makeSnapshot(CommandResult commandResult) {
+    public void makeSnapshot(PatientListTracker patientListTracker) {
         while (uninurseBookVersions.size() > currentVersion + 1) {
             uninurseBookVersions.remove(uninurseBookVersions.size() - 1);
         }
         while (uninurseBookVersions.size() > Config.UNDO_LIMIT) {
             uninurseBookVersions.remove(0);
         }
-        uninurseBookVersions.add(new UninurseBookSnapshot(workingCopy, commandResult));
+        uninurseBookVersions.add(new UninurseBookSnapshot(workingCopy, patientListTracker));
         currentVersion = uninurseBookVersions.size() - 1;
         handleChange();
+    }
+
+    public PatientListTracker getCurrentPair() {
+        return uninurseBookVersions.get(currentVersion).getPatientListTracker();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PersistentUninurseBook // instanceof handles nulls
-                && workingCopy.equals(((PersistentUninurseBook) other).workingCopy)
-                && uninurseBookVersions.equals(((PersistentUninurseBook) other).uninurseBookVersions)
-                && currentVersion == ((PersistentUninurseBook) other).currentVersion);
+                && workingCopy.equals(((PersistentUninurseBook) other).workingCopy));
     }
 }

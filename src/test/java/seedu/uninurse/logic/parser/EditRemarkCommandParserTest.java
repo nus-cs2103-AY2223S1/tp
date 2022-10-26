@@ -1,0 +1,72 @@
+package seedu.uninurse.logic.parser;
+
+import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.uninurse.logic.commands.EditRemarkCommand;
+import seedu.uninurse.model.remark.Remark;
+
+/**
+ * Contains unit tests for {@code EditRemarkCommandParser}.
+ */
+class EditRemarkCommandParserTest {
+    private static final String REMARK_STUB = "Some remark";
+
+    private final EditRemarkCommandParser parser = new EditRemarkCommandParser();
+
+    @Test
+    public void parse_nullArgs_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> parser.parse(null));
+    }
+
+    @Test
+    public void parse_patientIndexSpecifiedRemarkIndexSpecified_success() {
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " "
+                + PREFIX_REMARK + REMARK_STUB;
+
+        EditRemarkCommand expectedCommand =
+                new EditRemarkCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, new Remark(REMARK_STUB));
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_patientIndexMissingRemarkIndexSpecified_failure() {
+        String userInput = INDEX_FIRST_ATTRIBUTE.getOneBased() + " " + PREFIX_REMARK + REMARK_STUB;
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRemarkCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, userInput, expectedMessage);
+    }
+
+    @Test
+    public void parse_patientIndexSpecifiedRemarkIndexMissing_failure() {
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + REMARK_STUB;
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRemarkCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, userInput, expectedMessage);
+    }
+
+    @Test
+    public void parse_emptyRemarkEdit_failure() {
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " "
+                + PREFIX_REMARK;
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRemarkCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, userInput, expectedMessage);
+    }
+
+    @Test
+    public void parse_remarkPrefixMissing_failure() {
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " ";
+        String expectedMessage = String.format(EditRemarkCommand.MESSAGE_NOT_EDITED);
+
+        assertParseFailure(parser, userInput, expectedMessage);
+    }
+}

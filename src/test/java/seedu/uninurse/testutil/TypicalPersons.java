@@ -36,10 +36,12 @@ public class TypicalPersons {
             .withMedications(new Medication("Amoxicillin", "0.5 g every 8 hours"))
             .withTasks(new Task("Insert urinary catheter", new DateTime("16-12-2022 1245")),
                     new Task("Check vitals", new DateTime("16-10-2022 1015")))
+            .withRemarks("Allergic to Amoxicillin")
             .withTags("high-risk", "2A nursing home").build();
     public static final Patient CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withConditions("multiple sclerosis")
             .withTasks(new Task("Update health records", new DateTime("28-10-2022 1730")))
+            .withRemarks("Requires wheelchair to move around")
             .withTags("high-risk").build();
     public static final Patient DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();

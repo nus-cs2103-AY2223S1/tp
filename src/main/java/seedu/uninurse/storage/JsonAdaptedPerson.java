@@ -17,6 +17,8 @@ import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Phone;
+import seedu.uninurse.model.remark.Remark;
+import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.Task;
@@ -36,6 +38,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedCondition> conditions = new ArrayList<>();
     private final List<JsonAdaptedMedication> medications = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedRemark> remarks = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -47,6 +50,7 @@ class JsonAdaptedPerson {
             @JsonProperty("conditions") List<JsonAdaptedCondition> conditions,
             @JsonProperty("medications") List<JsonAdaptedMedication> medications,
             @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+            @JsonProperty("remarks") List<JsonAdaptedRemark> remarks,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -63,6 +67,10 @@ class JsonAdaptedPerson {
 
         if (tasks != null) {
             this.tasks.addAll(tasks);
+        }
+
+        if (remarks != null) {
+            this.remarks.addAll(remarks);
         }
 
         if (tagged != null) {
@@ -86,6 +94,9 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         tasks.addAll(source.getTasks().getTasks().stream()
                 .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
+        remarks.addAll(source.getRemarks().getInternalList().stream()
+                .map(JsonAdaptedRemark::new)
                 .collect(Collectors.toList()));
         tagged.addAll(source.getTags().getInternalList().stream()
                 .map(JsonAdaptedTag::new)
@@ -111,6 +122,11 @@ class JsonAdaptedPerson {
         final ArrayList<Task> personTasks = new ArrayList<>();
         for (JsonAdaptedTask task : tasks) {
             personTasks.add(task.toModelType());
+        }
+
+        final List<Remark> personRemarks = new ArrayList<>();
+        for (JsonAdaptedRemark remark : remarks) {
+            personRemarks.add(remark.toModelType());
         }
 
         final List<Tag> personTags = new ArrayList<>();
@@ -156,9 +172,11 @@ class JsonAdaptedPerson {
 
         final TaskList modelTasks = new TaskList(personTasks);
 
+        final RemarkList modelRemarks = new RemarkList(personRemarks);
+
         final TagList modelTags = new TagList(personTags);
 
         return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelConditions,
-                modelMedications, modelTasks);
+                modelMedications, modelTasks, modelRemarks);
     }
 }

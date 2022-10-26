@@ -8,6 +8,7 @@ import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Phone;
+import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
@@ -31,6 +32,7 @@ public class PersonBuilder {
     private ConditionList conditions;
     private MedicationList medications;
     private TaskList tasks;
+    private RemarkList remarks;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +46,7 @@ public class PersonBuilder {
         this.conditions = new ConditionList();
         this.medications = new MedicationList();
         this.tasks = new TaskList();
+        this.remarks = new RemarkList();
     }
 
     /**
@@ -58,6 +61,7 @@ public class PersonBuilder {
         this.conditions = personToCopy.getConditions();
         this.medications = personToCopy.getMedications();
         this.tasks = personToCopy.getTasks();
+        this.remarks = personToCopy.getRemarks();
     }
 
     /**
@@ -95,6 +99,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code remarks} into a {@code RemarkList} and set it to the {@code Patient} that we are building.
+     */
+    public PersonBuilder withRemarks(String... remarks) {
+        this.remarks = SampleDataUtil.getRemarkList(remarks);
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code TagList} and set it to the {@code Patient} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
@@ -127,7 +139,7 @@ public class PersonBuilder {
     }
 
     public Patient build() {
-        return new Patient(name, phone, email, address, tags, conditions, medications, tasks);
+        return new Patient(name, phone, email, address, tags, conditions, medications, tasks, remarks);
     }
 
 }

@@ -234,6 +234,14 @@ public class MainWindow extends UiPart<Stage> {
                 outputPanel.handleDeletePatient(logic.getPatientOfInterest());
             }
 
+            if (commandResult.isUndo()) {
+                outputPanel.handleUndo(logic.getSavedPatientListTracker());
+            }
+
+            if (commandResult.isRedo()) {
+                outputPanel.handleRedo(logic.getSavedPatientListTracker());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

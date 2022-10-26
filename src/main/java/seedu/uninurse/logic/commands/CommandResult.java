@@ -58,6 +58,14 @@ public class CommandResult {
         return this.commandType == CommandType.SCHEDULE;
     }
 
+    public boolean isUndo() {
+        return this.commandType == commandType.UNDO;
+    }
+
+    public boolean isRedo() {
+        return this.commandType == commandType.REDO;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

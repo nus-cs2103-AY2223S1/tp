@@ -13,6 +13,7 @@ import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.parser.UninurseBookParser;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.storage.Storage;
@@ -46,10 +47,8 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
+            model.updateRecurringTasks();
             storage.saveUninurseBook(model.getUninurseBook());
-            if (command.isUndoable()) {
-                model.makeSnapshot(commandResult);
-            }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -85,5 +84,10 @@ public class LogicManager implements Logic {
     @Override
     public Patient getPatientOfInterest() {
         return model.getPatientOfInterest();
+    }
+
+    @Override
+    public PatientListTracker getSavedPatientListTracker() {
+        return model.getSavedPatientListTracker();
     }
 }

@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.medication.MedicationList;
+import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.TaskList;
 
@@ -19,17 +20,19 @@ public class Patient extends Person {
     private final ConditionList conditions;
     private final MedicationList medications;
     private final TaskList tasks;
+    private final RemarkList remarks;
 
     /**
      * Every field must be present and not null.
      */
     public Patient(Name name, Phone phone, Email email, Address address, TagList tags, ConditionList conditions,
-            MedicationList medications, TaskList tasks) {
+            MedicationList medications, TaskList tasks, RemarkList remarks) {
         super(name, phone, email, address, tags);
-        requireAllNonNull(name, phone, email, address, tags, conditions, medications, tasks);
+        requireAllNonNull(name, phone, email, address, tags, conditions, medications, tasks, remarks);
         this.conditions = conditions;
         this.medications = medications;
         this.tasks = tasks;
+        this.remarks = remarks;
     }
 
     /**
@@ -43,6 +46,7 @@ public class Patient extends Person {
         this.conditions = updatedConditions;
         this.medications = patient.medications;
         this.tasks = patient.tasks;
+        this.remarks = patient.remarks;
     }
 
     /**
@@ -56,6 +60,7 @@ public class Patient extends Person {
         this.conditions = patient.conditions;
         this.medications = updatedMedications;
         this.tasks = patient.tasks;
+        this.remarks = patient.remarks;
     }
 
 
@@ -70,6 +75,7 @@ public class Patient extends Person {
         this.conditions = patient.conditions;
         this.medications = patient.medications;
         this.tasks = updatedTasks;
+        this.remarks = patient.remarks;
     }
 
     /**
@@ -83,6 +89,21 @@ public class Patient extends Person {
         this.conditions = patient.conditions;
         this.medications = patient.medications;
         this.tasks = patient.tasks;
+        this.remarks = patient.remarks;
+    }
+
+    /**
+     * Used to return a new immutable {@code Patient} when {@code RemarkList} is updated.
+     * @param patient The patient to be updated.
+     * @param updatedRemarks The updated tags.
+     */
+    public Patient(Patient patient, RemarkList updatedRemarks) {
+        super(patient);
+        requireAllNonNull(patient, updatedRemarks);
+        this.conditions = patient.conditions;
+        this.medications = patient.medications;
+        this.tasks = patient.tasks;
+        this.remarks = updatedRemarks;
     }
 
     public ConditionList getConditions() {
@@ -95,6 +116,10 @@ public class Patient extends Person {
 
     public TaskList getTasks() {
         return tasks;
+    }
+
+    public RemarkList getRemarks() {
+        return remarks;
     }
 
     /**
@@ -131,6 +156,7 @@ public class Patient extends Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getConditions().equals(getConditions())
                 && otherPerson.getTasks().equals(getTasks())
+                && otherPerson.getRemarks().equals(getRemarks())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -173,6 +199,12 @@ public class Patient extends Person {
         if (!tasks.isEmpty()) {
             builder.append("\nTasks:\n")
                     .append(tasks);
+        }
+
+        RemarkList remarks = getRemarks();
+        if (!remarks.isEmpty()) {
+            builder.append("\nRemarks:\n")
+                    .append(remarks);
         }
 
         return builder.toString();

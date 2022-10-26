@@ -21,9 +21,12 @@ import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Phone;
+import seedu.uninurse.model.remark.Remark;
+import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -250,6 +253,15 @@ public class ParserUtil {
             return parseTaskWithoutDateTime(descriptionAndTime[0]);
         }
 
+        if (descriptionAndTime.length == 3) {
+            return parseRecurringTask(descriptionAndTime[0], descriptionAndTime[1], descriptionAndTime[2]);
+        }
+
+        if (descriptionAndTime.length > 3) {
+            // TODO proper parseexception
+            throw new ParseException("Invalid format");
+        }
+
         return parseTaskWithDateTime(descriptionAndTime[0], descriptionAndTime[1]);
     }
 
@@ -276,6 +288,28 @@ public class ParserUtil {
         }
 
         return new Task(trimmedTaskDescription, new DateTime(trimmedDateTime));
+    }
+
+    private static Task parseRecurringTask(String taskDescription, String dateTime, String recurAndFreq)
+            throws ParseException {
+        String trimmedTaskDescription = taskDescription.trim();
+        String trimmedDateTime = dateTime.trim();
+        String trimmedRecurAndFreq = recurAndFreq.trim();
+
+        if (!Task.isValidTaskDescription(trimmedTaskDescription)) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!RecurringTask.isValidRecurAndFreq(trimmedRecurAndFreq)) {
+            throw new ParseException(RecurringTask.MESSAGE_CONSTRAINTS);
+        }
+
+        return RecurringTask.parseRecurringTask(trimmedTaskDescription, new DateTime(trimmedDateTime),
+                trimmedRecurAndFreq);
     }
 
     /**
@@ -315,6 +349,33 @@ public class ParserUtil {
             tagList.add(parseTag(tagName));
         }
         return new TagList(tagList);
+    }
+
+    /**
+     * Parses a {@code String remark} into a {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code remark} is invalid.
+     */
+    public static Remark parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        if (!Remark.isValidRemark(trimmedRemark)) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
+        }
+        return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses {@code Collection<String> remarks} into a {@code RemarkList}.
+     */
+    public static RemarkList parseRemarks(Collection<String> remarks) throws ParseException {
+        requireNonNull(remarks);
+        final List<Remark> remarkList = new ArrayList<>();
+        for (String remark : remarks) {
+            remarkList.add(parseRemark(remark));
+        }
+        return new RemarkList(remarkList);
     }
 
     /**

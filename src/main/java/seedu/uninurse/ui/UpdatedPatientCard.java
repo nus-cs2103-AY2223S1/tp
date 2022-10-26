@@ -28,6 +28,8 @@ public class UpdatedPatientCard extends UiPart<Region> {
     @FXML
     private VBox cardPane;
     @FXML
+    private Label header;
+    @FXML
     private Label name;
     @FXML
     private Label phone;
@@ -38,8 +40,6 @@ public class UpdatedPatientCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Label header;
-    @FXML
     private Label conditions;
     @FXML
     private Label medications;
@@ -47,12 +47,16 @@ public class UpdatedPatientCard extends UiPart<Region> {
     private Label taskheader;
     @FXML
     private Label tasklist;
+    @FXML
+    private Label remarks;
 
     /**
      * Creates a {@code UpdatedPatientCard} with the given {@code Patient}.
      */
     public UpdatedPatientCard(Patient patient, String headerString) {
         super(FXML);
+        header.setText(headerString);
+
         cardPane.setSpacing(2);
         cardPane.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
                 + "-fx-border-width: 2;" + "-fx-border-insets: 2;"
@@ -65,11 +69,15 @@ public class UpdatedPatientCard extends UiPart<Region> {
         email.setText(patient.getEmail().getValue());
         patient.getTags().getInternalList()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
-        header.setText(headerString);
-        conditions.setText("Conditions:" + "\n" + patient.getConditions().toString());
-        medications.setText("Medications:" + "\n" + patient.getMedications().toString());
+        conditions.setText("Conditions:" + "\n" + getListAsText(patient.getConditions().toString()));
+        medications.setText("Medications:" + "\n" + getListAsText(patient.getMedications().toString()));
         taskheader.setText("Tasks:");
-        tasklist.setText(patient.getTasks().toString());
+        tasklist.setText(getListAsText(patient.getTasks().toString()));
+        remarks.setText("Remarks:" + "\n" + getListAsText(patient.getRemarks().toString()));
+    }
+
+    private String getListAsText(String list) {
+        return list.isEmpty() ? "-" : list;
     }
 
     @Override
