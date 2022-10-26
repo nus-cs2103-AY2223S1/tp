@@ -52,15 +52,20 @@ public class TaskCard extends UiPart<Region> {
         isComplete.setSelected(task.isComplete());
         if (task.getPriorityTag() != null) {
             priorityTag.setText(task.getPriorityTag().status);
-            priorityTag.setVisible(true);
+        } else {
+            priorityTag.setManaged(false);
         }
+
         if (task.getDeadlineTag() != null) {
             deadlineTag.setText(task.getDeadlineTag().toString());
-            deadlineTag.setVisible(true);
+        } else {
+            deadlineTag.setManaged(false);
         }
+
         if (task.getExam() != null) {
             examDescription.setText(task.getExam().getDescription().description);
-            examDescription.setVisible(true);
+        } else {
+            examDescription.setManaged(false);
         }
     }
 }
