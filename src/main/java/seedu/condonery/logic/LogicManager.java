@@ -11,7 +11,6 @@ import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.commons.core.LogsCenter;
 import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.Command;
-import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.HelpCommand;

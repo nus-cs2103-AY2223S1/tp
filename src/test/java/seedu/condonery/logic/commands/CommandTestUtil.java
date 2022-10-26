@@ -1,39 +1,27 @@
 package seedu.condonery.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.testutil.Assert.assertThrows;
-import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
-import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.condonery.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
-import seedu.condonery.logic.commands.client.EditClientCommand;
 import seedu.condonery.logic.commands.client.EditClientCommand.EditClientDescriptor;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
-import seedu.condonery.model.ClientDirectory;
 import seedu.condonery.model.Model;
-import seedu.condonery.model.ModelManager;
 import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.UserPrefs;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.client.ClientNameContainsKeywordsPredicate;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
-import seedu.condonery.testutil.ClientBuilder;
 import seedu.condonery.testutil.EditClientDescriptorBuilder;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 
