@@ -118,7 +118,7 @@ Format:
 
 ### Add task to team : `add_task`
 
-Add a new task to the current team.
+Add a new task to the current team. The task name is compulsory, while the other fields are optional.
 
 Format:
 * `add_task -n TASK_NAME -a ASSIGNEES -d DEADLINE`
@@ -129,7 +129,8 @@ Examples:
 
 ### Edit task in team : `edit_task`
 
-Edits a specified task in the current team. Fields are optional and will be overwritten accordingly.
+Edits a specified task in the current team. The task index is compulsory, while the other fields are optional and
+will be overwritten accordingly.
 
 Format:
 * `edit_task TASK_INDEX -n TASK_NAME -a ASSIGNEES -d DEADLINE`

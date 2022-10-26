@@ -59,10 +59,9 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             }
 
             String name = cmd.getOptionValue(FLAG_NAME_STR);
-            String [] emptyAssigneeArray = {};
             String[] assignees = cmd.hasOption(FLAG_ASSIGNEE_STR)
                     ? cmd.getOptionValues(FLAG_ASSIGNEE_STR)
-                    : emptyAssigneeArray;
+                    : new String[]{};
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             LocalDateTime deadline = cmd.hasOption(FLAG_DEADLINE_STR)
                     ? LocalDateTime.parse(cmd.getOptionValue(FLAG_DEADLINE_STR), formatter)

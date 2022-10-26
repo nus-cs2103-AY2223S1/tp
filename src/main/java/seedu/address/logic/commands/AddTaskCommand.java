@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -20,13 +22,20 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the current team.\n"
-            + "Parameters: TASK_NAME\n"
-            + "Example: " + COMMAND_WORD + " merge PR#12";
+            + "Parameters:"
+            + "-" + FLAG_NAME_STR + " NAME "
+            + "-" + FLAG_DEADLINE_STR + " DEADLINE "
+            + "-" + FLAG_ASSIGNEE_STR + " ASSIGNEE "
+            + "Example: " + COMMAND_WORD + " "
+            + "-" + FLAG_NAME_STR + " \"Review PR\" "
+            + "-" + FLAG_DEADLINE_STR + " \"2023-12-04 23:59\" "
+            + "-" + FLAG_ASSIGNEE_STR + " \"Alex Yeoh\" "
+            + "-" + FLAG_ASSIGNEE_STR + " \"Bernice Yu\" ";
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Added Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the team";
     public static final String MESSAGE_TASK_NAME_FORMAT_ERROR = "Task name cannot be empty";
-    public static final String MESSAGE_PERSON_NOT_EXISTS = "The person you are trying to assign "
+    public static final String MESSAGE_PERSON_NOT_EXISTS = "The team member you are trying to assign "
             + "the task to does not exist";
 
     private final Task task;

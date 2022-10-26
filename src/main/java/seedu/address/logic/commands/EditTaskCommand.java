@@ -35,7 +35,7 @@ public class EditTaskCommand extends Command {
                     + " \"Review PR\" " + "-" + FLAG_DEADLINE_STR + " \"2023-12-12 23:59\" ";
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists.";
+    public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists. ";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
