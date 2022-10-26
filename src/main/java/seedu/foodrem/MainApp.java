@@ -15,6 +15,7 @@ import seedu.foodrem.commons.util.ConfigUtil;
 import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.Logic;
 import seedu.foodrem.logic.LogicManager;
+import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.ModelManager;
 import seedu.foodrem.model.ReadOnlyFoodRem;
@@ -83,13 +84,13 @@ public class MainApp extends Application {
             }
             initialData = foodRemOptional.orElseGet(SampleDataUtil::getSampleFoodRem);
         } catch (DataConversionException e) {
-            initialMessage = "Data file not in the correct format. Will be starting with a sample FoodRem";
+            initialMessage = "Data file not in the correct format. Will be starting with an empty FoodRem";
             logger.warning(initialMessage);
-            initialData = SampleDataUtil.getSampleFoodRem();
+            initialData = new FoodRem();
         } catch (IOException e) {
-            initialMessage = "Problem while reading from the file. Will be starting with a sample FoodRem";
+            initialMessage = "Problem while reading from the file. Will be starting with an empty FoodRem";
             logger.warning(initialMessage);
-            initialData = SampleDataUtil.getSampleFoodRem();
+            initialData = new FoodRem();
         }
 
         return new ModelManager(initialData, userPrefs);
