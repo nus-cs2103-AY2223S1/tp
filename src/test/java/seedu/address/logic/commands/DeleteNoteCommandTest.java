@@ -82,6 +82,28 @@ public class DeleteNoteCommandTest {
         assertCommandFailure(deleteNoteCommand, model, Messages.MESSAGE_INVALID_NOTE_DISPLAYED_INDEX);
     }
 
+    @Test
+    public void equals() {
+        DeleteNoteCommand deleteFirstNoteCommand = new DeleteNoteCommand(INDEX_FIRST_NOTE);
+        DeleteNoteCommand deleteSecondNoteCommand = new DeleteNoteCommand(INDEX_SECOND_NOTE);
+
+        // same object -> returns true
+        assertTrue(deleteFirstNoteCommand.equals(deleteFirstNoteCommand));
+
+        // same values -> returns true
+        DeleteNoteCommand deleteFirstNoteCommandCopy = new DeleteNoteCommand(INDEX_FIRST_NOTE);
+        assertTrue(deleteFirstNoteCommand.equals(deleteFirstNoteCommandCopy));
+
+        // different types -> returns false
+        assertFalse(deleteFirstNoteCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteFirstNoteCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(deleteFirstNoteCommand.equals(deleteSecondNoteCommand));
+    }
+
 
     /**
      * Updates {@code model}'s filtered note list to show no notes.
