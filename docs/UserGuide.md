@@ -24,7 +24,7 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list student`** : Lists all students.
+   * **`list`** : Lists all students.
 
    * **`add student`**`n/John Doe i/A0232123X p/98765432 e/johnd@example.com h/john_fu m/CS2103 l/T23` : Adds a student named `John Doe` to CS2103T module.
 
@@ -82,7 +82,7 @@ Examples:
 
 Shows a list of all students.
 
-Format: `list student`
+Format: `list`
 
 ### Editing a student : `edit student`
 
@@ -154,20 +154,14 @@ Format: `delete tutorial INDEX`
 Examples:
 * `delete tutorial 3`
 
-### Clearing all tutorials : `clear tutorial`
-
-Clears all tutorials in a specified module.
-
-Format: `clear tutorial [m/MODULE]`
-
 ### Adding a consultation : `add consultation`
 
 Adds a consultation to the consultation database.
 
-Format: `add consultation D/DATE t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [d/DESCRIPTION]`
+Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`
 
 Examples:
-* `add consultation D/2022-10-24 t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`
+* `add consultation n/JakeKim m/CS2103T D/2022-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
 
 ### Deleting a consultation : `delete consultation`
 
@@ -181,12 +175,6 @@ Format: `delete consultation INDEX`
 
 Examples:
 * `delete consultation 3`
-
-### Clearing all consultations : `clear consultation`
-
-Clears all consultations.
-
-Format: `clear consultation`
 
 ### Adding a reminder : `add reminder`
 
@@ -231,11 +219,15 @@ Sort reminders by their priority.
 
 Format: `sort reminder`
 
-### Clearing all reminders: `clear reminder`
+### Clearing all data: `clear`
 
-Clears all reminders.
+Clears all data in a specific fields or the entire app.
 
-Format: `clear reminder`
+Format: `clear f/FIELD`
+* `FIELD` including `all`, `student`, `tutorial`, `consultation`, `reminder`
+
+Examples:
+* `clear all`
 
 ### Exiting the program: `exit`
 
@@ -279,14 +271,12 @@ Action | Format, Examples
 **Delete Student** | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`
 **Add Tutorial** | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY` <br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`
 **Delete Tutorial** | `delete tutorial INDEX` <br> e.g., `delete tutorial 3`
-**Clear Tutorial** | `clear tutorial [m/MODULE]` <br> e.g., `clear tutorial m/CS2105`
-**Add Consultation** | `add consultation t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [r/DESCRIPTION]` <br> e.g., `add consultation D/2022-10-24 t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`
+**Add Consultation** | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION` <br> e.g., `add consultation D/2022-10-24 t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`
 **Delete Consultation** | `delete consultation INDEX` <br> e.g., `delete consultation 3`
-**Clear Consultation** | `clear consultation` <br> e.g., `clear consultation`
 **Add Reminder** | `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION` <br> e.g., `add reminder n/mark T/2022-03-21 p/HIGH d/300 papers to mark`
 **Delete Reminder** | `delete reminder INDEX` <br> e.g., `delete reminder 3`
 **Mark Reminder** | `mark reminder INDEX` <br> e.g., `mark reminder 3`
 **Unmark Reminder** | `unmark reminder INDEX` <br> e.g., `unmark reminder 3`
-**Sort Reminder** | `sort reminder` <br> e.g., `sort reminder`
-**Clear Reminder** | `clear reminder` <br> e.g., `clear reminder`
+**Clear** | `clear f/FIELD` <br> e.g., `clear student`
+**Exit** | `exit`
 **Help** | `help`

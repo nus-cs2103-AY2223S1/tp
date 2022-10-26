@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -122,6 +123,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedStudent);
     }
 
+    @Override
+    public void resetStudents() {
+        addressBook.setPersons(new ArrayList<>());
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -191,6 +197,10 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetReminders() {
+        addressBook.setReminders(new ArrayList<>());
+    }
+
     public void markReminder(Reminder target) {
         addressBook.markReminder(target);
     }
@@ -264,6 +274,11 @@ public class ModelManager implements Model {
         filteredTutorials.setPredicate(predicate);
     }
 
+    @Override
+    public void resetTutorials() {
+        addressBook.setTutorials(new ArrayList<>());
+    }
+
     //=========== Consultation ==================================================================================
 
     @Override
@@ -282,6 +297,11 @@ public class ModelManager implements Model {
     public void addConsultation(Consultation consultation) {
         addressBook.addConsultation(consultation);
         updateFilteredConsultationList(PREDICATE_SHOW_ALL_CONSULTATIONS);
+    }
+
+    @Override
+    public void resetConsultations() {
+        addressBook.setConsultations(new ArrayList<>());
     }
 
     @Override
