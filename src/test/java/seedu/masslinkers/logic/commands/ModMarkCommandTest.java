@@ -61,7 +61,7 @@ public class ModMarkCommandTest {
      * Tests the behaviour of ModMarkCommand when the student wants to mark 1 existing mod
      * in the list of modules of a batchmate.
      *
-     * @throws CommandException If an error which occurs during execution of ModMarkCommand.
+     * @throws CommandException If an error occurs during execution of ModMarkCommand.
      */
     @Test
     public void execute_markOneMod_success() throws CommandException {
@@ -85,7 +85,7 @@ public class ModMarkCommandTest {
      * Tests the behaviour of ModMarkCommand when the student wants to mark 2 existing mods
      * in the list of modules of a batchmate.
      *
-     * @throws CommandException If an error which occurs during execution of ModMarkCommand.
+     * @throws CommandException If an error occurs during execution of ModMarkCommand.
      */
     @Test
     public void execute_markMultipleMod_success() throws CommandException {
@@ -170,7 +170,7 @@ public class ModMarkCommandTest {
     /**
      * Tests the behaviour of ModMarkCommand when index is out of range.
      *
-     * @throws CommandException If an error which occurs during execution of ModMarkCommand.
+     * @throws CommandException If an error occurs during execution of ModMarkCommand.
      */
     @Test
     public void execute_indexOutOfBounds_throwsCommandException() throws CommandException {

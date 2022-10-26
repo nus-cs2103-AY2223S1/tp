@@ -25,6 +25,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "▪ edit: edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]\n"
             + "▪ find: find KEYWORD [MORE_KEYWORDS]\n"
             + "▪ addInt: addInt INDEX INTEREST [MORE_INTERESTS]\n"
+            + "▪ deleteInt: deleteInt INDEX INTEREST [MORE_INTERESTS]\n"
             + "▪ findInt: findInt INTEREST [MORE_INTERESTS]\n"
             + "▪ delete: delete INDEX\n"
             + "▪ mod:\n"

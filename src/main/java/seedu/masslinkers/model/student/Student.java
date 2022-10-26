@@ -91,6 +91,24 @@ public class Student {
     }
 
     /**
+     * Checks if the all interests provided are found in the set of interests linked to this batchmate.
+     *
+     * @param interestsSet The set of interests to be deleted.
+     */
+    public boolean canDeleteInterests(Set<Interest> interestsSet) {
+        return this.interests.containsAll(interestsSet);
+    }
+
+    /**
+     * Removes all interests in {@code interestsSet} from the current list of interests linked to this batchmate.
+     *
+     * @param interestsSet The set of interests to be deleted.
+     */
+    public void deleteInterests(Set<Interest> interestsSet) {
+        this.interests.removeAll(interestsSet);
+    }
+
+    /**
      * Sorts then returns an immutable mods list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -152,27 +170,12 @@ public class Student {
     }
 
     /**
-     * Marks the specified mod as taken if it exists in the current list of mods linked to this batchmate.
-     *
-     * @param mod The mod to be marked.
-     * @return 1 if the specified mod exists and is marked, or 0 if the mod is not in the list of mods.
+     * Marks all mods of a batchmate as taken.
      */
-    public int markModIfExist(Mod mod) {
-        int count = 0;
-
-        for (int j = 0; j < this.mods.size(); j++) {
-
-            Mod currentMod = this.mods.get(j);
-            String currentModName = currentMod.getModName();
-            String targetModName = mod.getModName();
-
-            if (currentModName.equals(targetModName)) {
-                currentMod.markMod();
-                count++;
-                break;
-            }
+    public void markAllMods() {
+        for (Mod mod : this.mods) {
+            mod.markMod();
         }
-        return count;
     }
 
     /**

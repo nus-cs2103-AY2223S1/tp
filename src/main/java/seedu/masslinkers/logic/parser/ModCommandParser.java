@@ -144,11 +144,11 @@ public class ModCommandParser implements Parser<ModCommand> {
         Set<String> modsFromCommand = getModsFromCommand(trimmedArgs);
         Optional<ObservableList<Mod>> mods = parseMods(modsFromCommand);
 
-        if (mods.isEmpty()) {
-            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
+        if (indexOrAll.equals("all")) {
+            return new ModMarkAllCommand();
 
-        } else if (indexOrAll.equals("all")) {
-            return new ModMarkAllCommand(mods.get());
+        } else if (mods.isEmpty()) {
+            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
 
         } else {
             try {
