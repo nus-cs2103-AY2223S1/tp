@@ -129,7 +129,6 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
-
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
      * {@code versionedTaskPanel}

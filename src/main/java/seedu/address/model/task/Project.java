@@ -3,8 +3,6 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Locale;
-
 /**
  * Represents a Project in the task panel.
  * Guarantees: immutable; name is valid as declared in {@link #isValidProjectName(String)}
@@ -61,8 +59,7 @@ public class Project {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Project // instanceof handles nulls
-                && projectName.toLowerCase(Locale.ROOT).equals(((Project) other)
-                .projectName.toLowerCase(Locale.ROOT))); // state check
+                && projectName.equalsIgnoreCase(((Project) other).projectName)); // state check
     }
 
     @Override
@@ -73,6 +70,7 @@ public class Project {
     /**
      * Format state as text for viewing.
      */
+    @Override
     public String toString() {
         if (isUnspecified()) {
             return UNSPECIFIED_PROJECT_IDENTIFIER;

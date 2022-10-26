@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
@@ -51,7 +50,6 @@ public class AddTaskCommand extends TaskCommand {
         requireNonNull(model);
 
         if (model.hasTask(toAdd)) {
-            model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
             throw new CommandException(String.format(MESSAGE_DUPLICATE_TASK, toAdd.getTitle()));
         }
 
