@@ -3,6 +3,8 @@ layout: page
 title: Data Management
 ---
 
+#### [Back to Menu](../UserGuide.md)
+
 ### Saving the data
 
 RC4HDB data are saved in the hard disk automatically after any command that changes the data.
@@ -20,3 +22,5 @@ is the name of the current data file. Advanced users are welcome to update data 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, RC4HDB will discard all data and start with an empty data file at the next run.
 </div>
+
+[Back to Top](#back-to-menuuserguidemd)

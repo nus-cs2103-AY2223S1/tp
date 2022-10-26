@@ -3,6 +3,8 @@ layout: page
 title: File Management
 ---
 
+#### [Back to Menu](../UserGuide.md)
+
 Align with our goal of providing a streamline way of managing RC4 related data, RC4HDB provides users with the ability to organise their files using our file management commands.
 
 RC4HDB currently supports the following file management functionalities:
@@ -10,6 +12,8 @@ RC4HDB currently supports the following file management functionalities:
 * [**Deletion**](#deleting-an-existing-data-file--file-delete) of old data folders
 * [**Switching**](#switching-to-a-different-data-file--file-switch) between different data folders
 * [**Importing**](#importing-from-csv-file--file-import) of resident data from a [CSV](glossary.md#csv) file.
+
+All file commands have a `FILE_NAME` field that requires you to input a name for the file you are targeting.
 
 ### File Command Format:
 * All file commands have a `FOLDER_NAME` field, which signifies the name of the folder to be targeted.
@@ -43,6 +47,8 @@ Format: `file create FOLDER_NAME`
 Examples:
 * `file create rc4_data_2022` will create a new folder named `rc4_data_2022` with fresh data files.
 
+[Back to Top](#back-to-menuuserguidemd)
+
 ---
 
 ### Deleting an existing data file : `file delete`
@@ -56,6 +62,8 @@ Format: `file delete FOLDER_NAME`
 
 Examples:
 * `file delete rc4_data_2022` will delete the `rc4_data_2022` folder and all it's contents.
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -73,6 +81,8 @@ Examples:
 * `file switch rc4_data_2022` will switch the current data file to `rc4_data_2022.json`.
 * `file switch rc4_data_2022.json` will switch the current data file to `rc4_data_2022.json.json`.
 
+[Back to Top](#back-to-menuuserguidemd)
+
 ---
 
 ### Importing from CSV file : `file import`
@@ -85,6 +95,8 @@ Format: `file import FILE_NAME`
 
 Examples:
 * `file import residents` will import the data from `residents.csv` into a new data file `residents.json`.
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -100,5 +112,7 @@ Format:
 |--------------|--------------|-------------------------|------------|--------|--------|---------------|---------------------|
 | John Doe     | 91234567     | johnDoe@example.com     |    5-8     | M      | D      | A9876543B     | NIL                 |
 | Maggie Smith | 98765432     | maggieSmith@example.com |    4-1     | F      | A      | A3456789B     | WelfareHead Captain |
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---

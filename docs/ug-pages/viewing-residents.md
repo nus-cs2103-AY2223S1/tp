@@ -3,6 +3,8 @@ layout: page
 title: Viewing Residents
 ---
 
+#### [Back to Menu](../UserGuide.md)
+
 Often times, you may find yourself overloaded with information. These commands can help to include, and exclude
 fields from being seen, find specific residents, and search residents whose fields match a specific keyword.
 
@@ -30,10 +32,12 @@ Note:
 - Each field to be included or excluded from the table should be entered as a *single letter*, that is, the first letter of the corresponding field name.
 - The relative order of each letter *does not matter*, and the letters can be in either upper or lower case. Duplicate letters are ignored.
 - Only letters corresponding to the first letter of a valid field in the table can be specified, *any other letter will be considered invalid*.
-- Letters *must* be separated by a single whitespace. 
+- Letters *must* be separated by a single whitespace.
 - There needs to be at least one field (and hence column) included in the table view at all times.
-  
+
 *(For advanced users!)* The `list` command, as well as the `list /i` and `list /e` extensions, are [*idempotent*](glossary.md#idempotent) and [*state-independent*](glossary.md#state-independent). This means that using the `list` command with a set of *(optional)* letters will return the same result regardless of what the current table looks like. Calling the same command again will not change the table view any further.
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -58,11 +62,13 @@ Note:
 
 - Like in `list`, each column to be shown should be entered as a single letter that corresponds to the first letter of the column to be shown.
 - The relative order of each letter does not matter, and the letters can be in either upper or lower case. Duplicate letters are ignored.
-- Similarly, letters *must* be separated by a single whitespace. 
+- Similarly, letters *must* be separated by a single whitespace.
 - Only valid letters can be specified, and there needs to be at least one column shown in the table at all times.
 - You can always `reset` the table to the full, default view at any time!
 
 *(For advanced users!)* Notice that `showonly`, unlike `list /i`, is dependent on the state of the current table. Hence, some calls to `showonly` may be invalid if the specified columns are not present in the current table view.
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -93,6 +99,8 @@ Note:
 
 *(For advanced users!)* Notice that `hideonly`, unlike `list /i`, is dependent on the state of the current table. Hence, some calls to `hideonly` may be invalid if the specified columns are not present in the current table view.
 
+[Back to Top](#back-to-menuuserguidemd)
+
 ---
 
 ### Resetting hidden columns : `reset`
@@ -106,6 +114,8 @@ Format: `reset`
 Note:
 - Any input entered after the `reset` command will be ignored.
 - This command is different from the `list` command in that it does not affect the list of residents being displayed.
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -128,6 +138,8 @@ Examples:
 * `find char li` returns `Charlotte Oliveiro`, `David Li`<br>
   <!--- ![result for 'find alex david'](images/findAlexDavidResult.png) --->
 
+[Back to Top](#back-to-menuuserguidemd)
+
 ---
 
 ### Filtering residents by field : `filter`
@@ -142,5 +154,7 @@ Format: `filter KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 Examples:
 * `filter h/D g/M` returns residents who are in Draco house, **and** are Male.
 * `filter g/M` returns residents who are male.
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---

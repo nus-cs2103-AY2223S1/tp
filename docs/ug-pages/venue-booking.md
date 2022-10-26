@@ -3,6 +3,8 @@ layout: page
 title: Venue Booking
 ---
 
+#### [Back to Menu](../UserGuide.md)
+
 Along with the ability to manage residents, we have also provided you with the ability to manage
 the venues in RC4HDB through a booking system. This will allow you to add, remove available venues, as well as
 add, remove bookings for those venues.
@@ -19,7 +21,7 @@ As you perform the booking commands, the table will automatically update to refl
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If you are currently viewing a certain venue, and you have added a booking to another venue, or removed a booking
-from another venue, the table will automatically switch to that venue's booking. 
+from another venue, the table will automatically switch to that venue's booking.
 Alternatively, you can use the `venue switch VENUE_NAME` command to switch manually.
 </div>
 
@@ -27,10 +29,12 @@ Alternatively, you can use the `venue switch VENUE_NAME` command to switch manua
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Before proceeding to learn more about venue commands. Have a quick read about the **venue fields**, which will
-be used in the commands. 
+be used in the commands.
 </div>
 
 The venue fields can be found [here](#format-for-venue-fields).
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -44,6 +48,8 @@ Examples:
 * `venue add Meeting Room 3`
 * `venue add Multi-purpose Hall `
 
+[Back to Top](#back-to-menuuserguidemd)
+
 ---
 
 ### Deleting a venue : `venue delete`
@@ -56,6 +62,8 @@ Examples:
 * `venue delete Meeting Room`
 * `venue delete Hall`
 
+[Back to Top](#back-to-menuuserguidemd)
+
 ---
 
 ### Viewing a venue : `venue view`
@@ -67,6 +75,8 @@ Format: `venue view VENUE_NAME`
 Examples:
 * `venue view Meeting Room`
 * `venue view Hall`
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -84,6 +94,8 @@ Examples:
 * `venue book 2 v/Meeting Room tp/8-9 d/TUE`
 * `venue book 1 v/Hall tp/13-14 d/WED`
 
+[Back to Top](#back-to-menuuserguidemd)
+
 ---
 
 ### Deleting a booking: `venue unbook`
@@ -95,6 +107,8 @@ Format: `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY`
 Examples:
 * `venue unbook v/Meeting Room tp/8-9 d/TUE`
 * `venue unbook v/Hall tp/13-18 d/WED`
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -116,5 +130,7 @@ Examples:
 `d/DAY`
 * Must be the first three characters of a day *i.e. Monday must be indicated as mon*
 * Case-insensitive *i.e. tUe, TUE, tue are all valid*
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
