@@ -6,6 +6,7 @@ import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
@@ -34,6 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_MODULE_AMY = "CS2103T";
+    public static final String VALID_MODULE_BOB = "CS2106";
     public static final String VALID_ID_AMY = "E1234569";
     public static final String VALID_ID_BOB = "E1234560";
     public static final String VALID_GIT_AMY = "user10";
@@ -50,6 +53,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String MODULE_DESC_AMY = " " + PREFIX_MODULE + VALID_MODULE_AMY;
+    public static final String MODULE_DESC_BOB = " " + PREFIX_MODULE + VALID_MODULE_BOB;
     public static final String ID_DESC_AMY = " " + PREFIX_ID + VALID_ID_AMY;
     public static final String ID_DESC_BOB = " " + PREFIX_ID + VALID_ID_BOB;
     public static final String GIT_DESC_AMY = " " + PREFIX_GIT + VALID_GIT_AMY;
@@ -72,14 +77,14 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withModule(VALID_MODULE_AMY)
                 .withId(VALID_ID_AMY).withGitName(VALID_GIT_AMY)
                 .withTeleHandle(VALID_HANDLE_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withId(VALID_ID_AMY).withGitName(VALID_GIT_AMY)
-                .withTeleHandle(VALID_HANDLE_AMY)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withModule(VALID_MODULE_BOB)
+                .withId(VALID_ID_BOB).withGitName(VALID_GIT_BOB)
+                .withTeleHandle(VALID_HANDLE_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

@@ -4,6 +4,7 @@ import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,6 +23,7 @@ import seedu.studmap.logic.commands.exceptions.CommandException;
 import seedu.studmap.model.Model;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.GitName;
+import seedu.studmap.model.student.Module;
 import seedu.studmap.model.student.Name;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
@@ -44,6 +46,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_ID + "ID] "
             + "[" + PREFIX_GIT + "GITUSER] "
             + "[" + PREFIX_HANDLE + "TELEHANDLE] "
@@ -108,6 +111,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
         private Name name;
         private Phone phone;
         private Email email;
+        private Module module;
         private StudentID id;
         private GitName gitName;
         private TeleHandle handle;
@@ -124,6 +128,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setModule(toCopy.module);
             setId(toCopy.id);
             setGitName(toCopy.gitName);
             setHandle(toCopy.handle);
@@ -134,7 +139,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email,
+            return CollectionUtil.isAnyNonNull(name, phone, email, module,
                     id, gitName, handle, tags);
         }
 
@@ -160,6 +165,14 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
 
         public void setEmail(Email email) {
             this.email = email;
+        }
+
+        public void setModule(Module module) {
+            this.module = module;
+        }
+
+        public Optional<Module> getModule() {
+            return Optional.ofNullable(module);
         }
 
         public void setId(StudentID id) {
@@ -221,6 +234,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getModule().equals(e.getModule())
                     && getId().equals(e.getId())
                     && getGitName().equals(e.getGitName())
                     && getHandle().equals(e.getHandle())
@@ -235,6 +249,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             studentData.setName(getName().orElse(studentToEdit.getName()));
             studentData.setPhone(getPhone().orElse(studentToEdit.getPhone()));
             studentData.setEmail(getEmail().orElse(studentToEdit.getEmail()));
+            studentData.setModule(getModule().orElse(studentToEdit.getModule()));
             studentData.setId(getId().orElse(studentToEdit.getId()));
             studentData.setGitUser(getGitName().orElse(studentToEdit.getGitName()));
             studentData.setTeleHandle(getHandle().orElse(studentToEdit.getTeleHandle()));
@@ -245,7 +260,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
 
         @Override
         public boolean hasEdits() {
-            return CollectionUtil.isAnyNonNull(name, phone, email,
+            return CollectionUtil.isAnyNonNull(name, phone, email, module,
                     id, gitName, handle, tags);
         }
     }

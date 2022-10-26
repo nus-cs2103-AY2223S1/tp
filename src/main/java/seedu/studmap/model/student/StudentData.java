@@ -16,6 +16,7 @@ public class StudentData {
     private Name name;
     private Phone phone;
     private Email email;
+    private Module module;
     private Set<Tag> tags = new HashSet<>();
     private Set<Attendance> attendances = new HashSet<>();
     private Set<Assignment> assignments = new HashSet<>();
@@ -68,6 +69,14 @@ public class StudentData {
         this.email = email;
     }
 
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
+    }
+
     public Set<Tag> getTags() {
         return tags;
     }
@@ -115,6 +124,7 @@ public class StudentData {
                 && Objects.equals(studentID, that.studentID)
                 && Objects.equals(gitName, that.gitName)
                 && Objects.equals(teleHandle, that.teleHandle)
+                && Objects.equals(module, that.module)
                 && Objects.equals(tags, that.tags)
                 && Objects.equals(attendances, that.attendances)
                 && Objects.equals(assignments, that.assignments);
@@ -123,7 +133,7 @@ public class StudentData {
     @Override
     public int hashCode() {
         return Objects.hash(name, phone, email, studentID, gitName,
-                teleHandle, tags, attendances, assignments);
+                teleHandle, module, tags, attendances, assignments);
     }
 
 }

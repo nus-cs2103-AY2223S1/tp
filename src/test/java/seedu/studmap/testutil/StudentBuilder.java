@@ -7,6 +7,7 @@ import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.GitName;
+import seedu.studmap.model.student.Module;
 import seedu.studmap.model.student.Name;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
@@ -24,6 +25,7 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_MODULE = "CS2103T";
     public static final String DEFAULT_ID = "E1234567";
     public static final String DEFAULT_GIT = "GitUser";
     public static final String DEFAULT_TELE = "@CS2103T";
@@ -31,6 +33,7 @@ public class StudentBuilder {
     private Name name;
     private Phone phone;
     private Email email;
+    private Module module;
     private StudentID id;
     private GitName gitName;
     private TeleHandle handle;
@@ -45,6 +48,7 @@ public class StudentBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        module = new Module(DEFAULT_MODULE);
         id = new StudentID(DEFAULT_ID);
         gitName = new GitName(DEFAULT_GIT);
         handle = new TeleHandle(DEFAULT_TELE);
@@ -60,6 +64,7 @@ public class StudentBuilder {
         name = studentToCopy.getName();
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
+        module = studentToCopy.getModule();
         id = studentToCopy.getId();
         gitName = studentToCopy.getGitName();
         handle = studentToCopy.getTeleHandle();
@@ -156,6 +161,14 @@ public class StudentBuilder {
     }
 
     /**
+     * Sets the {@code Module} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withModule(String module) {
+        this.module = new Module(module);
+        return this;
+    }
+
+    /**
      * Sets the {@code id} of the {@code StudentID} that we are building.
      */
     public StudentBuilder withId(String id) {
@@ -188,6 +201,7 @@ public class StudentBuilder {
         studentData.setName(this.name);
         studentData.setPhone(this.phone);
         studentData.setEmail(this.email);
+        studentData.setModule(this.module);
         studentData.setId(this.id);
         studentData.setGitUser(this.gitName);
         studentData.setTeleHandle(this.handle);

@@ -5,6 +5,7 @@ import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
@@ -37,11 +38,11 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_MODULE,
                         PREFIX_ID, PREFIX_GIT, PREFIX_HANDLE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_ID, PREFIX_GIT, PREFIX_HANDLE)
+                PREFIX_EMAIL, PREFIX_MODULE, PREFIX_ID, PREFIX_GIT, PREFIX_HANDLE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -51,6 +52,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         studentData.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         studentData.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         studentData.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        studentData.setModule(ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get()));
         studentData.setId(ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get()));
         studentData.setGitUser(ParserUtil.parseGitName(argMultimap.getValue(PREFIX_GIT).get()));
         studentData.setTeleHandle(ParserUtil.parseHandle(argMultimap.getValue(PREFIX_HANDLE).get()));
