@@ -77,13 +77,13 @@ public class FindCommandParserTest {
     @Test
     public void parse_validEmailPrefix_returnsFindCommand() {
         FindCommand expectedFindCommand = new FindCommand(
-                new EmailContainsKeywordsPredicate(Arrays.asList("xx@gmail.com", "john_doe@yahoo.com")));
+                new EmailContainsKeywordsPredicate(Arrays.asList("john_yang@gmail.com")));
 
         // no leading and trailing whitespaces
-        assertParseSuccess(parser, " e/xx@gmail.com john_doe@yahoo.com", expectedFindCommand);
+        assertParseSuccess(parser, " e/john_yang@gmail.com", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " e/xx@gmail.com    john_doe@yahoo.com", expectedFindCommand);
+        assertParseSuccess(parser, " e/     john_yang@gmail.com    ", expectedFindCommand);
     }
 
     @Test
