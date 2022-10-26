@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -15,10 +16,12 @@ import swift.model.task.Task;
  */
 public class PersonTaskListPanel extends UiPart<Region> {
     private static final String FXML = "PersonTaskListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(PersonTaskListPanel.class);
 
     @FXML
     private ListView<Task> personTaskListView;
+    @FXML
+    private Label heading;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -27,6 +30,13 @@ public class PersonTaskListPanel extends UiPart<Region> {
         super(FXML);
         personTaskListView.setItems(taskList);
         personTaskListView.setCellFactory(listView -> new PersonTaskListViewCell());
+    }
+
+    /**
+     * Remove heading from the panel.
+     */
+    protected void removeHeading() {
+        heading.setText("");
     }
 
     /**
@@ -45,5 +55,4 @@ public class PersonTaskListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

@@ -1,5 +1,9 @@
 package swift.logic;
 
+import static swift.model.Model.PREDICATE_SHOW_ALL_BRIDGE;
+import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
+import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -14,6 +18,7 @@ import swift.logic.parser.AddressBookParser;
 import swift.logic.parser.exceptions.ParseException;
 import swift.model.Model;
 import swift.model.ReadOnlyAddressBook;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
 import swift.storage.Storage;
@@ -72,6 +77,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<PersonTaskBridge> getFilteredBridgeList() {
+        return model.getFilteredBridgeList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
@@ -84,5 +94,12 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void showAllLists() {
+        model.updateFilteredBridgeList(PREDICATE_SHOW_ALL_BRIDGE);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 }

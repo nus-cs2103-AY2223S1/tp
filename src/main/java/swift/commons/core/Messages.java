@@ -12,4 +12,5 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
     public static final String MESSAGE_PERSONS_SELECTED_OVERVIEW = "Person Selected!";
+    public static final String MESSAGE_TASKS_SELECTED_OVERVIEW = "Task Selected!";
 }

@@ -32,18 +32,14 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private PersonTaskListPanel personTaskListPanel;
+    private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
+    private PersonTaskListPanel personTaskListPanel;
+    private TaskPersonListPanel taskPersonListPanel;
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
-
-    @FXML
-    private MenuItem helpMenuItem;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -53,6 +49,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem openTaskTabItem;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -115,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         personTaskListPanel = new PersonTaskListPanel(logic.getFilteredTaskList());
         personTaskListPanelPlaceholder.getChildren().add(personTaskListPanel.getRoot());
@@ -170,8 +175,43 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Switch to tasks tab.
+     */
+    @FXML
+    private void handleTaskTab() {
+        logic.showAllLists();
+
+        personListPanel.removeHeading();
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getFilteredBridgeList(),
+                logic.getFilteredPersonList());
+        listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
+        personTaskListPanel.removeHeading();
+        taskPersonListPanel = new TaskPersonListPanel(logic.getFilteredPersonList());
+        personTaskListPanelPlaceholder.getChildren().add(taskPersonListPanel.getRoot());
+    }
+
+    /**
+     * Switch to contacts tab.
+     */
+    @FXML
+    private void handleContactTab() {
+        taskListPanel.removeHeading();
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        taskPersonListPanel.removeHeading();
+        personTaskListPanel = new PersonTaskListPanel(logic.getFilteredTaskList());
+        personTaskListPanelPlaceholder.getChildren().add(personTaskListPanel.getRoot());
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
+    }
+
+    public TaskListPanel getTaskListPanel() {
+        return taskListPanel;
     }
 
     /**
@@ -191,6 +231,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isListContact()) {
+                handleContactTab();
+            }
+
+            if (commandResult.isListTask() || commandResult.isAddTask()) {
+                handleTaskTab();
             }
 
             return commandResult;
