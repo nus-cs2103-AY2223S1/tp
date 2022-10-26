@@ -3,6 +3,7 @@ package coydir.storage;
 import static coydir.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static coydir.testutil.Assert.assertThrows;
 import static coydir.testutil.TypicalPersons.BENSON;
+import static coydir.testutil.TypicalPersons.PRITTAM;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
@@ -46,6 +47,12 @@ public class JsonAdaptedPersonTest {
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
         assertEquals(BENSON, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_validPersonDetailsNaValues_returnsPerson() throws IllegalValueException {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(PRITTAM);
+        assertEquals(PRITTAM, person.toModelType());
     }
 
     @Test
@@ -183,5 +190,4 @@ public class JsonAdaptedPersonTest {
                 VALID_ADDRESS, "14", "14", invalidTags, VALID_LEAVE);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
-
 }
