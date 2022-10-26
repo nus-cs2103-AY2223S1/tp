@@ -156,14 +156,6 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidFilePath_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_DESCRIPTION, VALID_NETWORTH, VALID_MEETING_TIMES, INVALID_FILEPATH, VALID_TAGS);
-        String expectedMessage = FilePath.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
     public void toModelType_nullFilePath_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_DESCRIPTION, VALID_NETWORTH, VALID_MEETING_TIMES, null, VALID_TAGS);
