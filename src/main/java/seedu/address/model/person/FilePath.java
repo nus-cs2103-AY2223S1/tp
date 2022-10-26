@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.commons.util.FileUtil;
 import seedu.address.logic.commands.SetPersonFileCommand;
+import seedu.address.ui.PersonProfile;
 
 /**
  * Represents a Person's pdf file in the address book.
@@ -69,6 +70,20 @@ public class FilePath {
 
     public boolean isEmpty() {
         return value.isEmpty();
+    }
+
+    /**
+     * Returns value of file path.
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * Returns value of filePath if not null else, EMPTY_DISPLAY_VALUE.
+     */
+    public String getDisplayValue() {
+        return value == EMPTY_FILEPATH ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
     @Override

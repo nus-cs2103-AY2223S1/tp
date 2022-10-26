@@ -16,6 +16,7 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private MainDisplay mainDisplayListener;
 
     @FXML
     private ListView<Person> personListView;
@@ -30,6 +31,22 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
+     * Stores a reference to a main display instance that listens to on click events from PersonCard
+     * @param mainDisplay the main display that changes on click
+     */
+    public void addListener(MainDisplay mainDisplay) {
+        mainDisplayListener = mainDisplay;
+    }
+
+    /**
+     * Adds the mainDisplayListener to a personCard
+     * @param personCard new PersonCard that main display listens to
+     */
+    public void setPersonCardListener(PersonCard personCard) {
+        personCard.addMainDisplayListener(mainDisplayListener);
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
@@ -41,7 +58,9 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                PersonCard personCard = new PersonCard(person, getIndex() + 1);
+                setGraphic(personCard.getRoot());
+                setPersonCardListener(personCard);
             }
         }
     }

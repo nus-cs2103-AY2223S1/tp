@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.ui.PersonProfile;
+
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is always valid
@@ -30,12 +32,25 @@ public class Address {
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
-
     /**
      * Returns true if a given string is a valid address.
      */
     public static boolean isValidAddress(String test) {
         return test.equals(EMPTY_ADDRESS) || test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns value of address.
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * Returns value of address if not null else, EMPTY_DISPLAY_VALUE.
+     */
+    public String getDisplayValue() {
+        return value == EMPTY_ADDRESS ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
     @Override

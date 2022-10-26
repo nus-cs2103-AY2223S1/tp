@@ -3,12 +3,15 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.ui.PersonProfile;
+
 /**
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
 
+    public static final String EMPTY_NAME = "";
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -18,7 +21,9 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    private static final String EMPTY_VALUE = "-";
+
+    private final String fullName;
 
     /**
      * Constructs a {@code Name}.
@@ -38,6 +43,19 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns fulle name.
+     */
+    public String getFullName() {
+        return fullName;
+    }
+
+    /**
+     * Returns fullName if not null else, EMPTY_DISPLAY_VALUE.
+     */
+    public String getFullDisplayName() {
+        return fullName == EMPTY_NAME ? PersonProfile.EMPTY_DISPLAY_VALUE : fullName;
+    }
 
     @Override
     public String toString() {
