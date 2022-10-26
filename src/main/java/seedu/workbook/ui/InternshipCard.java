@@ -1,10 +1,8 @@
 package seedu.workbook.ui;
 
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Stage;
 import seedu.workbook.model.internship.util.StageUtil;
@@ -69,7 +66,7 @@ public class InternshipCard extends UiPart<Region> {
         this.internshipStage = internship.getStage();
         boolean hasNoTips = internshipStage.hasNoTips();
 
-        if(hasNoTips) {
+        if (hasNoTips) {
             tipsButton.setVisible(false);
         }
 

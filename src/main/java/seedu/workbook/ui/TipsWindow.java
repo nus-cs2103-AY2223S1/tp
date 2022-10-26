@@ -95,9 +95,10 @@ public class TipsWindow extends UiPart<Stage> {
         tipsHeader.setText("Tips for " + stageName);
     }
 
-    /* 
+    /**
      * Populates the tips window with tips.
-    */
+     * @param tips List of tips to populate the tip window.
+     */
     public void populateTips(List<String> tips) {
         for (int i = 0; i < tips.size(); i++) {
 
@@ -127,7 +128,7 @@ public class TipsWindow extends UiPart<Stage> {
             gridPane.getRowConstraints().add(rowConstraint);
 
             gridPane.add(hbox, 0, i, 1, 1);
-        } 
+        }
     }
 
 }

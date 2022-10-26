@@ -102,7 +102,7 @@ public class StageUtil {
         return stagesWithTips;
     }
 
-   /**
+    /**
      * Returns a list of tips if stage is present in {@code stagesWithTips},
      * otherwise return an empty list.
      * @param stage the given stage
