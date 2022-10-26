@@ -12,7 +12,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface Logic {
     /**

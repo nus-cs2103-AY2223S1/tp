@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Module's module code in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}.
  */
 public class ModuleCode {
     public static final String MESSAGE_CONSTRAINTS =
