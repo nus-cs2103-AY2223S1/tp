@@ -34,26 +34,27 @@ contains some sample data.<br>
 
 ### 1.1. Command summary
 
-| Action                                  | Format                                                                  | Short Description                                                               |
-|-----------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [`add-module`](#211-add-module)         | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
-| [`delete-module`](#212-delete-module)   | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
-| [`edit-module`](#213-edit-module)       | `edit-module     INDEX ([m/MODULE_CODE] <br/><br/><br/>[t/MODULE_TITLE])` | Edit module belonging to the specified index currently displayed on the screen  |
-| [`find-module`](#214-find-module)       | `find-module     KEYWORD`                            <br/>                   | Find module that starts with specified keyword in home page                     |
-| [`list-module`](#215-list-module)       | `list-module`                                        <br/>                   | List all modules in home page after finding                                     |
-| [`add-task`](#221-add-task)             | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task)       | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
-| [`swap-task`](#223-reorder-tasks-swap)  | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swaps the order of tasks in the task list of a specified module                 |
-| [`add-link`](#231-add-link)             | `add-link        INDEX l/LINK_URL`                                      | Add link URL to a module by its displayed index                                 |
-| [`delete-link`](#232-delete-link)       | `delete-link     INDEX l/LINK_URL`                                      | Delete link URL from a module by its displayed index                            |
-| [`add-person`](#241-add-person)         | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
-| [`delete-person`](#242-delete-person)   | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
-| [`edit-person`](#243-edit-person)       | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
-| [`find-person`](#244-find-person)       | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
-| [`list-person`](#245-list-person)       | `list-person`                                                           | List all contacts                                                               |
-| [`home`](#251-navigate-to-home)         | `home`                                                                  | Navigate to the home page                                                       |
-| [`goto`](#252-navigate-between-modules) | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
-| [`exit`](#26-exiting-the-program)       | `exit`                                                                  | Exit the program                                                                |
+| Action                                                        | Format                                                                    | Short Description                                                               |
+|---------------------------------------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| [`add-module`](#211-add-module)                               | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                          | Add module with a module code and optional module title                         |
+| [`delete-module`](#212-delete-module)                         | `delete-module   m/MODULE_CODE`                                           | Delete module by module code                                                    |
+| [`edit-module`](#213-edit-module)                             | `edit-module     INDEX ([m/MODULE_CODE] <br/><br/><br/>[t/MODULE_TITLE])` | Edit module belonging to the specified index currently displayed on the screen  |
+| [`find-module`](#214-find-module)                             | `find-module     KEYWORD`                            <br/>                | Find module that starts with specified keyword in home page                     |
+| [`list-module`](#215-list-module)                             | `list-module`                                        <br/>                | List all modules in home page after finding                                     |
+| [`delete-person-from-module`](#217-delete-person-from-module) | `delete-person-from-module m/MODULE_CODE n/NAME`                          | Delete person with specified name from a module with specified module code      |
+| [`add-task`](#221-add-task)                                   | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                       | Add task with specified module code and task description                        |
+| [`delete-task`](#222-delete-task)                             | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                            | Delete task corresponding to specified task number of specified module code     |
+| [`swap-task`](#223-reorder-tasks-swap)                        | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`   | Swaps the order of tasks in the task list of a specified module                 |
+| [`add-link`](#231-add-link)                                   | `add-link        INDEX l/LINK_URL`                                        | Add link URL to a module by its displayed index                                 |
+| [`delete-link`](#232-delete-link)                             | `delete-link     INDEX l/LINK_URL`                                        | Delete link URL from a module by its displayed index                            |
+| [`add-person`](#241-add-person)                               | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                     | Add contact with specified name, email, and phone number                        |
+| [`delete-person`](#242-delete-person)                         | `delete-person   n/NAME`                                                  | Delete contact belonging to the specified name                                  |
+| [`edit-person`](#243-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`            | Edit contact belonging to the specified index currently displayed on the screen |
+| [`find-person`](#244-find-person)                             | `find-person     KEYWORD`                                                 | Find contacts that starts with specified keyword                                |
+| [`list-person`](#245-list-person)                             | `list-person`                                                             | List all contacts                                                               |
+| [`home`](#251-navigate-to-home)                               | `home`                                                                    | Navigate to the home page                                                       |
+| [`goto`](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                        | Navigate to specified module page                                               |
+| [`exit`](#26-exiting-the-program)                             | `exit`                                                                    | Exit the program                                                                |
 
 ## 2. Features
 
@@ -68,9 +69,8 @@ contains some sample data.<br>
   e.g `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
 
 * A round bracket surrounding multiple square brackets indicate a need for at least one of the items in square brackets
-to be present.
-
-e.g `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
+to be present.  
+  e.g `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
 to be present.
 
 * Parameters can be in any order.<br>
@@ -203,6 +203,26 @@ list-module
 ```
 In the above example, we list every module in Plannit while in home page.
 
+#### 2.1.7. Delete person from module
+You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
+command.  
+
+This command will require two flags:
+* `m/`: To be followed by the module code of the module, which the person will be removed from.
+* `n/`: To be followed by the name of the person, whom will be removed from the module.
+
+Format: `delete-person-from-module m/MODULE_CODE n/NAME`
+* You can only delete the specified person from the specified module if the person was originally associated to the
+module.
+* You can only delete a person from a module when both the specified module and person are currently being displayed.
+
+Example:
+
+```
+delete-person-from-module m/CS2103T n/Dinosaur Lim
+```
+In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
+
 <br>
 
 ### 2.2. Tasks
@@ -326,15 +346,16 @@ from the module with the displayed index of `2`.
 #### 2.4.1. Add person
 You may add a contact using the `add-person` command.
 
-This command will require two flags, and one optional flag:
+This command will require three flags:
 * `n/`: To be followed by the to-be-added contact name.
 * `e/`: To be followed by the email of the new contact.
 * `p/`: To be followed by the phone number of the new contact.
 
 Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 * You cannot add a duplicate name into Plannit.
+* You should specify the email in proper email format, e.g. `xyz@gmail.com`.
 * You cannot specify any country code for phone number.
-* You cannot specify a non-8-digit phone number.
+* You must specify an 8-digit phone number.
 
 Example:
 ```
@@ -351,6 +372,7 @@ This command will require one flag:
 
 Format: `delete-person n/NAME`
 * You cannot delete a non-existent contact.
+* You can only delete a person from Plannit when the person is currently being displayed.
 
 Example:
 ```
@@ -368,8 +390,9 @@ This command will require an index and minimally any of the three flags:
 
 Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
 * `INDEX` is the currently displayed index number of the contact you are editing for on the screen.
+* You should specify the email in proper email format, e.g. `xyz@gmail.com`.
 * You cannot specify any country code for phone number.
-* You cannot specify a non-8-digit phone number.
+* You must specify an 8-digit phone number.
 
 Examples:
 ```
