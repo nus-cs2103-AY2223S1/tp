@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Entry values as in TypicalPersons#getTypicalPennyWise()",
+  "_comment": "PennyWise save file which contains the same Entry values as in TypicalEntries#getTypicalPennyWise()",
   "expenditures" : [ {
     "description" : "Lunch",
     "amount" : "5.20",

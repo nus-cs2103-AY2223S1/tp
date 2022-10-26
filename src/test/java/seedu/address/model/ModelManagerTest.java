@@ -20,6 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entry.NameContainsKeywordsPredicate;
+import seedu.address.testutil.PennyWiseBuilder;
 
 public class ModelManagerTest {
 
@@ -64,12 +65,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setPennyWiseFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setPennyWiseFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setPennyWiseFilePath_validPath_setsPennyWiseFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setPennyWiseFilePath(path);
         assertEquals(path, modelManager.getPennyWiseFilePath());
@@ -86,12 +87,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasExpenditure_expenditureNotInAddressBook_returnsFalse() {
+    public void hasExpenditure_incomeNotInPennyWise_returnsFalse() {
         assertFalse(modelManager.hasExpenditure(LUNCH));
     }
 
     @Test
-    public void hasExpenditure_expenditureInAddressBook_returnsTrue() {
+    public void hasExpenditure_expenditurenInPennyWise_returnsTrue() {
         modelManager.addExpenditure(LUNCH);
         assertTrue(modelManager.hasExpenditure(LUNCH));
     }
@@ -192,8 +193,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        PennyWise pennyWise = new seedu.address.testutil.PennyWiseBuilder()
-                .withExpenditure(LUNCH).withExpenditure(DINNER).build();
+        PennyWise pennyWise = new PennyWiseBuilder().withExpenditure(LUNCH).withExpenditure(DINNER).build();
         PennyWise differentPennyWise = new PennyWise();
         UserPrefs userPrefs = new UserPrefs();
 

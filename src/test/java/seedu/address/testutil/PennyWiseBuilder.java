@@ -23,7 +23,7 @@ public class PennyWiseBuilder {
     }
 
     /**
-     * Adds a new {@code Income} to the {@code PennyWise} that we are building.
+     * Adds a new {@code Expenditure} to the {@code PennyWise} that we are building.
      */
     public PennyWiseBuilder withExpenditure(Expenditure expenditure) {
         pennyWise.addExpenditure(expenditure);
