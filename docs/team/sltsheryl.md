@@ -22,9 +22,9 @@ Given below are my contributions to the project.
   * Handled rescaling of window size.
 * Changes to Files Made:
   * The following ```.fxml``` files were created or updated to reflect design changes.
-    * ```PersonListCard``` to show a student information details
-    * ```PersonListPanel``` to list students
-    * ```MainWindow``` for the overall layout of the application and to listen for real-time updates on Person and Mod panels
+    * ```StudentListCard``` to show a student information details
+    * ```StudentListPanel``` to list students
+    * ```MainWindow``` for the overall layout of the application and to listen for real-time updates on Student and Mod panels
     * ```ModListCard``` to show details of a module
     * ```ModListPanel``` to list modules 
   * Their respective ```.java``` files were also refactored to make the application more dynamic to changes. 
@@ -40,12 +40,12 @@ Given below are my contributions to the project.
 
 #### Other Modifications: Modify Student Information
 * What it does: Removes ```Address``` field and add ```Telegram```and ```GitHub``` fields to a student.
-* Justification: Since Mass Linkers serves as a CS address book, it would be a value-add to include relevant socials to a batchmate.
+* Justification: Since Mass Linkers serves as a CS contact-sharing platform, it would be a value-add to include relevant socials to a batchmate.
 * Highlights:
-    * Added private ```Telegram``` and ```GitHub``` fields to ```Person```.
+    * Added private ```Telegram``` and ```GitHub``` fields to ```Student```.
     * Created ```Telegram``` and ```GitHub``` classes to handle parsed inputs and display formatting.
-    * Redesigned user interface of ```Person``` fields such as addition of GitHub and Telegram logos.
-    * Made relevant amendments to ```PersonTest``` tests.
+    * Redesigned user interface of ```Student``` fields such as addition of GitHub and Telegram logos.
+    * Made relevant amendments to ```StudentTest``` tests.
     * Wrote tests for ```GitHubTest``` and ```TelegramTest```.
 
 #### Code contributed: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=sltsheryl&breakdown=true)
