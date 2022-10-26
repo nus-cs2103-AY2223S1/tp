@@ -35,10 +35,10 @@ Mass Linkers is a powerful Desktop application tool that provides a centralised 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME t/TELEGRAM [i/INTEREST]` can be used as `n/John Doe t/johnxyz i/baking` or as `n/John Doe t/johnxyz`.
+  e.g `n/NAME t/TELEGRAM [i/INTEREST]` can be used as `n/John Doe t/johnxyz i/AI` or as `n/John Doe t/johnxyz`.
 
 * Items with `...` after them can be used multiple times.<br>
-  e.g. `[i/INTEREST]...` can be used as `i/baking`, `i/baking i/tennis` etc.<br>
+  e.g. `[i/INTEREST]...` can be used as `i/AI`, `i/algo i/SWE` etc.<br>
   e.g. `[MORE_MODULES]...` can be used as `cs2100`, `cs2103t cs2101 cs2105` etc.
 
 * Parameters can be in any order.<br>
@@ -137,8 +137,8 @@ Format: `addInt INDEX INTEREST [MORE_INTERESTS]...`
 * Adds interest(s) to the batchmate at the specific INDEX in the __currently displayed list__. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
-* `addInt 1 baking` adds the interest `baking` to the 1st batchmate in the currently displayed list.
-* `addInt 3 baking tennis netflix` adds the interests `baking`, `tennis` and `netflix` to the 3rd batchmate in the currently displayed list.
+* `addInt 1 algo` adds the interest `algo` to the 1st batchmate in the currently displayed list.
+* `addInt 3 database SWE MachineLearning` adds the interests `database`, `SWE` and `MachineLearning` to the 3rd batchmate in the currently displayed list.
 
 ### Finding batchmates by interests: `findInt`
 
@@ -146,12 +146,12 @@ Finds batchmates whose interests contain __all__ the specified interests.
 
 Format: `findInt INTEREST [MORE_INTERESTS]...`
 
-* The search is case-insensitive. e.g. `tennis` will match `Tennis`.
-* Only exact words will be matched. e.g. `tenni` will not match `tennis`.
+* The search is case-insensitive. e.g. `machinelearning` will match `MachineLearning`.
+* Only exact words will be matched. e.g. `sw` will not match `SWE`.
 
 Examples:
-* `findInt baking` returns all batchmates whose interests contain `baking`.
-* `findInt baking tennis` returns all batchmates whose interests contain both `baking` and `tennis`.
+* `findInt AI` returns all batchmates whose interests contain `AI`.
+* `findInt swe security` returns all batchmates whose interests contain both `SWE` and `security`.
 
 ### Deleting a batchmate: `delete`
 
