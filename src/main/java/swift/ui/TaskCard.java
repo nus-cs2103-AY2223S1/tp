@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
+import swift.model.task.Deadline;
 import swift.model.task.Task;
 
 /**
@@ -40,7 +41,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private FlowPane contacts;
     @FXML
-    private Label dueDate;
+    private Label deadline;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -51,6 +52,9 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskName.setText(task.getName().fullName);
+        deadline.setText(task.getDeadline().map(Deadline::toString).orElse("No deadline"));
+        // TODO: Populate the description
+        // task.getDescription().map(Description::toString).orElse("No description");
 
         List<PersonTaskBridge> taskBridgeList = personTaskBridgeList.stream()
                 .filter(bridge -> bridge.getTaskId().equals(task.getId()))
@@ -66,7 +70,6 @@ public class TaskCard extends UiPart<Region> {
                     Label label = new Label(associatedPerson.getName().toString());
                     setStyle(label);
                     contacts.getChildren().add(label);
-                    dueDate.setText("No due date");
                     return;
                 }
             }
