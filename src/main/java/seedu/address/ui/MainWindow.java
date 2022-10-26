@@ -84,7 +84,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-        // setAccelerator(meetingsMenuItem,KeyCombination.valueOf("F2"));
+        setAccelerator(meetingsMenuItem,KeyCombination.valueOf("F2"));
     }
 
     /**
