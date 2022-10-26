@@ -269,7 +269,7 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 | Action                | Format, Examples                                                                                                                     |
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [t/TAG]… [l/LINK_INDEX]` <br> e.g., `add -p n/James Ho p/22224444 e/jamesho@example.com l/3`      |
+| **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [t/TAG]… [l/LINK_INDEX]` <br> e.g., `add -p n/James Ho e/jamesho@example.com p/22224444 l/3`      |
 | **Add internship**    | `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `addi n/TikTok r/Data Engineer s/rejected l/1` |
 | **Clear**             | `clear`                                                                                                                              |
 | **Delete person**     | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                |
