@@ -11,7 +11,7 @@ add, remove bookings for those venues.
 
 ### Viewing the bookings
 
-To view the bookings, you will have to click on the tab labelled as bookings. 
+To view the bookings, you will have to click on the tab labelled as bookings.
 
 <!-- add the venue tab here -->
 
@@ -67,7 +67,7 @@ Adds a booking to the specified venue, time period and day.
 
 Format: `venue book INDEX v/VENUE_NAME tp/TIME_PERIOD d/DAY`
 
-* Adds a booking under the resident specified at `INDEX`. 
+* Adds a booking under the resident specified at `INDEX`.
 * The index refers to the index number shown in the displayed residents list.
 * The index **must be a positive integer** 1, 2, 3, …​
 

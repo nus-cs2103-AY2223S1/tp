@@ -8,7 +8,7 @@ The following section lists some of our upcoming features that we are excited to
 ### Exporting to CSV file : `file export`
 
 As important as it is to be able to import files, we also understand that you might have the need to export them.
-RC4HDB will soon provide users with the ability to export data to `.csv` files. 
+RC4HDB will soon provide users with the ability to export data to `.csv` files.
 The file will be safe to remove from the `[JAR file location]/data` folder.
 
 Format: `file export FILE_NAME`

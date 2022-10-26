@@ -36,9 +36,9 @@ Test
     * [Resident field format](ug-pages/modifying-residents.md#format-for-resident-fields)
   * [Viewing residents](ug-pages/viewing-residents.md)
     * [Listing all residents `list`](ug-pages/viewing-residents.md#listing-all-residents--list)
-    * [Showing resident fields `show`](ug-pages/viewing-residents.md#showing-only-some-columns--showonly) 
-    * [Hiding resident fields `hide`](ug-pages/viewing-residents.md#hiding-only-some-columns--hideonly) 
-    * [Resetting hidden resident fields `reset`](ug-pages/viewing-residents.md#resetting-hidden-columns--reset)  
+    * [Showing resident fields `show`](ug-pages/viewing-residents.md#showing-only-some-columns--showonly)
+    * [Hiding resident fields `hide`](ug-pages/viewing-residents.md#hiding-only-some-columns--hideonly)
+    * [Resetting hidden resident fields `reset`](ug-pages/viewing-residents.md#resetting-hidden-columns--reset)
     * [Finding residents `find`](ug-pages/viewing-residents.md#locating-residents-by-name--find)
     * [Filtering residents `filter`](ug-pages/viewing-residents.md#filtering-residents-by-field--filter)
   * [File management](ug-pages/file-management.md)
@@ -168,6 +168,6 @@ may have typed a command incorrectly as RC4HDB will step in as and when needed!
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-</div>  
+</div>
 
 ---

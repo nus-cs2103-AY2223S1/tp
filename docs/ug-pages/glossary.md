@@ -16,7 +16,7 @@ For example:
 
 ### State-independent
 
-This term describes an operation whose result is not affected by current conditions. 
+This term describes an operation whose result is not affected by current conditions.
 
 For example:
 

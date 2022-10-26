@@ -21,7 +21,7 @@ All file commands have a `FILE_NAME` field that requires you to input a name for
     * `rc4.data.2022` has dots.
     * `rc4/data/2022` has forward slashes.
     * `rc4\data\2022` has backslashes.
-    
+
 ---
 
 ### Creating a new data file : `file create`
