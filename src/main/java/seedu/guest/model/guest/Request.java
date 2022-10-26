@@ -10,7 +10,7 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
  * Case 2: there are no specific Request.
  */
 public class Request {
-    public static final String MESSAGE_CONSTRAINTS = "The request cannot be more than 500 characters long";
+    public static final String MESSAGE_CONSTRAINTS = "Requests cannot be more than 500 characters long";
     public final String value;
 
     /**
