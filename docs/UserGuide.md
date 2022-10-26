@@ -80,7 +80,7 @@ This guides aims to:
 
 **Keyboard Inputs**<br>
 
-<kbd>enter</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd>
+<kbd>enter</kbd>   <kbd>&uarr;</kbd>   <kbd>&darr;</kbd>
 
 ## Navigating the GUI
 ![Ui](images/navigate_ui.png)
@@ -158,7 +158,7 @@ Format: `help`
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** <br>
 - Press <kbd>esc</kbd> to close the Help window <br>
-- Press <kbd>C</kbd>to copy the User Guide url in the Help window 
+- Press <kbd>C</kbd> to copy the User Guide url in the Help window 
 </div>
 
 ### Adding an internship: `add`
@@ -334,7 +334,7 @@ PleaseHireUs data is saved in the hard disk automatically after any command that
 PleaseHireUs data is saved as a JSON file `[JAR file location]/data/internshipbook.json`. Advanced users are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, PleaseHireUs will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v1.3]`
