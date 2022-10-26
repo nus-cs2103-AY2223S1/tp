@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
@@ -32,6 +34,7 @@ public class Email {
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
     public final String value;
+    public final String displayValue;
 
     /**
      * Constructs an {@code Email}.
@@ -42,6 +45,11 @@ public class Email {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
+
+        // Generate email emoji
+        byte[] emojiByteCode = new byte[] {(byte) 0xF0, (byte) 0x9F, (byte) 0x93, (byte) 0xA7};
+        String emoji = new String(emojiByteCode, StandardCharsets.UTF_8);
+        displayValue = emoji + " " + value;
     }
 
     /**

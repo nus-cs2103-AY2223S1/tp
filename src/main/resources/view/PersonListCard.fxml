@@ -30,6 +30,7 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+         <Label fx:id="birthdayMonth" layoutX="25.0" layoutY="45.0" styleClass="cell_small_label" text="\$birthdayMonth" />
       <Label fx:id="reward" styleClass="cell_small_label" text="\$reward" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
     </VBox>
