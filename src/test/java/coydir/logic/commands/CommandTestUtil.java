@@ -12,15 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import coydir.commons.core.index.Index;
 import coydir.logic.commands.exceptions.CommandException;
 import coydir.model.Database;
 import coydir.model.Model;
-import coydir.model.person.PersonMatchesKeywordsPredicate;
 import coydir.model.person.Person;
+import coydir.model.person.PersonMatchesKeywordsPredicate;
 import coydir.testutil.EditPersonDescriptorBuilder;
 
 /**

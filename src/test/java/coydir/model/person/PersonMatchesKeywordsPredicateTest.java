@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class PersonMatchesKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second", "");
+        List<String> firstPredicateKeywordList = new ArrayList<>(Collections.singletonList("first"));
+        List<String> secondPredicateKeywordList = new ArrayList<>(Arrays.asList("first", "second", ""));
 
         PersonMatchesKeywordsPredicate firstPredicate = preparePredicate(firstPredicateKeywordList);
         PersonMatchesKeywordsPredicate secondPredicate = preparePredicate(secondPredicateKeywordList);
@@ -48,20 +49,20 @@ public class PersonMatchesKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // Zero keywords
-        PersonMatchesKeywordsPredicate predicate = preparePredicate(Collections.emptyList());
+        PersonMatchesKeywordsPredicate predicate = preparePredicate(new ArrayList<>());
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // One keyword
-        predicate = preparePredicate(Collections.singletonList("Alice"));
+        predicate = preparePredicate(new ArrayList<>(Collections.singletonList("Alice")));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = preparePredicate(Arrays.asList("Alice", "Software Engineer"));
+        predicate = preparePredicate(new ArrayList<>(Arrays.asList("Alice", "Software Engineer")));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob")
                     .withPosition("Software Engineer").build()));
 
         // Mixed-case keywords
-        predicate = preparePredicate(Arrays.asList("aLIce", "SOftWAre EngINeeR", "teCHnoLogy"));
+        predicate = preparePredicate(new ArrayList<>(Arrays.asList("aLIce", "SOftWAre EngINeeR", "teCHnoLogy")));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob")
                     .withPosition("Software Engineer").withDepartment("Technology").build()));
     }
@@ -69,16 +70,16 @@ public class PersonMatchesKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
-        PersonMatchesKeywordsPredicate predicate = preparePredicate(Arrays.asList("Carol"));
+        PersonMatchesKeywordsPredicate predicate = preparePredicate(new ArrayList<>(Arrays.asList("Carol")));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = preparePredicate(Arrays.asList("Bob", "Intern"));
+        predicate = preparePredicate(new ArrayList<>(Arrays.asList("Bob", "Intern")));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Carol")
                     .withPosition("Intern").build()));
 
         // Keywords match phone, email and address, but does not match name
-        predicate = preparePredicate(Arrays.asList("12345", "alice@email.com", "Main Street"));
+        predicate = preparePredicate(new ArrayList<>(Arrays.asList("12345", "alice@email.com", "Main Street")));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }

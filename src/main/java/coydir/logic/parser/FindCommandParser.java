@@ -30,23 +30,17 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String keywordName;
-        String keywordPosition;
-        String keywordDepartment;
+        String keywordName = "";
+        String keywordPosition = "";
+        String keywordDepartment = "";
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             keywordName = ParserUtil.parseKeyword(argMultimap.getValue(PREFIX_NAME).get());
-        } else {
-            keywordName = "";
         }
         if (argMultimap.getValue(PREFIX_POSITION).isPresent()) {
             keywordPosition = ParserUtil.parseKeyword(argMultimap.getValue(PREFIX_POSITION).get());
-        } else {
-            keywordPosition = "";
         }
         if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
             keywordDepartment = ParserUtil.parseKeyword(argMultimap.getValue(PREFIX_DEPARTMENT).get());
-        } else {
-            keywordDepartment = "";
         }
 
         return new FindCommand(new PersonMatchesKeywordsPredicate(keywordName, keywordPosition, keywordDepartment));

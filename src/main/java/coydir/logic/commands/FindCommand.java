@@ -31,7 +31,7 @@ public class FindCommand extends Command {
 
     private final PersonMatchesKeywordsPredicate predicate;
 
-    public FindCommand(PersonMatchesKeywordsPredicate predicate) { 
+    public FindCommand(PersonMatchesKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

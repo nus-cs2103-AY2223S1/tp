@@ -10,6 +10,15 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     private final String keywordPosition;
     private final String keywordDepartment;
 
+    /**
+     * Constructor for {@Code PersonMatchesKeywordsPredicate}.
+     * Though in functionality there has to be at least one keyword (no need for all 3),
+     * to construct an instance all 3 arguments must be provided.
+     *
+     * @param keywordName Keyword for name search.
+     * @param keywordPosition Keyword for position search.
+     * @param keywordDepartment Keyword for department search.
+     */
     public PersonMatchesKeywordsPredicate(
             String keywordName, String keywordPosition, String keywordDepartment) {
         this.keywordName = keywordName.toLowerCase();

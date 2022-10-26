@@ -5,7 +5,6 @@ import static coydir.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static coydir.testutil.TypicalPersons.CARL;
 import static coydir.testutil.TypicalPersons.DANIEL;
 import static coydir.testutil.TypicalPersons.ELLE;
-import static coydir.testutil.TypicalPersons.FIONA;
 import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -13,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
