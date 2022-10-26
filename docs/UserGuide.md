@@ -194,7 +194,7 @@ from the behavior of [`goto`](#252-navigate-between-modules)
 </div>
 
 #### 2.1.5. List module
-You may obtain the lsit of every module in Plannit while in the home page.
+You may obtain the list of every module in Plannit while in the home page.
 
 Format: `list-module`
 
