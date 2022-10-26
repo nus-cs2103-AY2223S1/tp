@@ -36,6 +36,7 @@ public class Appointment {
                     .appendOptional(DateTimeFormatter.ofPattern("HH:mm yyyy-MM-dd")).toFormatter();
 
     public static final DateTimeFormatter STORAGE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    // Solution adapted from https://stackoverflow.com/a/31791657
     private static final Pattern TIME_PERIOD_FORMAT = Pattern.compile("^(?<year>\\s*([0-9]|10)Y)?"
             + "(?<month>\\s*([0-9]|1[0-2])M)?(?<day>\\s*([0-9]|[1-2][0-9]|3[0-1])D)?\\s*$");
     private final String reason;

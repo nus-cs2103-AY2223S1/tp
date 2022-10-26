@@ -28,6 +28,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * @see Person#isSamePerson(Person)
  */
 public class UniquePersonList implements Iterable<Person> {
+    // Solution below adapted from https://stackoverflow.com/questions/31687642
     private final Callback<Person, Observable[]> extractor = person -> new Observable[] {person.getApptsProperty()};
 
     private final ObservableList<Person> internalList = FXCollections.observableArrayList(extractor);
@@ -39,6 +40,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Constructs a UniquePersonList with an added listener to sort list when patients are updated.
      */
     public UniquePersonList() {
+        // Solution below adapted from https://stackoverflow.com/questions/31687642
         internalList.addListener((ListChangeListener<Person>) c -> {
             while (c.next()) {
                 if (c.wasUpdated()) {

@@ -25,6 +25,7 @@ import seedu.address.model.person.exceptions.DuplicateAppointmentException;
  */
 public class UniqueAppointmentList implements Iterable<Appointment> {
 
+    // Solution below adapted from https://stackoverflow.com/questions/31687642
     private final Callback<Appointment, Observable[]> extractor = Appointment::getProperties;
 
     private final ObservableList<Appointment> internalList = FXCollections.observableArrayList(extractor);
@@ -37,13 +38,13 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
      * Constructs a UniqueAppointmentList with an added listener to sort list when appointments are updated.
      */
     public UniqueAppointmentList() {
+        // Solution below adapted from https://stackoverflow.com/questions/31687642
         internalList.addListener((ListChangeListener<Appointment>) c -> {
             while (c.next()) {
                 if (c.wasAdded()) {
                     sort(comparator);
                 }
             }
-
         });
     }
 
