@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.client.Client;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 
@@ -61,11 +62,13 @@ class JsonSerializableAddressBook {
             }
             addressBook.addProject(project);
             if (!project.getClient().isEmpty()) {
-                project.getClient().getProjects().add(project);
+
                 if (!addressBook.hasClient(project.getClient())) {
+                    project.getClient().addProjects(project);
                     addressBook.addClient(project.getClient());
                 } else {
-                    addressBook.setClient(project.getClient(), project.getClient());
+                    Client existingClient = addressBook.getClientById(project.getClient().getID());
+                    existingClient.addProjects(project);
                 }
             }
         }
