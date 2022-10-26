@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,6 +154,133 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort Task Command
+
+#### How the feature works
+
+The `sort` command allows users to sort the task list by priority status,
+deadline, module code and task description with ease. The sort command operates
+directly on the `ObservableList` stored under `DistinctTaskList` in `AddressBook` so the
+`ObservableList` in `DistinctTaskList` will be permanently sorted to the criteria.
+* When sorting by priority, all tasks with `HIGH` priority status will be positioned at the top of the 
+displayed task list, followed by `MEDIUM`, `LOW` and 
+lastly all tasks with no priority tags.
+* When sorting by deadline, all tasks with deadline tags will be displayed 
+at the top of the displayed task list with the task with the earliest deadline
+being displayed at the top. All the remaining tasks with no deadline tags will
+be displayed below all tasks with deadline tags.
+
+`sort` command adheres to the following format: `sort c/CRITERIA`
+
+`CRITERIA` can be one of the following criteria:
+* `priority`
+* `deadline`
+* `module`
+* `description`
+
+#### Sequence of the SortTaskCommand
+
+Shown below is a sequence diagram of what occurs when the `excute` method of
+`LogicManager` is invoked.
+
+<img src="images/SortTaskCommandSequenceDiagram.png" />
+
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+1. `LogicManager` object takes in `"sort c/priority"` which the user keys into the command line. 
+2. `LogicManager` object calls the `parseCommand` of the `AddressBookParser` object created during the initialisation 
+of `LogicManager` object and passes the `"sort c/priority"` as the arguments of `parseCommand`
+3. `SortTaskCommandParser` object is created during execution of `parseCommand` of `AddressBookParser`
+4. `SortTaskCommandParser` object calls its `parse` method with `"c/priority"` being passed in as argument.
+5. `SortTaskCommand` object called st is created from `SortTaskCommandParser`
+6. `excute` method of `SortTaskCommand` object st is invoked and model is passed in as
+an argument.
+7. `sortTaskList` method of `Model` is called with `"priority"` being passed as an
+argument of the method
+8. `execute` method of `SortTaskCommand` object returns a `CommandResult` object with
+the sorted successfully message as argument to the `LogicManager` object. 
+
+### Filter feature
+
+#### Implementation
+
+The proposed filter mechanism is facilitated by `FilterPredicate`. It implements `Predicate` with module and tast status conditions, stored as `moduleToCheck` and `statusToCheck`. Additionally, it implements the following operations:
+
+* `FilterPredicate#test(Task)` — Checks if a task fulfils the given module and/or completion status requirements.
+* `FilterPredicate#toString()` — Returns a string representing all the conditions used during the filter operation.
+
+These operations are exposed in the `Model` interface as `Model#updateFilteredTaskList`.
+
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `filter m/CS2103T s/complete` command to filter the task list to show all CS2103T tasks that have been marked complete. The `filter` command calls `Model#UpdateFilteredTaskList`, causing the task list to be filtered with the given conditions for `moduleToCheck` and `statusToCheck`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `moduleToCheck` or `statusToCheck` input is invalid, there will be an error message shown and the address book will continue to show the current `taskFilteredList`.
+
+</div>
+
+Step 3. The user executes `filter m/CS2103T s/imcomplete` command to filter the task list to show all CS2103T tasks that have been marked incomplete. The updated `taskFilterdList` will be filtered based on all the tasks, not only the ones which have been filtered out in the previous filter command from step 2.
+
+Step 4. The user executes `mark 1`. The first task is no longer in `taskFilteredList` since its `statusToCheck` is now complete and no longer fulfils the conditions.
+
+The following sequence diagram shows how the filter operation works:
+
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes the filter command:
+
+<img src="images/FilterActivityDiagram.png" width="750" />
+
+#### Design considerations:
+
+**Aspect: User command input format:**
+
+* **Alternative 1 (current choice):** Optional condition fields.
+    * Pros: Easier to extend and add more conditions.
+    * Cons: Harder to implement.
+
+* **Alternative 2:** Compulsory condition fields.
+    * Pros: Easier to implement.
+    * Cons: Users have to type unnecessary details in command.
+
+### Mark Task feature
+
+#### Implementation
+
+The proposed mark/unmark mechanism is facilitated by `MarkCommand`. It extends `Command` with a target index, stored internally as an `Index`. Additionally, it implements the following operations:
+
+* `MarkCommand#execute()` — Executes the mark command 
+
+This operation is exposed in the `Command` abstract class as `Command#execute()`.
+
+Given below is an example of how the mark mechanism works.
+
+1. The user executes the `mark 1` command. 
+2. The `MarkCommand` calls `Model#getFilteredTaskList()` which returns the filtered list of the tasks.
+3. The `MarkCommand` command calls `List<Task>#get()` which returns the task at index 1 in the filtered list. 
+4. Then, `MarkCommand` command calls `Task#mark()` to create a marked copy of the task.
+5. This marked task has all fields similar to the original task, except its `TaskStatus` is `COMPLETE`. 
+6. Then, `MarkCommand` command calls `Model#replaceTask()` which sets the first task in `Model#tasks` to the marked task.
+ 
+The following sequence diagram shows how the mark operation works:
+
+![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MarkCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+  
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command has an invalid format or the index is greater than the number of tasks shown, `Model#replaceTask()` will not be called, so the task list will not change. If so, `MarkCommand` will return an error to the user rather than attempting to perform the command.
+  
+The `UnmarkCommand` works the same — the only difference is that it calls `Task#unmark()`, which returns a copy of the task with `TaskStatus` set to `INCOMPLETE`.
+  
+The following activity diagram summarizes what happens when a user executes a new mark command:
+  
+![MarkTaskActivityDiagram](images/MarkTaskActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -224,19 +351,69 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+![UndoRedoState0](images/UndoRedoState0.png)
+
+
+### \[Proposed\] Add Exam Command
+
+### Add Exam Command
+
+#### How the feature works
+The `addExam` command allows users to add an exam to the `DistinctExamList` 
+in `AddressBook`, with the following fields of exam module, exam description, 
+and exam date.
+
+#### Sequence of the AddExamCommand
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+
+Step 1. The user launches the application. 
+
+Step 2. The user types an `addExam` command. 
+
+Step 3. The command calls `LogicManager#execute()` with 
+the command input as the argument, which then calls `AddressBookParser#parseCommand() ` 
+with command input as the argument. 
+
+Step 4. `AddressBookParser#parseCommand()` matches the command to be 
+a `addExam` command through the command word, which then calls `AddExamCommandParser#parse()`.
+
+Step 5. `AddExamCommandParser#parse()` then parses the command to get `Module`, `ExamDescription` 
+and the `ExamDate` objects of the exam by calling their respective `ParserUtil` parse methods. These 
+methods will check if the inputted exam description, exam date and module are valid. If it is valid,
+the object will be created. Otherwise, exception will be thrown. Then, an `Exam` object is created 
+with the three objects as arguments. 
+
+Step 6. `AddExamCommandParser#parse()` returns a new `AddExamCommand` object created with the `Exam`
+object created previously as the argument in the constructor. `LogicManager` class will call 
+`AddExamCommand#execute()` with a `Model` object as the argument. 
+
+Step 7. `AddExamCommand#execute()` will check if model already contains the module of the exam 
+through `Model#hasModule()`. If it does not contain the module, an exception will be thrown to 
+indicate the module is not found. It will also check if the model already contains the exam 
+through `Model#hasExam()`. If it contains the exam, an exception will be thrown 
+to indicate that the exam has already been added.
+
+Otherwise, it will call `ModelManager#addExam()` with the exam as the argument, 
+which calls `AddressBook#addExam()` that will add the exam to the `DistinctExamList`, 
+which stores all the exams.`AddExamCommand#execute()` method returns a `CommandResult` 
+object to display that the exam was successfully added.
+
+
+
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -257,63 +434,144 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of module tasks
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage module tasks faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​     | I want to …​                                  | So that I can…​                                         |
+|----------|-------------|-----------------------------------------------|---------------------------------------------------------|
+| `* * *`  | NUS student | view the list of tasks I need to complete     | start implementing those tasks.                         |
+| `* * *`  | NUS student | create the tasks in the tasklist              | add the list of tasks that need to be completed         |
+| `* * *`  | NUS student | mark a task as complete                       | have a better idea of what I have completed.            |
+| `* *`    | NUS student | tag the priority of the tasks in the tasklist | prioritise the task that I would like to complete first |
+| `* * *`  | NUS student | delete the tasks in my tasklist               | remove them if added wrongly.                           |
+| `* * *`  | NUS student | delete the modules in my modulelist           | remove them if added wrongly.                           |
+| `* * *`  | NUS student | edit the modules in my modulelist             | remove them if added wrongly.                           |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MODPRO` and the **Actor** is the `NUS student`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+**Use case: Add a task into task list**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a task
+2. MODPRO shows the task added
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given description is empty.
 
-  Use case ends.
+    * 1a1. MODPRO shows an error message.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: List tasks in task list**
 
-      Use case resumes at step 2.
+**MSS**
+1. User requests to view tasks in the task list
+2. MODPRO displays the list of tasks
+
+   Use case ends.
+
+**Use case: Mark a task as complete**
+
+**MSS**
+1. User requests to mark a specific task as complete
+2. MODPRO marks the task
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. MODPRO shows an error message..
+
+      Use case ends.
+
+**Use Case: Tag the priority to complete task**
+
+**MSS**
+1. NUS student requests to tag the priority of task in task list
+2. MODPRO adds the tag to the task in the task list
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given priority status for the task is invalid
+    * 1a1. MODPRO shows an error message </br>
+      Use case ends.
+
+**Use case: Delete a task from the task list**
+
+**MSS**
+1. User requests to delete a specific task in the task list
+2. MODPRO deletes the task
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+
+**Use case: Delete a module from the module list**
+
+**MSS**
+1. User requests to delete a specific module in the module list
+2. MODPRO deletes the module
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1b. The module at the given index is tied to multiple tasks thus cannot be deleted
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+
+**Use case: Edit a module in the module list**
+
+**MSS**
+1. User requests to edit a specific module in the module list
+2. MODPRO edits the module
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given index is invalid.
+    * 1a1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1b. The module at the given index is tied to multiple tasks thus cannot be edited
+    * 1b1. MODPRO shows an error message. </br>
+      Use case ends.
+* 1c. The given module code is invalid 
+    * 1c1. MODPRO shows an error message. </br>
+      Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
@@ -321,8 +579,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -338,15 +594,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -355,16 +611,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -372,6 +628,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_

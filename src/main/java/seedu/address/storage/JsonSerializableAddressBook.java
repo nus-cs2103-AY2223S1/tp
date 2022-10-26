@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.exam.Exam;
+import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,16 +21,24 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
-
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    public static final String MESSAGE_MODULE_NOT_PRESENT = "This module does not exist";
+    public static final String MESSAGE_DUPLICATE_MODULE = "There are duplicate module(s) "
+            + "present in the module list";
+    public static final String INVALID_EXAM_LINKED = "Invalid exam is linked to the task";
+    private final List<JsonAdaptedModule> modules = new ArrayList<>();
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedExam> exams = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given tasks and modules.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+            @JsonProperty("modules") List<JsonAdaptedModule> modules,
+                                       @JsonProperty("exams") List<JsonAdaptedExam> exams) {
+        this.tasks.addAll(tasks);
+        this.modules.addAll(modules);
+        this.exams.addAll(exams);
     }
 
     /**
@@ -37,7 +47,9 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
+        tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        exams.addAll(source.getExamList().stream().map(JsonAdaptedExam::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +59,29 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedModule jsonAdaptedModule: modules) {
+            Module module = jsonAdaptedModule.toModelType();
+            if (addressBook.hasModule(module)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
-            addressBook.addPerson(person);
+            addressBook.addModule(module);
+        }
+        for (JsonAdaptedExam jsonAdaptedExam: exams) {
+            Exam exam = jsonAdaptedExam.toModelType();
+            if (!addressBook.hasModule(exam.getModule())) {
+                throw new IllegalValueException(MESSAGE_MODULE_NOT_PRESENT);
+            }
+            addressBook.addExam(exam);
+        }
+        for (JsonAdaptedTask jsonAdaptedTask: tasks) {
+            Task task = jsonAdaptedTask.toModelType();
+            if (!addressBook.hasModule(task.getModule())) {
+                throw new IllegalValueException(MESSAGE_MODULE_NOT_PRESENT);
+            }
+            if (task.getExam() != null && !addressBook.hasExam(task.getExam())) {
+                throw new IllegalValueException(INVALID_EXAM_LINKED);
+            }
+            addressBook.addTask(task);
         }
         return addressBook;
     }
