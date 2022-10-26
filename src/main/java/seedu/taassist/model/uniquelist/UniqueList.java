@@ -53,16 +53,33 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
     public void setElement(T target, T editedElement) {
         requireAllNonNull(target, editedElement);
 
-        int index = internalList.indexOf(target);
-        if (index == -1) {
+        if (!contains(target)) {
             throw new ElementNotFoundException();
         }
+
+        int index = indexOf(target);
 
         if (!target.isSame(editedElement) && contains(editedElement)) {
             throw new DuplicateElementException();
         }
 
         internalList.set(index, editedElement);
+    }
+
+    /**
+     * Returns the index of an element in the list that has the same identity {@code target}.
+     *
+     * @param target target element to find.
+     * @return index of the found element in the list. Returns -1 if no such element can be found.
+     */
+    private int indexOf(T target) {
+        requireNonNull(target);
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).isSame(target)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
