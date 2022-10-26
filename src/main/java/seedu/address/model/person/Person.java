@@ -31,11 +31,12 @@ public class Person {
     private final Set<Remark> remarksList;
     private final SubjectHandler subjectHandler;
     private final Attendance attendance;
+    private final IndexNumber indexNumber;
 
     /**
      * Every field must be present and not null (except attendance, remark and grade).
      */
-    public Person(Name name, Phone phone, Email email, Address address, StudentClass studentClass,
+    public Person(Name name, IndexNumber indexNumber, Phone phone, Email email, Address address, StudentClass studentClass,
                   Attendance attendance, Set<Remark> remarksList, SubjectHandler subjectsTaken,
                   Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, studentClass, attendance, remarksList, subjectsTaken, tags);
@@ -50,10 +51,21 @@ public class Person {
         this.attendance = attendance;
         this.remarksList = remarksList;
         this.subjectHandler = subjectsTaken;
+
+        // Added in v1.3
+        this.indexNumber = indexNumber;
     }
 
     public Name getName() {
         return name;
+    }
+
+    public IndexNumber getIndexNumber() {
+        return indexNumber;
+    }
+
+    public String getIndexNumberValue() {
+        return indexNumber.indexNumber;
     }
 
     public Phone getPhone() {

@@ -20,10 +20,6 @@ import seedu.address.model.person.subject.Subject;
  */
 public class FindCommandParser implements Parser<FindNameCommand> {
 
-    private static final Name DEFAULT_NAME = new Name("AMY");
-    private static final StudentClass DEFAULT_CLASS = new StudentClass("1A");
-    private static final Subject DEFAULT_SUBJECT = new Subject("MATH");
-
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
