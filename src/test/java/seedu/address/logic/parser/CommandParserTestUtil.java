@@ -15,6 +15,20 @@ public class CommandParserTestUtil {
      * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
      * equals to {@code expectedCommand}.
      */
+    public static void assertParseSuccess(AddressBookParser parser, String userInput,
+                                          Command expectedCommand) {
+        try {
+            Command command = parser.parseCommand(userInput);
+            assertEquals(expectedCommand, command);
+        } catch (ParseException pe) {
+            throw new IllegalArgumentException("Invalid userInput.", pe);
+        }
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
+     * equals to {@code expectedCommand}.
+     */
     public static void assertParseSuccess(Parser<? extends Command> parser, String userInput,
             Command expectedCommand) {
         try {
@@ -22,6 +36,19 @@ public class CommandParserTestUtil {
             assertEquals(expectedCommand, command);
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
+        }
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful and the error message
+     * equals to {@code expectedMessage}.
+     */
+    public static void assertParseFailure(AddressBookParser parser, String userInput, String expectedMessage) {
+        try {
+            parser.parseCommand(userInput);
+            throw new AssertionError("The expected ParseException was not thrown.");
+        } catch (ParseException pe) {
+            assertEquals(expectedMessage, pe.getMessage());
         }
     }
 
