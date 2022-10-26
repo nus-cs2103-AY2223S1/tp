@@ -33,7 +33,7 @@ import seedu.address.testutil.TypicalPersons;
 public class AddPersonToModuleCommandTest {
 
     @Test
-    public void constructor_nullModule_throwsNullPointerException() {
+    public void constructor_nullInput_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
                 new AddPersonToModuleCommand(null, null));
         assertThrows(NullPointerException.class, () ->
