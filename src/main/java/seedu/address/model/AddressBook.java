@@ -144,6 +144,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.addTask(task);
         modules.updateTotalNumOfTasks(task.getModule(), tasks);
         modules.updateNumOfCompletedTasks(task.getModule(), tasks);
+        if (task.isLinked()) {
+            exams.updateTotalNumOfTasks(task.getExam(), tasks);
+            exams.updateNumOfCompletedTasks(task.getExam(), tasks);
+        }
     }
 
 
@@ -165,6 +169,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         modules.updateTotalNumOfTasks(target.getModule(), tasks);
         modules.updateNumOfCompletedTasks(editedTask.getModule(), tasks);
         modules.updateTotalNumOfTasks(editedTask.getModule(), tasks);
+
+        if (target.isLinked() && !editedTask.isLinked()) {
+            // to update exam when a task is unlinked from an exam
+            exams.updateTotalNumOfTasks(target.getExam(), tasks);
+            exams.updateNumOfCompletedTasks(target.getExam(), tasks);
+        }
+
+        if (editedTask.isLinked()) {
+            // to update exam for linked tasks
+            exams.updateTotalNumOfTasks(editedTask.getExam(), tasks);
+            exams.updateNumOfCompletedTasks(editedTask.getExam(), tasks);
+        }
     }
 
     public void setTasks(List<Task> tasks) {
@@ -179,6 +195,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.remove(key);
         modules.updateNumOfCompletedTasks(key.getModule(), tasks);
         modules.updateTotalNumOfTasks(key.getModule(), tasks);
+        if (key.isLinked()) {
+            exams.updateNumOfCompletedTasks(key.getExam(), tasks);
+            exams.updateTotalNumOfTasks(key.getExam(), tasks);
+        }
     }
 
     //// util methods
@@ -303,17 +323,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Links task to exam list stored in {@code AddressBook}.
-     *
-     * @param task The task which is linked.
-     */
-    public void linkTaskToExam(Task task) {
-        this.exams.linkTaskToExams(task);
-    }
-
-    /**
      * Unlinks all tasks that are currently linked to {@code exam}.
-     * @param exam
+     * @param exam The exam to unlink all tasks from.
      */
     public void unlinkTasksFromExam(Exam exam) {
         tasks.unlinkTasksFromExam(exam);
