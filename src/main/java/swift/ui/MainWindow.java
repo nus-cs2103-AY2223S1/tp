@@ -187,6 +187,7 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
+        // Show the associated persons list panel only if there is one task selected in task list.
         if (logic.getFilteredTaskList().size() == 1) {
             taskPersonListPanel = new TaskPersonListPanel(logic.getFilteredPersonList());
             personTaskListPanelPlaceholder.getChildren().clear();
@@ -206,6 +207,7 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        // Show the associated tasks list panel only if there is one contact selected in contact list.
         if (logic.getFilteredPersonList().size() == 1) {
             personTaskListPanel = new PersonTaskListPanel(logic.getFilteredTaskList(),
                     logic.getUnfilteredBridgeList(), logic.getUnfilteredPersonList());
