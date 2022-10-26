@@ -90,14 +90,14 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(ivory, 20%);
+    -fx-background-color: #F0F0F0;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
-    -fx-background-color: ivory;
+    -fx-background-color: #F0F0F0;
     /*
     rounded edges for foodcard
     */
@@ -153,11 +153,11 @@
 }
 
 .result-display {
-    -fx-background-color: white;
+    -fx-background-color: #F0F0F0;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
-    -fx-border-color: black;
+    -fx-border-color: #B9B7BD;
     -fx-border-width: 1px;
 }
 
@@ -166,7 +166,7 @@
 }
 
 .result-display .scroll-bar {
-    -fx-background-color: white;
+    -fx-background-color: #F0F0F0;
 }
 
 .status-bar .label {
@@ -368,7 +368,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: white;
+    -fx-background-color: #F0F0F0;
     -fx-background-radius: 0;
 }
 

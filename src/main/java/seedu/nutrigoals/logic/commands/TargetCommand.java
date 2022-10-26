@@ -13,7 +13,7 @@ public class TargetCommand extends Command {
     public static final String COMMAND_WORD = "target";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a daily calorie target intake\n"
-        + "Parameters: INTEGER (non-negative integer that is not be too large)\n"
+        + "Parameters: INTEGER (must be non-negative and not too large)\n"
         + "Example: " + COMMAND_WORD + " 5000";
     public static final String MESSAGE_TARGET_SET_SUCCESS = "Your calorie target set for today: %1$s";
 

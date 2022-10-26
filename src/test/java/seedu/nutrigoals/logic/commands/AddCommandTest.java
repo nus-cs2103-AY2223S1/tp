@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
+import static seedu.nutrigoals.testutil.TypicalFoods.MAX_CALORIE_FOOD;
+import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -21,10 +24,12 @@ import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.Location;
 import seedu.nutrigoals.model.Model;
+import seedu.nutrigoals.model.ModelManager;
 import seedu.nutrigoals.model.NutriGoals;
 import seedu.nutrigoals.model.ReadOnlyNutriGoals;
 import seedu.nutrigoals.model.ReadOnlyUserPrefs;
 import seedu.nutrigoals.model.Tip;
+import seedu.nutrigoals.model.UserPrefs;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
 import seedu.nutrigoals.model.meal.Name;
@@ -49,6 +54,15 @@ public class AddCommandTest {
         assertEquals(Arrays.asList(validFood), modelStub.foodsAdded);
     }
 
+    @Test
+    public void execute_foodNotAcceptedByModel_addUnsuccessful() {
+        Model model = new ModelManager(getTypicalNutriGoals(), new UserPrefs());
+
+        AddCommand addCommand = new AddCommand(MAX_CALORIE_FOOD);
+        String expectedMessage = String.format(AddCommand.MESSAGE_ADDED_CALORIE_TOO_LARGE, MAX_CALORIE_FOOD);
+
+        assertCommandFailure(addCommand, model, expectedMessage);
+    }
 
     @Test
     public void equals() {
@@ -207,7 +221,17 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Test
+        @Override
+        public boolean isAddedTotalCalorieTooLarge(Food toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isEditedTotalCalorieTooLarge(Food toAdd, Food toDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Map<Name, Calorie> getFoodCalorieList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -217,12 +241,12 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Test
+        @Override
         public double calculateCalorieIntakeProgress() {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Test
+        @Override
         public DoubleProperty getCalorieIntakeProgress() {
             throw new AssertionError("This method should not be called.");
         }
@@ -268,6 +292,20 @@ public class AddCommandTest {
         public ReadOnlyNutriGoals getNutriGoals() {
             return new NutriGoals();
         }
-    }
 
+        @Override
+        public boolean isAddedTotalCalorieTooLarge(Food toAdd) {
+            int totalCalorie = foodsAdded.stream()
+                    .map(Food::getCalorie)
+                    .map(calorie -> Integer.parseInt(calorie.value))
+                    .reduce(0, Integer::sum);
+            int calorieToAdd = Integer.parseInt(toAdd.getCalorie().value);
+            try {
+                Math.addExact(totalCalorie, calorieToAdd);
+                return false;
+            } catch (ArithmeticException e) {
+                return true;
+            }
+        }
+    }
 }
