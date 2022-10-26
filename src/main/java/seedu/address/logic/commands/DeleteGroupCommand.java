@@ -5,12 +5,14 @@ import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_INVALID_GRO
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonGroup;
 
@@ -66,9 +68,25 @@ public class DeleteGroupCommand extends Command {
                     currentPerson.getName(), currentPerson.getPhone(), currentPerson.getEmail(),
                     currentPerson.getAddress(), currentPerson.getTags(), currentPerson.getAssignments(),
                     currentPerson.getPersonGroups());
+
             editedPerson.getPersonGroups().remove(new PersonGroup(groupToCheck.getName().toString()));
             editedPerson.getAssignments().remove((groupToCheck.getName().toString()));
+
             model.setPerson(currentPerson, editedPerson);
+
+            for (PersonGroup group : editedPerson.getPersonGroups()) {
+                ObservableList<Group> currGroupList = model.getGroupWithName(new GroupName(group.getGroupName()));
+                Group currGroup = currGroupList.get(0);
+
+                Set<Person> editedPersonList = new HashSet<Person>();
+                editedPersonList.addAll(currGroup.getMembers());
+                editedPersonList.remove(currentPerson);
+                editedPersonList.add(editedPerson);
+
+                Group editedGroup = new Group(currGroup.getName(), editedPersonList);
+
+                model.setGroup(currGroup, editedGroup);
+            }
         }
 
         model.deleteGroup(groupToCheck);
