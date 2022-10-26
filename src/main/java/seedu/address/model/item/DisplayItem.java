@@ -1,5 +1,6 @@
 package seedu.address.model.item;
 
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -7,6 +8,8 @@ import java.util.Set;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueID;
+
 
 /**
  * Represents a unique item in the addressbook, it can be either a accessable
@@ -102,4 +105,6 @@ public interface DisplayItem {
      * Returns true if {@code DisplayItem o} is a parent of this item
      */
     boolean isPartOfContext(DisplayItem o);
+
+    UniqueID getUUID(AbstractDisplayItem item);
 }

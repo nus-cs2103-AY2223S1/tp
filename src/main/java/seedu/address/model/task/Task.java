@@ -9,11 +9,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.attribute.Description;
+import seedu.address.model.attribute.Name;
 import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 import seedu.address.model.person.Person;
+
 
 /**
  * Stores task details.
@@ -149,6 +151,25 @@ public class Task extends AbstractSingleItem {
             throw new ItemCannotBeParentException(o);
         }
 
+
         assignedParents.add(o);
     }
+
+    public Name getName() {
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return name.toString();
+    }
+    /**
+     * Prints this class as a json txt
+     */
+    public String toJson() {
+        return "Task{" + "title: '" + name + '\'' + "; description: '" + description + '\'' + "; completedTime: "
+                + completedTime
+                + "; parent: " + parent + '}';
+    }
+
 }

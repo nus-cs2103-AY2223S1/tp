@@ -4,6 +4,10 @@ import static seedu.address.model.AccessDisplayFlags.GROUP;
 
 import seedu.address.model.item.AbstractSingleItem;
 
+import seedu.address.model.item.DisplayItem;
+import seedu.address.model.item.EntryType;
+
+
 /**
  * Represents a Group in the address book.
  */
@@ -13,12 +17,14 @@ public class Group extends AbstractSingleItem {
     public static final String MESSAGE_CONSTRAINTS = "A group name should only consist "
             + "of alphanumeric characters, underscores and hyphens only.\n";
 
+
     /**
      * Constructor to create a group object
      */
     public Group(String groupName) {
         super(groupName, GROUP, GROUP);
         assert isValidGroupName(groupName);
+
     }
 
     /**
@@ -31,4 +37,58 @@ public class Group extends AbstractSingleItem {
     public static boolean isValidGroupName(String groupName) {
         return groupName.matches(VALIDATION_REGEX);
     }
+
+
+    public EntryType getEntryType() {
+        return EntryType.TEAM;
+    }
+
+    @Override
+    public boolean stronglyEqual(DisplayItem o) {
+        if (!weaklyEqual(o)) {
+            return false;
+        }
+        Group g = (Group) o;
+        if (parent != null) {
+            return parent.equals(g.parent);
+        }
+        return g.parent == null;
+    }
+
+    @Override
+    public boolean weaklyEqual(DisplayItem o) {
+        if (!(o instanceof Group)) {
+            return false;
+        }
+        return ((Group) o).name.equals(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Group)) {
+            return false;
+        }
+        return stronglyEqual((Group) obj);
+    }
+
+    @Override
+    public boolean isPartOfContext(DisplayItem o) {
+        if (o == null) {
+            return true;
+        }
+
+        AbstractSingleItem tmp = parent;
+        while (tmp != null) {
+            if (tmp.equals(o)) {
+                return true;
+            }
+            tmp = tmp.getParent();
+        }
+        return false;
+    }
+
+
 }
