@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.wrapper.UserReposRoute.getUserReposRoute;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -77,5 +78,18 @@ public class UserReposWrapper {
         }
 
         throw new RepoNotFoundException("Provided ID does not correspond to a repository owned by this user!");
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof UserReposWrapper)
+                && getUserReposRequest.equals(((UserReposWrapper) other).getUserReposRequest)
+                && reposJson.equals(((UserReposWrapper) other).reposJson);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUserReposRequest, reposJson);
     }
 }

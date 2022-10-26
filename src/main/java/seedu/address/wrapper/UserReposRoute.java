@@ -2,6 +2,8 @@ package seedu.address.wrapper;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -66,6 +68,18 @@ public class UserReposRoute {
             } catch (JSONException e) {
                 throw new ResponseParseException("Unable to parse API result.");
             }
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            return other == this
+                    || (other instanceof UserReposRequest)
+                    && url.equals(((UserReposRequest) other).url);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(url);
         }
     }
 }

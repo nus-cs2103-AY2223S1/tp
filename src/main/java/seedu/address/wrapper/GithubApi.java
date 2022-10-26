@@ -8,7 +8,6 @@ import kong.unirest.HttpResponse;
 import kong.unirest.Interceptor;
 import kong.unirest.UnirestInstance;
 import seedu.address.model.person.github.User;
-import seedu.address.storage.Storage;
 import seedu.address.wrapper.exceptions.NetworkConnectionException;
 import seedu.address.wrapper.exceptions.RepoNotFoundException;
 import seedu.address.wrapper.exceptions.UserInvalidException;
@@ -21,15 +20,9 @@ public class GithubApi {
     //@@author arnav-ag
     private static final String BASE_CHECK_USER_URL = "https://api.github.com/users/";
     private final UnirestInstance unirest;
-    private final Storage storage;
 
-    /**
-     * @param storage Storage used to handle downloading of user avatar images
-     */
-    public GithubApi(Storage storage) {
-
+    public GithubApi() {
         unirest = getDefaultUnirestInstance();
-        this.storage = storage;
     }
 
     public static UnirestInstance getDefaultUnirestInstance() {
@@ -52,10 +45,10 @@ public class GithubApi {
         return new UnirestInstance(config);
     }
 
-    User getUser(String username) throws UserInvalidException, NetworkConnectionException {
+    public User getUser(String username) throws UserInvalidException, NetworkConnectionException {
         requireAllNonNull(username);
         checkUserExists(username, unirest);
-        UserInfoWrapper userInfoWrapper = new UserInfoWrapper(username, unirest, storage);
+        UserInfoWrapper userInfoWrapper = new UserInfoWrapper(username, unirest);
         UserReposWrapper userReposWrapper = new UserReposWrapper(username, unirest);
 
         return new User(username, userInfoWrapper, userReposWrapper);

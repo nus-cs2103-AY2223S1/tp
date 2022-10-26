@@ -3,6 +3,7 @@ package seedu.address.model.person.github;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
 
 import seedu.address.wrapper.UserInfoWrapper;
@@ -14,11 +15,11 @@ import seedu.address.wrapper.UserReposWrapper;
 public class User {
 
     public static final String MESSAGE_CONSTRAINTS = "GitHub usernames should be of the format @username "
-        + "and adhere to the following constraints:\n"
-        + "1. Username may only contain alphanumeric characters or hyphens\n"
-        + "2. Username cannot have multiple consecutive hyphens\n"
-        + "3. Username cannot begin or end with a hyphen\n"
-        + "4. Username can have a maximum of 39 characters";
+            + "and adhere to the following constraints:\n"
+            + "1. Username may only contain alphanumeric characters or hyphens\n"
+            + "2. Username cannot have multiple consecutive hyphens\n"
+            + "3. Username cannot begin or end with a hyphen\n"
+            + "4. Username can have a maximum of 39 characters";
     private static final String GITHUB_PREFIX = "https://github.com/";
     private static final String VALIDATION_REGEX = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";
     private final String username;
@@ -41,8 +42,8 @@ public class User {
         this.avatarUrl = userInfoWrapper.getAvatarUrl();
         this.url = userInfoWrapper.getUrl();
         this.name = userInfoWrapper.getName().orElse(this.username);
-        this.email = userInfoWrapper.getEmail().orElse(null);
-        this.address = userInfoWrapper.getLocation().orElse(null);
+        this.email = userInfoWrapper.getEmail().orElse("");
+        this.address = userInfoWrapper.getLocation().orElse("");
     }
 
     /**
@@ -99,12 +100,18 @@ public class User {
     @Override
     public boolean equals(Object other) {
         return other == this
-            || (other instanceof User)
-            && username.equals(((User) other).username);
+                || (other instanceof User)
+                && username.equals(((User) other).username)
+                && avatarUrl.equals(((User) other).avatarUrl)
+                && url.equals(((User) other).url)
+                && name.equals(((User) other).name)
+                && email.equals(((User) other).email)
+                && address.equals(((User) other).address)
+                && userReposWrapper.equals(((User) other).userReposWrapper);
     }
 
     @Override
     public int hashCode() {
-        return username.hashCode();
+        return Objects.hash(username, avatarUrl, url, name, email, address, userReposWrapper);
     }
 }

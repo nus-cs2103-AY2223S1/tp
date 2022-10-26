@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -30,5 +29,4 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
-    void saveImage(BufferedImage image, String filePath) throws IOException;
 }
