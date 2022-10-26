@@ -1,5 +1,7 @@
 package swift.testutil;
 
+import static swift.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static swift.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 
 import swift.logic.commands.AddTaskCommand;
@@ -21,8 +23,13 @@ public class TaskUtil {
      * Returns the part of command string for the given {@code task}'s details.
      */
     public static String getTaskDetails(Task task) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + task.getName().fullName);
-        return sb.toString();
+        String taskDetails = PREFIX_NAME + task.getName().fullName;
+        if (task.getDescription().isPresent()) {
+            taskDetails += " " + PREFIX_DESCRIPTION + task.getDescription().get();
+        }
+        if (task.getDeadline().isPresent()) {
+            taskDetails += " " + PREFIX_DEADLINE + task.getDeadline().get();
+        }
+        return taskDetails;
     }
 }
