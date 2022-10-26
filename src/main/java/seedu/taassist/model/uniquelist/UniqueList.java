@@ -5,6 +5,7 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -100,12 +101,11 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
     /**
      * Finds and returns an element that has the same identity as {@code toFind}.
      */
-    public T findElement(T toFind) {
+    public Optional<T> findElement(T toFind) {
         requireNonNull(toFind);
         return internalList.stream()
                 .filter(toFind::isSame)
-                .findFirst()
-                .orElseThrow(ElementNotFoundException::new);
+                .findFirst();
     }
 
     /**
