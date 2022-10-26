@@ -62,4 +62,12 @@ class HelpCommandTest {
         // Different
         assertNotEquals(helpCommandDifferentFirst, helpCommandDifferentSecond);
     }
+
+    @Test
+    void testCommandResultEquals() {
+        CommandResult<?> firstResult = new HelpCommand("Test").execute(model);
+        CommandResult<?> secondResult = new HelpCommand("Test").execute(model);
+
+        assertEquals(firstResult, secondResult);
+    }
 }
