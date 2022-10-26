@@ -100,7 +100,7 @@ public class StudentCard extends UiPart<Region> {
             assignmentRateLabel.setText("No Records");
         } else if (student.getAssignmentUnmarkedCount() >= MARK_THRESHOLD) {
             assignmentRateLabel.setId("fail");
-        } else if (student.getAssignmentUnmarkedCount() > 0){
+        } else if (student.getAssignmentUnmarkedCount() > 0) {
             assignmentRateLabel.setId("caution");
         } else {
             assignmentRateLabel.setId("fail");
