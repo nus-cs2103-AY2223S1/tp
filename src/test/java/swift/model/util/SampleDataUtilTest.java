@@ -11,9 +11,10 @@ class SampleDataUtilTest {
     @Test
     public void getSampleAddressBook_success() {
         AddressBook addressBook = new AddressBook();
-        for (Person samplePerson : SampleDataUtil.getSamplePersons()) {
-            addressBook.addPerson(samplePerson);
-        }
+        addressBook.setPersons(SampleDataUtil.getSamplePersons());
+        addressBook.setTasks(SampleDataUtil.getSampleTasks());
+        addressBook.setBridges(SampleDataUtil.getSamplePersonTaskBridge());
+
         assertEquals(addressBook, SampleDataUtil.getSampleAddressBook());
     }
 }
