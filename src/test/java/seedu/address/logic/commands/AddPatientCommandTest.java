@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.History;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -274,17 +275,17 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void deleteAddressBookHistory() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void redo() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setBillAsPaid(Bill bill) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public History getHistory() {
             throw new AssertionError("This method should not be called.");
         }
     }

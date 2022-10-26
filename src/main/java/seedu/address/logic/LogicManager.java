@@ -9,6 +9,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -45,12 +47,21 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        model.updateAddressBookHistory();
+        model.getHistory().updateAddressBookHistory();
+        if (!(command instanceof UndoCommand || command instanceof RedoCommand)) {
+            model.getHistory().clearRedoAddressBookHistory();
+            model.getHistory().clearRedoPatientsHistory();
+            model.getHistory().clearRedoAppointmentsHistory();
+            model.getHistory().clearRedoBillsHistory();
+        }
         try {
             commandResult = command.execute(model);
         } catch (CommandException e) {
             logger.info("Invalid command: " + commandText);
-            model.deleteAddressBookHistory();
+            model.getHistory().deleteAddressBookHistory(model.getHistory().getAddressBookHistorySize() - 1);
+            model.getHistory().deletePatientsHistory(model.getHistory().getPatientsHistorySize() - 1);
+            model.getHistory().deleteAppointmentsHistory(model.getHistory().getAppointmentsHistorySize() - 1);
+            model.getHistory().deleteBillsHistory(model.getHistory().getBillsHistorySize() - 1);
             throw e;
         }
 

@@ -222,19 +222,21 @@ public interface Model {
      */
     void undo() throws CommandException;
 
+
     /**
      * Redo last change made to state of address book.
      */
     void redo() throws CommandException;
 
-    /**
-     * Deletes latest addition in the ArrayList of AddressBook.
-     */
-    void deleteAddressBookHistory();
 
     /**
      * Sets the Status of PaymentStatus of the given bill to PAID.
      * @param bill
      */
     void setBillAsPaid(Bill bill);
+
+    /**
+     * Gets History in Model.
+     */
+    History getHistory();
 }

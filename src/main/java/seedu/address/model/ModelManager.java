@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -32,8 +31,7 @@ public class ModelManager implements Model {
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Appointment> filteredAppointments;
     private final FilteredList<Bill> filteredBills;
-    private final ArrayList<ReadOnlyAddressBook> addressBookHistory;
-    private final ArrayList<ReadOnlyAddressBook> redoAddressBookHistory;
+    private final History history;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -48,8 +46,7 @@ public class ModelManager implements Model {
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
         filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
         filteredBills = new FilteredList<>(this.addressBook.getBillList());
-        this.addressBookHistory = new ArrayList<>();
-        this.redoAddressBookHistory = new ArrayList<>();
+        this.history = new History(this);
     }
 
     public ModelManager() {
@@ -319,23 +316,38 @@ public class ModelManager implements Model {
 
     @Override
     public void updateAddressBookHistory() {
-        this.addressBookHistory.add(new AddressBook(this.addressBook));
+        history.addAddressBookHistory(new AddressBook(this.addressBook));
     }
 
     @Override
     public void updateRedoAddressBookHistory() {
-        this.redoAddressBookHistory.add(new AddressBook(this.addressBook));
+        history.addRedoAddressBookHistory(new AddressBook(this.addressBook));
     }
 
     @Override
     public void undo() throws CommandException {
         try {
-            this.updateRedoAddressBookHistory();
-            setAddressBook(this.addressBookHistory.get(this.addressBookHistory.size() - 2));
-            this.addressBookHistory.remove(this.addressBookHistory.size() - 1);
-            this.addressBookHistory.remove(this.addressBookHistory.size() - 1);
+            boolean shouldNotAdd = history.compareAddressBookHistory(this.addressBook)
+                    && !(this.filteredPatients.getPredicate() == null
+                    && this.filteredAppointments.getPredicate() == null
+                    && this.filteredBills.getPredicate() == null);
+            if (!shouldNotAdd) {
+                history.updateRedoAddressBookHistory();
+                history.updateRedoPatientsHistory();
+                history.updateRedoAppointmentsHistory();
+                history.updateRedoBillsHistory();
+                setAddressBook(history.getAddressBookHistory(history.getAddressBookHistorySize() - 2));
+                history.deleteAddressBookHistory(history.getAddressBookHistorySize() - 1);
+                filteredPatients.setPredicate(history.getPatientsPredicate(history.getPatientsHistorySize() - 1));
+                filteredAppointments.setPredicate(history
+                        .getAppointmentsPredicate(history.getAppointmentsHistorySize() - 1));
+                filteredBills.setPredicate(history.getBillsPredicate(history.getBillsHistorySize() - 1));
+                history.deleteAddressBookHistory(history.getAddressBookHistorySize() - 1);
+            } else {
+                throw new CommandException("Undo cannot be done as there was no previous action");
+            }
+
         } catch (IndexOutOfBoundsException e) {
-            this.redoAddressBookHistory.remove(this.redoAddressBookHistory.size() - 1);
             throw new CommandException("Undo cannot be done as there was no previous action");
         }
 
@@ -344,22 +356,27 @@ public class ModelManager implements Model {
     @Override
     public void redo() throws CommandException {
         try {
-            setAddressBook(this.redoAddressBookHistory.get(this.redoAddressBookHistory.size() - 1));
-            this.redoAddressBookHistory.remove(this.redoAddressBookHistory.size() - 1);
+            setAddressBook(history.getRedoAddressBookHistory(history.getRedoAddressBookHistorySize() - 1));
+            filteredPatients.setPredicate(history.getRedoPatientsPredicate(history.getRedoPatientsHistorySize() - 1));
+            filteredAppointments.setPredicate(history.getRedoAppointmentsPredicate(history
+                    .getRedoAppointmentsHistorySize() - 1));
+            filteredBills.setPredicate(history.getRedoBillsPredicate(history.getRedoBillsHistorySize() - 1));
+            history.deleteRedoAddressBookHistory(history.getRedoAddressBookHistorySize() - 1);
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException("Redo cannot be done as there was no previous action");
         }
 
     }
 
-    @Override
-    public void deleteAddressBookHistory() {
-        this.addressBookHistory.remove(addressBookHistory.size() - 1);
-    }
 
     @Override
     public void setBillAsPaid(Bill bill) {
         this.addressBook.setBillAsPaid(bill);
+    }
+
+    @Override
+    public History getHistory() {
+        return history;
     }
 
 }

@@ -16,11 +16,10 @@ import seedu.address.model.appointment.Appointment;
 public class SortAppointmentCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("sortappointment");
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Sorts the list of appointments according to the specified field."
+            COMMAND_WORD + ": Sorts the list of appointments according to the specified field"
                     + "by alphabetical order.\n"
-                    + "Existing remark will be overwritten by the input.\n"
-                    + "Parameters: FIELD (must not be empty) "
-                    + "Example: " + COMMAND_WORD + "name";
+                    + "Parameters: c/CRITERIA (name, test, slot, doctor) o/ORDER (asc, desc) "
+                    + "Example: " + COMMAND_WORD + " " + "c/name o/asc";
 
     public static final String MESSAGE_SORT_SUCCESS = "Sorted according to %1$s";
 
@@ -48,7 +47,7 @@ public class SortAppointmentCommand extends Command {
         } else if (this.criteria.toLowerCase().equals("slot")) {
             SlotComparator slotComparator = new SlotComparator();
             model.sortAppointments(slotComparator, this.isAscending);
-        } else if (this.criteria.toLowerCase().equals("dcotor")) {
+        } else if (this.criteria.toLowerCase().equals("doctor")) {
             DoctorComparator doctorComparator = new DoctorComparator();
             model.sortAppointments(doctorComparator, this.isAscending);
         } else {

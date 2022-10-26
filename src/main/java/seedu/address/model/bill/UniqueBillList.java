@@ -3,6 +3,7 @@ package seedu.address.model.bill;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -96,7 +97,13 @@ public class UniqueBillList implements Iterable<Bill> {
             throw new DuplicateBillException();
         }
 
-        internalList.setAll(bills);
+        ArrayList<Bill> sortedBills = new ArrayList<>();
+        for (int i = 0; i < bills.size(); i++) {
+            Bill bill = bills.get(i);
+            sortedBills.add(new Bill(bill.getAppointment(), bill.getAmount(),
+                    bill.getBillDate(), new PaymentStatus(bill.getPaymentStatus().toString())));
+        }
+        internalList.setAll(sortedBills);
     }
 
     /**
