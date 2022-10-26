@@ -163,6 +163,18 @@ Examples:
 * `find r/4.0` returns all tutors that have rating of `4.0`.
 * `find t/friends` returns all tutors that have tag of `friends`.
 
+### Contacting tutors via email: `mail`
+
+Contacting targeted tutors is made easy with the mail command. The command opens the user's default mail client and specifies the "to" section in emails with the targeted tutors.
+
+Format: `mail INDEX/"all"`
+* `INDEX` refers to any index in range of the tutor list.
+* `"all"` allows you to email all the current tutors displayed in the tutor list.
+
+Examples:
+* `mail 3` opens the user's default mail client with the "to" specified as the third tutor's email.
+* `mail all` opens the user's default mail client with the "to" specified as all the currently displayed tutors' emails.
+
 ### Sorting tutors by quantitative measures: `sort`
 
 Looking for tutors with the best reviews? The sort command allows you to sort the
