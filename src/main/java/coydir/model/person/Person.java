@@ -127,6 +127,21 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    private boolean isSameLeaves(Queue<Leave> queue) {
+        Queue<Leave> copy1 = new PriorityQueue<>(this.leaves);
+        Queue<Leave> copy2 = new PriorityQueue<>(queue);
+        if (!(this.leaves.size() == queue.size())) {
+            return false;
+        } else {
+            for (Leave leave: copy1) {
+                if (copy1.poll() != copy2.poll()) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -150,7 +165,7 @@ public class Person {
                 && otherPerson.getDepartment().equals(getDepartment())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getLeaves().equals(getLeaves())
+                && this.isSameLeaves(otherPerson.getLeaves())
                 && otherPerson.getTotalNumberOfLeaves() == getTotalNumberOfLeaves()
                 && otherPerson.getLeavesLeft() == getLeavesLeft();
     }
