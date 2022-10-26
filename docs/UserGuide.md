@@ -26,11 +26,11 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`view Tasks`** : Lists all tasks in tasklist.
+   * **`listTasks`** : Lists all tasks in tasklist.
 
-   * **`add task coding assignment`** : Adds a task `coding assignment` to the task list.
+   * **`editTask`**`2 c/frontend pe/charlotte@example.com` : Adds a task `coding assignment` to the task list.
 
-   * **`delete task`**`3` : Deletes the 3rd task from the task list.
+   * **`deleteTask`**`3` : Deletes the 3rd task from the task list.
 
    * **`help`** : Displays help text.
 
@@ -235,7 +235,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Help** | `help`
 **Add Task** | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com`
-**Edit Task** | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]` <br> e.g., `edit 2 c/frontend pe/charlotte@example.com`
+**Edit Task** | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`
 **deleteTask** | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`
 **list Tasks** | `listTasks`
 
