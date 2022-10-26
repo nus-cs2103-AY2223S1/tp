@@ -23,7 +23,7 @@ public class PickCommandParser implements Parser<PickCommand> {
         String[] arg = args.split(" ", 4);
 
         if (arg.length != 4) {
-            throw new ParseException("You need 3 arguments: <module code> <lesson type> <classNo>");
+            throw new ParseException("You need 3 arguments: <module-code> <lesson-type> <classNo>");
         }
 
         System.out.println(Arrays.toString(arg));
@@ -35,7 +35,7 @@ public class PickCommandParser implements Parser<PickCommand> {
         LessonTypeEnum lt = ltp.getArgValue();
 
         String classNo = arg[3].trim();
-        //TODO: add other parameter
+
         return new PickCommand(mc, lt, classNo);
     }
 }

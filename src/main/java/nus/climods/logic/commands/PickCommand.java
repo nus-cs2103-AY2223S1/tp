@@ -2,6 +2,8 @@ package nus.climods.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import nus.climods.model.module.LessonTypeEnum;
 import org.openapitools.client.model.SemestersEnum;
 
@@ -20,6 +22,8 @@ public class PickCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New lesson added: %1$s";
     public static final String MESSAGE_MODULE_MISSING = "This module is not in your module list";
+    public static final String MESSAGE_INVALID_CLASSNO = "This class is not offered or an invalid one";
+    public static final String MESSAGE_DUPLICATE_CLASSNO = "This class already exist in your current module";
 
     private final String toPick;
     private final LessonTypeEnum lessonType;
@@ -40,14 +44,14 @@ public class PickCommand extends Command {
         requireNonNull(model);
 
         //TODO: Figure out how to update module data without need to ask user to key in sem
-        UserModule moduleToPick = new UserModule(toPick, SemestersEnum.S1);
+        Optional<UserModule> toUpdate= model.getUserModule(toPick);
 
-        if (!model.hasUserModule(moduleToPick)) {
+        if (toUpdate.isEmpty()) {
             throw new CommandException(MESSAGE_MODULE_MISSING);
         }
 
+        toUpdate.get().setTutorial(classNo);
         //TODO: Update lesson details for correct UserModule in the list
-        model.getFilteredModuleList();
         String addedDetails = String.format("%s %s %s", toPick, lessonType, classNo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, addedDetails.toUpperCase()),
                 COMMAND_WORD, model);
