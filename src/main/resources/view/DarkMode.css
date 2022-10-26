@@ -91,3 +91,7 @@
 #helpMessageContainer {
     -fx-background-color: #2A2A2A;
 }
+
+#patientHeading, #appointmentHeading {
+    -fx-text-fill: #EAEAEA;
+}
