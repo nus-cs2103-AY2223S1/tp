@@ -83,6 +83,7 @@ public class PersonProfile extends UiPart<Region> {
         setNetWorthField();
         setMeetingsField();
         setTagsField();
+        setPersonFileButton();
     }
 
     private void setNameField() {
@@ -140,15 +141,30 @@ public class PersonProfile extends UiPart<Region> {
     }
 
     private void setMeetingsField() {
+        if (person.getMeetingTimes().isEmpty()) {
+            meetingTimes.setManaged(false);
+            return;
+        }
         person.getMeetingTimes().stream()
                 .sorted(Comparator.comparing(meetingTime -> meetingTime.displayValue))
                 .forEach(meetingTime -> meetingTimes.getChildren().add(new Label(meetingTime.displayValue)));
     }
 
     private void setTagsField() {
+        if (person.getTags().isEmpty()) {
+            tags.setManaged(false);
+            return;
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private void setPersonFileButton() {
+        if (person.getFilePath().isEmpty()) {
+            personFileButton.setManaged(false);
+            return;
+        }
     }
 
     /**
