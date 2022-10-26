@@ -6,9 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashMap;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.student.Student;
@@ -32,7 +34,9 @@ public class StudentContainsKeywordsPredicate<T> implements Predicate<T> {
                     && student.getEmail().value.toLowerCase().contains(keywords.get(PREFIX_EMAIL).toLowerCase())
                     && student.getPhone().value.toLowerCase().contains(keywords.get(PREFIX_PHONE).toLowerCase())
                     && student.getSchool().school.toLowerCase().contains(keywords.get(PREFIX_SCHOOL).toLowerCase())
-                    && student.getLevel().level.toLowerCase().contains(keywords.get(PREFIX_LEVEL).toLowerCase());
+                    && student.getLevel().level.toLowerCase().contains(keywords.get(PREFIX_LEVEL).toLowerCase())
+                    && student.getTags().stream().anyMatch(tag -> tag.tagName.toLowerCase()
+                    .contains(keywords.get(PREFIX_TAG).toLowerCase()));
         }
         throw new ClassCastException("StudentContainsKeywords predicate can only be applied to Student.");
     }

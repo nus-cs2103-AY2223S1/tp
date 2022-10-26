@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashMap;
 import java.util.function.Predicate;
@@ -37,7 +38,9 @@ public class TutorContainsKeywordsPredicate<T> implements Predicate<T> {
                     && tutor.getQualification().qualification.toLowerCase()
                     .contains(keywords.get(PREFIX_QUALIFICATION).toLowerCase())
                     && tutor.getInstitution().institution.toLowerCase()
-                    .contains(keywords.get(PREFIX_INSTITUTION).toLowerCase());
+                    .contains(keywords.get(PREFIX_INSTITUTION).toLowerCase())
+                    && tutor.getTags().stream().anyMatch(tag -> tag.tagName.toLowerCase()
+                    .contains(keywords.get(PREFIX_TAG).toLowerCase()));
         }
         throw new ClassCastException("TutorContainsKeywords predicate can only be applied to Tutor.");
     }

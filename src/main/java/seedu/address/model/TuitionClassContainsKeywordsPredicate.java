@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.HashMap;
@@ -33,7 +34,9 @@ public class TuitionClassContainsKeywordsPredicate<T> implements Predicate<T> {
                     && tuitionClass.getLevel().level.toLowerCase()
                     .contains(keywords.get(PREFIX_LEVEL).toLowerCase())
                     && tuitionClass.getTime().getStartTime().toLowerCase()
-                    .contains(keywords.get(PREFIX_TIME).toLowerCase());
+                    .contains(keywords.get(PREFIX_TIME).toLowerCase())
+                    && tuitionClass.getTags().stream().anyMatch(tag -> tag.tagName.toLowerCase()
+                    .contains(keywords.get(PREFIX_TAG).toLowerCase()));
         }
         throw new ClassCastException("TuitionClassContainsKeywords predicate can only be applied to TuitionClass.");
     }

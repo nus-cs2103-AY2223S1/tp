@@ -42,6 +42,8 @@ public class FindCommandParser implements Parser<FindCommand> {
     private String subjectKeywords;
     private String timeKeywords;
 
+    private String tagKeywords;
+
     private HashMap<Prefix, String> keywords = new HashMap<>();
 
     Model.ListType listType;
@@ -135,6 +137,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             keywords.put(PREFIX_LEVEL, levelKeywords);
             keywords.put(PREFIX_TIME, timeKeywords);
         }
+
+        tagKeywords = argMultimap.getValue(PREFIX_TAG).orElse("");
+        keywords.put(PREFIX_TAG, tagKeywords);
 
         return new FindCommand(keywords);
     }
