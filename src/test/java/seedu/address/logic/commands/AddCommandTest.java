@@ -26,7 +26,7 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.customer.Reward;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CustomerBuilder;
 
 public class AddCommandTest {
 
@@ -38,7 +38,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Customer validCustomer = new PersonBuilder().build();
+        Customer validCustomer = new CustomerBuilder().build();
 
         CommandResult commandResult = new AddCommand(validCustomer).execute(modelStub);
 
@@ -48,7 +48,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Customer validCustomer = new PersonBuilder().build();
+        Customer validCustomer = new CustomerBuilder().build();
         AddCommand addCommand = new AddCommand(validCustomer);
         ModelStub modelStub = new ModelStubWithPerson(validCustomer);
 
@@ -58,8 +58,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Customer alice = new PersonBuilder().withName("Alice").build();
-        Customer bob = new PersonBuilder().withName("Bob").withPhone("83838000").build();
+        Customer alice = new CustomerBuilder().withName("Alice").build();
+        Customer bob = new CustomerBuilder().withName("Bob").withPhone("83838000").build();
 
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
@@ -81,7 +81,7 @@ public class AddCommandTest {
         assertTrue(addAliceCommand.equals(addBobCommand));
 
         // different name, same phone, different email -> returns true
-        bob = new PersonBuilder().withName("Bob").withEmail("bob@example.com").build();
+        bob = new CustomerBuilder().withName("Bob").withEmail("bob@example.com").build();
         addBobCommand = new AddCommand(bob);
         assertTrue(addAliceCommand.equals(addBobCommand));
     }

@@ -6,8 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEmails.EMAIL_FIRST_PERSON;
 import static seedu.address.testutil.TypicalEmails.EMAIL_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.ALICE_DECREMENT;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCustomers.ALICE_DECREMENT;
+import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalPhones.PHONE_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPhones.PHONE_SECOND_PERSON;
 

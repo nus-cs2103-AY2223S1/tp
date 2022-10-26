@@ -41,7 +41,7 @@ import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.customer.Reward;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditCustomerDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -149,7 +149,7 @@ public class EditCommandParserTest {
         String userInput = " " + PREFIX_PHONE + targetPhone + PHONE_DESC_BOB + TAG_DESC_GOLD
                 + EMAIL_DESC_AMY + REWARD_DESC_AMY + NAME_DESC_AMY + TAG_DESC_MEMBER;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withReward(VALID_REWARD_AMY)
                 .withTags(VALID_TAG_GOLD, VALID_TAG_MEMBER).build();
         EditCommand expectedCommand = new EditCommand(targetPhone, descriptor);
@@ -163,7 +163,7 @@ public class EditCommandParserTest {
         String userInput = " " + PREFIX_EMAIL + targetEmail + PHONE_DESC_BOB + TAG_DESC_GOLD
                 + EMAIL_DESC_AMY + REWARD_DESC_AMY + NAME_DESC_AMY + TAG_DESC_MEMBER;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withReward(VALID_REWARD_AMY)
                 .withTags(VALID_TAG_GOLD, VALID_TAG_MEMBER).build();
         EditCommand expectedCommand = new EditCommand(targetEmail, descriptor);
@@ -176,7 +176,7 @@ public class EditCommandParserTest {
         Phone targetPhone = PHONE_FIRST_PERSON;
         String userInput = " " + PREFIX_PHONE + targetPhone + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(PHONE_FIRST_PERSON, descriptor);
 
@@ -188,7 +188,7 @@ public class EditCommandParserTest {
         Email targetEmail = EMAIL_FIRST_PERSON;
         String userInput = " " + PREFIX_EMAIL + targetEmail + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(EMAIL_FIRST_PERSON, descriptor);
 
@@ -200,34 +200,34 @@ public class EditCommandParserTest {
         // name
         Phone targetPhone = PHONE_THIRD_PERSON;
         String userInput = " " + PREFIX_PHONE + targetPhone + NAME_DESC_AMY;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder()
                 .withPhone(targetPhone.value).withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetPhone, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = " " + PREFIX_PHONE + targetPhone + PHONE_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        descriptor = new EditCustomerDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
         expectedCommand = new EditCommand(targetPhone, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = " " + PREFIX_PHONE + targetPhone + EMAIL_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder()
+        descriptor = new EditCustomerDescriptorBuilder()
                 .withPhone(targetPhone.value).withEmail(VALID_EMAIL_AMY).build();
         expectedCommand = new EditCommand(targetPhone, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // reward
         userInput = " " + PREFIX_PHONE + targetPhone + REWARD_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder()
+        descriptor = new EditCustomerDescriptorBuilder()
                 .withPhone(targetPhone.value).withReward(VALID_REWARD_AMY).build();
         expectedCommand = new EditCommand(targetPhone, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = " " + PREFIX_PHONE + targetPhone + TAG_DESC_MEMBER;
-        descriptor = new EditPersonDescriptorBuilder()
+        descriptor = new EditCustomerDescriptorBuilder()
                 .withPhone(targetPhone.value).withTags(VALID_TAG_MEMBER).build();
         expectedCommand = new EditCommand(targetPhone, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -238,34 +238,34 @@ public class EditCommandParserTest {
         // name
         Email targetEmail = EMAIL_THIRD_PERSON;
         String userInput = " " + PREFIX_EMAIL + targetEmail + NAME_DESC_AMY;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder()
                 .withEmail(targetEmail.value).withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetEmail, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = " " + PREFIX_EMAIL + targetEmail + PHONE_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder()
+        descriptor = new EditCustomerDescriptorBuilder()
                 .withEmail(targetEmail.value).withPhone(VALID_PHONE_AMY).build();
         expectedCommand = new EditCommand(targetEmail, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = " " + PREFIX_EMAIL + targetEmail + EMAIL_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
+        descriptor = new EditCustomerDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
         expectedCommand = new EditCommand(targetEmail, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // reward
         userInput = " " + PREFIX_EMAIL + targetEmail + REWARD_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder()
+        descriptor = new EditCustomerDescriptorBuilder()
                 .withEmail(targetEmail.value).withReward(VALID_REWARD_AMY).build();
         expectedCommand = new EditCommand(targetEmail, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = " " + PREFIX_EMAIL + targetEmail + TAG_DESC_MEMBER;
-        descriptor = new EditPersonDescriptorBuilder()
+        descriptor = new EditCustomerDescriptorBuilder()
                 .withEmail(targetEmail.value).withTags(VALID_TAG_MEMBER).build();
         expectedCommand = new EditCommand(targetEmail, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -277,7 +277,7 @@ public class EditCommandParserTest {
         String userInput = " " + PREFIX_PHONE + targetPhone + PHONE_DESC_AMY + REWARD_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_MEMBER + TAG_DESC_GOLD;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder()
                 .withPhone(VALID_PHONE_AMY)
                 .withReward(VALID_REWARD_AMY)
                 .withEmail(VALID_EMAIL_AMY)
@@ -294,7 +294,7 @@ public class EditCommandParserTest {
         String userInput = " " + PREFIX_EMAIL + targetEmail + PHONE_DESC_AMY + REWARD_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_MEMBER + TAG_DESC_GOLD;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder()
                 .withPhone(VALID_PHONE_AMY)
                 .withReward(VALID_REWARD_AMY)
                 .withEmail(VALID_EMAIL_AMY)
@@ -310,7 +310,7 @@ public class EditCommandParserTest {
         Phone targetPhone = PHONE_THIRD_PERSON;
         String userInput = " " + PREFIX_PHONE + targetPhone + TAG_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder()
                 .withPhone(targetPhone.value).withTags().build();
         EditCommand expectedCommand = new EditCommand(targetPhone, descriptor);
 
@@ -322,7 +322,7 @@ public class EditCommandParserTest {
         Email targetEmail = EMAIL_THIRD_PERSON;
         String userInput = " " + PREFIX_EMAIL + targetEmail + TAG_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder()
                 .withEmail(targetEmail.value).withTags().build();
         EditCommand expectedCommand = new EditCommand(targetEmail, descriptor);
 

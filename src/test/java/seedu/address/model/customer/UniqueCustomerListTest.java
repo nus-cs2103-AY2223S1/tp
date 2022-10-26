@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REWARD_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLD;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalCustomers.ALICE;
+import static seedu.address.testutil.TypicalCustomers.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.customer.exceptions.DuplicatePersonException;
 import seedu.address.model.customer.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CustomerBuilder;
 
 public class UniqueCustomerListTest {
 
@@ -42,7 +42,7 @@ public class UniqueCustomerListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCustomerList.add(ALICE);
-        Customer editedAlice = new PersonBuilder(ALICE).withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD)
+        Customer editedAlice = new CustomerBuilder(ALICE).withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD)
                 .build();
         assertTrue(uniqueCustomerList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniqueCustomerListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueCustomerList.add(ALICE);
-        Customer editedAlice = new PersonBuilder(ALICE).withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD)
+        Customer editedAlice = new CustomerBuilder(ALICE).withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD)
                 .build();
         uniqueCustomerList.setPerson(ALICE, editedAlice);
         UniqueCustomerList expectedUniqueCustomerList = new UniqueCustomerList();

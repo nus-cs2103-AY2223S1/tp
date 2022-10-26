@@ -30,9 +30,9 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.MultiSearchPredicate;
 import seedu.address.model.customer.Phone;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.CustomerBuilder;
+import seedu.address.testutil.EditCustomerDescriptorBuilder;
+import seedu.address.testutil.CustomerUtil;
 
 public class AddressBookParserTest {
 
@@ -40,8 +40,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Customer customer = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(customer));
+        Customer customer = new CustomerBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(CustomerUtil.getAddCommand(customer));
         assertEquals(new AddCommand(customer), command);
     }
 
@@ -70,19 +70,19 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_phone_edit() throws Exception {
-        Customer customer = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(customer).build();
+        Customer customer = new CustomerBuilder().build();
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder(customer).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + PREFIX_PHONE + PHONE_FIRST_PERSON + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + PREFIX_PHONE + PHONE_FIRST_PERSON + " " + CustomerUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(PHONE_FIRST_PERSON, descriptor), command);
     }
 
     @Test
     public void parseCommand_pemail_edit() throws Exception {
-        Customer customer = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(customer).build();
+        Customer customer = new CustomerBuilder().build();
+        EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder(customer).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + PREFIX_EMAIL + EMAIL_FIRST_PERSON + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + PREFIX_EMAIL + EMAIL_FIRST_PERSON + " " + CustomerUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(EMAIL_FIRST_PERSON, descriptor), command);
     }
 
