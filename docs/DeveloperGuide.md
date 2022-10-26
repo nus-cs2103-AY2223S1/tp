@@ -535,7 +535,7 @@ Use case ends.
 **Guarantees:**  An attendance is added to the Student.
 
 **MSS**
-1. Tutor adds attendance to student by entering command with module and number of lessons.
+1. Tutor adds attendance to student by entering command with student index, module and number of lessons.
 2. GREWZ adds attendance to student.
 Use case ends.
 
@@ -547,8 +547,34 @@ Use case ends.
     Use case resumes in step 2
 
 **Use case: UC05 - Delete attendance of a Student**
+ 
+**Guarantees:**  An attendance is deleted from the Student.
+ 
+**MSS**
+1. Tutor deletes attendance to student by entering command with student index.
+2. GREWZ deletes the attendance of the student.
 
+**Extensions**
+* 1a. GREWZ detects an error in entered data.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with correct student index and command
+    * Repeat steps until data is correct
+    Use case resumes in step 2
+ 
 **Use case: UC06 - Mark attendance of Student**
+
+**Guarantees:**  An attendance is deleted from the Student.
+
+**MSS**
+1. Tutor marks attendance of student by entering command with student index, lesson number, marked value.
+2. GREWZ marks/unmarks the attendance of the student.
+
+**Extensions**
+* 1a. GREWZ detects an error in entered data or attendancelist is not present
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with correct student index and data
+    * Repeat steps until data is correct
+    Use case resumes in step 2
 
 **Use case: UC07 - Find a Student**
 
