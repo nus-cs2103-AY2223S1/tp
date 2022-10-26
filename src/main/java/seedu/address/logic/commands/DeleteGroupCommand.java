@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_INVALID_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -54,11 +53,7 @@ public class DeleteGroupCommand extends Command {
 
         //the group specified cannot be found
         Group groupToCheck;
-        try {
-            groupToCheck = groupList.get(0);
-        } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_INVALID_GROUP);
-        }
+        groupToCheck = groupList.get(0);
 
         Set<Person> groupMembers = groupToCheck.getMembers();
 
@@ -75,23 +70,26 @@ public class DeleteGroupCommand extends Command {
             model.setPerson(currentPerson, editedPerson);
 
             for (PersonGroup group : editedPerson.getPersonGroups()) {
-                ObservableList<Group> currGroupList = model.getGroupWithName(new GroupName(group.getGroupName()));
-                Group currGroup = currGroupList.get(0);
-
-                Set<Person> editedPersonList = new HashSet<Person>();
-                editedPersonList.addAll(currGroup.getMembers());
-                editedPersonList.remove(currentPerson);
-                editedPersonList.add(editedPerson);
-
-                Group editedGroup = new Group(currGroup.getName(), editedPersonList);
-
-                model.setGroup(currGroup, editedGroup);
+                this.updateExistingGroups(model, currentPerson, editedPerson, group);
             }
         }
 
         model.deleteGroup(groupToCheck);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, groupToCheck));
+    }
+
+    private void updateExistingGroups(Model model, Person currentPerson, Person editedPerson, PersonGroup group) {
+        ObservableList<Group> currGroupList = model.getGroupWithName(new GroupName(group.getGroupName()));
+        Group currGroup = currGroupList.get(0);
+
+        Set<Person> editedPersonList = new HashSet<Person>(currGroup.getMembers());
+        editedPersonList.remove(currentPerson);
+        editedPersonList.add(editedPerson);
+
+        Group editedGroup = new Group(currGroup.getName(), editedPersonList);
+
+        model.setGroup(currGroup, editedGroup);
     }
 
     @Override
