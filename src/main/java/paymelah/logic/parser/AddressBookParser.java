@@ -24,8 +24,8 @@ import paymelah.logic.commands.MarkCommand;
 import paymelah.logic.commands.SortCommand;
 import paymelah.logic.commands.SplitDebtCommand;
 import paymelah.logic.commands.StatementCommand;
-import paymelah.logic.commands.UnmarkCommand;
 import paymelah.logic.commands.UndoCommand;
+import paymelah.logic.commands.UnmarkCommand;
 import paymelah.logic.parser.exceptions.ParseException;
 
 /**
