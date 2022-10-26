@@ -108,13 +108,8 @@ public class MeetingBuilder {
      * Builds a Meeting
      */
     public Meeting build() {
-        try {
-            return new Meeting(this.personsToMeetArray, this.meetingDescription,
-                this.meetingDateAndTime, this.meetingLocation);
-        } catch (ParseException | java.text.ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return new Meeting(this.personsToMeetArray, this.meetingDescription,
+            this.meetingDateAndTime, this.meetingLocation);
     }
 
 }
