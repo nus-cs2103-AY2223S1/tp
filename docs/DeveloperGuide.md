@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -409,8 +409,8 @@ Use case ends.
 **Use case: UC05 - Sort**
 
 **MSS**
-1. User specifies the list to sort and the attribute to sort by
-2. PetCode sorts the specified list in ascending chronological order according to the specified attribute
+1. User specifies the list to sort and the attribute(s) to sort by
+2. PetCode sorts the specified list in ascending chronological order according to the specified attribute(s)
 3. User could <u>list the summary(UC01)</u> to see the outcome 
 
 Use case ends.
@@ -422,8 +422,8 @@ Use case ends.
 
 Use case ends.
 
-  1b. The PetCode detects that the specified attribute does not exist <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;  1b1. PetCode notifies user that the attribute does not exist and sort the list by its default attribute
+  1b. The PetCode detects that the specified attribute(s) does not exist <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;  1b1. PetCode notifies user that the attribute(s) does not exist
 
 Use case ends.
 
@@ -454,6 +454,22 @@ Use case ends.
 **Extensions**
 
 1a. The arguments are empty or invalid.
+
+Use case ends.
+
+**Use case: UC08 - Check for the buyer of an order**
+
+**MSS**
+1. User specifies the order list and the index of the order to be checked.
+2. PetCode searches for the order at the specified index.
+3. PetCode outputs all the buyer of that Order.
+
+Use case ends.
+
+**Extensions**
+
+1a. The index is not a valid index.
+&nbsp;&nbsp;&nbsp;&nbsp;  1a1. PetCode notifies user that the index is invalid.
 
 Use case ends.
 
