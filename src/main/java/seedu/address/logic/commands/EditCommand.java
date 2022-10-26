@@ -29,6 +29,7 @@ import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -66,13 +67,14 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_CLASS_CONFLICT = "There is a conflict between the class timings.";
+    private static final String MESSAGE_MULTIPLE_CLASSES_PER_DAY = "A student cannot have multiple classes per day";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the person in the filtered person list to edit.
+     * @param editPersonDescriptor details to edit the person with.
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -98,11 +100,20 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+
         if (!editPersonDescriptor.hasEmptyClass()) {
+            if (editedPerson.hasMultipleClasses()) {
+                throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
+            }
+            editedPerson.setDisplayClass(editedPerson.getAClass());
             ClassStorage.saveClass(editedPerson, index.getOneBased());
             ClassStorage.removeExistingClass(personToEdit);
         } else if (!personToEdit.hasEmptyClass()) {
             editedPerson.setClass(personToEdit.getAClass());
+            editedPerson.setDisplayClass(personToEdit.getDisplayedClass());
+            if (editedPerson.hasMultipleClasses()) {
+                throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
+            }
             ClassStorage.updatePerson(personToEdit, editedPerson);
         }
 
@@ -113,7 +124,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}.
      * edited with {@code editPersonDescriptor}.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
@@ -130,11 +141,19 @@ public class EditCommand extends Command {
         Money updatedRatesPerClass = editPersonDescriptor.getRatesPerClass().orElse(personToEdit.getRatesPerClass());
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
+        Optional<AdditionalNotes> appendedAdditionalNotes = editPersonDescriptor.getAppendedAdditionalNotes();
+        if (!appendedAdditionalNotes.isEmpty()) {
+            updatedNotes.appendNotes(appendedAdditionalNotes.get());
+        }
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+
+        // Unmodifiable states by the user
+        Mark markStatus = personToEdit.getMarkStatus();
+        Class displayedClass = personToEdit.getDisplayedClass();;
+
         return new Person(updatedName, updatedPhone, updatedNokPhone, updatedEmail, updatedAddress,
                 updatedClassDateTime, updatedMoneyOwed, updatedMoneyPaid, updatedRatesPerClass, updatedNotes,
-                updatedTags);
-
+                updatedTags, markStatus, displayedClass);
     }
 
     @Override
@@ -170,6 +189,7 @@ public class EditCommand extends Command {
         private Money moneyPaid;
         private Money ratesPerClass;
         private AdditionalNotes additionalNotes;
+        private AdditionalNotes appendedAdditionalNotes;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -190,6 +210,7 @@ public class EditCommand extends Command {
             setMoneyPaid(toCopy.moneyPaid);
             setRatesPerClass(toCopy.ratesPerClass);
             setAdditionalNotes(toCopy.additionalNotes);
+            setAppendedAdditionalNotes(toCopy.appendedAdditionalNotes);
             setTags(toCopy.tags);
         }
 
@@ -198,7 +219,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid,
-                    ratesPerClass, additionalNotes, tags);
+                    ratesPerClass, additionalNotes, appendedAdditionalNotes, tags);
         }
 
         public void setName(Name name) {
@@ -285,6 +306,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(additionalNotes);
         }
 
+        public void setAppendedAdditionalNotes(AdditionalNotes appendedAdditionalNotes) {
+            this.appendedAdditionalNotes = appendedAdditionalNotes;
+        }
+
+        public Optional<AdditionalNotes> getAppendedAdditionalNotes() {
+            return Optional.ofNullable(appendedAdditionalNotes);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -336,6 +365,7 @@ public class EditCommand extends Command {
                     && getMoneyPaid().equals(e.getMoneyPaid())
                     && getRatesPerClass().equals(e.getRatesPerClass())
                     && getAdditionalNotes().equals(e.getAdditionalNotes())
+                    && getAppendedAdditionalNotes().equals(e.getAppendedAdditionalNotes())
                     && getTags().equals(e.getTags());
         }
     }

@@ -9,9 +9,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -71,6 +73,28 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code oneBasedIndexes} into a {@code List<Index>} and returns it. Leading and trailing whitespaces
+     * will be trimmed.
+     *
+     * @param oneBasedIndexes One-based Indexes.
+     * @return List of Indexes.
+     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
+        String trimmedIndexes = oneBasedIndexes.trim();
+        String[] indexes = trimmedIndexes.split("\\s+");
+        List<Index> resultIndexes = new ArrayList<>();
+        for (int i = 0; i < indexes.length; i++) {
+            String index = indexes[i];
+            if (!StringUtil.isNonZeroUnsignedInteger(index)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            resultIndexes.add(Index.fromOneBased(Integer.parseInt(index)));
+        }
+        return resultIndexes;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -87,13 +111,13 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Any whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
-        String trimmedPhone = phone.trim();
+        String trimmedPhone = phone.replaceAll("\\s+", "");
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
@@ -195,7 +219,7 @@ public class ParserUtil {
     }
 
     /**
-     * Helper method to parse {@code date} as part of {@code parseClass}.
+     * Helper method to parse {@String date} as part of {@code parseClass}.
      */
     public static LocalDate parseDate(String date) throws ParseException {
         LocalDate result;
@@ -208,7 +232,26 @@ public class ParserUtil {
     }
 
     /**
-     * Helper method to parse {@code time} as part of {@code parseClass}.
+     * Parses a {@String date} and returns LocalDate object.
+     */
+    public static LocalDate parseDateToFind(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (trimmedDate.isBlank()) {
+            throw new ParseException(Class.INVALID_FIND_COMMAND_MESSAGE);
+        }
+        if (Arrays.asList(DAYS_OF_WEEK).contains(trimmedDate.toUpperCase())) {
+            targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(trimmedDate.toUpperCase());
+            return LocalDate.now().with(DATE_ADJUSTER);
+        } else if (trimmedDate.matches(Class.VALIDATION_DATETIME_REGEX)) {
+            return parseDate(trimmedDate);
+        } else {
+            throw new ParseException(Class.INVALID_FIND_COMMAND_MESSAGE);
+        }
+    }
+
+    /**
+     * Helper method to parse {@String time} as part of {@code parseClass}.
      */
     private static LocalTime parseTime(String time) throws ParseException {
         Integer hour = Integer.valueOf(time.substring(0, 2));
