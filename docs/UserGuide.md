@@ -19,7 +19,8 @@ This section aims to help you navigate the user guide.
 
 1. The next subsection [Section 2.2, Tips for reading the User Guide](#22-tips-for-reading-the-user-guide), provides some tips on reading this document.
 2. [Section 3, Quick start](#3-quick-start) has been provided to help you set up **Financial Advisor Planner**.
-3. [Section 4, Features](#4-features) has been provided where the main features and their commands are documented. 
+3. [Section 4, Features](#4-features) has been provided where the main features and their commands are documented.
+4. [Section 7, Glossary](#7-glossary) has been provided where certain terms that are used in this document are defined.
 
 ### 2.2 Tips for reading the User Guide
 
@@ -46,14 +47,14 @@ The following figures show the overall GUI of **Financial Advisor Planner**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `financialadvisorplanner.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-2/tp/releases).
+2. Download the latest `financialadvisorplanner.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your FinancialAdvisorPlanner.
+3. Copy the file to the folder you want to use as the _home folder_ for your FinancialAdvisorPlanner.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -72,7 +73,12 @@ The following figures show the overall GUI of **Financial Advisor Planner**
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#4-features) below for details of each command.
+6. Refer to the [Features](#4-features) below for details of each command.
+
+<br>
+<div markdown="span" class="alert alert-primary">
+            :bulb: **Tip:** Use the `clear` command to delete the sample data when using the application for the first time.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -129,10 +135,13 @@ Adds a client to the list of clients.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0) </div>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** RISK_APPETITE can only have the values ‘High’, ‘Medium’ or ‘Low’
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<br>
+RISK_APPETITE can only have the values ‘High’, ‘Medium’ or ‘Low’
+<br>
+<br>
+<br>
+A client can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -182,7 +191,9 @@ Examples:
 * `find n/ John` returns `john` and `John Doe`
 * `find n/ alex david` returns `Alex Yeoh`, `David Li`
 * `find r/ high` returns `john` and `Alex Yeoh`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+[//]: # (To be updated)
+[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
 #### 4.1.6 Deleting a client : `delete`
 
@@ -209,7 +220,9 @@ Types of `KEYWORD`: `name`, `appt`, `risk`, `income`
 
 * Returns all the contacts sorted by the given `KEYWORD`
 
-  ![result for 'sort name'](images/sortAlphabetResult.png)
+[//]: # (To be updated)
+
+[//]: # (  ![result for 'sort name']&#40;images/sortAlphabetResult.png&#41;)
 
 #### 4.1.8 Clearing all entries : `clear`
 
@@ -223,7 +236,7 @@ Exits the program.
 
 Format: `exit`
  
-### 4.2 Appointment management features
+### 4.2 Appointment command features
 
 #### 4.2.1 Adding an appointment : `aa`
 
@@ -231,10 +244,20 @@ Adds an appointment with inputs DATE_AND_TIME and LOCATION for an existing clien
 
 Format: `aa INDEX d/DATE_AND_TIME l/LOCATION`
 
+Example: `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+
+The appointment details will be added to the specified client's information.
+
+![Add Appointment Calendar Change](images/AddAppointmentContactsChange.png)
+<br>
+Also, the appointment details will be added to the calendar.
+![Add Appointment Contacts Change](images/AddAppointmentCalendarChange.png)
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 DATE_AND_TIME has the format `d-MMM-yyyy hh:mm a` </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE_AND_TIME must be valid in order for the command to be executed.
+<br>
 <br>Each client can have a maximum of 3 appointments, and there cannot be appointments with the same DATE_AND_TIME in the overall list of appointments.
 </div>
 
@@ -294,9 +317,9 @@ FinancialAdvisorPlanner data are saved as a JSON file `[JAR file location]/data/
 If your changes to the data file makes its format invalid, FinancialAdvisorPlanner will discard all data and start with an empty data file at the next run.
 </div>
 
-### 4.5 Future features
+### 4.6 Future features
 
-#### 4.5.1 Archiving data files `[coming in v2.0]`
+#### 4.6.1 Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -330,8 +353,8 @@ Action | Format, Examples
 
 Term | Meaning 
 --------|------------------
-**Command Line Interface (CLI)** | `A CLI is a text-based user interface that allows users to input commands in the form of text.`
-**Graphical User Interface (GUI)** | `A GUI is a graphics-based user interface that allows users to interact with elements such as icons and buttons when running a program.`
-**Command** | `An instruction given by the user that is to be executed.` 
-**Parameter** | `Variables that have been typed by the user that is to be provided to the command to be executed. `
-**Prefix** | `Indicator for a specific parameter to be input during the command. Prefixes end with a slash (/)`
+**Command Line Interface (CLI)** | A CLI is a text-based user interface that allows users to input commands in the form of text.
+**Graphical User Interface (GUI)** | A GUI is a graphics-based user interface that allows users to interact with elements such as icons and buttons when running a program.
+**Command** | An instruction given by the user that is to be executed. 
+**Parameter** | Variables that have been typed by the user that is to be provided to the command to be executed.
+**Prefix** | Indicator for a specific parameter to be input during the command. Prefixes end with a slash (/)
