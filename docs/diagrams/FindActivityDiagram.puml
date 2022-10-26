@@ -9,7 +9,7 @@ if () then ([command is valid])
     :FindXYZCommandParser parses command;
     if () then ([command is valid])
         :FindXYZCommand executes command;
-        :Model updates the list of contacts;
+        :Model updates the list of clients;
     else ([else])
     endif
 else ([else])

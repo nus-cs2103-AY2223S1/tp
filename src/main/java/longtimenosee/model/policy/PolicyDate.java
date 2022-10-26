@@ -1,7 +1,6 @@
 package longtimenosee.model.policy;
 
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
@@ -11,19 +10,20 @@ import longtimenosee.model.person.Person;
 
 
 /**
- * Encapsulation for a client's birthday
+ * Encapsulation for a policy's date
  */
 
 public class PolicyDate {
-    public static final Comparator<Person> BIRTHDAY_COMPARATOR = new Comparator<Person>() {
+    public static final Comparator<Person> POLICY_DATE_COMPARATOR = new Comparator<Person>() {
         @Override
         public int compare(Person p1, Person p2) {
             return p1.getBirthday().getBirthday().compareTo(p2.getBirthday().getBirthday());
         }
     };
     public static final String STANDARD_DATE = "yyyy-MM-dd";
-    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Dates must follow Format: " + STANDARD_DATE;
-    private static final String BIRTHDAY_VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Dates must be between 1900 to 2100 and follow Format: "
+            + STANDARD_DATE;
+    private static final String DATE_VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
 
     public final String value;
 
@@ -35,6 +35,7 @@ public class PolicyDate {
      */
     public PolicyDate(String value) {
         this.value = value;
+
         this.date = parsePolicyDate(value);
     }
 
@@ -53,7 +54,9 @@ public class PolicyDate {
             return false;
         }
         LocalDate verifiedDate = LocalDate.parse(date);
-        return LocalDate.now().isEqual(verifiedDate) || LocalDate.now().isAfter(ChronoLocalDate.from(verifiedDate));
+        LocalDate lowerLimit = LocalDate.of(1900, 1, 1);
+        LocalDate upperLimit = LocalDate.of(2099, 12, 31);
+        return verifiedDate.isAfter(lowerLimit) && verifiedDate.isBefore(upperLimit);
     }
 
     /**
@@ -61,7 +64,7 @@ public class PolicyDate {
      * For regex example for YYYY-MM-DD
      */
     public static boolean isValidFormat(String date) {
-        return date.matches(BIRTHDAY_VALIDATION_REGEX);
+        return date.matches(DATE_VALIDATION_REGEX);
     }
 
     /**

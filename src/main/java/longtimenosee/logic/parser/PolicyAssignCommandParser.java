@@ -7,9 +7,12 @@ import static longtimenosee.logic.parser.CliSyntax.PREFIX_END;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_PREMIUM;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_START;
 
+import java.util.stream.Stream;
+
 import longtimenosee.commons.core.index.Index;
 import longtimenosee.logic.commands.PolicyAssignCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
+import longtimenosee.model.policy.AssignedPolicy;
 import longtimenosee.model.policy.PolicyDate;
 import longtimenosee.model.policy.Premium;
 
@@ -31,21 +34,51 @@ public class PolicyAssignCommandParser implements Parser<PolicyAssignCommand> {
 
         Index personIndex;
         Index policyIndex;
+        PolicyDate startDate;
+        PolicyDate endDate;
+        Premium premium;
 
-        try {
-            String[] test = (argMultimap.getPreamble()).split(" ");
-            personIndex = ParserUtil.parseIndex(argMultimap.getPreamble().split(" ")[0]);
-            policyIndex = ParserUtil.parseIndex(argMultimap.getPreamble().split(" ")[1]);
-        } catch (ParseException pe) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_PREMIUM, PREFIX_START, PREFIX_END)
+                || argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PolicyAssignCommand.MESSAGE_USAGE));
+        }
+        String[] splitString = argMultimap.getPreamble().split(" ");
+        String premiumString = argMultimap.getValue(PREFIX_PREMIUM).get();
+        String startDateString = argMultimap.getValue(PREFIX_START).get();
+        String endDateString = argMultimap.getValue(PREFIX_END).get();
+        if (splitString.length == 2) {
+            personIndex = ParserUtil.parseIndex(splitString[0]);
+            policyIndex = ParserUtil.parseIndex(splitString[1]);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PolicyAssignCommand.MESSAGE_USAGE));
+        }
+        if (Premium.isValidPremium(premiumString)) {
+            premium = new Premium(argMultimap.getValue(PREFIX_PREMIUM).get());
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Premium.MESSAGE_CONSTRAINTS));
+        }
+        if (PolicyDate.isValidDate(startDateString)
+                && PolicyDate.isValidDate(endDateString)) {
+            startDate = new PolicyDate(argMultimap.getValue(PREFIX_START).get());
+            endDate = new PolicyDate(argMultimap.getValue(PREFIX_END).get());
+        } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    PolicyAssignCommand.MESSAGE_USAGE), pe);
+                    PolicyDate.MESSAGE_FORMAT_CONSTRAINTS));
         }
 
-        Premium premium = new Premium(argMultimap.getValue(PREFIX_PREMIUM).get());
-        PolicyDate startDate = new PolicyDate(argMultimap.getValue(PREFIX_START).get());
-        PolicyDate endDate = new PolicyDate(argMultimap.getValue(PREFIX_END).get());
+        if (!AssignedPolicy.isChronological(startDate, endDate)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AssignedPolicy.MESSAGE_DATE_CONSTRAINTS));
+        }
 
         return new PolicyAssignCommand(personIndex, policyIndex, premium, startDate, endDate);
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
 }
