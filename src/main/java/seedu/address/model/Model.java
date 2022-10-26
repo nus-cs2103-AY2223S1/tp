@@ -39,17 +39,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' penny wise file path.
+     * Returns the user prefs' PennyWise file path.
      */
     Path getPennyWiseFilePath();
 
     /**
-     * Sets the user prefs' penny wise file path.
+     * Sets the user prefs' PennyWise file path.
      */
     void setPennyWiseFilePath(Path pennyWiseFilePath);
 
     /**
-     * Replaces penny wise data with the data in {@code pennyWise}.
+     * Replaces PennyWise data with the data in {@code pennyWise}.
      */
     void setPennyWise(ReadOnlyPennyWise pennyWise);
 

@@ -27,6 +27,6 @@ public interface Storage extends PennyWiseStorage, UserPrefsStorage {
     Optional<ReadOnlyPennyWise> readPennyWise() throws DataConversionException, IOException;
 
     @Override
-    void savePennyWise(ReadOnlyPennyWise addressBook) throws IOException;
+    void savePennyWise(ReadOnlyPennyWise pennyWise) throws IOException;
 
 }
