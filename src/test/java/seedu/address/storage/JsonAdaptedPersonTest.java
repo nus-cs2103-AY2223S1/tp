@@ -15,7 +15,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Loan;
-import seedu.address.model.person.LoanHistory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -38,11 +37,9 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
     private static final String VALID_LOAN = BENSON.getLoan().toString();
+    private static final List<JsonAdaptedLoanHistory> VALID_HISTORY = new ArrayList<>();
 
     private final List<Tag> tagList = new ArrayList<>(BENSON.getTags());
-
-    private static final List<JsonAdaptedLoanHistory> VALID_HISTORY= new ArrayList<>();
-
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
