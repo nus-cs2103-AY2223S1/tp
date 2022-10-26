@@ -19,6 +19,7 @@ more effectively than traditional GUI apps.
         * Adding help tag to a student: [`helpstu`](#adding-help-tag-helpstu)
         * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
         * Finding a student: [`findstu`](#finding-a-student-findstu)
+        * Listing all students: [`liststu`](#listing-all-students-liststu)
     * **Question**
         * Adding a question: [`addq`](#adding-a-question--addq)
         * Marking a question as important: [`markq`](#marking-a-question--markq)
@@ -184,6 +185,15 @@ Example:
 * `findstu bob`
 * `findstu john mary`
 
+### Listing all students: `liststu`
+
+Lists all students in the student list.
+
+Format: `liststu`
+
+Example:
+
+* `liststu`
 
 
 ### Adding a question : `addq`
