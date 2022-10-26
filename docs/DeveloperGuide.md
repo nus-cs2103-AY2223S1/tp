@@ -403,7 +403,7 @@ The pie chart view feature displays a pie chart view by categories of spending/i
 * `getExpensePieChartData()`
 * `getIncomePieChartData()`
 
-These operations are exposed in the `Model` interface as `Model#getExpensePieChartData()`, `Model#getIncomePieChartData()` respectively. 
+These operations are exposed in the `Model` interface as `Model#getExpensePieChartData()`, `Model#getIncomePieChartData()` respectively.
 
 The activity diagram below shows the workflow when a user executes the `view` command.
 
@@ -417,7 +417,7 @@ E.g. `view t/e g/c` indicates type expenses and graph category. This shows a pie
 Given below is an example usage scenario and how the pie chart view mechanism behaves at each step.
 ![PieChartViewSequenceDiagram](images/PieChartViewSequenceDiagram.png)
 
-Step 1. The user types in `view t/e g/c` command in the main window. 
+Step 1. The user types in `view t/e g/c` command in the main window.
 
 Step 2. This command is handled by `MainWindow#executeCommand` method, which then calls the `LogicManager#execute` method
 
@@ -731,7 +731,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least 1 entry in the specified list.
 
     1. Test case: `view t/e g/c`<br>
-       Expected: Updated PieChart of expenditures is displayed. Success details shown in the status message. 
+       Expected: Updated PieChart of expenditures is displayed. Success details shown in the status message.
 
     1. Test case: `view t/e`<br>
        Expected: Old Diagram remains shown. Error details shown in the status message.
@@ -752,7 +752,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Status message shows the total expenditure, total income and total balance for the 01-10-2022
 
     1. Other correct summary commands to try: `summary da/x`, `...` (where x is a string that follows the date format)<br>
-       Expected: Similar to previous, but for the specific date `x`.    
+       Expected: Similar to previous, but for the specific date `x`.   
 
     1. Other incorrect delete commands to try: `summary x`, `...` (where x is a string that does not follow the command format)<br>
        Expected: Error details shown in the status message.
