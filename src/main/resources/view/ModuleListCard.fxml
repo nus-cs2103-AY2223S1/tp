@@ -34,7 +34,7 @@
         <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="170"
               prefWidth="200" HBox.hgrow="ALWAYS">
           <Label alignment="CENTER" styleClass="underlined-text"
-                 prefWidth="200" maxWidth="Infinity">
+                 maxWidth="Infinity">
             Tasks
           </Label>
           <padding>
@@ -48,7 +48,7 @@
             <Insets top="0" right="0" bottom="0" left="0" />
           </padding>
           <Label alignment="CENTER" styleClass="underlined-text"
-                 prefWidth="200" maxWidth="Infinity">
+                 maxWidth="Infinity">
             Links
           </Label>
           <FlowPane fx:id="links" />
