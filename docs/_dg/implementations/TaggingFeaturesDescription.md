@@ -12,7 +12,7 @@ Creating, updating and deleting tags will modify the tags within the `UniqueTagL
 Tagging/untagging a `Tag` to an `Item` will add/remove the corresponding `Tag` object to the `Set<Tag>` stored within `Item`.
 
 Given below is an UML diagram of `Tag` and the classes related to it:
-![model_diagram](../../images/BetterModelClassDiagram.png)
+![model_diagram](images/BetterModelClassDiagram.png)
 
 #### Design Considerations
 
