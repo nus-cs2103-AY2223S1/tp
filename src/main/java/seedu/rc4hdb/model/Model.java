@@ -7,12 +7,14 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.resident.exceptions.DuplicateResidentException;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
+import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
@@ -79,7 +81,7 @@ public interface Model {
      * Adds the given resident.
      * {@code resident} must not already exist in the address book.
      */
-    void addResident(Resident resident);
+    void addResident(Resident resident) throws DuplicateResidentException;
 
     /**
      * Replaces the given resident {@code target} with {@code editedResident}.
@@ -114,16 +116,14 @@ public interface Model {
     boolean hasVenue(Venue venue);
 
     /**
-     * Deletes the given venue.
-     * The venue must exist in the venue book.
+     * Deletes the venue corresponding to {@code venueName}. The given venue must exist in the venue book.
      */
-    void deleteVenue(Venue target);
+    void deleteVenue(VenueName venueName);
 
     /**
-     * Adds the given venue.
-     * {@code venue} must not already exist in the venue book.
+     * Adds the given venue. {@code venue} must not already exist in the venue book.
      */
-    void addVenue(Venue venue);
+    void addVenue(Venue venue) throws DuplicateVenueException;
 
     /**
      * Adds a booking to the venue in the list with the name {@code venueName}.
@@ -162,7 +162,7 @@ public interface Model {
     /**
      * Sets the venue corresponding to {@code venueName} to be displayed on {@link seedu.rc4hdb.ui.BookingTableView}.
      */
-    void setObservableBookings(VenueName venueName);
+    void setObservableBookings(VenueName venueName) throws VenueNotFoundException;
 
     /**
      * Returns an observable list of the fields to be shown when invoking {@code show}.
