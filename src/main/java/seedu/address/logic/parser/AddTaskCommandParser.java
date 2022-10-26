@@ -22,6 +22,7 @@ import org.apache.commons.cli.Options;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
+import seedu.address.model.team.Task;
 
 /**
  * Parses input arguments and creates a new AddTaskCommand object
@@ -62,7 +63,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             String[] assignees = cmd.hasOption(FLAG_ASSIGNEE_STR)
                     ? cmd.getOptionValues(FLAG_ASSIGNEE_STR)
                     : new String[]{};
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Task.DATE_FORMAT);
             LocalDateTime deadline = cmd.hasOption(FLAG_DEADLINE_STR)
                     ? LocalDateTime.parse(cmd.getOptionValue(FLAG_DEADLINE_STR), formatter)
                     : null;

@@ -21,6 +21,7 @@ import org.apache.commons.cli.Options;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.team.Task;
 
 /**
  * Parse input arguments and creates a new EditTaskCommand object.
@@ -77,7 +78,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
             }
 
             if (cmd.hasOption(FLAG_DEADLINE_STR)) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Task.DATE_FORMAT);
                 LocalDateTime deadline = LocalDateTime.parse(cmd.getOptionValue(FLAG_DEADLINE_STR), formatter);
                 editTaskDescriptor.setDeadline(deadline);
             }

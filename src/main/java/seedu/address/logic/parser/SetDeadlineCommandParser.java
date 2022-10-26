@@ -8,6 +8,7 @@ import java.time.format.DateTimeParseException;
 
 import seedu.address.logic.commands.SetDeadlineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.team.Task;
 
 /**
  * Parses input arguments and creates a new AddTaskCommand object
@@ -28,7 +29,7 @@ public class SetDeadlineCommandParser implements Parser<SetDeadlineCommand> {
                         SetDeadlineCommand.MESSAGE_USAGE));
             }
             int task = Integer.parseInt(indexes[1]) - 1;
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Task.DATE_FORMAT);
             LocalDateTime deadline = LocalDateTime.parse(indexes[2], formatter);
             return new SetDeadlineCommand(task, deadline);
         } catch (DateTimeParseException | NumberFormatException pe) {
