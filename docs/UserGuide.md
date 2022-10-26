@@ -468,4 +468,3 @@ These prefixes are for you to indicate different fields when you add a new perso
 |       **List**        | `list all`, `list buyer`, `list supplier`, `list delivery`, `list order`, `list pet`                                                                                                                         |
 |       **Sort**        | `sort LIST_PARAMETER, [ATTRIBUTES...]`<br> e.g., `sort pet price height weight`                                                                                                                              |
 |       **Check**       | `check LIST_TYPE INDEX` <br> e.g., `check buyer 1`                                                                                                                                                           |
-                                                                                  
