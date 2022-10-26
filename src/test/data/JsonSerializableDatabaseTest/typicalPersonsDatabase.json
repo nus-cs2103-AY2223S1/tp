@@ -11,6 +11,8 @@
       "address": "123, Jurong West Ave 6, #08-111",
       "leave": "14",
       "leaveLeft": "14",
+      "rating": "3",
+      "performanceHistory": [],
       "tagged": ["friends"],
       "leaveTaken": []
     },
@@ -24,6 +26,8 @@
       "address": "311, Clementi Ave 2, #02-25",
       "leave": "14",
       "leaveLeft": "14",
+      "rating": "3",
+      "performanceHistory": [],
       "tagged": ["owesMoney", "friends"],
       "leaveTaken": []
     },
@@ -37,6 +41,8 @@
       "address": "wall street",
       "leave": "14",
       "leaveLeft": "14",
+      "rating": "3",
+      "performanceHistory": [],
       "tagged": [],
       "leaveTaken": []
     },
@@ -50,6 +56,8 @@
       "address": "10th street",
       "leave": "14",
       "leaveLeft": "14",
+      "rating": "3",
+      "performanceHistory": [],
       "tagged": ["friends"],
       "leaveTaken": []
     },
@@ -63,6 +71,8 @@
       "address": "michegan ave",
       "leave": "14",
       "leaveLeft": "14",
+      "rating": "3",
+      "performanceHistory": [],
       "tagged": [],
       "leaveTaken": []
     },
@@ -76,6 +86,8 @@
       "address": "little tokyo",
       "leave": "14",
       "leaveLeft": "14",
+      "rating": "3",
+      "performanceHistory": [],
       "tagged": [],
       "leaveTaken": []
     },
@@ -89,6 +101,8 @@
       "address": "4th street",
       "leave": "14",
       "leaveLeft": "14",
+      "rating": "3",
+      "performanceHistory": [],
       "tagged": [],
       "leaveTaken": []
     }

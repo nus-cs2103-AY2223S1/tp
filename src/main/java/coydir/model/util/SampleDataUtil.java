@@ -14,6 +14,7 @@ import coydir.model.person.Name;
 import coydir.model.person.Person;
 import coydir.model.person.Phone;
 import coydir.model.person.Position;
+import coydir.model.person.Rating;
 import coydir.model.tag.Tag;
 
 /**
@@ -25,27 +26,27 @@ public class SampleDataUtil {
             new Person(new Name("Alex Yeoh"), new EmployeeId(), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Position("Chief Technology Officer"),
                 new Department("General Management"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"), 14),
+                getTagSet("friends"), 14, new Rating("5")),
             new Person(new Name("Bernice Yu"), new EmployeeId(), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Position("Chief of Staff"),
                 new Department("General Management"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), 14),
+                getTagSet("colleagues", "friends"), 14, new Rating("3")),
             new Person(new Name("Charlotte Oliveiro"), new EmployeeId(), new Phone("93210283"),
                 new Email("charlotte@example.com"), new Position("Chief Executive Officer"),
                 new Department("General Management"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours"), 14),
+                getTagSet("neighbours"), 14, new Rating("3")),
             new Person(new Name("David Li"), new EmployeeId(), new Phone("91031282"),
                 new Email("lidavid@example.com"), new Position("Janitor"),
                 new Department("Administration"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family"), 14),
+                getTagSet("family"), 14, new Rating("3")),
             new Person(new Name("Irfan Ibrahim"), new EmployeeId(), new Phone("92492021"),
                 new Email("irfan@example.com"), new Position("Senior Product Manager"),
                 new Department("Product Management"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates"), 14),
+                getTagSet("classmates"), 14, new Rating("3")),
             new Person(new Name("Roy Balakrishnan"), new EmployeeId(), new Phone("92624417"),
                 new Email("royb@example.com"), new Position("UI/UX Designer"),
                 new Department("Information Technology"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"), 14)
+                getTagSet("colleagues"), 14, new Rating("3"))
         };
     }
 

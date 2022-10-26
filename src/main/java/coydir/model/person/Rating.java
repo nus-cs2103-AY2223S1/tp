@@ -1,0 +1,87 @@
+package coydir.model.person;
+
+import static coydir.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import coydir.logic.parser.exceptions.ParseException;
+
+/**
+ * Represents a Person's rating in the database.
+ * Guarantees: immutable; is valid as declared in {@link #isValidPosition(String)}
+ */
+public class Rating {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Ratings can take any values from 0 - 5, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS_TIMESTAMP = "Invalid Timestamp, please follow dd-MM-yyyy";
+    public static final String VALIDATION_REGEX = "[0-5]";
+    private static final Rating NULL = new Rating();
+    public final LocalDate timestamp;
+    public final String value;
+    private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+    /**
+     * Constructs a {@code Name}.
+     *
+     * @param name A valid name.
+     */
+    public Rating(String rating) {
+        requireNonNull(rating);
+        checkArgument(isValidRating(rating), MESSAGE_CONSTRAINTS);
+        this.value = rating;
+        this.timestamp = LocalDate.now();
+    }
+
+    public Rating(String rating, String timestamp) throws ParseException {
+        checkArgument(isValidRating(rating), MESSAGE_CONSTRAINTS);
+        this.value = rating;
+        try {
+            this.timestamp = LocalDate.parse(timestamp, FORMAT);
+        } catch (DateTimeParseException dtpe) {
+            throw new ParseException(MESSAGE_CONSTRAINTS_TIMESTAMP);
+        }
+    }
+    
+    /**
+     * Bypass input validation, allows actual null values.
+     */
+    public Rating() {
+        this.value = "N/A";
+        this.timestamp = LocalDate.now();
+    }
+
+    public Rating getNullRating() {
+        return Rating.NULL;
+    }
+
+    public LocalDate getTime() {
+        return this.timestamp;
+    }
+
+    /**
+     * Returns true if a given string is a valid rating.
+     */
+    public static boolean isValidRating(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public String toString() {
+        return this.value;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Rating // instanceof handles nulls
+                && this.value.equals(((Rating) other).value)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return this.value.hashCode();
+    }
+}

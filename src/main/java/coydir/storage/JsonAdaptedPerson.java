@@ -15,6 +15,7 @@ import coydir.model.person.Department;
 import coydir.model.person.Email;
 import coydir.model.person.EmployeeId;
 import coydir.model.person.Leave;
+import coydir.model.person.Rating;
 import coydir.model.person.Name;
 import coydir.model.person.Person;
 import coydir.model.person.Phone;
@@ -37,9 +38,11 @@ class JsonAdaptedPerson {
     private final String address;
     private final String leave;
     private final String leaveLeft;
+    private final String rating;
 
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedLeave> leaveTaken = new ArrayList<>();
+    private final List<JsonAdaptedRating> performanceHistory = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -50,7 +53,8 @@ class JsonAdaptedPerson {
             @JsonProperty("position") String position, @JsonProperty("department") String department,
             @JsonProperty("address") String address, @JsonProperty("leave") String leave,
             @JsonProperty("leaveLeft") String leaveLeft, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("leaveTaken") List<JsonAdaptedLeave> leaveTaken) {
+            @JsonProperty("leaveTaken") List<JsonAdaptedLeave> leaveTaken,
+            @JsonProperty("rating") String rating, @JsonProperty("performanceHistory") List<JsonAdaptedRating> performanceHistory) {
         this.name = name;
         this.employeeId = employeeId;
         this.phone = phone;
@@ -65,6 +69,10 @@ class JsonAdaptedPerson {
         this.leaveLeft = leaveLeft;
         if (leaveTaken != null) {
             this.leaveTaken.addAll(leaveTaken);
+        }
+        this.rating = rating;
+        if (performanceHistory != null) {
+            this.performanceHistory.addAll(performanceHistory);
         }
     }
 
@@ -87,6 +95,10 @@ class JsonAdaptedPerson {
         leaveTaken.addAll(source.getLeaves().stream()
                 .map(JsonAdaptedLeave::new)
                 .collect(Collectors.toList()));
+        rating = String.valueOf(source.getRating());
+        performanceHistory.addAll(source.getRatingHistory().stream()
+                .map(JsonAdaptedRating::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -103,6 +115,11 @@ class JsonAdaptedPerson {
         final List<Leave> personLeaves = new ArrayList<>();
         for (JsonAdaptedLeave leave : leaveTaken) {
             personLeaves.add(leave.toModelType());
+        }
+
+        final List<Rating> personRatings = new ArrayList<>();
+        for(JsonAdaptedRating rating : performanceHistory) {
+            personRatings.add(rating.toModelType());
         }
 
         if (name == null) {
@@ -172,15 +189,28 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Leave> modelLeaveTaken = new HashSet<>(personLeaves);
 
+        if (rating == null) {
+            throw new IllegalValueException("FAIL");
+        }
+        final Rating modelRating = new Rating(rating);
+
+        final ArrayList<Rating> modelPerformanceHistory = new ArrayList<>(personRatings);
+
         // Create Person object
         Person p = new Person(modelName, modelEmployeeId, modelPhone, modelEmail,
-                modelPosition, modelDepartment, modelAddress, modelTags, modelLeave);
+                modelPosition, modelDepartment, modelAddress, modelTags, modelLeave,
+                modelRating);
 
         // Add related data
         p.setLeavesLeft(Integer.valueOf(leaveLeft));
         for (Leave l : modelLeaveTaken) {
             p.addLeave(l);
         }
+
+        for (Rating R : modelPerformanceHistory) {
+            p.addRating(R);
+        }
+
         return p;
     }
 

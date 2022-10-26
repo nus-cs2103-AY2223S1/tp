@@ -38,6 +38,8 @@ public class PersonInfo extends UiPart<Region> {
     @FXML
     private Label leaveLeft;
     @FXML
+    private Label performance;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -63,6 +65,7 @@ public class PersonInfo extends UiPart<Region> {
         address.setText("Address:  " + person.getAddress().value);
         totalLeave.setText("Total Leaves: " + person.getTotalNumberOfLeaves());
         leaveLeft.setText("Leaves Left: " + person.getLeavesLeft());
+        performance.setText("Performance: " + person.getRating().value);
         tags.getChildren().clear();
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

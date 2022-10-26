@@ -24,6 +24,7 @@ import coydir.model.person.Name;
 import coydir.model.person.Person;
 import coydir.model.person.Phone;
 import coydir.model.person.Position;
+import coydir.model.person.Rating;
 import coydir.model.tag.Tag;
 
 /**
@@ -58,6 +59,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = new Address().getNullAddress();
         Set<Tag> tagList = new HashSet<>();
         int numberOfLeaves = 14;
+        Rating rating = new Rating().getNullRating();
 
         // Set optional fields individually
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
@@ -78,7 +80,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             numberOfLeaves = Integer.valueOf(ParserUtil.parseId(argMultimap.getValue(PREFIX_LEAVE).get()));
         }
         Person person = new Person(
-                name, employeeId, phone, email, position, department, address, tagList, numberOfLeaves
+                name, employeeId, phone, email, position, department, address, tagList, numberOfLeaves, rating
                 );
 
         return new AddCommand(person);
