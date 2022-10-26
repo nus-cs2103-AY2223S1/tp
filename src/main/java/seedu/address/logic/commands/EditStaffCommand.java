@@ -106,11 +106,11 @@ public class EditStaffCommand extends Command {
 
         Project toFindIn = lastShownList.get(index.getZeroBased());
 
-        if (staffIndex.getZeroBased() >= model.getFilteredStaffList().size()) {
+        if (staffIndex.getZeroBased() >= toFindIn.getStaffList().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
         }
 
-        Staff toEdit = model.getFilteredStaffList().get(staffIndex.getZeroBased());
+        Staff toEdit = toFindIn.getStaffList().getStaff(staffIndex);
         Staff editedStaff = createEditedStaff(toEdit, editStaffDescriptor);
 
         if (!toEdit.isSameStaff(editedStaff) && toFindIn.getStaffList().contains(editedStaff)) {
