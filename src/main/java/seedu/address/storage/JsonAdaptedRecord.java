@@ -16,6 +16,8 @@ import seedu.address.model.record.Medication;
 import seedu.address.model.record.Record;
 import seedu.address.model.tag.Tag;
 
+import static seedu.address.model.util.DateUtil.isValidDateTimeFormat;
+
 /**
  * Jackson-friendly version of {@link Tag}.
  */
@@ -63,7 +65,7 @@ class JsonAdaptedRecord {
             recordMedications.add(med.toModelType());
         }
 
-        if (!Record.isValidDate(recordDate)) {
+        if (!isValidDateTimeFormat(recordDate)) {
             throw new IllegalValueException(Messages.MESSAGE_INVALID_DATE_FORMAT);
         }
 

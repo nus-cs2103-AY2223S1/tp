@@ -20,6 +20,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.record.RecordList;
 import seedu.address.model.tag.Tag;
 
+import static seedu.address.model.util.DateUtil.isValidDateFormat;
+
 /**
  * Jackson-friendly version of {@link Person}.
  */
@@ -109,8 +111,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Birthdate.class.getSimpleName()));
         }
-        if (!Birthdate.isValidBirthdate(birthdate)) {
-            throw new IllegalValueException(Birthdate.MESSAGE_CONSTRAINTS);
+        if (!isValidDateFormat(birthdate)) {
+            throw new IllegalValueException(Birthdate.MESSAGE_INVALID_DATE_FORMAT);
         }
         final Birthdate modelBirthdate = new Birthdate(birthdate);
 
