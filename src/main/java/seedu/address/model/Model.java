@@ -82,6 +82,11 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
+     * Exports the address books to csv
+     */
+    void export();
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);

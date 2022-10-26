@@ -97,6 +97,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void export() {
+        model.export();
+    }
+
+    @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }

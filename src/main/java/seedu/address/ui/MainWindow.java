@@ -213,6 +213,14 @@ public class MainWindow extends UiPart<Stage> {
         pause.play();
     }
 
+    /**
+     * Exports the address books to csv.
+     */
+    @FXML
+    private void handleExport() {
+        logic.export();
+    }
+
     /** Shows the specified entity **/
     private void updateDescription(int index) {
         Model.ListType type = logic.getCurrentListType();
