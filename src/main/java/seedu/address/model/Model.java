@@ -116,6 +116,11 @@ public interface Model {
      * Sort reminders by priority. Reminders with the same priority will be sorted lexicographically by their names.
      */
     void sortReminderByPriority();
+    
+    /**
+     * Sort reminders by deadline. Reminders with the same deadline will be sorted lexicographically by their names.
+     */
+    void sortReminderByDeadline();
 
     /** Returns an unmodifiable view of the filtered reminder list */
     ObservableList<Reminder> getFilteredReminderList();
@@ -212,4 +217,6 @@ public interface Model {
     boolean reminderIsMarked(Reminder reminderToMark);
 
     void unmarkReminder(Reminder reminderToUnmark);
+
+
 }

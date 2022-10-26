@@ -69,6 +69,14 @@ public class UniqueReminderList implements Iterable<Reminder> {
     }
 
     /**
+     * Sorts reminder by deadline in the list. Reminders with the same priority will be sorted lexicographically by
+     * their names.
+     */
+    public void sortRemindersByDeadline() {
+        Collections.sort(internalList);
+    }
+
+    /**
      * Replaces the contents of this list with {@code reminder}.
      * {@code reminders} must not contain duplicate reminder.
      */

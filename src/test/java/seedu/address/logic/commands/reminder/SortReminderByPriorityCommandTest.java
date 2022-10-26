@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class SortReminderCommandTest {
+public class SortReminderByPriorityCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -23,7 +23,7 @@ public class SortReminderCommandTest {
 
     @Test
     public void execute_listIsSorted_showsSameList() {
-        assertCommandSuccess(new SortReminderCommand(), model, SortReminderCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new SortReminderByPriorityCommand(), model, SortReminderByPriorityCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

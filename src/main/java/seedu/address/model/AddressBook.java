@@ -171,6 +171,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         reminders.sortRemindersByPriority();
     }
 
+    public void sortRemindersByDeadline() {
+        reminders.sortRemindersByDeadline();
+    }
+
     public void markReminder(Reminder target) {
         reminders.mark(target);
     }
@@ -319,5 +323,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 
 }
