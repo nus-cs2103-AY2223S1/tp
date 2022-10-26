@@ -130,6 +130,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.events.remove(e);
     }
 
+    public void setEvent(Event target, Event editedEvent) {
+        requireNonNull(editedEvent);
+
+        events.setEvent(target, editedEvent);
+    }
+
     //// util methods
 
     @Override

@@ -28,6 +28,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -90,6 +91,7 @@ public class EditPersonCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateEventPersonReference();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -107,8 +109,9 @@ public class EditPersonCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
+        Uid updatedUid = new Uid(personToEdit.getUid().getUid());
         return new Person(updatedName, updatedPhone, updatedEmail,
-             updatedDob, updatedAddress, updatedTags, updatedGender);
+                updatedDob, updatedAddress, updatedTags, updatedGender, updatedUid);
     }
 
     @Override
