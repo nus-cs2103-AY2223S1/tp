@@ -17,7 +17,7 @@ import seedu.address.model.interest.Interest;
 
 
 /**
- * Parses input arguments and creates a new AddInterestCommand object
+ * Parses input arguments and creates a new DeleteInterestCommand object
  */
 public class DeleteInterestCommandParser implements Parser<DeleteInterestCommand> {
 

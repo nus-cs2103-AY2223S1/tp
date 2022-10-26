@@ -14,7 +14,7 @@ import seedu.address.model.interest.Interest;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a list of interests to the specified person.
+ * Deletes interests from the specified batchmate.
  */
 public class DeleteInterestCommand extends Command {
 
