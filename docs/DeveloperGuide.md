@@ -528,7 +528,27 @@ Use case ends.
 
 **Use case: UC02 - Delete a Student**
 
+**Guarantees:** A student contact is deleted from GREWZ.
+
+**MSS**
+1. Tutor deletes a specific student contact by entering the command along with the index that corresponds to the student.
+2. Student contact is deleted.
+Use case ends
+
 **Use case: UC03 - Edit a Student**
+
+**Guarantees:** Student's details are changed in GREWZ
+
+**MSS**
+1. Tutor edits a specific student contact by entering the command along with the index that corresponds to the student.
+2. Student contact in GREWZ is edited
+Use case ends
+
+**Extension**
+* 1a. GREWZ detects that the index given is invalid
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User re-enters the command with valid index
+    Use case resumes in step 2
 
 **Use case: UC04 - Add attendance to Student**
 
@@ -574,6 +594,23 @@ Use case ends.
     * 1a2. User enters command with student details
     * Repeat steps until data is correct
     Use case resumes in step 2
+
+**Use case: UC09 - Adding a Deadline Task**
+
+**Guarantees:**  A tutor can add a task to the TaskBook along with a given deadline.
+
+**MSS**
+1. Tutor adds task to student by entering command with title, description and deadline.
+2. Task is added to the TaskBook and the deadline is displayed as well.
+   Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in the given date format.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with corrected date format.
+    * Repeat steps until data is correct
+      Use case resumes in step 2
+
 
 *{More to be added}*
 
