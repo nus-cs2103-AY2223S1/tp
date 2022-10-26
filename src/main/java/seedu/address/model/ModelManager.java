@@ -194,7 +194,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void export(){
+    public void export() {
         ExportStudentCsv studentCsv = new ExportStudentCsv(getStudentAddressBookFilePath());
         ExportTutorCsv tutorCsv = new ExportTutorCsv(getTutorAddressBookFilePath());
         ExportTuitionClassCsv tuitionClassCsv = new ExportTuitionClassCsv(getTuitionClassAddressBookFilePath());

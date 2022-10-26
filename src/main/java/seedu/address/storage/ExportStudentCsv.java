@@ -11,14 +11,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SequenceWriter;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 
+import seedu.address.model.person.student.Student;
 
+/**
+ * A class to export {@link Student} to a csv-readable format.
+ */
 public class ExportStudentCsv {
-    private Path filePath;
+    private final Path filePath;
 
     public ExportStudentCsv(Path filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Reads studentAddressBook.json and converts it into .csv.
+     * @throws IOException if unable to write to csv file.
+     */
     public void readJson() throws IOException {
         JsonNode jsonTree = new ObjectMapper().readTree(new File(this.filePath.toUri()));
         CsvMapper csvMapper = new CsvMapper();
@@ -31,7 +39,8 @@ public class ExportStudentCsv {
         for (JsonNode item : list) {
             ArrayList<String> arr = new ArrayList<>();
             item.fields().forEachRemaining(header -> {
-                if (header.getKey().equals("nextOfKin")) {
+                switch (header.getKey()) {
+                case "nextOfKin":
                     header.getValue().elements().forEachRemaining(values -> {
                         if (values.textValue() == null) {
                             arr.add(handleTagged(values));
@@ -39,12 +48,16 @@ public class ExportStudentCsv {
                             arr.add(values.textValue());
                         }
                     });
-                } else if (header.getKey().equals("tagged")) {
+                    break;
+                case "tagged":
                     arr.add((handleTagged(header.getValue())));
-                } else if (header.getKey().equals("tuitionClasses")) {
+                    break;
+                case "tuitionClasses":
                     arr.add(handleTuitionClass(header.getValue()));
-                } else {
+                    break;
+                default:
                     arr.add(header.getValue().textValue());
+                    break;
                 }
             });
             seqW.write(arr);
@@ -52,18 +65,26 @@ public class ExportStudentCsv {
         seqW.close();
     }
 
+    /**
+     * Transforms {@code JsonNode} of tuitionClasses field to a string.
+     * @param fullClassList JsonNode of tuitionClasses that cannot be represented by a string properly.
+     * @return A string representation of an {@code ArrayList} containing the names of the tuitionClass.
+     */
     private String handleTuitionClass(JsonNode fullClassList) {
         ArrayList<String> arr = new ArrayList<>();
-        fullClassList.elements().forEachRemaining(classes -> {
-            classes.fields().forEachRemaining(id -> {
-                        if (id.getKey().equals("name")) {
-                            arr.add(id.getValue().textValue());
-                        }
-                    });
-        });
+        fullClassList.elements().forEachRemaining(classes -> classes.fields().forEachRemaining(id -> {
+            if (id.getKey().equals("name")) {
+                arr.add(id.getValue().textValue());
+            }
+        }));
         return arr.toString();
     }
 
+    /**
+     * Transforms {@code JsonNode} of tagged field to a string.
+     * @param tagged {@code JsonNode} of tagged that cannot be represented by a string properly.
+     * @return A string representation of an {@code ArrayList} containing the tags of a student.
+     */
     private String handleTagged(JsonNode tagged) {
         ArrayList<String> arr = new ArrayList<>();
         tagged.elements().forEachRemaining(values -> arr.add(values.textValue()));
