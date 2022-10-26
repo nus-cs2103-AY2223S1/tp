@@ -94,7 +94,7 @@ public class ModuleUserCommand extends ModuleCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ModuleIndexCommand)) {
+        if (!(other instanceof ModuleUserCommand)) {
             return false;
         }
 

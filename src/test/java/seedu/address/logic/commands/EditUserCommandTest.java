@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_XAVIER;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ZAC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -30,7 +32,11 @@ public class EditUserCommandTest {
 
     @Test
     public void execute_allFieldsSpecified_success() {
-        User editedUser = new UserBuilder().build();
+        User defaultUser = model.getUser();
+
+        UserBuilder userInList = new UserBuilder(defaultUser);
+        User editedUser = userInList.withName(VALID_NAME_BOB).withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB)
+                .withPhone(VALID_PHONE_BOB).withGithub(VALID_GITHUB_BOB).build();
         EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedUser).build();
         EditUserCommand editCommand = new EditUserCommand(descriptor);
 
