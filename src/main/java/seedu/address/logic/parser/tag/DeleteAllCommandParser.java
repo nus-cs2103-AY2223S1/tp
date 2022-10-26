@@ -1,10 +1,12 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.tag;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.List;
 
-import seedu.address.logic.commands.DeleteAllCommand;
+import seedu.address.logic.commands.tag.DeleteAllCommand;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -24,7 +26,7 @@ public class DeleteAllCommandParser implements Parser<DeleteAllCommand> {
         String trimmedArgs = args.trim();
         List<String> tags = List.of(trimmedArgs.split(" "));
 
-        if (tags.isEmpty()) {
+        if (tags.size() == 1 && tags.get(0).equals("")) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAllCommand.MESSAGE_USAGE));
         }

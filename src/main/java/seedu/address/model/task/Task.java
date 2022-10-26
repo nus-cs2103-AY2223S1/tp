@@ -130,6 +130,14 @@ public class Task {
         return this.deadline.compareTo(deadline) <= 0;
     }
 
+    public boolean containTag(Tag tag) {
+        return tags.contains(tag);
+    }
+
+    public int getTagSize() {
+        return tags.size();
+    }
+
     /**
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.

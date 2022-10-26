@@ -1,26 +1,24 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
+
+import static seedu.address.logic.commands.tag.DeleteTagCommand.createEditedPerson;
+import static seedu.address.logic.commands.tag.DeleteTagCommand.createEditedTask;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EditPersonDescriptor;
+import seedu.address.logic.commands.EditTaskDescriptor;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Id;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
@@ -58,48 +56,15 @@ public class DeleteAllCommand extends Command {
         this.taskPredicate = new TaskContainsKeywordsPredicate(tagsToDelete);
     }
 
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
-
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
-        Set<Tag> newTags = editPersonDescriptor.getTags().orElse(new HashSet<>());
-        Set<Tag> updatedTags = new HashSet<>();
-        updatedTags.addAll(personToEdit.getTags());
-        if (newTags.size() > 0) {
-            updatedTags.removeAll(newTags);
+    private Task removeTags(Model model, Task task) {
+        for (Tag tag : tagsToDelete) {
+            if(task.containTag(tag)) {
+                model.decreaseTagCount(tag);
+            }
         }
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
-    }
-
-    /**
-     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
-     * edited with {@code editTaskDescriptor}.
-     */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
-        assert taskToEdit != null;
-
-        Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getStatus());
-        Set<Tag> newTags = editTaskDescriptor.getTags().orElse(new HashSet<>());
-        Set<Tag> updatedTags = new HashSet<>();
-        updatedTags.addAll(taskToEdit.getTags());
-        if (newTags.size() > 0) {
-            updatedTags.removeAll(newTags);
-        }
-        // Id cannot be updated
-        Id id = taskToEdit.getId();
-
-        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedTags, id);
+        EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
+        editTaskDescriptor.setTags(tagsToDelete);
+        return createEditedTask(task, editTaskDescriptor);
     }
 
     private String deleteAndUpdateTasks(Model model) {
@@ -109,12 +74,10 @@ public class DeleteAllCommand extends Command {
                 .collect(Collectors.toList());
         StringBuilder sb = new StringBuilder();
         for (Task task : tasksToBeDeleted) {
-            boolean isTagSizeGreaterThanOne = task.getTags().size() > 1;
+            boolean isTagSizeGreaterThanOne = task.getTagSize() > 1;
             if (isTagSizeGreaterThanOne) {
-                EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
-                editTaskDescriptor.setTags(tagsToDelete);
-                Task editedTask = createEditedTask(task, editTaskDescriptor);
-                boolean isTagSizeNonEmpty = !editedTask.getTags().isEmpty();
+                Task editedTask = removeTags(model, task);
+                boolean isTagSizeNonEmpty = !(editedTask.getTagSize() == 0);
                 if (isTagSizeNonEmpty) {
                     model.setTask(task, editedTask);
                     continue;
@@ -127,6 +90,17 @@ public class DeleteAllCommand extends Command {
         return sb.toString();
     }
 
+    private Person removeTags(Model model, Person person) {
+        for (Tag tag : tagsToDelete) {
+            if(person.containTag(tag)) {
+                model.decreaseTagCount(tag);
+            }
+        }
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        editPersonDescriptor.setTags(tagsToDelete);
+        return createEditedPerson(person, editPersonDescriptor);
+    }
+
     private String deleteAndUpdatePersons(Model model) {
         List<Person> lastShownPersonList = model.getFilteredPersonList();
         List<Person> personsWithTag = lastShownPersonList.stream()
@@ -134,12 +108,10 @@ public class DeleteAllCommand extends Command {
                 .collect(Collectors.toList());
         StringBuilder sb = new StringBuilder();
         for (Person person : personsWithTag) {
-            boolean isTagSizeGreaterThanOne = person.getTags().size() > 1;
+            boolean isTagSizeGreaterThanOne = person.getTagsSize() > 1;
+            Person editedPerson = removeTags(model, person);
             if (isTagSizeGreaterThanOne) {
-                EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-                editPersonDescriptor.setTags(tagsToDelete);
-                Person editedPerson = createEditedPerson(person, editPersonDescriptor);
-                boolean isTagSizeNonEmpty = !editedPerson.getTags().isEmpty();
+                boolean isTagSizeNonEmpty = !(editedPerson.getTagsSize() == 0);
                 if (isTagSizeNonEmpty) {
                     model.setPerson(person, editedPerson);
                     continue;
@@ -152,12 +124,20 @@ public class DeleteAllCommand extends Command {
         return sb.toString();
     }
 
+    private void updateTagList(Model model) {
+        for (Tag toDelete: tagsToDelete) {
+            model.decreaseTagCount(toDelete);
+        }
+    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
         String deletedTasksMessage = deleteAndUpdateTasks(model);
         String deletedPersonsMessage = deleteAndUpdatePersons(model);
+        updateTagList(model);
+        model.commitAddressBook();
 
         return new CommandResult(deletedPersonsMessage + deletedTasksMessage);
     }
