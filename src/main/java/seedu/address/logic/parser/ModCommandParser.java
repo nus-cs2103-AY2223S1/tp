@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ModAddCommand;
 import seedu.address.logic.commands.ModCommand;
 import seedu.address.logic.commands.ModDeleteCommand;
 import seedu.address.logic.commands.ModFindCommand;
+import seedu.address.logic.commands.ModMarkAllCommand;
 import seedu.address.logic.commands.ModMarkCommand;
 import seedu.address.logic.commands.ModUnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -67,12 +68,12 @@ public class ModCommandParser implements Parser<ModCommand> {
             return parseAddCommand(arguments);
         case ModDeleteCommand.COMMAND_WORD:
             return parseDeleteCommand(arguments);
-        case ModFindCommand.COMMAND_WORD:
-            return parseFindCommand(arguments);
         case ModMarkCommand.COMMAND_WORD:
             return parseMarkCommand(arguments);
         case ModUnmarkCommand.COMMAND_WORD:
             return parseUnmarkCommand(arguments);
+        case ModFindCommand.COMMAND_WORD:
+            return parseFindCommand(arguments);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModCommand.MESSAGE_USAGE));
         }
@@ -116,6 +117,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         String indexFromCommand = getIndexFromCommand(trimmedArgs);
         Set<String> modsFromCommand = getModsFromCommand(trimmedArgs);
         Optional<ObservableList<Mod>> mods = parseMods(modsFromCommand);
+
         if (mods.isEmpty()) {
             throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
         }
@@ -128,55 +130,37 @@ public class ModCommandParser implements Parser<ModCommand> {
         return new ModDeleteCommand(index, mods.get());
     }
 
-    private ModFindCommand parseFindCommand(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
-        }
-
-        String[] keywords = trimmedArgs.split("\\s+");
-        boolean isTaken = keywords[0].equalsIgnoreCase(MOD_TAKEN_COMMAND_WORD);
-        boolean isTaking = keywords[0].equalsIgnoreCase(MOD_TAKING_COMMAND_WORD);
-        String[] keywordsWithoutFirstElement = Arrays.copyOfRange(keywords, 1, keywords.length);
-
-        if ((isTaken || isTaking) && keywordsWithoutFirstElement.length == 0) {
-            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
-        }
-
-        if (isTaken) {
-            return new ModFindCommand(
-                    new ModTakenContainsKeywordsPredicate(Arrays.asList(keywordsWithoutFirstElement)));
-        } else if (isTaking) {
-            return new ModFindCommand(
-                    new ModTakingContainsKeywordsPredicate(Arrays.asList(keywordsWithoutFirstElement)));
-        } else {
-            return new ModFindCommand(new ModContainsKeywordsPredicate(Arrays.asList(keywords)));
-        }
-    }
-
     /**
-     * Parses a mod mark command from user to construct a ModMarkCommand for execution.
+     * Parses a mod mark command from user to construct a ModMarkAllCommand or ModMarkCommand for execution.
      *
      * @param args Arguments from user input.
-     * @return A ModMarkCommand for execution.
+     * @return A ModCommand for execution, depending on if it is ModMarkAllCommand or ModMarkCommand.
      * @throws ParseException If there is a parse error.
      */
-    private ModMarkCommand parseMarkCommand(String args) throws ParseException {
+    private ModCommand parseMarkCommand(String args) throws ParseException {
         Index index;
         String trimmedArgs = args.trim();
-        String indexFromCommand = getIndexFromCommand(trimmedArgs);
+        String indexOrAll = getModMarkIndexOrAll(trimmedArgs);
         Set<String> modsFromCommand = getModsFromCommand(trimmedArgs);
         Optional<ObservableList<Mod>> mods = parseMods(modsFromCommand);
+
         if (mods.isEmpty()) {
             throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
+
+        } else if (indexOrAll.equals("all")) {
+            return new ModMarkAllCommand(mods.get());
+
+        } else {
+            try {
+                index = ParserUtil.parseIndex(indexOrAll);
+            } catch (ParseException pe) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE),
+                        pe);
+            }
+            return new ModMarkCommand(index, mods.get());
         }
 
-        try {
-            index = ParserUtil.parseIndex(indexFromCommand);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE), pe);
-        }
-        return new ModMarkCommand(index, mods.get());
     }
 
     /**
@@ -202,6 +186,39 @@ public class ModCommandParser implements Parser<ModCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE), pe);
         }
         return new ModUnmarkCommand(index, mods.get());
+    }
+
+    /**
+     * Parses a mod find command from user to construct a ModFindCommand for execution.
+     *
+     * @param args Arguments from user input.
+     * @return A ModFindCommand for execution.
+     * @throws ParseException If there is a parse error.
+     */
+    private ModFindCommand parseFindCommand(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
+        }
+
+        String[] keywords = trimmedArgs.split("\\s+");
+        boolean isTaken = keywords[0].equalsIgnoreCase(MOD_TAKEN_COMMAND_WORD);
+        boolean isTaking = keywords[0].equalsIgnoreCase(MOD_TAKING_COMMAND_WORD);
+        String[] keywordsWithoutFirstElement = Arrays.copyOfRange(keywords, 1, keywords.length);
+
+        if ((isTaken || isTaking) && keywordsWithoutFirstElement.length == 0) {
+            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
+        }
+
+        if (isTaken) {
+            return new ModFindCommand(
+                    new ModTakenContainsKeywordsPredicate(Arrays.asList(keywordsWithoutFirstElement)));
+        } else if (isTaking) {
+            return new ModFindCommand(
+                    new ModTakingContainsKeywordsPredicate(Arrays.asList(keywordsWithoutFirstElement)));
+        } else {
+            return new ModFindCommand(new ModContainsKeywordsPredicate(Arrays.asList(keywords)));
+        }
     }
 
     /**
@@ -235,6 +252,29 @@ public class ModCommandParser implements Parser<ModCommand> {
             throw new ParseException(ModCommand.MESSAGE_INDEX_EMPTY);
         }
         return index;
+    }
+
+    /**
+     * Extracts out the word after mod mark, which could be the index of the person or "all".
+     *
+     * @param args The user command.
+     * @return The index of the person in String or the word "all".
+     */
+    private String getModMarkIndexOrAll(String args) throws ParseException {
+        String[] splittedArgs = args.split(" ");
+        String indexOrAll = splittedArgs[0].trim();
+        boolean isAll = indexOrAll.equals("all");
+
+        if (isAll) {
+            // Checks if the word is "all". If yes, the word "all" will be returned.
+        } else {
+            // Checks if the word is an index. If yes, the index will be returned. Otherwise, throw an error.
+            final Matcher matcher = INDEX_FORMAT.matcher(indexOrAll);
+            if (!matcher.matches()) {
+                throw new ParseException(ModCommand.MESSAGE_INDEX_EMPTY);
+            }
+        }
+        return indexOrAll;
     }
 
     /**
