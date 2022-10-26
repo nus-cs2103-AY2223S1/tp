@@ -1,12 +1,15 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,7 +18,12 @@ import seedu.address.model.person.Person;
 public class PersonProfile extends UiPart<Region> {
     public static final String EMPTY_DISPLAY_VALUE = "-";
     private static final String FXML = "PersonProfile.fxml";
-
+    private static final String FILE_EXISTS = "Client Information";
+    private static final String NO_FILE_EXISTS = "No File Exists";
+    private static final String VALID_BUTTON_BGCOLOUR =
+            "-fx-background-color: -fx-background-color: #1d1d1d;";
+    private static final String INVALID_BUTTON_BGCOLOUR =
+            "-fx-background-color: derive(red, 30%);";
     public final Person person;
 
     /**
@@ -44,6 +52,10 @@ public class PersonProfile extends UiPart<Region> {
     private Label netWorth;
     @FXML
     private FlowPane meetingTimes;
+    @FXML
+    private Button personFileButton;
+    @FXML
+    private Label buttonErrorMessage;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -65,8 +77,41 @@ public class PersonProfile extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
-    private String getDisplayValue() {
-        return "";
+    /**
+     * Opens pdf file stored in person object.
+     */
+    @FXML
+    private void openPersonFile() {
+        try {
+            FileUtil.openPdfFile(person.getFilePath().toString());
+            showValidFilePathButton();
+            if (buttonErrorMessage.isManaged()) {
+                hideButtonErrorMessage();
+            }
+        }
+        catch (IOException e) {
+            showInvalidFilePathButton();
+            showButtonErrorMessage(e);
+        }
+    }
+
+    private void showValidFilePathButton() {
+        personFileButton.setStyle(VALID_BUTTON_BGCOLOUR);
+        personFileButton.setText(FILE_EXISTS);
+    }
+
+    private void showInvalidFilePathButton() {
+        personFileButton.setStyle(INVALID_BUTTON_BGCOLOUR);
+        personFileButton.setText(NO_FILE_EXISTS);
+    }
+
+    private void hideButtonErrorMessage() {
+        buttonErrorMessage.setManaged(false);
+    }
+
+    private void showButtonErrorMessage(IOException e) {
+        buttonErrorMessage.setText("Error: " + e.getMessage());
+        buttonErrorMessage.setManaged(true);
     }
 
     @Override

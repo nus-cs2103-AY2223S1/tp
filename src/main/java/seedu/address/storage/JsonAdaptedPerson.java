@@ -148,9 +148,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, FilePath.class.getSimpleName()));
         }
-        if (!FilePath.isValidFilePath(filePath)) {
-            throw new IllegalValueException(FilePath.MESSAGE_CONSTRAINTS);
-        }
+
         final FilePath modelFilePath = new FilePath(filePath);
 
         if (description == null) {

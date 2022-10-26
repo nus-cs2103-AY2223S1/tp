@@ -8,6 +8,8 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import seedu.address.model.person.FilePath;
+
 /**
  * Writes and reads files
  */
@@ -109,9 +111,9 @@ public class FileUtil {
      * @param filePath relative or absolute file path to PDF file
      * @return whether the PDF file exists in the file path
      */
-    public static boolean checkPdfFilePath(String filePath) {
-        File pdfFile = new File(filePath);
-        return pdfFile.exists();
+    public static boolean checkValidPdfFilePath(FilePath filePath) {
+        String path = filePath.value;
+        File pdfFile = new File(path);
+        return pdfFile.exists() && path.matches(FilePath.VALIDATION_REGEX);
     }
-
 }
