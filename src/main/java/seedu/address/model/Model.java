@@ -52,10 +52,17 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    ReadOnlyAddressBook getArchivedAddressBook();
+
     /**
      * Returns true if a task with the same identity as {@code task} exists in the address book.
      */
     boolean hasPerson(Task task);
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the archived task book.
+     */
+    boolean hasTaskInArchives(Task task);
 
     /**
      * Deletes the given task.
@@ -69,6 +76,8 @@ public interface Model {
      */
     void addPerson(Task task);
 
+    void archivedTask(Task task);
+
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the address book.
@@ -79,11 +88,22 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredPersonList();
 
+    ObservableList<Task> getArchivedTaskList();
+
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
 
     void updateFilteredPersonList(Predicate<Task> predicate);
+
+    void setArchivedTaskBook (ReadOnlyAddressBook addressBook);
+
+    void setArchivedTaskBookFilePath(Path archivedTaskBookFilePath);
+
+    /**
+     * @return archived task list to be printed in CommandResult.
+     */
+    String getArchivedTasks();
 
 }

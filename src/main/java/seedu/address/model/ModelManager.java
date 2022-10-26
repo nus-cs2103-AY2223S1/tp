@@ -22,22 +22,25 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final ArchivedTaskBook archivedTaskBook;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyAddressBook archivedTaskBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, archivedTaskBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook +
+                "Archived Task Book: " + archivedTaskBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.archivedTaskBook = new ArchivedTaskBook(archivedTaskBook);
         filteredTasks = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -75,6 +78,12 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public void setArchivedTaskBookFilePath(Path archivedTaskBookFilePath) {
+        requireNonNull(archivedTaskBookFilePath);
+       userPrefs.setArchivedTaskBookFilePath(archivedTaskBookFilePath);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -88,9 +97,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyAddressBook getArchivedAddressBook() {
+        return archivedTaskBook;
+    }
+
+    @Override
     public boolean hasPerson(Task task) {
         requireNonNull(task);
         return addressBook.hasPerson(task);
+    }
+
+    @Override
+    public boolean hasTaskInArchives(Task task) {
+        requireAllNonNull(task);
+        return archivedTaskBook.hasTask(task);
     }
 
     @Override
@@ -102,6 +122,12 @@ public class ModelManager implements Model {
     public void addPerson(Task task) {
         addressBook.addPerson(task);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void archivedTask(Task task) {
+        addressBook.removePerson(task);
+        archivedTaskBook.addTask(task);
     }
 
     @Override
@@ -123,9 +149,24 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Task> getArchivedTaskList() {
+        return archivedTaskBook.getPersonList();
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void setArchivedTaskBook(ReadOnlyAddressBook addressBook) {
+        this.archivedTaskBook.resetData(addressBook);
+    }
+
+    @Override
+    public String getArchivedTasks() {
+        return archivedTaskBook.toString();
     }
 
     @Override
@@ -144,6 +185,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
+                && archivedTaskBook.equals(other.archivedTaskBook)
                 && filteredTasks.equals(other.filteredTasks);
     }
 

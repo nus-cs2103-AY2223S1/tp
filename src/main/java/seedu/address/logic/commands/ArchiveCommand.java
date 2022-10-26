@@ -17,10 +17,10 @@ import static java.util.Objects.requireNonNull;
 
 public class ArchiveCommand extends Command{
 
-    public final String COMMAND_WORD = "archive";
+    public static final String COMMAND_WORD = "archive";
     private final Index index;
 
-    public final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": archives the task identified by the index number used in the displayed task list.\n"
             + "parameters:\n"
             + "1. INDEX (must be a positive integer)\n"
@@ -31,23 +31,15 @@ public class ArchiveCommand extends Command{
 
     public static final String MESSAGE_ARCHIVED_TASK_SUCCESS = "Task archived!\n" + "Task: %1$s";
 
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the archives. Removing task.";
+
 
     public ArchiveCommand (Index index) {
         requireNonNull(index);
         this.index = index;
     }
 
-    public Task createArchivedTask(Task taskToArchive) {
-        assert taskToArchive != null;
 
-        Name currName = taskToArchive.getName();
-        Module currModule = taskToArchive.getModule();
-        Deadline currDeadLine = taskToArchive.getDeadline();
-        Set<Tag> currTag = taskToArchive.getTags();
-        Boolean isDone = taskToArchive.isDone();
-
-        return new Task(currName, currModule, currDeadLine, currTag, isDone, true);
-    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -60,10 +52,13 @@ public class ArchiveCommand extends Command{
         }
 
         Task taskToArchive = lastShownList.get(index.getZeroBased());
-        Task archivedTask = createArchivedTask(taskToArchive);
 
-        model.setTask(taskToArchive, archivedTask);
+        if (model.hasTaskInArchives(taskToArchive)) {
+            model.deletePerson(taskToArchive);
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
 
+        model.archivedTask(taskToArchive);
         return new CommandResult(String.format(MESSAGE_ARCHIVED_TASK_SUCCESS, taskToArchive));
     }
 

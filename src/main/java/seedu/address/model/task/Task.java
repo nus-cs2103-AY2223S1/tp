@@ -20,28 +20,27 @@ public class Task {
     private final Deadline deadline;
     private final Set<Tag> tags = new HashSet<>();
     private final boolean isDone;
-    private final boolean isArchived;
 
     /**
      * A convenience constructor for the {@code Task} class.
      * Every field must be present and not null.
      */
     public Task(Name name, Module module, Deadline deadline, Set<Tag> tags) {
-        this(name, module, deadline, tags, false, false);
+        this(name, module, deadline, tags, false );
     }
 
     /**
      * Constructor for the {@code Task} class.
      * Every field must be present and not null.
      */
-    public Task(Name name, Module module, Deadline deadline, Set<Tag> tags, boolean isDone, boolean isArchived) {
+    public Task(Name name, Module module, Deadline deadline, Set<Tag> tags, boolean isDone) {
         requireAllNonNull(name, module, deadline, tags);
         this.name = name;
         this.module = module;
         this.deadline = deadline;
         this.tags.addAll(tags);
         this.isDone = isDone;
-        this.isArchived = isArchived;
+
     }
 
     public Name getName() {
@@ -68,9 +67,7 @@ public class Task {
         return isDone;
     }
 
-    public Boolean isArchived() {
-        return isArchived;
-    }
+
 
     /**
      * Returns true if both tasks have the same name and module.

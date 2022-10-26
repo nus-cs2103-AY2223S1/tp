@@ -5,10 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.List;
 
-import seedu.address.logic.commands.list.ListAllCommand;
-import seedu.address.logic.commands.list.ListCommand;
-import seedu.address.logic.commands.list.ListModuleCommand;
-import seedu.address.logic.commands.list.ListUnmarkedCommand;
+import seedu.address.logic.commands.list.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.ModuleContainsKeywordsPredicate;
 import seedu.address.model.task.ModuleIsDonePredicate;
@@ -39,6 +36,8 @@ public class ListCommandParser implements Parser<ListCommand> {
             return new ListModuleCommand(new ModuleContainsKeywordsPredicate(List.of(listTypes[1])));
         case ListUnmarkedCommand.COMMAND_WORD:
             return new ListUnmarkedCommand(new ModuleIsDonePredicate(List.of("false")));
+        case ListArchiveCommand.COMMAND_WORD:
+            return new ListArchiveCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

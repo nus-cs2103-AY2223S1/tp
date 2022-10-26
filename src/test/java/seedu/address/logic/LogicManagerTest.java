@@ -27,9 +27,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.StorageManager;
+import seedu.address.storage.*;
 import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
@@ -46,7 +44,9 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonArchivedTaskBookStorage archivedTaskBookStorage =
+                new JsonArchivedTaskBookStorage(temporaryFolder.resolve("archivedTaskBook.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, archivedTaskBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -75,7 +75,9 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonArchivedTaskBookStorage archivedTaskBookStorage =
+                new JsonArchivedTaskBookStorage(temporaryFolder.resolve("archivedTaskBook.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, archivedTaskBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

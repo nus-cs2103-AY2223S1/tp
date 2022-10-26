@@ -23,7 +23,9 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.ArchivedTaskBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonArchivedTaskBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -57,7 +59,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ArchivedTaskBookStorage archivedTaskBookStorage = new JsonArchivedTaskBookStorage(userPrefs.getArchivedTaskBookFilePath());
+        storage = new StorageManager(addressBookStorage, archivedTaskBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -75,7 +78,9 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyAddressBook> archivedTaskBookOptional;
         ReadOnlyAddressBook initialData;
+        ReadOnlyAddressBook initialArchivedData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -90,7 +95,22 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        //storage and data for archived tasks
+        try {
+            archivedTaskBookOptional = storage.readArchivedTaskBook();
+            if (!archivedTaskBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample task list");
+            }
+            initialArchivedData = archivedTaskBookOptional.orElseGet(SampleDataUtil::getSampleArchivedTaskBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty task list");
+            initialArchivedData = new AddressBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty task list");
+            initialArchivedData = new AddressBook();
+        }
+
+        return new ModelManager(initialData, initialArchivedData, userPrefs);
     }
 
     private void initLogging(Config config) {

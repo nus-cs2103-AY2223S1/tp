@@ -63,9 +63,8 @@ public class MarkCommand extends Command {
         Module updatedModule = taskToMark.getModule();
         Deadline updatedDeadline = taskToMark.getDeadline();
         Set<Tag> updatedTags = taskToMark.getTags();
-        Boolean currIsArchived = taskToMark.isArchived();
 
-        return new Task(updatedName, updatedModule, updatedDeadline, updatedTags, true, currIsArchived);
+        return new Task(updatedName, updatedModule, updatedDeadline, updatedTags, true);
     }
 
     @Override
