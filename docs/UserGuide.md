@@ -4,11 +4,11 @@ title: User Guide
 ---
 # Waddle User Guide 🦆
 Waddle is a **simple, no-frills travel planning application catered to people who love doing everything on their keyboards**. Waddle allows users to plan their travels in **3 simple steps**.
-1. Create a trip
-2. Add activities
-3. Schedule
+1. Create a trip itinerary
+2. Add activities to your itinerary
+3. Make a schedule for your trip
 
-**That simple**.
+**It's that simple**.
 
 * Table of Contents
 {:toc}
@@ -29,9 +29,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all itineraries.
-
-   * **`add`**`add n/My Japan Trip` : Adds an itinerary named "My Japan Trip".
+   * **`add n/'Japan Trip' c/Japan s/04-04-2023 du/14`** : Adds an itinerary for a 14-day trip to Japan named "Japan Trip".
 
    * **`delete`**`1` : Deletes the 1st itinerary shown in the current list.
 
