@@ -1,9 +1,9 @@
 package gim.storage;
 
 import static gim.testutil.Assert.assertThrows;
-import static gim.testutil.TypicalExercises.ALICE;
-import static gim.testutil.TypicalExercises.HOON;
-import static gim.testutil.TypicalExercises.IDA;
+import static gim.testutil.TypicalExercises.ABDUCTION;
+import static gim.testutil.TypicalExercises.HIP_THRUSTS;
+import static gim.testutil.TypicalExercises.INCHWORM;
 import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -74,14 +74,14 @@ public class JsonExerciseTrackerStorageTest {
         assertEquals(original, new ExerciseTracker(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addExercise(HOON);
-        original.removeExercise(ALICE);
+        original.addExercise(HIP_THRUSTS);
+        original.removeExercise(ABDUCTION);
         jsonExerciseTrackerStorage.saveExerciseTracker(original, filePath);
         readBack = jsonExerciseTrackerStorage.readExerciseTracker(filePath).get();
         assertEquals(original, new ExerciseTracker(readBack));
 
         // Save and read without specifying file path
-        original.addExercise(IDA);
+        original.addExercise(INCHWORM);
         jsonExerciseTrackerStorage.saveExerciseTracker(original); // file path not specified
         readBack = jsonExerciseTrackerStorage.readExerciseTracker().get(); // file path not specified
         assertEquals(original, new ExerciseTracker(readBack));

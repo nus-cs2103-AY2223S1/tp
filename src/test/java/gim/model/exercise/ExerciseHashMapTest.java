@@ -3,9 +3,9 @@ package gim.model.exercise;
 import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.testutil.Assert.assertThrows;
-import static gim.testutil.TypicalExercises.ALICE;
-import static gim.testutil.TypicalExercises.BENSON;
-import static gim.testutil.TypicalExercises.CARL;
+import static gim.testutil.TypicalExercises.ABDUCTION;
+import static gim.testutil.TypicalExercises.BICEP_CURLS;
+import static gim.testutil.TypicalExercises.CALF_RAISES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,19 +29,19 @@ public class ExerciseHashMapTest {
 
     @Test
     public void contains_exerciseNotInHashMap_returnsFalse() {
-        assertFalse(exerciseHashMap.contains(ALICE));
+        assertFalse(exerciseHashMap.contains(ABDUCTION));
     }
 
     @Test
     public void contains_exerciseInHashMap_returnsTrue() {
-        exerciseHashMap.add(ALICE);
-        assertTrue(exerciseHashMap.contains(ALICE));
+        exerciseHashMap.add(ABDUCTION);
+        assertTrue(exerciseHashMap.contains(ABDUCTION));
     }
 
     @Test
     public void contains_exerciseWithSameIdentityFieldsInHashMap_returnsTrue() {
-        exerciseHashMap.add(ALICE);
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
+        exerciseHashMap.add(ABDUCTION);
+        Exercise editedAlice = new ExerciseBuilder(ABDUCTION).withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
                 .build();
         assertTrue(exerciseHashMap.contains(editedAlice));
     }
@@ -58,13 +58,13 @@ public class ExerciseHashMapTest {
 
     @Test
     public void remove_exerciseDoesNotExist_throwsExerciseNotFoundException() {
-        assertThrows(ExerciseNotFoundException.class, () -> exerciseHashMap.remove(ALICE));
+        assertThrows(ExerciseNotFoundException.class, () -> exerciseHashMap.remove(ABDUCTION));
     }
 
     @Test
     public void remove_existingExercise_removesExercise() {
-        exerciseHashMap.add(ALICE);
-        exerciseHashMap.remove(ALICE);
+        exerciseHashMap.add(ABDUCTION);
+        exerciseHashMap.remove(ABDUCTION);
         ExerciseHashMap expectedExerciseHashMap = new ExerciseHashMap();
         assertEquals(expectedExerciseHashMap, exerciseHashMap);
     }
@@ -78,24 +78,24 @@ public class ExerciseHashMapTest {
     @Test
     public void getAllKeys_nonEmptyHashMap_returnsSortedArrayListKeysWithAdd() {
         ArrayList<String> expectedArrayList = new ArrayList<>();
-        expectedArrayList.add("Alice Pauline");
-        expectedArrayList.add("Benson Meier");
-        expectedArrayList.add("Carl Kurz");
-        exerciseHashMap.add(BENSON);
-        exerciseHashMap.add(CARL);
-        exerciseHashMap.add(ALICE);
+        expectedArrayList.add("ABDUCTION");
+        expectedArrayList.add("BICEP CURLS");
+        expectedArrayList.add("CALF RAISES");
+        exerciseHashMap.add(BICEP_CURLS);
+        exerciseHashMap.add(CALF_RAISES);
+        exerciseHashMap.add(ABDUCTION);
         assertEquals(expectedArrayList, exerciseHashMap.getAllKeys());
     }
 
     @Test
     public void getAllKeys_nonEmptyHashMap_returnsSortedArrayListKeysWithAddRemove() {
         ArrayList<String> expectedArrayList = new ArrayList<>();
-        expectedArrayList.add("Alice Pauline");
-        expectedArrayList.add("Benson Meier");
-        exerciseHashMap.add(BENSON);
-        exerciseHashMap.add(CARL);
-        exerciseHashMap.add(ALICE);
-        exerciseHashMap.remove(CARL);
+        expectedArrayList.add("ABDUCTION");
+        expectedArrayList.add("BICEP CURLS");
+        exerciseHashMap.add(BICEP_CURLS);
+        exerciseHashMap.add(CALF_RAISES);
+        exerciseHashMap.add(ABDUCTION);
+        exerciseHashMap.remove(CALF_RAISES);
         assertEquals(expectedArrayList, exerciseHashMap.getAllKeys());
     }
 
@@ -106,7 +106,7 @@ public class ExerciseHashMapTest {
 
     @Test
     public void numOfValues_nonEmptyHashMap() {
-        exerciseHashMap.add(BENSON);
+        exerciseHashMap.add(BICEP_CURLS);
         assertEquals(1, exerciseHashMap.numOfValues());
     }
 

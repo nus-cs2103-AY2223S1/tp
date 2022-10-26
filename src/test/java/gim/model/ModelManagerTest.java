@@ -2,8 +2,8 @@ package gim.model;
 
 import static gim.model.Model.PREDICATE_SHOW_ALL_EXERCISES;
 import static gim.testutil.Assert.assertThrows;
-import static gim.testutil.TypicalExercises.ALICE;
-import static gim.testutil.TypicalExercises.BENSON;
+import static gim.testutil.TypicalExercises.ABDUCTION;
+import static gim.testutil.TypicalExercises.BICEP_CURLS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasExercise_exerciseNotInExerciseTracker_returnsFalse() {
-        assertFalse(modelManager.hasExercise(ALICE));
+        assertFalse(modelManager.hasExercise(ABDUCTION));
     }
 
     @Test
     public void hasExercise_exerciseInExerciseTracker_returnsTrue() {
-        modelManager.addExercise(ALICE);
-        assertTrue(modelManager.hasExercise(ALICE));
+        modelManager.addExercise(ABDUCTION);
+        assertTrue(modelManager.hasExercise(ABDUCTION));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        ExerciseTracker exerciseTracker = new ExerciseTrackerBuilder().withExercise(ALICE).withExercise(BENSON).build();
+        ExerciseTracker exerciseTracker = new ExerciseTrackerBuilder().withExercise(ABDUCTION).withExercise(BICEP_CURLS).build();
         ExerciseTracker differentExerciseTracker = new ExerciseTracker();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentExerciseTracker, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = ABDUCTION.getName().fullName.split("\\s+");
         modelManager.updateFilteredExerciseList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(exerciseTracker, userPrefs)));
 

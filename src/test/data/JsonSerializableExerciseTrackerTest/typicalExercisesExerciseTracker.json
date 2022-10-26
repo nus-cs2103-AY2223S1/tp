@@ -1,43 +1,43 @@
 {
   "_comment": "ExerciseTracker save file which contains the same Exercise values as in TypicalExercises#getTypicalExerciseTracker()",
   "exercises" : [ {
-    "name" : "Alice Pauline",
+    "name" : "ABDUCTION",
     "weight" : "10",
     "sets" : "1",
     "reps" : "1",
     "date" : "02/05/2022"
   }, {
-    "name" : "Benson Meier",
+    "name" : "BICEP CURLS",
     "weight" : "20",
     "sets" : "1",
     "reps" : "1",
     "date" : "02/05/2022"
   }, {
-    "name" : "Carl Kurz",
+    "name" : "CALF RAISES",
     "weight" : "30",
     "sets" : "1",
     "reps" : "1",
     "date" : "02/05/2022"
   }, {
-    "name" : "Daniel Meier",
+    "name" : "DEADLIFT",
     "weight" : "40",
     "sets" : "1",
     "reps" : "1",
     "date" : "02/05/2022"
   }, {
-    "name" : "Elle Meyer",
+    "name" : "ELEVATED SQUATS",
     "weight" : "50",
     "sets" : "1",
     "reps" : "1",
     "date" : "02/05/2022"
   }, {
-    "name" : "Fiona Kunz",
+    "name" : "FRONT SQUATS",
     "weight" : "60",
     "sets" : "1",
     "reps" : "1",
     "date" : "02/05/2022"
   }, {
-    "name" : "George Best",
+    "name" : "GLUTE RAISES",
     "weight" : "70",
     "sets" : "1",
     "reps" : "1",

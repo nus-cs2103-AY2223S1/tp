@@ -2,9 +2,9 @@ package gim.logic.commands;
 
 import static gim.commons.core.Messages.MESSAGE_EXERCISES_LISTED_OVERVIEW;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static gim.testutil.TypicalExercises.CARL;
-import static gim.testutil.TypicalExercises.ELLE;
-import static gim.testutil.TypicalExercises.FIONA;
+import static gim.testutil.TypicalExercises.CALF_RAISES;
+import static gim.testutil.TypicalExercises.ELEVATED_SQUATS;
+import static gim.testutil.TypicalExercises.FRONT_SQUATS;
 import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -67,11 +67,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleExercisesFound() {
         String expectedMessage = String.format(MESSAGE_EXERCISES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("CALF ELEVATED FRONT");
         FindCommand command = new FindCommand(predicate);
         expectedModel.filterFilteredExerciseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredExerciseList());
+        assertEquals(Arrays.asList(CALF_RAISES, ELEVATED_SQUATS, FRONT_SQUATS), model.getFilteredExerciseList());
     }
 
     /**
