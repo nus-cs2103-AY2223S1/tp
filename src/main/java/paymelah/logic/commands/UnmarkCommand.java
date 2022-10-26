@@ -15,10 +15,10 @@ import paymelah.model.Model;
 import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
+import paymelah.model.person.Email;
 import paymelah.model.person.Name;
 import paymelah.model.person.Person;
 import paymelah.model.person.Phone;
-import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 
 /**
@@ -110,7 +110,7 @@ public class UnmarkCommand extends Command {
 
         Name name = debtorToUpdate.getName();
         Phone phone = debtorToUpdate.getPhone();
-        Telegram telegram = debtorToUpdate.getTelegram();
+        Email email = debtorToUpdate.getEmail();
         Address address = debtorToUpdate.getAddress();
         Set<Tag> tags = debtorToUpdate.getTags();
         DebtList updatedDebts = debtorToUpdate.getDebts();
@@ -121,7 +121,7 @@ public class UnmarkCommand extends Command {
         }
 
 
-        return new Person(name, phone, telegram, address, tags, updatedDebts);
+        return new Person(name, phone, email, address, tags, updatedDebts);
     }
 
     @Override
