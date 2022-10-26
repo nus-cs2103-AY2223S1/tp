@@ -202,10 +202,9 @@ public class ModelManager implements Model {
             studentCsv.readJson();
             tutorCsv.readJson();
             tuitionClassCsv.readJson();
-            System.out.println("file converted to csv!");
+            logger.info("All files converted to csv");
         } catch (IOException e) {
-            System.out.println("something went wrong");
-            System.out.println(e.getMessage());
+            logger.warning("An error occurred while converting the files to csv format :\n\t" + e.getMessage());
         }
     }
 
