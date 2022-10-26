@@ -54,13 +54,22 @@
             <StackPane fx:id="internshipListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="internshipPanel" styleClass="pane-with-border" minWidth="340" prefWidth="340" prefHeight="600" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="internshipPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
+          <SplitPane>
+            <VBox fx:id="internshipPanel" styleClass="pane-with-border" minWidth="340" prefWidth="340" prefHeight="600" VBox.vgrow="ALWAYS">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+              </padding>
+              <StackPane fx:id="internshipPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
 
+            <VBox fx:id="upcomingTaskPanel" styleClass="pane-with-border" minWidth="340" prefWidth="340" prefHeight="600" VBox.vgrow="NEVER">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+              </padding>
+              <StackPane fx:id="upcomingTaskPanelPlaceholder" VBox.vgrow="NEVER"/>
+            </VBox>
+
+          </SplitPane>
         </SplitPane>
 
         <StackPane fx:id="statusBarPlaceholder" VBox.vgrow="NEVER" />
