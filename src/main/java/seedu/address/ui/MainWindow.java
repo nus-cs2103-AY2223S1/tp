@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private GroupWindow groupWindowPlaceHolder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +68,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        groupWindowPlaceHolder = new GroupWindow(new Stage(), new Group("NOGROUP"), logic);
     }
 
     public Stage getPrimaryStage() {
@@ -78,6 +82,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -147,6 +152,21 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the group window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleShowGroup(Group group) {
+        GroupWindow groupWindow = new GroupWindow(new Stage(), group, logic);
+
+        if (!groupWindow.isShowing()) {
+            groupWindow.show();
+        } else {
+            groupWindow.focus();
+        }
+    }
+
+
     void show() {
         primaryStage.show();
     }
@@ -184,6 +204,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowGroup()) {
+                handleShowGroup(commandResult.getGroup());
             }
 
             return commandResult;

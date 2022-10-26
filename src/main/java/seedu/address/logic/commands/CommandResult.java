@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.group.Group;
+
 /**
  * Represents the result of a command execution.
  */
@@ -11,11 +13,25 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Help information should be shown to the user.
+     */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private final boolean exit;
+
+    /**
+     * Group window will be shown to the user.
+     */
+    private final boolean showGroup;
+
+    /**
+     * Group that will be shown in GroupWindow.
+     */
+    private final Group group;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -24,6 +40,19 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showGroup = false;
+        this.group = null;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields for showing groups.
+     */
+    public CommandResult(String feedbackToUser, boolean showGroup, Group group) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showGroup = showGroup;
+        this.group = requireNonNull(group);
+        this.showHelp = false;
+        this.exit = false;
     }
 
     /**
@@ -46,6 +75,14 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isShowGroup() {
+        return showGroup;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -60,12 +97,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && showGroup == otherCommandResult.showGroup;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, showGroup, group);
     }
 
 }

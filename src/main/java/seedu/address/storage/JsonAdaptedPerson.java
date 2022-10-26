@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -35,6 +36,8 @@ class JsonAdaptedPerson {
     private final String address;
     private final String social;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedGroup> grouped = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,7 +48,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("tutorial") String tutorial,
                              @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("social") String social) {
+            @JsonProperty("social") String social, @JsonProperty("grouped") List<JsonAdaptedGroup> grouped) {
         this.occupation = occupation;
         this.name = name;
         this.phone = phone;
@@ -55,6 +58,9 @@ class JsonAdaptedPerson {
         this.social = social;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (grouped != null) {
+            this.grouped.addAll(grouped);
         }
     }
 
@@ -71,6 +77,9 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        grouped.addAll(source.getGroups().stream()
+                .map(JsonAdaptedGroup::new)
                 .collect(Collectors.toList()));
     }
 
@@ -115,6 +124,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Group> personGroups = new ArrayList<>();
+        for (JsonAdaptedGroup group : grouped) {
+            personGroups.add(group.toModelType());
         }
 
         if (occupation == null) {
@@ -169,10 +183,12 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        final Set<Group> modelGroups = new HashSet<>(personGroups);
+
         final Social modelSocial = getModelSocial(social);
 
         return new Person(modelOccupation, modelName, modelPhone, modelEmail, modelTutorial, modelAddress, modelTags,
-                modelSocial);
+                modelSocial, modelGroups);
     }
 
 }

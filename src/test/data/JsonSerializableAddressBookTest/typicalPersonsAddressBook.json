@@ -8,7 +8,8 @@
     "tutorial": "T08",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
-    "social" : "null null null null null"
+    "social" : "null null null null null",
+    "grouped" : [ "friends" ]
   }, {
     "occupation" : "STUDENT",
     "name" : "Benson Meier",
@@ -17,7 +18,8 @@
     "tutorial": "T09",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
-    "social" : "null null null null null"
+    "social" : "null null null null null",
+    "grouped" : [ "friends" ]
   }, {
     "occupation" : "STUDENT",
     "name" : "Carl Kurz",
@@ -26,7 +28,8 @@
     "tutorial": "T10",
     "address" : "wall street",
     "tagged" : [ ],
-    "social" : "null null null null null"
+    "social" : "null null null null null",
+    "grouped" : [ ]
   }, {
     "occupation" : "STUDENT",
     "name" : "Daniel Meier",
@@ -35,7 +38,8 @@
     "tutorial": "T11",
     "address" : "10th street",
     "tagged" : [ "friends" ],
-    "social" : "null null null null null"
+    "social" : "null null null null null",
+    "grouped" : [ "friends" ]
   }, {
     "occupation" : "STUDENT",
     "name" : "Elle Meyer",
@@ -44,7 +48,8 @@
     "tutorial": "T12",
     "address" : "michegan ave",
     "tagged" : [ ],
-    "social" : "null null null null null"
+    "social" : "null null null null null",
+    "grouped" : [ ]
   }, {
     "occupation" : "STUDENT",
     "name" : "Fiona Kunz",
@@ -53,7 +58,8 @@
     "tutorial": "T13",
     "address" : "little tokyo",
     "tagged" : [ ],
-    "social" : "null null null null null"
+    "social" : "null null null null null",
+    "grouped" : [ ]
   }, {
     "occupation" : "STUDENT",
     "name" : "George Best",
@@ -62,6 +68,7 @@
     "tutorial": "F08",
     "address" : "4th street",
     "tagged" : [ ],
-    "social" : "null null null null null"
+    "social" : "null null null null null",
+    "grouped" : [ ]
   } ]
 }

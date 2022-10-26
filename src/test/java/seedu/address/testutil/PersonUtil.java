@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCUPATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -12,6 +13,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -59,11 +61,20 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG).append(" ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        if (descriptor.getGroups().isPresent()) {
+            Set<Group> groups = descriptor.getGroups().get();
+            if (groups.isEmpty()) {
+                sb.append(PREFIX_GROUP);
+            } else {
+                groups.forEach(s -> sb.append(PREFIX_GROUP).append(s.groupName).append(" "));
+            }
+        }
+
         return sb.toString();
     }
 }

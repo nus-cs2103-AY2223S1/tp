@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.group.Group;
 import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
@@ -27,13 +28,14 @@ public class Person {
     private final Tutorial tutorial;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Group> groups = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Occupation occupation, Name name, Phone phone, Email email, Tutorial tutorial, Address address,
-                  Set<Tag> tags, Social social) {
-        requireAllNonNull(name, phone, email, address, tags, social);
+                  Set<Tag> tags, Social social, Set<Group> groups) {
+        requireAllNonNull(name, phone, email, address, tags, social, groups);
         this.occupation = occupation;
         this.name = name;
         this.phone = phone;
@@ -41,6 +43,7 @@ public class Person {
         this.tutorial = tutorial;
         this.address = address;
         this.tags.addAll(tags);
+        this.groups.addAll(groups);
         this.social = social;
     }
 
@@ -81,6 +84,14 @@ public class Person {
     }
 
     /**
+     * Returns an immutable group set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Group> getGroups() {
+        return Collections.unmodifiableSet(groups);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -115,13 +126,14 @@ public class Person {
                 && otherPerson.getTutorial().equals(getTutorial())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
+                && otherPerson.getGroups().equals(getGroups())
                 && otherPerson.getSocial().equals(getSocial());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(occupation, name, phone, email, tutorial, address, tags, social);
+        return Objects.hash(occupation, name, phone, email, tutorial, address, tags, social, groups);
     }
 
     @Override
@@ -146,6 +158,12 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Set<Group> groups = getGroups();
+        if (!groups.isEmpty()) {
+            builder.append("; Groups: ");
+            groups.forEach(builder::append);
         }
         return builder.toString();
     }
