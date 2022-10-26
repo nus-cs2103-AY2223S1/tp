@@ -73,9 +73,9 @@ Basic Instructions:
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter
   which can be used as `add n/John Doe`.
-- Items in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Items in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/python` or as `n/John Doe`.
 - Items with `…` after them can be used multiple times including zero times. e.g. `[t/TAG]…` can be used as ` ` (e.g.
-  0 times), `t/friend`, `t/friend t/family` etc.
+  0 times), `t/python`, `t/javascript t/react` etc.
 - Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME`
   is also acceptable.
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
@@ -107,15 +107,19 @@ Note: Multiple students may share the same name.
 ```
 
 2. Student’s Contact Number:
-   - Contact number must only contain numerical digits between `0` and `9`.
+   - Student’s contact number must not be empty. 
+   - Student’s contact number must only contain numerical digits between `0` and `9`.
+   - Student's contact number must begin with `6`, `8` or `9`. 
 ```yaml
-Note: Contact number must contain at least 3 digits. Contact number must be unique.
+Note: Contact number must contain exactly 8 digits. Contact number must be unique.
 ```
 
-3. Next of Kin’s Number:
-    - Next of Kin’s number must only contain numerical digits between `0` and `9`.
+3. Next of Kin’s Contact Number:
+    - Next of Kin’s contact number must not be empty.
+    - Next of Kin’s contact number must only contain numerical digits between `0` and `9`.
+    - Next of Kin’s contact number must begin with `6`, `8` or `9`. 
 ```yaml
-Note: Next of Kin’s number cannot be empty. It must contain at least 3 digits.
+Note: Next of Kin’s contact number must contain exactly 8 digits.
 ```
 
 4. Address:
@@ -126,6 +130,7 @@ Note: Address cannot be empty. It must contain at least 1 character.
 ```
 
 5. Email:
+    - Email must not be empty. 
     - Email should be in the format of `local@domain`, where:
       - Local address should only contain alphanumeric characters and these special characters `+_.-`.
       - Consecutive special characters are not supported.
@@ -134,11 +139,15 @@ Note: Address cannot be empty. It must contain at least 1 character.
         2. Have each domain label start and end with alphanumeric characters.
         3. Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
+4. Tags:
+    - Tags are optional.
+    - A student can have any number of tags (including 0).
+    - Tags must only contain alphanumeric characters.
 ```yaml
-Note: Email cannot be empty. It must fulfil the above requirements.
+Note: Tags must contain at least 1 alphanumeric character and cannot contain spacings.
 ```
 
-Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS`
+Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 Example:
 
@@ -166,8 +175,9 @@ Edits an existing student in the list.
 - Amount paid
 - Amount owed
 - Additional notes
+- Tag
 
-1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow
+1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, Class Date, and Tag follow
 the same convention as [adding a student](#adding-a-student-add).
 
 2. Amount paid:
@@ -191,7 +201,7 @@ Important: Note **at least one** of these fields must exist in order to make the
 ```
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
-[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
+[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [t/TAG]…`
 
 Example:
 
@@ -215,6 +225,7 @@ Allows the user to view students and their information which includes:
 - Amount paid
 - Amount owed
 - Additional notes
+- Tag
 
 Format: `list`
 
@@ -226,15 +237,24 @@ Format: `list`
 
 ### Finding a student: `find`
 
-Finds students whose names contain any of the given keywords.
+Finds an existing student in the list. You can only find by one field at a time. Fields supported in find:
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+- Name
+- Email
+- Address
+- Phone number
+- Next of Kin's Phone number
+- Class Date
+- Tag
+
+### Find by name:
+
+Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g. `alex` will match `Alex`.
 - The order of the keywords does not matter. e.g. `Yeoh Alex` will match `Alex Yeoh`.
-- Only the name is searched.
 - Only full words will be matched e.g. `Han` will not match `Hans`.
-- Persons matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+- Students matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Example:
 
@@ -242,22 +262,25 @@ Example:
 
 ![UiFind](images/UG-screenshots/UiFind.png)
 
+Replace the prefix n/ with the corresponding prefixes (p/, np/, e/, a/, dt/ or t/) for find by other fields.
+The same rules apply as per find by name.
+
 [Back to top](#table-of-contents)
 
 ---
 
-### Deleting a student: 'delete'
+### Deleting students: 'delete'
 
-Deletes the specified person from the student list.
+Deletes the specified student(s) from the student list.
 
-Format: `delete INDEX ...`
+Format: `delete INDEX [MORE_INDEXES]`
 
-- Deletes the person at the specified `INDEX`.
-- The index refers to the index number shown in the Student's Details panel (bottom left).
-- The index must be a positive integer. e.g. `1, 2, 3, ...`.
+- Deletes the student(s) at the specified `INDEX(ES)`.
+- The index(es) refers to the index numbers shown in the Student's Details panel (bottom left section of the display).
+- The index(es) must be a positive integer within the size of the displayed student list. e.g. `1, 2, 3, ...`.
 
 Examples:
-- `list` followed by `delete 2` deletes the 2nd person in the Student's Details panel.
+- `list` followed by `delete 1 2` deletes the 1st and 2nd person in the Student's Details panel.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
