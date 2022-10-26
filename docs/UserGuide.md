@@ -93,11 +93,11 @@ Examples:
 * `addi c/TikTok r/Data Engineer s/rejected l/1`
 * `addi c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00`
 
-### Listing all persons : `listp`
+### Listing all persons : `list -p`
 
 Shows a list of all persons in InterNUS.
 
-Format: `listp`
+Format: `list -p`
 
 ### Listing all internships : `listi`
 
