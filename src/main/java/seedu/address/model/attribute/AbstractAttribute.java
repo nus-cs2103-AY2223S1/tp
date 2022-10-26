@@ -1,13 +1,12 @@
 package seedu.address.model.attribute;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.AccessDisplayFlags.BOLD;
 import static seedu.address.model.AccessDisplayFlags.DEFAULT;
 import static seedu.address.model.AccessDisplayFlags.DISPLAY_OK;
 import static seedu.address.model.AccessDisplayFlags.HIDE_TYPE;
-import static seedu.address.model.AccessDisplayFlags.MENU_OK;
-
-import static seedu.address.model.AccessDisplayFlags.BOLD;
 import static seedu.address.model.AccessDisplayFlags.ITALIC;
+import static seedu.address.model.AccessDisplayFlags.MENU_OK;
 import static seedu.address.model.AccessDisplayFlags.UNDERLINE;
 
 import java.util.HashMap;

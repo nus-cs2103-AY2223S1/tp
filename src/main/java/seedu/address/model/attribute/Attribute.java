@@ -46,12 +46,12 @@ public interface Attribute<T> {
      */
     boolean isAnyFlagMatch(int flag);
 
-    /** 
+    /**
      * Returns true of any of the bits of the style flag settings is true
      */
     boolean isAnyStyleMatch(int flag);
 
-    /** 
+    /**
      * Returns true of all of the bits of the style flag settings is true
      */
     boolean isAllStyleMatch(int flag);
