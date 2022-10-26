@@ -17,21 +17,20 @@ import hobbylist.model.activity.Review;
  * Add or modify the rating of an activity.
  */
 public class RateCommand extends Command {
+    public static final String MESSAGE_EDIT_ACTIVITY_SUCCESS = "Rated Activity: %1$s";
+    public static final String MESSAGE_DUPLICATE_ACTIVITY = "This activity already exists in the HobbyList";
 
-    public static final String COMMAND_WORD = "rate";
+    private static String commandWord = "rate";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or modifies the rating and review "
+    public static final String MESSAGE_USAGE = commandWord + ": Adds or modifies the rating and review "
             + "of the activity identified by the index number used in the displayed activity list. "
             + "Existing value will be overwritten by the input value.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + CliSyntax.PREFIX_RATING + "RATING (1-5)] "
             + "[" + CliSyntax.PREFIX_REVIEW + "REVIEW]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + commandWord + " 1 "
             + CliSyntax.PREFIX_RATING + " 4"
             + CliSyntax.PREFIX_REVIEW + "not too bad.";
-
-    public static final String MESSAGE_EDIT_ACTIVITY_SUCCESS = "Rated Activity: %1$s";
-    public static final String MESSAGE_DUPLICATE_ACTIVITY = "This activity already exists in the HobbyList";
 
     private final Index index;
     private final int rating;
@@ -80,6 +79,22 @@ public class RateCommand extends Command {
         return new Activity(activityToRate.getName(), activityToRate.getDescription(),
                 activityToRate.getTags(), activityToRate.getDate(), rating, activityToRate.getStatus(),
                 review != null ? review : activityToRate.getReview());
+    }
+
+    /**
+     * Returns the command word.
+     * @return the command word.
+     */
+    public static String getCommandWord() {
+        return commandWord;
+    }
+
+    /**
+     * Sets the command word.
+     * @param word the new command word.
+     */
+    public static void setCommandWord(String word) {
+        commandWord = word;
     }
 
     @Override
