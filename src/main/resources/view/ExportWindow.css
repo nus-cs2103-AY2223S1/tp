@@ -1,0 +1,21 @@
+#pathSelectorContainer {
+    -fx-background-color: derive(#171923, 20%);
+}
+
+#exportWindowContainerVBox {
+    -fx-background-color: derive(#171923, 20%);
+    -fx-padding: 15px;
+}
+
+#chooseLocation, #chosenLocation, #fileName {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-family: "Segoe UI";
+    -fx-padding: 5px 5px 5px 5px;
+}
+
+#selectButton {
+    -fx-font-size: 12px;
+    -fx-font-family: "Segoe UI";
+    -fx-padding: 5px 5px 5px 5px;
+}

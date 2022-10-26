@@ -36,7 +36,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with clinkedin book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with CLInkedIn book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);

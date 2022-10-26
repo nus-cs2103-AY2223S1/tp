@@ -17,10 +17,13 @@ import seedu.clinkedin.logic.commands.DeleteTagTypeCommand;
 import seedu.clinkedin.logic.commands.EditCommand;
 import seedu.clinkedin.logic.commands.EditTagTypeCommand;
 import seedu.clinkedin.logic.commands.ExitCommand;
+import seedu.clinkedin.logic.commands.ExportCommand;
 import seedu.clinkedin.logic.commands.FindCommand;
 import seedu.clinkedin.logic.commands.HelpCommand;
+import seedu.clinkedin.logic.commands.ImportCommand;
 import seedu.clinkedin.logic.commands.ListCommand;
 import seedu.clinkedin.logic.commands.NoteCommand;
+import seedu.clinkedin.logic.commands.RateCommand;
 import seedu.clinkedin.logic.commands.RedoCommand;
 import seedu.clinkedin.logic.commands.StatsCommand;
 import seedu.clinkedin.logic.commands.UndoCommand;
@@ -84,7 +87,7 @@ public class AddressBookParser {
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommandParser().parse(arguments);
 
         case StatsCommand.COMMAND_WORD:
             return new StatsCommand();
@@ -104,6 +107,12 @@ public class AddressBookParser {
         case EditTagTypeCommand.COMMAND_WORD:
             return new EditTagTypeCommandParser().parse(arguments);
 
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommandParser().parse(arguments);
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommandParser().parse(arguments);
+        case RateCommand.COMMAND_WORD:
+            return new RateCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

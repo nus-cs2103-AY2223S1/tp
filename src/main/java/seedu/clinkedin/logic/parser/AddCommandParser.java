@@ -7,6 +7,7 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.HashMap;
@@ -24,17 +25,18 @@ import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddCommand object.
  */
 public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.getPrefixes());
@@ -44,8 +46,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        if (!CliSyntax.getUniquePrefixes().stream().allMatch(pref -> argMultimap.getAllValues(pref).size() == 1)) {
-            throw new ParseException("Name, Phone, Email, Address, Status, Note can't have multiple values.");
+        if (!CliSyntax.getUniquePrefixes().stream().allMatch(pref -> argMultimap.getAllValues(pref).size() <= 1)) {
+            throw new ParseException("Name, Phone, Email, Address, Status, Note, Rating can't have multiple values.");
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -57,9 +59,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         UniqueTagTypeMap tagMap = ParserUtil.parseTags(prefToStrings);
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).orElse(""));
+        Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
         Set<Link> links = ParserUtil.parseLinks(argMultimap.getAllValues(PREFIX_LINK));
 
-        Person person = new Person(name, phone, email, address, tagMap, status, note, links);
+        Person person = new Person(name, phone, email, address, tagMap, status, note, rating, links);
 
         return new AddCommand(person);
     }

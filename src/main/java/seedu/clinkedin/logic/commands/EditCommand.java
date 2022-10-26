@@ -6,6 +6,7 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.clinkedin.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -27,6 +28,7 @@ import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
@@ -36,7 +38,7 @@ import seedu.clinkedin.model.tag.exceptions.DuplicateTagException;
 import seedu.clinkedin.model.tag.exceptions.TagNotFoundException;
 
 /**
- * Edits the details of an existing person in the clinkedin book.
+ * Edits the details of an existing person in the address book.
  */
 public class EditCommand extends Command {
 
@@ -46,20 +48,28 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_NOTE + "NOTE]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_STATUS + "STATUS"
+            + "[" + PREFIX_NOTE + "NOTE]"
+            + "[" + PREFIX_RATING + "RATING]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_TAG + "friends "
+            + PREFIX_TAG + "owesMoney "
+            + PREFIX_STATUS + "Application Pending "
+            + PREFIX_NOTE + "Has a dog."
+            + PREFIX_RATING + "4";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the clinkedin book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -123,12 +133,13 @@ public class EditCommand extends Command {
         original.removeTags(toEdit);
         original.mergeTagTypeMap(editTo);
         UniqueTagTypeMap updatedTags = original;
-        Note updatednote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
+        Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
+        Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
         Set<Link> updatedLinks = editPersonDescriptor.getLinks().orElse(personToEdit.getLinks());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedStatus,
-                updatednote, updatedLinks);
+                updatedNote, updatedRating, updatedLinks);
     }
 
     @Override
@@ -162,6 +173,7 @@ public class EditCommand extends Command {
         private UniqueTagTypeMap newTagTypeMap = new UniqueTagTypeMap();
         private Status status;
         private Note note;
+        private Rating rating;
 
         private Set<Link> links;
 
@@ -180,6 +192,7 @@ public class EditCommand extends Command {
             setNewTagTypeMap(toCopy.oldTagTypeMap);
             setStatus(toCopy.status);
             setNote(toCopy.note);
+            setRating(toCopy.rating);
             setLinks(toCopy.links);
         }
 
@@ -190,7 +203,7 @@ public class EditCommand extends Command {
             if (!newTagTypeMap.isEmpty() || !oldTagTypeMap.isEmpty()) {
                 return true;
             }
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, status, note, links);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, status, note, rating, links);
         }
 
         public void setName(Name name) {
@@ -275,6 +288,14 @@ public class EditCommand extends Command {
             return (newTagTypeMap != null) ? Optional.of(newTagTypeMap) : Optional.empty();
         }
 
+        public Optional<Rating> getRating() {
+            return Optional.ofNullable(rating);
+        }
+
+        public void setRating(Rating rating) {
+            this.rating = rating;
+        }
+
         public void setLinks(Set<Link> links) {
             this.links = links;
         }
@@ -306,7 +327,10 @@ public class EditCommand extends Command {
                     && getNewTagTypeMap().equals(e.getNewTagTypeMap())
                     && getStatus().equals(e.getStatus())
                     && getNote().equals(e.getNote())
+                    && getRating().equals(e.getRating())
                     && getLinks().equals(e.getLinks());
         }
+
+
     }
 }

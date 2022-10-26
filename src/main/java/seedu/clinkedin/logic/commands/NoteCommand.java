@@ -14,7 +14,7 @@ import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 
 /**
- * Changes the note of an existing person in the clinkedin book.
+ * Changes the note of an existing person in the address book.
  */
 public class NoteCommand extends Command {
 
@@ -24,7 +24,7 @@ public class NoteCommand extends Command {
             + ": Adds an optional note to the person identified"
             + "by the index number in the address book. "
             + "Existing notes will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positve integer) "
+            + "Parameters: INDEX (must be a positive integer) "
             + "note INDEX note/NOTE\n\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "note/Strong in Java\n\n"
@@ -58,7 +58,8 @@ public class NoteCommand extends Command {
         UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
         tagMap.setTagTypeMap(personToEdit.getTags());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), tagMap, personToEdit.getStatus(), note, personToEdit.getLinks());
+                personToEdit.getAddress(), tagMap, personToEdit.getStatus(), note, personToEdit.getRating(),
+                personToEdit.getLinks());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
