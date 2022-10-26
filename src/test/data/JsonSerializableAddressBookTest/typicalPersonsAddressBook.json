@@ -5,7 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "riskTag": "HIGH",
+    "riskTag": "LOW",
     "planTag": "Savings Plan",
     "income": "$1000",
     "monthly": "$200",
@@ -47,7 +47,7 @@
     "address" : "michegan ave",
     "riskTag": "LOW",
     "planTag": "Savings Plan",
-    "income": "$1000",
+    "income": "$6000",
     "monthly": "$250",
     "tagged" : [ ],
     "appointments" : [ {
@@ -59,9 +59,9 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "riskTag": "HIGH",
+    "riskTag": "MEDIUM",
     "planTag": "Savings Plan",
-    "income": "$1000",
+    "income": "$2000",
     "monthly": "$500",
     "tagged" : [ ],
     "appointments" : [ {
@@ -75,7 +75,7 @@
     "address" : "4th street",
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
-    "income": "$1000",
+    "income": "$10000",
     "monthly": "$400",
     "tagged" : [ ],
     "appointments" : [ {

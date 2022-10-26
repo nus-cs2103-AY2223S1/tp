@@ -56,7 +56,9 @@ public class CommandBox extends UiPart<Region> {
             switch (event.getCode()) {
             case UP:
                 String prevCommand = logic.getPrevInCommandHistory();
-                commandTextField.setText(prevCommand);
+                if (prevCommand != "") {
+                    commandTextField.setText(prevCommand);
+                }
                 event.consume();
                 break;
             case DOWN:
