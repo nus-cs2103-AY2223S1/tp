@@ -91,6 +91,12 @@ The following table describes the sections in detail:
 * Items with `…` after them can be used as many times as the user would like.<br>
   e.g. `[t/TAG]…` can be used multiple times like `t/good` or `t/good t/highRatings`, or can be omitted altogether.
 
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tips:**
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
