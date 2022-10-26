@@ -66,6 +66,25 @@ public class Class {
     }
 
     /**
+     * Overloaded constructor that generates the date in a String format to construct a {@code Class}
+     *
+     * @param date LocalDate object.
+     * @param startTime LocalTime object.
+     * @param endTime LocalTime object.
+     */
+    public Class(LocalDate date, LocalTime startTime, LocalTime endTime) {
+        requireAllNonNull(date, startTime, endTime);
+        String stringOfDateTime = String.format("%s %s-%s", date.toString(),
+                startTime.format(DateTimeFormatter.ofPattern("HHmm")),
+                endTime.format(DateTimeFormatter.ofPattern("HHmm")));
+
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.classDateTime = stringOfDateTime;
+    }
+
+    /**
      * Checks if class is empty.
      *
      * @return True if class is empty.
@@ -224,6 +243,29 @@ public class Class {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns a Class that has a predefined number of days ahead of the current class date, with the same starting and
+     * ending timing.
+     *
+     * @param numberOfDays to be added to the current class date.
+     * @return a class with numberOfDays ahead.
+     */
+    public Class addDays(int numberOfDays) {
+        assert(numberOfDays >= 0);
+        LocalDate updatedDate = this.date.plusDays(numberOfDays);
+        return new Class(updatedDate, this.startTime, this.endTime);
+    }
+
+    /**
+     * Checks if both dates are the same.
+     *
+     * @param date to be checked against.
+     * @return true if the dates are the same.
+     */
+    public boolean isSameDateAs(LocalDate date) {
+        return this.date.equals(date);
     }
 
     /**
