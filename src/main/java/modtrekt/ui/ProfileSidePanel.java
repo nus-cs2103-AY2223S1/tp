@@ -42,7 +42,7 @@ public class ProfileSidePanel extends UiPart<Region> {
                         .mapToInt(mod -> mod.getCredits().getIntValue())
                         .sum();
         // Count Active Tasks
-        int totalTasks = logic.getTaskBook().getTaskList().filtered(Model.PREDICATE_HIDE_ARCHIVED_TASKS).size();
+        int totalTasks = logic.getTaskBook().getTaskList().filtered(Model.PREDICATE_HIDE_DONE_TASKS).size();
         // Update UI
         creditsCount.setText(StringUtil.pluralize(totalCredits, "MC"));
         activeTasks.setText(String.valueOf(totalTasks));

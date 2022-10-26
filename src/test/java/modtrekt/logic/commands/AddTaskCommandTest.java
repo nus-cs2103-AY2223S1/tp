@@ -26,16 +26,16 @@ public class AddTaskCommandTest {
 
     @Test
     public void testCommand_sameObjectReferenceEquals_returnsTrue() {
-        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, null);
+        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, null, "none");
         assertEquals(cmd, cmd);
     }
 
     @Test
     public void testCommand_differentObjectValuesEquals_returnsFalse() {
-        AddTaskCommand cmd1 = AddTaskCommandBuilder.build("desc", "2022-01-01", "CS2103T");
-        AddTaskCommand cmd2 = AddTaskCommandBuilder.build("des", "2022-01-01", "CS2103T");
-        AddTaskCommand cmd3 = AddTaskCommandBuilder.build("desc", "2022-01-02", "CS2103T");
-        AddTaskCommand cmd4 = AddTaskCommandBuilder.build("desc", "2022-01-01", "CS2103");
+        AddTaskCommand cmd1 = AddTaskCommandBuilder.build("desc", "2022-01-01", "CS2103T", "none");
+        AddTaskCommand cmd2 = AddTaskCommandBuilder.build("des", "2022-01-01", "CS2103T", "none");
+        AddTaskCommand cmd3 = AddTaskCommandBuilder.build("desc", "2022-01-02", "CS2103T", "none");
+        AddTaskCommand cmd4 = AddTaskCommandBuilder.build("desc", "2022-01-01", "CS2103", "none");
         assertNotEquals(cmd1, cmd2);
         assertNotEquals(cmd1, cmd3);
         assertNotEquals(cmd1, cmd4);
@@ -45,30 +45,30 @@ public class AddTaskCommandTest {
 
     @Test
     public void testCommand_sameObjectValuesEquals_returnsTrue() {
-        AddTaskCommand cmd1 = AddTaskCommandBuilder.build("desc", "2022-01-01", "CS2103T");
-        AddTaskCommand cmd2 = AddTaskCommandBuilder.build("desc", "2022-01-01", "CS2103T");
+        AddTaskCommand cmd1 = AddTaskCommandBuilder.build("desc", "2022-01-01", "CS2103T", "none");
+        AddTaskCommand cmd2 = AddTaskCommandBuilder.build("desc", "2022-01-01", "CS2103T", "none");
         assertEquals(cmd1, cmd2);
     }
 
     @Test
     public void testCommand_sameObjectValuesEqualsWithNulls_returnsTrue() {
-        AddTaskCommand cmd1 = AddTaskCommandBuilder.build("desc", null, "CS2103T");
-        AddTaskCommand cmd2 = AddTaskCommandBuilder.build("desc", null, "CS2103T");
-        AddTaskCommand cmd3 = AddTaskCommandBuilder.build("desc", "2022-01-01", null);
-        AddTaskCommand cmd4 = AddTaskCommandBuilder.build("desc", "2022-01-01", null);
+        AddTaskCommand cmd1 = AddTaskCommandBuilder.build("desc", null, "CS2103T", "none");
+        AddTaskCommand cmd2 = AddTaskCommandBuilder.build("desc", null, "CS2103T", "none");
+        AddTaskCommand cmd3 = AddTaskCommandBuilder.build("desc", "2022-01-01", null, "none");
+        AddTaskCommand cmd4 = AddTaskCommandBuilder.build("desc", "2022-01-01", null, "none");
         assertEquals(cmd1, cmd2);
         assertEquals(cmd3, cmd4);
     }
 
     @Test
     public void testCommandNoCurrentModuleAndNoModuleCode_throws() {
-        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, null);
+        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, null, "none");
         assertThrows(CommandException.class, () -> cmd.execute(new ModelStub()));
     }
 
     @Test
     public void testCommandNoCurrentModuleWithModuleCode_returnsTrue() throws Exception {
-        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, "CS2102");
+        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, "CS2102", "none");
         CommandResult result = cmd.execute(new ModelHasModuleWithModCode());
         assertTrue(result.getFeedbackToUser().contains("CS2102"));
         assertTrue(result.getFeedbackToUser().contains("desc"));
@@ -76,7 +76,7 @@ public class AddTaskCommandTest {
 
     @Test
     public void testCommandDeadlineNoCurrentModuleWithModuleCode_returnsTrue() throws Exception {
-        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", "2022-04-15", "CS2102");
+        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", "2022-04-15", "CS2102", "none");
         CommandResult result = cmd.execute(new ModelHasModuleWithModCode());
         assertTrue(result.getFeedbackToUser().contains("CS2102"));
         assertTrue(result.getFeedbackToUser().contains("desc"));
@@ -85,7 +85,7 @@ public class AddTaskCommandTest {
 
     @Test
     public void testCommandCurrentModuleWithoutModuleCode_returnsTrue() throws Exception {
-        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, null);
+        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, null, "none");
         ModelStub model = new ModelStub();
         model.setCurrentModule(new ModCode("CS2106"));
         CommandResult result = cmd.execute(model);
@@ -95,7 +95,7 @@ public class AddTaskCommandTest {
 
     @Test
     public void testCommandDeadlineCurrentModuleWithoutModuleCode_returnsTrue() throws Exception {
-        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", "2022-04-15", null);
+        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", "2022-04-15", null, "none");
         ModelStub model = new ModelStub();
         model.setCurrentModule(new ModCode("CS2106"));
         CommandResult result = cmd.execute(model);
@@ -106,14 +106,14 @@ public class AddTaskCommandTest {
 
     @Test
     public void testCommandModuleCodeInvalid_throws() {
-        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, "CS2000");
+        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, "CS2000", "none");
         assertThrows(CommandException.class, "Module code CS2000 does not exist", ()
                 -> cmd.execute(new ModelStub()));
     }
 
     @Test
     public void testCommandCurrentModuleWithModuleCode_returnsCodeSpecified() throws Exception {
-        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, "CS2102");
+        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, "CS2102", "none");
         ModelStub model = new ModelHasModuleWithModCode();
         model.setCurrentModule(new ModCode("CS2106"));
         CommandResult result = cmd.execute(model);
@@ -122,7 +122,7 @@ public class AddTaskCommandTest {
 
     @Test
     public void testCommandDeadlineCurrentModuleWithModuleCode_returnsCodeSpecified() throws Exception {
-        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", "2022-04-15", "CS2102");
+        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", "2022-04-15", "CS2102", "none");
         ModelStub model = new ModelHasModuleWithModCode();
         model.setCurrentModule(new ModCode("CS2106"));
         CommandResult result = cmd.execute(model);
@@ -257,7 +257,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void archiveDoneModuleTasks(ModCode code) {
+        public void setDoneModuleTasksAsDone(ModCode code) {
 
         }
 

@@ -60,10 +60,10 @@ public class TaskCard extends UiPart<Region> {
         }
         this.badges.setVisible(false);
         this.badges.setManaged(false);
-        if (task.isArchived()) {
-            // Add the `archived` badge if the task is archived.
-            Label archivedBadge = new Label("archived");
-            this.badges.getChildren().add(archivedBadge);
+        if (task.isDone()) {
+            // Add the `done` badge if the task is done.
+            Label doneBadge = new Label("done");
+            this.badges.getChildren().add(doneBadge);
             this.badges.setVisible(true);
             this.badges.setManaged(true);
         }

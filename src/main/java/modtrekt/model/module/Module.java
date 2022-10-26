@@ -98,9 +98,13 @@ public class Module {
         return new Module(this.code, this.name, this.credits, this.taskCount, false);
     }
 
-    public boolean getIsCurrentModule() { return isCurrentModule; }
+    public boolean getIsCurrentModule() {
+        return isCurrentModule;
+    }
 
-    public void setIsCurrentModule(boolean newValue) { isCurrentModule = newValue; }
+    public void setIsCurrentModule(boolean newValue) {
+        isCurrentModule = newValue;
+    }
 
     /**
      * Updates the number of tasks the module has.

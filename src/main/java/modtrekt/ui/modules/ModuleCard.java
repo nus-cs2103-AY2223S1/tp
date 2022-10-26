@@ -46,7 +46,7 @@ public class ModuleCard extends UiPart<Region> {
             this.badges.getChildren().add(doneBadge);
         }
 
-        if (module.getIsCurrentModule() == true) {
+        if (module.getIsCurrentModule()) {
             Label currentBadge = new Label("Selected");
             this.badges.getChildren().add(currentBadge);
         }

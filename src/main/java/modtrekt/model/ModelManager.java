@@ -128,12 +128,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void archiveDoneModuleTasks(ModCode code) {
+    public void setDoneModuleTasksAsDone(ModCode code) {
         FilteredList<Task> tempList = new FilteredList<>(this.taskBook.getTaskList());
         Predicate<Task> newPredicate = task -> task.getModule().equals(code);
         tempList.setPredicate(newPredicate);
         for (Task t : tempList) {
-            setTask(t, t.archive());
+            setTask(t, t.setAsDone());
         }
     }
 
@@ -146,9 +146,9 @@ public class ModelManager implements Model {
             Task newTask;
             if (t instanceof Deadline) {
                 Deadline d = (Deadline) t;
-                newTask = new Deadline(d.getDescription(), newCode, d.getDueDate(), d.isArchived(), d.getPriority());
+                newTask = new Deadline(d.getDescription(), newCode, d.getDueDate(), d.isDone(), d.getPriority());
             } else {
-                newTask = new Task(t.getDescription(), newCode, t.isArchived(), t.getPriority());
+                newTask = new Task(t.getDescription(), newCode, t.isDone(), t.getPriority());
             }
             addTask(newTask);
         }
@@ -238,7 +238,7 @@ public class ModelManager implements Model {
     public void updateModuleTaskCount(Task t) {
         Module toUpdate = parseModuleFromCode(t.getModule());
         FilteredList<Task> tempList = new FilteredList<>(this.taskBook.getTaskList());
-        Predicate<Task> newPredicate = task -> task.getModule().equals(toUpdate.getCode()) && !task.isArchived();
+        Predicate<Task> newPredicate = task -> task.getModule().equals(toUpdate.getCode()) && !task.isDone();
         tempList.setPredicate(newPredicate);
         toUpdate.updateTaskCount(tempList.size());
         setModule(toUpdate, toUpdate);

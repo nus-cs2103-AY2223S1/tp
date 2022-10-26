@@ -27,7 +27,7 @@ public class ModtrektParserTest {
     public void parseCommand_add() throws Exception {
         Task t = new TaskBuilder().build();
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(TaskUtil.getAddCommand(t));
-        assertEquals(new AddTaskCommand(t.getDescription(), t.getModule(), null), command);
+        assertEquals(new AddTaskCommand(t.getDescription(), t.getModule(), null, Task.Priority.NONE), command);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class ModtrektParserTest {
 
     @Test
     public void parseCommand_addTaskCommandNoModCode_returnsTrue() throws Exception {
-        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, null);
+        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, null, "none");
         assertEquals(parser.parseCommand("add task desc"), cmd);
     }
 

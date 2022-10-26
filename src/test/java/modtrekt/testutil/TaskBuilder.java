@@ -14,7 +14,7 @@ public class TaskBuilder {
 
     private Description description;
     private ModCode modCode;
-    private boolean isArchived;
+    private boolean isDone;
     private Task.Priority priority;
 
     /**
@@ -50,10 +50,10 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code isArchived} of the {@code Task} that we are building.
+     * Sets the {@code isDone} of the {@code Task} that we are building.
      */
-    public TaskBuilder withIsArchived(boolean isArchived) {
-        this.isArchived = isArchived;
+    public TaskBuilder withIsDone(boolean isDone) {
+        this.isDone = isDone;
         return this;
     }
 
@@ -66,6 +66,6 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(description, modCode, isArchived, priority);
+        return new Task(description, modCode, isDone, priority);
     }
 }

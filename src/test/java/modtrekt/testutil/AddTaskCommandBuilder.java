@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import modtrekt.logic.commands.AddTaskCommand;
+import modtrekt.logic.parser.converters.PriorityConverter;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.task.Description;
 
@@ -16,7 +17,7 @@ public class AddTaskCommandBuilder {
      * Returns an instance of AddTaskCommand according to the specified attributes.
      */
     public static AddTaskCommand build(String description,
-                                       String date, String code) {
+                                       String date, String code, String priority) {
         Description d = new Description(description);
         LocalDate ld;
         ModCode m;
@@ -31,6 +32,6 @@ public class AddTaskCommandBuilder {
             m = null;
         }
 
-        return new AddTaskCommand(d, m, ld);
+        return new AddTaskCommand(d, m, ld, new PriorityConverter().convert(priority));
     }
 }

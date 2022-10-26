@@ -11,6 +11,7 @@ import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.converters.DeadlineConverter;
 import modtrekt.logic.parser.converters.DescriptionConverter;
 import modtrekt.logic.parser.converters.ModCodeConverter;
+import modtrekt.logic.parser.converters.PriorityConverter;
 import modtrekt.model.Model;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.task.Deadline;
@@ -24,38 +25,39 @@ import modtrekt.model.task.Task;
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add task";
+    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task book. \n"
-            + "Usage: " + COMMAND_WORD + " "
-            + "task" + " <DESCRIPTION> "
-            + "[" + "-d" + "<YYYY-MM-DD> ] "
+            + COMMAND_WORD + " <DESCRIPTION> "
+            + "[" + "-d " + "<YYYY-MM-DD>] "
             + "-c" + " <MODULE CODE> ";
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    @Parameter(description = "Task description", required = true,
-            converter = DescriptionConverter.class)
+    @Parameter(description = "Description of the task", required = true, converter = DescriptionConverter.class)
     private Description description;
 
-    @Parameter(names = "-c", description = "Module code for task",
-            converter = ModCodeConverter.class)
+    @Parameter(names = "-c", description = "Module code of the task", converter = ModCodeConverter.class)
     private ModCode modCode;
 
-    @Parameter(names = "-d", description = "Due date",
-            converter = DeadlineConverter.class)
+    @Parameter(names = "-d", description = "Due date of the task", converter = DeadlineConverter.class)
     private LocalDate deadline;
+
+    @Parameter(names = "-p", description = "Priority level of the task", converter = PriorityConverter.class)
+    private Task.Priority priority = Task.Priority.NONE; // default priority level is no priority
 
     /**
      * Constructor with no parameters required, for use with JCommander.
      */
     public AddTaskCommand() {
     }
-    /**
-     * Creates an AddTaskCommand to add a task with the specified {@code Description, ModCode, LocalDate}
-     */
 
-    public AddTaskCommand(Description ds, ModCode code, LocalDate deadline) {
+    /**
+     * Creates an AddTaskCommand to add a task with the specified {@code Description, ModCode, LocalDate, Priority}
+     */
+    public AddTaskCommand(Description ds, ModCode code, LocalDate deadline, Task.Priority priority) {
+        requireNonNull(priority);
         this.description = ds;
         this.modCode = code;
         this.deadline = deadline;
+        this.priority = priority;
     }
 
     @Override
@@ -75,16 +77,16 @@ public class AddTaskCommand extends Command {
         Task toAdd;
         if (modCode == null && deadline != null) {
             // Deadline based on cd'd module
-            toAdd = new Deadline(description, currentModCode, deadline, false, Task.Priority.NONE);
+            toAdd = new Deadline(description, currentModCode, deadline, false, priority);
         } else if (modCode == null) {
             // Task based on cd'd module
-            toAdd = new Task(description, currentModCode, false, Task.Priority.NONE);
+            toAdd = new Task(description, currentModCode, false, priority);
         } else if (deadline != null) {
             // Deadline based on provided module code
-            toAdd = new Deadline(description, modCode, deadline, false, Task.Priority.NONE);
+            toAdd = new Deadline(description, modCode, deadline, false, priority);
         } else {
             // Task based on provided module code
-            toAdd = new Task(description, modCode, false, Task.Priority.NONE);
+            toAdd = new Task(description, modCode, false, priority);
         }
 
         model.addTask(toAdd);
@@ -99,19 +101,21 @@ public class AddTaskCommand extends Command {
         if (!(other instanceof AddTaskCommand)) {
             return false;
         }
-        boolean descriptionEquality = description.equals(((AddTaskCommand) other).description);
-        boolean codeEquality;
-        boolean deadlineEquality;
+        AddTaskCommand that = (AddTaskCommand) other;
+        boolean descriptionIsEqual = this.description.equals(that.description);
+        boolean priorityIsEqual = this.priority.equals(that.priority);
+        boolean codeIsEqual;
+        boolean deadlineIsEqual;
         if (modCode == null) {
-            codeEquality = ((AddTaskCommand) other).modCode == null;
+            codeIsEqual = that.modCode == null;
         } else {
-            codeEquality = modCode.equals(((AddTaskCommand) other).modCode);
+            codeIsEqual = modCode.equals(that.modCode);
         }
         if (deadline == null) {
-            deadlineEquality = ((AddTaskCommand) other).deadline == null;
+            deadlineIsEqual = that.deadline == null;
         } else {
-            deadlineEquality = deadline.equals(((AddTaskCommand) other).deadline);
+            deadlineIsEqual = deadline.equals(that.deadline);
         }
-        return descriptionEquality && codeEquality && deadlineEquality;
+        return descriptionIsEqual && codeIsEqual && deadlineIsEqual && priorityIsEqual;
     }
 }
