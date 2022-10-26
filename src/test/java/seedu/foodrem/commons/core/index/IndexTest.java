@@ -43,16 +43,12 @@ public class IndexTest {
         // same values -> returns true
         assertTrue(fifthItemIndex.equals(Index.fromOneBased(5)));
         assertTrue(fifthItemIndex.equals(Index.fromZeroBased(4)));
-
         // same object -> returns true
         assertTrue(fifthItemIndex.equals(fifthItemIndex));
-
         // null -> returns false
         assertFalse(fifthItemIndex.equals(null));
-
         // different types -> returns false
         assertFalse(fifthItemIndex.equals(5.0f));
-
         // different index -> returns false
         assertFalse(fifthItemIndex.equals(Index.fromOneBased(1)));
     }

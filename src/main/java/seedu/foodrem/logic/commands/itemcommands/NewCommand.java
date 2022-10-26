@@ -8,14 +8,12 @@ import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Creates a new an item in FoodRem.
  */
 public class NewCommand extends Command {
-    public static final String MESSAGE_SUCCESS = "New item added:\n%1$s";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in FoodRem";
-
     private final Item newItem;
 
     /**
@@ -27,15 +25,15 @@ public class NewCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (model.hasItem(newItem)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ITEM);
+            throw new CommandException("This item already exists in FoodRem");
         }
 
         model.addItem(newItem);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newItem));
+        return CommandResult.from(new ItemWithMessage(newItem, "New item added as follows:"));
     }
 
     public static String getUsage() {

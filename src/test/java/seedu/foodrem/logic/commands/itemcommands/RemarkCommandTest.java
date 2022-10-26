@@ -24,13 +24,13 @@ import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemRemark;
 import seedu.foodrem.testutil.ItemBuilder;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Contains unit tests for RemarkCommand.
  */
 public class RemarkCommandTest {
-    private static final String EXPECTED_SUCCESS_FORMAT = "Remark added:\n%1$s";
-
+    private static final String EXPECTED_SUCCESS_MESSAGE = "Remark has been updated. View the updated item below:";
     private final String remarkString = "test";
     private final ItemRemark itemRemark = new ItemRemark(remarkString);
 
@@ -39,19 +39,15 @@ public class RemarkCommandTest {
     @Test
     public void execute_remarksSpecified_success() {
         Item originalItem = model.getCurrentList().get(INDEX_FIRST_ITEM.getZeroBased());
-
-        Item remarkedItem = new ItemBuilder(originalItem)
-                .withItemRemarks(remarkString)
-                .build();
+        Item remarkedItem = new ItemBuilder(originalItem).withItemRemarks(remarkString).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_ITEM, itemRemark);
-
-        String expectedMessage = String.format(EXPECTED_SUCCESS_FORMAT, remarkedItem);
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         expectedModel.setItem(model.getCurrentList().get(0), remarkedItem);
 
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(remarkCommand, model,
+                new ItemWithMessage(remarkedItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
     }
 
     @Test
@@ -71,6 +67,9 @@ public class RemarkCommandTest {
         remarkCommand.execute(expectedModel);
 
         assertEquals(remarkedItem, expectedModel.getCurrentList().get(0));
+        // TODO: Fix this broken test.
+        // assertCommandSuccess(remarkCommand, model,
+        //         new ItemWithMessage(remarkedItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
     }
 
     @Test
@@ -104,16 +103,12 @@ public class RemarkCommandTest {
 
         // same object -> returns true
         assertEquals(standardCommand, standardCommand);
-
         // null -> returns false
         assertNotEquals(null, standardCommand);
-
         // different types -> returns false
         assertNotEquals(standardCommand, new ResetCommand());
-
         // different index -> returns false
         assertNotEquals(standardCommand, new RemarkCommand(INDEX_SECOND_ITEM, itemRemark));
-
         // different remark -> returns false
         assertNotEquals(standardCommand, new RemarkCommand(INDEX_FIRST_ITEM, new ItemRemark("DIFFERENT")));
     }

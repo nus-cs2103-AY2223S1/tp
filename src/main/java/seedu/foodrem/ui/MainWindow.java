@@ -4,10 +4,12 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.foodrem.commons.core.GuiSettings;
@@ -16,14 +18,14 @@ import seedu.foodrem.logic.Logic;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
+import seedu.foodrem.views.StringView;
+import seedu.foodrem.views.UiView;
 
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-    private static final String FXML = "MainWindow.fxml";
-
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private final Stage primaryStage;
@@ -32,20 +34,13 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
-    @FXML
-    private StackPane commandBoxPlaceholder;
+    private UiView uiView;
 
-    @FXML
-    private MenuItem helpMenuItem;
-
-    @FXML
-    private StackPane itemListPanelPlaceholder;
-
-    @FXML
-    private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane statusbarPlaceholder;
+    @FXML private StackPane commandBoxPlaceholder;
+    @FXML private MenuItem helpMenuItem;
+    @FXML private StackPane itemListPanelPlaceholder;
+    @FXML private StackPane resultDisplayPlaceholder;
+    @FXML private StackPane statusbarPlaceholder;
 
     private final String initialMessage;
 
@@ -53,7 +48,7 @@ public class MainWindow extends UiPart<Stage> {
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
     public MainWindow(Stage primaryStage, Logic logic, String message) {
-        super(FXML, primaryStage);
+        super("MainWindow.fxml", primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -112,17 +107,19 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         itemListPanel = new ItemListPanel(logic.getCurrentList());
-        itemListPanelPlaceholder.getChildren().add(itemListPanel.getRoot());
+        place(itemListPanelPlaceholder, itemListPanel);
 
         resultDisplay = new ResultDisplay();
-        resultDisplay.setFeedbackToUser(initialMessage);
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        uiView = new UiView(resultDisplay);
+        resultDisplay.place(StringView.from(initialMessage));
+        place(resultDisplayPlaceholder, resultDisplay);
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getFoodRemFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        place(statusbarPlaceholder, new StatusBarFooter(logic.getFoodRemFilePath()));
+        place(commandBoxPlaceholder, new CommandBox(this::executeCommand));
+    }
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    private <T extends Node> void place(Pane target, UiPart<T> item) {
+        target.getChildren().add(item.getRoot());
     }
 
     /**
@@ -131,6 +128,7 @@ public class MainWindow extends UiPart<Stage> {
     private void setWindowDefaultSize(GuiSettings guiSettings) {
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
+        primaryStage.setResizable(false);
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
@@ -153,7 +151,7 @@ public class MainWindow extends UiPart<Stage> {
      * Sets the default message to the general help message.
      */
     @FXML
-    public void handleHelp() {
+    private void handleHelp() {
         helpWindow.setMessageToDisplay(HelpCommand.getGeneralHelpMessage());
         handleHelpCommand();
     }
@@ -174,36 +172,31 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ItemListPanel getItemListPanel() {
-        return itemListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
      * @see seedu.foodrem.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, IllegalArgumentException {
+    private CommandResult<?> executeCommand(String commandText) throws CommandException, IllegalArgumentException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            CommandResult<?> commandResult = logic.execute(commandText);
+            logger.info("Result: " + commandResult.getOutput());
+            uiView.viewFrom(commandResult.getOutput());
             // We need to hide the window to ensure it resizes on changing message to display.
             helpWindow.hide();
-            helpWindow.setMessageToDisplay(commandResult.getHelpText());
 
-            if (commandResult.isShowHelp()) {
+            if (commandResult.shouldShowHelp()) {
+                helpWindow.setMessageToDisplay(commandResult.getHelpText());
                 handleHelpCommand();
             }
-
-            if (commandResult.isExit()) {
+            if (commandResult.shouldExit()) {
                 handleExit();
             }
 
             return commandResult;
         } catch (CommandException | IllegalArgumentException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            uiView.viewFrom(e.getMessage());
             throw e;
         }
     }
