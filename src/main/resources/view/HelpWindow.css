@@ -3,13 +3,14 @@
 }
 
 #helpMessageContainer {
-    -fx-background-color: white;
     -fx-padding: 10;
     -fx-border-color: transparent;
+    -fx-font-size: 15px;
 }
 
 #instructions {
     -fx-border-color: transparent;
+    -fx-font-size: 13px;
 }
 
 .url-message {
@@ -25,22 +26,22 @@
 /** Hyperlink css **/
 
 .hyperlink {
-    -fx-text-fill: #639C79;
+    -fx-text-fill: #5F9EA0;
 }
 
 .hyperlink:hover {
-    -fx-text-fill: #adf0bf;
+    -fx-text-fill: #50C878;
 }
 
 /** Accordion css adapted from https://stackoverflow.com/questions/21451386/titled-pane-css-settings **/
 /** Accordion css adapted from https://community.oracle.com/tech/developers/discussion/2296114/how-to-replace-the-arrow-with-a-custom-graphic-on-a-titledpane **/
 
 .accordion {
-    -fx-background-color: white
+    -fx-background-color: #f9f9f9;
 }
 
 .accordion > .titled-pane > .title {
-    -fx-background-color: white;
+    -fx-background-color: #f9f9f9;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
 }
@@ -56,7 +57,7 @@
 .titled-pane > *.content {
     -fx-background-color: #f6fff9;
     -fx-padding: 10;
-    -fx-border-color: white;
+    -fx-border-color: #f9f9f9;
 }
 
 .titled-pane > .title > .arrow-button .arrow {
@@ -77,15 +78,15 @@
 /** Scroll bar css adapted from: https://blog.ngopal.com.np/2012/07/11/customize-scrollbar-via-css/ **/
 
 .scroll-bar:vertical .track {
-    -fx-background-color: white;
-    -fx-border-color: white;
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #f9f9f9;
     -fx-background-radius : 0.0em;
     -fx-border-radius: 5px;
 }
 
 .scroll-bar:vertical .increment-button ,
 .scroll-bar:vertical .decrement-button {
-    -fx-background-color: white;
+    -fx-background-color: #f9f9f9;
     -fx-background-radius: 0.0em;
     -fx-padding: 0.0 10.0 0.0 0.0;
 }
@@ -109,8 +110,9 @@
 .commands {
     -fx-padding: 10;
     -fx-underline: true;
+    -fx-font-size: 14px;
 }
 
 .help-container {
-    -fx-background-color: white;
+    -fx-background-color: #f9f9f9;
 }
