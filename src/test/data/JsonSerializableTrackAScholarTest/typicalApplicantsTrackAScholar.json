@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "scholarship" : "Global Merit",
     "applicationStatus": "pending",
-    "tagged" : [ "friends" ],
+    "majors" : [ "friends" ],
     "hasPinned" : false
   }, {
     "name" : "Benson Meier",
@@ -14,7 +14,7 @@
     "email" : "johnd@example.com",
     "scholarship" : "Merit",
     "applicationStatus": "accepted",
-    "tagged" : [ "owesMoney", "friends" ],
+    "majors" : [ "owesMoney", "friends" ],
     "hasPinned" : false
   }, {
     "name" : "Carl Kurz",
@@ -22,7 +22,7 @@
     "email" : "heinz@example.com",
     "scholarship" : "Sports",
     "applicationStatus": "pending",
-    "tagged" : [ ],
+    "majors" : [ ],
     "hasPinned" : false
   }, {
     "name" : "Daniel Meier",
@@ -30,7 +30,7 @@
     "email" : "cornelia@example.com",
     "scholarship" : "Arts",
     "applicationStatus": "rejected",
-    "tagged" : [ "friends" ],
+    "majors" : [ "friends" ],
     "hasPinned" : false
   }, {
     "name" : "Elle Meyer",
@@ -38,7 +38,7 @@
     "email" : "werner@example.com",
     "scholarship" : "Global Merit",
     "applicationStatus": "pending",
-    "tagged" : [ ],
+    "majors" : [ ],
     "hasPinned" : false
   }, {
     "name" : "Fiona Kunz",
@@ -46,7 +46,7 @@
     "email" : "lydia@example.com",
     "scholarship" : "Global Merit",
     "applicationStatus": "pending",
-    "tagged" : [ ],
+    "majors" : [ ],
     "hasPinned" : false
   }, {
     "name" : "George Best",
@@ -54,7 +54,7 @@
     "email" : "anna@example.com",
     "scholarship" : "Global Merit",
     "applicationStatus": "accepted",
-    "tagged" : [ ],
+    "majors" : [ ],
     "hasPinned" : false
   } ]
 }
