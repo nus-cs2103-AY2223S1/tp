@@ -10,10 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.util.FileUtil;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
-
-import javax.swing.*;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -80,10 +77,10 @@ public class PersonProfile extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
-    @FXML
     /**
      * Opens pdf file stored in person object.
      */
+    @FXML
     private void openPersonFile() {
         try {
             FileUtil.openPdfFile(person.getFilePath().toString());
