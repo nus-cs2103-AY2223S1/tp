@@ -41,18 +41,18 @@ public class CreateCommandParser implements Parser<CreateCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_DESCRIPTION, PREFIX_NETWORTH, PREFIX_MEETING_TIME, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_NETWORTH, PREFIX_MEETING_TIME, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Description description = new Description(argMultimap.getValue(PREFIX_DESCRIPTION).get().trim());
-        NetWorth netWorth = ParserUtil.parseNetWorth(argMultimap.getValue(PREFIX_NETWORTH).get());
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
+        Description description =
+                ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
+        NetWorth netWorth = ParserUtil.parseNetWorth(argMultimap.getValue(PREFIX_NETWORTH).orElse(""));
         Set<MeetingTime> meetingTimeList = ParserUtil.parseMeetingTimes(argMultimap.getAllValues(PREFIX_MEETING_TIME));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         FilePath filePath = new FilePath(""); // add command does not allow adding file path straight away

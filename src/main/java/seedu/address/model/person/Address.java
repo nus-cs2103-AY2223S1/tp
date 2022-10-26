@@ -3,20 +3,23 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.ui.PersonProfile;
+
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is always valid
  */
 public class Address {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String EMPTY_ADDRESS = "";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Addresses can take any values, but there should be no leading space";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
-
     public final String value;
 
     /**
@@ -29,12 +32,25 @@ public class Address {
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
-
     /**
      * Returns true if a given string is a valid address.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.equals(EMPTY_ADDRESS) || test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns value of address.
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * Returns value of address if not null else, EMPTY_DISPLAY_VALUE.
+     */
+    public String getDisplayValue() {
+        return value == EMPTY_ADDRESS ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
     @Override

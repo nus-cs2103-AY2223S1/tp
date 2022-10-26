@@ -46,9 +46,13 @@ public class CommandTestUtil {
     public static final String VALID_MEETING_TIME_BOB = "18-12-2022-13:30";
     public static final String VALID_FILEPATH_AMY = "src/test/data/TestPDFs/Test_PDF.pdf";
     public static final String VALID_FILEPATH_BOB = "src/test/data/TestPDFs/Test_PDF2.pdf";
+    public static final String EMPTY_ADDRESS = "";
+    public static final String EMPTY_DESCRIPTION = "";
+    public static final String EMPTY_EMAIL = "";
     public static final String EMPTY_FILEPATH = "";
-    public static final String VALID_TAG_POTENTIAL = "POTENTIAL";
-    public static final String VALID_TAG_SECURED = "SECURED";
+    public static final String EMPTY_NETWORTH = "";
+    public static final String VALID_TAG_AMY = "SECURED";
+    public static final String VALID_TAG_BOB = "POTENTIAL";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -66,13 +70,12 @@ public class CommandTestUtil {
     public static final String MEETING_TIME_DESC_BOB = " " + PREFIX_MEETING_TIME + VALID_MEETING_TIME_BOB;
     public static final String FILEPATH_DESC_AMY = " " + PREFIX_FILEPATH + VALID_FILEPATH_AMY;
     public static final String FILEPATH_DESC_BOB = " " + PREFIX_FILEPATH + VALID_FILEPATH_BOB;
-    public static final String TAG_DESC_SECURED = " " + PREFIX_TAG + VALID_TAG_SECURED;
-    public static final String TAG_DESC_POTENTIAL = " " + PREFIX_TAG + VALID_TAG_POTENTIAL;
+    public static final String TAG_DESC_AMY = " " + PREFIX_TAG + VALID_TAG_BOB;
+    public static final String TAG_DESC_BOB = " " + PREFIX_TAG + VALID_TAG_AMY;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_NETWORTH_DESC = " " + PREFIX_NETWORTH + "1222"; // missing '$' symbol
     public static final String INVALID_FILEPATH_DESC = " " + PREFIX_FILEPATH + "misc/Test_PDF2"; // missing '.pdf' label
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby"; // not SECURED or POTENTIAL
@@ -88,11 +91,11 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withNetWorth(VALID_NETWORTH_AMY).withMeetingTimes(VALID_MEETING_TIME_AMY)
-                .withTags(VALID_TAG_SECURED).build();
+                .withTags(VALID_TAG_BOB).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withNetWorth(VALID_NETWORTH_BOB).withMeetingTimes(VALID_MEETING_TIME_BOB)
-                .withTags(VALID_TAG_POTENTIAL, VALID_TAG_SECURED).build();
+                .withTags(VALID_TAG_AMY, VALID_TAG_BOB).build();
     }
 
     /**
@@ -145,7 +148,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
+        final String[] splitName = person.getName().getFullName().split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());

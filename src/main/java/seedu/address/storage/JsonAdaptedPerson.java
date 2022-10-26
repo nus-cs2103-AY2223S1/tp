@@ -68,16 +68,16 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        description = source.getDescription().value;
-        netWorth = source.getNetWorth().value;
+        name = source.getName().getFullName();
+        phone = source.getPhone().getValue();
+        email = source.getEmail().getValue();
+        address = source.getAddress().getValue();
+        description = source.getDescription().getValue();
+        netWorth = source.getNetWorth().getValue();
         meetingTimes.addAll(source.getMeetingTimes().stream()
                 .map(JsonAdaptedMeetingTime::new)
                 .collect(Collectors.toList()));
-        filePath = source.getFilePath().value;
+        filePath = source.getFilePath().getValue();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -126,9 +126,11 @@ class JsonAdaptedPerson {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
+
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
+
         final Address modelAddress = new Address(address);
 
         if (netWorth == null) {
