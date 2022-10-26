@@ -49,6 +49,16 @@ public class ContactCard extends UiPart<Region> {
         nextOfKinRelationship.setText(person.getNextOfKin().getNextOfKinRelationship());
     }
 
+    /**
+     * Generates a Contact card of the given person.
+     * @param person person to generate contact card from.
+     */
+    public ContactCard(Person person) {
+        this(person, 0);
+        id.setVisible(false);
+        name.setVisible(false);
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
