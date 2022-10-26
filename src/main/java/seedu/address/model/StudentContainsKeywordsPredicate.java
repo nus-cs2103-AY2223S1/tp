@@ -34,7 +34,7 @@ public class StudentContainsKeywordsPredicate<T> implements Predicate<T> {
                     && student.getSchool().school.toLowerCase().contains(keywords.get(PREFIX_SCHOOL).toLowerCase())
                     && student.getLevel().level.toLowerCase().contains(keywords.get(PREFIX_LEVEL).toLowerCase());
         }
-        throw new ClassCastException("NameContainsKeyword predicate can only be applied to Person and TuitionClass.");
+        throw new ClassCastException("StudentContainsKeywords predicate can only be applied to Student.");
     }
 
     @Override
