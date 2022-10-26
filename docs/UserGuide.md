@@ -317,22 +317,22 @@ _Details coming soon ..._
 ## Command summary
 
 
-| Action         | Format, Examples                                                                                                           |
-|----------------|----------------------------------------------------------------------------------------------------------------------------|
-| **Add**        | `add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`<br> e.g., `add n/Alice a/Yishun Street 81 p/9876543 e/alice@gmail.com` |
-| **Clear**      | `clear`                                                                                                                    |
- | **Remark**     | `remark INDEX REMARK`<br> e.g., `remark 3 Punctual Buyer`                                                                  |
-| **Delete**     | `delete INDEX m/MODE`<br> e.g., `delete 3 m/client` or `view 1` followed by `delete 3 m/remark`                            |
-| **Edit**       | `edit INDEX m/MODE` <br> e.g.,`edit 1 a/Blk 221 Yishun St 81` or `view 1` followed by `edit 3 m/transaction g/mango `      |
-| **Exit**       | `exit`                                                                                                                     |
-| **Find**       | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find John`                                                                    |
-| **Filter**     | `filter buy` or `filter sell` <br> e.g., `filter sell`                                                                     |
-| **List**       | `list`                                                                                                                     |
-| **Help**       | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                   |
-| **Sort**       | `sort INDEX latest` or `sort INDEX oldest` <br> e.g.,`sort 1 latest`                                                       |
-| **Buy**        | `buy INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g `buy 2 q/100 g/apples price/1.5`                             |
-| **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g `sell 2 q/100 g/apples price/1.5 d/07/11/2022`              |
-| **User Guide** | `user_guide`                                                                                                               |
+| Action         | Format, Examples                                                                                                                                       |
+|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`<br> e.g., `add n/Alice a/Yishun Street 81 p/9876543 e/alice@gmail.com`                             |
+| **Clear**      | `clear`                                                                                                                                                |
+ | **Remark**     | `remark INDEX REMARK`<br> e.g., `remark 3 Punctual Buyer`                                                                                              |
+| **Delete**     | `delete INDEX m/MODE`<br> e.g., `delete 3 m/client` or `view 1` followed by `delete 3 m/remark`                                                        |
+| **Edit**       | `edit INDEX m/MODE FIELDS [MORE_FIELDS]...` <br> e.g.,`edit 1 a/Blk 221 Yishun St 81 p/818181` or `view 1` followed by `edit 3 m/transaction g/mango ` |
+| **Exit**       | `exit`                                                                                                                                                 |
+| **Find**       | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find John`                                                                                                |
+| **Filter**     | `filter buy` or `filter sell` <br> e.g., `filter sell`                                                                                                 |
+| **List**       | `list`                                                                                                                                                 |
+| **Help**       | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                               |
+| **Sort**       | `sort INDEX latest` or `sort INDEX oldest` <br> e.g.,`sort 1 latest`                                                                                   |
+| **Buy**        | `buy INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g `buy 2 q/100 g/apples price/1.5`                                                         |
+| **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g `sell 2 q/100 g/apples price/1.5 d/07/11/2022`                                          |
+| **User Guide** | `user_guide`                                                                                                                                           |
                                                                                                                                                                                                                                                              |
 
 
