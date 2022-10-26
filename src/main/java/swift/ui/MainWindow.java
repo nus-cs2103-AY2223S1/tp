@@ -236,20 +236,20 @@ public class MainWindow extends UiPart<Stage> {
 
             CommandType commandType = commandResult.getCommandType();
             switch (commandType) {
-                case HELP:
-                    handleHelp();
-                    break;
-                case EXIT:
-                    handleExit();
-                    break;
-                case CONTACTS:
-                    showContactTab();
-                    break;
-                case TASKS:
-                    showTaskTab();
-                    break;
-                default:
-                    break;
+            case HELP:
+                handleHelp();
+                break;
+            case EXIT:
+                handleExit();
+                break;
+            case CONTACTS:
+                showContactTab();
+                break;
+            case TASKS:
+                showTaskTab();
+                break;
+            default:
+                break;
             }
 
             return commandResult;
