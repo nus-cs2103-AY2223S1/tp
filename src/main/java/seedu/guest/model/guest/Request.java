@@ -14,7 +14,7 @@ public class Request {
     // length constraints
     private static final int MAX_LENGTH = 500;
 
-    public static final String MESSAGE_CONSTRAINTS = "Requests cannot be more than " + MAX_LENGTH + " characters long";
+    public static final String MESSAGE_CONSTRAINTS = "Requests must be at most " + MAX_LENGTH + " characters long";
     public final String value;
 
     /**
