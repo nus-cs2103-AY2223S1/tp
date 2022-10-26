@@ -110,8 +110,8 @@ public class UniqueItemList implements Iterable<Item> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueItemList // instanceof handles nulls
+        return other == this
+                || (other instanceof UniqueItemList
                 && internalList.equals(((UniqueItemList) other).internalList));
     }
 
