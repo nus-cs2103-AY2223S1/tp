@@ -23,7 +23,7 @@ import seedu.address.logic.commands.BuyCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteClientCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditClientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterTransCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -31,6 +31,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SellCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -76,10 +77,11 @@ public class JeeqTrackerParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Client client = new ClientBuilder().build();
-        EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CLIENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_CLIENT, descriptor), command);
+        EditClientCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
+        EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_CLIENT.getOneBased() + " m/client "
+                + ClientUtil.getEditClientDescriptorDetails(descriptor));
+        assertEquals(new EditClientCommand(INDEX_FIRST_CLIENT, descriptor), command);
     }
 
     @Test
@@ -182,5 +184,12 @@ public class JeeqTrackerParserTest {
                 + PREFIX_DATE
                 + "09/11/2000 ");
         assertEquals(new SellCommand(INDEX_FIRST_CLIENT, transaction), command);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        SortCommand command = (SortCommand) parser.parseCommand(
+                SortCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased() + " " + "latest");
+        assertEquals(new SortCommand((INDEX_FIRST_CLIENT), true), command);
     }
 }
