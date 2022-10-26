@@ -45,6 +45,9 @@ public class ModelManager implements Model {
         filteredEvents = new FilteredList<>(this.addressBook.getAllEventList());
         bucketList = new FilteredList<>(this.addressBook.getEventList());
         selectedTrip = new ObservableTrip();
+
+        // Set initial view to Bucket List
+        filteredEvents.setPredicate(getBucketPredicate());
     }
 
     public ModelManager() {
@@ -135,7 +138,6 @@ public class ModelManager implements Model {
     @Override
     public void addEvent(Event event) {
         addressBook.addEventToBucketListAndAllEventsList(event);
-        //update filtered trip list??
     }
 
     @Override
@@ -215,6 +217,11 @@ public class ModelManager implements Model {
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Event> getBucketList() {
+        return bucketList;
     }
 
     @Override

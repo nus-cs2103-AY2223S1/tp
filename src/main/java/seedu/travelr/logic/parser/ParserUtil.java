@@ -23,7 +23,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String EVENT_DESCRIPTION_PLACEHOLDER =
-            "This is a placeholder text for the event description, located in ParserUtil class.";
+            "This is a placeholder text for the event description.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

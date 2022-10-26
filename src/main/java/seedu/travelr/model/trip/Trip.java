@@ -176,11 +176,11 @@ public class Trip {
                 .append("; Description: ")
                 .append(getDescription());
 
-        Set<Event> tags = getEvents();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
+        //        Set<Event> events = getEvents();
+        //        if (!events.isEmpty()) {
+        //            builder.append("; Events: ");
+        //            events.forEach(builder::append);
+        //        }
 
         if (!getLocation().isDefaultValue()) {
             builder.append("; Location: ");
@@ -199,4 +199,24 @@ public class Trip {
         return title.compareTo(trip.title);
     }
 
+    public int compareTime(Trip trip) {
+        return dateField.compareTo(trip.dateField);
+    }
+
+    public int compareLocation(Trip trip) {
+        return location.compareTo(trip.location);
+    }
+
+    public int compareNumberOfEvents(Trip trip) {
+        return events.getAmountOfEvents() - trip.events.getAmountOfEvents();
+    }
+
+    /**
+     * Compares this trip against another trip based on whether they are completed.
+     */
+    public int compareCompletion(Trip trip) {
+        int thisCompletion = done ? 1 : 0;
+        int otherCompletion = trip.done ? 1 : 0;
+        return thisCompletion - otherCompletion;
+    }
 }

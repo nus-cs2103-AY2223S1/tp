@@ -142,6 +142,11 @@ public interface Model {
     ObservableList<Event> getFilteredEventList();
 
     /**
+     * Returns an unmodifiable view of the bucket list
+     */
+    ObservableList<Event> getBucketList();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.

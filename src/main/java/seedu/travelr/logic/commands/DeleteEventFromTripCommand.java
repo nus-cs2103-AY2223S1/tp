@@ -3,6 +3,7 @@ package seedu.travelr.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
+import static seedu.travelr.model.trip.TripComparators.DO_NOTHING;
 
 import java.util.HashSet;
 
@@ -30,7 +31,7 @@ public class DeleteEventFromTripCommand extends Command {
             + PREFIX_TITLE + "Swim "
             + PREFIX_TRIP + "Honeymoon ";
 
-    public static final String MESSAGE_SUCCESS = "Event removed to trip: %1$s\nThe specified event has been returned"
+    public static final String MESSAGE_SUCCESS = "Event removed to trip: %1$s \nThe specified event has been returned "
             + "to the bucket list. Current bucket list:";
     public static final String MESSAGE_DUPLICATE_TRIP = "This event doesn't exists in the specified trip";
 
@@ -68,7 +69,7 @@ public class DeleteEventFromTripCommand extends Command {
         toDeleteFrom.removeEvent(event);
         model.returnToBucketList(event);
         model.updateFilteredEventList(model.getBucketPredicate());
-
+        model.sortTripsByComparator(DO_NOTHING);
         return new CommandResult(String.format(MESSAGE_SUCCESS, event));
     }
 
