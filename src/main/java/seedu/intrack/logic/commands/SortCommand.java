@@ -4,7 +4,6 @@ import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 
-import seedu.intrack.logic.commands.exceptions.CommandException;
 import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.Internship;
 
