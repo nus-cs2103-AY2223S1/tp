@@ -87,27 +87,22 @@ Format: `help`
 
 Adds a contact to the application.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] d/DOB [t/TAG]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB [t/TAG]`
 
-- The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), date of birth(`d`).
-- The parameters in [ ] are optional parameters, including gender (`g`), purchase history (`ph`), tag (`t`).
+- The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
+- The parameters in [ ] are optional parameters, including tag (`t`).
 - A person in the contact list can have more than 1 tag.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/friend t/criminal g/f d/14/12/1998`
 
-__Optional Parameter 1: Gender__
+__Additional Parameter 1: Gender__
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER`
 
-- Adds gender to a person in the contact list. The genders accepted by the contact list are: `M`/`m` for male,  `F`/`f` for female.
-- NAME can contain more than 1 word.
-
-Examples:
-* `add n/John Wang p/98765432 e/johnwang@example.com a/John street, block 123, #01-01 g/M`
-* `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 g/m`
-* `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82  g/F`
+- Adds gender to a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
+for male, `F`/`f`/`Female`/`female` for female.
 
 __Additional Parameter 2: Date of Birth__
 
@@ -164,15 +159,15 @@ __Optional Parameter 1: Gender__
 
 Format: `edit INDEX [g/GENDER]`
 
-- Edits the gender of a person in the contact list. The genders accepted by the contact list are: `M`/`m` for male,
-`F`/`f` for female, and `NA` for empty gender (if user wants to hide gender).
+- Edits the gender of a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
+for male, `F`/`f`/`Female`/`female` for female.
 - `INDEX` must be **a positive integer** (i.e 1,2,3…)
 - `INDEX` must be within the range of the contact list index (i.e. from 1 to size of contact list).
 
 Examples:
 * `edit 1 g/M`
 * `edit 2 g/f`
-* `edit 3 g/NA`
+* `edit 3 g/F`
 
 __Optional Parameter 2: Date of Birth__
 

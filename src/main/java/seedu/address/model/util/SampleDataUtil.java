@@ -26,23 +26,23 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new DateOfBirth("13/2/1988"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"), new Gender("male"), new Uid()),
+                new Address("Blk 30 Geylang Street 29, #06-40"), new Gender("male"), new DateOfBirth("13/2/1988"),
+                    getTagSet("friends"), new Uid()),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new DateOfBirth("11/5/1968"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), new Gender("female"), new Uid()),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Gender("female"),
+                    new DateOfBirth("11/5/1968"), getTagSet("colleagues", "friends"), new Uid()),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new DateOfBirth("4/12/2002"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours"), new Gender("female"), new Uid()),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Gender("female"), new DateOfBirth("4/12/2002"),
+                    getTagSet("neighbours"), new Uid()),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new DateOfBirth("29/7/1996"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family"), new Gender("male"), new Uid()),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Gender("male"),
+                    new DateOfBirth("29/7/1996"), getTagSet("family"), new Uid()),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new DateOfBirth("2/6/1984"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates"), new Gender("male"), new Uid()),
+                new Address("Blk 47 Tampines Street 20, #17-35"), new Gender("male"), new DateOfBirth("2/6/1984"),
+                    getTagSet("classmates"), new Uid()),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new DateOfBirth("2/11/1954"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"), new Gender("male"), new Uid())
+                new Address("Blk 45 Aljunied Street 85, #11-31"), new Gender("male"), new DateOfBirth("2/11/1954"),
+                    getTagSet("colleagues"), new Uid())
         };
     }
 
