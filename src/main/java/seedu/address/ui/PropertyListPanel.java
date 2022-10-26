@@ -8,8 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.buyer.Buyer;
-import seedu.address.model.property.Property;
+import seedu.address.model.pricerange.property.Property;
 
 
 /**
@@ -27,9 +26,9 @@ public class PropertyListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PropertyListPanel} with the given {@code ObservableList}.
      */
-    public PropertyListPanel(ObservableList<Property> propertyList) {
+    public PropertyListPanel(ObservableList<Property> filteredPropertyList) {
         super(FXML);
-        propertyListView.setItems(propertyList);
+        propertyListView.setItems(filteredPropertyList);
         propertyListView.setCellFactory(listView -> new PropertyListViewCell());
     }
 

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
+import seedu.address.model.pricerange.property.PropertyNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all properties in property book whose name contains any of the argument keywords.

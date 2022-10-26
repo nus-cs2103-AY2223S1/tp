@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.property.Property;
+import seedu.address.model.pricerange.property.Property;
 
 /**
  * Unmodifiable view of a Property list

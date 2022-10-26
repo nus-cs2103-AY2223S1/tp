@@ -12,11 +12,11 @@ import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.property.Description;
-import seedu.address.model.property.Owner;
-import seedu.address.model.property.Price;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyName;
+import seedu.address.model.pricerange.property.Description;
+import seedu.address.model.pricerange.property.Owner;
+import seedu.address.model.pricerange.property.Price;
+import seedu.address.model.pricerange.property.Property;
+import seedu.address.model.pricerange.property.PropertyName;
 
 /**
  * Contains utility methods for populating {@code PersonBook} with sample data.

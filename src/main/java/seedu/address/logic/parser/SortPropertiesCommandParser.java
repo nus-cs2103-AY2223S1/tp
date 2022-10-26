@@ -1,15 +1,14 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.SortBuyersCommand;
 import seedu.address.logic.commands.SortPropertiesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.sortcomparators.Order;
 import seedu.address.logic.sortcomparators.PriceComparator;
 import seedu.address.logic.sortcomparators.PropertyComparator;
 import seedu.address.logic.sortcomparators.PropertyNameComparator;
-import seedu.address.model.property.Price;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyName;
+import seedu.address.model.pricerange.property.Price;
+import seedu.address.model.pricerange.property.Property;
+import seedu.address.model.pricerange.property.PropertyName;
 
 import java.util.Comparator;
 

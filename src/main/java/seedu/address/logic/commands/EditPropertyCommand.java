@@ -21,11 +21,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.property.Description;
-import seedu.address.model.property.Owner;
-import seedu.address.model.property.Price;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyName;
+import seedu.address.model.pricerange.property.Description;
+import seedu.address.model.pricerange.property.Owner;
+import seedu.address.model.pricerange.property.Price;
+import seedu.address.model.pricerange.property.Property;
+import seedu.address.model.pricerange.property.PropertyName;
 
 /**
  * Edits the details of an existing property in the address book.

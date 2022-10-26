@@ -19,7 +19,7 @@ import seedu.address.model.buyer.FilterBuyerByPricePredicate;
 import seedu.address.model.buyer.FilterBuyerByPriorityPredicate;
 import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.property.Price;
+import seedu.address.model.pricerange.property.Price;
 
 
 

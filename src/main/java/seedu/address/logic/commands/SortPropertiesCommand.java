@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.property.Property;
+import seedu.address.model.pricerange.property.Property;
 
 
 import java.util.Comparator;
@@ -41,14 +41,14 @@ public class SortPropertiesCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateSortedPropertyList(comparator);
+        model.sortPropertyList(comparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS, comparator.toString()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof SortBuyersCommand // instanceof handles nulls
+                || (other instanceof SortPropertiesCommand // instanceof handles nulls
                 && comparator.equals(((SortPropertiesCommand) other).comparator));
     }
 }

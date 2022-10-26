@@ -1,4 +1,4 @@
-package seedu.address.model.property.exceptions;
+package seedu.address.model.pricerange.property.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Properties

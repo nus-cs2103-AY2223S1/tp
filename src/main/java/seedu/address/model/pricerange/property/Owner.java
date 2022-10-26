@@ -1,4 +1,4 @@
-package seedu.address.model.property;
+package seedu.address.model.pricerange.property;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 

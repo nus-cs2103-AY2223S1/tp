@@ -1,11 +1,8 @@
 package seedu.address.logic.sortcomparators;
 
-import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.Name;
-import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.property.Price;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyName;
+import seedu.address.model.pricerange.property.Price;
+import seedu.address.model.pricerange.property.Property;
+import seedu.address.model.pricerange.property.PropertyName;
 
 import java.util.Comparator;
 import java.util.Optional;

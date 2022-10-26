@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyPersonBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.property.Property;
+import seedu.address.model.pricerange.property.Property;
 
 /**
  * API of the Logic component
@@ -35,9 +35,6 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Buyer> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the sorted list of persons */
-    ObservableList<Buyer> getSortedPersonList();
-
     /**
      * Returns the PropertyBook.
      *
@@ -47,6 +44,7 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of properties */
     ObservableList<Property> getFilteredPropertyList();
+
 
     /**
      * Returns the user prefs' buyer model file path.

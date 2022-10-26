@@ -1,4 +1,4 @@
-package seedu.address.model.property;
+package seedu.address.model.pricerange.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.property.exceptions.DuplicatePropertyException;
-import seedu.address.model.property.exceptions.PropertyNotFoundException;
+import seedu.address.model.pricerange.property.exceptions.DuplicatePropertyException;
+import seedu.address.model.pricerange.property.exceptions.PropertyNotFoundException;
 
 
 /**

@@ -17,10 +17,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.property.FilterPropsByCharacteristicsPredicate;
-import seedu.address.model.property.FilterPropsByOwnerNamePredicate;
-import seedu.address.model.property.FilterPropsByPricePredicate;
-import seedu.address.model.property.Property;
+import seedu.address.model.pricerange.property.FilterPropsByCharacteristicsPredicate;
+import seedu.address.model.pricerange.property.FilterPropsByOwnerNamePredicate;
+import seedu.address.model.pricerange.property.FilterPropsByPricePredicate;
+import seedu.address.model.pricerange.property.Property;
 
 
 

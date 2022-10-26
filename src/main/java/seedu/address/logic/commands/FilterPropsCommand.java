@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.property.AbstractFilterPropsPredicate;
+import seedu.address.model.pricerange.property.AbstractFilterPropsPredicate;
 
 /**
  * Filters and lists all properties in the property list that either has a price that is within the given price,

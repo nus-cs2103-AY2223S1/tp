@@ -1,14 +1,13 @@
 package seedu.address.logic.sortcomparators;
 
-import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.property.Price;
+import seedu.address.model.pricerange.property.Price;
 
 import java.util.Comparator;
 
 import static java.util.Objects.requireNonNull;
 
 /**
- * A comparator to compare two Names.
+ * A comparator to compare two Prices.
  */
 public class PriceComparator implements Comparator<Price> {
 

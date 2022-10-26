@@ -15,7 +15,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.PersonBook;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.property.Property;
+import seedu.address.model.pricerange.property.Property;
 import seedu.address.testutil.EditPropertyDescriptorBuilder;
 import seedu.address.testutil.PropertyBuilder;
 

@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.PropertyBook;
-import seedu.address.model.property.Property;
+import seedu.address.model.pricerange.property.Property;
 
 /**
  * A utility class containing a list of {@code Property} objects to be used in tests.

@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.property.Property;
+import seedu.address.model.pricerange.property.Property;
 import seedu.address.ui.PersonListPanel;
 
 /**
@@ -24,7 +24,6 @@ public interface Model {
      */
     Predicate<Property> PREDICATE_SHOW_ALL_PROPERTIES = unused -> true;
 
-    void setPersonListPanel(PersonListPanel personListPanel);
     //=========== UserPrefs ==================================================================================
 
     /**
@@ -117,24 +116,11 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Buyer> predicate);
 
-    //=========== Sorted Buyer List Accessors =============================================================
-
     /**
-     * Returns an unmodifiable view of the sorted buyer list
-     */
-    ObservableList<Buyer> getSortedPersonList();
-
-    /**
-     * Updates the comparator of the sorted buyer list to sort by the given {@code comparator}.
-     *
+     * Sorts the person book's buyer list by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-    void updateSortedPersonList(Comparator<Buyer> comparator);
-
-    /**
-     * Returns the last shown buyers list; either the sorted or filtered list.
-     */
-    ObservableList<Buyer> getLastShownBuyersList();
+    void sortBuyerList(Comparator<Buyer> comparator);
 
     //=========== PropertyBook ================================================================================
 
@@ -187,22 +173,10 @@ public interface Model {
      */
     void updateFilteredPropertyList(Predicate<Property> predicate);
 
-    //=========== Sorted Property List Accessors =============================================================
-
     /**
-     * Returns an unmodifiable view of the sorted property list
-     */
-    ObservableList<Property> getSortedPropertyList();
-
-    /**
-     * Updates the comparator of the sorted property list to sort by the given {@code comparator}.
-     *
+     * Sorts the property book's property list by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-    void updateSortedPropertyList(Comparator<Property> comparator);
+    void sortPropertyList(Comparator<Property> comparator);
 
-    /**
-     * Returns the last shown properties list; either the sorted or filtered list.
-     */
-    ObservableList<Property> getLastShownPropertiesList();
 }
