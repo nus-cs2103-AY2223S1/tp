@@ -112,7 +112,7 @@ Format: `help`
 
 Adds a project to Project list.
 
-Format: `add pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECt_DEADLINE [t/TAG]…​`
+Format: `add pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECT_DEADLINE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A project can have any number of tags (including 0)
@@ -257,8 +257,30 @@ Staffs whose name contains `Adrian` or `Lam` only aren't listed.
 ## Task Commands
 ### Adding a Task : `addtask`
 
+Adds a Task to the Task list. 
+
+Format: `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE`
+
+* Both task fields `TASK_DESCRIPTION` and `TASK_DEADLINE` must be present.
+* `TASK_DEADLINE` follows the **YYYY-MM-DD** format. 
+
+Examples:
+* `addtask tdesc/Finish Homework td/2022-10-27` creates a Task with the description `Finish Homework` and deadline set to
+`2022-10-27`
+
 --------------------------------------------------------------------------------------------------------------------
 ### Deleting a Task : `deltask`
+
+Deletes a Task at the specified index from the Task list. 
+
+Format: `deltask INDEX`
+
+* `INDEX` is a positive integer from 1, 2, ... 
+
+Examples:
+* `deltask 1` deletes the Task at index 1 of the Task list.
+* If the Task list has only 4 elements, `deltask 5` would return an error message of
+`The task index provided is invalid`.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Finding a Task : `findtask`
@@ -351,8 +373,8 @@ For example, entering an incorrect add command like shown below will cause an er
 
 ### List Panel
 Clicking on a `Task`, `Project`, or `Staff` card will cause the respective box to be highlighted in green. 
-All `Task` and `Project` cards will be displayed in the `List Panel`.  
-By default, the `Staff` members of the first project are displayed. 
+All `Task` and `Project` cards will be displayed in the `List Panel`.
+By default, the `Staff` list is empty when first starting the program.
 To see how to view the `Staff` list of other projects, you can check [this](#view-the-staff-list-within-a-project-view) segment of the user guide.
 
 ![List Panel](images/ListPanel.png)
