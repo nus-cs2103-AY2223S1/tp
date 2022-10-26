@@ -30,7 +30,7 @@
                             <Region fx:constant="USE_PREF_SIZE"/>
                         </minWidth>
                     </Label>
-                    <Label fx:id="moduleTitle" styleClass="cell_big_label"/>
+                    <Label fx:id="moduleTitle" minWidth="-Infinity" styleClass="cell_big_label"/>
                 </HBox>
                 <FlowPane fx:id="assignmentDetails">
                     <padding>

@@ -279,7 +279,7 @@
     -fx-font-size: 60;
     -fx-text-fill: rgba(63, 100, 17, 0.41) !important;
     -fx-font-family: "Poppins Bold";
-    -fx-translate-x: -20;
+    -fx-translate-x: -10;
 }
 
 #cardPane {
