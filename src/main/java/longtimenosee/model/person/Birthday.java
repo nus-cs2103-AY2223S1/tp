@@ -80,8 +80,9 @@ public class Birthday {
         }
         LocalDate verifiedDate = LocalDate.parse(date);
         int verifiedYear = verifiedDate.getYear();
+        System.out.println(verifiedYear);
         return verifiedYear >= TWENTIETH_CENTURY_BOUNDARY
-            || LocalDate.now().isEqual(verifiedDate) || LocalDate.now().isAfter(ChronoLocalDate.from(verifiedDate));
+            && (LocalDate.now().isEqual(verifiedDate) || LocalDate.now().isAfter(ChronoLocalDate.from(verifiedDate)));
     }
 
     /**
