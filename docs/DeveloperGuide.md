@@ -461,7 +461,7 @@ The following sequence diagram shows how the Bar Chart works when a change is tr
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+_{To be updated}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -551,6 +551,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. System shows an error message.
 
     Use case resumes at step 1.
+<br>
+<br>
 
 **Use case: List internship(s)**
 
@@ -573,7 +575,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. System shows an error message.
 
   Use case ends.
-* 
+<br>
+<br>
+
 **Use case: Delete internship(s)**
 
 **MSS**
@@ -589,6 +593,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PleaseHireUs shows an error message.
 
   Use case ends.
+<br>
+<br>
 
 **Use case: View internship(s)**
 
@@ -602,6 +608,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given index is invalid.
 
     * 1a1. PleaseHireUs shows an error message.
+<br>
+<br>
 
 **Use case: Filter internship(s)**
 
@@ -613,7 +621,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 1a. No keywords is given
+* 1a. No keywords are given
     * 1a1. PleaseHireUs shows an error message.
     
   Use case ends.
@@ -631,6 +639,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty. 
 
     Use case ends.
+<br>
+<br>
 
 **Use case: Update internship**
 
@@ -664,6 +674,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1d1. PleaseHireUs shows an error message.
   
   Use case ends.
+<br>
+<br>
 
 **Use case: View help message**
 
@@ -673,6 +685,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  System displays command summary and link to user guide.
 
     Use case ends.
+<br>
+<br>
 
 **Use case: Undo command**
 
@@ -688,6 +702,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PleaseHireUs shows an error message.
 
   Use case ends.
+<br>
+<br>
 
 **Use case: Redo command**
 
@@ -703,6 +719,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PleaseHireUs shows an error message.
 
   Use case ends.
+<br>
+<br>
 
 *{More to be added}*
 
@@ -751,7 +769,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding an internship
 
-   1. Test case: `dd n/Google p/Backend Intern pr/APPLIED d/11-12-2022 ph/98765432 e/johnd@example.com web/https://careers.google.com/jobs r/offer for Y2 summer break t/high t/java` <br>
+   1. Test case: `add n/Google p/Backend Intern pr/APPLIED d/11-12-2022 ph/98765432 e/johnd@example.com web/https://careers.google.com/jobs r/offer for Y2 summer break t/high t/java` <br>
       Expected: An internship application is added to PHU internship list, with company name `Google`, position `Backend Intern`,
       date being `11 Dec 2022`, application process `OFFER`, phone `98765432`, email `johnd@example.com`, 
       website `https://careers.google.com/jobs`, remark `offer for Y2 summer break`, and 2 tags: `high` and `java`. 
@@ -797,7 +815,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Shows the full list of internships sorted by the company name in lexicographically order
    
     4. Test case: `list c/d true`<br>
-      Expected: Shows the full list of internships sorted by the company name in descending order
+      Expected: Shows the full list of internships sorted by the date. Internships are sorted from the latest to earliest date
 
 ### Deleting internship(s)
 
@@ -863,7 +881,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `edit 1` <br>
        Expected: No internship is edited. Error details shown in the status message.
     
-    4. Test case: `edit 1 cuk/high salary`
+    4. Test case: `edit 1 cuk/high salary`<br>
        Expected: No internship is edited. Error details shown in the status message.
    
 2. Updating internship while only the selected internships are being shown
@@ -936,7 +954,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `redo`<br>
        Expected: No command is redone. Error details shown in the status message.
 
-### Saving data
+### Saving data [To be updated]
 
 1. Dealing with missing/corrupted data files
 
