@@ -86,7 +86,7 @@ public class ModelManager implements Model {
             return false;
         }
 
-        return module.get().getSemesters().stream().anyMatch(semesterOffered -> semesterOffered.equals(semester));
+        return module.get().availableInSemester(semester);
     }
 
     @Override
