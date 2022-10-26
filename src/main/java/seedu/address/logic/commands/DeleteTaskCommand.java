@@ -25,7 +25,7 @@ public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "deletetask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a task from a user with the given name in a group.\n"
+            + ": Deletes a task from a member with the given name in a group.\n"
             + "Parameters: NAME " + PREFIX_GROUP + "GROUP " + PREFIX_TASK + "TASK\n"
             + "Example: " + COMMAND_WORD + " Alice g/Group Alpha task/Coursework 0";
 

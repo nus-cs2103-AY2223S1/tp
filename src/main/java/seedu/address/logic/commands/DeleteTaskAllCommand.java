@@ -25,7 +25,7 @@ public class DeleteTaskAllCommand extends Command {
 
     public static final String COMMAND_WORD = "deletetaskall";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a task from all users in a group. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a task from all members in a group. "
             + "Members without this task are ignored\n"
             + "Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_TASK + "TASK\n"
             + "Example: " + COMMAND_WORD + " g/Group Alpha task/Coursework 0";
