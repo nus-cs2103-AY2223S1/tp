@@ -1,5 +1,9 @@
 package seedu.application.ui;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -98,5 +102,19 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    /**
+     * Opens the URL in web browser.
+     */
+    @FXML
+    private void go() throws Exception {
+        try {
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                Desktop.getDesktop().browse(new URI("https://ay2223s1-cs2103-f14-3.github.io/tp/UserGuide.html"));
+            }
+        } catch (IOException | URISyntaxException e) {
+            throw new Exception(new RuntimeException(e).getMessage());
+        }
     }
 }
