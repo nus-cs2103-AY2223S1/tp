@@ -29,7 +29,7 @@ public class AddRecordCommand extends Command {
             + PREFIX_MEDICATION + "Phenylephrine oral 10mg";
 
     public static final String MESSAGE_SUCCESS = "New record added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the record list.";
+    public static final String MESSAGE_DUPLICATE_RECORD = "A record with this date already exists in the record list.";
 
     private final Record toAdd;
 
