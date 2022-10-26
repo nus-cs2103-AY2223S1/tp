@@ -86,6 +86,19 @@ public class PersonCard extends UiPart<Region> {
         email2.setText("Email: " + social.getEmail());
         instagram.setText("Instagram: " + social.getInstagram());
         preferred.setText("Preferred: " + social.getPreferred());
+        if (displayedIndex % 2 == 0) {
+            whatsapp.getStyleClass().add("button2");
+            telegram.getStyleClass().add("button2");
+            email2.getStyleClass().add("button2");
+            instagram.getStyleClass().add("button2");
+            preferred.getStyleClass().add("button2");
+        } else {
+            whatsapp.getStyleClass().add("button1");
+            telegram.getStyleClass().add("button1");
+            email2.getStyleClass().add("button1");
+            instagram.getStyleClass().add("button1");
+            preferred.getStyleClass().add("button1");
+        }
 
         whatsapp.setOnAction(new EventHandler<ActionEvent>() {
             @Override

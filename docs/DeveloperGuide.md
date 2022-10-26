@@ -186,7 +186,7 @@ Step 1. The user executes `include 1 \TELEGRAM #t.me/JohnDoe123` to add the Tele
         The `AddressBookParser` then calls `IncludeCommand.addTelegram(1, t.me/JohnDoe123)` to add the command to the queue.
 
 Step 2. The user executes `include 1 \WHATSAPP #wa.me/12345678` to add the Whatsapp link `wa.me/12345678` to the Whatsapp social media of the first person in the list.
-        The `AddressBookParser` then calls `IncludeCommand.addWhatsapp(1, wa.me/12345678)` to add the command to the queue. 
+        The `AddressBookParser` then calls `IncludeCommand.addWhatsapp(1, wa.me/12345678)` to add the command to the queue.
 
 Step 3. The user executes `prefer 1 \TELEGRAM` to set the preferred mode of communication of the first person in the list to the Telegram social media account.
         The `AddressBookParser` then calls `PreferCommand.prefer(1, TELEGRAM)` to add the command to the queue.
