@@ -66,7 +66,7 @@ public class Subject {
     }
 
     public double getTotalPercentage() {
-        return grades.currentPercentageObtained;
+        return grades.getCurrentPercentage();
     }
 
     @Override

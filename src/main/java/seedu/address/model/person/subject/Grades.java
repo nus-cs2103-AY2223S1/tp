@@ -20,7 +20,7 @@ public class Grades {
     // the total score for the assessment, and the weightage of the assessment
     private final HashMap<String, double[]> assessmentMarks;
 
-    double currentPercentageObtained;
+    private double currentPercentageObtained;
 
     /**
      * Constructs a {@code Grades}.
@@ -48,6 +48,10 @@ public class Grades {
 
     public ArrayList<String> getAllAssessments() {
         return new ArrayList<>(assessmentMarks.keySet());
+    }
+
+    public double getCurrentPercentage() {
+        return this.currentPercentageObtained;
     }
 
     public double getCurrentPercentageObtained(HashMap<String, double[]> subjectMarks) {

@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.model.Model;
+
+/**
+ * Sorts all persons by grades.
+ */
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String ASCENDING_ARGS = "ASC";
