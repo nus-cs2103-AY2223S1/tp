@@ -12,16 +12,17 @@ import hobbylist.model.activity.RatePredicate;
  * The required bound should within 0-5(inclusive).
  */
 public class RateAboveCommand extends Command {
+    public static final String RESPOND_MESSAGE = "List all activities whose rate is above ";
 
-    public static final String COMMAND_WORD = "r/above";
+    private static String commandWord = "r/above";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = commandWord
             + ": List all activities whose rate is above certain value\n"
             + "Parameters: int rateBound...\n"
-            + "Example: " + COMMAND_WORD + " 3";
-    public static final String RESPOND_MESSAGE = "List all activities whose rate is above ";
+            + "Example: " + commandWord + " 3";
     private final RatePredicate predicate;
     private int bound;
+
     /**
      * Parses the given int to predicate.
      * @throws ParseException if the user input does not conform the expected format
@@ -30,10 +31,26 @@ public class RateAboveCommand extends Command {
         this.bound = bound;
         predicate = new RatePredicate(bound);
     }
+
+    /**
+     * Returns the command word.
+     * @return the command word.
+     */
+    public static String getCommandWord() {
+        return commandWord;
+    }
+
+    /**
+     * Sets the command word.
+     * @param word the new command word.
+     */
+    public static void setCommandWord(String word) {
+        commandWord = word;
+    }
+
     /**
      * Execute command
      */
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

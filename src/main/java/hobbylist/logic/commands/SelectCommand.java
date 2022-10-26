@@ -14,7 +14,7 @@ import hobbylist.model.activity.Activity;
  * Select an activity in the current list by its index to display all details about it
  */
 public class SelectCommand extends Command {
-    private static final String commandWord = "select";
+    private static String commandWord = "select";
 
     public static final String MESSAGE_USAGE = commandWord + ": Select an activity in the current list "
             + "by the index number used in the displayed list.\n"
@@ -35,6 +35,14 @@ public class SelectCommand extends Command {
      */
     public static String getCommandWord() {
         return commandWord;
+    }
+
+    /**
+     * Sets the command word.
+     * @param word the new command word.
+     */
+    public static void setCommandWord(String word) {
+        commandWord = word;
     }
 
     @Override
