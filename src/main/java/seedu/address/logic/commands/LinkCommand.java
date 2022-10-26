@@ -30,8 +30,8 @@ public class LinkCommand extends Command {
             + PREFIX_PERSON + "0 "
             + PREFIX_INTERNSHIP + "0 ";
     public static final String MESSAGE_SUCCESS = "Person %1$s linked to Internship %2$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in InterNUS";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in InterNUS";
     // person before internship
     public static final String MESSAGE_LINKED_PERSON = "Person %1$s is already linked to Internship %2$s";
     public static final String MESSAGE_LINKED_INTERNSHIP = "Internship %2$s is already linked to Person %1$s";
@@ -40,18 +40,8 @@ public class LinkCommand extends Command {
     private final Index personIndex;
     private final Index internshipIndex;
 
-    /*
-    Not sure if LinkCommand(Person, Internship) is needed, hence commenting this for now
     /**
-     * Creates an AddCommand to add the specified {@code Person}
-     */
-    /*
-    public LinkCommand(Person person, Internship internship) {
-    }
-     */
-
-    /**
-     * Creates an LinkCommand to link a {@code Person} and an {@code Internship}
+     * Creates a LinkCommand to link a {@code Person} and an {@code Internship}
      * based on the given {@code personIndex} and {@code internshipIndex}
      */
     public LinkCommand(Index personIndex, Index internshipIndex) {

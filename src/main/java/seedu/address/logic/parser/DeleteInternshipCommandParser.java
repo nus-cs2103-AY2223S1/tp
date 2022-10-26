@@ -7,13 +7,13 @@ import seedu.address.logic.commands.DeleteInternshipCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteInternshipCommandParser object
+ * Parses input arguments and creates a new DeleteInternshipCommand object
  */
 public class DeleteInternshipCommandParser implements Parser<DeleteInternshipCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteInternshipCommand
+     * and returns a DeleteInternshipCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

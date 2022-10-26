@@ -1,7 +1,7 @@
 package seedu.address.model.internship;
 
 /**
- * Represents an Internship's status in the address book.
+ * Represents an Internship's status in InterNUS.
  * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
  */
 public class InternshipStatus {

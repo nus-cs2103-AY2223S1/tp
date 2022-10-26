@@ -11,7 +11,7 @@ import seedu.address.logic.commands.LinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteInternshipCommandParser object
+ * Parses input arguments and creates a new LinkCommand object
  */
 public class LinkCommandParser implements Parser<LinkCommand> {
 

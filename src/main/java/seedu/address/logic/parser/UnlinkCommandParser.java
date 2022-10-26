@@ -11,13 +11,13 @@ import seedu.address.logic.commands.UnlinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteInternshipCommandParser object
+ * Parses input arguments and creates a new UnlinkCommand object
  */
 public class UnlinkCommandParser implements Parser<UnlinkCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the LinkCommand
-     * and returns an LinkCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the UnlinkCommand
+     * and returns an UnlinkCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

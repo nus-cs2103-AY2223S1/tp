@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 import seedu.address.model.Model;
 
 /**
- * Lists all internships in the address book to the user.
+ * Lists all internships in InterNUS to the user.
  */
 public class ListInternshipCommand extends Command {
 

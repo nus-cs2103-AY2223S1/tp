@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
- * Represents an Internship's interview date in the address book.
+ * Represents an Internship's interview date in InterNUS.
  * Guarantees: immutable; is valid as declared in {@link #isValidDatetimeStr(String)} (String)}
  */
 public class InterviewDate {
