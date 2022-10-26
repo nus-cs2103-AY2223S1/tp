@@ -3,7 +3,6 @@ package seedu.intrack.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.AppUtil.checkArgument;
 
-import java.util.Objects;
 
 /**
  * Represents an Internship's application status.
@@ -14,10 +13,10 @@ public class Status {
     public static final String MESSAGE_CONSTRAINTS = "Status can be of 3 types: Progress, Offered, Rejected";
 
     /*
-     * The first character of the status must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * The status must be either Offered, Progress, or Rejected. It is case insensitive.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX =
+            "[Oo][Ff][Ff][Ee][Rr][Ee][Dd]|[Rr][Ee][Jj][Ee][Cc][Tt][Ee][Dd]|[Pp][Rr][Oo][Gg][Rr][Ee][Ss][Ss]";
 
     public final String value;
 
@@ -37,10 +36,7 @@ public class Status {
      * Returns true if a given string is a valid status.
      */
     public static boolean isValidStatus(String test) {
-        return test.matches(VALIDATION_REGEX)
-                && ((Objects.equals(test, "Offered")
-                || Objects.equals(test, "Progress")
-                || Objects.equals(test, "Rejected")));
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
