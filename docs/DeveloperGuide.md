@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a buyer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -172,11 +172,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th buyer in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new buyer. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -184,7 +184,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the buyer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -229,7 +229,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the buyer being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -296,7 +296,7 @@ This is the class diagram of a `Person`.
 The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide. 
 
 Design considerations: 
-No duplicate persons can be added to the buyer list. This means that no two persons with the same name can exist. We considered using not only name but also contact number to identify a person, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user. 
+No duplicate buyers can be added to the buyer list. This means that no two buyers with the same name can exist. We considered using not only name but also contact number to identify a buyer, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user. 
 
 ### Creating a property
 
@@ -317,7 +317,7 @@ No duplicate properties can be added to the property list. This means that no tw
 
 To identify the owner of the property, we decided to include an `Owner` object within a `Property`. This `Owner` class contains two fields: `name` and `phone`.
 
-The `name` and `phone` fields in the `Owner` class are compulsory, to make sure that each property being sold has a relevant contact person.
+The `name` and `phone` fields in the `Owner` class are compulsory, to make sure that each property being sold has a relevant contact buyer.
 The fields are also validated the same way as when creating a new `Buyer` object.
 
 To support retrieving the `Owner` of a `Property`, we added the following methods:
@@ -421,17 +421,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Cobb` and the **Actor** is the `user`, unless specified otherwise)
 
-### Use case: Add a person
+### Use case: Add a buyer
 
 **MSS:**
 
-1. User chooses to add a new person.
-2. User enters the details of the person (e.g. their requirements) and his/her status as a buyer/seller.
+1. User chooses to add a new buyer.
+2. User enters the details of the buyer (e.g. their requirements) and his/her status as a buyer/seller.
 
 Use case ends.
 
 **Extensions**
-* 2a. The person already exists.
+* 2a. The buyer already exists.
 * 2b. Cobb shows an error message.
 
 Use case ends.
@@ -501,7 +501,7 @@ Use case ends.
 
 **MSS:**
 1. User gets a new buyer.
-2. User <u>adds the buyer (Use case: Add person)</u>.
+2. User <u>adds the buyer (Use case: Add buyer)</u>.
 3. User tries to <u>match the buyer to a property (Use case: Match buyer to property)</u>.
 
 **Extensions:**
@@ -516,7 +516,7 @@ Use case continues at 3.
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should work on any computer fewer than five years old. 
-3. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 1000 buyers without a noticeable sluggishness in performance for typical usage.
 4. Should be able to respond within two seconds.
 5. Should be downloaded and available to use within one minute.
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -556,17 +556,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a buyer
 
-1. Deleting a person while all persons are being shown
+1. Deleting a buyer while all buyers are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all buyers using the `list` command. Multiple buyers in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No buyer is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

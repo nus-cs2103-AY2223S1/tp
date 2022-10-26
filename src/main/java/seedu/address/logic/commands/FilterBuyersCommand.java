@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.AbstractFilterBuyerPredicate;
+import seedu.address.model.buyer.AbstractFilterBuyerPredicate;
 
 /**
  * Filters and lists all buyers in the buyer list that either have a price range that accepts the given price,

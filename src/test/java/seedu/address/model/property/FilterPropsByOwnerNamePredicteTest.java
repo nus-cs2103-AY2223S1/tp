@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Phone;
 import seedu.address.testutil.PropertyBuilder;
 
 public class FilterPropsByOwnerNamePredicteTest {

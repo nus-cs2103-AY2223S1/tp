@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
 
 /**
@@ -15,7 +15,7 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Buyer> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * {@code Predicate} that always evaluate to true
@@ -45,12 +45,12 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' person book file path.
+     * Returns the user prefs' buyer model file path.
      */
     Path getPersonBookFilePath();
 
     /**
-     * Sets the user prefs' person book file path.
+     * Sets the user prefs' buyer model file path.
      */
     void setPersonBookFilePath(Path personBookFilePath);
 
@@ -67,7 +67,7 @@ public interface Model {
     //=========== PersonBook ================================================================================
 
     /**
-     * Replaces person book data with the data in {@code personBook}.
+     * Replaces buyer model data with the data in {@code personModel}.
      */
     void setPersonBook(ReadOnlyPersonBook personBook);
 
@@ -77,42 +77,42 @@ public interface Model {
     ReadOnlyPersonBook getPersonBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the person book.
+     * Returns true if a buyer with the same identity as {@code buyer} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasPerson(Buyer buyer);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the person book.
+     * Deletes the given buyer.
+     * The buyer must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deletePerson(Buyer target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the person book.
+     * Adds the given buyer.
+     * {@code buyer} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addPerson(Buyer buyer);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the person book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the person book.
+     * Replaces the given buyer {@code target} with {@code editedBuyer}.
+     * {@code target} must exist in the address book.
+     * The buyer identity of {@code editedBuyer} must not be the same as another existing buyer in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setPerson(Buyer target, Buyer editedBuyer);
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Buyer List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered buyer list
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Buyer> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered buyer list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPersonList(Predicate<Buyer> predicate);
 
     //=========== PropertyBook ================================================================================
 
