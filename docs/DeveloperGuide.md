@@ -180,7 +180,7 @@ The proposed sort command consists of these following classes:
 
 - `SortCommand` which extends `Command`
 - `SortCommandParser` which extends `Parser<SortCommand>`
-  
+
 As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It sorts the list of students by their grades or attendance.
 
 Primarily there are two proposed cases for this command,
@@ -304,19 +304,19 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a ... | I want to ... | so that I can ... |
-| -------- | -------------------------------------- | -------------------------------------------- | ------------------------------------------------------- | 
+| -------- | -------------------------------------- | -------------------------------------------- | ------------------------------------------------------- |
 | `* * *`  | policeman                              | find a person using part of their ID or name | I can retrieve the person's details quickly             |
-| `* * *`  | backend law enforcement staff          | add people and their details into Sherlock   | these information can be quickly and easily accessible  |
+| `* * *`  | backend law enforcement staff          | add people and their details into Watson   | these information can be quickly and easily accessible  |
 | `* * *`  | policeman                              | see a person's full criminal history         |                                                         |
-| `* * *`  | detective                              | edit a person's details in Sherlock          | I can update the system with new information            |
-| `* *`    | law enforcement security officer       | allow only specific users into the system    | the information stored in Sherlock remains confidential |
-| `*`      | law enforcement administrative officer | import information from existing databases   | I can set up Sherlock quickly                           | 
+| `* * *`  | detective                              | edit a person's details in Watson          | I can update the system with new information            |
+| `* *`    | law enforcement security officer       | allow only specific users into the system    | the information stored in Watson remains confidential |
+| `*`      | law enforcement administrative officer | import information from existing databases   | I can set up Watson quickly                           |
 
 _{User Stories to be updated according to new project direction}_
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Sherlock` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Watson` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -325,9 +325,9 @@ _{User Stories to be updated according to new project direction}_
 **MSS**
 
 1.  User requests to list persons.
-2.  Sherlock shows a list of persons.
+2.  Watson shows a list of persons.
 3.  User requests to delete a specific person in the list.
-4.  Sherlock deletes the person.
+4.  Watson deletes the person.
 
     Use case ends.
 
@@ -349,9 +349,9 @@ _{User Stories to be updated according to new project direction}_
 **MSS**
 
 1.  User enters a person's partial/full ID or name.
-2.  Sherlock shows a list of persons with names/IDs corresponding to what was entered.
+2.  Watson shows a list of persons with names/IDs corresponding to what was entered.
 3.  User selects the person that he/she is looking for.
-4.  Sherlock displays the full details of the person.
+4.  Watson displays the full details of the person.
 
     Use case ends.
 

@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
-import seedu.address.model.person.subject.Subject;
+import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,6 +34,8 @@ class JsonAdaptedPerson {
     private final String address;
     private final String studentClass;
     private final String attendance;
+    private final String subjectHandler;
+
     private final List<JsonAdaptedRemark> remarks = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedSubject> subjects = new ArrayList<>();
@@ -45,24 +47,22 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("studentClass") String studentClass,
-                              @JsonProperty("attendance") String attendance,
+                             @JsonProperty("attendance") String attendance,
+                             @JsonProperty("subjectHandler") String subjectHandler,
                              @JsonProperty("remarks") List<JsonAdaptedRemark> remarks,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("subjects") List<JsonAdaptedSubject> subjects) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.studentClass = studentClass;
         this.attendance = attendance;
+        this.subjectHandler = subjectHandler;
         if (remarks != null) {
             this.remarks.addAll(remarks);
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
-        }
-        if (subjects != null) {
-            this.subjects.addAll(subjects);
         }
     }
 
@@ -76,6 +76,8 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         studentClass = source.getStudentClass().value;
         attendance = source.getAttendance().toString();
+        subjectHandler = source.getSubjectHandler().dataString();
+
         // Remarks follow the tag system
         remarks.addAll(source.getRemarks().stream()
                              .map(JsonAdaptedRemark::new)
@@ -83,9 +85,6 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                             .map(JsonAdaptedTag::new)
                             .collect(Collectors.toList()));
-        subjects.addAll(source.getSubjectsTaken().stream()
-                              .map(JsonAdaptedSubject::new)
-                              .collect(Collectors.toList()));
     }
 
     /**
@@ -103,12 +102,6 @@ class JsonAdaptedPerson {
         final List<Remark> personRemarks = new ArrayList<>();
         for (JsonAdaptedRemark remark : remarks) {
             personRemarks.add(remark.toModelType());
-        }
-
-        // So do Subjects
-        final List<Subject> personSubjects = new ArrayList<>();
-        for (JsonAdaptedSubject subject : subjects) {
-            personSubjects.add(subject.toModelType());
         }
 
         if (name == null) {
@@ -155,14 +148,18 @@ class JsonAdaptedPerson {
         }
         final Attendance modelAttendance = new Attendance(Attendance.parseAttendanceFromJson(attendance));
 
+        if (subjectHandler == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, SubjectHandler.class.getSimpleName()));
+        }
+        final SubjectHandler modelSubjectHandler = new SubjectHandler(subjectHandler);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Set<Remark> modelRemarks = new HashSet<>(personRemarks);
 
-        final Set<Subject> modelSubjects = new HashSet<>(personSubjects);
-
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStudentClass,
-                          modelAttendance, modelRemarks, modelSubjects, modelTags);
+                          modelAttendance, modelRemarks, modelSubjectHandler, modelTags);
     }
 
 }
