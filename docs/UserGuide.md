@@ -176,40 +176,43 @@ _Details coming soon ..._
 
 Adds a task to the tasklist.
 
-Format: `add task TASK_DESCRIPTION`
+Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED`
 
 Examples:
-* `add task laundry` add laundry to the task list
-* `add task coding assignment` add coding assignment to the task list
+* `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` add Fix toggle to the task list
+* `addTask n/Fix routing 3  d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/John@example.com` add Fix routing to the task list
 
 ### Deleting a task: `Delete Task`
 
 Deletes a task from the tasklist.
 
-Format: `delete task TASK_NUMBER`
+Format: `deleteTask TASK_NUMBER`
 * Deletes the task at the specified `TASK_NUMBER`.
 * The tasknumber refers to the task number shown in the displayed task list.
 * The tasknumber **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `delete task 1` deletes the first task from the tasklist
+* `deleteTask 1` deletes the first task from the tasklist
 
-### viewing all tasks: `View Tasks`
+### viewing all tasks: `list Tasks`
 
 Lists out all the tasks in the tasklist.
 
-Format: `view tasks`
+Format: `listTasks`
 
-### Assigning a task: `Assign`
+### Editing a Task : edit
 
-Assign a task to an existing person.
+Edits an existing task in the tasklist.
 
-Format: `assign TASK_NUMBER to PERSON_NAME`
-* `TASK_NUMBER` must be smaller than the total number of tasks in task list.
-* `PERSON_NAME` must be existing contact in contactbook.
+Format: editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]
+
+* Edits the task at the specified INDEX. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
 
 Examples:
-* `assign 1 to John` assign tasknumber 1 to John
+*  edit 1 n/Create UI pr/high Edits the name and priority of the 1st task to be Create UI and HIGH respectively.
+*  edit 2 c/frontend pe/charlotte@example.com Edits the category of the 2nd task to be frontend and assign the task to new person(charlotte).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -231,7 +234,8 @@ Action | Format, Examples
 **List** | list
 **Clear** | `clear`
 **Help** | `help`
-**Add Task** | `add task TASK_DESCRIPTION` <br> e.g., `add task laundry`
-**Delete Task** | `delete task TASK_NUMBER` <br> e.g., `delete task 1`
-**View Tasks** | `view tasks`
-**Assign** | `assign TASK_NUMBER to PERSON_NAME` <br> e.g., `assign 1 to John`
+**Add Task** | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com`
+**Edit Task** | `aeditTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]` <br> e.g., `edit 2 c/frontend pe/charlotte@example.com`
+**deleteTask** | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`
+**list Tasks** | `listTasks`
+
