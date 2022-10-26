@@ -8,14 +8,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tutorial {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tutorial should only contain alphanumeric characters,"
-            + "and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Tutorial should only contain one letter from 'W/T/F' followed by"
+            + " two digits, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}].*";
+    public static final String VALIDATION_REGEX = "[WTF]\\d{2}.*";
 
     public final String tut;
 
