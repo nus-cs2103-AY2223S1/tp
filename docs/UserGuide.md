@@ -16,7 +16,7 @@ Teacher’s Pet can get your contact and class management tasks done faster than
     * [Viewing all students: `list`](#viewing-all-students-list)
     * [Finding a student: `find`](#finding-a-student-find)
     * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
-    * [Deleting a student: `delete`](#deleting-a-student-delete)
+    * [Deleting student(s): `delete`](#deleting-students-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
     * [Undo a command: `undo`](#undo-the-last-command-undo)
     * [Exiting the program : `exit`](#exiting-the-program-exit)
@@ -275,22 +275,29 @@ Sort the displayed list of students (in the Student's Details panel) by the give
 
 Format: `sort TYPE [ORDER]`
 
-- `TYPE` must be from `NAME`, `CLASS`, and `OWED`.
-- `ORDER`, if present, must be from `ASC` or `DESC`. If it is left blank, it will follow the default order for the type.
+- `TYPE` must be followed by either one of the below options:
+  - `NAME`
+  - `CLASS`
+  - `OWED`
+- `ORDER`, if present, must be from 
+  - `ASC`
+  - `DESC`
+  - If it is left as blank, it will follow the default order for the type.
 - Default order for `NAME` and `CLASS` is `ASC` while default order for `OWED` is `DESC`.
 - The two parameters `TYPE` and `ORDER` can be non-capitalized such as `name`, `nAMe` and so on.
 
 Examples:
 
-- `list` followed by `sort NAME` will list all the students by ascending order of their names.
-- `list` followed by `sort CLASS ASC` will list all the students by ascending order of their upcoming classes.
-- `list` followed by `sort OWED DESC` will list all the students by descending order of how much money they owe.
+- `list` followed by `sort NAME` will list all the students according to their names in ascending order.
+- `list` followed by `sort CLASS ASC` will list all the students according to their upcoming classes in ascending order.
+- `list` followed by `sort OWED` will list all the students according to how much money they owe in descending order.
+- `list` followed by `sort OWED DESC` will list all the students according to how much money they owe in descending order.
 
 [Back to top](#table-of-contents)
 
 ---
 
-### Deleting students: 'delete'
+### Deleting student(s): 'delete'
 
 Deletes the specified student(s) from the student list.
 
