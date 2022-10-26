@@ -87,7 +87,7 @@ public class PersonBook implements ReadOnlyPersonBook {
 
     /**
      * Removes {@code key} from this {@code PersonBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the person book.
      */
     public void removePerson(Buyer key) {
         persons.remove(key);

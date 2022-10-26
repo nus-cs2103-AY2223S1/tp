@@ -18,8 +18,8 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setPersonModel(new PersonBook());
-        model.setPropertyModel(new PropertyBook());
+        model.setPersonBook(new PersonBook());
+        model.setPropertyBook(new PropertyBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

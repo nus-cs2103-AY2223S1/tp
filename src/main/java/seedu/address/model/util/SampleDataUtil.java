@@ -81,7 +81,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyPersonBook getSamplePersonModel() {
+    public static ReadOnlyPersonBook getSamplePersonBook() {
         PersonBook sampleAb = new PersonBook();
         for (Buyer sampleBuyer : getSamplePersons()) {
             sampleAb.addPerson(sampleBuyer);
@@ -89,7 +89,7 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-    public static ReadOnlyPropertyBook getSamplePropertyModel() {
+    public static ReadOnlyPropertyBook getSamplePropertyBook() {
         PropertyBook propertyBook = new PropertyBook();
         for (Property sampleProperty : getSampleProperties()) {
             propertyBook.addProperty(sampleProperty);
