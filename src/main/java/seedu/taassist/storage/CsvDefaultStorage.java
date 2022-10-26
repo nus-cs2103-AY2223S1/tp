@@ -1,5 +1,8 @@
 package seedu.taassist.storage;
 
+import static seedu.taassist.commons.core.csv.CsvConfig.CSV_LINE_BREAK;
+import static seedu.taassist.commons.core.csv.CsvConfig.CSV_SEPARATOR;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,8 +38,8 @@ public class CsvDefaultStorage implements CsvStorage {
 
         FileWriter writer = new FileWriter(csvFile);
         writer.write(fileData.stream()
-                .map(ls -> ls.stream().collect(Collectors.joining(", ")))
-                .collect(Collectors.joining("\n")));
+                .map(ls -> ls.stream().collect(Collectors.joining(CSV_SEPARATOR)))
+                .collect(Collectors.joining(CSV_LINE_BREAK)));
         writer.write("\n");
         writer.close();
 

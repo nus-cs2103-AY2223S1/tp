@@ -1,6 +1,8 @@
 package seedu.taassist.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.core.csv.CsvConfig.CSV_EMPTY_GRADE;
+import static seedu.taassist.commons.core.csv.CsvConfig.CSV_NAME_COLUMN_HEADER;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
@@ -9,7 +11,6 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.session.Session;
 import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.session.SessionData;
@@ -193,10 +194,10 @@ public class TaAssist implements ReadOnlyTaAssist {
 
         List<List<String>> fileData = new ArrayList<>();
 
-        // Column "Name"
+        // Header row
         List<String> headerRow = new ArrayList<>();
-        headerRow.add("Name");
-        // Column for each session
+        headerRow.add(CSV_NAME_COLUMN_HEADER);
+        // Column header for each session
         List<Session> sessions = moduleClass.getSessions();
         for (Session s : sessions) {
             headerRow.add(s.getSessionName());
@@ -213,7 +214,7 @@ public class TaAssist implements ReadOnlyTaAssist {
                     SessionData sessionData = moduleData.findSessionData(s);
                     row.add(String.valueOf(sessionData.getGrade()));
                 } catch (ElementNotFoundException e) {
-                    row.add("-");
+                    row.add(CSV_EMPTY_GRADE);
                 }
             }
             fileData.add(row);
