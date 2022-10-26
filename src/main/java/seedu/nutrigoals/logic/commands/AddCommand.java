@@ -27,6 +27,8 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "breakfast";
 
     public static final String MESSAGE_SUCCESS = "New food item added!\n\n%1$s";
+    public static final String MESSAGE_ADDED_CALORIE_TOO_LARGE = "You have consumed too many calories today! "
+            + "Food item not added!\n\n%1$s";
 
     private final Food toAdd;
 
@@ -41,6 +43,10 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.isAddedTotalCalorieTooLarge(toAdd)) {
+            throw new CommandException(String.format(MESSAGE_ADDED_CALORIE_TOO_LARGE, toAdd));
+        }
 
         model.addFood(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

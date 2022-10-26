@@ -39,6 +39,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Food item edited!\n\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_EDITED_CALORIE_TOO_LARGE = "That is too many calories in a day! "
+            + "Food item not edited!";
 
     private final Index index;
     private final EditFoodDescriptor editFoodDescriptor;
@@ -66,6 +68,10 @@ public class EditCommand extends Command {
 
         Food foodToEdit = lastShownList.get(index.getZeroBased());
         Food editedFood = createEditedFood(foodToEdit, editFoodDescriptor);
+
+        if (model.isEditedTotalCalorieTooLarge(editedFood, foodToEdit)) {
+            throw new CommandException(MESSAGE_EDITED_CALORIE_TOO_LARGE);
+        }
 
         model.setFood(foodToEdit, editedFood);
         model.updateFilteredFoodList(model.getDatePredicate());

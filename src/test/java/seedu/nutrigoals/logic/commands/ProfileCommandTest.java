@@ -188,7 +188,17 @@ public class ProfileCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Test
+        @Override
+        public boolean isAddedTotalCalorieTooLarge(Food toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isEditedTotalCalorieTooLarge(Food toAdd, Food toDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Map<Name, Calorie> getFoodCalorieList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -198,12 +208,12 @@ public class ProfileCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Test
+        @Override
         public double calculateCalorieIntakeProgress() {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Test
+        @Override
         public DoubleProperty getCalorieIntakeProgress() {
             throw new AssertionError("This method should not be called.");
         }
