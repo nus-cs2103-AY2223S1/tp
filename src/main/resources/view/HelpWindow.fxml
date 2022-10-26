@@ -3,12 +3,15 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Hyperlink?>
 <fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
@@ -18,27 +21,27 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
-        <children>
-          <Label fx:id="helpMessage" text="Label">
-            <HBox.margin>
-              <Insets right="5.0" />
-            </HBox.margin>
-          </Label>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-            <HBox.margin>
-              <Insets left="5.0" />
-            </HBox.margin>
-          </Button>
-        </children>
-        <opaqueInsets>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </opaqueInsets>
-        <padding>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </padding>
-      </HBox>
+      <VBox styleClass="help-container">
+        <VBox fx:id="helpMessageContainer">
+          <children>
+            <Label fx:id="helpMessage" text="Label"/>
+            <HBox>
+              <Label text="Please visit our " styleClass="url-message"/>
+              <Hyperlink text="user guide" onAction="#openUrl" styleClass="url"/>
+              <Label text=" for more details." styleClass="url-message"/>
+            </HBox>
+          </children>
+          <opaqueInsets>
+            <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+          </opaqueInsets>
+        </VBox>
+        <Label text="Commands Usage" styleClass="commands" />
+        <ScrollPane hbarPolicy="NEVER" fitToWidth="true">
+          <content>
+            <Accordion fx:id="instructions" />
+          </content>
+        </ScrollPane>
+      </VBox>
     </Scene>
   </scene>
 </fx:root>

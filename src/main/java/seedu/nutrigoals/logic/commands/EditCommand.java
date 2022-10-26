@@ -26,13 +26,13 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the food identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the food item identified "
             + "by the index number used in the displayed food list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_CALORIE + "CALORIE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Bread "
             + PREFIX_CALORIE + "150";

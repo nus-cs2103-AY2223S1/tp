@@ -18,7 +18,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds and displays the calorie content of the "
-            + "specified food\n"
+            + "specified food food item.\n"
             + "Parameters: FOOD\n"
             + "Example: " + COMMAND_WORD + " rice";
 
