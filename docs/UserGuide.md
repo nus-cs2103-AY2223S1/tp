@@ -8,7 +8,7 @@ IdENTify is a **desktop app for managing contacts, optimized for use via a Comma
 * Table of Contents
 {:toc}
 
-# Features
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -36,7 +36,9 @@ IdENTify is a **desktop app for managing contacts, optimized for use via a Comma
 
 </div>
 
-## Viewing help : `help`
+### Important Commands
+
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -44,8 +46,9 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Add/Remove entries
 
-### Adding a patient: `add`
+#### Adding a patient: `add`
 
 Adds a patient into idENTify.
 
@@ -59,47 +62,59 @@ Examples:
 * `add n/John Doe p/98765432 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe p/88888888 a/Newgate Prison t/ear`
 
-#### Listing all patients/appointments : `list`
+#### Deleting a patient : `delete`
 
-Shows a list of all patients or appointments, depending on the parameter given. \
-If it is a patient list, then patients will be sorted by their names first; if there are people with the same name, they will be sorted by their 
-phone numbers. \
-If it is an appointment list, then appointments will be sorted by their datetime first; if there are appointments 
-with the same datetime, they will be sorted by their attached patients' information.
+Deletes a patient or a range of patients from idENTify.
 
-Format:
-* `list patients` - Refreshes only the patient list to show all patients, leaving the appointment list unchanged.
-* `list appts` - Refreshes only the appointment list to show all appointments, leaving the patient list unchanged.
-* `list all` - Refreshes both the patient and appointment lists to show all patients and appointments.
+Format: `delete INDEX [END_INDEX]`
 
-### Grouping all patients : `group patients`
-
-Shows a list of all patients grouped by their tags.
-
-Format:
-* `group patients`
-
-### Grouping all appointments : `group appts`
-
-Shows a list of all appointments grouped by their tags or attached patients, depending on the parameter given.
-
-Format:
-* `group appts k/[KEY]`
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `group appts k/tag`
-* `group appts k/patient`
-* `group appts k/mark`
+* `list patients` followed by `delete 2` deletes the 2nd patient in idENTify.
+* `delete 1 3` deletes the first 3 patients (index 1 to 3 inclusive) in idENTify
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-### Ungrouping all patients/ appointments : `ungroup`
+#### Book an appointment:  `book`
 
-Shows a list of all patients or appointments ungrouped 
+Books an appointment for the specified patient at INDEX with a given REASON, DATE and an optional TIME PERIOD.
 
-Format:
-* `ungroup patients`
-* `ungroup appts`
+Appointments added are sorted according to their date.
 
-### Editing a patient : `edit patients`
+Format: `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​`
+
+* The index refers to the index number shown in the displayed patient list.
+* The index must be a positive integer 1, 2, 3, …​
+* Dates should be inputted in a YYYY-MM-DD HH:MM format or HH:MM YYYY-MM-DD format.
+* Input a time period for the appointment to be recurring, default time period is set to 0Y0M0D otherwise.
+* Input at least a Y, M or D value for the time period. Values **must be in the range of** 0-10Y, 0-12M or 0-31D to be considered as valid.
+
+Examples:
+* `book 2 r/Ear Infection d/2022-12-31 18:00`
+* `book 2 r/Ear Infection d/16:30 2022-12-31 pe/1M2D`
+* `book 2 r/Ear Infection d/2022-12-31 13:00 pe/1Y`
+
+#### Cancel an appointment: `cancel`
+Cancels a specified appointment in the appointment list. <br>
+Format: ```cancel APPOINTMENT_INDEX```
+- Deletes the appointment with `APPOINTMENT_INDEX` in the appointment list.
+- The index refers to the index number shown in the displayed appointment list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `cancel 1`
+
+### Clearing all entries : `clear`
+
+Clears all entries from idENTify.
+
+Format: `clear`
+
+### Modify existing entries
+
+#### Editing a patient : `edit patients`
 
 Edits an existing patient in idENTify.
 
@@ -116,7 +131,7 @@ Examples:
 *  `edit patients 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit patients 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-### Editing an appointment: `edit appts`
+#### Editing an appointment: `edit appts`
 
 Edits an existing patient's appointment in idENTify.
 
@@ -135,8 +150,75 @@ Examples:
 respectively. Existing time period will not be edited.
 * `edit appts 1 pe/1Y2M` Edits the time period of the first appointment to be recurring every 1 year 2 months. Existing reason and date will not be edited.
 
+#### Mark an appointment as completed:  `mark`
 
-### Hiding patients by name or tag: `hide patients`
+Marks a specified appointment in the appointment list as complete.
+
+If the specified appointment was set to be recurring, automatically books a new appointment in the future as given by the recurring time period of the appointment.
+
+Format: `mark APPOINTMENT_INDEX`
+
+* `APPOINTMENT_INDEX` refers to the index number of the appointment to be marked, as shown in the appointment list.
+* `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `mark 3`
+
+#### Unmark an appointment as incomplete:  `unmark`
+
+Unmarks a specified appointment in the appointment list as incomplete.
+
+Format: `unmark APPOINTMENT_INDEX`
+
+* `APPOINTMENT_INDEX` refers to the index number of the appointment to be unmarked, as shown in the appointment list.
+* `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `unmark 1`
+
+### Organisation
+
+#### Listing all patients/appointments : `list`
+
+Shows a list of all patients or appointments, depending on the parameter given. \
+If it is a patient list, then patients will be sorted by their names first; if there are people with the same name, they will be sorted by their 
+phone numbers. \
+If it is an appointment list, then appointments will be sorted by their datetime first; if there are appointments 
+with the same datetime, they will be sorted by their attached patients' information.
+
+Format:
+* `list patients` - Refreshes only the patient list to show all patients, leaving the appointment list unchanged.
+* `list appts` - Refreshes only the appointment list to show all appointments, leaving the patient list unchanged.
+* `list all` - Refreshes both the patient and appointment lists to show all patients and appointments.
+
+#### Grouping all patients : `group patients`
+
+Shows a list of all patients grouped by their tags.
+
+Format:
+* `group patients`
+
+#### Grouping all appointments : `group appts`
+
+Shows a list of all appointments grouped by their tags or attached patients, depending on the parameter given.
+
+Format:
+* `group appts k/[KEY]`
+
+Examples:
+* `group appts k/tag`
+* `group appts k/patient`
+* `group appts k/mark`
+
+#### Ungrouping all patients/ appointments : `ungroup`
+
+Shows a list of all patients or appointments ungrouped 
+
+Format:
+* `ungroup patients`
+* `ungroup appts`
+
+#### Hiding patients by name or tag: `hide patients`
 
 By name:
 Filters out (hides) patients whose names contain any of the given keywords.
@@ -159,7 +241,7 @@ Format: `hide patients t/TAG [MORE_TAGS]`
 Examples:
 * `hide patients t/ear nose` hides all patients with a ear OR nose tag.
 
-### Unhiding patients by name or tag: `unhide patients`
+#### Unhiding patients by name or tag: `unhide patients`
 
 By name:
 Shows (unhides) patients that were previously hidden whose names contain any of the given keywords.
@@ -182,7 +264,7 @@ Format: `unhide patients t/TAG [MORE_TAGS]`
 Examples:
 * `unhide patients t/nose ear` unhides all patients with a nose OR ear tag.
 
-### Hiding appointments by reason, tag, or marked status: `hide appts`
+#### Hiding appointments by reason, tag, or marked status: `hide appts`
 
 By reason:
 Filters out (hides) appointments that has a reason that matches the given keyword.
@@ -214,7 +296,7 @@ Examples:
 * `hide appts s/marked` hides all appointments that has been marked.
 * `hide appts s/um` hides all appointments that has been ummarked.
 
-### Unhiding appointments by reason, tag or status: `unhide appts`
+#### Unhiding appointments by reason, tag or status: `unhide appts`
 
 By reason:
 Shows (unhides) appointments that were previously hidden whose reason contain any of the given keywords.
@@ -245,7 +327,7 @@ Alternative: `unhide appts s/unmarked` or `unhide appts s/um`
 Examples:
 * `unhide appts s/marked` unhides all appointments that has been marked.
 
-### Find results that satisify an input criteria: `find`
+#### Find results that satisify an input criteria: `find`
 Finds patients and appointments that matches all the given criteria specified.
 
 Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`
@@ -273,77 +355,9 @@ Examples:
 * `find t/throat` returns `Bernice Yu` and `David Li`, both of which contains the `Throat` tag. <br>
   ![result for 'find t/throat'](images/FindThroatTagResult.png)
 
-### Deleting a patient : `delete`
+### Others
 
-Deletes a patient or a range of patients from idENTify.
-
-Format: `delete INDEX [END_INDEX]`
-
-* Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list patients` followed by `delete 2` deletes the 2nd patient in idENTify.
-* `delete 1 3` deletes the first 3 patients (index 1 to 3 inclusive) in idENTify
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
-
-### Add an appointment:  `book`
-
-Books an appointment for the specified patient at INDEX with a given REASON, DATE and an optional TIME PERIOD.
-
-Appointments added are sorted according to their date.
-
-Format: `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​`
-
-* The index refers to the index number shown in the displayed patient list.
-* The index must be a positive integer 1, 2, 3, …​
-* Dates should be inputted in a YYYY-MM-DD HH:MM format or HH:MM YYYY-MM-DD format.
-* Input a time period for the appointment to be recurring, default time period is set to 0Y0M0D otherwise.
-* Input at least a Y, M or D value for the time period. Values **must be in the range of** 0-10Y, 0-12M or 0-31D to be considered as valid.
-
-Examples:
-* `book 2 r/Ear Infection d/2022-12-31 18:00`
-* `book 2 r/Ear Infection d/16:30 2022-12-31 pe/1M2D`
-* `book 2 r/Ear Infection d/2022-12-31 13:00 pe/1Y`
-
-### Mark an appointment as completed:  `mark`
-
-Marks a specified appointment in the appointment list as complete.
-
-If the specified appointment was set to be recurring, automatically books a new appointment in the future as given by the recurring time period of the appointment.
-
-Format: `mark APPOINTMENT_INDEX`
-
-* `APPOINTMENT_INDEX` refers to the index number of the appointment to be marked, as shown in the appointment list.
-* `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `mark 3`
-
-### Unmark an appointment as incomplete:  `unmark`
-
-Unmarks a specified appointment in the appointment list as incomplete.
-
-Format: `unmark APPOINTMENT_INDEX`
-
-* `APPOINTMENT_INDEX` refers to the index number of the appointment to be unmarked, as shown in the appointment list.
-* `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `unmark 1`
-
-### Cancel an appointment: `cancel`
-Cancels a specified appointment in the appointment list. <br>
-Format: ```cancel APPOINTMENT_INDEX```
-- Deletes the appointment with `APPOINTMENT_INDEX` in the appointment list.
-- The index refers to the index number shown in the displayed appointment list.
-- The index must be a positive integer 1, 2, 3, …​
-
-Examples:
-* `cancel 1`
-
-### View History/Cycling of Commands
+#### View History/Cycling of Commands
 
 Shows the most recent 10 commands that was inputted.
 Allows cycling through those commands to reduce the need of retyping similar commands fully.
@@ -354,23 +368,17 @@ Controls:
 * `Left Arrow`: Display History of commands
 * `Right Arrow`: Close History
 
-### Clearing all entries : `clear`
-
-Clears all entries from idENTify.
-
-Format: `clear`
-
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+#### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 idENTify data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
