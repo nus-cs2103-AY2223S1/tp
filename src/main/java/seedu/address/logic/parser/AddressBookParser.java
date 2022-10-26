@@ -31,6 +31,7 @@ import seedu.address.logic.commands.task.MarkTaskCommand;
 import seedu.address.logic.commands.task.ReminderCommand;
 import seedu.address.logic.commands.task.SortByDeadlineCommand;
 import seedu.address.logic.commands.task.SortByIdCommand;
+import seedu.address.logic.commands.task.TaskProgressCommand;
 import seedu.address.logic.commands.task.UnmarkTaskCommand;
 import seedu.address.logic.parser.contact.AddContactCommandParser;
 import seedu.address.logic.parser.contact.DeleteContactCommandParser;
@@ -47,6 +48,7 @@ import seedu.address.logic.parser.task.FilterTaskCommandParser;
 import seedu.address.logic.parser.task.FindTaskCommandParser;
 import seedu.address.logic.parser.task.MarkTaskCommandParser;
 import seedu.address.logic.parser.task.ReminderCommandParser;
+import seedu.address.logic.parser.task.TaskProgressCommandParser;
 import seedu.address.logic.parser.task.UnmarkTaskCommandParser;
 
 /**
@@ -133,6 +135,9 @@ public class AddressBookParser {
         case ReminderCommand.COMMAND_WORD:
             return new ReminderCommandParser().parse(arguments);
 
+        case TaskProgressCommand.COMMAND_WORD:
+            return new TaskProgressCommandParser().parse(arguments);
+
         case MarkTaskCommand.COMMAND_WORD:
             return new MarkTaskCommandParser().parse(arguments);
 
@@ -195,6 +200,8 @@ public class AddressBookParser {
         case EditTaskCommand.COMMAND_WORD:
         case FindTaskCommand.COMMAND_WORD:
         case FilterTaskCommand.COMMAND_WORD:
+        case ReminderCommand.COMMAND_WORD:
+        case TaskProgressCommand.COMMAND_WORD:
         case MarkTaskCommand.COMMAND_WORD:
         case UnmarkTaskCommand.COMMAND_WORD:
         case ListTaskCommand.COMMAND_WORD:

@@ -234,6 +234,11 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public double getPercentageCompletion(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void sortByDeadline() {
             throw new AssertionError("This method should not be called.");
         }
