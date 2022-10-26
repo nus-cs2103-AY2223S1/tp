@@ -12,8 +12,6 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Statistics Features
 
-{% include_relative _dg/implementations/StatisticsFeaturesDescription.md %}
-
 {% include_relative _dg/implementations/StatisticsFeatures.md %}
 
 ### General Features
