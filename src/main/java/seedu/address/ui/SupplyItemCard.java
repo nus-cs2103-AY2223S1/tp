@@ -12,6 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commands.RefreshStatsCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.SupplyItem;
 
 /**
@@ -23,6 +26,7 @@ public class SupplyItemCard extends UiPart<Region> {
      */
     private static final String FXML = "SupplyItemCard.fxml";
     private static final int MAX_LENGTH = 5;
+    private static final String DEFAULT_TEXT_FIELD_VALUE = "1";
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -35,6 +39,7 @@ public class SupplyItemCard extends UiPart<Region> {
     private final Consumer<Integer> increaseHandler;
     private final Consumer<Integer> decreaseHandler;
     private final Consumer<Integer> changeIncDecHandler;
+    private final InventoryPanel.CommandExecutor executeCommand;
 
     @FXML
     private HBox cardPane;
@@ -61,12 +66,14 @@ public class SupplyItemCard extends UiPart<Region> {
      * Creates a {@code SupplyItemCard} with the given {@code SupplyItem} and index to display.
      */
     public SupplyItemCard(SupplyItem supplyItem, int displayedIndex, Consumer<Integer> increaseHandler,
-                          Consumer<Integer> decreaseHandler, Consumer<Integer> changeIncDecHandler) {
+                          Consumer<Integer> decreaseHandler, Consumer<Integer> changeIncDecHandler,
+                          InventoryPanel.CommandExecutor executeCommand) {
         super(FXML);
         this.supplyItem = supplyItem;
         this.increaseHandler = increaseHandler;
         this.decreaseHandler = decreaseHandler;
         this.changeIncDecHandler = changeIncDecHandler;
+        this.executeCommand = executeCommand;
         cardPane.setStyle(String.format("-fx-border-color:%s ; -fx-border-width: 0 6 0 0;",
                 determineStockHealthColor(supplyItem.getCurrentStock(), supplyItem.getMinStock())));
         id.setText(displayedIndex + ". ");
@@ -102,16 +109,18 @@ public class SupplyItemCard extends UiPart<Region> {
      * Handles the increase of SupplyItem in the Inventory.
      */
     @FXML
-    private void handleIncrease() {
+    private void handleIncrease() throws CommandException, ParseException {
         increaseHandler.accept(supplyItem.getIncDecAmount());
+        executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
     }
 
     /**
      * Handles the decrease of SupplyItem in the Inventory.
      */
     @FXML
-    private void handleDecrease() {
+    private void handleDecrease() throws CommandException, ParseException {
         decreaseHandler.accept(supplyItem.getIncDecAmount());
+        executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
     }
 
     /**
@@ -133,8 +142,8 @@ public class SupplyItemCard extends UiPart<Region> {
                 changeIncDecHandler.accept(parsedAmount);
             }
         } catch (NumberFormatException e) {
-            // No changes to value in TextField
-            return;
+            // When TextField value is blank
+            amountInput.setText(DEFAULT_TEXT_FIELD_VALUE);
         }
     }
 }

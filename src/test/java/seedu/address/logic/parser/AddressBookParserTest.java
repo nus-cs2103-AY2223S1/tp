@@ -30,6 +30,7 @@ import seedu.address.logic.commands.ListInventoryCommand;
 import seedu.address.logic.commands.ListSupplierCommand;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
+import seedu.address.logic.commands.RefreshStatsCommand;
 import seedu.address.logic.commands.UnMarkTaskCommand;
 import seedu.address.logic.commands.UpdateTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -160,5 +161,10 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_listInventory() throws ParseException {
         assertTrue(parser.parseCommand(ListInventoryCommand.COMMAND_WORD) instanceof ListInventoryCommand);
+    }
+
+    @Test
+    public void parseCommand_refreshStats() throws ParseException {
+        assertTrue(parser.parseCommand(RefreshStatsCommand.COMMAND_WORD) instanceof RefreshStatsCommand);
     }
 }
