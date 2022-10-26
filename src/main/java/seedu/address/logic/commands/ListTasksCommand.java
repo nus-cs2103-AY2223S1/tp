@@ -16,7 +16,7 @@ import seedu.address.model.Model;
 /**
  * Lists all tasks of the current team.
  */
-@CommandLine.Command(name = "tasks")
+@CommandLine.Command(name = "tasks", aliases = {"t"})
 public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "list tasks";
 

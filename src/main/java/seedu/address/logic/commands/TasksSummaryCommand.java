@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
 /**
  * Displays a summary of how tasks have been assigned in the current team.
  */
-@CommandLine.Command(name = "summary")
+@CommandLine.Command(name = "summary", aliases = {"su", "sum"})
 public class TasksSummaryCommand extends Command {
     public static final String COMMAND_WORD = "summary";
 

@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code edit}.
  */
-@CommandLine.Command(name = "edit", subcommands = {
+@CommandLine.Command(name = "edit", aliases = {"e"}, subcommands = {
     EditLinkCommand.class,
     EditPersonCommand.class,
 })

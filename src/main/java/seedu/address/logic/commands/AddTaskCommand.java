@@ -10,7 +10,7 @@ import seedu.address.model.team.Task;
 /**
  * Adds a task to the current team.
  */
-@CommandLine.Command(name = "task")
+@CommandLine.Command(name = "task", aliases = {"ta"})
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "add task";
 

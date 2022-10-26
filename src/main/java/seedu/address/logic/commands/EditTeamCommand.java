@@ -19,7 +19,7 @@ import seedu.address.model.team.Team;
 /**
  * Edits the currently set team.
  */
-@CommandLine.Command(name = "team")
+@CommandLine.Command(name = "team", aliases = {"te"})
 public class EditTeamCommand extends Command {
     public static final String COMMAND_WORD = "edit team";
 

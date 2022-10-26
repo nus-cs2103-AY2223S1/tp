@@ -23,7 +23,7 @@ import seedu.address.model.team.Url;
 /**
  * Edits the details of an existing link in TruthTable.
  */
-@CommandLine.Command(name = "link")
+@CommandLine.Command(name = "link", aliases = {"l"})
 public class EditLinkCommand extends Command {
     public static final String COMMAND_WORD = "edit link";
 

@@ -14,7 +14,7 @@ import seedu.address.model.team.Task;
 /**
  * Deletes a task identified using its displayed index from the task list.
  */
-@CommandLine.Command(name = "task")
+@CommandLine.Command(name = "task", aliases = {"ta"})
 public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "delete task";

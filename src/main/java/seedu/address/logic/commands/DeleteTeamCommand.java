@@ -12,7 +12,7 @@ import seedu.address.model.team.Team;
 /**
  * Deletes a team from the addressbook.
  */
-@CommandLine.Command(name = "team")
+@CommandLine.Command(name = "team", aliases = {"te"})
 public class DeleteTeamCommand extends Command {
     public static final String COMMAND_WORD = "delete team";
 
