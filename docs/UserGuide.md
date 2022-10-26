@@ -7,25 +7,56 @@ title: User Guide
 
 <h1>Rapportbook User Guide</h1>
 
-Welcome to the Rapportbook user guide! (Mockup done in Balsamiq mockups.)
+Welcome to the Rapportbook user guide!
 
 </div>
 
 {:refdef: style="text-align: center;"}
-![Mockup](images/mockup1.png)
+![Mockup](images/Ui.png)
 {: refdef}
 
 Rapportbook is a **desktop app for managing client information for your financial advising needs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-* Table of Contents
+#### Using this guide
+If this is the first time you are using this user guide, it is highly recommended for you to read the section on [Rapportbook 101](#rapportbook-101-everything-you-need-to-know). Otherwise,
+
+* If you are just setting up, please take a look at our [quick start guide](#quick-start).
+* If you are unsure of how to use Rapportbook, the [command summary](#command-summary) table is a good starting point.
+* If you are a developer and want to help out, please take a look at the [developer guide](DeveloperGuide.html).
+
+Table of Contents
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Rapportbook 101: Everything you need to know
+
+Whether you’re new to Rapportbook, or just want to learn more about the details -- this section has you covered. This section will provide an overview of Rapporbook and explain key concepts in simple terms.
+
+### What is Rapportbook?
+Rapporbook is a free, and open-source library designed for financial advisors for client information management.
+
+If you’re working with a lot of people, you’ll eventually have too much information to stay on top of. For example, what appointments do I have tomorrow? Which client should I prioritize? How should I approach this client? What are his contacts?
+
+Rapportbook is designed specifically to improve your workflow, and helps you manage all this information and “understand” your clients better. It can be used to offload information, categorize them more meaningfully, and set reminders so you don’t ever miss an appointment.
+
+### Glossary
+In the user guide, you might come across some terms you might not understand. The following table hopes to provide clarification of the terms commonly used in Rapportbook.
+
+| Term                 | Description                                                                                                                                                                          |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Client / contact** | A client or a contact is an information entry Rapportbook. You can add a client with the `add` command.                                                                              |
+| **Command**          | A command is a specific instruction you can give to Rapportbook to perform an action.                                                                                                |
+| **Command box**      | The command box is the text box on the bottom left of Rapportbook for you to enter your commands in.                                                                                 |
+| **Panel**            | Rapportbook is split into a left and right panel. The left panel contains information about clients, and the right panel contains auxiliary information based on the command issued  |
+| **Filter**           | A filter is a search condition you are looking for.                                                                                                                                  |
+| **Tag**              | A tag is a label that can be assigned to clients.                                                                                                                                    |
+| **Integer**          | An integer is a round, whole number. For example, `1` and `9` are integers but `1.5` and `hello` are not.                                                                            |
+| **Open-source**      | This means that the source code is made freely available online. If you are interested in contributing to Rapportbook, you can take at our code repository and our developer guide.  |
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-   
+
    - If you are unable to launch the application because you do not have Java `11` or above installed, install it from [this page.](https://www.oracle.com/java/technologies/downloads/#java11)
 
 2. Download the latest `rapportbook.jar` from [here](https://github.com/AY2223S1-CS2103T-T13-2/tp/releases).
@@ -111,7 +142,7 @@ Examples:
 
 ### Editing of client information : `edit`
 
-Edits the information of a client within Rapportbook. 
+Edits the information of a client within Rapportbook.
 
 * Edits the client at the specified `INDEX`, the number shown in the displayed client list.
 * The index can be left out if the client to edit is the target client from the [show](#viewing-the-information-of-a-client--show) command.
@@ -144,7 +175,7 @@ Examples:
 
 ### Tagging clients : `tag`
 
-Tags a client entry for categorising purposes. 
+Tags a client entry for categorising purposes.
 
 * Tags the client at the specified `INDEX`, the number shown in the displayed client list.
 * The index can be left out if the client to tag is the target client from the [show](#viewing-the-information-of-a-client--show) command.
@@ -267,7 +298,7 @@ Format: `reminder clear`
 
 ### Creating a message template : `message create`
 
-Creates a message template, which can then be used to generate personalized messages for clients. 
+Creates a message template, which can then be used to generate personalized messages for clients.
 
 Format: `message create MESSAGE`
 
@@ -276,12 +307,12 @@ All instances of `{name}` will be replaced with the client's name.
 
 Examples:
 
-- `message create Hello {name}, would you like to meet up with me for coffee tomorrow?` 
-- `message create Long time no see {name}! I have something exciting to share with you! ` 
+- `message create Hello {name}, would you like to meet up with me for coffee tomorrow?`
+- `message create Long time no see {name}! I have something exciting to share with you! `
 
 ### Listing message templates : `message list`
 
-Lists your message templates. 
+Lists your message templates.
 
 Format: `message list`
 
