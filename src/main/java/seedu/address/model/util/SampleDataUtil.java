@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +22,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static final Appointment appointmentAlex1 =
-            new Appointment("Tinnitus", "2022-12-10 13:30", "", false);
+            new Appointment("Tinnitus", LocalDateTime.parse("2022-12-10T13:30"), List.of(1, 2, 3), Set.of(Tag.EAR), false);
 
     public static Person[] getSamplePersons() {
         return new Person[] {
