@@ -7,7 +7,7 @@ title: User Guide
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-    * [Getting help: `help`](#getting-help-help)
+    * [Getting help: `help`](#viewing-help-help)
     * [Adding an internship application: `add`](#adding-an-internship-application-add)
     * [Listing all internship applications: `list`](#listing-all-internship-applications-list)
     * [Listing all archived internship application: `list-archive`](#listing-all-archived-internship-applications)
@@ -97,8 +97,11 @@ title: User Guide
 
 ### Viewing help: `help`
 Shows a message explaining how to access the help page
-![HelpWindow](images/HelpWindow.png)
+![HelpWindow](images/HelpWindow.png)<br>
 Format: `help`
+
+* Press `Copy URL` button to have the User Guide link copied to your clipboard.
+* Press `Go` button to open the User Guide in your web browser.
 
 ### Adding an internship application: `add`
 
