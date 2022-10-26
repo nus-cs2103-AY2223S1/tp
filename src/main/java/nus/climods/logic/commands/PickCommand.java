@@ -2,6 +2,7 @@ package nus.climods.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import nus.climods.model.module.LessonTypeEnum;
 import org.openapitools.client.model.SemestersEnum;
 
 import nus.climods.logic.commands.exceptions.CommandException;
@@ -21,13 +22,13 @@ public class PickCommand extends Command {
     public static final String MESSAGE_MODULE_MISSING = "This module is not in your module list";
 
     private final String toPick;
-    private final String lessonType;
+    private final LessonTypeEnum lessonType;
     private final String classNo;
 
     /**
      * Creates an PickCommand to add the specified lesson in Module
      */
-    public PickCommand(String toPick, String lessonType, String classNo) {
+    public PickCommand(String toPick, LessonTypeEnum lessonType, String classNo) {
         requireNonNull(toPick);
         this.toPick = toPick.toUpperCase();
         this.lessonType = lessonType;

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import nus.climods.model.module.LessonTypeEnum;
 import org.openapitools.client.model.SemestersEnum;
 
 /**
@@ -100,15 +101,16 @@ public class ParserUtil {
      * @return Empty Optional if input string does not pass initial validation check, else Optional of the entered
      *               String
      */
-    public static Optional<String> parseLessonType(String input) {
-        //TODO: Change to enum
-        List<String> acceptedLessonType = Arrays.asList("LECTURE", "TUTORIAL", "RECITATION", "LAB", "SEMINAR");
+    public static Optional<LessonTypeEnum> parseLessonType(String input) {
+        String toCheck = input.trim().toUpperCase();
 
-        if (!acceptedLessonType.contains(input.trim().toUpperCase())) {
-            return Optional.empty();
+        LessonTypeEnum s1 = LessonTypeEnum.fromValue(toCheck);
+
+        if (!s1.equals(LessonTypeEnum.UNSUPPORTED)) {
+            return Optional.of(s1);
         }
 
-        return Optional.of(input);
+        return Optional.empty();
     }
     /**
      * Parse semester details according to user input
