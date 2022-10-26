@@ -21,6 +21,7 @@ import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.nextofkin.Relationship;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.tutor.Institution;
 import seedu.address.model.person.tutor.Qualification;
@@ -245,6 +246,20 @@ public class ParserUtil {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
         return new Time(formatTime(splitTime[0]), formatTime(splitTime[1]));
+    }
+
+    /**
+     * Parses {@code String relationship} into an {@code Relationship} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code relationship} is invalid.
+     */
+    public static Relationship parseRelationship(String relationship) throws ParseException {
+        requireNonNull(relationship);
+        String trimmedRelationship = relationship.trim();
+        if (!Relationship.isValidRelationship(trimmedRelationship)) {
+            throw new ParseException(Relationship.MESSAGE_CONSTRAINTS);
+        }
+        return Relationship.createRelationship(trimmedRelationship);
     }
 
     /**

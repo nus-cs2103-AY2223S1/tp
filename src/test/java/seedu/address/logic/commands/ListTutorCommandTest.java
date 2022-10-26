@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTutors.getTypicalTutorsAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,13 +20,13 @@ public class ListTutorCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListTutorCommand(), model, ListTutorCommand.MESSAGE_SUCCESS,
-                expectedModel, true);
+                expectedModel, CommandResult.CommandType.LIST);
     }
 }

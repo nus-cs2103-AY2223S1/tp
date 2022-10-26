@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.ENTITY_DESC_CLASS;
+import static seedu.address.logic.commands.CommandTestUtil.ENTITY_DESC_STUDENT;
+import static seedu.address.logic.commands.CommandTestUtil.ENTITY_DESC_TUTOR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -14,6 +17,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AssignCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -25,13 +29,18 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.ListTuitionClassCommand;
 import seedu.address.logic.commands.ListTutorCommand;
+import seedu.address.logic.commands.NextOfKinCommand;
+import seedu.address.logic.commands.ShowCommand;
+import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.NextOfKinBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.StudentBuilder;
@@ -73,6 +82,13 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_show() throws Exception {
+        ShowCommand command = (ShowCommand) parser.parseCommand(
+                ShowCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(), listType);
+        assertEquals(new ShowCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
@@ -103,29 +119,50 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD, listType) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3", listType) instanceof ListCommand);
-    }
-
-    @Test
     public void parseCommand_listStudent() throws Exception {
-        assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD, listType) instanceof ListStudentCommand);
-        assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD + " 3", listType) instanceof ListStudentCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + ENTITY_DESC_STUDENT, listType)
+                instanceof ListStudentCommand);
+        //assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD + " 3", listType)
+        // instanceof ListStudentCommand);
     }
 
     @Test
     public void parseCommand_listTutor() throws Exception {
-        assertTrue(parser.parseCommand(ListTutorCommand.COMMAND_WORD, listType) instanceof ListTutorCommand);
-        assertTrue(parser.parseCommand(ListTutorCommand.COMMAND_WORD + " 3", listType) instanceof ListTutorCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + ENTITY_DESC_TUTOR, listType)
+                instanceof ListTutorCommand);
+        //assertTrue(parser.parseCommand(ListTutorCommand.COMMAND_WORD + " 3", listType) instanceof ListTutorCommand);
     }
 
     @Test
     public void parseCommand_listTuitionClass() throws Exception {
         assertTrue(
-                parser.parseCommand(ListTuitionClassCommand.COMMAND_WORD, listType) instanceof ListTuitionClassCommand);
-        assertTrue(parser.parseCommand(ListTuitionClassCommand.COMMAND_WORD + " 3", listType)
-                instanceof ListTuitionClassCommand);
+                parser.parseCommand(ListCommand.COMMAND_WORD + ENTITY_DESC_CLASS, listType)
+                        instanceof ListTuitionClassCommand);
+        //assertTrue(parser.parseCommand(ListTuitionClassCommand.COMMAND_WORD + " 3", listType)
+        // instanceof ListTuitionClassCommand);
+    }
+
+    @Test
+    public void parseCommand_assign() throws ParseException {
+        assertTrue(parser.parseCommand(
+                AssignCommand.COMMAND_WORD + " 1" + " n/p1math", listType) instanceof AssignCommand);
+    }
+
+    @Test
+    public void parseCommand_unassign() throws ParseException {
+        assertTrue(parser.parseCommand(
+                UnassignCommand.COMMAND_WORD + " 1" + " n/p1math", listType) instanceof UnassignCommand);
+    }
+
+    @Test
+    public void parseCommand_nok() throws Exception {
+        //without any arguments
+        assertTrue(parser.parseCommand(NextOfKinCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(), listType)
+                instanceof NextOfKinCommand);
+        //with arguments
+        NextOfKin nextOfKin = new NextOfKinBuilder().build();
+        assertTrue(parser.parseCommand(PersonUtil.getNokCommand(nextOfKin), listType)
+                instanceof NextOfKinCommand);
     }
 
     @Test

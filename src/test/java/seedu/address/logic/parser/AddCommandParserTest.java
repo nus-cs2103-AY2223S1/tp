@@ -37,6 +37,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.QUALIFICATION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.QUALIFICATION_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.RELATIONSHIP_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.SCHOOL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SCHOOL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.SUBJECT_DESC_CLASS1;
@@ -239,6 +240,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
+        //todo: add more
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
@@ -417,6 +419,11 @@ public class AddCommandParserTest {
                 + TIME_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddCommand.MESSAGE_USAGE));
 
+        assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
+                + RELATIONSHIP_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddCommand.MESSAGE_USAGE));
+
         //tutor
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
@@ -442,6 +449,10 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
                 + TIME_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
+        assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
+                + RELATIONSHIP_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
         //class
         assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
                 + DAY_DESC_CLASS1 + TIME_DESC_CLASS1 + TAG_DESC_FRIEND + PHONE_DESC_BOB,
@@ -465,6 +476,10 @@ public class AddCommandParserTest {
 
         assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
                         + DAY_DESC_CLASS1 + TIME_DESC_CLASS1 + TAG_DESC_FRIEND + INSTITUTION_DESC_BOB,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
+                        + DAY_DESC_CLASS1 + TIME_DESC_CLASS1 + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         //more than one wrong field

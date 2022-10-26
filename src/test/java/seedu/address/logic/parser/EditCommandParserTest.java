@@ -34,6 +34,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.QUALIFICATION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.QUALIFICATION_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.RELATIONSHIP_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SCHOOL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SCHOOL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.SUBJECT_DESC_CLASS1;
@@ -584,6 +585,34 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, editTuitionClassDescriptor);
 
         assertParseSuccess(parserWhenClass, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_wrongFields_failure() {
+        //invalid for student
+        assertParseFailure(parserWhenStudent, "1" + QUALIFICATION_DESC_AMY, MESSAGE_INVALID_FORMAT_STUDENT);
+        assertParseFailure(parserWhenStudent, "1" + INSTITUTION_DESC_AMY, MESSAGE_INVALID_FORMAT_STUDENT);
+        assertParseFailure(parserWhenStudent, "1" + SUBJECT_DESC_CLASS1, MESSAGE_INVALID_FORMAT_STUDENT);
+        assertParseFailure(parserWhenStudent, "1" + DAY_DESC_CLASS1, MESSAGE_INVALID_FORMAT_STUDENT);
+        assertParseFailure(parserWhenStudent, "1" + TIME_DESC_CLASS1, MESSAGE_INVALID_FORMAT_STUDENT);
+        assertParseFailure(parserWhenStudent, "1" + RELATIONSHIP_DESC_AMY, MESSAGE_INVALID_FORMAT_STUDENT);
+
+        //invalid for tutor
+        assertParseFailure(parserWhenTutor, "1" + SCHOOL_DESC_AMY, MESSAGE_INVALID_FORMAT_TUTOR);
+        assertParseFailure(parserWhenTutor, "1" + LEVEL_DESC_AMY, MESSAGE_INVALID_FORMAT_TUTOR);
+        assertParseFailure(parserWhenTutor, "1" + SUBJECT_DESC_CLASS1, MESSAGE_INVALID_FORMAT_TUTOR);
+        assertParseFailure(parserWhenTutor, "1" + DAY_DESC_CLASS1, MESSAGE_INVALID_FORMAT_TUTOR);
+        assertParseFailure(parserWhenTutor, "1" + TIME_DESC_CLASS1, MESSAGE_INVALID_FORMAT_TUTOR);
+        assertParseFailure(parserWhenTutor, "1" + RELATIONSHIP_DESC_AMY, MESSAGE_INVALID_FORMAT_TUTOR);
+
+        //invalid for class
+        assertParseFailure(parserWhenClass, "1" + PHONE_DESC_AMY, MESSAGE_INVALID_FORMAT_CLASS);
+        assertParseFailure(parserWhenClass, "1" + EMAIL_DESC_AMY, MESSAGE_INVALID_FORMAT_CLASS);
+        assertParseFailure(parserWhenClass, "1" + ADDRESS_DESC_AMY, MESSAGE_INVALID_FORMAT_CLASS);
+        assertParseFailure(parserWhenClass, "1" + SCHOOL_DESC_AMY, MESSAGE_INVALID_FORMAT_CLASS);
+        assertParseFailure(parserWhenClass, "1" + QUALIFICATION_DESC_AMY, MESSAGE_INVALID_FORMAT_CLASS);
+        assertParseFailure(parserWhenClass, "1" + INSTITUTION_DESC_AMY, MESSAGE_INVALID_FORMAT_CLASS);
+        assertParseFailure(parserWhenClass, "1" + RELATIONSHIP_DESC_AMY, MESSAGE_INVALID_FORMAT_CLASS);
     }
 
     @Test

@@ -21,9 +21,11 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "List sorted %s";
 
-    private static final String DEFAULT_SORT_SUCCESS = "from oldest to newest entry";
-    private static final String ALPHA_SORT_SUCCESS = "alphabetically";
-    private static final String REVERSE_SORT_SUCCESS = "in reverse order";
+    public static final String DEFAULT_SORT_SUCCESS = "from oldest to newest entry";
+
+    public static final String ALPHA_SORT_SUCCESS = "alphabetically";
+
+    public static final String REVERSE_SORT_SUCCESS = "in reverse order";
 
     private SortBy method;
     private String successMsg;
@@ -53,7 +55,7 @@ public class SortCommand extends Command {
         requireNonNull(model);
         ListType type = model.getCurrentListType();
         model.sortList(type, this.method);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.successMsg), true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, this.successMsg));
     }
 
     @Override

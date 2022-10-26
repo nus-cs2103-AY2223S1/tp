@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandResult.CommandType.EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -168,7 +169,8 @@ public class EditCommand extends Command {
 
             model.setTuitionClass(classToEdit, editedClass);
             model.updateFilteredTuitionClassList(PREDICATE_SHOW_ALL_TUITIONCLASS);
-            return new CommandResult(String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass));
+            return new CommandResult(
+                    String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass), EDIT, index.getZeroBased());
         }
 
         Person personToEdit = (Person) lastShownList.get(index.getZeroBased());
@@ -184,7 +186,8 @@ public class EditCommand extends Command {
         } else {
             model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTOR);
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(
+                String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), EDIT, index.getZeroBased());
     }
 
     /**

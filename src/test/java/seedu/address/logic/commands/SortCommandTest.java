@@ -1,6 +1,13 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.SortCommand.ALPHA_SORT_SUCCESS;
+import static seedu.address.logic.commands.SortCommand.DEFAULT_SORT_SUCCESS;
+import static seedu.address.logic.commands.SortCommand.REVERSE_SORT_SUCCESS;
+import static seedu.address.model.Model.ListType.TUITIONCLASS_LIST;
+import static seedu.address.model.Model.ListType.TUTOR_LIST;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +26,6 @@ import seedu.address.testutil.TuitionClassBuilder;
 import seedu.address.testutil.TutorBuilder;
 
 public class SortCommandTest {
-
     @Test
     public void executeForStudentList_sortAlpha() {
         List<Student> studentList = new ArrayList<>();
@@ -33,9 +39,14 @@ public class SortCommandTest {
         for (Student s : studentList) {
             studentModel.addPerson(s);
         }
-        studentModel.sortList(Model.ListType.STUDENT_LIST, SortCommand.SortBy.ALPHA);
         studentList.sort(Comparator.comparing(student -> student.getName().fullName));
-        assertEquals(studentList, studentModel.getFilteredStudentList());
+        SortCommand sortCommand = new SortCommand(SortCommand.SortBy.ALPHA);
+        Model expectedStudentModel = new ModelManager();
+        for (Student s : studentList) {
+            expectedStudentModel.addPerson(s);
+        }
+        assertCommandSuccess(sortCommand, studentModel,
+                String.format(SortCommand.MESSAGE_SUCCESS, ALPHA_SORT_SUCCESS), expectedStudentModel);
     }
 
     @Test
@@ -51,9 +62,14 @@ public class SortCommandTest {
         for (Student s : studentList) {
             studentModel.addPerson(s);
         }
-        studentModel.sortList(Model.ListType.STUDENT_LIST, SortCommand.SortBy.REVERSE);
         Collections.reverse(studentList);
-        assertEquals(studentList, studentModel.getFilteredStudentList());
+        SortCommand sortCommand = new SortCommand(SortCommand.SortBy.REVERSE);
+        Model expectedStudentModel = new ModelManager();
+        for (Student s : studentList) {
+            expectedStudentModel.addPerson(s);
+        }
+        assertCommandSuccess(sortCommand, studentModel,
+                String.format(SortCommand.MESSAGE_SUCCESS, REVERSE_SORT_SUCCESS), expectedStudentModel);
     }
 
     @Test
@@ -66,13 +82,14 @@ public class SortCommandTest {
         studentList.add(new StudentBuilder().withName("Mike").build());
 
         Model studentModel = new ModelManager();
+        Model expectedStudentModel = new ModelManager();
         for (Student s : studentList) {
             studentModel.addPerson(s);
+            expectedStudentModel.addPerson(s);
         }
-        studentModel.sortList(Model.ListType.STUDENT_LIST, SortCommand.SortBy.ALPHA);
-        studentModel.sortList(Model.ListType.STUDENT_LIST, SortCommand.SortBy.REVERSE);
-        studentModel.sortList(Model.ListType.STUDENT_LIST, SortCommand.SortBy.DEFAULT);
-        assertEquals(studentList, studentModel.getFilteredStudentList());
+        SortCommand sortCommand = new SortCommand(SortCommand.SortBy.DEFAULT);
+        assertCommandSuccess(sortCommand, studentModel,
+                String.format(SortCommand.MESSAGE_SUCCESS, DEFAULT_SORT_SUCCESS), expectedStudentModel);
     }
 
     @Test
@@ -85,12 +102,19 @@ public class SortCommandTest {
         tutorList.add(new TutorBuilder().withName("Mike").build());
 
         Model tutorModel = new ModelManager();
+        tutorModel.updateCurrentListType(TUTOR_LIST);
         for (Tutor t : tutorList) {
             tutorModel.addPerson(t);
         }
-        tutorModel.sortList(Model.ListType.TUTOR_LIST, SortCommand.SortBy.ALPHA);
         tutorList.sort(Comparator.comparing(tutor -> tutor.getName().fullName));
-        assertEquals(tutorList, tutorModel.getFilteredTutorList());
+        SortCommand sortCommand = new SortCommand(SortCommand.SortBy.ALPHA);
+        Model expectedTutorModel = new ModelManager();
+        expectedTutorModel.updateCurrentListType(TUTOR_LIST);
+        for (Tutor t : tutorList) {
+            expectedTutorModel.addPerson(t);
+        }
+        assertCommandSuccess(sortCommand, tutorModel,
+                String.format(SortCommand.MESSAGE_SUCCESS, ALPHA_SORT_SUCCESS), expectedTutorModel);
     }
 
     @Test
@@ -103,12 +127,19 @@ public class SortCommandTest {
         tutorList.add(new TutorBuilder().withName("Mike").build());
 
         Model tutorModel = new ModelManager();
-        for (Tutor s : tutorList) {
-            tutorModel.addPerson(s);
+        tutorModel.updateCurrentListType(TUTOR_LIST);
+        for (Tutor t : tutorList) {
+            tutorModel.addPerson(t);
         }
-        tutorModel.sortList(Model.ListType.TUTOR_LIST, SortCommand.SortBy.REVERSE);
         Collections.reverse(tutorList);
-        assertEquals(tutorList, tutorModel.getFilteredTutorList());
+        SortCommand sortCommand = new SortCommand(SortCommand.SortBy.REVERSE);
+        Model expectedTutorModel = new ModelManager();
+        expectedTutorModel.updateCurrentListType(TUTOR_LIST);
+        for (Tutor t : tutorList) {
+            expectedTutorModel.addPerson(t);
+        }
+        assertCommandSuccess(sortCommand, tutorModel,
+                String.format(SortCommand.MESSAGE_SUCCESS, REVERSE_SORT_SUCCESS), expectedTutorModel);
     }
 
     @Test
@@ -121,13 +152,16 @@ public class SortCommandTest {
         tutorList.add(new TutorBuilder().withName("Mike").build());
 
         Model tutorModel = new ModelManager();
+        tutorModel.updateCurrentListType(TUTOR_LIST);
+        Model expectedTutorModel = new ModelManager();
+        expectedTutorModel.updateCurrentListType(TUTOR_LIST);
         for (Tutor t : tutorList) {
             tutorModel.addPerson(t);
+            expectedTutorModel.addPerson(t);
         }
-        tutorModel.sortList(Model.ListType.TUTOR_LIST, SortCommand.SortBy.ALPHA);
-        tutorModel.sortList(Model.ListType.TUTOR_LIST, SortCommand.SortBy.REVERSE);
-        tutorModel.sortList(Model.ListType.TUTOR_LIST, SortCommand.SortBy.DEFAULT);
-        assertEquals(tutorList, tutorModel.getFilteredTutorList());
+        SortCommand sortCommand = new SortCommand(SortCommand.SortBy.DEFAULT);
+        assertCommandSuccess(sortCommand, tutorModel,
+                String.format(SortCommand.MESSAGE_SUCCESS, DEFAULT_SORT_SUCCESS), expectedTutorModel);
     }
 
     @Test
@@ -140,12 +174,19 @@ public class SortCommandTest {
         tuitionClassList.add(new TuitionClassBuilder().withName("P1ARTS").build());
 
         Model tuitionClassModel = new ModelManager();
-        for (TuitionClass tc : tuitionClassList) {
-            tuitionClassModel.addTuitionClass(tc);
+        tuitionClassModel.updateCurrentListType(TUITIONCLASS_LIST);
+        for (TuitionClass c : tuitionClassList) {
+            tuitionClassModel.addTuitionClass(c);
         }
-        tuitionClassModel.sortList(Model.ListType.TUITIONCLASS_LIST, SortCommand.SortBy.ALPHA);
         tuitionClassList.sort(Comparator.comparing(tuitionClass -> tuitionClass.getName().name));
-        assertEquals(tuitionClassList, tuitionClassModel.getFilteredTuitionClassList());
+        SortCommand sortCommand = new SortCommand(SortCommand.SortBy.ALPHA);
+        Model expectedTuitionClassModel = new ModelManager();
+        expectedTuitionClassModel.updateCurrentListType(TUITIONCLASS_LIST);
+        for (TuitionClass c : tuitionClassList) {
+            expectedTuitionClassModel.addTuitionClass(c);
+        }
+        assertCommandSuccess(sortCommand, tuitionClassModel,
+                String.format(SortCommand.MESSAGE_SUCCESS, ALPHA_SORT_SUCCESS), expectedTuitionClassModel);
     }
 
     @Test
@@ -158,12 +199,19 @@ public class SortCommandTest {
         tuitionClassList.add(new TuitionClassBuilder().withName("P1ARTS").build());
 
         Model tuitionClassModel = new ModelManager();
-        for (TuitionClass tc : tuitionClassList) {
-            tuitionClassModel.addTuitionClass(tc);
+        tuitionClassModel.updateCurrentListType(TUITIONCLASS_LIST);
+        for (TuitionClass c : tuitionClassList) {
+            tuitionClassModel.addTuitionClass(c);
         }
-        tuitionClassModel.sortList(Model.ListType.TUITIONCLASS_LIST, SortCommand.SortBy.REVERSE);
         Collections.reverse(tuitionClassList);
-        assertEquals(tuitionClassList, tuitionClassModel.getFilteredTuitionClassList());
+        SortCommand sortCommand = new SortCommand(SortCommand.SortBy.REVERSE);
+        Model expectedTuitionClassModel = new ModelManager();
+        expectedTuitionClassModel.updateCurrentListType(TUITIONCLASS_LIST);
+        for (TuitionClass c : tuitionClassList) {
+            expectedTuitionClassModel.addTuitionClass(c);
+        }
+        assertCommandSuccess(sortCommand, tuitionClassModel,
+                String.format(SortCommand.MESSAGE_SUCCESS, REVERSE_SORT_SUCCESS), expectedTuitionClassModel);
     }
 
     @Test
@@ -176,12 +224,33 @@ public class SortCommandTest {
         tuitionClassList.add(new TuitionClassBuilder().withName("P1ARTS").build());
 
         Model tuitionClassModel = new ModelManager();
-        for (TuitionClass tc : tuitionClassList) {
-            tuitionClassModel.addTuitionClass(tc);
+        Model expectedTuitionClassModel = new ModelManager();
+        tuitionClassModel.updateCurrentListType(TUITIONCLASS_LIST);
+        expectedTuitionClassModel.updateCurrentListType(TUITIONCLASS_LIST);
+        for (TuitionClass c : tuitionClassList) {
+            tuitionClassModel.addTuitionClass(c);
+            expectedTuitionClassModel.addTuitionClass(c);
+
         }
-        tuitionClassModel.sortList(Model.ListType.TUITIONCLASS_LIST, SortCommand.SortBy.ALPHA);
-        tuitionClassModel.sortList(Model.ListType.TUITIONCLASS_LIST, SortCommand.SortBy.REVERSE);
-        tuitionClassModel.sortList(Model.ListType.TUITIONCLASS_LIST, SortCommand.SortBy.DEFAULT);
-        assertEquals(tuitionClassList, tuitionClassModel.getFilteredTuitionClassList());
+        SortCommand sortCommand = new SortCommand(SortCommand.SortBy.DEFAULT);
+        assertCommandSuccess(sortCommand, tuitionClassModel,
+                String.format(SortCommand.MESSAGE_SUCCESS, DEFAULT_SORT_SUCCESS), expectedTuitionClassModel);
+    }
+
+    @Test
+    public void equals() {
+        SortCommand sortCommand = new SortCommand(SortCommand.SortBy.ALPHA);
+
+        // same object -> returns true
+        assertTrue(sortCommand.equals(sortCommand));
+
+        // same method and message -> returns true
+        assertTrue(sortCommand.equals(new SortCommand(SortCommand.SortBy.ALPHA)));
+
+        // different class -> returns false
+        assertFalse(sortCommand.equals(0));
+
+        // different method and message -> returns false
+        assertFalse(sortCommand.equals(new SortCommand(SortCommand.SortBy.DEFAULT)));
     }
 }
