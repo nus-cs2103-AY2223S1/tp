@@ -90,7 +90,7 @@ public class AddTagCommand extends AddGenericCommand {
         }
 
         // state check
-        AddTagCommand e = (AddTagCommand) other;
-        return index.equals(e.index) && tag.equals((e.tag));
+        AddTagCommand command = (AddTagCommand) other;
+        return index.equals(command.index) && tag.equals((command.tag));
     }
 }

@@ -144,7 +144,7 @@ _Help window displayed after running the `help` command_
 
 Adds a patient to the patient list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | DATE_AND_TIME | FREQUENCY]… [t/TAG]…`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | DATE_AND_TIME | FREQUENCY]… [c/CONDITION]… [t/TAG]…`
 
 * `DATE_AND_TIME` should be in the format like 16-10-2022 1030
 * If no `DATE_AND_TIME` is provided, then a default date and time of 24 hours from creation will be set
@@ -162,15 +162,13 @@ Examples:
 
 Edits an existing patient in the patient list.
 
-Format: `edit -p INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
+Format: `edit -p INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 * Edits the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index ***must be a positive integer*** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
-* You can remove all the patient’s tags by typing t/ without specifying any tags after it.
 
 Example:
 
@@ -348,7 +346,18 @@ Format: `addCondition PATIENT_INDEX c/CONDITION`
 
 Examples:
 * `list` followed by `addCondition 1 c/Diabetes` adds a condition to the 1st patient in the patient list.
-* `find Betsy` followed by `addCondition 2 c/Alzhiemer's disease` adds a condition to the 2nd patient in the patient list.
+* `find Betsy` followed by `addCondition 2 c/Alzheimer's disease` adds a condition to the 2nd patient in the patient list.
+
+### Editing a tag: `editCondition`
+
+_Command syntax to be updated ..._
+
+Format: `editCondition PATIENT_INDEX CONDITION_INDEX c/CONDITION`
+* Edits the condition at the specified `CONDITION_INDEX` of the patient at the specified `PATIENT_INDEX`.
+
+Examples:
+* `list` followed by `editCondition 2 3 c/Diabetes` edits the 3rd condition of the 2nd patient in the patient list to `Diabetes`.
+* `find Betsy` followed by `editCondition 1 2 c/Diabetes` edits the 2nd condition of the 1st patient in the patient list to `Diabetes`.
 
 ### Deleting a medical condition: `deleteCondition`
 
@@ -369,8 +378,19 @@ Format: `addTag PATIENT_INDEX t/TAG`
 * Adds a tag to a patient at the specified `PATIENT_INDEX`.
 
 Examples:
-* `list` followed by `addTag 1 t/highRisk` adds a tag to the 1st patient in the patient list.
+* `list` followed by `addTag 1 t/high-risk` adds a tag to the 1st patient in the patient list.
 * `find Betsy` followed by `addTag 2 t/elderly` adds a tag to the 2nd patient in the patient list.
+
+### Editing a tag: `editTag`
+
+_Command syntax to be updated ..._
+
+Format: `editTag PATIENT_INDEX TAG_INDEX t/TAG`
+* Edits the tag at the specified `TAG_INDEX` of the patient at the specified `PATIENT_INDEX`.
+
+Examples:
+* `list` followed by `editTag 2 3 t/high-risk` edits the 3rd tag of the 2nd patient in the patient list to `high-risk`.
+* `find Betsy` followed by `editTag 1 2 t/high-risk` edits the 2nd tag of the 1st patient in the patient list to `high-risk`.
 
 ### Deleting a tag: `deleteTag`
 
@@ -449,28 +469,30 @@ the data of your previous UniNurse home folder.
 
 ## Command summary
 
-| Action                          | Format                                                                   |
-|---------------------------------|--------------------------------------------------------------------------|
-| **Help**                        | `help`                                                                   |
-| **Add patient**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK]`                   |
-| **Edit patient**                | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` |
-| **Delete patient**              | `delete -p INDEX`                                                        |
-| **List all patients**           | `list`                                                                   |
-| **List all patients today**     | `patientsToday`                                                          |
+| Action                          | Format                                                                                                                       |
+|---------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                        | `help`                                                                                                                       |
+| **Add patient**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK]… [c/CONDITION]… [t/TAG]…`                                              |
+| **Edit patient**                | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`                                                              |
+| **Delete patient**              | `delete -p INDEX`                                                                                                            |
+| **List all patients**           | `list`                                                                                                                       |
+| **List all patients today**     | `patientsToday`                                                                                                              |
 | **Find patient**                | `find [KEYWORD]… [n/NAME]… [p/PHONE]… [e/EMAIL]… [a/ADDRESS]… [t/TAG]… [c/CONDITION]… [d/TASK_DESCRIPTION]… [m/MEDICATION]…` |
-| **Add task**                    | `add -p PATIENT_INDEX d/TASK`                                            |
-| **Edit task**                   | `edit -p PATIENT_INDEX -d TASK_INDEX d/TASK`                             |
-| **Delete task**                 | `delete -p PATIENT_INDEX -d TASK_INDEX`                                  |
-| **List all tasks**              | `listTask`                                                               |
-| **View all tasks of a patient** | `viewTask INDEX`                                                         |
-| **Add condition**               | `addCondition PATIENT_INDEX c/CONDITION`                                 |
-| **Delete condition**            | `deleteCondition PATIENT_INDEX CONDITION_INDEX`                          |
-| **Add tag**                     | `addTag INDEX t/TAG`                                                     |
-| **Delete tag**                  | `deleteTag PATIENT_INDEX TAG_INDEX`                                |                                                             
-| **Clear all patients**          | `clear`                                                                  |
-| **Undo last command**           | `undo`                                                                   |
-| **Reverse undo command**        | `redo`                                                                   |
-| **Exit**                        | `exit`                                                                   |
+| **Add task**                    | `add -p PATIENT_INDEX d/TASK`                                                                                                |
+| **Edit task**                   | `edit -p PATIENT_INDEX -d TASK_INDEX d/TASK`                                                                                 |
+| **Delete task**                 | `delete -p PATIENT_INDEX -d TASK_INDEX`                                                                                      |
+| **List all tasks**              | `listTask`                                                                                                                   |
+| **View all tasks of a patient** | `viewTask INDEX`                                                                                                             |
+| **Add condition**               | `addCondition PATIENT_INDEX c/CONDITION`                                                                                     |
+| **Edit condition**              | `editCondition PATIENT_INDEX CONDITION_INDEX c/CONDITION`                                                                    |
+| **Delete condition**            | `deleteCondition PATIENT_INDEX CONDITION_INDEX`                                                                              |
+| **Add tag**                     | `addTag PATIENT_INDEX t/TAG`                                                                                                 |
+| **Edit tag**                    | `editTag PATIENT_INDEX TAG_INDEX t/TAG`                                                                                      |                                                                                                                     
+| **Delete tag**                  | `deleteTag PATIENT_INDEX TAG_INDEX`                                                                                          |
+| **Clear all patients**          | `clear`                                                                                                                      |
+| **Undo last command**           | `undo`                                                                                                                       |
+| **Reverse undo command**        | `redo`                                                                                                                       |
+| **Exit**                        | `exit`                                                                                                                       |
 
 * Note that `TASK` is composed of `TASK_DESCRIPTION | DATE_AND_TIME | FREQUENCY`
 * `DATE_AND_TIME` should be in the format like 16-10-2022 1030

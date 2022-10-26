@@ -55,7 +55,7 @@ public class AddConditionCommandParserTest {
 
     @Test
     public void parse_missingConditionPrefix_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddConditionCommand.MESSAGE_USAGE);
+        String expectedMessage = AddConditionCommandParser.MESSAGE_MISSING_CONDITION;
         assertParseFailure(parser, "1" , expectedMessage);
     }
 }

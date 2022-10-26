@@ -35,7 +35,7 @@ public class EditMedicationCommandParser implements Parser<EditMedicationCommand
 
             return new EditMedicationCommand(indices.get(0), indices.get(1), editMedicationDescriptor);
         } catch (ParseException pe) {
-            // handles invalid indices and conditions
+            // handles invalid indices and medications
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditMedicationCommand.MESSAGE_USAGE), pe);
         } catch (NoSuchElementException nse) {

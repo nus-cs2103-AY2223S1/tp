@@ -38,7 +38,7 @@ public class EditMedicationCommand extends EditGenericCommand {
             + "After: %4$s";
     public static final String MESSAGE_NOT_EDITED = "Medication to edit must be provided.";
     public static final String MESSAGE_EDIT_DUPLICATE_MEDICATION =
-            "Medication already exists in %1$s's medication list.";
+            "This medication already exists in %1$s's medication list.";
 
     public static final CommandType EDIT_MEDICATION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
