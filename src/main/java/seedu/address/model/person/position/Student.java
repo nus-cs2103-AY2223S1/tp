@@ -8,8 +8,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -173,7 +176,6 @@ public class Student extends Position {
      * Updates the overall grade of the student when the grade of
      * one of their assignments in changed.
      */
-
     public String updateOverallGrade(Index indexOfAssignment, String grade) throws CommandException {
         this.setAssignmentGrade(indexOfAssignment, grade);
         int totalWeightage = 0;
@@ -185,6 +187,22 @@ public class Student extends Position {
             }
         }
         return String.format("%.2f/%d", totalGrade, totalWeightage);
+    }
+
+    public Map<String, Number> getAssignmentsAndGrade() {
+        Map<String, Number> map = new HashMap<>();
+        for (Assignment a: assignmentsList) {
+            map.put(a.getAssignmentName() + " (" + a.getWeightage() + "%)", a.getScore());
+        }
+        return map;
+    }
+
+    public Map<String, Number> getAssignmentsAndMaximumGrade() {
+        Map<String, Number> map = new HashMap<>();
+        for (Assignment a: assignmentsList) {
+            map.put(a.getAssignmentName() + " (" + a.getWeightage() + "%)", a.getMaximumScore());
+        }
+        return map;
     }
 
     private void setAssignmentGrade(Index indexOfAssignment, String grade) throws CommandException {
