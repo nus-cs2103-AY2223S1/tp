@@ -9,8 +9,6 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import org.ocpsoft.prettytime.shade.org.apache.commons.lang.StringUtils;
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -159,7 +157,7 @@ public class ModelManager implements Model {
     @Override
     public List<Project> getProjectList() {
         List<Project> projectList = filteredTasks.stream().map(x -> x.getProject())
-                .filter(s -> StringUtils.isNotBlank(s.projectName))
+                .filter(s -> !s.projectName.isBlank())
                 .collect(Collectors.toList());
         return projectList;
     }
