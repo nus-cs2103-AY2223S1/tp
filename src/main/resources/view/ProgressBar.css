@@ -4,8 +4,8 @@
 
 .progress-bar .bar {
     -fx-padding: 12px;
-    -fx-background-insets: 1px;
-    -fx-background-radius: 0;
+    -fx-background-insets: 3px;
+    -fx-background-radius: 5px;
 }
 
 .progress-bar > .track {
@@ -13,8 +13,8 @@
     -fx-border-color: #B9B7BD;
     -fx-control-inner-background: #F0F0F0;
     -fx-background-color: #F0F0F0;
-    -fx-border-radius: 0;
-    -fx-background-radius: 0;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
 }
 
 .progress-percentage {
