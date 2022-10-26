@@ -24,7 +24,7 @@ public class ClearTasksCommand extends Command {
         requireNonNull(model);
 
         ObservableList<Task> taskList = model.getFilteredTaskList();
-        if(taskList.isEmpty()) {
+        if (taskList.isEmpty()) {
             throw new CommandException(MESSAGE_TASK_LIST_ALREADY_EMPTY);
         }
 
