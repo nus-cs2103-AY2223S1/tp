@@ -180,7 +180,7 @@ public class MainWindow extends UiPart<Stage> {
      * Switch to tasks tab.
      */
     @FXML
-    private void handleTaskTab() {
+    private void showTaskTab() {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getUnfilteredBridgeList(),
                 logic.getFilteredPersonList());
 
@@ -200,7 +200,7 @@ public class MainWindow extends UiPart<Stage> {
      * Switch to contacts tab.
      */
     @FXML
-    private void handleContactTab() {
+    private void showContactTab() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
 
         listPanelPlaceholder.getChildren().clear();
@@ -240,11 +240,11 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isContactCommand()) {
-                handleContactTab();
+                showContactTab();
             }
 
             if (commandResult.isTaskCommand()) {
-                handleTaskTab();
+                showTaskTab();
             }
 
             return commandResult;
