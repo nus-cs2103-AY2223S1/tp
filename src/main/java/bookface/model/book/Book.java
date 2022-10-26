@@ -1,11 +1,13 @@
 package bookface.model.book;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 
 import bookface.commons.util.CollectionUtil;
 import bookface.model.person.Person;
-
 
 /**
  * Represents a Book in the BookFace application.
@@ -16,13 +18,27 @@ public class Book {
     private final Author author;
     private Person loanee = null;
 
+    private Date returnDate = null;
+
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. This is an overloaded constructor used in JsonAdaptedBook
+     * if book does not have return date.
      */
     public Book(Title title, Author author) {
         CollectionUtil.requireAllNonNull(title, author);
         this.title = title;
         this.author = author;
+    }
+
+    /**
+     * Every field must be present and not null. This is an overloaded constructor used in JsonAdaptedBook
+     * if book has a return date.
+     */
+    public Book(Title title, Author author, Date returnDate) {
+        CollectionUtil.requireAllNonNull(title, author, returnDate);
+        this.title = title;
+        this.author = author;
+        this.returnDate = returnDate;
     }
 
     public Title getTitle() {
@@ -31,6 +47,21 @@ public class Book {
 
     public Author getAuthor() {
         return author;
+    }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
+    }
+    public String getReturnDateString() {
+        if (isLoaned()) {
+            Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+            return "Return by: " + formatter.format(returnDate);
+        }
+        return null;
     }
 
     public Optional<Person> getLoanee() {
@@ -54,11 +85,13 @@ public class Book {
      *
      * @param loanee the person borrowing this book
      */
-    public void loanTo(Person loanee) {
+    public void loanTo(Person loanee, Date returnDate) {
         if (loanee != null) {
             this.loanee = loanee;
+            this.returnDate = returnDate;
         }
     }
+
 
     /**
      * Return this loaned book .
@@ -96,6 +129,8 @@ public class Book {
     public String toString() {
         return getTitle()
                 + "; Author: "
-                + getAuthor();
+                + getAuthor()
+                + "; "
+                + getReturnDateString();
     }
 }

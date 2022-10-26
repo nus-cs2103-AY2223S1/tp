@@ -12,4 +12,6 @@ public class Messages {
     public static final String MESSAGE_BOOKS_LISTED_OVERVIEW = "%1$d books listed!";
     public static final String MESSAGE_DUPLICATE_BOOK = "This book is already in the records.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the records.";
+
+    public static final String MESSAGE_INVALID_DATE_PARSE = "Unable to parse as date.";
 }

@@ -2,7 +2,9 @@ package bookface.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import bookface.commons.core.Messages;
 import bookface.commons.core.index.Index;
@@ -30,12 +32,31 @@ public class LoanCommand extends Command {
 
     private final Index targetBookIndex;
 
+    private final Date returnDate;
+
+
     /**
-     * Creates an LoanCommand to loan to a specified {@code Person} from the specified {@code Book}
+     * Creates an LoanCommand to loan to a specified {@code Person} from the specified {@code Book} with the specified
+     * return date {@code returnDate}.
+     */
+    public LoanCommand(Index userIndex, Index bookIndex, Date returnDate) {
+        this.targetUserIndex = userIndex;
+        this.targetBookIndex = bookIndex;
+        this.returnDate = returnDate;
+    }
+
+    /**
+     * Creates an LoanCommand to loan to a specified {@code Person} from the specified {@code Book} and the return
+     * date is set to 14 days later.
      */
     public LoanCommand(Index userIndex, Index bookIndex) {
         this.targetUserIndex = userIndex;
         this.targetBookIndex = bookIndex;
+        long millis = System.currentTimeMillis();
+        Date todayDate = new Date(millis);
+        // Code below is effectively borrowed from
+        // https://stackoverflow.com/questions/12087419/adding-days-to-a-date-in-java
+        this.returnDate = new Date(todayDate.getTime() + TimeUnit.DAYS.toMillis(14));
     }
 
     @Override
@@ -59,8 +80,7 @@ public class LoanCommand extends Command {
         if (bookToLoan.isLoaned()) {
             throw new CommandException(ALREADY_LOANED);
         }
-
-        model.loan(personToLoan, bookToLoan);
+        model.loan(personToLoan, bookToLoan, returnDate);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredBookList(Model.PREDICATE_SHOW_ALL_BOOKS);
         return new CommandResult(String.format(MESSAGE_LOAN_SUCCESS, personToLoan.getName(), bookToLoan.getTitle()));
