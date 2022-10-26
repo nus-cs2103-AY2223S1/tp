@@ -23,8 +23,8 @@ import seedu.address.model.task.TaskName;
  * Jackson-friendly version of {@link Task}.
  */
 public class JsonAdaptedTask {
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     private final String name;
     private final String categoryLevel;
@@ -34,6 +34,7 @@ public class JsonAdaptedTask {
     private final String deadline;
     private final String email;
     private final String isDone;
+
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
