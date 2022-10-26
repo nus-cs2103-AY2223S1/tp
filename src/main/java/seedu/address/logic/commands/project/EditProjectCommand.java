@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.project;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_PROJECT_ID;
@@ -34,14 +34,14 @@ public class EditProjectCommand extends ProjectCommand {
             + "Parameters: "
             + PREFIX_PROJECT_ID + "PROJECT_ID "
             + PREFIX_NAME + "NAME "
-            + PREFIX_CLIENT_ID + "CLIENT_ID "
+            + PREFIX_CLIENT_ID_ID + "CLIENT_ID "
             + PREFIX_REPOSITORY + "REPOSITORY "
             + PREFIX_DEADLINE + "DEADLINE "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_PROJECT_ID + "1 "
             + PREFIX_NAME + "John "
-            + PREFIX_CLIENT_ID + "1 "
+            + PREFIX_CLIENT_ID_ID + "1 "
             + PREFIX_REPOSITORY + "JohnDoe/tp "
             + PREFIX_DEADLINE + "2022-03-05 ";
 

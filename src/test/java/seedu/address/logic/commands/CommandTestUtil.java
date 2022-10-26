@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOBILE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_EMPTY_PROJECT_ID = "2147483647";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
+    public static final String PHONE_DESC_AMY = " " + PREFIX_MOBILE + VALID_PHONE_AMY;
+    public static final String PHONE_DESC_BOB = " " + PREFIX_MOBILE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String DEADLINE_DESC_DEADLINE = " " + PREFIX_DEADLINE + VALID_DEADLINE;
@@ -44,7 +44,7 @@ public class CommandTestUtil {
     public static final String PROJECT_DESC_PROJECT = " " + PREFIX_PROJECT_ID + VALID_PROJECT_ID;
     public static final String PROJECT_DESC_EMPTY_PROJECT = " " + PREFIX_PROJECT_ID + VALID_EMPTY_PROJECT_ID;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_MOBILE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "20 October 2022"; // yyyy-mm-dd format
     public static final String INVALID_REPOSITORY_DESC = " " + PREFIX_REPOSITORY + "Repo"; // username/repository format

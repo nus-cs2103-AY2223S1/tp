@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_MOBILE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 
@@ -27,14 +27,14 @@ public class AddClientCommand extends ClientCommand {
             + ": Adds a client to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_CLIENT_PHONE + "PHONE "
-            + PREFIX_CLIENT_EMAIL + "EMAIL "
+            + PREFIX_MOBILE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
             + PREFIX_PROJECT_ID + "PROJECT ID: "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_CLIENT_PHONE + "98765432 "
-            + PREFIX_CLIENT_EMAIL + "johnd@example.com "
+            + PREFIX_MOBILE + "98765432 "
+            + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_PROJECT_ID + "1";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";

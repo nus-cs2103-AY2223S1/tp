@@ -1,9 +1,9 @@
 package seedu.address.logic.commands.client;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
-import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_MOBILE;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID_ID;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import seedu.address.logic.commands.CommandResult;
@@ -29,15 +29,15 @@ public class EditClientCommand extends ClientCommand {
             + ": Edits a client in the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_CLIENT_EMAIL + "CLIENT EMAIL "
-            + PREFIX_CLIENT_PHONE + "PHONE "
-            + PREFIX_CLIENT_ID + "CLIENT ID "
+            + PREFIX_EMAIL + "CLIENT EMAIL "
+            + PREFIX_MOBILE + "PHONE "
+            + PREFIX_CLIENT_ID_ID + "CLIENT ID "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "John "
-            + PREFIX_CLIENT_EMAIL + "john@gmail.com "
-            + PREFIX_CLIENT_PHONE + "12345678 "
-            + PREFIX_CLIENT_ID + "1 ";
+            + PREFIX_EMAIL + "john@gmail.com "
+            + PREFIX_MOBILE + "12345678 "
+            + PREFIX_CLIENT_ID_ID + "1 ";
 
     public static final String MESSAGE_INVALID_CLIENT = "Client does not exist.";
 
