@@ -107,6 +107,25 @@ public class CommandTestUtil {
     }
 
     /**
+     * Modified assertCommandSuccess for TipCommand to work around random output of the models.
+     *
+     * Executes the given {@code tipCommand}, confirms that <br>
+     * - the returned {@link CommandResult} partially matches {@code expectedMessage} <br>
+     * - the {@code actualModel} partially matches {@code expectedModel}
+     */
+    public static void assertTipCommandSuccess(TipCommand tipCommand, Model actualModel, String expectedSubstring,
+            Model expectedModel) {
+        try {
+            CommandResult actualResult = tipCommand.execute(actualModel);
+            String actualSubstring = actualResult.getFeedbackToUser().substring(0, 15);
+            assertEquals(actualSubstring, expectedSubstring);
+            assertEquals(actualModel, expectedModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
