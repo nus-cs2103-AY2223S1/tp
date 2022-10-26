@@ -167,7 +167,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 4.2.1 Adding new students
 
-**Description**
+<u>**Description**</u>
 
 Adding new students is first basic step of using Class-ify. This is primarily done via the `AddStudCommand` and `AddStudCommandParser` classes.
 Before going into the sequence of executing a `addstud` command, let us take a quick look at the `Student` class.
@@ -183,11 +183,11 @@ The `Student` class contains a total of 6 fields:
     * The type of exams are currently limited to _CA1_, _CA2_, _SA1_ and _SA2_.
     * Future implementations may allow teachers to create their own examinable items.
 
-**Implementation**
+<u>**Implementation**</u>
 
 Adding a student record can be divided into 2 main steps: parsing the user input and executing it.
 
-Step 1: Parsing the command
+**Step 1: Parsing the command**
 
 The delete command is first parsed.
 
@@ -195,7 +195,7 @@ The delete command is first parsed.
 2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a addstud command and creates a new `AddStudCommandParser` instance to parse the user’s command.
 3. Once the command is successfully parsed, `AddStudCommandParser` creates a new `AddStudCommand` instance which will be executed by the `LogicManager`.
 
-Step 2: Executing the command
+**Step 2: Executing the command**
 
 The `AddStudCommand` instance now interacts with the `ModelManager` to execute the command.
 1. The `hasStudent` method is called to check if the `Model` contains the student to be added.
@@ -208,7 +208,7 @@ The following activity diagram below summarizes what happens when a user execute
 
 <img src="images/AddStudentCommandActivityDiagram.png" width="550" />
 
-**Design Considerations**
+<u>**Design Considerations**</u>
 
 The current approach creates multiple `Class` objects per student. It serves as a more straightforward implementation. However, it is not a very OOP solution for the following reasons:
 
@@ -226,11 +226,11 @@ An alternative and perhaps more OOP approach is given below. It has a `Class` li
 
 #### 4.2.2 Delete command
 
-**Description**
+<u>**Description**</u>
 
 The delete command allows users to delete a student record by targeting either the student’s name or student’s ID.
 
-**Implementation**
+<u>**Implementation**</u>
 
 Deleting a student record can be divided into 2 main steps: parsing the command and executing it.
 
@@ -241,7 +241,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 <div class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Step 1: Parsing the command
+**Step 1: Parsing the command**
 
 The delete command is first parsed.
 
@@ -249,7 +249,7 @@ The delete command is first parsed.
 2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a delete command and creates a new `DeleteCommandParser` instance to parse the user’s command.
 3. Once the command is successfully parsed, `DeleteCommandParser` creates a new `DeleteCommand` instance which will be executed by the `LogicManager`.
 
-Step 2: Executing the command
+**Step 2: Executing the command**
 
 The `DeleteCommand` instance now communicates with the `ModelManager` to execute the command.
 
@@ -258,7 +258,7 @@ The `DeleteCommand` instance now communicates with the `ModelManager` to execute
 3. The `updateFilteredStudentList` method is called again to show all student records.
 4. A new `CommandResult` instance is created and returned to `LogicManager`.
 
-**Design Considerations**
+<u>**Design Considerations**</u>
 
 Current Design: We chose to keep a single class `DeleteCommand`, which the user can use to delete student records either by targeting the student’s name or student ID.
 
@@ -447,65 +447,125 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### 6.3 Use cases
 
-(For all use cases below, the **System** is `Class-ify` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Class-ify` and the **Actor** is the `user`, unless specified otherwise.)
 
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list all students or find a student
-2.  Class-ify shows a list of student(s)
-3.  User requests to delete a specific student in the list
-4.  Class-ify deletes the student
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Class-ify shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Edit a student's details**
+<u>**Use case: Add a new student**</u>
 
 **MSS**
 
-1.  User requests to list all students or find a student
-2.  Class-ify shows a list of student(s)
-3.  User requests to edit particular fields (specified through tags) of the student in a specific index of the list
-4.  Class-ify updates the details to the respective fields of the student
+1. User requests to add a new student to the list.
+2. User enters relevant details of the new student.
+3. Class-ify adds new student into the student record.
+4. Class-ify displays an updated list of student(s).
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Student already exist in student record.
+   * 2a1. Class-ify displays a duplicate error message. 
 
-  Use case ends.
+     Use case resumes from step 2.
 
-* 3a. The given index is invalid.
+* 2b. User missed out a compulsory field.
+   * 2b1. Class-ify shows an invalid command error message.
 
-    * 3a1. Class-ify shows an error message.
+     Use case resumes at step 2.
+
+* 2c. Class-ify detects invalid format of field value.
+    * 2c1. Class-ify shows an invalid format error message.
 
       Use case resumes at step 2.
 
-* 3b. No tags were specified.
+<u>**Use case: Delete a student**</u>
 
-    * 3b1. Class-ify shows an error message.
+**MSS**
+
+1. User requests to delete a student from the list.
+2. User enters name or id of student to be deleted.
+3. Class-ify deletes student from the student record.
+4. Class-ify displays an updated list of student(s).
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Student does not exist in student record.
+    * 2a1. Class-ify displays an error message indicating the to-be-deleted student does not exist.
+
+      Use case resumes from step 2.
+
+* 2b. The student record is empty.
+    * 2b1. Class-ify displays an error message similar to 2a1.
 
       Use case resumes at step 2.
 
-* 3c. The given tags do not exist.
+* 2c. Class-ify detects invalid format of field value.
+    * 2c1. Class-ify shows an invalid format error message.
 
-  * 3b1. Class-ify shows an error message.
+      Use case resumes at step 2.
 
-    Use case resumes at step 2.
+<u>**Use case: Edit details of a student**</u>
+
+**MSS**
+
+1. User requests to edit the details of a student from the list.
+2. User enters index of student in the list to be edited.
+3. User enters the relevant details of the student to be edited.
+4. Class-ify updates the details of the student in the student record.
+5. Class-ify displays an updated list of student(s).
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. Class-ify displays an invalid command error message.
+
+      Use case resumes from step 2.
+
+* 2b. The given index is out of bounds of the list.
+    * 2b1. Class-ify displays an error message similar to 2a1.
+
+      Use case resumes at step 2.
+
+* 3a. Class-ify detects invalid format of field value.
+    * 3a1. Class-ify shows an invalid format error message.
+
+      Use case resumes at step 3.
+
+* 3b. No given fields to be edited.
+    * 3b1. Class-ify shows an error message to prompt user to enter at least one field to be edited.
+
+      Use case resumes at step 3.
+
+<u>**Use case: Find a student**</u>
+
+**MSS**
+
+1. User requests to find some student(s) in the list.
+2. User enters name or id of the student(s) to be found.
+3. Class-ify search for the student(s) in the student record.
+4. Class-ify displays a list of student(s) found.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No fields are given.
+    * 2a1. Class-ify displays an invalid command error message.
+
+      Use case resumes from step 2.
+
+* 2b. Class-ify detects invalid format of field value.
+    * 2b1. Class-ify shows an invalid format error message.
+
+      Use case resumes at step 2.
+
+* 4a. No students are found.
+    * 4b1. Class-ify display an empty list and a message indicating no students are found. 
+
+      Use case ends.
 
 *More to be added*
 
