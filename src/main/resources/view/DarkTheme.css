@@ -408,7 +408,7 @@
 }
 
 #success {
-    -fx-text-fill: #447959;
+    -fx-text-fill: #00C851;
 }
 
 #caution {
@@ -416,7 +416,7 @@
 }
 
 #fail {
-    -fx-text-fill: #a5344c;
+    -fx-text-fill: #FF4444;
 }
 
 #info {
