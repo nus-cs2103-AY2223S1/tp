@@ -20,6 +20,7 @@ import seedu.waddle.logic.commands.EditItemCommand;
 import seedu.waddle.logic.commands.ExitCommand;
 import seedu.waddle.logic.commands.ExportCommand;
 import seedu.waddle.logic.commands.FindCommand;
+import seedu.waddle.logic.commands.FreeCommand;
 import seedu.waddle.logic.commands.HelpCommand;
 import seedu.waddle.logic.commands.HomeCommand;
 import seedu.waddle.logic.commands.ListCommand;
@@ -127,8 +128,6 @@ public class WaddleParser {
     public Command parseWishCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
 
-        //TODO: ADD, DEL, EDIT, FIND, SORT, CLEAR (activities)
-
         case HomeCommand.COMMAND_WORD:
             return new HomeCommand();
 
@@ -137,6 +136,9 @@ public class WaddleParser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case FreeCommand.COMMAND_WORD:
+            return new FreeCommand();
 
         case AddItemCommand.COMMAND_WORD:
             return new AddItemCommandParser().parse(arguments);
@@ -159,37 +161,6 @@ public class WaddleParser {
 
         case ExportCommand.COMMAND_WORD:
             return new ExportCommand();
-
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-        }
-    }
-
-    /**
-     * Parses user input into command for execution.
-     *
-     * @param commandWord The command word.
-     * @param arguments The arguments.
-     * @return The command.
-     * @throws ParseException ParseException.
-     */
-    public Command parseScheduleCommand(String commandWord, String arguments) throws ParseException {
-        switch (commandWord) {
-
-        //TODO: need to discuss what commands should be available here
-
-        case HomeCommand.COMMAND_WORD:
-            return new HomeCommand();
-
-        case StageCommand.COMMAND_WORD:
-            return new StageCommandParser().parse(arguments);
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        //TODO: help commands must change here
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

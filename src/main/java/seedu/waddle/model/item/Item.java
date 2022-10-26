@@ -13,6 +13,7 @@ public class Item {
     private final Cost cost;
     private final Duration duration;
     private LocalTime startTime;
+    private LocalTime endTime;
 
     /**
      * Constructor for an item.
@@ -52,7 +53,12 @@ public class Item {
     }
 
     public LocalTime getEndTime() {
-        return this.startTime.plusMinutes(this.duration.getDuration());
+        LocalTime end = this.startTime.plusMinutes(this.duration.getDuration());
+        // if the time overflows to next day (including 00:00), set to 23:59
+        if (end.isBefore(this.startTime) || end.equals(LocalTime.MIDNIGHT)) {
+            return LocalTime.parse("23:59");
+        }
+        return end;
     }
 
     public String getTimeString() {
