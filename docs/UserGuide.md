@@ -26,21 +26,21 @@ title: User Guide
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-| Command    | Format                                                       |
-| ---------- | ------------------------------------------------------------ |
-| `help`     | `help`                                                       |
-| `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL] [a/ADDRESS][c/CLASS_NAME...]` |
-| `edit`     | `edit INDEX [n/NAME][p/PHONE_NUMBER] [e/EMAIL][a/ADDRESS]`   |
-| `delete`   | `delete INDEX`                                               |
-| `find`     | `find KEYWORD [MORE_KEYWORDS...]`                            |
-| `list`     | `list`                                                       |
-| `addc`     | `addc c/CLASS_NAME...`                                       |
-| `deletec`  | `deletec c/CLASS_NAME...`                                    |
-| `assign`   | `assign INDEX... c/CLASS_NAME`                               |
-| `unassign` | `unassign INDEX... c/CLASS_NAME`                             |
-| `listc`    | `listc`                                                      |
-| `exit`     | `exit`                                                       |
-| `focus`    | `focus c/CLASS_NAME`                                         |
+| Command    | Format                                   |
+| ---------- | ---------------------------------------- |
+| `help`     | `help`                                   |
+| `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL][a/ADDRESS][c/CLASS_NAME...]` |
+| `edit`     | `edit INDEX [n/NAME][p/PHONE_NUMBER][e/EMAIL][a/ADDRESS]` |
+| `delete`   | `delete INDEX`                           |
+| `find`     | `find KEYWORD [MORE_KEYWORDS...]`        |
+| `list`     | `list`                                   |
+| `addc`     | `addc c/CLASS_NAME...`                   |
+| `deletec`  | `deletec c/CLASS_NAME...`                |
+| `assign`   | `assign INDEX... c/CLASS_NAME`           |
+| `unassign` | `unassign INDEX... c/CLASS_NAME`         |
+| `listc`    | `listc`                                  |
+| `exit`     | `exit`                                   |
+| `focus`    | `focus c/CLASS_NAME`                     |
 
 ### Viewing help : `help`
 
