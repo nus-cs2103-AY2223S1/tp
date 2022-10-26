@@ -11,6 +11,7 @@ import static seedu.address.commons.util.StringUtil.removeWhitespaceForLevel;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -168,14 +169,49 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the given {@code subject} is invalid.
      */
-    // todo: wait for Emath, Amath
     public static Subject parseSubject(String subject) throws ParseException {
         requireNonNull(subject);
-        String trimmedSubject = subject.trim();
+        String trimmedSubject = subject.trim().toLowerCase();
         if (!Subject.isValidSubject(trimmedSubject)) {
+            // did you mean? message prompted when string contains Subject full word missing at most 2 chars
+            // or if string starts with at least 2 chars of the Subject full word
+            if (trimmedSubject.matches("(?i).*engli.*|en.*")) {
+                throw new ParseException(Subject.MESSAGE_CONSTRAINTS + Subject.MESSAGE_DID_YOU_MEAN_ENGLISH);
+            } else if (trimmedSubject.matches("(?i).*mathemati.*|ma.*")) {
+                throw new ParseException(Subject.MESSAGE_CONSTRAINTS + Subject.MESSAGE_DID_YOU_MEAN_MATHEMATICS);
+            } else if (trimmedSubject.matches("(?i).*physi.*|ph.*")) {
+                throw new ParseException(Subject.MESSAGE_CONSTRAINTS + Subject.MESSAGE_DID_YOU_MEAN_PHYSICS);
+            } else if (trimmedSubject.matches("(?i).*chemist.*|ch.*")) {
+                throw new ParseException(Subject.MESSAGE_CONSTRAINTS + Subject.MESSAGE_DID_YOU_MEAN_CHEMISTRY);
+            } else if (trimmedSubject.matches("(?i).*biolo.*|bi.*")) {
+                throw new ParseException(Subject.MESSAGE_CONSTRAINTS + Subject.MESSAGE_DID_YOU_MEAN_BIOLOGY);
+            } else if (trimmedSubject.matches("(?i).*elementa.*|el.*")) {
+                throw new ParseException(Subject.MESSAGE_CONSTRAINTS + Subject.MESSAGE_DID_YOU_MEAN_EMATH);
+            } else if (trimmedSubject.matches("(?i).*addition.*|ad.*")) {
+                throw new ParseException(Subject.MESSAGE_CONSTRAINTS + Subject.MESSAGE_DID_YOU_MEAN_AMATH);
+            }
             throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
         }
+
+        // allow shortforms
+        if (trimmedSubject.matches("(?i)english|eng")) {
+            trimmedSubject = "english";
+        } else if (trimmedSubject.matches("(?i)mathematics|maths{0,1}")) {
+            trimmedSubject = "mathematics";
+        } else if (trimmedSubject.matches("(?i)physics|phys{0,1}")) {
+            trimmedSubject = "physics";
+        } else if (trimmedSubject.matches("(?i)chemistry|chem")) {
+            trimmedSubject = "chemistry";
+        } else if (trimmedSubject.matches("(?i)biology|bio")) {
+            trimmedSubject = "biology";
+        } else if (trimmedSubject.matches("(?i)(elem|elementary)\\s*(mathematics|maths{0,1}){0,1}|e\\s*maths{0,1}")) {
+            trimmedSubject = "emath";
+        } else if (trimmedSubject.matches("(?i)(add|additional)\\s*(mathematics|maths{0,1}){0,1}|a\\s*maths{0,1}")) {
+            trimmedSubject = "amath";
+        }
+
         return Subject.createSubject(trimmedSubject);
+
     }
 
     /**

@@ -17,8 +17,26 @@ public enum Subject {
                     + "2. Mathematics\n"
                     + "3. Physics\n"
                     + "4. Chemistry\n"
-                    + "5. Biology\n";
-    public static final String VALIDATION_REGEX = "(?i)english|mathematics|physics|chemistry|biology|emath|amath";
+                    + "5. Biology\n"
+                    + "6. Elementary Mathematics\n"
+                    + "7. Additional Mathematics\n";
+
+    public static final String MESSAGE_DID_YOU_MEAN_ENGLISH = "Did you mean \"English\"?";
+    public static final String MESSAGE_DID_YOU_MEAN_MATHEMATICS = "Did you mean \"Math\"?";
+    public static final String MESSAGE_DID_YOU_MEAN_PHYSICS = "Did you mean \"Physics\"?";
+    public static final String MESSAGE_DID_YOU_MEAN_CHEMISTRY = "Did you mean \"Chemistry\"?";
+    public static final String MESSAGE_DID_YOU_MEAN_BIOLOGY = "Did you mean \"Biology\"?";
+    public static final String MESSAGE_DID_YOU_MEAN_EMATH = "Did you mean \"EMath\"?";
+    public static final String MESSAGE_DID_YOU_MEAN_AMATH = "Did you mean \"AMath\"?";
+
+
+    public static final String VALIDATION_REGEX = "(?i)english|eng|"
+            + "mathematics|maths{0,1}|"
+            + "physics|phys{0,1}|"
+            + "chemistry|chem|"
+            + "biology|bio|"
+            + "(elem|elementary)\\s*(mathematics|maths{0,1}){0,1}|e\\s*maths{0,1}|"
+            + "(add|additional)\\s*(mathematics|maths{0,1}){0,1}|a\\s*maths{0,1}";
 
     public final String subject;
 
