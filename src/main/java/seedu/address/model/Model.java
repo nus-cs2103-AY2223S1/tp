@@ -58,9 +58,19 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a profile with the same identity as {@code profile} exists in the address book.
+     * Returns true if a profile with the same email as {@code profile} exists in the address book.
      */
-    boolean hasProfile(Profile profile);
+    boolean hasEmail(Profile profile);
+
+    /**
+     * Returns true if a profile with the same phone as {@code profile} exists in the address book.
+     */
+    boolean hasPhone(Profile profile);
+
+    /**
+     * Returns true if a profile with the same telegram as {@code profile} exists in the address book.
+     */
+    boolean hasTelegram(Profile profile);
 
     /**
      * Deletes the given profile.
@@ -136,9 +146,17 @@ public interface Model {
     /**
      * Adds the given list of profiles {@code profilesToAdd} to the given event's list of attendees.
      * {@code event} must exist in the address book.
-     * Profiles in {@profilesToAdd} must also exist in the address book.
+     * Profiles in {@code profilesToAdd} must also exist in the address book.
      */
     void addEventAttendees(Event event, List<Profile> profilesToAdd);
+
+    /**
+     * Deletes the given list of profiles {@code profilesToDelete} from the given event's list of attendees.
+     * {@code event} must exist in the address book.
+     * Profiles in {@code profilesToDelete} must also exist in the address book.
+     */
+
+    void deleteEventAttendees(Event event, List<Profile> profilesToDelete);
 
     /**
      * Adds the given event {@code event} to every profile in the given list of profiles {@code profilesToAddEventTo}.

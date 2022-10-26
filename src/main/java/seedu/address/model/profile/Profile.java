@@ -44,7 +44,8 @@ public class Profile implements Comparable<Profile> {
     /**
      * Every field must be present and not null.
      */
-    public Profile(Name name, Phone phone, Email email, Telegram telegram, Set<Tag> tags, EventsAttending eventsToAttend) {
+    public Profile(Name name, Phone phone, Email email, Telegram telegram, Set<Tag> tags,
+                   EventsAttending eventsToAttend) {
         requireAllNonNull(name, phone, email, tags, eventsToAttend);
         this.name = name;
         this.phone = phone;
@@ -83,16 +84,46 @@ public class Profile implements Comparable<Profile> {
     }
 
     /**
-     * Returns true if both profiles have the same name.
-     * This defines a weaker notion of equality between two profiles.
+     * Returns true if both profiles have the same email.
      */
-    public boolean isSameProfile(Profile otherProfile) {
+    public boolean isSameEmail(Profile otherProfile) {
         if (otherProfile == this) {
             return true;
         }
 
         return otherProfile != null
-                && otherProfile.getName().equals(getName());
+                && otherProfile.getEmail().equals(getEmail());
+    }
+
+    /**
+     * Returns true if both profiles have the same phone.
+     */
+    public boolean isSamePhone(Profile otherProfile) {
+        if (otherProfile == this) {
+            return true;
+        }
+
+        return otherProfile != null
+                && otherProfile.getPhone().equals(getPhone());
+    }
+
+    /**
+     * Returns true if both profiles have the same telegram.
+     */
+    public boolean isSameTelegram(Profile otherProfile) {
+        if (otherProfile == this) {
+            return true;
+        }
+
+        return otherProfile != null
+                && otherProfile.getTelegram().equals(getTelegram());
+    }
+
+    /**
+     * Returns true if both profiles have the same telegram and field is not empty.
+     */
+    public boolean isSameTelegramNotEmpty(Profile otherProfile) {
+        return isSameTelegram(otherProfile) && !this.getTelegram().isEmpty();
     }
 
     /**
@@ -111,9 +142,9 @@ public class Profile implements Comparable<Profile> {
 
         Profile otherProfile = (Profile) other;
         return otherProfile.getName().equals(getName())
-                && otherProfile.getPhone().equals(getPhone())
-                && otherProfile.getEmail().equals(getEmail())
-                && otherProfile.getTelegram().equals(getTelegram())
+                && isSamePhone(otherProfile)
+                && isSameEmail(otherProfile)
+                && isSameTelegram(otherProfile)
                 && otherProfile.getTags().equals(getTags());
     }
 

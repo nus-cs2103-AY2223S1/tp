@@ -8,6 +8,9 @@ import java.util.List;
 
 import seedu.address.model.event.Event;
 
+/**
+ * Represents the events a Profile attends in NUScheduler.
+ */
 public class EventsAttending {
     private final List<Event> eventsAttending;
 
@@ -38,6 +41,9 @@ public class EventsAttending {
         return Collections.unmodifiableList(eventsAttending);
     }
 
+    /**
+     * Adds event to the list of events profile is attending.
+     */
     public void add(Event event) {
         if (!hasEventAttending(event)) {
             this.eventsAttending.add(event);

@@ -94,9 +94,21 @@ public class ModelManager implements Model {
     //========== Profiles ====================================================================================
 
     @Override
-    public boolean hasProfile(Profile profile) {
+    public boolean hasEmail(Profile profile) {
         requireNonNull(profile);
-        return addressBook.hasProfile(profile);
+        return addressBook.hasEmail(profile);
+    }
+
+    @Override
+    public boolean hasPhone(Profile profile) {
+        requireNonNull(profile);
+        return addressBook.hasPhone(profile);
+    }
+
+    @Override
+    public boolean hasTelegram(Profile profile) {
+        requireNonNull(profile);
+        return addressBook.hasTelegram(profile);
     }
 
     @Override
@@ -177,11 +189,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
+        requireAllNonNull(event, profilesToDelete);
+        addressBook.deleteEventAttendees(event, profilesToDelete);
+    }
+
+    @Override
      public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
         requireAllNonNull(event, profilesToAddEventTo);
         addressBook.addEventToAttendees(event, profilesToAddEventTo);
     }
-
 
     //=========== Filtered Profile List Accessors =============================================================
 

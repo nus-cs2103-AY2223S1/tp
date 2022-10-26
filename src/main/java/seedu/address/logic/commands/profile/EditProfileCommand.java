@@ -21,6 +21,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
 import seedu.address.model.profile.Email;
 import seedu.address.model.profile.EventsAttending;
 import seedu.address.model.profile.Name;
@@ -61,7 +62,6 @@ public class EditProfileCommand extends ProfileCommand {
             + "[" + PREFIX_TELEGRAM + "TELEGRAM USERNAME] "
             + "[" + PREFIX_TAG + "TAG]...\n";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the address book.";
 
     private final Index index;
     private final EditProfileDescriptor editProfileDescriptor;
@@ -90,11 +90,25 @@ public class EditProfileCommand extends ProfileCommand {
         Profile profileToEdit = lastShownList.get(index.getZeroBased());
         Profile editedProfile = createEditedProfile(profileToEdit, editProfileDescriptor);
 
-        if (!profileToEdit.isSameProfile(editedProfile) && model.hasProfile(editedProfile)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROFILE);
+        if (!profileToEdit.isSameEmail(editedProfile) && model.hasEmail(editedProfile)) {
+            throw new CommandException(MESSAGE_SIMILAR_EMAIL);
         }
 
+        if (!profileToEdit.isSamePhone(editedProfile) && model.hasPhone(editedProfile)) {
+            throw new CommandException(MESSAGE_SIMILAR_PHONE);
+        }
+
+        if (!profileToEdit.isSameTelegramNotEmpty(editedProfile) && model.hasTelegram(editedProfile)) {
+            throw new CommandException(MESSAGE_SIMILAR_TELEGRAM);
+        }
+
+        List<Event> events = profileToEdit.getEventsToAttend().getEventsList();
         model.setProfile(profileToEdit, editedProfile);
+        for (Event e : events) {
+            Event eventCopy = new Event(e.getTitle(), e.getStartDateTime(), e.getEndDateTime(),
+                    e.getTags(), e.getAttendees());
+            model.setEvent(e, eventCopy);
+        }
         model.updateFilteredProfileList(PREDICATE_SHOW_ALL_PROFILES);
         return new CommandResult(String.format(MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile));
     }
@@ -111,9 +125,11 @@ public class EditProfileCommand extends ProfileCommand {
         Email updatedEmail = editProfileDescriptor.getEmail().orElse(profileToEdit.getEmail());
         Telegram updatedTelegram = editProfileDescriptor.getTelegram().orElse(profileToEdit.getTelegram());
         Set<Tag> updatedTags = editProfileDescriptor.getTags().orElse(profileToEdit.getTags());
-        EventsAttending updatedEventsToAttend = editProfileDescriptor.getEventsToAttend().orElse(profileToEdit.getEventsToAttend());
+        EventsAttending updatedEventsToAttend = editProfileDescriptor.getEventsToAttend()
+                .orElse(profileToEdit.getEventsToAttend());
 
-        return new Profile(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedTags, updatedEventsToAttend);
+        return new Profile(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedTags,
+                updatedEventsToAttend);
     }
 
     @Override

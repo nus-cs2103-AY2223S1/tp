@@ -34,11 +34,17 @@ import seedu.address.testutil.EditProfileDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_NAME_BERNICE = "Bernice Yu";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_ROY = "Roy Balakrishnan";
     public static final String VALID_PHONE_AMY = "11111111";
+    public static final String VALID_PHONE_BERNICE = "99272758";
     public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_ROY = "92624417";
     public static final String VALID_EMAIL_AMY = "amy@u.nus.edu";
+    public static final String VALID_EMAIL_BERNICE = "berniceyu@u.duke.nus.edu";
     public static final String VALID_EMAIL_BOB = "bob@u.nus.edu";
+    public static final String VALID_EMAIL_ROY = "royb@u.nus.edu";
 
     public static final String VALID_TELEGRAM_AMY = "amy_doe";
 
@@ -46,6 +52,8 @@ public class CommandTestUtil {
 
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_FRIENDS = "friends";
+    public static final String VALID_TAG_COLLEAGUES = "colleagues";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

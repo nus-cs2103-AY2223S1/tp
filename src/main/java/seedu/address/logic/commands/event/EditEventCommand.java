@@ -20,6 +20,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Attendees;
 import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Title;
@@ -109,8 +110,9 @@ public class EditEventCommand extends EventCommand {
         DateTime updatedStartDateTime = editEventDescriptor.getStartDateTime().orElse(eventToEdit.getStartDateTime());
         DateTime updatedEndDateTime = editEventDescriptor.getEndDateTime().orElse(eventToEdit.getEndDateTime());
         Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
+        Attendees currentAttendees = editEventDescriptor.getAttendees().orElse(eventToEdit.getAttendees());
 
-        return new Event(updatedTitle, updatedStartDateTime, updatedEndDateTime, updatedTags);
+        return new Event(updatedTitle, updatedStartDateTime, updatedEndDateTime, updatedTags, currentAttendees);
     }
 
     @Override
@@ -140,6 +142,7 @@ public class EditEventCommand extends EventCommand {
         private DateTime startDateTime;
         private DateTime endDateTime;
         private Set<Tag> tags;
+        private Attendees attendees;
 
         public EditEventDescriptor() {}
 
@@ -152,6 +155,7 @@ public class EditEventCommand extends EventCommand {
             setStartDateTime(toCopy.startDateTime);
             setEndDateTime(toCopy.endDateTime);
             setTags(toCopy.tags);
+            setAttendees(toCopy.attendees);
         }
 
         /**
@@ -183,6 +187,14 @@ public class EditEventCommand extends EventCommand {
 
         public Optional<DateTime> getEndDateTime() {
             return Optional.ofNullable(endDateTime);
+        }
+
+        public void setAttendees(Attendees attendees) {
+            this.attendees = attendees;
+        }
+
+        public Optional<Attendees> getAttendees() {
+            return Optional.ofNullable(attendees);
         }
 
         /**

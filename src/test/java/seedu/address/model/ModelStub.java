@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -63,7 +64,17 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasProfile(Profile profile) {
+    public boolean hasEmail(Profile profile) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasPhone(Profile profile) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasTelegram(Profile profile) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -91,6 +102,42 @@ public class ModelStub implements Model {
     public void setEvent(Event target, Event editedProfile) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit) {
+        throw new AssertionError("This method should not be called.");
+    }
+
 
     @Override
     public ObservableList<Profile> getFilteredProfileList() {

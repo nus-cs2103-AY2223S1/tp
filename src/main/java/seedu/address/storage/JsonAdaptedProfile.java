@@ -29,6 +29,7 @@ class JsonAdaptedProfile {
     private final String email;
     private final String telegram;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    //private final List<JsonAdaptedEvent> eventsAttending = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProfile} with the given profile details.
@@ -37,6 +38,7 @@ class JsonAdaptedProfile {
     public JsonAdaptedProfile(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("telegram") String telegram,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+        //@JsonProperty("eventsAttending") List<JsonAdaptedEvent> eventsAttending) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +46,9 @@ class JsonAdaptedProfile {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        //        if (eventsAttending != null) {
+        //            this.eventsAttending.addAll(eventsAttending);
+        //        }
     }
 
     /**
@@ -57,6 +62,9 @@ class JsonAdaptedProfile {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        //        eventsAttending.addAll(source.getEventsToAttend().getEventsList().stream()
+        //                .map(JsonAdaptedEvent::new)
+        //                .collect(Collectors.toList()));
     }
 
     /**
@@ -103,6 +111,14 @@ class JsonAdaptedProfile {
         }
         final Telegram modelTelegram = new Telegram(telegram);
         final Set<Tag> modelTags = new HashSet<>(profileTags);
+        //        for (JsonAdaptedEvent eventAttending : eventsAttending) {
+        //            Event e = eventAttending.toModelType(addressBook);
+        //            if (addressBook.hasEvent(e)) {
+        //                int index = addressBook.getProfileList().indexOf(e);
+        //                e = addressBook.getEventList().get(index);
+        //                modelEventsAttending.add(e);
+        //            }
+        //        }
         return new Profile(modelName, modelPhone, modelEmail, modelTelegram, modelTags);
     }
 

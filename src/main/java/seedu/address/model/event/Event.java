@@ -75,11 +75,6 @@ public class Event implements Comparable<Event> {
         return attendees;
     }
 
-    @Override
-    public int compareTo(Event other) {
-        return this.getStartDateTime().compareTo(other.getStartDateTime());
-    }
-
     /**
      * Adds the profiles in {@code profilesToAdd} to the event's list of attendees if
      * they have not already been added.
@@ -122,6 +117,20 @@ public class Event implements Comparable<Event> {
         });
     }
 
+    /***
+     * Deletes the profiles in {@code profilesToDelete} from the event's list of attendees if
+     * they have not already been deleted.
+     */
+    public void deleteAttendees(List<Profile> profilesToDelete) {
+        requireNonNull(profilesToDelete);
+
+        profilesToDelete.forEach(profile -> {
+            if (attendees.hasAttendee(profile)) {
+                attendees.remove(profile);
+            }
+        });
+    }
+
     /**
      * Removes the event in {@code profilesToRemoveEventFrom} from the profile's list of eventsAttending if
      * they exist.
@@ -134,6 +143,14 @@ public class Event implements Comparable<Event> {
                 profile.getEventsToAttend().remove(this);
             }
         });
+    }
+
+    public int numberOfAttendees() {
+        return attendees.size();
+    }
+
+    public Profile getAttendee(int index) {
+        return attendees.getAttendee(index);
     }
 
     /**
@@ -214,11 +231,23 @@ public class Event implements Comparable<Event> {
             tags.forEach(builder::append);
         }
 
-        if(!attendees.isEmpty()) {
+        if (!attendees.isEmpty()) {
             builder.append(System.lineSeparator())
                     .append(attendees);
         }
 
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(Event other) {
+        int compareValue = this.getStartDateTime().compareTo(other.getStartDateTime());
+        if (compareValue == 0) {
+            compareValue = this.getEndDateTime().compareTo(other.getEndDateTime());
+        }
+        if (compareValue == 0) {
+            compareValue = this.getTitle().compareTo(other.getTitle());
+        }
+        return compareValue;
     }
 }

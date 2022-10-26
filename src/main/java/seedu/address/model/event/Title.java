@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Event's title in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
-public class Title {
+public class Title implements Comparable<Title> {
     public static final String MESSAGE_CONSTRAINTS =
             "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -52,6 +52,11 @@ public class Title {
     @Override
     public int hashCode() {
         return title.hashCode();
+    }
+
+    @Override
+    public int compareTo(Title other) {
+        return this.title.toLowerCase().compareTo(other.title.toLowerCase());
     }
 
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import java.net.URL?>
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" spacing="5">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
     <URL value="@ProfileListPanel.css" />
   </stylesheets>
