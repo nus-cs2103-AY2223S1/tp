@@ -58,17 +58,31 @@ public class AddPersonToModuleCommandIntegrationTest {
     }
 
     @Test
-    public void execute_addPersonToModuleNotAtHome_throwsCommandException() {
+    public void execute_addPersonToModuleNotInFilteredList_throwsCommandException() {
         Module validModule = TypicalModules.CS2106_WITH_ALICE_BENSON;
         Person validPerson = TypicalPersons.ELLE;
 
         ModuleCode validModuleCode = validModule.getModuleCode();
         Name validName = validPerson.getName();
 
-        model.setHomeStatus(false);
+        model.updateFilteredModuleList(Model.PREDICATE_SHOW_ZERO_MODULE);
 
         assertCommandFailure(new AddPersonToModuleCommand(validModuleCode, validName), model,
-                Messages.MESSAGE_NOT_AT_HOMEPAGE);
+                Messages.MESSAGE_NO_SUCH_MODULE);
+    }
+
+    @Test
+    public void execute_addPersonNotInFilteredListToModule_throwsCommandException() {
+        Module validModule = TypicalModules.CS2106_WITH_ALICE_BENSON;
+        Person validPerson = TypicalPersons.ELLE;
+
+        ModuleCode validModuleCode = validModule.getModuleCode();
+        Name validName = validPerson.getName();
+
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ZERO_PERSON);
+
+        assertCommandFailure(new AddPersonToModuleCommand(validModuleCode, validName), model,
+                Messages.MESSAGE_NO_SUCH_PERSON);
     }
 
     @Test
@@ -93,7 +107,7 @@ public class AddPersonToModuleCommandIntegrationTest {
         Name nameOfNonexistentPerson = nonexistentPerson.getName();
 
         assertCommandFailure(new AddPersonToModuleCommand(validModuleCode, nameOfNonexistentPerson), model,
-                Messages.MESSAGE_NO_SUCH_PERSON);
+                Messages.MESSAGE_NO_SUCH_PERSON_DELETE);
     }
 
     @Test
