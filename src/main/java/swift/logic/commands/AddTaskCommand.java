@@ -26,7 +26,7 @@ public class AddTaskCommand extends Command {
     public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>(
             Map.ofEntries(entry(PREFIX_NAME, "<name>"),
                           entry(PREFIX_DESCRIPTION, "<description>"),
-                          entry(PREFIX_DEADLINE, "<deadline"),
+                          entry(PREFIX_DEADLINE, "<deadline>"),
                           entry(PREFIX_CONTACT, "<contact_index>")));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD

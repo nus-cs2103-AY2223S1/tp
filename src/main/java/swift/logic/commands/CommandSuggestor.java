@@ -81,7 +81,7 @@ public class CommandSuggestor {
             }
         }
 
-        if (suggestedCommand.equals("") && commandWord.equals("")) {
+        if (suggestedCommand.equals("") && !commandWord.equals("")) {
             throw new CommandException("Invalid command");
         }
         HashMap<Prefix, String> argPrompt = argPromptList.get(commandList.indexOf(suggestedCommand));
