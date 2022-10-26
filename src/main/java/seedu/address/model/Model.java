@@ -81,6 +81,8 @@ public interface Model {
     Issue getIssueById(int id);
     Client getClientById(int id);
 
+    Client getClient(Client client);
+
     void deleteProject(Project target);
 
     void deleteIssue(Issue target);

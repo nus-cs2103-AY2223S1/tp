@@ -449,6 +449,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public Client getClient(Client client) {
+        for (Client c : getModifiableClientList()) {
+            if (c.hasSameName(client)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public int generateClientId() {
         return HasIntegerIdentifier.generateNextID(clients);
     }

@@ -20,12 +20,12 @@ public class FindClientCommand extends ClientCommand {
     public static final String COMMAND_FLAG = "-f";
     public static final String MESSAGE_SUCCESS = "Filtered list of client(s) shown.";
     private static final String MESSAGE_CLIENT_NOT_FOUND = "A client matching requirements not found.";
-    public static final String MESSAGE_FIND_CLIENT_USAGE = COMMAND_WORD + ": Finds and filters clients by keyword "
-            + "address book. "
+    public static final String MESSAGE_FIND_CLIENT_USAGE = COMMAND_WORD + " " + COMMAND_FLAG
+            + ": Finds clients by keyword.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_MOBILE + "PHONE "
+            + PREFIX_MOBILE + "MOBILE \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "John "
