@@ -2,6 +2,11 @@
 layout: page
 title: Developer Guide
 ---
+#Welcome to TaskBook!
+
+TaskBook is a **desktop app for managing contacts and tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskBook can get your contact and task management tasks done faster than traditional GUI apps.
+
+This developer's guide consists of the following sections. Note that Task Book is developed with Java 11.
 * Table of Contents
 {:toc}
 
@@ -9,8 +14,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* The use of SortedList in ModelManager was inspired by [Harmonia](https://github.com/AY2122S2-CS2103T-T09-1/tp), a project also based on AddressBook-Level3.
+* Third party libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -214,19 +220,23 @@ The following sequence diagram shows how the next command history navigation wor
 
 #### Sorting Implementation
 
-This section details how the sorting of the tasks is implemented.
+This section details how the sorting of the tasks is implemented. The sorting of contacts is a slightly simplified version.
 
-The sorting of task list is facilitated by `ModelManager`. It implements `Model`, and contains a `filteredTasks` list which is the task list of TaskBook in a `FilteredList` 'wrapper' from `javafc.collections.transformation`. A second field, `sortedList`, then stores `filteredList` wrapped in a `SortedList` from `javafx.collections.transformation`. Operations done on `filteredList` will be reflected in `sortedList` as the latter is the former with a `SortedList` wrapper.
+The sorting of task list is facilitated by `ModelManager`. It implements `Model`, and contains a `filteredTasks` list which is the task list of TaskBook in a `FilteredList` 'wrapper' from `javafc.collections.transformation`.
 
-`SortedList` has the method `SortedList#setComparator(Comparator<? super E> comparator)` that will take in a comparator to sort the task list with. We thus implement the method `ModelManager#updateSortedTaskList(Comparator<Task> comparator)` to allow for setting of a comparator in `sortedList`.
+A second field, `sortedTasks`, then stores `filteredTasks` wrapped in a `SortedList` from `javafx.collections.transformation`. Operations done on `filteredTasks` will be reflected in `sortedTasks` as the latter is the former with a `SortedList` wrapper.
 
-When the comparator is null, `sortedList` will be of the same order as `filteredList`. The default list order is chronological, by date and time the tasks were added.
+`SortedList` has the method `SortedList#setComparator(Comparator<? super E> comparator)` that will take in a comparator to sort the task list with. We thus implement the method `ModelManager#updateSortedTaskList(Comparator<Task> comparator)` to allow for setting of a comparator in `sortedTasks`.
 
-The `Ui` displays the `sortedList` version of the task list by default on the right side panel.
+When the comparator is null, `sortedTasks` will be of the same order as `filteredTasks`. The default list order is chronological, by date and time the tasks were added.
+
+The `Ui` displays the `sortedTasks` version of the task list by default on the right side panel.
 
 #### Sorting Execution
 
-When the command `task sort s/SORT_TYPE` is entered, the `Ui` sends the command to `Logic`. `Logic` then identifies the correct type `TaskSortCommand` that was entered, and creates an instance of it. Each `TaskSortCommand` contains a `comparator` to set in `sortedList` in the `Model`. `Logic` finally executes the command, which then correctly sets the comparator in `sortedList` in `Model`.
+When you enter `task sort s/SORT_TYPE`, the `Ui` sends the command to `Logic`. `Logic` then identifies the correct type `TaskSortCommand` that you entered, and creates an instance of it. Each `TaskSortCommand` contains a `comparator` to set in `sortedTasks` in the `Model`. `Logic` finally executes the command, which then correctly sets the comparator in `sortedTasks` in `Model`.
+
+There is one sort command specifically for you to set the comparator to null. Do not directly set the comparator to null in other ways.
 
 #### Example Usage
 
@@ -234,9 +244,9 @@ Given below is an example usage scenario and how the sorting mechanism behaves a
 
 Step 1: The user launches the application, which already contains a task list from previous usage. `sortedList` will be initialized in `ModelManager`. The initial `comparator` in `sortedList` will be null, so the tasks are sorted by the date and time they were added.
 
-Step 2: The user executes `task sort s/a` command to sort the tasks descriptions in alphabetical order. The `TaskSortCommandParser` uses `s/a` to determine that the command is a `TaskSortDescriptionAlphabeticalCommand`. This command calls `Model#updateSortedTaskList(Comparator<Task> comparator)`, which sets the comparator in `sortedList` to one that compares the strings of tasks, and the `Ui` displays the new ordering of the tasks given by `sortedList`, where tasks are alphabetically ordered by their descriptions.
+Step 2: The user executes `task sort s/a` command to sort the tasks descriptions in alphabetical order. The `TaskSortCommandParser` uses `s/a` to determine that the command is a `TaskSortDescriptionAlphabeticalCommand`. This command calls `Model#updateSortedTaskList(Comparator<Task> comparator)`, which sets the comparator in `sortedTasks` to one that compares the strings of tasks, and the `Ui` displays the new ordering of the tasks given by `sortedTasks`, where tasks are alphabetically ordered by their descriptions.
 
-Step 3: The user executes `task sort s/ca` command to sort the tasks by when they were added in Task Book. The `TaskSortCommandParser` uses `s/ca` to determine that the command is a `TaskSortAddedChronologicalCommand`. This command calls `Model#resetSortedTaskList()`, which sets the comparator in `sortedList` to null, and the `Ui` displays the new ordering of the tasks given by `sortedList`, which will be the same ordering as the one that would be given by `filteredList`.
+Step 3: The user executes `task sort s/ca` command to sort the tasks by when they were added in Task Book. The `TaskSortCommandParser` uses `s/ca` to determine that the command is a `TaskSortAddedChronologicalCommand`. This command calls `Model#resetSortedTaskList()`, which sets the comparator in `sortedTasks` to null, and the `Ui` displays the new ordering of the tasks given by `sortedTasks`, which will be the same ordering as the one that would be given by `filteredTasks`.
 
 The following sequence diagram shows how a sort by description alphabetical command is executed:
 
@@ -256,7 +266,7 @@ The following sequence diagram shows how a sort by description alphabetical comm
 #### Aspect: Sorted List structure:
 
 * **Current choice:** Wrap the task list with a `FilteredList`, and the `FilteredList` with a `SortedList`.
-    * Rationale: Commands on the filtered list will also affect the sorted list. This means that the `Ui` can be guaranteed that `sortedList` is the list that the user wishes to be shown, which can combine both filters and a particular sorting order.
+    * Rationale: Commands on the filtered list will also affect the sorted list. This means that the `Ui` can be guaranteed that `sortedTasks` is the list that the user wishes to be shown, which can combine both filters and a particular sorting order.
 
 ### Undo/redo feature
 
