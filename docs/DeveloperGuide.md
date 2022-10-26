@@ -40,10 +40,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 4. **Design and Implementation**
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/docs/diagrams/) folder.
+Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### 4.1 Architecture
@@ -56,9 +55,9 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/MainApp.java). It is responsible for:
+* application launch: Initialises the components in the correct sequence, and connects them up with each other.
+* application shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#415-common-classes) represents a collection of classes used by multiple other components.
 
@@ -67,18 +66,18 @@ The rest of the App consists of four components.
 * [**`UI`**](#411-ui-component): The UI of the App.
 * [**`Logic`**](#412-logic-component): The command executor.
 * [**`Model`**](#413-model-component): Holds the data of the App in memory.
-* [**`Storage`**](#414-storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#414-storage-component): Reads data from, and writes data to the hard disk.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete id/123A`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -88,13 +87,13 @@ The sections below give more details of each component.
 
 #### 4.1.1 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -105,23 +104,24 @@ The `UI` component,
 
 #### 4.1.2 Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `StudentRecordParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete id/123A")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -133,53 +133,149 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 #### 4.1.3 Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-The `Model` component,
+The `Model` component:
 
 * stores the student record data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** An alternative and perhaps more OOP model is given below.<br>
-It has a `Class` list in the `StudentRecord`, which `Student` references.<br>
-- This allows `StudentRecord` to only require one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.<br>
-- This also potentially opens up to a more OOP solution where the `Class` encapsulates `Student`, modelling the relationship in which a teacher teaches a class with some students.
-<img src="images/BetterModelClassDiagram.png" width="450" />
-</div>
-
 #### 4.1.4 Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both student record data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `StudentRecordStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 #### 4.1.5 Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.classify.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 4.2 **Implementation**
+### 4.2 Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-#### 4.2.1 AddStud command
+#### 4.2.1 Adding new students
 
-*To be updated*
+**Description**
+
+Adding new students is first basic step of using Class-ify. This is primarily done via the `AddStudCommand` and `AddStudCommandParser` classes.
+Before going into the sequence of executing a `addstud` command, let us take a quick look at the `Student` class.
+
+<img src="images/StudentClassDiagram.png" width="550" />
+
+The `Student` class contains a total of 6 fields:
+* 2 `Name` fields for the student and parent names 
+* 1 `Id` field 
+* 1 `Phone` number field 
+* 1 `Email` address field 
+* 1 set of `Exam`(s)
+    * The type of exams are currently limited to _CA1_, _CA2_, _SA1_ and _SA2_.
+    * Future implementations may allow teachers to create their own examinable items.
+
+**Implementation**
+
+Adding a student record can be divided into 2 main steps: parsing the user input and executing it.
+
+Step 1: Parsing the command
+
+The delete command is first parsed.
+
+1. `MainWindow` calls the `execute` method of `LogicManager` to execute the given user’s command.
+2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a addstud command and creates a new `AddStudCommandParser` instance to parse the user’s command.
+3. Once the command is successfully parsed, `AddStudCommandParser` creates a new `AddStudCommand` instance which will be executed by the `LogicManager`.
+
+Step 2: Executing the command
+
+The `AddStudCommand` instance now interacts with the `ModelManager` to execute the command.
+1. The `hasStudent` method is called to check if the `Model` contains the student to be added.
+2. Assuming there are no duplicates, the `addStudent` method is then called to add the student into the student record.
+3. The `updateFilteredStudentList` method is called to show the updated list of students in the student record.
+4. A new `CommandResult` instance is created and returned to `LogicManager`.
+5. The control is then passed back to `MainWindow` where the `CommandResult` is displayed to the UI as feedback to the user.
+
+The following activity diagram below summarizes what happens when a user executes an `addstud` command.
+
+<img src="images/AddStudentCommandActivityDiagram.png" width="550" />
+
+**Design Considerations**
+
+The current approach creates multiple `Class` objects per student. It serves as a more straightforward implementation. However, it is not a very OOP solution for the following reasons:
+
+1. Multiple `Class` objects for the same class.
+2. Classes do not have students.
+   * A `Class` object has no reference to the students in that class. 
+
+An alternative and perhaps more OOP approach is given below. It has a `Class` list in the `StudentRecord`, which references to `Student`.
+
+<img src="images/BetterModelClassDiagram.png" width="550" />
+
+* `StudentRecord` only requires one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.
+* `Class` has reference to `Student`, modelling the relationship in which a teacher teaches a class with some students.
+* Every `Class` has a set of `Exam`(s) which a `Student` takes and scores a certain grade.
 
 #### 4.2.2 Delete command
 
-*To be updated*
+**Description**
+
+The delete command allows users to delete a student record by targeting either the student’s name or student’s ID.
+
+**Implementation**
+
+Deleting a student record can be divided into 2 main steps: parsing the command and executing it.
+
+The sequence diagram below illustrates the interactions within the `Logic` component when the user calls a delete command, for example, `delete id/123A`.
+
+<img src="images/DeleteCommandSequenceDiagram.png" />
+
+<div class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+Step 1: Parsing the command
+
+The delete command is first parsed.
+
+1. The `execute` method of `LogicManager` is called to execute the user’s command, `delete id/123A`.
+2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a delete command and creates a new `DeleteCommandParser` instance to parse the user’s command.
+3. Once the command is successfully parsed, `DeleteCommandParser` creates a new `DeleteCommand` instance which will be executed by the `LogicManager`.
+
+Step 2: Executing the command
+
+The `DeleteCommand` instance now communicates with the `ModelManager` to execute the command.
+
+1. The `updateFilteredStudentList` method is called to isolate the student record to be deleted.
+2. The `deleteStudent` method is called to delete the student record.
+3. The `updateFilteredStudentList` method is called again to show all student records.
+4. A new `CommandResult` instance is created and returned to `LogicManager`.
+
+**Design Considerations**
+
+Current Design: We chose to keep a single class `DeleteCommand`, which the user can use to delete student records either by targeting the student’s name or student ID.
+
+Pros:
+- The user does not have to remember different types of delete commands such as `DeleteStudentByNameCommand` or `DeleteStudentByIDCommand`.
+
+Cons:
+- The parser would have to identify whether the user targeted the student’s name or student ID to delete the student record.
+
+Alternative Design: Split `DeleteCommand` into two different commands, `DeleteStudentByNameCommand` and `DeleteStudentByIDCommand`.
+
+Pros:
+- There is no requirement for prefixes such as `nm/` or `id/` to identify whether the user is targeting the student’s name or student ID.
+
+Cons:
+- Additional classes need to be implemented.
+- The command name is long.
 
 #### 4.2.3 Edit command
 
@@ -205,7 +301,7 @@ Step 3. Classify returns a filtered list of students whose names contain `Alex`.
 
 The following activity diagram summarizes what happens when a user executes the find command. 
 
-<Insert activity diagram>
+*Insert activity diagram*
 
 Design considerations:
 1. `ArgumentTokenizer#tokenize()` used to identify the prefix, to generate the corresponding `Predicate<Student>`.
@@ -217,31 +313,32 @@ Design considerations:
 *To be updated*
 
 #### 4.2.6 ViewClass command
+
 Current Implementation:
 The `ViewClass` Command displays the list of Students in a particular class by updating the `FilteredStudentList` with a `ClassPredicate`.
 The ClassPredicate checks that a Student's Class matches the user input(ignoring case-sensitivity).
 
-<Insert Basic Class Diagram>
+*Insert Basic Class Diagram*
 
 Given below is an example usage scenario and how the ViewClass mechanism behaves at each step.
 
 Step 1. Assuming Class-ify has been populated with sample data, the `FilteredStudentList` currently contains all Students and user can see all the students listed in the Student List Panel.
-<Insert Object Diagram showing user fields>
+*Insert Object Diagram showing user fields*
 
 Step 2. The user executes `viewClass 1A` command. 
-<Insert Object Diagram>
+*Insert Object Diagram*
 
 Step 3. A new ClassPredicate object is created with the user input.
-<Insert Object Diagram>
+*Insert Object Diagram*
 
 Step 4. The `updateFilteredStudentList` method in `model` is called with the ClassPredicate.
-<Insert Object Diagram>
+*Insert Object Diagram*
 
 Step 5. Class-ify displays the list of students with the class "1A" on the student card list panel according to the updated `FilteredStudentList`.
-<Insert Object Diagram>
+*Insert Object Diagram*
 
 The following sequence diagram shows how the ViewClass Command works:
-<Insert Sequence Diagram>
+*Insert Sequence Diagram*
 
 Design Considerations:
 1. Predicate logic for filtering students by their class
@@ -252,17 +349,16 @@ Design Considerations:
 #### 4.2.7 Toggle View command
 Implementation: 
 
-The `ToggleViewCommand` toggles the application to display or hide all students' parent details. The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand.
-```aidl
-Insert activity diagram 
-```
+The `ToggleViewCommand` toggles the application to display or hide all students' parent details. The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand`.
+
+*Insert activity diagram*
+
 The `Model`has an association with `FilteredStudent` where `FilteredStudent` encapsulates the current toggle status and `FilteredStudentList`. Executing the command will change the toggle status. The `StudentListPanel` is dependent on the toggle status in `FilteredStudent` to display or hide the students' parent details properly in the `StudentCard`.
 
 The following sequence diagram shows the interaction between the `UI`, `Logic`, and `Model` component. 
 
-```aidl
-Insert sequence diagram
-```
+*Insert sequence diagram*
+
 Given below is explains how the toggle view mechanism behaves at each step.
 
 Step 1. The user enters the command `toggleView`
@@ -292,86 +388,6 @@ Design considerations:
 #### 4.2.8 ViewStats command
 
 *To be updated*
-
-#### 4.2.9 \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -524,7 +540,7 @@ which assumes that nothing goes wrong
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>

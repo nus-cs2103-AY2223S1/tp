@@ -3,13 +3,13 @@ package seedu.classify.logic.commands;
 import seedu.classify.model.Model;
 
 /**
- * Format full help instructions for every command for display.
+ * Displays a command summary table and a link to Class-ify's user guide.
  */
 public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows application usage instructions.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
