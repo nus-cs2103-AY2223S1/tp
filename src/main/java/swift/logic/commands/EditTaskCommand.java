@@ -25,7 +25,7 @@ public class EditTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_task";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES =
-            new ArrayList<>(List.of(PREFIX_NAME, PREFIX_CONTACT));
+            new ArrayList<>(List.of(new Prefix("", "task_index"), PREFIX_NAME, PREFIX_CONTACT));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
         + "by the index number used in the displayed task list. "

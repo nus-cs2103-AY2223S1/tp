@@ -70,7 +70,7 @@ public class CommandSuggestor {
      */
     public String suggestCommand(String userInput) throws CommandException {
         assert userInput != null && !userInput.isEmpty();
-        String[] userInputArray = userInput.split(" ");
+        String[] userInputArray = userInput.split(" ", 2);
         String commandWord = userInputArray[0];
         String suggestedCommand = "";
         for (String command : commandList) {
@@ -86,9 +86,9 @@ public class CommandSuggestor {
         ArrayList<Prefix> argPrefixes = argPrefixList.get(commandList.indexOf(suggestedCommand));
 
         if (userInputArray.length > 1) {
-            return userInput.stripTrailing() + suggestArguments(argPrefixes, userInput);
+            return userInput.stripTrailing() + suggestArguments(argPrefixes, userInputArray[1]);
         } else {
-            return suggestedCommand + suggestArguments(argPrefixes, userInput);
+            return suggestedCommand + suggestArguments(argPrefixes, "");
         }
     }
 
@@ -123,17 +123,30 @@ public class CommandSuggestor {
      */
     public String suggestArguments(
             ArrayList<Prefix> argPrefixes, String userInput) throws CommandException {
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, argPrefixes.toArray(new Prefix[]{}));
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(" " + userInput, argPrefixes.toArray(new Prefix[]{}));
         String argumentSuggestion = "";
         String[] userInputArray = userInput.split(" ");
         Prefix currPrefix = null;
+        boolean isIndexRequired = argPrefixes.contains(new Prefix(""));
+
+        // Check if user input for index is valid (only if required)
+        if (isIndexRequired) {
+            if(userInputArray[0].equals("")) {
+                argumentSuggestion += " " + argPrefixes.get(0).getUserPrompt();
+            } else {
+                if(!userInputArray[0].matches("-?\\d+(\\.\\d+)?")) {
+                    throw new CommandException("Invalid index");
+                }
+            }
+        }
 
         // Check if user is trying to autocomplete a prefix
-        if (userInputArray.length > 1 && !userInputArray[userInputArray.length - 1].contains("/")) {
-            argumentSuggestion += "/ ";
+        if ((!userInput.isEmpty() && (!isIndexRequired || userInputArray.length > 1)) && !userInputArray[userInputArray.length - 1].contains("/")) {
             currPrefix = new Prefix(userInputArray[userInputArray.length - 1] + "/");
             argumentMultimap.put(currPrefix, "");
-            if (!argPrefixes.contains(currPrefix)) {
+            if (argPrefixes.contains(currPrefix)) {
+                argumentSuggestion += "/ ";
+            } else if(!userInput.contains("/")){
                 throw new CommandException("Invalid prefix");
             }
         }

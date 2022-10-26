@@ -78,7 +78,7 @@ public class ArgumentTokenizer {
     /**
      * Extracts prefixes and their argument values, and returns an {@code ArgumentMultimap} object that maps the
      * extracted prefixes to their respective arguments. Prefixes are extracted based on their zero-based positions in
-     * {@code argsString}.
+     * {@code argsString}. Preamble is optional.
      *
      * @param argsString      Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
      * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}
@@ -89,9 +89,11 @@ public class ArgumentTokenizer {
         // Sort by start position
         prefixPositions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
 
-        // Insert a PrefixPosition to represent the preamble
-        PrefixPosition preambleMarker = new PrefixPosition(new Prefix(""), 0);
-        prefixPositions.add(0, preambleMarker);
+        // Insert a PrefixPosition to represent the preamble if preamble exists
+        if(prefixPositions.isEmpty() || prefixPositions.get(0).getStartPosition() != 0) {
+            PrefixPosition preambleMarker = new PrefixPosition(new Prefix(""), 0);
+            prefixPositions.add(0, preambleMarker);
+        }
 
         // Add a dummy PrefixPosition to represent the end of the string
         PrefixPosition endPositionMarker = new PrefixPosition(new Prefix(""), argsString.length());
