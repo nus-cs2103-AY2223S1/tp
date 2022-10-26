@@ -26,7 +26,7 @@ public class AddAppointmentCommand extends Command {
             + "INDEX "
             + PREFIX_DATE + "01-01-2000 1200 (must be formatted in dd-MM-yyyy HHmm)";
 
-    public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New appointment added for %1$s";
     public static final String DATE_MISSING = "No date given! "
             + "Appointments must have dates, formatted in d/ dd-MM-yyyy HHmm.";
 
@@ -58,7 +58,8 @@ public class AddAppointmentCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_SUCCESS,
+                personToEdit.getName().toString()) + ": " + appointmentDate);
     }
 
     @Override
