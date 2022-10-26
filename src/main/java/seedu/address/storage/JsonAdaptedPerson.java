@@ -21,8 +21,9 @@ import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.NormalTag;
+import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
-import seedu.address.model.tag.Tag;
 
 
 /**
@@ -37,6 +38,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String riskTag;
+    private final String planTag;
     private final String income;
     private final String monthly;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -50,13 +52,16 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("income") String income,
             @JsonProperty("monthly") String monthly,
-            @JsonProperty("riskTag") String riskTag, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("riskTag") String riskTag,
+            @JsonProperty("planTag") String planTag,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.riskTag = riskTag;
+        this.planTag = planTag;
         this.income = income;
         this.monthly = monthly;
         if (tagged != null) {
@@ -76,6 +81,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         riskTag = source.getRiskTag().tagName;
+        planTag = source.getPlanTag().tagName;
         income = source.getIncome().value;
         monthly = source.getMonthly().value;
         tagged.addAll(source.getTags().stream()
@@ -92,7 +98,7 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<NormalTag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
@@ -158,9 +164,17 @@ class JsonAdaptedPerson {
         }
         final RiskTag modelRiskTag = new RiskTag(riskTag);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        if (planTag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PlanTag.class.getSimpleName()));
+        }
+        if (!PlanTag.isValidPlanTagName(planTag)) {
+            throw new IllegalValueException(PlanTag.MESSAGE_CONSTRAINTS);
+        }
+        final PlanTag modelPlanTag = new PlanTag(planTag);
+
+        final Set<NormalTag> modelTags = new HashSet<>(personTags);
         Person newPerson = new Person(modelName, modelPhone, modelEmail,
-                modelAddress, modelIncome, modelMonthly, modelRiskTag, modelTags);
+                modelAddress, modelIncome, modelMonthly, modelRiskTag, modelPlanTag, modelTags);
         newPerson.setAppointments(modelAppointments);
 
         return newPerson;
