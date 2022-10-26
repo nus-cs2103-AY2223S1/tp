@@ -86,6 +86,9 @@ public class AddDebtCommand extends Command {
             }
         }
 
+        model.saveAddressBook();
+        model.saveCommandMessage(String.format(MESSAGE_ADD_DEBT_SUCCESS, debt, nameList));
+        model.setPerson(personToEdit, editedPerson);
         return new CommandResult(String.format(MESSAGE_ADD_DEBT_SUCCESS, debt, nameList));
     }
 
