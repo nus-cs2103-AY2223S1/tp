@@ -172,7 +172,7 @@ Examples:
 Finds persons who match all the given conditions.
 
 Format: `find [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag> ...]
-[d/<description> ...]`[m/<money> ...] [date/<date> ...] [time/<time> ...]
+[d/<description> ...] [m/<money> ...] [date/<date> ...] [time/<time> ...]`
 
 * Name and Address are case-insensitive partial matches. All other fields are exact matches.
 * The order of the conditions does not matter.
