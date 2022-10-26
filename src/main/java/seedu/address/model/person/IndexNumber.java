@@ -27,4 +27,9 @@ public class IndexNumber {
                || (other instanceof IndexNumber // instanceof handles nulls
                    && indexNumber.equals(((IndexNumber) other).indexNumber)); // state check
     }
+
+    @Override
+    public String toString() {
+        return indexNumber;
+    }
 }

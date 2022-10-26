@@ -11,9 +11,6 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindNameCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FindCommandPredicate;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.StudentClass;
-import seedu.address.model.person.subject.Subject;
 
 /**
  * Parses input arguments and creates a new FindCommand object

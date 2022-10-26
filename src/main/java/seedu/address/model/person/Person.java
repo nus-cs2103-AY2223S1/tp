@@ -39,7 +39,7 @@ public class Person {
     public Person(Name name, IndexNumber indexNumber, Phone phone, Email email, Address address, StudentClass studentClass,
                   Attendance attendance, Set<Remark> remarksList, SubjectHandler subjectsTaken,
                   Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, studentClass, attendance, remarksList, subjectsTaken, tags);
+        requireAllNonNull(name, indexNumber, phone, email, address, studentClass, attendance, remarksList, subjectsTaken, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;

@@ -7,6 +7,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.IndexNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -26,6 +27,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_INDEX_NUMBER = "3";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
@@ -38,6 +40,7 @@ public class PersonBuilder {
     public static final String DEFAULT_GRADE = "83.4";
 
     private Name name;
+    private IndexNumber indexNumber;
     private Phone phone;
     private Email email;
     private Address address;
@@ -54,6 +57,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        indexNumber = new IndexNumber(DEFAULT_INDEX_NUMBER);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -70,6 +74,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        indexNumber = personToCopy.getIndexNumber();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
@@ -110,6 +115,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
+        return this;
+    }
+
+    /**
+     * Sets the {@code IndexNumber} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withIndexNumber(String indexNumber) {
+        this.indexNumber = new IndexNumber(indexNumber);
         return this;
     }
 
@@ -161,7 +174,7 @@ public class PersonBuilder {
      * Builds a person object given the attributes
      */
     public Person build() {
-        return new Person(name, phone, email, address, studentClass, attendance, remarks, subjectHandler,
+        return new Person(name, indexNumber, phone, email, address, studentClass, attendance, remarks, subjectHandler,
                           tags);
     }
 }

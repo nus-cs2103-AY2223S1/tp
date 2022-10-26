@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.IndexNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
@@ -54,6 +55,15 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    public static IndexNumber parseIndexNumber(String indexNumber) throws ParseException {
+        requireNonNull(indexNumber);
+        String trimmedIndexNumber = indexNumber.trim();
+        if (!IndexNumber.isValidIndexNumber(trimmedIndexNumber)) {
+            throw new ParseException(IndexNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new IndexNumber(trimmedIndexNumber);
     }
 
     /**
