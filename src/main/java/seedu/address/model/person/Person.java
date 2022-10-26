@@ -1,12 +1,15 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import seedu.address.model.person.subject.Grades;
 import seedu.address.model.person.subject.Subject;
 import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
@@ -15,7 +18,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
@@ -168,4 +171,14 @@ public class Person {
         return builder.toString();
     }
 
+    public int compareTo(Person p) {
+        requireNonNull(p);
+        Double curr = this.getSubjectsTaken()
+                .stream()
+                .map(Subject::getTotalPercentage).mapToDouble(Double::doubleValue).sum();
+        Double comp = p.getSubjectsTaken()
+                .stream()
+                .map(Subject::getTotalPercentage).mapToDouble(Double::doubleValue).sum();
+        return curr.compareTo(comp);
+    }
 }

@@ -134,4 +134,10 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+
+    public void sortByDate(boolean isInAscending) {
+        internalList.sort((Person p1, Person p2) -> isInAscending
+                ? p1.compareTo(p2)
+                : -p1.compareTo(p2));
+    }
 }

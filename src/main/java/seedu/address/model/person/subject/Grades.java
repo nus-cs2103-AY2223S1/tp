@@ -20,6 +20,8 @@ public class Grades {
     // the total score for the assessment, and the weightage of the assessment
     private final HashMap<String, double[]> assessmentMarks;
 
+    double currentPercentageObtained;
+
     /**
      * Constructs a {@code Grades}.
      */
@@ -91,7 +93,7 @@ public class Grades {
 
     @Override
     public String toString() {
-        double currentPercentageObtained = getCurrentPercentageObtained(assessmentMarks);
+        currentPercentageObtained = getCurrentPercentageObtained(assessmentMarks);
         return String.format("Grades: %.1f", currentPercentageObtained);
     }
 

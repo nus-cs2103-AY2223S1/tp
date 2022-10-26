@@ -65,6 +65,10 @@ public class Subject {
         return grades;
     }
 
+    public double getTotalPercentage() {
+        return grades.currentPercentageObtained;
+    }
+
     @Override
     public int hashCode() {
         return subjectName.hashCode();

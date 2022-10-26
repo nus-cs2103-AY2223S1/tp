@@ -83,6 +83,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void sortByDate(boolean isAscending) {
+        persons.sortByDate(isAscending);
+    }
+
     //// util methods
 
     @Override
