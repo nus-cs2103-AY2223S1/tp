@@ -307,7 +307,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user ready to start using the app | clear all current data                                          | can get rid of the sample data used for exploring the app and input my own data |
 | `* *`    | user                              | add attendance for lessons                                      | can keep track of who attended the lesson                                       |
 | `* *`    | user                              | keep track of my students' level of participation               | can prompt students who are less active in participation                        |
-| `* *`    | user                              | keep track if my students' grades                               | can pay more attention and help the weaker students                             |  
+| `* *`    | user                              | keep track of my students' grades                               | can help and pay more attention to the weaker students                             |  
 | `* *`    | user                              | take down notes related to a lesson                             | can refer back and remember important things that happen during the lesson      |      
 | `* *`    | user                              | detect if there are any schedule conflicts                      | will not have concurrent lessons at the same time                               |
 | `*`      | user                              | assign different priorities to my tasks                         | can focus on the more important tasks                                           |
