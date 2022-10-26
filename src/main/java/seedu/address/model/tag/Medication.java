@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Medication of a patient in the database.
@@ -56,6 +57,23 @@ public class Medication {
                                 .append(String.format(EACH_MEDICATION_COUNT,
                                         medication, medicationMap.get(medication))));
         return sb.toString();
+    }
+
+    /**
+     * Removes the medication from the database.
+     * @param medicationName The medication to be removed.
+     */
+    private static void removeMedication(String medicationName) {
+        Medication.medicationMap.put(medicationName.toLowerCase(Locale.ENGLISH),
+                Medication.medicationMap.get(medicationName.toLowerCase(Locale.ENGLISH)) - 1);
+    }
+
+    /**
+     * Clears the medication map of medications allocated to the patient.
+     * @param patient The patient to be removed.
+     */
+    public static void clearMedicationsOfPatient(Person patient) {
+        patient.getMedications().forEach(medication -> Medication.removeMedication(medication.medicationName));
     }
 
     @Override
