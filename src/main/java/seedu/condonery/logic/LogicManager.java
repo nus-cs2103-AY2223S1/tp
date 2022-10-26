@@ -2,13 +2,19 @@ package seedu.condonery.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.commons.core.LogsCenter;
+import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
+import seedu.condonery.logic.commands.ExitCommand;
+import seedu.condonery.logic.commands.HelpCommand;
+import seedu.condonery.logic.commands.UndoCommand;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.parser.CondoneryParser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
@@ -30,6 +36,9 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final CondoneryParser condoneryParser;
 
+    private final Collection<Class<? extends Command>> commandsToIgnore =
+            Arrays.asList(ClearCommand.class, HelpCommand.class, ExitCommand.class, UndoCommand.class);
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -45,6 +54,10 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = condoneryParser.parseCommand(commandText);
+        if (!commandsToIgnore.contains(command.getClass())) {
+            model.addCommand(command);
+        }
+
         commandResult = command.execute(model);
 
         try {

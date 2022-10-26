@@ -10,6 +10,7 @@ import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.HelpCommand;
+import seedu.condonery.logic.commands.UndoCommand;
 import seedu.condonery.logic.commands.client.AddClientCommand;
 import seedu.condonery.logic.commands.client.FilterClientCommand;
 import seedu.condonery.logic.commands.client.FindClientCommand;
@@ -101,6 +102,9 @@ public class CondoneryParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
