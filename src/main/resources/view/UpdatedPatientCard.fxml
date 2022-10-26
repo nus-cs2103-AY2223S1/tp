@@ -70,8 +70,26 @@
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <Label fx:id="conditions" styleClass="cell_small_label" text="\$conditions" wrapText="true" />
-                        <Label fx:id="medications" styleClass="cell_small_label" text="\$medications" wrapText="true" />
+                        <VBox fx:id="conditionHeaderPane" styleClass="cell_small_label_border">
+                           <children>
+                              <Label fx:id="conditionHeader" styleClass="cell_small_label_light" text="\$conditionheader" wrapText="true" />
+                           </children>
+                        </VBox>
+                        <Label fx:id="conditions" layoutX="10.0" layoutY="10.0" styleClass="cell_small_label" text="\$conditions" wrapText="true">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <VBox fx:id="medicationHeaderPane" styleClass="cell_small_label_border">
+                           <children>
+                              <Label fx:id="medicationHeader" styleClass="cell_small_label_light" text="\$medicationheader" wrapText="true" />
+                           </children>
+                        </VBox>
+                        <Label fx:id="medications" layoutX="10.0" layoutY="27.0" styleClass="cell_small_label" text="\$medications" wrapText="true">
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                        </Label>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -90,8 +108,7 @@
                </VBox.margin>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="50.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -99,20 +116,36 @@
                <children>
                   <VBox spacing="5.0">
                      <children>
-                        <Label fx:id="taskheader" styleClass="cell_small_label" text="\$taskheader" wrapText="true" />
-                        <Label fx:id="tasklist" styleClass="cell_small_label" text="\$tasklist" wrapText="true" />
+                        <VBox fx:id="taskHeaderPane" styleClass="cell_small_label_border">
+                           <children>
+                              <Label fx:id="taskHeader" styleClass="cell_small_label_light" text="\$taskheader" wrapText="true" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="taskContainer" spacing="5.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </VBox>
-                  <Separator orientation="VERTICAL" GridPane.columnIndex="1" />
-                  <VBox GridPane.columnIndex="2">
+                  <VBox GridPane.columnIndex="1">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <Label fx:id="remarks" styleClass="cell_small_label" text="\$remarks" wrapText="true" />
+                        <VBox fx:id="remarkHeaderPane" styleClass="cell_small_label_border">
+                           <children>
+                              <Label fx:id="remarkHeader" styleClass="cell_small_label_light" text="\$remarkheader" wrapText="true" />
+                           </children>
+                        </VBox>
+                        <VBox fx:id="remarkContainer" spacing="5.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

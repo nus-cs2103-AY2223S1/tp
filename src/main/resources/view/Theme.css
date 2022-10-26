@@ -148,6 +148,19 @@
     -fx-text-fill: #202632;
 }
 
+.cell_small_label_light {
+    -fx-font-family: "Open Sans Semibold";
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+}
+
+.cell_small_label_border {
+    -fx-background-color: #2154ad;
+    -fx-padding: 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 5;
+}
+
 .check-box .box {
     -fx-background-color: gray;
     -fx-border-radius: 0;
