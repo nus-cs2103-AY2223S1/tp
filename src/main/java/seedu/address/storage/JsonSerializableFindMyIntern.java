@@ -9,15 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.FindMyIntern;
+import seedu.address.model.ReadOnlyFindMyIntern;
 import seedu.address.model.internship.Internship;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableFindMyIntern {
 
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "Internships list contains duplicate internship(s).";
 
@@ -27,7 +27,7 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given internships.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("internships") List<JsonAdaptedInternship> internships) {
+    public JsonSerializableFindMyIntern(@JsonProperty("internships") List<JsonAdaptedInternship> internships) {
         this.internships.addAll(internships);
     }
 
@@ -36,26 +36,26 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableFindMyIntern(ReadOnlyFindMyIntern source) {
         internships.addAll(source.getInternshipList().stream().map(JsonAdaptedInternship::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this findMyIntern into the model's {@code FindMyIntern} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public FindMyIntern toModelType() throws IllegalValueException {
+        FindMyIntern findMyIntern = new FindMyIntern();
         for (JsonAdaptedInternship jsonAdaptedInternship : internships) {
             Internship internship = jsonAdaptedInternship.toModelType();
-            if (addressBook.hasInternship(internship)) {
+            if (findMyIntern.hasInternship(internship)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_INTERNSHIP);
             }
-            addressBook.addInternship(internship);
+            findMyIntern.addInternship(internship);
         }
-        return addressBook;
+        return findMyIntern;
     }
 
 }

@@ -3,7 +3,7 @@ package seedu.address.model.internship;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Represents an Internship's application status in the address book.
+ * Represents an Internship's application status in findMyIntern.
  */
 public enum ApplicationStatus {
 

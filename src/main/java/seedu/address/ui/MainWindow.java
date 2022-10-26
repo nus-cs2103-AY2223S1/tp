@@ -62,7 +62,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        helpWindow = new HelpWindow(logic.getAddressBookFilePath());
+        helpWindow = new HelpWindow(logic.getFindMyInternFilePath());
     }
 
     public Stage getPrimaryStage() {

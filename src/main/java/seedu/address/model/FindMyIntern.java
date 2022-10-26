@@ -9,10 +9,10 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.UniqueInternshipList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the FindMyIntern level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class FindMyIntern implements ReadOnlyFindMyIntern {
 
     private final UniqueInternshipList internships;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         internships = new UniqueInternshipList();
     }
 
-    public AddressBook() {}
+    public FindMyIntern() {}
 
     /**
-     * Creates an AddressBook using the Internships in the {@code toBeCopied}
+     * Creates an FindMyIntern using the Internships in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public FindMyIntern(ReadOnlyFindMyIntern toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code FindMyIntern} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyFindMyIntern newData) {
         requireNonNull(newData);
 
         setInternships(newData.getInternshipList());
@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// internship-level operations
 
     /**
-     * Returns true if an internship with the same identity as {@code internship} exists in the address book.
+     * Returns true if an internship with the same identity as {@code internship} exists in findMyIntern.
      */
     public boolean hasInternship(Internship internship) {
         requireNonNull(internship);
@@ -67,8 +67,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds an internship to the address book.
-     * The internship must not already exist in the address book.
+     * Adds an internship to findMyIntern.
+     * The internship must not already exist in findMyIntern.
      */
     public void addInternship(Internship p) {
         internships.add(p);
@@ -76,9 +76,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given internship {@code target} in the list with {@code editedInternship}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in findMyIntern.
      * The internship identity of {@code editedInternship} must not be the same as
-     * another existing internship in the address book.
+     * another existing internship in findMyIntern.
      */
     public void setInternship(Internship target, Internship editedInternship) {
         requireNonNull(editedInternship);
@@ -87,8 +87,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code FindMyIntern}.
+     * {@code key} must exist in findMyIntern.
      */
     public void removeInternship(Internship key) {
         internships.remove(key);
@@ -110,8 +110,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && internships.equals(((AddressBook) other).internships));
+                || (other instanceof FindMyIntern // instanceof handles nulls
+                && internships.equals(((FindMyIntern) other).internships));
     }
 
     @Override

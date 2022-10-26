@@ -30,7 +30,7 @@ import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing internship in the address book.
+ * Edits the details of an existing internship in findMyIntern.
  */
 public class EditCommand extends Command {
 
@@ -52,7 +52,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in findMyIntern.";
 
     private final Index index;
     private final EditInternshipDescriptor editInternshipDescriptor;

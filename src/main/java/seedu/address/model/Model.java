@@ -36,53 +36,53 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' findMyIntern file path.
      */
-    Path getAddressBookFilePath();
+    Path getFindMyInternFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' findMyIntern file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFindMyInternFilePath(Path findMyInternFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces findMyIntern data with the data in {@code findMyIntern}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setFindMyIntern(ReadOnlyFindMyIntern findMyIntern);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the FindMyIntern */
+    ReadOnlyFindMyIntern getFindMyIntern();
 
     /**
-     * Returns true if an internship with the same identity as {@code internship} exists in the address book.
+     * Returns true if an internship with the same identity as {@code internship} exists in the findMyIntern.
      */
     boolean hasInternship(Internship internship);
 
     /**
      * Deletes the given internship.
-     * The internship must exist in the address book.
+     * The internship must exist in the findMyIntern.
      */
     void deleteInternship(Internship target);
 
     /**
      * Adds the given internship.
-     * {@code internship} must not already exist in the address book.
+     * {@code internship} must not already exist in findMyIntern.
      */
     void addInternship(Internship internship);
 
     /**
      * Replaces the given internship {@code target} with {@code editedInternship}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in findMyIntern.
      * The internship identity of {@code editedInternship} must not be the same as
-     * another existing internship in the address book.
+     * another existing internship in findMyIntern.
      */
     void setInternship(Internship target, Internship editedInternship);
 
     /**
      * Replaces the given internship {@code target} with {@code markedInternship}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in findMyIntern.
      * The internship identity of {@code markInternship} must not be the same as
-     * another existing internship in the address book.
+     * another existing internship in findMyIntern.
      */
     void markInternship(Internship target, Internship markedInternship);
 

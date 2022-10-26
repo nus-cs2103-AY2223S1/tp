@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ECOMMERCE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.ALIBABA;
-import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalInternships.getTypicalFindMyIntern;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.exceptions.DuplicateInternshipException;
 import seedu.address.testutil.InternshipBuilder;
 
-public class AddressBookTest {
+public class FindMyInternTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final FindMyIntern findMyIntern = new FindMyIntern();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getInternshipList());
+        assertEquals(Collections.emptyList(), findMyIntern.getInternshipList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> findMyIntern.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyFindMyIntern_replacesData() {
+        FindMyIntern newData = getTypicalFindMyIntern();
+        findMyIntern.resetData(newData);
+        assertEquals(newData, findMyIntern);
     }
 
     @Test
@@ -50,47 +50,47 @@ public class AddressBookTest {
                 new InternshipBuilder(ALIBABA).withAppliedDate(VALID_APPLIED_DATE_TIKTOK)
                         .withTags(VALID_TAG_ECOMMERCE).build();
         List<Internship> newInternships = Arrays.asList(ALIBABA, editedAlibaba);
-        AddressBookStub newData = new AddressBookStub(newInternships);
+        FindMyInternStub newData = new FindMyInternStub(newInternships);
 
-        assertThrows(DuplicateInternshipException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateInternshipException.class, () -> findMyIntern.resetData(newData));
     }
 
     @Test
     public void hasInternship_nullInternship_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasInternship(null));
+        assertThrows(NullPointerException.class, () -> findMyIntern.hasInternship(null));
     }
 
     @Test
-    public void hasInternship_internshipNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasInternship(ALIBABA));
+    public void hasInternship_internshipNotInFindMyIntern_returnsFalse() {
+        assertFalse(findMyIntern.hasInternship(ALIBABA));
     }
 
     @Test
-    public void hasInternship_internshipInAddressBook_returnsTrue() {
-        addressBook.addInternship(ALIBABA);
-        assertTrue(addressBook.hasInternship(ALIBABA));
+    public void hasInternship_internshipInFindMyIntern_returnsTrue() {
+        findMyIntern.addInternship(ALIBABA);
+        assertTrue(findMyIntern.hasInternship(ALIBABA));
     }
 
     @Test
-    public void hasInternship_internshipWithSameFieldsInAddressBook_returnsTrue() {
-        addressBook.addInternship(ALIBABA);
+    public void hasInternship_internshipWithSameFieldsInFindMyIntern_returnsTrue() {
+        findMyIntern.addInternship(ALIBABA);
         Internship editedAlibaba = new InternshipBuilder(ALIBABA)
                 .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withTags(VALID_TAG_ECOMMERCE).build();
-        assertTrue(addressBook.hasInternship(editedAlibaba));
+        assertTrue(findMyIntern.hasInternship(editedAlibaba));
     }
 
     @Test
     public void getInternshipList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getInternshipList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> findMyIntern.getInternshipList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose internships list can violate interface constraints.
+     * A stub ReadOnlyFindMyIntern whose internships list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class FindMyInternStub implements ReadOnlyFindMyIntern {
         private final ObservableList<Internship> internships = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Internship> internships) {
+        FindMyInternStub(Collection<Internship> internships) {
             this.internships.setAll(internships);
         }
 
