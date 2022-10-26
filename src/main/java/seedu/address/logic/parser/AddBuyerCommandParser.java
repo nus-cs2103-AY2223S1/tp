@@ -13,7 +13,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddBuyerCommand;
-import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Address;
@@ -25,7 +24,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddPersonCommand object
+ * Parses input arguments and creates a new AddBuyerCommand object
  */
 public class AddBuyerCommandParser implements Parser<AddBuyerCommand> {
 
@@ -33,8 +32,8 @@ public class AddBuyerCommandParser implements Parser<AddBuyerCommand> {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddPersonCommand
-     * and returns an AddPersonCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddBuyerCommand
+     * and returns an AddBuyerCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddBuyerCommand parse(String args) throws ParseException {
