@@ -91,10 +91,10 @@ public class SampleDataUtil {
 
         return new Meeting[] {
             new Meeting(p1, "CS2103", "02-04-2022 1500", "COM3"),
-                new Meeting(p2, "GEA1000", "10-12-2021 0800", "UTOWN"),
-                new Meeting(p3, "Lunch", "02-02-2022 1700", "KR MRT"),
-                new Meeting(p4, "Dinner", "30-11-2022 1700", "Fine Food"),
-                new Meeting(p5, "Supper", "01-10-2022 0000", "Mcdonalds")
+            new Meeting(p2, "GEA1000", "10-12-2021 0800", "UTOWN"),
+            new Meeting(p3, "Lunch", "02-02-2022 1700", "KR MRT"),
+            new Meeting(p4, "Dinner", "30-11-2022 1700", "Fine Food"),
+            new Meeting(p5, "Supper", "01-10-2022 0000", "Mcdonalds")
         };
     }
 
