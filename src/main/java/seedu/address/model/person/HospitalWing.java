@@ -5,8 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Represents an inpatient's currently located hospital wing in the database.
  * Guarantees: immutable; is valid as declared in {@link #isValidHospitalWing(String)}
