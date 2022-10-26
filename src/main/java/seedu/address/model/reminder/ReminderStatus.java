@@ -20,7 +20,7 @@ public class ReminderStatus {
 
     @Override
     public String toString() {
-        return "Reminder is " + (isDone ? "done" : "not done") + " yet.";
+        return isDone ? "COMPLETED" : "INCOMPLETE";
     }
 
     @Override

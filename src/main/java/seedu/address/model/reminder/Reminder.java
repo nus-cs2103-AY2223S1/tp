@@ -134,7 +134,9 @@ public class Reminder {
                 .append("; Priority: ")
                 .append(getPriority())
                 .append("; Details: ")
-                .append(getDescription());
+                .append(getDescription())
+                .append("; Status: ")
+                .append(getStatus());
 
         return builder.toString();
     }
