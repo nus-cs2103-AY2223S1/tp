@@ -71,25 +71,28 @@ public class PersonCard extends UiPart<Region> {
         address.setText("\uD83C\uDFE0\t" + person.getAddress().value);
         assert person.getEmail() != null : "Something went wrong in UI PersonCard email";
         email.setText("\uD83D\uDCE7\t" + person.getEmail().value);
-
-        // replace birthday and insurance once implemented.
-        // insurance.setText("\uD83D\uDCC4\t" + "something something");
+        assert person.getBirthday() != null : "Something went wrong in UI PersonCard birthday";
+        birthday.setText("\uD83C\uDF82\t"
+                + person.getBirthday().value.format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)));
 
         assert person.getHealthInsurance() != null : "Something went wrong in UI PersonCard health insurance";
         assert person.getDisabilityInsurance() != null : "Something went wrong in UI PersonCard disability insurance";
         assert person.getCriticalIllnessInsurance() != null
                 : "Something went wrong in UI PersonCard critical illness insurance";
         assert person.getLifeInsurance() != null : "Something went wrong in UI PersonCard life insurance";
-        healthInsurance.setText("Health               "
-                + (person.getHealthInsurance().getHasInsurance() ? "\u2705" : "\u274e"));
-        disabilityInsurance.setText("Disability           "
-                + (person.getDisabilityInsurance().getHasInsurance() ? "\u2705" : "\u274e"));
-        criticalIllnessInsurance.setText("Critical Illness    "
-                + (person.getCriticalIllnessInsurance().getHasInsurance() ? "\u2705" : "\u274e"));
-        lifeInsurance.setText("Life                    "
-                + (person.getLifeInsurance().getHasInsurance() ? "\u2705" : "\u274e"));
-        birthday.setText("\uD83C\uDF82\t"
-                + person.getBirthday().value.format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)));
+        healthInsurance.setText(
+                (person.getHealthInsurance().getHasInsurance() ? "\u2705\t" : "\u274c\t") +
+                        "Health Policy");
+        disabilityInsurance.setText(
+                (person.getDisabilityInsurance().getHasInsurance() ? "\u2705\t" : "\u274c\t") +
+                        "Disability Policy");
+        criticalIllnessInsurance.setText(
+                (person.getCriticalIllnessInsurance().getHasInsurance() ? "\u2705\t" : "\u274c\t") +
+                        "Critical Illness Policy");
+        lifeInsurance.setText(
+                (person.getLifeInsurance().getHasInsurance() ? "\u2705\t" : "\u274c\t") +
+                "Life Policy");
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
