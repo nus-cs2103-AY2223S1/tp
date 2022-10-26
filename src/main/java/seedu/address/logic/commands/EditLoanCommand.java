@@ -7,6 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.EditLoanCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Loan;
 import seedu.address.model.person.LoanHistory;
@@ -97,6 +98,7 @@ public class EditLoanCommand extends Command{
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
+        Birthday updatedBirthday = personToEdit.getBirthday();
         Set<Tag> updatedTags = personToEdit.getTags();
         double val = editLoanDescriptor.getLoan().get().getAmount() + personToEdit.getLoan().getAmount();
         Loan updatedLoan = new Loan(String.valueOf(val));
@@ -106,7 +108,8 @@ public class EditLoanCommand extends Command{
         }
         updatedLoanHistory.add(editLoanDescriptor.getHistory().get());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedLoan, updatedLoanHistory);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, 
+                          updatedBirthday updatedTags, updatedLoan, updatedLoanHistory);
     }
 
     @Override
