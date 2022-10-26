@@ -127,6 +127,10 @@ Examples:
 `t unmark 1` indicates the first task in the task list is not completed.
 
 `t unmark 3` indicates the third task in the task list is not completed.
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** You can sort and filter tasks based on their completion status. The percentage of completed tasks are also shown for each exam and module. 
+</div>
 
 ### Deleting task function [Coming Soon in v1.2]
 Deletes the specified task according to the index given
