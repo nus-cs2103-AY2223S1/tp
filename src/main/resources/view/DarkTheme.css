@@ -108,7 +108,7 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #01646b;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -253,7 +253,7 @@
 }
 
 .button:default:hover {
-    -fx-background-color: derive(-fx-focus-color, 30%);
+    -fx-background-color: derive(-fx-focus-color, 10%);
 }
 
 .dialog-pane {
@@ -333,7 +333,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #053142, transparent, #053142;
+    -fx-background-color: transparent, #01364d, transparent, #01364d;
     -fx-background-radius: 0;
 }
 
