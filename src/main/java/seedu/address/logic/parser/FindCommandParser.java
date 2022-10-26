@@ -9,6 +9,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NormalTagContainsKeywordsPredicate;
+import seedu.address.model.person.PlanTagContainsKeywordsPredicate;
 import seedu.address.model.person.RiskTagContainsKeywordsPredicate;
 import seedu.address.model.tag.RiskTag;
 
@@ -29,7 +30,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        // 2 because all our prefixes have length 2
+        // 2 because all except PREFIX_PLANTAG has a prefix of length 2
         String tokenizedArgs = trimmedArgs.substring(2);
         String[] keywords = tokenizedArgs.split("\\s+");
 
@@ -38,9 +39,14 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new RiskTagContainsKeywordsPredicate(Arrays.asList(keywords)));
         } else if (trimmedArgs.startsWith(PREFIX_TAG.getPrefix())) {
             return new FindCommand(new NormalTagContainsKeywordsPredicate(Arrays.asList(keywords)));
-        }
-        else if (trimmedArgs.startsWith(PREFIX_NAME.getPrefix())) {
+        } else if (trimmedArgs.startsWith(PREFIX_NAME.getPrefix())) {
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        } else if (trimmedArgs.startsWith(PREFIX_PLANTAG.getPrefix())) {
+            String planTag = trimmedArgs.substring(3);
+            // since all planTag has a space and ends with Plan, we split the input every second space.
+            // planTag - Savings Plan.
+            String[] tags = planTag.split("(?<=\\s\\S{1,100})\\s");
+            return new FindCommand(new PlanTagContainsKeywordsPredicate(Arrays.asList(tags)));
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Please enter a prefix before the KEYWORDs."));

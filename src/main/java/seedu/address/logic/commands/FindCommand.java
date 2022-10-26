@@ -5,10 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.NormalTagContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.RiskTagContainsKeywordsPredicate;
+import seedu.address.model.person.*;
 
 import java.util.function.Predicate;
 
@@ -28,7 +25,8 @@ public class FindCommand extends Command {
             + PREFIX_RISKTAG.getPrefix() + " RISKTAG [MORE_RISKTAGS]...\n"
             + PREFIX_TAG.getPrefix() + " TAG [MORE_TAGS]...\n"
             + "Examples: " + COMMAND_WORD + " " + PREFIX_NAME.getPrefix() + " alice bob charlie\n"
-            + COMMAND_WORD + " " + PREFIX_RISKTAG.getPrefix() + " high low";
+            + COMMAND_WORD + " " + PREFIX_RISKTAG.getPrefix() + " high low\n"
+            + COMMAND_WORD + " " + PREFIX_PLANTAG.getPrefix() + " savings plan";
 
     private final Predicate<Person> predicate;
 
@@ -41,6 +39,10 @@ public class FindCommand extends Command {
     }
 
     public FindCommand(NormalTagContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
+    }
+
+    public FindCommand(PlanTagContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
