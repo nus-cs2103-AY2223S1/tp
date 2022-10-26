@@ -72,7 +72,7 @@ public class BillCommand extends Command {
         model.setGuest(guestToEdit, editedGuest);
         model.updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, guestToEdit));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedGuest));
     }
 
     @Override
