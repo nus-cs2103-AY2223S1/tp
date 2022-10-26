@@ -1,11 +1,10 @@
-package seedu.address.model.person;
+package seedu.address.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.tag.TagsContainsKeywordsPredicate;
 import seedu.address.testutil.PersonBuilder;
 
 public class TagsContainsKeywordsPredicateTest {
@@ -67,6 +66,7 @@ public class TagsContainsKeywordsPredicateTest {
         // Keywords match phone, email and address, but does not match name
         predicate = new TagsContainsKeywordsPredicate("Alice");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").withGithub("alice").withTags("Friend").build()));
+                .withEmail("alice@email.com").withAddress("Main Street").withGithub("alice")
+                .withTags("Friend").build()));
     }
 }

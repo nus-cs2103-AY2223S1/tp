@@ -21,12 +21,20 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditIndexCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCurrModCommand;
+import seedu.address.logic.commands.FilterPlanModCommand;
+import seedu.address.logic.commands.FilterPrevModCommand;
+import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.CurrModContainsKeywordsPredicate;
+import seedu.address.model.module.PlanModContainsKeywordsPredicate;
+import seedu.address.model.module.PrevModContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.TagsContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -99,5 +107,37 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_filterTag() throws Exception {
+        String keywords = "foo bar";
+        FilterTagCommand command = (FilterTagCommand) parser.parseCommand(
+                FilterTagCommand.COMMAND_WORD + " " + keywords);
+        assertEquals(new FilterTagCommand(new TagsContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_filterCurrMod() throws Exception {
+        String keywords = "foo bar";
+        FilterCurrModCommand command = (FilterCurrModCommand) parser.parseCommand(
+                FilterCurrModCommand.COMMAND_WORD + " " + keywords);
+        assertEquals(new FilterCurrModCommand(new CurrModContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_filterPrevMod() throws Exception {
+        String keywords = "foo bar";
+        FilterPrevModCommand command = (FilterPrevModCommand) parser.parseCommand(
+                FilterPrevModCommand.COMMAND_WORD + " " + keywords);
+        assertEquals(new FilterPrevModCommand(new PrevModContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_filterPlanMod() throws Exception {
+        String keywords = "foo bar";
+        FilterPlanModCommand command = (FilterPlanModCommand) parser.parseCommand(
+                FilterPlanModCommand.COMMAND_WORD + " " + keywords);
+        assertEquals(new FilterPlanModCommand(new PlanModContainsKeywordsPredicate(keywords)), command);
     }
 }

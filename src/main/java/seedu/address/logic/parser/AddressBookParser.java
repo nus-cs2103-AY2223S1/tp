@@ -12,11 +12,16 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCurrModCommand;
+import seedu.address.logic.commands.FilterPlanModCommand;
+import seedu.address.logic.commands.FilterPrevModCommand;
+import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LessonCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ModuleCommand;
+import seedu.address.logic.commands.NextSemCommand;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.TimetableCommand;
 import seedu.address.logic.commands.UserCommand;
@@ -82,7 +87,6 @@ public class AddressBookParser {
         case TimetableCommand.COMMAND_WORD:
             return new TimetableCommandParser().parse(arguments);
 
-<<<<<<< HEAD
         case FilterTagCommand.COMMAND_WORD:
             return new FilterTagCommandParser().parse(arguments);
 
@@ -98,13 +102,12 @@ public class AddressBookParser {
         case NextSemCommand.COMMAND_WORD:
             return new NextSemCommand();
 
-=======
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
->>>>>>> origin/master
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
