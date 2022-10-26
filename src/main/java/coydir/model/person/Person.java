@@ -28,7 +28,7 @@ public class Person {
     private final Department department;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Queue<Leave> leaves = new PriorityQueue<>(Leave.COMPARATOR);
+    private final Queue<Leave> leaves = new PriorityQueue<>(Leave.COMPARATOR);
     private final int totalNumberOfLeaves;
     private int leavesLeft = 0;
 
@@ -108,10 +108,6 @@ public class Person {
 
     public void setLeavesLeft(int leavesLeft) {
         this.leavesLeft = leavesLeft;
-    }
-
-    public void setLeaves(Queue<Leave> newLeaves) {
-        this.leaves = newLeaves;
     }
 
     /**

@@ -40,9 +40,9 @@ public class Leave {
      */
     public boolean isOverlapping(Leave otherLeave) {
         return (this.startDate.compareTo(otherLeave.startDate) >= 0
-            && this.startDate.compareTo(otherLeave.endDate) <= 0)
+                && this.startDate.compareTo(otherLeave.endDate) <= 0)
                 || (this.endDate.compareTo(otherLeave.startDate) >= 0
-                    && this.endDate.compareTo(otherLeave.endDate) <= 0);
+                && this.endDate.compareTo(otherLeave.endDate) <= 0);
 
     }
 
