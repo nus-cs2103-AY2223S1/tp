@@ -38,10 +38,21 @@
 
         <HBox fx:id="studentList" minHeight="435" prefHeight="435" HBox.hgrow="ALWAYS">
           <padding>
-            <Insets top="10" right="25" bottom="10" left="475" />
+            <Insets top="10" right="25" bottom="10" left="25" />
           </padding>
           <VBox>
-            <TextArea styleClass="text-title" maxHeight="30" editable="false">Students</TextArea>
+            <padding>
+              <Insets top="10" right="12.5" bottom="10"/>
+            </padding>
+            <TextArea styleClass="class-title" prefHeight="50" editable="false">Classes</TextArea>
+            <StackPane fx:id="moduleClassListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
+          </VBox>
+
+          <VBox>
+            <padding>
+              <Insets top="10" bottom="10" left="12.5" />
+            </padding>
+            <TextArea styleClass="student-title" prefHeight="50" editable="false">Students</TextArea>
             <StackPane fx:id="studentListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
           </VBox>
 
