@@ -11,14 +11,13 @@ import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.testutil.TypicalFoodRem;
 
 class ResetCommandTest {
-
-    private static final String MESSAGE_SUCCESS = "FoodRem has been reset!";
+    private static final String EXPECTED_SUCCESS_MESSAGE = "FoodRem has been reset!";
     private final Model model = new ModelManager(TypicalFoodRem.getTypicalFoodRem(), new UserPrefs());
 
     @Test
     void execute() {
         Model expectedModel = model;
         expectedModel.setFoodRem(new FoodRem());
-        assertCommandSuccess(new ResetCommand(), model, MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ResetCommand(), model, EXPECTED_SUCCESS_MESSAGE, expectedModel);
     }
 }

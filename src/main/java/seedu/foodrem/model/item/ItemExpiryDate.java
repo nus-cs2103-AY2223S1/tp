@@ -59,10 +59,10 @@ public class ItemExpiryDate {
      */
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
+        return other == this
                 || (other != NOT_SET_EXPIRY_DATE
-                && other instanceof ItemExpiryDate // instanceof handles nulls
-                && expiryDate.equals(((ItemExpiryDate) other).expiryDate)); // state check
+                && other instanceof ItemExpiryDate
+                && expiryDate.equals(((ItemExpiryDate) other).expiryDate));
     }
 
     /**

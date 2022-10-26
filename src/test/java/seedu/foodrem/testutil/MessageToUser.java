@@ -59,5 +59,4 @@ public class MessageToUser {
                     + "It should not start with a blank space.";
     private static final String MESSAGE_FOR_REMARKS_TOO_LONG =
             "The item remark should not exceed 1000 characters";
-
 }

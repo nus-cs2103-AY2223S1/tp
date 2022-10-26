@@ -13,10 +13,6 @@ import seedu.foodrem.model.tag.Tag;
  * Renames an existing tag in FoodRem.
  */
 public class RenameTagCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Original tag: %s\nRenamed tag: %s\n";
-    private static final String ERROR_NOT_FOUND = "This tag does not exist in the FoodRem.";
-    private static final String ERROR_DUPLICATE = "This tag name already exists in the FoodRem.";
-
     private final Tag originalTag;
     private final Tag renamedTag;
 
@@ -35,15 +31,15 @@ public class RenameTagCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasTag(originalTag)) {
-            throw new CommandException(ERROR_NOT_FOUND);
+            throw new CommandException("This tag does not exist in the FoodRem.");
         }
 
         if (model.hasTag(renamedTag)) {
-            throw new CommandException(ERROR_DUPLICATE);
+            throw new CommandException("This tag name already exists in the FoodRem.");
         }
 
         model.setTag(originalTag, renamedTag);
-        return CommandResult.from(String.format(MESSAGE_SUCCESS, originalTag, renamedTag));
+        return CommandResult.from(String.format("Original tag: %s\nRenamed tag: %s\n", originalTag, renamedTag));
     }
 
     public static String getUsage() {
@@ -52,8 +48,7 @@ public class RenameTagCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                // instanceof handles nulls
+        return other == this
                 || (other instanceof RenameTagCommand
                 && originalTag.equals(((RenameTagCommand) other).originalTag)
                 && renamedTag.equals(((RenameTagCommand) other).renamedTag));

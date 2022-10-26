@@ -73,8 +73,8 @@ public class RemarkCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof RemarkCommand // instanceof handles nulls
+        return other == this
+                || (other instanceof RemarkCommand
                 && index.equals(((RemarkCommand) other).index)
                 && remark.equals(((RemarkCommand) other).remark));
     }

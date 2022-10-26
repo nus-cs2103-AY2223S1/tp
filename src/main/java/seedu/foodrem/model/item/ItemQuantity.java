@@ -45,9 +45,9 @@ public class ItemQuantity {
      */
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ItemQuantity // instanceof handles nulls
-                && itemQuantity == ((ItemQuantity) other).itemQuantity); // state check
+        return other == this
+                || (other instanceof ItemQuantity
+                && itemQuantity == ((ItemQuantity) other).itemQuantity);
     }
 
     /**

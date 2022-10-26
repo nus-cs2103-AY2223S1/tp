@@ -1,6 +1,5 @@
 package seedu.foodrem.model.item;
 
-
 import static java.util.Objects.requireNonNull;
 
 import seedu.foodrem.model.item.itemvalidators.ItemRemarksValidator;
@@ -28,9 +27,9 @@ public class ItemRemark {
      */
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ItemRemark // instanceof handles nulls
-                && itemRemark.equals(((ItemRemark) other).itemRemark)); // state check
+        return other == this
+                || (other instanceof ItemRemark
+                && itemRemark.equals(((ItemRemark) other).itemRemark));
     }
 
     /**

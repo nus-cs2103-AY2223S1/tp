@@ -15,7 +15,6 @@ import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
-import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.ModelManager;
@@ -30,11 +29,12 @@ import seedu.foodrem.testutil.TypicalItems;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
+    private static final String EXPECTED_SUCCESS_MESSAGE = "Listed all items";
+
     @TempDir
     public Path temporaryFolder;
     private final Model model = new ModelManager();
     private Logic logic;
-
 
     @BeforeEach
     public void setUp() {
@@ -60,7 +60,7 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = CommandType.LIST_COMMAND.getCommandWord();
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listCommand, EXPECTED_SUCCESS_MESSAGE, model);
     }
 
     @Test

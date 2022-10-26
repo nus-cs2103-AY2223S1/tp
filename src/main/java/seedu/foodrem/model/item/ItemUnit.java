@@ -27,9 +27,9 @@ public class ItemUnit {
      */
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ItemUnit // instanceof handles nulls
-                && itemUnit.equals(((ItemUnit) other).itemUnit)); // state check
+        return other == this
+                || (other instanceof ItemUnit
+                && itemUnit.equals(((ItemUnit) other).itemUnit));
     }
 
     /**

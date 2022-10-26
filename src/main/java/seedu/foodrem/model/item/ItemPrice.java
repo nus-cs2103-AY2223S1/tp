@@ -33,9 +33,9 @@ public class ItemPrice {
      */
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ItemPrice // instanceof handles nulls
-                && itemPrice == ((ItemPrice) other).itemPrice); // state check
+        return other == this
+                || (other instanceof ItemPrice
+                && itemPrice == ((ItemPrice) other).itemPrice);
     }
 
     /**

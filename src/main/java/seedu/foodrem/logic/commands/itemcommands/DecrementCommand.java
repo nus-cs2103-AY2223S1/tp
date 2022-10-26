@@ -78,10 +78,10 @@ public class DecrementCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DecrementCommand // instanceof handles nulls
+        return other == this
+                || (other instanceof DecrementCommand
                 && index.equals(((DecrementCommand) other).index)
-                && quantity.equals(((DecrementCommand) other).quantity)); // state check
+                && quantity.equals(((DecrementCommand) other).quantity));
     }
 
     public static String getUsage() {

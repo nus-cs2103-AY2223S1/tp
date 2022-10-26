@@ -93,8 +93,8 @@ public class HelpCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof HelpCommand // instanceof handles nulls
-                && message.equals(((HelpCommand) other).message)); // state check
+        return other == this
+                || (other instanceof HelpCommand
+                && message.equals(((HelpCommand) other).message));
     }
 }

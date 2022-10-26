@@ -181,17 +181,12 @@ public class ModelManager implements Model {
 
     @Override
     public boolean equals(Object obj) {
-        // short circuit if same object
         if (obj == this) {
             return true;
         }
-
-        // instanceof handles nulls
         if (!(obj instanceof ModelManager)) {
             return false;
         }
-
-        // state check
         ModelManager other = (ModelManager) obj;
         return foodRem.equals(other.foodRem)
                 && userPrefs.equals(other.userPrefs)
