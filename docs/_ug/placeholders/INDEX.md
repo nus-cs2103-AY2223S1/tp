@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-The INDEX of an item is the number to the left of the item name in the List Component.
+The INDEX of an item is the number to the left of the item name in the Item List Box.
 
 ```info
 - INDEX is a whole number larger than 0
