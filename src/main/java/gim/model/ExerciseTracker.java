@@ -109,13 +109,41 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
 
     @Override
     public String toString() {
-        return exerciseList.asUnmodifiableObservableList().size() + " exercises";
+        return exerciseList.asDisplayedList().size() + " exercises";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Exercise> getExerciseList() {
-        return exerciseList.asUnmodifiableObservableList();
+        return exerciseList.asDisplayedList();
+    }
+
+    /**
+     * Returns the internalUnmodifiableList of type ObservableList in ExerciseList.
+     * */
+    public ObservableList<Exercise> getUnmodifiableList() {
+        return exerciseList.asUnmodifiableList();
+    }
+
+    /**
+     * Sorts the displayed exercise list according to chronological order of exercise dates.
+     */
+    public void sortDisplayedList() {
+        exerciseList.sortDisplayedList();
+    }
+
+    /**
+     * Resets the displayed exercise list to the default ordering.
+     */
+    public void resetDisplayedList() {
+        exerciseList.resetDisplayedList();
+    }
+
+    /**
+     * Filters the displayed exercise list.
+     */
+    public void filterDisplayedList(ObservableList<Exercise> filteredList) {
+        exerciseList.filterDisplayedList(filteredList);
     }
 
     @Override

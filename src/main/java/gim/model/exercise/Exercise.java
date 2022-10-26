@@ -124,5 +124,4 @@ public class Exercise {
         }
         return builder.toString();
     }
-
 }
