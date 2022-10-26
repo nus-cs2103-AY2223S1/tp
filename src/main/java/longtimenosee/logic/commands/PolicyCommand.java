@@ -11,7 +11,7 @@ public class PolicyCommand extends Command {
 
     public static final String COMMAND_WORD = "policies";
 
-    public static final String MESSAGE_SUCCESS = "Listed all policies";
+    public static final String MESSAGE_SUCCESS = "Listed all currently filtered policies";
 
 
     @Override

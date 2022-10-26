@@ -9,7 +9,8 @@ import static longtimenosee.commons.util.AppUtil.checkArgument;
  */
 public class Premium {
 
-    public static final String MESSAGE_CONSTRAINTS = "Premium can take any numeric value, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Premium should be any positive numeric value,"
+            + " and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
