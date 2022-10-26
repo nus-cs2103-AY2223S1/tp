@@ -33,7 +33,7 @@ public class HelpWindow extends UiPart<Stage> {
                 + "\t▫ delete: mod delete INDEX MODULE [MORE_MODULES]\n"
                 + "\t▫ mark: mod mark INDEX MODULE [MORE_MODULES]\n"
                 + "\t▫ unmark: mod unmark INDEX MODULE [MORE_MODULES]\n"
-                + "\t▫ mark all: mod mark all MODULE [MORE_MODULES]...\n"
+                + "\t▫ mark all: mod mark all\n"
                 + "\t▫ find: mod find MODULE [MORE_MODULES]\n"
                 + "\t▫ find taking: mod find taking MODULE [MORE_MODULES]\n"
                 + "\t▫ find taken: mod find taken MODULE [MORE_MODULES]\n"

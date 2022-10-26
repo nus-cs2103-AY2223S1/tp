@@ -17,7 +17,7 @@ public abstract class ModCommand extends Command {
             + "at the index as taken."
             + "\nmod unmark INDEX MODULE [MORE_MODULES]... : Unmarks the entered mods of the batchmate "
             + "at the index as not taken and update as currently taking."
-            + "\nmod mark all MODULE [MORE_MODULES]... : Marks the entered mods of all batchmates as taken."
+            + "\nmod mod mark all: Marks all modules of all batchmates as taken"
             + "\nmod find MODULE [MORE_MODULES]... : Finds the batchmate(s) who has/have taken or is/are now taking "
             + "the module(s)."
             + "\nmod find taken MODULE [MORE_MODULES]... : Finds the batchmate(s) who has/have taken the module(s)."
