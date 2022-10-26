@@ -1,0 +1,26 @@
+@startuml
+start
+:User enters AddTask command;
+
+if () then ([Is invalid parameter])
+    :HackAssist displays \nerror message indicating \ninvalid user input;
+
+else ([Is valid parameters])
+
+    if () then ([Task already exists])
+        :HackAssist displays \nerror message indicating \nthat Task already exist;
+    else ([else])
+        : Task is created;
+        if () then ([user found])
+             :Task assigned to \nfound user based on\ntask email;
+        else ([user not found])
+             :Task assigned to \n dummy user;
+
+           endif
+
+        :HackAssist updates \nto display new task\nat end of the list;
+    endif
+
+endif
+stop
+@enduml

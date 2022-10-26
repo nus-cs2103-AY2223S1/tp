@@ -1,0 +1,95 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddTaskCommandParser" as AddTaskCommandParser LOGIC_COLOR
+
+participant ":AddTaskCommand" as AddTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Task" as Task MODEL_COLOR
+end box
+
+[-> LogicManager : execute(addTask \n n/Create Initial UIUX Design \n d/Use FIGMA to create initial UIUX Design \n pr/medium c/uiux dl/2022-01-01 \n pe/johnd@example.com \n as/pending)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(commandText)
+activate AddressBookParser
+
+create AddTaskCommandParser
+AddressBookParser -> AddTaskCommandParser : AddTaskCommandParser()
+activate AddTaskCommandParser
+
+AddTaskCommandParser --> AddressBookParser
+deactivate AddTaskCommandParser
+
+
+AddressBookParser -> AddTaskCommandParser : parse(addTask \n n/Create Initial UIUX Design \n d/Use FIGMA to create initial UIUX Design \n pr/medium c/uiux dl/2022-01-01 \n pe/johnd@example.com \n as/pending)
+activate AddTaskCommandParser
+
+
+AddTaskCommandParser -> AddTaskCommandParser : arePrefixesPresent()
+activate AddTaskCommandParser
+deactivate AddTaskCommandParser
+create Task
+AddTaskCommandParser -> Task
+activate Task
+
+Task --> AddTaskCommandParser
+deactivate Task
+
+
+create AddTaskCommand
+AddTaskCommandParser -> AddTaskCommand : AddTaskCommand(task,personEmailAddress)
+activate AddTaskCommand
+
+AddTaskCommand --> AddTaskCommandParser
+deactivate AddTaskCommand
+
+
+AddTaskCommandParser --> AddressBookParser
+deactivate AddTaskCommandParser
+
+AddressBookParser --> LogicManager
+
+LogicManager -> AddTaskCommand : execute()
+activate AddTaskCommand
+
+AddTaskCommand -> Model : hasTask(toAdd)
+activate Model
+
+Model --> AddTaskCommand
+deactivate
+
+
+AddTaskCommand -> Model : addTask(task)
+activate Model
+
+Model --> AddTaskCommand
+deactivate
+
+AddTaskCommand -> Model : update()
+activate Model
+
+Model --> AddTaskCommand
+deactivate
+
+create CommandResult
+AddTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddTaskCommand
+deactivate CommandResult
+
+AddTaskCommand --> LogicManager : commandResult
+deactivate AddTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
