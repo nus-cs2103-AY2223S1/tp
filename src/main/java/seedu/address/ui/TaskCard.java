@@ -34,6 +34,9 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Button deadlineTag;
 
+    @FXML
+    private Label examDescription;
+
     /**
      * Constructor of the TaskCard. Sets the task and the position.
      *
@@ -54,6 +57,10 @@ public class TaskCard extends UiPart<Region> {
         if (task.getDeadlineTag() != null) {
             deadlineTag.setText(task.getDeadlineTag().toString());
             deadlineTag.setVisible(true);
+        }
+        if (task.getExam() != null) {
+            examDescription.setText(task.getExam().getDescription().description);
+            examDescription.setVisible(true);
         }
     }
 }

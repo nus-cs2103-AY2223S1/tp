@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
+
 /**
  * Adds a task to the task list.
  */
@@ -32,9 +33,9 @@ public class AddTaskCommand extends Command {
     /**
      * Creates a AddTaskCommand to add the specified {@code Task}
      */
-    public AddTaskCommand(Task task) {
-        requireNonNull(task);
-        toAdd = task;
+    public AddTaskCommand(Task toAdd) {
+        requireNonNull(toAdd);
+        this.toAdd = toAdd;
     }
 
     @Override
@@ -57,4 +58,5 @@ public class AddTaskCommand extends Command {
                 || (other instanceof AddTaskCommand // instanceof handles nulls
                 && toAdd.equals(((AddTaskCommand) other).toAdd));
     }
+
 }

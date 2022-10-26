@@ -6,6 +6,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.commons.Criteria;
+import seedu.address.model.exam.DistinctExamList;
+import seedu.address.model.exam.Exam;
+import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.module.DistinctModuleList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
@@ -24,6 +28,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final DistinctModuleList modules;
     private final DistinctTaskList tasks;
+    private final DistinctExamList exams;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -36,6 +42,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
         modules = new DistinctModuleList();
         tasks = new DistinctTaskList();
+        exams = new DistinctExamList();
     }
 
     public AddressBook() {}
@@ -61,15 +68,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setModules(List<Module> modules) {
         this.modules.setModules(modules);
     }
+
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setTasks(newData.getTaskList());
         setModules(newData.getModuleList());
+        setExams(newData.getExamList());
     }
+
 
     //// person-level operations
 
@@ -132,7 +142,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTask(Task task) {
         tasks.addTask(task);
+        modules.updateTotalNumOfTasks(task.getModule(), tasks);
+        modules.updateNumOfCompletedTasks(task.getModule(), tasks);
+        if (task.isLinked()) {
+            exams.updateTotalNumOfTasks(task.getExam(), tasks);
+            exams.updateNumOfCompletedTasks(task.getExam(), tasks);
+        }
     }
+
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
@@ -148,6 +165,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void replaceTask(Task target, Task editedTask, boolean isSameTask) throws DuplicateTaskException {
         requireAllNonNull(target, editedTask, isSameTask);
         tasks.replaceTask(target, editedTask, isSameTask);
+        modules.updateNumOfCompletedTasks(target.getModule(), tasks);
+        modules.updateTotalNumOfTasks(target.getModule(), tasks);
+        modules.updateNumOfCompletedTasks(editedTask.getModule(), tasks);
+        modules.updateTotalNumOfTasks(editedTask.getModule(), tasks);
+
+        if (target.isLinked() && !editedTask.isLinked()) {
+            // to update exam when a task is unlinked from an exam
+            exams.updateTotalNumOfTasks(target.getExam(), tasks);
+            exams.updateNumOfCompletedTasks(target.getExam(), tasks);
+        }
+
+        if (editedTask.isLinked()) {
+            // to update exam for linked tasks
+            exams.updateTotalNumOfTasks(editedTask.getExam(), tasks);
+            exams.updateNumOfCompletedTasks(editedTask.getExam(), tasks);
+        }
     }
 
     public void setTasks(List<Task> tasks) {
@@ -160,6 +193,20 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeTask(Task key) {
         tasks.remove(key);
+        modules.updateNumOfCompletedTasks(key.getModule(), tasks);
+        modules.updateTotalNumOfTasks(key.getModule(), tasks);
+        if (key.isLinked()) {
+            exams.updateNumOfCompletedTasks(key.getExam(), tasks);
+            exams.updateTotalNumOfTasks(key.getExam(), tasks);
+        }
+    }
+
+    /**
+     * Resets number of tasks and number of completed tasks of all modules and exams to 0.
+     */
+    public void resetAllTaskCount() {
+        modules.resetAllTaskCount();
+        exams.resetAllTaskCount();
     }
 
     //// util methods
@@ -167,7 +214,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons"
-                + "\n" + modules.getUnmodifiableModuleList().size() + " modules";
+                + "\n" + modules.getUnmodifiableModuleList().size() + " modules"
+                + "\n" + tasks.getUnmodifiableTaskList().size() + "tasks"
+                + "\n" + exams.getUnmodifiableExamList().size() + "exams";
         // TODO: refine later
     }
 
@@ -214,9 +263,90 @@ public class AddressBook implements ReadOnlyAddressBook {
         modules.replaceModule(target, editedModule);
     }
 
+    /**
+     * Sorts the task list in the address book.
+     *
+     * @param criteria The criteria used for sorting the task list.
+     */
+    public void sortTaskList(Criteria criteria) {
+        requireNonNull(criteria);
+        tasks.sortTasks(criteria);
+    }
+
     @Override
     public ObservableList<Task> getTaskList() {
         return tasks.getUnmodifiableTaskList();
+    }
+
+    /**
+     * Returns true if an exam with the same module and exam description and exam date
+     * as {@code exam} exists in the exam list.
+     */
+    public boolean hasExam(Exam exam) {
+        requireNonNull(exam);
+        return exams.contains(exam);
+    }
+
+    public boolean hasExamWithModule(Module module) {
+        return exams.containsModule(module);
+    }
+
+    /**
+     * Adds an exam to the exam list.
+     * The exam must not already exist in the exam list.
+     */
+    public void addExam(Exam exam) {
+        exams.addExam(exam);
+    }
+
+
+    /**
+     * Replaces the given exam {@code target} with {@code editedExam}.
+     * {@code target} must exist in the exam list.
+     *
+     * @throws DuplicateExamException if task identity of {@code editedExam} is the same as another exam
+     *     in the list (other than {@code target}).
+     */
+    public void replaceExam(Exam target, Exam editedExam, boolean isSameExam) throws DuplicateExamException {
+        requireAllNonNull(target, editedExam);
+        exams.replaceExam(target, editedExam, isSameExam);
+    }
+
+    public void setExams(List<Exam> exams) {
+        this.exams.setExams(exams);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeExam(Exam key) {
+        exams.remove(key);
+    }
+
+    //// util methods
+    @Override
+    public ObservableList<Exam> getExamList() {
+        return exams.getUnmodifiableExamList();
+    }
+
+    /**
+     * Unlinks all tasks that are currently linked to {@code exam}.
+     * @param exam The exam to unlink all tasks from.
+     */
+    public void unlinkTasksFromExam(Exam exam) {
+        tasks.unlinkTasksFromExam(exam);
+    }
+
+    /**
+     * Replaces task by changing its given exam field from {@code previousExam}
+     * to {@code newExam} for tasks that have their exam field as {@code previousExam}.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        tasks.updateExamFieldForTask(previousExam, newExam);
     }
 
     @Override

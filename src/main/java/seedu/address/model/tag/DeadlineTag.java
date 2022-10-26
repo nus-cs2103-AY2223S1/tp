@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Deadline Tag represents a tag which contains the deadline for the task
  */
-public class DeadlineTag {
+public class DeadlineTag implements Comparable<DeadlineTag> {
     public static final String DEADLINE_TAG_CONSTRAINTS =
             "Deadline of the tag should be in the format dd-mm-yyyy"
             + " and should be a valid date entry";
@@ -56,4 +56,8 @@ public class DeadlineTag {
         return deadline.hashCode();
     }
 
+    @Override
+    public int compareTo(DeadlineTag otherDeadlineTag) {
+        return this.deadline.compareTo(otherDeadlineTag.deadline);
+    }
 }

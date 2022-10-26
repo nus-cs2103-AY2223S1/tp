@@ -10,11 +10,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.task.DistinctTaskList;
 
 /**
  * This class represents a list which contains Module objects which are distinct from
  * each other. Module Objects are distinct from each other when they have different module
- * codes.
+ * codes and different module names.
  */
 public class DistinctModuleList implements Iterable<Module> {
 
@@ -53,6 +54,60 @@ public class DistinctModuleList implements Iterable<Module> {
     }
 
     /**
+     * Counts the number of tasks in {@code tasks} that belong to {@code module},
+     * and updates this number in {@code module}.
+     * {@code module} must exist in the module list.
+     *
+     * @param module The module to check for number of tasks.
+     * @param tasks the list of tasks to check with the module.
+     */
+    public void updateTotalNumOfTasks(Module module, DistinctTaskList tasks) {
+        requireAllNonNull(module, tasks);
+        int totalNumOfTasks = tasks.getTotalNumOfModuleTasks(module);
+
+        int index = moduleList.indexOf(module);
+        if (index == -1) {
+            throw new ModuleNotFoundException();
+        }
+
+        Module moduleToEdit = moduleList.get(index);
+        Module updatedModule = moduleToEdit.setTotalNumOfTasks(totalNumOfTasks);
+        moduleList.set(index, updatedModule);
+    }
+
+    /**
+     * Counts the number of completed tasks in {@code tasks} that belong to {@code module},
+     * and updates this number in {@code module}.
+     * {@code module} must exist in the module list.
+     *  @param module The module to check for number of completed tasks.
+     * @param tasks the list of tasks to check with the module.
+     */
+    public void updateNumOfCompletedTasks(Module module, DistinctTaskList tasks) {
+        requireAllNonNull(module, tasks);
+        int numOfCompletedTasks = tasks.getNumOfCompletedModuleTasks(module);
+
+        int index = moduleList.indexOf(module);
+        if (index == -1) {
+            throw new ModuleNotFoundException();
+        }
+        Module moduleToEdit = moduleList.get(index);
+        Module updatedModule = moduleToEdit.setNumOfCompletedTasks(numOfCompletedTasks);
+        moduleList.set(index, updatedModule);
+    }
+
+    /**
+     * Resets number of tasks and number of completed tasks of all modules to 0.
+     */
+    public void resetAllTaskCount() {
+        moduleList.forEach(module -> {
+            int index = moduleList.indexOf(module);
+            Module updatedModule = module.setNumOfCompletedTasks(0);
+            updatedModule = updatedModule.setTotalNumOfTasks(0);
+            moduleList.set(index, updatedModule);
+        });
+    }
+
+    /**
      * Removes the equivalent module from the module list.
      * The module must exist in the list.
      */
@@ -67,10 +122,12 @@ public class DistinctModuleList implements Iterable<Module> {
      * Replaces the given task {@code target} with {@code editedModule}.
      * {@code target} must exist in the module list.
      *
-     * @throws DuplicateModuleException if module identity of {@code editedModule} is the same as another module
+     * @throws DuplicateModuleException if module {@code editedModule} is the same as another module
      *     in the list (other than {@code target}).
+     * @throws ModuleNotFoundException if module {@code target} does not exist in the list.
      */
-    public void replaceModule(Module target, Module editedModule) throws DuplicateModuleException {
+    public void replaceModule(Module target, Module editedModule) throws DuplicateModuleException,
+            ModuleNotFoundException {
         requireAllNonNull(target, editedModule);
 
         int index = moduleList.indexOf(target);

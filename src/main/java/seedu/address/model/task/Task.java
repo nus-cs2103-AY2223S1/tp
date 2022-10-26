@@ -5,11 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.exceptions.DeadlineTagAlreadyExistsException;
+import seedu.address.model.tag.exceptions.DeadlineTagDoesNotExist;
+import seedu.address.model.tag.exceptions.DeadlineTagUnchangedException;
 import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;
+import seedu.address.model.tag.exceptions.PriorityTagDoesNotExist;
+import seedu.address.model.tag.exceptions.PriorityTagUnchangedException;
 
 /**
  * Task class represents a task which stores the module code and the
@@ -21,6 +26,7 @@ public class Task {
     private final PriorityTag priorityTag;
     private final DeadlineTag deadlineTag;
     private final TaskStatus status;
+    private final Exam linkedExam;
 
     /**
      * The constructor of the Task class. Sets the module and
@@ -35,6 +41,7 @@ public class Task {
         this.status = TaskStatus.INCOMPLETE;
         priorityTag = null;
         deadlineTag = null;
+        linkedExam = null;
     }
 
     /**
@@ -50,16 +57,19 @@ public class Task {
         this.status = status;
         priorityTag = null;
         deadlineTag = null;
+        linkedExam = null;
     }
 
     /**
      * The constructor of the Task class. Sets the module, description,
-     * completion status and the priority status of the task.
+     * completion status, the priority status of the task and the deadline
+     * of the task.
      *
      * @param module The module being set.
      * @param description The description being set.
      * @param status The completion status of the task.
      * @param priorityTag The tag marking the priority status of the task.
+     * @param deadlineTag The tag marking the deadline of the task.
      */
     public Task(Module module, TaskDescription description, TaskStatus status, PriorityTag priorityTag,
             DeadlineTag deadlineTag) {
@@ -68,6 +78,29 @@ public class Task {
         this.status = status;
         this.priorityTag = priorityTag;
         this.deadlineTag = deadlineTag;
+        linkedExam = null;
+    }
+
+    /**
+     * The constructor of the Task class. Sets the module, description,
+     * completion status, the priority status of the task, the deadline
+     * of the task and the exam description of the task.
+     *
+     * @param module The module being set.
+     * @param description The description being set.
+     * @param status The completion status of the task.
+     * @param priorityTag The tag marking the priority status of the task.
+     * @param deadlineTag The tag marking the deadline of the task.
+     * @param linkedExam The exam the task is linked to.
+     */
+    public Task(Module module, TaskDescription description, TaskStatus status, PriorityTag priorityTag,
+                DeadlineTag deadlineTag, Exam linkedExam) {
+        this.module = module;
+        this.description = description;
+        this.status = status;
+        this.priorityTag = priorityTag;
+        this.deadlineTag = deadlineTag;
+        this.linkedExam = linkedExam;
     }
 
     public TaskDescription getDescription() {
@@ -101,7 +134,7 @@ public class Task {
      * and returns the task.
      */
     public Task mark() {
-        return new Task(module, description, TaskStatus.COMPLETE, priorityTag, deadlineTag);
+        return new Task(module, description, TaskStatus.COMPLETE, priorityTag, deadlineTag, linkedExam);
     }
 
     public Task setPriorityTag(PriorityTag tag) {
@@ -109,7 +142,33 @@ public class Task {
         if (priorityTag != null) {
             throw new PriorityTagAlreadyExistsException();
         }
-        return new Task(module, description, status, tag, deadlineTag);
+        return new Task(module, description, status, tag, deadlineTag, linkedExam);
+    }
+
+    /**
+     * Replaces the priority tag stored in the task.
+     *
+     * @param tag The new priority tag.
+     * @return The task which contains the new priority tag.
+     */
+    public Task replacePriorityTag(PriorityTag tag) {
+        requireNonNull(tag);
+        if (priorityTag != null && priorityTag.compareTo(tag) == 0) {
+            throw new PriorityTagUnchangedException();
+        }
+        return new Task(module, description, status, tag, deadlineTag, linkedExam);
+    }
+
+    /**
+     * Deletes the deadline tag stored in the task.
+     *
+     * @return The task which contains no deadline tag.
+     */
+    public Task deletePriorityTag() {
+        if (priorityTag == null) {
+            throw new PriorityTagDoesNotExist();
+        }
+        return new Task(module, description, status, null, deadlineTag, linkedExam);
     }
 
     public boolean hasPriorityTag() {
@@ -133,7 +192,41 @@ public class Task {
         if (deadlineTag != null) {
             throw new DeadlineTagAlreadyExistsException();
         }
-        return new Task(module, description, status, priorityTag, tag);
+        return new Task(module, description, status, priorityTag, tag, linkedExam);
+    }
+
+    /**
+     * Replaces the deadline tag stored in the task.
+     *
+     * @param tag The new deadline tag.
+     * @return The task which contains the new deadline tag.
+     */
+    public Task replaceDeadlineTag(DeadlineTag tag) {
+        requireNonNull(tag);
+        if (deadlineTag != null && deadlineTag.compareTo(tag) == 0) {
+            throw new DeadlineTagUnchangedException();
+        }
+        return new Task(module, description, status, priorityTag, tag, linkedExam);
+    }
+
+    /**
+     * Deletes the priority tag stored in the task.
+     *
+     * @return The task which contains no deadline tag.
+     */
+    public Task deleteDeadlineTag() {
+        if (deadlineTag == null) {
+            throw new DeadlineTagDoesNotExist();
+        }
+        return new Task(module, description, status, priorityTag, null, linkedExam);
+    }
+
+    public boolean isLinked() {
+        return linkedExam != null;
+    }
+
+    public Exam getExam() {
+        return linkedExam;
     }
 
     /**
@@ -141,7 +234,7 @@ public class Task {
      * and returns the task.
      */
     public Task unmark() {
-        return new Task(module, description, TaskStatus.INCOMPLETE, priorityTag, deadlineTag);
+        return new Task(module, description, TaskStatus.INCOMPLETE, priorityTag, deadlineTag, linkedExam);
     }
 
     /**
@@ -153,7 +246,28 @@ public class Task {
 
         Module updatedModule = editTaskDescriptor.getModule().orElse(module);
         TaskDescription updatedDescription = editTaskDescriptor.getDescription().orElse(description);
-        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+
+        if (editTaskDescriptor.getModule().isPresent()
+            && !editTaskDescriptor.getModule().get().equals(module)) {
+            return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+        }
+
+        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag, linkedExam);
+    }
+
+    /**
+     * Links the task to the exam in the exam list.
+     *
+     * @param exam The exam which the task will be linked to.
+     * @return Task object which now contains the linked exam.
+     */
+    public Task linkTask(Exam exam) {
+        requireNonNull(exam);
+        return new Task(module, description, status, priorityTag, deadlineTag, exam);
+    }
+
+    public Task unlinkTask() {
+        return new Task(module, description, status, priorityTag, deadlineTag, null);
     }
 
     @Override

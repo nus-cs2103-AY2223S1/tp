@@ -19,6 +19,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.commons.Criteria;
+import seedu.address.model.exam.Exam;
+import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
@@ -131,6 +134,56 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortTaskList(Criteria criteria) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unlinkTasksFromExam(Exam exam) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasExam(Exam exam) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteExam(Exam target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasExamWithModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addExam(Exam exam) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void replaceExam(Exam target, Exam editedExam, boolean isSameExam) throws DuplicateExamException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Exam> getFilteredExamList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredExamList(Predicate<Exam> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
             throw new AssertionError("This method should not be called.");
         }
 

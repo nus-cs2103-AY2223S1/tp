@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.commons.Criteria;
+import seedu.address.model.exam.Exam;
+import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
@@ -22,6 +25,10 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Exam> PREDICATE_SHOW_ALL_EXAMS = unused -> true;
+
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -93,7 +100,6 @@ public interface Model {
 
     ObservableList<Module> getFilteredModuleList();
 
-
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -154,4 +160,54 @@ public interface Model {
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
+
+    void sortTaskList(Criteria criteria);
+
+    /**
+     * Updates the task list to unlink all tasks that are currently linked to the give {@code exam}.
+     * @param exam
+     */
+    void unlinkTasksFromExam(Exam exam);
+
+    /**
+     * Returns true if a exam with the same description and module and exam date
+     * as {@code exam} exists in the exam list.
+     */
+    boolean hasExam(Exam exam);
+
+    void deleteExam(Exam target);
+
+    boolean hasExamWithModule(Module module);
+
+    /**
+     * Adds the given exam.
+     * {@code exam} must not already exist in the exam list.
+     */
+    void addExam(Exam exam);
+
+
+    /**
+     * Replaces the given exam {@code target} with {@code editedExam}.
+     * {@code target} must exist in the exam list.
+     *
+     * @throws DuplicateExamException if task identity of {@code editedExam} is the same as another exam
+     *     in the list (other than {@code target}).
+     */
+    void replaceExam(Exam target, Exam editedExam, boolean isSameExam) throws DuplicateExamException;
+
+    /** Returns an unmodifiable view of the filtered exam list */
+    ObservableList<Exam> getFilteredExamList();
+
+    /**
+     * Updates the filter of the filtered exam list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredExamList(Predicate<Exam>predicate);
+
+    /**
+     * Updates the exam field in task by replacing the previous exam with the new exam.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    void updateExamFieldForTask(Exam previousExam, Exam newExam);
 }
