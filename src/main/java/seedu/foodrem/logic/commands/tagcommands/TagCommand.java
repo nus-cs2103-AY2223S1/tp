@@ -19,10 +19,6 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
  * Tags an item with a Tag.
  */
 public class TagCommand extends Command {
-    private static final String ERROR_DUPLICATE = "This item has already been tagged with this tag";
-    private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
-    private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
-
     private final Index index;
     private final Tag tag;
 
@@ -41,7 +37,7 @@ public class TagCommand extends Command {
         Item itemToTag = validateAndGetTargetItem(model, tag, index);
         Set<Tag> itemTags = itemToTag.getTagSet();
         if (itemTags.contains(tag)) {
-            throw new CommandException(ERROR_DUPLICATE);
+            throw new CommandException("This item has already been tagged with this tag");
         }
         itemTags.add(tag);
         Item newTagSetItem = Item.createItemWithTags(itemToTag, itemTags);
@@ -56,12 +52,12 @@ public class TagCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasTag(tag)) {
-            throw new CommandException(ERROR_NOT_FOUND_TAG);
+            throw new CommandException("This tag does not exist");
         }
 
         List<Item> lastShownList = model.getCurrentList();
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(ERROR_NOT_FOUND_ITEM);
+            throw new CommandException("The item index does not exist");
         }
 
         return lastShownList.get(index.getZeroBased());

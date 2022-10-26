@@ -18,8 +18,6 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
  * Untags an item with a Tag.
  */
 public class UntagCommand extends Command {
-    private static final String ERROR_ITEM_DOES_NOT_CONTAIN_TAG = "This item is not tagged with this tag";
-
     private final Index index;
     private final Tag tag;
 
@@ -38,7 +36,7 @@ public class UntagCommand extends Command {
         Item itemToUntag = TagCommand.validateAndGetTargetItem(model, tag, index);
         Set<Tag> itemTags = itemToUntag.getTagSet();
         if (!itemTags.contains(tag)) {
-            throw new CommandException(ERROR_ITEM_DOES_NOT_CONTAIN_TAG);
+            throw new CommandException("This item is not tagged with this tag");
         }
         itemTags.remove(tag);
         Item newTagSetItem = Item.createItemWithTags(itemToUntag, itemTags);
