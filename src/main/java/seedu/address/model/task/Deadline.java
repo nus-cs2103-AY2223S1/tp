@@ -23,10 +23,12 @@ public class Deadline implements Task {
         this.date = date;
     }
 
+    @Override
     public TaskTitle getTitle() {
         return title;
     }
 
+    @Override
     public TaskDescription getDescription() {
         return description;
     }
@@ -51,13 +53,14 @@ public class Deadline implements Task {
 
         Deadline otherStudent = (Deadline) other;
         return otherStudent.getTitle().equals(getTitle())
-                && otherStudent.getDescription().equals(getDescription());
+                && otherStudent.getDescription().equals(getDescription())
+                && otherStudent.getDate().equals(getDate());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, description);
+        return Objects.hash(title, description, date);
     }
 
     @Override

@@ -3,6 +3,8 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAssignments.getTypicalTaskBookWithAssignments;
+import static seedu.address.testutil.TypicalDeadlines.getTypicalTaskBookWithDeadlines;
 import static seedu.address.testutil.TypicalToDos.FIRST;
 import static seedu.address.testutil.TypicalToDos.SECOND;
 import static seedu.address.testutil.TypicalToDos.getTypicalTaskBookWithToDos;
@@ -55,7 +57,7 @@ public class JsonTaskBookStorageTest {
     }
 
     @Test
-    public void readAndSaveTaskBook_allInOrder_success() throws Exception {
+    public void readAndSaveTaskBookWithToDos_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         TaskBook original = getTypicalTaskBookWithToDos();
         JsonTaskBookStorage jsonTaskBookStorage = new JsonTaskBookStorage(filePath);
@@ -76,6 +78,32 @@ public class JsonTaskBookStorageTest {
         original.addTask(FIRST);
         jsonTaskBookStorage.saveTaskBook(original); // file path not specified
         readBack = jsonTaskBookStorage.readTaskBook().get(); // file path not specified
+        assertEquals(original, new TaskBook(readBack));
+
+    }
+
+    @Test
+    public void readAndSaveTaskBookWithDeadlines_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempAddressBook.json");
+        TaskBook original = getTypicalTaskBookWithDeadlines();
+        JsonTaskBookStorage jsonTaskBookStorage = new JsonTaskBookStorage(filePath);
+
+        // Save in new file and read back
+        jsonTaskBookStorage.saveTaskBook(original, filePath);
+        ReadOnlyTaskBook readBack = jsonTaskBookStorage.readTaskBook(filePath).get();
+        assertEquals(original, new TaskBook(readBack));
+
+    }
+
+    @Test
+    public void readAndSaveTaskBookWithAssignments_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempAddressBook.json");
+        TaskBook original = getTypicalTaskBookWithAssignments();
+        JsonTaskBookStorage jsonTaskBookStorage = new JsonTaskBookStorage(filePath);
+
+        // Save in new file and read back
+        jsonTaskBookStorage.saveTaskBook(original, filePath);
+        ReadOnlyTaskBook readBack = jsonTaskBookStorage.readTaskBook(filePath).get();
         assertEquals(original, new TaskBook(readBack));
 
     }

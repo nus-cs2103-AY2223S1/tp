@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.FormatDate;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskTitle;
 
@@ -32,13 +31,11 @@ public class DeadlineBuilder {
     /**
      * Initializes the TaskBuilder with the data of {@code taskToCopy}.
      */
-    public DeadlineBuilder(Task taskToCopy) {
-        if (taskToCopy instanceof Deadline) {
-            Deadline deadline = (Deadline) taskToCopy;
-            title = deadline.getTitle();
-            description = deadline.getDescription();
-            date = deadline.getDate();
-        }
+    public DeadlineBuilder(Deadline deadlineToCopy) {
+        Deadline deadline = deadlineToCopy;
+        title = deadline.getTitle();
+        description = deadline.getDescription();
+        date = deadline.getDate();
 
     }
 
@@ -66,7 +63,7 @@ public class DeadlineBuilder {
         return this;
     }
 
-    public Task build() {
+    public Deadline build() {
         return new Deadline(title, description, date);
     }
 }

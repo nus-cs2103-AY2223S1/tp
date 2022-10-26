@@ -528,12 +528,34 @@ Use case ends.
 
 **Use case: UC02 - Delete a Student**
 
+**Guarantees:** A student contact is deleted from GREWZ.
+
+**MSS**
+1. Tutor deletes a specific student contact by entering the command along with the index that corresponds to the student.
+2. Student contact is deleted.
+Use case ends
+
 **Use case: UC03 - Edit a Student**
 
-**Use case: UC04 - Add attendance to Student**
-**Guarantees:**  An attendance is added to the Student.
+**Guarantees:** Student's details are changed in GREWZ
+
 **MSS**
-1. Tutor adds attendance to student by entering command with module and number of lessons.
+1. Tutor edits a specific student contact by entering the command along with the index that corresponds to the student.
+2. Student contact in GREWZ is edited
+Use case ends
+
+**Extension**
+* 1a. GREWZ detects that the index given is invalid
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User re-enters the command with valid index
+    Use case resumes in step 2
+
+**Use case: UC04 - Add attendance to Student**
+
+**Guarantees:**  An attendance is added to the Student.
+
+**MSS**
+1. Tutor adds attendance to student by entering command with student index, module and number of lessons.
 2. GREWZ adds attendance to student.
 Use case ends.
 
@@ -545,8 +567,76 @@ Use case ends.
     Use case resumes in step 2
 
 **Use case: UC05 - Delete attendance of a Student**
+ 
+**Guarantees:**  An attendance is deleted from the Student.
+ 
+**MSS**
+1. Tutor deletes attendance to student by entering command with student index.
+2. GREWZ deletes the attendance of the student.
 
+**Extensions**
+* 1a. GREWZ detects an error in entered data.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with correct student index and command
+    * Repeat steps until data is correct
+    Use case resumes in step 2
+ 
 **Use case: UC06 - Mark attendance of Student**
+
+**Guarantees:**  An attendance is deleted from the Student.
+
+**MSS**
+1. Tutor marks attendance of student by entering command with student index, lesson number, marked value.
+2. GREWZ marks/unmarks the attendance of the student.
+
+**Extensions**
+* 1a. GREWZ detects an error in entered data or attendancelist is not present
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with correct student index and data
+    * Repeat steps until data is correct
+    Use case resumes in step 2
+
+**Use case: UC07 - Find a Student**
+
+**Guarantees:**  A Tutor can search to find Student details with limited information.
+
+**MSS**
+1. Tutor searches for student details by entering command with keywords.
+2. GREWZ returns a list of students whose details match the keywords, completely or partially.
+   Use case ends.
+
+**Use case: UC08 - Add class group to student**
+
+**Guarantees:**  A class group is added to the Student.
+
+**MSS**
+1. Tutor adds class group to student by entering command with index of student and class group.
+2. GREWZ adds class group to student.
+Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in entered index.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with student details
+    * Repeat steps until data is correct
+    Use case resumes in step 2
+
+**Use case: UC09 - Adding a Deadline Task**
+
+**Guarantees:**  A tutor can add a task to the TaskBook along with a given deadline.
+
+**MSS**
+1. Tutor adds task to student by entering command with title, description and deadline.
+2. Task is added to the TaskBook and the deadline is displayed as well.
+   Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in the given date format.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with corrected date format.
+    * Repeat steps until data is correct
+      Use case resumes in step 2
+
 
 *{More to be added}*
 

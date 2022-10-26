@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,6 +24,7 @@ public class FormatDate {
      */
     public FormatDate(String str) {
         requireNonNull(str);
+        checkArgument(isValidDate(str), MESSAGE_CONSTRAINTS);
         this.formatDate = LocalDate.parse(str);
     }
 
@@ -53,5 +55,12 @@ public class FormatDate {
     @Override
     public String toString() {
         return this.formatDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FormatDate // instanceof handles nulls
+                && formatDate.equals(((FormatDate) other).formatDate)); // state check
     }
 }

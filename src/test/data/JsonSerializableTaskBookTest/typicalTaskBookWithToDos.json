@@ -1,5 +1,5 @@
 {
-  "_comment": "TaskBook save file which contains the same Task values as in TypicalTasks#getTypicalTaskBook()",
+  "_comment": "TaskBook save file which contains the same Task values as in TypicalToDos#getTypicalTaskBookWithToDos()",
   "tasks" : [ {
     "type" : "ToDo",
     "title" : "Grade assignments",
