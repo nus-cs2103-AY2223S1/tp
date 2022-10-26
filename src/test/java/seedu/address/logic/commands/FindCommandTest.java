@@ -37,8 +37,8 @@ public class FindCommandTest {
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
         ClassContainsDatePredicate classOnePredicate =
                 new ClassContainsDatePredicate("2022-10-10");
-        NameContainsKeywordsPredicate classTwoPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("2022-10-11"));
+        ClassContainsDatePredicate classTwoPredicate =
+                new ClassContainsDatePredicate("2022-10-11");
         PhoneContainsNumberPredicate phoneOnePredicate =
                 new PhoneContainsNumberPredicate("94351253");
         PhoneContainsNumberPredicate phoneTwoPredicate =
