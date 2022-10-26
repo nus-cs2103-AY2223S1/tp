@@ -22,7 +22,7 @@ public class DeleteClientCommand extends ClientCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Deletes the client by its id. Id must be positive and valid \n"
+            + ": Deletes the client by its Id. Id must be positive and valid \n"
             + "Parameters: CLIENT_ID \n"
             + "Example: " + COMMAND_WORD + " " + COMMAND_FLAG + " 1";
 
