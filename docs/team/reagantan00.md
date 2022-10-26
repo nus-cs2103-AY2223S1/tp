@@ -32,6 +32,7 @@ Given below are my contributions to the project.
     * User Guide:
         * rebranded from FABook to IBook back to FABook
         * updated formats of 'Create', 'Update'
+        * added information for new commands
     * Developer Guide:
         * made changes to user profile, value proposition, user stories and use cases
         * rebranded from FABook to IBook back to FABook
