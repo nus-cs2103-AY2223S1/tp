@@ -15,6 +15,7 @@ import modtrekt.model.task.Task;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = module -> true;
+    Predicate<Module> PREDICATE_HIDE_DONE_MODULES = module -> !module.isDone();
     Predicate<Task> PREDICATE_HIDE_DONE_TASKS = task -> !task.isDone();
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> true;
 

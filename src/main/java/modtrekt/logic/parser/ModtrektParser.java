@@ -22,6 +22,7 @@ import modtrekt.logic.commands.EditModuleCommand;
 import modtrekt.logic.commands.EditTaskCommand;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
+import modtrekt.logic.commands.ListModulesCommand;
 import modtrekt.logic.commands.RemoveCommand;
 import modtrekt.logic.commands.UndoneModuleCommand;
 import modtrekt.logic.commands.tasks.DoneTaskCommand;
@@ -69,6 +70,8 @@ public class ModtrektParser {
                         DoneModuleCommand.COMMAND_ALIAS)
                 .addCommand(UndoneModuleCommand.COMMAND_WORD, new UndoneModuleCommand(),
                         UndoneModuleCommand.COMMAND_ALIAS)
+                .addCommand(ListModulesCommand.COMMAND_PHRASE, new ListModulesCommand(),
+                        ListModulesCommand.COMMAND_ALIAS)
                 .build();
         try {
             // Get the tokens from the user input.
