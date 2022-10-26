@@ -15,12 +15,7 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.ArchivedTaskBookStorage;
@@ -104,10 +99,10 @@ public class MainApp extends Application {
             initialArchivedData = archivedTaskBookOptional.orElseGet(SampleDataUtil::getSampleArchivedTaskBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty task list");
-            initialArchivedData = new AddressBook();
+            initialArchivedData = new ArchivedTaskBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty task list");
-            initialArchivedData = new AddressBook();
+            initialArchivedData = new ArchivedTaskBook();
         }
 
         return new ModelManager(initialData, initialArchivedData, userPrefs);

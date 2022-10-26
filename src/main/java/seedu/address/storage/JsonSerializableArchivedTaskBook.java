@@ -26,7 +26,7 @@ public class JsonSerializableArchivedTaskBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableArchivedTaskBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableArchivedTaskBook(@JsonProperty("archivedTasks") List<JsonAdaptedPerson> persons) {
         this.archivedTasks.addAll(persons);
     }
 

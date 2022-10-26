@@ -1,23 +1,20 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
-import java.util.List;
-
 import seedu.address.logic.commands.list.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.ModuleContainsKeywordsPredicate;
 import seedu.address.model.task.ModuleIsDonePredicate;
 
-/**
- * Parses input arguments and creates a matching new List command
- */
-public class ListCommandParser implements Parser<ListCommand> {
+import java.util.List;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
+public class ListArchivedCommandParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a ListCommand object for execution.
+     * and returns a lListCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
@@ -31,13 +28,11 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         switch (listTypes[0]) {
         case ListAllCommand.COMMAND_WORD:
-            return new ListAllCommand();
-        case ListModuleCommand.COMMAND_WORD:
-            return new ListModuleCommand(new ModuleContainsKeywordsPredicate(List.of(listTypes[1])));
-        case ListUnmarkedCommand.COMMAND_WORD:
-            return new ListUnmarkedCommand(new ModuleIsDonePredicate(List.of("false")));
-        case ListArchiveCommand.COMMAND_WORD:
             return new ListArchiveCommand();
+        case ListModuleCommand.COMMAND_WORD:
+            return new ListArchivedModuleCommand(new ModuleContainsKeywordsPredicate(List.of(listTypes[1])));
+        case ListUnmarkedCommand.COMMAND_WORD:
+            return new ListArchivedUnmarkedCommand(new ModuleIsDonePredicate(List.of("false")));
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -45,7 +45,20 @@
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10"/>
                     </padding>
-                    <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    <TabPane fx:id="tabsPlaceholder" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                        <tabs>
+                            <Tab text="Upcoming">
+                                <content>
+                                    <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                                </content>
+                            </Tab>
+                            <Tab text="Archived">
+                                <content>
+                                    <StackPane fx:id="archiveListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                                </content>
+                            </Tab>
+                        </tabs>
+                    </TabPane>
                 </VBox>
 
                 <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"

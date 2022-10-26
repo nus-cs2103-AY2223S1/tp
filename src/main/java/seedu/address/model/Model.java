@@ -39,6 +39,8 @@ public interface Model {
      */
     Path getAddressBookFilePath();
 
+    Path getArchivedTaskBookFilePath();
+
     /**
      * Sets the user prefs' address book file path.
      */
@@ -88,6 +90,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredPersonList();
 
+    ObservableList<Task> getFilteredArchivedTaskList();
+
     ObservableList<Task> getArchivedTaskList();
 
     /**
@@ -96,6 +100,8 @@ public interface Model {
      */
 
     void updateFilteredPersonList(Predicate<Task> predicate);
+
+    void updateFilteredArchivedTaskList(Predicate<Task> predicate);
 
     void setArchivedTaskBook (ReadOnlyAddressBook addressBook);
 

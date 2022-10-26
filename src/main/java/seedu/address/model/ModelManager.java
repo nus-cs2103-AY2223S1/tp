@@ -20,9 +20,10 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final ArchivedTaskBook archivedTaskBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
-    private final ArchivedTaskBook archivedTaskBook;
+    private final FilteredList<Task> filteredArchivedTasks;;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,10 +38,11 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.archivedTaskBook = new ArchivedTaskBook(archivedTaskBook);
         filteredTasks = new FilteredList<>(this.addressBook.getPersonList());
+        filteredArchivedTasks = new FilteredList<>(this.archivedTaskBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new ArchivedTaskBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -73,6 +75,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getArchivedTaskBookFilePath() {
+        return userPrefs.getArchivedTaskBookFilePath();
+    }
+
+    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
@@ -97,20 +104,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyAddressBook getArchivedAddressBook() {
-        return archivedTaskBook;
-    }
-
-    @Override
     public boolean hasPerson(Task task) {
         requireNonNull(task);
         return addressBook.hasPerson(task);
-    }
-
-    @Override
-    public boolean hasTaskInArchives(Task task) {
-        requireAllNonNull(task);
-        return archivedTaskBook.hasTask(task);
     }
 
     @Override
@@ -125,16 +121,45 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        addressBook.setPerson(target, editedTask);
+    }
+
+
+    //=========== ArchivedTaskBook ================================================================================
+
+    @Override
+    public ReadOnlyAddressBook getArchivedAddressBook() {
+        return archivedTaskBook;
+    }
+
+    @Override
     public void archivedTask(Task task) {
         addressBook.removePerson(task);
         archivedTaskBook.addTask(task);
     }
 
     @Override
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
+    public boolean hasTaskInArchives(Task task) {
+        requireAllNonNull(task);
+        return archivedTaskBook.hasTask(task);
+    }
 
-        addressBook.setPerson(target, editedTask);
+    @Override
+    public ObservableList<Task> getArchivedTaskList() {
+        return archivedTaskBook.getPersonList();
+    }
+
+    @Override
+    public void setArchivedTaskBook(ReadOnlyAddressBook addressBook) {
+        this.archivedTaskBook.resetData(addressBook);
+    }
+
+    @Override
+    public String getArchivedTasks() {
+        return archivedTaskBook.toString();
     }
 
     //=========== Filtered Task List Accessors =============================================================
@@ -149,8 +174,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Task> getArchivedTaskList() {
-        return archivedTaskBook.getPersonList();
+    public ObservableList<Task> getFilteredArchivedTaskList() {
+        return filteredArchivedTasks;
     }
 
     @Override
@@ -160,13 +185,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setArchivedTaskBook(ReadOnlyAddressBook addressBook) {
-        this.archivedTaskBook.resetData(addressBook);
-    }
-
-    @Override
-    public String getArchivedTasks() {
-        return archivedTaskBook.toString();
+    public void updateFilteredArchivedTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredArchivedTasks.setPredicate(predicate);
     }
 
     @Override
@@ -186,7 +207,8 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && archivedTaskBook.equals(other.archivedTaskBook)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && filteredArchivedTasks.equals(other.filteredArchivedTasks);
     }
 
 }

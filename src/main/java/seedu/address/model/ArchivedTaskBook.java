@@ -9,7 +9,7 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
-public class ArchivedTaskBook implements ReadOnlyAddressBook{
+public class ArchivedTaskBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList archivedTasks;
 

@@ -15,7 +15,7 @@ import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 
-public class ArchiveCommand extends Command{
+public class ArchiveCommand extends Command {
 
     public static final String COMMAND_WORD = "archive";
     private final Index index;

@@ -71,6 +71,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Task> getFilteredArchivedTaskList() {
+        return model.getFilteredArchivedTaskList();
+    }
+
+    @Override
     public ObservableList<Task> getArchivedTaskList() {
         return model.getArchivedTaskList();
     }
