@@ -159,6 +159,9 @@ public class ClassStorage {
         return 0;
     }
 
+    /**
+     * Refreshes the class storage with the current in the given {@code model}.
+     */
     public static void refresh(Model model) {
         ClassStorage.model = model;
         ClassStorage.teachersPet = (TeachersPet) model.getTeachersPet();
