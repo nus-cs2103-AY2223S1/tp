@@ -16,8 +16,8 @@ public class Birthdate {
 
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public static final DateTimeFormatter DISPLAYED_DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
-    public static final String MESSAGE_CONSTRAINTS = "Birthdate has to be of format dd-MM-yyyy, " +
-        "and must not be later than the current date!";
+    public static final String MESSAGE_CONSTRAINTS = "Birthdate has to be of format dd-MM-yyyy, "
+        + "and must not be later than the current date!";
     private final LocalDate birthdate;
 
     /**
