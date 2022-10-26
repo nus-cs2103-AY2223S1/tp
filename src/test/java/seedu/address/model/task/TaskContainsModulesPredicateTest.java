@@ -69,7 +69,7 @@ public class TaskContainsModulesPredicateTest {
         assertFalse(predicate.test(new Task(new TaskName("Science Math homework"), new Module("Mod1"),
                 new Deadline("2022-05-05 15:04"), new Status(false))));
 
-        // Non matching substring
+        // Non-matching substring
         predicate = new TaskContainsModulesPredicate(Collections.singletonList("1231"));
         assertFalse(predicate.test(new Task(new TaskName("Science Math homework"), new Module("MA1521"),
                 new Deadline("2022-05-05 15:04"), new Status(false))));

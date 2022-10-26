@@ -136,7 +136,9 @@ Format:
 
 Examples:
 * `find n/ homework` returns `Science homework`, `Math homework`
+* `find n/ home` returns `Science homework`, `Math homework`
 * `find m/ CS1101S` returns `Problem set 4`, `Reading assignment 2`
+* `find m/ 1101S` returns `Problem set 4`, `Reading assignment 2`
 
 #### Listing all tasks : `list`
 
@@ -144,8 +146,8 @@ Shows a list of all tasks.
 
 Format: `list` /  `list time`
 
-* List displays a list of all tasks in the order of most recent task added
-* List time displays a list of all tasks in the order of nearest deadline
+* `list` displays a list of all tasks ordered by recency, with the most recent task added listed on top
+* `list time` displays a list of all tasks ordered by deadline, with the task with the earliest deadline listed on top
 
 ### Managing contacts
 
@@ -200,7 +202,9 @@ Format:
 
 Examples:
 * `findc n/ John` returns `john`, `John Doe`
+* `findc n/ jo` returns `john`, `John Doe`
 * `findc m/ CS1231S` returns `Alex Yeoh`, `David Li`
+* `findc m/ 1231` returns `Alex Yeoh`, `David Li`
 
 #### Clearing all contacts : `clear`
 
