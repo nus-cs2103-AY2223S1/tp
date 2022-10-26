@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -22,6 +21,7 @@ public class CopyContactEmailCommand extends Command {
             + "the specified tag (case-sensitive) for easy copy-pasting.\n"
             + "Parameters: TAG.\n"
             + "Example: " + COMMAND_WORD + " CS2103T";
+    public static final String MESSAGE_COPIED_EMAILS = "Emails: %s";
 
     private final PersonContainsKeywordsPredicate predicate;
 
@@ -41,7 +41,7 @@ public class CopyContactEmailCommand extends Command {
         }
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_COPIED_EMAILS, builder.toString()));
+                String.format(MESSAGE_COPIED_EMAILS, builder.toString()));
     }
 
     @Override
