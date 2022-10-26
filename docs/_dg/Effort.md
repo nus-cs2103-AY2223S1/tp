@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file first-line-h1 -->
 ### Difficulty Level
 
 The implementation of FoodRem was not a straightforward task.
