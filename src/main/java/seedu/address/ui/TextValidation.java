@@ -11,7 +11,7 @@ import javafx.scene.layout.Region;
  */
 public class TextValidation extends UiPart<Region> {
     private static final String FXML = "TextValidation.fxml";
-    private static final String SUCCESS_MESSAGE = "Here are the appointments for the new month :D";
+    private static final String SUCCESS_MESSAGE = "Here are the appointments for the new month";
     private static final String ERROR_MESSAGE = "Date should be in the format [dd-MMM-yyyy]";
     private static final String ERROR_STYLE = "-fx-border-color: RED; -fx-border-width: 2;"
             + " -fx-border-radius: 5; -fx-text-fill: RED; -fx-font-size: 13;";
