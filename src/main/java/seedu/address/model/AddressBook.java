@@ -201,6 +201,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Resets number of tasks and number of completed tasks of all modules and exams to 0.
+     */
+    public void resetAllTaskCount() {
+        modules.resetAllTaskCount();
+        exams.resetAllTaskCount();
+    }
+
     //// util methods
 
     @Override

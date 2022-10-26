@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import javafx.collections.ObservableList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 
 /**
@@ -19,9 +20,12 @@ public class ClearTasksCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         ObservableList<Module> moduleList = model.getAddressBook().getModuleList();
+        ObservableList<Exam> examList = model.getAddressBook().getExamList();
 
         AddressBook newAddressBook = new AddressBook();
         newAddressBook.setModules(moduleList);
+        newAddressBook.setExams(examList);
+        newAddressBook.resetAllTaskCount();
 
         model.setAddressBook(newAddressBook);
 

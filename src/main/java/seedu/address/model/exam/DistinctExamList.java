@@ -135,6 +135,18 @@ public class DistinctExamList implements Iterable<Exam> {
         examList.set(index, updatedExam);
     }
 
+    /**
+     * Resets number of tasks and number of completed tasks of all exams to 0.
+     */
+    public void resetAllTaskCount() {
+        examList.forEach(exam -> {
+            int index = examList.indexOf(exam);
+            Exam updatedExam = exam.setNumOfCompletedTasks(0);
+            updatedExam = updatedExam.setTotalNumOfTasks(0);
+            examList.set(index, updatedExam);
+        });
+    }
+
     @Override
     public Iterator<Exam> iterator() {
         return examList.iterator();
