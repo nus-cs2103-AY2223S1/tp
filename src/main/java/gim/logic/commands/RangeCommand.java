@@ -52,7 +52,7 @@ public class RangeCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredExerciseList(predicate);
+        model.sortFilteredExerciseList(predicate);
         int rangeInDays = predicate.getRangeSizeInDays();
 
         // Display different message to user when command used is the advanced version
