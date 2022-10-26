@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
@@ -32,7 +33,7 @@
           </Menu>
         </MenuBar>
 
-        <StackPane fx:id="welcomeBoxPlaceholder" style="-fx-background-color: FFFFFF;" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="welcomeBoxPlaceholder" style="-fx-background-color: #d9d9d9;" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
@@ -42,10 +43,15 @@
           <padding>
             <Insets bottom="20" left="10" right="10" top="20" />
           </padding>
-          <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+               <HBox VBox.vgrow="ALWAYS">
+                  <children>
+                <StackPane fx:id="studentListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
+                    <StackPane fx:id="previewPanelPlaceholder" />
+                  </children>
+               </HBox>
         </VBox>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" style="-fx-background-color: #271F1F;" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                    <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" style="-fx-background-color: #271F1F;" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>

@@ -184,6 +184,45 @@ The following activity diagram summarizes what happens when a user executes an a
 #### Design considerations
 An add student command is designed to add a single student along with its detail particulars such as one's student ID, student name, project name, and email. These details are the important details every professor needs from a student so that the professor can understand the work of the student and is able to contact the student when needed.
 
+
+### Deleting a student from the FYP manager
+This feature allows professors to delete students who have dropped their FYP
+
+#### Implementation details
+
+The borrow feature is facilitated by `DeleteStudentCommandParser` and `DeleteStudentCommand`. The operation is exposed in the `Model` interface as `Model#DeleteStudent()`.
+
+Given below is an example usage scenario and how the borrow mechanism behaves at each step:
+
+1. The user enters delete student command and provides the student id of student to be deleted.
+2. `FYPManagerParser` creates a new `DeleteStudentCommandParser` after preliminary processing of user input.
+3. `DeleteStudentCommandParser` creates a new `DeleteStudentCommand` based on the processed input.
+4. `LogicManager` executes the `DeleteStudentCommand`.
+5. `DeleteStudentCommand` calls `Model#getFilteredStudentList()` to get the list of student with FYP, and then gets the student at the specified index using the unique studentId.
+6. `DeleteStudentCommand` calls `Model#DeleteStudent()` and passes the studentID, and return student deleted as parameters.
+7. Finally, `DeleteStudentCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+
+
+The following sequence diagram shows how delete student command works:
+
+<img src="images/DeleteStudentSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a delete student command.
+
+<img src="images/DeleteStudentActivityDiagram.png" width="550" />
+
+#### Design considerations
+
+The delete student command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
+to find students taking machine learning projects before doing `delete-s id/A0123456X` to remove student from FYP Manager.
+
+This integration between delete student command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
+By utilizing find student, users can find the student with only partial information and retrieve the student id. Using this student id, users can delete the student from the FYPManager once he/she drops the FYP.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -277,9 +316,9 @@ working on the FYP project, or `DONE` once the FYP project has been completed.
 Given below is an example usage scenario and how MarkCommand is utilised:
 
 Step 1: The Professor launches the application for the first time. `FypManager` will be initialised with the 
-current Fyp Manager state.
+current FypManager state.
 
-Step 2: The Professor tries adding a student to the Fyp Manager by executing the command 
+Step 2: The Professor tries adding a student to the FypManager by executing the command 
 `add id/A0123456G ...`. Note that here we have set the default project Status to be `YTS` since
 the project has just been added. 
 
@@ -305,7 +344,7 @@ The following sequence diagram shows how the MarkCommand operation works:
 
 **Implementation Choice: Why MarkCommand is implemented this way**
 * We have only chosen to consider 3 general statuses {`YTS`, `IP`, `DONE`} since these are very general 
-labels that the Professor can use to identify the current status of an FYP project. This makes it very user friendly
+labels that the Professor can use to identify the current status of an FYP project. This makes it very user-friendly
   since there are a fixed number of statuses that can be used.
   
 * We have also used the studentId to uniquely identify the project of the student the Professor
@@ -316,8 +355,120 @@ is trying to find. Here we have made an assumption that there the StudentId uniq
 **Other Alternatives:**
 
 * **Alternative 1:** Extend the Edit command to include the MarkCommand 
-    * Pros: Harder to implement.
+    * Pros: Easier to implement.
     * Cons: No clear distinction between tags and project status
+
+###  `Help` Feature
+#### Proposed Implementation
+The proposed `Help` Feature provides the professor or students with useful information on how to optimally make use of this Jeryl app.
+The `Help` feature mechanism is facilitated by `HelpCommand` and `HelpCommandParser`. `HelpCommand` extends from the abstract class `Command`
+while `HelpCommandParser` extends from the interface `Parser`.
+More specific features like `HelpAddCommand` and `HelpDeleteCommand` extend from `HelpCommand` to serve for certain specific help requests.
+To summarize, it implements the following operation:
+* `HelpCommand#execute()` — oversees the execution process for `HelpCommand`.
+* `HelpAddCommand#execute()` — oversees the execution process for `HelpAddCommand`.
+* `HelpDeleteCommand#execute()` — oversees the execution process for `HelpDeleteCommand`.
+* `HelpFindCommand#execute()` — oversees the execution process for `HelpFindCommand`.
+* `HelpListCommand#execute()` — oversees the execution process for `HelpListCommand`.
+* `HelpMarkCommand#execute()` — oversees the execution process for `HelpMarkCommand`.
+
+Given below is an example usage scenario of `HelpCommand`:
+1. The user enters the `help` command or also provides the specific command of interest.
+2. `FypManagerParser` creates a new `HelpCommandParser` after preliminary check of user input.
+3. `HelpCommandParser` creates a new `HelpCommand` based on the processed input.
+4. `LogicManager` executes the `HelpCommand` using the `LogicManager#execute()` method.
+5. `HelpCommand` shows help message, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+6. If it is just `HelpCommand`, `HelpWindow` would pop up with a link to JERYL user guide on it.
+
+The following sequence diagram shows how the help command works:
+
+<img src="images/helpMessage.png" width="550" />
+
+
+###  `List` Feature
+#### Proposed Implementation
+The proposed `List` Feature allows the professor to list all FYP students in the FYP Manager.
+The `List` feature mechanism is facilitated by `ListCommand`. It extends from the abstract class `Command`.
+To summarize, it implements the following operation:
+* `ListCommand#execute()` — oversees the execution process for `ListCommand`.
+
+Given below is an example usage scenario of `ListCommand`:
+1. The user enters the `list` command
+2. `FypManagerParser` creates a new `ListCommand` after preliminary check of user input.
+3. `LogicManager` executes the `ListCommand` using the `LogicManager#execute()` method.
+4. `ListCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+
+The following sequence diagram shows how the add student command works:
+
+<img src="images/ListCommandSequenceDiagram.png" width="550" />
+
+
+### \[Proposed\] `FindCommand` Feature
+#### Proposed Implementation
+
+The proposed FindCommand Feature allows the user to find for specific keywords in certain fields. The current 
+implementation supports finding keywords in four fields: 
+1) `StudentId`
+2) `StudentName`
+3)  `Tags` (accorded to a student)
+4) `ProjectName`.
+
+This is a new enhancement in v1.3, as older iterations only supported finding projects by their titles, 
+while the newest iteration supports finding projects by any of the above four fields. We hope that this allows the user 
+to be able to filter the projects more efficiently. (for instance, by specialisations: 
+***NeuralNetwork***, ***Blockchain***, etc.)
+
+The FindCommand feature takes in a specified field (one of the four aforementioned fields), and a keyword specified
+by the user. FypManager then returns a list of projects whose field contains the keyword inputted. 
+
+Note that the keyword is case-insensitive, can contain arbitrary spacing, and is field-specific.
+
+Given below is an example usage scenario and how FindCommand is utilised:
+
+Step 1. The user launches the application for the first time. The 'FypManager' will be initialised with its
+'FypManager' state.
+
+Step 2: The user finds a project by keying in `find-proj tree` to find all projects whose name contains the keyword 
+`tree`. FypManager returns a list of projects whose names contain the `tree` keyword.
+
+![FindCommandState1](images/FindCommandState1.png)
+
+Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in 
+`find-proj blockchain` to find all projects which contain the keyword `blockchain`. FypManager returns an empty list,
+as there is no project whose project name contains `blockchain`.
+
+![FindCommandState2](images/FindCommandState2.png)
+
+The following sequence diagram shows how the MarkCommand operation works:
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Implementation Choice: Why FindCommand is implemented this way**
+* We have implemented FindCommand to find a student's project by four different fields. This is practical, since 
+  different users would want to find the relevant projects by different fields, making this a more versatile tool to use 
+  as a FypManager tool.
+
+* We have allowed the user to be able to search using different keywords (so long as they are separated by ***/*** ), 
+  which lets the user be more stringent in his/her search criteria.
+
+* Furthermore, we have made the input more flexible by making it case-insensitive, helping users who are not particularly
+  careful with their input of capital-cases or lower-cases. This also mimics real-life query engines, which usually 
+  allow users to type their search keywords without fretting about whether there are upper-cases in the keyword.
+
+
+**Other Alternatives:**
+
+***v1.3 update: the following has been achieved as of this update. :)***
+
+* **Alternative 1:** Extend the FindCommand by allowing the user to search by fields other than project name
+    * Pros: Allows the users to search using more fields instead of ProjectName alone.
+    * Cons: Harder to implement. And requires inclusion of a suffix.
+    
+* **Alternative 2:** Allow the user to search for their keywords across all fields without specifying a field
+    * Pros: More comprehensive search for projects with the required keyword.
+    * Cons: Much harder to implement, as it requires a field-less search.
 
 --------------------------------------------------------------------------------------------------------------------
 
