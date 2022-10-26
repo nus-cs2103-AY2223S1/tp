@@ -1,0 +1,46 @@
+package seedu.address.ui;
+
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
+import seedu.address.model.exam.Exam;
+
+
+/**
+ * ExamCard represents an Exam Card which contains details of the Exam and the position in the
+ * listView.
+ */
+public class ExamCard extends UiPart<Region> {
+    private static final String FXML = "ExamListCard.fxml";
+
+    public final Exam exam;
+
+    @FXML
+    private Label id;
+
+    @FXML
+    private Label examDescription;
+
+    @FXML
+    private Label examDate;
+
+    @FXML
+    private Label moduleCode;
+
+
+    /**
+     * Constructor of the ExamCard. Sets the exam and the position.
+     *
+     * @param exam The exam being set.
+     * @param position The position of the exam in the listView.
+     */
+    public ExamCard(Exam exam, int position) {
+        super(FXML);
+        this.exam = exam;
+        id.setText(position + ". ");
+        moduleCode.setText(exam.getModule().getModuleCode().moduleCode);
+        examDescription.setText(exam.getDescription().description);
+        examDate.setText(exam.getExamDate().examDate);
+    }
+}
