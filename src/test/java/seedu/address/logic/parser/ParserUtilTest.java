@@ -106,10 +106,6 @@ public class ParserUtilTest {
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
-    @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
-    }
 
     @Test
     public void parsePhone_invalidValue_throwsParseException() {
@@ -130,11 +126,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-    }
-
-    @Test
     public void parseAddress_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
     }
@@ -150,11 +141,6 @@ public class ParserUtilTest {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Address expectedAddress = new Address(VALID_ADDRESS);
         assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
-    }
-
-    @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
     }
 
     @Test
@@ -221,10 +207,6 @@ public class ParserUtilTest {
         assertEquals(expectedTagSet, actualTagSet);
     }
 
-    @Test
-    public void parseModuleCode_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseModuleCode((String) null));
-    }
 
     @Test
     public void parseModuleCode_invalidValue_throwsParseException() {
@@ -245,16 +227,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseLectureDetails_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseLectureDetails((String) null));
-    }
-
-    @Test
-    public void parseLectureDetails_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseLectureDetails(INVALID_LECTURE_DETAILS));
-    }
-
-    @Test
     public void parseLectureDetails_validValueWithoutWhitespace_returnsLectureDetails() throws Exception {
         LectureDetails expectedLectureDetails = new LectureDetails(VALID_LECTURE_DETAILS);
         assertEquals(expectedLectureDetails, ParserUtil.parseLectureDetails(VALID_LECTURE_DETAILS));
@@ -268,16 +240,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTutorialDetails_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTutorialDetails((String) null));
-    }
-
-    @Test
-    public void parseTutorialDetails_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialDetails(INVALID_TUTORIAL_DETAILS));
-    }
-
-    @Test
     public void parseTutorialDetails_validValueWithoutWhitespace_returnsTutorialDetails() throws Exception {
         TutorialDetails expectedTutorialDetails = new TutorialDetails(VALID_TUTORIAL_DETAILS);
         assertEquals(expectedTutorialDetails, ParserUtil.parseTutorialDetails(VALID_TUTORIAL_DETAILS));
@@ -288,11 +250,6 @@ public class ParserUtilTest {
         String tutorialDetailsWithWhitespace = WHITESPACE + VALID_TUTORIAL_DETAILS + WHITESPACE;
         TutorialDetails expectedTutorialDetails = new TutorialDetails(VALID_TUTORIAL_DETAILS);
         assertEquals(expectedTutorialDetails, ParserUtil.parseTutorialDetails(tutorialDetailsWithWhitespace));
-    }
-
-    @Test
-    public void parseZoomLink_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseZoomLink((String) null));
     }
 
     @Test

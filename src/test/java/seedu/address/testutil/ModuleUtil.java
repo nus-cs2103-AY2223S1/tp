@@ -3,12 +3,13 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE_ZOOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_ZOOM;
 
 import java.util.Set;
 
@@ -16,7 +17,6 @@ import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
-
 
 
 /**
@@ -39,7 +39,8 @@ public class ModuleUtil {
         sb.append(PREFIX_MODULE + module.getModuleCode().moduleCode + " ");
         sb.append(PREFIX_LECTURE + module.getLectureDetails().value + " ");
         sb.append(PREFIX_TUTORIAL + module.getTutorialDetails().value + " ");
-        sb.append(PREFIX_ZOOM + module.getZoomLink().zoomLink + " ");
+        sb.append(PREFIX_LECTURE_ZOOM + module.getLectureZoomLink().zoomLink + " ");
+        sb.append(PREFIX_TUTORIAL_ZOOM + module.getTutorialZoomLink().zoomLink + " ");
         module.getAssignmentDetails().stream().forEach(
             s -> sb.append(PREFIX_ADDRESS + s.assignmentDetails + " ")
         );
@@ -55,7 +56,7 @@ public class ModuleUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getModuleCode().ifPresent(module -> sb.append(PREFIX_MODULE).append(module.moduleCode).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

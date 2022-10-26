@@ -14,20 +14,23 @@ import seedu.address.model.module.Module;
 public class TypicalModules {
 
     public static final Module CS2103T = new ModuleBuilder().withLectureDetails("Every friday")
-        .withModuleCode("CS2103T").withTutorialDetails("Every wednesday").withZoomLink("https://nus-sg.zoom.us/CS2103T")
+        .withModuleCode("CS2103T").withTutorialDetails("Every wednesday")
+        .withLectureZoomLink("https://nus-sg.zoom.us/CS2103T").withTutorialZoomLink("https://nus-sg.zoom.us/CS2103T")
         .withAssignmentDetails("hard").withAssignmentDetails("normal").build();
 
     public static final Module CS2100 = new ModuleBuilder().withModuleCode("CS2100")
         .withLectureDetails("Every tuesday").withTutorialDetails("Every friday")
-        .withZoomLink("https://nus-sg.zoom.us/CS2100")
+        .withLectureZoomLink("https://nus-sg.zoom.us/CS2100").withTutorialZoomLink("https://nus-sg.zoom.us/CS2100")
         .withAssignmentDetails("assignment1").build();
 
     public static final Module CS2109S = new ModuleBuilder().withModuleCode("CS2109S")
-        .withLectureDetails("Tuesday").withTutorialDetails("Wednesday").withZoomLink("https://nus-sg.zoom.us/CS2109S")
+        .withLectureDetails("Tuesday").withTutorialDetails("Wednesday")
+        .withLectureZoomLink("https://nus-sg.zoom.us/CS2109S").withTutorialZoomLink("https://nus-sg.zoom.us/CS2109S")
         .withAssignmentDetails("assignment1").build();
 
     public static final Module CS3230 = new ModuleBuilder().withModuleCode("CS3230")
-        .withLectureDetails("Wednesday").withTutorialDetails("Thursday").withZoomLink("https://nus-sg.zoom.us/CS3230")
+        .withLectureDetails("Wednesday").withTutorialDetails("Thursday")
+        .withLectureZoomLink("https://nus-sg.zoom.us/CS3230").withTutorialZoomLink("https://nus-sg.zoom.us/CS3230")
         .withAssignmentDetails("assignment1").build();
 
     private TypicalModules() {

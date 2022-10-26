@@ -1,6 +1,5 @@
 package seedu.address.model.module;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.logic.nusmodules.NusModule;
@@ -13,6 +12,7 @@ public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Module Codes should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String EMPTY_MODULE_CODE = "";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -29,9 +29,8 @@ public class ModuleCode {
      * @param moduleCodeInput A valid module code.
      */
     public ModuleCode(String moduleCodeInput) {
-        requireNonNull(moduleCodeInput);
         checkArgument(isValidModuleCode(moduleCodeInput), MESSAGE_CONSTRAINTS);
-        moduleCode = moduleCodeInput.toUpperCase();
+        moduleCode = moduleCodeInput;
         moduleTitle = null;
     }
 
@@ -57,6 +56,9 @@ public class ModuleCode {
      * Returns true if a given string is a valid module code.
      */
     public static boolean isValidModuleCode(String test) {
+        if (test == null) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -69,7 +71,10 @@ public class ModuleCode {
 
     @Override
     public String toString() {
-        return moduleCode + "\n" + moduleTitle;
+        if (moduleCode == null) {
+            return EMPTY_MODULE_CODE;
+        }
+        return moduleCode;
     }
 
     @Override

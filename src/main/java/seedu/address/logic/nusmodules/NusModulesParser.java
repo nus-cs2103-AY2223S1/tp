@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * Class to parse NusModule json file
  */
+//TODO to throw error when module not available
 public class NusModulesParser {
     private final File nusModuleJson = new File("src/main/java/seedu/address/logic/NUSModules/NUSModules.json");
     private ObjectMapper mapper = new ObjectMapper();

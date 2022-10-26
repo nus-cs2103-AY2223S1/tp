@@ -24,7 +24,8 @@ public class ModuleBuilder {
     private LectureDetails lectureDetails;
     private ModuleCode moduleCode;
     private TutorialDetails tutorialDetails;
-    private ZoomLink zoomLink;
+    private ZoomLink lectureZoomLink;
+    private ZoomLink tutorialZoomLink;
     private Set<AssignmentDetails> assignmentDetails;
 
     /**
@@ -34,7 +35,8 @@ public class ModuleBuilder {
         lectureDetails = new LectureDetails(DEFAULT_LECTURE_DETAILS);
         moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
         tutorialDetails = new TutorialDetails(DEFAULT_TUTORIAL_DETAILS);
-        zoomLink = new ZoomLink(DEFAULT_ZOOM_LINK);
+        lectureZoomLink = new ZoomLink(DEFAULT_ZOOM_LINK);
+        tutorialZoomLink = new ZoomLink(DEFAULT_ZOOM_LINK);
         assignmentDetails = new HashSet<>();
     }
 
@@ -45,7 +47,8 @@ public class ModuleBuilder {
         lectureDetails = moduleToCopy.getLectureDetails();
         moduleCode = moduleToCopy.getModuleCode();
         tutorialDetails = moduleToCopy.getTutorialDetails();
-        zoomLink = moduleToCopy.getZoomLink();
+        lectureZoomLink = moduleToCopy.getLectureZoomLink();
+        tutorialZoomLink = moduleToCopy.getTutorialZoomLink();
         assignmentDetails = new HashSet<>(moduleToCopy.getAssignmentDetails());
     }
 
@@ -83,14 +86,28 @@ public class ModuleBuilder {
     }
 
     /**
-     * Sets the {@code ZoomLink} of the {@code Module} that we are building.
+     * Sets the lecture {@code ZoomLink} of the {@code Module} that we are building.
      */
-    public ModuleBuilder withZoomLink(String zoomLink) {
-        this.zoomLink = new ZoomLink(zoomLink);
+    public ModuleBuilder withLectureZoomLink(String zoomLink) {
+        this.lectureZoomLink = new ZoomLink(zoomLink);
         return this;
     }
 
+    /**
+     * Sets the tutorial {@code ZoomLink} of the {@code Module} that we are building.
+     */
+    public ModuleBuilder withTutorialZoomLink(String zoomLink) {
+        this.tutorialZoomLink = new ZoomLink(zoomLink);
+        return this;
+    }
+
+
+    /**
+     * Builds a Module with the set details
+     * @return a Module with the set details
+     */
     public Module build() {
-        return new Module(moduleCode, lectureDetails, tutorialDetails, zoomLink, assignmentDetails);
+        return new Module(moduleCode, lectureDetails, tutorialDetails,
+                lectureZoomLink, tutorialZoomLink, assignmentDetails);
     }
 }

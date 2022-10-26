@@ -1,11 +1,5 @@
 package seedu.address.model.module;
 
-// Module has a zoom link, tutorial venue and timing, lecture venue and timing, assignment name and deadline
-// Add /m CS1101S /l I3-AUDI Monday 12:00 /t COM1 B1-103 Tuesday 14:00
-// /a Functional Expressionism ONLY ONE WEEK /z https://www.zoom.sg/12891
-// Module has ModuleCode, LectureDetails, TutorialDetails, AssignmentDetails, ZoomLink
-// Only AssignmentDetails are optional, the rest should be provided by the user.
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -21,25 +15,32 @@ import seedu.address.model.assignmentdetails.AssignmentDetails;
  */
 public class Module {
 
+    public static final String INVALID_MODULE_MESSAGE = "Module needs a module code";
+
     // Identity fields
     private final ModuleCode moduleCode;
 
     // Data fields
     private final LectureDetails lectureDetails;
     private final TutorialDetails tutorialDetails;
-    private final ZoomLink zoomLink;
+    private final ZoomLink lectureZoomLink;
+    private final ZoomLink tutorialZoomLink;
     private final Set<AssignmentDetails> assignmentDetails = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Module code must be present and not null.
      */
     public Module(ModuleCode moduleCode, LectureDetails lectureDetails,
-                  TutorialDetails tutorialDetails, ZoomLink zoomLink, Set<AssignmentDetails> assignmentDetails) {
-        requireAllNonNull(moduleCode, lectureDetails, tutorialDetails, zoomLink, assignmentDetails);
+                  TutorialDetails tutorialDetails, ZoomLink lectureZoomLink, ZoomLink tutorialZoomLink,
+                  Set<AssignmentDetails> assignmentDetails) {
+        requireAllNonNull(moduleCode, lectureDetails, tutorialDetails, lectureZoomLink, tutorialZoomLink,
+                assignmentDetails);
+        assert moduleCode.moduleCode != null; // There should be no way to reach here with module code as null
         this.moduleCode = moduleCode;
         this.lectureDetails = lectureDetails;
         this.tutorialDetails = tutorialDetails;
-        this.zoomLink = zoomLink;
+        this.lectureZoomLink = lectureZoomLink;
+        this.tutorialZoomLink = tutorialZoomLink;
         this.assignmentDetails.addAll(assignmentDetails);
     }
 
@@ -55,8 +56,12 @@ public class Module {
         return tutorialDetails;
     }
 
-    public ZoomLink getZoomLink() {
-        return zoomLink;
+    public ZoomLink getLectureZoomLink() {
+        return lectureZoomLink;
+    }
+
+    public ZoomLink getTutorialZoomLink() {
+        return tutorialZoomLink;
     }
 
     /**
@@ -99,13 +104,15 @@ public class Module {
         return otherModule.getModuleCode().equals(getModuleCode())
                 && otherModule.getLectureDetails().equals(getLectureDetails())
                 && otherModule.getTutorialDetails().equals(getTutorialDetails())
-                && otherModule.getZoomLink().equals(getZoomLink())
+                && otherModule.getLectureZoomLink().equals(getLectureZoomLink())
+                && otherModule.getTutorialZoomLink().equals(getTutorialZoomLink())
                 && otherModule.getAssignmentDetails().equals(getAssignmentDetails());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(moduleCode, lectureDetails, tutorialDetails, zoomLink, assignmentDetails);
+        return Objects.hash(moduleCode, lectureDetails, tutorialDetails,
+                lectureZoomLink, tutorialZoomLink, assignmentDetails);
     }
 
     @Override
@@ -116,8 +123,10 @@ public class Module {
                 .append(getLectureDetails())
                 .append("; Tutorial Details: ")
                 .append(getTutorialDetails())
-                .append("; Zoom Link: ")
-                .append(getZoomLink());
+                .append("; Lecture Zoom Link: ")
+                .append(getLectureZoomLink())
+                .append("; Tutorial Zoom Link: ")
+                .append(getTutorialZoomLink());
 
         Set<AssignmentDetails> assignmentDetails = getAssignmentDetails();
         if (!assignmentDetails.isEmpty()) {

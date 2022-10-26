@@ -1,6 +1,5 @@
 package seedu.address.model.module;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.regex.Pattern;
@@ -11,8 +10,8 @@ import java.util.regex.Pattern;
  */
 public class ZoomLink {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Zoom Link should be a valid URL";
+    public static final String MESSAGE_CONSTRAINTS = "Zoom Link should be a valid URL";
+    public static final String EMPTY_ZOOM_LINK = "";
 
     /*
      * Checks for whether the input by the user is a valid Url.
@@ -29,7 +28,6 @@ public class ZoomLink {
      * @param zoomLinkUrl A valid URL.
      */
     public ZoomLink(String zoomLinkUrl) {
-        requireNonNull(zoomLinkUrl);
         checkArgument(isValidUrl(zoomLinkUrl), MESSAGE_CONSTRAINTS);
         zoomLink = zoomLinkUrl;
     }
@@ -38,14 +36,19 @@ public class ZoomLink {
      * Returns true if a given string is a valid Url.
      */
     public static boolean isValidUrl(String test) {
+        if (test == null) {
+            return true;
+        }
         return Pattern.compile(VALIDATION_REGEX)
                 .matcher(test)
                 .find();
     }
 
-
     @Override
     public String toString() {
+        if (zoomLink == null) {
+            return EMPTY_ZOOM_LINK;
+        }
         return zoomLink;
     }
 

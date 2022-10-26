@@ -1,6 +1,5 @@
 package seedu.address.model.module;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -9,7 +8,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TutorialDetails {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tutorial Details can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Tutorial Details are optional but cannot take empty values";
+    public static final String EMPTY_TUTORIAL_DETAILS = "";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -25,7 +26,6 @@ public class TutorialDetails {
      * @param tutorialDetails Valid tutorial details.
      */
     public TutorialDetails(String tutorialDetails) {
-        requireNonNull(tutorialDetails);
         checkArgument(areValidTutorialDetails(tutorialDetails));
         value = tutorialDetails;
     }
@@ -34,11 +34,17 @@ public class TutorialDetails {
      * Returns true if a given string is a valid tutorial detail.
      */
     public static boolean areValidTutorialDetails(String test) {
+        if (test == null) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
+        if (value == null) {
+            return EMPTY_TUTORIAL_DETAILS;
+        }
         return value;
     }
 
