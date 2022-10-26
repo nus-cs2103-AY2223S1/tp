@@ -111,7 +111,7 @@ Note that the app contains sample data.<br><br>
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you, the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 [//]: # (Commented out as the features below are currently not in our application, but we can consider it)
@@ -178,7 +178,7 @@ Format: `list`
 This command edits an existing guest in GuestBook.
 
 The guest specified at the `INDEX` is the guest you wish to edit. The existing values will be updated to the values
-that you have inputted.
+that you have inputted. The values that you did not specify to edit will remain the same.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`
 
@@ -194,13 +194,14 @@ Examples:
 
 This command updates the bill of a guest in GuestBook.
 
-This command updates the bill of the guest at the specified `INDEX`. The existing bill value will be increased 
-by the input value.
+This command updates the bill of the guest at the specified `INDEX`. 
+Depending on the sign ('+' or '-') of your input, the existing bill value be incremented 
+or decremented respectively by the value of your input.
 
 Format: `bill INDEX b/BILL`
 
 Constraints of parameters:
-* The bill value **must be either an whole number or a whole number with up to 2 decimal places.**
+* The bill value **must be either a whole number or a whole number with up to 2 decimal places.**
 
 Examples:
 * `bill 1 b/+99.99` or `bill 1 b/99.99` Adds 99.99 to the bill of the first guest.
@@ -212,8 +213,8 @@ Common mistakes:
 
 ### Locating guests : `find`
 
-This command locates guests whose details contain any of the given keywords. This allows the user to search for a 
-guest with any of the specific guest's field.
+This command locates guests whose details contain any of the given keywords. This allows you to search for 
+guests with any of the specific guests' field.
 
 This command is typically used when searching for a guest of a specific characteristic. This command also allows for
 filtering of the guest list displayed. For example, the command `find no` will display all the rooms that have yet to be

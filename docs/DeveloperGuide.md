@@ -212,7 +212,7 @@ we chose to make `Request` optional and default it as blank should it not be pro
 * **Alternative 2 (current choice):** Use `add()` with a negative `Bill`.
     * Pros: Less code, more flexibility.
     * Cons: `Bill` must be allowed to hold negative values, but the bill field for each `Guest`
-      cannot, thus requires more checks.
+      cannot, thus requiring more checks.
 
 Taking into consideration that `double`s are already signed and charges on bills can be negative, we decided to proceed with Alternative 2.
 
@@ -274,7 +274,7 @@ Taking into consideration that check-in and check-out dates come as a pair, we d
   and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number Of Guests`, `Is Room Clean` and `Request`)
   and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
 
-The following activity diagrams summarizes what happens when a user enters an `edit` command.
+The following activity diagram summarizes what happens when a user enters an `edit` command.
 
 ![EditActivityDiagram](images/EditActivityDiagram.png)
 
@@ -775,5 +775,5 @@ testers are expected to do more *exploratory* testing.
       Status bar remains the same.
 
    5. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `edit ...`<br>
-      Expected: No guest is edited, because the name is invalid. Error details shown in the status message.
+      Expected: No guest is edited, because the parameters are invalid. Error details shown in the status message.
       Status bar remains the same.
