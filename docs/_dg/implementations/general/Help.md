@@ -1,4 +1,4 @@
-#### Feature: Help 
+#### Feature: Help
 
 <!-- TODO: ACTIVITY DIAGRAM -->
 
@@ -13,7 +13,7 @@ The `help` feature provides a user with instructions of how to use certain comma
 
 <!-- TODO: SEQUENCE DIAGRM -->
 
-##### Feature Considerations 
+##### Feature Considerations
 
 When the `HelpCommand` is executed we want users to receive help immediately instead of searching for it the User Guide.
 
