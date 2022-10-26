@@ -22,4 +22,9 @@ public class ListTutorCommand extends ListCommand {
         model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTOR);
         return new CommandResult(MESSAGE_SUCCESS, true);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof ListTutorCommand;
+    }
 }

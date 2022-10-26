@@ -23,4 +23,9 @@ public class ListStudentCommand extends ListCommand {
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENT);
         return new CommandResult(MESSAGE_SUCCESS, true);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof ListStudentCommand;
+    }
 }
