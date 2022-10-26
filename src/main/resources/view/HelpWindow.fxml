@@ -52,11 +52,11 @@
                                   </HBox>
                                   <HBox prefHeight="36.0" prefWidth="495.0">
                                       <Label style="-fx-padding: 0 0 0 20;" text="T list" textFill="WHITE" />
-                                      <Label style="-fx-padding: 0 0 0 260;" text="Lists the task in the task list" textFill="WHITE" />
+                                      <Label style="-fx-padding: 0 0 0 260;" text="Lists the tasks in the task list" textFill="WHITE" />
                                   </HBox>
                                   <HBox prefHeight="47.0" prefWidth="495.0">
                                       <Label prefWidth="216.0" style="-fx-padding: 0 0 0 20;" text="T sort c/CRITERIA" textFill="WHITE" />
-                                      <Label style="-fx-padding: 0 0 0 160;" text="Sort the task in the task list based on the criteria" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />
+                                      <Label style="-fx-padding: 0 0 0 160;" text="Sort the tasks in the task list based on the criteria" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />
                                   </HBox>
                                   <HBox prefHeight="34.0" prefWidth="495.0">
                                       <Label style="-fx-padding: 0 0 0 20;" text="T filter m/MODULE c/COMPLETE l/LINKED" textFill="WHITE" />
@@ -168,10 +168,12 @@
                         <children>
                            <Label fx:id="helpMessage" style="-fx-padding: 0 15 0 0;" text="helpMessage" />
                            <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" />
-                        </children></HBox>
+                        </children>
+                     </HBox>
                   </children>
                </VBox>
-            </children></HBox>
+            </children>
+      </HBox>
     </Scene>
   </scene>
 </fx:root>
