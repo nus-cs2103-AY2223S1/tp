@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyFindMyIntern getAddressBook() {
+    public ReadOnlyFindMyIntern getFindMyIntern() {
         return model.getFindMyIntern();
     }
 
@@ -65,7 +65,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getFindMyInternFilePath() {
         return model.getFindMyInternFilePath();
     }
 

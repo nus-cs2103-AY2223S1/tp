@@ -6,7 +6,7 @@ import seedu.address.model.FindMyIntern;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears findMyIntern.
  */
 public class ClearCommand extends Command {
 

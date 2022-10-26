@@ -16,7 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.internship.Internship;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of findMyIntern data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -32,7 +32,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyFindMyIntern findMyIntern, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(findMyIntern, userPrefs);
 
-        logger.fine("Initializing with address book: " + findMyIntern + " and user prefs " + userPrefs);
+        logger.fine("Initializing with findMyIntern: " + findMyIntern + " and user prefs " + userPrefs);
 
         this.findMyIntern = new FindMyIntern(findMyIntern);
         this.userPrefs = new UserPrefs(userPrefs);

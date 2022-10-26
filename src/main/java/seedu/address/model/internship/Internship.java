@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents an Internship in the address book.
+ * Represents an Internship in findMyIntern.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Internship {

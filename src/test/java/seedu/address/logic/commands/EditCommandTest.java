@@ -113,7 +113,7 @@ public class EditCommandTest {
     public void execute_duplicateInternshipFilteredList_failure() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
-        // edit internship in filtered list into a duplicate in address book
+        // edit internship in filtered list into a duplicate in findMyIntern
         Internship internshipInList =
                 model.getFindMyIntern().getInternshipList().get(INDEX_SECOND_INTERNSHIP.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
@@ -134,13 +134,13 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of findMyIntern
      */
     @Test
     public void execute_invalidInternshipIndexFilteredList_failure() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
         Index outOfBoundIndex = INDEX_SECOND_INTERNSHIP;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of findMyIntern list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFindMyIntern().getInternshipList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
