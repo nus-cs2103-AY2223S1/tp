@@ -1,13 +1,19 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.FileUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
+
+import javax.swing.*;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -15,7 +21,8 @@ import seedu.address.model.person.Person;
 public class PersonProfile extends UiPart<Region> {
     public static final String EMPTY_DISPLAY_VALUE = "-";
     private static final String FXML = "PersonProfile.fxml";
-
+    private static final String NO_FILE_EXISTS =
+            "-fx-background-color: derive(red, 30%);";
     public final Person person;
 
     /**
@@ -44,6 +51,8 @@ public class PersonProfile extends UiPart<Region> {
     private Label netWorth;
     @FXML
     private FlowPane meetingTimes;
+    @FXML
+    private Button personFileButton;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -63,10 +72,21 @@ public class PersonProfile extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        personFileButton.setOnMouseClicked(event -> openPersonFile());
     }
 
-    private String getDisplayValue() {
-        return "";
+    /**
+     * Opens pdf file stored in person object.
+     */
+    private void openPersonFile() {
+        try {
+            FileUtil.openPdfFile(person.getFilePath().toString());
+        }
+        catch (IOException e) {
+            personFileButton.setDisable(true);
+            personFileButton.setStyle(NO_FILE_EXISTS);
+            personFileButton.setText(e.getMessage());
+        }
     }
 
     @Override

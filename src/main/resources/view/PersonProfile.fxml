@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Button?>
 <HBox id="profilePane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="NEVER">
 
@@ -21,16 +22,17 @@
             </HBox>
             <FlowPane fx:id="tags" />
             <FlowPane fx:id="meetingTimes" />
-            <Label styleClass="display_label" text="phone number" />
+            <Label styleClass="display_label" text="Phone Number" />
             <Label fx:id="phone" styleClass="display_content" text="\$phone" />
-            <Label styleClass="display_label" text="address" />
+            <Label styleClass="display_label" text="Address" />
             <Label fx:id="address" styleClass="display_content" text="\$address" />
-            <Label styleClass="display_label" text="email" />
+            <Label styleClass="display_label" text="Email" />
             <Label fx:id="email" styleClass="display_content" text="\$email" />
-            <Label styleClass="display_label" text="description" />
+            <Label styleClass="display_label" text="Description" />
             <Label fx:id="description" styleClass="display_content" text="\$description" />
-            <Label styleClass="display_label" text="net worth" />
+            <Label styleClass="display_label" text="Net Worth" />
             <Label fx:id="netWorth" styleClass="display_content" text="\$netWorth" />
+            <Button fx:id="personFileButton" styleClass="display_Button" text="Client Information" />
         </VBox>
       <rowConstraints>
          <RowConstraints />

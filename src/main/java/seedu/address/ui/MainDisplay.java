@@ -7,6 +7,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.model.person.Person;
 
+import java.io.IOException;
+
 /**
  * A UI component that displays regions on the main display.
  */
