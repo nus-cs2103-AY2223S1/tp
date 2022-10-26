@@ -26,15 +26,22 @@ public class RangeCommandParser implements Parser<RangeCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_END_DATE,
                 PREFIX_RANGE_ADVANCED);
 
-        // advanced version: when the user does not input any of the dates, but only inputs an integer with prefix l/
+        // advanced version: when the user does not input any of the dates, but only inputs an integer with prefix last/
         if (arePrefixesPresent(argMultimap, PREFIX_RANGE_ADVANCED)
                 && !arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_END_DATE)) {
-            int days = Integer.parseInt(argMultimap.getValue(PREFIX_RANGE_ADVANCED).get());
+            int days;
+            try {
+                days = Integer.parseInt(argMultimap.getValue(PREFIX_RANGE_ADVANCED).get());
+            } catch (NumberFormatException e) {
+                // Ensure that the argument is a number and not other characters
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        RangeCommand.MESSAGE_USAGE_TWO));
+            }
 
             // Only accept non-negative integers for the number of days
             if (days < 0) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        RangeCommand.ADVANCED_MESSAGE_USAGE));
+                        RangeCommand.MESSAGE_USAGE_TWO));
             }
             Date today = new Date();
             Date startDate = today.getPreviousDaysDate(days);
