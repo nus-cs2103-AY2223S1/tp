@@ -15,14 +15,21 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.client.PinClientCommand;
-import seedu.address.logic.commands.project.*;
+import seedu.address.logic.commands.project.AddProjectCommand;
+import seedu.address.logic.commands.project.DeleteProjectCommand;
+import seedu.address.logic.commands.project.EditProjectCommand;
+import seedu.address.logic.commands.project.ListProjectCommand;
+import seedu.address.logic.commands.project.PinProjectCommand;
+import seedu.address.logic.commands.project.ProjectCommand;
+import seedu.address.logic.commands.project.SetProjectDefaultViewCommand;
+import seedu.address.logic.commands.project.SortProjectCommand;
 import seedu.address.logic.commands.project.find.FindProjectByNameCommand;
 import seedu.address.logic.commands.project.find.FindProjectByRepositoryCommand;
 import seedu.address.logic.commands.project.find.FindProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.ProjectId;
@@ -144,7 +151,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         List<Issue> issueList = new ArrayList<>();
 
         ProjectWithoutModel projectWithoutModel =
-                new ProjectWithoutModel(name, repository, deadline, clientId, issueList);
+                new ProjectWithoutModel(name, repository, deadline, clientId, issueList, new Pin(false));
 
         return new AddProjectCommand(projectWithoutModel);
     }

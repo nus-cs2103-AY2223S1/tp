@@ -3,7 +3,11 @@ package seedu.address.model.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Deadline;
+import seedu.address.model.Name;
+import seedu.address.model.Pin;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
@@ -25,17 +29,17 @@ public class SampleDataUtil {
     public static Project[] getSampleProjects() {
         return new Project[] {
             new Project(new Name("Individual Project"), new Repository("johndoe/ip"), new Deadline("2022-03-03"),
-                    Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(1)),
+                    Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(1), new Pin(false)),
             new Project(new Name("Team Project"), new Repository("johndoe/tp"), new Deadline("2023-01-02"),
-                    Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(2)),
+                    Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(2), new Pin(false)),
             new Project(new Name("Group Project"), new Repository("johndoe/gp"), new Deadline("2023-11-29"),
-                    Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(3)),
+                    Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(3), new Pin(false)),
             new Project(new Name("Personal Project"), new Repository("johndoe/pp"), new Deadline("2022-04-11"),
-                    Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(4)),
+                    Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(4), new Pin(false)),
             new Project(new Name("Random Project"), new Repository("johndoe/rp"), new Deadline("2022-05-27"),
-                    Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(5)),
+                    Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(5), new Pin(false)),
             new Project(new Name("Final Year Project"), new Repository("johndoe/fyp"), new Deadline("2023-02-27"),
-                    Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(6)),
+                    Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(6), new Pin(false)),
         };
     }
 

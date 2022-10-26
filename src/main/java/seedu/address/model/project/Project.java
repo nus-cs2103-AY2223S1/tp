@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.client.Client;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
@@ -32,13 +33,13 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     private Client client;
     private ProjectId projectId;
     private List<Issue> issueList;
-    private boolean isPinned;
+    private Pin pin;
 
     /**
      * Name field must be present and not null and other fields may be optional.
      */
     public Project(Name name, Repository repository, Deadline deadline,
-                   Client client, List<Issue> issueList, ProjectId projectId) {
+                   Client client, List<Issue> issueList, ProjectId projectId, Pin pin) {
         requireAllNonNull(name);
         this.name = name;
         this.repository = repository;
@@ -46,7 +47,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         this.client = client;
         this.issueList = issueList;
         this.projectId = projectId;
-        this.isPinned = false;
+        this.pin = pin;
     }
 
     /**
@@ -147,11 +148,11 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     }
 
     public void togglePin() {
-        this.isPinned = !this.isPinned;
+        this.pin.togglePinned();
     }
 
     public boolean isPinned() {
-        return isPinned;
+        return this.pin.isPinned();
     }
 
     /**

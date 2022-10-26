@@ -7,6 +7,9 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.ui.Ui;
 
+/**
+ * Encapsulates a command to pin a project entity.
+ */
 public class PinProjectCommand extends ProjectCommand {
 
     public static final String COMMAND_FLAG = "-p";
@@ -19,7 +22,7 @@ public class PinProjectCommand extends ProjectCommand {
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " 1";
 
-    public ProjectId toPinProjectId;
+    private ProjectId toPinProjectId;
 
     public PinProjectCommand(ProjectId toPinProjectId) {
         this.toPinProjectId = toPinProjectId;

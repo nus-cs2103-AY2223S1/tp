@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.project.AddProjectCommand;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.project.ProjectWithoutModel;
 import seedu.address.model.project.Repository;
@@ -32,7 +33,7 @@ class AddProjectCommandParserTest {
     public void parse_compulsoryAndOptionalFieldsPresent_success() {
         ProjectWithoutModel projectWithoutModel = new ProjectWithoutModel(
                 new Name(VALID_NAME_BOB), new Repository(VALID_REPOSITORY),
-                new Deadline(VALID_DEADLINE), new ClientId.EmptyClientId(), new ArrayList<>());
+                new Deadline(VALID_DEADLINE), new ClientId.EmptyClientId(), new ArrayList<>(), new Pin(false));
         //compulsory and optional fields
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG, NAME_DESC_BOB + REPOSITORY_DESC_REPOSITORY
                 + DEADLINE_DESC_DEADLINE, new AddProjectCommand(projectWithoutModel));
@@ -42,7 +43,7 @@ class AddProjectCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         ProjectWithoutModel projectWithoutModel = new ProjectWithoutModel(
                 new Name(VALID_NAME_BOB), Repository.EmptyRepository.EMPTY_REPOSITORY,
-                Deadline.EmptyDeadline.EMPTY_DEADLINE, new ClientId.EmptyClientId(), new ArrayList<>());
+                Deadline.EmptyDeadline.EMPTY_DEADLINE, new ClientId.EmptyClientId(), new ArrayList<>(), new Pin(false));
         // only name
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG, NAME_DESC_BOB,
                 new AddProjectCommand(projectWithoutModel));

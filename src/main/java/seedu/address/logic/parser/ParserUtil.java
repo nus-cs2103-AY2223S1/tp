@@ -9,6 +9,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
@@ -216,7 +217,7 @@ public class ParserUtil {
         int trimmedIdInt = Integer.parseInt(trimmedId);
         return new Project(new Name("default"), new Repository("default/default"),
                 new Deadline("2022-03-05"), new Client(new Name("default")),
-                new ArrayList<>(), new ProjectId(trimmedIdInt));
+                new ArrayList<>(), new ProjectId(trimmedIdInt), new Pin(false));
     }
 
 

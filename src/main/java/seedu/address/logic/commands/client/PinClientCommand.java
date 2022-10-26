@@ -7,6 +7,9 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientId;
 import seedu.address.ui.Ui;
 
+/**
+ * Encapsulates a command to pin a client entity.
+ */
 public class PinClientCommand extends ClientCommand {
 
     public static final String COMMAND_FLAG = "-p";
@@ -19,7 +22,7 @@ public class PinClientCommand extends ClientCommand {
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " 1";
 
-    public ClientId toPinClientId;
+    private ClientId toPinClientId;
 
     public PinClientCommand(ClientId toPinClientId) {
         this.toPinClientId = toPinClientId;

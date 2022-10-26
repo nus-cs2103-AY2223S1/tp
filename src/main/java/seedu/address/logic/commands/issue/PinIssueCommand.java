@@ -7,6 +7,9 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.ui.Ui;
 
+/**
+ * Encapsulates a command to pin a issue entity.
+ */
 public class PinIssueCommand extends IssueCommand {
 
     public static final String COMMAND_FLAG = "-p";
@@ -19,7 +22,7 @@ public class PinIssueCommand extends IssueCommand {
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " 1";
 
-    public IssueId toPinIssueId;
+    private IssueId toPinIssueId;
 
     public PinIssueCommand(IssueId toPinIssueId) {
         this.toPinIssueId = toPinIssueId;
