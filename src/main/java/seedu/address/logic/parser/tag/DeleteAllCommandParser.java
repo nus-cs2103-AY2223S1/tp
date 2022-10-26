@@ -24,13 +24,13 @@ public class DeleteAllCommandParser implements Parser<DeleteAllCommand> {
      */
     public DeleteAllCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        List<String> tags = List.of(trimmedArgs.split(" "));
 
-        if (tags.size() == 1 && tags.get(0).equals("")) {
+        if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAllCommand.MESSAGE_USAGE));
         }
 
+        List<String> tags = List.of(trimmedArgs.split(" "));
         return new DeleteAllCommand(ParserUtil.parseTags(tags));
     }
 }

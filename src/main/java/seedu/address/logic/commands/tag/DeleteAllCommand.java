@@ -1,9 +1,12 @@
 package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
-
+import static seedu.address.commons.core.Messages.NEW_LINE_CHARACTER;
+import static seedu.address.logic.commands.contact.DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS;
+import static seedu.address.logic.commands.tag.DeleteTagCommand.MESSAGE_DELETE_TAG_SUCCESS;
 import static seedu.address.logic.commands.tag.DeleteTagCommand.createEditedPerson;
 import static seedu.address.logic.commands.tag.DeleteTagCommand.createEditedTask;
+import static seedu.address.logic.commands.task.DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -15,6 +18,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EditPersonDescriptor;
 import seedu.address.logic.commands.EditTaskDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
@@ -38,8 +42,7 @@ public class DeleteAllCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s\n";
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s\n";
+    public static final String MESSAGE_TAGS_DO_NOT_EXIST = "The tag(s) you want to remove cannot be found";
 
     private final PersonContainsKeywordsPredicate personPredicate;
     private final TaskContainsKeywordsPredicate taskPredicate;
@@ -51,20 +54,42 @@ public class DeleteAllCommand extends Command {
      * @param tagsToDelete The tags of the tasks and contacts to delete.
      */
     public DeleteAllCommand(Set<Tag> tagsToDelete) {
+        requireNonNull(tagsToDelete);
+        assert !tagsToDelete.isEmpty();
+
         this.tagsToDelete = tagsToDelete;
         this.personPredicate = new PersonContainsKeywordsPredicate(tagsToDelete);
         this.taskPredicate = new TaskContainsKeywordsPredicate(tagsToDelete);
     }
 
+    private void checkIfTagsExist(Model model) throws CommandException {
+        for (Tag tag : tagsToDelete) {
+            if (!model.hasTag(tag)) {
+                throw new CommandException(MESSAGE_TAGS_DO_NOT_EXIST);
+            }
+        }
+    }
+
     private Task removeTags(Model model, Task task) {
         for (Tag tag : tagsToDelete) {
-            if(task.containTag(tag)) {
+            if (task.containTag(tag)) {
                 model.decreaseTagCount(tag);
             }
         }
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         editTaskDescriptor.setTags(tagsToDelete);
         return createEditedTask(task, editTaskDescriptor);
+    }
+
+    private Person removeTags(Model model, Person person) {
+        for (Tag tag : tagsToDelete) {
+            if (person.containTag(tag)) {
+                model.decreaseTagCount(tag);
+            }
+        }
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        editPersonDescriptor.setTags(tagsToDelete);
+        return createEditedPerson(person, editPersonDescriptor);
     }
 
     private String deleteAndUpdateTasks(Model model) {
@@ -85,20 +110,10 @@ public class DeleteAllCommand extends Command {
             }
             model.deleteTask(task);
             sb.append(String.format(MESSAGE_DELETE_TASK_SUCCESS, task));
+            sb.append(NEW_LINE_CHARACTER);
         }
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return sb.toString();
-    }
-
-    private Person removeTags(Model model, Person person) {
-        for (Tag tag : tagsToDelete) {
-            if(person.containTag(tag)) {
-                model.decreaseTagCount(tag);
-            }
-        }
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        editPersonDescriptor.setTags(tagsToDelete);
-        return createEditedPerson(person, editPersonDescriptor);
     }
 
     private String deleteAndUpdatePersons(Model model) {
@@ -119,27 +134,35 @@ public class DeleteAllCommand extends Command {
             }
             model.deletePerson(person);
             sb.append(String.format(MESSAGE_DELETE_PERSON_SUCCESS, person));
+            sb.append(NEW_LINE_CHARACTER);
         }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return sb.toString();
     }
 
-    private void updateTagList(Model model) {
+    private String updateTagList(Model model) {
+        StringBuilder sb = new StringBuilder();
         for (Tag toDelete: tagsToDelete) {
+            sb.append(String.format(MESSAGE_DELETE_TAG_SUCCESS, toDelete));
+            sb.append(NEW_LINE_CHARACTER);
             model.decreaseTagCount(toDelete);
         }
+        return sb.toString();
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        String deletedTasksMessage = deleteAndUpdateTasks(model);
+        checkIfTagsExist(model);
         String deletedPersonsMessage = deleteAndUpdatePersons(model);
-        updateTagList(model);
+        String deletedTasksMessage = deleteAndUpdateTasks(model);
+        String deletedTagMessage = updateTagList(model);
         model.commitAddressBook();
 
-        return new CommandResult(deletedPersonsMessage + deletedTasksMessage);
+        return new CommandResult(deletedTagMessage
+                + deletedPersonsMessage
+                + deletedTasksMessage);
     }
 
     @Override
