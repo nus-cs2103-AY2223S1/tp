@@ -3,14 +3,94 @@ layout: page
 title: User Guide
 ---
 
-*MyInsuRec* is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better manage your clients and meetings and ease your mental load, then look no further. *MyInsuRec* can also boost your productivity with features to quickly look up client and meetings details. Beyond that, *MyInsuRec* also has features to help you improve your customer relations.
+## Introduction
 
-*MyInsuRec* is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *MyInsuRec* can get your client and meeting management tasks done faster than traditional GUI apps.
+*MyInsuRec* is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better manage your clients, meetings and products details, then look no further. *MyInsuRec* can also boost your productivity with features to quickly look up client and meetings details. Beyond that, *MyInsuRec* also has features to help you improve your customer relations.
 
-*MyInsuRec* is available for the Linux, Windows and macOS operating systems.
+*MyInsuRec* is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *MyInsuRec* can get your client, meeting and product management tasks done faster than traditional GUI apps.
+
+*MyInsuRec* is available for the Windows, macOS and Linux operating systems.
 
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## How to use this User Guide
+
+Welcome to *MyInsuRec User Guide*!
+
+This guide explains how you can use *MyInsuRec* to organize and manage your clients, meetings and products. This guide has been structured for users to quickly find and understand what they need. 
+
+Click on the links below to quickly get to what you need.
+
+{ fill with instructions linking to different sections of the user guide }  
+e.g.
+1. xyz (link)
+2. 
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Symbols
+
+| Symbol               | Meaning                                                                       |
+|----------------------|-------------------------------------------------------------------------------|
+| `command`            | Indicates some command or parameter that can be entered into MyInsuRec's CLI. |
+| :information_source: | Additional information that can be helpful.                                   |
+| :exclamation:        | Crucial information that you should be aware of.                              |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## About
+
+The following explains some terminology and main features of *MyInsuRec*:
+
+### Clients
+
+At the heart of *MyInsuRec* is the ability to organize and keep track of clients. You can do client-specific tasks such as:
+
+* add a client and their details into *MyInsuRec*.
+* view a client and their details, such as any upcoming meetings and purchased products.
+* update a client's details.
+* delete a client from *MyInsuRec*.
+
+Beyond individual clients, you can also:
+
+* show a summarized list of all clients with their important details such as contact number, products bought.
+* filter and display a summarized list of clients with upcoming birthdays to help boost your customer relations.
+* filter and display a summarized list of clients who purchased a specific product.
+
+### Meetings
+
+*MyInsuRec* eases a financial advisor's mental load by helping them track of any upcoming meetings. You can do meeting-specific tasks such as:
+
+* add a meeting to a client in *MyInsuRec*.
+* view a meeting in greater details.
+* update a meeting's details.
+* delete a meeting from a client in *MyInsuRec*.
+
+Beyond individual meetings, you can also:
+
+* show a summarized list of all meetings with their important details such as meeting date and time.
+* quickly get a glance of tomorrow's meetings, and also in the coming week and month.
+
+### Products
+
+In order to help track a client's purchases, *MyInsuRec* also includes the ability for users to define products that a client might have purchased. You can do product-specific tasks such as:
+
+* add a product to *MyInsuRec*.
+* delete a product from *MyInsuRec*.
+
+Beyond individual products, you can also:
+
+* show a summarized list of all products.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## User Interface (UI) of MyInsuRec
+
+{ replace with a diagram of MyInsuRec and arrows and notes describing the different components of MyInsuRec }
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -28,9 +108,9 @@ title: User Guide
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   1. `viewClient`: View a particular client
-   2. `addClient`: Add a client
-   3. `delClient`: Delete client
+    1. `viewClient`: View a particular client
+    2. `addClient`: Add a client
+    3. `delClient`: Delete client
 
 1. Refer to the [Features](#features) below for details of each command.
 
