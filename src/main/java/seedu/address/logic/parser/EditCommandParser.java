@@ -136,7 +136,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editTransactionDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
         if (!editTransactionDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditClientCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditTransactionCommand.MESSAGE_NOT_EDITED);
         }
         return new EditTransactionCommand(index, editTransactionDescriptor);
     }

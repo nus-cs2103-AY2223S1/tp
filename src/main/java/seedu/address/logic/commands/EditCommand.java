@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -18,12 +19,15 @@ public abstract class EditCommand extends Command {
             + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADDRESS + "Blk 221 Yishun St 81";
+            + "[" + PREFIX_MODE + "client/transaction/remark] "
+            + "+ respective information fields in client: n/NAME a/ADDRESS p/PHONE e/EMAIL t/TAG"
+            + " or transaction: g/GOOD price/PRICE q/QUANTITY d/DATE"
+            + " (for m/remark you only need to add the string"
+            + "remark after the m/remark prefix"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MODE +"client" + "a/Blk 221 Yishun St 81"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MODE +"transaction" + "g/oranges price/1.30"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MODE +"remark" + "new Remark that I want to add";
+
 
 }
 
