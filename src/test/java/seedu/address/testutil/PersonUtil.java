@@ -81,7 +81,8 @@ public class PersonUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.getValue()).append(" "));
         descriptor.getDescription().ifPresent(description
                 -> sb.append(PREFIX_DESCRIPTION).append(description.getValue()).append(" "));
-        descriptor.getNetWorth().ifPresent(netWorth -> sb.append(PREFIX_NETWORTH).append(netWorth.getValue()).append(" "));
+        descriptor.getNetWorth().ifPresent(netWorth
+                -> sb.append(PREFIX_NETWORTH).append(netWorth.getValue()).append(" "));
         if (descriptor.getMeetingTimes().isPresent()) {
             Set<MeetingTime> meetingTimes = descriptor.getMeetingTimes().get();
             if (meetingTimes.isEmpty()) {
