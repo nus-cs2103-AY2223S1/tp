@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -70,15 +71,18 @@ class JsonSerializableAddressBook {
         tasks.addAll(taskList.stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
 
         personList.forEach(person -> itemRelationship.put(
-                UUID.fromString("Person: " + person.getName().fullName).toString(),
+                UUID.nameUUIDFromBytes(("Person: " + person.getName().fullName)
+                        .getBytes(StandardCharsets.UTF_8)).toString(),
                 person.getParents().stream().map(Object::toString).collect(Collectors.toList())));
 
         groupList.forEach(group -> itemRelationship.put(
-                UUID.fromString("Group: " + group.getName().fullName).toString(),
+                UUID.nameUUIDFromBytes(("Group: " + group.getName().fullName)
+                        .getBytes(StandardCharsets.UTF_8)).toString(),
                 group.getParents().stream().map(Object::toString).collect(Collectors.toList())));
 
         taskList.forEach(task -> {
-            String taskUid = UUID.fromString("Task: " + task.getName().fullName).toString();
+            String taskUid = UUID.nameUUIDFromBytes(("Task: " + task.getName().fullName)
+                    .getBytes(StandardCharsets.UTF_8)).toString();
             itemRelationship.put(taskUid, List.of(task.getParent().toString()));
         });
     }

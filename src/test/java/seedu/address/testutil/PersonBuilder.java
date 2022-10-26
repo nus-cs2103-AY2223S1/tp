@@ -104,6 +104,26 @@ public class PersonBuilder {
                 return false;
             }
 
+            /**
+             * Returns true of any of the bits of the style flag settings is true
+             *
+             * @param flag
+             */
+            @Override
+            public boolean isAnyStyleMatch(int flag) {
+                return false;
+            }
+
+            /**
+             * Returns true of all of the bits of the style flag settings is true
+             *
+             * @param flag
+             */
+            @Override
+            public boolean isAllStyleMatch(int flag) {
+                return false;
+            }
+
             @Override
             public Node getJavaFxRepresentation() {
                 return null;

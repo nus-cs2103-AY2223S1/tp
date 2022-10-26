@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,8 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
     }
 
     public JsonAdaptedGroup(Group source) {
-        super(source.getName().fullName, UUID.fromString("Group: " + source.getName().fullName).toString(),
+        super(source.getName().fullName, UUID.nameUUIDFromBytes(("Group: " + source.getName().fullName)
+                        .getBytes(StandardCharsets.UTF_8)).toString(),
                 source.getAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),
