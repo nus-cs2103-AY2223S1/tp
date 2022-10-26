@@ -29,6 +29,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         case CLASS:
             return new ListTuitionClassCommand();
         default:
+            assert false;
             return new ListCommand();
         }
     }
