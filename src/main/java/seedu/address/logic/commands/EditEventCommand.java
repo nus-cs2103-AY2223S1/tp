@@ -15,6 +15,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventTitle;
+import seedu.address.model.event.Purpose;
 import seedu.address.model.event.StartDate;
 import seedu.address.model.event.StartTime;
 
@@ -90,10 +92,10 @@ public class EditEventCommand extends Command {
     private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
 
-        String updatedEventTitle = editEventDescriptor.getEventTitle().orElse(eventToEdit.getEventTitle());
+        EventTitle updatedEventTitle = editEventDescriptor.getEventTitle().orElse(eventToEdit.getEventTitle());
         StartDate updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getStartDate());
         StartTime updatedTime = editEventDescriptor.getTime().orElse(eventToEdit.getStartTime());
-        String updatedPurpose = editEventDescriptor.getPurpose().orElse(eventToEdit.getPurpose());
+        Purpose updatedPurpose = editEventDescriptor.getPurpose().orElse(eventToEdit.getPurpose());
         return new Event(updatedEventTitle, updatedDate, updatedTime, updatedPurpose);
     }
 
@@ -117,10 +119,10 @@ public class EditEventCommand extends Command {
      * Each field that is non-null will replace the corresponding field value of the event.
      */
     public static class EditEventDescriptor {
-        private String eventTitle;
+        private EventTitle eventTitle;
         private StartDate date;
         private StartTime time;
-        private String purpose;
+        private Purpose purpose;
 
         public EditEventDescriptor() {}
 
@@ -141,11 +143,11 @@ public class EditEventCommand extends Command {
             return CollectionUtil.isAnyNonNull(eventTitle, date, time, purpose);
         }
 
-        public void setEventTitle(String eventTitle) {
+        public void setEventTitle(EventTitle eventTitle) {
             this.eventTitle = eventTitle;
         }
 
-        public Optional<String> getEventTitle() {
+        public Optional<EventTitle> getEventTitle() {
             return Optional.ofNullable(eventTitle);
         }
 
@@ -165,11 +167,11 @@ public class EditEventCommand extends Command {
             return Optional.ofNullable(time);
         }
 
-        public void setPurpose(String purpose) {
+        public void setPurpose(Purpose purpose) {
             this.purpose = purpose;
         }
 
-        public Optional<String> getPurpose() {
+        public Optional<Purpose> getPurpose() {
             return Optional.ofNullable(purpose);
         }
 

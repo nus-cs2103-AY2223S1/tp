@@ -16,12 +16,10 @@ public class EventTitleContainsKeywordsPredicate implements Predicate<Event> {
         this.keywords = keywords;
     }
 
-    //TODO: Once EventTitle class is added, we need to change this to
-    //TODO: StringUtil.containsWordIgnoreCase(event.getEventTitle().toString(), kewyord));
     @Override
     public boolean test(Event event) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(event.getEventTitle(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(event.getEventTitle().toString(), keyword));
     }
 
     @Override
