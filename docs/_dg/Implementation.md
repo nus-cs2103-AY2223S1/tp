@@ -8,9 +8,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### `Tag`-related Features
 
-{% include_relative _dg/implementations/TaggingFeaturesDescription.md %}
-
-{% include_relative _dg/implementations/TaggingFeatures.md %}
+{% include_relative _dg/implementations/TagFeatures.md %}
 
 ### Statistics Features
 
