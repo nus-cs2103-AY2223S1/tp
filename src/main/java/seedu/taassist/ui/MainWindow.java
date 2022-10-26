@@ -1,15 +1,13 @@
 package seedu.taassist.ui;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -226,11 +224,11 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if(commandResult.isFocus()) {
+            if (commandResult.isFocus()) {
                 handleFocusMode();
             }
 
-            if(commandResult.isUnfocus()) {
+            if (commandResult.isUnfocus()) {
                 handleUnfocusMode();
             }
 
