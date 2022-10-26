@@ -10,7 +10,7 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
   * [Viewing trips list: `list`](#viewing-trips-list-list)
   * [Adding events to trips: `add-et n/EVENT NAME T/TRIP NAME`](#adding-events-to-trips-add-et-nevent-name-ttrip-name)
   * [Saving data](#saving-data)
-  * [Exiting the program: `bye`](#exiting-the-program-bye)
+  * [Exiting the program: `exit`](#exiting-the-program-bye)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -103,6 +103,7 @@ Sorts the trips according to the provided factor.
 
 Format: `sort by/FACTOR r/`
 - Sorts the trip according to provided FACTOR.
+- Marked and unmarked trips are sorted separately.
 - Order of sort reversed when the `r/` prefix is provided.
 - The parameters for this command are optional. 
 - The trips will be sorted by their title in alphabetical order by default.
@@ -116,12 +117,11 @@ Format: `sort by/FACTOR r/`
 | `time` | Sort by trip's date in chronological order |
 | `location` | Sort by trips' location in alphabetical order |
 | `eventcount` | Sort by trips' number of events in ascending order |
-| `mark` | Shift the marked trips to the bottom of unmarked trips. |
 
 ### Saving data
 Travelr data are saved locally automatically after any command that changes the data. There is no need to save manually.
 
-### Exiting the program: `bye`
+### Exiting the program: `exit`
 Exits the program.
-Format: `bye`
+Format: `exit`
 

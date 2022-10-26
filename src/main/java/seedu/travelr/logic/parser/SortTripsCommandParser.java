@@ -51,17 +51,21 @@ public class SortTripsCommandParser implements Parser<SortTripsCommand> {
         case "eventcount":
             comp = COMPARE_BY_NUM_EVENTS;
             break;
-        case "mark":
-            comp = COMPARE_BY_COMPLETION;
-            break;
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTripsCommand.MESSAGE_USAGE));
         }
 
-        final Comparator<Trip> originalComp = comp;
-
-        comp = reverse ? (x, y) -> -1 * originalComp.compare(x, y) : comp;
+        comp = makeComparator(reverse, comp);
 
         return new SortTripsCommand(comp);
+    }
+    
+    private static Comparator<Trip> makeComparator(boolean reverse, Comparator<Trip> comp) {
+        return (x, y) -> {
+            if (COMPARE_BY_COMPLETION.compare(x, y) != 0) {
+                return COMPARE_BY_COMPLETION.compare(x, y);
+            }
+            return (reverse ? -1 : 1) * comp.compare(x,y);
+        };
     }
 }
