@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
+import picocli.CommandLine;
 import seedu.address.model.Model;
 
 /**
  * Switches the theme of the program.
  */
+@CommandLine.Command(name = "theme")
 public class ThemeCommand extends Command {
 
     public static final String COMMAND_WORD = "theme";

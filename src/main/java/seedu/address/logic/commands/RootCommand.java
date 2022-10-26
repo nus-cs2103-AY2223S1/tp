@@ -21,7 +21,8 @@ import picocli.CommandLine.Command;
     FindCommand.class,
     MarkCommand.class,
     UnmarkCommand.class,
-    HelpCommand.class
+    HelpCommand.class,
+    ThemeCommand.class
 })
 public class RootCommand implements Runnable {
     @CommandLine.Spec

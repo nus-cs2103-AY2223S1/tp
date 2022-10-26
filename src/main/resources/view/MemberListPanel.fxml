@@ -10,5 +10,5 @@
         <Insets top="10"/>
     </padding>
     <Label styleClass="label-bright-padding" text="Team members:"/>
-    <ListView fx:id="memberListView" VBox.vgrow="ALWAYS"/>
+    <ListView fx:id="memberListView" VBox.vgrow="ALWAYS" styleClass="background_panel"/>
 </VBox>
