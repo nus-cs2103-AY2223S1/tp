@@ -115,20 +115,9 @@ public class ModelManagerTest {
 
     @Test
     public void getExpensePieChart_emptyExpensesArray_success() {
-        ObservableList<PieChart.Data> expectedExpensePieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Food", 0.00), new PieChart.Data("Groceries", 0.00),
-                new PieChart.Data("Entertainment", 0.00), new PieChart.Data("Education", 0.00),
-                new PieChart.Data("Housing", 0.00), new PieChart.Data("Others", 0.00));
-
         ObservableList<PieChart.Data> actualExpensePieChartData = modelManager.getExpensePieChartData();
+        assertEquals(null, actualExpensePieChartData);
 
-        for (int i = 0; i < 6; i++) {
-            PieChart.Data expectedCategory = expectedExpensePieChartData.get(i);
-            PieChart.Data actualCategory = actualExpensePieChartData.get(i);
-
-            assertEquals(expectedCategory.getName(), actualCategory.getName());
-            assertEquals(expectedCategory.getPieValue(), actualCategory.getPieValue());
-        }
     }
 
     @Test
@@ -154,20 +143,8 @@ public class ModelManagerTest {
 
     @Test
     public void getIncomePieChart_emptyIncomeArray_success() {
-        ObservableList<PieChart.Data> expectedIncomePieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Salary", 0.0), new PieChart.Data("Allowance", 0.0),
-                new PieChart.Data("Profit", 0.0), new PieChart.Data("Investment", 0.0),
-                new PieChart.Data("Gifts", 0.0), new PieChart.Data("Others", 0.0));
-
         ObservableList<PieChart.Data> actualIncomePieChartData = modelManager.getIncomePieChartData();
-
-        for (int i = 0; i < 6; i++) {
-            PieChart.Data expectedCategory = expectedIncomePieChartData.get(i);
-            PieChart.Data actualCategory = actualIncomePieChartData.get(i);
-
-            assertEquals(expectedCategory.getName(), actualCategory.getName());
-            assertEquals(expectedCategory.getPieValue(), actualCategory.getPieValue());
-        }
+        assertEquals(null, actualIncomePieChartData);
     }
 
     @Test

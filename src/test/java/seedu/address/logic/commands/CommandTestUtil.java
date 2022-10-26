@@ -35,6 +35,11 @@ public class CommandTestUtil {
     public static final String VALID_MONTH_MARCH = "2022-03";
     public static final String VALID_MONTH_APRIL = "2022-04";
 
+    public static final String VALID_DESC_BREAKFAST = "Breakfast";
+    public static final String VALID_AMT_BREAKFAST = "3.20";
+    public static final String VALID_DATE_BREAKFAST = "20-08-2022";
+    public static final String VALID_TAG_BREAKFAST = "Food";
+
     public static final String VALID_DESC_LUNCH = "Lunch";
     public static final String VALID_AMT_LUNCH = "5.20";
     public static final String VALID_DATE_LUNCH = "20-08-2022";
@@ -76,6 +81,11 @@ public class CommandTestUtil {
     public static final String TYPE_MONTH = " " + PREFIX_MONTH + VALID_MONTH_MARCH;
     public static final String TYPE_GRAPH_CATEGORY = " " + PREFIX_GRAPH + VALID_GRAPH_CATEGORY;
     public static final String TYPE_GRAPH_MONTH = " " + PREFIX_GRAPH + VALID_GRAPH_MONTH;
+
+    public static final String DESC_BREAKFAST = " " + PREFIX_DESCRIPTION + VALID_DESC_BREAKFAST;
+    public static final String AMT_BREAKFAST = " " + PREFIX_AMOUNT + VALID_AMT_BREAKFAST;
+    public static final String DATE_BREAKFAST = " " + PREFIX_DATE + VALID_DATE_BREAKFAST;
+    public static final String TAG_BREAKFAST = " " + PREFIX_TAG + VALID_TAG_BREAKFAST;
 
     public static final String DESC_LUNCH = " " + PREFIX_DESCRIPTION + VALID_DESC_LUNCH;
     public static final String AMT_LUNCH = " " + PREFIX_AMOUNT + VALID_AMT_LUNCH;

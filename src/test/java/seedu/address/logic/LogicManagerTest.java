@@ -3,13 +3,13 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.AMT_LUNCH;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_LUNCH;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_LUNCH;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_LUNCH;
+import static seedu.address.logic.commands.CommandTestUtil.AMT_BREAKFAST;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_BREAKFAST;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BREAKFAST;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_BREAKFAST;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_EXPENDITURE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEntry.LUNCH;
+import static seedu.address.testutil.TypicalEntry.BREAKFAST;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 
 import java.io.IOException;
@@ -88,12 +88,12 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD
                 + TYPE_EXPENDITURE
-                + DESC_LUNCH
-                + AMT_LUNCH
-                + DATE_LUNCH
-                + TAG_LUNCH;
-        Entry expectedExpenditure = new ExpenditureBuilder(LUNCH).build();
-        ModelManager expectedModel = new ModelManager();
+                + DESC_BREAKFAST
+                + AMT_BREAKFAST
+                + DATE_BREAKFAST
+                + TAG_BREAKFAST;
+        Entry expectedExpenditure = new ExpenditureBuilder(BREAKFAST).build();
+        ModelManager expectedModel = new ModelManager(getTypicalPennyWise(), new UserPrefs());
         expectedModel.addExpenditure(expectedExpenditure);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
