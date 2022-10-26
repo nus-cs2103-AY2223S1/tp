@@ -30,7 +30,7 @@ public class TaskProgressCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        double percentageComplete = model.percentageCompleteTaskList(predicate);
+        double percentageComplete = model.getPercentageCompletion(predicate);
 
         return new CommandResult(
                 String.format(MESSAGE_SHOW_PROGRESS_SUCCESS,

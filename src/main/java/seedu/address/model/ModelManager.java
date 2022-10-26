@@ -238,7 +238,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public double percentageCompleteTaskList(Predicate<Task> predicate) {
+    public double getPercentageCompletion(Predicate<Task> predicate) {
         updateFilteredTaskList(predicate);
 
         double numOfTasks = filteredTasks.size();
@@ -250,7 +250,7 @@ public class ModelManager implements Model {
 
         for (int i = 0; i < numOfTasks; i++) {
             Task currTask = filteredTasks.get(i);
-            if (currTask.getIsDone()) {
+            if (currTask.getStatus()) {
                 numCompleted += 1;
             }
         }

@@ -234,7 +234,7 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public double percentageCompleteTaskList(Predicate<Task> predicate) {
+        public double getPercentageCompletion(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

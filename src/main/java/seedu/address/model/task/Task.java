@@ -147,15 +147,6 @@ public class Task {
     }
 
     /**
-     * Returns true if this task is marked as done.
-     *
-     * @return boolean indicating whether this task is done.
-     */
-    public boolean getIsDone() {
-        return this.isDone;
-    }
-
-    /**
      * Returns true if both tasks have the same fields.
      * This defines a stronger notion of equality between two tasks.
      */
