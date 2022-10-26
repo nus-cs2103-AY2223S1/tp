@@ -14,7 +14,7 @@ import seedu.address.model.profile.UniqueProfileList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameProfile comparison)
+ * Similar Profiles are not allowed (by .isSameEmail, .isSamePhone and .isSameTelegramNotEmpty comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -47,7 +47,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the profile list with {@code profiles}.
-     * {@code profiles} must not contain duplicate profiles.
+     * {@code profiles} must not contain similar profiles.
      */
     public void setProfiles(List<Profile> profiles) {
         this.profiles.setProfiles(profiles);
@@ -73,11 +73,27 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// profile-level operations
 
     /**
-     * Returns true if a profile with the same identity as {@code profile} exists in the address book.
+     * Returns true if a profile with the same email as {@code profile} exists in the address book.
      */
-    public boolean hasProfile(Profile profile) {
+    public boolean hasEmail(Profile profile) {
         requireNonNull(profile);
-        return profiles.contains(profile);
+        return profiles.containsEmail(profile);
+    }
+
+    /**
+     * Returns true if a profile with the same phone as {@code profile} exists in the address book.
+     */
+    public boolean hasPhone(Profile profile) {
+        requireNonNull(profile);
+        return profiles.containsPhone(profile);
+    }
+
+    /**
+     * Returns true if a profile with the same telegram as {@code profile} exists in the address book.
+     */
+    public boolean hasTelegram(Profile profile) {
+        requireNonNull(profile);
+        return profiles.containsTelegram(profile);
     }
 
     /**
@@ -105,6 +121,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeProfile(Profile key) {
         profiles.remove(key);
+    }
+
+    /**
+     * Returns true if a profile with the same identity as {@code profile} exists in the address book.
+     */
+    public boolean hasProfile(Profile profile) {
+        requireNonNull(profile);
+        return profiles.contains(profile);
     }
 
     //// event-level operations

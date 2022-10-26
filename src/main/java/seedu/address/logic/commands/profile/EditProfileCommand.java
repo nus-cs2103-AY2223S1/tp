@@ -60,7 +60,6 @@ public class EditProfileCommand extends ProfileCommand {
             + "[" + PREFIX_TELEGRAM + "TELEGRAM USERNAME] "
             + "[" + PREFIX_TAG + "TAG]...\n";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the address book.";
 
     private final Index index;
     private final EditProfileDescriptor editProfileDescriptor;
@@ -89,8 +88,16 @@ public class EditProfileCommand extends ProfileCommand {
         Profile profileToEdit = lastShownList.get(index.getZeroBased());
         Profile editedProfile = createEditedProfile(profileToEdit, editProfileDescriptor);
 
-        if (!profileToEdit.isSameProfile(editedProfile) && model.hasProfile(editedProfile)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROFILE);
+        if (!profileToEdit.isSameEmail(editedProfile) && model.hasEmail(editedProfile)) {
+            throw new CommandException(MESSAGE_SIMILAR_EMAIL);
+        }
+
+        if (!profileToEdit.isSamePhone(editedProfile) && model.hasPhone(editedProfile)) {
+            throw new CommandException(MESSAGE_SIMILAR_PHONE);
+        }
+
+        if (!profileToEdit.isSameTelegramNotEmpty(editedProfile) && model.hasTelegram(editedProfile)) {
+            throw new CommandException(MESSAGE_SIMILAR_TELEGRAM);
         }
 
         model.setProfile(profileToEdit, editedProfile);
