@@ -69,6 +69,26 @@ public class Grades {
         }
     }
 
+    public double[] getRawPercentages() {
+        double[] rawPercentages = new double[assessmentMarks.size()];
+        int i = 0;
+        for (double[] marks : assessmentMarks.values()) {
+            rawPercentages[i] = marks[0] / marks[1];
+            i++;
+        }
+        return rawPercentages;
+    }
+
+    public double[] getDifficulties() {
+        double[] difficulties = new double[assessmentMarks.size()];
+        int i = 0;
+        for (double[] marks : assessmentMarks.values()) {
+            difficulties[i] = marks[3];
+            i++;
+        }
+        return difficulties;
+    }
+
     @Override
     public int hashCode() {
         return assessmentMarks.hashCode();

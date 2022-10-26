@@ -19,27 +19,19 @@ public class PredictionUtil {
      * @return the predicted grade as a double representing the percentage
      */
     public static double predictGrade(Grades grades) {
-        // v3: use simple linear regression with the grade for x-axis
-        // and the assessment "number" for y-axis
-        double[] runningGradients = new double[grades.getAllAssessments().size() + 1];
-        ArrayList<String> assessments = grades.getAllAssessments();
-        for (int i = 1; i < assessments.size(); i++) {
-            double[] gradeMatrix = grades.getGradeForAssessment(assessments.get(i));
-            double[] previousGradeMatrix = grades.getGradeForAssessment(assessments.get(i - 1));
-            double normalizedCurrent = (gradeMatrix[0] / gradeMatrix[1]);
-            double normalizedPrevious = (previousGradeMatrix[0] / previousGradeMatrix[1]);
-            double gradient = normalizedCurrent - normalizedPrevious;
-            runningGradients[i] = gradient;
+        // v4.0: add in assessment difficulty heuristic to give assessment
+        // scores an arbitrary weightage
+        double[] rawPercents = grades.getRawPercentages();
+        double[] difficulties = grades.getDifficulties();
+        double[] normalizedScores = new double[rawPercents.length];
+        for (int i = 0; i < rawPercents.length; i++) {
+            normalizedScores[i] = (rawPercents[i] * 100) + getDifficultyBonus(difficulties[i]);
         }
-        double averageGradient = 0;
-        for (double gradient : runningGradients) {
-            averageGradient += gradient;
-        }
-        averageGradient /= (runningGradients.length - 1);
-        // y = mx + c
-        // c = y - mx
-        double constant = runningGradients[1] - (averageGradient * 1);
-        double predictedGrade = (averageGradient * (assessments.size() + 1)) + constant;
-        return predictedGrade;
+        return Arrays.stream(normalizedScores).sum() / normalizedScores.length;
+    }
+
+    private static double getDifficultyBonus(double difficulty) {
+        // Initial model: y = 2 * difficulty + Math.PI
+        return 2 * difficulty + Math.PI;
     }
 }
