@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalCustomers.ALICE_DECREMENT;
+import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalEmails.EMAIL_FIRST_PERSON;
 import static seedu.address.testutil.TypicalEmails.EMAIL_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.ALICE_DECREMENT;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalPhones.PHONE_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPhones.PHONE_SECOND_PERSON;
 
@@ -18,9 +18,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Phone;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for IncreaseCommand.
@@ -31,25 +31,25 @@ public class DecreaseCommandTest {
 
     @Test
     public void execute_phoneAllFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = ALICE_DECREMENT;
+        Customer editedCustomer = ALICE_DECREMENT;
         DecreaseCommand decreaseCommand = new DecreaseCommand(PHONE_FIRST_PERSON, "100");
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedCustomer);
         assertCommandSuccess(decreaseCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_emailAllFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = ALICE_DECREMENT;
+        Customer editedCustomer = ALICE_DECREMENT;
         DecreaseCommand decreaseCommand = new DecreaseCommand(EMAIL_FIRST_PERSON, "100");
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedCustomer);
 
         assertCommandSuccess(decreaseCommand, model, expectedMessage, expectedModel);
     }

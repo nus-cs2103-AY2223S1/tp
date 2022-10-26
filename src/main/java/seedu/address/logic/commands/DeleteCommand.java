@@ -9,24 +9,24 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.exceptions.PersonNotFoundException;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a customer identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the phone number or email used to register for membership.\n"
+            + ": Deletes the customer identified by the phone number or email used to register for membership.\n"
             + "Parameters: p/PHONE_NUMBER or e/EMAIL \n"
             + "Example: " + COMMAND_WORD + " p/81234567  or  " + COMMAND_WORD + " e/example@gmail.com";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Customer: %1$s";
 
     private Index targetIndex;
 
@@ -53,11 +53,11 @@ public class DeleteCommand extends Command {
         }
 
         this.targetIndex = Index.fromZeroBased(index);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Customer> lastShownList = model.getFilteredPersonList();
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        Customer customerToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deletePerson(customerToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, customerToDelete));
     }
 
     @Override
@@ -79,7 +79,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Stores the details of the Person to delete (either the phone number or email).
+     * Stores the details of the Customer to delete (either the phone number or email).
      */
     public static class DeletePersonDescriptor {
         private Email email;

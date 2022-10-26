@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.customer.Customer;
 
 /**
  * Adds a customer to bobaBot.
@@ -39,14 +39,14 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New customer added: %1$s";
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in bobaBot";
 
-    private final Person toAdd;
+    private final Customer toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Customer}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Customer customer) {
+        requireNonNull(customer);
+        toAdd = customer;
     }
 
     @Override

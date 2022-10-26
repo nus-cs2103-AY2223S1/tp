@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +13,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Phone;
 
 
 /**
@@ -28,7 +28,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validPhoneArg_success() {
-        // Corresponds to phone number input for "ALICE" under TypicalPersons class
+        // Corresponds to phone number input for "ALICE" under TypicalCustomers class
         DeleteCommand.DeletePersonDescriptor deletePersonDescriptor = new DeleteCommand.DeletePersonDescriptor();
         deletePersonDescriptor.setPhone(new Phone("94351253"));
 
@@ -37,20 +37,20 @@ public class DeleteCommandTest {
         Index targetIndex = Index.fromZeroBased(index);
 
         // Gets ALICE
-        Person personToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Customer customerToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(deletePersonDescriptor);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, customerToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePerson(customerToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidPhoneArg_throwsCommandException() {
-        // Corresponds to a random phone number input not in the TypicalPersons class
+        // Corresponds to a random phone number input not in the TypicalCustomers class
         DeleteCommand.DeletePersonDescriptor deletePersonDescriptor = new DeleteCommand.DeletePersonDescriptor();
         deletePersonDescriptor.setPhone(new Phone("11111111"));
 
@@ -62,7 +62,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validEmailArg_success() {
-        // Corresponds to email input for "CARL" under TypicalPersons class
+        // Corresponds to email input for "CARL" under TypicalCustomers class
         DeleteCommand.DeletePersonDescriptor deletePersonDescriptor = new DeleteCommand.DeletePersonDescriptor();
         deletePersonDescriptor.setEmail(new Email("heinz@example.com"));
 
@@ -71,20 +71,20 @@ public class DeleteCommandTest {
         Index targetIndex = Index.fromZeroBased(index);
 
         // Gets CARL
-        Person personToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Customer customerToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(deletePersonDescriptor);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, customerToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePerson(customerToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidEmailArg_throwsCommandException() {
-        // Corresponds to a random email input not in the TypicalPersons class
+        // Corresponds to a random email input not in the TypicalCustomers class
         DeleteCommand.DeletePersonDescriptor deletePersonDescriptor = new DeleteCommand.DeletePersonDescriptor();
         deletePersonDescriptor.setEmail(new Email("testing123@test.com"));
 

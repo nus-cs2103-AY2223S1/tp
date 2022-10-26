@@ -25,7 +25,7 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
     * **`list`** : Lists all customers.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to bobaBot.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/1 r/0` : Adds a customer named `John Doe` to bobaBot.
 
     * **`delete`**`p/98765432` : Deletes the customer with the corresponding phone number (aka John Doe).
 
@@ -47,10 +47,10 @@ bobaBot is a **desktop application** for managing customers’ membership detail
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/member` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/member`, `t/member t/gold` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -75,17 +75,17 @@ Format: `help`
 
 Adds a Customer to bobaBot.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/BIRTHDAY_MONTH r/REWARD [t/TAG]…`
 
 
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
-A person can have any number of tags (including 0)
+A customer can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com r/0 t/new `
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`
+* `add n/John Doe p/98765432 e/johnd@example.com m/1 r/0 `
+* `add n/Betsy Crowe p/91234567 e/betsycrowe@example.com m/2 r/5000 t/member t/gold`
 
 ### Editing a Customer’s details: `edit`
 
@@ -128,7 +128,7 @@ Shows a list of all Customers in bobaBot.
 
 Format: `list`
 
-### Locating persons by name: `find`
+### Locating customers by name: `find`
 
 Finds Customers whose information (including name, phone, email, address) contain any of the given keywords.
 
@@ -203,7 +203,7 @@ _Details coming soon ..._
 
 | Action       | Format, Examples                                                                                                                                         |
 |--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold`                 |
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL r/REWARD [t/TAG]…` <br> e.g., ` add n/Betsy Crowe p/91234567 e/betsycrowe@example.com m/1 r/5000 t/gold`              |
 | **Edit**     | `edit p/PHONE_NUMBER` or `edit e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`<br> e.g.,`edit p/91234567 e/johndoe@example.com r/1000` |
 | **Increase** | `incr 100 p/PHONE_NUMBER` or `incr 100 e/EMAIL` <br> e.g., `incr 100 p/87438807`, `incr 100 e/alexyeoh@example.com`                                      |
 | **Decrease** | `decr 100 p/PHONE_NUMBER` or `decr 100 e/EMAIL` <br> e.g., `decr 100 p/87438807`, `decr 100 e/alexyeoh@example.com`                                      |

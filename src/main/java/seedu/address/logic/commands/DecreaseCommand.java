@@ -11,9 +11,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Reward;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.Reward;
 
 /**
  * Decreases the reward points of an existing Customer in bobaBot.
@@ -39,7 +39,7 @@ public class DecreaseCommand extends Command {
     private final EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
 
     /**
-     * @param phoneIdentifier current phone number of the person
+     * @param phoneIdentifier current phone number of the customer
      * @param rewardPoints amount of reward points to decrement by
      */
     public DecreaseCommand(Phone phoneIdentifier, String rewardPoints) {
@@ -50,7 +50,7 @@ public class DecreaseCommand extends Command {
     }
 
     /**
-     * @param emailIdentifier current email address of the person
+     * @param emailIdentifier current email address of the customer
      * @param rewardPoints amount of reward points to decrement by
      */
     public DecreaseCommand(Email emailIdentifier, String rewardPoints) {
