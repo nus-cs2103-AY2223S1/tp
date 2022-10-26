@@ -13,17 +13,24 @@ import seedu.address.model.project.Project;
 public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
 
     private final List<String> nameKeywords;
-
     private final List<String> repositoryKeywords;
+    private final List<String> clientNameKeywords;
+    private final List<String> clientIdKeywords;
 
     /**
      * Constructs a ProjectContainsKeywordsPredicate object with the user inputs.
      * @param nameKeywords List of Strings representing keywords to search for in name
      * @param repositoryKeywords List of Strings representing keywords to search for in repository
+     * @param clientNameKeywords List of Strings representing keywords to search for in project's client's name
+     * @param clientIdKeywords List of Strings representing keywords to search for in project's client's Id
+     *
      */
-    public ProjectContainsKeywordsPredicate(List<String> nameKeywords, List<String> repositoryKeywords) {
+    public ProjectContainsKeywordsPredicate(List<String> nameKeywords, List<String> repositoryKeywords,
+                                            List<String> clientNameKeywords, List<String> clientIdKeywords) {
         this.nameKeywords = nameKeywords;
         this.repositoryKeywords = repositoryKeywords;
+        this.clientNameKeywords = clientNameKeywords;
+        this.clientIdKeywords = clientIdKeywords;
     }
 
     /**
@@ -47,6 +54,31 @@ public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
             return true;
         } else {
             return nameKeywords.stream().anyMatch(name -> testName(name, project.getProjectName().toString()));
+        }
+    }
+
+    /**
+     * Checks if given client name matches with any word in the name present.
+     * @param namePresent String representing client name present
+     * @param nameGiven String representing client name given (keyword to search for)
+     * @return boolean true if at least one word matches with the keyword and false otherwise
+     */
+    public boolean testClientName(String namePresent, String nameGiven) {
+        return Arrays.stream(namePresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(nameGiven, words));
+    }
+
+    /**
+     * Checks if the project's client's name matches the name keyword being search for.
+     * @param project Project whose client's name is being used to search the keyword in
+     * @return boolean true if the name fulfills the search criteria and false otherwise
+     */
+    public boolean testClientName(Project project) {
+        if (clientNameKeywords.isEmpty()) {
+            return true;
+        } else {
+            return clientNameKeywords.stream().anyMatch(name -> testClientName(name,
+                    project.getClient().getClientName().toString()));
         }
     }
 
@@ -85,6 +117,8 @@ public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
         return other == this // short circuit if same object
                 || (other instanceof ProjectContainsKeywordsPredicate // instanceof handles nulls
                 && nameKeywords.equals(((ProjectContainsKeywordsPredicate) other).nameKeywords) //state checks
-                && repositoryKeywords.equals(((ProjectContainsKeywordsPredicate) other).repositoryKeywords));
+                && repositoryKeywords.equals(((ProjectContainsKeywordsPredicate) other).repositoryKeywords)
+                && clientNameKeywords.equals(((ProjectContainsKeywordsPredicate) other).clientNameKeywords)
+                && clientIdKeywords.equals(((ProjectContainsKeywordsPredicate) other).clientIdKeywords));
     }
 }
