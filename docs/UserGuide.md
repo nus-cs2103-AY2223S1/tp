@@ -29,6 +29,9 @@ For a full list of commands and detailed instructions, head to the [Features](#f
       * [Find by class date](#find-by-class-date)
       * [Find by tag](#)
     * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
+      * [Sort by Name](#sort-by-name)
+      * [Sort by Class](#sort-by-class)
+      * [Sort by Money_Owed](#sort-by-money_owed)
     * [Deleting student(s): `delete`](#deleting-students-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
     * [Undo a command: `undo`](#undo-the-last-command-undo)
@@ -343,15 +346,44 @@ Format: `sort TYPE [ORDER]`
 - Default order for `NAME` and `CLASS` is `ASC` while default order for `OWED` is `DESC`.
 - The two parameters `TYPE` and `ORDER` can be non-capitalized such as `name`, `nAMe` and so on.
 
+[Back to top](#table-of-contents)
+
+#### Sort by NAME
+
+Sort the displayed list of students (in the Students' Details panel) by `NAME` and given `order`.
+
+When `order` is left blank, it will be `ASC` by default.
+
 Examples:
 
 - `list` followed by `sort NAME` will list all the students according to their names in ascending order.
+- `list` followed by `sort NAME ASC` will list all the students according to their names in ascending order.
+- `list` followed by `sort NAME DESC` will list all the students according to their names in descending order.
+
+#### Sort by CLASS
+
+Sort the displayed list of students (in the Students' Details panel) by `CLASS` and given `order`.
+
+When `order` is left blank, it will be `ASC` by default.
+
+Examples:
+
+- `list` followed by `sort CLASS` will list all the students according to their upcoming classes in ascending order.
 - `list` followed by `sort CLASS ASC` will list all the students according to their upcoming classes in ascending order.
-- `list` followed by `sort OWED` will list all the students according to how much money they owe in descending order.
+- `list` followed by `sort CLASS DESC` will list all the students according to their upcoming classes in descending order.
+
+
+#### Sort by MONEY_OWED
+
+Sort the displayed list of students (in the Students' Details panel) by `OWED`(Amount of Money Owed) and given `order`.
+
+When `order` is left blank, it will be `DESC` by default.
+
+Examples:
+
+- `list` followed by `sort OWED` will list all the students according to how much money they owe in **descending** order.
+- `list` followed by `sort OWED ASC` will list all the students according to how much money they owe in ascending order.
 - `list` followed by `sort OWED DESC` will list all the students according to how much money they owe in descending order.
-
-[Back to top](#table-of-contents)
-
 ---
 
 ### Deleting student(s): 'delete'
@@ -449,17 +481,17 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command Summary
 
-| Action               | Format, Examples                                                                                                                                                                                                                  |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL [t/TAG]... `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com t/python t/beginner`                                         |
-| Edit a student       | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] `e.g., edit 2 p/98765431` |
-| Get help             | `help`                                                                                                                                                                                                                            |
-| List all students    | `list`                                                                                                                                                                                                                            |
-| Find a student       | find NAME `e.g., find John Doe`                                                                                                                                                                                                   |
-| Sort displayed students | `sort` TYPE [ORDER]                                                                                                                                                                                                            |
-| Delete a student     | delete INDEX `e.g., delete 2`                                                                                                                                                                                                     |
-| Clear all students   | `clear`                                                                                                                                                                                                                           |
-| Undo a command          | `undo`                                                                                                                                                                                                                         |
-| Exit the application | `exit`                                                                                                                                                                                                                            |
+| Action                  | Format, Examples                                                                                                                                                                                                                  |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add a student           | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL [t/TAG]... `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com t/python t/beginner`                                         |
+| Edit a student          | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] `e.g., edit 2 p/98765431` |
+| Get help                | `help`                                                                                                                                                                                                                            |
+| List all students       | `list`                                                                                                                                                                                                                            |
+| Find a student          | find NAME `e.g., find John Doe`                                                                                                                                                                                                   |
+| Sort displayed students | `sort` TYPE [ORDER]                                                                                                                                                                                                               |
+| Delete a student        | delete INDEX `e.g., delete 2`                                                                                                                                                                                                     |
+| Clear all students      | `clear`                                                                                                                                                                                                                           |
+| Undo a command          | `undo`                                                                                                                                                                                                                            |
+| Exit the application    | `exit`                                                                                                                                                                                                                            |
 
 [Back to top](#table-of-contents)
