@@ -109,7 +109,8 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editActivityDescriptor.getTags().orElse(activityToEdit.getTags());
         List<Date> date = editActivityDescriptor.getDate().orElse(activityToEdit.getDate());
         Status updatedStatus = editActivityDescriptor.getStatus().orElse(activityToEdit.getStatus());
-        return new Activity(updatedName, updatedDescription, updatedTags, date, updatedStatus);
+        return new Activity(updatedName, updatedDescription, updatedTags, date, updatedStatus,
+                activityToEdit.getReview());
     }
 
     @Override
@@ -165,7 +166,6 @@ public class EditCommand extends Command {
         public void setName(Name name) {
             this.name = name;
         }
-
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
@@ -227,7 +227,8 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags())
-                    && getDate().equals((e.getDate()));
+                    && getDate().equals(e.getDate())
+                    && getStatus().equals(e.getStatus());
         }
     }
 }

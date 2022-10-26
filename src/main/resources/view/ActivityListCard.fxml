@@ -31,7 +31,8 @@
       <FlowPane fx:id="tags" />
       <FlowPane fx:id="date" />
       <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-      <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
+      <Label fx:id="status" text="\$status" />
+      <Label fx:id="review" styleClass="cell_small_label" text="\$review" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
