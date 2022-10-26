@@ -174,14 +174,14 @@ public class ModelManagerTest {
     public void getExpenseLineChart_emptyExpensesArray_success() {
         XYChart.Series<String, Number> expectedExpenseLineChartData = new XYChart.Series<>();
         XYChart.Series<String, Number> actualExpenseLineChartData = modelManager.getExpenseLineChartData();
-        assertEquals(expectedExpenseLineChartData, actualExpenseLineChartData);
+        assertEquals(expectedExpenseLineChartData.getData(), actualExpenseLineChartData.getData());
     }
 
     @Test
     public void getIncomeLineChart_emptyIncomeArray_success() {
         XYChart.Series<String, Number> expectedIncomeLineChartData = new XYChart.Series<>();
         XYChart.Series<String, Number> actualIncomeLineChartData = modelManager.getIncomeLineChartData();
-        assertEquals(expectedIncomeLineChartData, actualIncomeLineChartData);
+        assertEquals(expectedIncomeLineChartData.getData(), actualIncomeLineChartData.getData());
     }
 
     @Test
