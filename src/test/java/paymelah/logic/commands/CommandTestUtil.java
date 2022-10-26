@@ -18,7 +18,6 @@ import static paymelah.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static paymelah.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
