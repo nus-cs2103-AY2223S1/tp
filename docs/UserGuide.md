@@ -28,7 +28,8 @@ FindMyIntern helps students who are applying for internships keep track of their
 1. Copy the file to the folder you want to use as the _home folder_ for your FindMyIntern.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/Ui.png" width=80% />
+
+   <img src="images/Ui.png" width="600" />
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all internship applications.<br>
    Some example commands you can try:
@@ -58,7 +59,7 @@ FindMyIntern helps students who are applying for internships keep track of their
 
 Shows a message explaning how to access the help page.
 
-<img src="images/helpMessage.png" width=70% />
+<img src="images/helpMessage.png" width="500"/>
 
 Format: `help`
 
@@ -69,17 +70,24 @@ Adds an internship application to the tracker.
 Format: `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]…`
 
 * Default application status is "Applied".
-* `APPLIED_DATE` must be one of these formats:
-  * `d MMM yyyy` (7 Oct 2022)
-  * `d/M/yyyy` (7/10/2022).
 * `INTERVIEW_DATE_TIME` is optional, but if included, will automatically change application status to "Shortlisted".
-* `INTERVIEW_DATE_TIME` must be one of these formats:
-  * `d MMM yyyy HH:mm` (7 Oct 2022 15:00)
-  * `d/M/yyyy HH:mm` (7/10/2022 15:00)
-  * `d MMM yyyy, h:mm a` (7 Oct 2022, 3:00 pm)
-  * `d/M/yyyy, h:mm a` (7 Oct 2022, 3:00 pm)
 * The year can be omitted from `APPLIED_DATE` and `INTERVIEW_DATE_TIME` to default to current year.
 * `TAG` is optional, but can be used multiple times.
+
+<div markdown="block" class="alert alert-warning"><i class="fa fa-warning"></i>
+
+**Date/time formats**
+
+* `APPLIED_DATE` must be one of these formats:
+  * `d MMM yyyy` (7 Oct 2022)
+  * `d/M/yyyy` (7/10/2022)
+* `INTERVIEW_DATE_TIME` must be one of these formats:
+    * `d MMM yyyy HH:mm` (7 Oct 2022 15:00)
+    * `d/M/yyyy HH:mm` (7/10/2022 15:00)
+    * `d MMM yyyy, h:mm a` (7 Oct 2022, 3:00 pm)
+    * `d/M/yyyy, h:mm a` (7 Oct 2022, 3:00 pm)
+  
+</div>
 
 Examples:
 * `add c/Apple l/https://jobs.apple.com/en-sg d/Software engineering internship a/11/10/2022`
@@ -92,16 +100,26 @@ Edits an existing internship application in the tracker.
 Format: `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INTERVIEW_DATE_TIME] [t/TAG]…`
 
 * Edits the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed
-  internship application list. The index **must be a positive integer** 1, 2, 3 ...
+  internship application list. The index **must be a positive integer** 1, 2, 3…
 * At least one of the optional fields must be provided.
 * When editing `INTERVIEW_DATE_TIME`, the application status will change to "Shortlisted".
-    * `INTERVIEW_DATE_TIME` must be one of these formats:
-        * `d MMM yyyy HH:mm` (7 Oct 2022 15:00)
-        * `d/M/yyyy HH:mm` (7/10/2022 15:00)
-        * `d MMM yyyy, h:mm a` (7 Oct 2022, 3:00 pm)
-        * `d/M/yyyy, h:mm a` (7 Oct 2022, 3:00 pm)
 * When editing tags, the existing tags will removed and replaced with the input tags.
 * Tags can be removed by typing `t/` without specifying any tags after it.
+
+<div markdown="block" class="alert alert-warning"><i class="fa fa-warning"></i>
+
+**Date/time formats**
+
+* `APPLIED_DATE` must be one of these formats:
+    * `d MMM yyyy` (7 Oct 2022)
+    * `d/M/yyyy` (7/10/2022)
+* `INTERVIEW_DATE_TIME` must be one of these formats:
+    * `d MMM yyyy HH:mm` (7 Oct 2022 15:00)
+    * `d/M/yyyy HH:mm` (7/10/2022 15:00)
+    * `d MMM yyyy, h:mm a` (7 Oct 2022, 3:00 pm)
+    * `d/M/yyyy, h:mm a` (7 Oct 2022, 3:00 pm)
+
+</div>
 
 Examples:
 * `edit 1 d/Data analyst intern` - Edits the description of the 1st internship application
@@ -118,7 +136,7 @@ Marks an internship application status as "applied", "shortlisted", "interviewed
 Format: `mark INDEX s/APPLICATION_STATUS`
 
 * Updates the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed 
-  internship application list. The index **must be a positive integer** 1, 2, 3 ...
+  internship application list. The index **must be a positive integer** 1, 2, 3…
 
 * Updates the internship application to the specified `APPLICATION_STATUS`. 
   The application status refers to the current status of the application. 
@@ -147,7 +165,7 @@ Format: `delete INDEX`
 
 * Deletes the internship application at the specified `INDEX`.
 * The `INDEX` refers to the index number shown in the displayed internship application list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer** 1, 2, 3…
 
 Examples:
 *  `delete 4` - Deletes the 4th internship application in the list.
@@ -174,7 +192,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]…`
 Examples:
 * `find tiktok` returns internship application(s) and tag(s) containing `tiktok`
 * `find google backend` returns internship application(s) and tag(s) containing `google` and `backend`
-<img src="images/findGoogleBackendResult.png" width=80% />
+
+<img src="images/findGoogleBackendResult.png" width="600" />
 
 ### Exiting the program: `exit`
 
