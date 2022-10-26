@@ -1,4 +1,4 @@
-#### Feature: Create an Item
+#### Creating an Item
 
 ##### Overview
 
@@ -14,7 +14,7 @@
 
 <!-- TODO: Command Considerations -->
 
-#### Feature: Edit an Item
+#### Editing an Item
 
 ##### Overview
 
@@ -30,7 +30,7 @@
 
 <!-- TODO: Command Considerations -->
 
-#### Feature: Sort an Item
+#### Sorting an Item
 
 ##### Overview
 

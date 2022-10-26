@@ -1,4 +1,4 @@
-#### Feature: Help
+#### Displaying Help Dialogs
 
 <!-- TODO: ACTIVITY DIAGRAM -->
 

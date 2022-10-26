@@ -1,4 +1,4 @@
-#### Feature: Statistics
+#### Displaying Statistics
 
 ##### Overview
 
