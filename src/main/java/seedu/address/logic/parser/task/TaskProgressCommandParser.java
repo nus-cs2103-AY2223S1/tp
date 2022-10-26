@@ -27,7 +27,7 @@ public class TaskProgressCommandParser implements Parser<TaskProgressCommand> {
         String trimmedArgs = args.trim();
         List<String> tags = List.of(trimmedArgs.split(" "));
 
-        if (tags.isEmpty()) {
+        if (tags.size() <= 1 && tags.get(0).equals("")) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskProgressCommand.MESSAGE_USAGE));
         }
