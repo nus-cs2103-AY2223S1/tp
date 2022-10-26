@@ -21,8 +21,8 @@ import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.commands.client.SetClientDefaultViewCommand;
 import seedu.address.logic.commands.client.SortClientCommand;
 import seedu.address.logic.commands.client.find.FindClientByEmailCommand;
-import seedu.address.logic.commands.client.find.FindClientByNameCommand;
 import seedu.address.logic.commands.client.find.FindClientByMobileCommand;
+import seedu.address.logic.commands.client.find.FindClientByNameCommand;
 import seedu.address.logic.commands.client.find.FindClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Name;
@@ -31,8 +31,8 @@ import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientMobile;
 import seedu.address.model.client.ClientWithoutModel;
 import seedu.address.model.client.predicates.EmailContainsKeywordsPredicate;
-import seedu.address.model.client.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.client.predicates.MobileContainsKeywordsPredicate;
+import seedu.address.model.client.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectId;
 
 /**

@@ -192,8 +192,6 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     }
 
     /**
-<<<<<<< HEAD
-=======
      * Checks if input is a valid issue id sort key.
      *
      * 0 for ascending and 1 for descending order
@@ -211,7 +209,6 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     }
 
     /**
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
      * Returns true if both issues have the same title.
      * This defines a weaker notion of equality between two issues.
      */
@@ -223,8 +220,6 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return otherIssue != null
                 && otherIssue.getTitle().equals(getTitle());
     }
-
-
 
     /**
      * Returns true if both projects have the same identity and data fields.

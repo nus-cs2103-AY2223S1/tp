@@ -12,8 +12,8 @@ import seedu.address.model.Deadline;
 import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
-import seedu.address.model.issue.Urgency;
 import seedu.address.model.issue.Title;
+import seedu.address.model.issue.Urgency;
 import seedu.address.ui.Ui;
 
 /**

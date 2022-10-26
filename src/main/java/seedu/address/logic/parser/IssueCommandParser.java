@@ -23,23 +23,22 @@ import seedu.address.logic.commands.issue.MarkIssueCommand;
 import seedu.address.logic.commands.issue.SetIssueDefaultViewCommand;
 import seedu.address.logic.commands.issue.SortIssueCommand;
 import seedu.address.logic.commands.issue.UnmarkIssueCommand;
-import seedu.address.logic.commands.issue.find.FindIssueByTitleCommand;
-import seedu.address.logic.commands.issue.find.FindIssueByUrgencyCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByProjectCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByStatusCommand;
+import seedu.address.logic.commands.issue.find.FindIssueByTitleCommand;
+import seedu.address.logic.commands.issue.find.FindIssueByUrgencyCommand;
 import seedu.address.logic.commands.issue.find.FindIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.IssueWithoutModel;
-import seedu.address.model.issue.Urgency;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Title;
-
-import seedu.address.model.issue.predicates.UrgencyMatchesKeywordsPredicate;
+import seedu.address.model.issue.Urgency;
 import seedu.address.model.issue.predicates.ProjectContainsKeywordsPredicate;
 import seedu.address.model.issue.predicates.StatusMatchesKeywordsPredicate;
 import seedu.address.model.issue.predicates.TitleContainsKeywordsPredicate;
+import seedu.address.model.issue.predicates.UrgencyMatchesKeywordsPredicate;
 import seedu.address.model.project.ProjectId;
 
 /**
