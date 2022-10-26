@@ -29,8 +29,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        //show student by default
-        this(feedbackToUser, ModelType.STUDENT);
+        this(feedbackToUser, ModelType.DEFAULT);
     }
 
     public String getFeedbackToUser() {
@@ -53,8 +52,7 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && modelType.equals(otherCommandResult.getModelType());
+        return feedbackToUser.equals(otherCommandResult.feedbackToUser);
     }
 
     @Override

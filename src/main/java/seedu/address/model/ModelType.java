@@ -10,5 +10,6 @@ public enum ModelType {
     CONSULTATION,
     GRADE_CHART,
     HELP,
-    EXIT
+    EXIT,
+    DEFAULT
 }

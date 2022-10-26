@@ -23,6 +23,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelType;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
@@ -95,7 +96,7 @@ public class EditCommand extends Command {
 
         model.setPerson(studentToEdit, editedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent), ModelType.STUDENT);
     }
 
     /**

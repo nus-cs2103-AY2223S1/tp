@@ -19,7 +19,6 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", ModelType.STUDENT)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -32,9 +31,6 @@ public class CommandResultTest {
 
         // different feedbackToUser value -> returns false
         assertFalse(commandResult.equals(new CommandResult("different")));
-
-        // different modelType value -> returns false
-        assertFalse(commandResultTutorial.equals(new CommandResult("feedback", ModelType.CONSULTATION)));
 
     }
 

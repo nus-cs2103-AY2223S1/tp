@@ -10,6 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelType;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
@@ -43,7 +44,8 @@ public class DeleteTutorialCommand extends Command {
 
         Tutorial tutorialToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTutorial(tutorialToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_SUCCESS, tutorialToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_SUCCESS, tutorialToDelete),
+                ModelType.TUTORIAL);
     }
 
     @Override

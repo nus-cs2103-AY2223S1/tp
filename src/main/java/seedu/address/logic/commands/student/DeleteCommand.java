@@ -10,6 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelType;
 import seedu.address.model.student.Student;
 
 /**
@@ -43,7 +44,7 @@ public class DeleteCommand extends Command {
 
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(studentToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete), ModelType.STUDENT);
     }
 
     @Override
