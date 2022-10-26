@@ -2,6 +2,13 @@ package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+import java.util.Locale;
+
+import seedu.address.model.person.Person;
+
+
+
 /**
  * Contact is a Person who is related to a task and is present in the address book.
  * Guarantees: immutable; contact is valid as declared in {@link #isValidContactName(String)}
@@ -29,6 +36,19 @@ public class Contact {
      */
     public static boolean isValidContactName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns person's name (with proper capitalisation) if a given string is a name that belongs to one of the persons
+     * in the list of persons. Otherwise returns an empty string.
+     */
+    public static String corrNameInPersonsList(List<Person> personList, String test) {
+        for (Person person : personList) {
+            if (person.getName().fullName.toLowerCase(Locale.ROOT).equals(test.toLowerCase(Locale.ROOT))) {
+                return person.getName().fullName;
+            }
+        }
+        return "";
     }
 
     public String getContactName() {

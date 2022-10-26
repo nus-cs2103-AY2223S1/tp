@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Project;
 import seedu.address.model.task.Title;
 
 public class JsonAdaptedTaskTest {
@@ -39,6 +40,7 @@ public class JsonAdaptedTaskTest {
                 INVALID_TITLE,
                 VALID_DONE,
                 Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER,
+                Project.UNSPECIFIED_PROJECT_IDENTIFIER,
                 VALID_CONTACTS
         );
         String expectedMessage = Title.MESSAGE_CONSTRAINTS;
@@ -51,6 +53,7 @@ public class JsonAdaptedTaskTest {
                 null,
                 VALID_DONE,
                 Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER,
+                Project.UNSPECIFIED_PROJECT_IDENTIFIER,
                 VALID_CONTACTS
         );
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
@@ -63,6 +66,7 @@ public class JsonAdaptedTaskTest {
                 VALID_TITLE,
                 INVALID_DONE,
                 Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER,
+                Project.UNSPECIFIED_PROJECT_IDENTIFIER,
                 VALID_CONTACTS
         );
         // TODO: Update Message
@@ -76,6 +80,7 @@ public class JsonAdaptedTaskTest {
                 VALID_TITLE,
                 null,
                 Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER,
+                Project.UNSPECIFIED_PROJECT_IDENTIFIER,
                 VALID_CONTACTS
         );
         // TODO: Update Message
@@ -91,6 +96,7 @@ public class JsonAdaptedTaskTest {
                 VALID_TITLE,
                 VALID_DONE,
                 Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER,
+                Project.UNSPECIFIED_PROJECT_IDENTIFIER,
                 invalidContacts
         );
         assertThrows(IllegalValueException.class, task::toModelType);

@@ -41,6 +41,7 @@
       </children>
       </HBox>
       <Label fx:id="deadline" text="\$first" styleClass="cell_big_label" />
+      <Label fx:id="project" text="\$first" styleClass="cell_big_label" />
       <FlowPane fx:id="assignedContacts" />
     </VBox>
   </GridPane>

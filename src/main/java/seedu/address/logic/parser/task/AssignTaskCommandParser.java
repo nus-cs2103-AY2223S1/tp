@@ -1,8 +1,10 @@
 package seedu.address.logic.parser.task;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_CONTACT;
 
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -24,23 +26,37 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AssignTaskCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CONTACT);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ADD_CONTACT, PREFIX_DELETE_CONTACT);
 
         Index taskIndex;
-        Set<Index> personsIndexes;
+        Set<Index> personsAddIndexes;
+        Set<String> personsAddNames;
+        Set<Index> personsDeleteIndexes;
+        Set<String> personsDeleteNames;
+
 
         if (argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
         }
 
+        String indexString = argMultimap.getPreamble();
+
         try {
-            taskIndex = TaskParserUtil.parseIndex(argMultimap.getPreamble());
-            personsIndexes = TaskParserUtil.parseIndexes(argMultimap.getAllValues(PREFIX_CONTACT));
+            taskIndex = TaskParserUtil.parseIndex(indexString);
+
+            List<String> contactsAddString = argMultimap.getAllValues(PREFIX_ADD_CONTACT);
+            personsAddIndexes = TaskParserUtil.parseIndexesMixed(contactsAddString);
+            personsAddNames = TaskParserUtil.parseTextsMixed(contactsAddString);
+
+            List<String> contactsDeleteString = argMultimap.getAllValues(PREFIX_DELETE_CONTACT);
+            personsDeleteIndexes = TaskParserUtil.parseIndexesMixed(contactsDeleteString);
+            personsDeleteNames = TaskParserUtil.parseTextsMixed(contactsDeleteString);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AssignTaskCommand.MESSAGE_USAGE), pe);
         }
 
-        return new AssignTaskCommand(taskIndex, personsIndexes);
+        return new AssignTaskCommand(taskIndex, personsAddIndexes, personsAddNames,
+                personsDeleteIndexes, personsDeleteNames);
     }
 }

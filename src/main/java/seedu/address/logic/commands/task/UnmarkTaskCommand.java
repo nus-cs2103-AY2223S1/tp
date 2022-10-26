@@ -58,6 +58,7 @@ public class UnmarkTaskCommand extends TaskCommand {
                 new Task(taskToUnmark.getTitle(),
                         false,
                         taskToUnmark.getDeadline(),
+                        taskToUnmark.getProject(),
                         taskToUnmark.getAssignedContacts());
 
         model.setTask(taskToUnmark, editedTask);

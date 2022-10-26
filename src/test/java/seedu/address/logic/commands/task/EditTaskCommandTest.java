@@ -32,7 +32,11 @@ public class EditTaskCommandTest {
     void execute_allFieldsSpecified_success() {
         Index targetIndex = Index.fromOneBased(1);
         Task taskToEdit = model.getFilteredTaskList().get(targetIndex.getZeroBased());
-        Task editedTask = new TaskBuilder().build();
+        Task editedTask = new TaskBuilder()
+                .withCompleted(false)
+                .withContacts("Alice Pauline")
+                .withDeadline("?")
+                .build();
         EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(targetIndex, descriptor);
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);

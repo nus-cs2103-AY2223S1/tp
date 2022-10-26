@@ -53,6 +53,7 @@ public class MarkTaskCommand extends TaskCommand {
                 taskToMark.getTitle(),
                 true,
                 taskToMark.getDeadline(),
+                taskToMark.getProject(),
                 taskToMark.getAssignedContacts()
         );
 

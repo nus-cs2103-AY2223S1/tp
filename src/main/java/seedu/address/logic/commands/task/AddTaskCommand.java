@@ -1,6 +1,9 @@
 package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
@@ -19,8 +22,15 @@ public class AddTaskCommand extends TaskCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD_FULL + ": Adds a task to the task panel. "
             + "Parameters: "
             + "TITLE "
-            + "Example: " + COMMAND_WORD + " "
-            + "Add tasks functionality";
+            + PREFIX_DEADLINE + "DEADLINE "
+            + "[" + PREFIX_PROJECT + "PROJECT NAME] "
+            + "[" + PREFIX_CONTACT + "CONTACT]...\n"
+            + "Example: " + COMMAND_WORD_FULL + " "
+            + "New task "
+            + PREFIX_DEADLINE + "14 December 2000 "
+            + PREFIX_PROJECT + "CS2103t tp "
+            + PREFIX_CONTACT + "1 "
+            + PREFIX_CONTACT + "2 ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task panel";

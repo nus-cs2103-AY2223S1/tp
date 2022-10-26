@@ -16,7 +16,7 @@ public class TitleContainsKeywordPredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) {
-        return task.getTitle().value.toLowerCase().contains(keyword.toLowerCase(Locale.ROOT));
+        return task.getTitle().toString().toLowerCase().contains(keyword.toLowerCase(Locale.ROOT));
     }
 
     @Override

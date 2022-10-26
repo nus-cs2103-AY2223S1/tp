@@ -74,6 +74,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Addressbook Commands
 
 ### Adding a person: `add`
 
@@ -89,6 +90,66 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
+
+### Listing all persons : `list`
+
+Shows a list of all persons in the address book.
+
+Format: `list`
+
+
+### Editing a person : `edit`
+
+Edits an existing person in the address book.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+
+### Locating persons by name: `find`
+
+Finds persons whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g. `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Deleting a person : `delete`
+
+Deletes the specified person from the address book.
+
+Format: `delete INDEX`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+
+### Task Management Commands
 
 ### Adding a task: `task add`
 
@@ -126,6 +187,7 @@ Format: `task mark TASK_INDEX`
 Examples:
 * `task list` followed by `task mark 1` marks the 1st task in the task list as complete.
 
+
 ### Unmarking tasks of a person: `task unmark`
 
 Marks a task of a person as incomplete
@@ -136,6 +198,7 @@ Format: `task unmark TASK_INDEX`
 Examples:
 * `task list` followed by `task unmark 1` marks the 1st task in the task list as incomplete.
 
+
 ### Deleting tasks from Task Panel: `task delete`
 
 Deletes the specified task from overall tasks list.
@@ -145,6 +208,7 @@ Format: `task delete TASK_INDEX`
 
 Examples:
 * `task list` followed by `task delete 1` delete the 1st task from task list.
+
 
 ### Setting deadlines to a task: `task do ... by/`
 
@@ -160,56 +224,52 @@ Examples:
 * `task do 1 by/tomorrow` sets the deadline for the 1st task in the list to tomorrow.
 * `task do 1 by/?` **removes** the deadline from the 1st task in the list.
 
-### Listing all tasks : `task list`
+### Filtering the Tasks List: `task list`
 
 You can use the `task list` command to focus only on tasks that match your specified filter requirements.
 
-Format: `task list [ti/KEYWORD] [c/PERSON_INDEX]...`
-- The `task list` command accepts **optional** parameters that can filter tasks by their title or assigned contacts.
+Format: `task list [KEYWORD] [#PROJECT]... [@PERSON_INDEX]... [before/ DATE] [after/ DATE]`
+- The `task list` command accepts **optional** parameters that can filter tasks by their description, project, due date or assigned contacts.
 - If you do not specify any filters (i.e. `task list`), the command returns **all** tasks. You may find this useful to reset the task list after performing some filtering.
 
-Examples:
-* `task list ti/fix` filters the task list to only display tasks that contain the keyword `fix`.
-* `task list c/1 c/2` filters the task list to only display tasks that are assigned to **both** the 1st and 2nd persons from the address book.
-* `task list ti/fix c/1 c/2` filters the task list to only display tasks that contain the keyword `fix` **and** that are assigned to **both** the 1st and 2nd persons from the address book.
+#### Filtering by Description
+- The `KEYWORD` parameter allows you to search for tasks that contain `KEYWORD`.
+  - For example, `task list fix` returns all **incomplete** tasks whose description contains the keyword `fix`.
+
+#### Filtering by Project
+- The `#` parameter allows you to search for tasks that are assigned to **any** of the project(s) you specify.
+  - For example, `task list #CS2101 #CS2103T` returns all **incomplete** tasks that are **either** under the project `CS2101` **or** `CS2103T`.
+
+#### Filtering by Assigned Contact(s)
+- The `@` parameter allows you to search for tasks that are assigned to **all** of the contact(s) you specify.
+    - For example, `task list @1 @2` returns all **incomplete** tasks that are assigned to **both** the 1st and 2nd persons from the address book.
+
+#### Filtering by Deadline
+- The `before/` and `after/` parameters allow you to specify a date range to filter the tasks by, according to their deadline.
+  - For example, `task list before/ next Monday after/ tomorrow` returns all **incomplete** tasks whose deadline is, well, after tomorrow but before next Monday.
+
+#### Filtering by Completion Status
+- Notice that the command seems to always return **incomplete** tasks. You can choose to opt out of this default behaviour with the `-a` parameter.
+  - For example, `task list -a` returns all tasks, **both** completed and incomplete ones,
+- Similarly, the `-c` filter allows you to search through **completed** tasks only.
+  - For example, `task list -c` returns all **completed** tasks.
+
 
 ### Assigning contacts to a task: `task assign`
 
-Assigns the specified persons from address book to a task from task panel.
+Assigns or unassigns the specified persons from address book to a task from task panel.
 
-Format: `task assign TASK_INDEX [c/PERSON_INDEX]…​`
-* Assigns the persons at the specified PERSON_INDEXs from `address book` to task at the specified TASK_INDEX from `task list`.
+Format: `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`
+* ca/: Assigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` to task at the specified TASK_INDEX from `task list`.
+* cd/: Unassigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` from task at the specified TASK_INDEX from `task list`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A task can have any number of assigned contacts (including 0)
 </div>
 
 Examples:
-* `task assign 1 c/1 c/2` assigns the 1st and 2nd persons from the address book to the 1st task from task list.
+* `task assign 1 ca/1 ca/Alex Yeoh cd/Bernice Yu` assigns the 1st person and "Alex Yeoh" from the address book to the 1st task from task list, and unassigns "Bernice Yu" from the same task.
 
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Editing a task: `task edit`
 
@@ -223,37 +283,11 @@ Format: `task edit INDEX [ti/TITLE]`
 Examples:
 * `task edit 1 ti/go back home` Edits the title to `go back home`
 
-### Locating persons by name: `find`
+### Listing all projects : `task project`
 
-Finds persons whose names contain any of the given keywords.
+You can use the `task project` command to focus on all projects that are open.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Format: `task project`
 
 ### Clearing all entries : `clear`
 
@@ -302,7 +336,7 @@ _Details coming soon ..._
 | **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
 | **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
 | **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                    |
-| **Task assign** | `task assign TASK_INDEX [c/PERSON_INDEX]…​`<br> e.g., `task assign 3 c/1 c/2`                                                                                         |
+| **Task assign** | `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`<br> e.g., `task assign 3 ca/1 ca/Alex Yeoh cd/2`                                                                                         |
 | **Clear**       | `clear`                                                                                                                                                               |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |

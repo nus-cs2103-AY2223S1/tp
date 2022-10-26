@@ -1,10 +1,14 @@
 package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -13,6 +17,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.task.Contact;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Project;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -27,11 +34,15 @@ public class EditTaskCommand extends TaskCommand {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
+            + "[" + PREFIX_PROJECT + "PROJECT NAME]\n"
             + "Example: " + COMMAND_WORD_FULL + " 1 "
-            + "Add tasks functionality";
+            + PREFIX_TITLE + "Add tasks functionality "
+            + PREFIX_PROJECT + "CS2103T tp ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task panel.";
 
     private final Index targetIndex;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -61,6 +72,10 @@ public class EditTaskCommand extends TaskCommand {
 
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
+        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
         // Replace task with edited task
         model.setTask(taskToEdit, editedTask);
 
@@ -75,9 +90,11 @@ public class EditTaskCommand extends TaskCommand {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-        String updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle().toString());
+        Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
+        Project updatedProject = editTaskDescriptor.getProject().orElse(taskToEdit.getProject());
 
-        return new Task(new Title(updatedTitle));
+        return new Task(updatedTitle, taskToEdit.getCompleted(), taskToEdit.getDeadline(), updatedProject,
+                taskToEdit.getAssignedContacts());
     }
 
     @Override
@@ -103,34 +120,77 @@ public class EditTaskCommand extends TaskCommand {
      * corresponding field value of the person.
      */
     public static class EditTaskDescriptor {
-        private String title;
 
+        private Title title;
+        private boolean isCompleted;
+        private Deadline deadline;
+        private Project project;
+        private Set<Contact> assignedContacts;
 
         public EditTaskDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code contacts} is used internally.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
+            setProject(toCopy.project);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title);
+            return CollectionUtil.isAnyNonNull(title, project);
         }
 
-        public void setTitle(String title) {
+        public void setTitle(Title title) {
             this.title = title;
         }
 
-        public Optional<String> getTitle() {
+        public void setProject(Project project) {
+            this.project = project;
+        }
+
+        public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
         }
 
+        public Optional<Project> getProject() {
+            return Optional.ofNullable(project);
+        }
+
+        public void setCompleted(boolean isCompleted) {
+            this.isCompleted = isCompleted;
+        }
+
+        public boolean getCompleted() {
+            return isCompleted;
+        }
+
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
+        }
+
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(deadline);
+        }
+
+        public void setAssignedContacts(Set<Contact> assignedContacts) {
+            this.assignedContacts = (assignedContacts != null) ? new HashSet<>(assignedContacts) : null;
+        }
+
+        /**
+         * Returns an unmodifiable contact set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code contact} is null.
+         */
+        public Optional<Set<Contact>> getAssignedContacts() {
+            return (assignedContacts != null)
+                ? Optional.of(Collections.unmodifiableSet(assignedContacts))
+                : Optional.empty();
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -147,7 +207,11 @@ public class EditTaskCommand extends TaskCommand {
             // state check
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
-            return getTitle().equals(e.getTitle());
+            return getTitle().equals(e.getTitle())
+                    && getCompleted() == e.getCompleted()
+                    && getDeadline() == e.getDeadline()
+                    && getProject() == e.getProject()
+                    && getAssignedContacts().equals(e.getAssignedContacts());
         }
     }
 }

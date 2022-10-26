@@ -2,6 +2,7 @@ package seedu.address.logic.parser.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.commons.core.index.Index;
@@ -10,7 +11,9 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.TaskParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.Project;
 
 /**
  * Parses input arguments and creates a new EditTaskCommand object
@@ -24,7 +27,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
     public EditTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_PROJECT);
 
         Index targetIndex;
 
@@ -36,8 +39,17 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
         EditTaskCommand.EditTaskDescriptor editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor();
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
-            editTaskDescriptor.setTitle(ParserUtil
+            editTaskDescriptor.setTitle(TaskParserUtil
                     .parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_PROJECT).isPresent()) {
+            if (argMultimap.getValue(PREFIX_PROJECT).get().equals("")) {
+                editTaskDescriptor.setProject(Project.UNSPECIFIED);
+            } else {
+                editTaskDescriptor.setProject(TaskParserUtil
+                        .parseProject(argMultimap.getValue(PREFIX_PROJECT).get()));
+            }
         }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
