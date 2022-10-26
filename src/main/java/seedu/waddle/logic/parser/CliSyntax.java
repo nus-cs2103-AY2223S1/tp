@@ -8,8 +8,8 @@ public class CliSyntax {
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_COUNTRY = new Prefix("c/");
-    public static final Prefix PREFIX_START_DATE = new Prefix("s/");
-    public static final Prefix PREFIX_START_TIME = new Prefix("S/");
+    public static final Prefix PREFIX_START_DATE = new Prefix("sd/");
+    public static final Prefix PREFIX_START_TIME = new Prefix("st/");
     public static final Prefix PREFIX_ITINERARY_DURATION = new Prefix("du/");
     public static final Prefix PREFIX_PEOPLE = new Prefix("p/");
     public static final Prefix PREFIX_BUDGET = new Prefix("b/");
