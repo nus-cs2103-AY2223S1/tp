@@ -78,7 +78,7 @@ public class Person implements Comparable<Person> {
     }
 
     public Set<Remark> getRemarks() {
-        return Collections.unmodifiableSet(remarksList);
+        return remarksList;
     }
 
     public SubjectHandler getSubjectHandler() {
@@ -96,6 +96,10 @@ public class Person implements Comparable<Person> {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setRemarks(Set<Remark> remarksList) {
+        remarksList = (remarksList != null) ? new HashSet<>(remarksList) : null;
     }
 
     /**
