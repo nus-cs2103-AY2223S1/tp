@@ -59,16 +59,27 @@ public class PersonCard extends UiPart<Region> {
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
+        assert person != null : "Something went wrong in UI PersonCard";
         this.person = person;
+
         id.setText(displayedIndex + ". ");
+        assert person.getName() != null : "Something went wrong in UI PersonCard name";
         name.setText(person.getName().fullName);
+        assert person.getPhone() != null : "Something went wrong in UI PersonCard phone";
         phone.setText("\uD83D\uDCDE\t" + person.getPhone().value);
+        assert person.getAddress() != null : "Something went wrong in UI PersonCard address";
         address.setText("\uD83C\uDFE0\t" + person.getAddress().value);
+        assert person.getEmail() != null : "Something went wrong in UI PersonCard email";
         email.setText("\uD83D\uDCE7\t" + person.getEmail().value);
 
         // replace birthday and insurance once implemented.
         // insurance.setText("\uD83D\uDCC4\t" + "something something");
 
+        assert person.getHealthInsurance() != null : "Something went wrong in UI PersonCard health insurance";
+        assert person.getDisabilityInsurance() != null : "Something went wrong in UI PersonCard disability insurance";
+        assert person.getCriticalIllnessInsurance() != null
+                : "Something went wrong in UI PersonCard critical illness insurance";
+        assert person.getLifeInsurance() != null : "Something went wrong in UI PersonCard life insurance";
         healthInsurance.setText("Health               "
                 + (person.getHealthInsurance().getHasInsurance() ? "\u2705" : "\u274e"));
         disabilityInsurance.setText("Disability           "
