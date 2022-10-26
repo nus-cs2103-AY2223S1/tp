@@ -177,6 +177,8 @@ public class MainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping Exercise Tracker ] =============================");
         try {
+            model.resetDisplayedList();
+            storage.saveExerciseTracker(model.getExerciseTracker());
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
