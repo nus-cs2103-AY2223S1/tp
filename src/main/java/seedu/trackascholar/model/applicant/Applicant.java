@@ -32,15 +32,15 @@ public class Applicant {
      * Every field must be present and not null.
      */
     public Applicant(Name name, Phone phone, Email email, Scholarship scholarship,
-                     ApplicationStatus applicationStatus, Set<Major> tags, Pin pin) {
-        requireAllNonNull(name, phone, email, scholarship, applicationStatus, tags);
+                     ApplicationStatus applicationStatus, Set<Major> majors, Pin pin) {
+        requireAllNonNull(name, phone, email, scholarship, applicationStatus, majors);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.scholarship = scholarship;
         this.applicationStatus = applicationStatus;
         this.pin = pin;
-        this.majors.addAll(tags);
+        this.majors.addAll(majors);
     }
 
     /**

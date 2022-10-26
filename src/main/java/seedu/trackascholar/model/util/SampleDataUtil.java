@@ -22,22 +22,22 @@ public class SampleDataUtil {
         return new Applicant[] {
             new Applicant(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Scholarship("NUS Global Merit Scholarship"), new ApplicationStatus("pending"),
-                getMajorSet("medicine")),
+                getMajorSet("Medicine")),
             new Applicant(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Scholarship("NUS Merit Scholarship"),
-                new ApplicationStatus("pending"), getMajorSet("business", "accountancy")),
+                new ApplicationStatus("pending"), getMajorSet("Business", "Accountancy")),
             new Applicant(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Scholarship("NUS Sports Scholarship"),
-                new ApplicationStatus("accepted"), getMajorSet("physiotherapy")),
+                new ApplicationStatus("accepted"), getMajorSet("Physiotherapy")),
             new Applicant(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Scholarship("NUS Performing & Visual Arts Scholarship"),
-                new ApplicationStatus("rejected"), getMajorSet("psychology")),
+                new ApplicationStatus("rejected"), getMajorSet("Psychology")),
             new Applicant(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Scholarship("NUS Merit Scholarship"), new ApplicationStatus("pending"),
-                getMajorSet("engineering")),
+                getMajorSet("Software Engineering")),
             new Applicant(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Scholarship("NUS Performing & Visual Arts Scholarship"), new ApplicationStatus("rejected"),
-                getMajorSet("philosophy"))
+                getMajorSet("Psychology"))
         };
     }
 
