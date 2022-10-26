@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Represents Date & Time encapsulation for tasks
  */
-public class DateTime {
+public class DateTime implements Comparable<DateTime> {
 
     public static final String DATE_TIME_PATTERN = "d-M-yyyy HHmm";
     public static final String DATE_PATTERN = "d-M-yyyy";
@@ -160,6 +160,16 @@ public class DateTime {
                 && this.dateTime.getDayOfYear() == o.dateTime.getDayOfYear()
                 && this.dateTime.getHour() == o.dateTime.getHour()
                 && this.dateTime.getMinute() == o.dateTime.getMinute();
+    }
+
+    @Override
+    public int compareTo(DateTime o) {
+        // Special check for equality since we do not want any time period smaller than a minute affecting equality.
+        if (this.equals(o)) {
+            return 0;
+        }
+
+        return dateTime.isBefore(o.dateTime) ? 1 : -1;
     }
 
 }

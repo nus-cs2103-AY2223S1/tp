@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -32,7 +33,9 @@ public class TaskList implements GenericList<Task> {
     public TaskList(ArrayList<Task> tasks) {
         requireNonNull(tasks);
         internalTaskList = tasks;
+        internalTaskList.sort(Comparator.comparing(Task::getDateTime));
         filteredTaskLists = new ArrayList<>(tasks);
+        filteredTaskLists.sort(Comparator.comparing(Task::getDateTime));
     }
 
     /**
@@ -44,6 +47,7 @@ public class TaskList implements GenericList<Task> {
     public TaskList add(Task task) {
         ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
         updatedTasks.add(task);
+        updatedTasks.sort(Comparator.comparing(Task::getDateTime));
         return new TaskList(updatedTasks);
     }
 
@@ -59,6 +63,7 @@ public class TaskList implements GenericList<Task> {
         assert(index >= 0 && index <= this.size());
         ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
         updatedTasks.set(index, task);
+        updatedTasks.sort(Comparator.comparing(Task::getDateTime));
         return new TaskList(updatedTasks);
     }
 
@@ -73,6 +78,7 @@ public class TaskList implements GenericList<Task> {
         assert(index >= 0 && index <= this.size());
         ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
         updatedTasks.remove(index);
+        updatedTasks.sort(Comparator.comparing(Task::getDateTime));
         return new TaskList(updatedTasks);
     }
 
@@ -130,8 +136,12 @@ public class TaskList implements GenericList<Task> {
         return internalTaskList.contains(task);
     }
 
+    /**
+     * Sets the filteredTaskList to contain the tasks that passes the filter.
+     */
     public void filterTasks(Predicate<Task> filter) {
         filteredTaskLists = (ArrayList<Task>) internalTaskList.stream().filter(filter).collect(Collectors.toList());
+        filteredTaskLists.sort(Comparator.comparing(Task::getDateTime));
     }
 
     public void showAllTasks() {
@@ -158,6 +168,8 @@ public class TaskList implements GenericList<Task> {
                 }
             }
         }
+
+        updatedTasks.sort(Comparator.comparing(Task::getDateTime));
 
         internalTaskList = updatedTasks;
     }

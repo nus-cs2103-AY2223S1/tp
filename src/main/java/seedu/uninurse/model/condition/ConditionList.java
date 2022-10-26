@@ -16,8 +16,6 @@ import seedu.uninurse.model.condition.exceptions.DuplicateConditionException;
  * Supports a minimal set of list operations.
  */
 public class ConditionList implements GenericList<Condition> {
-    public static final String MESSAGE_UNSUPPORTED_EDIT = "Conditions cannot be edited, only added or deleted";
-
     private final List<Condition> internalConditionList;
 
     /**
@@ -61,7 +59,18 @@ public class ConditionList implements GenericList<Condition> {
 
     @Override
     public ConditionList edit(int index, Condition condition) {
-        throw new UnsupportedOperationException(MESSAGE_UNSUPPORTED_EDIT);
+        try {
+            List<Condition> updatedConditions = new ArrayList<>(internalConditionList);
+            updatedConditions.set(index, condition);
+
+            if (internalConditionList.contains(condition)) {
+                throw new DuplicateConditionException();
+            }
+
+            return new ConditionList(updatedConditions);
+        } catch (IndexOutOfBoundsException e) {
+            throw new ConditionNotFoundException();
+        }
     }
 
     @Override

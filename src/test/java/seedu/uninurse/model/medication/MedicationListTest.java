@@ -38,7 +38,7 @@ public class MedicationListTest {
     }
 
     @Test
-    public void delete_indexOutOfbounds_throwsMedicationNotFoundException() {
+    public void delete_indexOutOfBounds_throwsMedicationNotFoundException() {
         MedicationList updatedMedicationList = medicationList.add(TypicalMedications.MEDICATION_AMOXICILLIN);
         assertThrows(MedicationNotFoundException.class, () -> updatedMedicationList.delete(1));
     }
@@ -56,7 +56,7 @@ public class MedicationListTest {
     }
 
     @Test
-    public void edit_indexOutOfbounds_throwsMedicationNotFoundException() {
+    public void edit_indexOutOfBounds_throwsMedicationNotFoundException() {
         MedicationList updatedMedicationList = medicationList.add(TypicalMedications.MEDICATION_AMOXICILLIN);
         assertThrows(MedicationNotFoundException.class, () -> updatedMedicationList
                 .edit(1, TypicalMedications.MEDICATION_AMOXICILLIN));
@@ -90,7 +90,7 @@ public class MedicationListTest {
     }
 
     @Test
-    public void get_indexOutOfbounds_throwsMedicationNotFoundException() {
+    public void get_indexOutOfBounds_throwsMedicationNotFoundException() {
         MedicationList updatedMedicationList = medicationList.add(TypicalMedications.MEDICATION_AMOXICILLIN);
         assertThrows(MedicationNotFoundException.class, () -> updatedMedicationList.get(1));
     }
