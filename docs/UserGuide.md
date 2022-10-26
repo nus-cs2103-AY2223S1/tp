@@ -106,7 +106,7 @@ for male, `F`/`f`/`Female`/`female` for female.
 
 __Additional Parameter 2: Date of Birth__
 
-- Adds date of birth to a person in the contact list. Date format accepted is: dd/mm/yyyy.
+- Adds date of birth to a person in the contact list. Date format accepted is: DD/MM/YYYY.
 
 ### Listing all persons : `list`
 
@@ -173,7 +173,7 @@ __Optional Parameter 2: Date of Birth__
 
 Format: `edit INDEX [d/DOB]`
 
-- Edits the date of birth of a person in the contact list. Date format accepted is: dd/mm/yyyy.
+- Edits the date of birth of a person in the contact list. Date format accepted is: DD/MM/YYYY.
 - `INDEX` must be **a positive integer** (i.e 1,2,3…)
 - `INDEX` must be within the range of the contact list index (i.e. from 1 to size of contact list).
 
