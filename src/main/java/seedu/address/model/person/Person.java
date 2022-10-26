@@ -278,6 +278,10 @@ public class Person {
         return this.aClass.compareToByStartTime(person.aClass);
     }
 
+    public int compareToByDisplayClass(Person person) {
+        return this.displayedClass.compareToByStartTime(person.displayedClass);
+    }
+
     /**
      * Updates the class to be displayed if the dates match.
      *
