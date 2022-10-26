@@ -78,7 +78,48 @@ This guides aims to:
 **Highlights** <br>
 `commands` or `PARAMETERS`
 
+**Keyboard Inputs**<br>
+
+<kbd>enter</kbd>   <kbd>&uarr;</kbd>   <kbd>&darr;</kbd>
+
 ## Navigating the GUI
+![Ui](images/navigate_ui.png)
+
+**Command Box** <br>
+Enter your command here.
+
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** <br>
+You can use <kbd>&uarr;</kbd> or <kbd>&darr;</kbd> to navigate through your command history
+</div>
+
+**Result Display** <br>
+Returns a feedback message after a command is executed.
+
+**Main Panel** <br>
+Displays the list of internships.
+
+**View Panel** <br>
+The panel displays the internship being viewed in greater detail. 
+
+**Statistic Panel** <br>
+![Bar Chart](images/BarChart.png)
+
+The Bar Chart (located in the bottom right corner of the application) displays the number of
+applications on every stage of the possible application process **which are currently listed by
+the application**.
+
+For example, If you do `find c/n Shopee` before viewing the bar chart, the bar chart will only shows
+the data for all internships whose company name contains the word `Shopee`.
+
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** <br>
+- Use tags to help you differentiate your internships eg. `Winter` and `Summer` <br>
+- Do `find c/t Summer` for an overview of your summer internship application
+</div>
+
+**Reminder Panel**<br>
+The reminder panel displays the number of interviews, assessments or pending offers due in the next 7 days.
 
 ## Command Format
 <div markdown="block" class="alert alert-info">
@@ -114,11 +155,10 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-**Tip Box**
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** <br>
-- Press `ESC` to close the Help window <br>
-- Press `c` to copy the User Guide url into clipboard when the Help window is opened
+- Press <kbd>esc</kbd> to close the Help window <br>
+- Press <kbd>C</kbd> to copy the User Guide url into the clipboard when the Help window is opened
 </div>
 
 ### Adding an internship: `add`
@@ -134,8 +174,10 @@ Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHO
 * `DATE` will be set to today’s date by default.
 * `PHONE` will be set to "NA" by default.
 * `EMAIL` will be set to "NA" by default.
-* `WEBSITE` will be set to “NA” by default.
+* `WEBSITE` will be set to “NA” by default. 
+* `WEBSITE` must start with `http://` or `https://`
 * `REMARK` will be empty by default.
+* `TAG` will be empty by default. All tags must be alphanumeric.
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** A person can have any number of tags (including 0)
@@ -161,20 +203,29 @@ Format: `list [c/CATEGORY [DESCENDING]]`
 * List the internships 
 * Internships can be sorted by category and in ascending or descending order
 * The `CATEGORY` is optional. By default, without stating the category, `list` will display all internships in no particular order
-  * Possible options for `CATEGORY` : `company_name`,`n`, `position`,`p`, `application_process`,`pr`, `date`,`d` (case-insensitive)
-  * Case-insensitive: `company_name`, `Company_Name`, and `N` are all acceptable inputs.
+  * Possible options for `CATEGORY` : `company_name`, `position`, `application_process`, `date` (case-insensitive)
+  * Case-insensitive: `company_name`, `Company_Name` are all acceptable inputs.
 * The `DESCENDING` tag is optional. It can take on the value `true` or `false` (case-insensitive). 
   * The DESCENDING tag is set to `false` by default if not stated. List of internships will be shown in ascending order.
   * The `DESCENDING` tag can only be set to `true` if the `CATEGORY` is stated
   * If `DESCENDING` is set to `true`. List of internships will be displayed in descending order
 
 Examples:
-* `list c/n true`
 * `list c/date true`
 * `list c/position false`
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** `DESCENDING` parameter will always default to `false` if the input is misspelt
+</div>
+
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** Shortcuts for `CATEGORY`:<br>
+- `company_name` --> `c`<br>
+- `position`--> `p`<br>
+- `application_process` --> `pr`<br>
+- `date` --> `d`<br>
+
+`list c/company_name` is equivalent to `list c/n`
 </div>
 
 ### Locating internships by: `find`
@@ -284,7 +335,7 @@ PleaseHireUs data is saved in the hard disk automatically after any command that
 PleaseHireUs data is saved as a JSON file `[JAR file location]/data/internshipbook.json`. Advanced users are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, PleaseHireUs will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v1.3]`
@@ -315,6 +366,22 @@ _Details coming soon ..._
 | **Copy**   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                               |
 | **Undo**   | :x:                | `undo`                                                                                                                                                                                                         |
 | **Redo**   | :heavy_check_mark: | `redo`                                                                                                                                                                                                         |
+
+
+## Prefix Summary
+
+Prefix | Symbolize
+--------| -----
+**n/** | Company Name
+**p/** | Position
+**pr/** | Application Process
+**d/** | Date
+**web/** | Website
+**ph/** | Phone Number
+**e/** | Email
+**r/** | Remark
+**t/** | Tags
+**c/** | Category
 
 ## Glossary
 

@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `InternshipListPanel`, `ReminderBarFooter`, `ViewCommandPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W17-4/tp/tree/master/src/main/java/seedu/phu/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -375,7 +375,7 @@ The predicate is used in the Model interface on the `updateViewItem` method
 
 The following sequence diagram shows how the view command works.
 
-TODO: ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
 #### Design Considerations
 **How to view the Internship**:
@@ -409,7 +409,7 @@ It implements `Predicate<Internship>` where the test method looks for the exact 
 
 The following sequence diagram shows how the copy command works.
 
-TODO: ![CopySequenceDiagram](images/CopySequenceDiagram.png)
+![CopySequenceDiagram](images/CopySequenceDiagram.png)
 
 #### Design Considerations
 **How to copy the Internship**:
@@ -430,7 +430,31 @@ TODO: ![CopySequenceDiagram](images/CopySequenceDiagram.png)
 * `INDEX` parameter only takes in one index
     * Pros: Easier to implement, makes more sense
 
+### Bar Chart
 
+#### Implementation
+The Bar Chart is implemented to using a mix of the MVC Pattern.
+It is mainly facilitated by the `StackedBarPanel` class which acts as the controller
+on the MCV design pattern and the `Statistic` class which provides the calculation
+logic on the width of each section of the Bar Chart.
+
+The following sequence diagram shows how the Bar Chart works when a change is triggered.
+
+![Barchart Sequence Diagram](images/BarChartSequenceDiagram.png)
+
+#### Design Considerations
+**Data to be processed**:
+* **Alternative 1 (current choice)**: Only process the displated data
+  * Pros: More flexible, easier to implement
+  * Cons: Might confuse users initially
+
+* **Alternative 2**: Process all the data including the one not currently displayed
+  * Pros: More intuitive for users
+  * Cons: Less flexible, harder to implement 
+
+**How to update the data**:
+* Use the Observer Design Pattern
+  * Pros: Inbuilt support for the Observer pattern, prevent coupling 
 
 ### \[Proposed\] Data archiving
 
