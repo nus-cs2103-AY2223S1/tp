@@ -28,6 +28,11 @@ public class SortCommandParser implements Parser<SortCommand> {
         requireNonNull(args);
         String[] splitArguments = args.trim().split(" ");
         String typeString = splitArguments[0];
+        if (splitArguments.length > 2) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        }
+
         Type type;
         try {
             type = ParserUtil.parseSortType(typeString);
@@ -46,6 +51,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         } else if (splitArguments.length == 2) {
             orderString = splitArguments[1];
         } else {
+            // this block will never be reached as the logic has been shifted above.
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }

@@ -26,7 +26,7 @@ public class SortCommandParserTest {
         assertParseSuccess(parser, " CLASS", new SortCommand(Type.CLASS, Order.ASC));
         assertParseSuccess(parser, " CLASS DESC", new SortCommand(Type.CLASS, Order.DESC));
         assertParseSuccess(parser, " OWED ASC", new SortCommand(Type.OWED, Order.ASC));
-        assertParseSuccess(parser, " OWED", new SortCommand(Type.OWED, Order.ASC));
+        assertParseSuccess(parser, " OWED", new SortCommand(Type.OWED, Order.DESC));
         assertParseSuccess(parser, " OWED DESC", new SortCommand(Type.OWED, Order.DESC));
     }
 
