@@ -126,8 +126,8 @@ The `Model` component,
 * stores the address book data:
   * all `Person` objects (which are contained in a `UniquePersonList` object).
   * all `Group` objects (which are contained in a `UniqueGroupList` object).
-* stores the currently 'selected' `Person` or `Group` objects (e.g., results of a search query) as separate _filtered_ lists which are exposed to outsiders as 
-  unmodifiable `ObservableList<Person>` and `ObservableList<Group>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the lists change.
+* stores the currently 'selected' `Person` or `Group` objects (e.g., results of a search query) as separate _filtered_ lists which are exposed to outsiders as
+unmodifiable `ObservableList<Person>` and `ObservableList<Group>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the lists change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -178,15 +178,15 @@ This section describes some noteworthy details on how certain features are imple
 ### **\[Developed\] Add/Delete Group feature**
 
 #### **Implementation**
-This feature allows groups to be added to and deleted from TABS, facilitated by the `UniqueGroupList`. 
-It is achieved by the following operations: 
+This feature allows groups to be added to and deleted from TABS, facilitated by the `UniqueGroupList`.
+It is achieved by the following operations:
 
 - `Model#addGroup(GroupName)` - Adds a group to TABS with the input name.
 - `Model#deleteGroup(GroupName)` - Deletes the group with the input name, and removes any members and assignments associated.
 
 Given below is an example usage scenario and how groups are added/deleted at each stage.
 
-**Step 1.** 
+**Step 1.**
 The user launches the application for the first time. Presuming they have not made changes to the default persons,
 the `AddressBook` model looks like this:
 
@@ -231,7 +231,7 @@ For simplicity, only the `deletegroup` command sequence diagram is shown below. 
 ### **\[Developed\] Add/Delete member feature**
 
 #### **Implementation**
-This feature allows members to be added to and deleted from a group. It is 
+This feature allows members to be added to and deleted from a group. It is
 achieved by the following operation:
 
 - Model#addMember(Name, GroupName) - Adds the person with the input name to the group with input group name.
@@ -320,7 +320,7 @@ The user flow can be illustrated in the Activity Diagram as shown below.
 This feature allows an existing group with its members to be displayed, using the `addgroupmember` command. This is facilitated by the `AddGroupMemberCommand` and `AddGroupMemberCommandParser` classes.
 
 The `AddGroupMemberCommandParser` class parses the input entered by the user, which consists of the person's name and the group's name.
-The person with the given name will then be added to the group with the given name. 
+The person with the given name will then be added to the group with the given name.
 
 The validity of the group name and person name input by the user will be checked with the help of an ObservableList for each field.
 
@@ -342,7 +342,7 @@ can be obtained by calling the `ObservableList#get()` method on each field shoul
 Step 4. If an existing person in TABS has a name which matches exactly the name given by the user
 , then TABS will check for the group's existence.
 
-Step 5. If an existing group in TABS has a name which matches exactly the name given by the user, then TABS will check if the person already exists in the group. 
+Step 5. If an existing group in TABS has a name which matches exactly the name given by the user, then TABS will check if the person already exists in the group.
 
 Step 6. If the person does not yet exist in the group,
 then the person will be added to the specified group.
