@@ -26,11 +26,9 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`view Tasks`** : Lists all tasks in tasklist.
+   * **`addTask coding assignment`** : Adds a task `coding assignment` to the task list.
 
-   * **`add task coding assignment`** : Adds a task `coding assignment` to the task list.
-
-   * **`delete task`**`3` : Deletes the 3rd task from the task list.
+   * **`deleteTask`**`3` : Deletes the 3rd task from the task list.
 
    * **`help`** : Displays help text.
 
@@ -96,22 +94,21 @@ HackAssist data are saved in the hard disk automatically after any command that 
 HackASsist data are saved as a JSON file `[JAR file location]/data/HackAssist.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, HackASsist will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
-### Adding a task: `Add Task`
+### Adding a task: `addTask`
 
 Adds a task to the tasklist.
 
 Format: `add task TASK_DESCRIPTION`
 
 Examples:
-* `add task laundry` add laundry to the task list
-* `add task coding assignment` add coding assignment to the task list
+* `addTask n/Create Initial UIUX Design d/Use FIGMA to create initial UIUX Design pr/medium c/uiux dl/2023-01-01 pe/johnd@example.com ` adds Create Initial UIUX Design to the task list
 
 ### Deleting a task: `Delete Task`
 
@@ -131,17 +128,6 @@ Lists out all the tasks in the tasklist.
 
 Format: `view tasks`
 
-### Assigning a task: `Assign`
-
-Assign a task to an existing person.
-
-Format: `assign TASK_NUMBER to PERSON_NAME`
-* `TASK_NUMBER` must be smaller than the total number of tasks in task list.
-* `PERSON_NAME` must be existing contact in contactbook.
-
-Examples:
-* `assign 1 to John` assign tasknumber 1 to John
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -157,7 +143,6 @@ Action | Format, Examples
 --------|------------------
 **Clear** | `clear`
 **Help** | `help`
-**Add Task** | `add task TASK_DESCRIPTION` <br> e.g., `add task laundry`
-**Delete Task** | `delete task TASK_NUMBER` <br> e.g., `delete task 1`
-**View Tasks** | `view tasks`
-**Assign** | `assign TASK_NUMBER to PERSON_NAME` <br> e.g., `assign 1 to John`
+**Add Task** | `addTask TASK_DESCRIPTION` <br> e.g., `add task laundry`
+**Delete Task** | `deleteTask TASK_NUMBER` <br> e.g., `delete task 1`
+**Edit Task** | `editTask TASK_NUMBER` <br> e.g., `edit task 1`
