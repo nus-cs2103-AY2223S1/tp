@@ -162,11 +162,11 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-#### 4.1.5 Locating clients by name: `find`
+#### 4.1.5 Filtering persons by keyword: `find`
 
 Finds clients whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
@@ -179,8 +179,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   * E.g find [Mobile] 87438807 will return John Doe
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/ John` returns `john` and `John Doe`
+* `find n/ alex david` returns `Alex Yeoh`, `David Li`
+* `find r/ high` returns `john` and `Alex Yeoh`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 #### 4.1.6 Deleting a client : `delete`
@@ -204,7 +205,7 @@ You can sort the contacts in descending order by adding `desc` behind the `KEYWO
 
 Format: sort `KEYWORD` / sort `KEYWORD desc`
 
-Types of `KEYWORD`: name
+Types of `KEYWORD`: `name`, `appt`, `risk`, `income`
 
 * Returns all the contacts sorted by the given `KEYWORD`
 
