@@ -23,6 +23,7 @@ Class Module
 Class ModuleCode
 Class ModuleTitle
 Class TaskList
+Class Task
 Class Link
 
 }
@@ -56,6 +57,7 @@ Module -right--> "*" Person : contains
 Module *--> "1" ModuleCode
 Module *--> "1" ModuleTitle
 Module *--> "1" TaskList
+TaskList --> "*" Task : contains
 Module *--> "*" Link
 
 UniquePersonList -[hidden]up-> ModelManager
