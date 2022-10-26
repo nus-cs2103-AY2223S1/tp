@@ -41,11 +41,12 @@ public class MainWindow extends UiPart<Stage> {
     private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private BuyerListPanel buyerListPanel;
-    private SupplierListPanel supplierListPanel;
-    private DelivererListPanel delivererListPanel;
-    private OrderListPanel orderListPanel;
+
     private MainListPanel mainListPanel;
+    private BuyerListPanel buyerListPanel;
+    private DelivererListPanel delivererListPanel;
+    private SupplierListPanel supplierListPanel;
+    private OrderListPanel orderListPanel;
     private PetListPanel petListPanel;
 
     private ResultDisplay resultDisplay;
