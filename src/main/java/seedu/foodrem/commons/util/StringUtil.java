@@ -11,6 +11,13 @@ import java.util.Arrays;
  * Helper functions for handling strings.
  */
 public class StringUtil {
+
+    /*
+     * Only alphanumeric characters, whitespaces and the following symbols are allowed in the tag name.
+     * []{}()-+*=.,_'"^$?@!#%&:;
+     */
+    public static final String VALIDATION_REGEX = "[A-Za-z0-9()\\[\\]{}\\-+*=.,_'\"^$?@!#%&:; ]*";
+
     /**
      * Returns {@code true} if the {@code sentence} contains the {@code word}.
      * Ignores case, but a full word match is required.

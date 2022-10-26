@@ -2,12 +2,13 @@ package seedu.foodrem.model.item.itemvalidators;
 
 import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 
+import seedu.foodrem.commons.util.StringUtil;
+
 /**
  * Validation class for item remarks.
  */
 public class ItemRemarksValidator implements Validator {
     // Validation for characters in remarks
-    private static final String VALIDATION_REGEX = "[A-Za-z0-9 ]*";
     private static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_REMARKS =
             "The item remark should only contain alphanumeric characters and spaces. "
                     + "It should not start with a blank space.";
@@ -23,7 +24,7 @@ public class ItemRemarksValidator implements Validator {
      * @param itemRemarks String representation of item remarks to validate against.
      */
     public static Void validate(String itemRemarks) {
-        boolean isRemarksContainingOnlyValidCharacters = itemRemarks.matches(VALIDATION_REGEX);
+        boolean isRemarksContainingOnlyValidCharacters = itemRemarks.matches(StringUtil.VALIDATION_REGEX);
         boolean isRemarksLengthLessThanEqualMaxLength = itemRemarks.length() <= MAX_LENGTH;
 
         checkArgument(isRemarksContainingOnlyValidCharacters, MESSAGE_FOR_INVALID_CHARACTERS_IN_REMARKS);
