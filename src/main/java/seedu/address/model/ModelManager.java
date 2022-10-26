@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
+    private final FilteredList<Person> groupedPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(this.addressBook.getPersonList());
+        groupedPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -130,6 +132,19 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Grouped Person List Accessors =============================================================
+
+    @Override
+    public ObservableList<Person> getGroupedPersonList() {
+        return groupedPersons;
+    }
+
+    @Override
+    public void updateGroupedPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        groupedPersons.setPredicate(predicate);
     }
 
     //=========== Sorted Person List Accessors =============================================================

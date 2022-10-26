@@ -12,7 +12,9 @@ import seedu.address.model.person.Person;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
@@ -50,7 +52,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -77,25 +81,44 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Returns an unmodifiable view of the sorted uNivUSal list
+     *
      * @return sorted list
      */
     ObservableList<Person> getSortedPersonList();
 
     /**
+     * Returns an unmodifiable view of the grouped person list
+     *
+     * @return group list
+     */
+    ObservableList<Person> getGroupedPersonList();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Updates the sort parameter of the sorted person list to sort by the given {@code predicate}.
+     *
      * @param comparator used to compare
      */
     void updateSortedPersonList(Comparator<Person> comparator);
+
+    /**
+     * Updated the groupedPersonList according to the group given {@code group}.
+     *
+     * @param predicate used to filter
+     */
+    void updateGroupedPersonList(Predicate<Person> predicate);
 
 }

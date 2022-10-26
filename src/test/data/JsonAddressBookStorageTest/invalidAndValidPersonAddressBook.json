@@ -4,6 +4,7 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
+    "tutorial": "T08",
     "address": "4th street",
     "social" : "null null null null null"
   }, {
@@ -11,6 +12,7 @@
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
+    "tutorial": "W08",
     "address": "4th street",
     "social" : "null null null null null"
   } ]
