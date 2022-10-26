@@ -11,6 +11,7 @@ import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentView;
 
 /**
  * API of the Logic component
@@ -34,6 +35,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
+
+    /** Returns a view of students along with its associated session data */
+    ObservableList<StudentView> getStudentViewList();
 
     /** Returns an unmodifiable view of the list of module classes */
     ObservableList<ModuleClass> getModuleClassList();

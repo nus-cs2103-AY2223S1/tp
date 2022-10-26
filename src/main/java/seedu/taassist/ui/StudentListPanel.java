@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.taassist.commons.core.LogsCenter;
-import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentView;
 
 /**
  * Panel containing the list of students.
@@ -18,30 +18,30 @@ public class StudentListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
     @FXML
-    private ListView<Student> studentListView;
+    private ListView<StudentView> studentListView;
 
     /**
      * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
      */
-    public StudentListPanel(ObservableList<Student> studentList) {
+    public StudentListPanel(ObservableList<StudentView> studentList) {
         super(FXML);
         studentListView.setItems(studentList);
         studentListView.setCellFactory(listView -> new StudentListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code StudentView} using a {@code StudentCard}.
      */
-    class StudentListViewCell extends ListCell<Student> {
+    class StudentListViewCell extends ListCell<StudentView> {
         @Override
-        protected void updateItem(Student student, boolean empty) {
-            super.updateItem(student, empty);
+        protected void updateItem(StudentView studentView, boolean empty) {
+            super.updateItem(studentView, empty);
 
-            if (empty || student == null) {
+            if (empty || studentView == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new StudentCard(student, getIndex() + 1).getRoot());
+                setGraphic(new StudentCard(studentView, getIndex() + 1).getRoot());
             }
         }
     }

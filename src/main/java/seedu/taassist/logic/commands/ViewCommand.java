@@ -60,7 +60,9 @@ public class ViewCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        List<SessionData> sessionDataList = student.findStudentModuleData(focusedClass).getSessionDataList();
+        List<SessionData> sessionDataList = student.findStudentModuleData(focusedClass)
+                .orElseThrow(AssertionError::new)
+                .getSessionDataList();
 
         StringJoiner sj = new StringJoiner("\n");
         sj.add(String.format(MESSAGE_HEADER, student.getName()));

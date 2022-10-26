@@ -252,12 +252,13 @@ Example:
 The following commands are only available in **focus mode.**
 
 | Command   | Format                               |
-| --------- | ------------------------------------ |
+| --------- |--------------------------------------|
 | `list`    | `list`                               |
 | `session` | `session s/SESSION_NAME [d/DATE]`    |
 | `deletes` | `deletes s/SESSION_NAME...`          |
 | `grade`   | `grade INDEX v/VALUE s/SESSION_NAME` |
-| `view`    | `view INDEX s/SESSION_NAME`          |
+| `scores`  | `scores s/SESSION_NAME`              |
+| `view`    | `view INDEX`                         |
 | `lists`   | `lists`                              |
 | `unfocus` | `unfocus`                            |
 
@@ -323,21 +324,43 @@ Example:
 
 - `session s/Lab1 d/06-10-2022` followed by `grade 2 v/93 s/Lab1` will give the student at index 2 a grade of 93 for the session `Lab1`.
 
+### Show students' grades for a session: `scores`
+
+{% include note.html content="
+
+Show grades of all students for a session.
+
+" %}
+
+Format: `scores s/SESSION_NAME`
+
+- Shows the grades of all students for the session `SESSION_NAME`.
+
+Example:
+
+- `scores s/Assignment 1` will show the grades of all students for the session `Assignment 1`, as shown below.
+  <br/>   
+  <img src="images/scoresAssignment1Result.PNG" width="600"/>
+  
+  In the above example,     
+  - Alex Yeoh and Bernice Yu have been graded with the scores `100.0` and `85.0` respectively.
+  - Charlotte Oliveiro and Irfan Ibrahim have not been graded, hence their cells have been marked red.
+
 ### View session grade of student: `view`
 
 {% include note.html content="
 
-View the grade for a student on a given session.
+View all session grades of a student within the focused class.
 
 " %}
 
-Format: `view INDEX s/SESSION_NAME`
+Format: `view INDEX`
 
-- View the grade of the student at index `INDEX` for the session `SESSION_NAME`.
+- View the grade of the student at index `INDEX` for the currently focused class.
 
 Example:
 
-- `session s/Lab1 d/06-10-2022` followed by `grade 2 v/93 s/Lab1` then `view 2 s/Lab1` will return 93, which is the grade of the student at index 2 for the session Lab1.
+- `session s/Lab1 d/06-10-2022` followed by `grade 2 v/93 s/Lab1` then `view 2` will return `1. Lab1: 93`, which are the grades of the student at index 2 within the focused class.
 
 ### List all sessions: `lists`
 
