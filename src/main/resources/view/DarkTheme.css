@@ -77,7 +77,7 @@
     -fx-text-fill: #0a122a;
 }
 
-.list-cell .link_type_label {
+.list-cell .field_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #0a122a;

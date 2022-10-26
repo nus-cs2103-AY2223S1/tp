@@ -33,7 +33,7 @@
                 <FlowPane fx:id="assignmentDetails"/>
             </HBox>
             <HBox>
-                <Label id="lectureLabel" styleClass="link_type_label" text="Lecture: "/>
+                <Label id="lectureLabel" styleClass="field_label" text="Lecture: "/>
                 <Label fx:id="lectureDetails" styleClass="cell_small_label" text="\$lectureDetails"/>
             </HBox>
             <HBox>
@@ -51,7 +51,7 @@
             </HBox>
             <Label fx:id="placeHolder2" styleClass="cell_small_label" text=" "/>
             <HBox>
-                <Label fx:id="tutorialLabel" styleClass="link_type_label" text="Tutorial: "/>
+                <Label fx:id="tutorialLabel" styleClass="field_label" text="Tutorial: "/>
                 <Label fx:id="tutorialDetails" styleClass="cell_small_label" text="\$tutorialDetails"/>
             </HBox>
             <HBox>
