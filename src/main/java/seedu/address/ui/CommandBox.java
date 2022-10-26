@@ -33,6 +33,7 @@ public class CommandBox extends UiPart<Region> {
         this.commandHistory = commandHistory;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        // Solution adapted from https://stackoverflow.com/a/33224297
         commandTextField.setOnKeyPressed(e -> displayHistory(e, resultDisplay));
     }
 
