@@ -6,7 +6,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
 /**
- * Clears Plannit to an empty state.
+ * Clears data stored in Plannit.
  */
 public class ClearCommand extends Command {
 
