@@ -3,28 +3,48 @@ layout: page
 title: User Guide
 ---
 
-**TA-Assist** is a desktop app for teaching assistants (TA) to keep track of students’ attendance and module results, optimized for use via a Command Line Interface (CLI) while having the benefits of a Graphical User Interface (GUI).
+**TA-Assist** is a desktop app for Teaching Assistants (TA) to keep track of students’ particulars and allocate marks 
+for attendance and assignments. It is optimized for use via a Command Line Interface (CLI) while having the benefits of 
+a Graphical User Interface (GUI).
+
+This user guide provides a brief documentation on how you can install the application and describes how each feature 
+should be used. Start by looking at the quick start guide to get you started.
 
 * Table of Contents
 {:toc}
+
+
+## Quick Start
+1. Ensure you have **Java `11`** or above installed in your Computer.
+2. Download the latest `taassist.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-1/tp/releases/tag/v1.3).
+3. **Copy** the file to the folder you want to use as the _home folder_ for your TA-Assist.
+4. **Double-click** the file to start the app.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
-:information_source: Notes about the command format:<br>
-
+Before diving into the features, the examples in this guide are formatted with the following conventions:
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  * e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
+  * e.g `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
 * Items with `...` after them can be used multiple times.<br>
-  e.g. `[c/CLASS_NAME...]` can be used as ` ` (i.e. 0 times since it is also optional), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
+  * e.g. `[c/CLASS_NAME...]` can be used as ` ` (i.e. 0 times since it is also optional), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
+
+:information_source: Notes about the command format:<br>
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
+[some commands](#features-available-in-focus-mode) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also
+be run in focus mode. On the other had, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
+
+Let's first begin with the commands available in the default mode.
 
 | Command    | Format                                   |
 | ---------- | ---------------------------------------- |
@@ -251,15 +271,15 @@ Example:
 
 The following commands are only available in **focus mode.**
 
-| Command   | Format                               |
-| --------- | ------------------------------------ |
-| `list`    | `list`                               |
-| `session` | `session s/SESSION_NAME [d/DATE]`    |
-| `deletes` | `deletes s/SESSION_NAME...`          |
-| `grade`   | `grade INDEX v/VALUE s/SESSION_NAME` |
-| `view`    | `view INDEX s/SESSION_NAME`          |
-| `lists`   | `lists`                              |
-| `unfocus` | `unfocus`                            |
+| Command   | Format                                     |
+| --------- |--------------------------------------------|
+| `list`    | `list`                                     |
+| `session` | `session s/SESSION_NAME [d/DATE]`          |
+| `deletes` | `deletes s/SESSION_NAME...`                |
+| `grade`   | `grade INDEX s/SESSION_NAME g/GRADE_VALUE` |
+| `view`    | `view INDEX s/SESSION_NAME`                |
+| `lists`   | `lists`                                    |
+| `unfocus` | `unfocus`                                  |
 
 ### List all students in the class: `list`
 
@@ -276,7 +296,7 @@ Format: `list`
 
 ### Create session: `session`
 
-{% include note.html content=".
+{% include note.html content="
 
 Creates a new session.
 
@@ -315,13 +335,14 @@ Grades the student for the session.
 
 " %}
 
-Format: `grade INDEX v/VALUE s/SESSION_NAME`
+Format: `grade INDEX s/SESSION_NAME g/GRADE_VALUE`
 
-- Grades the student with index `INDEX` on the session `SESSION_NAME` with a grade of `VALUE`.
+- Grades the student with index `INDEX` on the session `SESSION_NAME` with a grade of `GRADE_VALUE`.
+- `GRADE_VALUE` must be a number (decimal points are allowed).
 
 Example:
 
-- `session s/Lab1 d/06-10-2022` followed by `grade 2 v/93 s/Lab1` will give the student at index 2 a grade of 93 for the session `Lab1`.
+- `session s/Lab1 d/06-10-2022` followed by `grade 2 s/Lab1 g/93` will give the student at index 2 a grade of 93 for the session `Lab1`.
 
 ### View session grade of student: `view`
 
