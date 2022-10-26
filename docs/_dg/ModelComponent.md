@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 **API** : [`Model.java`](/src/main/java/seedu/foodrem/model/Model.java)
 
-![model_diagram](../images/ModelClassDiagram.png)
+![](images/ModelClassDiagram.png)
 
 The `Model` component,
 
