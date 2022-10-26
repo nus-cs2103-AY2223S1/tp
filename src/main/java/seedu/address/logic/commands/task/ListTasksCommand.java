@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AFTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BEFORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +20,7 @@ import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.AssignedToContactsPredicate;
+import seedu.address.model.task.ContainsProjectsPredicate;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.DeadlineIsAfterPredicate;
 import seedu.address.model.task.DeadlineIsBeforePredicate;
@@ -40,6 +42,7 @@ public class ListTasksCommand extends TaskCommand {
             + ": Lists all tasks that satisfy the specified requirements.\n"
             + "Parameters: "
             + "[" + "KEYWORD]"
+            + "[" + PREFIX_PROJECT + "PROJECT_NAME]...\n"
             + "[" + PREFIX_CONTACT + "CONTACT_INDEX]...\n"
             + "[" + PREFIX_BEFORE + "DATE]...\n"
             + "[" + PREFIX_AFTER + "DATE]...\n"
@@ -52,6 +55,7 @@ public class ListTasksCommand extends TaskCommand {
     private String keywordFilter;
     private Optional<Deadline> beforeArgs;
     private Optional<Deadline> afterArgs;
+    private List<String> projectNames;
     private List<String> flags;
     private final Set<Index> personIndexes = new HashSet<>();
 
@@ -60,12 +64,14 @@ public class ListTasksCommand extends TaskCommand {
      * @param personsIndexes a set of indexes to view only tasks assigned to the corresponding contacts
      */
     public ListTasksCommand(String keywordFilter,
+                            List<String> projectNames,
                             List<String> flags,
                             Optional<Deadline> beforeArgs,
                             Optional<Deadline> afterArgs,
                             Set<Index> personsIndexes) {
         requireAllNonNull(flags, personsIndexes);
         this.keywordFilter = keywordFilter;
+        this.projectNames = projectNames;
         this.flags = flags;
         this.beforeArgs = beforeArgs;
         this.afterArgs = afterArgs;
@@ -87,6 +93,7 @@ public class ListTasksCommand extends TaskCommand {
         }
 
         filter = filter.and(new TitleContainsKeywordPredicate(keywordFilter));
+        filter = filter.and(new ContainsProjectsPredicate(projectNames));
         filter = filter.and(parseDeadlineArgs());
         filter = filter.and(new AssignedToContactsPredicate(model, personIndexes));
 
@@ -111,6 +118,7 @@ public class ListTasksCommand extends TaskCommand {
         ListTasksCommand e = (ListTasksCommand) other;
         return keywordFilter.equals(e.keywordFilter)
                 && flags.equals(e.flags)
+                && projectNames.equals(e.projectNames)
                 && beforeArgs.equals(e.beforeArgs)
                 && afterArgs.equals(e.afterArgs)
                 && setIndexEquals(personIndexes, e.personIndexes);
@@ -153,27 +161,46 @@ public class ListTasksCommand extends TaskCommand {
         if (!keywordFilter.isEmpty()) {
             successMessage.append(String.format(" containing '%s'", keywordFilter));
         }
+
+        if (!projectNames.isEmpty()) {
+            int numNames = projectNames.size();
+            if (numNames == 1) {
+                successMessage.append(" assigned to the project");
+            } else {
+                successMessage.append(" assigned to any of the projects:");
+            }
+
+            projectNames
+                    .stream()
+                    .limit(numNames - 1)
+                    .forEach(name -> successMessage.append(" '").append(name).append("',"));
+
+            successMessage.append(" '").append(projectNames.get(numNames - 1)).append("'");
+        }
+
         if (!personIndexes.isEmpty()) {
             successMessage.append(
                     personIndexes.isEmpty()
                     ? ""
-                    : String.format("that are assigned to %s contacts", personIndexes.size())
+                    : String.format(" that are also assigned to %s contacts", personIndexes.size())
             );
         }
+
         if (beforeArgs.isPresent()) {
             Deadline before = beforeArgs.get();
             successMessage.append(
                     before.isUnspecified()
                             ? ""
-                            : String.format(" that are due before %s", before)
+                            : String.format(" that are also due before %s", before)
             );
         }
+
         if (afterArgs.isPresent()) {
             Deadline after = afterArgs.get();
             successMessage.append(
                     after.isUnspecified()
                             ? ""
-                            : String.format(" that are due after %s", after)
+                            : String.format(" that are also due after %s", after)
             );
         }
         return String.format(MESSAGE_SUCCESS, successMessage.toString());

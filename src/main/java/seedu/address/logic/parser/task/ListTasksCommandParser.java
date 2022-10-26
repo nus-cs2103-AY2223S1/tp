@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AFTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BEFORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,17 +38,20 @@ public class ListTasksCommandParser implements Parser<ListTasksCommand> {
                         args,
                         PREFIX_CONTACT,
                         PREFIX_FLAG,
+                        PREFIX_PROJECT,
                         PREFIX_BEFORE,
                         PREFIX_AFTER
                 );
         String keywordFilter = argMultimap.getPreamble();
         List<String> contactFilters = argMultimap.getAllValues(PREFIX_CONTACT);
+        List<String> projectNames = argMultimap.getAllValues(PREFIX_PROJECT);
         List<String> flags = argMultimap.getAllValues(PREFIX_FLAG);
         Optional<String> beforeArgs = argMultimap.getValue(PREFIX_BEFORE);
         Optional<String> afterArgs = argMultimap.getValue(PREFIX_AFTER);
 
         if (keywordFilter.isEmpty()
                 && contactFilters.isEmpty()
+                && projectNames.isEmpty()
                 && flags.isEmpty()
                 && beforeArgs.isEmpty()
                 && afterArgs.isEmpty()
@@ -76,7 +80,7 @@ public class ListTasksCommandParser implements Parser<ListTasksCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ListTasksCommand.MESSAGE_USAGE), pe);
         }
-        return new ListTasksCommand(keywordFilter, flags, before, after, personsIndexes);
+        return new ListTasksCommand(keywordFilter, projectNames, flags, before, after, personsIndexes);
     }
 
 }
