@@ -97,7 +97,8 @@ This command will require one flag, and one flag is optional:
 * `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
 
 Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
-
+* Module code will be automatically treated as uppercase. For example, `cs1231s` will be treated 
+  as `CS1231S`.
 * You may optionally add a module title. If provided module title is empty, then Plannit 
 interprets it as that there is no module title. 
 * You cannot add a duplicate module code.
@@ -205,18 +206,19 @@ list-module
 In the above example, we list every module in Plannit while in home page.
 
 #### 2.1.6. Add person to module
-You can add a person to a module on Plannit using the `add-person-to-module` command.
+You can add a person to a module on Plannit using the `add-person-to-module` command. In other 
+words, an association between a person and a module will be created.
 
 This command will require two flags:
-* `m/`: To be followed by the module code of the module, which the person will be added to, on Plannit.
-* `n/`: To be followed by the name of the person, who will be added to the module, on Plannit.
+* `m/`: To be followed by the module code of the module which the person will be added to.
+* `n/`: To be followed by the name of the person who will be added to the module.
 
-Format: `add-person-to-module [m/MODULE_CODE] [n/NAME]`
-* You cannot add a person not in the currently displayed list to a module.
-* You cannot add a person to a module not in the currently displayed list.
+Format: `add-person-to-module m/MODULE_CODE n/NAME`
+* You can only add a person that is currently displayed on screen to a module.
+* You can only add a person to a module that is currently displayed on screen.
 * If a person has already been added to a module, the person cannot be added to the module again.
 
-Examples:
+Example:
 
 ```
 add-person-to-module m/CS2103T n/Dinosaur Lim
