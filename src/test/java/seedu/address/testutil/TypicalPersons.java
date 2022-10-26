@@ -70,6 +70,7 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withAddress("chicago ave").withDescription("Ho")
             .withNetWorth("$399999").withMeetingTimes("14-03-2023-16:00")
             .withFilePath("src/test/data/TestPDFs/Test_PDF7.pdf").build();
+
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withNetWorth(VALID_NETWORTH_AMY)

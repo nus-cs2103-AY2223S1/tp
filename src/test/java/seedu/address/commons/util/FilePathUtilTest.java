@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.FilePath;
+
 public class FilePathUtilTest {
 
     @Test
@@ -25,13 +27,13 @@ public class FilePathUtilTest {
     @Test
     public void checkPdfFilePathTest() {
         //valid path
-        assertTrue(FileUtil.checkPdfFilePath("src/test/data/TestPDFs/Test_PDF.pdf"));
+        assertTrue(FileUtil.checkValidPdfFilePath(new FilePath("src/test/data/TestPDFs/Test_PDF.pdf")));
 
         //invalid path
-        assertFalse(FileUtil.checkPdfFilePath("a\0"));
+        assertFalse(FileUtil.checkValidPdfFilePath(new FilePath("a\0")));
 
         // null path -> throws NullPointerException
-        assertThrows(NullPointerException.class, () -> FileUtil.checkPdfFilePath(null));
+        assertThrows(NullPointerException.class, () -> FileUtil.checkValidPdfFilePath(new FilePath(null)));
     }
 
     @Test
