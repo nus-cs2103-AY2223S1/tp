@@ -13,7 +13,8 @@ import modtrekt.model.Model;
  */
 @Parameters(commandDescription = "List tasks in the task book.")
 public class ListTasksCommand extends Command {
-    public static final String COMMAND_WORD = "ls";
+    public static final String COMMAND_PHRASE = "list task";
+    public static final String COMMAND_ALIAS = "ls task";
 
     @Parameter(names = "-a", description = "Show all tasks")
     private boolean areDoneTasksShown;

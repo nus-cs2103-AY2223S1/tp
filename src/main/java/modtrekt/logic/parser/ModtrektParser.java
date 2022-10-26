@@ -53,7 +53,9 @@ public class ModtrektParser {
         //       you don't need any CommandParser classes anymore.
         JCommander jcommander = JCommander.newBuilder().programName("")
                 // tasks
-                .addCommand(ListTasksCommand.COMMAND_WORD, new ListTasksCommand())
+                .addCommand(ListTasksCommand.COMMAND_PHRASE, new ListTasksCommand(),
+                        ListTasksCommand.COMMAND_ALIAS
+                )
                 .addCommand(AddTaskCommand.COMMAND_WORD, new AddTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
                 .addCommand(DoneTaskCommand.COMMAND_WORD, new DoneTaskCommand())
