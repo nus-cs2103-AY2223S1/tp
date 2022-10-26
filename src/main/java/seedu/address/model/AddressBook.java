@@ -8,7 +8,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.tag.Medication;
+import seedu.address.model.tag.MedicationMap;
 
 /**
  * Wraps all data at the address-book level
@@ -17,6 +17,7 @@ import seedu.address.model.tag.Medication;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final MedicationMap medicationMap;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        medicationMap = new MedicationMap();
     }
 
     public AddressBook() {}
@@ -47,6 +49,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
+        // update medication map to only contain data from new persons
+        medicationMap.updateMedicationMap(persons);
     }
 
     /**
@@ -56,6 +60,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setMedicationMap(newData.getStringifiedMedicationMap());
+    }
+
+    private void setMedicationMap(String stringifiedMedicationMap) {
+        this.medicationMap.setStringifiedMedicationMap(stringifiedMedicationMap);
     }
 
     //// person-level operations
@@ -74,6 +83,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+        medicationMap.addMedicationsOfPatient(p);
     }
 
     /**
@@ -83,8 +93,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
+        medicationMap.clearMedicationsOfPatient(target);
         persons.setPerson(target, editedPerson);
+        medicationMap.addMedicationsOfPatient(editedPerson);
     }
 
     /**
@@ -93,6 +104,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        medicationMap.clearMedicationsOfPatient(key);
     }
 
     //// util methods
@@ -110,7 +122,12 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String getMedicationMap() {
-        return Medication.getMedicationMap();
+        return medicationMap.toString();
+    }
+
+    @Override
+    public String getStringifiedMedicationMap() {
+        return medicationMap.getStringifiedMedicationMap();
     }
 
     @Override
