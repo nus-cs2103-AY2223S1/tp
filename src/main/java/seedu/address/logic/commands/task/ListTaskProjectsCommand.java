@@ -1,13 +1,13 @@
 package seedu.address.logic.commands.task;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.model.Model;
 import seedu.address.model.task.Project;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Lists all project names available in task panel.
@@ -26,7 +26,7 @@ public class ListTaskProjectsCommand extends TaskCommand {
      */
     public String printContents(List<Project> projectList) {
         String result = "";
-        for(int i = 0; i < projectList.size(); i++) {
+        for (int i = 0; i < projectList.size(); i++) {
             result = (i + 1) + ". " + projectList.get(i).projectName + "\n";
         }
         return result + "\n";

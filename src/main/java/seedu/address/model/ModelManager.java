@@ -9,9 +9,10 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import org.ocpsoft.prettytime.shade.org.apache.commons.lang.StringUtils;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import org.ocpsoft.prettytime.shade.org.apache.commons.lang.StringUtils;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -157,7 +158,9 @@ public class ModelManager implements Model {
 
     @Override
     public List<Project> getProjectList() {
-        List<Project> projectList = filteredTasks.stream().map(x -> x.getProject()).filter(s -> StringUtils.isNotBlank(s.projectName)).collect(Collectors.toList());
+        List<Project> projectList = filteredTasks.stream().map(x -> x.getProject())
+                .filter(s -> StringUtils.isNotBlank(s.projectName))
+                .collect(Collectors.toList());
         return projectList;
     }
 
