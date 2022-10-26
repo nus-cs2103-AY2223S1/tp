@@ -1,13 +1,14 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryInYearMonthPredicate;
 
 
 /**
@@ -19,24 +20,26 @@ public class SummaryCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a summary of financials."
             + "Parameters: "
-            + "[" + PREFIX_DATE + "DATE] .... \n"
+            + "[" + PREFIX_MONTH + "MONTH] .... \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DATE + "10-2022";
+            + PREFIX_MONTH + "2022-10";
 
     public static final String MESSAGE_SUCCESS = "Financials Summarized \n"
             + "Total Expenditure: %.2f\n"
             + "Total Income: %.2f\n"
             + "Total Balance: %.2f";
 
-    final Date date;
+    private final Predicate<Entry> predicate;
 
-    public SummaryCommand(Date date) {
-        this.date = date;
+    public SummaryCommand(EntryInYearMonthPredicate predicate) {
+        this.predicate = predicate;
     }
 
     public SummaryCommand() {
-        this.date = null;
+        this.predicate = null;
     }
+
+
 
     /**
      * Executes the command and returns the result message.
@@ -47,6 +50,9 @@ public class SummaryCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (this.predicate != null) {
+            model.updateFilteredEntryList(this.predicate);
+        }
         List<Entry> expenditureList = model.getFilteredExpenditureList();
         List<Entry> incomeList = model.getFilteredIncomeList();
         Double totalExpenditure = expenditureList
@@ -65,7 +71,7 @@ public class SummaryCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SummaryCommand
-                && (this.date == null && ((SummaryCommand) other).date == null)// instanceof handles nulls
-                || this.date.equals(((SummaryCommand) other).date)); // state check
+                && (this.predicate == null && ((SummaryCommand) other).predicate == null)// instanceof handles nulls
+                || this.predicate.equals(((SummaryCommand) other).predicate)); // state check
     }
 }

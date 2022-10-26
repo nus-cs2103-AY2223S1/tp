@@ -154,7 +154,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPennyWiseFilePath(Path addressBookFilePath) {
+        public void setPennyWiseFilePath(Path pennyWiseFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

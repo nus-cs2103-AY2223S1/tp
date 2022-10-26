@@ -45,7 +45,7 @@ public class PennyWiseTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyPennyWise_replacesData() {
         PennyWise newData = getTypicalPennyWise();
         pennyWise.resetData(newData);
         assertEquals(newData, pennyWise);
@@ -78,7 +78,7 @@ public class PennyWiseTest {
     }
 
     // @Test
-    // public void hasIncome_incomeNotInAddressBook_returnsFalse() {
+    // public void hasIncome_incomeNotInPennyWise_returnsFalse() {
     //     assertFalse(pennyWise.hasIncome());
     // }
     @Test
@@ -87,11 +87,11 @@ public class PennyWiseTest {
         assertTrue(pennyWise.hasExpenditure(LUNCH));
     }
     // @Test
-    // public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-    //     addressBook.addPerson(ALICE);
+    // public void hasPerson_personWithSameIdentityFieldsInPennyWise_returnsTrue() {
+    //     pennyWise.addPerson(ALICE);
     //     Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
     //             .build();
-    //     assertTrue(addressBook.hasPerson(editedAlice));
+    //     assertTrue(pennyWise.hasPerson(editedAlice));
     // }
     @Test
     public void getExpenditureList_modifyList_throwsUnsupportedOperationException() {
@@ -103,7 +103,7 @@ public class PennyWiseTest {
         assertThrows(UnsupportedOperationException.class, () -> pennyWise.getIncomeList().remove(0));
     }
     // /**
-    //  * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+    //  * A stub ReadOnlyPennyWise whose persons list can violate interface constraints.
     //  */
     private static class PennyWiseStub implements ReadOnlyPennyWise {
         private final ObservableList<Entry> expenditureList = FXCollections.observableArrayList();
