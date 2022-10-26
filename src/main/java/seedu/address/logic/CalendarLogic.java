@@ -189,7 +189,7 @@ public class CalendarLogic {
         String date = jumpText.getText();
         jumpText.clear();
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-uuuu");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MMM-uuuu");
             formatter = formatter.withResolverStyle(ResolverStyle.STRICT);
             Date jumpDate = new Date(LocalDate.parse(date, formatter));
             int newMonth = jumpDate.getMonth() - 1;
