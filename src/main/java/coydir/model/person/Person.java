@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import coydir.model.tag.Tag;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a Person in the database.
@@ -94,6 +96,10 @@ public class Person {
 
     public Set<Leave> getLeaves() {
         return Collections.unmodifiableSet(leaves);
+    }
+
+    public ObservableList<Leave> getObservableListLeaves() {
+        return FXCollections.observableArrayList(leaves);
     }
 
     public int getTotalNumberOfLeaves() {

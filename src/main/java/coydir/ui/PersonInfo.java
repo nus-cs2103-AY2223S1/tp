@@ -2,12 +2,18 @@ package coydir.ui;
 
 import java.util.Comparator;
 
+import coydir.model.person.Leave;
 import coydir.model.person.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+
 
 /**
  * An UI component that displays detailed information of a {@code Person}.
@@ -39,6 +45,8 @@ public class PersonInfo extends UiPart<Region> {
     private Label leaveLeft;
     @FXML
     private FlowPane tags;
+    @FXML
+    private TableView<Leave> leaveTable;
 
     /**
      * Creates a {@code PersonInfo} to display the {@code Person} particulars.
@@ -46,6 +54,16 @@ public class PersonInfo extends UiPart<Region> {
     public PersonInfo(Person person) {
         super(FXML);
         update(person);
+    }
+
+    /**
+     * Initializing the leave table at the start of the program.
+     */
+    public void initializeLeaveTable() {
+        leaveTable.setSelectionModel(null);
+        leaveTable.setEditable(false);
+        leaveTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        leaveTable.addEventFilter(MouseEvent.ANY, MouseEvent::consume);
     }
 
     /**
@@ -64,6 +82,24 @@ public class PersonInfo extends UiPart<Region> {
         totalLeave.setText("Total Leaves: " + person.getTotalNumberOfLeaves());
         leaveLeft.setText("Leaves Left: " + person.getLeavesLeft());
         tags.getChildren().clear();
+        leaveTable.setItems(person.getObservableListLeaves());
+        TableColumn<Leave, String> startDate = new TableColumn<>("Start Date");
+        startDate.setCellValueFactory(new PropertyValueFactory<>("col1"));
+        startDate.setSortable(false);
+        startDate.setReorderable(false);
+
+        TableColumn<Leave, String> endDate = new TableColumn<>("End Date");
+        endDate.setCellValueFactory(new PropertyValueFactory<>("col2"));
+        endDate.setSortable(false);
+        endDate.setReorderable(false);
+
+        TableColumn<Leave, Integer> durations = new TableColumn<>("Durations");
+        durations.setCellValueFactory(new PropertyValueFactory<>("col3"));
+        durations.setSortable(false);
+        durations.setReorderable(false);
+        leaveTable.getColumns().clear();
+        leaveTable.getColumns().addAll(startDate, endDate, durations);
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

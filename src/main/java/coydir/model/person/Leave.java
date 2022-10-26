@@ -3,6 +3,8 @@ package coydir.model.person;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  * Represents a Leave in the database.
  * Guarantees: immutable; name is valid as declared in {@link #isValidLeave}
@@ -13,6 +15,10 @@ public class Leave {
     public final LocalDate startDate;
     public final LocalDate endDate;
 
+    private final SimpleStringProperty col1;
+    private final SimpleStringProperty col2;
+    private final SimpleStringProperty col3;
+
     /**
      * Constructs a {@code Leave}.
      *
@@ -22,6 +28,21 @@ public class Leave {
     public Leave(String startDate, String endDate) {
         this.startDate = LocalDate.parse(startDate, FORMAT);
         this.endDate = LocalDate.parse(endDate, FORMAT);
+        this.col1 = new SimpleStringProperty(this.startDate.toString());
+        this.col2 = new SimpleStringProperty((this.endDate.toString()));
+        this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()));
+    }
+
+    public String getCol1() {
+        return this.col1.get();
+    }
+
+    public String getCol2() {
+        return this.col2.get();
+    }
+
+    public String getCol3() {
+        return this.col3.get();
     }
 
     /**
