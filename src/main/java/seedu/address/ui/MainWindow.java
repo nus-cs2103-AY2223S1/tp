@@ -47,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane personViewPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -125,6 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         // TODO add detailed person card implementation
+        handleView();
     }
 
     /**
@@ -180,6 +184,12 @@ public class MainWindow extends UiPart<Stage> {
         countWindow.show();
     }
 
+    @FXML
+    public void handleView() {
+        PersonViewPanel personViewPanel = new PersonViewPanel(logic.getCurrentlyViewedPerson());
+        personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -210,6 +220,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowCount()) {
                 handleCount();
+            }
+
+            if (commandResult.isViewPerson()) {
+                handleView();
             }
 
             return commandResult;

@@ -49,6 +49,11 @@ public class ContactCard extends UiPart<Region> {
         nextOfKinRelationship.setText(person.getNextOfKin().getNextOfKinRelationship());
     }
 
+    public ContactCard(Person person) {
+        this(person, 0);
+        id.setVisible(false);
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
