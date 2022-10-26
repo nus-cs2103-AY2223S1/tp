@@ -1,3 +1,4 @@
+
 ---
 layout: page title: User Guide
 ---
@@ -103,6 +104,27 @@ Required Arguments:
     - e.g. `CS2103`
 
 Delete a module to the user's own list of modules.
+
+### Pick lessons to modules in user list: `pick`
+
+Format: `pick MODULE-CODE LESSON-TYPE LESSON-CODE`
+
+Required Arguments:
+
+- `MODULE-CODE`
+    - e.g. `CS2103`
+
+- `LESSON-TYPE`
+    - `TUT`, Tutorial
+    - `LEC`, Lecture
+    - `LAB`, Laboratory
+    - `REC`, Recitation
+    - `SEC`, Sectional Teaching
+
+- `LESSON-CODE`
+    - e.g. `02`
+
+Pick a lesson for the user's added module.
 
 ### Exiting the program: `exit`
 
