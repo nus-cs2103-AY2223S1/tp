@@ -94,16 +94,21 @@ Format: `:sort`
 
 ### Viewing all exercises within a time period : `:range`
 
-Shows a list of all exercises within a date range.
+Shows a list of all exercises within a date range, in sorted order.
+The order is based on latest to oldest date, then by alphabetical order of exercise name.
 
 Format (1) : `:range d/<start date> e/<end date>`
 
-Example: `:range d/20/10/2022 e/25/10/2022` shows the exercises done between October 20, 2022 
+Example: `:range d/25/10/2022 e/26/10/2022` shows the exercises done between October 20, 2022 
 and October 25, 2022 (both inclusive)
+
+![RangeCommandOne](images/RangeCommandOneSample.png)
 
 Format (2) : `:range last/<number of days>`
 
 Example: `:range last/3` shows the exercises done today and the last 3 days
+
+![RangeCommandTwo](images/RangeCommandTwoSample.png)
 
 ### Exiting the program : `:wq`
 
