@@ -171,6 +171,9 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredInternshipList(Predicate<Internship> predicate) {
         requireNonNull(predicate);
+        // Since we are just swapping between 2 observable lists and they are wrappers around
+        // the source list, it is safe to swap between SortedList and FilteredList.
+        @SuppressWarnings("unchecked")
         FilteredList<Internship> internshipList = (FilteredList<Internship>) filteredInternships.getSource();
         internshipList.setPredicate(predicate);
     }
