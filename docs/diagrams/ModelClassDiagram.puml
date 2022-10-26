@@ -42,9 +42,9 @@ Activity *--> Name
 Activity *--> Description
 Activity *--> Date
 Activity *--> "*" Tag
-Activity *--> "*" Status
-Activity *--> "*" Rating
-Activity *--> "*" Review
+Activity *--> "0..1" Status
+Activity *--> "0..1" Rating
+Activity *--> "0..1" Review
 
 Name -[hidden]right-> Description
 Date -[hidden]right-> Tag

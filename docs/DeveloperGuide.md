@@ -430,10 +430,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The given index is invalid
-    * 2a1. HobbyList shows an error message.
-  
-      Use case resumes at step 1.
+* 1a. The given index is invalid
+    * 1a1. HobbyList shows an error message.
+      
+         Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
