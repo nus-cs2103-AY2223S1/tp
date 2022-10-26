@@ -67,6 +67,8 @@ public class AddDebtCommand extends Command {
             debtors.add(lastShownList.get(index.getZeroBased()));
         }
 
+        model.saveAddressBook();
+        // Command message is saved to undo history after string is built
         StringBuilder nameList = new StringBuilder();
         int size = debtors.size();
 
@@ -86,6 +88,7 @@ public class AddDebtCommand extends Command {
             }
         }
 
+        model.saveCommandMessage(String.format(MESSAGE_ADD_DEBT_SUCCESS, debt, nameList));
         return new CommandResult(String.format(MESSAGE_ADD_DEBT_SUCCESS, debt, nameList));
     }
 

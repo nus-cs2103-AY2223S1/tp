@@ -80,9 +80,6 @@ public class DeleteDebtCommand extends Command {
 
         Person updatedDebtor = createReducedDebtor(debtorToUpdate, debtsToDelete);
 
-        model.setPerson(debtorToUpdate, updatedDebtor);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
         String result = String.format(MESSAGE_DELETE_DEBT_SUCCESS, updatedDebtor.getName());
         StringBuilder builder = new StringBuilder(result);
 
@@ -94,6 +91,10 @@ public class DeleteDebtCommand extends Command {
             i++;
         }
 
+        model.saveAddressBook();
+        model.saveCommandMessage(builder.toString());
+        model.setPerson(debtorToUpdate, updatedDebtor);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(builder.toString());
     }
 
