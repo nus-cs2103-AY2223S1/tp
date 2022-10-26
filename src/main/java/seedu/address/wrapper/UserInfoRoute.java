@@ -17,21 +17,18 @@ public final class UserInfoRoute {
     //@@author arnav-ag
 
     public static final String BASE_GITHUB_URL = "https://api.github.com";
-    private static final String SERVER_DOWN_STATUS_MESSAGE = "Unable to get information from API.";
 
     private static final String GET_USER_BASE_PATH = "/users/";
     private final String path;
-    private final String username;
 
-    private UserInfoRoute(String path, String username) {
-        requireAllNonNull(path, username);
+    private UserInfoRoute(String path) {
+        requireAllNonNull(path);
         this.path = path;
-        this.username = username;
     }
 
     public static UserInfoRoute getUserInfoRoute(String username) {
         requireAllNonNull(username);
-        return new UserInfoRoute(GET_USER_BASE_PATH + username, username);
+        return new UserInfoRoute(GET_USER_BASE_PATH + username);
     }
 
     /**
@@ -39,7 +36,7 @@ public final class UserInfoRoute {
      * @return Request class pertaining to user information from GitHub
      */
     public UserInfoRequest createRequest(UnirestInstance unirest) {
-        requireAllNonNull(unirest);
+        assert unirest != null : "Unirest instance cannot be null.";
 
         return new UserInfoRequest(unirest, BASE_GITHUB_URL + this.path);
     }
@@ -50,7 +47,7 @@ public final class UserInfoRoute {
      * @return
      */
     public UserAvatarRequest createAvatarRequest(UnirestInstance unirest, String url) {
-        requireAllNonNull(unirest);
+        assert unirest != null : "Unirest instance cannot be null.";
 
         return new UserAvatarRequest(unirest, url);
     }

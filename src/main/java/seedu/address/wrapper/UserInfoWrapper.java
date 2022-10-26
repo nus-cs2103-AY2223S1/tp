@@ -3,7 +3,6 @@ package seedu.address.wrapper;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,6 +12,7 @@ import java.util.Optional;
 import org.json.JSONObject;
 
 import kong.unirest.UnirestInstance;
+import seedu.address.wrapper.exceptions.FileSaveFailException;
 
 /**
  * Class representing a wrapper over the requests and routes needed to get user information from GitHub
@@ -26,10 +26,11 @@ public class UserInfoWrapper {
     private static final String EMAIL_KEY = "email";
     private static final String LOCATION_KEY = "location";
     private static final String IMAGE_LOCATION_KEY = "avatar_url";
-    private final UserInfoRoute userInfoRoute;
+    private final Path defaultImageDirectory = Paths.get("data", "images");
     private final UserInfoRoute.UserInfoRequest userInfoRequest;
-    private final UnirestInstance unirest;
-    private final Path defaultImagePath;
+    private final UserInfoRoute.UserAvatarRequest userAvatarRequest;
+
+    private final String defaultImageFileName;
     private JSONObject userJson;
 
     /**
@@ -39,14 +40,13 @@ public class UserInfoWrapper {
     public UserInfoWrapper(String username, UnirestInstance unirest) {
         requireAllNonNull(username, unirest);
 
-        this.unirest = unirest;
-        userInfoRoute = UserInfoRoute.getUserInfoRoute(username);
+        UserInfoRoute userInfoRoute = UserInfoRoute.getUserInfoRoute(username);
 
         userInfoRequest = userInfoRoute.createRequest(unirest);
-
         getUserJson();
 
-        defaultImagePath = Paths.get("/images", getUsername());
+        userAvatarRequest = userInfoRoute.createAvatarRequest(unirest, getAvatarUrl());
+        defaultImageFileName = getUsername() + ".png";
     }
 
     private void getUserJson() {
@@ -73,13 +73,15 @@ public class UserInfoWrapper {
         return userJson.getString(IMAGE_LOCATION_KEY);
     }
 
-    /**
-     * @throws IOException Exception thrown when trying to save image to file
-     */
-    public void downloadAvatar() throws IOException {
-        UserInfoRoute.UserAvatarRequest userAvatarRequest = userInfoRoute.createAvatarRequest(unirest, getAvatarUrl());
+    public void downloadAvatar() {
         byte[] image = userAvatarRequest.getAvatarImage();
-        Files.write(defaultImagePath, image);
+        try {
+            defaultImageDirectory.toFile().mkdirs();
+            Files.write(Paths.get(defaultImageDirectory.toString(), defaultImageFileName), image);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new FileSaveFailException("Unable to save user avatar to local storage.");
+        }
     }
 
     public String getUrl() {
@@ -91,11 +93,12 @@ public class UserInfoWrapper {
         return other == this
                 || (other instanceof UserInfoWrapper)
                 && userInfoRequest.equals(((UserInfoWrapper) other).userInfoRequest)
+                && userAvatarRequest.equals(((UserInfoWrapper) other).userAvatarRequest)
                 && userJson.equals(((UserInfoWrapper) other).userJson);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userInfoRequest, userJson);
+        return Objects.hash(userAvatarRequest, userJson);
     }
 }

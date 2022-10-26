@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.contact.Email;
+import seedu.address.model.person.github.repo.Repo;
+import seedu.address.model.person.github.repo.RepoList;
 import seedu.address.wrapper.UserInfoWrapper;
 import seedu.address.wrapper.UserReposWrapper;
 
@@ -23,12 +28,11 @@ public class User {
     private static final String GITHUB_PREFIX = "https://github.com/";
     private static final String VALIDATION_REGEX = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";
     private final String username;
-    private final String avatarUrl;
     private final String url;
-    private final String name;
-    private final String email;
-    private final String address;
-    private final UserReposWrapper userReposWrapper;
+    private final Name name;
+    private final Email email;
+    private final Address address;
+    private final RepoList repoList;
 
     /**
      * Constructs a GitHub's user
@@ -37,13 +41,14 @@ public class User {
      */
     public User(String username, UserInfoWrapper userInfoWrapper, UserReposWrapper userReposWrapper) {
         requireAllNonNull(username);
-        this.userReposWrapper = userReposWrapper;
         this.username = userInfoWrapper.getUsername();
-        this.avatarUrl = userInfoWrapper.getAvatarUrl();
         this.url = userInfoWrapper.getUrl();
-        this.name = userInfoWrapper.getName().orElse(this.username);
-        this.email = userInfoWrapper.getEmail().orElse("");
-        this.address = userInfoWrapper.getLocation().orElse("");
+        this.name = new Name(userInfoWrapper.getName().orElse(this.username));
+        this.email = userInfoWrapper.getEmail().isPresent() ? new Email(userInfoWrapper.getEmail().get()) : null;
+        this.address =
+                userInfoWrapper.getLocation().isPresent() ? new Address(userInfoWrapper.getLocation().get()) : null;
+        userInfoWrapper.downloadAvatar();
+        this.repoList = getUpdatedRepoList(userReposWrapper);
     }
 
     /**
@@ -53,7 +58,7 @@ public class User {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public String getName() {
+    public Name getName() {
         return this.name;
     }
 
@@ -61,36 +66,38 @@ public class User {
         return this.username;
     }
 
-    public String getAvatarUrl() {
-        return this.avatarUrl;
-    }
-
     public String getUrl() {
         return this.url;
     }
 
-    public Optional<String> getEmail() {
+    public Optional<Email> getEmail() {
         return Optional.ofNullable(this.email);
     }
 
-    public Optional<String> getAddress() {
+    public Optional<Address> getAddress() {
         return Optional.ofNullable(this.address);
     }
 
-    //TODO/open: NEED TO UPDATE
-    public ArrayList<Integer> getRepoIds() {
+    public RepoList getRepoList() {
+        return this.repoList;
+    }
+
+    private RepoList getUpdatedRepoList(UserReposWrapper userReposWrapper) {
+        RepoList repoList = new RepoList();
+        for (int repoId : getRepoIds(userReposWrapper)) {
+            repoList.addRepo(new Repo(
+                    userReposWrapper.getRepoName(repoId),
+                    userReposWrapper.getRepoUrl(repoId),
+                    userReposWrapper.getRepoForkCount(repoId),
+                    userReposWrapper.getLastUpdated(repoId)
+            ));
+        }
+        return repoList;
+    }
+
+    public ArrayList<Integer> getRepoIds(UserReposWrapper userReposWrapper) {
         return userReposWrapper.getIDs();
     }
-
-    public String getRepoName(int id) {
-        return userReposWrapper.getRepoName(id);
-    }
-
-    public String getRepoUrl(int id) {
-        return userReposWrapper.getRepoUrl(id);
-    }
-
-    //TODO/close: NEED TO UPDATE
 
     @Override
     public String toString() {
@@ -102,16 +109,15 @@ public class User {
         return other == this
                 || (other instanceof User)
                 && username.equals(((User) other).username)
-                && avatarUrl.equals(((User) other).avatarUrl)
                 && url.equals(((User) other).url)
                 && name.equals(((User) other).name)
                 && email.equals(((User) other).email)
                 && address.equals(((User) other).address)
-                && userReposWrapper.equals(((User) other).userReposWrapper);
+                && repoList.equals(((User) other).repoList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, avatarUrl, url, name, email, address, userReposWrapper);
+        return Objects.hash(username, url, name, email, address);
     }
 }

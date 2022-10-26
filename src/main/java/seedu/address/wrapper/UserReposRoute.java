@@ -27,9 +27,9 @@ public class UserReposRoute {
         this.path = path;
     }
 
-    public static UserReposRoute getUserReposRoute(String user) {
-        requireAllNonNull(user);
-        return new UserReposRoute(GET_USER_BASE_PATH + user + GET_REPO_PATH);
+    public static UserReposRoute getUserReposRoute(String username) {
+        requireAllNonNull(username);
+        return new UserReposRoute(GET_USER_BASE_PATH + username + GET_REPO_PATH);
     }
 
     /**
@@ -37,7 +37,7 @@ public class UserReposRoute {
      * @return Request class instance pertaining to getting user repo information
      */
     public UserReposRequest createRequest(UnirestInstance unirest) {
-        requireAllNonNull(unirest);
+        assert unirest != null : "Unirest instance cannot be null.";
 
         return new UserReposRequest(unirest, BASE_GITHUB_URL + this.path);
     }

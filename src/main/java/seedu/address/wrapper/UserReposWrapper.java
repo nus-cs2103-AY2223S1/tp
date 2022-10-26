@@ -3,6 +3,8 @@ package seedu.address.wrapper;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.wrapper.UserReposRoute.getUserReposRoute;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -18,6 +20,11 @@ import seedu.address.wrapper.exceptions.RepoNotFoundException;
 public class UserReposWrapper {
     //@@author arnav-ag
 
+    private final static String ID_KEY = "id";
+    private final static String NAME_KEY = "name";
+    private final static String URL_KEY = "html_url";
+    private final static String FORKS_KEY = "forks_count";
+    private final static String UPDATED_KEY = "updated_at";
     private final UserReposRoute.UserReposRequest getUserReposRequest;
     private JSONArray reposJson;
 
@@ -30,6 +37,7 @@ public class UserReposWrapper {
 
         UserReposRoute getUserInfoGetInfoRoute = getUserReposRoute(username);
         getUserReposRequest = getUserInfoGetInfoRoute.createRequest(unirest);
+        updateReposJson();
     }
 
     private void updateReposJson() {
@@ -37,28 +45,22 @@ public class UserReposWrapper {
     }
 
     public ArrayList<Integer> getIDs() {
-        if (this.reposJson == null) {
-            updateReposJson();
-        }
         ArrayList<Integer> result = new ArrayList<>();
         JSONObject obj;
         for (int i = 0; i < this.reposJson.length(); i++) {
             obj = (JSONObject) this.reposJson.get(i);
-            result.add(obj.getInt("id"));
+            result.add(obj.getInt(ID_KEY));
         }
 
         return result;
     }
 
     public String getRepoName(int id) {
-        if (this.reposJson == null) {
-            updateReposJson();
-        }
         JSONObject obj;
         for (int i = 0; i < this.reposJson.length(); i++) {
             obj = (JSONObject) this.reposJson.get(i);
             if (obj.getInt("id") == id) {
-                return obj.getString("name");
+                return obj.getString(NAME_KEY);
             }
         }
 
@@ -66,14 +68,35 @@ public class UserReposWrapper {
     }
 
     public String getRepoUrl(int id) {
-        if (this.reposJson == null) {
-            updateReposJson();
-        }
         JSONObject obj;
         for (int i = 0; i < this.reposJson.length(); i++) {
             obj = (JSONObject) this.reposJson.get(i);
             if (obj.getInt("id") == id) {
-                return obj.getString("html_url");
+                return obj.getString(URL_KEY);
+            }
+        }
+
+        throw new RepoNotFoundException("Provided ID does not correspond to a repository owned by this user!");
+    }
+
+    public LocalDateTime getLastUpdated(int id) {
+        JSONObject obj;
+        for (int i = 0; i < this.reposJson.length(); i++) {
+            obj = (JSONObject) this.reposJson.get(i);
+            if (obj.getInt("id") == id) {
+                return LocalDateTime.parse(obj.getString(UPDATED_KEY), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+            }
+        }
+
+        throw new RepoNotFoundException("Provided ID does not correspond to a repository owned by this user!");
+    }
+
+    public int getRepoForkCount(int id) {
+        JSONObject obj;
+        for (int i = 0; i < this.reposJson.length(); i++) {
+            obj = (JSONObject) this.reposJson.get(i);
+            if (obj.getInt("id") == id) {
+                return obj.getInt(FORKS_KEY);
             }
         }
 
