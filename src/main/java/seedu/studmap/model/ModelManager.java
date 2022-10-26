@@ -146,6 +146,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void filterStudentListWithModule(Predicate<Student> predicate) {
+        requireAllNonNull(predicate);
+        filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public void filterStudentListWithAssignment(Predicate<Student> predicate) {
+        requireAllNonNull(predicate);
+        filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.studmap.commons.core.Messages;
 import seedu.studmap.model.Model;
+import seedu.studmap.model.student.AssignmentContainsKeywordsPredicate;
+import seedu.studmap.model.student.ModuleContainsKeywordsPredicate;
 import seedu.studmap.model.student.TagContainsKeywordsPredicate;
 
 
@@ -19,17 +21,33 @@ public class FilterCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " friends";
 
-    private final TagContainsKeywordsPredicate predicate;
+    private final TagContainsKeywordsPredicate tPredicate;
 
-    public FilterCommand(TagContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    private final ModuleContainsKeywordsPredicate mPredicate;
+
+    private final AssignmentContainsKeywordsPredicate aPredicate;
+
+    public FilterCommand(TagContainsKeywordsPredicate tPredicate,
+                         ModuleContainsKeywordsPredicate mPredicate,
+                         AssignmentContainsKeywordsPredicate aPredicate) {
+        this.tPredicate = tPredicate;
+        this.mPredicate = mPredicate;
+        this.aPredicate = aPredicate;
     }
 
 
     @Override
     public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.filterStudentListWithTag(predicate);
+        if (tPredicate == null && aPredicate == null) {
+            requireNonNull(mPredicate);
+            model.filterStudentListWithModule(mPredicate);
+        } else if (mPredicate == null && aPredicate == null){
+            requireNonNull(tPredicate);
+            model.filterStudentListWithTag(tPredicate);
+        } else {
+            requireNonNull(aPredicate);
+            model.filterStudentListWithAssignment(aPredicate);
+        }
         return new CommandResult(
                 String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }

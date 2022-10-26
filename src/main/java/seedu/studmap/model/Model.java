@@ -115,5 +115,8 @@ public interface Model {
      */
     void sortFilteredStudentList(Comparator<Student> comparator, Order order);
 
+    void filterStudentListWithModule(Predicate<Student> predicate);
+
+    void filterStudentListWithAssignment(Predicate<Student> predicate);
 
 }

@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 import seedu.studmap.logic.commands.FilterCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
+import seedu.studmap.model.student.AssignmentContainsKeywordsPredicate;
+import seedu.studmap.model.student.ModuleContainsKeywordsPredicate;
 import seedu.studmap.model.student.TagContainsKeywordsPredicate;
 
 
@@ -23,13 +25,26 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     @Override
     public FilterCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        if (trimmedArgs.length() == 2
+                || !trimmedArgs.startsWith("t/")
+                || !trimmedArgs.startsWith("m/")
+                || !trimmedArgs.startsWith("a/")) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
+        String prefix = trimmedArgs.substring(0, 2);
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FilterCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        if (prefix.equals("t/")) {
+            return new FilterCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)),
+                    null, null);
+        } else if (prefix.equals("m/")){
+            return new FilterCommand(null,
+                    new ModuleContainsKeywordsPredicate(Arrays.asList(nameKeywords)), null);
+        }
+        return new FilterCommand(null, null,
+                new AssignmentContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+
     }
 }
