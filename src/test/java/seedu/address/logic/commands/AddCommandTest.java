@@ -37,7 +37,7 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
+        assertEquals(AddCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
@@ -129,6 +129,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPersons(AddressBook addressBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -137,6 +142,11 @@ public class AddCommandTest {
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void appendAddressBook(AddressBook addressBook) {
+            throw new AssertionError("This method should not be called.");
+        };
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
@@ -199,6 +209,7 @@ public class AddCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+
     }
 
 }
