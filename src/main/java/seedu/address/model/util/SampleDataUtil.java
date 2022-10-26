@@ -28,7 +28,7 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Birthdate("08-08-1988"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("PollenAllergy"), getSampleRecordList(), Appointment.of("11-11-2011 1500")),
+                getTagSet("PollenAllergy"), getSampleRecordList(), Appointment.of("11-11-2024 1500")),
 
             new Person(new Name("Bernice Yu"), new Birthdate("04-04-1944"), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
@@ -37,7 +37,7 @@ public class SampleDataUtil {
 
             new Person(new Name("Charlotte Oliveiro"), new Birthdate("06-06-2006"), new Phone("93210283"),
                 new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getTagSet(), getSampleRecordList(), Appointment.of("01-05-2005 1045")),
+                    getTagSet(), getSampleRecordList(), Appointment.of("01-05-2024 1045")),
 
             new Person(new Name("David Li"), new Birthdate("01-10-2001"), new Phone("91031282"),
                 new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
