@@ -9,18 +9,27 @@ import org.junit.jupiter.api.Test;
 
 import seedu.intrack.logic.commands.DeleteTaskCommand;
 
+/**
+ * Contains unit tests for {@code DeleteTaskCommandParser}.
+ */
 public class DeleteTaskCommandParserTest {
 
     private DeleteTaskCommandParser parser = new DeleteTaskCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteTaskCommand() {
         assertParseSuccess(parser, "1", new DeleteTaskCommand(INDEX_FIRST_INTERNSHIP));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_emptyArgs_throwsParseException() {
+        assertParseFailure(parser, "",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
     }
 }

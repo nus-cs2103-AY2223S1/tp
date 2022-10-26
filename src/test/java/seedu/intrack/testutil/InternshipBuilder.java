@@ -124,6 +124,14 @@ public class InternshipBuilder {
     }
 
     /**
+     * Sets {@code List<Task> tasks} to the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withTaskList(List<Task> tasks) {
+        this.tasks = tasks;
+        return this;
+    }
+
+    /**
      * Sets the {@code Salary} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withSalary(String salary) {
