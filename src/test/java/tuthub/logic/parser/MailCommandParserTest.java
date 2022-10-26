@@ -19,6 +19,7 @@ public class MailCommandParserTest {
     public void isIndex() {
         assertTrue(parser.isIndex("3"));
         assertFalse(parser.isIndex("all"));
+        assertFalse(parser.isIndex(null));
     }
 
     @Test
