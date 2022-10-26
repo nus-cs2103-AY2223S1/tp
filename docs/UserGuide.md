@@ -27,7 +27,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`listPersons`** : Lists all contacts.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the application.
 
@@ -62,7 +62,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -87,57 +87,52 @@ Format: `help`
 
 Adds a contact to the application.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] d/DOB [t/TAG]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB [t/TAG]`
 
-- The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), date of birth(`d`).
-- The parameters in [ ] are optional parameters, including gender (`g`), purchase history (`ph`), tag (`t`).
+- The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
+- The parameters in [ ] are optional parameters, including tag (`t`).
 - A person in the contact list can have more than 1 tag.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/friend t/criminal g/f d/14/12/1998`
 
-__Optional Parameter 1: Gender__
+__Additional Parameter 1: Gender__
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER`
 
-- Adds gender to a person in the contact list. The genders accepted by the contact list are: `M`/`m` for male,  `F`/`f` for female.
-- NAME can contain more than 1 word.
-
-Examples:
-* `add n/John Wang p/98765432 e/johnwang@example.com a/John street, block 123, #01-01 g/M`
-* `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 g/m`
-* `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82  g/F`
+- Adds gender to a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
+for male, `F`/`f`/`Female`/`female` for female.
 
 __Additional Parameter 2: Date of Birth__
 
 - Adds date of birth to a person in the contact list. Date format accepted is: dd/mm/yyyy.
 
-### Listing all persons : `list`
+
+### Listing all persons : `listPersons`
 
 Shows a list of all persons in the application.
 
-Format: `list [s/FIELD]`
+Format: `listPersons [s/FIELD]`
 
-* Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one the following values:
+* Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one of the following values:
   * `n` or `N` sort by name ignoring case differences
-  * `d` or `D` Sort by date of birth
-  * `g` or `G` Sort by gender
+  * `d` or `D` sort by date of birth
+  * `g` or `G` sort by gender
 
-* It is optional to specify the field to sort by. If no field is specified, no sorting is performed.
+* It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
-* Persons with an empty field that is being used to sort will be placed at the top of the list.
 
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The sorted result is persistent on the underlying contacts list.<br><br>
+:information_source: **Note:** The sorted result is permanent on the underlying contact list.<br><br>
 
-For example, if `list s/n` and `list` are executed back-to-back, the result of the second `list` command will still display the sorted results from the first `list s/n` command since the sorted result is persistent.
+For example, if `listPersons s/n` and `listPersons` are executed back-to-back, the result of the second `listPersons` command will display the sorted results from the first `listPersons s/n` command since the sorted result is permanent.
 </div>
 
 Examples:
-* `list` Lists all persons in the order they were inserted.
-* `list s/n` Lists all persons sorted by their names.
+* `listPersons` Lists all persons without performing any sorting.
+* `listPersons s/n` Lists all persons sorted by their names.
 
 
 ### Editing a contact : `edit`
@@ -164,15 +159,15 @@ __Optional Parameter 1: Gender__
 
 Format: `edit INDEX [g/GENDER]`
 
-- Edits the gender of a person in the contact list. The genders accepted by the contact list are: `M`/`m` for male,
-`F`/`f` for female, and `NA` for empty gender (if user wants to hide gender).
+- Edits the gender of a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
+for male, `F`/`f`/`Female`/`female` for female.
 - `INDEX` must be **a positive integer** (i.e 1,2,3…)
 - `INDEX` must be within the range of the contact list index (i.e. from 1 to size of contact list).
 
 Examples:
 * `edit 1 g/M`
 * `edit 2 g/f`
-* `edit 3 g/NA`
+* `edit 3 g/F`
 
 __Optional Parameter 2: Date of Birth__
 
@@ -217,7 +212,7 @@ Format: `deletePerson INDEX`
 * The index must be **a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `deletePerson 2` deletes the 2nd person in the application.
+* `listPersons` followed by `deletePerson 2` deletes the 2nd person in the application.
 * `find Betsy` followed by `deletePerson 1` deletes the 1st person in the results of the `find` command.
 
 ### Add an event: `addEvent`
@@ -246,14 +241,31 @@ Examples:
 * `deleteEvent 2` after listing all events with `listEvents` deletes the event at index 2
 * `deleteEvent 7` after listing all events with `listEvents` deletes the event at index 7
 
-### Display all events: `listEvents`
 
-Shows a list of all existing events in the application.
+### Listing all events: `listEvents`
 
-Format: `listEvents`
+Shows a list of all events in the application.
+
+Format: `listEvents [s/FIELD]`
+
+* Sorts the events by the specified field in **ascending** order. `FIELD` must take one of the following values:
+  * `e` or `E` sort by event title ignoring case differences
+  * `d` or `D` sort by date
+
+* It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, no sorting is performed.
+* At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
+
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The sorted result is permanent on the underlying events list.<br><br>
+
+For example, if `listEvents s/e` and `listEvents` are executed back-to-back, the result of the second `listEvents` command will display the sorted results from the first `listEvents s/e` command since the sorted result is permanent.
+</div>
 
 Examples:
-* `listEvents`
+* `listEvents` Lists all events without performing any sorting.
+* `listEvents s/e` Lists all events sorted by their event titles.
+
 
 ### Tag persons to an event : `tagEvent`
 
@@ -327,10 +339,10 @@ _Details coming soon ..._
 | **DeletePerson** | `deletePerson INDEX`<br> e.g., `deletePerson 3`                                                                                                                                        |
 | **Edit**         | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                  |
 | **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                             |
-| **List**         | `list  [s/FIELD]` <br> e.g., `list s/n`                                                                                                                                                |
+| **ListPersons**        | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                                |
 | **AddEvent**     | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
 | **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
-| **ListEvents**   | `listEvents`                                                                                                                                                                           |
+| **ListEvents**  | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                                                           |
 | **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                                |
 | **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                            |
 | **Help**         | `help`                                                                                                                                                                                 |
