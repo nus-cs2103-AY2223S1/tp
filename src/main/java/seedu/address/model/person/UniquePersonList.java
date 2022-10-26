@@ -104,28 +104,18 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void sortPersons(Comparator<Person> comparator) {
         requireNonNull(comparator);
-        ArrayList<Person> sortedList = replaceSelectionSort(internalList, comparator);
+        ArrayList<Person> sortedList = replaceSort(internalList, comparator);
         internalList.setAll(sortedList);
     }
 
 
-    private static ArrayList<Person> replaceSelectionSort(
+    private static ArrayList<Person> replaceSort(
             ObservableList<Person> observableList, Comparator<Person> comparator) {
         ArrayList<Person> duplicatedList = new ArrayList<>();
         for (int i = 0; i < observableList.size(); i++) {
             duplicatedList.add(observableList.get(i));
         }
-        int n = duplicatedList.size();
-        for (int i = 1; i < n; ++i) {
-            Person curr = duplicatedList.get(i);
-            int j = i - 1;
-
-            while (j >= 0 && comparator.compare(duplicatedList.get(j), curr) == 1) {
-                duplicatedList.set(j + 1, duplicatedList.get(j));
-                j = j - 1;
-            }
-            duplicatedList.set(j + 1, curr);
-        }
+        duplicatedList.sort(comparator);
         return duplicatedList;
     }
 
