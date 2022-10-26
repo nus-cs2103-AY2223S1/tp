@@ -1,0 +1,86 @@
+.label, .result-display, #commandTextField {
+    -fx-font-size: 15px;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.error {
+    -fx-text-fill: #d06651 !important;
+}
+
+.list-view {
+    -fx-padding: 0;
+}
+
+.list-cell:filled {
+    -fx-background-radius: 14px;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-padding: 8px;
+    -fx-border-insets: 5px 9px;
+    -fx-background-insets: 5px 9px;
+}
+
+.list-cell .label, #optionalFields .label {
+    -fx-wrap-text: "true";
+    -fx-font-size: 13px;
+}
+
+.list-cell .cell_big_label {
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.result-display {
+    -fx-wrap-text: "true";
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-padding: 2px;
+}
+
+.result-display .content {
+    -fx-background-radius: 0;
+}
+
+.status-bar .label {
+    -fx-font-weight: lighter;
+    -fx-padding: 10px;
+    -fx-pref-height: 30px;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.increment-arrow, .decrement-arrow {
+    -fx-shape: " ";
+}
+
+#resultPane {
+    -fx-border-width: 0 0 2px 0;
+    -fx-padding: 10px 9px 20px 9px;
+}
+
+#commandTextField {
+    -fx-border-width: 0 0 2px 0;
+    -fx-font-weight: bolder;
+    -fx-font-size: 16px;
+}
+
+#pid {
+    -fx-font-weight: bolder;
+}
+
+#tags, #memberships {
+    -fx-hgap: 7px;
+}
+
+#tags .label, #memberships .label {
+    -fx-font-weight: bolder;
+    -fx-padding: 6px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-font-size: 11px;
+    -fx-border-insets: 3px 0;
+    -fx-background-insets: 3px 0;
+}

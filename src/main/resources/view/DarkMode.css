@@ -1,0 +1,98 @@
+/* No idea what this does but it looks important */
+.background {
+    -fx-background-color: #2A2A2A;
+    background-color: #2A2A2A; /* Used in the default.html file */
+}
+
+.label {
+    -fx-text-fill: #EAEAEA;
+}
+
+.list-cell:filled {
+    -fx-background-color: #333;
+    -fx-border-color: #333;
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: #474747;
+    -fx-border-color: #474747;
+}
+
+#personListView .list-cell:filled:selected {
+    -fx-border-color: #BA6C41;
+}
+
+.list-cell .label {
+    -fx-text-fill: #EAEAEA;
+}
+
+.result-display {
+    -fx-background-color: #333;
+    -fx-text-fill: #EAEAEA;
+    -fx-border-color: #333;
+}
+
+.result-display .content, .result-display .scroll-bar {
+    -fx-background-color: #333;
+}
+
+.status-bar .label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #EAEAEA;
+    -fx-padding: 10px;
+    -fx-pref-height: 30px;
+}
+
+.pane-with-border, .status-bar, .scroll-bar, .list-view, .list-cell {
+    -fx-background-color: #2A2A2A;
+}
+
+.menu-bar, .context-menu, .menu-item:focused {
+    -fx-background-color: #9C6451;
+}
+
+.menu:hover, .menu:showing, .menu-item:hover {
+    -fx-background-color: #49829C;
+}
+
+.thumb {
+    -fx-background-color: #BA6C41;
+}
+
+#resultPane {
+    -fx-border-color: #333;
+}
+
+#commandTextField {
+    -fx-background-color: #2A2A2A;
+    -fx-border-color: transparent transparent #333 transparent;
+    -fx-text-fill: #EAEAEA;
+}
+
+#commandTextField:focused {
+    -fx-border-color: transparent transparent #BA6C41 transparent;
+}
+
+#tags .label, #memberships .label {
+    -fx-text-fill: white;
+}
+
+#tags .label {
+    -fx-background-color: #BA6C41;
+}
+
+#gold {
+    -fx-background-color: #CEAA54;
+}
+
+#silver {
+    -fx-background-color: #AAA9AD;
+}
+
+#bronze {
+    -fx-background-color: #A97142;
+}
+
+#optionalFields .label {
+    -fx-text-fill: #EAEAEA;
+}

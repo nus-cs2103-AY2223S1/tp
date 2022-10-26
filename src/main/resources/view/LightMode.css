@@ -1,0 +1,95 @@
+/* No idea what this does but it looks important */
+.background {
+    -fx-background-color: #FEFAF5;
+    background-color: #FEFAF5; /* Used in the default.html file */
+}
+
+.label {
+    -fx-text-fill: #fff;
+}
+
+.list-cell:filled {
+    -fx-background-color: #FCF2E4;
+    -fx-border-color: #FCF2E4;
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: #FAE9CF;
+    -fx-border-color: #FAE9CF;
+}
+
+.list-cell .label {
+    -fx-text-fill: #333;
+}
+
+#personListView .list-cell:filled:selected {
+    -fx-border-color: #E27C26;
+}
+
+.result-display {
+    -fx-background-color: #FCF2E4;
+    -fx-text-fill: #222;
+    -fx-border-color: #FCF2E4;
+}
+
+.result-display .content, .result-display .scroll-bar {
+    -fx-background-color: #FCF2E4;
+}
+
+.status-bar .label {
+    -fx-text-fill: #333;
+}
+
+.pane-with-border, .status-bar, .scroll-bar, .list-view, .list-cell {
+    -fx-background-color: #FEFAF5;
+}
+
+.menu-bar, .context-menu, .menu-item:focused {
+    -fx-background-color: #AA9F92;
+}
+
+.menu:hover, .menu:showing, .menu-item:hover {
+    -fx-background-color: #435D66;
+}
+
+.thumb {
+    -fx-background-color: #E27C26;
+}
+
+#resultPane {
+    -fx-border-color: #FCF2E4;
+}
+
+#commandTextField {
+    -fx-background-color: #FEFAF5;
+    -fx-border-color: #986544;
+    -fx-text-fill: #333;
+}
+
+#commandTextField:focused {
+    -fx-border-color: #E27C26;
+}
+
+#tags .label, #memberships .label {
+    -fx-text-fill: white;
+}
+
+#tags .label {
+    -fx-background-color: #E27C26;
+}
+
+#gold {
+    -fx-background-color: #CEAA54;
+}
+
+#silver {
+    -fx-background-color: #AAA9AD;
+}
+
+#bronze {
+    -fx-background-color: #A97142;
+}
+
+#optionalFields .label {
+    -fx-text-fill: #333;
+}
