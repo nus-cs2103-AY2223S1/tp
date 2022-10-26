@@ -269,14 +269,21 @@ For efficiency, the ID generator is implemented by a `List` of `char`, which avo
 
 ### Display of person list
 
+#### Problems with the old UI and areas for improvements
+
 Given below is a partial class diagram of the **old UI**.
 
 <img src="images/OldUiClassDiagram.png" width="500" height="400" />
 
 Initially, there is only one `PersonListPanel` that displays the person list using `PersonCard`.
-However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`. Therefore, it is necessary to have a separate list panel for each of these three type of `Person`.
+However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`.
+Therefore, it is necessary to have a **separate list panel** for each of these three type of `Person`.
 
-In addition, buyers, suppliers and deliverers have comprehensive information on the orders or pets that they possess, besides their contact information. A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not helpful in helping the user obtain information quickly. Therefore, the ui needs to be optimised for the situation where there is plentiful information that the user wants to know about a single `Person`.
+In addition, buyers, suppliers and deliverers have comprehensive information on the orders or pets that they possess, besides their contact information.
+A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not helpful in helping the user obtain information quickly.
+Therefore, the UI needs to be **optimised for the situation where there is plentiful information** that the user wants to know about a single `Person`.
+
+#### Implementation of the new UI
 
 In the implementation as seen in the diagram below, the `MainWindow` can be filled by any one of the followings depending on the `Command` executed:
 * `BuyerListPanel`: displays information about each `Buyer` using a `BuyerCard` in a `ListView`.
@@ -285,6 +292,8 @@ In the implementation as seen in the diagram below, the `MainWindow` can be fill
 * `MainListPanel`: displays a master list which includes all `Buyer`, `Supplier`, and `Deliverer` In a `ListView`.
 * `OrderListPanel`: displays information about each `Order` using an `OrderCard` in a `ListView`.
 * `PetListPanel`: displays information about each `Pet` using a `PetCard` in a `ListView`.
+
+*Note that each person card (`BuyerCard`, `DelivererCard`, `SupplierCard`) can have any number of the corresponding item cards (`OrderCard`, `PetCard`).*
 
 <img src="images/UiClassDiagram1.png" width="700"/>
 
@@ -304,6 +313,14 @@ Instead of a `ListView` of `OrderCard`, it has a `ListView` of `PetCard` which d
 By modifying the `PersonCard` to the three types of cards stated above, divided into a left section which shows contact details, and a right section which is a `ListView`, we can keep the information displayed organised and maintain the height of each card within a reasonable range
 (e.g. if the orders are displayed as plain text below the buyer's contact information, the card will be stretched vertically, potentially to an extent that the whole window can only show information of one single buyer).
 
+#### Alternatives considered
+
+* **Alternative 1 (current choice):** Has only one display window and displays items (`Order` or `Pet`) together with the person.
+  * Pros: Easy to implement and can view all the information immediately after a command is executed.
+  * Cons: Too cramped, which may lead to information overload.
+* **Alternative 2:** Has one display window for person and a separate display window for items.
+  * Pros: More organised and visually pleasant.
+  * Cons: Hard to implement and need one more command such as `display INDEX` to display the information of the item.
 
 ### Pop-up window for add command
 
