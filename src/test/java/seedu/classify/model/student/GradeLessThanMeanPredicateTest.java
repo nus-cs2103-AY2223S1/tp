@@ -21,7 +21,7 @@ public class GradeLessThanMeanPredicateTest {
         GradeLessThanMeanPredicate firstPredicate = new GradeLessThanMeanPredicate(
                 firstClassName, 10.00, "SA1");
         GradeLessThanMeanPredicate secondPredicate = new GradeLessThanMeanPredicate(
-                secondClassName, 10.00,"SA1");
+                secondClassName, 10.00, "SA1");
         GradeLessThanMeanPredicate thirdPredicate = new GradeLessThanMeanPredicate(
                 firstClassName, 20.00, "SA1");
 
