@@ -16,9 +16,6 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.module.CurrentModule;
-import seedu.address.model.module.PlannedModule;
-import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
@@ -69,9 +66,6 @@ public class EditCommand extends Command {
         private Address address;
         private Github github;
         private Set<Tag> tags;
-        private Set<CurrentModule> currModules;
-        private Set<PreviousModule> prevModules;
-        private Set<PlannedModule> planModules;
 
 
         public EditPersonDescriptor() {}
@@ -87,9 +81,6 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setGithub(toCopy.github);
             setTags(toCopy.tags);
-            setCurrModules(toCopy.currModules);
-            setPrevModules(toCopy.prevModules);
-            setPlanModules(toCopy.planModules);
         }
 
         /**
@@ -154,30 +145,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        public void setCurrModules(Set<CurrentModule> currModules) {
-            this.currModules = (currModules != null) ? new HashSet<>(currModules) : null;
-        }
-
-        public Optional<Set<CurrentModule>> getCurrModules() {
-            return (currModules != null) ? Optional.of(Collections.unmodifiableSet(currModules)) : Optional.empty();
-        }
-
-        public void setPrevModules(Set<PreviousModule> prevModules) {
-            this.prevModules = (prevModules != null) ? new HashSet<>(prevModules) : null;
-        }
-
-        public Optional<Set<PreviousModule>> getPrevModules() {
-            return (prevModules != null) ? Optional.of(Collections.unmodifiableSet(prevModules)) : Optional.empty();
-        }
-
-        public void setPlanModules(Set<PlannedModule> planModules) {
-            this.planModules = (planModules != null) ? new HashSet<>(planModules) : null;
-        }
-
-        public Optional<Set<PlannedModule>> getPlanModules() {
-            return (planModules != null) ? Optional.of(Collections.unmodifiableSet(planModules)) : Optional.empty();
         }
 
 

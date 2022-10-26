@@ -80,15 +80,12 @@ public class EditIndexCommand extends EditCommand {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Github updatedGithub = editPersonDescriptor.getGithub().orElse(personToEdit.getGithub());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<CurrentModule> updatedCurrentModules = editPersonDescriptor.getCurrModules()
-                .orElse(personToEdit.getCurrModules());
-        Set<PreviousModule> updatedPreviousModules = editPersonDescriptor.getPrevModules()
-                .orElse(personToEdit.getPrevModules());
-        Set<PlannedModule> updatedPlannedModules = editPersonDescriptor.getPlanModules()
-                .orElse(personToEdit.getPlanModules());
+        Set<CurrentModule> currentModules = personToEdit.getCurrModules();
+        Set<PreviousModule> previousModules = personToEdit.getPrevModules();
+        Set<PlannedModule> plannedModules = personToEdit.getPlanModules();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGithub, updatedTags,
-                updatedCurrentModules, updatedPreviousModules, updatedPlannedModules);
+                currentModules, previousModules, plannedModules);
     }
 
     @Override
