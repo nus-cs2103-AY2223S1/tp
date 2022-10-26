@@ -272,30 +272,47 @@ Examples:
 Format: `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
-* The `EVENT_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index.
 * The `PERSON_INDEX` refers to the index number shown in the displayed person list.
-* The `PERSON_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the person list index.
+* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the person list index.
 * The `PERSON_INDEX` must refer to a person that is not currently tagged to the event.
 * Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
 
 Example:
-* `tagEvent 1 p/2` tags the 2nd person in the contact list to the 1st event in the event list
-* `tagEvent 2 p/2 4 5` tags the 2nd, 4th, 5th person to in the contact list the 2nd event in the event list
+* `tagEvent 1 p/2` tags the 2nd person in the contact list to the 1st event in the event list.
+* `tagEvent 2 p/2 4 5` tags the 2nd, 4th, 5th person to in the contact list the 2nd event in the event list.
 
 ### Untag persons from an event : `untagEvent`
 
 Format: `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
-* The `EVENT_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+* The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index.
 * The `PERSON_INDEX` refers to the index number shown in the displayed person list.
-* The `PERSON_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the person list index.
+* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the person list index.
 * The `PERSON_INDEX` must refer to a person that is currently tagged to the event.
 * Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
 
 Example:
-* `untagEvent 1 p/2` untags the 2nd person in the contact list from the 1st event in the event list
-* `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person in the contact list from the 2nd event in the event list
+* `untagEvent 1 p/2` untags the 2nd person in the contact list from the 1st event in the event list.
+* `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person in the contact list from the 2nd event in the event list.
+
+### Create mailing list for an event : `mailEvent`
+
+Format: `mailEvent INDEX`
+
+* The `INDEX` refers to the index number shown in the displayed event list.
+* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index.
+* The mailing list is saved as a CSV file `[JAR file location]/data/EVENT_TITLE.csv`. The CSV file has 2 columns:
+  `Name` and `Email`, representing the name and email for a person in the event.
+
+Example:
+* `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event 
+in the event list.
+* `mailEvent 4` creates mailing list as a CSV file, the name of the csv file is the same as the title of 4th event
+in the event list.
+
+
 
 ### Clearing all entries : `clear`
 
@@ -339,10 +356,11 @@ _Details coming soon ..._
 | **DeletePerson** | `deletePerson INDEX`<br> e.g., `deletePerson 3`                                                                                                                                        |
 | **Edit**         | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                  |
 | **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                             |
-| **ListPersons**        | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                                |
+| **ListPersons**  | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                   |
 | **AddEvent**     | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
 | **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
-| **ListEvents**  | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                                                           |
+| **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                      |
+| **MailEvent**    | `mailEvent INDEX`<br> e.g., `mailEvent 3`                                                                                                                                              |
 | **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                                |
 | **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                            |
 | **Help**         | `help`                                                                                                                                                                                 |
