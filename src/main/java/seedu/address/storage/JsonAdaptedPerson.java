@@ -14,39 +14,29 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.person.Fields;
 import seedu.address.model.person.Person;
-// import seedu.address.model.person.Address;
-// import seedu.address.model.person.Fields;
-// import seedu.address.model.person.Person;
-// import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final String name;
-    // private final String phone;
-    // private final String email;
-    // private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedAbstractSingleItem> parents = new ArrayList<>();
+    private final JsonAdaptedFields fields;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
-        // this.phone = phone;
-        // this.email = email;
-        // this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+    public JsonAdaptedPerson(@JsonProperty("parents") List<JsonAdaptedAbstractSingleItem> parents,
+                             @JsonProperty("fields") JsonAdaptedFields fields,
+                             @JsonProperty("name") String name, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("attributes") List<JsonAdaptedAttribute> attributes) {
+        super(name, attributes, tags);
+        this.parents.addAll(parents);
+        this.fields = fields;
     }
 
     /**
