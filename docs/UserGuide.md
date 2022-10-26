@@ -34,6 +34,8 @@ TutHub is a desktop app for NUS professors who wish to choose their next batch o
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior` : Adds a tutor named `John Doe` to Tuthub.
 
+   * **`find`**`n/alex` : Finds all tutors with names containing alex.
+
    * **`delete`**`3` : Deletes the 3rd tutor shown in the current list.
    
    * **`clear`** : Deletes all tutors.
@@ -189,13 +191,13 @@ Examples:
 
 Finds tutor(s) whose specific profile attribute contains any of the given keywords.
 
-Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]`
+Format: `find PREFIX/KEYWORDS [KEYWORDS]`
 * The find command works by entering only **one** prefix corresponding to a tutor's profile attribute, followed by the keyword(s) to search
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only the attribute that corresponds to the prefix entered is searched.
 * Partial words will be matched e.g. Han will match Hans
-* Tutors matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+* Tutors with attributes being searched that match at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 
 Examples:
 * `find n/John` returns all tutors with names that contains `John`.
@@ -271,7 +273,7 @@ Format: `exit`
 | **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​` <br> e.g., `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
 | **Comment** | `comment INDEX c/COMMENT` <br> e.g., `comment 1 c/Tasks not Finished`                                                                                                                                                            |
 | **Edit**    | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​` <br> e.g., `edit 3 m/CS2100 y/3 s/A0654729L`                                                          |
-| **Find**    | `find [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]` <br> e.g., `find n/Alex`                                                                                      |
+| **Find**    | `find PREFIX/KEYWORDS [KEYWORDS]` <br> e.g., `find n/Alex`                                                                                                                                                                       |
 | **Sort**    | `sort ORDER PREFIX` <br> e.g., `sort a r/`                                                                                                                                                                                       |
 | **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                              |
 | **Exit**    | `exit`                                                                                                                                                                                                                           |
