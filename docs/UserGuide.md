@@ -214,8 +214,8 @@ This command will require two flags:
 * `n/`: To be followed by the name of the person who will be added to the module.
 
 Format: `add-person-to-module m/MODULE_CODE n/NAME`
-* You can only add a person that is currently displayed on screen to a module.
-* You can only add a person to a module that is currently displayed on screen.
+* You can only add a person to a module if both the person and the module are currently 
+  displayed on screen.
 * If a person has already been added to a module, the person cannot be added to the module again.
 
 Example:
