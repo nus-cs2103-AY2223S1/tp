@@ -78,7 +78,6 @@ public class MainApp extends Application {
             if (foodRemOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample FoodRem");
             }
-            // TODO: Update sample to have nicer data
             initialData = foodRemOptional.orElseGet(SampleDataUtil::getSampleFoodRem);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with a sample FoodRem");
