@@ -170,6 +170,10 @@ This section describes some noteworthy details on how certain features are imple
 
 When `execute` of `AddCommand` is run, the `Internship` is passed into the model to be added to the Internship list.
 
+The following activity diagram summarizes what happens when a user executes a filter command:
+
+<img src="images/AddCommandActivityDiagram.png" width="450" />
+
 #### Design Considerations
 
 - **Adding of internships with same company name:**
