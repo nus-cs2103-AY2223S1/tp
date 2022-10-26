@@ -26,7 +26,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
     /** Number of seconds delay before the application closes after running this command */
-    public static final int DELAY_DURATION = 5;
+    public static final int DELAY_DURATION_SECONDS = 5;
 
     private static final String FXML = "MainWindow.fxml";
     private final Logger logger = LogsCenter.getLogger(getClass());
