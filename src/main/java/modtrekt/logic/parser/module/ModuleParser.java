@@ -1,6 +1,7 @@
 package modtrekt.logic.parser.module;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -31,28 +32,35 @@ public class ModuleParser {
 
     private static final String NUSMODS_ENDPOINT = "https://api.nusmods.com/v2/2022-2023/modules/";
 
-    private static Module sendGet(String code) throws IOException, InterruptedException {
+    private static Module sendGet(String code) throws IOException {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(URI.create(NUSMODS_ENDPOINT + code + ".json"))
                 .build();
 
-        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        try {
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-        /* A non-200 response code indicates that our request has failed, hence we use fallback data files. */
-        if (response.statusCode() != 200) {
-            try {
-                return parseModuleFromFile(code);
-            } catch (IOException e) {
-                return null;
+
+            /* A non-200 response code indicates that our request has failed, hence we use fallback data files. */
+            if (response.statusCode() != 200) {
+                try {
+                    return parseModuleFromFile(code);
+                } catch (IOException e) {
+                    /* Error reading data file with code */
+                    return null;
+                }
             }
-        }
-        String res = response.body();
+            String res = response.body();
 
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode node = mapper.readValue(res, JsonNode.class);
-        Module module = parseJsonNodeFromResponse(node, code);
-        return module;
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode node = mapper.readValue(res, JsonNode.class);
+            Module module = parseJsonNodeFromResponse(node, code);
+            return module;
+        } catch (ConnectException | InterruptedException e) {
+            /* Handle connection-related errors */
+            return parseModuleFromFile(code);
+        }
     }
 
     private static Module parseJsonNodeFromResponse(JsonNode node, String code) {
