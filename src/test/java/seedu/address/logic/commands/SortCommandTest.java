@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.sort.SortByAppointment;
+import seedu.address.logic.parser.sort.SortByIncome;
 import seedu.address.logic.parser.sort.SortByName;
 import seedu.address.logic.parser.sort.SortByRiskTag;
 import seedu.address.model.Model;
@@ -51,11 +52,14 @@ public class SortCommandTest {
         SortCommand sortByAppointmentCommand = new SortCommand(sortByAppointment, "appt");
         SortByRiskTag sortByRiskTag = new SortByRiskTag("asc");
         SortCommand sortByRiskTagCommand = new SortCommand(sortByRiskTag, "risk");
+        SortByIncome sortByIncome = new SortByIncome("asc");
+        SortCommand sortByIncomeCommand = new SortCommand(sortByIncome, "income");
 
         // same object -> returns true
-        assertTrue(sortByNameCommand.equals(sortByNameCommand));
+        assertTrue(sortByName.equals(sortByName));
         assertTrue(sortByAppointment.equals(sortByAppointment));
         assertTrue(sortByRiskTag.equals(sortByRiskTag));
+        assertTrue(sortByIncome.equals(sortByIncome));
 
         // null -> returns false
         assertFalse(sortByAppointment.equals(null));
@@ -67,8 +71,15 @@ public class SortCommandTest {
         SortCommand sortByAppointmentCommandClone = new SortCommand(sortByAppointment, "appt");
         assertTrue(sortByAppointmentCommand.equals(sortByAppointmentCommandClone));
 
+        SortCommand sortByRiskTagCommandClone = new SortCommand(sortByRiskTag, "risk");
+        assertTrue(sortByRiskTagCommand.equals(sortByRiskTagCommandClone));
+
+        SortCommand sortByIncomeCommandClone = new SortCommand(sortByIncome, "income");
+        assertTrue(sortByIncomeCommand.equals(sortByIncomeCommandClone));
+
         // different types -> returns false
         assertFalse(sortByNameCommand.equals(sortByRiskTagCommand));
+        assertFalse(sortByIncomeCommand.equals(sortByAppointmentCommand));
 
 
     }
@@ -148,6 +159,32 @@ public class SortCommandTest {
 
         String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS, "risk");
         SortCommand sortCommand = new SortCommand(new SortByRiskTag("desc"), "risk");
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_sortByIncome_success() {
+        this.expectedModel = new ModelManager();
+        Person[] persons = {ALICE, FIONA, ELLE, GEORGE};
+        for (Person p: persons) {
+            expectedModel.addPerson(p);
+        }
+
+        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS, "income");
+        SortCommand sortCommand = new SortCommand(new SortByIncome("asc"), "income");
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_sortByIncomeDesc_success() {
+        this.expectedModel = new ModelManager();
+        Person[] persons = {GEORGE, ELLE, FIONA, ALICE};
+        for (Person p: persons) {
+            expectedModel.addPerson(p);
+        }
+
+        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS, "income");
+        SortCommand sortCommand = new SortCommand(new SortByIncome("desc"), "income");
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
     }
 }

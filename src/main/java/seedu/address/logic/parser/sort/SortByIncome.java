@@ -5,9 +5,9 @@ import java.util.Comparator;
 import seedu.address.model.person.Person;
 
 /**
- * Custom comparator that sorts Person based on their Risk Levels.
+ * Custom comparator that sorts Person based on their Income.
  */
-public class SortByRiskTag implements Comparator<Person> {
+public class SortByIncome implements Comparator<Person> {
 
     private final String order;
 
@@ -15,7 +15,7 @@ public class SortByRiskTag implements Comparator<Person> {
      * Constructor that takes in the order to sort the contact book by.
      * @param order the order to sort by.
      */
-    public SortByRiskTag(String order) {
+    public SortByIncome(String order) {
         this.order = order;
     }
 
@@ -23,10 +23,10 @@ public class SortByRiskTag implements Comparator<Person> {
     public int compare(Person p1, Person p2) {
 
         if (this.order.equals("desc")) {
-            return p2.getRiskTag().getRisk() - p1.getRiskTag().getRisk();
+            return p2.getIncome().convertIncomeToInt() - p1.getIncome().convertIncomeToInt();
         }
 
-        return p1.getRiskTag().getRisk() - p2.getRiskTag().getRisk();
+        return p1.getIncome().convertIncomeToInt() - p2.getIncome().convertIncomeToInt();
     }
 
     @Override
@@ -36,8 +36,8 @@ public class SortByRiskTag implements Comparator<Person> {
             return true;
         }
 
-        if (other instanceof SortByRiskTag) {
-            SortByRiskTag s = (SortByRiskTag) other;
+        if (other instanceof SortByIncome) {
+            SortByIncome s = (SortByIncome) other;
             return this.order.equals(s.order);
         }
 
