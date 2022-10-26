@@ -2,16 +2,12 @@ package seedu.address.model.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.CreateMeetingCommand;
-import seedu.address.logic.commands.DeleteMeetingCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.MeetingBuilder;
