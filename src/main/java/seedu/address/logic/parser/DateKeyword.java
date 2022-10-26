@@ -7,6 +7,7 @@ public enum DateKeyword {
 
     TOMORROW,
     THIS_WEEK,
-    THIS_MONTH
+    THIS_MONTH,
+    ALL_TIME
 
 }
