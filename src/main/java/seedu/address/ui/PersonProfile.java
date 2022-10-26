@@ -13,10 +13,9 @@ import seedu.address.model.person.Person;
  * An UI component that displays information of a {@code Person}.
  */
 public class PersonProfile extends UiPart<Region> {
+    private static final String FXML = "PersonProfile.fxml";
 
     public final Person person;
-
-    private static final String FXML = "PersonProfile.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
