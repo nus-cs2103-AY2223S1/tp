@@ -1,38 +1,38 @@
-<div markdown="span" class="alert alert-primary">
+<!--markdownlint-disable-file first-line-h1 -->
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams]({{ page.master_branch }}/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
+```tip
+The `.puml` files used to create diagrams in this document can be found in the [diagrams]({{ page.master_branch }}/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+```
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+![](images/ArchitectureDiagram.png)
 
 The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+#### Main components of the architecture
 
 **`Main`** has two classes called [`Main`]({{ page.master_branch }}/{{ page.main_src }}/Main.java) and [`MainApp`]({{ page.master_branch }}/{{ page.main_src }}/MainApp.java). It is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[`Commons`](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [`UI`](#ui-component): The UI of the App.
+* [`Logic`](#logic-component): The command executor.
+* [`Model`](#model-component): Holds the data of the App in memory.
+* [`Storage`](#storage-component): Reads data from, and writes data to, the hard disk.
 
-**How the architecture components interact with each other**
+#### How the architecture components interact with each other
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `del 1`. This deletes the first item from the List Box.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![](images/ArchitectureSequenceDiagram.png)
 
 Each of the four main components (also shown in the diagram above),
 
@@ -41,7 +41,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+![](images/ComponentManagers.png)
 
 The sections below give more details of each component.
 
@@ -68,7 +68,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
 
@@ -81,12 +81,13 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `del 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+```note
+The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+```
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+![](images/ParserClasses.png)
 
 How the parsing works:
 
@@ -97,7 +98,7 @@ How the parsing works:
 
 **API** : [`Model.java`]({{ page.master_branch }}/{{ page.main_src }}/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+![](images/ModelClassDiagram.png)
 
 The `Model` component,
 
@@ -112,7 +113,7 @@ The `Model` component,
 
 **API** : [`Storage.java`]({{ page.master_branch }}/{{ page.main_src }}/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![](images/StorageClassDiagram.png)
 
 The `Storage` component,
 

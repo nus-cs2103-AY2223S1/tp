@@ -9,13 +9,15 @@ The QUANTITY is the number representing the amount of an item.
 ```
 
 **Valid Examples:**
-- 12
-- 12.1234
-- 123456
+
+* 12
+* 12.1234
+* 123456
 
 **Invalid Examples:**
-- 12.12345 
-- 1,234,567
-- 1 + 1
-- 1/2
-- π
+
+* 12.12345
+* 1,234,567
+* 1 + 1
+* 1/2
+* π
