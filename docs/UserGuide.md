@@ -473,7 +473,7 @@ the data of your previous UniNurse home folder.
 |---------------------------------|------------------------------------------------------------------------------------------------------------------------------|
 | **Help**                        | `help`                                                                                                                       |
 | **Add patient**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK]… [c/CONDITION]… [t/TAG]…`                                              |
-| **Edit patient**                | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                     |
+| **Edit patient**                | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`                                                              |
 | **Delete patient**              | `delete -p INDEX`                                                                                                            |
 | **List all patients**           | `list`                                                                                                                       |
 | **List all patients today**     | `patientsToday`                                                                                                              |
