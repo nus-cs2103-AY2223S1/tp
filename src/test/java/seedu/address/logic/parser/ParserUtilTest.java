@@ -30,8 +30,11 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String INVALID_QUANTITY = "100h";
+    private static final String INVALID_QUANTITY_NEGATIVE = "-100";
 
     private static final String INVALID_PRICE = "1213a";
+    private static final String INVALID_PRICE_NEGATIVE = "-100";
+
     private static final String INVALID_TEXT = " ";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -238,11 +241,13 @@ public class ParserUtilTest {
     @Test
     public void parseQuantity_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_QUANTITY));
+        assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_QUANTITY_NEGATIVE));
     }
 
     @Test
     public void parsePrice_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePrice(INVALID_PRICE));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(INVALID_PRICE_NEGATIVE));
     }
 
     @Test
