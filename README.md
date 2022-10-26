@@ -5,8 +5,9 @@
 
 ## FoodRem
 
-FoodRem is an application that enables you to efficiently keep track of inventory in your daily restaurants operations. It is a convenient and efficient administrative tool to ensure less food wastage and a constant supply of fresh food to increase revenue and improve the quality of food. With a few quick commands, you can have complete control of your perishable goods.
+FoodRem is an Inventory Management System that empowers small food and beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data. As a restaurant manager, leverage upon FoodRem's Inventory Management System, where you can manage your inventory during your daily operations. Utilize FoodRem's flexible tagging system to help you organize your inventory according to your business needs. Finally, streamline your business decisions by deriving insights from your inventory usage through FoodRem's statistics, keeping track of vital data such as food wastage.
 
 ## Acknowledgements
 
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+FoodRem is a brownfield software project based off [AddressBook3](https://se-education.org/addressbook-level3/), taken under the [CS2103T Software Engineering module](https://nus-cs2103-ay2223s1.github.io/website/index.html) held by the School of Computing at the National University of Singapore.
+
