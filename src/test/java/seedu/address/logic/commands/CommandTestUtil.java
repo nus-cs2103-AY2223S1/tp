@@ -45,7 +45,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_ALICE = "123, Jurong West Ave 6, #08-111";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_RECORD_DATE = "02-03-2024 1230";
+    public static final String VALID_RECORD_DATE = "02-03-2020 1230";
     public static final String VALID_RECORD_DATE_2 = "01-05-2022 1700";
     public static final String VALID_RECORD_DATA = "fever";
     public static final String VALID_RECORD_DATA_2 = "abdominal pain";
