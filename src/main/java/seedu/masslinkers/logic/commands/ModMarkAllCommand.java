@@ -34,8 +34,8 @@ public class ModMarkAllCommand extends ModCommand {
 
         List<Student> lastShownList = model.getFilteredStudentList();
 
-        for (Student person : lastShownList) {
-            person.markAllMods();
+        for (Student student : lastShownList) {
+            student.markAllMods();
         }
 
         return new CommandResult(
