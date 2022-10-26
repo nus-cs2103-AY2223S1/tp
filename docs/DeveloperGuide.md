@@ -154,7 +154,7 @@ Classes used by multiple components are in the `tracko.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Items feature
+### Add Item feature
 
 #### Implementation
 
@@ -251,7 +251,7 @@ The `Order` class encapsulates order-related data packaged in the following clas
 * `LocalDateTime` - the time at which the order entry was created in the system
 * `isPaid`/`isDelivered` - represents the completion status of the order (an `Order` is considered complete if both fields are true)
 
-#### Add Order Feature
+### Add Order Feature
 
 The add order feature allows the user to add an `Order` to be tracked by the system.
 
@@ -325,7 +325,9 @@ Aspect: How add order command executes:
 
 **_More design considerations_**
 
-### Find Orders feature
+### Find Order feature
+
+The find order feature allows the user to find an `Order` to be tracked by the system.
 
 #### Implementation
 
@@ -334,7 +336,7 @@ The find order command is executed by `FindOrderCommand`. It extends `Command`.
 Given below is an example usage scenario and how the find order mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. `TrackO` will be initialised with the initial TrackO
-state, and the `OrdersList` will contain sample data.
+state, and the `OrderList` will contain sample data.
 
 Step 2. The user executes `findo keychain apple` command to find the orders containing items with the keywords
 keychain or apple. The `findo` command calls `FindOrderCommandParser` which checks for the correct command
@@ -362,6 +364,35 @@ _{insert activity diagram}_
 _{add design considerations}_
 
 _{more aspects and alternatives to be added}_
+
+### Edit Order feature
+
+The edit order feature allows the user to edit an `Order` to be tracked by the system.
+
+#### Implementation
+
+The edit order command is executed by `EditOrderCommand`. It extends `Command`.
+
+Given below is an example usage scenario and how the edit order mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. `TrackO` will be initialised with the initial TrackO
+state, and the `OrderList` will contain sample data.
+
+Step 2. The user inputs `edito n/John Doe i/Banana q/5`. This calls `LogicManager#execute`, which then calls `TrackOParser#parseCommand`.
+calls `EditOrderCommandParser` which checks for the correct command syntax and separates each argument, utilising each 
+prefix. It then calls  which extends `Predicate<Order>`, to construct a predicate
+that will filter the items according to the keywords. The predicate is passed into a new instance of
+`FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter `Model#filteredOrders`
+according to the previously constructed `OrderContainsKeywordsPredicate`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect, 
+`FindOrderCommandParser` will throw a `ParseException`.
+
+</div>
+
+The sequence diagram below illustrates this process.
+
+![EditOrderSequenceDiagram](images/EditOrderSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 

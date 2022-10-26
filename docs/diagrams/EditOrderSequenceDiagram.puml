@@ -1,0 +1,128 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackOParser" as TrackOParser LOGIC_COLOR
+participant "parser:EditOrderCommandParser" as EditOrderCommandParser LOGIC_COLOR
+participant "ArgumentTokenizer" as ArgumentTokenizer <<class>> LOGIC_COLOR
+participant "descriptor:EditOrderDescriptor" as EditOrderDescriptor LOGIC_COLOR
+participant "command:EditOrderCommand" as EditOrderCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+
+end box
+[-> LogicManager : execute("edito 3 n/John Doe i/Banana q/5")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseCommand("edito 3 n/John Doe i/Banana q/5")
+activate TrackOParser
+
+create EditOrderCommandParser
+TrackOParser -> EditOrderCommandParser
+activate EditOrderCommandParser
+
+EditOrderCommandParser --> TrackOParser : parser
+deactivate EditOrderCommandParser
+
+TrackOParser -> EditOrderCommandParser : parse("edito 3 n/John Doe i/Banana q/5")
+activate EditOrderCommandParser
+
+EditOrderCommandParser -> "ArgumentTokenizer" : tokenize("edito 3 n/John Doe i/Banana q/5",\n "n/", "p/", "e/", "a/", "i/", "q/")
+activate "ArgumentTokenizer"
+
+note right
+"n/": Prefix for name inputs
+"p/": Prefix for phone inputs
+"e/": Prefix for email inputs
+"a/": Prefix for address inputs
+"i/": Prefix for item inputs
+"q/": Prefix for quantity inputs
+end note
+
+"ArgumentTokenizer" --> EditOrderCommandParser : args
+deactivate "ArgumentTokenizer"
+
+create EditOrderDescriptor
+EditOrderCommandParser -> EditOrderDescriptor
+activate EditOrderDescriptor
+
+EditOrderDescriptor --> EditOrderCommandParser : descriptor
+deactivate EditOrderDescriptor
+
+EditOrderCommandParser -> EditOrderCommandParser : parseCustomerDetails(descriptor, args)
+activate EditOrderCommandParser
+
+deactivate EditOrderCommandParser
+
+EditOrderCommandParser -> EditOrderCommandParser : parseItemQuantity(descriptor, args)
+activate EditOrderCommandParser
+
+deactivate EditOrderCommandParser
+
+create EditOrderCommand
+EditOrderCommandParser -> EditOrderCommand : EditOrderCommand(3, descriptor)
+activate EditOrderCommand
+
+EditOrderCommand --> EditOrderCommandParser : command
+deactivate EditOrderCommand
+
+EditOrderCommandParser --> TrackOParser : command
+deactivate EditOrderCommandParser
+
+
+TrackOParser --> LogicManager : command
+deactivate TrackOParser
+
+destroy EditOrderCommandParser
+
+LogicManager -> EditOrderCommand : execute()
+activate EditOrderCommand
+
+EditOrderCommand -> Model : getFilteredOrderList()
+activate Model
+
+Model --> EditOrderCommand : filteredOrderList
+deactivate Model
+
+EditOrderCommand -> EditOrderCommand: createEditedOrder(orderToEdit, descriptor)
+activate EditOrderCommand
+
+EditOrderCommand --> EditOrderCommand: editedOrder
+deactivate EditOrderCommand
+
+EditOrderCommand -> Model : setOrder(orderToEdit, editedOrder)
+activate Model
+deactivate Model
+
+EditOrderCommand -> Model : refreshData()
+activate Model
+deactivate Model
+
+EditOrderCommand -> Model : updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS)
+activate Model
+deactivate Model
+
+note right
+PREDICATE_SHOW_ALL_ORDERS:
+Predicate to show all orders
+end note
+
+create CommandResult
+EditOrderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditOrderCommand
+deactivate CommandResult
+
+EditOrderCommand --> LogicManager : result
+deactivate EditOrderCommand
+EditOrderCommand -[hidden]-> LogicManager : result
+destroy EditOrderCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
