@@ -53,10 +53,10 @@ public class InventoryPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new SupplyItemCard(item, getIndex() + 1, increaseHandler.apply(getIndex()),
-                        decreaseHandler.apply(getIndex()), changeIncDecHandler.apply(getIndex())).getRoot());
+                SupplyItemCard updatedCard = new SupplyItemCard(item, getIndex() + 1, increaseHandler.apply(getIndex()),
+                        decreaseHandler.apply(getIndex()), changeIncDecHandler.apply(getIndex()));
+                setGraphic(updatedCard.getRoot());
             }
         }
     }
-
 }
