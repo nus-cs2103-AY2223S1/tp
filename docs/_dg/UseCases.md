@@ -1,4 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
+
 #### UC1: Add Item to Inventory
 
 **Use Case: UC1 - Add Item to Inventory**
@@ -13,6 +14,7 @@ MSS:
 Extensions:
 
 * 1a. If the item name already exists in the inventory, FoodRem will throw an error.
+
   * 1a1. FoodRem requests for the command to be entered again.
   * 1a2. FoodRem re-enters the command.
   * Steps 1a1-1a2 are repeated until the command entered is correct. <br> Use case resumes from step 2.
@@ -40,6 +42,7 @@ MSS:
 Extensions:
 
 * 3a. If the item name does not exist in the inventory, FoodRem will throw an error.
+
   * 3a1. FoodRem requests for the command to be entered again.
   * 3a2. FoodRem re-enters the command.
   * Steps 3a1-3a2 are repeated until the command entered is correct. <br> Use case resumes from step 3.
@@ -87,6 +90,7 @@ MSS:
 Extensions:
 
 * 3a. If the tag name already exists in the inventory, FoodRem will throw an error.
+
   * 3a1. FoodRem requests for the command to be entered again.
   * 3a2. FoodRem re-enters the command.
   * Steps 3a1-3a2 are repeated until the command entered is correct. <br> Use case resumes from step 2.
@@ -105,9 +109,9 @@ Extensions:
 MSS:
 
 1. User chooses to view items.
-2. FoodRem shows a list containing the items.
-3. User searches for an Item with one or more criteria.
-4. FoodRem displays all items in inventory which matches the given criteria.
+1. FoodRem shows a list containing the items.
+1. User searches for an Item with one or more criteria.
+1. FoodRem displays all items in inventory which matches the given criteria.
    Use case ends.
 
 * 3a. FoodRem detects that there is an issue with the command entered.
