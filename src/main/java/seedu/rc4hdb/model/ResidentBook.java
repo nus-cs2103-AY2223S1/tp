@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.UniqueResidentList;
+import seedu.rc4hdb.model.resident.exceptions.DuplicateResidentException;
 
 /**
  * Wraps all resident data at the RC4HDB level
@@ -70,7 +71,7 @@ public class ResidentBook implements ReadOnlyResidentBook {
      * Adds a resident to the resident book.
      * The resident must not already exist in the resident book.
      */
-    public void addResident(Resident p) {
+    public void addResident(Resident p) throws DuplicateResidentException {
         residents.add(p);
     }
 

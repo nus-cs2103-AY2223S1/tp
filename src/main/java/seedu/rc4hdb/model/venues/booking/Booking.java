@@ -49,14 +49,30 @@ public abstract class Booking {
     }
 
     /**
-     * Checks if the booking lies on the same day and time period.
-     * @param hourPeriod the booking period of the booking to be checked.
-     * @param bookingDay the day of the booking to be checked
+     * Checks if the booking is on the same day as {@code day}.
+     * @param day The day to check the booking against.
+     * @return True if the booking is on the same day.
+     */
+    public boolean isSameDay(Day day) {
+        return this.dayOfWeek.equals(day);
+    }
+
+    /**
+     * Checks if the booking is on the same period as {@code hourPeriod}.
+     * @param hourPeriod The hour period to check the booking against.
+     * @return True if the booking is on the same period.
+     */
+    public boolean isSamePeriod(HourPeriod hourPeriod) {
+        return this.hourPeriod.equals(hourPeriod);
+    }
+    /**
+     * Checks if the booking descriptor matches the booking.
+     * @param bookingDescriptor The descriptor to check against.
      * @return True if the booking lies on the same day and time period.
      */
-    public boolean isSameBooking(HourPeriod hourPeriod, Day bookingDay) {
-        return this.hourPeriod.equals(hourPeriod)
-                && this.dayOfWeek.equals(bookingDay);
+    public boolean isSameBooking(BookingDescriptor bookingDescriptor) {
+        return bookingDescriptor.getHourPeriod().map(this::isSamePeriod).orElse(false)
+                && bookingDescriptor.getDayOfWeek().map(this::isSameDay).orElse(false);
     }
 
     //====================== Start of getters ===============================

@@ -13,11 +13,11 @@ import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.logic.commands.Command;
 import seedu.rc4hdb.logic.commands.CommandResult;
+import seedu.rc4hdb.logic.commands.ModelCommand;
 import seedu.rc4hdb.logic.commands.StorageCommand;
 import seedu.rc4hdb.logic.commands.StorageModelCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.misccommands.MiscCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ModelCommand;
 import seedu.rc4hdb.logic.parser.Rc4hdbParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
@@ -112,11 +112,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<String> getObservableFields() {
-        return model.getObservableFields();
-    }
-
-    @Override
     public ObservableList<Venue> getObservableVenues() {
         return model.getObservableVenues();
     }
@@ -124,6 +119,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableValue<Path> getObservableFolderPath() {
         return storage.getObservableFolderPath();
+    }
+
+    @Override
+    public ObservableList<String> getVisibleFields() {
+        return model.getVisibleFields();
+    }
+
+    @Override
+    public ObservableList<String> getHiddenFields() {
+        return model.getHiddenFields();
     }
 
     @Override

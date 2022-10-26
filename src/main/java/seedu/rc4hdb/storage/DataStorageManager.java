@@ -153,7 +153,7 @@ public class DataStorageManager implements DataStorage {
     @Override
     public void deleteResidentBookFile(Path folderPath) throws IOException {
         requireNonNull(folderPath);
-        residentBookStorage.createResidentBookFile(folderPath);
+        residentBookStorage.deleteResidentBookFile(folderPath);
     }
 
     /**
@@ -162,7 +162,7 @@ public class DataStorageManager implements DataStorage {
     @Override
     public void createResidentBookFile(Path folderPath) throws IOException {
         requireNonNull(folderPath);
-        residentBookStorage.deleteResidentBookFile(folderPath);
+        residentBookStorage.createResidentBookFile(folderPath);
     }
 
     //================= Venue book methods ==========================

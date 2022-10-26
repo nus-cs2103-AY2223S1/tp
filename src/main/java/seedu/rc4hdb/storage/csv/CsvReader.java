@@ -52,7 +52,6 @@ public class CsvReader {
      */
     public Optional<ReadOnlyResidentBook> readCsvFile(Path filePath) throws IOException, DataConversionException {
         requireNonNull(filePath);
-        assert(isCsvFilePath(filePath));
         Path csvFilePath = filePath.resolveSibling(filePath.getFileName() + CSV_POSTFIX);
         logger.info(String.format("Attempting to read from csv file: %s", csvFilePath));
         if (!FileUtil.isFileExists(csvFilePath)) {
@@ -69,10 +68,6 @@ public class CsvReader {
         }
 
         return Optional.of(residentBook);
-    }
-
-    private boolean isCsvFilePath(Path filePath) {
-        return filePath.toString().endsWith(".csv");
     }
 
     /**

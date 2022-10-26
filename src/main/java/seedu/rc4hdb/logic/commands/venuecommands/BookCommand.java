@@ -12,8 +12,8 @@ import java.util.NoSuchElementException;
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.logic.commands.CommandResult;
+import seedu.rc4hdb.logic.commands.ModelCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.commands.modelcommands.ModelCommand;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.VenueName;
@@ -32,12 +32,12 @@ public class BookCommand extends VenueCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "book";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to RC4HDB. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to RC4HDB. \n"
+            + "Parameters: INDEX "
             + PREFIX_VENUE_NAME + "VENUE_NAME "
             + PREFIX_TIME_PERIOD + "START_TIME-END_TIME "
-            + PREFIX_DAY + "DAY "
-            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_DAY + "DAY \n"
+            + "Example: " + COMMAND_WORD + " 3"
             + PREFIX_VENUE_NAME + "meeting "
             + PREFIX_TIME_PERIOD + "10-14 "
             + PREFIX_DAY + "TUE ";
@@ -50,16 +50,15 @@ public class BookCommand extends VenueCommand implements ModelCommand {
     private final Index residentIndex;
 
     /**
-     * Creates an BookCommand to add the specified {@code Booking}
+     * Creates a BookCommand to add the specified {@code Booking}
      */
-    public BookCommand(Index residentIndex, VenueName venueName, BookingDescriptor bookingDescriptor) {
-        super(venueName);
+    public BookCommand(Index residentIndex, BookingDescriptor bookingDescriptor) {
+        super(bookingDescriptor.getVenueName().get());
         requireAllNonNull(residentIndex, bookingDescriptor);
         this.residentIndex = residentIndex;
-        this.bookingDescriptor = new BookingDescriptor(bookingDescriptor);
+        this.bookingDescriptor = bookingDescriptor;
     }
 
-    //todo handle venue booking
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -88,6 +87,7 @@ public class BookCommand extends VenueCommand implements ModelCommand {
         assert bookingDescriptor != null && resident != null;
         HourPeriod hourPeriod = bookingDescriptor.getHourPeriod().get();
         Day dayOfWeek = bookingDescriptor.getDayOfWeek().get();
+        VenueName venueName = bookingDescriptor.getVenueName().get();
         return new RecurrentBooking(venueName, resident, hourPeriod, dayOfWeek);
     }
 
@@ -95,7 +95,8 @@ public class BookCommand extends VenueCommand implements ModelCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof BookCommand // instanceof handles nulls
-                && bookingDescriptor.equals(((BookCommand) other).bookingDescriptor));
+                && bookingDescriptor.equals(((BookCommand) other).bookingDescriptor)
+                && residentIndex.equals(((BookCommand) other).residentIndex));
     }
 
 }

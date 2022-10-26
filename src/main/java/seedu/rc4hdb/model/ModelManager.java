@@ -14,13 +14,15 @@ import javafx.collections.transformation.FilteredList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.resident.exceptions.DuplicateResidentException;
+import seedu.rc4hdb.model.resident.fields.ResidentField;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
-import seedu.rc4hdb.model.venues.booking.fields.Day;
-import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
+import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
@@ -34,10 +36,10 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Resident> filteredResidents;
 
-    private final ObservableList<String> observableFieldList;
-    private ObservableList<Booking> observableBookingList;
+    private final ObservableList<Booking> observableBookingList;
     private final ObservableList<Venue> observableVenueList;
-
+    private final ObservableList<String> visibleFields;
+    private final ObservableList<String> hiddenFields;
 
     /**
      * Initializes a ModelManager with the given residentBook and userPrefs.
@@ -52,15 +54,16 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
 
-        this.observableFieldList = FXCollections.observableArrayList();
+        // Set up observable instances
         this.observableVenueList = venueBook.getVenueList();
-
         if (observableVenueList.isEmpty()) {
             logger.info("No venues found in venue list.");
             this.observableBookingList = FXCollections.observableArrayList();
         } else {
             this.observableBookingList = observableVenueList.get(0).getObservableBookings();
         }
+        this.visibleFields = FXCollections.observableArrayList(ResidentField.LOWERCASE_FIELDS);
+        this.hiddenFields = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -125,7 +128,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addResident(Resident person) {
+    public void addResident(Resident person) throws DuplicateResidentException {
         residentBook.addResident(person);
         updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
     }
@@ -171,13 +174,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteVenue(Venue target) {
-        requireNonNull(target);
-        venueBook.removeVenue(target);
+    public void deleteVenue(VenueName venueName) {
+        requireNonNull(venueName);
+        venueBook.removeVenue(venueName);
     }
 
     @Override
-    public void addVenue(Venue venue) {
+    public void addVenue(Venue venue) throws DuplicateVenueException {
         requireNonNull(venue);
         venueBook.addVenue(venue);
     }
@@ -190,10 +193,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void removeBooking(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
+    public void removeBooking(BookingDescriptor bookingDescriptor)
             throws VenueNotFoundException, BookingNotFoundException {
-        requireAllNonNull(venueName, bookedPeriod, bookedDay);
-        venueBook.removeBooking(venueName, bookedPeriod, bookedDay);
+        requireNonNull(bookingDescriptor);
+        venueBook.removeBooking(bookingDescriptor);
     }
 
     //=========== End of venue book methods =============================================
@@ -221,13 +224,23 @@ public class ModelManager implements Model {
     //=========== Observable Field List Accessors =============================================================
 
     @Override
-    public ObservableList<String> getObservableFields() {
-        return this.observableFieldList;
+    public ObservableList<String> getVisibleFields() {
+        return this.visibleFields;
     }
 
     @Override
-    public void setObservableFields(List<String> modifiableFields) {
-        this.observableFieldList.setAll(modifiableFields);
+    public void setVisibleFields(List<String> fieldsToShow) {
+        this.visibleFields.setAll(fieldsToShow);
+    }
+
+    @Override
+    public ObservableList<String> getHiddenFields() {
+        return this.hiddenFields;
+    }
+
+    @Override
+    public void setHiddenFields(List<String> fieldsToHide) {
+        this.hiddenFields.setAll(fieldsToHide);
     }
 
     //=========== Observable Venue List Accessors =============================================================
@@ -249,7 +262,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setObservableBookings(VenueName venueName) {
+    public void setObservableBookings(VenueName venueName) throws VenueNotFoundException {
         this.observableBookingList.setAll(venueBook.getBookings(venueName));
     }
 

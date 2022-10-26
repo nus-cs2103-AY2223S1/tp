@@ -15,11 +15,11 @@ public abstract class StringField {
     }
 
     /**
-     * Returns true if given {@code Field}'s value is contained in this Field's value
+     * Returns true if this Field's value string contains {@code substring}. This method is case-insensitive.
      * @return true if the field value is a substring of this field's value.
      */
-    public boolean containsIgnoreCase(StringField field) {
-        return isSubclass(field) && this.value.toLowerCase().contains(field.value.toLowerCase());
+    public boolean containsIgnoreCase(String substring) {
+        return this.value.toLowerCase().contains(substring.toLowerCase());
     }
 
     /**

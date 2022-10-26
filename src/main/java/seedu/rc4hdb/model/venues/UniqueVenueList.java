@@ -9,10 +9,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
-import seedu.rc4hdb.model.venues.booking.fields.Day;
-import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
@@ -42,10 +41,9 @@ public class UniqueVenueList implements Iterable<Venue> {
     }
 
     /**
-     * Adds a resident to the list.
-     * The resident must not already exist in the list.
+     * Adds a venue to the list. The venue must not already exist in the list.
      */
-    public void add(Venue toAdd) {
+    public void add(Venue toAdd) throws DuplicateVenueException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateVenueException();
@@ -65,6 +63,17 @@ public class UniqueVenueList implements Iterable<Venue> {
     }
 
     /**
+     * Similar to
+     * @see #remove(Venue) but uses {@code VenueName} as an identifier.
+     */
+    public void remove(VenueName toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.removeIf(venue -> venue.isSameVenue(toRemove))) {
+            throw new VenueNotFoundException();
+        }
+    }
+
+    /**
      * Adds a booking to the venue in the list with the name {@code venueName}.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */
@@ -75,21 +84,25 @@ public class UniqueVenueList implements Iterable<Venue> {
     }
 
     /**
-     * Removes a booking corresponding to {@code bookedPeriod} and {@code bookedDay} from the venue in the list with
-     * the name {@code venueName}.
+     * Removes a booking corresponding to the {@code bookingDescriptor}. Booking descriptor must minimally have
+     * a VenueName, HourPeriod and Day.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      * @throws BookingNotFoundException if the venue is not booked during the specified period and day.
      */
-    public void removeBooking(VenueName otherVenueName, HourPeriod bookingPeriod, Day bookedDay)
+    public void removeBooking(BookingDescriptor bookingDescriptor)
             throws VenueNotFoundException, BookingNotFoundException {
-        requireAllNonNull(otherVenueName, bookingPeriod, bookedDay);
-        getVenueWithName(otherVenueName).removeBooking(bookingPeriod, bookedDay);
+        requireNonNull(bookingDescriptor);
+        if (bookingDescriptor.getVenueName().isEmpty()) {
+            throw new VenueNotFoundException();
+        }
+        getVenueWithName(bookingDescriptor.getVenueName().get())
+                .removeBooking(bookingDescriptor);
     }
 
     /**
      * Gets the unmodifiable list of bookings that are associated to the venue with {@code venueName}.
      */
-    public ObservableList<Booking> getBookings(VenueName venueName) {
+    public ObservableList<Booking> getBookings(VenueName venueName) throws VenueNotFoundException {
         requireNonNull(venueName);
         return getVenueWithName(venueName).getObservableBookings();
     }

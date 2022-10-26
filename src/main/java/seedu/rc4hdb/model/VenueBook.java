@@ -1,6 +1,7 @@
 package seedu.rc4hdb.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -9,10 +10,10 @@ import seedu.rc4hdb.model.venues.UniqueVenueList;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
-import seedu.rc4hdb.model.venues.booking.fields.Day;
-import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
+import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
@@ -73,19 +74,17 @@ public class VenueBook implements ReadOnlyVenueBook {
     }
 
     /**
-     * Adds a venue to the venue book.
-     * The venue must not already exist in the venue book.
+     * Adds a venue to the venue book. The venue must not already exist in the venue book.
      */
-    public void addVenue(Venue p) {
+    public void addVenue(Venue p) throws DuplicateVenueException {
         venues.add(p);
     }
 
     /**
-     * Removes {@code key} from this {@code VenueBook}.
-     * {@code key} must exist in the venue book.
+     * Deletes the venue corresponding to {@code venueName}. The given venue must exist in the venue book.
      */
-    public void removeVenue(Venue key) {
-        venues.remove(key);
+    public void removeVenue(VenueName venueName) {
+        venues.remove(venueName);
     }
 
     /**
@@ -94,18 +93,20 @@ public class VenueBook implements ReadOnlyVenueBook {
      */
     public void addBooking(VenueName venueName, Booking booking)
             throws VenueNotFoundException, BookingClashesException {
+        requireAllNonNull(venueName, booking);
         venues.addBooking(venueName, booking);
     }
 
     /**
-     * Removes a booking corresponding to {@code bookedPeriod} and {@code bookedDay} from the venue in the list with
-     * the name {@code venueName}.
+     * Removes a booking corresponding to the {@code bookingDescriptor}. Booking descriptor must minimally have
+     * a VenueName, HourPeriod and Day.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      * @throws BookingNotFoundException if the venue is not booked during the specified period and day.
      */
-    public void removeBooking(VenueName venueName, HourPeriod bookingPeriod , Day bookedDay)
+    public void removeBooking(BookingDescriptor bookingDescriptor)
             throws VenueNotFoundException, BookingNotFoundException {
-        venues.removeBooking(venueName, bookingPeriod, bookedDay);
+        requireNonNull(bookingDescriptor);
+        venues.removeBooking(bookingDescriptor);
     }
 
     //// util methods
@@ -122,7 +123,7 @@ public class VenueBook implements ReadOnlyVenueBook {
         return venues.asUnmodifiableObservableList();
     }
 
-    public ObservableList<Booking> getBookings(VenueName venueName) {
+    public ObservableList<Booking> getBookings(VenueName venueName) throws VenueNotFoundException {
         requireNonNull(venueName);
         return venues.getBookings(venueName);
     }
