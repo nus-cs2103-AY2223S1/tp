@@ -25,7 +25,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T10-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -38,7 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -54,7 +54,8 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each 
+other for the scenario where the user issues the command `delete-person 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -71,13 +72,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T10-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -88,7 +89,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -100,11 +101,15 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` 
+component for the `execute("delete-person 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-person 1` Command](images/DeletePersonSimplifiedSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+The lifeline for `DeletePersonCommandParser`  and `DeletePersonCommand` should 
+end at the destroy marker (X) but due to a limitation of PlantUML, the 
+lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -113,31 +118,28 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that   they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e.:
+  * all `Person` objects (which are contained in a `UniquePersonList` object).
+  * all `Module` objects (which are contained in a `UniqueModuleList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
+* does not depend on any of the other three components (as the `Model` 
+  represents data entities of the domain, they should make sense on their own without depending on other components).
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -283,18 +285,19 @@ The delete person mechanism is facilitated by `DeletePersonCommand` and `DeleteP
 
 Given below is an example usage scenario and how the delete person mechanism behaves at each step.
 
-Step 1. There currently exists 3 persons in Plannit, with 2 of them already added to a module.
+**Step 1**. There currently exists 3 persons in Plannit, with 2 of them already 
+added to a module.
 
 ![DeletePersonStep1ObjectDiagram](images/DeletePersonStep1ObjectDiagram.png)
 
-Step 2. The user executes `delete-person 2` command and this creates a `deletePersonCommand` to delete the 2nd person 
+**Step 2**. The user executes `delete-person 2` command and this creates a `deletePersonCommand` to delete the 2nd person 
 (that is currently displayed on the GUI) in the address book. Upon execution, `UniqueModuleList#removePersonFromModules
 ()` and `UniquePersonList#remove()` are eventually called. `UniqueModuleList#removePersonFromModules()` removes all 
 occurrences of the person in every module. 
 
 ![DeletePersonStep2ObjectDiagram](images/DeletePersonStep2ObjectDiagram.png)
 
-Step 3. `UniquePersonList#remove()` removes the person from `UniquePersonList`.
+**Step 3**. `UniquePersonList#remove()` removes the person from `UniquePersonList`.
 Afterwards, there would no longer be any references to the deleted `Person` object, and Java will eventually remove it
 from memory.
 
@@ -330,25 +333,25 @@ has been added to represent a `Module` object in JSON format.
 Below shows a description of an example scenario for adding a command. Deletion of a command is 
 similar except that the corresponding deletion class is used instead. 
 
-Step 1: User enters command `add-module m/CS2105` to add module CS2105 to Plannit.
+**Step 1**: User enters command `add-module m/CS2105` to add module CS2105 to Plannit.
 
-Step 2: `addressBookParser`, the parser for Plannit, will parse the user command to return an 
+**Step 2**: `addressBookParser`, the parser for Plannit, will parse the user command to return an 
 `AddModuleCommand` object.
 
-Step 3: The resulting `AddModuleCommand` object is then executed. The validity of the input 
+**Step 3**: The resulting `AddModuleCommand` object is then executed. The validity of the input 
 module code provided is checked. This involves a check of whether the input is a duplicate module 
 (case-insensitive, removing leading and trailing whitespaces). 
 
-Step 4: After successful checks, the module `CS2105` will be added into Plannit. 
+**Step 4**: After successful checks, the module `CS2105` will be added into Plannit. 
 
-Step 5: The `saveAddressBook()` method of `StorageManager` is called to save the newly-updated list
+**Step 5**: The `saveAddressBook()` method of `StorageManager` is called to save the newly-updated list
 of modules to a JSON file. 
 
-Step 6: `JsonAddressBookStorage` is called, which serializes/converts the new list of modules 
+**Step 6**: `JsonAddressBookStorage` is called, which serializes/converts the new list of modules 
 into JSON format, so that it can be saved into a file. The file will be read whenever Plannit 
 starts up so that it can load saved module and person data.
 
-Step 7: Plannit Graphical User Interface (GUI) displays message that the addition of module has 
+**Step 7**: Plannit Graphical User Interface (GUI) displays message that the addition of module has 
 been successful. 
 
 The following activity diagram summarizes what happens when the user requests to add module to 
@@ -396,16 +399,30 @@ in the Object Oriented Domain Model diagram below:
 
 ![ModulePersonObjectOrientedDomainModel](images/ModulePersonObjectOrientedDomainModel.png)
 
-### Add/delete/swap task feature
+### Task component
 
 #### Implementation
 
-The add/delete/swap task mechanism is facilitated by a `TaskList` data. Each
-`Module` within the `UniqueModuleList` stores a `TaskList` instance, which
-in turn stores a list of `Task` objects. Each `Module` is instantiated with
-an empty `TaskList`.
+A `Task` class is used to represent a task that is to be completed by the 
+user. Tasks are assigned to a specific module. The following `Command` 
+classes were implemented to allow users to interact with `Task` objects:
+- `AddTaskCommand` allows the user to add a task to a specified `Module` in
+  Plannit.
+- `DeleteTaskCommand` allows the user to delete a task from a specified
+  `Module` in Plannit.
+- `SwapTaskCommand` allows the user to swap the order of `Task`s within a
+  specified `Module` in Plannit.
+
+Each `Module` within the `UniqueModuleList` stores a `TaskList` 
+instance, which in turn stores a list of `Task` objects. This `TaskList` 
+object is used to maintain the list of `Task` objects within the module by 
+supporting operations to add, delete and swap tasks.
 
 ![TaskListClassDiagram](images/AddDeleteSwapTaskFeature/TaskListClassDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:**  All `Module` objects are instantiated with an empty `TaskList`.
+</div>
 
 Similar to `UniqueModuleList` and `UniquePersonList`, a `TaskList` contains the following:
 * `internaList` - An `ObservableList<>` containing the tasks
@@ -417,32 +434,26 @@ Similar to `UniqueModuleList` and `UniquePersonList`, a `TaskList` contains the 
 
 However, there exists two key differences:
 1. `TaskList` is used to store `Task` objects as opposed to the storage of
-   `Module` in `UniqueModuleList` and `Person` in `UniquePersonList`.
+   `Module` in `UniqueModuleList` and `Person` in `UniquePersonList` 
+   respectively.
 2. A different `TaskList` instance exists in each `Module` object, meaning
    multiple instances of the `TaskList` object can exist within an
    `AddressBook` instance. On the other hand, there will always be only one
    `UniqueModuleList` instance and one `UniquePersonList` instance in the
    `AddressBook` instance.
 
-Here's a (partial) object diagram of an `AddressBook` instance:
+Here's a (partial) object diagram of an `AddressBook` instance to 
+demonstrate the above point:
 ![AddressBookObjectDiagram](images/AddDeleteSwapTaskFeature/AddressBookObjectDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
-Notice that there is only one instance of `UniquePersonList` (in purple) and 
+There is only one instance of `UniquePersonList` (in purple) and 
 `UniqueModuleList` (in blue). However, there are two instances of `TaskList`
 (in orange), corresponding to the number of modules.
 </div>
 
-We have implemented the following `Command` classes:
-- `AddTaskCommand` allows the user to add a task to a specified `Module` in
-  Plannit.
-- `DeleteTaskCommand` allows the user to delete a task from a specified
-  `Module` in Plannit.
-- `SwapTaskCommand` allows the user to swap the order of `Task`s within a
-  specified `Module` in Plannit.
-
 Given below is an example usage scenario and how the mechanism
-behaves when a user adds a new `Task`. The behavior for the deleting and
-swapping of tasks is highly similar.
+behaves when a user adds a new `Task` with the `add-task` command. The behavior 
+for the deleting and swapping of tasks is highly similar.
 
 **Step 1**. The user requests to add a task into a module present in Plannit by
 inputting the `add-task` command followed by the `m/` flag to indicate the
@@ -453,42 +464,39 @@ E.g.:
 add-task m/CS1231 td/Submit the weekly assignment
 ```
 
-**Step 2**: The `LogicManager` calls the `LogicManager::execute` method on the
-user input `String`.
+**Step 2**: The `LogicManager` uses the `AddressBookParser`  and 
+`AddTaskCommandParser` to parse the user input. After validating the
+arguments provided by the user, the `ModuleCode` of the module to add the
+task to and the task description of the new task is extracted by the `AddTaskCommandParser`.
 
-**Step 3**: The `LogicManager::execute` method first parses the user input
-`String` using the `AddressBookParser::parseCommand` method.
+**Step 3**: An `AddTaskToModuleDescriptor` object is then instantiated to
+contain the extracted `ModuleCode` and a new `Task` with the extracted task 
+description.
 
-**Step 4**: The command word, `add-task`, is extracted from the user input and
-a new `AddTaskCommandParser` is instantiated to parse the arguments.
-
-**Step 5**: The `AddTaskCommandParser::parse` method is then called to
-parse the arguments. After validating the arguments provided by the user, a
-new `Task` is instantiated with the provided description.
-
-**Step 6**: An `AddTaskToModuleDescriptor` object is then instantiated to
-contain the new `Task` and `ModuleCode` of the module to add the `Task` to.
-
-**Step 7**: This `AddTaskToModuleDescriptor` is then used to instantiate an
+**Step 4**: This `AddTaskToModuleDescriptor` is used to instantiate an
 `AddTaskCommand` object that is returned to the `LogicManager`.
 
-**Step 8**: The `AddTaskCommand::execute` method is then called by the
+**Step 5**: The `AddTaskCommand::execute` method is then called by the
 `LogicManager`. This method will first obtain the `Module` with the
 `ModuleCode` indicated by the user by calling `Model::getModule`. A copy of
 the `Module`'s fields are then created.
 
-**Step 9**: A new `Task` is then added to the copied `TaskList` field.
+**Step 6**: A new `Task` is then added to the copied `TaskList` field.
 
-**Step 10**: A new `Module` is then created using the copied fields along
+**Step 7**: A new `Module` is then created using the copied fields along
 with the updated `TaskList` field.
 
-**Step 11**: The `Module` currently existing in the `Model` is then
+**Step 8**: The `Module` currently existing in the `Model` is then
 replaced with this new updated `Module` using the `Model::setModule` method.
 
 The following sequence diagram summarizes what happens when a user executes
 the `add-task` command:
 
 ![AddTaskSequenceDiagram](images/AddDeleteSwapTaskFeature/AddTaskSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** The lifeline for `AddTaskCommand`,  and `AddTaskCommandParser` should 
+end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design considerations:
 **Aspect: Data structure to store `Task`:**
@@ -504,6 +512,12 @@ the `add-task` command:
     * Cons: Poor adherence to [SOLID](https://nus-cs2103-ay2223s1.github.io/website/se-book-adapted/chapters/principles.html#solid-principles)
       design principles.
 
+Rationale behind current choice:
+1. Despite the additional complexities, it is good practise to adhere with the 
+SOLID design principles. 
+2. Furthermore, the additional complexities and potential for new bugs can
+   be mitigated by robust unit and integration testing.
+
 **Aspect: Manner of handing arguments to `AddTaskCommand` constructor:**
 
 * **Alternative 1 (current choice):** Pass arguments as a single
@@ -513,11 +527,21 @@ the `add-task` command:
       in the future.
     * Cons: Additional complexities brought about by implementing a new class.
 
-* **Alternative 2:** , Pass arguments directly into the `AddTaskCommand`
+* **Alternative 2:** Pass arguments directly into the `AddTaskCommand`
   constructor
     * Pros: Simpler to implement.
     * Cons: Number of arguments taken in by the constructor will
-      increase when more fields are added to a Task in the future.
+      increase when more fields are added to a `Task` in the future.
+
+Rationale behind current choice:
+
+1. Despite the additional complexities, a `Task` object is likely to have 
+additional fields (e.g. `Date`, `Priority`) in future iterations. Should we 
+pass fields directly in to the constructor as arguments, the number of 
+parameters in the constructor would increase. This would greatly affect the 
+readability of the code. 
+2. The additional complexities and potential for new bugs can be mitigated 
+   by robust unit and integration testing.
 
 ### Goto module feature
 
@@ -782,14 +806,14 @@ Use case ends.
 
   Use case ends.
 
-#### Use case: UC06 - Find task
+#### Use case: UC06 - Swap task
 **Precondition**
 * User has applied [UC13](#use-case-uc13---navigate-to-module) to navigate to a module.
 
 **Main Success Scenario (MSS)**
-1. User requests to search for a task.
-2. Plannit displays to the user the list of tasks matching the user's search
-   request.
+1. User requests to swap the order of two tasks.
+2. Plannit displays to the user the list of tasks with the order of the two 
+   tasks swapped.
 
 **Extensions**
 * 1a. User inputs empty search keyword.
