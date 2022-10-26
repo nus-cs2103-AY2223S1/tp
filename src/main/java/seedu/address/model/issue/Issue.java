@@ -61,7 +61,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     public static class EmptyIssue extends Issue {
         public static final Issue EMPTY_ISSUE = new EmptyIssue();
         private EmptyIssue() {
-            super(Title.EmptyTitle.EMPTY_DESCRIPTION, Project.EmptyProject.EMPTY_PROJECT);
+            super(Title.EmptyTitle.EMPTY_TITLE, Project.EmptyProject.EMPTY_PROJECT);
         }
 
         /**

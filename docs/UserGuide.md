@@ -133,7 +133,7 @@ Format: `project -l`
 
 Finds and lists all the projects matching the search criteria.
 
-Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY]…​`
+Format: `project -f [n/PROJECT_NAME] [r/USERNAME/REPO]…​`
 
 * Finds all the projects with the specified `PROJECT_NAME` and `REPOSITORY`.
 * Finds all the projects such that the fields under the project contain at least one word from the keywords provided
@@ -143,16 +143,42 @@ Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY]…​`
 Examples:
 * `project -f n/DevEnable` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable.
 * `project -f n/DevEnable AB3` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable or AB3.
-* `project -f r/tp/F13` Finds and lists all the projects with `REPOSITORY` tp/F13.
+* `project -f r/tp/F13` Finds and lists all the projects with `USERNAME/REPO` tp/F13.
 * `project -f n/AB4 AB3 r/tp/F13` Finds and lists all the projects whose `PROJECT_NAME` contains the word AB4 or AB3 
-  and with `REPOSITORY` tp/F13.
+  and with `USERNAME/REPO` tp/F13.
+
+### Sorting all projects: `project -s`
+
+Sorts all projects in `ProjectList` based on a specified key.
+
+Format: `project -s [p/PROJECT_ID] [d/DEADLINE] [i/ISSUE_COUNT] [n/PROJECT_NAME]`
+
+* Exactly one optional value (sorting key) to be provided.
+* Input 0/1 for each Prefix (e.g. p/0):
+  * For `PROJECT_ID`, 0 for ascending and 1 for descending.
+  * For `DEADLINE`, 0 for chronological and 1 for reverse chronological.
+  * For `ISSUE_COUNT`, 0 for completed and 1 for incomplete (in descending order).
+  * For `NAME`, 0 for alphabetical and 1 for reverse alphabetical.
+
+Examples:
+* `project -s p/1` Sorts list of projects based on `PROJECT_ID` from highest to lowest.
+* `project -s d/0` Sorts list of projects based on `DEADLINE` from earliest to latest.
+* `project -s i/1` Sorts list of projects based on `ISSUE_COUNT` from highest incomplete issue count to lowest incomplete 
+issue count.
+* `project -s n/0` Sorts list of projects based on `NAME` in alphabetical order.
+
+### Setting project list as default view: `project -v`
+
+Sets `ProjectList` to be the default view when application is re-opened.
+
+Format: `project -v`
 
 ### Adding a client : `client -a`
 
 Adds a client to the list of clients and to the specified existing project. A unique client ID will be automatically 
 generated.
 
-Format: `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
+Format: `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]…​`
 
 * Adds the client to `ClientList` and to the project with the specified `PROJECT_ID`.
 
@@ -163,7 +189,7 @@ Examples:
    `ClientList` and to the project with `PROJECT_ID` 2.
 *  `client -a n/Charlie e/charlie@gmail.com p/3` Adds a client with `CLIENT_NAME` Charlie and `CLIENT_EMAIL` 
    charlie@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 3.
-*  `client -a n/Dave m/12345678 e/dave@gmail.com p/4` Adds a client with `CLIENT_NAME` Dave, `CLIENT_PHONE` 
+*  `client -a n/Dave m/12345678 e/dave@gmail.com p/4` Adds a client with `CLIENT_NAME` Dave, `CLIENT_MOBILE` 
    12345678 and `CLIENT_EMAIL` dave@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 4.
 
 ### Editing a client : `client -e`
@@ -225,6 +251,27 @@ Examples:
 * `client -f n/Amy Bob e/amy@gmail.com bobamy@gmail.com m/12345678` Finds and lists all the clients whose 
   `CLIENT_NAME` contains the word `Amy` or `Bob` and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with 
   `CLIENT_PHONE` 12345678.
+
+### Sorting all clients: `client -s`
+
+Sorts all clients in `ClientList` based on a specified key.
+
+Format: `client -s [c/CLIENT_ID] [n/NAME]`
+
+* Exactly one optional value (sorting key) to be provided.
+* Input 0/1 for each Prefix (e.g. c/1):
+  * For `CLIENT_ID`, 0 for ascending and 1 for descending.
+  * For `NAME`, 0 for alphabetical and 1 for reverse alphabetical
+
+Examples:
+* `client -s c/0` Sort list of clients based on `CLIENT_ID` from lowest to highest.
+* `client -s n/1` Sort list of clients based on `NAME` in reverse alphabetical order.
+
+### Setting client list as default view: `client -v`
+
+Sets `ClientList` to be the default view when application is re-opened.
+
+Format: `client -v`
 
 ### Adding an issue : `issue -a`
 
@@ -298,6 +345,29 @@ Examples:
 * `issue -f desc/enhancement pn/DevEnable AB3 p/HIGH LOW` Finds and lists all the issues with `TITLE` 
   enhancement and `PRIORITY` HIGH or LOW and tied to project with `PROJECT_NAME` DevEnable or AB3.
 * `issue -f s/Incomplete` Finds and lists all the issues with `STATUS` Incomplete. 
+
+### Sorting all issues: `issue -s`
+
+Sorts all issues in `IssueList` based on a specified key.
+
+Format: `issue -s [i/ISSUE_ID] [d/DEADLINE] [u/URGENCY]`
+
+* Exactly one optional value (sorting key) to be provided.
+* Input 0/1 for each Prefix (e.g. i/0):
+  * For `ISSUE_ID`, 0 for ascending and 1 for descending.
+  * For `DEADLINE`, 0 for chronological and 1 for reverse chronological.
+  * For `URGENCY`, 0 for ascending and 1 for descending.
+
+Examples: 
+* `issues -s i/0` Sorts list of issues based on `ISSUE_ID` from lowest to highest.
+* `issues -s d/0` Sorts list of issues based on `DEADLINE` from earliest to latest.
+* `issues -s u/1` Sorts list of issues based on `URGENCY` from highest to lowest.
+
+### Setting issue list as default view: `issue -v`
+
+Sets `IssueList` to be the default view when application is re-opened.
+
+Format: `issue -v`
 
 ### Clearing all entries : `clear`
 

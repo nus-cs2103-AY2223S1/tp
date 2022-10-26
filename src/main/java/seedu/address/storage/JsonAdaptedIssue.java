@@ -24,11 +24,7 @@ class JsonAdaptedIssue {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Issue's %s field is missing!";
 
     private final String title;
-<<<<<<< HEAD
     private final String urgency;
-=======
-    private final String priority;
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     private final String deadline;
     private final String status;
     private final String issueId;
@@ -39,21 +35,13 @@ class JsonAdaptedIssue {
      */
     @JsonCreator
     public JsonAdaptedIssue(@JsonProperty("title") String title,
-<<<<<<< HEAD
                             @JsonProperty("urgency") String urgency,
-=======
-                            @JsonProperty("priority") String priority,
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
                              @JsonProperty("deadline") String deadline,
                             @JsonProperty("status") String status,
                             @JsonProperty("issueId") String issueId,
                             @JsonProperty("project") String project) {
         this.title = title;
-<<<<<<< HEAD
         this.urgency = urgency;
-=======
-        this.priority = priority;
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
         this.deadline = deadline;
         this.status = status;
         this.project = project;
@@ -65,11 +53,7 @@ class JsonAdaptedIssue {
      */
     public JsonAdaptedIssue(Issue source) {
         title = source.getTitle().toString();
-<<<<<<< HEAD
         urgency = source.getUrgency().toString();
-=======
-        priority = source.getPriority().toString();
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
         deadline = source.getDeadline().toString();
         status = source.getStatus().toString();
         issueId = source.getIssueId().toString();
@@ -87,11 +71,7 @@ class JsonAdaptedIssue {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Title.class.getSimpleName()));
         }
-<<<<<<< HEAD
-        if (!seedu.address.model.issue.Title.isValidTitle(title)) {
-=======
         if (!Title.isValidTitle(title)) {
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
             throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
         final Title modelTitle = new Title(title);
@@ -152,12 +132,7 @@ class JsonAdaptedIssue {
         final IssueId modelIssueId = new IssueId(Integer.parseInt(issueId));
 
         assert modelIssueId.getIdInt() >= 0 : "Issue ID should be positive";
-
-<<<<<<< HEAD
         return new Issue(modelTitle, modelDeadline, modelUrgency, modelStatus, modelProject, modelIssueId);
-=======
-        return new Issue(modelTitle, modelDeadline, modelPriority, modelStatus, modelProject, modelIssueId);
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     }
 
 }

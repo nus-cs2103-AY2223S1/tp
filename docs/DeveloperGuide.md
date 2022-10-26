@@ -214,19 +214,13 @@ Optional prefixes: c/<valid client id>, r/<valid repository>, d/<valid deadline>
 Example Use: `project -a n/John c/1 r/JohnDoe/tp d/2022-03-05`
 
 #### Add Issue Command
-<<<<<<< HEAD
 Compulsory prefixes: p/<valid project id>, t/<valid title>
 Optional prefixes: d/<valid deadline> u/<valid urgency>
 Example Use: `issue p/1 t/To create a person class which stores all relevant person data d/2022-12-10 u/0`
-=======
-Compulsory prefixes: pid/<valid project id>, desc/<valid title>
-Optional prefixes: d/<valid deadline> p/<valid priority>
-Example Use: `issue pid/1 desc/To create a person class which stores all relevant person data d/2022-12-10 p/0`
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
 
 #### Add Client Command
 Compulsory prefixes: n/<valid name>, p/<valid project id>
-Optional prefixes: m/<valid mobile phone number>, e/<valid email>
+Optional prefixes: m/<valid mobile number>, e/<valid email>
 Example Use: `client -a n/John Doe m/98765432 e/johnd@example.com p/1`
 
 #### The following sequence diagram shows how the add command operation works for adding a project entity:
@@ -269,19 +263,13 @@ Optional prefixes (at least one to be included): n/<valid name>, c/<valid client
 Example Use: `project -e p/1 n/Jeff c/1 r/Jeffrey/tp d/2022-07-05`
 
 #### Edit Issue Command
-<<<<<<< HEAD
 Compulsory prefix: i/<valid issue id>
 Optional prefixes (at least one to be included): t/<valid title>, d/<valid deadline>, p/<valid urgency>
 Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
-=======
-Compulsory prefix: iid/<valid issue id>
-Optional prefixes (at least one to be included): desc/<valid title>, d/<valid deadline>, p/<valid priority>
-Example Use: `issue -e iid/1 desc/To edit issue command d/2022-04-09 p/1`
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
 
 #### Edit Client Command
 Compulsory prefix: c/<valid client id>
-Optional prefixes (at least one to be included): n/<valid name>, m/<valid mobile phone number>, e/<valid email>, p/<valid project id>
+Optional prefixes (at least one to be included): n/<valid name>, m/<valid mobile number>, e/<valid email>, p/<valid project id>
 Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:

@@ -32,7 +32,7 @@ public class SortProjectCommand extends ProjectCommand {
             + "Sort by issue count: "
             + PREFIX_ISSUE_COUNT + "0 (completed) or "
             + PREFIX_ISSUE_COUNT + "1 (incomplete). "
-            + "Sort by name count: "
+            + "Sort by name: "
             + PREFIX_NAME + "0 (alphabetical) or "
             + PREFIX_NAME + "1 (reverse alphabetical). \n"
             + "Example: "
