@@ -1,37 +1,28 @@
 package seedu.clinkedin.ui;
 
-import static seedu.clinkedin.commons.util.FileUtil.exportToCsvFile;
-import static seedu.clinkedin.logic.commands.ExportCommand.toCsvFormat;
-
 import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.clinkedin.commons.core.LogsCenter;
-import seedu.clinkedin.logic.Logic;
-import seedu.clinkedin.logic.commands.ExportCommand;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
+import seedu.clinkedin.logic.parser.exceptions.ParseException;
 
 /**
- * Window for allowing export of addressbook.
+ * Window for allowing import of addressbook.
  */
 public class ImportWindow extends UiPart<Stage> {
     public static final String CHOOSE_FILE = "Choose file";
     private static final Logger logger = LogsCenter.getLogger(ImportWindow.class);
     private static final String FXML = "ImportWindow.fxml";
 
-    private Logic logic;
-    private ResultDisplay resultDisplay;
-    private DirectoryChooser directoryChooser;
-
+    private FileChooser fileChooser;
+    private MainWindow mainWindow;
 
     @FXML
     private Label chooseFile;
@@ -49,22 +40,22 @@ public class ImportWindow extends UiPart<Stage> {
     /**
      * Creates a new ImportWindow.
      *
-     * @param root Stage to use as the root of the ExportWindow.
+     * @param root Stage to use as the root of the ImportWindow.
      */
-    public ImportWindow(Stage root, Logic logic, ResultDisplay resultDisplay) {
+    public ImportWindow(Stage root, MainWindow mainWindow) {
         super(FXML, root);
-        this.logic = logic;
-        this.resultDisplay = resultDisplay;
+        this.mainWindow = mainWindow;
         chooseFile.setText(CHOOSE_FILE);
-        directoryChooser = new DirectoryChooser();
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose File");
 
     }
 
     /**
      * Creates a new ImportWindow.
      */
-    public ImportWindow(Logic logic, ResultDisplay resultDisplay) {
-        this(new Stage(), logic, resultDisplay);
+    public ImportWindow(MainWindow mainWindow) {
+        this(new Stage(), mainWindow);
     }
 
     /**
@@ -102,35 +93,28 @@ public class ImportWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleSelect() {
-        File selectedFile = directoryChooser.showDialog(getRoot());
+        File selectedFile = fileChooser.showOpenDialog(getRoot());
         if (selectedFile != null) {
             chosenFile.setText(selectedFile.getAbsolutePath());
         }
     }
 
     /**
-     * Imports the addressbook.
-     * @throws CommandException If unable to import.
+     * Imports the addressbook from the specified file.
      */
     @FXML
-    public void handleOnExport() throws CommandException {
-//        String filePath = chosenFile.getText();
-//        List<String[]> data = toCsvFormat(logic.getFilteredPersonList());
-//
-//        try {
-//            exportToCsvFile(filePath, data);
-//        } catch (IOException ioe) {
-//            Alert a = new Alert(Alert.AlertType.ERROR);
-//            a.setContentText("Invalid File Name! Please try again!");
-//            chosenLocation.setText("");
-//            userEnteredFileName.clear();
-//            a.show();
-//            return;
-//        }
-//        resultDisplay.setFeedbackToUser(String.format(ExportCommand.MESSAGE_SUCCESS, filePath));
-//        logger.info("Result: " + String.format(ExportCommand.MESSAGE_SUCCESS, filePath));
-//        chosenLocation.setText("");
-//        userEnteredFileName.clear();
-//        this.hide();
+    public void handleOnImport() {
+        try {
+            String filePath = chosenFile.getText();
+            mainWindow.executeFromWindow("import path/" + filePath);
+        } catch (CommandException | ParseException e) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText(e.getMessage());
+            chosenFile.setText("");
+            a.show();
+            return;
+        }
+        chosenFile.setText("");
+        this.hide();
     }
 }

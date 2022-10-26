@@ -56,6 +56,7 @@ public class ExportWindow extends UiPart<Stage> {
         this.mainWindow = parent;
         chooseLocation.setText(CHOOSE_PATH);
         directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Choose Location");
         fileName.setText(CHOOSE_NAME);
 
     }
@@ -111,10 +112,9 @@ public class ExportWindow extends UiPart<Stage> {
 
     /**
      * Exports addressbook to specified location.
-     * @throws CommandException If unable to export to location.
      */
     @FXML
-    public void handleOnExport() throws CommandException, ParseException {
+    public void handleOnExport() {
         try {
             String filePath = null;
             if (chosenLocation.getText().trim().equals("")) {

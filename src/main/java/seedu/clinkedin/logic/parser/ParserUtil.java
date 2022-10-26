@@ -315,15 +315,15 @@ public class ParserUtil {
     /**
      * Gets {@code FileType} from {@code String filePath}
      */
-    public static FileType getFileType(String filePath) throws ParseException {
+    public static FileType getFileType(String filePath) throws InvalidExtensionException {
         requireNonNull(filePath);
         String trimmedFilePath = filePath.trim();
 
         int periodIndex = trimmedFilePath.lastIndexOf(".");
-        String extension = trimmedFilePath.substring(periodIndex + 1).trim().toUpperCase();
         if (periodIndex == -1) {
             throw new InvalidExtensionException();
         }
+        String extension = trimmedFilePath.substring(periodIndex + 1).trim().toUpperCase();
         FileType fileType;
         try {
             fileType = FileType.valueOf(extension);

@@ -6,6 +6,7 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PATH;
 import java.util.stream.Stream;
 
 import seedu.clinkedin.logic.commands.ImportCommand;
+import seedu.clinkedin.logic.parser.exceptions.InvalidExtensionException;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 
 
@@ -19,13 +20,21 @@ public class ImportCommandParser implements Parser<ImportCommand> {
      * @throws ParseException If the user input does not conform the expected format.
      */
     public ImportCommand parse(String args) throws ParseException {
+        if (args.trim().length() == 0) {
+            return new ImportCommand();
+        }
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.getPrefixes());
         if (!arePrefixesPresentAndUnique(argMultimap, PREFIX_PATH)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
         }
         String filePath = argMultimap.getValue(PREFIX_PATH).get().trim();
-        ParserUtil.FileType fileType = ParserUtil.getFileType(argMultimap.getValue(PREFIX_PATH).get().trim());
+        ParserUtil.FileType fileType = null;
+        try {
+            fileType = ParserUtil.getFileType(argMultimap.getValue(PREFIX_PATH).get().trim());
+        } catch (InvalidExtensionException iee) {
+            throw new ParseException(iee.getMessage());
+        }
         return new ImportCommand(filePath, fileType);
     }
 

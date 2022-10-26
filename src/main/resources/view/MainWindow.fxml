@@ -34,6 +34,9 @@
           <Menu mnemonicParsing="false" text="Export">
             <MenuItem mnemonicParsing="false" onAction="#handleExport" text="Export" />
           </Menu>
+          <Menu mnemonicParsing="false" text="Import">
+            <MenuItem mnemonicParsing="false" onAction="#handleImport" text="Import" />
+          </Menu>
         </MenuBar>
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">

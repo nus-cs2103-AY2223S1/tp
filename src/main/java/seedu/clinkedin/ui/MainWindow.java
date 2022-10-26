@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ExportWindow exportWindow;
+    private ImportWindow importWindow;
     private PersonCountDisplay personCountDisplay;
 
     @FXML
@@ -123,6 +124,7 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         exportWindow = new ExportWindow(this);
+        importWindow = new ImportWindow(this);
 
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -169,6 +171,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the import window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleImport() {
+        if (!importWindow.isShowing()) {
+            importWindow.show();
+        } else {
+            importWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -211,6 +225,9 @@ public class MainWindow extends UiPart<Stage> {
             }
             if (commandResult.isExport()) {
                 handleExport();
+            }
+            if (commandResult.isImport()) {
+                handleImport();
             }
 
             return commandResult;

@@ -34,9 +34,14 @@ public class ImportCommand extends Command {
             + " Please check your CSV file!";
     public static final String MESSAGE_NO_CHANGE =
             "CLInkedIn already contains all the candidates you are importing from %s!";
+    public static final String MESSAGE_SOME_CHANGE =
+            "Some candidates were ignored as adding them would result in duplicate persons!";
+    public static final String MESSAGE_WINDOW = "Opening Import Window...";
 
     private String filePath;
     private FileType fileType;
+    private boolean onlyCommand;
+
 
     /**
      * Creates an ImportCommand to import an AddressBook
@@ -46,9 +51,19 @@ public class ImportCommand extends Command {
         this.fileType = fileType;
     }
 
+    /**
+     * Creates an ImportCommand to import an AddressBook
+     */
+    public ImportCommand() {
+        this.onlyCommand = true;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (onlyCommand) {
+            return new CommandResult(MESSAGE_WINDOW, false, false, false, true);
+        }
         ArrayList<ArrayList<String[]>> content;
         try {
             content = importFromCsvFile(filePath);
@@ -66,13 +81,19 @@ public class ImportCommand extends Command {
         List<Person> personList = getPersonList(content);
 
         boolean isUpdated = false;
+        boolean isSomeExisting = false;
         for (Person person : personList) {
             if (!model.hasPerson(person)) {
                 isUpdated = true;
                 model.addPerson(person);
+            } else {
+                isSomeExisting = true;
             }
         }
 
+        if (isUpdated && isSomeExisting) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS) + " " + MESSAGE_SOME_CHANGE);
+        }
         if (isUpdated) {
             return new CommandResult(String.format(MESSAGE_SUCCESS));
         }
