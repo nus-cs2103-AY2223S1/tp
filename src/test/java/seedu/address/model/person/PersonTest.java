@@ -118,7 +118,8 @@ public class PersonTest {
                 new Email(PersonBuilder.DEFAULT_EMAIL),
                 new Address(PersonBuilder.DEFAULT_ADDRESS),
                 Set.of(tag),
-                new Loan(PersonBuilder.DEFAULT_LOAN));
+                new Loan(PersonBuilder.DEFAULT_LOAN),
+                new ArrayList<LoanHistory>());
 
         tag.addPerson(personA);
 
@@ -142,7 +143,8 @@ public class PersonTest {
                 new Email(PersonBuilder.DEFAULT_EMAIL),
                 new Address(PersonBuilder.DEFAULT_ADDRESS),
                 tagSet,
-                new Loan(PersonBuilder.DEFAULT_LOAN));
+                new Loan(PersonBuilder.DEFAULT_LOAN),
+                new ArrayList<LoanHistory>());
 
         Person personB = new Person(
                 new Name("PersonB"),
@@ -150,7 +152,8 @@ public class PersonTest {
                 new Email(PersonBuilder.DEFAULT_EMAIL),
                 new Address(PersonBuilder.DEFAULT_ADDRESS),
                 tagSet,
-                new Loan(PersonBuilder.DEFAULT_LOAN));
+                new Loan(PersonBuilder.DEFAULT_LOAN),
+                new ArrayList<LoanHistory>());
 
         tag.addPerson(personA);
         tag.addPerson(personB);

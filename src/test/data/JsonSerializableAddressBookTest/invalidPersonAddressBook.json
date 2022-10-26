@@ -4,7 +4,8 @@
     "phone": "9482424",
     "email": "invalid@email!3e",
     "address": "4th street",
-    "loan": "0.0"
+    "loan": "0.0",
+    "history" : [ ]
   } ],
   "tags": []
 }

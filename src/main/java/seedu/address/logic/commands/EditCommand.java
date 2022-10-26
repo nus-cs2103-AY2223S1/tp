@@ -23,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Loan;
+import seedu.address.model.person.LoanHistory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -114,8 +115,9 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Loan updatedLoan = editPersonDescriptor.getLoan().orElse(personToEdit.getLoan());
+        List<LoanHistory> updatedHistory = editPersonDescriptor.getHistory().orElse(personToEdit.getHistory());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedLoan);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedLoan, updatedHistory);
     }
 
     @Override
@@ -147,6 +149,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Loan loan;
+        private List<LoanHistory> history;
 
         public EditPersonDescriptor() {}
 
@@ -208,6 +211,14 @@ public class EditCommand extends Command {
 
         public Optional<Loan> getLoan() {
             return Optional.ofNullable(loan);
+        }
+
+        public void setHistory(List<LoanHistory> history) {
+            this.history = history;
+        }
+
+        public Optional<List<LoanHistory>> getHistory() {
+            return Optional.ofNullable(history);
         }
 
         /**

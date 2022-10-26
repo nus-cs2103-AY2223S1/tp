@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -175,7 +176,8 @@ public class UniquePersonListTest {
                         new Email("abc@fmail.com"),
                         new Address("123 street"),
                         new HashSet<>(),
-                        new Loan("0")
+                        new Loan("0"),
+                        new ArrayList<LoanHistory>()
                 )
         );
         assertThrows(UnsupportedOperationException.class, ()

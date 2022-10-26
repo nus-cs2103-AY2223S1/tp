@@ -18,6 +18,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Loan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reason;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -179,5 +180,14 @@ public class ParserUtil {
             throw new ParseException(Loan.MESSAGE_CONSTRAINTS);
         }
         return new Loan(trimmedLoan);
+    }
+
+    public static Reason parseReason(String reason) throws ParseException {
+        requireNonNull(reason);
+        String trimmedReason = reason.trim();
+        if (!Reason.isValidReason(reason)) {
+            throw new ParseException(Reason.MESSAGE_CONSTRAINTS);
+        }
+        return new Reason(trimmedReason);
     }
 }

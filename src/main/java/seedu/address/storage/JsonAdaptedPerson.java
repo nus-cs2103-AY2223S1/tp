@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Loan;
+import seedu.address.model.person.LoanHistory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String loan;
+    private final List<JsonAdaptedLoanHistory> history;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,7 +40,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("loan") String loan) {
+            @JsonProperty("loan") String loan, @JsonProperty("history") List<JsonAdaptedLoanHistory> history) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,6 +49,7 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.loan = loan;
+        this.history = history;
     }
 
     /**
@@ -61,6 +64,8 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         loan = String.valueOf(source.getLoan().getAmount());
+        history = source.getHistory().stream().map(JsonAdaptedLoanHistory::new).collect(Collectors.toList());
+
     }
 
 
@@ -80,6 +85,10 @@ class JsonAdaptedPerson {
                 .filter(convertedTags::contains)
                 .collect(Collectors.toSet());
 
+        final List<LoanHistory> modelHistory = new ArrayList<>();
+        for (JsonAdaptedLoanHistory adaptedLoan : history) {
+            modelHistory.add(adaptedLoan.toModelType());
+        }
         // We could really use some abstraction here -- Rui Han
 
         // Name validity check
@@ -128,7 +137,7 @@ class JsonAdaptedPerson {
         }
         final Loan modelLoan = new Loan(loan);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelLoan);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelLoan, modelHistory);
     }
 
 }
