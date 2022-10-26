@@ -12,6 +12,11 @@ public class Prefix {
         this.prefix = prefix;
     }
 
+    /**
+     * Constructs a {@code Prefix} with given prefix and user prompt.
+     * @param prefix Prefix
+     * @param userPrompt User prompt for prefix
+     */
     public Prefix(String prefix, String userPrompt) {
         this.prefix = prefix;
         this.userPrompt = userPrompt;
