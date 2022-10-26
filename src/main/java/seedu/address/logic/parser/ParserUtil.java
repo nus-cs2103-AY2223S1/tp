@@ -25,6 +25,7 @@ import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.timeRange.TimeRange;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -195,6 +196,32 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String classTimeRange} into a {@code TimeRange}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code classDateTime} is invalid.
+     */
+    public static TimeRange parseTimeRange(String classTimeRange) throws ParseException {
+        requireNonNull(classTimeRange);
+        String trimmedTimeRange = classTimeRange.trim();
+        System.out.println("trimmedTimeRange is " + trimmedTimeRange);
+        if (TimeRange.isValidTimeRange(trimmedTimeRange)) {
+            LocalTime startTime = parseTime(trimmedTimeRange.substring(0, 4));
+            LocalTime endTime = parseTime(trimmedTimeRange.substring(5, 9));
+            Integer duration = Integer.valueOf(trimmedTimeRange.substring(10));
+            if (!Class.isValidDuration(startTime, endTime)) {
+                throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
+            }
+            if (!TimeRange.isValidEndTime(startTime, endTime, duration)) {
+                throw new ParseException(TimeRange.INVALID_DURATION_ERROR_MESSAGE);
+            }
+            return new TimeRange(startTime, endTime, duration);
+        } else {
+            throw new ParseException(TimeRange.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Helper method to parse {@code date} as part of {@code parseClass}.
      */
     private static LocalDate parseDate(String date) throws ParseException {
@@ -210,7 +237,7 @@ public class ParserUtil {
     /**
      * Helper method to parse {@code time} as part of {@code parseClass}.
      */
-    private static LocalTime parseTime(String time) throws ParseException {
+    public static LocalTime parseTime(String time) throws ParseException {
         Integer hour = Integer.valueOf(time.substring(0, 2));
         Integer minute = Integer.valueOf(time.substring(2));
         LocalTime result;
