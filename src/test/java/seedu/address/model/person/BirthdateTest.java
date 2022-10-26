@@ -34,6 +34,8 @@ class BirthdateTest {
         assertFalse(Birthdate.isValidBirthdate("10 Jul 2022")); // incorrect date format
         assertFalse(Birthdate.isValidBirthdate("12 12 2007")); // incorrect date format
         assertFalse(Birthdate.isValidBirthdate("2004-11-11")); // incorrect date format
+        assertFalse(Birthdate.isValidBirthdate("01-01-3000")); // incorrect date (after current date)
+        assertFalse(Birthdate.isValidBirthdate("20-12-2095")); // incorrect date (after current date)
 
         // valid birthdate
         assertTrue(Birthdate.isValidBirthdate("01-01-2001"));
