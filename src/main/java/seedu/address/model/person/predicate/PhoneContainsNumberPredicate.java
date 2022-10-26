@@ -6,7 +6,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
 
 /**
- * Tests that a {@code Person}'s {@code Class} matches the phone given.
+ * Tests that a {@code Person}'s {@code Phone} matches the phone given.
  */
 public class PhoneContainsNumberPredicate implements Predicate<Person> {
     private String keyword;

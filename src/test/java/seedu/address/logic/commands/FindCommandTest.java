@@ -79,7 +79,7 @@ public class FindCommandTest {
         // different date -> returns false
         assertFalse(findClassOneCommand.equals(findClassTwoCommand));
 
-        //different phone -> returns false
+        // different phone -> returns false
         assertFalse(findPhoneOneCommand.equals(findPhoneTwoCommand));
     }
 
