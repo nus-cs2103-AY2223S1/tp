@@ -23,7 +23,6 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
      */
     public AbstractAttribute(String typeName, T value, int accessCtrl) {
         requireNonNull(typeName);
-        requireNonNull(value);
 
         this.typeName = typeName;
         this.value = value;
@@ -78,6 +77,9 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
 
     @Override
     public String toString() {
+        if (value == null) {
+            return "";
+        }
         if (isAllFlagMatch(HIDE_TYPE)) {
             return value.toString();
         }

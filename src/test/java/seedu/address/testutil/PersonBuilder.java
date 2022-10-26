@@ -13,6 +13,7 @@ import seedu.address.model.attribute.Phone;
 import seedu.address.model.attribute.Address;
 import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Attribute;
+import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.person.Fields;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -31,7 +32,7 @@ public class PersonBuilder {
     private Name name;
     List<Attribute<?>> attrs;
     private Set<Tag> tags;
-    private Fields fields;
+    private AttributeList fields;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,7 +41,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         attrs = new ArrayList<>();
         tags = new HashSet<>();
-        fields = new Fields();
+        fields = new AttributeList();
     }
 
     /**
@@ -126,10 +127,9 @@ public class PersonBuilder {
      * Sets the {@code Fields} of the {@code Person} that we are building.
      */
     public PersonBuilder withFields(String... fieldNames) {
-        fields = new Fields();
+        fields = new AttributeList();
         for (String fieldName : fieldNames) {
-            Field field = new Field(fieldName);
-            fields.addField(field);
+            fields.addAttribute(fieldName);
         }
         return this;
     }
@@ -137,7 +137,7 @@ public class PersonBuilder {
     public Person build() {
         Person p = new Person(name.fullName, fields);
         p.setTags(tags);
-        attrs.forEach(attr -> p.addAttribute(attr));
+        attrs.forEach(p::addAttribute);
         return p;
     }
 

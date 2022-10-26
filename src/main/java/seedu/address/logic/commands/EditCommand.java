@@ -20,10 +20,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attribute.Address;
+import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
-import seedu.address.model.person.Fields;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -102,7 +102,7 @@ public class EditCommand extends Command {
         // Address updatedAddress =
         // editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Fields updatedFields = editPersonDescriptor.getFields().orElse(personToEdit.getFields());
+        AttributeList updatedFields = editPersonDescriptor.getFields().orElse(personToEdit.getFields());
 
         // return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
         // updatedTags, updatedFields);
@@ -140,7 +140,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-        private Fields fields;
+        private AttributeList fields;
 
         public EditPersonDescriptor() {
         }
@@ -197,11 +197,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setFields(Fields fields) {
+        public void setFields(AttributeList fields) {
             this.fields = fields;
         }
 
-        public Optional<Fields> getFields() {
+        public Optional<AttributeList> getFields() {
             return Optional.ofNullable(fields);
         }
 

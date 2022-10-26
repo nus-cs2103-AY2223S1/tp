@@ -55,8 +55,8 @@ public class PersonCard extends UiPart<Region> {
                 .filter(attr -> attr.isDisplayable())
                 .forEach(attr -> parentContainer.getChildren().add(attr.getJavaFxRepresentation()));
         person.getFields().toList().stream()
-                .sorted(Comparator.comparing(field -> field.name))
-                .forEach(field -> fields.getChildren().add(new Label(field.toStringDisplay())));
+                .sorted(Comparator.comparing(field -> field.getAttributeType()))
+                .forEach(field -> fields.getChildren().add(new Label(field.toString())));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

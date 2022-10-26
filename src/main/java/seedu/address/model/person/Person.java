@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.item.AbstractSingleItem;
@@ -22,7 +23,7 @@ import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 public class Person extends AbstractDisplayItem {
 
     private Set<AbstractSingleItem> parents = new HashSet<>();
-    private Fields fields = new Fields();
+    private AttributeList fields = new AttributeList();
 
     /**
      * Every field must be present and not null.
@@ -35,7 +36,7 @@ public class Person extends AbstractDisplayItem {
     /**
      * Every field must be present and not null.
      */
-    public Person(String name, Fields fields) {
+    public Person(String name, AttributeList fields) {
         super(name, PERSON, GROUP);
         requireAllNonNull(name, fields);
         this.fields = fields;
@@ -50,7 +51,7 @@ public class Person extends AbstractDisplayItem {
      *
      * @return the Fields instance of the Person.
      */
-    public Fields getFields() {
+    public AttributeList getFields() {
         return fields;
     }
 
@@ -60,7 +61,7 @@ public class Person extends AbstractDisplayItem {
      * @param fieldName the field name to be added.
      */
     public void addField(String fieldName) {
-        fields.addField(fieldName);
+        fields.addAttribute(fieldName);
     }
 
     /**
