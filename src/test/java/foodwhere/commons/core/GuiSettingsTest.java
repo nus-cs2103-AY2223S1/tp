@@ -1,12 +1,12 @@
 package foodwhere.commons.core;
 
-import org.junit.jupiter.api.Test;
-
-import java.awt.*;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.awt.Point;
+
+import org.junit.jupiter.api.Test;
 
 public class GuiSettingsTest {
 
