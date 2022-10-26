@@ -2,6 +2,8 @@ package tracko.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import tracko.model.item.Description;
 import tracko.model.item.Item;
@@ -98,8 +100,9 @@ public class ItemBuilder {
     /**
      * Sets the {@code Tag}s of the {@code Item} that we are building.
      */
-    public ItemBuilder withTags(Set<Tag> tags) {
-        this.tags = tags;
+    public ItemBuilder withTags(String... tags) {
+        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        this.tags = tagSet;
         return this;
     }
 
