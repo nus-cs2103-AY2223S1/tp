@@ -22,7 +22,7 @@ public class ExportTuitionClassCsv {
     public void readJson() throws IOException {
         JsonNode jsonTree = new ObjectMapper().readTree(new File(this.filePath.toUri()));
         CsvMapper csvMapper = new CsvMapper();
-        SequenceWriter seqW = csvMapper.writer().writeValues(new File("tuitionClassCsvConvertor.csv"));
+        SequenceWriter seqW = csvMapper.writer().writeValues(new File("data/tuitionClasses.csv"));
         seqW.write(Arrays.asList("name", "subject", "level", "day", "startTime", "endTime", "tagged"));
 
 
