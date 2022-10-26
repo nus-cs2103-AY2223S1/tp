@@ -39,14 +39,11 @@ public class CommandBox extends UiPart<Region> {
 
     private void displayHistory(KeyEvent e, ResultDisplay resultDisplay) {
         switch (e.getCode()) {
-        case LEFT:
+        case CONTROL:
             if (!isHistoryDisplayed) {
                 resultDisplay.setFeedbackToUser(commandHistory.getHistoryString());
                 isHistoryDisplayed = true;
-            }
-            break;
-        case RIGHT:
-            if (isHistoryDisplayed) {
+            } else {
                 resultDisplay.setFeedbackToUser("");
                 isHistoryDisplayed = false;
             }

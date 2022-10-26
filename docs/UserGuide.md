@@ -363,11 +363,12 @@ Examples:
 Shows the most recent 10 commands that was inputted.
 Allows cycling through those commands to reduce the need of retyping similar commands fully.
 
+Every new input will reset the index back to the most recent command.
+
 Controls: 
 * `Up Arrow` : Cycle to next command
 * `Down Arrow`: Cycle to previous command
-* `Left Arrow`: Display History of commands
-* `Right Arrow`: Close History
+* `Control`: Toggle history
 
 #### Exiting the program : `exit`
 
