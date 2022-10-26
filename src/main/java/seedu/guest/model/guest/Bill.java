@@ -8,6 +8,7 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidBill(String)}
  */
 public class Bill {
+
     public static final String MESSAGE_CONSTRAINTS =
             "Bills should only contain numerical digits, one decimal point (.), and one leading plus (+) or minus (-) "
                     + "sign.\n"
