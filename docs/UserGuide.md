@@ -340,6 +340,10 @@ Finds an existing student in the list. You can only find by one field at a time.
 - Class Date `dt/`
 - Tag `t/`
 
+```yaml
+Note: Only one field can be searched at once.
+```
+
 #### Find by Name:
 
 Finds all students with names matching the keywords.
@@ -483,7 +487,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Edit a student               | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] `e.g., edit 2 p/98765431` |
 | Get help                     | `help`                                                                                                                                                                                                                            |
 | List all students            | `list`                                                                                                                                                                                                                            |
-| Find a student               | find n/NAME `e.g., find n/John Doe` or other supported tags                                                                                                                                                                       |
+| Find a student               | find n/NAME `e.g., find n/John Doe` or other supported fields                                                                                                                                                                     |
 | Mark a student               | mark INDEX-s `e.g., mark 2`                                                                                                                                                                                                       |
 | Receive money from a student | pay INDEX-s AMOUNT_PAID `e.g., pay 2 300`                                                                                                                                                                                         |
 | Delete a student             | delete INDEX `e.g., delete 2`                                                                                                                                                                                                     |
