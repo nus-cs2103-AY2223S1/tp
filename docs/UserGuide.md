@@ -14,8 +14,11 @@ FindMyIntern helps students who are applying for internships keep track of their
     - [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
     - [Filtering for internship applications of a specified status: `filter`](#filtering-for-internship-applications-of-a-specified-status-filter)
     - [Finding for an internship application: `find`](#finding-for-internship-applications-or-tags-find)
+    - [Sorting the internship applications: `sort`](#sorting-the-list-of-internship-applications-sort)
     - [Exiting the program: `exit`](#exiting-the-program-exit)
     - [Saving the data](#saving-the-data)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,15 +26,15 @@ FindMyIntern helps students who are applying for internships keep track of their
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `findmyintern.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-1/tp/releases).
+2. Download the latest `findmyintern.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your FindMyIntern.
+3. Copy the file to the folder you want to use as the _home folder_ for your FindMyIntern.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
    <img src="images/Ui.png" width="600" />
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all internship applications.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all internship applications.<br>
    Some example commands you can try:
 
    * **`add c/Apple l/https://jobs.apple.com/en-sg d/Software Engineering Internship a/11/10/2022`** :
@@ -46,10 +49,12 @@ FindMyIntern helps students who are applying for internships keep track of their
    * **`find shopee`** : Finds an internship application called Shopee in the tracker.
    
    * **`filter rejected`** : Filters the tracker for internship applications with rejected status.
-
+   
+   * **`sort applied`** : Sorts the internship applications by applied date.
+    
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -236,6 +241,16 @@ Examples:
 
 <img src="images/findGoogleBackendResult.png" width="600" />
 
+### Sorting the list of internship applications: `sort`
+
+Sorts the internship applications in a reverse chronological order by applied date or interview date.
+
+Format: `sort [CRITERIA]`
+
+Examples:
+* `sort applied` will display the internship applications according to applied date
+* `sort interview` will display the internship applications according to interview date
+
 ### Exiting the program: `exit`
 
 Exits the program.
@@ -267,4 +282,5 @@ Action | Format, Examples
 **Delete** | `delete INDEX` <br> e.g., `delete 4`
 **Filter** | `filter APPLICATION_STATUS` <br> e.g., `filter accepted`
 **Find** | `find KEYWORD [MORE_KEYWORDS]…`<br> e.g., `find google`
+**Sort** | `sort [CRITERIA]`<br> e.g., `sort applied`
 **Exit** | `exit`
