@@ -1,6 +1,7 @@
 package swift.model.util;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -13,6 +14,10 @@ import swift.model.person.Person;
 import swift.model.person.PersonName;
 import swift.model.person.Phone;
 import swift.model.tag.Tag;
+import swift.model.task.Deadline;
+import swift.model.task.Description;
+import swift.model.task.Task;
+import swift.model.task.TaskName;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -23,27 +28,48 @@ public class SampleDataUtil {
             new Person(UUID.fromString("6517916e-80c0-40e1-ac13-7cb870f57d80"),
                 new PersonName("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
+                getTagSet("clients")),
             new Person(UUID.fromString("049fb6e6-7e43-4075-a1e3-faad028faa0f"),
                 new PersonName("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("developers")),
             new Person(UUID.fromString("5f3f93b9-d839-4d5c-b197-9f3e53ebbb71"),
                 new PersonName("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
+                getTagSet("developers")),
             new Person(UUID.fromString("f2d431ed-1793-4761-9121-3652441e0ea2"),
                 new PersonName("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
+                getTagSet("clients")),
             new Person(UUID.fromString("98245b81-7d46-4834-b557-ed2f720110e8"),
                 new PersonName("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
+                getTagSet("clients")),
             new Person(UUID.fromString("1c6513a5-f530-4995-88ba-c9a7eb77d81c"),
                 new PersonName("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                getTagSet("designers"))
+        };
+    }
+
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+                new Task(UUID.fromString("6517916e-80c0-40e1-ac13-7cb870f57d80"),
+                        new TaskName("Discuss user requirements"),
+                        Optional.of(new Description("Draw diagrams")),
+                        Optional.of(new Deadline("12-12-2022 1400"))),
+                new Task(UUID.fromString("049fb6e6-7e43-4075-a1e3-faad028faa0f"),
+                        new TaskName("Update developer guide"),
+                        Optional.of(new Description("Include UML diagram")),
+                        Optional.of(new Deadline("14-12-2022 1400"))),
+                new Task(UUID.fromString("049fb6e6-7e43-4075-a1e3-faad028faa0f"),
+                        new TaskName("Review PR"),
+                        Optional.empty(),
+                        Optional.of(new Deadline("14-12-2022 1800"))),
+                new Task(UUID.fromString("f2d431ed-1793-4761-9121-3652441e0ea2"),
+                        new TaskName("Brainstorm user stories"),
+                        Optional.of(new Description("Meeting link: https://www.meeting.com")),
+                        Optional.of(new Deadline("14-12-2022 1800"))),
         };
     }
 
@@ -51,6 +77,9 @@ public class SampleDataUtil {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Task sampleTask : getSampleTasks()) {
+            sampleAb.addTask(sampleTask);
         }
         return sampleAb;
     }
@@ -63,5 +92,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
