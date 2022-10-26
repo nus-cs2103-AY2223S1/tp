@@ -119,6 +119,12 @@
     -fx-text-fill: #144073;
 }
 
+.cell_session_label {
+    -fx-font-family: "Impact";
+    -fx-font-size: 16px;
+    -fx-text-fill: #7d6b49;
+}
+
 .cell_small_label {
     -fx-font-family: "Impact";
     -fx-font-size: 13px;
