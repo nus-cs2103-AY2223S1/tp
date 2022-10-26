@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.stream.Stream;
 
@@ -26,10 +25,10 @@ public class ListClientCommandParser {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PRODUCT);
 
         if (!arePrefixesPresent(argumentMultimap, PREFIX_PRODUCT)) {
-            return new ListClientCommand(PREDICATE_SHOW_ALL_CLIENTS);
+            return new ListClientCommand();
         } else {
             Product product = ParserUtil.parseProduct(argumentMultimap.getValue(PREFIX_PRODUCT).get());
-            return new ListClientCommand(client -> client.hasProduct(product));
+            return new ListClientCommand(product);
         }
     }
 

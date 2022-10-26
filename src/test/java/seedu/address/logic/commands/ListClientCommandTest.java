@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.address.testutil.TypicalClients.getTypicalMyInsuRec;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ELEMENT;
 
@@ -29,14 +28,14 @@ public class ListClientCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListClientCommand(PREDICATE_SHOW_ALL_CLIENTS),
+        assertCommandSuccess(new ListClientCommand(),
                 model, ListClientCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showClientAtIndex(model, INDEX_FIRST_ELEMENT);
-        assertCommandSuccess(new ListClientCommand(PREDICATE_SHOW_ALL_CLIENTS),
+        assertCommandSuccess(new ListClientCommand(),
                 model, ListClientCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
