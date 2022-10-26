@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 import static seedu.intrack.testutil.Assert.assertThrows;
-import static seedu.intrack.testutil.TypicalInternships.ALICE;
-import static seedu.intrack.testutil.TypicalInternships.BENSON;
-import static seedu.intrack.testutil.TypicalInternships.ELLE;
+import static seedu.intrack.testutil.TypicalInternships.GOOG;
+import static seedu.intrack.testutil.TypicalInternships.META;
+import static seedu.intrack.testutil.TypicalInternships.SSNLF;
 import static seedu.intrack.testutil.TypicalInternships.MSFT;
 
 import java.util.Arrays;
@@ -32,21 +32,21 @@ public class UniqueInternshipListTest {
 
     @Test
     public void contains_internshipNotInList_returnsFalse() {
-        assertFalse(uniqueInternshipList.contains(ALICE));
+        assertFalse(uniqueInternshipList.contains(GOOG));
     }
 
     @Test
     public void contains_internshipInList_returnsTrue() {
-        uniqueInternshipList.add(ALICE);
-        assertTrue(uniqueInternshipList.contains(ALICE));
+        uniqueInternshipList.add(GOOG);
+        assertTrue(uniqueInternshipList.contains(GOOG));
     }
 
     @Test
     public void contains_internshipWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueInternshipList.add(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT)
+        uniqueInternshipList.add(GOOG);
+        Internship editedGoogle = new InternshipBuilder(GOOG).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT)
                 .build();
-        assertTrue(uniqueInternshipList.contains(editedAlice));
+        assertTrue(uniqueInternshipList.contains(editedGoogle));
     }
 
     @Test
@@ -56,49 +56,49 @@ public class UniqueInternshipListTest {
 
     @Test
     public void add_duplicateInternship_throwsDuplicateInternshipException() {
-        uniqueInternshipList.add(ALICE);
-        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.add(ALICE));
+        uniqueInternshipList.add(GOOG);
+        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.add(GOOG));
     }
 
     @Test
     public void setInternship_nullTargetInternship_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueInternshipList.setInternship(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueInternshipList.setInternship(null, GOOG));
     }
 
     @Test
     public void setInternship_nullEditedInternship_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueInternshipList.setInternship(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueInternshipList.setInternship(GOOG, null));
     }
 
     @Test
     public void setInternship_targetInternshipNotInList_throwsInternshipNotFoundException() {
-        assertThrows(InternshipNotFoundException.class, () -> uniqueInternshipList.setInternship(ALICE, ALICE));
+        assertThrows(InternshipNotFoundException.class, () -> uniqueInternshipList.setInternship(GOOG, GOOG));
     }
 
     @Test
     public void setInternship_editedInternshipIsSameInternship_success() {
-        uniqueInternshipList.add(ALICE);
-        uniqueInternshipList.setInternship(ALICE, ALICE);
+        uniqueInternshipList.add(GOOG);
+        uniqueInternshipList.setInternship(GOOG, GOOG);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
-        expectedUniqueInternshipList.add(ALICE);
+        expectedUniqueInternshipList.add(GOOG);
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
     public void setInternship_editedInternshipHasSameIdentity_success() {
-        uniqueInternshipList.add(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT)
+        uniqueInternshipList.add(GOOG);
+        Internship editedGoogle = new InternshipBuilder(GOOG).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT)
                 .build();
-        uniqueInternshipList.setInternship(ALICE, editedAlice);
+        uniqueInternshipList.setInternship(GOOG, editedGoogle);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
-        expectedUniqueInternshipList.add(editedAlice);
+        expectedUniqueInternshipList.add(editedGoogle);
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
     public void setInternship_editedInternshipHasDifferentIdentity_success() {
-        uniqueInternshipList.add(ALICE);
-        uniqueInternshipList.setInternship(ALICE, MSFT);
+        uniqueInternshipList.add(GOOG);
+        uniqueInternshipList.setInternship(GOOG, MSFT);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
         expectedUniqueInternshipList.add(MSFT);
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
@@ -106,9 +106,9 @@ public class UniqueInternshipListTest {
 
     @Test
     public void setInternship_editedInternshipHasNonUniqueIdentity_throwsDuplicateInternshipException() {
-        uniqueInternshipList.add(ALICE);
+        uniqueInternshipList.add(GOOG);
         uniqueInternshipList.add(MSFT);
-        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.setInternship(ALICE, MSFT));
+        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.setInternship(GOOG, MSFT));
     }
 
     @Test
@@ -118,13 +118,13 @@ public class UniqueInternshipListTest {
 
     @Test
     public void remove_internshipDoesNotExist_throwsInternshipNotFoundException() {
-        assertThrows(InternshipNotFoundException.class, () -> uniqueInternshipList.remove(ALICE));
+        assertThrows(InternshipNotFoundException.class, () -> uniqueInternshipList.remove(GOOG));
     }
 
     @Test
     public void remove_existingInternship_removesInternship() {
-        uniqueInternshipList.add(ALICE);
-        uniqueInternshipList.remove(ALICE);
+        uniqueInternshipList.add(GOOG);
+        uniqueInternshipList.remove(GOOG);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
@@ -137,7 +137,7 @@ public class UniqueInternshipListTest {
 
     @Test
     public void setInternships_uniqueInternshipList_replacesOwnListWithProvidedUniqueInternshipList() {
-        uniqueInternshipList.add(ALICE);
+        uniqueInternshipList.add(GOOG);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
         expectedUniqueInternshipList.add(MSFT);
         uniqueInternshipList.setInternships(expectedUniqueInternshipList);
@@ -151,7 +151,7 @@ public class UniqueInternshipListTest {
 
     @Test
     public void setInternships_list_replacesOwnListWithProvidedList() {
-        uniqueInternshipList.add(ALICE);
+        uniqueInternshipList.add(GOOG);
         List<Internship> internshipList = Collections.singletonList(MSFT);
         uniqueInternshipList.setInternships(internshipList);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
@@ -161,7 +161,7 @@ public class UniqueInternshipListTest {
 
     @Test
     public void setInternships_listWithDuplicateInternships_throwsDuplicateInternshipException() {
-        List<Internship> listWithDuplicateInternships = Arrays.asList(ALICE, ALICE);
+        List<Internship> listWithDuplicateInternships = Arrays.asList(GOOG, GOOG);
         assertThrows(DuplicateInternshipException.class, ()
                 -> uniqueInternshipList.setInternships(listWithDuplicateInternships));
     }
@@ -175,24 +175,24 @@ public class UniqueInternshipListTest {
     @Test
     public void sortInternshipsAscending_list() {
         //proper order should be A, B ,E in ascending order
-        uniqueInternshipList.add(ALICE);
-        uniqueInternshipList.add(ELLE);
-        uniqueInternshipList.add(BENSON);
+        uniqueInternshipList.add(GOOG);
+        uniqueInternshipList.add(SSNLF);
+        uniqueInternshipList.add(META);
         uniqueInternshipList.dateSortAscending();
-        assertTrue(uniqueInternshipList.contains(ALICE));
-        assertTrue(uniqueInternshipList.contains(BENSON));
-        assertTrue(uniqueInternshipList.contains(ELLE));
+        assertTrue(uniqueInternshipList.contains(GOOG));
+        assertTrue(uniqueInternshipList.contains(META));
+        assertTrue(uniqueInternshipList.contains(SSNLF));
     }
 
     @Test
     public void sortInternshipsDescending_list() {
         //proper order should be A, B ,E in ascending order
-        uniqueInternshipList.add(ALICE);
-        uniqueInternshipList.add(ELLE);
-        uniqueInternshipList.add(BENSON);
+        uniqueInternshipList.add(GOOG);
+        uniqueInternshipList.add(SSNLF);
+        uniqueInternshipList.add(META);
         uniqueInternshipList.dateSortDescending();
-        assertTrue(uniqueInternshipList.contains(ALICE));
-        assertTrue(uniqueInternshipList.contains(BENSON));
-        assertTrue(uniqueInternshipList.contains(ELLE));
+        assertTrue(uniqueInternshipList.contains(GOOG));
+        assertTrue(uniqueInternshipList.contains(META));
+        assertTrue(uniqueInternshipList.contains(SSNLF));
     }
 }
