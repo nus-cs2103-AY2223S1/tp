@@ -38,17 +38,7 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
-    @FXML
-    private FlowPane tags;
-    @FXML
-    private VBox vbox;
-    @FXML
-    private VBox meetingsBox;
-    @FXML
-    private Label numMeetings;
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
@@ -56,26 +46,16 @@ public class ClientCard extends UiPart<Region> {
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
-        id.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + "");
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
-        address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
-        client.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        if (client.hasMeeting()) {
-            List<Meeting> clientMeetings = client.getMeetings();
-            numMeetings.setText(Integer.toString(clientMeetings.size()));
-            for (Meeting meeting : clientMeetings) {
-                String meetingSummary = String.format("•  %s, %s - %s", meeting.getMeetingDate(),
-                        meeting.getMeetingTime(), meeting.getDescription());
-                Label label = new Label(meetingSummary);
-                label.getStyleClass().add("cell_small_label");
-                meetingsBox.getChildren().add(label);
-            }
-        } else {
-            meetingsBox.getChildren().clear();
+        List<Meeting> clientMeetings = client.getMeetings();
+        for (Meeting meeting : clientMeetings) {
+            String meetingSummary = String.format("•  %s, %s - %s", meeting.getMeetingDate(),
+                    meeting.getMeetingTime(), meeting.getDescription());
+            Label label = new Label(meetingSummary);
+            label.getStyleClass().add("cell_small_label");
         }
     }
 

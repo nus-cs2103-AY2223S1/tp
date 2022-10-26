@@ -2,85 +2,31 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane prefHeight="0.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0" prefWidth="150" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="150.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="150.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="150.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="150.0" />
     </columnConstraints>
-    <VBox fx:id="vbox" alignment="CENTER_LEFT" minHeight="105" spacing="3.0" GridPane.columnIndex="0">
-      <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
-      </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-      </HBox>
-      <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
-            <graphic>
-               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../images/phone.png" />
-                  </image>
-               </ImageView>
-            </graphic></Label>
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email">
-            <graphic>
-               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../images/email.png" />
-                  </image>
-               </ImageView>
-            </graphic></Label>
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address">
-            <graphic>
-               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../images/location.png" />
-                  </image>
-               </ImageView>
-            </graphic></Label>
-         <VBox fx:id="meetingsBox">
-            <children>
-               <HBox>
-                  <children>
-                     <Label styleClass="cell_meeting_label" text="Meetings">
-                        <padding>
-                           <Insets top="10.0" />
-                        </padding>
-                        <graphic>
-                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../images/account-multiple.png" />
-                              </image>
-                           </ImageView>
-                        </graphic>
-                     </Label>
-                     <Label fx:id="numMeetings" styleClass="cell_num_meeting_label" text="\$numMeetings">
-                        <padding>
-                           <Insets left="5.0" top="10.0" />
-                        </padding>
-                     </Label>
-                  </children>
-               </HBox>
-            </children>
-         </VBox>
-    </VBox>
+  <Label fx:id="id" styleClass="cell_big_label" text="\$id">
+    <minWidth>
+      <!-- Ensures that the label text is never truncated -->
+      <Region fx:constant="USE_PREF_SIZE" />
+    </minWidth>
+  </Label>
+  <Label fx:id="name" styleClass="cell_big_label" text="\$name" GridPane.columnIndex="1" />
+   <Label fx:id="phone" styleClass="cell_big_label" text="\$phone" GridPane.columnIndex="2" />
+   <Label fx:id="email" styleClass="cell_big_label" text="\$email" GridPane.columnIndex="3" />
+      <Label fx:id="purchase" styleClass="cell_big_label" text="\$purchase" GridPane.columnIndex="4" />
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>
