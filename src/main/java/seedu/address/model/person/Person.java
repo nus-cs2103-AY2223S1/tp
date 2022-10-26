@@ -21,6 +21,7 @@ public class Person implements seedu.address.model.DeepCopyable {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Birthday birthday;
 
     // Data fields
     private final Address address;
@@ -31,12 +32,13 @@ public class Person implements seedu.address.model.DeepCopyable {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Loan loan, List<LoanHistory> history) {
-        requireAllNonNull(name, phone, email, address, tags, loan, history);
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags, Loan loan, List<LoanHistory> history) {
+        requireAllNonNull(name, phone, email, address, tags, loan, birthday, history);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         this.tags.addAll(tags);
         this.loan = loan;
         this.history = history;
@@ -58,6 +60,9 @@ public class Person implements seedu.address.model.DeepCopyable {
         return address;
     }
 
+    public Birthday getBirthday() {
+        return birthday;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -106,6 +111,7 @@ public class Person implements seedu.address.model.DeepCopyable {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getBirthday().equals(getBirthday())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getLoan().equals(getLoan());
     }
@@ -113,7 +119,7 @@ public class Person implements seedu.address.model.DeepCopyable {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, loan);
+        return Objects.hash(name, phone, email, address, birthday, tags, loan);
     }
 
     @Override
@@ -126,6 +132,8 @@ public class Person implements seedu.address.model.DeepCopyable {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Birthday: ")
+                .append((getBirthday()))
                 .append("; Owed amount: ")
                 .append(getLoan());
 
@@ -151,6 +159,7 @@ public class Person implements seedu.address.model.DeepCopyable {
                 getPhone().deepCopy(),
                 getEmail().deepCopy(),
                 getAddress().deepCopy(),
+                getBirthday().deepCopy(),
                 getTags().stream().map(Tag::shallowCopy).collect(Collectors.toSet()),
                 getLoan().deepCopy(),
                 getHistory().stream().map(LoanHistory::shallowCopy).collect(Collectors.toList()));
