@@ -26,6 +26,7 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
+
    * **`listTasks`** : Lists all tasks in tasklist.
 
    * **`editTask`**`2 c/frontend pe/charlotte@example.com` : Adds a task `coding assignment` to the task list.
@@ -165,22 +166,24 @@ HackAssist data are saved in the hard disk automatically after any command that 
 HackASsist data are saved as a JSON file `[JAR file location]/data/HackAssist.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, HackASsist will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
-### Adding a task: `Add Task`
+### Adding a task: `addTask`
 
 Adds a task to the tasklist.
 
 Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED`
 
 Examples:
+
 * `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` add Fix toggle to the task list
 * `addTask n/Fix routing 3  d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/John@example.com` add Fix routing to the task list
+
 
 ### Deleting a task: `Delete Task`
 
@@ -202,6 +205,7 @@ Format: `listTasks`
 
 ### Editing a Task : edit
 
+
 Edits an existing task in the tasklist.
 
 Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]`
@@ -214,7 +218,6 @@ Examples:
 *  `edit 1 n/Create UI pr/high` Edits the name and priority of the 1st task to be Create UI and HIGH respectively.
 *  `edit 2 c/frontend pe/charlotte@example.com` Edits the category of the 2nd task to be frontend and assign the task to new person(charlotte).
 
---------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
@@ -238,4 +241,6 @@ Action | Format, Examples
 **Edit Task** | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`
 **deleteTask** | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`
 **list Tasks** | `listTasks`
+
+
 
