@@ -13,6 +13,7 @@ public class Debt {
     private final Money money;
     private final DebtDate date;
     private final DebtTime time;
+    private final boolean isPaid;
 
     /**
      * Every field must be present and not null.
@@ -28,6 +29,25 @@ public class Debt {
         this.money = money;
         this.date = date;
         this.time = time;
+        this.isPaid = false;
+    }
+
+    /**
+     * Every field must be present and not null.
+     *
+     * @param description The description of the debt.
+     * @param money The money amount of the debt.
+     * @param date The date of the debt.
+     * @param time The time of the debt.
+     * @param isPaid Whether the debt has been paid.
+     */
+    public Debt(Description description, Money money, DebtDate date, DebtTime time, boolean isPaid) {
+        requireAllNonNull(description, money, date, time, isPaid);
+        this.description = description;
+        this.money = money;
+        this.date = date;
+        this.time = time;
+        this.isPaid = isPaid;
     }
 
     public Description getDescription() {
@@ -44,6 +64,14 @@ public class Debt {
 
     public DebtTime getTime() {
         return time;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public Debt setPaid(boolean isPaid) {
+        return new Debt(description, money, date, time, isPaid);
     }
 
     /**
@@ -68,7 +96,7 @@ public class Debt {
      * @return Debt that is a copy of this debt.
      */
     public Debt copyDebt() {
-        return new Debt(description, money, date, time);
+        return new Debt(description, money, date, time, isPaid);
     }
 
     /**
@@ -108,7 +136,8 @@ public class Debt {
                 .append(": ")
                 .append(getDescription())
                 .append("; $")
-                .append(getMoney());
+                .append(getMoney())
+                .append(isPaid() ? " (paid)" : " (unpaid)");
 
         return builder.toString();
     }

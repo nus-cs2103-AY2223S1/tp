@@ -1,6 +1,7 @@
 package paymelah.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import paymelah.commons.exceptions.IllegalValueException;
@@ -13,10 +14,12 @@ import paymelah.model.debt.Money;
 /**
  * Jackson-friendly version of {@link Debt}.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 class JsonAdaptedDebt {
 
     private final String description;
     private final String money;
+    private final boolean isPaid;
     private final String date;
     private final String time;
 
@@ -25,11 +28,13 @@ class JsonAdaptedDebt {
      */
     @JsonCreator
     public JsonAdaptedDebt(@JsonProperty("description") String description, @JsonProperty("money") String money,
-                           @JsonProperty("date") String date, @JsonProperty("time") String time) {
+            @JsonProperty("date") String date, @JsonProperty("time") String time,
+            @JsonProperty("isPaid") boolean isPaid) {
         this.description = description;
         this.money = money;
         this.date = date;
         this.time = time;
+        this.isPaid = isPaid;
     }
 
     /**
@@ -40,6 +45,7 @@ class JsonAdaptedDebt {
         money = source.getMoney().toString();
         date = source.getDate().toString();
         time = source.getTime().toString();
+        isPaid = source.isPaid();
     }
 
     public String getDebtDescription() {
@@ -56,6 +62,10 @@ class JsonAdaptedDebt {
 
     public String getDebtTime() {
         return time;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
     }
 
     /**
@@ -77,6 +87,6 @@ class JsonAdaptedDebt {
             throw new IllegalValueException(DebtTime.MESSAGE_CONSTRAINTS);
         }
 
-        return new Debt(new Description(description), new Money(money), new DebtDate(date), new DebtTime(time));
+        return new Debt(new Description(description), new Money(money), new DebtDate(date), new DebtTime(time), isPaid);
     }
 }
