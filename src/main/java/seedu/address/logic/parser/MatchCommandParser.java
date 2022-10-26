@@ -1,14 +1,13 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddOrderCommand;
-import seedu.address.logic.commands.MatchCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.MatchCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input to construct a MatchCommand object.

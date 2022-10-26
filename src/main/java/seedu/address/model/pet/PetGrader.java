@@ -1,10 +1,10 @@
 package seedu.address.model.pet;
 
-import seedu.address.model.order.Order;
-import seedu.address.model.order.PriceRange;
-
 import static seedu.address.model.order.PriceRange.LOWER_THAN_RANGE;
 import static seedu.address.model.order.PriceRange.WITHIN_RANGE;
+
+import seedu.address.model.order.Order;
+import seedu.address.model.order.PriceRange;
 
 /**
  * Grades how fit a pet is given an order.
