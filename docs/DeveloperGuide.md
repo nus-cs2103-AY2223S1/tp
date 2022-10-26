@@ -8,7 +8,8 @@ layout: page title: Developer Guide
 
 ## **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
+  original source as well}
 
 ---
 
@@ -22,7 +23,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
+the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
+diagrams.
 
 </div>
 
@@ -36,7 +40,10 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes
+called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -52,16 +59,21 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues
+the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
 - defines its _API_ in an `interface` with the same name as the Component.
-- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
+  API `interface` mentioned in the previous point).
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
+the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
+through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
+implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -69,13 +81,20 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified
+in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
+, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of
+the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified
+in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +105,8 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**
+API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -95,11 +115,13 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+   executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
+call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -112,21 +134,30 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
+  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
+  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
+  a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
+  interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**
+API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 The `Model` component,
 
 - stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+  this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
+  a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
+  should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -136,15 +167,19 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 
-- can save both address book data and user preference data in json format, and read them back into corresponding objects.
-- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+- can save both address book data and user preference data in json format, and read them back into corresponding
+  objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+  the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
+  that belong to the `Model`)
 
 ### Common classes
 
@@ -170,7 +205,8 @@ Precondition: Team name is valid (it cannot be empty or begin with a space)
 1. User keys in the add team command with the name of the team to be added (e.g. `add_team CS2103`)
 2. A team is created added to the team list.
 
-If the team name provided is invalid, an appropriate exception will be thrown and the respective error message will be shown to the user.
+If the team name provided is invalid, an appropriate exception will be thrown and the respective error message will be
+shown to the user.
 
 The following activity diagram summarises the action taken when the `AddTeamCommand` is executed.
 ![AddTeamActivityDiagram](images/AddTeamActivityDiagram.png)
@@ -179,14 +215,16 @@ The following activity diagram summarises the action taken when the `AddTeamComm
 
 #### Implementation
 
-The `add task` feature allows users to add a specific task to their team's task list. The following is an example of how a task is added:
+The `add task` feature allows users to add a specific task to their team's task list. The following is an example of how
+a task is added:
 
 Precondition: Task name is valid (it cannot be empty or begin with a space).
 
 1. User keys in the add task command with the name of the task to be added (e.g. `add_task Complete Resume`)
 2. A task is created and added to the current team's task list.
 
-If the task name provided is invalid, an appropriate exception will be thrown and the respective error message will be shown to the user.
+If the task name provided is invalid, an appropriate exception will be thrown and the respective error message will be
+shown to the user.
 
 The following activity diagram summarises the action taken when `AddTaskCommand` is executed:
 ![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
@@ -195,12 +233,15 @@ _Activity diagram of adding a task_
 
 #### Design considerations:
 
-- **Alternative 1**: Store a global list of tasks and each task keeps track of which team it was created for through an attribute.
+- **Alternative 1**: Store a global list of tasks and each task keeps track of which team it was created for through an
+  attribute.
     - Pros: A single list of tasks makes it easier to list all the tasks associated with all teams.
     - Cons: Does not accurately model how teams actually work in terms of task distribution.
 - **Alternative 2**: Each team stores a list of tasks that are associated with it.
-    - Pros: Better modularisation since a team contains all the information related to itelf, including the tasks associated with it.
-    - Cons: It is slightly more complicated to find the list of all tasks associated with a person if the person belongs to multiple teams since there multiple task lists.
+    - Pros: Better modularisation since a team contains all the information related to itelf, including the tasks
+      associated with it.
+    - Cons: It is slightly more complicated to find the list of all tasks associated with a person if the person belongs
+      to multiple teams since there multiple task lists.
 
 We decided to use alternative 2 because it scales better as the number of teams increase.
 
@@ -231,7 +272,8 @@ The following activity diagram summarizes the action taken when `MarkCommand` is
 
 _Activity diagram of marking task as done_
 
-In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `MarkCommandParser` parses the index of the task in the user input, and generates a `MarkCommand` object. `LogicManager` then executes the
+In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `MarkCommandParser` parses the
+index of the task in the user input, and generates a `MarkCommand` object. `LogicManager` then executes the
 `MarkCommand` object, which sets which task in the team is to be set as done in the `Model` component. A
 `CommandResult` is generated with `isCompleted` boolean value being true.
 
@@ -268,7 +310,8 @@ The following activity diagram summarizes the action taken when the `AddMemberCo
 _Activity diagram of adding member to team_
 
 In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `AddMemberCommandParser`
-parses the index of the person in the user input, and generates a `AddMemberCommand` object. `LogicManager` then executes the `AddMemberCommand` object, which adds the person to the current team in the `Model` component. A
+parses the index of the person in the user input, and generates a `AddMemberCommand` object. `LogicManager` then
+executes the `AddMemberCommand` object, which adds the person to the current team in the `Model` component. A
 `CommandResult` is generated with a message indicating the person being added to the team.
 
 ### List Members Feature
@@ -277,34 +320,44 @@ parses the index of the person in the user input, and generates a `AddMemberComm
 
 The list members feature allows users to view the members in their current team.
 
-The list members command works similar to list command, which updates the `PersonListPanel` and shows the members in the current team.
+The list members command works similar to list command, which updates the `PersonListPanel` and shows the members in the
+current team.
 
 Currently, `PersonListPanel` displays all persons that satisfy some `Predicate`, which is stored in the
 `filteredPersons` in `ModelManager`.
 
-Whenever list members command is called, the `Predicate` for `filteredPersons` is then updated and the corresponding members of the team is shown.
+Whenever list members command is called, the `Predicate` for `filteredPersons` is then updated and the corresponding
+members of the team is shown.
 
-The following sequence diagram illustrates what happens within the `Logic` component when the list members command is executed:
+The following sequence diagram illustrates what happens within the `Logic` component when the list members command is
+executed:
 ![ListMembersSequenceDiagram](images/ListMembersSequenceDiagram.png)
 
 ### Randomly Assign Task Feature
 #### Implementation
 
-The randomly assign task feature allows users to assign a `Task` (within a particular `Team`) to a random team member (represented as a `Person` object) within the team, who are not already assigned to that `Task`.
+The randomly assign task feature allows users to assign a `Task` (within a particular `Team`) to a random team member (
+represented as a `Person` object) within the team, who are not already assigned to that `Task`.
 
-This functionality is exposed to the user through the `assign_task_rand` command, and the logic is executed in `RandomlyAssignTaskCommand#execute()`.
+This functionality is exposed to the user through the `assign_task_rand` command, and the logic is executed
+in `RandomlyAssignTaskCommand#execute()`.
 
 Given below is an example usage scenario and the state of the `Team` object at each step.
 
-Step 1. The user launches the application and adds multiple users into the current team, as well as at least one task. The `Team` will contain multiple `Person` objects (representing team members).
+Step 1. The user launches the application and adds multiple users into the current team, as well as at least one task.
+The `Team` will contain multiple `Person` objects (representing team members).
 
 ![RandomlyAssignTaskState0](images/RandomlyAssignTaskState0.png)
 
-Step 2. The user executes the command `assign_task_rand 1` to assign the first (and only) `Task` randomly to any team member. As none of the team members have been added, all of them are candidates for random assignment. One of them will be randomly assigned the task.
+Step 2. The user executes the command `assign_task_rand 1` to assign the first (and only) `Task` randomly to any team
+member. As none of the team members have been added, all of them are candidates for random assignment. One of them will
+be randomly assigned the task.
 
 ![RandomlyAssignTaskState1](images/RandomlyAssignTaskState1.png)
 
-Step 3. The user may want to assign a second team member to the task, hence executing `assign_task_rand 1` again. The team member who has previously been allocated will not be considered. Similar to above, one more team member will be randomly allocated the task.
+Step 3. The user may want to assign a second team member to the task, hence executing `assign_task_rand 1` again. The
+team member who has previously been allocated will not be considered. Similar to above, one more team member will be
+randomly allocated the task.
 
 ![RandomlyAssignTaskState2](images/RandomlyAssignTaskState2.png)
 
@@ -343,7 +396,8 @@ _Activity diagram of randomly assigning_
 
 **Value proposition**:
 
-- Users can collate different project-related information (e.g. Github project PRs, issues, links to Zoom meetings, and Google Docs)
+- Users can collate different project-related information (e.g. Github project PRs, issues, links to Zoom meetings, and
+  Google Docs)
 - Users can visualise teams’ progress easily
 - Users can delegate tasks to their teammates conveniently
 - CLI interface to manage project tasks much more quickly than GUI based products
@@ -383,7 +437,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TruthTable` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TruthTable` and the **Actor** is the `user`, unless specified
+otherwise)
 
 **Use case: UC01 - Add a member to a team**
 
@@ -604,13 +659,15 @@ Preconditions: The current working team is set to the team that has the existing
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+   able to accomplish most of the tasks faster using commands than using the mouse.
 4. Does not require internet connection.
 5. Any changes to the data should be saved permanently and automatically.
 
 ### Glossary
 
-- **Issue**: Generally refers to an issue created on GitHub that is used to track the progress of a software development project.
+- **Issue**: Generally refers to an issue created on GitHub that is used to track the progress of a software development
+  project.
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Member**: A person in the team, working on a project.
 - **Private contact detail**: A contact detail that is not meant to be shared with others
@@ -637,7 +694,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+       optimum.
 
 1. Saving window preferences
 
@@ -655,7 +713,8 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
