@@ -169,8 +169,8 @@ This section describes some noteworthy details on how certain features are imple
 
 <u>**Description**</u>
 
-Adding new students is first basic step of using Class-ify. This is primarily done via the `AddStudCommand` and `AddStudCommandParser` classes.
-Before going into the sequence of executing a `addstud` command, let us take a quick look at the `Student` class.
+Adding new students is first basic step of using Class-ify. This is primarily done via the `AddStudentCommand` and `AddStudentCommandParser` classes.
+Before going into the sequence of executing a `addStudent` command, let us take a quick look at the `Student` class.
 
 <img src="images/StudentClassDiagram.png" width="550" />
 
@@ -192,19 +192,19 @@ Adding a student record can be divided into 2 main steps: parsing the user input
 The delete command is first parsed.
 
 1. `MainWindow` calls the `execute` method of `LogicManager` to execute the given user’s command.
-2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a addstud command and creates a new `AddStudCommandParser` instance to parse the user’s command.
-3. Once the command is successfully parsed, `AddStudCommandParser` creates a new `AddStudCommand` instance which will be executed by the `LogicManager`.
+2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be an `addStudent` command and creates a new `AddStudentCommandParser` instance to parse the user’s command.
+3. Once the command is successfully parsed, `AddStudentCommandParser` creates a new `AddStudentCommand` instance which will be executed by the `LogicManager`.
 
 **Step 2: Executing the command**
 
-The `AddStudCommand` instance now interacts with the `ModelManager` to execute the command.
+The `AddStudentCommand` instance now interacts with the `ModelManager` to execute the command.
 1. The `hasStudent` method is called to check if the `Model` contains the student to be added.
 2. Assuming there are no duplicates, the `addStudent` method is then called to add the student into the student record.
 3. The `updateFilteredStudentList` method is called to show the updated list of students in the student record.
 4. A new `CommandResult` instance is created and returned to `LogicManager`.
 5. The control is then passed back to `MainWindow` where the `CommandResult` is displayed to the UI as feedback to the user.
 
-The following activity diagram below summarizes what happens when a user executes an `addstud` command.
+The following activity diagram below summarizes what happens when a user executes an `addStudent` command.
 
 <img src="images/AddStudentCommandActivityDiagram.png" width="550" />
 
@@ -622,19 +622,19 @@ Expected: The most recent window size and location is retained.
 ### 7.2 Adding a new student record
 
 Prerequisites: Existing student records do not have the names or IDs that will be added.
-1. Test case: `addstud nm/Peter Tan id/452B class/1F`
+1. Test case: `addStudent nm/Peter Tan id/452B class/1F`
    
 Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since no exam grades have been provided, the student card UI does not show anything below the grades section.
 
-2. Test case: `addstud nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
+2. Test case: `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
 
 Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since exam grades have been provided, the student card UI shows the exam scores for each exam that has been provided.
 
-3. Test case: `addstud nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
+3. Test case: `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
 
 Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. This test case includes parents' details as well.
 
-4. Test case: `addstud nm/Jonathan Lim id/abc2 class/2A`
+4. Test case: `addStudent nm/Jonathan Lim id/abc2 class/2A`
 
 Expected: The command entered by the user is highlighted red. The status message shows an error: "Id should only contain 3 digits and 1 character". "abc2" is an invalid value for the ID as Class-ify only accepts the last 3 numbers and last letter of a student's ID.
 

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.classify.logic.commands.AddStudCommand;
+import seedu.classify.logic.commands.AddStudentCommand;
 import seedu.classify.logic.commands.ClearCommand;
 import seedu.classify.logic.commands.DeleteCommand;
 import seedu.classify.logic.commands.EditCommand;
@@ -43,8 +43,8 @@ public class StudentRecordParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Student person = new StudentBuilder().build();
-        AddStudCommand command = (AddStudCommand) parser.parseCommand(StudentUtil.getAddCommand(person));
-        assertEquals(new AddStudCommand(person), command);
+        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(StudentUtil.getAddCommand(person));
+        assertEquals(new AddStudentCommand(person), command);
     }
 
     @Test

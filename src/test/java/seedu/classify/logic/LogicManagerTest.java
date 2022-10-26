@@ -19,7 +19,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.classify.logic.commands.AddStudCommand;
+import seedu.classify.logic.commands.AddStudentCommand;
 import seedu.classify.logic.commands.CommandResult;
 import seedu.classify.logic.commands.ViewAllCommand;
 import seedu.classify.logic.commands.exceptions.CommandException;
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddStudCommand.COMMAND_WORD + STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY
+        String addCommand = AddStudentCommand.COMMAND_WORD + STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY
                 + PARENT_NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
         Student expectedPerson = new StudentBuilder(AMY).withExams().build();
         ModelManager expectedModel = new ModelManager();

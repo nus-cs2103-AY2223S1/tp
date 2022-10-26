@@ -52,7 +52,7 @@ the user guide from start to end to fully understand how to use Class-ify. Howev
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`addstud`**`nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 exam/CA1 90` : Adds a new student named `John Doe` with his details to *Class-ify*.
+   * **`addStudent`**`nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 exam/CA1 90` : Adds a new student named `John Doe` with his details to *Class-ify*.
 
    * **`viewAll`** : Shows a list of all student records.
 
@@ -111,13 +111,13 @@ will delete all data stored locally and this action is irreversible. You will lo
   * Additional parameters for commands that do not require parameters will be ignored.<br>
   e.g. `exit hello123` will be accepted as the `exit` command.
   * Optional parameters are indicated by square brackets `[]`. <br>
-  e.g. For the `addStud` command, the command format is `addStud nm/NAME id/ID class/CLASS [pn/PARENTNAME] [hp/PHONENUMBER]...`<br>
+  e.g. For the `addStudent` command, the command format is `addStudent nm/NAME id/ID class/CLASS [pn/PARENTNAME] [hp/PHONENUMBER]...`<br>
   `[pn/PARENTNAME]` and `[hp/PHONENUMBER]` refer to optional parameters that can be supplied by the user.
 </div><br>
 
 ### 4.1 Managing student records
 
-#### 4.1.1 Adding a new student record : `addstud`
+#### 4.1.1 Adding a new student record : `addStudent`
 
 Creates a new student record with the following details:
 
@@ -129,7 +129,7 @@ Creates a new student record with the following details:
 * Mobile Number of Parent `hp/`
 * Email Address of Parent `e/`
 
-Format: `addstud nm/[STUDENT-NAME] id/[ID] class/[CLASS] exam/[NAME SCORE] pn/[PARENT-NAME] hp/[PHONE-NUMBER] e/[EMAIL]`
+Format: `addStudent nm/[STUDENT-NAME] id/[ID] class/[CLASS] exam/[NAME SCORE] pn/[PARENT-NAME] hp/[PHONE-NUMBER] e/[EMAIL]`
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip #1:** All **bolded** fields are compulsory. Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
@@ -141,9 +141,9 @@ Example: `exam/CA1 50 exam/SA1 60 exam/CA1 80` will add grades 80 for CA1 and 60
 </div>
 
 Examples:
-* `addstud nm/Peter Tan id/452B class/1F`
-* `addstud nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
-* `addstud nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
+* `addStudent nm/Peter Tan id/452B class/1F`
+* `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
+* `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
 
 #### 4.1.2 Clearing all student records : `clear`
 
@@ -167,7 +167,7 @@ Edits the respective details of an existing student.
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3 ...
 * Existing values will be updated to the new input values.
-* Refer to the complete list of tags for each field under [addstud command](#411-adding-a-new-student-record--addstud).
+* Refer to the complete list of tags for each field under [addStudent command](#411-adding-a-new-student-record--addstudent).
 
 Format: `edit [INDEX] nm/[STUDENT-NAME] id/[ID] exam/[NAME SCORE] pn/[PARENT-NAME]...`
 
@@ -272,18 +272,18 @@ Click <a href="#top">here</a> to return to the top.
 
 ## **6 Command summary**
 
-|              Action               | Format                                                                                                           | Example                                                                       |  
-|:---------------------------------:|:-----------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------|
-|     Add a new student record      | `addstud nm/[STUDENT-NAME] id/[ID] class/[CLASS] exam/[NAME SCORE] pn/[PARENT-NAME] hp/[PHONE-NUMBER] e/[EMAIL]` | _addstud nm/Alex Yeoh id/123A class/1A pn/Bernice Yu hp/99272758 exam/CA1 90_ |
-|     View all student records      | `viewAll`                                                                                                        | _viewAll_                                                                     |
-| View student records from a class | `viewClass [class name]`                                                                                         | _viewClass 1A_                                                                |
-|       Edit a student record       | `edit [INDEX] nm/[STUDENT-NAME] id/[ID] exam/[NAME SCORE] pn/[PARENT-NAME]...`                                   | _edit 1 nm/Alexander Yeoh_                                                    |
-|      Delete a student record      | `delete nm/[name]` or `delete id/[id]`                                                                           | _delete nm/Jonathan Tan or delete id/123A_                                    |
-|       Find a student record       | `find nm/[name]` or `find id/[id]`                                                                               | _find nm/Jonathan Tan or find id/123A_                                        |
-|            Toggle view            | `toggleView`                                                                                                     | _toggleView_                                                                  |
-|     Clear all student records     | `clear`                                                                                                          | _clear_                                                                       |
-|    View command summary table     | `help`                                                                                                           | _help_                                                                        |
-|         Exit application          | `exit`                                                                                                           | _exit_                                                                        |
+|              Action               | Format                                                                                                              | Example                                                                          |  
+|:---------------------------------:|:--------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
+|     Add a new student record      | `addStudent nm/[STUDENT-NAME] id/[ID] class/[CLASS] exam/[NAME SCORE] pn/[PARENT-NAME] hp/[PHONE-NUMBER] e/[EMAIL]` | _addStudent nm/Alex Yeoh id/123A class/1A pn/Bernice Yu hp/99272758 exam/CA1 90_ |
+|     View all student records      | `viewAll`                                                                                                           | _viewAll_                                                                        |
+| View student records from a class | `viewClass [class name]`                                                                                            | _viewClass 1A_                                                                   |
+|       Edit a student record       | `edit [INDEX] nm/[STUDENT-NAME] id/[ID] exam/[NAME SCORE] pn/[PARENT-NAME]...`                                      | _edit 1 nm/Alexander Yeoh_                                                       |
+|      Delete a student record      | `delete nm/[name]` or `delete id/[id]`                                                                              | _delete nm/Jonathan Tan or delete id/123A_                                       |
+|       Find a student record       | `find nm/[name]` or `find id/[id]`                                                                                  | _find nm/Jonathan Tan or find id/123A_                                           |
+|            Toggle view            | `toggleView`                                                                                                        | _toggleView_                                                                     |
+|     Clear all student records     | `clear`                                                                                                             | _clear_                                                                          |
+|    View command summary table     | `help`                                                                                                              | _help_                                                                           |
+|         Exit application          | `exit`                                                                                                              | _exit_                                                                           |
 
 Click <a href="#top">here</a> to return to the top.
 
