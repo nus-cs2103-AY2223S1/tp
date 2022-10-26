@@ -19,7 +19,7 @@
       <padding>
         <Insets top="5" right="5" bottom="5" left="5" />
       </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
+      <HBox VBox.vgrow="ALWAYS" spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
@@ -30,17 +30,18 @@
         <Label fx:id="moduleTitle" text="\$moduleTitle"
                styleClass="cell_small_label" />
       </HBox>
+      <!-- HBox with tasks and links. -->
       <HBox>
-        <!--        prefWidth of 200 is half of module list's width. -->
+        <!-- prefWidth of 200 is half of module list's width. -->
         <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="170"
-              prefWidth="200" HBox.hgrow="ALWAYS">
+              prefWidth="200" HBox.hgrow="ALWAYS" >
           <Label alignment="CENTER" styleClass="underlined-text"
                  maxWidth="Infinity">
             Tasks
           </Label>
           <StackPane fx:id="taskListPanelPlaceholder" />
         </VBox>
-        <!--        prefWidth of 200 is half of module list's width. -->
+        <!-- prefWidth of 200 is half of module list's width. -->
         <VBox styleClass="pane-with-border" minWidth="170"
               prefWidth="200" HBox.hgrow="ALWAYS">
           <Label alignment="CENTER" styleClass="underlined-text"
