@@ -1,5 +1,8 @@
 package seedu.address.logic.commands.client;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,7 +17,9 @@ public class PinClientCommand extends ClientCommand {
 
     public static final String COMMAND_FLAG = "-p";
 
-    public static final String MESSAGE_SUCCESS = "Client pinned: %1$s";
+    public static final String MESSAGE_PIN_SUCCESS = "Client pinned: %1$s";
+    public static final String MESSAGE_UNPIN_SUCCESS = "Client unpinned: %1$s";
+    public static final String MESSAGE_CLIENT_NOT_FOUND = "This client id does not exist.";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
             + ": Pins the client identified by the client id \n"
@@ -24,7 +29,13 @@ public class PinClientCommand extends ClientCommand {
 
     private ClientId toPinClientId;
 
+    /**
+     * Constructor for a command to pin clients.
+     *
+     * @param toPinClientId The ID of the client to be pinned.
+     */
     public PinClientCommand(ClientId toPinClientId) {
+        requireNonNull(toPinClientId);
         this.toPinClientId = toPinClientId;
     }
 
@@ -38,10 +49,17 @@ public class PinClientCommand extends ClientCommand {
      */
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
+        if (!model.hasClientId(this.toPinClientId.getIdInt())) {
+            throw new CommandException(MESSAGE_CLIENT_NOT_FOUND);
+        }
         Client toPinClient = model.getClientById(this.toPinClientId.getIdInt());
         toPinClient.togglePin();
         model.sortClientsByPin();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toPinClient));
+        ui.showClients();
+        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        return new CommandResult(String.format(
+                toPinClient.isPinned() ? MESSAGE_PIN_SUCCESS : MESSAGE_UNPIN_SUCCESS,
+                toPinClient));
     }
 
     @Override

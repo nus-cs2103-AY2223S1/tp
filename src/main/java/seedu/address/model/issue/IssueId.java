@@ -1,7 +1,5 @@
 package seedu.address.model.issue;
 
-
-
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -73,6 +71,13 @@ public class IssueId {
     @Override
     public String toString() {
         return String.valueOf(this.issueId);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof IssueId // instanceof handles nulls
+                && this.issueId == ((IssueId) other).issueId);
     }
 
 }

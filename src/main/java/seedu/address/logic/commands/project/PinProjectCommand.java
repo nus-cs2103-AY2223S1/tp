@@ -1,5 +1,8 @@
 package seedu.address.logic.commands.project;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,7 +17,9 @@ public class PinProjectCommand extends ProjectCommand {
 
     public static final String COMMAND_FLAG = "-p";
 
-    public static final String MESSAGE_SUCCESS = "Project pinned: %1$s";
+    public static final String MESSAGE_PIN_SUCCESS = "Project pinned: %1$s";
+    public static final String MESSAGE_UNPIN_SUCCESS = "Project unpinned: %1$s";
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist.";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
             + ": Pins the project identified by the project id \n"
@@ -25,6 +30,7 @@ public class PinProjectCommand extends ProjectCommand {
     private ProjectId toPinProjectId;
 
     public PinProjectCommand(ProjectId toPinProjectId) {
+        requireNonNull(toPinProjectId);
         this.toPinProjectId = toPinProjectId;
     }
 
@@ -38,10 +44,17 @@ public class PinProjectCommand extends ProjectCommand {
      */
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
+        if (!model.hasProjectId(this.toPinProjectId.getIdInt())) {
+            throw new CommandException(MESSAGE_PROJECT_NOT_FOUND);
+        }
         Project toPinProject = model.getProjectById(this.toPinProjectId.getIdInt());
         toPinProject.togglePin();
         model.sortProjectsByPin();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toPinProject));
+        ui.showProjects();
+        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        return new CommandResult(String.format(
+                toPinProject.isPinned() ? MESSAGE_PIN_SUCCESS : MESSAGE_UNPIN_SUCCESS,
+                toPinProject));
     }
 
     @Override

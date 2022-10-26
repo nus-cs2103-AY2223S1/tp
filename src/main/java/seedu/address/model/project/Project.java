@@ -2,6 +2,7 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.Deadline;
@@ -59,7 +60,12 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     public Project(Name name) {
         requireAllNonNull(name);
         this.name = name;
-        //todo: set other fields to emptyOptionals post-merge
+        this.repository = Repository.EmptyRepository.EMPTY_REPOSITORY;
+        this.deadline = Deadline.EmptyDeadline.EMPTY_DEADLINE;
+        this.client = Client.EmptyClient.EMPTY_CLIENT;
+        this.issueList = new ArrayList<>();
+        this.projectId = ProjectId.EmptyProjectId.EMPTY_PROJECT_ID;
+        this.pin = new Pin(false);
     }
 
     public void setClient(Client toAddClient) {
