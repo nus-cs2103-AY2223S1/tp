@@ -54,7 +54,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`find`**`MacDonalds` : Finds MacDonalds in the list of clients, and displays all its details (remark, transactions).
 
-  * **`clear`** : Deletes all clients with all their contacts and transactions.
+  * **`clear`** : Deletes all clients with all their remarks and transactions.
 
   * **`exit`** : Exits the app.
 
@@ -291,7 +291,7 @@ _Details coming soon ..._
 | **Find**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                                |
 | **Filter**     | `filter buy` or `filter sell` <br> e.g., `filter sell`                                                                    |
 | **List**       | `list`                                                                                                                    |
-| **Help**       | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                  |
+| **Help**       | `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                            |
 | **Sort**       | Coming Soon                                                                                                               |
 | **Buy**        | `buy INDEX q/QUANTITY g/GOODS price/PRICE` <br/> e.g `buy 2 q/100 g/apples price/1.5`                                     |
 | **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE` <br/> e.g `sell 2 q/100 g/apples price/1.5`                                   |
