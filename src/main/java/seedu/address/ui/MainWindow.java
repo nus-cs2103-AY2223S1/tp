@@ -39,6 +39,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final String UNDO_COMMAND_SHORTCUT_TEXT = "undo ";
     private static final String MARK_COMMAND_SHORTCUT_TEXT = "mark ";
     private static final String UNMARK_COMMAND_SHORTCUT_TEXT = "unmark ";
+    private static final String EMPTY_COMMAND_SHORTCUT_TEXT = "";
+
 
 
     private final String lightTheme = getClass().getResource("/view/LightTheme.css").toExternalForm();
@@ -108,7 +110,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-        setCommandBoxText(ADD_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+A"));
+        setCommandBoxText(ADD_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+N"));
         setCommandBoxText(EDIT_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+E"));
         setCommandBoxText(DELETE_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+D"));
         setCommandBoxText(CLONE_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+L"));
@@ -116,6 +118,7 @@ public class MainWindow extends UiPart<Stage> {
         setCommandBoxText(UNDO_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+Z"));
         setCommandBoxText(MARK_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+M"));
         setCommandBoxText(UNMARK_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+U"));
+        setCommandBoxText(EMPTY_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+P"));
     }
 
     /**
