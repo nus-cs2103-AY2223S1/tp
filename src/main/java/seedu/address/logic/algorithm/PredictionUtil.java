@@ -1,13 +1,17 @@
 package seedu.address.logic.algorithm;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.subject.Grades;
 
 /**
  * Utility class to handle grade prediction algorithm
  */
 public class PredictionUtil {
+
+    private static final double MAXIMUM_SCORE_POSSIBLE = 100.0;
+
+    // TEST COMMAND: predict n/Alice Pauline s/english
 
     /**
      * "Predicts" a student's grade for a subject based on the grades they have received so far.
@@ -16,22 +20,47 @@ public class PredictionUtil {
      * the higher the weightage the student's score will have to calculate the predicted
      * grade.
      * @param grades the Grade object with which to predict with
+     * @param attendance the Attendance object with which to predict with
      * @return the predicted grade as a double representing the percentage
      */
-    public static double predictGrade(Grades grades) {
-        // v4.0: add in assessment difficulty heuristic to give assessment
-        // scores an arbitrary weightage
+    public static double predictGrade(Grades grades, Attendance attendance) {
+        // v5.0: use attendance to factor in amount of learning completed
         double[] rawPercents = grades.getRawPercentages();
         double[] difficulties = grades.getDifficulties();
         double[] normalizedScores = new double[rawPercents.length];
         for (int i = 0; i < rawPercents.length; i++) {
-            normalizedScores[i] = (rawPercents[i] * 100) + getDifficultyBonus(difficulties[i]);
+            double learningRating = getAttendanceBonus(attendance);
+            normalizedScores[i] = (rawPercents[i] * 100)
+                + getDifficultyBonus(difficulties[i], learningRating);
         }
-        return Arrays.stream(normalizedScores).sum() / normalizedScores.length;
+        double finalScore = Arrays.stream(normalizedScores).sum() / normalizedScores.length;
+        // score cannot be more than 100%
+        return Math.min(MAXIMUM_SCORE_POSSIBLE, finalScore);
     }
 
-    private static double getDifficultyBonus(double difficulty) {
-        // Initial model: y = 2 * difficulty + Math.PI
-        return 2 * difficulty + Math.PI;
+    private static double getDifficultyBonus(double difficulty, double learningRating) {
+        // exponential model
+        if (difficulty <= 0) {
+            return 5; // paper is too easy -> extra 5 marks
+        }
+        return Math.pow((1 / difficulty), learningRating);
+    }
+
+    private static double getAttendanceBonus(Attendance attendance) {
+        double totalAttendance = Arrays.stream(attendance.getAttendanceDetails()).sum();
+        int totalClasses = attendance.getAttendanceDetails().length;
+        double attendancePercentage = totalAttendance / totalClasses;
+        double bonus = 2;
+        // arbitrary bonuses at the moment
+        if (attendancePercentage <= 0.5) {
+            bonus += 0.65;
+        } else if (attendancePercentage <= 0.75) {
+            bonus += 0.75;
+        } else if (attendancePercentage <= 0.9) {
+            bonus += 0.85;
+        } else {
+            bonus += 0.95;
+        }
+        return bonus;
     }
 }

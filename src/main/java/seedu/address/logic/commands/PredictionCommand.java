@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import seedu.address.logic.algorithm.PredictionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.subject.Subject;
@@ -44,8 +45,9 @@ public class PredictionCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Person target = model.getPersonByName(name);
+        Attendance attendance = target.getAttendance();
         Subject targetSubject = target.getSubjectHandler().getSubject(subjectName);
-        double gradePredicted = PredictionUtil.predictGrade(targetSubject.getGrades());
+        double gradePredicted = PredictionUtil.predictGrade(targetSubject.getGrades(), attendance);
         return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true,
             String.format(MESSAGE_FORMAT, name, targetSubject.subjectName, gradePredicted));
     }
