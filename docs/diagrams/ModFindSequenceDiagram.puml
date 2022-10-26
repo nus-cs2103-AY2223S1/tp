@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+hide Footbox
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LM LOGIC_COLOR
+participant ":MassLinkersParser" as ABP LOGIC_COLOR
+participant ":ModCommandParser" as MCP LOGIC_COLOR
+participant "f:ModFindCommand" as MFC LOGIC_COLOR
+participant ":CommandResult" as CR LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+->LM ++  : execute("mod find cs2101")
+LM -> ABP ++ : parseCommand("mod find cs2101")
+ABP -> MCP **
+activate MCP
+MCP --> ABP
+deactivate MCP
+ABP -> MCP : parse("find cs2101")
+activate MCP
+MCP -> MCP ++ : parseFindCommand("cs2101")
+MCP -> MFC **
+activate MFC
+return f
+return f
+return f
+return f
+destroy MCP
+LM -> MFC ++ : execute(model)
+MFC -> Model ++ : updateFilteredStudentList(predicate)
+return
+MFC -> CR **
+activate CR
+return
+return result
+return
+
+@enduml

@@ -1,5 +1,7 @@
 @startuml
 'https://plantuml.com/activity-diagram-beta
+'This diagram is not used now, as the loop notation is
+'not taught in CS2103T module.
 
 start
 :Student enters mod mark command;

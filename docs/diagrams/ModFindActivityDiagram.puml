@@ -1,0 +1,24 @@
+@startuml
+start
+:Student enters Mod Find command;
+:Mass Linkers reads and parses command;
+skinparam conditionStyle diamond
+if () then ([1 mod in command])
+   : Mass Linkers finds batchmates
+    who have taken or
+    are taking the module;
+
+
+
+else ([More than 1 mod in command])
+  :Mass Linkers finds batchmates
+  who have taken or
+  are taking all of the modules
+  stated in the command;
+endif
+:Mass Linkers displays the batchmates
+who match the criteria;
+
+stop
+
+@enduml
