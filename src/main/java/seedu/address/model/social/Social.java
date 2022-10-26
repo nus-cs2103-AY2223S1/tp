@@ -31,12 +31,17 @@ public class Social {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
+    private static final String SCHEME = "http://";
+
+    private static final String SCHEMES = "https://";
+
     //links array holds the links for the socials of the person.
     //The index of the links in the array corresponds with the enum declared.
     //Example: links[0] should hold the link to the Whatsapp social media account.
     private String[] links;
 
     private Socials preferred;
+
 
     /**
      * Constructs a {@code Social}.
@@ -207,9 +212,16 @@ public class Social {
             if (getWhatsapp() == null) {
                 throw new SocialException("No Whatsapp Link");
             }
-            URI uri = new URI(getWhatsapp());
-            Desktop desktop = java.awt.Desktop.getDesktop();
-            desktop.browse(uri);
+            if (getWhatsapp().startsWith(SCHEME) || getWhatsapp().startsWith(SCHEMES)) {
+                URI uri = new URI(getWhatsapp());
+                Desktop desktop = java.awt.Desktop.getDesktop();
+                desktop.browse(uri);
+            } else {
+                URI uri = new URI(SCHEME + getWhatsapp());
+
+                Desktop desktop = java.awt.Desktop.getDesktop();
+                desktop.browse(uri);
+            }
         } catch (URISyntaxException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (IOException e) {
@@ -225,9 +237,15 @@ public class Social {
             if (getTelegram() == null) {
                 throw new SocialException("No Telegram Link");
             }
-            URI uri = new URI(getTelegram());
-            Desktop desktop = java.awt.Desktop.getDesktop();
-            desktop.browse(uri);
+            if (getTelegram().startsWith(SCHEME) || getTelegram().startsWith(SCHEMES)) {
+                URI uri = new URI(getTelegram());
+                Desktop desktop = java.awt.Desktop.getDesktop();
+                desktop.browse(uri);
+            } else {
+                URI uri = new URI(SCHEME + getTelegram());
+                Desktop desktop = java.awt.Desktop.getDesktop();
+                desktop.browse(uri);
+            }
         } catch (URISyntaxException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (IOException e) {
@@ -261,9 +279,15 @@ public class Social {
             if (getInstagram() == null) {
                 throw new SocialException("No Instagram Link");
             }
-            URI uri = new URI(getInstagram());
-            Desktop desktop = java.awt.Desktop.getDesktop();
-            desktop.browse(uri);
+            if (getInstagram().startsWith(SCHEME) || getInstagram().startsWith(SCHEMES)) {
+                URI uri = new URI(getInstagram());
+                Desktop desktop = java.awt.Desktop.getDesktop();
+                desktop.browse(uri);
+            } else {
+                URI uri = new URI(SCHEME + getInstagram());
+                Desktop desktop = java.awt.Desktop.getDesktop();
+                desktop.browse(uri);
+            }
         } catch (URISyntaxException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (IOException e) {
@@ -279,9 +303,15 @@ public class Social {
             if (getPreferredLink() == null) {
                 throw new SocialException("No Preferred Link");
             }
-            URI uri = new URI(getPreferredLink());
-            Desktop desktop = java.awt.Desktop.getDesktop();
-            desktop.browse(uri);
+            if (getPreferredLink().startsWith(SCHEME) || getPreferredLink().startsWith(SCHEMES)) {
+                URI uri = new URI(getPreferredLink());
+                Desktop desktop = java.awt.Desktop.getDesktop();
+                desktop.browse(uri);
+            } else {
+                URI uri = new URI(SCHEME + getPreferredLink());
+                Desktop desktop = java.awt.Desktop.getDesktop();
+                desktop.browse(uri);
+            }
         } catch (URISyntaxException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (IOException e) {
