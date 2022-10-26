@@ -21,7 +21,7 @@ public class RangeCommand extends Command {
             + "Example: \n" + COMMAND_WORD + " d/10/10/2022 e/22/10/2022\n\n"
             + COMMAND_WORD + " last/DAYS\n"
             + "displays all exercises within the last DAYS days and and today's exercises.\n"
-            + "Example: \n" + COMMAND_WORD + " last/7";
+            + "Example usage: \n" + COMMAND_WORD + " last/7";
 
     public static final String MESSAGE_USAGE_TWO = "The range feature has two variations: \n\n"
             + COMMAND_WORD + " last/DAYS\n"

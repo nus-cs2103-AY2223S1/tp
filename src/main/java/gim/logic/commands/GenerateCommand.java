@@ -29,13 +29,13 @@ public class GenerateCommand extends Command {
     public static final String DIFFICULTY_LEVELS = "{easy, medium, hard}";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Generates a sample workout based on PRs (Personal Records) "
+            + " -> Generates a sample workout based on PRs (Personal Records) "
             + "of the exercise(s) identified by the indices number used in the displayed exercise list, "
             + "according to the difficulty level specified. " + "\n"
             + "Difficulty levels supported are: " + DIFFICULTY_LEVELS + "\n"
             + "Parameters: INDEX_1 [, INDEX_2, ...] (each index must be a positive integer) "
             + PREFIX_LEVEL + "LEVEL (must be one of " + DIFFICULTY_LEVELS + ") " + "\n"
-            + "Example: " + COMMAND_WORD + " 2,3 " + PREFIX_LEVEL + "easy";
+            + "Example usage: " + COMMAND_WORD + " 2,3 " + PREFIX_LEVEL + "easy";
 
     public static final String MESSAGE_GENERATE_SUCCESS = " workout session generated: \n";
 
