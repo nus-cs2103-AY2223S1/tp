@@ -50,12 +50,11 @@ public class SplitDebtCommandParser implements Parser<SplitDebtCommand> {
         boolean isSelfAtEnd = preamble.endsWith(" 0");
         boolean isSelfPresent = isSelfAtStart || isSelfAtMiddle || isSelfAtEnd;
 
-        if (isSelfAtMiddle) {
-            while (isSelfAtMiddle) {
-                preamble = preamble.replace(" 0 ", " ");
-                isSelfAtMiddle = preamble.contains(" 0 ");
-            }
+        while (isSelfAtMiddle) {
+            preamble = preamble.replace(" 0 ", " ");
+            isSelfAtMiddle = preamble.contains(" 0 ");
         }
+
         if (isSelfAtStart) {
             preamble = preamble.substring(2);
         }
