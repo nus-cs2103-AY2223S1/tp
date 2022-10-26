@@ -41,7 +41,6 @@ public class OpenCustomerCommand extends Command {
     public CommandResult execute(Model model, Storage...storage) throws CommandException {
         requireNonNull(model);
 
-
         model.selectTab(GuiTab.CUSTOMER);
         List<Customer> lastShownList = model.getSortedFilteredCustomerList();
 
