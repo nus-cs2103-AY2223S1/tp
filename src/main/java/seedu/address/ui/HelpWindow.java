@@ -16,7 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL =
-            "https://docs.google.com/document/d/17Hp5HPHb884ei50ysRvKZsQqSgnATR8HS5yMBTTEemY/edit?usp=sharing";
+            "https://ay2223s1-cs2103t-t17-4.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to idENTify's user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
