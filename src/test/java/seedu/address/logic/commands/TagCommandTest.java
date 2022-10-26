@@ -105,7 +105,7 @@ public class TagCommandTest {
 
     @Test
     public void equals() {
-        final TagCommand standardCommand = new TagCommand(INDEX_FIRST_PERSON,TAG_ALPHA);
+        final TagCommand standardCommand = new TagCommand(INDEX_FIRST_PERSON, TAG_ALPHA);
 
         // same values -> returns true
         EditPersonTags copyTag = new EditPersonTags(TAG_ALPHA);
