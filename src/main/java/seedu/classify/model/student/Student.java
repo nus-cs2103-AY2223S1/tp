@@ -90,6 +90,18 @@ public class Student {
                 || otherStudent.getId().equals(getId()));
     }
 
+    public static Student dummyStudent() {
+        Name studentName = new Name("temp name");
+        Id studentId = new Id("999a");
+        Class className = new Class("3a");
+        Name parentName = new Name();
+        Phone phone = new Phone();
+        Email email = new Email();
+        Set<Exam> exams = new HashSet<>();
+        Student dummyStudent = new Student(studentName, studentId, className, parentName, phone, email, exams);
+        return dummyStudent;
+    }
+
     /**
      * Returns true if both students have the same identity, class and parent fields.
      * This defines a stronger notion of equality between two students.
