@@ -8,7 +8,7 @@ import seedu.address.model.event.Event;
 
 
 /**
- * An UI component that displays information of an {@code Event}.
+ * A UI component that displays information of an {@code Event}.
  */
 public class EventCard extends UiPart<Region> {
 
@@ -21,7 +21,6 @@ public class EventCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
     public final Event event;
 
     @FXML
@@ -47,10 +46,10 @@ public class EventCard extends UiPart<Region> {
         super(FXML);
         this.event = event;
         id.setText(displayedIndex + ". ");
-        eventTitle.setText(event.getEventTitle());
+        eventTitle.setText(event.getEventTitle().toString());
         date.setText(event.getStartDate().toString());
         time.setText(event.getStartTime().toString());
-        purpose.setText(event.getPurpose());
+        purpose.setText(event.getPurpose().toString());
         personNames.setText(event.getUids().getPersonNames());
     }
 
