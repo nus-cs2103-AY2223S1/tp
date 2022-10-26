@@ -1,3 +1,9 @@
+.test {
+    -fx-background-color: derive(#8695b7, 20%)
+}
+
+/*
+*/
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
@@ -90,7 +96,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#d7dce2, 20%);
 }
 
 .list-cell {
@@ -100,11 +106,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #6679a4;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #8695b7;
 }
 
 .list-cell:filled:selected {
@@ -133,13 +139,13 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: derive(#1d2433, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+     -fx-background-color: derive(#2f3b54, 20%);
+     -fx-border-color: derive(#2f3b54, 10%);
+     -fx-border-top-width: 0px;
 }
 
 .status-bar {
@@ -193,7 +199,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#2f3b54, 20%);
 }
 
 .menu-bar .label {
@@ -333,7 +339,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent, #6679a4, transparent, #6679a4;
     -fx-background-radius: 0;
 }
 
