@@ -121,6 +121,13 @@ public abstract class IterationWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets the error message display to the specified message.
+     */
+    void setErrorMessage(String message) {
+        errorDisplay.setError(message);
+    }
+
+    /**
      * Executes a given command by the GUI window.
      */
     public void executeIterationCommand(String iterationCommandInput) {
@@ -129,7 +136,7 @@ public abstract class IterationWindow extends UiPart<Stage> {
             handleCloseIterationWindow();
             windowStage.close();
         } catch (CommandException | ParseException e) {
-            errorDisplay.setError(e.getMessage());
+            setErrorMessage(e.getMessage());
         }
     }
 
