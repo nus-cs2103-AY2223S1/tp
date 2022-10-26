@@ -343,8 +343,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The proposed export mechanism is facilitated by `ExportCommand`. It extends `Command` which fetches the directory 
-where the `JSON` copy of the `AddressBook` is stored at. It then uses the `CsvUtils` to create a new CSV file and 
+The proposed export mechanism is facilitated by `ExportCommand`. It extends `Command` which fetches the directory
+where the `JSON` copy of the `AddressBook` is stored at. It then uses the `CsvUtils` to create a new CSV file and
 parse the `JSON objects` in the file specified and copies it into the new CSV file with a file name specified by user.
 `FileName` class is used to specify the name of the file being added to avoid adding a file with an incompatible name.
 
@@ -360,7 +360,7 @@ Step 4. `ExportCommandParser` then creates a `ExportCommand` by passing the `Fil
 
 Step 5. The `ExportCommand` will then be executed using `ExportCommand#execute()`.
 
-Step 6. The `Model#getAddressBookFilePath();` method will be called and passed into the fileToExport 
+Step 6. The `Model#getAddressBookFilePath();` method will be called and passed into the fileToExport
 parameter of `CsvUtils#exportAsCsv(fileToExport, exportLocation)` along with the `FileName` as the exportLocation parameter.
 
 Step 7. The `CsvUtils#exportAsCsv(fileToExport, exportLocation)` will create a CSV version of the `Addressbook` in the specified `exportLocation`.
@@ -530,9 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The student specified by the user is invalid.
   * 3a1. SoConnect shows an error message.
-    
-    Use case resumes at step 2.  
-
+    Use case resumes at step 2.
 **Use case: Delete a person**
 
 **MSS**
