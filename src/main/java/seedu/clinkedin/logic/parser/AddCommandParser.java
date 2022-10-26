@@ -7,6 +7,7 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.HashMap;
@@ -24,6 +25,7 @@ import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 
@@ -57,9 +59,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         UniqueTagTypeMap tagMap = ParserUtil.parseTags(prefToStrings);
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).orElse(""));
+        Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
         Set<Link> links = ParserUtil.parseLinks(argMultimap.getAllValues(PREFIX_LINK));
 
-        Person person = new Person(name, phone, email, address, tagMap, status, note, links);
+        Person person = new Person(name, phone, email, address, tagMap, status, note, rating, links);
 
         return new AddCommand(person);
     }

@@ -19,6 +19,7 @@ import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.Tag;
@@ -147,6 +148,21 @@ public class ParserUtil {
     public static Note parseNote(String note) throws ParseException {
         requireNonNull(note);
         return new Note(note.trim());
+    }
+
+    /**
+     * Parses a {@code String rating} into a {@code Rating}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rating} is invalid.
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidRatingStr(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
     }
 
     /**
@@ -326,4 +342,15 @@ public class ParserUtil {
         return noteSet;
     }
 
+    /**
+     * Parses {@code Collection<String> ratings} into a {@code Set<Rating>}.
+     */
+    public static Set<Rating> parseRatings(List<String> ratings) throws ParseException {
+        requireNonNull(ratings);
+        final Set<Rating> ratingSet = new HashSet<>();
+        for (String ratingName : ratings) {
+            ratingSet.add(parseRating(ratingName));
+        }
+        return ratingSet;
+    }
 }

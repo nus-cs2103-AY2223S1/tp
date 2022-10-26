@@ -20,6 +20,7 @@ import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.Tag;
@@ -40,6 +41,7 @@ class JsonAdaptedPerson {
     private final List<List<JsonAdaptedTag>> tags = new ArrayList<>();
     private final String status;
     private final String note;
+    private final String rating;
 
     private final List<JsonAdaptedLink> links = new ArrayList<>();
 
@@ -48,9 +50,10 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("clinkedin") String address,
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<List<JsonAdaptedTag>> tags, @JsonProperty("status") String status,
-            @JsonProperty("note") String note, @JsonProperty("links") List<JsonAdaptedLink> links) {
+            @JsonProperty("note") String note, @JsonProperty("rating") String rating,
+            @JsonProperty("links") List<JsonAdaptedLink> links) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -60,6 +63,7 @@ class JsonAdaptedPerson {
         }
         this.note = note;
         this.status = status;
+        this.rating = rating;
         if (links != null) {
             this.links.addAll(links);
         }
@@ -84,6 +88,7 @@ class JsonAdaptedPerson {
         }
         status = source.getStatus().status;
         note = source.getNote().value;
+        rating = source.getRating().toString();
         links.addAll(source.getLinks().stream().map(JsonAdaptedLink::new).collect(Collectors.toList()));
     }
 
@@ -162,10 +167,15 @@ class JsonAdaptedPerson {
         }
         final Note modelNote = new Note(note);
 
+        if (rating == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
+        }
+        final Rating modelRating = new Rating(rating);
+
         final Set<Link> modelLinks = new HashSet<>(personLinks);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus, modelNote,
-                modelLinks);
+                modelRating, modelLinks);
     }
 
 }

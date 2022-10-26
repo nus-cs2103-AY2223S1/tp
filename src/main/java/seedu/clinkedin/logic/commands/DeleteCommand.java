@@ -11,7 +11,7 @@ import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the clinkedin book.
+ * Deletes a person identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 

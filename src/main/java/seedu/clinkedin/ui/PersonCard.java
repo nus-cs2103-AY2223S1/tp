@@ -21,6 +21,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.clinkedin.commons.util.ImageUtil;
 import seedu.clinkedin.model.person.Person;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
@@ -60,6 +61,8 @@ public class PersonCard extends UiPart<Region> {
     private Label note;
     @FXML
     private Label status;
+    @FXML
+    private Label rating;
 
     @FXML
     private FlowPane links;
@@ -93,6 +96,7 @@ public class PersonCard extends UiPart<Region> {
 
         status.setText(person.getStatus().status);
         note.setText(person.getNote().value.length() > 0 ? "Notes: " + person.getNote().value : "");
+        rating.setText(person.getRating().equals(new Rating("0")) ? "" : "Rating: " + person.getRating().toString());
         person.getLinks().stream().sorted(Comparator.comparing(link -> link.platform))
                 .forEach(link -> {
                     Button button = new Button();
