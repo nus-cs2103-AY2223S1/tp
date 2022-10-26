@@ -7,14 +7,14 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Introduction 
+## Introduction 
 Hi Prof, welcome to the User Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA)!
 
 TutHub is a desktop app for NUS professors who wish to choose their next batch of teaching assistants/tutors based on their past performance and track records but have little time to spare for tedious administrative work. If you can type fast, Tuthub helps you find the best TAs faster than traditional Graphical User Interface (GUI) apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Quick start
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -43,15 +43,15 @@ TutHub is a desktop app for NUS professors who wish to choose their next batch o
 1. Refer to [4. Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. About this Document
+## About this Document
 
-### 3.1 Structure of this Document
+### Structure of this Document
 This document is designed to help you find what you need in a quick and fuss-free way. Here are some useful tips for reading and navigating through this user guide!
 
-### 3.2 Reading this User Guide
+### Reading this User Guide
 This section will introduce you to symbols frequently used in this document and the Tuthub app layout for a better understanding of the user guide! 
 
-**3.2.1 Symbols and Syntax**
+**Symbols and Syntax**
 
 | Symbol                                | What it means                                                                 | 
 |---------------------------------------|-------------------------------------------------------------------------------|
@@ -60,7 +60,7 @@ This section will introduce you to symbols frequently used in this document and 
 | :bulb: **Tip:**                       | Tips to improve the Tuthub experience                                         |
 | :exclamation: **Caution:**            | Things to be cautious of and should be followed closely                       |
 
-**3.2.2 Layout of Tuthub Application Window**
+**Layout of Tuthub Application Window**
 
 The image below shows a Tuthub Application Window (with a tutor profile selected) with all its sections labelled.
 
@@ -78,7 +78,7 @@ The following table describes the sections in detail:
 | 6        | Tutor Details Pane    | Displays full details of a tutor saved in Tuthub.                                   |
 | 7        | Storage File Location | Displays the location of your **Tuthub** data file.                                 |          
 
-**3.2.3 Notes About Command Format**
+**Notes About Command Format**
 <div markdown="block" class="alert alert-info">
 
 :information_source: Some general rules that Tuthub commands follow:
@@ -109,7 +109,7 @@ The following table describes the sections in detail:
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-## 4. Features
+## Features
 
 ### Viewing help : `help`
 
