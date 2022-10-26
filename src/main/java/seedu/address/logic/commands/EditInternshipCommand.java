@@ -34,9 +34,9 @@ public class EditInternshipCommand extends Command {
             + "by the index number used in the displayed internship list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_COMPANY_NAME + "COMPANY_NAME] "
-            + "[" + PREFIX_INTERNSHIP_ROLE + "INTERNSHIP_ROLE] "
-            + "[" + PREFIX_INTERNSHIP_STATUS + "INTERNSHIP_STATUS] "
+            + "[" + PREFIX_COMPANY_NAME + "COMPANY] "
+            + "[" + PREFIX_INTERNSHIP_ROLE + "ROLE] "
+            + "[" + PREFIX_INTERNSHIP_STATUS + "STATUS] "
             + "[" + PREFIX_INTERVIEW_DATE + "INTERVIEW_DATE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_INTERNSHIP_STATUS + "ACCEPTED ";
