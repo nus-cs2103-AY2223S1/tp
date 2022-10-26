@@ -12,7 +12,7 @@ import modtrekt.model.Model;
 @Parameters(commandDescription = "List modules in the Module List.")
 public class ListModulesCommand extends Command {
     public static final String COMMAND_PHRASE = "list module";
-    public static final String COMMAND_ALIAS = "ls module";
+    public static final String[] COMMAND_ALIAS = {"ls module", "ls mod", "list mod"};
 
     @Parameter(names = "-a", description = "Show all modules")
     private boolean areDoneModulesShown;
