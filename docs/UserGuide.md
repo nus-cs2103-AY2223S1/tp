@@ -106,7 +106,7 @@ Format: ```cancel APPOINTMENT_INDEX```
 Examples:
 * `cancel 1`
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from idENTify.
 
