@@ -3,11 +3,9 @@ layout: page
 title: User Guide
 ---
 
-
 <p align="center">
     <img src="images/LTNS_logo.png" width="200" height="200">
 </p>
-
 
 Long Time No See (LTNS) is a  **desktop app for managing clients, policies and events optimized for use via a Command Line Interface** (CLI) while still having the benefits of an **intuitive and minimalistic Graphical User Interface (GUI)**. With customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
 
@@ -26,16 +24,14 @@ Long Time No See (LTNS) is a  **desktop app for managing clients, policies and e
 ## Quick start
 1. Ensure you have Java `11` or above installed in your Computer.
 
+2. Download the latest `longtimenosee.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-2/tp/releases).
 
-1. Download the latest `longtimenosee.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-2/tp/releases).
+3. Copy the file to the folder you want to use as the _home folder_ for your Long Time No See application.
 
-
-1. Copy the file to the folder you want to use as the _home folder_ for your Long Time No See application.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -48,7 +44,7 @@ Long Time No See (LTNS) is a  **desktop app for managing clients, policies and e
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -60,8 +56,6 @@ As such, the features available to you are split into **4** main features:
 2. [Client Features](#client-features): Here you can find all features related to keeping track of all your clients 
 3. [Policy Features](#policy-features): Here you can find all features related to keeping track of all your policies 
 4. [Event Features](#event-features): Here you can find all features related to keeping track of all your important appointments
-
-
 
 <div markdown="block" class="alert alert-info">
 
@@ -204,8 +198,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-
-
 ### Sorting all Clients : `sort`
 
 This allows you to sort your clients in the address book based on a specified metric.
@@ -229,24 +221,18 @@ Sorting **KEYWORDS** include:
 * `income` (from highest to lowest income)
 * `risk appetite` (from highest to lowest)
 
-
 ### Pin a user by name: `pin`
 * Format: `pin [CLIENT_INDEX]`
 * Description: Allows pinning of important clients to be viewed separately with command `viewPin`
 * Example Usage: `pin 1` pins the first client on list
 
-
-
 ### Assigning a Client to an Event/Policy 
 An existing client in your Client Book can be assigned to an Event or Policy.<br>
 To find out how to do so, you can refer to the [Adding an Event](#adding-an-event) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client) guide to find out how you can assign a Client to a Policy.
 
-
 ## Policy Features
 
-
 ### Adding a policy 
-
 
 ### Viewing all policies: `policies` [Coming soon]
 * Format: `policies`
@@ -254,9 +240,7 @@ To find out how to do so, you can refer to the [Adding an Event](#adding-an-even
 * Example Usage: `policies`
 * Example Result: Shows a list of all policies stored on the page
 
-
 ### Deleting a policy
-
 
 ### Search for a policy: `findPolicy`
 
@@ -279,7 +263,6 @@ Examples:
 * `findPolicy cmp/PRU` returns policies that belong to Prudential Assurance Company
 * `findPolicy ti/Shield cov/LIFE` returns polices with Shield in its title and covers the LIFE coverage type
 
-
 ### Assigning a Policy to a Client 
 
 If you have successfully sealed a deal with a client, you can keep track of this by assigning the policy to your client! 
@@ -297,35 +280,24 @@ Format: `viewIncome <year>`
 Rules:
 * Year must be between 1900 and 2200
 
-
 Examples:
 * `viewIncome 2000` will display the expected income for years 2000, 2001 and 2002
 * `viewIncome 1899` will not be allowed since 1899 is not between 1900 and 2200
 
-
 ## Event Features 
 
-
 ### Adding an Event 
-
-
-
-
-
 
 (for Colin: can put this where you deem fit)<br>
 You may want to indicate that a particular Event involves a Client of yours. If you have not added this Client to your Client Book, you can refer to the [Adding a Person](#adding-a-person-add) guide to add your Client first.
 
-
-### Deleting an Event 
-
+### Deleting an Event
 
 ### Viewing all Events : `listEvents`
 
 This allows you to view all Events that have been previously added.
 
 Format: `listEvents`
-
 
 ### Searching for an Event
 
@@ -354,26 +326,35 @@ This allows you to view all Events that you have in the next 7 days, allowing yo
 
 Format: `calendar`
 
-
 ### 
-
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
-**Q**: Why am I seeing `(insert error)` when trying to add an event?<br>
-**A**: When adding an Event involving a client, this client must exist in your client book first.
-
-**Q**: Why am I seeing a `Sorting metric does not exist` error when trying to sort my client list?<br>
-**A**: You may be typing a wrong **keyword** or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
-
-**Q**: Why is a blank screen shown when I use the `calendar` feature?
-**A**: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event) first. Alternatively, you can choose to [view all Events](#viewing-all-events--listevents) instead.
-
-**Q**: What do I do if the user guide does not address my concern? <br>
-**A**: Fret not! Simply drop us an email at e0725346@u.nus.edu and we will reply within three working days!
+<details>
+<summary> <b>Q</b>: How do I transfer my data to another Computer? </summary>
+<b>A</b> : Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+</details>
+<br>
+<details>
+<summary> <b>Q</b>: Why am I seeing `(insert error)` when trying to add an event?</summary>
+<b>A</b> : When adding an Event involving a client, this client must exist in your client book first.
+</details>
+<br>
+<details>
+<summary> <b>Q</b>: Why am I seeing a `Sorting metric does not exist` error when trying to sort my client list?</summary>
+<b>A</b> : You may be typing a wrong **keyword** or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
+</details>
+<br>
+<details>
+<summary> <b>Q</b>: Why is a blank screen shown when I use the `calendar` feature? </summary>
+<b>A</b> : You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event) first. Alternatively, you can choose to [view all Events](#viewing-all-events--listevents) instead.
+<br>
+</details>
+<br>
+<details>
+<summary> <b>Q</b>: What do I do if the user guide does not address my concern? </summary>
+<b>A</b> : Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply within three working days!
+</details>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -389,8 +370,7 @@ Format: `calendar`
 | **Help**                    | `help`                                                                                                                                                                                                        |
 | **Exit application**        | `exit`                                                                                                                                                                                                        |
 </details>
-
-
+<br>
 <details>
 <summary>Commands For Contacts</summary>
 <br>
@@ -403,7 +383,7 @@ Format: `calendar`
 | **Edit Contact**   | `editContact [INDEX] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                         |
 | **View Contacts**  | `contacts`                                                                                                                                                                                                    |
 </details>
-
+<br>
 <details>
 <summary>Commands For Policy</summary>
 <br>
@@ -419,7 +399,7 @@ Format: `calendar`
 | **List Assigned**          | `listAssigned`                                                                                                                                                                                                |
 | **View Income**            | `viewIncome [YEAR]`                                                                                                                                                                                           |                                                                                                                                                                                                               |
 </details>
-
+<br>
 <details>
 <summary>Commands For Events</summary>
 <br>
@@ -432,7 +412,7 @@ Format: `calendar`
 | **View events**   | `events`                                                                                                                                                                                                      |
 | **View calendar** | `calendar`                                                                                                                                                                                                    |
 </details>
-
+<br>
 <details>
 <summary>Miscellaneous Commands</summary>
 <br>
@@ -443,9 +423,8 @@ Format: `calendar`
 | **Pin**         | `pin [n/NAME]` <br> e.g: `pin n/Jim`                                                                                                                                                                          |
 | **View Pinned** | ` viewPin ` <br> e.g: `viewPin`                                                                                                                                                                               |
 </details>
-    
-<text></text>
-<text></text>
-<text></text>
+<br>    
+<br>
+<br>
 
  
