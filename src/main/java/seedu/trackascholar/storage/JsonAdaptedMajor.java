@@ -25,7 +25,7 @@ class JsonAdaptedMajor {
      * Converts a given {@code Major} into this class for Jackson use.
      */
     public JsonAdaptedMajor(Major source) {
-        major = source.major;
+        major = source.getName();
     }
 
     @JsonValue

@@ -63,20 +63,40 @@ public class Applicant {
         return name;
     }
 
+    public String getFullName() {
+        return name.getFullName();
+    }
+
     public Phone getPhone() {
         return phone;
+    }
+
+    public String getPhoneNumber() {
+        return phone.getNumber();
     }
 
     public Email getEmail() {
         return email;
     }
 
+    public String getEmailAddress() {
+        return email.getEmailAddress();
+    }
+
     public Scholarship getScholarship() {
         return scholarship;
     }
 
+    public String getScholarshipName() {
+        return scholarship.getScholarship();
+    }
+
     public ApplicationStatus getApplicationStatus() {
         return applicationStatus;
+    }
+
+    public String getStatusOfApplication() {
+        return applicationStatus.getApplicationStatus();
     }
 
     public Pin getPin() {

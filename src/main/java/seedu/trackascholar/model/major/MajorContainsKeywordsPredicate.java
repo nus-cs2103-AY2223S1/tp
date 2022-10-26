@@ -23,7 +23,7 @@ public class MajorContainsKeywordsPredicate implements Predicate<Applicant> {
     public boolean test(Applicant applicant) {
         Set<String> majors = applicant.getMajors()
                 .stream()
-                .map(major -> major.major)
+                .map(major -> major.getName())
                 .collect(Collectors.toSet());
 
         List<String> listOfMajors = new ArrayList<>();

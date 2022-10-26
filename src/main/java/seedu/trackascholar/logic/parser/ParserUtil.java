@@ -146,6 +146,9 @@ public class ParserUtil {
      */
     public static Set<Major> parseMajors(Collection<String> majors) throws ParseException {
         requireNonNull(majors);
+        if (majors.size() > Major.MAXIMUM_NUMBER_OF_MAJORS) {
+            throw new ParseException(Major.MESSAGE_CONSTRAINTS);
+        }
         final Set<Major> majorSet = new HashSet<>();
         for (String major : majors) {
             majorSet.add(parseMajor(major));

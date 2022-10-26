@@ -9,16 +9,16 @@ import static seedu.trackascholar.commons.util.AppUtil.checkArgument;
  */
 public class Scholarship implements Comparable<Scholarship> {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Scholarship should only contain alphanumeric characters, dashes and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Scholarship should only contain "
+            + "alphanumeric characters, dashes, ampersand and spaces, and it should not be blank";
 
     /*
      * The first character of the trackascholar must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} &-]*";
+    private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} &-]*";
 
-    public final String scholarship;
+    private final String scholarship;
 
     /**
      * Constructs an {@code Address}.
@@ -36,6 +36,13 @@ public class Scholarship implements Comparable<Scholarship> {
      */
     public static boolean isValidScholarship(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns name of scholarship that applicant has applied for.
+     */
+    public String getScholarship() {
+        return scholarship;
     }
 
     @Override

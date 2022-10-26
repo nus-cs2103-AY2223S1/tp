@@ -18,7 +18,7 @@ public class ApplicationStatusPredicate implements Predicate<Applicant> {
     @Override
     public boolean test(Applicant applicant) {
         return StringUtil.containsWordIgnoreCase(applicant
-                .getApplicationStatus().applicationStatus, keyword);
+                .getStatusOfApplication(), keyword);
     }
 
     @Override

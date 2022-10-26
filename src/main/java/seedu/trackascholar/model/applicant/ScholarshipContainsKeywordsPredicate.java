@@ -18,7 +18,7 @@ public class ScholarshipContainsKeywordsPredicate implements Predicate<Applicant
     @Override
     public boolean test(Applicant applicant) {
         return keywords.stream().anyMatch(
-                keyword -> StringUtil.containsWordIgnoreCase(applicant.getScholarship().scholarship, keyword));
+                keyword -> StringUtil.containsWordIgnoreCase(applicant.getScholarshipName(), keyword));
     }
 
     @Override

@@ -9,11 +9,14 @@ import static seedu.trackascholar.commons.util.AppUtil.checkArgument;
  */
 public class Major {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Majors should only contain alphanumeric characters and spaces, and it should not be blank";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String MESSAGE_CONSTRAINTS = "Majors should only contain alphanumeric characters and spaces, "
+            + "and adhere to the following constraints:\n"
+            + "1. Major should not be empty\n"
+            + "2. An applicant can only take up at most 2 Majors";
+    public static final int MAXIMUM_NUMBER_OF_MAJORS = 2;
+    private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String major;
+    private final String major;
 
     /**
      * Constructs a {@code Major}.
@@ -31,6 +34,10 @@ public class Major {
      */
     public static boolean isValidMajor(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public String getName() {
+        return major;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class ApplicationStatus implements Comparable<ApplicationStatus> {
     private static final String ACCEPTED = "accepted";
     private static final String REJECTED = "rejected";
 
-    public final String applicationStatus;
+    private final String status;
 
     /**
      * Constructs a {@code ApplicationStatus}.
@@ -31,11 +31,11 @@ public class ApplicationStatus implements Comparable<ApplicationStatus> {
         String statusToLowerCase = status.toLowerCase();
         checkArgument(isValidApplicationStatus(statusToLowerCase), MESSAGE_CONSTRAINTS);
         if (statusToLowerCase.equals(ACCEPTED)) {
-            applicationStatus = ACCEPTED;
+            this.status = ACCEPTED;
         } else if (statusToLowerCase.equals(REJECTED)) {
-            applicationStatus = REJECTED;
+            this.status = REJECTED;
         } else {
-            applicationStatus = PENDING;
+            this.status = PENDING;
         }
     }
 
@@ -56,28 +56,35 @@ public class ApplicationStatus implements Comparable<ApplicationStatus> {
                 || test.equalsIgnoreCase(REJECTED);
     }
 
+    /**
+     * Returns status of applicant's scholarship application.
+     */
+    public String getApplicationStatus() {
+        return status;
+    }
+
     @Override
     public String toString() {
-        return applicationStatus;
+        return status;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ApplicationStatus // instanceof handles nulls
-                && applicationStatus.equals(((ApplicationStatus) other).applicationStatus)); // state check
+                && status.equals(((ApplicationStatus) other).status)); // state check
     }
 
     @Override
     public int hashCode() {
-        return applicationStatus.hashCode();
+        return status.hashCode();
     }
 
     @Override
     public int compareTo(ApplicationStatus other) {
         if (this.equals(other)) {
             return 0;
-        } else if (this.applicationStatus.equals(PENDING) || other.applicationStatus.equals(REJECTED)) {
+        } else if (this.status.equals(PENDING) || other.status.equals(REJECTED)) {
             return -1;
         } else {
             return 1;

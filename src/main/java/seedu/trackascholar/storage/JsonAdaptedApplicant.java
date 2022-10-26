@@ -65,11 +65,11 @@ class JsonAdaptedApplicant {
      * Converts a given {@code Applicant} into this class for Jackson use.
      */
     public JsonAdaptedApplicant(Applicant source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        scholarship = source.getScholarship().scholarship;
-        applicationStatus = source.getApplicationStatus().applicationStatus;
+        name = source.getFullName();
+        phone = source.getPhoneNumber();
+        email = source.getEmailAddress();
+        scholarship = source.getScholarshipName();
+        applicationStatus = source.getStatusOfApplication();
         hasPinned = source.getPin().getHasPinned();
         majors.addAll(source.getMajors().stream()
                 .map(JsonAdaptedMajor::new)
@@ -128,6 +128,10 @@ class JsonAdaptedApplicant {
             throw new IllegalValueException(ApplicationStatus.MESSAGE_CONSTRAINTS);
         }
         final ApplicationStatus modelApplicationStatus = new ApplicationStatus(applicationStatus);
+
+        if (applicantMajors.size() > Major.MAXIMUM_NUMBER_OF_MAJORS) {
+            throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
+        }
         final Set<Major> modelMajors = new HashSet<>(applicantMajors);
         final Pin modelPin = new Pin(hasPinned);
         return new Applicant(modelName, modelPhone, modelEmail, modelScholarship,

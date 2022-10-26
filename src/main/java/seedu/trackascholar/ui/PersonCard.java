@@ -50,15 +50,15 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.applicant = applicant;
         id.setText(displayedIndex + ". ");
-        name.setText(applicant.getName().fullName);
-        phone.setText(applicant.getPhone().value);
-        scholarship.setText(applicant.getScholarship().scholarship);
-        applicationStatus.setText(applicant.getApplicationStatus().applicationStatus);
-        setApplicationStatusStyling(applicant.getApplicationStatus().applicationStatus);
-        email.setText(applicant.getEmail().value);
+        name.setText(applicant.getFullName());
+        phone.setText(applicant.getPhoneNumber());
+        scholarship.setText(applicant.getScholarshipName());
+        applicationStatus.setText(applicant.getStatusOfApplication());
+        setApplicationStatusStyling(applicant.getStatusOfApplication());
+        email.setText(applicant.getEmailAddress());
         applicant.getMajors().stream()
-                .sorted(Comparator.comparing(major -> major.major))
-                .forEach(major -> majors.getChildren().add(new Label(major.major)));
+                .sorted(Comparator.comparing(major -> major.getName()))
+                .forEach(major -> majors.getChildren().add(new Label(major.getName())));
     }
 
     @Override

@@ -31,13 +31,13 @@ public class ApplicantUtil {
      */
     public static String getApplicantDetails(Applicant applicant) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + applicant.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + applicant.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + applicant.getEmail().value + " ");
-        sb.append(PREFIX_SCHOLARSHIP + applicant.getScholarship().scholarship + " ");
-        sb.append(PREFIX_APPLICATION_STATUS + applicant.getApplicationStatus().applicationStatus + " ");
+        sb.append(PREFIX_NAME + applicant.getFullName() + " ");
+        sb.append(PREFIX_PHONE + applicant.getPhoneNumber() + " ");
+        sb.append(PREFIX_EMAIL + applicant.getEmailAddress() + " ");
+        sb.append(PREFIX_SCHOLARSHIP + applicant.getScholarshipName() + " ");
+        sb.append(PREFIX_APPLICATION_STATUS + applicant.getStatusOfApplication() + " ");
         applicant.getMajors().stream().forEach(
-            s -> sb.append(PREFIX_MAJOR + s.major + " ")
+            major -> sb.append(PREFIX_MAJOR + major.getName() + " ")
         );
         return sb.toString();
     }
@@ -47,20 +47,21 @@ public class ApplicantUtil {
      */
     public static String getEditApplicantDescriptorDetails(EditApplicantDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.getFullName()).append(" "));
+        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.getNumber()).append(" "));
+        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.getEmailAddress()).append(" "));
         descriptor.getScholarship()
-                .ifPresent(scholarship -> sb.append(PREFIX_SCHOLARSHIP).append(scholarship.scholarship).append(" "));
+                .ifPresent(scholarship -> sb.append(PREFIX_SCHOLARSHIP)
+                        .append(scholarship.getScholarship()).append(" "));
         descriptor.getApplicationStatus()
                 .ifPresent(applicationStatus -> sb.append(PREFIX_APPLICATION_STATUS)
-                        .append(applicationStatus.applicationStatus).append(" "));
+                        .append(applicationStatus.getApplicationStatus()).append(" "));
         if (descriptor.getMajors().isPresent()) {
             Set<Major> majors = descriptor.getMajors().get();
             if (majors.isEmpty()) {
                 sb.append(PREFIX_MAJOR);
             } else {
-                majors.forEach(s -> sb.append(PREFIX_MAJOR).append(s.major).append(" "));
+                majors.forEach(major -> sb.append(PREFIX_MAJOR).append(major.getName()).append(" "));
             }
         }
         return sb.toString();
