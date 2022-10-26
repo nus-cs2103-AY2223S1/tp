@@ -59,8 +59,6 @@ public class Time {
         return test.matches(VALIDATION_REGEX);
     }
 
-    //TODO: add InvalidTimeFormatException
-
     /**
      * Returns the string representation of StartTime.
      */
