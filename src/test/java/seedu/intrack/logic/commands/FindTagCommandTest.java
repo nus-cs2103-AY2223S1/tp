@@ -50,7 +50,7 @@ public class FindTagCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different internship -> returns false
+        // different tag -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 

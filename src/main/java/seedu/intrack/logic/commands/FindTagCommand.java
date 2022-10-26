@@ -7,7 +7,7 @@ import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.TagsContainKeywordsPredicate;
 
 /**
- * Finds and lists all internships in the internship tracker whose position contains any of the argument keywords.
+ * Finds and lists all internships in the internship tracker whose tags contain any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindTagCommand extends Command {
