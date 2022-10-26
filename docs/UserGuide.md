@@ -266,8 +266,8 @@ Deletes one or more existing `Tag`s from the internship application at the speci
 
 Format: `deltag INDEX TAG [MORE_TAGS]` 
 
-* Apart from the standard format, the user can also input `deltag clear` to clear all tags in the internship application
-with the selected `INDEX`.
+* Apart from the standard format, the user can also input `deltag INDEX clear` to clear all tags in the internship
+application with the selected `INDEX`.
 
 Example of usage:
 
@@ -279,11 +279,11 @@ Expected outcome:
 
 Example of usage:
 
-* `deltag clear`
+* `deltag 1 clear`
 
 Expected outcome:
 
-* All tags from that internship with the selected `INDEX` will disappear.
+* All tags from the internship at `INDEX` 1 will disappear.
 
 --------------------------------------------------------------------------------------------------------------------
 
