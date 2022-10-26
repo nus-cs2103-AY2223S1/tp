@@ -29,6 +29,8 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label name;
+    @FXML
     private Label companyName;
     @FXML
     private Label id;
@@ -48,6 +50,7 @@ public class InternshipCard extends UiPart<Region> {
         super(FXML);
         this.internship = internship;
         id.setText(displayedIndex + ". ");
+        name.setText(internship.getDisplayName());
         companyName.setText(internship.getCompanyName().fullName);
         role.setText(internship.getInternshipRole().roleName);
         status.getChildren().add(new Label(internship.getInternshipStatus().toString()));
@@ -64,11 +67,7 @@ public class InternshipCard extends UiPart<Region> {
         } else {
             contactPerson.setText("Contact Person: " + contactPersonName);
         }
-        if (internship.getInterviewDate() == null) {
-            interviewDate.setText("No interviews scheduled.");
-        } else {
-            interviewDate.setText("Interview on: " + internship.getInterviewDate().toString());
-        }
+        interviewDate.setText("Interview on: " + internship.getInterviewDate().toString());
     }
 
     @Override

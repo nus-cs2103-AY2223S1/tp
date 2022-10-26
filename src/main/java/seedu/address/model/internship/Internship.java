@@ -2,6 +2,7 @@ package seedu.address.model.internship;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 import seedu.address.model.person.PersonId;
@@ -41,6 +42,10 @@ public class Internship {
         this.interviewDate = interviewDate;
     }
 
+    public String getDisplayName() {
+        return companyName.toString() + " " + internshipRole.toString();
+    }
+
     public InternshipId getInternshipId() {
         return internshipId;
     }
@@ -62,6 +67,9 @@ public class Internship {
     }
 
     public InterviewDate getInterviewDate() {
+        if (interviewDate == null) {
+            return new InterviewDate(null);
+        }
         return interviewDate;
     }
 
@@ -77,6 +85,35 @@ public class Internship {
         return otherInternship != null
                 && otherInternship.getCompanyName().equals(getCompanyName())
                 && otherInternship.getInternshipRole().equals(getInternshipRole());
+    }
+
+    /**
+     * Returns a Comparator that compares Internships by companyName.
+     *
+     * @return the Comparator.
+     */
+    public static Comparator<Internship> compareByCompanyName() {
+        return Comparator.comparing(i -> i.getCompanyName().toString().toLowerCase());
+    }
+
+    /**
+     * Returns a Comparator that compares Internships by interviewDate.
+     * Internships with no interview dates are greater (and appear lower in the sorted list).
+     *
+     * @return the Comparator.
+     */
+    public static Comparator<Internship> compareByInterviewDate() {
+        return Comparator.comparing(
+                i -> i.getInterviewDate().datetime, Comparator.nullsLast(Comparator.naturalOrder()));
+    }
+
+    /**
+     * Returns a Comparator that compares Internships by internshipStatus.
+     *
+     * @return the Comparator.
+     */
+    public static Comparator<Internship> compareByInternshipStatus() {
+        return Comparator.comparingInt(i -> i.getInternshipStatus().currentState.getLevel());
     }
 
     @Override

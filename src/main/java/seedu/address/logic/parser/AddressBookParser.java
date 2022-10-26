@@ -18,8 +18,12 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindInternshipCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LinkCommand;
 import seedu.address.logic.commands.ListInternshipCommand;
 import seedu.address.logic.commands.ListPersonCommand;
+import seedu.address.logic.commands.SortInternshipCommand;
+import seedu.address.logic.commands.SortPersonCommand;
+import seedu.address.logic.commands.UnlinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -30,7 +34,8 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT =
+            Pattern.compile("(?<commandWord>\\S+)(?<flag>\\s-\\S+)?(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -45,8 +50,14 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord;
+        final String flag = matcher.group("flag");
         final String arguments = matcher.group("arguments");
+        if (flag != null) {
+            commandWord = matcher.group("commandWord") + flag;
+        } else {
+            commandWord = matcher.group("commandWord");
+        }
         switch (commandWord) {
 
         case AddPersonCommand.COMMAND_WORD:
@@ -60,6 +71,12 @@ public class AddressBookParser {
 
         case EditInternshipCommand.COMMAND_WORD:
             return new EditInternshipCommandParser().parse(arguments);
+
+        case LinkCommand.COMMAND_WORD:
+            return new LinkCommandParser().parse(arguments);
+
+        case UnlinkCommand.COMMAND_WORD:
+            return new UnlinkCommandParser().parse(arguments);
 
         case DeletePersonCommand.COMMAND_WORD:
             return new DeletePersonCommandParser().parse(arguments);
@@ -87,6 +104,12 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case SortPersonCommand.COMMAND_WORD:
+            return new SortPersonCommandParser().parse(arguments);
+
+        case SortInternshipCommand.COMMAND_WORD:
+            return new SortInternshipCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

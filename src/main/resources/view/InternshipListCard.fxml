@@ -25,9 +25,10 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="companyName" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane fx:id="status" />
+      <Label fx:id="companyName" styleClass="cell_small_label" text="\$companyName" />
       <Label fx:id="role" styleClass="cell_small_label" text="\$role" />
       <Label fx:id="contactPerson" styleClass="cell_small_label" text="\$contactPerson" />
       <Label fx:id="interviewDate" styleClass="cell_small_label" text="\$interviewDate" />
