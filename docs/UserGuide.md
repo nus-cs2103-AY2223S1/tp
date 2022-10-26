@@ -116,25 +116,27 @@ Format : `tag TASK_NUMBER TAG_NAME`
 
 Example: `tag 2 optional`
 
-### Listing all tasks : `ls -a`
+
+### List : `ls`
+#### Listing all tasks : `ls -a`
 
 Shows a list of all tasks in the task list.
 
 Format: `ls -a`
 
-### Listing all unmarked tasks : `ls -u`
+#### Listing all unmarked tasks : `ls -u`
 
 Shows a list of all unmarked tasks in the task list, ie shows a list of uncompleted tasks.
 
 Format: `ls -u`
 
-### Listing all marked tasks : `ls -m`
+#### Listing all marked tasks : `ls -m`
 
 Shows a list of all marked tasks in the task list, ie shows a list of completed tasks.
 
 Format: `ls -m`
 
-### Listing all tasks under the same module : `ls --module`
+#### Listing all tasks under the same module : `ls --module`
 
 Shows a list of all tasks under the same module.
 
@@ -143,7 +145,7 @@ Format: `ls --module MODULE`
 
 Example: `ls --module cs2103t`
 
-### Listing all tasks containing the same tag : `ls -t`
+#### Listing all tasks containing the same tag : `ls -t`
 
 Shows a list of all tasks under the same module.
 
@@ -152,7 +154,7 @@ Format: `ls -t TAG_NAME`
 
 Example: `ls -t highPriority`
 
-### Listing all tasks with deadline on or after a date : `ls -d`
+#### Listing all tasks with deadline on or after a date : `ls -d`
 
 Shows a list of all tasks under the same module.
 
@@ -160,6 +162,12 @@ Format: `ls -d DATE`
 * `DATE`: Must be in the format of YYYY-MM-DD.
 
 Example: `ls -d 2022-11-11`
+
+#### Listing all archived tasks : `ls -archive`
+
+Shows a list of all tasks that are archived. 
+
+Format: `ls -archive`
 
 ### Editing a task : `edit`
 
@@ -211,9 +219,17 @@ NotionUS data are saved as a JSON file `[JAR file location]/data/notionusdata.js
 **Caution:**
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
 
-### Archiving data files `[coming in v2.0]`
+#### Archiving data files : `archive`
 
-_Details coming soon ..._
+Allows you to remove a task from task list and store in archived file. 
+
+Format: `archive TASK_NUMBER | DATE`
+* `TASK_NUMBER`: This is the number of the task currently displayed.
+* `DATE`: Must be in the format of YYYY-MM-DD.
+
+Examples: 
+* `archive 1`: archives first task in task list.
+* `archive 2022-10-17`: archives tasks with deadline on and before `DATE`.
 
 ### Find tasks by name `[coming in v2.0]`
 
