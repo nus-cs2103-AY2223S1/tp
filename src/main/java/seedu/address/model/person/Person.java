@@ -8,7 +8,7 @@ import java.util.Objects;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     private static final String VALID_PHONE_NUMBER = "91234567";
     private static final String VALID_EMAIL = "dinosaur@gmail.com";
@@ -101,4 +101,8 @@ public class Person {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Person other) {
+        return name.compareTo(other.name);
+    }
 }

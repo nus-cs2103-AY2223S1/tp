@@ -3,6 +3,7 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -47,6 +48,7 @@ public class UniqueModuleList implements Iterable<Module> {
             throw new DuplicateModuleException();
         }
         internalList.add(toAdd);
+        Collections.sort(internalList);
     }
 
     /**
@@ -67,6 +69,7 @@ public class UniqueModuleList implements Iterable<Module> {
         }
 
         internalList.set(index, editedModule);
+        Collections.sort(internalList);
     }
 
     /**
@@ -104,6 +107,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public void setModules(UniqueModuleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        Collections.sort(internalList);
     }
 
     /**
@@ -117,6 +121,27 @@ public class UniqueModuleList implements Iterable<Module> {
         }
 
         internalList.setAll(modules);
+        Collections.sort(internalList);
+    }
+
+    /**
+     * Replaces the person {@code target} in every module with {@code editedPerson}
+     * if {@code target} exists in the module.
+     *
+     * {@code target} must exist in the address book person list.
+     * The person identity of {@code editedPerson} must not be the same as another existing person
+     * in the address book person list.
+     *
+     * @param target The person to be replaced.
+     * @param editedPerson The person to replace {@code target}.
+     */
+    public void setPersonInModules(Person target, Person editedPerson) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Module module = internalList.get(i);
+            if (module.containsPerson(target)) {
+                module.setPerson(target, editedPerson);
+            }
+        }
     }
 
     /**
