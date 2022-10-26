@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddPersonCommand;
@@ -22,7 +21,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddPersonCommand object
@@ -48,9 +46,8 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         DateOfBirth dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Uid uid = new Uid();
-        Person person = new Person(name, phone, email, address, gender, dob, tagList, uid);
+        Person person = new Person(name, phone, email, address, gender, dob, uid);
         return new AddPersonCommand(person);
     }
 
