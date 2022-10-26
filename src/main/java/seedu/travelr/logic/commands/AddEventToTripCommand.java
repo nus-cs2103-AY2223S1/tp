@@ -59,7 +59,7 @@ public class AddEventToTripCommand extends Command {
         if (!model.hasTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()))) {
             throw new CommandException("Please enter a valid Trip");
         }
-        
+
         if (!model.hasEventInBucketList(new Event(eventToAdd))) {
             throw new CommandException("This event is no longer in the bucket list!");
         }

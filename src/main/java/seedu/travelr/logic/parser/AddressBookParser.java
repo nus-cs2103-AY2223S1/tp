@@ -112,7 +112,7 @@ public class AddressBookParser {
 
         case SortTripsCommand.COMMAND_WORD:
             return new SortTripsCommandParser().parse(arguments);
-            
+
         case SortEventsCommand.COMMAND_WORD:
             return new SortEventsCommandParser().parse(arguments);
 

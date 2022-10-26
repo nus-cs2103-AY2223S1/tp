@@ -154,7 +154,7 @@ public class UniqueEventList extends EventList {
     public int hashCode() {
         return internalList.hashCode();
     }
-    
+
     @Override
     public void sort(Comparator<Event> comp) {
         internalList.sort(comp);

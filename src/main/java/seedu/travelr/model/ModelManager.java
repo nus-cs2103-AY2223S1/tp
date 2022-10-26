@@ -247,12 +247,12 @@ public class ModelManager implements Model {
     public void sortTripsByComparator(Comparator<Trip> comp) {
         addressBook.sortTrips(comp);
     }
-    
+
     @Override
     public void sortBucketList(Comparator<Event> comp) {
         addressBook.sortBucketList(comp);
     }
-    
+
     @Override
     public boolean hasEventInBucketList(Event event) {
         return bucketList.contains(event);

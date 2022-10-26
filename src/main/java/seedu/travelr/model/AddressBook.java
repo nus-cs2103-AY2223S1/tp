@@ -232,7 +232,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         comp = this.makeBucketComparator(comp);
         allEventsList.sort(comp);
     }
-    
+
     private Comparator<Event> makeBucketComparator(Comparator<Event> comp) {
         return (x, y) -> {
             int xInBucket = bucketList.contains(x) ? 1 : 0;

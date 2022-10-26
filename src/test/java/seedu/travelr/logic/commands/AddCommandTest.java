@@ -231,12 +231,12 @@ public class AddCommandTest {
         public void resetSelectedTrip() {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public void sortBucketList(Comparator<Event> comp) {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public boolean hasEventInBucketList(Event event) {
             throw new AssertionError("This method should not be called.");

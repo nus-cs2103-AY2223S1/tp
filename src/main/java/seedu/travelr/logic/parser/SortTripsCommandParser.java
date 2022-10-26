@@ -59,7 +59,7 @@ public class SortTripsCommandParser implements Parser<SortTripsCommand> {
 
         return new SortTripsCommand(comp);
     }
-    
+
     private static Comparator<Trip> makeComparator(boolean reverse, Comparator<Trip> comp) {
         return (x, y) -> {
             if (COMPARE_BY_COMPLETION.compare(x, y) != 0) {
