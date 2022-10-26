@@ -1,4 +1,10 @@
 package seedu.address.storage;
 
-public class JsonAdaptedAbstractSingleItem {
+import seedu.address.model.item.DisplayItem;
+
+class JsonAdaptedAbstractSingleItem extends JsonAdaptedAbstractDisplayItem {
+
+    class JsonAdaptedAbstractSingleItem(DisplayItem item) {
+
+    }
 }

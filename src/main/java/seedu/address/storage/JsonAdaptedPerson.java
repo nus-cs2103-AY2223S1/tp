@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-// import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.person.Fields;
 import seedu.address.model.person.Person;
@@ -43,13 +42,17 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        // phone = source.getPhone().value;
-        // email = source.getEmail().value;
-        // address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        super(source.getName().fullName,
+                source.getAttributes().stream()
+                        .map(JsonAdaptedAttribute::new)
+                        .collect(Collectors.toList()),
+                source.getTags().stream()
+                        .map(JsonAdaptedTag::new)
+                        .collect(Collectors.toList()));
+        parents.addAll(source.getParents().stream()
+                .map(JsonAdaptedAbstractSingleItem::new)
                 .collect(Collectors.toList()));
+        fields = new JsonAdaptedFields(source.getFields());
     }
 
     /**
