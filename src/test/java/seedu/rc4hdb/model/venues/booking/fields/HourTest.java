@@ -47,13 +47,13 @@ public class HourTest {
 
     @Test
     public void isValidHour() {
-        // EP: before 8 and after 22
+        // EP: before 8 and after 23
         assertFalse(Hour.isValidHour("7"));
-        assertFalse(Hour.isValidHour("23"));
+        assertFalse(Hour.isValidHour("24"));
 
-        // EP: between 8 and 22
+        // EP: between 8 and 23
         assertTrue(Hour.isValidHour("8"));
-        assertTrue(Hour.isValidHour("22"));
+        assertTrue(Hour.isValidHour("23"));
         assertTrue(Hour.isValidHour("15"));
 
         // EP: any other string
