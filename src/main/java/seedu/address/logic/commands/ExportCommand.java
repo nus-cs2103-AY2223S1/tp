@@ -46,7 +46,7 @@ public class ExportCommand extends Command {
                 throw new CommandException(CANNOT_OPEN_FILE + exportLocation.toAbsolutePath());
             }
         }
-        return new CommandResult(MESSAGE_EXPORT_SUCCESS);
+        return new CommandResult(MESSAGE_EXPORT_SUCCESS + exportLocation.toAbsolutePath());
     }
 
 
