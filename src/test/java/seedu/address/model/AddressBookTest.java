@@ -23,7 +23,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.PatientType.PatientTypes;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.tag.Medication;
+import seedu.address.model.tag.MedicationMap;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -94,6 +94,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final MedicationMap medicationMap = new MedicationMap();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -106,7 +107,7 @@ public class AddressBookTest {
 
         @Override
         public String getMedicationMap() {
-            return Medication.getMedicationMap();
+            return medicationMap.toString();
         }
 
         @Override
@@ -115,6 +116,11 @@ public class AddressBookTest {
             sb.append(String.format(MESSAGE_COUNT, model.getPersonCount()));
             sb.append(getMedicationMap());
             return sb.toString();
+        }
+
+        @Override
+        public String getMedicationMapObject() {
+            return medicationMap.getMedicationMapSimplified();
         }
     }
 
