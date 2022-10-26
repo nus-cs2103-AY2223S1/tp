@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -56,8 +58,32 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         telegram.setText(person.getTelegram().value);
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    @FXML
+    private void copyEmail() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent email = new ClipboardContent();
+        email.putString(this.email.getText());
+        clipboard.setContent(email);
+    }
+
+    @FXML
+    private void copyTelegram() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent telegram = new ClipboardContent();
+        telegram.putString(this.telegram.getText());
+        clipboard.setContent(telegram);
+    }
+
+    @FXML
+    private void copyPhone() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent phone = new ClipboardContent();
+        phone.putString(this.phone.getText());
+        clipboard.setContent(phone);
     }
 
     @Override
@@ -75,6 +101,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+            && person.equals(card.person);
     }
 }
