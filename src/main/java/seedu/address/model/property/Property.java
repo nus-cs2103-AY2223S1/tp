@@ -12,7 +12,7 @@ import seedu.address.model.buyer.Phone;
 import seedu.address.model.characteristics.Characteristics;
 
 /**
- * Represents a Property in the address book.
+ * Represents a Property in the property book.
  * Guarantees: field values are validated, immutable.
  * Only characteristics may be null.
  */

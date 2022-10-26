@@ -16,32 +16,32 @@ import seedu.address.model.buyer.Buyer;
 /**
  * An Immutable PersonBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "personbook")
+class JsonSerializablePersonBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate buyer(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializablePersonBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializablePersonBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.persons.addAll(persons);
     }
 
     /**
      * Converts a given {@code ReadOnlyPersonBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializablePersonBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyPersonBook source) {
+    public JsonSerializablePersonBook(ReadOnlyPersonBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code PersonBook} object.
+     * Converts this person book into the model's {@code PersonBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

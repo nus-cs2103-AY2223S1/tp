@@ -22,8 +22,8 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new PersonBook(), new PersonBook(modelManager.getPersonModel()));
-        assertEquals(new PropertyBook(), new PropertyBook(modelManager.getPropertyModel()));
+        assertEquals(new PersonBook(), new PersonBook(modelManager.getPersonBook()));
+        assertEquals(new PropertyBook(), new PropertyBook(modelManager.getPropertyBook()));
     }
 
     @Test
@@ -58,15 +58,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setPersonModelFilePath(null));
+    public void setPersonBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPersonBookFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setPersonBookFilePath_validPath_setsPersonBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setPersonModelFilePath(path);
-        assertEquals(path, modelManager.getPersonModelFilePath());
+        modelManager.setPersonBookFilePath(path);
+        assertEquals(path, modelManager.getPersonBookFilePath());
     }
 
     @Test
@@ -75,7 +75,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInPersonBook_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALICE));
     }
 
@@ -91,15 +91,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setPropertyModelFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setPropertyModelFilePath(null));
+    public void setPropertyBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPropertyBookFilePath(null));
     }
 
     @Test
-    public void setPropertyModelFilePath_validPath_setsPropertyModelFilePath() {
+    public void setPropertyBookFilePath_validPath_setsPropertyBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setPropertyModelFilePath(path);
-        assertEquals(path, modelManager.getPropertyModelFilePath());
+        modelManager.setPropertyBookFilePath(path);
+        assertEquals(path, modelManager.getPropertyBookFilePath());
     }
 
     @Test
@@ -108,12 +108,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasProperty_propertyNotInPropertyModel_returnsFalse() {
+    public void hasProperty_propertyNotInPropertyBook_returnsFalse() {
         assertFalse(modelManager.hasProperty(PEAKRESIDENCE));
     }
 
     @Test
-    public void hasProperty_propertyInPropertyModel_returnsTrue() {
+    public void hasProperty_propertyInPropertyBook_returnsTrue() {
         modelManager.addProperty(PEAKRESIDENCE);
         assertTrue(modelManager.hasProperty(PEAKRESIDENCE));
     }

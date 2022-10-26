@@ -33,7 +33,7 @@ class EditPropertyCommandTest {
 
         String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty);
         Model expectedModel = new ModelManager(new PersonBook(
-                model.getPersonModel()), new PropertyBook(model.getPropertyModel()), new UserPrefs());
+                model.getPersonBook()), new PropertyBook(model.getPropertyBook()), new UserPrefs());
 
         expectedModel.setProperty(currentProperty, editedProperty);
         assertCommandSuccess(editPropertyCommand, model, expectedMessage, expectedModel);
@@ -52,7 +52,7 @@ class EditPropertyCommandTest {
 
         String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty);
         Model expectedModel = new ModelManager(new PersonBook(
-                model.getPersonModel()), new PropertyBook(model.getPropertyModel()), new UserPrefs());
+                model.getPersonBook()), new PropertyBook(model.getPropertyBook()), new UserPrefs());
 
         expectedModel.setProperty(currentProperty, editedProperty);
         assertCommandSuccess(editPropertyCommand, model, expectedMessage, expectedModel);
@@ -67,7 +67,7 @@ class EditPropertyCommandTest {
         String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty);
 
         Model expectedModel = new ModelManager(new PersonBook(
-                model.getPersonModel()), new PropertyBook(model.getPropertyModel()), new UserPrefs());
+                model.getPersonBook()), new PropertyBook(model.getPropertyBook()), new UserPrefs());
 
         assertCommandSuccess(editPropertyCommand, model, expectedMessage, expectedModel);
     }

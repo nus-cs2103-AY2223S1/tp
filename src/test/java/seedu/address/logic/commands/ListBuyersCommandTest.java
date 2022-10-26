@@ -20,7 +20,7 @@ public class ListBuyersCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getPersonModel(), model.getPropertyModel(), new UserPrefs());
+        expectedModel = new ModelManager(model.getPersonBook(), model.getPropertyBook(), new UserPrefs());
     }
 
     //    @Test

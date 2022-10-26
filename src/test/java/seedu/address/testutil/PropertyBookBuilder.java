@@ -6,22 +6,22 @@ import seedu.address.model.property.Property;
 /**
  * A utility class to help with building PropertyBook objects.
  */
-public class PropertyModelBuilder {
+public class PropertyBookBuilder {
 
     private PropertyBook propertyBook;
 
-    public PropertyModelBuilder() {
+    public PropertyBookBuilder() {
         propertyBook = new PropertyBook();
     }
 
-    public PropertyModelBuilder(PropertyBook propertyBook) {
+    public PropertyBookBuilder(PropertyBook propertyBook) {
         this.propertyBook = propertyBook;
     }
 
     /**
      * Adds a new {@code Property} to the {@code PropertyBook} that we are building.
      */
-    public PropertyModelBuilder withProperty(Property property) {
+    public PropertyBookBuilder withProperty(Property property) {
         propertyBook.addProperty(property);
         return this;
     }
