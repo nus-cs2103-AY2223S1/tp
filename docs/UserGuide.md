@@ -28,6 +28,7 @@ For a full list of commands and detailed instructions, head to the [Features](#f
       * [Find by Next of Kin's contact number](#find-by-next-of-kins-contact-number)
       * [Find by class date](#find-by-class-date)
       * [Find by tag](#find-by-tag)
+    * [Next available class: `avail`](#next-available-class)
     * [Deleting a student: `delete`](#deleting-students-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
     * [Exiting the program : `exit`](#exiting-the-program-exit)
@@ -306,17 +307,16 @@ Example:
 
 Finds all students with a particular next of kin contact number.
 
-Formats:
-1. `find np/NOKPHONE`
+Formats: `find np/NOKPHONE`
 
 - Only one phone number can be searched at each time.
 ```yaml
-❗ Caution: Do not include more than one phone number like `find np/91232323 81231232`
+❗ Caution: Do not include more than one phone number like `find np/91232323 81231232`.
 ```
 
 Examples:
 
-`find np/91232323` returns the student with the next of kin phone number of 91232323
+`find np/91232323` returns the student with the next of kin phone number of 91232323.
 
 [Back to top](#table-of-contents)
 
@@ -345,12 +345,11 @@ Examples:
 
 Finds all students with a particular tag.
 
-Formats:
-1. `find t/tagName`
+Formats: `find t/tagName`
 
-- Only one tag can be searched at each time
+- Only one tag can be searched at each time.
 ```yaml
-❗ Caution: Do not include more than one tag like `find t/python java`
+❗ Caution: Do not include more than one tag like `find t/python java`.
 ```
 
 Examples:
@@ -362,8 +361,32 @@ python tag.
 [Back to top](#table-of-contents)
 
 ---
+### Next available class: `avail`
 
-### Deleting students: 'delete'
+Finds the next available class given a time range and duration and returns the next available class within the time 
+range and with the specified class duration.
+
+Format: `avail TIME_RANGE DURATION`
+
+- The `TIME_RANGE` would follow a 24 hour format of 0000-2359.
+- The `DURATION` is in minutes.
+```yaml
+❗ Caution: The duration should not exceed the time range.
+        Eg: If the time range is 1000-1100 and the duration is 70, this would be invalid.
+```
+
+Examples:
+- Given that there is 1 student on the current day of 2022-10-27 from 0900-1000, `avail 1100-1200 60` would return
+  `2022-10-27 1100-1200` since there is no student at that slot.
+- Given that there are 2 students on the current day of 2022-10-27 from 0900-1000 and at 1030-1130, 
+`avail 0830-1300 60` would return `2022-10-27 1130-1230` as the next slot since there is no sufficient duration
+between 1000-1030 for a 60 minutes class.
+
+[Back to top](#table-of-contents)
+
+---
+
+### Deleting students: `delete`
 
 Deletes the specified student(s) from the student list.
 
@@ -385,7 +408,7 @@ Examples:
 
 ---
 
-### Clearing all student: 'clear'
+### Clearing all student: `clear`
 
 Clears all students and their details from the list.
 
