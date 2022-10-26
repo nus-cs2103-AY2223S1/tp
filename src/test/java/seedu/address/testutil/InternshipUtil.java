@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -34,6 +35,7 @@ public class InternshipUtil {
         sb.append(PREFIX_LINK + internship.getLink().value + " ");
         sb.append(PREFIX_DESCRIPTION + internship.getDescription().value + " ");
         sb.append(PREFIX_APPLIED_DATE + internship.getAppliedDate().value + " ");
+        sb.append(PREFIX_INTERVIEW_DATE_TIME + internship.getInterviewDateTime().value + " ");
         internship.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
