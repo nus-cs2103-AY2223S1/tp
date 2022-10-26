@@ -6,9 +6,12 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyCommandHistory" as ReadOnlyCommandHistory
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+
 Class "<<interface>>\nModel" as Model
 Class AddressBook
+Class CommandHistory
 Class ModelManager
 Class UserPrefs
 
@@ -18,20 +21,30 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class "{abstract}\nTag" as Tag
+Class IncomeLevel
+Class Monthly
+Class Appointment
+Class NormalTag
+Class PlanTag
+Class RiskTag
 
+
+Class CommandHistoryList
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
-
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
+CommandHistory .up.|> ReadOnlyCommandHistory
+ModelManager .up..|> Model
+Model .down.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+Model .right> ReadOnlyCommandHistory
+ModelManager --> "1" AddressBook
+ModelManager --> "1" UserPrefs
+ModelManager -right-> "1" CommandHistory
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
@@ -40,11 +53,28 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> IncomeLevel
+Person *--> Monthly
+Person *--> "0..3" Appointment
+Person *---> "*" Tag
+
+CommandHistory *--> "1" CommandHistoryList
+
+ReadOnlyAddressBook -[hidden]right> ReadOnlyUserPrefs
+ReadOnlyUserPrefs -[hidden]right-> ReadOnlyCommandHistory
+
+AddressBook -[hidden]right> UserPrefs
+UserPrefs -[hidden]right-> CommandHistory
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+
+
+
+NormalTag -up-|> Tag
+RiskTag -up-|> Tag
+PlanTag -up-|> Tag
 
 ModelManager -->"~* filtered" Person
 @enduml
