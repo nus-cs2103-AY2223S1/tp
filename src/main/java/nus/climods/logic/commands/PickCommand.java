@@ -4,12 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Optional;
 
+import org.openapitools.client.ApiException;
+
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.module.LessonTypeEnum;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.UserModule;
-import org.openapitools.client.ApiException;
 
 
 /**

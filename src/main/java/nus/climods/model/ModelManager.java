@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import nus.climods.logic.commands.exceptions.CommandException;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.SemestersEnum;
 
