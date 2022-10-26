@@ -31,7 +31,7 @@ public class CommandHistory {
     public String getDecrementCommand() {
         currentIndex -= 1;
         if (currentIndex < 0) {
-            currentIndex = 0;
+            currentIndex = history.size() - 1;
         }
         return history.isEmpty() ? "" : history.get(currentIndex);
     }
@@ -39,7 +39,7 @@ public class CommandHistory {
     public String getIncrementCommand() {
         currentIndex += 1;
         if (currentIndex >= history.size()) {
-            currentIndex = history.size() - 1;
+            currentIndex = 0;
         }
         return history.isEmpty() ? "" : history.get(currentIndex);
     }
@@ -51,11 +51,12 @@ public class CommandHistory {
     }
 
     /**
-     * Resets the index to the last element of the list when starting up the application.
+     * Resets the index to the last element of the list when starting up the application
+     * and returns the commandHistory.
      *
      * @return The commandHistory with the index reset.
      */
-    public CommandHistory resetIndex() {
+    public CommandHistory getResetCommandHistory() {
         if (history.size() >= 1) {
             this.currentIndex = history.size();
         }
