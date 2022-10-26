@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Optional;
@@ -180,12 +182,46 @@ public class DateTime implements Comparable<DateTime> {
         return Optional.ofNullable(generateLocalTime(hours, minutes, seconds));
     }
 
-    public LocalDate getDate() {
-        return this.date;
+    public static String getDifferenceString(DateTime start, DateTime end) {
+        LocalDateTime startTime = start.date.atTime(start.time.orElse(LocalTime.MIDNIGHT));
+        LocalDateTime endTime = end.date.atTime(end.time.orElse(LocalTime.MIDNIGHT));
+        long days = ChronoUnit.DAYS.between(startTime, endTime);
+        if (start.time.isEmpty() && end.time.isEmpty()) {
+            days += 1;
+        }
+        long hours = ChronoUnit.HOURS.between(startTime, endTime) % 24;
+        long minutes = ChronoUnit.MINUTES.between(startTime, endTime) % 60;
+        String res = "";
+        res += days != 0 ? String.format("%d day%s, ", days, days == 1 ? "" : "s") : "";
+        res += hours != 0 ? String.format("%d hour%s, ", hours, hours == 1 ? "" : "s") : "";
+        res += minutes != 0 ? String.format("%d minute%s, ", minutes, minutes == 1 ? "" : "s") : "";
+        res = res.replaceAll(", $", "");
+        if (res.isEmpty()) {
+            return "No Duration";
+        }
+        return res;
     }
 
-    public Optional<LocalTime> getTime() {
-        return this.time;
+    /**
+     * Returns true if a start DateTime is before or equal another DateTime.
+     * Otherwise, returns false.
+     */
+    public boolean isBeforeOrEqual(DateTime other) {
+        if (this.time.isEmpty() && other.time.isEmpty()) {
+            return !this.date.isAfter(other.date);
+        }
+        assert this.time.isPresent() && other.time.isPresent() : "Both should have time!";
+        return this.date.isEqual(other.date)
+                ? !this.time.get().isAfter(other.time.get())
+                : !this.date.isAfter(other.date);
+    }
+
+    public boolean hasTime() {
+        return this.time.isPresent();
+    }
+
+    public LocalDate getDate() {
+        return this.date;
     }
 
     @Override

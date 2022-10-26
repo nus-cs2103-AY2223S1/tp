@@ -63,7 +63,17 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasProfile(Profile profile) {
+    public boolean hasEmail(Profile profile) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasPhone(Profile profile) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasTelegram(Profile profile) {
         throw new AssertionError("This method should not be called.");
     }
 
