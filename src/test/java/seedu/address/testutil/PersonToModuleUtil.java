@@ -22,7 +22,7 @@ public class PersonToModuleUtil {
     }
 
     /**
-     * Returns the part of command string for the details of the given association between the person
+     * Returns the command string for the details of the given association between the person
      * (identified by {@code name}) and module (identified by {@code moduleCode}).
      */
     public static String getPersonToModuleDetails(ModuleCode moduleCode, Name name) {

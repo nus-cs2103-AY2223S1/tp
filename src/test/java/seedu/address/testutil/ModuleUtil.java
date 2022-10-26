@@ -20,7 +20,7 @@ public class ModuleUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code module}'s details.
+     * Returns the command string for the given {@code module}'s details.
      */
     public static String getModuleDetails(Module module) {
         StringBuilder sb = new StringBuilder();
@@ -30,7 +30,7 @@ public class ModuleUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditModuleDescriptor}'s details.
+     * Returns the command string for the given {@code EditModuleDescriptor}'s details.
      */
     public static String getEditModuleDescriptorDetails(EditModuleDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
