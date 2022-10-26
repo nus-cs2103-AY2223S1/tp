@@ -182,13 +182,13 @@ public class MainWindow extends UiPart<Stage> {
     private void handleTaskTab() {
         logic.showAllLists();
 
-        personListPanel.removeHeading();
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getFilteredBridgeList(),
                 logic.getFilteredPersonList());
+        listPanelPlaceholder.getChildren().remove(personListPanel.getRoot());
         listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        personTaskListPanel.removeHeading();
         taskPersonListPanel = new TaskPersonListPanel(logic.getFilteredPersonList());
+        personTaskListPanelPlaceholder.getChildren().remove(personTaskListPanel);
         personTaskListPanelPlaceholder.getChildren().add(taskPersonListPanel.getRoot());
     }
 
@@ -197,12 +197,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleContactTab() {
-        taskListPanel.removeHeading();
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+
+        if (taskListPanel != null) {
+            listPanelPlaceholder.getChildren().remove(taskListPanel.getRoot());
+        }
+
         listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        taskPersonListPanel.removeHeading();
         personTaskListPanel = new PersonTaskListPanel(logic.getFilteredTaskList());
+        personTaskListPanelPlaceholder.getChildren().remove(taskPersonListPanel);
         personTaskListPanelPlaceholder.getChildren().add(personTaskListPanel.getRoot());
     }
 
