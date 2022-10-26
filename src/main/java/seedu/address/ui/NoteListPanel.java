@@ -50,7 +50,7 @@ public class NoteListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 NoteCard noteCard = new NoteCard(note, getIndex() + 1);
-                noteCard.bindWidth(noteListView, 0.95, 20);
+                noteCard.bindWidth(noteListView, 20);
                 setGraphic(noteCard.getRoot());
             }
         }

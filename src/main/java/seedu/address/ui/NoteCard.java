@@ -55,12 +55,10 @@ public class NoteCard extends UiPart<Region> {
     /**
      * Binds the width of the contents of this card to the width of the list view
      * @param listView the list view to bind to
-     * @param ratio the ratio of the width property to use
-     * @param padding the padding applied after the ratio
+     * @param padding the padding applied after the width property
      */
-    public void bindWidth(ListView<Note> listView, double ratio, double padding) {
-        getRoot().maxWidthProperty().bind(listView.widthProperty()
-                .multiply(ratio).subtract(padding));
+    public void bindWidth(ListView<Note> listView, double padding) {
+        getRoot().maxWidthProperty().bind(listView.widthProperty().subtract(padding));
     }
 
     @Override
