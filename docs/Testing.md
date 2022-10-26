@@ -6,8 +6,6 @@ title: Testing guide
 * Table of Contents
   {:toc}
 
----
-
 ## Running tests
 
 There are two ways to run tests.
@@ -22,8 +20,6 @@ There are two ways to run tests.
 ```info
 Read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html) to learn more about using Gradle.
 ```
-
----
 
 ## Types of tests
 
