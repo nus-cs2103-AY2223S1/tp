@@ -3,7 +3,6 @@ package hobbylist.model.activity;
 import java.util.List;
 import java.util.function.Predicate;
 
-import com.sun.jdi.IntegerValue;
 import hobbylist.commons.util.StringUtil;
 
 /**
@@ -18,11 +17,12 @@ public class NameOrDescContainsKeywordsPredicate implements Predicate<Activity> 
 
     @Override
     public boolean test(Activity activity) {
-        for(int i =0;i<keywords.size();i++){
-            if (keywords.get(i).split("rate/").length==2){
+
+        for (int i = 0; i < keywords.size(); i++) {
+            if (keywords.get(i).split("rate/").length == 2) {
                 String[] t = keywords.get(i).split("rate/");
                 int index = Integer.valueOf(t[1]);
-                if(activity.getRating()==index){
+                if (activity.getRating() == index) {
                     return true;
                 }
             }
