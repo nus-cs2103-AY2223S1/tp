@@ -81,6 +81,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case DescriptionCommand.COMMAND_WORD:
+        case DescriptionCommand.COMMAND_SHORTCUT:
             return new DescriptionCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:

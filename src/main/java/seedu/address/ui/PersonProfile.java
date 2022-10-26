@@ -88,8 +88,7 @@ public class PersonProfile extends UiPart<Region> {
             if (buttonErrorMessage.isManaged()) {
                 hideButtonErrorMessage();
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             showInvalidFilePathButton();
             showButtonErrorMessage(e);
         }
