@@ -48,7 +48,7 @@ TutHub is a desktop app for NUS professors who wish to choose their next batch o
 
 ## About this Document
 
-This section will introduce you to the symbols and terms frequently used in this document to aid in your understanding of the user guide! 
+This section will introduce you to the symbols and terms frequently used in this User Guide/Tuthub to aid your understanding of the document. 
 
 ### Symbols and Syntax
 
