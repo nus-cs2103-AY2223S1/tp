@@ -53,7 +53,8 @@ class ModuleTest {
 
     @Test
     public void test_moduleSelectableLessonTypeEnums_correctLessonTypeEnumsFound() {
-        Set<LessonTypeEnum> selectableLessonTypeEnums = testModuleCS1101S.getSelectableLessonTypeEnums(SemestersEnum.S1);
+        Set<LessonTypeEnum> selectableLessonTypeEnums = testModuleCS1101S
+                .getSelectableLessonTypeEnums(SemestersEnum.S1);
 
         // Note: CS1101S has 2 lecture slots, but it comes as a set, therefore it is not selectable
         assertEquals(Set.of(LessonTypeEnum.TUT, LessonTypeEnum.REC), selectableLessonTypeEnums);
@@ -61,7 +62,8 @@ class ModuleTest {
 
     @Test
     public void test_moduleUnselectableLessonTypeEnums_correctLessonTypeEnumsFound() {
-        Set<LessonTypeEnum> unselectableLessonTypeEnums = testModuleCS1101S.getUnselectableLessonTypeEnums(SemestersEnum.S1);
+        Set<LessonTypeEnum> unselectableLessonTypeEnums = testModuleCS1101S
+                .getUnselectableLessonTypeEnums(SemestersEnum.S1);
 
         assertEquals(Set.of(LessonTypeEnum.LEC), unselectableLessonTypeEnums);
     }

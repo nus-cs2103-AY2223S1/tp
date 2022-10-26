@@ -4,12 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Optional;
 
-import nus.climods.model.module.LessonTypeEnum;
-import org.openapitools.client.model.SemestersEnum;
-
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
+import nus.climods.model.module.LessonTypeEnum;
 import nus.climods.model.module.UserModule;
+
 
 /**
  * Allow users to pick lesson slots
@@ -44,14 +43,16 @@ public class PickCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Optional<UserModule> toUpdate= model.getUserModule(toPick);
+        Optional<UserModule> toUpdate = model.getUserModule(toPick);
 
         if (toUpdate.isEmpty()) {
             throw new CommandException(MESSAGE_MODULE_MISSING);
         }
 
+        UserModule curr = toUpdate.get();
+
         //check if lesson type is offered
-        if (!model.isModuleLessonOffered(toPick, toUpdate.get().getSelectedSemester(), lessonType)) {
+        if (!model.isModuleLessonOffered(toPick, curr.getSelectedSemester(), lessonType)) {
             throw new CommandException(MESSAGE_INVALID_LESSONTYPE);
         }
 
@@ -61,7 +62,7 @@ public class PickCommand extends Command {
         }
 
         // if everything correct then set accordingly in hashmap in UserModule
-        toUpdate.get().setLessons(lessonType, classNo);
+        curr.setLessons(lessonType, classNo);
 
         String addedDetails = String.format("%s %s %s", toPick, lessonType, classNo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, addedDetails.toUpperCase()),

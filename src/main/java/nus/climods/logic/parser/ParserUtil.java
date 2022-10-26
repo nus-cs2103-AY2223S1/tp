@@ -1,12 +1,12 @@
 package nus.climods.logic.parser;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-import nus.climods.model.module.LessonTypeEnum;
 import org.openapitools.client.model.SemestersEnum;
+
+import nus.climods.model.module.LessonTypeEnum;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -104,7 +104,7 @@ public class ParserUtil {
     public static Optional<LessonTypeEnum> parseLessonType(String input) {
         String toCheck = input.trim().toUpperCase();
 
-        LessonTypeEnum s1 = LessonTypeEnum.fromValue(toCheck);
+        LessonTypeEnum s1 = LessonTypeEnum.fromName(toCheck);
 
         if (!s1.equals(LessonTypeEnum.UNSUPPORTED)) {
             return Optional.of(s1);

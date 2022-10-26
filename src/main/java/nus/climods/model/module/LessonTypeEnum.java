@@ -30,7 +30,23 @@ public enum LessonTypeEnum {
      */
     public static LessonTypeEnum fromValue(String value) {
         for (LessonTypeEnum l : LessonTypeEnum.values()) {
-            if (l.name().equals(value)) {
+            if (l.valueStr.equals(value)) {
+                return l;
+            }
+        }
+
+        return LessonTypeEnum.UNSUPPORTED;
+    }
+
+    /**
+     * Creates a LessonTypeEnum from a given name
+     *
+     * @param name name
+     * @return lesson type
+     */
+    public static LessonTypeEnum fromName(String name) {
+        for (LessonTypeEnum l : LessonTypeEnum.values()) {
+            if (l.name().equals(name)) {
                 return l;
             }
         }

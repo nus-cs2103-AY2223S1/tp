@@ -7,11 +7,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import org.openapitools.client.model.SemestersEnum;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import nus.climods.model.module.exceptions.DuplicateUserModuleException;
 import nus.climods.model.module.exceptions.UserModuleNotFoundException;
-import org.openapitools.client.model.SemestersEnum;
 
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls. A module is considered

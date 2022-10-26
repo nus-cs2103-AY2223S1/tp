@@ -9,8 +9,6 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import nus.climods.model.module.*;
-import nus.climods.model.module.Module;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.SemestersEnum;
 
@@ -19,6 +17,12 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
+import nus.climods.model.module.LessonTypeEnum;
+import nus.climods.model.module.Module;
+import nus.climods.model.module.ModuleList;
+import nus.climods.model.module.ReadOnlyModuleList;
+import nus.climods.model.module.UniqueUserModuleList;
+import nus.climods.model.module.UserModule;
 import nus.climods.model.module.predicate.ViewModulePredicate;
 
 /**
@@ -105,9 +109,7 @@ public class ModelManager implements Model {
             return false;
         }
 
-        // TODO: Change this back into hasLessonTypeEnum
-        Set<LessonTypeEnum> test = module.get().getLessonTypeEnums(semester);
-        return test.contains(lessonType);
+        return module.get().hasLessonTypeEnum(lessonType, semester);
     }
 
     @Override
