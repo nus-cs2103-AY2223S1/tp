@@ -6,6 +6,7 @@ import static seedu.trackascholar.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,7 +47,8 @@ public class UniqueApplicantList implements Iterable<Applicant> {
         requireNonNull(toCheck);
         assert this.contains(toCheck);
 
-        return internalList.stream().filter(toCheck::isSameApplicant).findFirst().get();
+        Optional<Applicant> similarApplicant = internalList.stream().filter(toCheck::isSameApplicant).findFirst();
+        return similarApplicant.get();
     }
 
     /**
