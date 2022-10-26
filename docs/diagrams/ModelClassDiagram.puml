@@ -20,6 +20,8 @@ Class ItemQuantity
 Class ItemUnit
 Class ItemBoughtDate
 Class ItemExpiryDate
+Class ItemPrice
+Class ItemRemark
 Class Tag
 Class TagName
 }
@@ -44,7 +46,8 @@ Item *--> ItemBoughtDate
 Item *--> ItemExpiryDate
 Item *--> ItemQuantity
 Item *--> ItemName
-Item *--> ItemName
+Item *--> ItemPrice
+Item *--> ItemRemark
 Item *--> "*" Tag
 Tag *--> TagName
 
