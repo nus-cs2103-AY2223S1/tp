@@ -26,6 +26,7 @@ import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -252,6 +253,15 @@ public class ParserUtil {
             return parseTaskWithoutDateTime(descriptionAndTime[0]);
         }
 
+        if (descriptionAndTime.length == 3) {
+            return parseRecurringTask(descriptionAndTime[0], descriptionAndTime[1], descriptionAndTime[2]);
+        }
+
+        if (descriptionAndTime.length > 3) {
+            // TODO proper parseexception
+            throw new ParseException("Invalid format");
+        }
+
         return parseTaskWithDateTime(descriptionAndTime[0], descriptionAndTime[1]);
     }
 
@@ -278,6 +288,28 @@ public class ParserUtil {
         }
 
         return new Task(trimmedTaskDescription, new DateTime(trimmedDateTime));
+    }
+
+    private static Task parseRecurringTask(String taskDescription, String dateTime, String recurAndFreq)
+            throws ParseException {
+        String trimmedTaskDescription = taskDescription.trim();
+        String trimmedDateTime = dateTime.trim();
+        String trimmedRecurAndFreq = recurAndFreq.trim();
+
+        if (!Task.isValidTaskDescription(trimmedTaskDescription)) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!RecurringTask.isValidRecurAndFreq(trimmedRecurAndFreq)) {
+            throw new ParseException(RecurringTask.MESSAGE_CONSTRAINTS);
+        }
+
+        return RecurringTask.parseRecurringTask(trimmedTaskDescription, new DateTime(trimmedDateTime),
+                trimmedRecurAndFreq);
     }
 
     /**

@@ -198,6 +198,11 @@ public class AddPatientCommandTest {
         public PatientListTracker getSavedPatientListTracker() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateRecurringTasks() {
+            throw new AssertionError("This method should not be called");
+        }
     }
 
     /**

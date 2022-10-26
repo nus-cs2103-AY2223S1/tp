@@ -148,13 +148,15 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | DATE_
 
 * `DATE_AND_TIME` should be in the format like 16-10-2022 1030
 * If no `DATE_AND_TIME` is provided, then a default date and time of 24 hours from creation will be set
-* Frequency can be `daily`, `weekly` or `monthly` or empty if it's a one off task, however a `DATE_AND_TIME` must be provided inorder to set a recurring task.
+* `FREQUENCY` is made of two components, the number of time periods in between recurring tasks and the specific time period, e.g 3 month or 2 week
+* The time periods for `FREQUENCY` are: `days`, `weeks`, `months` and `years`
+* `FREQUENCY` can be be empty if it's a one off task, however a `DATE_AND_TIME` must be provided inorder to set a recurring task.
 * Note that capitalization does not matter for frequency.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine | 16-10-2022 1030 t/Severe`
 * `add n/Betsy Crowe p/87901234 e/betsy@example.com a/Jane street blk 420 #01-69 d/Change dressing on left arm t/Low Risk`
-* `add n/Tom pitt p/90904213 e/pitts@example.com a/Bourvard street blk 341 #04-17 d/Moniter blood pressure | 23-10-2022 1200 | daily`
+* `add n/Tom pitt p/90904213 e/pitts@example.com a/Bourvard street blk 341 #04-17 d/Moniter blood pressure | 23-10-2022 1200 | 3 days`
 
 ### Editing a patient’s details : `edit -p`
 
@@ -253,13 +255,16 @@ Format: `add -p PATIENT_INDEX d/TASK_DESCRIPTION | DATE_AND_TIME | FREQUENCY`
 * The index **must be a positive integer** 1, 2, 3, …
 * `DATE_AND_TIME` should be in the format like 16-10-2022 1030
 * If no `DATE_AND_TIME` is provided, then a default date and time of 24 hours from creation will be set
-* Frequency is an optional tag that is used to specify recurring tasks, the valid values for this field are `daily`, `weekly` and `monthly`. Capitalisation does not matter
-* If a frequency is not specified, it's a normal task
+* `FREQUENCY` is made of two components, the number of time periods in between recurring tasks and the specific time period, e.g 3 month or 2 week
+* The time periods for `FREQUENCY` are: `days`, `weeks`, `months` and `years`
+* `FREQUENCY` can be be empty if it's a one off task, however a `DATE_AND_TIME` must be provided inorder to set a recurring task.
+* Note that capitalization does not matter for frequency.
 * Note that both `DATE_AND_TIME` and `FREQUENCY` are optional fields, however to have a recurring task both of them are required, while you can have a normal task with date time not be recurring, i.e `FREQUENCY` not required
 
 Examples:
 * `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st patient in the patient list.
-* `find Betsy` followed by `add -p 2 d/Change dressing on left arm | 12-07-2022` adds a task to the 2nd patient in results of the `find` command, on 12th July 2022 .
+* `find Betsy` followed by `add -p 2 d/Change dressing on left arm | 12-07-2022 1500` adds a task to the 2nd patient in results of the `find` command, on 12th July 2022 1500 hours.
+* `add -p 3 d/Take X-rays | 23-04-2022 1345 | 3 weeks` adds a recurring task to the 3rd patient for every 3 weeks starting from 23rd April 2022 1345 hours.
 
 ### Editing a task: `edit -p -t`
 
@@ -272,14 +277,17 @@ Format: `edit -p PATIENT_INDEX -t TASK_INDEX d/TASK_DESCRIPTION | DATE_AND_TIME 
 * The patient index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …
 * `DATE_AND_TIME` should be in the format like 16-10-2022 1030
-* `FREQUENCY` should either be `daily`. `weekly` or `monthly`. Capitalisation does not matter.
+* `FREQUENCY` is made of two components, the number of time periods in between recurring tasks and the specific time period, e.g 3 month or 2 week
+* The time periods for `FREQUENCY` are: `days`, `weeks`, `months` and `years`
+* `FREQUENCY` can be be empty if it's a one off task, however a `DATE_AND_TIME` must be provided inorder to set a recurring task.
+* Note that capitalization does not matter for frequency.
 * If no new `DATE_AND_TIME` or `FREQUENCY` are provided, then original values will be used or in the case of `FREQUENCY` nothing will change i.e it will remain a normal task
 * If a `FREQUENCY` is provided for what was originally a non recurring task, the edit will transform it into a recurring one based on the given frequency
 * To keep the original task description and edit only the `DATE_AND_TIME` or `FREQUENCY` fields, simply copy the task description and only change the desired `DATE_AND_TIME` or `FREQUENCY` field
 
 Examples:
 * `list` followed by `edit -p 1 -t 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st patient in the patient list to `Administer 3ml of example medicine`, while retaining the original date and time for the task.
-* `find Betsy` followed by `edit -p 2 -t 3 d/Change dressing on left arm | 23-10-2022` edits the description of the 3rd task of the 2nd patient in results of the `find` command to `Change dressing on left arm` and also changes the date and time for the task to 23rd October 2022.
+* `find Betsy` followed by `edit -p 2 -t 3 d/Change dressing on left arm | 23-10-2022 0800` edits the description of the 3rd task of the 2nd patient in results of the `find` command to `Change dressing on left arm` and also changes the date and time for the task to 23rd October 2022 0800 hours.
 
 ### Deleting a task: `delete -p -t`
 
@@ -467,6 +475,8 @@ the data of your previous UniNurse home folder.
 * Note that `TASK` is composed of `TASK_DESCRIPTION | DATE_AND_TIME | FREQUENCY`
 * `DATE_AND_TIME` should be in the format like 16-10-2022 1030
 * If no `DATE_AND_TIME` is provided, then a default date and time of 24 hours from creation will be set
-* Frequency is an optional tag that is used to specify recurring tasks, the valid values for this field are `daily`, `weekly` and `monthly`. Capitalisation does not matter
-* If a frequency is not specified, it's a normal task
+* FREQUENCY` is made of two components, the number of time periods in between recurring tasks and the specific time period, e.g 3 month or 2 week
+* The time periods for `FREQUENCY` are: `days`, `weeks`, `months` and `years`
+* `FREQUENCY` can be be empty if it's a one off task, however a `DATE_AND_TIME` must be provided inorder to set a recurring task.
+* Note that capitalization does not matter for frequency.
 * Note that both `DATE_AND_TIME` and `FREQUENCY` are optional fields, however to have a recurring task both of them are required, while you can have a normal task with date time not be recurring, i.e `FREQUENCY` not required

@@ -196,6 +196,13 @@ public class ModelManager implements Model {
         persistentUninurseBook.makeSnapshot(patientListTracker);
     }
 
+    //=========== Other Accessors =============================================================
+
+    @Override
+    public void updateRecurringTasks() {
+        filteredPersons.forEach(p -> p.getTasks().updateRecurringTasks());
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -214,4 +221,5 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
+
 }
