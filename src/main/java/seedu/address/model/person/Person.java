@@ -32,7 +32,7 @@ public class Person {
     public Person(Name name, Phone phone, Email email, Telegram telegram,
                   ModuleCode moduleCode, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, telegram,
-                moduleCode, tags);
+            moduleCode, tags);
         assert name.fullName != null;
         this.name = name;
         this.phone = phone;
@@ -99,11 +99,11 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTelegram().equals(getTelegram())
-                && otherPerson.getModuleCode().equals(getModuleCode())
-                && otherPerson.getTags().equals(getTags());
+            && otherPerson.getPhone().equals(getPhone())
+            && otherPerson.getEmail().equals(getEmail())
+            && otherPerson.getTelegram().equals(getTelegram())
+            && otherPerson.getModuleCode().equals(getModuleCode())
+            && otherPerson.getTags().equals(getTags());
     }
 
     @Override
@@ -115,15 +115,22 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                 .append("; Telegram: ")
-                 .append(getTelegram())
-                .append("; Module Code: ")
+        builder.append(getName());
+
+        if (!(getModuleCode().toString().equals(""))) {
+            builder.append("; Module Code: ")
                 .append(getModuleCode());
+        }
+
+        if (!(getPhone().toString().equals(""))) {
+            builder.append("; Phone: ")
+                .append(getPhone());
+        }
+
+        if (!(getEmail().toString().equals(""))) {
+            builder.append("; Email: ")
+                .append(getEmail());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
