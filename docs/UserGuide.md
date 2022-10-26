@@ -230,7 +230,7 @@ Format: `mod find MODULE [MORE_MODULES]...`
 
 Examples:
 * `mod find cs2100` returns batchmates with the module `CS2100`.
-* `mod find cs2101 cs2103t` returns batchmates with both modules `CS2101` and `CS2103t`.
+* `mod find cs2101 cs2103t` returns batchmates with both modules `CS2101` and `CS2103T`.
 
 ### Find modules taken or taking: `mod find taken` or `mod find taking`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
