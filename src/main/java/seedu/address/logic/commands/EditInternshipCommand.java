@@ -28,7 +28,7 @@ import seedu.address.model.person.PersonId;
  */
 public class EditInternshipCommand extends Command {
 
-    public static final String COMMAND_WORD = "editi";
+    public static final String COMMAND_WORD = "edit -i";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the internship identified "
             + "by the index number used in the displayed internship list. "
@@ -91,6 +91,8 @@ public class EditInternshipCommand extends Command {
 
         // internshipId should always be unchanged
         InternshipId internshipId = internshipToEdit.getInternshipId();
+        // contactPersonId should not be changed by EditInternshipCommand
+        PersonId contactPersonId = internshipToEdit.getContactPersonId();
 
         CompanyName updatedCompanyName = editInternshipDescriptor.getCompanyName()
                 .orElse(internshipToEdit.getCompanyName());
@@ -98,8 +100,6 @@ public class EditInternshipCommand extends Command {
                 .orElse(internshipToEdit.getInternshipRole());
         InternshipStatus updatedInternshipStatus = editInternshipDescriptor.getInternshipStatus()
                 .orElse(internshipToEdit.getInternshipStatus());
-        // TODO: Change to support update contact person functionality (`link` command).
-        PersonId updatedContactPersonId = internshipToEdit.getContactPersonId();
         InterviewDate updatedInterviewDate = editInternshipDescriptor.getInterviewDate()
                 .orElse(internshipToEdit.getInterviewDate());
 
@@ -108,7 +108,7 @@ public class EditInternshipCommand extends Command {
                 updatedCompanyName,
                 updatedInternshipRole,
                 updatedInternshipStatus,
-                updatedContactPersonId,
+                contactPersonId,
                 updatedInterviewDate);
     }
 
