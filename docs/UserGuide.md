@@ -44,6 +44,7 @@ can get your contact and module management tasks done faster than traditional GU
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
+
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it.
@@ -136,7 +137,7 @@ Adds a contact to the contact list.
 
 Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM] [m/MODULE_CODE] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"> **Tip:**
 A contact can have any number of tags (including 0)
 </div>
 
@@ -217,8 +218,7 @@ Adds a contact to the module list.
 
 Format: `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A module can have any number of assignments (including 0)
+<div markdown="span" class="alert alert-primary"> **Tip:** A module can have any number of assignments (including 0)
 </div>
 
 * The `AssignmentDetails` can take in alphanumerical characters **along with spaces**.
@@ -289,22 +289,27 @@ Examples:
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous SOCompiler home folder.
 
+**Q**: What if my module has no zoom links? What if I don't have the contact number of my Teaching Assistant?<br>
+**A**: When adding a Module, all fields except `MODULE_CODE` are optional. When adding a contact, all fields except
+`NAME` are optional. These fields can be updated later with the
+[editp](#editing-a-contact--editp) or [editm](#editing-a-module--editm) commands.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action | Module/Contact | Format                                                                                                                                         |
-|--------|----------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add    | Module         | `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`          |
-| Add    | Contact        | `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                             |
-| Edit   | Module         | `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​` |
-| Edit   | Contact        | `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                           |
-| Delete | Module         | `deletem MODULE_INDEX`                                                                                                                         |
-| Delete | Contact        | `deletep CONTACT_INDEX`                                                                                                                        |                                                                                                                                           |
-| Find   | Module         | `findm KEYWORD [ANOTHER_KEYWORD]…​`                                                                                                            |                                   |
-| Find   | Contact        | `findp KEYWORD [ANOTHER_KEYWORD]…​`                                                                                                            |                          |
-| Clear  | Both           | `clear`                                                                                                                                        |
-| List   | Both           | `list`                                                                                                                                         |
-| Find   | Both           | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                 |
-| Exit   | Both           | `exit`                                                                                                                                         |
-| Help   | Both           | `help`                                                                                                                                         |
+| Action                                                    | Module/Contact | Format                                                                                                                                         |
+|-----------------------------------------------------------|----------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Add](#adding-a-module-addm)                              | Module         | `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`          |
+| [Add](#adding-a-contact-addp)                             | Contact        | `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                             |
+| [Edit](#editing-a-module--editm)                          | Module         | `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​` |
+| [Edit](#editing-a-contact--editp)                         | Contact        | `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                           |
+| [Delete](#deleting-a-module--deletem)                     | Module         | `deletem MODULE_INDEX`                                                                                                                         |
+| [Delete](#deleting-a-contact--deletep)                    | Contact        | `deletep CONTACT_INDEX`                                                                                                                        |                                                                                                                                           |
+| [Find](#finding-a-module--findm)                          | Module         | `findm KEYWORD [ANOTHER_KEYWORD]…​`                                                                                                            |                                   |
+| [Find](#finding-a-contact--findp)                         | Contact        | `findp KEYWORD [ANOTHER_KEYWORD]…​`                                                                                                            |                          |
+| [Clear](#clearing-all-contacts-and-modules--clear)        | Both           | `clear`                                                                                                                                        |
+| [List](#listing-all-modules-and-contacts--list)           | Both           | `list`                                                                                                                                         |
+| [Find](#finding-keywords-in-a-contact-andor-module--find) | Both           | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                 |
+| [Exit](#looking-for-help--help)                           | General        | `exit`                                                                                                                                         |
+| [Help](#exiting-the-program--exit)                        | General        | `help`                                                                                                                                         |
