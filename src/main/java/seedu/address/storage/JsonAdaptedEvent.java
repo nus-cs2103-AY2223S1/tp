@@ -1,5 +1,9 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -9,6 +13,8 @@ import seedu.address.model.event.EventTitle;
 import seedu.address.model.event.Purpose;
 import seedu.address.model.event.StartDate;
 import seedu.address.model.event.StartTime;
+import seedu.address.model.event.UidList;
+import seedu.address.model.person.Uid;
 
 /**
  * Jackson-friendly version of Event
@@ -23,6 +29,7 @@ public class JsonAdaptedEvent {
     private final String startTime;
 
     private final String purpose;
+    private final List<JsonAdaptedUid> uids = new ArrayList<>();
 
     /**
      * Constructs a JsonAdaptedEvent with the given event details.
@@ -33,11 +40,15 @@ public class JsonAdaptedEvent {
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("eventTitle") String eventTitle, @JsonProperty("startDate") String startDate,
-                            @JsonProperty("startTime") String startTime, @JsonProperty("purpose") String purpose) {
+                            @JsonProperty("startTime") String startTime, @JsonProperty("purpose") String purpose,
+                            @JsonProperty("uids") List<JsonAdaptedUid> uids) {
         this.eventTitle = eventTitle;
         this.startDate = startDate;
         this.startTime = startTime;
         this.purpose = purpose;
+        if (uids != null) {
+            this.uids.addAll(uids);
+        }
     }
 
     /**
@@ -48,6 +59,10 @@ public class JsonAdaptedEvent {
         this.startDate = event.getStartDate().toLogFormat();
         this.startTime = event.getStartTime().toLogFormat();
         this.purpose = event.getPurpose().toString();
+        Iterator<Uid> iter = event.getUids().iterator();
+        while (iter.hasNext()) {
+            uids.add(new JsonAdaptedUid(iter.next()));
+        }
     }
 
     /**
@@ -83,11 +98,16 @@ public class JsonAdaptedEvent {
         if (this.purpose == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Purpose"));
         }
+
         if (!Purpose.isValidPurpose(purpose)) {
             throw new IllegalValueException(EventTitle.MESSAGE_CONSTRAINTS);
         }
         final Purpose modelPurpose = new Purpose(purpose);
 
-        return new Event(modelEventTitle, modelStartDate, modelStartTime, modelPurpose);
+        final UidList eventUids = new UidList();
+        for (JsonAdaptedUid uid : uids) {
+            eventUids.add(uid.toModelType());
+        }
+        return new Event(modelEventTitle, modelStartDate, modelStartTime, modelPurpose, eventUids);
     }
 }
