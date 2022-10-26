@@ -14,6 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UNIVERSITY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.Cap.CAP_SEPARATOR;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -57,7 +58,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_GRADUATION_DATE + "GRADUATION DATE] "
-            + "[" + PREFIX_CAP + "CAP] "
+            + "[" + PREFIX_CAP + "CAP_VALUE" + CAP_SEPARATOR + "MAX_CAP_VALUE] "
             + "[" + PREFIX_UNIVERSITY + "UNIVERSITY] "
             + "[" + PREFIX_MAJOR + "MAJOR] "
             + "[" + PREFIX_JOB_ID + "ID] "

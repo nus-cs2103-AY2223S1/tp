@@ -205,6 +205,8 @@ public class ParserUtil {
             return new Cap(capValue, maximumCapValue);
         } catch (NumberFormatException e) {
             throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ParseException(Cap.MESSAGE_MAXIMUM_CAP_REQUIRED);
         }
     }
 

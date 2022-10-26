@@ -10,6 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Cap {
     public static final String MESSAGE_CONSTRAINTS =
             "CAPs should consist of a positive numeric value less than or equal to its maximum value, e.g. 4.0/5.0";
+    public static final String MESSAGE_MAXIMUM_CAP_REQUIRED =
+            "CAPs should consist of two values, namely the current CAP value and its maximum value, e.g. 4.0/5.0";
     public static final double MINIMUM = 0.0;
     public static final String CAP_SEPARATOR = "/";
     public final double value;
