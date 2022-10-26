@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import seedu.address.ui.PersonProfile;
-
 import static java.util.Objects.requireNonNull;
+
+import seedu.address.ui.PersonProfile;
 
 /**
  * Represents a Person's description in the address book.

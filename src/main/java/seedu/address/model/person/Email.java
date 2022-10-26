@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import seedu.address.ui.PersonProfile;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.ui.PersonProfile;
 
 /**
  * Represents a Person's email in the address book.
