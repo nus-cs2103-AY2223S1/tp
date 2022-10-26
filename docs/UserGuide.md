@@ -194,7 +194,9 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-[coming soon]
+Clears all entries from the address book.
+
+Format: `clear`
 
 ### Saving the data
 
