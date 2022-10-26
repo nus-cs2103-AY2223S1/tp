@@ -39,6 +39,7 @@ public class TypicalInternships {
         .withEmail("johnd@example.com")
         .withStage("HR Interview")
         .withDateTime("12-Dec-2022 14:00")
+        .withLanguageTags("Java", "Python")
         .withTags("owesMoney", "friends").build();
     public static final Internship CARL = new InternshipBuilder()
         .withCompany("Carl Kurz")

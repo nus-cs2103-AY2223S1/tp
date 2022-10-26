@@ -13,6 +13,7 @@
     "email" : "johnd@example.com",
     "stage" : "HR Interview",
     "dateTime": "12-Dec-2022 14:00",
+    "languages": [ "Java", "Python" ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "company" : "Carl Kurz",
