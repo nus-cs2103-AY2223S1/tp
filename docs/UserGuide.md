@@ -254,18 +254,18 @@ Example:
 
 ---
 
-### Deleting a student: 'delete'
+### Deleting students: 'delete'
 
-Deletes the specified person from the student list.
+Deletes the specified student(s) from the student list.
 
-Format: `delete INDEX ...`
+Format: `delete INDEX [MORE_INDEXES]`
 
-- Deletes the person at the specified `INDEX`.
-- The index refers to the index number shown in the Student's Details panel (bottom left).
-- The index must be a positive integer. e.g. `1, 2, 3, ...`.
+- Deletes the student(s) at the specified `INDEX(ES)`.
+- The index(es) refers to the index numbers shown in the Student's Details panel (bottom left section of the display).
+- The index(es) must be a positive integer within the size of the displayed student list. e.g. `1, 2, 3, ...`.
 
 Examples:
-- `list` followed by `delete 2` deletes the 2nd person in the Student's Details panel.
+- `list` followed by `delete 1 2` deletes the 1st and 2nd person in the Student's Details panel.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
