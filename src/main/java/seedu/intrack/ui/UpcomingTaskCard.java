@@ -39,6 +39,6 @@ public class UpcomingTaskCard extends UiPart<Region> {
                 .map(Task::toString)
                 .findFirst().orElse("");
 
-        upcomingTask.setText("Upcoming task: " + nextTask);
+        upcomingTask.setText(nextTask);
     }
 }
