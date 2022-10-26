@@ -332,15 +332,15 @@ Below is an activity diagram to display how the feature works:
 
 #### 5.4.2 Design considerations:
 
-** Aspect: Filtering commandList to find matching commands: **
+**Aspect: Filtering commandList to find matching commands:**
 
-* **Alternative 1: (current implementation)** Filters command list down everytime the user input changes:
-  * Pros: Easy to implement
-  * Cons: Inefficient as full list is filtered every time
+* **Alternative 1: (current implementation)** Filters command list down everytime the user input changes.
+  * Pros: Easy to implement.
+  * Cons: Inefficient as full list is filtered every time.
 * **Alternative 2:** Filter the current command list if the start of current input matches start of commands already 
-in previous list
-  * Pros: Harder to implement
-  * Cons: Efficient especially when command list is large
+in previous list.
+  * Pros: Harder to implement.
+  * Cons: Efficient especially when command list is large.
 
 --------------------------------------------------------------------------------------------------------------------
 
