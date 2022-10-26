@@ -48,8 +48,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         } else if (trimmedArgs.startsWith(PREFIX_PHONE.getPrefix())) {
             return new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(keywords)));
-        }
-        else if (trimmedArgs.startsWith(PREFIX_PLANTAG.getPrefix())) {
+        } else if (trimmedArgs.startsWith(PREFIX_PLANTAG.getPrefix())) {
             String planTag = trimmedArgs.substring(3);
             // since all planTag has a space and ends with Plan, we split the input every second space.
             // planTag - Savings Plan.
