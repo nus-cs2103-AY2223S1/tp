@@ -223,13 +223,13 @@ Exits the program.
 
 Format: `exit`
  
-### 4.2 Appointment command features
+### 4.2 Appointment management features
 
 #### 4.2.1 Adding an appointment : `aa`
 
-Adds an appointment at the input DATE_AND_TIME for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
+Adds an appointment with inputs DATE_AND_TIME and LOCATION for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
 
-Format: `aa [INDEX] [d/DATE_AND_TIME] [l/LOCATION]`
+Format: `aa INDEX d/DATE_AND_TIME l/LOCATION`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 DATE_AND_TIME has the format `d-MMM-yyyy hh:mm a` </div>
@@ -242,9 +242,47 @@ Examples:
 
 * `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
 
+#### 4.2.2 Editing an appointment : `ea`
+Edits an appointment for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
+
+Format: `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]`
+* Edits the client's appointment using specified PERSON_INDEX and APPOINTMENT_INDEX. 
+* The PERSON_INDEX refers to the index number shown in the displayed client list. The index must be a positive integer 1, 2, 3,…​
+* The APPOINTMENT_INDEX refers to the index number shown in the displayed client's appointment list. The index can only be 1, 2, or 3.
+* At least one of the optional fields must be provided. 
+* Existing values will be updated to the input values.
+
+Examples:
+
+* `ea 1.1 d/21-Jan-2023 12:30 PM l/West Mall, Starbucks` Edits both the date and location of the 1st client's 1st appointment to be `21-Jan-2023 12:30 PM` and `West Mall, Starbucks` respectively.
+* `ea 2.3 l/NUS, TechnoEdge` Edits the location of the 2nd client's 3rd appointment to be `NUS, TechnoEdge`
+
+#### 4.2.3 Deleting an appointment : `da`
+Deletes an appointment for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
+
+Format: `da PERSON_INDEX.APPOINTMENT_INDEX`
+* Deletes the client's appointment using specified PERSON_INDEX and APPOINTMENT_INDEX.
+* The PERSON_INDEX refers to the index number shown in the displayed client list. The index must be a positive integer 1, 2, 3,…​
+* The APPOINTMENT_INDEX refers to the index number shown in the displayed client's appointment list. The index can only be 1, 2, or 3.
+
+Examples:
+
+* `da 1.1` Deletes the 1st client's 1st appointment 
+ 
 ### 4.3 Calendar features
 
-### 4.4 Miscellaneous commands
+### 4.4 Command Line tools
+#### 4.4.1 Parameter hints
+After typing in the command word, the command's parameters and their respective prefixes are shown. An example of a valid command will also be shown.
+![result for 'parameter_hints'](images/ParameterHintsExample.png)
+#### 4.4.2 Command history
+Use the up and down keys to navigate through previously typed commands. Users can edit the command first or press enter to execute the command. 
+* Only valid commands will be saved in the command history
+* Command history will only save up to 20 previously typed valid commands
+
+### 4.5 Command history 
+
+### 4.5 Miscellaneous commands
 
 #### 4.4.1 Saving the data
 
@@ -277,8 +315,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​ ` <br> e.g., `e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
-**Add Appointment** | `aa INDEX d/DATE_AND_TIME l/LOCATION` <br> e.g., `e.g., aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+**Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​ ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
+**Add Appointment** | `aa d/DATE_AND_TIME l/LOCATION` <br> e.g., `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+**Edit Appointment** | `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]` <br> e.g., `ea 1.2 d/21-Jan-2023 12:30 PM l/NUS, TechnoEdge`
+**Delete Appointment** | `da PERSON_INDEX.APPOINTMENT_INDEX` <br> e.g, `da 1.2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [s/MONTHLY_SAVINGS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`

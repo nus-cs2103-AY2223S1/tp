@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
                 setStyle("-fx-focus-color: transparent; ");
-                personListView.getSelectionModel().selectFirst();
+                personListView.getFocusModel().focus(0);
             } else {
                 setStyle("-fx-focus-color: transparent; ");
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
