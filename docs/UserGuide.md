@@ -3,15 +3,17 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
 
 - [Quick start](#quick-start)
 - [Features](#features)
-  * [Adding events: `add-e n/TITLE d/DESCRIPTION`](#adding-events-add-e-ntitle-ddescription)
-  * [Deleting events: `delete -e`](#deleting-events-delete--e)
+  * [Adding events: `add-e`](#adding-events-add-e)
+  * [Deleting events: `delete-e`](#deleting-events-delete-e)
   * [Viewing events list: `list-e`](#viewing-events-list-list-e)
-  * [Adding trips: `add n/TITLE d/DESCRIPTION`](#adding-trips-add-ntitle-ddescription)
+  * [Adding trips: `add`](#adding-trips-add)
   * [Viewing trips list: `list`](#viewing-trips-list-list)
   * [Marking trips as done: `mark`](#marking-trips-as-done-mark)
   * [Marking trips as not done: `unmark`](#marking-trips-as-not-done-unmark)
-  * [Adding events to trips: `add-et n/EVENT NAME T/TRIP NAME`](#adding-events-to-trips-add-et-nevent-name-ttrip-name)
-  * [Removing events from trips: `delete-et n/EVENT NAME T/TRIP NAME`](#removing-events-from-trips-delete-et-nevent-name-ttrip-name)
+  * [Adding events to trips: `add-et`](#adding-events-to-trips-add-et)
+  * [Removing events from trips: `delete-et`](#removing-events-from-trips-delete-et)
+  * [View all completed trips and events: `completed`](#view-all-completed-trips-and-events-completed)
+  * [View all trips and events: `view`](#view-all-trips-and-events-view)
   * [Saving data](#saving-data)
   * [Exiting the program: `bye`](#exiting-the-program-bye)
 
@@ -170,6 +172,17 @@ Format: `sort by/FACTOR r/`
 | `eventcount` | Sort by trips' number of events in ascending order |
 | `mark` | Shift the marked trips to the bottom of unmarked trips. |
 
+### View all completed trips and events: `completed`
+Displays all completed trips and events.
+
+Format: `completed`
+
+### View all trips and events: `view`
+Displays all completed trips and events
+
+Format: `view`
+
+Format: `completed`
 ### Saving data
 Travelr data are saved locally automatically after any command that changes the data. There is no need to save manually.
 
