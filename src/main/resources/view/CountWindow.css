@@ -1,5 +1,5 @@
 #copyButton, #countMessage {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 #copyButton {
@@ -15,5 +15,5 @@
 }
 
 #countMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#C6D8D3, 20%);
 }

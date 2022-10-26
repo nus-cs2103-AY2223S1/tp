@@ -19,7 +19,7 @@ public class WardNumberPredicate implements Predicate<Person> {
         Boolean isInpatient = person.getPatientType().value.equals(PatientType.PatientTypes.INPATIENT);
         if (isInpatient) {
             return wardNumbers.stream()
-                    .anyMatch(wardNumber -> person.getHospitalWing().get().value.equals(wardNumber));
+                    .anyMatch(wardNumber -> person.getWardNumber().get().value.equals(wardNumber));
         }
         return false;
     }
