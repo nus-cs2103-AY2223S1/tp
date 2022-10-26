@@ -1,0 +1,116 @@
+package seedu.uninurse.logic.commands;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.List;
+
+import seedu.uninurse.commons.core.Messages;
+import seedu.uninurse.commons.core.index.Index;
+import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.model.Model;
+import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.tag.TagList;
+import seedu.uninurse.model.tag.exceptions.DuplicateTagException;
+import seedu.uninurse.model.person.Patient;
+
+/**
+ * Edits the details of an existing tag for a patient.
+ */
+public class EditTagCommand extends EditGenericCommand {
+    // tentative syntax; TODO: Integrate with EditGenericCommand
+    public static final String COMMAND_WORD = "editTag";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the tag identified by the index number in the tag list of the patient "
+            + "identified by the index number used in the last patient listing.\n"
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: PATIENT_INDEX (must be a positive integer) "
+            + "TAG_INDEX (must be a positive integer) "
+            + PREFIX_TAG + "TAG\n"
+            + "Example: " + COMMAND_WORD + " 2 " + " 1 "
+            + PREFIX_TAG + "Hypertension";
+
+    public static final String MESSAGE_EDIT_TAG_SUCCESS = "Edited tag %1$d of %2$s:\n"
+            + "Before: %3$s\n"
+            + "After: %4$s";
+    public static final String MESSAGE_EDIT_DUPLICATE_TAG =
+            "This tag already exists in %1$s's tag list.";
+
+    public static final CommandType EDIT_TAG_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+
+    private final Index patientIndex;
+    private final Index tagIndex;
+    private final Tag editedTag;
+
+    /**
+     * Creates an EditTagCommand to edit a {@code Tag} from the specified patient.
+     *
+     * @param patientIndex The index of the patient in the filtered patient list to edit.
+     * @param tagIndex The index of the tag in the patient's tag list.
+     * @param editedTag The edited tag.
+     */
+    public EditTagCommand(Index patientIndex, Index tagIndex, Tag editedTag) {
+        requireAllNonNull(patientIndex, tagIndex, editedTag);
+
+        this.patientIndex = patientIndex;
+        this.tagIndex = tagIndex;
+        this.editedTag = editedTag;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Patient> lastShownList = model.getFilteredPersonList();
+
+        if (patientIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        TagList initialTagList = patientToEdit.getTags();
+
+        if (tagIndex.getZeroBased() >= initialTagList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TAG_INDEX);
+        }
+
+        Tag initialTag = initialTagList.get(tagIndex.getZeroBased());
+
+        TagList updatedTagList;
+
+        try {
+            updatedTagList = initialTagList.edit(tagIndex.getZeroBased(), editedTag);
+        } catch (DuplicateTagException exception) {
+            throw new CommandException(String.format(MESSAGE_EDIT_DUPLICATE_TAG, patientToEdit.getName()));
+        }
+
+        Patient editedPatient = new Patient(patientToEdit, updatedTagList);
+
+        model.setPerson(patientToEdit, editedPatient);
+        model.setPatientOfInterest(editedPatient);
+
+        return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS,
+                tagIndex.getOneBased(), editedPatient.getName(), initialTag, editedTag),
+                EDIT_TAG_COMMAND_TYPE);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditTagCommand)) {
+            return false;
+        }
+
+        // state check
+        EditTagCommand command = (EditTagCommand) other;
+        return patientIndex.equals(command.patientIndex)
+                && tagIndex.equals(command.tagIndex)
+                && editedTag.equals(command.editedTag);
+    }
+}

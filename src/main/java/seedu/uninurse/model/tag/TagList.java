@@ -18,8 +18,6 @@ import seedu.uninurse.model.tag.exceptions.TagNotFoundException;
  * Supports a minimal set of list operations.
  */
 public class TagList implements GenericList<Tag> {
-    public static final String MESSAGE_UNSUPPORTED_EDIT = "Tags cannot be edited, only added or deleted";
-
     private final List<Tag> internalTagList;
 
     /**
@@ -64,7 +62,18 @@ public class TagList implements GenericList<Tag> {
 
     @Override
     public TagList edit(int index, Tag tag) {
-        throw new UnsupportedOperationException(MESSAGE_UNSUPPORTED_EDIT);
+        try {
+            List<Tag> updatedTags = new ArrayList<>(internalTagList);
+            updatedTags.set(index, tag);
+
+            if (internalTagList.contains(tag)) {
+                throw new DuplicateTagException();
+            }
+
+            return new TagList(updatedTags);
+        } catch (IndexOutOfBoundsException e) {
+            throw new TagNotFoundException();
+        }
     }
 
     @Override
