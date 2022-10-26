@@ -1,17 +1,27 @@
 package seedu.address.model.person;
 
-import seedu.address.model.ShallowCopyable;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.ShallowCopyable;
 
+/**
+ * Represents a noteLoanHistory of a person in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class LoanHistory implements ShallowCopyable {
 
     private final Loan loanChange;
 
     private final Reason reason;
 
+    /**
+     * Constructor for the LoanHistory object
+     *
+     * @param loanChange Change in loan amount.
+     * @param reason Reason for the change.
+     */
     public LoanHistory(Loan loanChange, Reason reason) {
         requireAllNonNull(loanChange, reason);
         this.loanChange = loanChange;
