@@ -48,7 +48,7 @@
         <HBox prefHeight="500.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
           <VBox fx:id="personList" minWidth="300.0" prefWidth="300.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
             <padding>
-              <Insets bottom="15" left="10" right="10" top="10" />
+              <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
