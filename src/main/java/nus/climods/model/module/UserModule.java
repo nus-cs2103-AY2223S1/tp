@@ -12,13 +12,24 @@ public class UserModule {
     private String tutorial = "<Not Selected>"; // TODO placeholder
     private String lecture = "<Not Selected>"; // TODO placeholder
 
+
+    /**
+     * Creates a UserModule with null selectedSemester to use it for
+     * comparing in @UniqueUserModuleList.
+     *
+     * @param moduleCode module code
+     */
+    public UserModule(String moduleCode) {
+        this.code = moduleCode;
+        this.selectedSemester = null;
+    }
+
     /**
      * Creates a UserModule
      *
      * @param moduleCode module code
      * @param selectedSemester semester
      */
-
     public UserModule(String moduleCode, SemestersEnum selectedSemester) {
         this.code = moduleCode;
         this.selectedSemester = selectedSemester;

@@ -50,6 +50,15 @@ public class UniqueUserModuleList implements Iterable<UserModule> {
     }
 
     /**
+     * Gets the UserModule in the list based on String to be compared with.
+     */
+    public Optional<UserModule> get(String moduleCodeToGet) {
+        UserModule toGet = new UserModule(moduleCodeToGet);
+
+        return internalList.stream().filter(toGet::isSameUserModule).findFirst();
+    }
+
+    /**
      * Replaces the module {@code target} in the list with {@code editedUserModule}. {@code target} must exist in the
      * list.
      * The module identity of {@code editedUserModule} must not be the same as another existing module in the list.

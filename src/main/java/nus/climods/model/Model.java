@@ -105,4 +105,12 @@ public interface Model {
      * Deletes the given module code
      */
     void deleteUserModule(String target);
+
+    /**
+     * returns UserModule to be found in the list if present.
+     * @param toGet
+     * @return
+     */
+    Optional<UserModule> getUserModule(String toGet);
+
 }

@@ -171,6 +171,10 @@ public class ModelManager implements Model {
         this.filteredUserModuleList.setPredicate(predicate);
     }
 
+    public Optional<UserModule> getUserModule(String toGet) {
+        return userModuleList.get(toGet);
+    }
+
     //=========== UserPrefs ==================================================================================
 
     @Override
