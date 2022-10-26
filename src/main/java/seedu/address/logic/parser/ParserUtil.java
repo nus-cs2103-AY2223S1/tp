@@ -233,7 +233,7 @@ public class ParserUtil {
         if (!InternshipStatus.isValidStatus(trimmedInternshipStatus)) {
             throw new ParseException(InternshipStatus.MESSAGE_CONSTRAINTS);
         }
-        return new InternshipStatus(InternshipStatus.State.valueOf(trimmedInternshipStatus));
+        return new InternshipStatus(InternshipStatus.State.fromTrimmedInput(trimmedInternshipStatus));
     }
 
     /**
