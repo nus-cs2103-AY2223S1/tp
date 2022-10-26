@@ -101,4 +101,10 @@ public interface Model {
      * The reminder must exist in the address book.
      */
     void deleteReminder(Pair<Person, Reminder> target);
+
+    /**
+     * Deletes the given person's reminders.
+     * The person must exist in the address book.
+     */
+    void deletePersonReminders(Person personToDelete);
 }
