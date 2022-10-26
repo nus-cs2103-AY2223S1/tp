@@ -25,8 +25,8 @@ public class CommentList {
      *
      * @param index The index of the Comment in the CommentList.
      */
-    public void deleteComment(int index) {
-        comments.remove(index);
+    public Comment deleteComment(int index) {
+        return comments.remove(index);
     }
 
 

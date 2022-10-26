@@ -11,6 +11,7 @@ import tuthub.logic.commands.ClearCommand;
 import tuthub.logic.commands.Command;
 import tuthub.logic.commands.CommentCommand;
 import tuthub.logic.commands.DeleteCommand;
+import tuthub.logic.commands.DeleteCommentCommand;
 import tuthub.logic.commands.EditCommand;
 import tuthub.logic.commands.ExitCommand;
 import tuthub.logic.commands.FindByPrefixCommand;
@@ -56,6 +57,9 @@ public class TuthubParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteCommentCommand.COMMAND_WORD:
+            return new DeleteCommentCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
