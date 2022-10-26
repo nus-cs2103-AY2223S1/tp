@@ -96,6 +96,14 @@ public class OrderBuilder {
     /**
      * Sets the {@code LocalDateTime} of the {@code Order} that we are building.
      */
+    public OrderBuilder withTimeCreated(LocalDateTime timeCreated) {
+        this.timeCreated = timeCreated;
+        return this;
+    }
+
+    /**
+     * Sets the default {@code LocalDateTime} of the {@code Order} that we are building.
+     */
     public OrderBuilder withDefaultTimeCreated() {
         this.timeCreated = DEFAULT_TIME_CREATED;
         return this;

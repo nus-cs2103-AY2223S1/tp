@@ -13,6 +13,7 @@ import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +44,12 @@ public class EditOrderCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Order editedOrder = new OrderBuilder().build();
+        LocalDateTime timeUsed = model.getFilteredOrderList().get(0).getTimeCreated();
+
+        //Builds an order using default fields in OrderBuilder but use timeCreated from the first order of the list
+        //This is because editing of orders does not edit the timeCreated of an order
+        Order editedOrder = new OrderBuilder().withTimeCreated(timeUsed).build();
+
         EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedOrder).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST, descriptor);
 

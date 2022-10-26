@@ -6,6 +6,7 @@ import static tracko.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import tracko.logic.commands.ClearCommand;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.ExitCommand;
 import tracko.logic.commands.HelpCommand;
@@ -116,6 +117,9 @@ public class TrackOParser {
 
         case EditItemCommand.COMMAND_WORD:
             return new EditItemCommandParser().parse(arguments);
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
