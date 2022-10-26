@@ -1,7 +1,9 @@
 package tracko.model.util;
 
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.TrackO;
@@ -16,6 +18,7 @@ import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Name;
 import tracko.model.order.Order;
 import tracko.model.order.Phone;
+import tracko.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -23,16 +26,16 @@ import tracko.model.order.Phone;
 public class SampleDataUtil {
     private static final Item ITEM_1 = new Item(new ItemName("Chair"),
         new Description("Carved mahogany wooden chair"),
-          new Quantity(300), new HashSet<>(), new Price(80.50), new Price(149.99));
+          new Quantity(300), getTagSet("Furniture"), new Price(149.99), new Price(80.50));
     private static final Item ITEM_2 = new Item(new ItemName("Pillow"),
         new Description("Ergonomic with recycled polystyrene filling"),
-           new Quantity(300), new HashSet<>(), new Price(14.99), new Price(29.99));
+           new Quantity(300), getTagSet("Bedroom"), new Price(29.99), new Price(14.99));
     private static final Item ITEM_3 = new Item(new ItemName("Bolster"),
         new Description("Premium cotton filling"),
-            new Quantity(300), new HashSet<>(), new Price(10.00), new Price(20.00));
+            new Quantity(300), getTagSet("Bedroom", "Premium"), new Price(20.00), new Price(10.00));
     private static final Item ITEM_4 = new Item(new ItemName("Mattress"),
         new Description("King-sized with memory foam"),
-            new Quantity(300), new HashSet<>(), new Price(200.00), new Price(500.00));
+            new Quantity(300), getTagSet("Bedroom", "Limited"), new Price(500.00), new Price(200.00));
 
     public static Item[] getSampleItems() {
         return new Item[] { ITEM_1, ITEM_2, ITEM_3, ITEM_4 };
@@ -64,5 +67,14 @@ public class SampleDataUtil {
             sampleTrackO.addOrder(sampleOrder);
         }
         return sampleTrackO;
+    }
+
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static Set<Tag> getTagSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Tag::new)
+                .collect(Collectors.toSet());
     }
 }
