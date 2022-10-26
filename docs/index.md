@@ -8,12 +8,12 @@ title: JeeqTracker
 
 ![Ui](images/Ui.png)
 
-**JeeqTracker is a desktop application for managing the clients you are in contact with, and their respective remark.**
-While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**JeeqTracker is a desktop application created for home-based business owners / resellers that helps them manage the clients
+that they interact with by keeping track of their `BUY / SELL` transactions, and `REMARKS` of clients.**
+While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using JeeqTracker, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing JeeqTracker, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
-
+* If you are interested in using JeeqTracker, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.md#quick-start).
+* If you are interested about developing JeeqTracker, the [**Developer Guide**](DeveloperGuide.md) is a good place to start.
 
 **Acknowledgements**
 

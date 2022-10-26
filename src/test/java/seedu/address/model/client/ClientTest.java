@@ -182,6 +182,6 @@ public class ClientTest {
 
         assertEquals(client.toString(), "Benson Meier; Address: 311, Clementi Ave 2, "
                 + "#02-25; Phone: 12112121; Email: ben@gmail.com; "
-                + "Tags: [owesMoney][friends]; Remarks: Bad Buyer; Total transactions: -$423.0");
+                + "Tags: [owesMoney][friends]; Remarks: Bad Buyer; Total transactions: -$423");
     }
 }

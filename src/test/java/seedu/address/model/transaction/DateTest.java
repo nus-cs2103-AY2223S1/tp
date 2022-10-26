@@ -47,12 +47,13 @@ class DateTest {
         assertTrue(Date.isValidDate("29/02/2004")); // leap year
     }
 
+
     @Test
     public void toString_returnsValueInName() {
         String value = "22/09/2000";
-        String formatedValue = "2000-09-22";
+        String formattedValue = "22 Sep 2000";
         Date date = new Date(value);
-        assertEquals(date.toString(), formatedValue);
+        assertEquals(date.toString(), formattedValue);
     }
 
     @Test
@@ -61,5 +62,21 @@ class DateTest {
         Date date = new Date(value);
         Date otherDate = new Date(value);
         assertEquals(date, otherDate);
+        assertEquals(date.getLocalDate(), otherDate.getLocalDate());
     }
+
+    @Test
+    public void isOlderDate() {
+        // older date
+        Date date1 = new Date("11/09/2003");
+        Date date2 = new Date("11/09/2001");
+
+        assertFalse(date1.isOlderThan(date2));
+        assertFalse(date1.isOlderThan(new Date("12/09/2002")));
+        assertFalse(date1.isOlderThan(date1));
+
+        // earlier date
+        assertTrue(date2.isOlderThan(date1));
+    }
+
 }

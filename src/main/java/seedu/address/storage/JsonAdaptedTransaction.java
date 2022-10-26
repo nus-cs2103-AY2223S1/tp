@@ -49,7 +49,7 @@ public class JsonAdaptedTransaction {
         goods = transaction.getGoods().goodsName;
         price = transaction.getPrice().price;
         quantity = transaction.getQuantity().quantity;
-        date = transaction.getDate().getUnformattedDate();
+        date = transaction.getDate().getDateInDdMmYyyy();
 
         type = transaction instanceof BuyTransaction
                 ? TransactionType.BUY

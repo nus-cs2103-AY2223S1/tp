@@ -1,6 +1,7 @@
 package seedu.address.model.client;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.PriceFormatter.formatPrice;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -203,7 +204,7 @@ public class Client implements ReadOnlyClient {
         }
 
         double netTransaction = transactions.calculateNetTransacted();
-        builder.append(netTransaction < 0 ? "-$" : "$").append(Math.abs(netTransaction));
+        builder.append(formatPrice(netTransaction));
 
         return builder.toString();
     }
@@ -230,6 +231,20 @@ public class Client implements ReadOnlyClient {
      */
     public ObservableList<Transaction> getBuyTransactionList() {
         return transactions.getBuyTransactionList();
+    }
+
+    /**
+     * Returns an unmodifiable view of the sorted by oldest transactions list.
+     */
+    public ObservableList<Transaction> getSortOldestTransaction() {
+        return transactions.getOldestTransactionList();
+    }
+
+    /**
+     * Returns an unmodifiable view of the sorted by latest transactions list.
+     */
+    public ObservableList<Transaction> getSortLatestTransaction() {
+        return transactions.getLatestTransactionList();
     }
 
 }

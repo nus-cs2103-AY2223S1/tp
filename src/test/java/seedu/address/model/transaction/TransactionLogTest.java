@@ -154,4 +154,59 @@ class TransactionLogTest {
         list3.add(SELL_PAPAYA);
         assertNotEquals(log.getBuyTransactionList(), list3);
     }
+
+    @Test
+    public void getOldestTransactionList() {
+        TransactionLog log = new TransactionLog();
+        log.addTransaction(BUY_BURGERS);
+        log.addTransaction(SELL_PAPAYA);
+
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        internalList.add(SELL_PAPAYA);
+        internalList.add(BUY_BURGERS);
+        assertEquals(log.getOldestTransactionList(), internalList);
+
+        ObservableList<Transaction> internalList2 = FXCollections.observableArrayList();
+        internalList2.add(BUY_BURGERS);
+        internalList2.add(SELL_PAPAYA);
+        assertNotEquals(log.getOldestTransactionList(), internalList2);
+
+        ObservableList<Transaction> list3 = FXCollections.observableArrayList();
+        list3.add(BUY_ORANGE);
+        assertNotEquals(log.getOldestTransactionList(), list3);
+
+        ObservableList<Transaction> list4 = FXCollections.observableArrayList();
+        list4.add(SELL_PAPAYA);
+        assertNotEquals(log.getOldestTransactionList(), list4);
+
+
+    }
+
+
+    @Test
+    public void getLatestTransactionList() {
+        TransactionLog log = new TransactionLog();
+        log.addTransaction(BUY_BURGERS);
+        log.addTransaction(SELL_PAPAYA);
+
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        internalList.add(SELL_PAPAYA);
+        internalList.add(BUY_BURGERS);
+        assertNotEquals(log.getLatestTransactionList(), internalList);
+
+        ObservableList<Transaction> internalList2 = FXCollections.observableArrayList();
+        internalList2.add(BUY_BURGERS);
+        internalList2.add(SELL_PAPAYA);
+        assertEquals(log.getLatestTransactionList(), internalList2);
+
+        ObservableList<Transaction> list3 = FXCollections.observableArrayList();
+        list3.add(BUY_ORANGE);
+        assertNotEquals(log.getLatestTransactionList(), list3);
+
+        ObservableList<Transaction> list4 = FXCollections.observableArrayList();
+        list4.add(SELL_PAPAYA);
+        assertNotEquals(log.getLatestTransactionList(), list4);
+
+    }
+
 }

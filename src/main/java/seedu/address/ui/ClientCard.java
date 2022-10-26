@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.PriceFormatter.formatPrice;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -57,7 +59,7 @@ public class ClientCard extends UiPart<Region> {
         phone.setText("Phone: " + client.getPhone().value);
         email.setText("Email: " + client.getEmail().value);
         remarks.setText(client.getRemarks().toString());
-        transactions.setText("Total: " + String.valueOf(client.getTotalTransacted()));
+        transactions.setText("Total: " + formatPrice(client.getTotalTransacted()));
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

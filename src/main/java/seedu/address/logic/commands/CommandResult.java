@@ -18,23 +18,39 @@ public class CommandResult {
     private final boolean exit;
 
     /** Filter transactions. */
-    private final boolean filterTransactions;
+    private final boolean isFilterTransactions;
+
+    /** Sort transactions. */
+    private final boolean isSortTransactions;
 
     /**
      * Constructs a {@code CommandResult} with all the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit, boolean filterTransactions) {
+    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit, boolean isFilterTransactions,
+                         boolean isSortTransactions) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showUserGuide = showUserGuide;
         this.exit = exit;
-        this.filterTransactions = filterTransactions;
+        this.isFilterTransactions = isFilterTransactions;
+        this.isSortTransactions = isSortTransactions;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with 4 specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit, boolean isFilterTransactions) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showUserGuide = showUserGuide;
+        this.exit = exit;
+        this.isFilterTransactions = isFilterTransactions;
+        this.isSortTransactions = false;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified 3 fields.
      */
     public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit) {
-        this(feedbackToUser, showUserGuide, exit, false);
+        this(feedbackToUser, showUserGuide, exit, false, false);
     }
 
     /**
@@ -53,8 +69,8 @@ public class CommandResult {
         return showUserGuide;
     }
 
-    public boolean isFilterTransactions() {
-        return filterTransactions;
+    public boolean isFilteredTransactions() {
+        return isFilterTransactions;
     }
 
     public boolean isExit() {
@@ -64,6 +80,10 @@ public class CommandResult {
     @Override
     public String toString() {
         return feedbackToUser;
+    }
+
+    public boolean isSortedTransactions() {
+        return isSortTransactions;
     }
 
     @Override

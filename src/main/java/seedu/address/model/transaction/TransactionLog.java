@@ -3,6 +3,7 @@ package seedu.address.model.transaction;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -135,4 +136,28 @@ public class TransactionLog {
         }
         return FXCollections.unmodifiableObservableList(internalList);
     }
+
+    /**
+     * Creates an observable list of transactions to be used by MainWindow.
+     * @return an unmodifiableObservableList of sorted transactions by oldest.
+     */
+    public ObservableList<Transaction> getOldestTransactionList() {
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        internalList.addAll(transactionList);
+        Collections.sort(internalList);
+        Collections.reverse(internalList);
+        return FXCollections.unmodifiableObservableList(internalList);
+    }
+
+    /**
+     * Creates an observable list of transactions to be used by MainWindow.
+     * @return an unmodifiableObservableList of sorted transactions by latest.
+     */
+    public ObservableList<Transaction> getLatestTransactionList() {
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        internalList.addAll(transactionList);
+        Collections.sort(internalList);
+        return FXCollections.unmodifiableObservableList(internalList);
+    }
+
 }

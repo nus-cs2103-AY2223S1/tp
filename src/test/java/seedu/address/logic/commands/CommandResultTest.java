@@ -15,6 +15,11 @@ public class CommandResultTest {
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
+        assertTrue(commandResult.equals((new CommandResult("feedback", false, false,
+                false, true))));
+
+        assertTrue(commandResult.equals((new CommandResult("feedback", false, false,
+                false, false))));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -33,6 +38,8 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+
+
     }
 
     @Test
@@ -64,14 +71,25 @@ public class CommandResultTest {
     }
 
     @Test
-    public void isFilterTransactions() {
+    public void isFilteredTransactions() {
         CommandResult firstCommandResult = new CommandResult("feedback");
         CommandResult secondCommandResult = new CommandResult("feedback", true, false);
         CommandResult thirdCommandResult = new CommandResult("feedback", false, false, true);
 
-        assertEquals(firstCommandResult.isFilterTransactions(), false);
-        assertEquals(secondCommandResult.isFilterTransactions(), false);
-        assertEquals(thirdCommandResult.isFilterTransactions(), true);
+        assertEquals(firstCommandResult.isFilteredTransactions(), false);
+        assertEquals(secondCommandResult.isFilteredTransactions(), false);
+        assertEquals(thirdCommandResult.isFilteredTransactions(), true);
+    }
+
+    @Test
+    public void isSortTransactions() {
+        CommandResult firstCommandResult = new CommandResult("feedback");
+        CommandResult secondCommandResult = new CommandResult("feedback", true, false, false, false);
+        CommandResult thirdCommandResult = new CommandResult("feedback", false, false, false, true);
+
+        assertEquals(firstCommandResult.isSortedTransactions(), false);
+        assertEquals(secondCommandResult.isSortedTransactions(), false);
+        assertEquals(thirdCommandResult.isSortedTransactions(), true);
     }
 
 
