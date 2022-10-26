@@ -65,6 +65,7 @@ public class IssueWithoutModel implements Function<Model, Issue> {
                         && this.deadline.equals(i.deadline)
                         && this.priority.equals(i.priority)
                         && this.status.equals(i.status)
-                        && this.projectId.equals(i.projectId));
+                        && this.projectId.equals(i.projectId)
+                        && this.pin.equals(i.pin));
     }
 }

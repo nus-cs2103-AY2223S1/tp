@@ -64,6 +64,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
         this.email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
         this.projects = new ArrayList<>();
         this.clientId = ClientId.EmptyClientId.EMPTY_CLIENT_ID;
+        this.pin = new Pin(false);
     }
 
     /**
@@ -258,9 +259,14 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
             boolean hasSameName = this.getClientName().equals(otherClient.getClientName());
             boolean hasSameEmail = this.getClientEmail().equals(otherClient.getClientEmail());
             boolean hasSamePhone = this.getClientPhone().equals(otherClient.getClientPhone());
-            return hasSameId && hasSameEmail && hasSamePhone && hasSameName;
+            boolean hasSamePin = this.getPin().equals(otherClient.getPin());
+            return hasSameId && hasSameEmail && hasSamePhone && hasSameName && hasSamePin;
         } else {
             return false;
         }
+    }
+
+    private Pin getPin() {
+        return this.pin;
     }
 }

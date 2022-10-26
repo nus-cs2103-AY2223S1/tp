@@ -234,7 +234,12 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
                 && otherIssue.getDeadline().equals(getDeadline())
                 && otherIssue.getStatus().equals(getStatus())
                 && otherIssue.getPriority().equals(getPriority())
-                && otherIssue.getIssueId().equals(getIssueId());
+                && otherIssue.getIssueId().equals(getIssueId())
+                && otherIssue.getPin().equals(getPin());
+    }
+
+    private Pin getPin() {
+        return this.pin;
     }
 
     @Override

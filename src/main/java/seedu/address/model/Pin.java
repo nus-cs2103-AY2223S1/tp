@@ -32,4 +32,17 @@ public class Pin {
             return parseBoolean(pinString);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Pin)) {
+            return false;
+        }
+
+        return this.isPinned == ((Pin) other).isPinned;
+    }
 }

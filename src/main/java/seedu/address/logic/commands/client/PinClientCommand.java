@@ -43,4 +43,17 @@ public class PinClientCommand extends ClientCommand {
         model.sortClientsByPin();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toPinClient));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof PinClientCommand)) {
+            return false;
+        }
+
+        return this.toPinClientId.equals(((PinClientCommand) other).toPinClientId);
+    }
 }

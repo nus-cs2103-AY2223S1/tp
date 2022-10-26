@@ -66,6 +66,7 @@ public class ClientWithoutModel implements Function<Model, Client> {
                 this.name.equals(c.name)
                         && this.phone.equals(c.phone)
                         && this.email.equals(c.email)
-                        && this.projectIdList.equals(c.projectIdList));
+                        && this.projectIdList.equals(c.projectIdList)
+                        && this.pin.equals(c.pin));
     }
 }

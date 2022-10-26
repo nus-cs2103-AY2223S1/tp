@@ -262,7 +262,12 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
                 && otherProject.getDeadline().equals(getDeadline())
                 && otherProject.getClient().equals(getClient())
                 && otherProject.getIssueList().equals(getIssueList())
-                && otherProject.getProjectId().equals(getProjectId());
+                && otherProject.getProjectId().equals(getProjectId())
+                && otherProject.getPin().equals(getPin());
+    }
+
+    private Pin getPin() {
+        return this.pin;
     }
 
     /**

@@ -70,7 +70,8 @@ public class ProjectWithoutModel implements Function<Model, Project> {
                         && this.repository.equals(p.repository)
                         && this.deadline.equals(p.deadline)
                         && this.clientId.equals(p.clientId)
-                        && this.issueList.equals(p.issueList));
+                        && this.issueList.equals(p.issueList)
+                        && this.pin.equals(p.pin));
     }
 
 }

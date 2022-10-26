@@ -43,4 +43,17 @@ public class PinProjectCommand extends ProjectCommand {
         model.sortProjectsByPin();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toPinProject));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof PinProjectCommand)) {
+            return false;
+        }
+
+        return this.toPinProjectId.equals(((PinProjectCommand) other).toPinProjectId);
+    }
 }

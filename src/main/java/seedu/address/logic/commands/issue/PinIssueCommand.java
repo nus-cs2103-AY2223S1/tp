@@ -43,4 +43,17 @@ public class PinIssueCommand extends IssueCommand {
         model.sortIssuesByPin();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toPinIssue));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof PinIssueCommand)) {
+            return false;
+        }
+
+        return this.toPinIssueId.equals(((PinIssueCommand) other).toPinIssueId);
+    }
 }
