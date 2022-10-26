@@ -3,7 +3,6 @@ package seedu.studmap.model.student;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.studmap.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.studmap.testutil.Assert.assertThrows;
 import static seedu.studmap.testutil.TypicalStudents.ALICE;
@@ -42,7 +41,7 @@ public class UniqueStudentListTest {
     @Test
     public void contains_studentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueStudentList.contains(editedAlice));
     }
@@ -85,7 +84,7 @@ public class UniqueStudentListTest {
     @Test
     public void setStudent_editedstudentHasSameIdentity_success() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueStudentList.setStudent(ALICE, editedAlice);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();

@@ -16,7 +16,6 @@ public class StudentData {
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
     private Set<Tag> tags = new HashSet<>();
     private Set<Attendance> attendances = new HashSet<>();
     private Set<Assignment> assignments = new HashSet<>();
@@ -69,14 +68,6 @@ public class StudentData {
         this.email = email;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public Set<Tag> getTags() {
         return tags;
     }
@@ -124,7 +115,6 @@ public class StudentData {
                 && Objects.equals(studentID, that.studentID)
                 && Objects.equals(gitName, that.gitName)
                 && Objects.equals(teleHandle, that.teleHandle)
-                && Objects.equals(address, that.address)
                 && Objects.equals(tags, that.tags)
                 && Objects.equals(attendances, that.attendances)
                 && Objects.equals(assignments, that.assignments);
@@ -133,7 +123,7 @@ public class StudentData {
     @Override
     public int hashCode() {
         return Objects.hash(name, phone, email, studentID, gitName,
-                teleHandle, address, tags, attendances, assignments);
+                teleHandle, tags, attendances, assignments);
     }
 
 }

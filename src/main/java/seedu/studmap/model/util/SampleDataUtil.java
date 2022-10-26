@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import seedu.studmap.model.ReadOnlyStudMap;
 import seedu.studmap.model.StudMap;
-import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
@@ -35,7 +34,6 @@ public class SampleDataUtil {
         studentData.setId(new StudentID("E1234561"));
         studentData.setGitUser(new GitName("user1"));
         studentData.setTeleHandle(new TeleHandle("@user1"));
-        studentData.setAddress(new Address("Blk 30 Geylang Street 29, #06-40"));
         studentData.setTags(getTagSet("friends"));
         studentData.setAttendances(getAttendedSet("T01", "T02"));
         studentData.addAttendances(getNotAttendedSet("T03"));
@@ -48,7 +46,6 @@ public class SampleDataUtil {
         studentData.setId(new StudentID("E1234562"));
         studentData.setGitUser(new GitName("user2"));
         studentData.setTeleHandle(new TeleHandle("@user2"));
-        studentData.setAddress(new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"));
         studentData.setTags(getTagSet("colleagues", "friends"));
         studentData.setAssignments(getMarkedAssignments("A01", "A02"));
         studentData.addAssignments(getReceivedAssignments("A03", "A04"));
@@ -62,7 +59,6 @@ public class SampleDataUtil {
         studentData.setId(new StudentID("E1234563"));
         studentData.setGitUser(new GitName("user3"));
         studentData.setTeleHandle(new TeleHandle("@user3"));
-        studentData.setAddress(new Address("Blk 11 Ang Mo Kio Street 74, #11-04"));
         studentData.setTags(getTagSet("neighbours"));
         data.add(studentData);
 
@@ -73,7 +69,6 @@ public class SampleDataUtil {
         studentData.setId(new StudentID("E1234564"));
         studentData.setGitUser(new GitName("user4"));
         studentData.setTeleHandle(new TeleHandle("@user4"));
-        studentData.setAddress(new Address("Blk 436 Serangoon Gardens Street 26, #16-43"));
         studentData.setTags(getTagSet("family"));
         data.add(studentData);
 
@@ -84,7 +79,6 @@ public class SampleDataUtil {
         studentData.setId(new StudentID("E1234565"));
         studentData.setGitUser(new GitName("user5"));
         studentData.setTeleHandle(new TeleHandle("@user5"));
-        studentData.setAddress(new Address("Blk 47 Tampines Street 20, #17-35"));
         studentData.setTags(getTagSet("classmates"));
         data.add(studentData);
 
@@ -95,7 +89,6 @@ public class SampleDataUtil {
         studentData.setId(new StudentID("E1234566"));
         studentData.setGitUser(new GitName("user6"));
         studentData.setTeleHandle(new TeleHandle("@user6"));
-        studentData.setAddress(new Address("Blk 45 Aljunied Street 85, #11-31"));
         studentData.setTags(getTagSet("colleagues"));
         data.add(studentData);
 

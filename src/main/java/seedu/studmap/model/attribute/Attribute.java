@@ -56,10 +56,6 @@ public abstract class Attribute {
             resultComparator = Comparator.comparing(Student::getHandleString);
             break;
 
-        case ADDRESS:
-            resultComparator = Comparator.comparing(Student::getAddressString);
-            break;
-
         case EMAIL:
             resultComparator = Comparator.comparing(Student::getEmailString);
             break;

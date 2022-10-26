@@ -3,7 +3,6 @@ package seedu.studmap.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
@@ -25,7 +24,6 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_ID = "E1234567";
     public static final String DEFAULT_GIT = "GitUser";
     public static final String DEFAULT_TELE = "@CS2103T";
@@ -36,7 +34,6 @@ public class StudentBuilder {
     private StudentID id;
     private GitName gitName;
     private TeleHandle handle;
-    private Address address;
     private Set<Tag> tags;
     private Set<Attendance> attendances;
     private Set<Assignment> assignments;
@@ -51,7 +48,6 @@ public class StudentBuilder {
         id = new StudentID(DEFAULT_ID);
         gitName = new GitName(DEFAULT_GIT);
         handle = new TeleHandle(DEFAULT_TELE);
-        address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         attendances = new HashSet<>();
         assignments = new HashSet<>();
@@ -67,7 +63,6 @@ public class StudentBuilder {
         id = studentToCopy.getId();
         gitName = studentToCopy.getGitName();
         handle = studentToCopy.getTeleHandle();
-        address = studentToCopy.getAddress();
         tags = new HashSet<>(studentToCopy.getTags());
         attendances = new HashSet<>(studentToCopy.getAttendances());
         assignments = new HashSet<>(studentToCopy.getAssignments());
@@ -145,14 +140,6 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Student} that we are building.
-     */
-    public StudentBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
      * Sets the {@code Phone} of the {@code Student} that we are building.
      */
     public StudentBuilder withPhone(String phone) {
@@ -204,7 +191,6 @@ public class StudentBuilder {
         studentData.setId(this.id);
         studentData.setGitUser(this.gitName);
         studentData.setTeleHandle(this.handle);
-        studentData.setAddress(this.address);
         studentData.setTags(this.tags);
         studentData.setAttendances(this.attendances);
         studentData.setAssignments(this.assignments);

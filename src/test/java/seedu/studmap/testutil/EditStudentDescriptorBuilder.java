@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.studmap.logic.commands.EditCommand.EditCommandStudentEditor;
-import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Name;
@@ -41,7 +40,6 @@ public class EditStudentDescriptorBuilder {
         descriptor.setId(student.getId());
         descriptor.setGitName(student.getGitName());
         descriptor.setHandle(student.getTeleHandle());
-        descriptor.setAddress(student.getAddress());
         descriptor.setTags(student.getTags());
     }
 
@@ -90,14 +88,6 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withTeleHandle(String teleHandle) {
         descriptor.setHandle(new TeleHandle(teleHandle));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code EditStudentDescriptor} that we are building.
-     */
-    public EditStudentDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
         return this;
     }
 

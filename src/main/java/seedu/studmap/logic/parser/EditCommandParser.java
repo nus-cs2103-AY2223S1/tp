@@ -1,6 +1,5 @@
 package seedu.studmap.logic.parser;
 
-import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
@@ -30,7 +29,7 @@ public class EditCommandParser extends EditStudentCommandParser<EditCommandStude
     public Prefix[] getPrefixes() {
         return new Prefix[]{
             PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-            PREFIX_ID, PREFIX_GIT, PREFIX_HANDLE, PREFIX_ADDRESS, PREFIX_TAG
+            PREFIX_ID, PREFIX_GIT, PREFIX_HANDLE, PREFIX_TAG
         };
     }
 
@@ -63,9 +62,7 @@ public class EditCommandParser extends EditStudentCommandParser<EditCommandStude
         if (argMultimap.getValue(PREFIX_HANDLE).isPresent()) {
             editor.setHandle(ParserUtil.parseHandle(argMultimap.getValue(PREFIX_HANDLE).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editor::setTags);
 
         return new EditCommand(indexListGenerator, editor);

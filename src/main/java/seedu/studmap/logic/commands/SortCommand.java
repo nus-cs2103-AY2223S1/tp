@@ -22,9 +22,9 @@ public class SortCommand extends Command {
             + "[" + PREFIX_ATTRIBUTE + "ATTRIBUTE]\n "
             + "Example: " + COMMAND_WORD + " asc "
             + PREFIX_ATTRIBUTE + "name\n"
-            + "Supported attributes: name, phone, address, email, attendance";
+            + "Supported attributes: name, phone, email, attendance";
 
-    public static final String MESSAGE_SORT_SUCCESS = "Address book has been sorted by %1$s in %2$s order!";
+    public static final String MESSAGE_SORT_SUCCESS = "StudMap has been sorted by %1$s in %2$s order!";
 
     private final Comparator<Student> comparator;
     private final Order sortOrder;

@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "StudMap save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "students" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
@@ -7,7 +7,6 @@
     "studentID" : "E1234561",
     "gitName" : "user1",
     "handle" : "@user1",
-    "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -16,7 +15,6 @@
     "studentID" : "E1234562",
     "gitName" : "user2",
     "handle" : "@user2",
-    "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
     "attended" : [ "T01:Present", "T03:Absent", "T02:Present" ]
   }, {
@@ -26,7 +24,6 @@
     "studentID" : "E1234563",
     "gitName" : "user3",
     "handle" : "@user3",
-    "address" : "wall street",
     "tagged" : [ ],
     "assigned" : [ "A01:marked", "A02:marked", "A03:received", "A04:new" ]
   }, {
@@ -36,7 +33,6 @@
     "studentID" : "E1234564",
     "gitName" : "user4",
     "handle" : "@user4",
-    "address" : "10th street",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -45,7 +41,6 @@
     "studentID" : "E1234565",
     "gitName" : "user5",
     "handle" : "@user5",
-    "address" : "michegan ave",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -54,7 +49,6 @@
     "studentID" : "E1234566",
     "gitName" : "user6",
     "handle" : "@user6",
-    "address" : "little tokyo",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -63,7 +57,6 @@
     "studentID" : "E1234567",
     "gitName" : "user7",
     "handle" : "@user7",
-    "address" : "4th street",
     "tagged" : [ ]
   } ]
 }

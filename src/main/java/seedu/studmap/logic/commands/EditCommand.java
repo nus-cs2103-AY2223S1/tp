@@ -1,6 +1,5 @@
 package seedu.studmap.logic.commands;
 
-import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
@@ -21,7 +20,6 @@ import seedu.studmap.commons.util.CollectionUtil;
 import seedu.studmap.logic.commands.commons.StudentEditor;
 import seedu.studmap.logic.commands.exceptions.CommandException;
 import seedu.studmap.model.Model;
-import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Name;
@@ -49,7 +47,6 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             + "[" + PREFIX_ID + "ID] "
             + "[" + PREFIX_GIT + "GITUSER] "
             + "[" + PREFIX_HANDLE + "TELEHANDLE] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -114,7 +111,6 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
         private StudentID id;
         private GitName gitName;
         private TeleHandle handle;
-        private Address address;
         private Set<Tag> tags;
 
         public EditCommandStudentEditor() {
@@ -131,7 +127,6 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             setId(toCopy.id);
             setGitName(toCopy.gitName);
             setHandle(toCopy.handle);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -140,7 +135,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email,
-                    id, gitName, handle, address, tags);
+                    id, gitName, handle, tags);
         }
 
         public Optional<Name> getName() {
@@ -191,14 +186,6 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             return Optional.ofNullable(gitName);
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
@@ -237,7 +224,6 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
                     && getId().equals(e.getId())
                     && getGitName().equals(e.getGitName())
                     && getHandle().equals(e.getHandle())
-                    && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
 
@@ -252,7 +238,6 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             studentData.setId(getId().orElse(studentToEdit.getId()));
             studentData.setGitUser(getGitName().orElse(studentToEdit.getGitName()));
             studentData.setTeleHandle(getHandle().orElse(studentToEdit.getTeleHandle()));
-            studentData.setAddress(getAddress().orElse(studentToEdit.getAddress()));
             studentData.setTags(getTags().orElse(studentToEdit.getTags()));
 
             return new Student(studentData);
@@ -261,7 +246,7 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
         @Override
         public boolean hasEdits() {
             return CollectionUtil.isAnyNonNull(name, phone, email,
-                    id, gitName, handle, address, tags);
+                    id, gitName, handle, tags);
         }
     }
 }

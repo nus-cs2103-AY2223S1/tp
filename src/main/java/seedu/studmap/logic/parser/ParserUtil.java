@@ -12,7 +12,6 @@ import seedu.studmap.commons.core.index.Index;
 import seedu.studmap.commons.util.StringUtil;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 import seedu.studmap.model.order.Order;
-import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
@@ -81,21 +80,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String studmap} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code studmap} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -119,9 +103,9 @@ public class ParserUtil {
     public static StudentID parseId(String id) throws ParseException {
         requireNonNull(id);
         String trimmedId = id.trim();
-        /*if (!StudentID.isValidStudentID(trimmedId)) {
+        if (!StudentID.isValidStudentID(trimmedId)) {
             throw new ParseException(StudentID.MESSAGE_CONSTRAINTS);
-        }*/
+        }
         return new StudentID(trimmedId);
     }
 

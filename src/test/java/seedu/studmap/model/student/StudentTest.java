@@ -2,7 +2,6 @@ package seedu.studmap.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.studmap.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.VALID_HANDLE_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.VALID_ID_BOB;
@@ -36,7 +35,7 @@ public class StudentTest {
         // same name, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withId(VALID_ID_BOB).withGitName(VALID_NAME_BOB).withTeleHandle(VALID_HANDLE_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -83,60 +82,8 @@ public class StudentTest {
         editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different studmap -> returns false
-        editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
         // different tags -> returns false
         editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
-
-    /*@Test
-    public void getstudentData() {
-        // reconstruction student from getStudentData returns same student
-        assertTrue(ALICE.isSameStudent(new Student(ALICE.getStudentData())));
-
-        // studentData returned from getStudentData() should be equal across invocations
-        assertEquals(ALICE.getStudentData(), ALICE.getStudentData());
-    }
-
-    @Test
-    public void studentDataConstructor() {
-
-        StudentData studentData = new StudentData();
-
-        Name name = new Name(StudentBuilder.DEFAULT_NAME);
-        Phone phone = new Phone(StudentBuilder.DEFAULT_PHONE);
-        Email email = new Email(StudentBuilder.DEFAULT_EMAIL);
-        StudentID id = new StudentID(StudentBuilder.DEFAULT_ID);
-        GitName gitName = new GitName(StudentBuilder.DEFAULT_GIT);
-        TeleHandle handle = new TeleHandle(StudentBuilder.DEFAULT_TELE);
-        Address address = new Address(StudentBuilder.DEFAULT_ADDRESS);
-        Set<Tag> tags = Set.of(new Tag("Friends"));
-        Set<Attendance> attendances = Set.of(new Attendance("T01", true));
-
-        studentData.setName(name);
-        studentData.setPhone(phone);
-        studentData.setEmail(email);
-        studentData.setId(id);
-        studentData.setGitUser(gitName);
-        studentData.setTeleHandle(handle);
-        studentData.setAddress(address);
-        studentData.setTags(tags);
-        studentData.setAttendances(attendances);
-
-        Student student = new Student(studentData);
-
-        assertEquals(student.getStudentData(), studentData);
-        assertEquals(student.getName(), name);
-        assertEquals(student.getPhone(), phone);
-        assertEquals(student.getEmail(), email);
-        assertEquals(student.getId(), id);
-        assertEquals(student.getGitName(),gitName);
-        assertEquals(student.getTeleHandle(), handle);
-        assertEquals(student.getAddress(), address);
-        assertEquals(student.getTags(), tags);
-        assertEquals(student.getAttendances(), attendances);
-    }*/
 }
