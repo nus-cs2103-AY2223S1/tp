@@ -69,10 +69,13 @@ BuyerCard --> "*" OrderCard
 DelivererCard --> "*" OrderCard
 SupplierCard --> "*" PetCard
 
-BuyerCard ..> Model
-DelivererCard ..> Model
-SupplierCard ..> Model
-OrderCard ..> Model
-PetCard ..> Model
+BuyerCard .down.> Model
+DelivererCard .down.> Model
+SupplierCard .down.> Model
+OrderCard .down.> Model
+PetCard .down.> Model
+
+OrderCard -[hidden]up- DelivererCard
+Model -[hidden]up- OrderCard
 
 @enduml
