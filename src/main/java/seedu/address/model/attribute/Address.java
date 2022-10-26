@@ -2,8 +2,6 @@ package seedu.address.model.attribute;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Map;
-
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in

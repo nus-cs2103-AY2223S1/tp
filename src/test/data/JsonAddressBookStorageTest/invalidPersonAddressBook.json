@@ -1,8 +1,37 @@
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+  "persons" : [ {
+    "fields" : {
+      "fieldList" : [ ]
+    },
+    "name" : "Person with invalid name field: Ha!ns Mu@ster",
+    "uid" : "e18b1774-c755-3701-875f-c7e32483ebe7",
+    "tags" : [ ],
+    "attributes" : [ {
+      "data" : {
+        "type" : "Phone",
+        "content" : "9482424",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Email",
+        "content" : "hans@example.com",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    }, {
+      "data" : {
+        "type" : "Address",
+        "content" : "4th street",
+        "display_format" : 63,
+        "style_format" : 288
+      }
+    } ]
+  } ],
+  "groups" : [ ],
+  "tasks" : [ ],
+  "itemRelationship" : {
+    "e18b1774-c755-3701-875f-c7e32483ebe7" : [ ]
+  }
 }

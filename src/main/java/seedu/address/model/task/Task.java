@@ -7,13 +7,11 @@ import static seedu.address.model.AccessDisplayFlags.TASK;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Description;
 import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.item.AbstractSingleItem;
@@ -105,8 +103,8 @@ public class Task extends AbstractSingleItem {
             return false;
         }
         Task task = (Task) o;
-        return completedTime.equals(task.completedTime) && description.equals(task.description) &&
-                getAttributes().equals(task.getAttributes());
+        return completedTime.equals(task.completedTime) && description.equals(task.description)
+                && getAttributes().equals(task.getAttributes());
     }
 
     /**

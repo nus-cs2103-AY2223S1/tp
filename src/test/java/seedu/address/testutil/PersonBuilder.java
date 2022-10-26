@@ -7,12 +7,12 @@ import java.util.Map;
 import java.util.Set;
 
 import javafx.scene.Node;
+import seedu.address.model.attribute.Address;
+import seedu.address.model.attribute.Attribute;
+import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Field;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
-import seedu.address.model.attribute.Address;
-import seedu.address.model.attribute.Email;
-import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Fields;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -29,7 +29,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    List<Attribute<?>> attrs;
+    private List<Attribute<?>> attrs;
     private Set<Tag> tags;
     private Fields fields;
 
@@ -70,6 +70,13 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Adds a custom attribute.
+     * @param name
+     * @param data
+     * @param <U>
+     * @return
+     */
     public <U> PersonBuilder addCustomAttr(String name, U data) {
         this.attrs.add(new Attribute<U>() {
             @Override
@@ -154,6 +161,10 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Returns a person with specified attributes in builder.
+     * @return
+     */
     public Person build() {
         Person p = new Person(name.fullName, fields);
         p.setTags(tags);
@@ -161,13 +172,19 @@ public class PersonBuilder {
         return p;
     }
 
+    /**
+     * Adds address attribute to person
+     * @param string address
+     * @return
+     */
     public PersonBuilder withAddress(String string) {
         attrs.add(new Address(string));
         return this;
     }
 
     /**
-     * @param string
+     * Adds email attribute to person
+     * @param string email
      * @return
      */
     public PersonBuilder withEmail(String string) {
@@ -175,6 +192,11 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Adds phone attribute to person
+     * @param string phone number
+     * @return
+     */
     public PersonBuilder withPhone(String string) {
         attrs.add(new Phone(string));
         return this;

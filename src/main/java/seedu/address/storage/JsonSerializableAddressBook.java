@@ -1,12 +1,10 @@
 package seedu.address.storage;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -117,6 +115,10 @@ class JsonSerializableAddressBook {
                 group.setParent(builtGroup.get(parentUid.get(0)));
             }
 
+            if (addressBook.hasGroup(group)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_GROUP);
+            }
+
             addressBook.addTeam(group);
         }
 
@@ -132,6 +134,10 @@ class JsonSerializableAddressBook {
                 }
 
                 person.setParent(builtSingleItem.get(parentUid));
+            }
+
+            if (addressBook.hasPerson(person)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
 
             addressBook.addPerson(person);
@@ -157,6 +163,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addTask(task);
         }
+
         return addressBook;
     }
 }

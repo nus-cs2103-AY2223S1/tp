@@ -2,10 +2,10 @@ package seedu.address.model.group;
 
 import static seedu.address.model.AccessDisplayFlags.GROUP;
 
-import seedu.address.model.item.AbstractSingleItem;
-
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
+
+import seedu.address.model.item.AbstractSingleItem;
 
 /**
  * Represents a Group in the address book.

@@ -2,11 +2,6 @@ package seedu.address.model.attribute;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Map;
-
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}

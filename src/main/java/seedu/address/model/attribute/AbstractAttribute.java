@@ -1,31 +1,28 @@
 package seedu.address.model.attribute;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.AccessDisplayFlags.DEFAULT;
-import static seedu.address.model.AccessDisplayFlags.DISPLAY_OK;
-import static seedu.address.model.AccessDisplayFlags.HIDE_TYPE;
-import static seedu.address.model.AccessDisplayFlags.MENU_OK;
-
 import static seedu.address.model.AccessDisplayFlags.BOLD;
+import static seedu.address.model.AccessDisplayFlags.CENTER_JUSTIFY;
+import static seedu.address.model.AccessDisplayFlags.DEFAULT;
+import static seedu.address.model.AccessDisplayFlags.DEFAULT_STYLE;
+import static seedu.address.model.AccessDisplayFlags.DISPLAY_OK;
+import static seedu.address.model.AccessDisplayFlags.DROPSHADOW;
+import static seedu.address.model.AccessDisplayFlags.FONT_SIZE_BIG;
+import static seedu.address.model.AccessDisplayFlags.FONT_SIZE_NORMAL;
+import static seedu.address.model.AccessDisplayFlags.FONT_SIZE_SMALL;
+import static seedu.address.model.AccessDisplayFlags.HIDE_TYPE;
 import static seedu.address.model.AccessDisplayFlags.ITALIC;
+import static seedu.address.model.AccessDisplayFlags.LEFT_JUSTIFY;
+import static seedu.address.model.AccessDisplayFlags.MENU_OK;
+import static seedu.address.model.AccessDisplayFlags.RIGHT_JUSTIFY;
+import static seedu.address.model.AccessDisplayFlags.STRIKETHROUGH;
 import static seedu.address.model.AccessDisplayFlags.UNDERLINE;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static seedu.address.model.AccessDisplayFlags.STRIKETHROUGH;
-import static seedu.address.model.AccessDisplayFlags.DROPSHADOW;
-import static seedu.address.model.AccessDisplayFlags.LEFT_JUSTIFY;
-import static seedu.address.model.AccessDisplayFlags.CENTER_JUSTIFY;
-import static seedu.address.model.AccessDisplayFlags.RIGHT_JUSTIFY;
-import static seedu.address.model.AccessDisplayFlags.FONT_SIZE_BIG;
-import static seedu.address.model.AccessDisplayFlags.FONT_SIZE_NORMAL;
-import static seedu.address.model.AccessDisplayFlags.FONT_SIZE_SMALL;
-
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-
-import static seedu.address.model.AccessDisplayFlags.DEFAULT_STYLE;;
 
 /**
  * Creates an Abstract class to handle repeated and overused methods when making
@@ -126,18 +123,14 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
         Label ret = new Label();
         ret.setText(txt);
         System.out.printf("%s: ", txt);
-        System.out.println(getFormatCSS());
-        ret.setStyle(getFormatCSS());
+        System.out.println(getFormatCss());
+        ret.setStyle(getFormatCss());
         return ret;
     }
 
     @Override
     public int hashCode() {
         return typeName.hashCode() ^ value.hashCode() ^ accessCtrl ^ styleFlag;
-    }
-
-    protected String getFormatCSS() {
-        return getFormatCSS(true);
     }
 
     @Override
@@ -151,7 +144,11 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
         return ret;
     }
 
-    protected String getFormatCSS(boolean isInMenu) {
+    protected String getFormatCss() {
+        return getFormatCss(true);
+    }
+
+    protected String getFormatCss(boolean isInMenu) {
         StringBuilder sb = new StringBuilder("-fx-font: normal");
         double size = 12;
 
