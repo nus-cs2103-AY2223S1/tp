@@ -9,7 +9,7 @@ import seedu.address.logic.commands.MakeStatsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new MakeStatsCommand
+ * Parses input arguments and creates a new MakeStatsCommand.
  */
 public class MakeStatsCommandParser {
 
@@ -19,7 +19,7 @@ public class MakeStatsCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the MakeStatsCommand
      * and returns an MakeStatsCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public MakeStatsCommand parse(String args) throws ParseException {
         requireNonNull(args);

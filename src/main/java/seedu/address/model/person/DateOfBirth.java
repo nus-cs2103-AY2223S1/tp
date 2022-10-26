@@ -61,7 +61,7 @@ public class DateOfBirth implements Comparable<DateOfBirth> {
     }
 
     /**
-     * Returns the the String representation of the DateOfBirth in format suitable for storage logging
+     * Returns the the String representation of the DateOfBirth in format suitable for storage logging.
      * @return String
      */
     public String toLogFormat() {
@@ -69,7 +69,7 @@ public class DateOfBirth implements Comparable<DateOfBirth> {
     }
 
     /**
-     * Returns the integer age in years of a person with this date of birth
+     * Returns the integer age in years of a person with this date of birth.
      */
     public int toAge() {
         LocalDate currDate = LocalDate.now();

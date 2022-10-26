@@ -33,7 +33,7 @@ public class StatisticDataList {
 
     /**
      * Increments {@code value} of StatisticData point by 1 with the same name as specified, else add
-     *  a new StatisticData point with the specified name.
+     * a new StatisticData point with the specified name.
      */
     public void addToStatistic(String name) {
         for (StatisticData data : chartDataList) {

@@ -61,7 +61,7 @@ public class MakeStatsCommand extends Command {
     }
 
     /**
-     * Returns a {@code StatisticDataList} with the data populated with the gender statistics
+     * Returns a {@code StatisticDataList} with the data populated with the gender statistics.
      */
     public StatisticDataList getGenderStatistic(ObservableList<Person> personList) {
         StatisticDataList newDataList = new StatisticDataList();
@@ -73,7 +73,7 @@ public class MakeStatsCommand extends Command {
     }
 
     /**
-     * Returns a {@code StatisticDataList} with the data populated with the age statistics
+     * Returns a {@code StatisticDataList} with the data populated with the age statistics.
      */
     public StatisticDataList getAgeStatistic(ObservableList<Person> personList) {
         StatisticDataList newDataList = new StatisticDataList();
