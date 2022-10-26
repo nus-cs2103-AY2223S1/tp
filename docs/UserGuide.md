@@ -280,15 +280,13 @@ Use the up and down keys to navigate through previously typed commands. Users ca
 * Only valid commands will be saved in the command history
 * Command history will only save up to 20 previously typed valid commands
 
-### 4.5 Command history 
-
 ### 4.5 Miscellaneous commands
 
-#### 4.4.1 Saving the data
+#### 4.5.1 Saving the data
 
 FinancialAdvisorPlanner data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### 4.4.2 Editing the data file
+#### 4.5.2 Editing the data file
 
 FinancialAdvisorPlanner data are saved as a JSON file `[JAR file location]/data/FinancialAdvisorPlanner.json`. Advanced users are welcome to update data directly by editing that data file.
 
