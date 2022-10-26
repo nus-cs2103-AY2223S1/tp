@@ -17,6 +17,7 @@ title: User Guide
     * [Editing an internship application: `edit`](#editing-an-internship-application-edit)
     * [Archiving an internship application: `archive`](#archiving-an-internship-application-archive)
     * [Retrieving an internship application from archives: `retrieve`](#retrieving-an-internship-application-from-archives-retrieve)
+    * [Viewing a list of upcoming interviews: `remind`](#viewing-a-list-of-upcoming-interviews)
     * [Clearing all entries: `clear`](#clearing-all-entries-clear)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
@@ -55,6 +56,8 @@ title: User Guide
     * **`archive`**`3`: Archives the 3rd application shown in the current list. The application must be unarchived.
    
     * **`retrieve`**`1`: Retrieves the 1st application shown in the current list. The application must be archived.
+
+    * **`remind`**: Shows a list of all upcoming interviews within the next 1 week.
    
     * **`clear`**: Clears CinternS data.
 
@@ -199,6 +202,16 @@ Format: `retrieve INDEX`
 
 Example:
 * `list-archive` followed by `retrieve 1` retrieves the 1st internship application in the list.
+
+### Viewing a list of upcoming interviews: `remind`
+
+Shows a list of all upcoming interviews within the next 1 week, sorted by interview date and time.
+
+Format: `remind`
+
+* Archived interviews will not be displayed even if they fall within the next week.
+* If there are no upcoming interviews, a blank window will be displayed.
+* `remind` can only be used on the main application list page (i.e. not to be used on list-archive page).
 
 ### Clearing all entries: `clear`
 Clears all entries from CinternS.
