@@ -1,6 +1,5 @@
 package tracko.logic.parser;
 
-import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static logic.commands.CommandTestUtil.COST_PRICE_DESC_DEFAULT;
 import static logic.commands.CommandTestUtil.COST_PRICE_DESC_SECOND;
 import static logic.commands.CommandTestUtil.INVALID_COST_PRICE_DESC;
@@ -25,6 +24,7 @@ import static logic.commands.CommandTestUtil.VALID_DEFAULT_QUANTITY;
 import static logic.commands.CommandTestUtil.VALID_DEFAULT_SELL_PRICE;
 import static logic.parser.CommandParserTestUtil.assertParseFailure;
 import static logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import org.junit.jupiter.api.Test;
 
