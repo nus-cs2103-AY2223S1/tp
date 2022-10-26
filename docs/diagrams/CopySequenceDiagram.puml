@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
 participant ":CopyCommandParser" as CopyCommandParser LOGIC_COLOR
 participant "c:CopyCommand" as CopyCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -20,17 +20,17 @@ end box
 [-> LogicManager : execute("copy 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("copy 1")
-activate AddressBookParser
+LogicManager -> InternshipBookParser : parseCommand("copy 1")
+activate InternshipBookParser
 
 create CopyCommandParser
-AddressBookParser -> CopyCommandParser
+InternshipBookParser -> CopyCommandParser
 activate CopyCommandParser
 
-CopyCommandParser --> AddressBookParser
+CopyCommandParser --> InternshipBookParser
 deactivate CopyCommandParser
 
-AddressBookParser -> CopyCommandParser : parse("1")
+InternshipBookParser -> CopyCommandParser : parse("1")
 activate CopyCommandParser
 
 create CopyCommand
@@ -40,14 +40,14 @@ activate CopyCommand
 CopyCommand --> CopyCommandParser : c
 deactivate CopyCommand
 
-CopyCommandParser --> AddressBookParser : c
+CopyCommandParser --> InternshipBookParser : c
 deactivate CopyCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-CopyCommandParser -[hidden]-> AddressBookParser
+CopyCommandParser -[hidden]-> InternshipBookParser
 destroy CopyCommandParser
 
-AddressBookParser --> LogicManager : c
-deactivate AddressBookParser
+InternshipBookParser --> LogicManager : c
+deactivate InternshipBookParser
 
 LogicManager -> CopyCommand : execute()
 activate CopyCommand

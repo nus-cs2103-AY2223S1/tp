@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
 participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
 participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -17,17 +17,17 @@ end box
 [-> LogicManager : execute("view 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("view 1")
-activate AddressBookParser
+LogicManager -> InternshipBookParser : parseCommand("view 1")
+activate InternshipBookParser
 
 create ViewCommandParser
-AddressBookParser -> ViewCommandParser
+InternshipBookParser -> ViewCommandParser
 activate ViewCommandParser
 
-ViewCommandParser --> AddressBookParser
+ViewCommandParser --> InternshipBookParser
 deactivate ViewCommandParser
 
-AddressBookParser -> ViewCommandParser : parse("1")
+InternshipBookParser -> ViewCommandParser : parse("1")
 activate ViewCommandParser
 
 create ViewCommand
@@ -37,14 +37,14 @@ activate ViewCommand
 ViewCommand --> ViewCommandParser : v
 deactivate ViewCommand
 
-ViewCommandParser --> AddressBookParser : v
+ViewCommandParser --> InternshipBookParser : v
 deactivate ViewCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-ViewCommandParser -[hidden]-> AddressBookParser
+ViewCommandParser -[hidden]-> InternshipBookParser
 destroy ViewCommandParser
 
-AddressBookParser --> LogicManager : v
-deactivate AddressBookParser
+InternshipBookParser --> LogicManager : v
+deactivate InternshipBookParser
 
 LogicManager -> ViewCommand : execute()
 activate ViewCommand
