@@ -32,6 +32,8 @@ import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.DateOfBirth;
 import seedu.address.model.pet.Height;
 import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.PetCertificate;
+import seedu.address.model.pet.PetName;
 import seedu.address.model.pet.Species;
 import seedu.address.model.pet.VaccinationStatus;
 import seedu.address.model.pet.Weight;
@@ -142,34 +144,34 @@ public class SampleDataUtil {
 
     //Pets
     private static final DateOfBirth standard = getStandard();
-    public static final Pet P1 = new Pet(new Name("Shiro"), SHIN_CHAN, new Color("white"),
+    public static final Pet P1 = new Pet(new PetName("Shiro"), SHIN_CHAN, new Color("white"),
             new ColorPattern("white"),
             standard, new Species("dog"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(9999.99), getTagSet("dog"),
             new HashSet<>());
-    public static final Pet P2 = new Pet(new Name("Ashy"), YU, new Color("white"),
+    public static final Pet P2 = new Pet(new PetName("Ashy"), YU, new Color("white"),
             new ColorPattern("white and brown"),
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(8888.88), getTagSet("cat"),
             new HashSet<>());
-    public static final Pet P3 = new Pet(new Name("Plum"), OLIVE, new Color("white"),
+    public static final Pet P3 = new Pet(new PetName("Plum"), OLIVE, new Color("white"),
             new ColorPattern("white and brown"),
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(7777.77), getTagSet("cat"), new HashSet<>());
-    public static final Pet P4 = new Pet(new Name("Plum"), LI, new Color("white"),
+    public static final Pet P4 = new Pet(new PetName("Plum"), LI, new Color("white"),
             new ColorPattern("white and brown"),
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(7777.77), getTagSet("cat"), new HashSet<>());
-    public static final Pet P5 = new Pet(new Name("I am a dog"), OLIVE, new Color("white"),
+    public static final Pet P5 = new Pet(new PetName("Snowy"), OLIVE, new Color("white"),
             new ColorPattern("white and brown"),
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
             new Price(7777.77), getTagSet("cat"), new HashSet<>());
-    public static final Pet P6 = new Pet(new Name("I am a cat"), OLIVE, new Color("white"),
+    public static final Pet P6 = new Pet(new PetName("Buddy"), OLIVE, new Color("white"),
             new ColorPattern("white and brown"),
             standard, new Species("cat"), new Weight(10.05),
             new Height(100.5), new VaccinationStatus(true),
@@ -250,6 +252,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a certificate set containing the list of strings given.
+     */
+    public static Set<PetCertificate> getCertificateSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(PetCertificate::new)
                 .collect(Collectors.toSet());
     }
 

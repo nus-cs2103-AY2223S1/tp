@@ -19,6 +19,7 @@ import seedu.address.model.pet.DateOfBirth;
 import seedu.address.model.pet.Height;
 import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.PetCertificate;
+import seedu.address.model.pet.PetName;
 import seedu.address.model.pet.Species;
 import seedu.address.model.pet.VaccinationStatus;
 import seedu.address.model.pet.Weight;
@@ -113,10 +114,10 @@ public class JsonAdaptedPet {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
+        if (!PetName.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final PetName modelName = new PetName(name);
 
         if (supplier == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

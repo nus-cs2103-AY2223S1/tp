@@ -15,7 +15,7 @@ import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.Species;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Order objects.
  */
 public class OrderBuilder {
 

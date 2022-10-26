@@ -43,11 +43,11 @@ public class PriceContainsKeywordsPredicateTest {
     public void test_priceContainsKeywords_returnsTrue() {
         // One keyword
         PriceContainsKeywordsPredicate predicate = new PriceContainsKeywordsPredicate(
-                Collections.singletonList(66.66));
+                Collections.singletonList(600.00));
         assertTrue(predicate.test(TypicalPets.PLUM));
 
         // Multiple keywords
-        predicate = new PriceContainsKeywordsPredicate(Arrays.asList(110.1, 66.66));
+        predicate = new PriceContainsKeywordsPredicate(Arrays.asList(110.1, 600.00));
         assertTrue(predicate.test(TypicalPets.PLUM));
     }
 
