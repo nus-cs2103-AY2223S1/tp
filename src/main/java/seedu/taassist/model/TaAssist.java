@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
@@ -162,20 +163,35 @@ public class TaAssist implements ReadOnlyTaAssist {
 
 
     /**
-     * Removes the {@code session} from the {@code moduleClass}
-     * as well as all students in the {@code moduleClass}.
+     * Removes the {@code sessions} from the {@code moduleClass} as well as all students in the {@code moduleClass} and
+     * returns the new module class with the sessions removed.
      */
-    public void removeSession(ModuleClass moduleClass, Session session) {
-        requireAllNonNull(moduleClass, session);
+    public ModuleClass removeSessions(ModuleClass moduleClass, Set<Session> sessions) {
+        requireAllNonNull(moduleClass, sessions);
+        for (Session session: sessions) {
+            // Update student data
+            removeSessionFromStudents(moduleClass, session);
+            // Update module class data
+            moduleClass = removeSessionFromModuleClass(moduleClass, session);
+        }
+        return moduleClass;
+
+    }
+
+    private void removeSessionFromStudents(ModuleClass moduleClass, Session session) {
         List<Student> updatedStudents = students.asUnmodifiableObservableList().stream()
                 .map(student -> student.removeSession(moduleClass, session))
                 .collect(Collectors.toList());
         setStudents(updatedStudents);
-        setModuleClass(moduleClass, moduleClass.removeSession(session));
+    }
+
+    private ModuleClass removeSessionFromModuleClass(ModuleClass moduleClass, Session session) {
+        ModuleClass newModuleClass = moduleClass.removeSession(session);
+        setModuleClass(moduleClass, newModuleClass);
+        return newModuleClass;
     }
 
     //// util methods
-
     @Override
     public String toString() {
         return students.asUnmodifiableObservableList().size() + " students";

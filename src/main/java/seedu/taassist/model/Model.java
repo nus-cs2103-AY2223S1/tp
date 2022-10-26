@@ -128,11 +128,6 @@ public interface Model {
     void removeModuleClasses(Collection<ModuleClass> moduleClasses);
 
     /**
-     * Removes the specified {@code session} from the specified {@code moduleClass}.
-     */
-    void removeSession(ModuleClass moduleClass, Session session);
-
-    /**
      * Removes the specified {@code sessions} from the specified {@code moduleClass}.
      */
     void removeSessions(ModuleClass moduleClass, Set<Session> sessions);

@@ -19,14 +19,14 @@ public class DeletesCommand extends Command {
 
     public static final String COMMAND_WORD = "deletes";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete sessions for a class. "
+    public static final String MESSAGE_USAGE = "> Deletes sessions for a class.\n"
             + "Paramaters: "
             + PREFIX_SESSION + "SESSION_NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SESSION + "Lab1";
 
     public static final String MESSAGE_SUCCESS = "Sessions deleted: %s";
-    public static final String MESSAGE_SESSION_DOES_NOT_EXIST = "Session %s does not exist!";
+    public static final String MESSAGE_SESSION_DOES_NOT_EXIST = "Session [ %s ] does not exist!";
 
     private final Set<Session> sessions;
 
@@ -47,8 +47,11 @@ public class DeletesCommand extends Command {
         }
 
         ModuleClass focusedClass = model.getFocusedClass();
-        if (!sessions.stream().allMatch(focusedClass::hasSession)) {
-            throw new CommandException(String.format(MESSAGE_SESSION_DOES_NOT_EXIST, sessions));
+
+        for (Session session: sessions) {
+            if (!focusedClass.hasSession(session)) {
+                throw new CommandException(String.format(MESSAGE_SESSION_DOES_NOT_EXIST, session.getSessionName()));
+            }
         }
 
         model.removeSessions(focusedClass, sessions);
