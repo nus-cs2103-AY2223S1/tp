@@ -8,7 +8,7 @@ title: Developer Guide
 
 ---
 
-## **Setting up, getting started**
+## **Setting up and getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -285,7 +285,7 @@ The implementation of Command Suggestions and Command Auto-Completion is facilit
 - `CommandSuggestor#suggestCommand` - Suggests a command with the corresponding syntax based on the user's current input 
 - `CommandSuggestor#autocompleteCommand` - Completes the current user input according to the shown command suggestion
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, logging, testing, configuration, and dev-ops**
 
 - [Documentation guide](Documentation.md)
 - [Testing guide](Testing.md)
@@ -319,7 +319,7 @@ Priorities:
 - Low (unlikely to have) - `*`
 
 | Priority | As a …​        | I want to …​             | So that I can…​                                                            |
-| -------- | -------------- |--------------------------|----------------------------------------------------------------------------|
+|----------|----------------|--------------------------|----------------------------------------------------------------------------|
 | `* * *`  | new user       | see usage instructions   | refer to instructions when I forget how to use the app                     |
 | `* * *`  | user           | add a new contact        | add a new contact to keep track of                                         |
 | `* * *`  | user           | view all contacts        | get an overview of all contacts in my app                                  |

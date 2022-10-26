@@ -12,7 +12,7 @@ more quickly than a traditional GUI app.
 
 ---
 
-## Quick start
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -38,7 +38,7 @@ more quickly than a traditional GUI app.
 
 ---
 
-## Features
+## **Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -235,14 +235,14 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 
 ---
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Swift+ home folder.
 
 ---
 
-## Command summary
+## **Command summary**
 
 | Action             | Format                                                                         |
 |--------------------|--------------------------------------------------------------------------------|
