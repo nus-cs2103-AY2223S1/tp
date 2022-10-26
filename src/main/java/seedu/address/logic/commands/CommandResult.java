@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
+import seedu.address.model.person.Person;
+
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -28,23 +31,29 @@ public class CommandResult {
 
     private final String gradePredicted;
 
+    private final boolean showGradeWindow;
+
+    private List<Person> studentsToGrade;
+
+    private String assessmentString;
     /**
      *
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, false, "0.0");
+        this(feedbackToUser, showHelp, exit, false, false, "0.0");
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showPrediction, String gradePredicted) {
+                         boolean showPrediction, boolean showGradeWindow, String gradePredicted) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showPrediction = showPrediction;
         this.gradePredicted = gradePredicted;
+        this.showGradeWindow = showGradeWindow;
     }
 
     /**
@@ -52,9 +61,14 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, "0.0");
+        this(feedbackToUser, false, false, false,false, "0.0");
     }
-
+    public CommandResult(String feedbackToUser, boolean showGradeWindow,
+                         List<Person> studentsToGrade, String assessmentString) {
+        this(feedbackToUser, false, false, false, true, "0.0");
+        this.studentsToGrade = studentsToGrade;
+        this.assessmentString = assessmentString;
+    }
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
@@ -67,6 +81,7 @@ public class CommandResult {
         return showPrediction;
     }
 
+    public boolean isShowGradeWindow() { return showGradeWindow;}
     public boolean isExit() {
         return exit;
     }
@@ -75,6 +90,10 @@ public class CommandResult {
         return gradePredicted;
     }
 
+    public List<Person> getStudentsToGrade() {
+        return studentsToGrade;
+    }
+    public String getAssessmentString() {return assessmentString;}
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit);

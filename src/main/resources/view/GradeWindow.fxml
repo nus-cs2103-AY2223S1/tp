@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" resizable="true" title="Enter Grade" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/11">
+
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@GradeWindow.css"/>
+            </stylesheets>
+
+            <VBox alignment="CENTER" fx:id="helpMessageContainer">
+                <children>
+                    <Label fx:id="assessmentSubject" text="Label">
+                    </Label>
+                    <Label fx:id="assessmentName" text="Label">
+                    </Label>
+                    <Label fx:id="assessmentWeightage" text="Label">
+                    </Label>
+                    <Label fx:id="assessmentTotalScore" text="Label">
+                    </Label>
+                    <Label fx:id="studentName" text="Label">
+                    </Label>
+                    <Label fx:id="studentClass" text="Label">
+                    </Label>
+                    <TextField></TextField>
+                    <Button fx:id="copyButton" mnemonicParsing="false" onAction = "#enterGradeForStudent" text="Enter">
+                        <HBox.margin>
+                            <Insets left="5.0"/>
+                        </HBox.margin>
+                    </Button>
+                </children>
+                <opaqueInsets>
+                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                </opaqueInsets>
+                <padding>
+                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                </padding>
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>

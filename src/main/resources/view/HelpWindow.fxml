@@ -10,9 +10,6 @@
 <?import javafx.stage.Stage?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" resizable="false" title="Help" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/11">
-    <icons>
-        <Image url="@/images/help_icon.png"/>
-    </icons>
     <scene>
         <Scene>
             <stylesheets>
@@ -26,7 +23,7 @@
                             <Insets right="5.0"/>
                         </HBox.margin>
                     </Label>
-                    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+                    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" >
                         <HBox.margin>
                             <Insets left="5.0"/>
                         </HBox.margin>

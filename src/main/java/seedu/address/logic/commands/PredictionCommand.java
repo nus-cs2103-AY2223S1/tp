@@ -43,7 +43,7 @@ public class PredictionCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         double gradePredicted = PredictionUtil.predictGrade(subject.getGrades());
-        return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true,
+        return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true, false,
             String.format(MESSAGE_FORMAT, name, 76.5));
     }
 }

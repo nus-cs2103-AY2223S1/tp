@@ -51,6 +51,7 @@ public class Person implements Comparable<Person> {
         this.attendance = attendance;
         this.remarksList = remarksList;
         this.subjectHandler = subjectsTaken;
+
     }
 
     public Name getName() {
@@ -89,6 +90,8 @@ public class Person implements Comparable<Person> {
     public Set<Subject> getSubjectsTaken() {
         return subjectHandler.getSubjectsTaken();
     }
+
+   // public String getGrades() {return getSubjectsTaken().getGrades();}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
