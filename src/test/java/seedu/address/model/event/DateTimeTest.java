@@ -178,4 +178,35 @@ public class DateTimeTest {
         assertTrue(DateTime.isValidDateTime("31 Jan 2015 16:21"));
         assertTrue(DateTime.isValidDateTime("25-05-2018 04:55"));
     }
+
+    @Test
+    public void getDifferenceString_validDates_success() {
+        DateTime dateOne = new DateTime("22/02/2022 06:00");
+        DateTime dateTwo = new DateTime("22/02/2022 06:30");
+        DateTime dateThree = new DateTime("22/02/2022 07:00");
+        DateTime dateFour = new DateTime("22/02/2022 07:30");
+        DateTime dateFive = new DateTime("23/02/2022 06:00");
+        DateTime dateSix = new DateTime("23/02/2022 06:30");
+        DateTime dateSeven = new DateTime("23/02/2022 07:00");
+        DateTime dateEight = new DateTime("23/02/2022 07:30");
+        DateTime dateNine = new DateTime("23-02-2022 07:30");
+        // same time
+        assertEquals(DateTime.getDifferenceString(dateOne, dateOne), "No Duration");
+        // same day, same hour, different minute
+        assertEquals(DateTime.getDifferenceString(dateOne, dateTwo), "30 minutes");
+        // same day, different hour, same minute
+        assertEquals(DateTime.getDifferenceString(dateOne, dateThree), "1 hour");
+        // same day, different hour, different minute
+        assertEquals(DateTime.getDifferenceString(dateOne, dateFour), "1 hour, 30 minutes");
+        // different day, same hour, same minute
+        assertEquals(DateTime.getDifferenceString(dateOne, dateFive), "1 day");
+        // different day, same hour, different minute
+        assertEquals(DateTime.getDifferenceString(dateOne, dateSix), "1 day, 30 minutes");
+        // different day, different hour, same minute
+        assertEquals(DateTime.getDifferenceString(dateOne, dateSeven), "1 day, 1 hour");
+        // different day, different hour, different minute
+        assertEquals(DateTime.getDifferenceString(dateOne, dateEight), "1 day, 1 hour, 30 minutes");
+        // different format
+        assertEquals(DateTime.getDifferenceString(dateOne, dateNine), "1 day, 1 hour, 30 minutes");
+    }
 }
