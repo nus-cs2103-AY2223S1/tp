@@ -18,13 +18,13 @@ public class HelpCommand extends Command {
 
     // All commands summary
     public static final String ALL_COMMANDS_MESSAGE = "Here are all the valid commands:\n"
-            + "1. add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]\n"
+            + "1. add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]...\n"
             + "2. buy INDEX q/QUANTITY g/GOODS price/PRICE\n"
             + "3. sell INDEX q/QUANTITY g/GOODS price/PRICE\n"
-            + "4. edit INDEX m/MODE (MODE must be 'client', 'remark' or 'transaction')\n"
+            + "4. edit INDEX m/MODE FIELDS [MORE_FIELDS]... (MODE must be 'client', 'remark' or 'transaction')\n"
             + "5. view INDEX\n"
             + "6. delete INDEX m/MODE (MODE must be 'client', 'remark' or 'transaction')\n"
-            + "7. find KEYWORD\n"
+            + "7. find KEYWORD [MORE_KEYWORDS]...\n"
             + "8. filter [buy]/[sell]\n"
             + "9. exit\n"
             + "10. help\n"
