@@ -37,6 +37,7 @@ public class PinProjectCommand extends ProjectCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         Project toPinProject = model.getProjectById(this.toPinProjectId.getIdInt());
         toPinProject.togglePin();
+        model.sortProjectsByPin();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toPinProject));
     }
 }

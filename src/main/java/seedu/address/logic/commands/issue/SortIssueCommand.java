@@ -61,6 +61,8 @@ public class SortIssueCommand extends IssueCommand {
             sortKeyString = "priority.";
         }
 
+        model.sortIssuesByPin();
+
         ui.showIssues();
         model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
         return new CommandResult(MESSAGE_SUCCESS + " according to " + sortKeyString);

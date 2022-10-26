@@ -37,6 +37,7 @@ public class PinClientCommand extends ClientCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         Client toPinClient = model.getClientById(this.toPinClientId.getIdInt());
         toPinClient.togglePin();
+        model.sortClientsByPin();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toPinClient));
     }
 }

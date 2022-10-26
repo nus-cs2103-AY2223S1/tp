@@ -37,6 +37,7 @@ public class PinIssueCommand extends IssueCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         Issue toPinIssue = model.getIssueById(this.toPinIssueId.getIdInt());
         toPinIssue.togglePin();
+        model.sortIssuesByPin();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toPinIssue));
     }
 }

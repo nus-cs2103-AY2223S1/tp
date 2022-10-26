@@ -69,6 +69,7 @@ public class SortProjectCommand extends ProjectCommand {
             model.sortProjectsByName(sortOrder);
             sortKeyString = "names.";
         }
+        model.sortProjectsByPin();
 
         ui.showProjects();
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
