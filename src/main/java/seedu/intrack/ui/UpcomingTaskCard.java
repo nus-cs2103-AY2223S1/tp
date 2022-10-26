@@ -1,15 +1,14 @@
 package seedu.intrack.ui;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Task;
-
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 /**
  * An UI component that displays information of the most recent upcoming {@code Task}.
@@ -20,7 +19,7 @@ public class UpcomingTaskCard extends UiPart<Region> {
 
     public final LocalDateTime currentDateTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
 
-    public final Internship internship;
+    public final Task task;
 
     @FXML
     private HBox cardPane;
@@ -31,14 +30,11 @@ public class UpcomingTaskCard extends UiPart<Region> {
     /**
      * Creates a {@UpcomingTaskCard} with the given most recent upcoming {@code Task} to display.
      */
-    public UpcomingTaskCard(Internship internship) {
+    public UpcomingTaskCard(Task task) {
         super(FXML);
 
-        this.internship = internship;
-        String nextTask = "Upcoming Task: " + internship.getTasks().stream()
-                .filter(task -> task.getTaskTime().isAfter(currentDateTime))
-                .map(Task::toString)
-                .findFirst().orElse("");
+        this.task = task;
+        String nextTask = "Upcoming Task: " + task;
 
         upcomingTask.setText(nextTask);
         upcomingTask.setTextFill(Color.WHITE);

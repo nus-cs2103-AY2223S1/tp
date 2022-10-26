@@ -124,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
         selectedInternshipPanel = new SelectedInternshipPanel(logic.getSelectedInternship());
         internshipPanelPlaceholder.getChildren().add(selectedInternshipPanel.getRoot());
 
-        upcomingTaskPanel =new UpcomingTaskPanel(logic.getSelectedInternship());
+        upcomingTaskPanel = new UpcomingTaskPanel(logic.getSelectedInternship());
         upcomingTaskPanelPlaceholder.getChildren().add(upcomingTaskPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

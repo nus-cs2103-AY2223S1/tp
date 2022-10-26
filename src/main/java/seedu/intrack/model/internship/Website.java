@@ -3,8 +3,8 @@ package seedu.intrack.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.AppUtil.checkArgument;
 
-import java.net.URISyntaxException;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Represents an Internship's website in the internship tracker.
@@ -34,8 +34,11 @@ public class Website {
     public static boolean isValidWebsite(String test) {
         try {
             URI uri = new URI(test);
+            if (test.contains(" ") || test.isBlank()) {
+                return false;
+            }
             return true;
-        } catch (URISyntaxException mue) {
+        } catch (URISyntaxException use) {
             return false;
         }
     }

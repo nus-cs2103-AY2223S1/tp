@@ -12,8 +12,6 @@ import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_REMOTE;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TASK_AAPL;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TASK_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 
