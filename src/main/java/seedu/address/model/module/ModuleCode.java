@@ -30,7 +30,7 @@ public class ModuleCode {
      */
     public ModuleCode(String moduleCodeInput) {
         checkArgument(isValidModuleCode(moduleCodeInput), MESSAGE_CONSTRAINTS);
-        moduleCode = moduleCodeInput.toUpperCase();
+        moduleCode = moduleCodeInput;
         moduleTitle = null;
     }
 
