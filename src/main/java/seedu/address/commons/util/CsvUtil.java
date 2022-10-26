@@ -27,10 +27,23 @@ public class CsvUtil {
             FileUtil.createIfMissing(exportLocation);
             JsonNode jsonFile = new ObjectMapper().readTree(new File(fileToExport.toUri()));
             JsonNode jsonTree = jsonFile.get("persons");
+
             Builder csvSchemaBuilder = CsvSchema.builder();
-            JsonNode firstObject = jsonTree.elements().next();
-            firstObject.fieldNames().forEachRemaining(fieldName -> {
-                csvSchemaBuilder.addColumn(fieldName); });
+            csvSchemaBuilder
+                    .addColumn("type")
+                    .addColumn("moduleCodes")
+                    .addColumn("moduleCode")
+                    .addColumn("name")
+                    .addColumn("phone")
+                    .addColumn("email")
+                    .addColumn("gender")
+                    .addColumn("tagged")
+                    .addColumn("location")
+                    .addColumn("username")
+                    .addColumn("rating")
+                    .addColumn("year")
+                    .addColumn("specialisation")
+                    .addColumn("officeHour");
             CsvSchema csvSchema = csvSchemaBuilder.build().withHeader();
             CsvMapper csvMapper = new CsvMapper();
             csvMapper.writerFor(JsonNode.class)
