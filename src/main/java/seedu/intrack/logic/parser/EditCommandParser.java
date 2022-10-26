@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_WEBSITE;
 
@@ -33,8 +33,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_POSITION, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_WEBSITE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_POSITION, PREFIX_EMAIL,
+                        PREFIX_WEBSITE, PREFIX_SALARY, PREFIX_TAG);
 
         Index index;
 
@@ -51,14 +51,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_POSITION).isPresent()) {
             editInternshipDescriptor.setPosition(ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editInternshipDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editInternshipDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_WEBSITE).isPresent()) {
             editInternshipDescriptor.setWebsite(ParserUtil.parseWebsite(argMultimap.getValue(PREFIX_WEBSITE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
+            editInternshipDescriptor.setSalary(ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editInternshipDescriptor::setTags);
 

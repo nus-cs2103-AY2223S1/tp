@@ -41,6 +41,7 @@
       <FlowPane fx:id="tags" />
       <Label fx:id="position" styleClass="cell_small_label" text="\$position" />
       <TextFlow fx:id="website" />
+      <Label fx:id="salary"/>
     </VBox>
   </GridPane>
 </HBox>

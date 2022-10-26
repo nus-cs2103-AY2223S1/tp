@@ -13,9 +13,9 @@ import seedu.intrack.commons.exceptions.IllegalValueException;
 import seedu.intrack.model.internship.Email;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
-import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
 import seedu.intrack.model.internship.Remark;
+import seedu.intrack.model.internship.Salary;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.internship.Task;
 import seedu.intrack.model.internship.Website;
@@ -31,9 +31,9 @@ class JsonAdaptedInternship {
     private final String name;
     private final String position;
     private final String status;
-    private final String phone;
     private final String email;
     private final String website;
+    private final String salary;
     private final List<JsonAdaptedTask> taskFilled = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String remark;
@@ -43,16 +43,16 @@ class JsonAdaptedInternship {
      */
     @JsonCreator
     public JsonAdaptedInternship(@JsonProperty("name") String name, @JsonProperty("position") String position,
-            @JsonProperty("status") String status, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("website") String website,
-            @JsonProperty("taskFilled") List<JsonAdaptedTask> taskFilled,
+            @JsonProperty("status") String status, @JsonProperty("email") String email,
+            @JsonProperty("website") String website,
+            @JsonProperty("taskFilled") List<JsonAdaptedTask> taskFilled, @JsonProperty("salary") String salary,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark) {
         this.name = name;
         this.position = position;
         this.status = status;
-        this.phone = phone;
         this.email = email;
         this.website = website;
+        this.salary = salary;
         if (taskFilled != null) {
             this.taskFilled.addAll(taskFilled);
         }
@@ -69,9 +69,9 @@ class JsonAdaptedInternship {
         name = source.getName().fullName;
         position = source.getPosition().positionName;
         status = source.getStatus().value;
-        phone = source.getPhone().value;
         email = source.getEmail().value;
         website = source.getWebsite().value;
+        salary = source.getSalary().value;
         taskFilled.addAll(source.getTasks().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
@@ -122,14 +122,6 @@ class JsonAdaptedInternship {
         }
         final Status modelStatus = new Status(status);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
@@ -146,6 +138,14 @@ class JsonAdaptedInternship {
         }
         final Website modelWebsite = new Website(website);
 
+        if (salary == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Salary.class.getSimpleName()));
+        }
+        if (!Salary.isValidSalary(salary)) {
+            throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
+        }
+        final Salary modelSalary = new Salary(salary);
+
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
@@ -155,7 +155,7 @@ class JsonAdaptedInternship {
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
 
-        return new Internship(modelName, modelPosition, modelStatus, modelPhone, modelEmail, modelWebsite, modelTasks,
+        return new Internship(modelName, modelPosition, modelStatus, modelEmail, modelWebsite, modelTasks, modelSalary,
                 modelTags, modelRemark);
     }
 

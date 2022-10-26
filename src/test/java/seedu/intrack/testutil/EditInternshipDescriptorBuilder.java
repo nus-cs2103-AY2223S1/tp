@@ -8,8 +8,8 @@ import seedu.intrack.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.intrack.model.internship.Email;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
-import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
+import seedu.intrack.model.internship.Salary;
 import seedu.intrack.model.internship.Website;
 import seedu.intrack.model.tag.Tag;
 
@@ -35,8 +35,8 @@ public class EditInternshipDescriptorBuilder {
         descriptor = new EditInternshipDescriptor();
         descriptor.setName(internship.getName());
         descriptor.setPosition(internship.getPosition());
-        descriptor.setPhone(internship.getPhone());
         descriptor.setEmail(internship.getEmail());
+        descriptor.setSalary(internship.getSalary());
         descriptor.setWebsite(internship.getWebsite());
         descriptor.setTags(internship.getTags());
     }
@@ -58,10 +58,10 @@ public class EditInternshipDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditInternshipDescriptor} that we are building.
+     * Sets the {@code Salary} of the {@code EditInternshipDescriptor} that we are building.
      */
-    public EditInternshipDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditInternshipDescriptorBuilder withSalary(String salary) {
+        descriptor.setSalary(new Salary(salary));
         return this;
     }
 

@@ -73,7 +73,7 @@ public class PositionContainsKeywordsPredicateTest {
 
         // Keywords match phone, email and address, but does not match position
         predicate = new PositionContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new InternshipBuilder().withPosition("SWE").withPhone("12345")
+        assertFalse(predicate.test(new InternshipBuilder().withPosition("SWE").withSalary("12345")
                 .withEmail("alice@email.com").withWebsite("https://careers.google.com/").build()));
     }
 }

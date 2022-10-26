@@ -6,6 +6,7 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "website": "www.microsoft.com",
+    "salary": "100000",
     "tagged": [ "friends" ],
     "remark": ""
   }, {
@@ -15,6 +16,7 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "website": "www.microsoft.com",
+    "salary": "100000",
     "remark": ""
   } ]
 }

@@ -2,8 +2,8 @@ package seedu.intrack.testutil;
 
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_WEBSITE;
 
@@ -33,9 +33,9 @@ public class InternshipUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + internship.getName().fullName + " ");
         sb.append(PREFIX_POSITION + internship.getPosition().positionName + " ");
-        sb.append(PREFIX_PHONE + internship.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + internship.getEmail().value + " ");
         sb.append(PREFIX_WEBSITE + internship.getWebsite().value + " ");
+        sb.append(PREFIX_SALARY + internship.getSalary().value + " ");
         internship.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -50,9 +50,9 @@ public class InternshipUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPosition().ifPresent(position -> sb.append(PREFIX_POSITION)
                 .append(position.positionName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getWebsite().ifPresent(website -> sb.append(PREFIX_WEBSITE).append(website.value).append(" "));
+        descriptor.getSalary().ifPresent(salary -> sb.append(PREFIX_SALARY).append(salary.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
