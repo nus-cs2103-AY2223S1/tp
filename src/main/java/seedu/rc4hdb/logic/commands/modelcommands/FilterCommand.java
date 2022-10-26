@@ -63,7 +63,7 @@ public class FilterCommand implements ModelCommand {
     public CommandResult execute(Model model) throws CommandException {
         assert model != null : "Model object is null";
         Predicate<Resident> predicate;
-        if (specifier.getSpecifier() == "any") {
+        if (specifier.getSpecifier().equals("any")) {
             predicate = new AttributesMatchAnyKeywordPredicate(filterPersonDescriptor);
         } else {
             predicate = new AttributesMatchAllKeywordsPredicate(filterPersonDescriptor);

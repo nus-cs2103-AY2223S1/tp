@@ -9,9 +9,11 @@ import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VAL
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ANY_SPECIFIER_DESC;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_NAME_AMY;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_PATH;
 import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
+import static seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser.DATA_DIR_PATH;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.INVALID_LETTERS;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.VALID_LETTERS;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 import static seedu.rc4hdb.testutil.TypicalSpecifiers.ALL_SPECIFIER;
 import static seedu.rc4hdb.testutil.TypicalSpecifiers.ANY_SPECIFIER;
@@ -30,14 +32,15 @@ import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.HideCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.HideOnlyCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.ResetCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.ShowOnlyCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCreateCommand;
-import seedu.rc4hdb.logic.parser.commandparsers.HideCommandParser;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.parser.commandparsers.HideOnlyCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.ShowCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.ShowOnlyCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
@@ -102,19 +105,42 @@ public class ResidentBookParserTest {
     }
 
     @Test
-    public void parseCommand_hide() throws Exception {
-        assertThrows(ParseException.class, String.format(HideCommandParser.INTENDED_USAGE), ()
-                -> parser.parseCommand(HideCommand.COMMAND_WORD));
-        assertThrows(ParseException.class, String.format(HideCommandParser.ERROR_MESSAGE), ()
-                -> parser.parseCommand(HideCommand.COMMAND_WORD + " jibbitz"));
-        assertTrue(parser.parseCommand(HideCommand.COMMAND_WORD + " name phone email") instanceof HideCommand);
+    public void parseCommand_list() throws Exception {
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
+        assertThrows(ParseException.class, ListCommandParser.INTENDED_SPECIFIER_USAGE_MESSAGE, () ->
+                parser.parseCommand(ListCommand.COMMAND_WORD + " 3"));
+        assertThrows(ParseException.class, ListCommandParser.INTENDED_SPECIFIER_USAGE_MESSAGE, () ->
+                parser.parseCommand(ListCommand.COMMAND_WORD + " /i"));
+        assertThrows(ParseException.class, ListCommandParser.INTENDED_SPECIFIER_USAGE_MESSAGE, () ->
+                parser.parseCommand(ListCommand.COMMAND_WORD + " /e"));
+        assertThrows(ParseException.class, ListCommandParser.INVALID_FIELDS_ENTERED, () ->
+                parser.parseCommand(ListCommand.COMMAND_WORD + " /i n p f x"));
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertThrows(ParseException.class, String.format(ListCommandParser.INTENDED_USAGE), ()
-                -> parser.parseCommand(ListCommand.COMMAND_WORD + " 3"));
+    public void parseCommand_showOnly() throws Exception {
+        assertThrows(ParseException.class, String.format(ShowOnlyCommandParser.INTENDED_USAGE_FORMAT,
+                ShowOnlyCommand.COMMAND_WORD, ShowOnlyCommand.COMMAND_PRESENT_TENSE, ShowOnlyCommand.COMMAND_WORD), ()
+                -> parser.parseCommand(ShowOnlyCommand.COMMAND_WORD));
+        assertThrows(ParseException.class, ShowOnlyCommandParser.INVALID_FIELDS_ENTERED, ()
+                -> parser.parseCommand(ShowOnlyCommand.COMMAND_WORD + " " + INVALID_LETTERS));
+        assertTrue(parser.parseCommand(ShowOnlyCommand.COMMAND_WORD + " " + VALID_LETTERS) instanceof ShowOnlyCommand);
+    }
+
+    @Test
+    public void parseCommand_hideOnly() throws Exception {
+        assertThrows(ParseException.class, String.format(HideOnlyCommandParser.INTENDED_USAGE_FORMAT,
+                HideOnlyCommand.COMMAND_WORD, HideOnlyCommand.COMMAND_PRESENT_TENSE, HideOnlyCommand.COMMAND_WORD), ()
+                -> parser.parseCommand(HideOnlyCommand.COMMAND_WORD));
+        assertThrows(ParseException.class, HideOnlyCommandParser.INVALID_FIELDS_ENTERED, ()
+                -> parser.parseCommand(HideOnlyCommand.COMMAND_WORD + " " + INVALID_LETTERS));
+        assertTrue(parser.parseCommand(HideOnlyCommand.COMMAND_WORD + " " + VALID_LETTERS) instanceof HideOnlyCommand);
+    }
+
+    @Test
+    public void parseCommand_reset() throws Exception {
+        assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD) instanceof ResetCommand);
+        assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD + " 3") instanceof ResetCommand);
     }
 
     @Test
@@ -146,16 +172,7 @@ public class ResidentBookParserTest {
                 + VALID_FILE_NAME_STRING) instanceof FileCommand);
         FileCommand fileCommand = (FileCommand) parser.parseCommand(FileCommand.COMMAND_WORD
                 + " " + FileCreateCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING);
-        assertEquals(new FileCreateCommand(VALID_FILE_NAME_PATH), fileCommand);
-    }
-
-    @Test
-    public void parseCommand_show() throws Exception {
-        assertThrows(ParseException.class, String.format(ShowCommandParser.INTENDED_USAGE), ()
-                -> parser.parseCommand(ShowCommand.COMMAND_WORD));
-        assertThrows(ParseException.class, String.format(ShowCommandParser.ERROR_MESSAGE), ()
-                -> parser.parseCommand(HideCommand.COMMAND_WORD + " crocs with socks"));
-        assertTrue(parser.parseCommand(ShowCommand.COMMAND_WORD + " room gender") instanceof ShowCommand);
+        assertEquals(new FileCreateCommand(DATA_DIR_PATH, VALID_FILE_NAME_STRING), fileCommand);
     }
 
     @Test

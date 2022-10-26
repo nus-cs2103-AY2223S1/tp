@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
-import seedu.rc4hdb.model.tag.Tag;
+import seedu.rc4hdb.model.resident.fields.Tag;
 
 /**
  * A utility class to help with building ResidentStringDescriptor objects.
@@ -123,7 +123,7 @@ public class ResidentStringDescriptorBuilder {
     public Set<String> convertTags(Set<Tag> tags) {
         HashSet<String> newTags = new HashSet<>();
         for (Tag tag : tags) {
-            String newString = tag.tagName;
+            String newString = tag.value;
             newTags.add(newString);
         }
         return newTags;

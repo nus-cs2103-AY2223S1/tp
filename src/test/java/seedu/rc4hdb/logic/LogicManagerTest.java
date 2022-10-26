@@ -30,8 +30,8 @@ import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCreateCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileSwitchCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
@@ -69,7 +69,8 @@ public class LogicManagerTest {
         String listCommand = ListCommand.COMMAND_WORD;
         model = new ModelStubForListCommand();
         logic = new LogicManager(model, storage);
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS);
+        assertCommandSuccess(listCommand,
+                String.format(ListCommand.MESSAGE_SUCCESS_FORMAT, ListCommand.COMMAND_PAST_TENSE));
     }
 
     @Test
@@ -188,7 +189,12 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void setObservableFields(List<String> modifiableList) {
+        public void setVisibleFields(List<String> fieldsToShow) {
+            // do nothing
+        }
+
+        @Override
+        public void setHiddenFields(List<String> fieldsToHide) {
             // do nothing
         }
     }

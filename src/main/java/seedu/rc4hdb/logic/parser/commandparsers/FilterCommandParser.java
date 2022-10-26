@@ -22,7 +22,6 @@ import seedu.rc4hdb.logic.parser.Specifier;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 
-
 /**
  * Parses input arguments and creates a new FilterCommand object
  */

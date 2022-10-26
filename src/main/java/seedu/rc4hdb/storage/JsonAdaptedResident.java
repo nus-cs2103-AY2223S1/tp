@@ -18,7 +18,7 @@ import seedu.rc4hdb.model.resident.fields.MatricNumber;
 import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
-import seedu.rc4hdb.model.tag.Tag;
+import seedu.rc4hdb.model.resident.fields.Tag;
 
 /**
  * Jackson-friendly version of {@link Resident}.
@@ -61,13 +61,13 @@ public class JsonAdaptedResident {
      * Converts a given {@code Resident} into this class for Jackson use.
      */
     public JsonAdaptedResident(Resident source) {
-        name = source.getName().fullName;
+        name = source.getName().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        room = source.getRoom().room;
-        gender = source.getGender().gender;
-        house = source.getHouse().house;
-        matricNumber = source.getMatricNumber().matricNumber;
+        room = source.getRoom().value;
+        gender = source.getGender().value;
+        house = source.getHouse().value;
+        matricNumber = source.getMatricNumber().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

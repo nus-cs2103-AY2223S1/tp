@@ -15,10 +15,10 @@ import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.HideCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.HideOnlyCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.RemoveCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.ResetCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
@@ -26,10 +26,9 @@ import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FilterCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.HideCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.HideOnlyCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.RemoveCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.ShowCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**
@@ -83,8 +82,8 @@ public class ResidentBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case HideCommand.COMMAND_WORD:
-            return new HideCommandParser().parse(arguments);
+        case HideOnlyCommand.COMMAND_WORD:
+            return new HideOnlyCommandParser().parse(arguments);
 
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
@@ -92,8 +91,8 @@ public class ResidentBookParser {
         case FileCommand.COMMAND_WORD:
             return new FileCommandParser().parse(arguments);
 
-        case ShowCommand.COMMAND_WORD:
-            return new ShowCommandParser().parse(arguments);
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommand();
 
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);

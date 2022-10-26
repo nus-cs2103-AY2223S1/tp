@@ -24,7 +24,7 @@ import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.ParserUtil;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
-import seedu.rc4hdb.model.tag.Tag;
+import seedu.rc4hdb.model.resident.fields.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
