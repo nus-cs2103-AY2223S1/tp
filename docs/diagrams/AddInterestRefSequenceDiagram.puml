@@ -21,7 +21,7 @@ deactivate Model
 
 AddInterestCommand -> Student: get(1)
 activate Student
-Student --> AddInterestCommand: personToEdit
+Student --> AddInterestCommand: studentToEdit
 deactivate Student
 
 AddInterestCommand -> Student: addInterest("anime")
