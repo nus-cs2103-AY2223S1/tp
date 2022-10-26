@@ -1,11 +1,13 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.ListTuitionClassCommand;
 import seedu.address.logic.commands.ListTutorCommand;
@@ -16,8 +18,8 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_missingPreamble_failure() {
-
-        assertParseFailure(parser, "", AddCommand.Entity.MESSAGE_CONSTRAINTS);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "", expectedMessage);
     }
 
     @Test
