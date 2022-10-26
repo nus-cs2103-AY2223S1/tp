@@ -6,7 +6,7 @@ package seedu.address.model.person;
  */
 public class AdditionalNotes {
 
-    public final String notes;
+    private String notes;
 
     /**
      * Constructs an {@code AdditionalNotes}.
@@ -15,6 +15,19 @@ public class AdditionalNotes {
      */
     public AdditionalNotes(String additionalNotes) {
         notes = additionalNotes;
+    }
+
+    /**
+     * Appends the notes to the current notes.
+     *
+     * @param appendedAdditionalNotes AdditionalNotes object that contains extra notes to be appended.
+     */
+    public void appendNotes(AdditionalNotes appendedAdditionalNotes) {
+        if (this.notes.isBlank()) {
+            this.notes += appendedAdditionalNotes.notes;
+        } else {
+            this.notes += " " + appendedAdditionalNotes.notes;
+        }
     }
 
     @Override

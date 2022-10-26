@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -118,6 +119,12 @@ public class ModelManager implements Model {
     public Class getAvailableClass(TimeRange timeRange) {
         requireNonNull(timeRange);
         return teachersPet.getAvailableClass(timeRange);
+    }
+
+    @Override
+    public void sortPersons(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        teachersPet.sortPersons(comparator);
     }
 
     //=========== Filtered Person List Accessors =============================================================

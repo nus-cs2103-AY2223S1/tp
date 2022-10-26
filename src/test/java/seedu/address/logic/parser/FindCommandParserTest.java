@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.CLASS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NOK_PHONE_DESC_AMY;
@@ -16,7 +15,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Class;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.predicate.ClassContainsDatePredicate;
+import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
 
 public class FindCommandParserTest {
 
@@ -68,8 +71,32 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validPhonePrefix_returnsFindCommand() {
-        // TODO: Update test case with p/ prefix
-        assertParseFailure(parser, PHONE_DESC_AMY, "p/ search not implemented yet.");
+        FindCommand expectedFindCommand =
+                new FindCommand(new PhoneContainsNumberPredicate("81234567"));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, " p/81234567", expectedFindCommand);
+
+        // trailing whitespaces
+        assertParseSuccess(parser, " p/81234567  ", expectedFindCommand);
+
+        // leading whitespaces
+        assertParseSuccess(parser, " p/   81234567  ", expectedFindCommand);
+
+        // leading and trailing whitespaces
+        assertParseSuccess(parser, " p/   81234567  ", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_invalidPhone() {
+        // phone number not 8 digits long
+        assertParseFailure(parser, " p/8123", Phone.MESSAGE_CONSTRAINTS);
+
+        // phone number does not start with 6/8/9
+        assertParseFailure(parser, " p/12345678", Phone.MESSAGE_CONSTRAINTS);
+
+        // empty
+        assertParseFailure(parser, " p/", Phone.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -92,8 +119,38 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validClassDate_returnsFindCommand() {
-        // TODO: Update test case with dt/ prefix
-        assertParseFailure(parser, CLASS_DESC_AMY, "dt/ search not implemented yet.");
+        FindCommand expectedFindCommand =
+                new FindCommand(new ClassContainsDatePredicate("2022-10-10"));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, " dt/2022-10-10", expectedFindCommand);
+
+        // trailing whitespaces
+        assertParseSuccess(parser, " dt/2022-10-10  ", expectedFindCommand);
+
+        // leading whitespaces
+        assertParseSuccess(parser, " dt/   2022-10-10  ", expectedFindCommand);
+
+        // leading and trailing whitespaces
+        assertParseSuccess(parser, " dt/   2022-10-10  ", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_invalidDate() {
+        // different format
+        assertParseFailure(parser, " dt/10 oct", Class.INVALID_FIND_COMMAND_MESSAGE);
+        assertParseFailure(parser, " dt/2022-10-20 1500-1600", Class.INVALID_FIND_COMMAND_MESSAGE);
+        assertParseFailure(parser, " dt/monday", Class.INVALID_FIND_COMMAND_MESSAGE);
+
+        // incomplete date format
+        assertParseFailure(parser, " dt/2022-10", Class.INVALID_FIND_COMMAND_MESSAGE);
+        assertParseFailure(parser, " dt/2022", Class.INVALID_FIND_COMMAND_MESSAGE);
+
+        // empty
+        assertParseFailure(parser, " dt/", Class.INVALID_FIND_COMMAND_MESSAGE);
+
+        // whitespaces
+        assertParseFailure(parser, " dt/   ", Class.INVALID_FIND_COMMAND_MESSAGE);
     }
 
 }

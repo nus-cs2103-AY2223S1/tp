@@ -35,6 +35,8 @@ public class ScheduleCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label classTime;
+    @FXML
+    private Label markStatus;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -43,16 +45,17 @@ public class ScheduleCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        setWarningIfOwed(person);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
-        classTime.setText(person.getAClass().toTimeString());
+        classTime.setText(person.getDisplayedClass().toTimeString());
+        setWarningIfOwed(person);
+        setMarkStatus(person);
     }
 
     /**
      * Sets off warning indication if the person owes money.
      *
-     * @param person to check whether he/she is a debtor
+     * @param person to set warning if he/she owes money.
      */
     private void setWarningIfOwed(Person person) {
         if (person.isOwingMoney()) {
@@ -61,6 +64,19 @@ public class ScheduleCard extends UiPart<Region> {
             name.setStyle(COLOUR_OF_DEBTOR);
         } else {
             name.setText(person.getName().fullName);
+        }
+    }
+
+    /**
+     * Toggles the mark indicator based on the status of the person.
+     *
+     * @param person to check whether he/she is marked.
+     */
+    private void setMarkStatus(Person person) {
+        if (person.getMarkStatus().isMarked()) {
+            markStatus.setText("[X]");
+        } else {
+            markStatus.setText("[  ]");
         }
     }
 

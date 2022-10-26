@@ -17,7 +17,9 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.ClassContainsDatePredicate;
+import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +29,8 @@ public class FindCommandParser implements Parser<FindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -44,9 +47,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             String[] nameKeywords = nameToFind.split("\\s+");
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-
-            // TODO: Implement phone search here, remove the exception below
-            throw new ParseException("p/ search not implemented yet.");
+            String phoneToFind = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()).toString();
+            return new FindCommand(new PhoneContainsNumberPredicate(phoneToFind));
 
         } else if (argMultimap.getValue(PREFIX_NOK_PHONE).isPresent()) {
 
@@ -64,9 +66,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException("a/ search not implemented yet.");
 
         } else if (argMultimap.getValue(PREFIX_CLASS_DATE_TIME).isPresent()) {
-
-            // TODO: Implement date search here, remove the exception below
-            throw new ParseException("dt/ search not implemented yet.");
+            String dateToFind =
+                    ParserUtil.parseDateToFind(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()).toString();
+            return new FindCommand(new ClassContainsDatePredicate(dateToFind));
 
         } else {
             // Other prefixes that are not supported by the search system, or no prefix found.

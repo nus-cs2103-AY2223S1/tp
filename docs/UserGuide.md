@@ -126,7 +126,11 @@ Note: Address cannot be empty. It must contain at least 1 character.
 5. Email:
     - Email should be in the format of `local@domain`, where:
       - Local address should only contain alphanumeric characters and these special characters `+_.-`.
-      - Domain address should be least 2 characters long.
+      - Consecutive special characters are not supported.
+      - The domain name must:
+        1. End with a domain label at least 2 characters long.
+        2. Have each domain label start and end with alphanumeric characters.
+        3. Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 ```yaml
 Note: Email cannot be empty. It must fulfil the above requirements.
@@ -244,7 +248,7 @@ Example:
 
 Deletes the specified person from the student list.
 
-Format: `delete INDEX`
+Format: `delete INDEX ...`
 
 - Deletes the person at the specified `INDEX`.
 - The index refers to the index number shown in the Student's Details panel (bottom left).
@@ -255,7 +259,7 @@ Examples:
 - `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
-❗ Caution: Deleting a student is irreversible! Please ensure the correct index number.
+❗ Caution: Deleting a student is irreversible! Please input the correct index number(s).
 ```
 
 [Back to top](#table-of-contents)

@@ -19,7 +19,8 @@ public class Class {
             + " in either 'yyyy-MM-dd 0000-2359' or Day-of-Week 0000-2359 format"
             + "\nExamples:  2022-10-30 1000-1300,  Mon 1000-1300,  tue 1000-1300"
             + "\nDay-of-Week must be 3 letters and is case-insensitive";
-    public static final String INVALID_DATETIME_ERROR_MESSAGE = "Date should be a valid date";
+    public static final String INVALID_DATETIME_ERROR_MESSAGE =
+            "Date should be a valid date in the format of yyyy-MM-dd";
     public static final String INVALID_TIME_ERROR_MESSAGE = "Time should be in the range of 0000 - 2359";
     public static final String INVALID_DURATION_ERROR_MESSAGE = "EndTime must be after StartTime";
     public static final String VALIDATION_DATETIME_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
@@ -28,11 +29,15 @@ public class Class {
             + " " + VALIDATION_TIME_REGEX + "-" + VALIDATION_TIME_REGEX;
     public static final String VALIDATION_FLEXIBLE_CLASS_REGEX =
             "(?i)(Mon|Tue|Wed|Thu|Fri|Sat|Sun) " + VALIDATION_TIME_REGEX + "-" + VALIDATION_TIME_REGEX;
+    public static final String INVALID_FIND_COMMAND_MESSAGE =
+            "Please include a date either in the format of yyyy-MM-dd or Day-of-Week"
+            + "\nExamples: 2022-10-15, Mon, tue"
+            + "\nDay-of-Week must be 3 letters and is case-insensitive";
 
     public final LocalDate date;
     public final LocalTime startTime;
     public final LocalTime endTime;
-    // yyyy-MM-dd eg. 2022-05-05 1200-1500
+    // yyyy-MM-dd 0000-2359 eg. 2022-05-05 1200-1500
     public final String classDateTime;
 
     /**
@@ -43,21 +48,6 @@ public class Class {
         this.startTime = null;
         this.endTime = null;
         this.classDateTime = "";
-    }
-
-    /**
-     * Constructs a {@code Class}.
-     *
-     * @param date LocalDate object.
-     * @param startTime LocalTime object.
-     * @param endTime LocalTime object.
-     */
-    public Class(LocalDate date, LocalTime startTime, LocalTime endTime) {
-        requireAllNonNull(date, startTime, endTime);
-        this.date = date;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.classDateTime = this.toString();
     }
 
     /**
@@ -77,9 +67,28 @@ public class Class {
     }
 
     /**
+     * Overloaded constructor that generates the date in a String format to construct a {@code Class}
+     *
+     * @param date LocalDate object.
+     * @param startTime LocalTime object.
+     * @param endTime LocalTime object.
+     */
+    public Class(LocalDate date, LocalTime startTime, LocalTime endTime) {
+        requireAllNonNull(date, startTime, endTime);
+        String stringOfDateTime = String.format("%s %s-%s", date.toString(),
+                startTime.format(DateTimeFormatter.ofPattern("HHmm")),
+                endTime.format(DateTimeFormatter.ofPattern("HHmm")));
+
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.classDateTime = stringOfDateTime;
+    }
+
+    /**
      * Checks if class is empty.
      *
-     * @return True if class is empty.
+     * @return true if class is empty.
      */
     public boolean isEmpty() {
         return this.classDateTime.equals("");
@@ -177,7 +186,7 @@ public class Class {
      * Returns true if a given string is a valid input.
      *
      * @param classDateTime String to be validated.
-     * @return True if a given string fits the format of 'yyyy-MM-dd 0000-2359'.
+     * @return true if a given string fits the format of 'yyyy-MM-dd 0000-2359'.
      */
     public static boolean isValidClassString(String classDateTime) {
         if (!classDateTime.matches(VALIDATION_STANDARD_CLASS_REGEX)) {
@@ -193,7 +202,7 @@ public class Class {
      * Returns true if a given string is a valid input.
      *
      * @param classDateTime String to be validated.
-     * @return True if a given string fits the format of 'Day-of-Week 0000-2359'.
+     * @return true if a given string fits the format of 'Day-of-Week 0000-2359'.
      */
     public static boolean isValidFlexibleClassString(String classDateTime) {
         if (!classDateTime.matches(VALIDATION_FLEXIBLE_CLASS_REGEX)) {
@@ -208,7 +217,7 @@ public class Class {
      * Returns true if a given string is a valid date.
      *
      * @param date String object.
-     * @return True if is valid.
+     * @return true if is valid.
      */
     private static boolean isValidDateString(String date) {
         try {
@@ -224,7 +233,7 @@ public class Class {
      * Returns true if a given string is a valid time.
      *
      * @param time String object.
-     * @return True if is valid.
+     * @return true if is valid.
      */
     private static boolean isValidTimeString(String time) {
         Integer hour = Integer.valueOf(time.substring(0, 2));
@@ -238,11 +247,34 @@ public class Class {
     }
 
     /**
+     * Returns a Class that has a predefined number of days ahead of the current class date, with the same starting and
+     * ending timing.
+     *
+     * @param numberOfDays to be added to the current class date.
+     * @return a class with numberOfDays ahead.
+     */
+    public Class addDays(int numberOfDays) {
+        assert(numberOfDays >= 0);
+        LocalDate updatedDate = this.date.plusDays(numberOfDays);
+        return new Class(updatedDate, this.startTime, this.endTime);
+    }
+
+    /**
+     * Checks if both dates are the same.
+     *
+     * @param date to be checked against.
+     * @return true if the dates are the same.
+     */
+    public boolean isSameDateAs(LocalDate date) {
+        return this.date.equals(date);
+    }
+
+    /**
      * Returns true if duration is valid.
      *
      * @param startTime LocalTime object.
      * @param endTime LocalTime object.
-     * @return True if startTime is before endTime.
+     * @return true if startTime is before endTime.
      */
     public static boolean isValidDuration(LocalTime startTime, LocalTime endTime) {
         if (endTime.getHour() == 0 && endTime.getMinute() == 0) {
@@ -257,6 +289,10 @@ public class Class {
         return other == this // short circuit if same object
                 || (other instanceof Class // instanceof handles nulls
                 && classDateTime.equals(((Class) other).classDateTime)); // state check
+    }
+
+    public int compareToByStartTime(Class aclass) {
+        return this.startTime.compareTo(aclass.startTime);
     }
 
 }

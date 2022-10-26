@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES_APPEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -23,8 +24,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TeachersPet;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -51,6 +52,7 @@ public class CommandTestUtil {
     public static final Integer VALID_RATES_PER_CLASS_AMY = 50;
     public static final Integer VALID_RATES_PER_CLASS_BOB = 50;
     public static final String VALID_ADDITIONAL_NOTES_AMY = "alive person";
+    public static final String VALID_DIFFERENT_ADDITIONAL_NOTES_AMY = "dead person";
     public static final String VALID_ADDITIONAL_NOTES_BOB = "alive person";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
@@ -79,6 +81,8 @@ public class CommandTestUtil {
             " " + PREFIX_ADDITIONAL_NOTES + VALID_ADDITIONAL_NOTES_AMY.toString();
     public static final String ADDITIONAL_NOTE_DESC_BOB =
             " " + PREFIX_ADDITIONAL_NOTES + VALID_ADDITIONAL_NOTES_BOB.toString();
+    public static final String APPENDED_ADDITIONAL_NOTE_DESC_BOB =
+            " " + PREFIX_ADDITIONAL_NOTES_APPEND + VALID_ADDITIONAL_NOTES_BOB.toString();
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
