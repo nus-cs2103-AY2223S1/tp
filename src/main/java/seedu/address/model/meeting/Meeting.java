@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CreateMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.exceptions.ImpreciseMatchException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -90,6 +91,8 @@ public class Meeting implements Comparable<Meeting> {
             if (listOfPeople.isEmpty()) {
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
                 throw new PersonNotFoundException();
+            } else if (listOfPeople.size() > 1) {
+                throw new ImpreciseMatchException();
             } else { // get the first person in the address book whose name matches
                 output.add(listOfPeople.get(0));
             }
@@ -124,7 +127,6 @@ public class Meeting implements Comparable<Meeting> {
     public void setMeetingLocation(String location) {
         this.meetingLocation = location;
     }
-
 
     /**
      * Adds the array of persons to the unique persons list
