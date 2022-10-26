@@ -7,7 +7,7 @@ import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.student.ModContainsKeywordsPredicate;
 
 /**
- * Finds and lists those in address book who have taken or are taking module(s) that contain(s)
+ * Finds and lists those in mass linkers who have taken or are taking module(s) that contain(s)
  * the argument keywords.
  * Keyword matching is case-insensitive.
  */
@@ -45,6 +45,7 @@ public class ModFindCommand extends ModCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.masslinkers.logic.commands.ModFindCommand // instanceof handles nulls
-                && predicate.equals(((seedu.masslinkers.logic.commands.ModFindCommand) other).predicate)); // state check
+                && predicate.equals(((seedu.masslinkers.logic.commands.ModFindCommand) other)
+                .predicate)); // state check
     }
 }

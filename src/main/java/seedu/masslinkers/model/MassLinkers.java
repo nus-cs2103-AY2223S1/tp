@@ -9,7 +9,7 @@ import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.model.student.UniqueStudentList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the mass linkers level
  * Duplicates are not allowed (by .isSameStudent comparison)
  */
 public class MassLinkers implements ReadOnlyMassLinkers {
