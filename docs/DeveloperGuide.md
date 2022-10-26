@@ -173,7 +173,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/UpdatedModelClassDiagram.png" width="450" />
+<img src="images/LatestModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
@@ -182,7 +182,10 @@ The `Model` component,
 * stores the currently 'selected' `Resident` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Resident>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * stores two `ObservableList<String>` attributes of table columns to show and hide in the UI. The UI is able to listen to changes in these lists, and automatically update the column visibilities in the table. 
-* does not depend on any of the other five components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores an `ObservableList<Venue>` and an `ObservableList<Booking>` which is also used to update changes in `Venue` or `Booking` in the UI.  
+* does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<!-- The references to Resident fields have been removed to reduce clutter -->
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ResidentBook`, which `Resident` references. This allows `ResidentBook` to only require one `Tag` object per unique tag, instead of each `Resident` needing their own `Tag` objects.<br>
 
