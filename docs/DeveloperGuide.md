@@ -305,32 +305,32 @@ _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] `MarkCommand` Feature
 #### Proposed Implementation
-The proposed MarkCommand Feature marks the Project Status of an FYP project as one of 3 possible statuses 
+The proposed MarkCommand Feature marks the Project Status of an FYP project as one of 3 possible statuses
 {***YTS***, ***IP***, ***DONE***}. Currently these are the only 3 statuses supported, although more may be implemented
 later on if there are other meaningful statuses.
 
-The MarkCommand Feature sets a default status of `YTS` whenever a new FYP project is added to the FYP Manager, and the 
+The MarkCommand Feature sets a default status of `YTS` whenever a new FYP project is added to the FYP Manager, and the
 MarkCommand allows us to accordingly the project Status to either `IP` if the student is still
-working on the FYP project, or `DONE` once the FYP project has been completed. 
+working on the FYP project, or `DONE` once the FYP project has been completed.
 
 Given below is an example usage scenario and how MarkCommand is utilised:
 
-Step 1: The Professor launches the application for the first time. `FypManager` will be initialised with the 
+Step 1: The Professor launches the application for the first time. `FypManager` will be initialised with the
 current FypManager state.
 
-Step 2: The Professor tries adding a student to the FypManager by executing the command 
+Step 2: The Professor tries adding a student to the FypManager by executing the command
 `add id/A0123456G ...`. Note that here we have set the default project Status to be `YTS` since
-the project has just been added. 
+the project has just been added.
 
 ![MarkCommandState1](images/MarkCommandState1.png)
 
-Step 3: Suppose that the student Jane Doe has now started on the project. The Professor wishes to update the 
-project status for Jane to be `IP` instead of `YTS`, hence the Professor will execute the command 
+Step 3: Suppose that the student Jane Doe has now started on the project. The Professor wishes to update the
+project status for Jane to be `IP` instead of `YTS`, hence the Professor will execute the command
 `mark id/A0123456G s/IP` to update the status accordingly.
 
 ![MarkCommandState2](images/MarkCommandState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the student ID is incorrect or the 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the student ID is incorrect or the
 status is not one of the statuses {`YTS`, `IP`, `DONE`}, then the command will not be executed and an appropriate
 error message will be shown.
 
@@ -343,10 +343,10 @@ The following sequence diagram shows how the MarkCommand operation works:
 #### Design considerations:
 
 **Implementation Choice: Why MarkCommand is implemented this way**
-* We have only chosen to consider 3 general statuses {`YTS`, `IP`, `DONE`} since these are very general 
+* We have only chosen to consider 3 general statuses {`YTS`, `IP`, `DONE`} since these are very general
 labels that the Professor can use to identify the current status of an FYP project. This makes it very user-friendly
   since there are a fixed number of statuses that can be used.
-  
+
 * We have also used the studentId to uniquely identify the project of the student the Professor
 is trying to find. Here we have made an assumption that there the StudentId uniquely identifies the FYP project
   (i.e. a student can only take exactly 1 FYP project under a certain Professor)
@@ -354,7 +354,7 @@ is trying to find. Here we have made an assumption that there the StudentId uniq
 
 **Other Alternatives:**
 
-* **Alternative 1:** Extend the Edit command to include the MarkCommand 
+* **Alternative 1:** Extend the Edit command to include the MarkCommand
     * Pros: Easier to implement.
     * Cons: No clear distinction between tags and project status
 
@@ -406,20 +406,20 @@ The following sequence diagram shows how the add student command works:
 ### \[Proposed\] `FindCommand` Feature
 #### Proposed Implementation
 
-The proposed FindCommand Feature allows the user to find for specific keywords in certain fields. The current 
-implementation supports finding keywords in four fields: 
+The proposed FindCommand Feature allows the user to find for specific keywords in certain fields. The current
+implementation supports finding keywords in four fields:
 1) `StudentId`
 2) `StudentName`
 3)  `Tags` (accorded to a student)
 4) `ProjectName`.
 
-This is a new enhancement in v1.3, as older iterations only supported finding projects by their titles, 
-while the newest iteration supports finding projects by any of the above four fields. We hope that this allows the user 
-to be able to filter the projects more efficiently. (for instance, by specialisations: 
+This is a new enhancement in v1.3, as older iterations only supported finding projects by their titles,
+while the newest iteration supports finding projects by any of the above four fields. We hope that this allows the user
+to be able to filter the projects more efficiently. (for instance, by specialisations:
 ***NeuralNetwork***, ***Blockchain***, etc.)
 
 The FindCommand feature takes in a specified field (one of the four aforementioned fields), and a keyword specified
-by the user. FypManager then returns a list of projects whose field contains the keyword inputted. 
+by the user. FypManager then returns a list of projects whose field contains the keyword inputted.
 
 Note that the keyword is case-insensitive, can contain arbitrary spacing, and is field-specific.
 
@@ -428,12 +428,12 @@ Given below is an example usage scenario and how FindCommand is utilised:
 Step 1. The user launches the application for the first time. The 'FypManager' will be initialised with its
 'FypManager' state.
 
-Step 2: The user finds a project by keying in `find-proj tree` to find all projects whose name contains the keyword 
+Step 2: The user finds a project by keying in `find-proj tree` to find all projects whose name contains the keyword
 `tree`. FypManager returns a list of projects whose names contain the `tree` keyword.
 
 ![FindCommandState1](images/FindCommandState1.png)
 
-Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in 
+Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in
 `find-proj blockchain` to find all projects which contain the keyword `blockchain`. FypManager returns an empty list,
 as there is no project whose project name contains `blockchain`.
 
@@ -446,15 +446,15 @@ The following sequence diagram shows how the MarkCommand operation works:
 #### Design considerations:
 
 **Implementation Choice: Why FindCommand is implemented this way**
-* We have implemented FindCommand to find a student's project by four different fields. This is practical, since 
-  different users would want to find the relevant projects by different fields, making this a more versatile tool to use 
+* We have implemented FindCommand to find a student's project by four different fields. This is practical, since
+  different users would want to find the relevant projects by different fields, making this a more versatile tool to use
   as a FypManager tool.
 
-* We have allowed the user to be able to search using different keywords (so long as they are separated by ***/*** ), 
+* We have allowed the user to be able to search using different keywords (so long as they are separated by ***/*** ),
   which lets the user be more stringent in his/her search criteria.
 
 * Furthermore, we have made the input more flexible by making it case-insensitive, helping users who are not particularly
-  careful with their input of capital-cases or lower-cases. This also mimics real-life query engines, which usually 
+  careful with their input of capital-cases or lower-cases. This also mimics real-life query engines, which usually
   allow users to type their search keywords without fretting about whether there are upper-cases in the keyword.
 
 
@@ -465,7 +465,7 @@ The following sequence diagram shows how the MarkCommand operation works:
 * **Alternative 1:** Extend the FindCommand by allowing the user to search by fields other than project name
     * Pros: Allows the users to search using more fields instead of ProjectName alone.
     * Cons: Harder to implement. And requires inclusion of a suffix.
-    
+
 * **Alternative 2:** Allow the user to search for their keywords across all fields without specifying a field
     * Pros: More comprehensive search for projects with the required keyword.
     * Cons: Much harder to implement, as it requires a field-less search.
