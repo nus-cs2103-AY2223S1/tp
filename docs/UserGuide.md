@@ -184,18 +184,17 @@ Examples:
 
 #### 4.2.1 Finding a student record : `find`
 
-Shows a full record, including all stored details, using the input student's name or student's id. Search for multiple
-students by including more keywords
+Shows a list of students whose name contains the specified name keywords, or whose Id matches the given Id.
 
-Format: `view nm/[name]` or `view id/[id]`
+Format: `find nm/[name]` or `find id/[id]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only the name or the id is searched, depending on the given input.
 * Only full names / full ids will be matched e.g. `Han` will not match `Hans`
 
 Examples:
-* `view nm/John` returns the record for the student named `john`
-* `view nm/john alice` returns the records for the students named `John` and the student named `Alice`.
+* `find nm/John` returns the record for the student named `john`
+* `find nm/john alice` returns the records for the students named `John` and the student named `Alice`.
 
 #### 4.2.2 Toggling view : `toggleView`
 
