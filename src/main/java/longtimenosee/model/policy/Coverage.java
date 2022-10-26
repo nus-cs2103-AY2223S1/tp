@@ -13,10 +13,11 @@ import java.util.List;
 public class Coverage {
     public static final String MESSAGE_CONSTRAINTS = "Error: Coverages must be one "
             + "of the following types: "
-            + "{LIFE, MOTOR, HEALTH, TRAVEL, PROPERTY, MOBILE, BITE}";
+            + "{LIFE, MOTOR, HEALTH, TRAVEL, PROPERTY, MOBILE, BITE, INVESTMENT}";
 
     public static final List<String> CONSTRAINTS =
-            Collections.unmodifiableList(List.of("LIFE", "MOTOR", "HEALTH", "TRAVEL", "PROPERTY", "MOBILE", "BITE"));
+            Collections.unmodifiableList(List.of("LIFE", "MOTOR", "HEALTH", "TRAVEL", "PROPERTY", "MOBILE", "BITE",
+                    "INVESTMENT"));
 
     public final String coverageType;
 
@@ -34,7 +35,8 @@ public class Coverage {
         TRAVEL("Travel Insurance"),
         PROPERTY("Property Insurance"),
         MOBILE("Mobile Insurance"),
-        BITE("Bite-sized Insurance");
+        BITE("Bite-sized Insurance"),
+        INVESTMENT("Investment based");
 
         private String message;
 
