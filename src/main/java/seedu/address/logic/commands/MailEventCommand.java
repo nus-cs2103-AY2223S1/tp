@@ -19,7 +19,7 @@ import seedu.address.model.event.UidList;
 import seedu.address.model.person.Person;
 
 /**
- * Creates mailing list of customer name and email address in a event.
+ * Creates mailing list of customer name and email address in an event.
  */
 public class MailEventCommand extends Command {
     public static final String COMMAND_WORD = "mailEvent";
