@@ -199,12 +199,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setTask(Task target, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasStudentWithMatchingId(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearStudentPictures() {
             throw new AssertionError("This method should not be called.");
         }
     }

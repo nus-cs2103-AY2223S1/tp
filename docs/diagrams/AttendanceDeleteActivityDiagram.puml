@@ -1,0 +1,21 @@
+@startuml
+start
+:User executes attendance delete command;
+
+:Parses the command;
+
+if() then ([command is valid])
+    :Executes attendance
+    delete command;
+    if() then ([student index is valid])
+        :Creates new empty
+        attendance list;
+    else([student index is valid])
+        :Show invalid student
+        index error;
+    endif
+else([Command is missing arguments])
+    :Show parse error message;
+endif
+stop
+@enduml

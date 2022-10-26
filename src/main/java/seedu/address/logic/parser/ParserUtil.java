@@ -2,10 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -18,6 +22,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.FormatDate;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskTitle;
 
@@ -25,7 +30,6 @@ import seedu.address.model.task.TaskTitle;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String INFO_NOT_AVAILABLE = "NA";
 
@@ -197,4 +201,29 @@ public class ParserUtil {
         return new TaskDescription(trimmedDescription);
     }
 
+    /**
+     * Parse a {@code String date} into a {@code Formatted Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static FormatDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!FormatDate.isValidDate(trimmedDate)) {
+            throw new ParseException(FormatDate.MESSAGE_CONSTRAINTS);
+        }
+        return new FormatDate(trimmedDate);
+    }
+
+    /**
+     * Parse a {@code String students} into a {@code List<String>}.
+     * Leading and trailing whitespaces will be trimmed for each student name.
+     */
+    public static List<String> parseStudents(String students) {
+        requireNonNull(students);
+
+        String[] arr = students.split(",");
+        ArrayList<String> result = Arrays.stream(arr).map(String::trim)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return result;
+    }
 }

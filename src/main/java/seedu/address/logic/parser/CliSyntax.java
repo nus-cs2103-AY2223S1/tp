@@ -17,4 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_SIZE = new Prefix("s/");
     public static final Prefix PREFIX_CLASS_GROUP = new Prefix("c/");
     public static final Prefix PREFIX_LESSON = new Prefix("l/");
+    public static final Prefix PREFIX_DEADLINE_DATE = new Prefix("by/");
+    public static final Prefix PREFIX_ASSIGNMENT_ADD_STUDENTS = new Prefix("addStu/");
+    public static final Prefix PREFIX_ASSIGNMENT_DELETE_STUDENTS = new Prefix("deleteStu/");
 }

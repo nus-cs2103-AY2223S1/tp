@@ -133,8 +133,12 @@ public class ModelManager implements Model {
         if (!target.hasSameId(editedStudent)) {
             ImageStorage.renamePictureFile(target, editedStudent);
         }
-
         addressBook.setStudent(target, editedStudent);
+    }
+
+    @Override
+    public void clearStudentPictures() {
+        ImageStorage.empty();
     }
 
     //=========== TaskBook ================================================================================
@@ -170,6 +174,12 @@ public class ModelManager implements Model {
     public void deleteTask(Task target) {
         requireNonNull(target);
         taskBook.deleteTask(target);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        taskBook.setTask(target, editedTask);
     }
 
     //=========== Filtered Student List Accessors =============================================================

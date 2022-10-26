@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="700" />
 
 
 The `Model` component,
@@ -124,6 +124,7 @@ The `Model` component,
 * stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores the task book data i.e., all `Task` objects which are contained in a `TaskList` object
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Student` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
@@ -137,11 +138,11 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="700" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book data, task book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `TaskBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -154,18 +155,54 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Student Class Group Feature
+The class group feature allows a student to have a class group. The feature consists of the following command
+- ```ClassGroupCommand``` - Can add, delete and modify a student's class group field.
+- ```EditCommand``` - Can modify a student's class group field
+- ```AddCommand``` - Can add a student directly with a class field
+
+The class group commands follow similar paths of execution which defers slightly from Logic sequence diagram.
+This is illustrated in the sequence diagram below, which shows the diagram for ClassGroupCommand.
+
+**Class Group command**
+
+Implementation:
+
+The following is a more detailed explanation on how ```ClassCommand``` works.
+
+1. The ```AddressBookParser``` will select ```ClassGroupCommandParser``` and parse the user input.
+2. Following which, ```ClassGroupCommand#execute(Model model)``` method is called which
+updates the class group field of a student.
+3. If the student already has class field data, the input will overwrite existing data.
+4. If class field input is empty, ```ClassGroupCommand#execute(Model model)``` will delete the class group data.
+
+![Class Group sequence diagram](images/ClassGroupSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Command Syntax**
+- Current implementation: Using the command word ````class````
+- Pros: Simple to understand
+- Cons: Not as fast to type and can be made faster to type if length of command is shorter
+- Alternatives considered: We considered using ```<Index> c/``` format, e.g. ```1 c/CS2032S Lab 32```
+which sets the class group field of the student with index ```1``` to ```CS2030S Lab 32```
+- Pros: Faster for user who can type fast
+- Cons: Does not follow the format as other commands making it confusing for the user.
+
 ### Student Attendance feature ###
-The student attendance feature keeps track of student's attendance. The feature comprises of commands namely,
+The student attendance feature keeps track of student's attendance. The feature consists of commands namely,
 - ```AttendanceAddCommand``` - Adds an attendance list to the student in the class list.
 - ```AttendanceDeleteCommand``` - Removes the attendance list to the student in the class list.
 - ```AttendanceMarkCommand``` - Marks or unmarks student's attendance in his attendance list.
 
-The attendance commands all follow similar paths of execution which defers slightly from Logic sequence diagram. Tis is illustrated in the sequence diagram below, which shows the diagram for Student<INSERT>Command.
+The attendance commands all follow similar paths of execution which defers slightly from Logic sequence diagram.
+This is illustrated in the sequence diagram below, which shows the diagram for Student<INSERT>Command.
+
 
 The attendance commands when executed will use methods exposed by the ```Model``` interface and perform the related operations.
 
 **Common steps among the Attendance Commands**
- 
+
 1. The ```AddressBookParser``` will select ```AttendanceCommandParser``` and parse the user input.
 2. The ```AttendanceCommandParser#parse``` will select another AttendanceParser to parse in the arguments.
 3. The arguments are tokenized and the respective refined inputs of each argument is created.
@@ -178,24 +215,24 @@ The following is a more detailed explanation on how ```AttendanceAddCommand``` w
 1. After the successful parsing of user input into ```AttendanceCommandParser```, the input gets parsed into ```AttendanceAddCommandParser``` to further separate user input.
 2. Following which, ```AttendanceAddCommand#execute(Model model)``` method is called which validates the attendance list.
 3. If the student index or size specified is invalid, a `ParserExeception` will be thrown and attendance will not be added to the student.
- 
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the format of adding attendance contains error(s), GREWZ will display either an unknown command or wrong formatting error message.
- 
+
 4. The method `Model#setStudent(studentToEdit, editedStudent)` and `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` gets called and a new `CommandResult` will be returned with the success message.
 
 **Mark Attendance command**
 Implementation:
- 
+
 The following is a more detailed explanation on how `AttendanceMarkCommand` works.
 
 1. After the successful parsing of user input into ```AttendanceCommandParser```, the input gets parsed into ```AttendanceMarkCommandParser``` to further separate user input.
 2. Following which, ```AttendanceMarkCommand#execute(Model model)``` method is called which validates the attendance list.
 3. If the student index, lesson number or attendance value specified is invalid, a ```ParserExeception``` will be thrown and attendance will not be marked.
-4. The method ```Model#setStudent(studentToEdit, editedStudent)``` gets called and a new `CommandResult` will be returned with the success message. 
+4. The method ```Model#setStudent(studentToEdit, editedStudent)``` gets called and a new `CommandResult` will be returned with the success message.
 
 **Delete Attendance command**
 Implementation:
- 
+
 The following is a more detailed explanation on how `AttendanceDeleteCommand` works.
 
 1. After the successful parsing of user input into ```AttendanceCommandParser```, the input gets parsed into ```AttendanceDeleteCommandParser``` to further separate user input.
@@ -203,25 +240,110 @@ The following is a more detailed explanation on how `AttendanceDeleteCommand` wo
 3. If the student index specified is invalid, a ```ParserExeception``` will be thrown and attendance list will not be delete.
 4. The method ```Model#setStudent(studentToEdit, editedStudent)``` and `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` gets called and a new `CommandResult` will be returned with the success message.
 
-![attendance delete activity](image/AttendanceDeleteActivityDiagram.png)
+![attendance delete activity](images/AttendanceDeleteActivityDiagram.png)
 Figure No. Activity diagram for AttendanceDeleteCommand
-![attendance delete sequence](image/AttendanceDeleteSequenceDiagram.png)
+![attendance delete sequence](images/AttendanceDeleteSequenceDiagram.png)
 Figure No. Sequence diagram for AttendanceDeleteCommand
 #### Design considerations:
 
 **Aspect: Command Syntax**
 - Current implementation: Using 2 command word syntax \n E.g. ```attendance add``
- - Pros: Increases clarity and flexibility of future commands
- - Cons: Users have to type more 
+- Pros: Increases clarity and flexibility of future commands
+- Cons: Users have to type more
 - Alternatives considered: We considered using only ```attendance```, while using the forward slash ```/``` with specific prefixes for attendance commands, e.g. ```attendance 1 a/10 s/12```, which adds an attendance list of size 12 to the first student.
- - Pros: Users type less
- - Cons: Users might accidentally delete/alter attendance lists and takes a longer time to learn command prefixes.
- 
+- Pros: Users type less
+- Cons: Users might accidentally delete/alter attendance lists and takes a longer time to learn command prefixes.
+
 **Aspect: Size of attendance lists**
 - Current Implementation: Max size of 12
- - Pros: No need to resize attendance list display, users typically do not have more than 12 tutorials.
- - Cons: Less flexibility in size of attendance list.
- 
+- Pros: No need to resize attendance list display, users typically do not have more than 12 tutorials.
+- Cons: Less flexibility in size of attendance list.
+### Upload Student Picture Feature
+The address book is able to have profile pictures assigned to each student. The upload picture feature allows for tutors to add the profile picture corresponding to a student.
+This feature comprises a single ```UploadPictureCommand```
+
+The command when executed uses methods exposed by the ```Model``` interface and ```ImageStorage``` Class.
+
+The following is a more detailed explanation of how the `UploadPictureCommand` works.
+1. After the successful parsing of user input into ```UploadPictureCommandParser```, the ```UploadPictureCommand``` object is created.
+2. Following which, ```UploadPictureCommand#execute(Model model)``` method is called which calls ```ImageStorage#chooseImage()``` to open the file chooser.
+3. The user then selects the picture from their files, and it is checked by ```ImageStorage#isJpgFile()``` for being a file of valid format.
+4. The file is then uploaded via ```ImageStorage#uploadImage(Student student, File file)``` into the images folder in the current working directory which was created upon intialization of GREWZ.
+5. If the student index or size specified is invalid, a `ParserExeception` will be thrown and attendance will not be added to the student.
+
+![picture upload activity](images/PictureUploadActivityDiagram.png)
+Figure No. Activity diagram for PictureUploadCommand
+![picture upload sequence](images/PictureUploadSequenceDiagram.png)
+Figure No. Sequence diagram for PictureUploadCommand
+
+
+#### Design considerations:
+
+**Aspect: How to select an image**
+- Current implementation: A file chooser window is opened.
+- Pros: User can navigate visually through the files.
+- Cons: User will need to use a mouse instead of typing only.
+- Alternatives considered: We considered passing in a ```String``` for the file path that indicates the location of the picture to upload as a way of selecting the picture. 
+- Pros: Users only needs to type.
+- Cons: File paths can be very lengthy and if their file names are similar it is very easy to make a mistake when typing it out.
+
+**Aspect: Proccessing of Images**
+- Current Implementation: Handled by functions in the ImageStorage Class.
+- Pros: All operations regarding choosing, uploading and validating the picture is done in the same class.
+- Cons: The ImageStorage Class becomes just a class of static functions which cannot be tested.
+
+**Aspect: Changing an existing Image**
+- Current Implementation: User just uses ```upload-pic``` command for student they want to change the picture of and reselcts the picture.
+- Pros: Single command word to add and edit picture, convenient to use.
+- Cons: Users might accidentally upload the image for the wrong student and there is no way to undo the change.
+- Alternatives considered: We have considered having a separate ```update-pic``` command solely for changing an existing picture of a student.
+- Pros: Clearer instruction and prevents error from user.
+- Cons: User will have to be more familiar with more commands.
+
+### Add/delete Task feature
+The add/delete `Task` feature allows users to create and remove tasks. This feature uses the following commands:
+* `task` t/TITLE d/DESCRIPTION
+* `remove-task` INDEX
+
+which invokes the `TaskCommand` and the `RemoveTaskCommand` respectively.
+These commands when executed will use methods exposed by the `Model` and `TaskBookStorage` interface and perform the related operations.
+
+#### About Task
+Each `Task` has non-optional title and description fields. Future iterations may introduce new types of `Task`, including `Deadline` and `Assignment`.
+Currently, task information is stored in a different file from student information as they are two separate (and unrelated) data types.
+
+The following is a more detailed explanation on how the `TaskCommand` works.
+1. If the title or description fields are missing or invalid, a 'ParserException' will be thrown and the new `Task` will not be added.
+2. After the successful parsing of user input into `TaskCommandParser`, the `TaskCommand` object is created.
+3. Following which, `TaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#add(Task toAdd)` method, adding the new `Task` object to the internal list.
+4. Next, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
+5. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
+
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
+
+Figure No. Sequence diagram for TaskCommand
+
+![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
+
+Figure No. Activity diagram for TaskCommand
+
+The following is a more detailed explanation on how the `RemoveTaskCommand` works.
+1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
+2. After the successful parsing of user input into `RemoveTaskCommandParser`, the `RemoveTaskCommand` object is created.
+3. Following which, `RemoveTaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#remove(Task toRemove)` method, removing the specified `Task` object from the internal list.
+4. Next, similar to `TaskCommand`, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
+5. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
+
+#### Design considerations:
+
+**Aspect: Storage for `TaskBook`**
+- Current implementation: A totally new storage class, serializer class and data file specifically for `Task`
+- Pros: Easy to distinguish different classes handling different types of data (`Student` vs `Task`)
+- Cons: Some classes and methods are similar across `AddressBook` and `TaskBook`
+- Alternatives considered: We considered integrating `TaskBook` into the given `AddressBook` infrastructure, meaning that we will be storing `Task` data together with `Student` data into `addressbook.json`
+- Pros: Easier to implement, less code to write
+- Cons: Higher coupling, since any change in `TaskBook` could potentially affect `AddressBookStorage`
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -302,9 +424,40 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Enhanced\] ***Add*** Feature
 
-_{Explain here how the data archiving feature will be implemented}_
+This feature was enhanced to help teacher assistants add students' profiles with ease. 
+The feature uses the command : 
+* `add` n/NAME, i/STUDENTID, [p/PHONE], [e/EMAIL], [c/CLASSGROUP], [t/TAGS]
+
+
+#### Feature Updates 
+* ~~Compulsory~~ Optional Fields to Fill in (Fields in Square Bracket are Optional).
+* ***Only*** Name and Student ID are a must.
+* Provides a **more flexibly way** of adding students' profiles.
+
+The improved feature allows user to leave certain fields empty if they do not have the information to fill them.
+
+#### The `add` Command Implementation:
+
+The following is a more detailed explanation on how the new `add` feature works.
+
+1. The `AddressBookParser` will select `AddCommandParser` and parse the user input.
+2. `AddCommandParser` checks for optional fields that are not filled in and will automatically set them to 'NA' in the Addressbook.
+3. Following which, `AddCommand#execute(Model model)` method is called which adds the students into the Addressbook.
+4. If the student's data is already there, the input will throw an error saying "This student already exists."
+
+![AddCommand Sequence Diagram](images/AddCommandSequenceDiagram.png)
+Figure No. Sequence Diagram for Improved AddCommand Feature
+![AddCommand Activity Diagram](images/AddCommandActivityDiagram.png)
+Figure No. Activity Diagram for Improved AddCommand Feature
+
+#### Design considerations 
+
+**Aspect: Wrapping 'NA' into Type X**
+* Current implementation : Making 'NA' into a new X type when Information for X is not available where X can be Email, Phone or Class Group Type.
+* Pros: Simple to Store and Understand, works as intended even if users decide to input 'NA' into these optional fields.
+* Cons: Not exactly logically correct as NA is not of Type X.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -362,7 +515,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Tutor adds the student by entering the command with student details.
-2. GREWZ adds student. 
+2. GREWZ adds student.
 Use case ends.
 
 **Extensions**
@@ -372,15 +525,37 @@ Use case ends.
     * 1a2. User enters command with student details
     * Repeat steps until data is correct
     Use case resumes in step 2
-    
+
 **Use case: UC02 - Delete a Student**
+
+**Guarantees:** A student contact is deleted from GREWZ.
+
+**MSS**
+1. Tutor deletes a specific student contact by entering the command along with the index that corresponds to the student.
+2. Student contact is deleted.
+Use case ends
 
 **Use case: UC03 - Edit a Student**
 
-**Use case: UC04 - Add attendance to Student**
-**Guarantees:**  An attendance is added to the Student.
+**Guarantees:** Student's details are changed in GREWZ
+
 **MSS**
-1. Tutor adds attendance to student by entering command with module and number of lessons.
+1. Tutor edits a specific student contact by entering the command along with the index that corresponds to the student.
+2. Student contact in GREWZ is edited
+Use case ends
+
+**Extension**
+* 1a. GREWZ detects that the index given is invalid
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User re-enters the command with valid index
+    Use case resumes in step 2
+
+**Use case: UC04 - Add attendance to Student**
+
+**Guarantees:**  An attendance is added to the Student.
+
+**MSS**
+1. Tutor adds attendance to student by entering command with student index, module and number of lessons.
 2. GREWZ adds attendance to student.
 Use case ends.
 
@@ -390,10 +565,108 @@ Use case ends.
     * 1a2. User enters command with student details
     * Repeat steps until data is correct
     Use case resumes in step 2
-    
-**Use case: UC05 - Delete attendance of a Student**
 
+**Use case: UC05 - Delete attendance of a Student**
+ 
+**Guarantees:**  An attendance is deleted from the Student.
+ 
+**MSS**
+1. Tutor deletes attendance to student by entering command with student index.
+2. GREWZ deletes the attendance of the student.
+
+**Extensions**
+* 1a. GREWZ detects an error in entered data.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with correct student index and command
+    * Repeat steps until data is correct
+    Use case resumes in step 2
+ 
 **Use case: UC06 - Mark attendance of Student**
+
+**Guarantees:**  An attendance is deleted from the Student.
+
+**MSS**
+1. Tutor marks attendance of student by entering command with student index, lesson number, marked value.
+2. GREWZ marks/unmarks the attendance of the student.
+
+**Extensions**
+* 1a. GREWZ detects an error in entered data or attendancelist is not present
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with correct student index and data
+    * Repeat steps until data is correct
+    Use case resumes in step 2
+
+**Use case: UC07 - Find a Student**
+
+**Guarantees:**  A Tutor can search to find Student details with limited information.
+
+**MSS**
+1. Tutor searches for student details by entering command with keywords.
+2. GREWZ returns a list of students whose details match the keywords, completely or partially.
+   Use case ends.
+
+**Use case: UC08 - Add class group to student**
+
+**Guarantees:**  A class group is added to the Student.
+
+**MSS**
+1. Tutor adds class group to student by entering command with index of student and class group.
+2. GREWZ adds class group to student.
+Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in entered index.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with student details
+    * Repeat steps until data is correct
+    Use case resumes in step 2
+
+**Use case: UC09 - Add a ToDo Task**
+
+**Guarantees:** A tutor can add a ToDo task to the TaskBook with a given title and description.
+
+**MSS**
+1. Tutor enters correct command with title and description into the command input.
+2. GREWZ adds the ToDo task to the TaskBook and displays it.
+Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in the given command format.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User re-enters the command with title and description
+    * Repeat steps until command input is correct
+    Use case resumes in step 2
+
+**Use case: UC10 - Add a Deadline Task**
+
+**Guarantees:**  A tutor can add a task to the TaskBook along with a given deadline.
+
+**MSS**
+1. Tutor adds task to student by entering command with title, description and deadline.
+2. Task is added to the TaskBook and the deadline is displayed as well.
+   Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in the given date format.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with corrected date format.
+    * Repeat steps until data is correct
+      Use case resumes in step 2
+
+**Use case: UC11 - Remove a Task**
+
+**Guarantees:** A tutor can remove a task from the TaskBook with the given index.
+
+**MSS**
+1. Tutor removes task from TaskBook by entering command with given task index.
+2. GREWZ removes the specified task from TaskBook.
+
+**Extensions**
+* 1a. GREWZ detects an invalid task index.
+  * 1a1. GREWZ responds with an error message
+  * 1a2. User enters command with correct task index
+  * Repat steps until index is valid
+  Use case resumes in step 2
 
 *{More to be added}*
 

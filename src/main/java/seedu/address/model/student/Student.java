@@ -34,7 +34,7 @@ public class Student {
      */
     public Student(Name name, Phone phone, Email email,
                    ClassGroup classGroup, StudentId studentId, Set<Tag> tags, AttendanceList attendanceList) {
-        requireAllNonNull(name, studentId);
+        requireAllNonNull(name, phone, email, classGroup, studentId, attendanceList);
         this.name = name;
         this.phone = phone;
         this.email = email;

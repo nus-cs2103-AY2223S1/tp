@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AttendanceCommandParser" as AttendanceCommandParser LOGIC_COLOR
+participant ":AttendanceDeleteCommandParser" as AttendanceDeleteCommandParser LOGIC_COLOR
+participant "d:AttendanceDeleteCommand" as AttendanceDeleteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("attendance delete 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("attendance delete 1")
+activate AddressBookParser
+
+create AttendanceCommandParser
+AddressBookParser -> AttendanceCommandParser : parse("attendance delete 1")
+activate AttendanceCommandParser
+
+AttendanceCommandParser --> AddressBookParser
+deactivate AttendanceCommandParser
+
+AddressBookParser -> AttendanceCommandParser : parse("delete 1")
+activate AttendanceCommandParser
+
+create AttendanceDeleteCommandParser
+AttendanceCommandParser -> AttendanceDeleteCommandParser
+activate AttendanceDeleteCommandParser
+
+AttendanceDeleteCommandParser --> AttendanceCommandParser
+deactivate AttendanceDeleteCommandParser
+
+AttendanceCommandParser -> AttendanceDeleteCommandParser
+activate AttendanceDeleteCommandParser
+
+create AttendanceDeleteCommand
+AttendanceDeleteCommandParser -> AttendanceDeleteCommand: parse(args)
+activate AttendanceDeleteCommand
+
+AttendanceDeleteCommand --> AttendanceDeleteCommandParser : d
+deactivate AttendanceDeleteCommand
+AttendanceDeleteCommandParser --> AttendanceCommandParser : d
+deactivate AttendanceDeleteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AttendanceDeleteCommandParser -[hidden]-> AttendanceCommandParser
+destroy AttendanceDeleteCommandParser
+
+AttendanceCommandParser --> AddressBookParser : d
+deactivate AttendanceCommandParser
+AttendanceCommandParser -[hidden]-> AddressBookParser
+destroy AttendanceCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> AttendanceDeleteCommand : execute()
+activate AttendanceDeleteCommand
+
+AttendanceDeleteCommand -> Model : setStudent(studentToEdit, editedStudent)
+activate Model
+
+Model --> AttendanceDeleteCommand
+deactivate Model
+
+AttendanceDeleteCommand -> Model : updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)
+activate Model
+
+Model --> AttendanceDeleteCommand
+deactivate Model
+
+AttendanceDeleteCommand --> LogicManager : result
+deactivate AttendanceDeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

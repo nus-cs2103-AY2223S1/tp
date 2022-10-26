@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,11 +17,15 @@ import javafx.stage.Stage;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.student.Student;
 
+
+
 /**
  * Encapsulate the Image Storage of application.
  */
 public class ImageStorage {
-    private static byte[] imageBytes = Base64.getDecoder().decode(
+    public static final String IMAGE_CONSTRAINTS = "Picture should be in .jpg format.";
+
+    private static final byte[] imageBytes = Base64.getDecoder().decode(
             "/9j/4AAQSkZJRgABAQAAAQABAAD//gAtQ29udmVydGVkIGZyb20"
             + "gIFdlYlAgdG8gSlBHIHVzaW5nIGV6Z2lmLmNvbf/bAEMABQMEBAQDBQQEBAUFBQYHDAgHBwcHDwsLCQwRDxISEQ8RERMWHBcTFBoVER"
             + "EYIRgaHR0fHx8TFyIkIh4kHB4fHv/bAEMBBQUFBwYHDggIDh4UERQeHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e"
@@ -79,12 +85,41 @@ public class ImageStorage {
         ).toString();
     }
 
+    /**
+     * Returns whether the given file is a .jpg file.
+     *
+     * @param file
+     * @return Whether the {@code file} is a .jpg file.
+     * @throws CommandException If file cannot be found or unable to read the file.
+     */
+    public static boolean isJpgFile(File file) throws CommandException {
+        int[] jpgByteArray = new int[] {255, 216, 255, 224};
+        requireNonNull(file);
+        try {
+            FileInputStream inputFile = new FileInputStream(file);
+            int checkByte;
+            for (int counter = 0; counter < 4; counter++) {
+                checkByte = inputFile.read();
+                if (jpgByteArray[counter] != checkByte) {
+                    return false;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new CommandException("File not found!");
+        } catch (IOException e) {
+            throw new CommandException("Unable to read file");
+        }
+        return true;
+
+    }
+
     private static File getImageFile(Student student) {
         return new File(getImagePath(student));
     }
 
     /**
      * Returns the Image of a Student if the image file exists, otherwise return default image.
+     *
      * @param student
      * @return The Image of the student.
      */
@@ -110,8 +145,9 @@ public class ImageStorage {
 
     /**
      * Upload the Image given in {@code File} and associate it with the {@code Student} it belongs to.
-     * @param student
-     * @param file
+     *
+     * @param student The student whose picture is being uploaded.
+     * @param file The picture file to upload.
      * @throws CommandException If the file cannot be read.
      */
 
@@ -145,7 +181,8 @@ public class ImageStorage {
 
     /**
      * Delete the Image file for given {@code Student}.
-     * @param student
+     *
+     * @param student The student whose picture we are removing.
      */
 
     public static void remove(Student student) {
@@ -157,8 +194,9 @@ public class ImageStorage {
 
     /**
      * Rename the Image file for given {@code Student}.
-     * @param target
-     * @param editedStudent
+     *
+     * @param target The student whose file we are changing.
+     * @param editedStudent The updated student.
      */
     public static void renamePictureFile(Student target, Student editedStudent) {
         File imageFile = getImageFile(target);
@@ -169,9 +207,23 @@ public class ImageStorage {
 
     /**
      * Sets reference to primary stage
+     *
      * @param stage
      */
     public static void setStage(Stage stage) {
         primaryStage = stage;
+    }
+
+    /**
+     * Empties the images folder in current working directory.
+     */
+    public static void empty() {
+        File dir = new File(Paths.get(System.getProperty("user.dir"), "images").toString());
+        if (dir.listFiles() == null || dir == null) {
+            return;
+        }
+        for (File file : dir.listFiles()) {
+            file.delete();
+        }
     }
 }

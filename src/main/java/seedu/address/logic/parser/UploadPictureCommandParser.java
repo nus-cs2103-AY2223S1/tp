@@ -15,6 +15,8 @@ public class UploadPictureCommandParser implements Parser<UploadPictureCommand> 
     /**
      * Parses the given {@code String} of arguments in the context of the UploadPictureCommand
      * and returns an UploadPictureCommand object for execution.
+     *
+     * @param args The arguments to be parsed
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override

@@ -1,0 +1,104 @@
+@startuml
+/'https://plantuml.com/sequence-diagram'/
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TaskCommandParser" as TaskCommandParser LOGIC_COLOR
+participant ":TaskCommand" as TaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Task" as Task MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant ":TaskBook" as TaskBook MODEL_COLOR
+participant ":TaskList" as TaskList MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR_T3
+end box
+
+[-> LogicManager : execute("task t/Mark assignments d/By tonight")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("task t/Mark assignments d/By tonight")
+activate AddressBookParser
+
+create TaskCommandParser
+AddressBookParser -> TaskCommandParser
+activate TaskCommandParser
+TaskCommandParser --> AddressBookParser
+deactivate TaskCommandParser
+
+AddressBookParser -> TaskCommandParser : parse("t/Mark assignments d/By tonight"))
+activate TaskCommandParser
+
+create Task
+TaskCommandParser -> Task
+activate Task
+Task -> TaskCommandParser
+deactivate Task
+
+create TaskCommand
+TaskCommandParser -> TaskCommand
+activate TaskCommand
+
+TaskCommand --> TaskCommandParser
+deactivate TaskCommand
+
+TaskCommandParser --> AddressBookParser
+deactivate TaskCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> TaskCommand : execute()
+activate TaskCommand
+
+TaskCommand -> Model : addTask(task)
+activate Model
+
+Model -> TaskBook : addTask(task)
+activate TaskBook
+
+TaskBook -> TaskList : add(task)
+activate TaskList
+
+TaskList -> TaskBook
+deactivate TaskList
+
+TaskBook -> Model
+deactivate TaskBook
+
+Model -> TaskCommand
+deactivate Model
+
+create CommandResult
+TaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult -> TaskCommand
+deactivate CommandResult
+
+TaskCommand -> LogicManager
+deactivate TaskCommand
+
+LogicManager -> Model : getTaskBook()
+activate Model
+Model -> LogicManager
+deactivate Model
+
+LogicManager -> Storage : saveTaskBook(taskBook)
+activate Storage
+
+Storage -> LogicManager
+deactivate Storage
+
+[<-- LogicManager
+deactivate LogicManager
+
+
+@enduml
