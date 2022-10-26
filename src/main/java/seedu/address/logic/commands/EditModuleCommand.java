@@ -101,7 +101,8 @@ public class EditModuleCommand extends Command {
         ModuleCode updatedModuleCode = editModuleDescriptor.getModuleCode().orElse(moduleToEdit.getModuleCode());
         LectureDetails updatedLecture = editModuleDescriptor.getLecture().orElse(moduleToEdit.getLectureDetails());
         TutorialDetails updatedTutorial = editModuleDescriptor.getTutorial().orElse(moduleToEdit.getTutorialDetails());
-        ZoomLink updatedLectureZoomLink = editModuleDescriptor.getLectureZoomLink().orElse(moduleToEdit.getLectureZoomLink());
+        ZoomLink updatedLectureZoomLink = editModuleDescriptor
+                .getLectureZoomLink().orElse(moduleToEdit.getLectureZoomLink());
         ZoomLink updatedTutorialZoomLink = editModuleDescriptor.getTutorialZoomLink()
                 .orElse(moduleToEdit.getTutorialZoomLink());
         Set<AssignmentDetails> updatedAssignment =
@@ -160,7 +161,8 @@ public class EditModuleCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(moduleCode, lecture, tutorial, lectureZoomLink, tutorialZoomLink, assignments);
+            return CollectionUtil.isAnyNonNull(moduleCode, lecture,
+                    tutorial, lectureZoomLink, tutorialZoomLink, assignments);
         }
 
         public void setModuleCode(ModuleCode moduleCode) {
