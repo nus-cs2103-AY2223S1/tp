@@ -131,8 +131,6 @@ java -version
 
 </div>
 
-<div markdown="block" class="alert alert-info">
-
 ### Task parameters
 * A task is specified using two pieces of information: `TASK_DESCRIPTION` and `DATE TIME`.
 * `TASK_DESCRIPTION` can be any non-empty string made of alphanumeric characters.
@@ -147,8 +145,6 @@ e.g. `2-7-2022 1345`, `28-10-2022` are valid dates.
 * Examples of valid `INTERVAL TIME_PERIOD` are: `3 days`, `7 weeks`, `2 months`.
 * Note that while a task can be created without `DATE TIME`, a recurring task must have a `DATE TIME`.
 
-</div>
-
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -162,7 +158,7 @@ _Help window displayed after running the `help` command_
 
 Adds a patient to the patient list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>]… [c/CONDITION]… [t/TAG]… [m/MEDICATION | DOSAGE]… [r/Remark]…`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>]… [c/CONDITION]… [t/TAG]… [m/MEDICATION | DOSAGE]… [r/REMARK]…`
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine | 16-10-2022 t/Severe`
