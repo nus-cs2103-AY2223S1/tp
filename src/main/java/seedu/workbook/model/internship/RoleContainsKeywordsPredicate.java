@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.workbook.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Internship}'s {@code Company} matches any of the keywords given.
+ * Tests that a {@code Internship}'s {@code Role} matches any of the keywords given.
  */
 public class RoleContainsKeywordsPredicate implements Predicate<Internship> {
     private final List<String> keywords;

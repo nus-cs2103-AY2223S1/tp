@@ -7,7 +7,6 @@ import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 import seedu.workbook.logic.commands.FindCommand;
 import seedu.workbook.logic.parser.exceptions.ParseException;
@@ -50,8 +49,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
-            String[] nameKeywords = arguments.split(" ");
-            return new FindCommand(new CompanyContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            String[] companyNameKeywords = arguments.split("\\s+");
+            return new FindCommand(new CompanyContainsKeywordsPredicate(Arrays.asList(companyNameKeywords)));
 
         } else if (argMultimap.getValue(PREFIX_STAGE).isPresent()) {
             String arguments = argMultimap.getValue(PREFIX_STAGE).get();
@@ -59,8 +58,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
-            String[] nameKeywords = arguments.split(" ");
-            return new FindCommand(new StageContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            String[] stageKeywords = arguments.split("\\s+");
+            return new FindCommand(new StageContainsKeywordsPredicate(Arrays.asList(stageKeywords)));
 
         } else if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
             String arguments = argMultimap.getValue(PREFIX_ROLE).get();
@@ -68,20 +67,12 @@ public class FindCommandParser implements Parser<FindCommand> {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
-            String[] nameKeywords = arguments.split(" ");
-            return new FindCommand(new RoleContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            String[] roleKeywords = arguments.split("\\s+");
+            return new FindCommand(new RoleContainsKeywordsPredicate(Arrays.asList(roleKeywords)));
 
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values
-     * in the given {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

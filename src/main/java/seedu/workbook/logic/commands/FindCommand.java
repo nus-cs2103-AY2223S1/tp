@@ -1,6 +1,9 @@
 package seedu.workbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 
 import java.util.function.Predicate;
 
@@ -9,7 +12,7 @@ import seedu.workbook.model.Model;
 import seedu.workbook.model.internship.Internship;
 
 /**
- * Finds and lists all internships in WorkBook whose company name contains
+ * Finds and lists all internships in WorkBook whose company, role or stage name contains
  * any of the argument keywords.
  * Keyword matching is case insensitive.
  */
@@ -20,10 +23,12 @@ public class FindCommand extends Command {
 
     /** Help message to execute the find command */
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all internships whose company name contains any of "
+            + ": Finds all internships either by company role or stage using the prefix and"
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Parameters:" + "[" + PREFIX_COMPANY + "COMPANY] "
+            + "[" + PREFIX_ROLE + "ROLE] "
+            + "[" + PREFIX_STAGE + "STAGE] "
+            + "Example: " + COMMAND_WORD + PREFIX_COMPANY + "Meta";
 
     /** Keyword to search for */
     private final Predicate<Internship> predicate;
