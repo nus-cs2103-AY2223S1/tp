@@ -83,6 +83,31 @@ public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
     }
 
     /**
+     * Checks if given client id matches with any word in the name present.
+     * @param idPresent String representing client idpresent
+     * @param idGiven String representing client id given (keyword to search for)
+     * @return boolean true if at least one word matches with the keyword and false otherwise
+     */
+    public boolean testClientId(String idPresent, String idGiven) {
+        return Arrays.stream(idPresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(idGiven, words));
+    }
+
+    /**
+     * Checks if the project's client's id matches the id keyword being search for.
+     * @param project Project whose client's id is being used to search the keyword in
+     * @return boolean true if the id fulfills the search criteria and false otherwise
+     */
+    public boolean testClientId(Project project) {
+        if (clientIdKeywords.isEmpty()) {
+            return true;
+        } else {
+            return clientIdKeywords.stream().anyMatch(id -> testClientId(id,
+                    project.getClient().getClientId().toString()));
+        }
+    }
+
+    /**
      * Checks if given repository matches with any word in the repository present.
      * @param repoPresent String representing repository present
      * @param repoGiven String representing repository given (keyword to search for)
@@ -109,7 +134,7 @@ public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
 
     @Override
     public boolean test(Project project) {
-        return testName(project) && testRepository(project);
+        return testName(project) && testRepository(project) && testClientId(project) && testClientName(project);
     }
 
     @Override
