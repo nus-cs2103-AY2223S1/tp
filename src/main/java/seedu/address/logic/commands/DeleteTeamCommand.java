@@ -37,7 +37,7 @@ public class DeleteTeamCommand extends Command {
         requireNonNull(model);
         List<Team> teamList = model.getTeamList();
         Team currentTeam = model.getTeam();
-        Team targetTeam = new Team(targetTeamName, "No description added");
+        Team targetTeam = new Team(targetTeamName);
 
         int teamIndex = teamList.indexOf(targetTeam);
         if (teamIndex == -1) {

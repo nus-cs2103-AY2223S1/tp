@@ -22,11 +22,25 @@ public class Team {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     public static final String DESCRIPTION_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
+    public static final String DEFAULT_DESCRIPTION = "No description added";
+
     private final String teamName;
     private final String description;
     private final UniquePersonList teamMembers = new UniquePersonList();
     private final TaskList taskList = new TaskList();
     private final UniqueLinkList links = new UniqueLinkList();
+
+    /**
+     * Constructs a {@code Team}.
+     *
+     * @param teamName    A valid team name.
+     */
+    public Team(String teamName) {
+        requireNonNull(teamName);
+        checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
+        this.teamName = teamName;
+        this.description = DEFAULT_DESCRIPTION;
+    }
 
     /**
      * Constructs a {@code Team}.
