@@ -78,7 +78,6 @@ public class ModtrektParser {
             // Since we're treating e.g. "add task" and "add module" as separate commands,
             // we'll consider "task" or "module" the scope of the command, and add it to the command word.
             String scope = tokens.size() >= 2 ? tokens.get(1) : null;
-            String mainCommandWord = tokens.size() >= 1 ? tokens.get(0) : null;
             // support shorthand for module, no extra -m or module flag needed, hence we remove
             // it from the token list.
             if ("module".equals(scope) || "mod".equals(scope) || "task".equals(scope)) {
