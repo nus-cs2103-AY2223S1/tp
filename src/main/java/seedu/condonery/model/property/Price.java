@@ -29,8 +29,8 @@ public class Price {
     public Price(String price) {
         requireNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
-        value = price.replaceAll(",", "");
-        amount = Integer.parseInt(value);
+        amount = Integer.parseInt(price.replaceAll(",", ""));
+        value = this.toString();
     }
 
     /**
@@ -42,18 +42,18 @@ public class Price {
 
     @Override
     public String toString() {
-        return value;
+        return String.valueOf(amount);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Price // instanceof handles nulls
-                && value.equals(((Price) other).value)); // state check
+                && amount.equals(((Price) other).amount)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return amount.hashCode();
     }
 }
