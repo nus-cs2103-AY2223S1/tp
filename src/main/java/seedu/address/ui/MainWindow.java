@@ -9,6 +9,8 @@ import static seedu.address.logic.commands.ListTutorCommand.COMMAND_LIST_TUTOR_S
 import java.util.logging.Logger;
 
 import javafx.animation.PauseTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -28,6 +30,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.Model.ListType;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -39,7 +44,6 @@ public class MainWindow extends UiPart<Stage> {
     private static final String UNSELECTED_LABEL_STYLE_CLASS = "inactive-label";
 
     private static final Label NO_ENTITY_DISPLAYED_LABEL = new Label("No Person Displayed");
-
 
     private static final String WELCOME_MESSAGE = "Welcome to myStudent!\n" + "Key in command to start";
 
@@ -58,7 +62,7 @@ public class MainWindow extends UiPart<Stage> {
     private TutorDescription tutorDescription;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private Model.ListType descriptionEntityType;
+    private ListType descriptionEntityType;
     private String theme;
 
     @FXML
@@ -173,6 +177,30 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay.setFeedbackToUser(WELCOME_MESSAGE);
     }
 
+    public void setUpClickableCards() {
+        studentListPanel.studentListView.
+                getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Student>() {
+            @Override
+            public void changed(ObservableValue<? extends Student> observable, Student oldValue, Student newValue) {
+                descriptionEntityType = ListType.STUDENT_LIST;
+                entityDescriptionPlaceholder.getChildren().clear();
+                studentDescription = new StudentDescription(newValue);
+                entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
+            }
+        });
+
+        tutorListPanel.tutorListView.
+                getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tutor>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Tutor> observable, Tutor oldValue, Tutor newValue) {
+                        descriptionEntityType = ListType.TUTOR_LIST;
+                        entityDescriptionPlaceholder.getChildren().clear();
+                        tutorDescription = new TutorDescription(newValue);
+                        entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
+                    }
+                });
+    }
+
     /**
      * Sets the default size and theme based on {@code guiSettings}.
      */
@@ -252,16 +280,10 @@ public class MainWindow extends UiPart<Stage> {
         descriptionEntityType = type;
         switch(type) {
         case STUDENT_LIST:
-            entityDescriptionPlaceholder.getChildren().clear();
-            studentDescription = new StudentDescription(
-                    logic.getFilteredStudentList().get(index));
-            entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
+            studentListPanel.studentListView.getSelectionModel().select(index);
             break;
         case TUTOR_LIST:
-            entityDescriptionPlaceholder.getChildren().clear();
-            tutorDescription = new TutorDescription(
-                    logic.getFilteredTutorList().get(index));
-            entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
+            tutorListPanel.tutorListView.getSelectionModel().select(index);
             break;
         default:
             break;
@@ -294,7 +316,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /** Displays the added entity in Description Panel. **/
     private void handleAdd() {
-        Model.ListType type = logic.getCurrentListType();
+        ListType type = logic.getCurrentListType();
         entityDescriptionPlaceholder.getChildren().clear();
         int listSize;
         switch(type) {
@@ -330,9 +352,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /** Clears the current Description Panel if it is the deleted entity **/
+    /** Clears the current Description Panel if the displayed is the deleted entity **/
     private void handleDelete(CommandResult commandResult) {
-        Model.ListType type = logic.getCurrentListType();
+        ListType type = logic.getCurrentListType();
         switch (type) {
         case STUDENT_LIST:
             if (commandResult.getDeletedStudent().equals(studentDescription.getDisplayedStudent())) {
