@@ -45,7 +45,7 @@ public class SampleDataUtil {
                             new Person(new Name("David Li"),
                                     new Email("lidavid@example.com"), new Phone("91031282"))
                     ))),
-            new Module(new ModuleCode("CS2106"), new ModuleTitle("Software Engineering"),
+            new Module(new ModuleCode("CS2106"), new ModuleTitle("Introduction to Operating Systems"),
                     Arrays.asList(new Task("How to use linux"),
                             new Task("Practise MIPS")),
                     new HashSet<>(Arrays.asList(
