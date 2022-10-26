@@ -134,12 +134,12 @@ public class DeletecCommandTest {
     private static class ModelStubWithNoModuleClass extends ModelStub {
 
         @Override
-        public void deleteModuleClasses(Collection<ModuleClass> moduleClasses) {
+        public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
             requireAllNonNull(moduleClasses);
         }
 
         @Override
-        public void deleteModuleClass(ModuleClass moduleClass) {
+        public void removeModuleClass(ModuleClass moduleClass) {
             requireNonNull(moduleClass);
         }
 
@@ -170,7 +170,7 @@ public class DeletecCommandTest {
         private Set<ModuleClass> moduleClasses = new HashSet<>(Arrays.asList(CS1101S, CS1231S));
 
         @Override
-        public void deleteModuleClasses(Collection<ModuleClass> moduleClasses) {
+        public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
             requireAllNonNull(moduleClasses);
             this.moduleClasses = new HashSet<>();
         }
@@ -220,9 +220,11 @@ public class DeletecCommandTest {
         }
 
         @Override
-        public void deleteModuleClasses(Collection<ModuleClass> moduleClasses) {
+        public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
             requireAllNonNull(moduleClasses);
-            return;
+            moduleClasses.forEach(moduleClass -> {
+                student = student.removeModuleClass(moduleClass);
+            });
         }
 
         @Override

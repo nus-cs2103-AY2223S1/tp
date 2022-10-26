@@ -5,6 +5,7 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.IsPartOfClassPredicate;
 import seedu.taassist.model.student.Student;
 
@@ -106,7 +108,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteStudent(Student target) {
+    public void removeStudent(Student target) {
         requireNonNull(target);
         taAssist.removeStudent(target);
     }
@@ -137,11 +139,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteModuleClass(ModuleClass target) {
+    public void removeModuleClass(ModuleClass target) {
         requireNonNull(target);
         taAssist.removeModuleClass(target);
 
-        // TODO: Should an Exception be thrown instead?
         if (target.isSame(focusedClass)) {
             exitFocusMode();
         }
@@ -158,11 +159,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteModuleClasses(Collection<ModuleClass> moduleClasses) {
+    public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
         requireAllNonNull(moduleClasses);
-        for (ModuleClass moduleClass : moduleClasses) {
-            deleteModuleClass(moduleClass);
+        moduleClasses.forEach(this::removeModuleClass);
+    }
+
+    @Override
+    public void removeSession(ModuleClass moduleClass, Session session) {
+        requireAllNonNull(moduleClass, session);
+        taAssist.removeSession(moduleClass, session);
+
+        if (moduleClass.isSame(focusedClass)) {
+            enterFocusMode(moduleClass);
         }
+    }
+
+    @Override
+    public void removeSessions(ModuleClass moduleClass, Set<Session> sessions) {
+        requireAllNonNull(moduleClass, sessions);
+        sessions.forEach(session -> removeSession(moduleClass, session));
     }
 
     @Override
