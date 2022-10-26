@@ -1,5 +1,7 @@
 package seedu.foodrem.viewmodels;
 
+import java.util.Objects;
+
 import seedu.foodrem.model.item.Item;
 
 /**
@@ -36,10 +38,8 @@ public class ItemWithMessage {
                 && message.equals(((ItemWithMessage) other).message));
     }
 
-    // TODO: Uncomment this once `ItemBoughtDate::hashCode` is fixed
-    // See https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/284.
-    // @Override
-    // public int hashCode() {
-    //     return Objects.hash(item, message);
-    // }
+    @Override
+    public int hashCode() {
+        return Objects.hash(item, message);
+    }
 }
