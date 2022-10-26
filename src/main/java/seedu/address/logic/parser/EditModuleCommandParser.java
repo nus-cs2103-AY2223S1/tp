@@ -60,10 +60,10 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
                 ParserUtil.parseTutorialDetails(argMultimap.getValue(PREFIX_TUTORIAL).get()));
         }
         if (argMultimap.getValue(PREFIX_LECTURE_ZOOM).isPresent()) {
-            editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_LECTURE_ZOOM).get()));
+            editModuleDescriptor.setLectureZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_LECTURE_ZOOM).get()));
         }
         if (argMultimap.getValue(PREFIX_TUTORIAL_ZOOM).isPresent()) {
-            editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(
+            editModuleDescriptor.setTutorialZoomLink(ParserUtil.parseZoomLink(
                     argMultimap.getValue(PREFIX_TUTORIAL_ZOOM).get()));
         }
         parseAssignmentsForEdit(argMultimap
