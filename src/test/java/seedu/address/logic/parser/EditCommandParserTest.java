@@ -184,7 +184,7 @@ public class EditCommandParserTest {
 
         // No fields
         userInput = targetIndex.getOneBased() + " m/transaction";
-        assertParseFailure(parser, userInput, EditClientCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, userInput, EditTransactionCommand.MESSAGE_NOT_EDITED);
     }
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
