@@ -18,9 +18,9 @@ public class SpecialTagLabel extends Label {
     private static final String DEFAULT_COLOR = "#d91175";
     private static final String TEXT_FILL_COLOR = "-fx-text-fill: white;";
     private static final String BACKGROUND_COLOR = "-fx-background-color: ";
-    private static final String PADDING = "-fx-padding: 1 3 1 3;";
+    private static final String PADDING = "-fx-padding: 4 3 4 3;";
     private static final String BORDER_RADIUS = "-fx-border-radius: 2;";
-    private static final String BACKGROUND_RADIUS = "-fx-background-radius: 2;";
+    private static final String BACKGROUND_RADIUS = "-fx-background-radius: 8;";
     private static final String FONT_SIZE = "-fx-font-size: 11;";
 
     /**
