@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.characteristics.Characteristics;
 
 /**
- * Tests that a given {@code Buyer}'s {@code DesiredCharacteristics} contains all the given characteristics.
+ * Tests that a given {@code Buyer}'s {@code DesiredCharacteristics} contains any of the given characteristics.
  */
-public class FilterBuyerContainingAllCharacteristicsPredicate extends AbstractFilterBuyerPredicate {
+public class FilterBuyerContainingAnyCharacteristicPredicate extends AbstractFilterBuyerPredicate {
 
     private final Characteristics givenCharacteristics;
 
     /**
      * Standard constructor for the predicate.
      */
-    public FilterBuyerContainingAllCharacteristicsPredicate(Characteristics characteristics) {
+    public FilterBuyerContainingAnyCharacteristicPredicate(Characteristics characteristics) {
         requireNonNull(characteristics);
         this.givenCharacteristics = characteristics;
     }
@@ -25,14 +25,14 @@ public class FilterBuyerContainingAllCharacteristicsPredicate extends AbstractFi
         if (p.getDesiredCharacteristics().isEmpty()) {
             return false;
         }
-        return p.getDesiredCharacteristics().get().containsAllGivenCharacteristics(givenCharacteristics);
+        return p.getDesiredCharacteristics().get().containsAnyGivenCharacteristic(givenCharacteristics);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterBuyerContainingAllCharacteristicsPredicate // instanceof handles nulls
+                || (other instanceof FilterBuyerContainingAnyCharacteristicPredicate // instanceof handles nulls
                 && givenCharacteristics.equals((
-                        (FilterBuyerContainingAllCharacteristicsPredicate) other).givenCharacteristics)); // state check
+                        (FilterBuyerContainingAnyCharacteristicPredicate) other).givenCharacteristics)); // state check
     }
 }
