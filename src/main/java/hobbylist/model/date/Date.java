@@ -69,4 +69,8 @@ public class Date {
 
     }
 
+    public String toDisplayedString() {
+        return this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
 }

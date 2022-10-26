@@ -91,4 +91,6 @@ public interface Model {
      * @param target
      */
     void selectActivity(Activity target);
+
+    ObservableList<Activity> getSelectedActivity();
 }

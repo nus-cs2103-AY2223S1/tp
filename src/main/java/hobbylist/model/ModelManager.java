@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final HobbyList hobbyList;
     private final UserPrefs userPrefs;
     private final FilteredList<Activity> filteredActivities;
+    private final FilteredList<Activity> selectedActivity;
 
     /**
      * Initializes a ModelManager with the given hobbyList and userPrefs.
@@ -34,6 +35,7 @@ public class ModelManager implements Model {
         this.hobbyList = new HobbyList(hobbyList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredActivities = new FilteredList<>(this.hobbyList.getActivityList());
+        selectedActivity = new FilteredList<>(this.hobbyList.getSelectedActivity());
     }
 
     public ModelManager() {
@@ -131,6 +133,11 @@ public class ModelManager implements Model {
     public void updateFilteredActivityList(Predicate<Activity> predicate) {
         requireNonNull(predicate);
         filteredActivities.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Activity> getSelectedActivity() {
+        return selectedActivity;
     }
 
     @Override

@@ -34,6 +34,8 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of activities */
     ObservableList<Activity> getFilteredActivityList();
 
+    ObservableList<Activity> getSelectedActivity();
+
     /**
      * Returns the user prefs' HobbyList file path.
      */

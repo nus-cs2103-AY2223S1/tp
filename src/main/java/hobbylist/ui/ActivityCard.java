@@ -62,7 +62,6 @@ public class ActivityCard extends UiPart<Region> {
             tagLabel.setStyle("-fx-background-color: " + intToHexColor(tagLabel.getText()));
         });
 
-
         if (activity.getRating() != 0) {
             Label ratingLabel = new Label(
                     new String(new char[activity.getRating()]).replace("\0", "★"));
@@ -78,7 +77,7 @@ public class ActivityCard extends UiPart<Region> {
 
     }
 
-    public void setStatusLabel(Label label, Status status) {
+    public static void setStatusLabel(Label label, Status status) {
         label.setText("Status: " + status.toString());
 
         switch (status.toString()) {
