@@ -29,10 +29,10 @@ public class ListTasksCommand extends Command {
     public static final String MESSAGE_LIST_TASK_SUCCESS = "Tasks: \n%1$s";
 
     @CommandLine.Option(names = {FLAG_COMPLETE_TASKS_STR, FLAG_COMPLETE_TASKS_STR_LONG})
-    private Boolean complete;
+    private Boolean isComplete;
 
     @CommandLine.Option(names = {FLAG_INCOMPLETE_TASKS_STR, FLAG_INCOMPLETE_TASKS_STR_LONG})
-    private Boolean incomplete;
+    private Boolean isIncomplete;
 
     public ListTasksCommand() {
     }
@@ -47,12 +47,11 @@ public class ListTasksCommand extends Command {
             return new CommandResult(NO_TASKS);
         }
 
-        if ((complete == null && incomplete == null)
-                || (Boolean.TRUE.equals(complete) && Boolean.TRUE.equals(incomplete))) {
+        if ((isComplete == isIncomplete)) {
             return new CommandResult(String.format(MESSAGE_LIST_TASK_SUCCESS, tasks));
-        } else if (Boolean.TRUE.equals(complete)) {
+        } else if (isComplete) {
             return new CommandResult(String.format(MESSAGE_LIST_TASK_SUCCESS, completedTasks));
-        } else if (Boolean.TRUE.equals(incomplete)) {
+        } else if (isIncomplete) {
             return new CommandResult(String.format(MESSAGE_LIST_TASK_SUCCESS, incompleteTasks));
         }
         return new CommandResult("Invalid command format!\n" + MESSAGE_USAGE);
@@ -63,7 +62,7 @@ public class ListTasksCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ListTasksCommand
-                && complete.equals(((ListTasksCommand) other).complete)
-                && incomplete.equals(((ListTasksCommand) other).incomplete)); // instanceof handles nulls
+                && isComplete == ((ListTasksCommand) other).isComplete
+                && isIncomplete == ((ListTasksCommand) other).isIncomplete); // instanceof handles nulls
     }
 }
