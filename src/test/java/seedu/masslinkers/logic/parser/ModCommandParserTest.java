@@ -3,7 +3,7 @@ package seedu.masslinkers.logic.parser;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.masslinkers.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.masslinkers.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import java.util.Arrays;
 
@@ -46,7 +46,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_unknownCommand_throwParseException() {
         assertParseFailure(parser,
-                INVALID_MOD_COMMAND + " " + INDEX_FIRST_PERSON.getOneBased() + " " + VALID_MOD_STRING_CS2103T,
+                INVALID_MOD_COMMAND + " " + INDEX_FIRST_STUDENT.getOneBased() + " " + VALID_MOD_STRING_CS2103T,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ModCommand.MESSAGE_USAGE));
     }
@@ -65,7 +65,7 @@ public class ModCommandParserTest {
      */
     @Test
     public void parse_noMods_throwParseException() {
-        assertParseFailure(parser, ModAddCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(),
+        assertParseFailure(parser, ModAddCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased(),
                 ModCommand.MESSAGE_MODS_EMPTY);
     }
 
@@ -76,7 +76,7 @@ public class ModCommandParserTest {
     public void parse_invalidMod_throwParseException() {
         assertParseFailure(parser,
                 ModAddCommand.COMMAND_WORD
-                        + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INDEX_FIRST_STUDENT.getOneBased()
                         + " " + INVALID_MOD_STRING,
                 Mod.MESSAGE_CONSTRAINTS);
     }
@@ -95,7 +95,7 @@ public class ModCommandParserTest {
      */
     @Test
     public void parse_oneMod_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = ModAddCommand.COMMAND_WORD + " " + targetIndex.getOneBased()
                 + " " + VALID_MOD_STRING_CS2103T;
 
@@ -110,7 +110,7 @@ public class ModCommandParserTest {
      */
     @Test
     public void parse_manyMods_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = ModAddCommand.COMMAND_WORD + " " + targetIndex.getOneBased()
                 + " " + VALID_MOD_STRING_CS2103T
                 + " " + VALID_MOD_STRING_CS2101
@@ -139,7 +139,7 @@ public class ModCommandParserTest {
      */
     @Test
     public void parse_noModsModDelete_throwParseException() {
-        assertParseFailure(parser, ModDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(),
+        assertParseFailure(parser, ModDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased(),
                 ModCommand.MESSAGE_MODS_EMPTY);
     }
 
@@ -150,7 +150,7 @@ public class ModCommandParserTest {
     public void parse_invalidModModDelete_throwParseException() {
         assertParseFailure(parser,
                 ModDeleteCommand.COMMAND_WORD
-                        + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INDEX_FIRST_STUDENT.getOneBased()
                         + " " + INVALID_MOD_STRING,
                 Mod.MESSAGE_CONSTRAINTS);
     }
@@ -169,7 +169,7 @@ public class ModCommandParserTest {
      */
     @Test
     public void parse_deleteOneMod_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = ModDeleteCommand.COMMAND_WORD + " " + targetIndex.getOneBased()
                 + " " + VALID_MOD_STRING_CS2103T;
 
@@ -184,7 +184,7 @@ public class ModCommandParserTest {
      */
     @Test
     public void parse_deleteMultipleMods_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = ModDeleteCommand.COMMAND_WORD + " " + targetIndex.getOneBased()
                 + " " + VALID_MOD_STRING_CS2103T
                 + " " + VALID_MOD_STRING_CS2101
@@ -272,7 +272,7 @@ public class ModCommandParserTest {
      */
     @Test
     public void parse_noModsModMark_throwParseException() {
-        assertParseFailure(parser, ModMarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(),
+        assertParseFailure(parser, ModMarkCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased(),
                 ModCommand.MESSAGE_MODS_EMPTY);
     }
 
@@ -283,7 +283,7 @@ public class ModCommandParserTest {
     public void parse_invalidModModMark_throwParseException() {
         assertParseFailure(parser,
                 ModMarkCommand.COMMAND_WORD
-                        + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INDEX_FIRST_STUDENT.getOneBased()
                         + " " + INVALID_MOD_STRING,
                 Mod.MESSAGE_CONSTRAINTS);
     }
@@ -302,7 +302,7 @@ public class ModCommandParserTest {
      */
     @Test
     public void parse_markOneMod_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = ModMarkCommand.COMMAND_WORD + " " + targetIndex.getOneBased()
                 + " " + VALID_MOD_STRING_CS2103T;
 
@@ -317,7 +317,7 @@ public class ModCommandParserTest {
      */
     @Test
     public void parse_markMultipleMods_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = ModMarkCommand.COMMAND_WORD + " " + targetIndex.getOneBased()
                 + " " + VALID_MOD_STRING_CS2103T
                 + " " + VALID_MOD_STRING_CS2101
@@ -346,7 +346,7 @@ public class ModCommandParserTest {
      */
     @Test
     public void parse_noModsModUnmark_throwParseException() {
-        assertParseFailure(parser, ModUnmarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(),
+        assertParseFailure(parser, ModUnmarkCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased(),
                 ModCommand.MESSAGE_MODS_EMPTY);
     }
 
@@ -357,7 +357,7 @@ public class ModCommandParserTest {
     public void parse_invalidModModUnmark_throwParseException() {
         assertParseFailure(parser,
                 ModUnmarkCommand.COMMAND_WORD
-                        + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INDEX_FIRST_STUDENT.getOneBased()
                         + " " + INVALID_MOD_STRING,
                 Mod.MESSAGE_CONSTRAINTS);
     }
@@ -376,7 +376,7 @@ public class ModCommandParserTest {
      */
     @Test
     public void parse_unmarkOneMod_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = ModUnmarkCommand.COMMAND_WORD + " " + targetIndex.getOneBased()
                 + " " + VALID_MOD_STRING_CS2103T;
 
@@ -391,7 +391,7 @@ public class ModCommandParserTest {
      */
     @Test
     public void parse_unmarkMultipleMods_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = ModUnmarkCommand.COMMAND_WORD + " " + targetIndex.getOneBased()
                 + " " + VALID_MOD_STRING_CS2103T
                 + " " + VALID_MOD_STRING_CS2101

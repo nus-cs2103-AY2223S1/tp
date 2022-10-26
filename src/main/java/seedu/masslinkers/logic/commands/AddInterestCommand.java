@@ -1,7 +1,7 @@
 package seedu.masslinkers.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.masslinkers.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.masslinkers.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.Set;
@@ -48,12 +48,12 @@ public class AddInterestCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToEdit = lastShownList.get(targetIndex.getZeroBased());
         studentToEdit.addInterests(interests);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, studentToEdit), false, false, false, true);
     }
 

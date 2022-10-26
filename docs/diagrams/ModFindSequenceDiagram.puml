@@ -29,7 +29,7 @@ return f
 return f
 destroy MCP
 LM -> MFC ++ : execute(model)
-MFC -> Model ++ : updateFilteredPersonList(predicate)
+MFC -> Model ++ : updateFilteredStudentList(predicate)
 return
 MFC -> CR **
 activate CR

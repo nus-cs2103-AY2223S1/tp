@@ -19,7 +19,7 @@ import seedu.masslinkers.model.student.Student;
 @JsonRootName(value = "massLinkers")
 class JsonSerializableMassLinkers {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Students list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
@@ -50,7 +50,7 @@ class JsonSerializableMassLinkers {
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
             if (massLinkers.hasStudent(student)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
             massLinkers.addStudent(student);
         }

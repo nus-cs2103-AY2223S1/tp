@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.masslinkers.testutil.Assert.assertThrows;
-import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.masslinkers.testutil.TypicalStudents.BOB;
 import static seedu.masslinkers.testutil.TypicalStudents.getTypicalMassLinkers;
 
@@ -54,7 +54,7 @@ public class ModMarkCommandTest {
      */
     @Test
     public void constructor_nullMods_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ModMarkCommand(INDEX_FIRST_PERSON, null));
+        assertThrows(NullPointerException.class, () -> new ModMarkCommand(INDEX_FIRST_STUDENT, null));
     }
 
     /**
@@ -177,7 +177,7 @@ public class ModMarkCommandTest {
         Index indexOutOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         ModMarkCommand invalidCommand = new ModMarkCommand(indexOutOfBounds,
                 FXCollections.singletonObservableList(VALID_MOD_CS2100));
-        assertCommandFailure(invalidCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(invalidCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
 }

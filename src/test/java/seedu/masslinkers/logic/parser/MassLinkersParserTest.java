@@ -6,7 +6,7 @@ import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_COMMAND_FO
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_MOD_CS2100;
 import static seedu.masslinkers.testutil.Assert.assertThrows;
-import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,8 +52,8 @@ public class MassLinkersParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_STUDENT), command);
     }
 
     @Test
@@ -61,8 +61,8 @@ public class MassLinkersParserTest {
         Student student = new StudentBuilder().build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_STUDENT, descriptor), command);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class MassLinkersParserTest {
     public void parseCommand_mod() throws Exception {
         assertTrue(parser.parseCommand(
                 ModCommand.COMMAND_WORD + " " + ModAddCommand.COMMAND_WORD
-                        + " " + INDEX_FIRST_PERSON.getOneBased() + " " + VALID_MOD_CS2100) instanceof ModAddCommand);
+                        + " " + INDEX_FIRST_STUDENT.getOneBased() + " " + VALID_MOD_CS2100) instanceof ModAddCommand);
         // TODO: Update to include other mod commands
     }
 

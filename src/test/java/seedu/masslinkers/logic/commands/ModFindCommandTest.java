@@ -3,7 +3,7 @@ package seedu.masslinkers.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.masslinkers.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.masslinkers.testutil.TypicalStudents.ALICE;
 import static seedu.masslinkers.testutil.TypicalStudents.BENSON;
@@ -57,7 +57,7 @@ public class ModFindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noStudentFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
         ModContainsKeywordsPredicate predicate = preparePredicate(" ");
         ModFindCommand command = new ModFindCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
@@ -68,7 +68,7 @@ public class ModFindCommandTest {
 
     @Test
     public void execute_keywords_multipleStudentsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 3);
         ModContainsKeywordsPredicate predicate = preparePredicate("cs1231s");
         ModFindCommand command = new ModFindCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
