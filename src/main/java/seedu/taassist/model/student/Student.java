@@ -21,10 +21,10 @@ public class Student implements Identity<Student> {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
 
     // Data fields
+    private final Phone phone;
+    private final Email email;
     private final Address address;
     private final UniqueList<StudentModuleData> moduleDataList = new UniqueList<>();
 
