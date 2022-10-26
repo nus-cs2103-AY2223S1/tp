@@ -30,6 +30,13 @@ public class ClientListPanel extends UiPart<Region> {
     }
 
     /**
+     * Forces re-render of the PropertyListPanel.
+     */
+    public void refresh() {
+        clientListView.refresh();
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Client} using a {@code ClientCard}.
      */
     class ClientListViewCell extends ListCell<Client> {

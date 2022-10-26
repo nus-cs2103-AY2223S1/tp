@@ -2,6 +2,7 @@ package seedu.condonery.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.util.List;
 
 import seedu.condonery.commons.core.Messages;
@@ -46,6 +47,8 @@ public class DeleteClientCommand extends Command {
         }
 
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
+        File image = new File(clientToDelete.getImagePath().toString());
+        image.delete();
         model.deleteClient(clientToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete));
 
