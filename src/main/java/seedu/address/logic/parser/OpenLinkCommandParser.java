@@ -14,7 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
 
 /**
- * Parses input arguments and creates a new {@code OpenLinkCommand} object
+ * Parses input arguments and creates a new {@code OpenLinkCommand} object.
  */
 public class OpenLinkCommandParser implements Parser<OpenLinkCommand> {
     /**

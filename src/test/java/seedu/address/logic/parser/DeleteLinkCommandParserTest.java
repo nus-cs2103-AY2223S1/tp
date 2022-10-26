@@ -24,7 +24,7 @@ public class DeleteLinkCommandParserTest {
     private DeleteLinkCommandParser parser = new DeleteLinkCommandParser();
 
     @Test
-    public void parse_missingParts_failure() {
+    public void parse_missingPartsLinkAlias_failure() {
         assertParseFailure(parser, " " + PREFIX_MODULE_CODE + VALID_GE3238_MODULE_CODE,
                 DeleteLinkCommand.MESSAGE_NOT_EDITED);
     }

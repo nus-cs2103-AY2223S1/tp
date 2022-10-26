@@ -25,7 +25,7 @@ public class AddLinkCommandParserTest {
     private AddLinkCommandParser parser = new AddLinkCommandParser();
 
     @Test
-    public void parse_missingParts_failure() {
+    public void parse_missingPartsLinkAliasAndUrl_failure() {
         assertParseFailure(parser,
                 " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE, AddLinkCommand.MESSAGE_NOT_EDITED);
     }

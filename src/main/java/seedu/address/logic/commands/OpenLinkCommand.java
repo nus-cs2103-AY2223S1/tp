@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
@@ -12,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
@@ -69,7 +69,7 @@ public class OpenLinkCommand extends Command {
             moduleToOpenLinks =
                     model.getModuleUsingModuleCode(moduleCode, true);
         } catch (ModuleNotFoundException e) {
-            throw new CommandException(String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
+            throw new CommandException(String.format(Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST,
                     moduleCode.getModuleCodeAsUpperCaseString()));
         }
         assert moduleToOpenLinks != null;
@@ -111,6 +111,7 @@ public class OpenLinkCommand extends Command {
     //Reused from https://stackoverflow.com/questions/5226212/how-to-open-the-default-webbrowser-using-java
     //with slight modification
     private static void launchLinkFromPlannit(String linkUrl) throws IOException, SecurityException {
+        assert linkUrl != null;
         boolean isLinkUrlPaddedWithHttps = linkUrl.startsWith(LINK_HEADER_PROTOCOL_HTTPS);
         boolean isLinkUrlPaddedWithHttp = linkUrl.startsWith(LINK_HEADER_PROTOCOL_HTTP);
         if (!(isLinkUrlPaddedWithHttps || isLinkUrlPaddedWithHttp)) {

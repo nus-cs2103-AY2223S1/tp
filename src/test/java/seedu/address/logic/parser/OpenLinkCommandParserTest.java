@@ -23,7 +23,7 @@ public class OpenLinkCommandParserTest {
     private OpenLinkCommandParser parser = new OpenLinkCommandParser();
 
     @Test
-    public void parse_missingParts_failure() {
+    public void parse_missingPartsLinkAlias_failure() {
         assertParseFailure(parser, " " + PREFIX_MODULE_CODE + VALID_GE3238_MODULE_CODE,
                 OpenLinkCommand.MESSAGE_NOT_EDITED);
     }

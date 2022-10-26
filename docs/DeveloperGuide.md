@@ -250,6 +250,19 @@ The following activity diagram shows how the 'add link' feature works:
     * Cons:
         * Display order of links changes after each modification to the `HashSet` of links for a `Module`.
 
+Rationale behind current choice:
+
+Link Representation: Each link requires an alias and URL such that users are able to make sense of
+each URL present in Plannit. By enforcing the user to select their own alias,
+they are more likely to remember what each alias means in the long run.
+Aliases are also especially useful in differentiating between similar named
+URLs, i.e., same domain but the remainder of the url has no semantic meaning to the user (e.g. zoom links).
+
+Link Storage: 
+TreeSet was selected as to ensure a consistent sorting order across all modules such that users
+will spend the least amount of the time searching for their required alias for each module,
+thus boosting their productivity.
+
 ### Person component
 
 #### General design

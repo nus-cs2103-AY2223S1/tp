@@ -30,8 +30,16 @@ public class JsonAdaptedLinkTest {
     }
 
     @Test
-    public void toModelType_missingParts_throwsIllegalValueException() {
+    public void toModelType_missingPartsLinkUrl_throwsIllegalValueException() {
         JsonAdaptedLink invalidLink = new JsonAdaptedLink(VALID_MODULE_LINK_ALIAS + ";");
+        String expectedMessage = AddLinkCommandParser.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, invalidLink::toModelType);
+    }
+
+    @Test
+    public void toModelType_extraPartsLinkUrl_throwsIllegalValueException() {
+        JsonAdaptedLink invalidLink = new JsonAdaptedLink(VALID_MODULE_LINK_ALIAS + ";"
+                + VALID_MODULE_LINK_URL + ";" + VALID_MODULE_LINK_URL);
         String expectedMessage = AddLinkCommandParser.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, invalidLink::toModelType);
     }

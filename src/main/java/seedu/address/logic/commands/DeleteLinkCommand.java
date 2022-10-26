@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
@@ -9,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
@@ -59,7 +59,7 @@ public class DeleteLinkCommand extends Command {
             moduleToEdit =
                     model.getModuleUsingModuleCode(moduleCode, true);
         } catch (ModuleNotFoundException e) {
-            throw new CommandException(String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
+            throw new CommandException(String.format(Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST,
                     moduleCode.getModuleCodeAsUpperCaseString()));
         }
         assert moduleToEdit != null;

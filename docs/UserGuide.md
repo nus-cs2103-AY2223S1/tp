@@ -274,7 +274,7 @@ task within the task list of the module with the module code `CS2103T`.
 <br>
 
 ### 2.3. Links
-All links in Plannit are represented by a unique alias. 
+All links in Plannit are represented by a unique (case-sensitive) alias.
 
 Alias:
 * Alphanumeric and whitespace characters
@@ -292,7 +292,7 @@ Each link URL is to be paired with a link alias, both of which are unique within
 
 Multiple links can be added at once. Link aliases will be paired with link URLs according to their respective
 order of input (left-to-right).
-Shall a link URL or alias from a chained command be detected as invalid,
+If there exists a link URL or alias that is detected as invalid within a chained command,
 none of the links in the command will be added.
 
 This command will require three flags:
@@ -322,8 +322,8 @@ to the module with module code `CS2040`, represented by the link alias `nus mods
 You may delete link/s from a specific module using the `delete-link` command. 
 Links will be deleted by means of their corresponding alias.
 
-Multiple links can be deleted at once using their corresponding alias. 
-Shall a link alias from a chained command be detected as invalid,
+Multiple links can be deleted at once using their corresponding alias.
+If there exists a link alias that is detected as invalid within a chained command,
 none of the links in the command will be deleted.
 
 This command will require two flags:
@@ -355,7 +355,7 @@ An alternative way to open links is by means of clicking on their aliases on the
 Permissions from your operating system may be required for some users to use this feature.
 
 Multiple links can be opened at once using its corresponding alias according to their order of input
-(left to right). Shall a link alias from a chained command be detected as invalid,
+(left to right). If there exists a link alias that is detected as invalid within a chained command,
 the links to its left will be opened while the links to its right will not be opened.
 
 This command will require two flags:
