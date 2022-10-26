@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.Student;
@@ -172,6 +173,14 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedQuestion);
 
         addressBook.setQuestion(target, editedQuestion);
+    }
+
+    @Override
+    public void markQuestion(Index index) {
+        requireAllNonNull(index);
+
+        addressBook.markQuestion(index);
+        updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS);
     }
 
     //=========== Tutorial ================================================================================

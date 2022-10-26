@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.Student;
@@ -158,6 +159,11 @@ public interface Model {
      * book.
      */
     void setQuestion(Question target, Question editedQuestion);
+
+
+    void markQuestion(Index index);
+
+    void unmarkQuestion(Index index);
 
     /** Returns an unmodifiable view of the filtered question list */
     ObservableList<Question> getFilteredQuestionList();

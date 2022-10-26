@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.question.exceptions.DuplicateQuestionException;
 import seedu.address.model.question.exceptions.QuestionNotFoundException;
 
@@ -136,5 +137,15 @@ public class UniqueQuestionList implements Iterable<Question> {
             }
         }
         return true;
+    }
+
+    public void markQuestion(Index index) {
+        requireNonNull(index);
+
+    }
+
+    public void unmarkQuestion(Index index) {
+        requireNonNull(index);
+
     }
 }

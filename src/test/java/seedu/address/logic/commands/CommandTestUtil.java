@@ -19,6 +19,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.question.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.question.Question;
 import seedu.address.model.student.StuNameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -39,6 +41,9 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DESCRIPTION_Q1 = "What's the difference between composition and aggregation?";
+    public static final String VALID_DESCRIPTION_Q2 = "What's the difference between association roles and labels in " +
+            "UML diagrams?";
     public static final String VALID_TUTORIAL = "T08";
     public static final String VALID_CONTENT = "UML";
     public static final String VALID_TIME = "2022-10-01T08:00:00";
@@ -59,6 +64,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String DESCRIPTION_Q1 = " " + VALID_DESCRIPTION_Q1;
+    public static final String DESCRIPTION_Q2 = " " + VALID_DESCRIPTION_Q2;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -161,6 +168,20 @@ public class CommandTestUtil {
         model.updateFilteredStudentList(new StuNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the question at the given {@code targetIndex} in the
+     * {@code model}'s question list.
+     */
+    public static void showQuestionAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredQuestionList().size());
+
+        Question question = model.getFilteredQuestionList().get(targetIndex.getZeroBased());
+        final String[] splitName = question.getDescription().descriptionString.split("\\s+");
+        model.updateFilteredQuestionList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredQuestionList().size());
     }
 
 }
