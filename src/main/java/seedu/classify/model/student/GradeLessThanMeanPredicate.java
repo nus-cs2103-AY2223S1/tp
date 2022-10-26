@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 public class GradeLessThanMeanPredicate implements Predicate<Student> {
 
     /** The class that the Student belongs to */
-    private final String className;
+    private final Class className;
 
     /** The mean score of the class */
     private final double mean;
@@ -19,7 +19,7 @@ public class GradeLessThanMeanPredicate implements Predicate<Student> {
     /**
      * Creates a GradeLessThanMeanPredicate Object to compare the given exam.
      */
-    public GradeLessThanMeanPredicate(String className, double mean, String exam) {
+    public GradeLessThanMeanPredicate(Class className, double mean, String exam) {
         this.className = className;
         this.mean = mean;
         this.exam = exam;
@@ -27,6 +27,6 @@ public class GradeLessThanMeanPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
-        return (student.getClassName().toString().equals(className)) && (student.getExamScore(exam) < mean);
+        return (student.getClassName().equals(className)) && (student.getExamScore(exam) < mean);
     }
 }

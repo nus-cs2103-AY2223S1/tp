@@ -6,9 +6,11 @@ import seedu.classify.commons.core.Messages;
 import seedu.classify.logic.commands.exceptions.CommandException;
 import seedu.classify.logic.parser.CliSyntax;
 import seedu.classify.model.Model;
+import seedu.classify.model.student.Class;
 import seedu.classify.model.student.ClassPredicate;
 import seedu.classify.model.student.GradeComparator;
 import seedu.classify.model.student.GradeLessThanMeanPredicate;
+import seedu.classify.model.student.exceptions.ExamNotFoundException;
 
 /**
  * Calculates the mean of a particular exam from a particular class, using the given class and given exam. Returns the
@@ -25,8 +27,7 @@ public class ViewStatsCommand extends Command {
             + "Parameters: " + CliSyntax.PREFIX_CLASS + "CLASS " + CliSyntax.PREFIX_EXAM + "EXAM filter/FILTER\n"
             + "Example: " + COMMAND_WORD + " class/4A1 exam/SA1 filter/on";
 
-    private final ClassPredicate predicate;
-    private final String className;
+    private final Class className;
     private final String exam;
     private final boolean isFilterOn;
 
@@ -34,31 +35,40 @@ public class ViewStatsCommand extends Command {
      * creates a ViewStatsCommand to view the mean of a particular exam of a particular class,
      * using the specified fields.
      */
-    public ViewStatsCommand(ClassPredicate predicate, String className, String exam, boolean isFilterOn) {
-        this.predicate = predicate;
-        this.className = className.toUpperCase();
-        this.exam = exam.toUpperCase();
+    public ViewStatsCommand(Class className, String exam, boolean isFilterOn) {
+        this.className = className;
+        this.exam = exam;
         this.isFilterOn = isFilterOn;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.sortStudentRecord(new GradeComparator(exam));
-        model.updateFilteredStudentList(predicate);
-        double mean = model.calculateExamMean(exam);
-        if (isFilterOn) {
-            model.updateFilteredStudentList(new GradeLessThanMeanPredicate(className, mean, exam));
+        //execute a ViewClassCommand to get the class of interest
+        ViewClassCommand viewClassCommand = new ViewClassCommand(new ClassPredicate(className));
+        viewClassCommand.execute(model);
+        if (model.getFilteredStudentList().size() == 0) {
+            throw new CommandException(Messages.MESSAGE_STUDENT_CLASS_NOT_FOUND);
+        } else {
+            try {
+                model.sortStudentRecord(new GradeComparator(exam, className));
+                double mean = model.calculateExamMean(exam);
+                if (isFilterOn) {
+                    model.updateFilteredStudentList(new GradeLessThanMeanPredicate(className, mean, exam));
+                }
+                return new CommandResult(String.format(Messages.MESSAGE_CLASS_SORTED_BY_GRADE, className)
+                        + String.format(Messages.MESSAGE_DISPLAY_MEAN, exam, className, mean));
+            } catch (ExamNotFoundException e) {
+                throw new CommandException(e.getMessage()
+                        + "\nMean cannot be calculated, class will be sorted by alphabetical order");
+            }
         }
-        return new CommandResult(String.format(Messages.MESSAGE_CLASS_SORTED_BY_GRADE, className)
-                + String.format(Messages.MESSAGE_DISPLAY_MEAN, exam, className, mean));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ViewStatsCommand // instanceof handles nulls
-                && predicate.equals(((ViewStatsCommand) other).predicate)
                 && className.equals(((ViewStatsCommand) other).className)
                 && exam.equals(((ViewStatsCommand) other).exam)
                 && isFilterOn == ((ViewStatsCommand) other).isFilterOn); // state check

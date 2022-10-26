@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.classify.model.student.exceptions.ExamNotFoundException;
 import seedu.classify.model.tag.Exam;
 
 
@@ -77,21 +78,32 @@ public class Student {
         return Collections.unmodifiableSet(exams);
     }
 
-    public Exam getExam(String exam) {
+    public Exam getExam(String exam) throws ExamNotFoundException {
         assert exam.equals("CA1") || exam.equals("CA2") || exam.equals("SA1") || exam.equals("SA2");
         Iterator<Exam> examIterator = exams.iterator();
         Exam currExam = null;
         while (examIterator.hasNext()) {
-            currExam = examIterator.next();
-            if (currExam.getExamName().equals(exam)) {
+            Exam temp = examIterator.next();
+            if (temp.getExamName().equals(exam)) {
+                currExam = temp;
                 break;
             }
+        }
+        if (currExam == null) {
+            throw new ExamNotFoundException();
         }
         return currExam;
     }
 
+    /**
+     * Return the student's grade for the specified exam
+     */
     public int getExamScore(String exam) {
-        return getExam(exam).getScore();
+        try {
+            return getExam(exam).getScore();
+        } catch (ExamNotFoundException e) {
+            throw new ExamNotFoundException();
+        }
     }
 
     /**
