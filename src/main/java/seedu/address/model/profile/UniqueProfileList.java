@@ -10,7 +10,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
-import seedu.address.model.event.Event;
 import seedu.address.model.profile.exceptions.ProfileNotFoundException;
 import seedu.address.model.profile.exceptions.SimilarProfileException;
 
@@ -72,7 +71,7 @@ public class UniqueProfileList implements Iterable<Profile> {
      */
     public boolean contains(Profile toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameProfile);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**

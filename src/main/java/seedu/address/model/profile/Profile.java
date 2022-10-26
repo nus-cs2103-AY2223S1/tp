@@ -103,18 +103,6 @@ public class Profile implements Comparable<Profile> {
         return isSameTelegram(otherProfile) && !this.getTelegram().isEmpty();
     }
 
-    public boolean isSameProfile(Profile otherProfile) {
-        if (otherProfile == this) {
-            return true;
-        }
-
-        return otherProfile != null
-                && otherProfile.getName().equals(getName())
-                && otherProfile.getPhone().equals(getPhone())
-                && otherProfile.getEmail().equals(getEmail())
-                && otherProfile.getTelegram().equals(getTelegram());
-    }
-
     /**
      * Returns true if both profiles have the same identity and data fields.
      * This defines a stronger notion of equality between two profiles.
@@ -131,9 +119,9 @@ public class Profile implements Comparable<Profile> {
 
         Profile otherProfile = (Profile) other;
         return otherProfile.getName().equals(getName())
-                && otherProfile.getPhone().equals(getPhone())
-                && otherProfile.getEmail().equals(getEmail())
-                && otherProfile.getTelegram().equals(getTelegram())
+                && isSamePhone(otherProfile)
+                && isSameEmail(otherProfile)
+                && isSameTelegram(otherProfile)
                 && otherProfile.getTags().equals(getTags());
     }
 

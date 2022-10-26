@@ -41,6 +41,9 @@ public class Attendees {
         return Collections.unmodifiableList(attendees);
     }
 
+    /**
+     * Adds the specified profile if it does not already exist in the list.
+     */
     public void add(Profile profile) {
         if (!hasAttendee(profile)) {
             this.attendees.add(profile);

@@ -5,6 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -12,10 +16,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Deletes attendees by their displayed index in the list from an existing event in NUScheduler.
@@ -43,6 +43,10 @@ public class DeleteProfilesFromEventCommand extends EventCommand {
     private final Index eventIndex;
     private final Set<Index> profileIndexes;
 
+    /**
+     * @param eventIndex of the event in the filtered event list to delete profiles from
+     * @param profileIndexes list of profile indexes from the event's list of attendees to delete
+     */
     public DeleteProfilesFromEventCommand(Index eventIndex, Set<Index> profileIndexes) {
         requireNonNull(eventIndex);
         requireNonNull(profileIndexes);

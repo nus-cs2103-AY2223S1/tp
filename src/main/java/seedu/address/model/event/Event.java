@@ -189,7 +189,7 @@ public class Event implements Comparable<Event> {
             tags.forEach(builder::append);
         }
 
-        if(!attendees.isEmpty()) {
+        if (!attendees.isEmpty()) {
             builder.append(System.lineSeparator())
                     .append(attendees);
         }
