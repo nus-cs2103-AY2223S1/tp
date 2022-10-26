@@ -18,6 +18,10 @@ public class OpenCustomerCommandParser implements Parser<OpenCustomerCommand> {
      */
     public OpenCustomerCommand parse(String args) throws ParseException {
         try {
+            String trimmedArgs = args.trim();
+            if (trimmedArgs.isEmpty()) {
+                return new OpenCustomerCommand();
+            }
             Index index = ParserUtil.parseIndex(args);
             return new OpenCustomerCommand(index);
         } catch (ParseException pe) {
