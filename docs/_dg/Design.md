@@ -12,7 +12,7 @@ The **_Architecture Diagram_** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+#### Main components of the architecture
 
 **`Main`** has two classes called [`Main`]({{ page.master_branch }}/{{ page.main_src }}/Main.java) and [`MainApp`]({{ page.master_branch }}/{{ page.main_src }}/MainApp.java). It is responsible for,
 
@@ -28,7 +28,7 @@ The rest of the App consists of four components.
 * [`Model`](#model-component): Holds the data of the App in memory.
 * [`Storage`](#storage-component): Reads data from, and writes data to, the hard disk.
 
-**How the architecture components interact with each other**
+#### How the architecture components interact with each other
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `del 1`. This deletes the first item from the List Box.
 
