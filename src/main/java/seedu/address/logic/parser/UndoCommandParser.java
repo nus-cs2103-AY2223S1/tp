@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -7,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new {@code UndoCommand} object
  */
-public class UndoCommandParser {
+public class UndoCommandParser implements Parser {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code UndoCommand}
      * and returns a {@code UndoCommand} object for execution.
@@ -15,7 +17,8 @@ public class UndoCommandParser {
      */
     public UndoCommand parse(String args) throws ParseException {
         if (!args.isEmpty()) {
-            throw new ParseException(UndoCommand.MESSAGE_USAGE);
+            throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, UndoCommand.MESSAGE_USAGE));
         }
         return new UndoCommand();
     }
