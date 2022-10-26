@@ -43,14 +43,14 @@ public class PickCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        //TODO: Figure out how to update module data without need to ask user to key in sem
         Optional<UserModule> toUpdate= model.getUserModule(toPick);
 
         if (toUpdate.isEmpty()) {
             throw new CommandException(MESSAGE_MODULE_MISSING);
         }
 
-        toUpdate.get().setTutorial(classNo);
+        toUpdate.get().setLessons(lessonType, classNo);
+
         //TODO: Update lesson details for correct UserModule in the list
         String addedDetails = String.format("%s %s %s", toPick, lessonType, classNo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, addedDetails.toUpperCase()),

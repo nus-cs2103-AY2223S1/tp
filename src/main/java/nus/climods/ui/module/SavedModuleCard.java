@@ -39,7 +39,7 @@ public class SavedModuleCard extends UiPart<Region> {
         super(FXML);
         this.module = module;
         moduleCode.setText(module.getCode());
-        tutorial.setText(module.getTutorial());
+        tutorial.setText(module.getLessons()); //TODO: Change back later
         lecture.setText(module.getLecture());
         ayData.getChildren()
             .add(new SemesterPill(module.getSelectedSemester(), AY_SEMESTER_BG_COLOR, AY_SEMESTER_TEXT_COLOR));

@@ -1,5 +1,7 @@
 package nus.climods.model.module;
 
+import java.util.HashMap;
+
 import org.openapitools.client.model.SemestersEnum;
 
 /**
@@ -11,6 +13,9 @@ public class UserModule {
     private SemestersEnum selectedSemester;
     private String tutorial = "<Not Selected>"; // TODO placeholder
     private String lecture = "<Not Selected>"; // TODO placeholder
+
+    //Hashmap to store Lesson Data
+    private HashMap<LessonTypeEnum, String> lessons = new HashMap<>();
 
 
     /**
@@ -72,6 +77,32 @@ public class UserModule {
      */
     public SemestersEnum getSelectedSemester() {
         return this.selectedSemester;
+    }
+
+    /**
+     * Allows user to set Lessons type, storing and updating them in the HashMap.
+     * @param lessonType
+     * @param classNo
+     */
+    public void setLessons(LessonTypeEnum lessonType, String classNo) {
+        if (lessons.containsKey(lessonType)) {
+            lessons.replace(lessonType, classNo);
+        } else {
+            lessons.put(lessonType, classNo);
+        }
+    }
+
+    /**
+     * Returns list of lessons.
+     * @return List of lessons
+     */
+    //TODO: Change this later when fixing UI
+    public String getLessons() {
+        String str = "";
+        for (LessonTypeEnum k : lessons.keySet()) {
+            str += k.toString() + "Code: " + lessons.get(k) + " ";
+        }
+        return str;
     }
 
     // TEMP
