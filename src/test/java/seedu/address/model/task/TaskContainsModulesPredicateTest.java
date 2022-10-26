@@ -15,8 +15,8 @@ public class TaskContainsModulesPredicateTest {
 
     @Test
     public void equals() {
-        List<Module> firstPredicateModuleList = Collections.singletonList(new Module("MOD1"));
-        List<Module> secondPredicateModuleList = Arrays.asList(new Module("MOD1"), new Module("MOD2"));
+        List<String> firstPredicateModuleList = Collections.singletonList("MOD1");
+        List<String> secondPredicateModuleList = Arrays.asList("MOD1", "MOD2");
 
         TaskContainsModulesPredicate firstPredicate = new TaskContainsModulesPredicate(firstPredicateModuleList);
         TaskContainsModulesPredicate secondPredicate = new TaskContainsModulesPredicate(secondPredicateModuleList);
@@ -42,13 +42,18 @@ public class TaskContainsModulesPredicateTest {
     public void test_moduleContainsModules_returnsTrue() {
         // One keyword
         TaskContainsModulesPredicate predicate =
-                new TaskContainsModulesPredicate(Collections.singletonList(new Module("Mod1")));
+                new TaskContainsModulesPredicate(Collections.singletonList("Mod1"));
         assertTrue(predicate.test(new Task(new TaskName("Science Math homework"), new Module("Mod1"),
                 new Deadline("2022-05-05 15:04"), new Status(false))));
 
         // Mixed-case keywords
-        predicate = new TaskContainsModulesPredicate(Collections.singletonList(new Module("mOd2")));
+        predicate = new TaskContainsModulesPredicate(Collections.singletonList("mOd2"));
         assertTrue(predicate.test(new Task(new TaskName("Science Math homework"), new Module("MOD2"),
+                new Deadline("2022-05-05 15:04"), new Status(false))));
+
+        // Matching substring
+        predicate = new TaskContainsModulesPredicate(Collections.singletonList("1521"));
+        assertTrue(predicate.test(new Task(new TaskName("Science Math homework"), new Module("MA1521"),
                 new Deadline("2022-05-05 15:04"), new Status(false))));
     }
 
@@ -60,8 +65,13 @@ public class TaskContainsModulesPredicateTest {
                 new Deadline("2022-05-05 15:04"), new Status(false))));
 
         // Non-matching keyword
-        predicate = new TaskContainsModulesPredicate(Collections.singletonList(new Module("BZ1101")));
+        predicate = new TaskContainsModulesPredicate(Collections.singletonList("BZ1101"));
         assertFalse(predicate.test(new Task(new TaskName("Science Math homework"), new Module("Mod1"),
+                new Deadline("2022-05-05 15:04"), new Status(false))));
+
+        // Non matching substring
+        predicate = new TaskContainsModulesPredicate(Collections.singletonList("1231"));
+        assertFalse(predicate.test(new Task(new TaskName("Science Math homework"), new Module("MA1521"),
                 new Deadline("2022-05-05 15:04"), new Status(false))));
     }
 }

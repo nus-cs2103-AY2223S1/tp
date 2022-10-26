@@ -10,32 +10,26 @@ import seedu.address.model.module.Module;
  * Tests if any of a {@code Person}'s {@code Module} matches any of the keywords given.
  */
 public class ModuleTakenPredicate implements Predicate<Person> {
-    private final List<Module> modules;
+    private final List<String> keywords;
 
-    public ModuleTakenPredicate(List<Module> modules) {
-        this.modules = modules;
+    public ModuleTakenPredicate(List<String> keywords) {
+        this.keywords = keywords;
     }
 
     @Override
     public boolean test(Person person) {
         Set<Module> personMods = person.getModules();
 
-        for (Module mod : modules) {
-            for (Module takenModule : personMods) {
-                if (mod.equals(takenModule)) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        return keywords.stream().anyMatch(keyword -> personMods.stream()
+                .anyMatch(module -> module.moduleName.toUpperCase()
+                        .contains(keyword.toUpperCase())));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same instance
                 || (other instanceof ModuleTakenPredicate// instanceof handles nulls
-                && modules.equals(((ModuleTakenPredicate) other).modules)); // state check
+                && keywords.equals(((ModuleTakenPredicate) other).keywords)); // state check
     }
 
 }

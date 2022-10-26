@@ -60,6 +60,11 @@ public class TaskContainsKeywordsPredicateTest {
         predicate = new TaskContainsKeywordsPredicate(Arrays.asList("sCIeNce", "maTH"));
         assertTrue(predicate.test(new Task(new TaskName("Science Math homework"), new Module("MA1521"),
                 new Deadline("2022-05-05 15:04"), new Status(false))));
+
+        // Matching substring
+        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("sci"));
+        assertTrue(predicate.test(new Task(new TaskName("Science Math homework"), new Module("MA1521"),
+                new Deadline("2022-05-05 15:04"), new Status(false))));
     }
 
     @Test
@@ -72,6 +77,11 @@ public class TaskContainsKeywordsPredicateTest {
         // Non-matching keyword
         predicate = new TaskContainsKeywordsPredicate(Arrays.asList("English"));
         assertFalse(predicate.test(new Task(new TaskName("Science homework"), new Module("MA1521"),
+                new Deadline("2022-05-05 15:04"), new Status(false))));
+
+        // Non-matching substring
+        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("sca"));
+        assertFalse(predicate.test(new Task(new TaskName("Science Math homework"), new Module("MA1521"),
                 new Deadline("2022-05-05 15:04"), new Status(false))));
     }
 }

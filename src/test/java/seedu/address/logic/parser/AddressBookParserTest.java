@@ -27,7 +27,6 @@ import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.Module;
 import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.ModuleTakenPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -96,9 +95,7 @@ public class AddressBookParserTest {
         FindContactCommand command = (FindContactCommand) parser.parseCommand(
                 FindContactCommand.COMMAND_WORD + " m/ "
                         + moduleNames.stream().collect(Collectors.joining(" ")));
-        List<Module> modules = moduleNames.stream()
-                .map(moduleName -> new Module(moduleName)).collect(Collectors.toList());
-        assertEquals(new FindContactCommand(new ModuleTakenPredicate(modules)), command);
+        assertEquals(new FindContactCommand(new ModuleTakenPredicate(moduleNames)), command);
     }
 
     @Test
@@ -119,13 +116,13 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_findTaskByModule() throws Exception {
-        ArrayList<Module> modules = new ArrayList<>();
-        modules.add(new Module("foo1231"));
-        modules.add(new Module("bar1101s"));
-        modules.add(new Module("baz2100"));
+        ArrayList<String> keywords = new ArrayList<>();
+        keywords.add("foo1231");
+        keywords.add("bar1101s");
+        keywords.add("baz2100");
         FindTaskCommand command = (FindTaskCommand) parser.parseCommand(
                 FindTaskCommand.COMMAND_WORD + " m/ " + "foo1231 bar1101s baz2100");
-        assertEquals(new FindTaskCommand(new TaskContainsModulesPredicate(modules)), command);
+        assertEquals(new FindTaskCommand(new TaskContainsModulesPredicate(keywords)), command);
     }
 
     @Test
