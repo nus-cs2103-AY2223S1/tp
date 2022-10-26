@@ -79,12 +79,12 @@ public class MainApp extends Application {
         try {
             Optional<ReadOnlyFoodRem> foodRemOptional = storage.readFoodRem();
             if (foodRemOptional.isEmpty()) {
-                initialMessage = "Data file not found. Will be starting with a sample FoodRem";
+                initialMessage = "Data file not found. Will be starting with a sample FoodRem.";
                 logger.info(initialMessage);
             }
             initialData = foodRemOptional.orElseGet(SampleDataUtil::getSampleFoodRem);
         } catch (DataConversionException e) {
-            initialMessage = "Data file not in the correct format. Will be starting with an empty FoodRem";
+            initialMessage = "Data file not in the correct format. Will be starting with an empty FoodRem.";
             logger.warning(initialMessage);
             initialData = new FoodRem();
         } catch (IOException e) {
