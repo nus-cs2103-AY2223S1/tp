@@ -1,10 +1,10 @@
 package seedu.address.model.reminder;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a Reminder's priority in the ModQuik.
@@ -22,9 +22,9 @@ public class ReminderPriority {
 
     public final String priority;
     public final int priorityValue;
-    Map<String, Integer> map = new HashMap<> (Map.of(
-            "HIGH", 1, 
-            "MEDIUM", 2, 
+    private Map<String, Integer> priorityValueMap = new HashMap<>(Map.of(
+            "HIGH", 1,
+            "MEDIUM", 2,
             "LOW", 3));
 
     /**
@@ -36,9 +36,9 @@ public class ReminderPriority {
         requireNonNull(priority);
         checkArgument(isValidPriority(priority), MESSAGE_CONSTRAINTS);
         this.priority = priority;
-        this.priorityValue = map.get(priority);
+        this.priorityValue = priorityValueMap.get(priority);
     }
-    
+
     public int getPriorityValue() {
         return this.priorityValue;
     }

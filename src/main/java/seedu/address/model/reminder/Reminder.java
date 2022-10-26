@@ -10,7 +10,7 @@ import seedu.address.model.datetime.Datetime;
  * Represents a Reminder in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Reminder implements Comparable<Reminder>{
+public class Reminder implements Comparable<Reminder> {
 
     // Identity fields
     private final ReminderName name;
@@ -70,7 +70,7 @@ public class Reminder implements Comparable<Reminder>{
     public boolean getStatus() {
         return isDone.getStatus();
     }
-    
+
     public int getPriorityValue() {
         return priority.getPriorityValue();
     }
