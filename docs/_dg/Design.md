@@ -19,14 +19,14 @@ Given below is a quick overview of main components and how they interact with ea
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[`Commons`](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [`UI`](#ui-component): The UI of the App.
+* [`Logic`](#logic-component): The command executor.
+* [`Model`](#model-component): Holds the data of the App in memory.
+* [`Storage`](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
