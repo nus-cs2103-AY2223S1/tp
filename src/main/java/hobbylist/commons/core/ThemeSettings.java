@@ -15,7 +15,8 @@ public class ThemeSettings implements Serializable {
         DARK,
         LIGHT,
         STAR,
-        SKY
+        SKY,
+        TREE
     }
 
     private final Theme theme;

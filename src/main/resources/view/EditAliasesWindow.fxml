@@ -20,8 +20,8 @@
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@EditAliasesWindow.css" />
                 <URL value="@DarkTheme.css" />
+                <URL value="@EditAliasesWindow.css" />
             </stylesheets>
 
             <VBox fx:id="editAliasesContainer" alignment="CENTER">
@@ -39,7 +39,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" />
                     </rowConstraints>
                     <columnConstraints>
-                        <ColumnConstraints maxWidth="92.66668701171875" minWidth="10.0" prefWidth="58.66668701171875" />
+                        <ColumnConstraints maxWidth="92.66668701171875" minWidth="10.0" prefWidth="80" />
                         <ColumnConstraints maxWidth="142.6666259765625" minWidth="10.0" prefWidth="141.33331298828125" />
                     </columnConstraints>
                     <children>
