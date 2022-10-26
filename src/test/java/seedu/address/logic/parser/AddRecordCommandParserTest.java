@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECORD_DATA_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_RECORD_DATA_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_RECORD_DATE_DESC;
@@ -19,8 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddRecordCommand;
 import seedu.address.model.record.Record;
-
-
 
 public class AddRecordCommandParserTest {
 
