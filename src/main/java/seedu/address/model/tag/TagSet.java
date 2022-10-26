@@ -76,4 +76,9 @@ public class TagSet implements Iterable<Tag> {
     public int hashCode() {
         return internalSet.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return Tag.toString(internalSet);
+    }
 }

@@ -148,6 +148,11 @@ public class ModelManager implements Model {
     // =========== Tags ===========================================================
 
     @Override
+    public String getAllTagsInPrintableFormat() {
+        return addressBook.getAllTagsInPrintableFormat();
+    }
+
+    @Override
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
         return addressBook.hasTag(tag);

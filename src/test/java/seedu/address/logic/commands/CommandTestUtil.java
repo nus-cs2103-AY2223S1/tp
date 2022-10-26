@@ -223,6 +223,11 @@ public class CommandTestUtil {
         }
 
         @Override
+        public String getAllTagsInPrintableFormat() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void addTag(Tag tag) {
             throw new AssertionError("This method should not be called");
         }
