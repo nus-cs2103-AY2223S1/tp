@@ -16,10 +16,6 @@ Class CommandBox
 Class AddCommandPopupWindow
 }
 
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
-}
-
 package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
 }

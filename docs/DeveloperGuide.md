@@ -71,9 +71,22 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+Given below is a partial class diagram of the `Ui` component.
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+<img src="images/UiClassDiagram.png" width="600"/>
+
+The UI consists of a `MainWindow` that is made up of parts including `CommandBox`, `ResultDisplay`, `StatusBarFooter`.
+The `mainWindow` also has `HelpWindow` and `AddCommandPopupWindow` that will be shown to the user when required.
+Detailed implementation of the `AddCommandPopupWindow` is written [here](#pop-up-window-for-add-command).
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Furthermore, the `MainWindow` has different list panels such as `BuyerListPanel` and `PetListPanel` as shown below.
+List panels are used to fill the `MainWindow` for display. Which list panel is displayed depends on the input `Command`.
+Each list panel can have any number of the corresponding card. For example, `BuyerListPanel` can have any number of `BuyerCard`.
+All the list panels and cards inherit from the abstract `UiPart`, but **not shown** in the diagram below to reduce graph complexity.
+Detailed implementation of the list panel can be found [here](#display-of-person-list).
+
+<img src="images/UiClassDiagram1.png" width="600"/>
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -254,7 +267,7 @@ We regard a string as a base 26 number (`'a'` - `'z'`). Every time the least sig
 
 For efficiency, the ID generator is implemented by a `List` of `char`, which avoids frequent string copying and concatenating. `List` facilitates fast in-place edit of a single `char` at a single index as well.
 
-### Display  of person list
+### Display of person list
 Initially, there is only one `PersonListPanel` that displays the person list in the ui. However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`. Therefore, it is necessary to have a separate list panel for each of these three type of `Person`.
 
 In addition, buyers, suppliers and deliverers have comprehensive details on the orders or pets that they possess, besides their contact information. A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not helpful in helping the user obtain information quickly. Therefore, the ui needs to be optimised for the situation where there is plentiful information that the user wants to know about a single `Person`.
@@ -281,6 +294,8 @@ By modifying the `PersonCard` to the three types of cards stated above, divided 
 
 Given below is a scenario that shows how the new ui responds to a `ListCommand`.
 // TODO: add description here
+
+### Pop-up window for add command
 
 --------------------------------------------------------------------------------------------------------------------
 
