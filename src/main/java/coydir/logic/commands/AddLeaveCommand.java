@@ -34,7 +34,7 @@ public class AddLeaveCommand extends Command {
 
     public static final String MESSAGE_LEAVE_ADDED_SUCCESS = "Leave added successfully for %1$s";
     public static final String MESSAGE_DUPLICATE_LEAVE = "This leave period already exists";
-    public static final String MESSAGE_OVERLAPPING_LEAVE = "You cannot have overlapping leaves";
+    public static final String MESSAGE_OVERLAPPING_LEAVE = "Overlapping leaves are not allowed";
     private EmployeeId targetId;
     private Leave leave;
 
