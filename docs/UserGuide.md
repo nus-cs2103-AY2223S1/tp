@@ -124,22 +124,47 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords or through their given ID.
+Finds all persons matching the specified criteria and the specified keywords.
 
-Format: `find KEYWORD/ID [MORE_KEYWORDS/MORE_ID]`
+Format: `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name/ID is searched.
+* Only name, class and subject can be searched.
 * Only full words or ID will be matched e.g. `Han` will not match `Hans` / `123` will not match `1234`
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `findPersonality hard` returns `hard` and `Hardworking`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/alice bob charlie c/1A s/English` returns `alice` who is in 1A and taking English
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Sorting persons by grade: `sort`
+
+Sort all student by grade in ascending or descending order.
+
+Format: `sort asc` or `sort desc`
+
+* The search is case-insensitive. e.g. `sort ASC` will return the same result as `sort asc`
+* The returned list is sorted by grade which refers to the total percentage the student scored in all the subjects.
+
+
+Examples:
+* `sort DESC` returns list of students whose grades are in descending order
+
+### Add remark to a student: `remark`
+
+Adds a remark to a student by index.
+
+Format: `remark INDEX [REMARK]`
+
+* One remark can be added to one student at a time.
+
+
+Examples:
+* `remark 1 she is active in class` adds the remark `she is active in class` to the student with index 1 in the list
 
 ### Deleting a person : `delete`
 
@@ -202,7 +227,9 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX/ID`<br> e.g., `delete index/1`, `delete id/2356`
 **Edit** | `edit INDEX/ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit index/2 n/James Lee e/jameslee@example.com`,`edit id/1234 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD/ID [MORE_KEYWORDS/MORE_ID]`<br> e.g., `find James Jake`, `find 1234`
+**Find** | `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)`<br> e.g., `find n/alice bob charlie c/1A s/English`, `find s/English Math`
+**Sort** | `sort asc` or `sort desc`
+**Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`
 **List** | `list`
 **Help** | `help`
 
