@@ -354,8 +354,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student           | save my data to a file                    | access the data on different devices                                       |
 | `* *`    | technical student | close the App using a command             | close the App easily                                                       |
 
-*{More to be added}*
-
 ### Use cases
 (For all use cases below, the **System** is Mass Linkers and the **Actor** is the student, unless specified otherwise)
 
@@ -388,9 +386,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 4a. The specified batchmate is not found.
-    * a1. Mass Linkers detects an error in specified batchmate (non valid index).
-    * a2. Mass Linkers requests for a valid batchmate.
-    * Step a1 is repeated until a valid index is given. \
+    * 4a1. Mass Linkers detects an error in specified batchmate (non valid index).
+    * 4a2. Mass Linkers requests for a valid batchmate.
+    * Step 4a1 is repeated until a valid index is given. \
       Use case resumes from step 3.
 
 * *a. At any time, Student chooses to close Mass Linkers.
@@ -409,13 +407,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. Mass Linkers detects an invalid input. (No interests specified by the student)
-* 1a1. Mass Linkers requests for at least one interest to be specified.
-* 1a2. Student inputs new interests.
-* Steps 1a1-1a2 are repeated until input is valid.
-  \
-  Use case resumes from step 2.
+    * 1a1. Mass Linkers requests for at least one interest to be specified.
+    * 1a2. Student inputs new interests.
+    * Steps 1a1-1a2 are repeated until input is valid.
+    \
+    Use case resumes from step 1.
 * *a. At any time, Student chooses to close Mass Linkers.
-    * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
 
@@ -431,14 +428,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list of batchmates is empty.
-* a1. Mass Linkers warns adding an interest is invalid.
-  \
-  Use case ends.
+  * 2a1. Mass Linkers warns adding an interest is invalid.
+    \
+    Use case ends.
 * 2b. Mass Linkers detects an error in specified batchmate (non valid index).
-    * b1. Mass Linkers requests for new batchmate details.
-    * Step b1 is repeated until a batchmate is found.
-      \
-      Use case resumes from step 2.
+  * 2b1. Mass Linkers requests for new batchmate details.
+  * Step 2b1 is repeated until a batchmate is found.
+    \
+    Use case resumes from step 2.
 
 * *a. At any time, Student chooses to close Mass Linkers.
     * a1. Mass Linkers updates the storage file.
@@ -457,12 +454,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list of modules is empty.
-    * a1. Mass Linkers warns marking a module is invalid.
+    * 2a1. Mass Linkers warns marking a module is invalid.
       \
       Use case ends.
 * 2b. Mass Linkers detects the specified module is invalid (out of range).
-    * b1. Mass Linkers requests for new module.
-    * Step b1 is repeated until a module is found.
+    * 2b1. Mass Linkers requests for new module.
+    * Step 2b1 is repeated until a module is found.
       \
       Use case resumes from step 2.
 

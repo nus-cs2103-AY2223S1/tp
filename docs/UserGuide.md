@@ -138,7 +138,19 @@ Format: `addInt INDEX INTEREST [MORE_INTERESTS]...`
 
 Examples:
 * `addInt 1 baking` adds the interest `baking` to the 1st batchmate in the currently displayed list.
-* `addInt 3 baking tennis netflix` adds the interests `baking`, `tennis` and `netflix` to the 3rd batchmate in the currently displayed list.
+* `addInt 3 baking tennis` adds the interests `baking` and `tennis` to the 3rd batchmate in the currently displayed list.
+
+### Delete interests: `deleteInt`
+
+Delete interest(s) from a batchmate.
+
+Format: `deleteInt INDEX INTEREST [MORE_INTERESTS]...`
+
+* Deletes interest(s) from the batchmate at the specific INDEX in the __currently displayed list__. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+
+Examples:
+* `deleteInt 1 baking` deletes the interest `baking` from the 1st batchmate in the currently displayed list.
+* `deleteInt 3 baking tennis` deletes the interests `baking` and `tennis` from the 3rd batchmate in the currently displayed list.
 
 ### Finding batchmates by interests: `findInt`
 
@@ -296,7 +308,8 @@ Module prefix refers to the first two characters of every module name.
 | **List**                         | `list`                                                                                                                                                                                                       |
 | **Edit**                         | `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]...`<br> Example: `edit 1 g/john_doe p/91234567 e/johndoe@example.com`                                                          |
 | **Find**                         | `find KEYWORD [MORE_KEYWORDS]...` <br> Example: `find Alex david`                                                                                                                                            |
-| **Add interest**                 | `addInt INDEX INTEREST [MORE_INTERESTS]...` <br> Example: `addInt 3 baking tennis netflix`                                                                                                                   |
+| **Add interest**                 | `addInt INDEX INTEREST [MORE_INTERESTS]...` <br> Example: `addInt 3 baking tennis`                                                                                                                           |
+| **Delete interest**              | `deleteInt INDEX INTEREST [MORE_INTERESTS]...` <br> Example: `deleteInt 3 baking tennis`                                                                                                                     |
 | **Find by interest**             | `findInt INTEREST [MORE_INTEREST]...` <br> Example: `findInt baking tennis`                                                                                                                                  |
 | **Delete**                       | `delete INDEX` <br> Example: `delete 2`                                                                                                                                                                      |
 | **Add module**                   | `mod add INDEX MODULE [MORE_MODULES]...` <br> Example: `mod add 3 cs2100 cs2103t cs2101 cs2105`                                                                                                              |
