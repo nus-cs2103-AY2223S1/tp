@@ -38,6 +38,7 @@ public class FindBillCommand extends Command {
      * @param namePredicate Optional predicate to filter bills by name.
      * @param paymentStatusPredicate Optional predicate to filter bills by payment status.
      * @param billDatePredicate Optional predicate to filter bills by bill date.
+     * @param amountPredicate Optional predicate to filter bills by amount.
      */
     public FindBillCommand(Optional<Predicate<Name>> namePredicate,
                            Optional<Predicate<PaymentStatus>> paymentStatusPredicate,
