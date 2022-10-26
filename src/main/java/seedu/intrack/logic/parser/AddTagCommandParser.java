@@ -3,15 +3,14 @@ package seedu.intrack.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.commons.exceptions.IllegalValueException;
 import seedu.intrack.logic.commands.AddTagCommand;
 import seedu.intrack.logic.parser.exceptions.ParseException;
 import seedu.intrack.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Parses input arguments and creates a new {@code AddTagCommand} object
  */

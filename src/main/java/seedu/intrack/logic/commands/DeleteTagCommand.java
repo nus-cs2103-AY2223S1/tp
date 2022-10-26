@@ -14,7 +14,7 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.tag.Tag;
 
 /**
- * Adds a new Tag to the selected Internship.
+ * Deletes a Tag from the selected Internship.
  */
 public class DeleteTagCommand extends Command {
     public static final String COMMAND_WORD = "deltag";
@@ -84,7 +84,7 @@ public class DeleteTagCommand extends Command {
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         if (command.equals("CLEAR")) {
-            return  new CommandResult(MESSAGE_CLEAR_TAGS_SUCCESS);
+            return new CommandResult(MESSAGE_CLEAR_TAGS_SUCCESS);
         } else {
             return new CommandResult(MESSAGE_DELETE_TAG_SUCCESS);
         }
