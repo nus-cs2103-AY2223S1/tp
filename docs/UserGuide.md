@@ -2,6 +2,9 @@
 layout: page
 title: User Guide
 ---
+<div style="text-align:center;">
+<img src="images/classifyLogo.png">
+</div>
 
 * Table of Contents
 {:toc}
@@ -12,26 +15,58 @@ title: User Guide
 
 ### 1.1 What is Class-ify?
 
-Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to easily monitor 
-their students’ academic progress. Teachers can generate exam statistics for each class, and Class-ify quickly flags out
-students who require more support for contacting.
+Class-ify is a **class management application** built specially for **Ministry of Education (MOE) teachers** to 
+**monitor their student's academic progress easily**. Teachers can **generate exam statistics** for each class, 
+and Class-ify quickly **flags out students** who require more support for contacting.
 
 ### 1.2 Who is this guide for?
 
-Are you a teacher who is looking to use Class-ify to manage your classes? Well, look no further! This user guide will
+Are you a teacher looking to use Class-ify to manage your classes? Well, look no further! This user guide will
 get you started in no time and be your guiding light as you navigate through Class-ify's features. For a quick start
-guide, head over to [Quick Start](#2-quick-start) or to learn about Class-ify's features, head over to
-[Features](#3-features) for more information.
+guide, head over to [Quick Start](#3-quick-start) or to learn about Class-ify's features, head over to
+[Features](#4-features) for more information.
 
-## 2 How to use this user guide
+## 2. How to use this user guide
 
-Class-ify uses a command line interface, which may be new to some users. We strongly recommend new users to look through
-the user guide thoroughly to understand how to use Class-ify. We have also included some links to navigate around the
-user guide more easily for related information. This guide also contains some tips and cautions for you to take note of
-when using our application. Additionally, we have provided a link back to the table of contents at the end of each
-section. We suggest using our table of contents to jump around and access information that you need quickly.
+Class-ify uses a Command Line Interface (CLI), which may be new to some users. If you are a new user, we strongly recommend you to look through
+the user guide from start to end to fully understand how to use Class-ify. However, you may also choose to skip to the relevant sections described below:
+* Refer to our <a href="#top">Table of Contents</a> to easily navigate between sections of the User Guide. There is also a link at the end of every section to bring you back to the Table of Contents.
+* Refer to our [Quick Start](#3-quick-start) guide to learn how to set-up Class-ify.
+* Refer to our [Features](#4-features) section to learn in detail the different features and commands available in Class-ify.
+* Refer to our [Command Summary](#6-command-summary) to have a quick overview of the different commands and their respective formats.
+* Refer to our [Glossary](#7-glossary) to learn key terms that are used in this User Guide.
 
-### 2.1 Symbols
+--------------------------------------------------------------------------------------------------------------------
+
+## 3. **Quick start**
+
+1. Ensure you have Java `11` or above installed in your Computer.
+
+2. Download the latest `classify.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-2/tp/releases).
+
+3. Copy the file to the folder you want to use as the **home folder** for *Class-ify*.
+
+4. Double-click the file to start the app. The Graphical User Interface (GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+   * **`addstud`**`nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 exam/CA1 90` : Adds a new student named `John Doe` with his details to *Class-ify*.
+
+   * **`viewAll`** : Shows a list of all student records.
+
+   * **`delete`**`n/Jonathan Tan` : Deletes the student record with name of student as 'Jonathan Tan'.
+
+   * **`clear`** : Clears all student records.
+
+   * **`exit`** : Exits the application.
+
+Click <a href="#top">here</a> to return to the top.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 4. **Features**
 Before you begin reading, here are some special notations to help you along the way!
 
 **Tips**
@@ -59,45 +94,26 @@ will delete all data stored locally and this action is irreversible. You will lo
 :exclamation: Stop and read carefully when you see this!
 </div>
 
-### 2.2 Command format
+<div markdown="span" class="alert alert-info">:information_source:
+**Notes on the Command Format:** <br>
 
-*To be updated*
-
-### 2.3 Command parameters
-
-*To be updated*
-
---------------------------------------------------------------------------------------------------------------------
-
-## 3. **Quick start**
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-2. Download the latest `classify.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-2/tp/releases).
-
-3. Copy the file to the folder you want to use as the **home folder** for *Class-ify*.
-
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`addstud`**`nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 exam/CA1 90` : Adds a new student named `John Doe` with his details to *Class-ify*.
-
-   * **`viewAll`** : Shows a list of all student records.
-
-   * **`delete`**`n/Jonathan Tan` : Deletes the student record with name of student as 'Jonathan Tan'.
-
-   * **`clear`** : Clears all student records.
-
-   * **`exit`** : Exits the application.
-
-Click <a href="#top">here</a> to return to the top.
-
---------------------------------------------------------------------------------------------------------------------
-
-## 4. **Features**
+* **Command Words**
+  * Command words and prefixes are case-sensitive. <br>
+  e.g. `eXit` will not be accepted as the `exit` command.
+  * Only the last occurrence of a repeated prefix input will be taken.
+  e.g. `edit 1 nm/Jonathan nm/Ethan nm/Alice` is the same as `edit 1 nm/Alice`.
+* **Parameters**
+  * Words in `UPPER_CASE` refers to input from the user. <br>
+  e.g. For the `viewClass` command, the command format is `viewClass CLASS`<br>
+  `CLASS` refers to the user input which can be `viewClass 17S68`.
+  * Parameters can be written in any order
+  e.g. `edit 1 nm/Jack id/111A` is the same as `edit 1 id/111A nm/Jack`.
+  * Additional parameters for commands that do not require parameters will be ignored.<br>
+  e.g. `exit hello123` will be accepted as the `exit` command.
+  * Optional parameters are indicated by square brackets `[]`. <br>
+  e.g. For the `addStud` command, the command format is `addStud nm/NAME id/ID class/CLASS [pn/PARENTNAME] [hp/PHONENUMBER]...`<br>
+  `[pn/PARENTNAME]` and `[hp/PHONENUMBER]` refer to optional parameters that can be supplied by the user.
+</div><br>
 
 ## 4.1 Managing student records
 
@@ -203,15 +219,14 @@ Format: `viewAll`
 
 Shows a list of all students in the specified class.
 
-Format: `viewClass [class name]`
+Format: `viewClass CLASS`
 
-<div markdown="span" class="alert alert-info">:information_source:
-   **Note:** Class name is case-insensitive.
-</div><br>
+* Class name can only contain alphanumeric characters.
+* Class name is case-insensitive.
 
 Examples:
-* `viewClass 2A`
-* `viewClass Loyalty1`
+* `viewClass 2A` Displays the list of students with the class '2A'.
+* `viewClass Loyalty1` Displays the list of students with the class 'LOYALTY1'.
 
 ## 4.3 Exam statistics
 
@@ -278,8 +293,10 @@ Click <a href="#top">here</a> to return to the top.
 
 * **CLI**: Command Line Interface (CLI) is a text-based User Interface (UI) used to run programs. Through the CLI,
 users interact with the application by typing in text commands.
-* **Student**: a person studying in a secondary school. A student typically takes up to 8 subjects and thus, may be
-taught by up to 8 teachers.
-* **MOE Teacher**: a person teaching a subject in a secondary school. A teacher usually teaches 3 to 5 classes. Each
-class has roughly 20 students.
+* **GUI**: Graphical User Interface (GUI) is an interface that allows the user to interact with through various visual
+graphics.
+* **Home folder**: The home folder refers to the folder on your device that stores the Class-ify application.
+* **Alphanumeric characters**: Refers to characters made up of a combination of letters and/or numbers.
+* **Local storage**: Local storage refers to the data that is stored on your physical device.
+
 
