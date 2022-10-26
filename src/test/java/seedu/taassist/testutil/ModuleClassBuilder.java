@@ -1,20 +1,22 @@
 package seedu.taassist.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
-import seedu.taassist.model.uniquelist.UniqueList;
 
 /**
  * A utility class to help with building ModuleClass objects.
  */
 public class ModuleClassBuilder {
     public static final String DEFAULT_NAME = "IS1103";
-    public static final UniqueList<Session> DEFAULT_SESSIONS = new UniqueList<>();
+    public static final List<Session> DEFAULT_SESSIONS = new ArrayList<>();
 
     private String name;
-    private UniqueList<Session> sessions;
+    private List<Session> sessions;
 
     /**
      * Creates a {@code ModuleClassBuilder} with the default details.
@@ -27,7 +29,7 @@ public class ModuleClassBuilder {
     /**
      * Creates a {@code ModuleClassBuilder} with the provided {@code name} and {@code sessions}.
      */
-    public ModuleClassBuilder(String name, UniqueList<Session> sessions) {
+    public ModuleClassBuilder(String name, List<Session> sessions) {
         this.name = name;
         this.sessions = sessions;
     }
@@ -44,8 +46,8 @@ public class ModuleClassBuilder {
      * Sets the {@code sessions} of the {@code ModuleClass} that we are building.
      */
     public ModuleClassBuilder withSessions(Session... sessions) {
-        this.sessions = new UniqueList<>();
-        this.sessions.addAll(List.of(sessions));
+        this.sessions = Arrays.stream(sessions)
+                .collect(Collectors.toList());
         return this;
     }
 
