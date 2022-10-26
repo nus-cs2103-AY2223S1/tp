@@ -18,7 +18,7 @@ Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) t
 This section aims to help you navigate the user guide.
 
 1. The next subsection [Section 2.2, Tips for reading the User Guide](#22-tips-for-reading-the-user-guide), provides some tips on reading this document.
-2. [Section 3, Quick start](#3-quick-start) has been provided to help you set up Financial Advisor Planner.
+2. [Section 3, Quick start](#3-quick-start) has been provided to help you set up **Financial Advisor Planner**.
 3. [Section 4, Features](#4-features) has been provided where the main features and their commands are documented. 
 
 ### 2.2 Tips for reading the User Guide
@@ -32,7 +32,15 @@ Symbol/Syntax        | Meaning
 :exclamation:        | indicates that the enclosed text is a warning and usually gives details about potential errors.
 :information_source: | indicates that the enclosed text are extra notes and information regarding the topic. 
 
-#### 2.2.1 General Symbols and Syntax
+#### 2.2.2 Graphical User Interface overview
+
+The following figures show the overall GUI of **Financial Advisor Planner**
+
+![ContactsTabGraphic](images/ContactsTabGraphic.png)
+<br>
+<br>
+<br>
+![CalendarTabGraphic](images/CalendarTabGraphic.png)
 
 ## 3. Quick start
 
@@ -70,7 +78,7 @@ Symbol/Syntax        | Meaning
 
 ## 4. Features
 
-This section contains all the information pertaining to the features of *Financial Advisor Planner*
+This section contains all the information pertaining to the features of **Financial Advisor Planner**
 
 <div markdown="block" class="alert alert-info">
 
@@ -278,3 +286,13 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 **Sort** | `sort KEYWORD, sort KEYWORD desc` 
+
+## 7. Glossary
+
+Term | Meaning 
+--------|------------------
+**Command Line Interface (CLI)** | `A CLI is a text-based user interface that allows users to input commands in the form of text.`
+**Graphical User Interface (GUI)** | `A GUI is a graphics-based user interface that allows users to interact with elements such as icons and buttons when running a program.`
+**Command** | `An instruction given by the user that is to be executed.` 
+**Parameter** | `Variables that have been typed by the user that is to be provided to the command to be executed. `
+**Prefix** | `Indicator for a specific parameter to be input during the command. Prefixes end with a slash (/)`
