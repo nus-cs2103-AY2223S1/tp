@@ -20,10 +20,10 @@ public class FindableCategoryParserTest {
 
     @Test
     public void parse_tagCategory() throws InvalidCategoryException {
-        assertEquals(FindableCategory.TAGS,
-                FindableCategoryParser.parse("tags"));
+        assertEquals(FindableCategory.TAG,
+                FindableCategoryParser.parse("tag"));
 
-        assertEquals(FindableCategory.TAGS,
+        assertEquals(FindableCategory.TAG,
                 FindableCategoryParser.parse("t"));
     }
 

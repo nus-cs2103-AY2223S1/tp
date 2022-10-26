@@ -131,7 +131,7 @@ public class FindCommandTest {
     public void execute_tagsCategory_singleMatch() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 1);
         ContainsKeywordsPredicate predicate =
-                preparePredicate(FindableCategory.TAGS, "owes", "random", "sugiyem");
+                preparePredicate(FindableCategory.TAG, "owes", "random", "sugiyem");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);

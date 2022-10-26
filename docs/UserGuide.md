@@ -205,9 +205,9 @@ Format: `list [c/CATEGORY [DESCENDING]]`
 * The `CATEGORY` is optional. By default, without stating the category, `list` will display all internships in no particular order
   * Possible options for `CATEGORY` : `company_name`, `position`, `application_process`, `date` (case-insensitive)
   * Case-insensitive: `company_name`, `Company_Name` are all acceptable inputs.
-* The `DESCENDING` tag is optional. It can take on the value `true` or `false` (case-insensitive). 
-  * The DESCENDING tag is set to `false` by default if not stated. List of internships will be shown in ascending order.
-  * The `DESCENDING` tag can only be set to `true` if the `CATEGORY` is stated
+* The `DESCENDING` parameter is optional. It can take on the value `true` or `false` (case-insensitive). 
+  * The DESCENDING parameter is set to `false` by default if not stated. List of internships will be shown in ascending order.
+  * The `DESCENDING` parameter can only be set to `true` if the `CATEGORY` is stated
   * If `DESCENDING` is set to `true`. List of internships will be displayed in descending order
 
 Examples:
@@ -236,18 +236,27 @@ Format: `find [c/CATEGORY] KEYWORDS…`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* The `CATEGORY` tag refers to company_name (or n), position (or p), application_process (or pr), tags (or t), date (or d) (case-insensitive)
-* If not specified, the `CATEGORY` tag will be set to company_name as the default category.
+* Possible options for `CATEGORY` : `company_name`, `position`, `application_process`, `date`, `tag` (case-insensitive)
+* If not specified, the `CATEGORY` parameter will be set to `company_name` as the default category.
 * Only the target category is searched.
 * A `KEYWORD` will match any string if the `KEYWORD` is contained in that string e.g. `Han` will match both `Reyhan` and `Handy`
 * Internships whose target category matches at least one keyword will be returned (i.e. OR search). e.g. `c/company_name Hans Bo` can return internships with company name of `Hans Gruber` or `Bo Yang`
 * For the find by date category, all `KEYWORD` must be a valid date in `dd-mm-yyyy` format
 
 Examples:
-* `find c/p engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer
+* `find c/position engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer
 * `find sea shop` returns a list of internships with company name of Sea Labs, Shopee, and Shopback
 
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** Shortcuts for `CATEGORY`:<br>
+- `company_name` --> `c`<br>
+- `position`--> `p`<br>
+- `application_process` --> `pr`<br>
+- `date` --> `d`<br>
+- `tag` --> `t`<br>
 
+`find c/position engineer` is equivalent to `find c/p engineer`
+</div>
 
 ### Deleting internship(s) : `delete`
 
@@ -282,7 +291,7 @@ Examples:
 ### Editing internship : `edit`
 Edit details of an internship
 
-Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...`
+Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK] [t/TAG]…​`
 
 * Edit the details of internship at the specified `INDEX`.
 * Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
@@ -307,6 +316,13 @@ Format: `copy INDEX`
 Undo the most recent command that modified the internship book.
 
 Format: `undo`
+
+**Information Box**
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:** **NOTE:** <br>
+You can only undo `add`,`clear`,`delete`,`edit` commands
+
+</div>
 
 ### Redo previous undone command : `redo`
 
@@ -338,7 +354,7 @@ PleaseHireUs data is saved as a JSON file `[JAR file location]/data/internshipbo
 If your changes to the data file makes its format invalid, PleaseHireUs will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v1.3]`
+### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -361,11 +377,23 @@ _Details coming soon ..._
 | **View**   | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                |
 | **Edit**   | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
 | **Find**   | :x:                | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`                                                                                                                                                  |
-| **List**   | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g, `list c/d true`                                                                                                                                                     |
+| **List**   | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g,  `list c/d true`, `list c/date`                                                                                                                                     |
 | **Help**   | :x:                | `help`                                                                                                                                                                                                         |
 | **Copy**   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                               |
 | **Undo**   | :x:                | `undo`                                                                                                                                                                                                         |
 | **Redo**   | :heavy_check_mark: | `redo`                                                                                                                                                                                                         |
+
+**Information Box**
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:** Valid inputs for `CATEGORY` parameter in `list` and `find` <br>
+
+Command | Valid Categories (case-insensitive)
+--------| -----
+**`list`** | `COMPANY_NAME` `POSITION` `APPLICATION_PROCESS` `DATE`
+**`find`** | `COMPANY_NAME` `POSITION` `APPLICATION_PROCESS` `DATE` `TAG`
+
+</div>
+
 
 
 ## Prefix Summary
@@ -396,5 +424,6 @@ Prefix | Symbolize
 
 ## Acknowledgements
 * This project is adapted from **[AddressBook 3(AB3)](https://github.com/se-edu/addressbook-level3)**
+* Undo and Redo commands are adapted and modified from  **[AddressBook 4(AB4)](https://github.com/se-edu/addressbook-level4)**
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 * The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)
