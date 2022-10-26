@@ -35,7 +35,6 @@ public class LogicManagerTest {
     private final Model model = new ModelManager();
     private Logic logic;
 
-
     @BeforeEach
     public void setUp() {
         JsonFoodRemStorage foodRemStorage =

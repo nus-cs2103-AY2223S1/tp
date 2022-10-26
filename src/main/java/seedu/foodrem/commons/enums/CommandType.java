@@ -43,7 +43,6 @@ public enum CommandType {
         }
     },
 
-
     // Item Commands
     DECREMENT_COMMAND("dec") {
         @Override

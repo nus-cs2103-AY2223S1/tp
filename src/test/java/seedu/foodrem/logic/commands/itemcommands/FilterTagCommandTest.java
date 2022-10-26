@@ -21,8 +21,6 @@ public class FilterTagCommandTest {
     private static final String EXPECTED_SUCCESS_LIST_AFTER_FILTERING = "%1$d items after filtering!";
 
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
-
-
     private final Tag numbersTag = new TagBuilder()
             .withTagName(VALID_TAG_NAME_NUMBERS)
             .build();
@@ -72,16 +70,12 @@ public class FilterTagCommandTest {
                 .build();
         FilterTagCommand filterNumbersTagCommandCopy = new FilterTagCommand(numberTagCopy);
 
-
         // Exactly the same
         assertEquals(filterNumbersTagCommand, filterNumbersTagCommand);
-
         // Same tag to filter by
         assertEquals(filterNumbersTagCommand, filterNumbersTagCommandCopy);
-
         // Different tag to filter by
         assertNotEquals(filterNumbersTagCommand, filterVegetableTagCommand);
-
         // Different object
         assertNotEquals(filterNumbersTagCommand, 1);
     }

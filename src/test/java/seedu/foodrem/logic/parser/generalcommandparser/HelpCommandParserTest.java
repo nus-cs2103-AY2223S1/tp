@@ -34,7 +34,6 @@ class HelpCommandParserTest {
             + "dec, del, edit, find, inc, list, new, rmk, sort, view, " // Item commands
             + "filtertag, deletetag, listtag, newtag, renametag, tag, untag"; // Tag commands
 
-
     private final HelpCommandParser parser = new HelpCommandParser();
 
     @Test
