@@ -6,7 +6,9 @@ import static paymelah.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.List;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -25,6 +27,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+
+    private Deque<AddressBook> addressBookHistories = new LinkedBlockingDeque<>(10);
+    private Deque<String> commandMessageHistories = new LinkedBlockingDeque<>(10);
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -120,6 +125,45 @@ public class ModelManager implements Model {
         List<Person> sortedList = new ArrayList<>(addressBook.getPersonList());
         sortedList.sort(comparator);
         addressBook.setPersons(sortedList);
+    }
+
+    @Override
+    public int getHistoriesSize() {
+        assert addressBookHistories.size() == commandMessageHistories.size() : "Undo histories sizes do not match";
+        return addressBookHistories.size();
+    }
+
+    @Override
+    public void saveAddressBook() {
+        AddressBook toBeSaved = addressBook.getCopy();
+        if (addressBookHistories.offerLast(toBeSaved)) {
+            return;
+        } else {
+            addressBookHistories.pollFirst();
+            addressBookHistories.offerLast(toBeSaved);
+        }
+    }
+
+    @Override
+    public void saveCommandMessage(String s) {
+        if (commandMessageHistories.offerLast(s)) {
+            return;
+        } else {
+            commandMessageHistories.pollFirst();
+            commandMessageHistories.offerLast(s);
+        }
+    }
+
+    @Override
+    public void undoAddressBook() {
+        assert addressBookHistories.size() > 0 : "Undo called when undo history is empty";
+        setAddressBook(addressBookHistories.pollLast());
+    }
+
+    @Override
+    public String popPreviousCommandMessage() {
+        assert commandMessageHistories.size() > 0 : "Undo called when undo history is empty";
+        return commandMessageHistories.pollLast();
     }
 
     //=========== Filtered Person List Accessors =============================================================

@@ -67,8 +67,10 @@ public class SplitDebtCommand extends Command {
             debtors.add(lastShownList.get(zeroBasedIndex));
         }
 
-        StringBuilder nameList = new StringBuilder();
+        model.saveAddressBook();
+        //CommandMessage is saved below after string is built
 
+        StringBuilder nameList = new StringBuilder();
         for (int i = 0; i < debtors.size(); i++) {
             Person debtorToEdit = debtors.get(i);
             Person editedPerson = new Person(
@@ -86,6 +88,7 @@ public class SplitDebtCommand extends Command {
             }
         }
 
+        model.saveCommandMessage(String.format(MESSAGE_SPLIT_DEBT_SUCCESS, debt, nameList));
         return new CommandResult(String.format(MESSAGE_SPLIT_DEBT_SUCCESS, debt, nameList));
     }
 

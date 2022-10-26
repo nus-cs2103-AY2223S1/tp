@@ -23,6 +23,7 @@ import paymelah.logic.commands.ListDebtorsCommand;
 import paymelah.logic.commands.SortCommand;
 import paymelah.logic.commands.SplitDebtCommand;
 import paymelah.logic.commands.StatementCommand;
+import paymelah.logic.commands.UndoCommand;
 import paymelah.logic.parser.exceptions.ParseException;
 
 /**
@@ -99,6 +100,9 @@ public class AddressBookParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

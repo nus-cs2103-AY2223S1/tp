@@ -93,6 +93,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Returns a copy of this {@code AddressBook}.
+     */
+    public AddressBook getCopy() {
+        return new AddressBook(this);
+    }
+
     //// util methods
 
     @Override
