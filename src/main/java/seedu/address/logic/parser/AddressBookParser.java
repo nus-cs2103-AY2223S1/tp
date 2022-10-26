@@ -47,11 +47,11 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
+    public static final String EXAM_FEATURE_TYPE = "e";
+    public static final String MODULE_FEATURE_TYPE = "m";
+    public static final String TASK_FEATURE_TYPE = "t";
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<featureType>\\S+)"
             + "(?<commandWord>\\s*\\S*)(?<arguments>.*)");
-    public static final String TASK_FEATURE_TYPE = "t";
-    public static final String MODULE_FEATURE_TYPE = "m";
-    public static final String EXAM_FEATURE_TYPE = "e";
     /**
      * Parses user input into command for execution.
      *
@@ -99,7 +99,7 @@ public class AddressBookParser {
             case ClearTasksCommand.COMMAND_WORD:
                 return new ClearTasksCommand();
             default:
-                throw new ParseException(String.format(MESSAGE_INVALID_FEATURE_TYPE_FORMAT,"task"));
+                throw new ParseException(String.format(MESSAGE_INVALID_FEATURE_TYPE_FORMAT, "task"));
             }
         case MODULE_FEATURE_TYPE:
             switch (commandWord.toLowerCase()) {
@@ -114,7 +114,7 @@ public class AddressBookParser {
             case FindModulesCommand.COMMAND_WORD:
                 return new FindModulesCommandParser().parse(arguments);
             default:
-                throw new ParseException(String.format(MESSAGE_INVALID_FEATURE_TYPE_FORMAT,"module"));
+                throw new ParseException(String.format(MESSAGE_INVALID_FEATURE_TYPE_FORMAT, "module"));
             }
         case EXAM_FEATURE_TYPE:
             switch (commandWord.toLowerCase()) {
@@ -131,7 +131,7 @@ public class AddressBookParser {
             case ListExamTasksCommand.COMMAND_WORD:
                 return new ListExamTasksCommandParser().parse(arguments);
             default:
-                throw new ParseException(String.format(MESSAGE_INVALID_FEATURE_TYPE_FORMAT,"exam"));
+                throw new ParseException(String.format(MESSAGE_INVALID_FEATURE_TYPE_FORMAT, "exam"));
             }
         case ClearAllCommand.COMMAND_WORD:
             return new ClearAllCommand();
