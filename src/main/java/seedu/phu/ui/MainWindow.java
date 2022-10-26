@@ -35,8 +35,8 @@ public class MainWindow extends UiPart<Stage> {
     private ViewCommandPanel viewCommandPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private StackedBarPanel stackedBarPanel;
     private ReminderBarFooter reminderBarFooter;
+    private StackedBarPanel stackedBarPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -51,7 +51,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane reminderbarPlaceholder;
+    private StackPane reminderBarPlaceholder;
 
     @FXML
     private StackPane viewCommandPanelPlaceholder;
@@ -129,12 +129,12 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         reminderBarFooter = new ReminderBarFooter(logic.getInternshipBook());
-        reminderbarPlaceholder.getChildren().add(reminderBarFooter.getRoot());
+        reminderBarPlaceholder.getChildren().add(reminderBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        StackedBarPanel stackedBarPanel = new StackedBarPanel(logic.getFilteredInternshipList());
+        stackedBarPanel = new StackedBarPanel(logic.getFilteredInternshipList());
         statisticsPlaceholder.getChildren().add(stackedBarPanel.getRoot());
     }
 
