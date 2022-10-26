@@ -10,10 +10,10 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.tag.exceptions.DuplicateTagException;
-import seedu.uninurse.model.person.Patient;
 
 /**
  * Edits the details of an existing tag for a patient.

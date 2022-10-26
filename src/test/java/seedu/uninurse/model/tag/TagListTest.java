@@ -22,7 +22,7 @@ import seedu.uninurse.model.tag.exceptions.TagNotFoundException;
 public class TagListTest {
     private final TagList emptyTagList = new TagList();
     private final TagList tagListElderly = new TagList(List.of(TAG_ELDERLY));
-    private final TagList tagListFallRisk= new TagList(List.of(TAG_FALL_RISK));
+    private final TagList tagListFallRisk = new TagList(List.of(TAG_FALL_RISK));
     // TAG_NURSING_HOME is lexicographically < TAG_ELDERLY < TAG_FALL_RISK
     private final TagList sortedTagList = new TagList(Arrays.asList(TAG_ELDERLY, TAG_FALL_RISK));
 
