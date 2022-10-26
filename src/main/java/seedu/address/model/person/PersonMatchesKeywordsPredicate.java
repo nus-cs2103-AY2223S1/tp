@@ -1,7 +1,12 @@
 package seedu.address.model.person;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tag.Tag;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.Arrays;
 
@@ -13,22 +18,37 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
-    static int getLevenshteindist(String str1, String str2) {
+    //This method is used to compute the Levenshtein distance, which
+    // how different two strings are from one another by counting the minimum
+    // number of operations (insertions, deletions and substitutions of characters)
+    // required to transform one string to another.
+    private int getLevenshteindist(String str1, String str2) {
 
+        // A 2-D matrix to store previously calculated
+        // answers of subproblems
         int[][] arr = new int[str1.length() + 1][str2.length() + 1];
 
-        for (int i = 0; i <= str1.length(); i++)
-        {
+        for (int i = 0; i <= str1.length(); i++) {
             for (int j = 0; j <= str2.length(); j++) {
+
+                // If str1 is empty, the only possible
+                // method of conversion with minimum operations
+                // would be for all characters of
+                // str2 to be inserted into str1,
                 if (i == 0) {
                     arr[i][j] = j;
                 }
 
+                // If str2 is empty the only possible
+                // method of conversion with minimum operations
+                // would be for all characters of str1
+                // to be removed.
                 else if (j == 0) {
                     arr[i][j] = i;
                 }
 
                 else {
+                    //else find minimum among the three operations below
                     arr[i][j] = minEdits(arr[i - 1][j - 1]
                                     + numOfReplacement(str1.charAt(i - 1),str2.charAt(j - 1)),
                             arr[i - 1][j] + 1,
@@ -39,8 +59,9 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
         return arr[str1.length()][str2.length()];
     }
 
-
-    public static double findSimilarity(String x, String y) {
+    // This method uses the levenshtein distance to calculate the similarity
+    // between two strings in the range [0, 1].
+    private double findSimilarity(String x, String y) {
         double maxLength = Double.max(x.length(), y.length());
         if (maxLength > 0) {
             return (maxLength - getLevenshteindist(x, y)) / maxLength;
@@ -48,10 +69,14 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
         return 1.0;
     }
 
+    // This method is used to check for distinct charecters in str1 and str2.
     static int numOfReplacement(char c1, char c2) {
         return c1 == c2 ? 0 : 1;
     }
 
+    // This method is used to receive the count of different
+    // operations performed and return the
+    // minimum value among them.
     static int minEdits(int... nums) {
         return Arrays.stream(nums).min().orElse(Integer.MAX_VALUE);
     }
@@ -62,13 +87,21 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     }
 
     private boolean matchesAddress(Person person) {
-        return findSimilarity(keywords,person.getAddress().toString()) > 0.5 ||
-                StringUtil.containsWordIgnoreCase(person.getAddress().toString(), keywords);
+        if (person.getAddress().isPresent()) {
+            return findSimilarity(keywords, String.valueOf(person.getAddress().get().value)) > 0.5 ||
+                    StringUtil.containsWordIgnoreCase(String.valueOf(person.getAddress().get().value), keywords);
+        } else {
+            return false;
+        }
     }
 
     private boolean matchesRole(Person person) {
-        return findSimilarity(keywords, String.valueOf(person.getRole().get())) > 0.5 ||
-                StringUtil.containsWordIgnoreCase(String.valueOf(person.getRole().get()), keywords);
+        if (person.getRole().isPresent()) {
+            return findSimilarity(keywords, String.valueOf(person.getRole().get().role)) > 0.5 ||
+                    StringUtil.containsWordIgnoreCase(String.valueOf(person.getRole().get().role), keywords);
+        } else {
+            return false;
+        }
     }
 
     private boolean matchesGitHubUser(Person person) {
@@ -77,18 +110,31 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     }
 
     private boolean matchesTags(Person person) {
-        String tags = person.getTags().toString().
-                replaceAll("\\[", "").
-                replaceAll("\\]", "").
-                replaceAll(",", "");
-        return findSimilarity(keywords,tags) > 0.5 ||
-                StringUtil.containsWordIgnoreCase(tags, keywords);
+        Object[] tags = person.getTags().toArray();
+        for (int i = 0; i<tags.length; i++) {
+            if (findSimilarity(keywords,tags[i].toString()) > 0.5 ||
+                    StringUtil.containsWordIgnoreCase(tags[i].toString(), keywords)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public boolean test(Person person) {
-        return matchesName(person) || matchesAddress(person) || matchesRole(person) || matchesTags(person) ||
-                matchesGitHubUser(person);
+        if (matchesName(person)) {
+            return true;
+        } else if (matchesAddress(person)) {
+            return true;
+        } else if (matchesRole(person)) {
+            return true;
+        } else if (matchesTags(person)) {
+            return true;
+        } else if (matchesGitHubUser(person)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
