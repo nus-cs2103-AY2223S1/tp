@@ -2,6 +2,7 @@ package seedu.intrack.model.internship;
 
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -29,6 +30,7 @@ public class Internship {
     private final Salary salary;
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
+    private final List<LocalDateTime> tasksDates = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -46,6 +48,11 @@ public class Internship {
         this.salary = salary;
         this.tags.addAll(tags);
         this.remark = remark;
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            LocalDateTime x = task.getTaskTime();
+            tasksDates.add(x);
+        }
     }
 
     public Name getName() {
@@ -104,6 +111,43 @@ public class Internship {
         return otherInternship != null
                 && otherInternship.getName().equals(getName())
                 && otherInternship.getPosition().equals(getPosition());
+    }
+
+    /**
+     * Returns the date and time of the task with the nearest date and time before the current date
+     * @return LocalDateTime of the nearest date and time
+     */
+    public LocalDateTime getNearestTaskDate() {
+        int i = 0;
+        Collections.sort(tasksDates);
+        LocalDateTime currentDate = LocalDateTime.now();
+        LocalDateTime nearestDate = tasksDates.get(i);
+        while (nearestDate.isAfter(currentDate)) {
+            if (i == tasksDates.size() - 1) {
+                //just gets the latest task u got, even if expired
+                nearestDate = tasksDates.get(i);
+                break;
+            }
+            if (nearestDate.isAfter(currentDate)) {
+                //once gets nearest time, breaks
+                nearestDate = tasksDates.get(i);
+                break;
+            }
+            i++;
+
+        }
+        return nearestDate;
+    }
+
+    /**
+     * Returns the date and time of the task with the furthest date and time to the current time
+     * @return LocalDateTime of the furthest date and time
+     */
+    public LocalDateTime getFurthestTaskDate() {
+        int maxIndex = tasks.size() - 1;
+        Collections.sort(tasksDates);
+        LocalDateTime furthestDate = tasksDates.get(maxIndex);
+        return furthestDate;
     }
 
     /**

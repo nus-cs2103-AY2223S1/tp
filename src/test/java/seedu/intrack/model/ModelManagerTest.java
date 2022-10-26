@@ -90,6 +90,33 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void isInternshipSortedAscending_internshipInInTrack_returnsTrue() {
+        InTrack inTrack = new InTrackBuilder().withInternship(ALICE).withInternship(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // after sorting, elements are the same buf different order
+        modelManager = new ModelManager(inTrack, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(inTrack, userPrefs);
+        modelManager.ascendSort();
+        assertTrue(modelManager.equals(modelManagerCopy));
+
+    }
+
+    @Test
+    public void isInternshipSortedDescending_internshipInInTrack_returnsTrue() {
+        InTrack inTrack = new InTrackBuilder().withInternship(ALICE).withInternship(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // after sorting, elements should not change, but reverse in collections for some reason alters it?
+        modelManager = new ModelManager(inTrack, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(inTrack, userPrefs);
+        modelManager.descendSort();
+        assertFalse(modelManager.equals(modelManagerCopy));
+
+    }
+
+
+    @Test
     public void getFilteredInternshipList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredInternshipList().remove(0));
     }

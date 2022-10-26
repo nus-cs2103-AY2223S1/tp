@@ -94,6 +94,18 @@ public interface Model {
      */
     int getFilteredStatusInternshipListSize(Predicate<Internship> predicate);
 
+    /**
+     * Sorts all internships in ascending order based on their respective tasks
+     * with the nearest date and time
+     */
+    void ascendSort();
+
+    /**
+     * Sorts all internships in descending order based on their respective tasks
+     * with the furthest date and time
+     */
+    void descendSort();
+
     /** Returns an unmodifiable view of the selected internship list */
     ObservableList<Internship> getSelectedInternship();
 

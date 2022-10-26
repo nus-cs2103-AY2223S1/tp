@@ -159,6 +159,7 @@ This section describes some noteworthy details on how certain features are imple
 #### About this feature
 
 The add internship application feature allows users to quickly add an internship application in the tracker via the
+The add internship application feature allows users to quickly add an internship application in the tracker via the
 command `add n/NAME p/POSITION hp/PHONE e/EMAIL a/ADDRESS [t/TAG]...`.
 
 #### How it is implemented
@@ -274,7 +275,7 @@ the list, `TASKNAME` must not be an empty string, and `TASKTIME` must be in the 
 
 #### How it is implemented
 
-The `addtask` command is facilitated by the `AddTaskCommand` and `AddTaskCommandParser`. It uses the 
+The `addtask` command is facilitated by the `AddTaskCommand` and `AddTaskCommandParser`. It uses the
 `List#get(int index)` on the list of internship applications returned from the `Model#getFilteredInternshipList()` to
 get the target `Internship` object to be updated. A new `Internship` object is then created with the new `Task` updated
 in the `List<Task>`. The `InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the
@@ -440,13 +441,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 
 
-### \[Implemented\] Add internship remark feature
+### Add internship remark feature
 
 #### About Add internship remark feature
-The add internship remark feature allows users to add a remark to his/her internship information via the command
+The add internship remark feature allows users to add a remark to his/her internship interview information via the command
 `remark` `INDEX` `r/`.
 
-###How it is implemented
+### How it is implemented
 The implemented `remark` command is facilitated by `RemarkCommand` and `RemarkCommandParser`. It enables users to add a Remark to their internship information.
 It uses the `get(int INDEX)` on the list of internships received from `getFilteredInternshipList()` which is exposed to the `Model` interface as `Model#getFilteredInternshipList()` to
 get an Internship Object. A new Internship object is then created with the new remark. Then the`InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the Model interface as
@@ -455,7 +456,7 @@ get an Internship Object. A new Internship object is then created with the new r
 
 Given below is how the remark mechanism behaves at each step.
 
-####Parsing
+#### Parsing User input
 Step 1. The user inputs the `remark` command  and provide the `INDEX` of the internship the user wants to add the remark to, the `r/` prefix and finally the `REMARK_CONTENT`
 that he/she wants to add.
 
@@ -469,7 +470,7 @@ A `ParseException` will be thrown if the format is incorrect.
 
 Step 4. If the format is correct, `RemarkCommandParser` will create a `RemarkCommand` based on the given inputs.
 
-####Command execution
+#### Command execution
 
 Step 5. The `LogicManager` executes the `RemarkCommand`.
 
@@ -484,9 +485,9 @@ Step 8. The `RemarkCommand` then creates a new `Internship` object with the same
 
 Step 9. `RemarkCommand` then call the `Model#setInternship(internshipToEdit, editedInternship)` to replace the old `Internship` with the new `Internship` with the new `Remark`
 
-####Display
+#### Displaying of result
 
-Step 10. Finally, the `RemarkCommand` creates a `CommandResult` with a succsess message and returns it to the `LogicManager` to complete the command execution. The
+Step 10. Finally, the `RemarkCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` to complete the command execution. The
 GUI would also be updated on this change in the internship list and update the display of the `Internship` respectively.
 
 The following sequence diagram shows how the `remark` command works:
@@ -497,7 +498,12 @@ The following activity diagram summarises what happens when a user executes the 
 
 ![RemarkActivityDiagram](images/RemarkActivityDiagram.png)
 
+#### Design considerations
 
+**Aspect: Command to add remark to an internship application**
+When a user has just added an internship application, he probably has not been to the internship interview yet,
+so he would not have any remarks or notes to take about the interview process yet. Thus, the default `remark` field will
+be empty for each new `Internship` instead of requiring the user to provide one initially, saving time.
 --------------------------------------------------------------------------------------------------------------------
 
 

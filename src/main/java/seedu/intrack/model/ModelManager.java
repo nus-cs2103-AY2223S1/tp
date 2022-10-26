@@ -112,6 +112,16 @@ public class ModelManager implements Model {
         inTrack.setInternship(target, editedInternship);
     }
 
+    @Override
+    public void ascendSort() {
+        inTrack.sortAscending();
+    }
+
+    @Override
+    public void descendSort() {
+        inTrack.sortDescending();
+    }
+
     //=========== Filtered Internship List Accessors =============================================================
 
     /**
