@@ -5,7 +5,6 @@ import java.util.Arrays;
 import seedu.classify.commons.core.Messages;
 import seedu.classify.logic.commands.FindCommand;
 import seedu.classify.logic.parser.exceptions.ParseException;
-import seedu.classify.model.student.Id;
 import seedu.classify.model.student.IdPredicate;
 import seedu.classify.model.student.NameContainsKeywordsPredicate;
 
