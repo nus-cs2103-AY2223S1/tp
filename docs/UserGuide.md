@@ -140,8 +140,8 @@ may have typed a command incorrectly as RC4HDB will step in as and when needed!
 
 <div markdown="block" class="alert alert-info">
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are compulsory and must be entered by you.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which you must enter, such as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
