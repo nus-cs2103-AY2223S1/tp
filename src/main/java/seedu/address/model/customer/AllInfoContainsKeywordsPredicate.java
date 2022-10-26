@@ -1,13 +1,13 @@
-package seedu.address.model.person;
+package seedu.address.model.customer;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Customer}'s {@code Name} matches any of the keywords given.
  */
-public class AllInfoContainsKeywordsPredicate implements Predicate<Person> {
+public class AllInfoContainsKeywordsPredicate implements Predicate<Customer> {
     private final List<String> keywords;
 
 
@@ -16,8 +16,8 @@ public class AllInfoContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        String allInfo = person.getAllInfo();
+    public boolean test(Customer customer) {
+        String allInfo = customer.getAllInfo();
         for (String s : keywords) {
             if (allInfo.contains(s)) {
                 return true;

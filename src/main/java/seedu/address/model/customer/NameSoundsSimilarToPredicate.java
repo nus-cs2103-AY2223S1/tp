@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.customer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,12 +6,12 @@ import java.util.function.Predicate;
 
 
 /**
- * Tests that a {@code Person}'s {@code Name} sounds like any of the keywords given.
+ * Tests that a {@code Customer}'s {@code Name} sounds like any of the keywords given.
  * Implemented using soundex (algorithm can be found on wikipedia, slight modifications were made)
  *
  * @author albertZhangTJ
  */
-public class NameSoundsSimilarToPredicate implements Predicate<Person> {
+public class NameSoundsSimilarToPredicate implements Predicate<Customer> {
     private static final List<List<String>> soundexMapping = List.of(
             List.of("a", "e", "i", "o", "u", "y", "h", "w"), //0
             List.of("b", "f", "p", "v"), //1
@@ -142,16 +142,16 @@ public class NameSoundsSimilarToPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        return hasMatch(person.getName().fullName);
+    public boolean test(Customer customer) {
+        return hasMatch(customer.getName().fullName);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.NameSoundsSimilarToPredicate // instanceof handles nulls
+                || (other instanceof seedu.address.model.customer.NameSoundsSimilarToPredicate // instanceof handles nulls
                 && keywords.equals((
-                        (seedu.address.model.person.NameSoundsSimilarToPredicate) other).keywords
+                        (seedu.address.model.customer.NameSoundsSimilarToPredicate) other).keywords
                 )); // state check
     }
 

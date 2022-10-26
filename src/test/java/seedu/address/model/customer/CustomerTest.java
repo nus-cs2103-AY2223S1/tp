@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.customer;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,12 +19,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
-public class PersonTest {
+public class CustomerTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Customer customer = new PersonBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> customer.getTags().remove(0));
     }
 
     @Test
@@ -36,26 +36,26 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns false
-        Person editedPerson = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        Customer editedCustomer = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD).build();
-        assertFalse(ALICE.isSamePerson(editedPerson));
+        assertFalse(ALICE.isSamePerson(editedCustomer));
 
         // different name, all other attributes same -> returns true
-        editedPerson = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertTrue(ALICE.isSamePerson(editedPerson));
+        editedCustomer = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertTrue(ALICE.isSamePerson(editedCustomer));
 
         // same phone number, all other attributes different -> return true
-        editedPerson = new PersonBuilder(AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_BOB)
+        editedCustomer = new PersonBuilder(AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_BOB)
             .withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD).build();
-        assertTrue(AMY.isSamePerson(editedPerson));
+        assertTrue(AMY.isSamePerson(editedCustomer));
 
         // same email address, all other attributes different -> return true
-        editedPerson = new PersonBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
+        editedCustomer = new PersonBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
             .withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD).build();
-        assertTrue(AMY.isSamePerson(editedPerson));
+        assertTrue(AMY.isSamePerson(editedCustomer));
 
         // name differs in case, all other attributes same -> returns true
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Customer editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertTrue(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns true
@@ -67,7 +67,7 @@ public class PersonTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
+        Customer aliceCopy = new PersonBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -79,11 +79,11 @@ public class PersonTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different customer -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Customer editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertTrue(ALICE.equals(editedAlice));
 
         // different phone, same email -> returns true

@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.customer;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a Customer's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {

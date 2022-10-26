@@ -5,10 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -16,11 +14,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.exceptions.NextStateNotFoundException;
 import seedu.address.model.exceptions.PreviousStateNotFoundException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Reward;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.Reward;
+import seedu.address.model.customer.exceptions.PersonNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -31,7 +29,7 @@ public class ModelManager implements Model {
     private final VersionedAddressBook versionedAddressBook;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Customer> filteredCustomers;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,18 +41,18 @@ public class ModelManager implements Model {
         LocalDate currentDate = LocalDate.now();
         String currentMonth = String.valueOf(currentDate.getMonth().getValue());
 
-        for (Person person : addressBook.getPersonList()) {
-            if (person.getBirthdayMonth().value.equals(currentMonth)) {
-                person.addBirthdayTag();
+        for (Customer customer : addressBook.getPersonList()) {
+            if (customer.getBirthdayMonth().value.equals(currentMonth)) {
+                customer.addBirthdayTag();
             } else {
-                person.removeBirthdayTag();
+                customer.removeBirthdayTag();
             }
         }
         this.addressBook = new AddressBook(addressBook);
         
         this.versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredCustomers = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -109,27 +107,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasPerson(Customer customer) {
+        requireNonNull(customer);
+        return addressBook.hasPerson(customer);
     }
 
     @Override
-    public void deletePerson(Person target) {
+    public void deletePerson(Customer target) {
         addressBook.removePerson(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
+    public void addPerson(Customer customer) {
+        addressBook.addPerson(customer);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPerson(Customer target, Customer editedCustomer) {
+        requireAllNonNull(target, editedCustomer);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setPerson(target, editedCustomer);
     }
 
     @Override
@@ -148,11 +146,11 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns the index of the person with the same phone number.
+     * Returns the index of the customer with the same phone number.
      *
      * @param phone Phone number to search
-     * @return index of the person with the same phone number
-     * @throws PersonNotFoundException if no person with corresponding phone number found
+     * @return index of the customer with the same phone number
+     * @throws PersonNotFoundException if no customer with corresponding phone number found
      */
     @Override
     public int findNum(Phone phone) throws PersonNotFoundException {
@@ -161,11 +159,11 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns the index of the person with the same email.
+     * Returns the index of the customer with the same email.
      *
      * @param email Email to search
-     * @return index of the person with the same email
-     * @throws PersonNotFoundException if no person with corresponding email found
+     * @return index of the customer with the same email
+     * @throws PersonNotFoundException if no customer with corresponding email found
      */
     @Override
     public int findEmail(Email email) throws PersonNotFoundException {
@@ -197,21 +195,21 @@ public class ModelManager implements Model {
         return addressBook.getCurrentReward(email);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Customer List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Customer} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Customer> getFilteredPersonList() {
+        return filteredCustomers;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredCustomers.setPredicate(predicate);
     }
 
     @Override
@@ -230,6 +228,6 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredCustomers.equals(other.filteredCustomers);
     }
 }

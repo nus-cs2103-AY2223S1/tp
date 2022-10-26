@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Phone;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Phone;
 
 
 

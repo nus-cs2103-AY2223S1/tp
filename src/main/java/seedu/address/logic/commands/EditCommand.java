@@ -24,13 +24,13 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.BirthdayMonth;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Reward;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.customer.BirthdayMonth;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Name;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.Reward;
+import seedu.address.model.customer.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,7 +40,7 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the customer identified "
             + "by the phone number/ email address used to register for membership. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: p/PHONE_NUMBER or e/EMAIL \n"
@@ -54,7 +54,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Customer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in bobaBot";
 
@@ -65,8 +65,8 @@ public class EditCommand extends Command {
     private Index index;
 
     /**
-     * @param phoneIdentifier current phone number of the person
-     * @param editPersonDescriptor details to edit the person with
+     * @param phoneIdentifier current phone number of the customer
+     * @param editPersonDescriptor details to edit the customer with
      */
     public EditCommand(Phone phoneIdentifier, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(phoneIdentifier);
@@ -77,8 +77,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * @param emailIdentifier current email address of the person
-     * @param editPersonDescriptor details to edit the person with
+     * @param emailIdentifier current email address of the customer
+     * @param editPersonDescriptor details to edit the customer with
      */
     public EditCommand(Email emailIdentifier, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(emailIdentifier);
@@ -100,42 +100,42 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
         }
 
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Customer> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
         }
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-        Predicate<Person> filterPersonToEdit = p -> !p.equals(personToEdit);
-        FilteredList<Person> filteredListWithoutTarget = model.getAddressBook().getPersonList()
+        Customer customerToEdit = lastShownList.get(index.getZeroBased());
+        Customer editedCustomer = createEditedPerson(customerToEdit, editPersonDescriptor);
+        Predicate<Customer> filterPersonToEdit = p -> !p.equals(customerToEdit);
+        FilteredList<Customer> filteredListWithoutTarget = model.getAddressBook().getPersonList()
                 .filtered(filterPersonToEdit);
 
-        if (filteredListWithoutTarget.contains(editedPerson)) {
+        if (filteredListWithoutTarget.contains(editedCustomer)) {
             throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(customerToEdit, editedCustomer);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Customer} with the details of {@code customerToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Customer createEditedPerson(Customer customerToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert customerToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Name updatedName = editPersonDescriptor.getName().orElse(customerToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(customerToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(customerToEdit.getEmail());
         BirthdayMonth updatedBirthdayMonth = editPersonDescriptor.getBirthdayMonth()
-            .orElse(personToEdit.getBirthdayMonth());
-        Reward updatedReward = editPersonDescriptor.getReward().orElse(personToEdit.getReward());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+            .orElse(customerToEdit.getBirthdayMonth());
+        Reward updatedReward = editPersonDescriptor.getReward().orElse(customerToEdit.getReward());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(customerToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedBirthdayMonth, updatedReward, updatedTags);
+        return new Customer(updatedName, updatedPhone, updatedEmail, updatedBirthdayMonth, updatedReward, updatedTags);
     }
 
     @Override
@@ -158,8 +158,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the customer with. Each non-empty field value will replace the
+     * corresponding field value of the customer.
      */
     public static class EditPersonDescriptor {
         private Name name;

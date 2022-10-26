@@ -11,32 +11,32 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Person;
+import seedu.address.model.customer.Customer;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Customer.
  */
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code customer}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Customer customer) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(customer);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code customer}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Customer customer) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_BIRTHDAY_MONTH + person.getBirthdayMonth().value + " ");
-        sb.append(PREFIX_REWARD + person.getReward().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + customer.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + customer.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + customer.getEmail().value + " ");
+        sb.append(PREFIX_BIRTHDAY_MONTH + customer.getBirthdayMonth().value + " ");
+        sb.append(PREFIX_REWARD + customer.getReward().value + " ");
+        customer.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

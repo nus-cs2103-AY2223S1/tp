@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Reward;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Name;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.Reward;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -96,7 +96,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
                 Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Customer} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON
                 + TAG_DESC_MEMBER + TAG_DESC_GOLD + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
@@ -128,7 +128,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
                 Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Customer} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON
                 + TAG_DESC_MEMBER + TAG_DESC_GOLD + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);

@@ -13,12 +13,12 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.BirthdayMonth;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Reward;
+import seedu.address.model.customer.BirthdayMonth;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Name;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.Reward;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -56,9 +56,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Reward reward = ParserUtil.parseReward(argMultimap.getValue(PREFIX_REWARD).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, birthdayMonth, reward, tagList);
+        Customer customer = new Customer(name, phone, email, birthdayMonth, reward, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(customer);
     }
 
     /**

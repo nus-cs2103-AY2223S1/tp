@@ -1,12 +1,12 @@
-package seedu.address.model.person;
+package seedu.address.model.customer;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Customer}'s {@code Name} matches any of the keywords given.
  */
-public class MultiSearchPredicate implements Predicate<Person> {
+public class MultiSearchPredicate implements Predicate<Customer> {
     private final AllInfoContainsKeywordsPredicate matchPredicate;
     private final NameSoundsSimilarToPredicate fuzzyPredicate;
 
@@ -21,8 +21,8 @@ public class MultiSearchPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        return matchPredicate.test(person) || fuzzyPredicate.test(person);
+    public boolean test(Customer customer) {
+        return matchPredicate.test(customer) || fuzzyPredicate.test(customer);
     }
 
     @Override

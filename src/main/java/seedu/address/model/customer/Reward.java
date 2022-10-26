@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.customer;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Represents a Person's reward points in bobaBot.
+ * Represents a Customer's reward points in bobaBot.
  * Guarantees: immutable; is valid as declared in {@link #isValidReward(String)}
  */
 public class Reward {

@@ -11,10 +11,10 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.exceptions.PersonNotFoundException;
 
 
 /**
@@ -30,13 +30,13 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final Predicate<Person> predicate;
+    private final Predicate<Customer> predicate;
 
     private Index targetIndex;
 
     private FindPersonDescriptor findPersonDescriptor;
 
-    public FindCommand(Predicate<Person> predicate) {
+    public FindCommand(Predicate<Customer> predicate) {
         this.predicate = predicate;
     }
 
@@ -68,14 +68,14 @@ public class FindCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
             }
 
-            List<Person> lastShownList = model.getFilteredPersonList();
+            List<Customer> lastShownList = model.getFilteredPersonList();
 
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
             }
 
-            Person personToFind = lastShownList.get(targetIndex.getZeroBased());
-            Predicate<Person> filterPersonToFind = p -> p.equals(personToFind);
+            Customer customerToFind = lastShownList.get(targetIndex.getZeroBased());
+            Predicate<Customer> filterPersonToFind = p -> p.equals(customerToFind);
             model.updateFilteredPersonList(filterPersonToFind);
         }
         return new CommandResult(
@@ -90,7 +90,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Stores the details of the Person to find (either the phone number or email).
+     * Stores the details of the Customer to find (either the phone number or email).
      */
     public static class FindPersonDescriptor {
         private Email email;

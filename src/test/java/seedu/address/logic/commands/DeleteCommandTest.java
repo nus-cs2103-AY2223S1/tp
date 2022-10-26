@@ -13,9 +13,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Phone;
 
 
 /**
@@ -37,13 +37,13 @@ public class DeleteCommandTest {
         Index targetIndex = Index.fromZeroBased(index);
 
         // Gets ALICE
-        Person personToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Customer customerToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(deletePersonDescriptor);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, customerToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePerson(customerToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -71,13 +71,13 @@ public class DeleteCommandTest {
         Index targetIndex = Index.fromZeroBased(index);
 
         // Gets CARL
-        Person personToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Customer customerToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(deletePersonDescriptor);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, customerToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePerson(customerToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }

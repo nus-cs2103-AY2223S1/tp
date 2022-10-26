@@ -18,9 +18,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Phone;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for IncreaseCommand.
@@ -31,25 +31,25 @@ public class IncreaseCommandTest {
 
     @Test
     public void execute_phoneAllFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = ALICE_INCREMENT;
+        Customer editedCustomer = ALICE_INCREMENT;
         IncreaseCommand increaseCommand = new IncreaseCommand(PHONE_FIRST_PERSON, "100");
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedCustomer);
         assertCommandSuccess(increaseCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_emailAllFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = ALICE_INCREMENT;
+        Customer editedCustomer = ALICE_INCREMENT;
         IncreaseCommand increaseCommand = new IncreaseCommand(EMAIL_FIRST_PERSON, "100");
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedCustomer);
 
         assertCommandSuccess(increaseCommand, model, expectedMessage, expectedModel);
     }

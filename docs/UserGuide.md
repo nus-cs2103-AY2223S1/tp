@@ -80,7 +80,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…`
 
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
-A person can have any number of tags (including 0)
+A customer can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -128,7 +128,7 @@ Shows a list of all Customers in bobaBot.
 
 Format: `list`
 
-### Locating persons by name: `find`
+### Locating customers by name: `find`
 
 Finds Customers whose information (including name, phone, email, address) contain any of the given keywords.
 

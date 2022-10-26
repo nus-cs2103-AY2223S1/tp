@@ -7,8 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.logic.commands.IncreaseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Phone;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Phone;
 
 /**
  * Parses input arguments and creates a new IncreaseCommand object
