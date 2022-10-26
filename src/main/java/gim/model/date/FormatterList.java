@@ -13,30 +13,30 @@ import java.util.stream.Collectors;
  */
 public class FormatterList {
     private static FormatterList formatterListInstance = null;
-    private static List<DateTimeFormatter> FORMATTER_LIST = null;
+    private static List<DateTimeFormatter> formatterList = null;
 
     private static final String[] validDateFormats = {
-            "uuuu/MM/dd", "uuuu/M/dd", "uuuu/MM/d", "uuuu/M/d",
-            "dd/MM/uuuu", "dd/M/uuuu", "d/MM/uuuu", "d/M/uuuu",
+        "uuuu/MM/dd", "uuuu/M/dd", "uuuu/MM/d", "uuuu/M/d",
+        "dd/MM/uuuu", "dd/M/uuuu", "d/MM/uuuu", "d/M/uuuu",
 
-            "dd/MM/uu", "dd/M/uu", "d/MM/uu", "d/M/uu",
-            "uu/MM/dd", "uu/M/dd", "uu/MM/d", "uu/M/d",
+        "dd/MM/uu", "dd/M/uu", "d/MM/uu", "d/M/uu",
+        "uu/MM/dd", "uu/M/dd", "uu/MM/d", "uu/M/d",
 
-            "dd-MM-uuuu", "dd-M-uuuu", "d-MM-uuuu", "d-M-uuuu",
-            "uuuu-MM-dd", "uuuu-M-dd", "uuuu-MM-d", "uuuu-M-d",
+        "dd-MM-uuuu", "dd-M-uuuu", "d-MM-uuuu", "d-M-uuuu",
+        "uuuu-MM-dd", "uuuu-M-dd", "uuuu-MM-d", "uuuu-M-d",
 
-            "dd-MM-uu", "dd-M-uu", "d-MM-uu", "d-M-uu",
-            "uu-MM-dd", "uu-M-dd", "uu-MM-d", "uu-M-d",
+        "dd-MM-uu", "dd-M-uu", "d-MM-uu", "d-M-uu",
+        "uu-MM-dd", "uu-M-dd", "uu-MM-d", "uu-M-d",
 
-            "dd MM uuuu", "dd M uuuu", "d MM uuuu", "d M uuuu",
-            "uuuu MM dd", "uuuu M dd", "uuuu MM d", "uuuu M d",
+        "dd MM uuuu", "dd M uuuu", "d MM uuuu", "d M uuuu",
+        "uuuu MM dd", "uuuu M dd", "uuuu MM d", "uuuu M d",
 
-            "dd MM uu", "dd M uu", "d MM uu", "d M uu",
-            "uu MM dd", "uu M dd", "uu MM d", "uu M d",
+        "dd MM uu", "dd M uu", "d MM uu", "d M uu",
+        "uu MM dd", "uu M dd", "uu MM d", "uu M d",
     };
 
     private FormatterList() {
-        FORMATTER_LIST = Arrays.stream(validDateFormats)
+        formatterList = Arrays.stream(validDateFormats)
                 .map(pattern -> DateTimeFormatter.ofPattern(pattern).withResolverStyle(ResolverStyle.STRICT))
                 .collect(Collectors.toList());
     }
@@ -58,7 +58,7 @@ public class FormatterList {
      * @return LocalDate object that has been formatted using a valid formatter
      */
     public LocalDate validateDateWithFormatters(String date) {
-        for (DateTimeFormatter formatter : FORMATTER_LIST) {
+        for (DateTimeFormatter formatter : formatterList) {
             LocalDate parsedDate = parseDateByFormatter(date, formatter);
             if (parsedDate != null) {
                 return parsedDate;

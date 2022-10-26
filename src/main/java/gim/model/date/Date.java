@@ -12,29 +12,25 @@ import java.time.format.ResolverStyle;
  * Guarantees: immutable; name is valid as declared in {@link #isValidDateByRegex(String)}
  */
 public class Date {
+    public static final String DEFAULT_DATE_PATTERN = "dd/MM/uuuu";
+    public static final String MESSAGE_CONSTRAINTS_INVALID = "Date is non-existent. Please input a valid date.";
     public static final String MESSAGE_CONSTRAINTS_FORMAT = "Date input format is invalid." + "\n"
             + "Accepted Formats: \n"
             + "DAY/MONTH/YEAR or YEAR/MONTH/DAY\n"
             + "DAY-MONTH-YEAR or YEAR-MONTH-DAY\n"
-            + "DAY MONTH YEAR or YEAR MONTH DAY\n"
-            + "\n"
+            + "DAY MONTH YEAR or YEAR MONTH DAY\n\n"
             + "DAY: 1 or 2 digits allowed\n"
             + "MONTH: 1 or 2 digits allowed\n"
             + "YEAR: 2 or 4 digits allowed\n";
 
-    public static final String MESSAGE_CONSTRAINTS_INVALID = "Date is non-existent. Please input a valid date.";
-
-    public static final String DEFAULT_DATE_PATTERN = "dd/MM/uuuu";
-
+    public static final FormatterList FORMATTER_LIST = FormatterList.getFormatterList();
+    public static final RegexList REGEX_LIST = RegexList.getRegexList();
     /**
      * The formatter uses uuuu instead of yyyy to ensure a stricter formatting restriction for the year.
      * The strict ResolverStyle is used to prevent non-existent dates from being added.
      */
     private static final DateTimeFormatter defaultFormatter = DateTimeFormatter.ofPattern(DEFAULT_DATE_PATTERN)
             .withResolverStyle(ResolverStyle.STRICT);
-
-    public static final FormatterList FORMATTER_LIST = FormatterList.getFormatterList();
-    public static final RegexList REGEX_LIST = RegexList.getRegexList();
 
     public final LocalDate date;
 
