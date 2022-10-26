@@ -11,7 +11,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.RefreshStatsCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.SupplyItem;
@@ -74,14 +73,8 @@ public class InventoryPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 SupplyItemCard updatedCard = new SupplyItemCard(item, getIndex() + 1, increaseHandler.apply(getIndex()),
-                        decreaseHandler.apply(getIndex()), changeIncDecHandler.apply(getIndex()));
+                        decreaseHandler.apply(getIndex()), changeIncDecHandler.apply(getIndex()), executeCommand);
                 setGraphic(updatedCard.getRoot());
-
-                try {
-                    executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
-                } catch (CommandException | ParseException e) {
-                    logger.warning("Unable to refresh stats panel!");
-                }
             }
         }
     }

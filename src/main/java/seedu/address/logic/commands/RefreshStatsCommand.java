@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 public class RefreshStatsCommand extends Command {
     public static final String COMMAND_WORD = "refreshStats";
 
-    public static final String MESSAGE_SUCCESS = "silently refresh stats";
+    public static final String MESSAGE_SUCCESS = "Updated Inventory!";
 
     @Override
     public CommandResult execute(Model model) {
