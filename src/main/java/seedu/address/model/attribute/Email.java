@@ -55,10 +55,4 @@ public class Email extends AbstractAttribute<String> {
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
-    @Override
-    public Map<String, Object> toSaveableData() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

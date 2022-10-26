@@ -39,10 +39,4 @@ public class Name extends AbstractAttribute<String> {
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
-    @Override
-    public Map<String, Object> toSaveableData() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

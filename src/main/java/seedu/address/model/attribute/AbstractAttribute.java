@@ -9,6 +9,10 @@ import static seedu.address.model.AccessDisplayFlags.MENU_OK;
 import static seedu.address.model.AccessDisplayFlags.BOLD;
 import static seedu.address.model.AccessDisplayFlags.ITALIC;
 import static seedu.address.model.AccessDisplayFlags.UNDERLINE;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static seedu.address.model.AccessDisplayFlags.STRIKETHROUGH;
 import static seedu.address.model.AccessDisplayFlags.DROPSHADOW;
 import static seedu.address.model.AccessDisplayFlags.LEFT_JUSTIFY;
@@ -134,6 +138,17 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
 
     protected String getFormatCSS() {
         return getFormatCSS(true);
+    }
+
+    @Override
+    public Map<String, Object> toSaveableData() {
+        Map<String, Object> ret = new HashMap<>();
+        ret.put("type", typeName);
+        ret.put("content", value);
+        ret.put("display_format", accessCtrl);
+        ret.put("style_format", styleFlag);
+
+        return ret;
     }
 
     protected String getFormatCSS(boolean isInMenu) {
