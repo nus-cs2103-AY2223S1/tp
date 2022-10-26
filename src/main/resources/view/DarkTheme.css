@@ -369,7 +369,3 @@
 .hyperlink:hover {
     -fx-underline: true;
 }
-
-.link_panel {
-    -fx-background-color: #383838;
-}
