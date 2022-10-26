@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.control.Label?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="SoCompiler" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
@@ -42,7 +43,7 @@
                     </padding>
                 </StackPane>
 
-                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="130" minHeight="130" styleClass="borderless-pane"
+                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="149" minHeight="149" styleClass="borderless-pane"
                            VBox.vgrow="NEVER">
                     <padding>
                         <Insets bottom="5" left="10" right="10" top="5"/>
@@ -62,6 +63,7 @@
 
                     <VBox fx:id="moduleList" prefWidth="340" styleClass="borderless-pane" GridPane.columnIndex="1"
                           GridPane.rowIndex="1" VBox.vgrow="ALWAYS">
+                        <Label styleClass="list-title" text="Modules"/>
                         <StackPane fx:id="moduleListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         <padding>
                             <Insets bottom="10" left="10" right="10" top="10"/>
@@ -69,6 +71,7 @@
                     </VBox>
                     <VBox fx:id="personList" prefWidth="340" styleClass="borderless-pane" GridPane.rowIndex="1"
                           VBox.vgrow="ALWAYS">
+                        <Label styleClass="list-title" text="Contacts"/>
                         <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         <padding>
                             <Insets bottom="10" left="10" right="10" top="10"/>

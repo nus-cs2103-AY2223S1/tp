@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
 .background {
     -fx-background-color: #ffffff;
     background-color: #ffffff;
@@ -77,7 +79,7 @@
     -fx-text-fill: #0a122a;
 }
 
-.list-cell .link_type_label {
+.list-cell .field_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #0a122a;
@@ -215,7 +217,7 @@
  * unique CSS for the copy button, separate from the help button
  */
 .copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: #3f6411;
     -fx-text-fill: white;
     -fx-font-size: 3;
     -fx-background-radius: 5em;
@@ -229,11 +231,11 @@
 }
 
 .copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: #67a616;
 }
 
 .copyButton:armed {
-    -fx-background-color: darkgray;
+    -fx-background-color: #8ce719;
 }
 
 .scroll-bar {
@@ -262,6 +264,13 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
+}
+
+.list-title {
+    -fx-font-size: 20;
+    -fx-text-fill: #e7decd;
+    -fx-font-family: "Roboto Mono";
+    -fx-padding: 0 0 7 0;
 }
 
 #cardPane {

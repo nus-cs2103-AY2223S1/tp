@@ -22,7 +22,7 @@
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15"/>
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox spacing="5" HBox.hgrow="ALWAYS">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
@@ -38,7 +38,7 @@
             </HBox>
             <Label fx:id="moduleTitle" styleClass="cell_big_label"/>
             <HBox>
-                <Label id="lectureLabel" styleClass="link_type_label" text="Lecture: "/>
+                <Label id="lectureLabel" styleClass="field_label" text="Lecture: "/>
                 <Label fx:id="lectureDetails" styleClass="cell_small_label" text="\$lectureDetails"/>
             </HBox>
             <HBox>
@@ -56,7 +56,7 @@
             </HBox>
             <Label fx:id="placeHolder2" styleClass="cell_small_label" text=" "/>
             <HBox>
-                <Label fx:id="tutorialLabel" styleClass="link_type_label" text="Tutorial: "/>
+                <Label fx:id="tutorialLabel" styleClass="field_label" text="Tutorial: "/>
                 <Label fx:id="tutorialDetails" styleClass="cell_small_label" text="\$tutorialDetails"/>
             </HBox>
             <HBox>
