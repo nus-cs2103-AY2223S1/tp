@@ -139,8 +139,7 @@ public class FileUtil {
             if (line.length == 0 || line[0].isBlank()) {
                 data.add(person);
                 person = new ArrayList<>();
-            }
-            else {
+            } else {
                 person.add(line);
             }
         }
