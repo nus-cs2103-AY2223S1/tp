@@ -5,12 +5,14 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
+    "birthday": "01/01/2000",
     "loan" : "0.0"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
+    "birthday": "01/01/2000",
     "loan": "0.0"
   } ],
   "tags": [ "friends" ]

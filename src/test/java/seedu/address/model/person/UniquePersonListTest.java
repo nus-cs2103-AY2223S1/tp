@@ -174,6 +174,7 @@ public class UniquePersonListTest {
                         new Phone("99998888"),
                         new Email("abc@fmail.com"),
                         new Address("123 street"),
+                        new Birthday("01/01/2000"),
                         new HashSet<>(),
                         new Loan("0")
                 )

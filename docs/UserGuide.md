@@ -30,7 +30,7 @@ This User Guide is an in-depth guide to help you start managing your contacts, n
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`name/John Doe phone/98765432 email/johnd@example.com home/John street, block 123, #01-01` : Adds a contact named `John Doe` to the SectresBook.
+   * **`add`**`name/John Doe phone/98765432 email/johnd@example.com home/John street, block 123, #01-01 bday/01/01/2000` : Adds a contact named `John Doe` to the SectresBook.
 
    * **`delete 3`** : Deletes the 3rd contact shown in the current list.
    
@@ -131,7 +131,7 @@ Please refer to the `Tag Properties` section below for more information regardin
   - This property cannot be left empty.
 
 #### Tags
-- Persons can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes.
+- Notes can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Please refer to the `Tag Properties` section below for more information regarding tags.
@@ -184,16 +184,16 @@ Format: `help`
 
 Adds a person to the SectresBook.
 
-Format: `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS [tag/TAG]...​ [l/LOAN]`
+Format: `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS bday/BIRTHDAY [tag/TAG]...​ [l/LOAN]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add name/John Doe phone/98765432 email/johnd@example.com home/John street, block 123, #01-01 tag/Member`
-* `add name/Jane Doe phone/98876542 email/jane@example.com home/That Street, block 133, #11-10 tag/Member l/10`
-* `add name/Neethesh tag/VicePresident email/neethesh@example.com home/Happy Avenue phone/91234567`
+* `add name/John Doe phone/98765432 email/johnd@example.com home/John street, block 123, #01-01 bday/01/04/2010 tag/Member`
+* `add name/Jane Doe phone/98876542 email/jane@example.com home/That Street, block 133, #11-10 bday/05/11/1986 tag/Member l/10`
+* `add name/Neethesh tag/VicePresident email/neethesh@example.com home/Happy Avenue phone/91234567 bday/24/05/1998`
 
 ### Listing all persons : `list`
 
@@ -205,7 +205,7 @@ Format: `list`
 
 Edits an existing club member’s information in the SectresBook
 
-Format: `edit INDEX <OR> NAME [name/NAME] [phone/PHONE] [email/EMAIL] [home/ADDRESS] [tag/TAG]…​`
+Format: `edit INDEX <OR> NAME [name/NAME] [phone/PHONE] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY] [tag/TAG]…​`
 
 Example of usage:
 
@@ -433,22 +433,22 @@ Word | Definition
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
-###AddressBook Commands
+### AddressBook Commands
 
-Action | Format | Examples
---------|-------------------------------------|--------
-**Add** | `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS [tag/TAG]…​` | `add name/James Ho phone/22224444 email/jamesho@example.com home/123, Clementi Rd, 1234665 tag/friend tag/colleague`
-**Clear** | `clear` | `clear`
-**Delete** | `delete INDEX`<br>`delete NAME`     | `delete 3` <br> `delete Jane`
-**Edit** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]` <br> `find NUMBER` | `find James Jake` <br> `find 8651`
-**Find Tag** | `findTag TAG [MORE_TAGS]` | `findTag Operations Outreach`
-**Edit Loan** | `editLoan INDEX AMOUNT REASON` | `editLoan 1 -20 Buy Logistics`
-**List** | `list` | `list`
-**Help** | `help` | `help`
-**Exit** | `exit` | `exit`
+Action | Format                                                                                                | Examples
+--------|-------------------------------------------------------------------------------------------------------|--------
+**Add** | `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS bday/BIRTHDAY [tag/TAG]…​`                 | `add name/James Ho phone/22224444 email/jamesho@example.com home/123, Clementi Rd, 1234665 bday/01/01/2000 tag/friend tag/colleague`
+**Clear** | `clear`                                                                                               | `clear`
+**Delete** | `delete INDEX`<br>`delete NAME`                                                                       | `delete 3` <br> `delete Jane`
+**Edit** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY][tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]` <br> `find NUMBER`                                                     | `find James Jake` <br> `find 8651`
+**Find Tag** | `findTag TAG [MORE_TAGS]`                                                                             | `findTag Operations Outreach`
+**Edit Loan** | `editLoan INDEX AMOUNT REASON`                                                                        | `editLoan 1 -20 Buy Logistics`
+**List** | `list`                                                                                                | `list`
+**Help** | `help`                                                                                                | `help`
+**Exit** | `exit`                                                                                                | `exit`
 
-###Note Commands
+### Note Commands
 
 Action | Format | Examples
 --------|---------------------------|-------------
