@@ -16,8 +16,8 @@ public class TypicalTeams {
     public static final ArrayList<Task> TYPICAL_TASKS = new ArrayList<Task>(
         Arrays.asList(TypicalTasks.TASK_1, TypicalTasks.TASK_2));
 
-    public static final Team FIRST = new Team("first", new ArrayList<>(), new ArrayList<>());
-    public static final Team FIRST_DUPLICATE = new Team("first" , new ArrayList<>(), new ArrayList<>());
-    public static final Team SECOND = new Team("second", TYPICAL_MEMBERS, TYPICAL_TASKS);
-
+    public static final Team FIRST = new Team("first", Team.DEFAULT_DESCRIPTION);
+    public static final Team FIRST_DUPLICATE = new Team("first" , Team.DEFAULT_DESCRIPTION);
+    public static final Team SECOND = new Team("second",
+            Team.DEFAULT_DESCRIPTION, TYPICAL_MEMBERS, TYPICAL_TASKS, new ArrayList<>());
 }
