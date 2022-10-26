@@ -65,7 +65,7 @@ public class UntagCommandTest {
     public void execute_untagItemWithoutExistingTagInModel_throwsCommandException() {
         final Model model = new ModelManager(getFoodRemWithTypicalItems(), new UserPrefs());
 
-        Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
+        Tag tag = new TagBuilder().withTagName("NON EXISTENT").build();
 
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
 

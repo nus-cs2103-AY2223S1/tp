@@ -31,20 +31,12 @@ public class TypicalFoodRem {
         FoodRem foodRem = new FoodRem();
         for (Item item : TypicalItems.getTypicalItems()) {
             foodRem.addItem(item);
+            for (Tag tag : item.getTagSet()) {
+                if (!foodRem.hasTag(tag)) {
+                    foodRem.addTag(tag);
+                }
+            }
         }
-
-        return foodRem;
-    }
-
-    /**
-     * Returns a {@code FoodRem} with all the typical tags only.
-     */
-    public static FoodRem getFoodRemWithTypicalTags() {
-        FoodRem foodRem = new FoodRem();
-        for (Tag tag : TypicalTags.getTypicalTags()) {
-            foodRem.addTag(tag);
-        }
-
         return foodRem;
     }
 
