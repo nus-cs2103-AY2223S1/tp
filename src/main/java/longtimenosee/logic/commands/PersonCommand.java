@@ -12,7 +12,7 @@ public class PersonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Listed all filtered currently filtered clients";
+    public static final String MESSAGE_SUCCESS = "Listed all currently filtered clients";
 
 
     @Override

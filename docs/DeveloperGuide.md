@@ -433,7 +433,7 @@ if not already assigned, the policy is assigned to the person.
 * **Alternative 1:** Allows assignment using policy/persons names.
   * Pros: More flexible and quicker assigning if user knows exactly who and which policy they want to assign.
   * Cons: More-bug prone, and would require the user to accurately provide the exact name of the policy/person. 
-  Hard to get used to for new users, and complicated for established users with lots of contacts and policies.
+  Hard to get used to for new users, and complicated for established users with lots of clients and policies.
 
 * **Alternative 2: (Current implementation)** Allow assignment using policy/person indices.
   * Pros: Easy to implement and avoids confusion for new users.
@@ -449,18 +449,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Implementation
 
-The find mechanism is facilitated by `FilteredList` from the JavaFx library, by using `FilteredList#setPredicate()` to update the list of contacts being displayed based on the specified metrics.
+The find mechanism is facilitated by `FilteredList` from the JavaFx library, by using `FilteredList#setPredicate()` to update the list of clients being displayed based on the specified metrics.
 
 Given below is an example usage scenario and how the `find` mechanism behaves at each step.
 
-Step 1. The user executes a `find` command to find any contacts matching the given metrics. The `find` command calls `AddressBookParser#parseCommand()`, which parses the arguments and calls `FindCommandParser#parse()` with the obtained results
+Step 1. The user executes a `find` command to find any clients matching the given metrics. The `find` command calls `AddressBookParser#parseCommand()`, which parses the arguments and calls `FindCommandParser#parse()` with the obtained results
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the arguments to the command is invalid, the execution will stop at this step.
 </div>
 
 Step 2. `FindCommandParser#parse()` goes through the arguments and check which prefixes are present and creates a `FindCommand` object with the corresponding predicates.
 
-Step 3. `LogicManager` executes the `FindCommand` using the combined predicates, which calls `Model#updateFilteredPersonList()` and updates the list of contacts displayed
+Step 3. `LogicManager` executes the `FindCommand` using the combined predicates, which calls `Model#updateFilteredPersonList()` and updates the list of clients displayed
 
 The following sequence diagram shows how the find operation works:
 
@@ -528,7 +528,7 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage clients faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -544,11 +544,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name              | locate a person easily                                                 |
 | `**`     | new user                                   | see sample data                   | Have a better understanding of the app's default layout                |
-| `**`     | user                                       | filter my contacts by keywords    | Locate my contacts easily, based on a particular critera               |
-| `**`     | user                                       | update my contacts list           | Edit their contact details                                             |
+| `**`     | user                                       | filter my clients by keywords     | Locate my clients easily, based on a particular critera                |
+| `**`     | user                                       | update my client list             | Edit their contact details                                             |
 | `*`      | user                                       | have a reliable method            | store contact information without losing data                          |
 | `*`      | user                                       | view individual client's profiles | keep track of multiple, unique clients                                 |
-| `*`      | user                                       | pin important contacts            | be reminded of users which are of higher priority                      |
+| `*`      | user                                       | pin important clients             | be reminded of users which are of higher priority                      |
 *{More to be added}* 
 
 ### Use cases
@@ -581,8 +581,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list all contacts
-2. LTNS displays a list of all contacts
+1. User requests to list all clients
+2. LTNS displays a list of all clients
 
    Use case ends
 
@@ -679,7 +679,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to search by a certain metric.
-2. LTNS shows a list of contacts with matching metrics.
+2. LTNS shows a list of clients with matching metrics.
 
    Use case ends
 
@@ -687,7 +687,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User requests another search.
 
-  * 2a1. LTNS displays a new list of contacts with matching metrics.
+  * 2a1. LTNS displays a new list of clients with matching metrics.
 
     Use case ends.
 
@@ -733,7 +733,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample clients. The window size may not be optimum.
 
 1. Saving window preferences
 
