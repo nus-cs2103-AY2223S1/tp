@@ -50,13 +50,6 @@ public class ClientCard extends UiPart<Region> {
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         email.setText(client.getEmail().value);
-        List<Meeting> clientMeetings = client.getMeetings();
-        for (Meeting meeting : clientMeetings) {
-            String meetingSummary = String.format("•  %s, %s - %s", meeting.getMeetingDate(),
-                    meeting.getMeetingTime(), meeting.getDescription());
-            Label label = new Label(meetingSummary);
-            label.getStyleClass().add("cell_small_label");
-        }
     }
 
     @Override

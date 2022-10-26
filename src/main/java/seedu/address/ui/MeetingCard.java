@@ -28,7 +28,7 @@ public class MeetingCard extends UiPart<Region> {
     public MeetingCard(Meeting meeting, int displayedIndex) {
         super(FXML);
         this.meeting = meeting;
-        id.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + "");
         description.setText(meeting.getDescription().toString());
         date.setText(meeting.getMeetingDate().toString());
         time.setText(meeting.getMeetingTime().toString());
