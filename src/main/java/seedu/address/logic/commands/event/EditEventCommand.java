@@ -24,6 +24,7 @@ import seedu.address.model.event.Attendees;
 import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Title;
+import seedu.address.model.profile.Profile;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -94,6 +95,11 @@ public class EditEventCommand extends EventCommand {
             throw new CommandException(Messages.MESSAGE_EVENTS_INVALID_START_END);
         }
 
+        List<Profile> profiles = eventToEdit.getAttendees().getAttendeesList();
+        for (Profile p : profiles) {
+            p.getEventsToAttend().remove(eventToEdit);
+            p.getEventsToAttend().add(editedEvent);
+        }
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));

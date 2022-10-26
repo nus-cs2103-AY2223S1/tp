@@ -11,6 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
+import seedu.address.model.profile.Profile;
 
 /**
  * Deletes an event identified using its displayed index from the address book.
@@ -45,6 +46,8 @@ public class DeleteEventCommand extends EventCommand {
         }
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
+        List<Profile> profiles = eventToDelete.getAttendees().getAttendeesList();
+        eventToDelete.removeEventFromAttendees(profiles);
         model.deleteEvent(eventToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));
     }

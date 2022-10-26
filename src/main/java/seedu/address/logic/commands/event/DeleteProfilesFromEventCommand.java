@@ -79,6 +79,7 @@ public class DeleteProfilesFromEventCommand extends EventCommand {
         Event eventCopy = new Event(event.getTitle(), event.getStartDateTime(), event.getEndDateTime(),
                 event.getTags(), event.getAttendees());
         eventCopy.deleteAttendees(profilesToDelete);
+        eventCopy.removeEventFromAttendees(profilesToDelete);
 
         model.setEvent(event, eventCopy);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);

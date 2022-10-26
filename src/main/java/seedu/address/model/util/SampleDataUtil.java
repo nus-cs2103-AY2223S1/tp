@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.event.Attendees;
 import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Title;
@@ -28,6 +27,11 @@ public class SampleDataUtil {
             new Email("berniceyu@u.duke.nus.edu"), Telegram.EMPTY_TELEGRAM, getTagSet("colleagues", "friends"));
     private static Profile roy = new Profile(new Name("Roy Balakrishnan"), new Phone("92624417"),
             new Email("royb@u.nus.edu"), Telegram.EMPTY_TELEGRAM, getTagSet("colleagues"));
+    private static Event presentation = new Event(new Title("Discuss presentation"), new DateTime("11/10/2022 09:00"),
+            new DateTime("11/10/2022 10:00"), getTagSet("CS2103T"));
+    private static Event formalDinner = new Event(new Title("Formal dinner"), new DateTime("12/10/2022 19:00"),
+                    new DateTime("12/10/2022 23:00"), getTagSet("RC")
+            );
 
     public static Profile[] getSampleProfiles() {
         return new Profile[] {
@@ -43,28 +47,34 @@ public class SampleDataUtil {
     }
 
     public static Event[] getSampleEvents() {
-        return new Event[] {
-            new Event(new Title("Discuss presentation"), new DateTime("11/10/2022 09:00"),
-                    new DateTime("11/10/2022 10:00"), getTagSet("CS2103T"),
-                    new Attendees(List.of(bernice, roy))),
+        return new Event[] {presentation,
             new Event(new Title("Practice"), new DateTime("11/10/2022 13:00"),
                     new DateTime("11/10/2022 14:00"), getTagSet("CCA")),
             new Event(new Title("Finish problem set"), new DateTime("12/10/2022 16:00"),
                     new DateTime("12/10/2022 17:00"), getTagSet("CS2109S")),
-            new Event(new Title("Formal dinner"), new DateTime("12/10/2022 19:00"),
-                    new DateTime("12/10/2022 23:00"), getTagSet("RC"),
-                    new Attendees(List.of(alex)))
+            formalDinner
         };
+    }
+
+    private static void addAttendees() {
+        presentation.addAttendees(List.of(bernice, roy));
+        formalDinner.addAttendees(List.of(alex));
+    }
+
+    private static void addEventsAttending() {
+        formalDinner.addEventToAttendees(List.of(alex));
+        presentation.addEventToAttendees(List.of(bernice, roy));
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
+        addAttendees();
+        addEventsAttending();
         for (Profile sampleProfile : getSampleProfiles()) {
             sampleAb.addProfile(sampleProfile);
         }
         for (Event sampleEvent : getSampleEvents()) {
             sampleAb.addEvent(sampleEvent);
-            //sampleEvent.addEventToAttendees(List.of(getSampleProfiles()));
         }
         return sampleAb;
     }

@@ -49,6 +49,7 @@ public class DeleteProfileCommand extends ProfileCommand {
         List<Event> events = profileToDelete.getEventsToAttend().getEventsList();
         model.deleteProfile(profileToDelete);
         for (Event e : events) {
+            e.getAttendees().remove(profileToDelete);
             Event eventCopy = new Event(e.getTitle(), e.getStartDateTime(), e.getEndDateTime(),
                     e.getTags(), e.getAttendees());
             model.setEvent(e, eventCopy);

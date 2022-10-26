@@ -113,7 +113,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteProfile(Profile target) {
-        removeProfileFromEventsAttending(target, target.getEventsToAttend().getEventsList());
+        //removeProfileFromEventsAttending(target, target.getEventsToAttend().getEventsList());
         addressBook.removeProfile(target);
     }
 
@@ -132,7 +132,7 @@ public class ModelManager implements Model {
     @Override
     public void setProfile(Profile target, Profile editedProfile) {
         requireAllNonNull(target, editedProfile);
-        setProfileForEventsAttending(target, editedProfile, target.getEventsToAttend().getEventsList());
+        //setProfileForEventsAttending(target, editedProfile, target.getEventsToAttend().getEventsList());
         addressBook.setProfile(target, editedProfile);
     }
 
@@ -152,7 +152,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteEvent(Event target) {
-        removeEventsFromAttendeesList(target, target.getAttendees().getAttendeesList());
+        //removeEventsFromAttendeesList(target, target.getAttendees().getAttendeesList());
         addressBook.removeEvent(target);
     }
 
@@ -171,7 +171,7 @@ public class ModelManager implements Model {
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
-        setEventForAttendees(target, editedEvent, target.getAttendees().getAttendeesList());
+        //setEventForAttendees(target, editedEvent, target.getAttendees().getAttendeesList());
         addressBook.setEvent(target, editedEvent);
     }
 
