@@ -85,6 +85,16 @@ public class StageUtil {
 
     private static final Map<Stage, List<String>> tipsForStage = new HashMap<>();
 
+    /*
+     * Static initialization block to populate the map.
+     * Each stage is mapped to a list of tips.
+     */
+    static {
+        for (int i = 0; i < stagesWithTips.size(); i++) {
+            tipsForStage.put(stagesWithTips.get(i), listOfTips.get(i));
+        }
+    }
+
     /**
      * Constructor for StageUtil class
      * Populates the map whereby each stage is mapped to a list of tips.
@@ -114,6 +124,19 @@ public class StageUtil {
                 ? Collections.emptyList()
                 : tipsForStage.get(providedStage);
     }
+
+   /**
+     * Returns a list of tips if stage is present in {@code stagesWithTips},
+     * otherwise return an empty list.
+     * @param stage the given stage
+     * @return a list of stage-specific tips
+     */
+    public static List<String> getStageSpecificTips(Stage stage) {
+        return (!stagesWithTips.contains(stage))
+                ? Collections.emptyList()
+                : tipsForStage.get(stage);
+    }
+
 
     /**
      * Checks if a stage is in the pre-defined list of stages which has tips.
