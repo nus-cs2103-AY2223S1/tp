@@ -6,7 +6,7 @@ import seedu.address.logic.util.exceptions.SortedListException;
 import seedu.address.model.person.Person;
 
 /**
- * Custom comparator that sorts Person based on their Names.
+ * Custom comparator that sorts Person based on their Appointment dates.
  */
 public class SortByAppointment implements Comparator<Person> {
 

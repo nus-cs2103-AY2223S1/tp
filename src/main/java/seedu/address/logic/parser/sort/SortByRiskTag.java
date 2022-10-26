@@ -5,7 +5,7 @@ import java.util.Comparator;
 import seedu.address.model.person.Person;
 
 /**
- * Custom comparator that sorts Person based on their Names.
+ * Custom comparator that sorts Person based on their Risk Levels.
  */
 public class SortByRiskTag implements Comparator<Person> {
 

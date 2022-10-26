@@ -4,10 +4,17 @@ import java.util.Comparator;
 
 import seedu.address.model.person.Person;
 
+/**
+ * Custom comparator that sorts Person based on their Income.
+ */
 public class SortByIncome implements Comparator<Person> {
 
     private final String order;
 
+    /**
+     * Constructor that takes in the order to sort the contact book by.
+     * @param order the order to sort by.
+     */
     public SortByIncome(String order) {
         this.order = order;
     }
