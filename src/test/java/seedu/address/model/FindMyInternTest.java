@@ -37,7 +37,7 @@ public class FindMyInternTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyFindMyIntern_replacesData() {
         FindMyIntern newData = getTypicalFindMyIntern();
         findMyIntern.resetData(newData);
         assertEquals(newData, findMyIntern);
@@ -61,18 +61,18 @@ public class FindMyInternTest {
     }
 
     @Test
-    public void hasInternship_internshipNotInAddressBook_returnsFalse() {
+    public void hasInternship_internshipNotInFindMyIntern_returnsFalse() {
         assertFalse(findMyIntern.hasInternship(ALIBABA));
     }
 
     @Test
-    public void hasInternship_internshipInAddressBook_returnsTrue() {
+    public void hasInternship_internshipInFindMyIntern_returnsTrue() {
         findMyIntern.addInternship(ALIBABA);
         assertTrue(findMyIntern.hasInternship(ALIBABA));
     }
 
     @Test
-    public void hasInternship_internshipWithSameFieldsInAddressBook_returnsTrue() {
+    public void hasInternship_internshipWithSameFieldsInFindMyIntern_returnsTrue() {
         findMyIntern.addInternship(ALIBABA);
         Internship editedAlibaba = new InternshipBuilder(ALIBABA)
                 .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withTags(VALID_TAG_ECOMMERCE).build();
@@ -85,7 +85,7 @@ public class FindMyInternTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose internships list can violate interface constraints.
+     * A stub ReadOnlyFindMyIntern whose internships list can violate interface constraints.
      */
     private static class FindMyInternStub implements ReadOnlyFindMyIntern {
         private final ObservableList<Internship> internships = FXCollections.observableArrayList();

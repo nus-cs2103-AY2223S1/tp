@@ -96,7 +96,7 @@ public class TypicalInternships {
     private TypicalInternships() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code FindMyIntern} with all the typical persons.
      */
     public static FindMyIntern getTypicalFindMyIntern() {
         FindMyIntern ab = new FindMyIntern();

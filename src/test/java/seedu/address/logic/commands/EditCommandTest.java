@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
-        Model expectedModel = new ModelManager(new FindMyIntern(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new FindMyIntern(model.getFindMyIntern()), new UserPrefs());
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
-        Model expectedModel = new ModelManager(new FindMyIntern(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new FindMyIntern(model.getFindMyIntern()), new UserPrefs());
         expectedModel.setInternship(lastInternship, editedInternship);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
-        Model expectedModel = new ModelManager(new FindMyIntern(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new FindMyIntern(model.getFindMyIntern()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -94,7 +94,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
-        Model expectedModel = new ModelManager(new FindMyIntern(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new FindMyIntern(model.getFindMyIntern()), new UserPrefs());
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -115,7 +115,7 @@ public class EditCommandTest {
 
         // edit internship in filtered list into a duplicate in address book
         Internship internshipInList =
-                model.getAddressBook().getInternshipList().get(INDEX_SECOND_INTERNSHIP.getZeroBased());
+                model.getFindMyIntern().getInternshipList().get(INDEX_SECOND_INTERNSHIP.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
                 new EditInternshipDescriptorBuilder(internshipInList).build());
 
@@ -141,7 +141,7 @@ public class EditCommandTest {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
         Index outOfBoundIndex = INDEX_SECOND_INTERNSHIP;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getInternshipList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getFindMyIntern().getInternshipList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_TIKTOK).build());

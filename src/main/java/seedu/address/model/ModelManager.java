@@ -27,14 +27,14 @@ public class ModelManager implements Model {
     private SortedList<Internship> sortedInternships;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given findMyIntern and userPrefs.
      */
-    public ModelManager(ReadOnlyFindMyIntern addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyFindMyIntern findMyIntern, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(findMyIntern, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + findMyIntern + " and user prefs " + userPrefs);
 
-        this.findMyIntern = new FindMyIntern(addressBook);
+        this.findMyIntern = new FindMyIntern(findMyIntern);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredInternships = new FilteredList<>(this.findMyIntern.getInternshipList());
         sortedInternships = new SortedList<>(filteredInternships);
@@ -69,25 +69,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getFindMyInternFilePath() {
         return userPrefs.getFindMyInternFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setFindMyInternFilePath(addressBookFilePath);
+    public void setFindMyInternFilePath(Path findMyInternFilePath) {
+        requireNonNull(findMyInternFilePath);
+        userPrefs.setFindMyInternFilePath(findMyInternFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== FindMyIntern ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyFindMyIntern addressBook) {
-        this.findMyIntern.resetData(addressBook);
+    public void setFindMyIntern(ReadOnlyFindMyIntern findMyIntern) {
+        this.findMyIntern.resetData(findMyIntern);
     }
 
     @Override
-    public ReadOnlyFindMyIntern getAddressBook() {
+    public ReadOnlyFindMyIntern getFindMyIntern() {
         return findMyIntern;
     }
 
@@ -124,7 +124,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Internship} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFindMyIntern}
      */
     @Override
     public ObservableList<Internship> getFilteredInternshipList() {

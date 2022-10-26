@@ -38,20 +38,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getFindMyInternFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFindMyInternFilePath(Path findMyInternFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code findMyIntern}.
      */
-    void setAddressBook(ReadOnlyFindMyIntern addressBook);
+    void setFindMyIntern(ReadOnlyFindMyIntern findMyIntern);
 
-    /** Returns the AddressBook */
-    ReadOnlyFindMyIntern getAddressBook();
+    /** Returns the FindMyIntern */
+    ReadOnlyFindMyIntern getFindMyIntern();
 
     /**
      * Returns true if an internship with the same identity as {@code internship} exists in the address book.

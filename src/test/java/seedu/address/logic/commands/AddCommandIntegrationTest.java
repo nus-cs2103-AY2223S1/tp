@@ -29,7 +29,7 @@ public class AddCommandIntegrationTest {
     public void execute_newInternship_success() {
         Internship validInternship = new InternshipBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getFindMyIntern(), new UserPrefs());
         expectedModel.addInternship(validInternship);
 
         assertCommandSuccess(new AddCommand(validInternship), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateInternship_throwsCommandException() {
-        Internship internshipInList = model.getAddressBook().getInternshipList().get(0);
+        Internship internshipInList = model.getFindMyIntern().getInternshipList().get(0);
         assertCommandFailure(new AddCommand(internshipInList), model, AddCommand.MESSAGE_DUPLICATE_INTERNSHIP);
     }
 

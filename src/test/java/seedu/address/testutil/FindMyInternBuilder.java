@@ -4,9 +4,9 @@ import seedu.address.model.FindMyIntern;
 import seedu.address.model.internship.Internship;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building FindMyIntern objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code FindMyIntern ab = new FindMyInternBuilder().withPerson("John", "Doe").build();}
  */
 public class FindMyInternBuilder {
 
@@ -21,7 +21,7 @@ public class FindMyInternBuilder {
     }
 
     /**
-     * Adds a new {@code Internship} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Internship} to the {@code FindMyIntern} that we are building.
      */
     public FindMyInternBuilder withInternship(Internship internship) {
         findMyIntern.addInternship(internship);

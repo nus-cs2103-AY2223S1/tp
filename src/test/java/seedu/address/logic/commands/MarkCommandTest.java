@@ -36,7 +36,7 @@ public class MarkCommandTest {
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_INTERNSHIP_SUCCESS, editedInternship);
 
-        Model expectedModel = new ModelManager(new FindMyIntern(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new FindMyIntern(model.getFindMyIntern()), new UserPrefs());
         expectedModel.markInternship(lastInternship, editedInternship);
 
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
