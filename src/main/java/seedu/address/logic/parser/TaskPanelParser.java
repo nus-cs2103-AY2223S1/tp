@@ -10,6 +10,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.AssignTaskCommand;
+import seedu.address.logic.commands.task.ClearTaskCommand;
 import seedu.address.logic.commands.task.DeadlineTaskCommand;
 import seedu.address.logic.commands.task.DeleteTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand;
@@ -20,6 +21,7 @@ import seedu.address.logic.commands.task.UnmarkTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.AddTaskCommandParser;
 import seedu.address.logic.parser.task.AssignTaskCommandParser;
+import seedu.address.logic.parser.task.ClearTaskCommandParser;
 import seedu.address.logic.parser.task.DeadlineTaskCommandParser;
 import seedu.address.logic.parser.task.DeleteTaskCommandParser;
 import seedu.address.logic.parser.task.EditTaskCommandParser;
@@ -53,6 +55,8 @@ public class TaskPanelParser implements Parser<TaskCommand> {
         switch (commandWord) {
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
+        case ClearTaskCommand.COMMAND_WORD:
+            return new ClearTaskCommandParser().parse(arguments);
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskCommandParser().parse(arguments);
         case MarkTaskCommand.COMMAND_WORD:

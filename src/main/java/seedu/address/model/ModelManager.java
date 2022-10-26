@@ -190,6 +190,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setTaskPanel(ReadOnlyTaskPanel taskPanel) {
+        this.taskPanel.resetData(taskPanel);
+    }
+
+    @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return taskPanel.hasTask(task);
