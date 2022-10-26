@@ -76,6 +76,7 @@ public class AddSupplierCommand extends AddPersonCommand {
 
         for (Pet pet : pets) {
             model.addPet(pet);
+            pet.setSupplier(toAdd);
         }
 
         model.addSupplier(toAdd);

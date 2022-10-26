@@ -25,7 +25,7 @@ public class Pet {
 
     private final UniqueId id;
     private final Name name;
-    private final Supplier supplier;
+    private Supplier supplier;
     private final Color color;
     private final ColorPattern colorPattern;
     private final DateOfBirth dateOfBirth;
@@ -344,6 +344,10 @@ public class Pet {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     /**

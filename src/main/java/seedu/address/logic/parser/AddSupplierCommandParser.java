@@ -67,7 +67,7 @@ public class AddSupplierCommandParser extends AddPersonCommandParser implements 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Supplier supplier = new Supplier(PersonCategory.BUYER, name, phone, email, address, tagList, null);
 
-        List<Pet> pets = ParserUtil.parsePets(argMultimap.getAllValues(PREFIX_ORDER), supplier);
+        List<Pet> pets = ParserUtil.parsePets(argMultimap.getAllValues(PREFIX_ORDER), false);
         supplier.addPets(pets.stream().map(Pet::getId).collect(Collectors.toList()));
 
         return new AddSupplierCommand(supplier, pets);

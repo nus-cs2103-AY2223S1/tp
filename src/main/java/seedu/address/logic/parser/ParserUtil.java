@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_COLOR;
@@ -229,11 +230,11 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> pets} into a {@code List<Pet>}.
      */
-    public static List<Pet> parsePets(Collection<String> pets, Supplier supplier) throws ParseException {
+    public static List<Pet> parsePets(Collection<String> pets, boolean isSupplierExisting) throws ParseException {
         requireNonNull(pets);
         final List<Pet> petList = new ArrayList<>();
         for (String pet : pets) {
-            petList.add(parsePet(pet, supplier));
+            petList.add(parsePet(pet, isSupplierExisting));
         }
         return petList;
     }
@@ -313,33 +314,65 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code petString} is invalid.
      */
-    public static Pet parsePet(String petString, Supplier owner) throws ParseException {
+    public static Pet parsePet(String petString, boolean isSupplierExisting) throws ParseException {
 
         requireNonNull(petString);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(petString,
-                        PREFIX_PET_OWNER,
-                        PREFIX_PET_NAME,
-                        PREFIX_PET_DATE_OF_BIRTH,
-                        PREFIX_PET_COLOR,
-                        PREFIX_PET_COLOR_PATTERN,
-                        PREFIX_PET_HEIGHT,
-                        PREFIX_PET_CERTIFICATE,
-                        PREFIX_PET_SPECIES,
-                        PREFIX_PET_VACCINATION_STATUS,
-                        PREFIX_PET_PRICE,
-                        PREFIX_PET_WEIGHT,
-                        PREFIX_PET_TAG);
-        if (!arePrefixesPresent(argMultimap,
-                PREFIX_PET_NAME,
-                PREFIX_PET_DATE_OF_BIRTH,
-                PREFIX_PET_COLOR,
-                PREFIX_PET_COLOR_PATTERN,
-                PREFIX_PET_HEIGHT,
-                PREFIX_PET_SPECIES,
-                PREFIX_PET_PRICE,
-                PREFIX_PET_WEIGHT)) {
-            throw new ParseException(AddPetCommand.MESSAGE_USAGE);
+        ArgumentMultimap argMultimap;
+
+        if (isSupplierExisting) {
+            argMultimap =
+                    ArgumentTokenizer.tokenize(petString,
+                            PREFIX_INDEX, // The difference is here
+                            PREFIX_PET_OWNER,
+                            PREFIX_PET_NAME,
+                            PREFIX_PET_DATE_OF_BIRTH,
+                            PREFIX_PET_COLOR,
+                            PREFIX_PET_COLOR_PATTERN,
+                            PREFIX_PET_HEIGHT,
+                            PREFIX_PET_CERTIFICATE,
+                            PREFIX_PET_SPECIES,
+                            PREFIX_PET_VACCINATION_STATUS,
+                            PREFIX_PET_PRICE,
+                            PREFIX_PET_WEIGHT,
+                            PREFIX_PET_TAG);
+            if (!arePrefixesPresent(argMultimap,
+                    PREFIX_INDEX, // The difference is here
+                    PREFIX_PET_NAME,
+                    PREFIX_PET_DATE_OF_BIRTH,
+                    PREFIX_PET_COLOR,
+                    PREFIX_PET_COLOR_PATTERN,
+                    PREFIX_PET_HEIGHT,
+                    PREFIX_PET_SPECIES,
+                    PREFIX_PET_PRICE,
+                    PREFIX_PET_WEIGHT)) {
+                throw new ParseException(AddPetCommand.MESSAGE_USAGE_EXISTING_SUPPLIER);
+            }
+        } else {
+            argMultimap =
+                    ArgumentTokenizer.tokenize(petString,
+                            PREFIX_PET_OWNER,
+                            PREFIX_PET_NAME,
+                            PREFIX_PET_DATE_OF_BIRTH,
+                            PREFIX_PET_COLOR,
+                            PREFIX_PET_COLOR_PATTERN,
+                            PREFIX_PET_HEIGHT,
+                            PREFIX_PET_CERTIFICATE,
+                            PREFIX_PET_SPECIES,
+                            PREFIX_PET_VACCINATION_STATUS,
+                            PREFIX_PET_PRICE,
+                            PREFIX_PET_WEIGHT,
+                            PREFIX_PET_TAG);
+            if (!arePrefixesPresent(argMultimap,
+                    PREFIX_PET_NAME,
+                    PREFIX_PET_DATE_OF_BIRTH,
+                    PREFIX_PET_COLOR,
+                    PREFIX_PET_COLOR_PATTERN,
+                    PREFIX_PET_HEIGHT,
+                    PREFIX_PET_SPECIES,
+                    PREFIX_PET_PRICE,
+                    PREFIX_PET_WEIGHT)) {
+                throw new ParseException(AddPetCommand.MESSAGE_USAGE_NEW_SUPPLIER);
+            }
         }
 
         Name name = parseName(argMultimap.getValue(PREFIX_PET_NAME).orElse(""));
@@ -356,7 +389,7 @@ public class ParserUtil {
         Set<Tag> tags = parseTags(argMultimap.getAllValues(PREFIX_PET_TAG));
 
         Pet pet = new Pet(name,
-                owner,
+                null,
                 color,
                 colorPattern,
                 dateOfBirth,
