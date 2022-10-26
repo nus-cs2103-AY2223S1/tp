@@ -447,65 +447,125 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### 6.3 Use cases
 
-(For all use cases below, the **System** is `Class-ify` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Class-ify` and the **Actor** is the `user`, unless specified otherwise.)
 
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list all students or find a student
-2.  Class-ify shows a list of student(s)
-3.  User requests to delete a specific student in the list
-4.  Class-ify deletes the student
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Class-ify shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Edit a student's details**
+<u>**Use case: Add a new student**</u>
 
 **MSS**
 
-1.  User requests to list all students or find a student
-2.  Class-ify shows a list of student(s)
-3.  User requests to edit particular fields (specified through tags) of the student in a specific index of the list
-4.  Class-ify updates the details to the respective fields of the student
+1. User requests to add a new student to the list.
+2. User enters relevant details of the new student.
+3. Class-ify adds new student into the student record.
+4. Class-ify displays an updated list of student(s).
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Student already exist in student record.
+   * 2a1. Class-ify displays a duplicate error message. 
 
-  Use case ends.
+     Use case resumes from step 2.
 
-* 3a. The given index is invalid.
+* 2b. User missed out a compulsory field.
+   * 2b1. Class-ify shows an invalid command error message.
 
-    * 3a1. Class-ify shows an error message.
+     Use case resumes at step 2.
+
+* 2c. Class-ify detects invalid format of field value.
+    * 2c1. Class-ify shows an invalid format error message.
 
       Use case resumes at step 2.
 
-* 3b. No tags were specified.
+<u>**Use case: Delete a student**</u>
 
-    * 3b1. Class-ify shows an error message.
+**MSS**
+
+1. User requests to delete a student from the list.
+2. User enters name or id of student to be deleted.
+3. Class-ify deletes student from the student record.
+4. Class-ify displays an updated list of student(s).
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Student does not exist in student record.
+    * 2a1. Class-ify displays an error message indicating the to-be-deleted student does not exist.
+
+      Use case resumes from step 2.
+
+* 2b. The student record is empty.
+    * 2b1. Class-ify displays an error message similar to 2a1.
 
       Use case resumes at step 2.
 
-* 3c. The given tags do not exist.
+* 2c. Class-ify detects invalid format of field value.
+    * 2c1. Class-ify shows an invalid format error message.
 
-  * 3b1. Class-ify shows an error message.
+      Use case resumes at step 2.
 
-    Use case resumes at step 2.
+<u>**Use case: Edit details of a student**</u>
+
+**MSS**
+
+1. User requests to edit the details of a student from the list.
+2. User enters index of student in the list to be edited.
+3. User enters the relevant details of the student to be edited.
+4. Class-ify updates the details of the student in the student record.
+5. Class-ify displays an updated list of student(s).
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. Class-ify displays an invalid command error message.
+
+      Use case resumes from step 2.
+
+* 2b. The given index is out of bounds of the list.
+    * 2b1. Class-ify displays an error message similar to 2a1.
+
+      Use case resumes at step 2.
+
+* 3a. Class-ify detects invalid format of field value.
+    * 3a1. Class-ify shows an invalid format error message.
+
+      Use case resumes at step 3.
+
+* 3b. No given fields to be edited.
+    * 3b1. Class-ify shows an error message to prompt user to enter at least one field to be edited.
+
+      Use case resumes at step 3.
+
+<u>**Use case: Find a student**</u>
+
+**MSS**
+
+1. User requests to find some student(s) in the list.
+2. User enters name or id of the student(s) to be found.
+3. Class-ify search for the student(s) in the student record.
+4. Class-ify displays a list of student(s) found.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No fields are given.
+    * 2a1. Class-ify displays an invalid command error message.
+
+      Use case resumes from step 2.
+
+* 2b. Class-ify detects invalid format of field value.
+    * 2b1. Class-ify shows an invalid format error message.
+
+      Use case resumes at step 2.
+
+* 4a. No students are found.
+    * 4b1. Class-ify display an empty list and a message indicating no students are found. 
+
+      Use case ends.
 
 *More to be added*
 
