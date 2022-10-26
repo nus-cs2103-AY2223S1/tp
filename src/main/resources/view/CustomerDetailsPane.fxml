@@ -16,42 +16,58 @@
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" HBox.hgrow="ALWAYS">
             <padding>
-                <Insets bottom="5" left="15" right="5" top="5"/>
+                <Insets bottom="5" left="15" right="15" top="5"/>
             </padding>
-            <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="id" styleClass="cell_big_label" textFill="#D8D8D8" wrapText="true">
+
+            <HBox alignment="CENTER_LEFT" spacing="5" HBox.hgrow="ALWAYS" minWidth="278" VBox.vgrow="ALWAYS">
+                <Label id="detailsPaneName" fx:id="name" styleClass="cell_title_label"
+                       text="\$first" wrapText="true" HBox.hgrow="ALWAYS" maxWidth="Infinity">
                     <minHeight>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE"/>
                     </minHeight>
                 </Label>
-                <Label id="detailsPaneName" fx:id="name" styleClass="cell_title_label" text="\$first" wrapText="true">
-                    <minHeight>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE"/>
-                    </minHeight>
-                </Label>
+                <VBox.margin>
+                    <Insets bottom="8.0" />
+                </VBox.margin>
             </HBox>
-            <FlowPane fx:id="tags" styleClass="customerTags" />
+
+            <FlowPane fx:id="tags" styleClass="customerTags">
+                <VBox.margin>
+                    <Insets bottom="8.0" />
+                </VBox.margin>
+            </FlowPane>
+
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
                 <minHeight>
                     <!-- Ensures that the label text is never truncated -->
                     <Region fx:constant="USE_PREF_SIZE"/>
                 </minHeight>
+                <VBox.margin>
+                    <Insets bottom="4.0" />
+                </VBox.margin>
             </Label>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address">
-                <minHeight>
-                    <!-- Ensures that the label text is never truncated -->
-                    <Region fx:constant="USE_PREF_SIZE"/>
-                </minHeight>
-            </Label>
+
             <Label fx:id="email" styleClass="cell_small_label" text="\$email">
                 <minHeight>
                     <!-- Ensures that the label text is never truncated -->
                     <Region fx:constant="USE_PREF_SIZE"/>
                 </minHeight>
+                <VBox.margin>
+                    <Insets bottom="4.0" />
+                </VBox.margin>
+            </Label>
+
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address">
+                <minHeight>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE"/>
+                </minHeight>
+                <VBox.margin>
+                    <Insets bottom="4.0" />
+                </VBox.margin>
             </Label>
         </VBox>
         <rowConstraints>

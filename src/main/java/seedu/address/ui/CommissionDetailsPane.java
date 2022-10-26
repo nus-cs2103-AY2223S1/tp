@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.function.Consumer;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,19 +15,20 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.iteration.Iteration;
+import seedu.address.ui.command.window.AddIterationWindow;
 
 /**
- * An UI component that displays information about a {@code Commission}.
+ * A UI component that displays information about a {@code Commission}.
  */
 public class CommissionDetailsPane extends UiPart<Region> {
 
     private static final String FXML = "CommissionDetailsPane.fxml";
     private static final Image ICON_MONEY_BAG = new Image("/images/money bag.png");
     private static final Image ICON_CALENDAR = new Image("/images/calendar dark.png");
-    private static final Image ICON_PERSON = new Image("/images/person silhouette.png");
     private static final Color COLOR_COMPLETED = Color.rgb(50, 174, 70);
     private static final Color COLOR_IN_PROGRESS = Color.rgb(84, 141, 225);
     private static final Color COLOR_NOT_STARTED = Color.rgb(184, 184, 184);
@@ -34,6 +36,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private static final Paint STATE_DEFAULT_TEXT_FILL = Paint.valueOf("#E8E8E8");
 
     private final ObservableObject<Commission> commission;
+    private AddIterationWindow addIterationWindow;
 
     @FXML
     private HBox detailsPane;
@@ -54,10 +57,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
     @FXML
     private Label completionStatus;
     @FXML
-    private ImageView customerIcon;
-    @FXML
-    private Label customerName;
-    @FXML
     private FlowPane tags;
     @FXML
     private ListView<Iteration> iterationListView;
@@ -65,9 +64,12 @@ public class CommissionDetailsPane extends UiPart<Region> {
     /**
      * Creates a {@code CommissionDetailsPane} with the given {@code Commission} and index to display.
      */
-    public CommissionDetailsPane(ObservableObject<Commission> commission) {
+    public CommissionDetailsPane(ObservableObject<Commission> commission,
+                                 Consumer<UiPart<Stage>> addChildWindow,
+                                 CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
         this.commission = commission;
+        addIterationWindow = new AddIterationWindow(addChildWindow, commandExecutor, new Stage());
         updateUI(commission.getValue());
         commission.addListener((observable, oldValue, newValue) -> updateUI(newValue));
         iterationListView.setCellFactory(listView -> new IterationListViewCell());
@@ -89,7 +91,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private void removeFieldIcons() {
         feeIcon.setImage(null);
         deadlineIcon.setImage(null);
-        customerIcon.setImage(null);
     }
 
     private void resetAllFields() {
@@ -100,7 +101,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
         deadline.setText("");
         completionStatusCircle.setFill(null);
         completionStatus.setText("");
-        customerName.setText("");
         tags.getChildren().clear();
         iterationListView.setItems(null);
     }
@@ -108,14 +108,12 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private void setFieldIcons() {
         feeIcon.setImage(ICON_MONEY_BAG);
         deadlineIcon.setImage(ICON_CALENDAR);
-        customerIcon.setImage(ICON_PERSON);
     }
 
     private void updateFieldAttributeComponents(Commission commission) {
         title.setText(commission.getTitle().title);
         fee.setText("$" + String.format("%.2f", commission.getFee().fee));
         deadline.setText(commission.getDeadline().toString());
-        customerName.setText(commission.getCustomer().getName().fullName);
 
         if (commission.getDescription().isEmpty()) {
             description.setText("No description found");
@@ -159,6 +157,18 @@ public class CommissionDetailsPane extends UiPart<Region> {
 
     private void updateIterationList(Commission commission) {
         iterationListView.setItems(commission.getIterationList());
+    }
+
+    /**
+     * Opens the add iteration window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void showAddIterationWindow() {
+        if (!addIterationWindow.isShowing()) {
+            addIterationWindow.show();
+        } else {
+            addIterationWindow.focus();
+        }
     }
 
     /**

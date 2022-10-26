@@ -31,6 +31,7 @@ public class IterationListItem extends UiPart<Region> {
     private Label feedback;
     @FXML
     private ImageView artImage;
+
     private boolean imageCopyCompleted;
 
     /**
@@ -43,9 +44,8 @@ public class IterationListItem extends UiPart<Region> {
         date.setText(iteration.getDate().date.toString());
         description.setText(iteration.getDescription().description);
         feedback.setText(iteration.getFeedback().feedback);
-        String fxImagePath = iteration.getImagePath().path;
-        artImage.setImage(new Image(new File(System.getProperty("user.dir")
-                + fxImagePath).toURI().toString()));
+        String fxImagePath = iteration.getImagePath().toAbsolutePath().toString();
+        artImage.setImage(new Image(new File(fxImagePath).toURI().toString()));
     }
 
     @Override

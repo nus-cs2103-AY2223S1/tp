@@ -27,9 +27,12 @@
     -fx-background-color: #191B22;
     -fx-background-radius: 12 12 0 0;
     /* Offsets the spacing between the tab so the label is centered */
-    -fx-padding: 0 10 0 5;
+    -fx-padding: 3 15 2 10;
     /* Gives illusion of spacing between the tabs */
     -fx-background-insets: 0 5 0 0;
+    -fx-font-size: 15px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
 }
 
 .tab:selected {

@@ -17,12 +17,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.iteration.EditIterationCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.commission.Commission;
@@ -30,6 +32,7 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditCommissionDescriptorBuilder;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
+import seedu.address.testutil.EditIterationDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -130,6 +133,9 @@ public class CommandTestUtil {
     public static final EditCommissionCommand.EditCommissionDescriptor DESC_CAT;
     public static final EditCommissionCommand.EditCommissionDescriptor DESC_DOG;
 
+    public static final EditIterationCommand.EditIterationDescriptor DESC_FINALISE;
+    public static final EditIterationCommand.EditIterationDescriptor DESC_COLOR;
+
     static {
         DESC_AMY = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -141,6 +147,10 @@ public class CommandTestUtil {
                 .withDescription(VALID_DESCRIPTION_CAT).withFee(50).build();
         DESC_DOG = new EditCommissionDescriptorBuilder().withTitle(VALID_TITLE_DOG)
                 .withDescription(VALID_DESCRIPTION_DOG).withFee(60).build();
+        DESC_FINALISE = new EditIterationDescriptorBuilder()
+                .withDescription(VALID_ITERATION_DESCRIPTION_FINALISE).withFeedback(VALID_FEEDBACK_HORRIBLE).build();
+        DESC_COLOR = new EditIterationDescriptorBuilder().withDescription(VALID_ITERATION_DESCRIPTION_COLOR)
+                .withFeedback(VALID_FEEDBACK_UGLY).withDate(LocalDate.parse(VALID_DATE_LAST_DAY_OF_YEAR)).build();
     }
 
     /**

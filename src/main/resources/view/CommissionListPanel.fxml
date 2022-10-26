@@ -2,7 +2,10 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane fx:id="commissionPanelControlsPlaceholder" HBox.hgrow="ALWAYS"/>
     <ListView fx:id="commissionListView" VBox.vgrow="ALWAYS" />
 </VBox>

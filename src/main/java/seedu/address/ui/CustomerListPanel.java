@@ -7,7 +7,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.customer.Customer;
@@ -22,13 +24,18 @@ public class CustomerListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Customer> customerListView;
+    @FXML
+    private AnchorPane customerPanelControlsPlaceholder;
 
     /**
      * Creates a {@code CustomerListPanel} with the given {@code ObservableList}.
      */
     public CustomerListPanel(ObservableList<Customer> customerList, Consumer<Customer> selectCustomer,
-                             ObservableObject<Customer> selectedCustomer) {
+                             ObservableObject<Customer> selectedCustomer, Consumer<UiPart<Stage>> addChildWindow,
+                             CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
+        customerPanelControlsPlaceholder.getChildren()
+                        .add(new CustomerListPanelControlBar(addChildWindow, commandExecutor).getRoot());
         customerListView.setItems(customerList);
         customerListView.setCellFactory(listView -> new CustomerListViewCell());
         this.selectCustomer = selectCustomer;
