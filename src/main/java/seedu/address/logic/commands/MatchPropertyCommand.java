@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STRICT;
 
@@ -77,7 +76,7 @@ public class MatchPropertyCommand extends Command {
 
         // combinedPredicate must exist, since predicatesList should contain at least one predicate
         assert(combinedPredicate.isPresent());
-        new MultiFlagFilterBuyersCommand(combinedPredicate.get()).execute(model);
+        new FilterBuyersCommand(combinedPredicate.get()).execute(model);
 
         return new CommandResult(String.format(MESSAGE_MATCHED_PROPERTY_SUCCESS, propertyToMatch));
     }

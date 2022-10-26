@@ -3,19 +3,24 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATCH_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+
 import seedu.address.logic.commands.FilterBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.buyer.AbstractFilterBuyerPredicate;
+import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.FilterBuyerContainingAllCharacteristicsPredicate;
 import seedu.address.model.buyer.FilterBuyerByPricePredicate;
 import seedu.address.model.buyer.FilterBuyerByPriorityPredicate;
 import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Price;
-
 
 /**
  * Parses user input to create a {@code FilterBuyersCommand}.
@@ -32,34 +37,43 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CHARACTERISTICS, PREFIX_PRICE,
-                PREFIX_PRIORITY);
+                PREFIX_PRIORITY, PREFIX_MATCH_ALL);
 
-        if (areMoreThanOnePrefixesPresent(argMultimap, PREFIX_PRICE, PREFIX_CHARACTERISTICS, PREFIX_PRIORITY)
-                || !isAnyPrefixPresent(argMultimap, PREFIX_PRICE, PREFIX_CHARACTERISTICS, PREFIX_PRIORITY)
+        if (!isAnyPrefixPresent(argMultimap, PREFIX_PRICE, PREFIX_CHARACTERISTICS, PREFIX_PRIORITY)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterBuyersCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FilterBuyersCommand.MESSAGE_USAGE));
         }
 
-        AbstractFilterBuyerPredicate predicate = null;
+        List<Predicate<Buyer>> predicatesList = new ArrayList<>();
+
 
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
             Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
-            predicate = new FilterBuyerByPricePredicate(price);
+            predicatesList.add(new FilterBuyerByPricePredicate(price));
         }
 
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             Characteristics characteristics = ParserUtil.parseCharacteristics(
                     argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
-            predicate = new FilterBuyerContainingAllCharacteristicsPredicate(characteristics);
+            predicatesList.add(new FilterBuyerContainingAllCharacteristicsPredicate(characteristics));
         }
 
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
             Priority priority = ParserUtil.parsePriority(
                     argMultimap.getValue(PREFIX_PRIORITY).get());
-            predicate = new FilterBuyerByPriorityPredicate(priority);
+            predicatesList.add(new FilterBuyerByPriorityPredicate(priority));
         }
-        // TODO: Consider allowing filtering by multiple characteristics and tags at once
 
-        return new FilterBuyersCommand(predicate);
+        Optional<Predicate<Buyer>> combinedPredicate;
+        if (arePrefixesPresent(argMultimap, PREFIX_MATCH_ALL)) {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::and);
+        } else {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::or);
+        }
+
+        // combinedPredicate must exist, since predicatesList should contain at least one predicate
+        assert(combinedPredicate.isPresent());
+        return new FilterBuyersCommand(combinedPredicate.get());
     }
 }

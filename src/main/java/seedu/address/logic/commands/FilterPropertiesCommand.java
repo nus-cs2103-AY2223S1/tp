@@ -20,9 +20,9 @@ import seedu.address.model.property.Property;
  * returned based on whether the user passes in the 'PREFIX_MATCH_ALL' flag.
  * Keyword matching is case-insensitive.
  */
-public class MultiFlagFilterPropsCommand extends Command {
+public class FilterPropertiesCommand extends Command {
 
-    public static final String COMMAND_WORD = "multifilterprops";
+    public static final String COMMAND_WORD = "filterprops";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties in the database that"
             + " either has a price that is within the given price range, contains all characteristics in the given"
@@ -39,7 +39,7 @@ public class MultiFlagFilterPropsCommand extends Command {
 
     private final Predicate<Property> predicate;
 
-    public MultiFlagFilterPropsCommand(Predicate<Property> predicate) {
+    public FilterPropertiesCommand(Predicate<Property> predicate) {
         this.predicate = predicate;
     }
 
@@ -54,8 +54,8 @@ public class MultiFlagFilterPropsCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MultiFlagFilterPropsCommand // instanceof handles nulls
-                && predicate.equals(((MultiFlagFilterPropsCommand) other).predicate)); // state check
+                || (other instanceof FilterPropertiesCommand // instanceof handles nulls
+                && predicate.equals(((FilterPropertiesCommand) other).predicate)); // state check
     }
 }
 
