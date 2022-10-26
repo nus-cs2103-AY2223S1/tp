@@ -30,7 +30,7 @@ public class NetWorth {
      * Returns true if a given string is a valid networth.
      */
     public static boolean isValidNetWorth(String test) {
-        return test.equals("") || test.matches(VALIDATION_REGEX);
+        return test.equals(EMPTY_NETWORTH) || test.matches(VALIDATION_REGEX);
     }
 
     @Override

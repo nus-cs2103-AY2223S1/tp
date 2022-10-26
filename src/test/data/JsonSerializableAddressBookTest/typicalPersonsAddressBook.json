@@ -9,7 +9,7 @@
     "netWorth" : "$54400",
     "meetingTime" : [ "10-08-2022-15:00" ],
     "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
-    "tagged" : [ "POTENTIAL" ]
+    "tagged" : [ "SECURED" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
