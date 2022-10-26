@@ -7,6 +7,7 @@ import java.util.Optional;
 import jarvis.commons.exceptions.DataConversionException;
 import jarvis.model.LessonBook;
 import jarvis.model.ReadOnlyLessonBook;
+import jarvis.model.ReadOnlyStudentBook;
 
 /**
  * Represents a storage for {@link LessonBook}.
@@ -24,23 +25,24 @@ public interface LessonBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyLessonBook> readLessonBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyLessonBook> readLessonBook(ReadOnlyStudentBook studentBook) throws DataConversionException, IOException;
 
     /**
      * @see #getLessonBookFilePath()
      */
-    Optional<ReadOnlyLessonBook> readLessonBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyLessonBook> readLessonBook(Path filePath, ReadOnlyStudentBook studentBook) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyLessonBook} to the storage.
      * @param lessonBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveLessonBook(ReadOnlyLessonBook lessonBook) throws IOException;
+    void saveLessonBook(ReadOnlyLessonBook lessonBook, ReadOnlyStudentBook studentBook) throws IOException;
 
     /**
-     * @see #saveLessonBook(ReadOnlyLessonBook)
+     * @see #saveLessonBook(ReadOnlyLessonBook, ReadOnlyStudentBook)
      */
-    void saveLessonBook(ReadOnlyLessonBook lessonBook, Path filePath) throws IOException;
+    void saveLessonBook(ReadOnlyLessonBook lessonBook, ReadOnlyStudentBook studentBook,
+                        Path filePath) throws IOException;
 
 }

@@ -26,6 +26,14 @@ public class LessonAttendance {
     }
 
     /**
+     * Creates the attendance list with the given attendance data for a lesson.
+     * @param attendance The given attendance data.
+     */
+    public LessonAttendance(TreeMap<Student, Boolean> attendance) {
+        this.attendance = attendance;
+    }
+
+    /**
      * Marks a student as present for that lesson.
      * @param student Student to mark as present.
      */
@@ -89,7 +97,7 @@ public class LessonAttendance {
     public String toFullString() {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<Student, Boolean> entry : attendance.entrySet()) {
-            sb.append(entry.getKey().toFullString());
+            sb.append(entry.getKey().toString());
             sb.append(": ");
             sb.append(entry.getValue());
             sb.append("\n");

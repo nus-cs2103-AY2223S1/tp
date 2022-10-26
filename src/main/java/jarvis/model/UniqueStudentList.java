@@ -3,10 +3,14 @@ package jarvis.model;
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import jarvis.commons.core.index.Index;
 import jarvis.model.exceptions.DuplicateStudentException;
 import jarvis.model.exceptions.StudentNotFoundException;
 import javafx.collections.FXCollections;
@@ -29,6 +33,34 @@ public class UniqueStudentList implements Iterable<Student> {
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    /**
+     * Returns the index set of the given students in the internal list.
+     * @param students The given student list.
+     * @return The set of student indexes.
+     */
+    public Set<Integer> indexSetOf(Collection<Student> students) throws StudentNotFoundException {
+        Set<Integer> indexSet = new HashSet<>();
+        for (Student student : students) {
+            if (!contains(student)) {
+                throw new StudentNotFoundException();
+            }
+            Integer index = internalList.indexOf(student);
+            indexSet.add(index);
+        }
+        return indexSet;
+    }
+
+    public Set<Student> studentSetOf(Set<Integer> studentIndexSet) {
+        Set<Student> studentSet = new HashSet<>();
+        for (Integer i : studentIndexSet) {
+            if (i >= getNumStudents()) {
+                throw new StudentNotFoundException();
+            }
+            studentSet.add(internalList.get(i));
+        }
+        return studentSet;
+    }
 
     /**
      * Returns true if the list contains an equivalent student as the given argument.

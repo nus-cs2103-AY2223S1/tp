@@ -1,5 +1,6 @@
 package jarvis.storage;
 
+import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.commons.util.FileUtil;
 import jarvis.commons.util.JsonUtil;
 import jarvis.model.ReadOnlyLessonBook;
+import jarvis.model.ReadOnlyStudentBook;
 
 /**
  * A class to access LessonBook data stored as a json file on the hard disk.
@@ -32,18 +34,18 @@ public class JsonLessonBookStorage implements LessonBookStorage {
     }
 
     @Override
-    public Optional<ReadOnlyLessonBook> readLessonBook() throws DataConversionException {
-        return readLessonBook(filePath);
+    public Optional<ReadOnlyLessonBook> readLessonBook(ReadOnlyStudentBook studentBook) throws DataConversionException {
+        return readLessonBook(filePath, studentBook);
     }
 
     /**
-     * Similar to {@link #readLessonBook()}.
+     * Similar to {@link #readLessonBook(ReadOnlyStudentBook studentBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyLessonBook> readLessonBook(Path filePath) throws DataConversionException {
-        requireNonNull(filePath);
+    public Optional<ReadOnlyLessonBook> readLessonBook(Path filePath, ReadOnlyStudentBook studentBook) throws DataConversionException {
+        requireAllNonNull(filePath, studentBook);
 
         Optional<JsonSerializableLessonBook> jsonLessonBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableLessonBook.class);
@@ -52,29 +54,32 @@ public class JsonLessonBookStorage implements LessonBookStorage {
         }
 
         try {
-            return Optional.of(jsonLessonBook.get().toModelType());
+            return Optional.of(jsonLessonBook.get().toModelType(studentBook));
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
+        } catch (IOException e) {
+            logger.info("Error reading data from storage in " + filePath + ": " + e.getMessage());
+            throw new DataConversionException(e);
         }
     }
 
     @Override
-    public void saveLessonBook(ReadOnlyLessonBook lessonBook) throws IOException {
-        saveLessonBook(lessonBook, filePath);
+    public void saveLessonBook(ReadOnlyLessonBook lessonBook, ReadOnlyStudentBook studentBook) throws IOException {
+        saveLessonBook(lessonBook, studentBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveLessonBook(ReadOnlyLessonBook)}.
+     * Similar to {@link #saveLessonBook(ReadOnlyLessonBook, ReadOnlyStudentBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveLessonBook(ReadOnlyLessonBook lessonBook, Path filePath) throws IOException {
-        requireNonNull(lessonBook);
-        requireNonNull(filePath);
+    public void saveLessonBook(ReadOnlyLessonBook lessonBook, ReadOnlyStudentBook studentBook,
+                               Path filePath) throws IOException {
+        requireAllNonNull(lessonBook, studentBook, filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableLessonBook(lessonBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableLessonBook(lessonBook, studentBook), filePath);
     }
 
 }

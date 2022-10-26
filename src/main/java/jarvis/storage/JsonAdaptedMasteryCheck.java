@@ -1,15 +1,22 @@
 package jarvis.storage;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
+import jarvis.commons.core.index.Index;
 import jarvis.commons.exceptions.IllegalValueException;
+import jarvis.model.Consult;
 import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
 import jarvis.model.LessonNotes;
 import jarvis.model.MasteryCheck;
+import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.Student;
 import jarvis.model.TimePeriod;
 import jarvis.model.util.SampleStudentUtil;
 
@@ -23,31 +30,48 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
      * Constructs a {@code JsonAdaptedMasteryCheck} with the given lesson details.
      */
     @JsonCreator
-    public JsonAdaptedMasteryCheck(@JsonProperty("lessonDesc") String lessonDesc, JsonAdaptedTimePeriod timePeriod,
-                                   @JsonProperty("attendance") LessonAttendance attendance,
-                                   @JsonProperty("notes") LessonNotes notes,
+    public JsonAdaptedMasteryCheck(@JsonProperty("lessonDesc") String lessonDesc,
+                                   @JsonProperty("startDateTime") LocalDateTime startDateTime,
+                                   @JsonProperty("endDateTime") LocalDateTime endDateTime,
+                                   @JsonProperty("studentIndexList") Set<Integer> studentIndexList,
+                                   @JsonProperty("attendance") String attendance,
+                                   @JsonProperty("notes") String notes,
                                    @JsonProperty("isCompleted") boolean isCompleted) {
-        super(lessonDesc, timePeriod, attendance, notes, isCompleted);
+        super(lessonDesc, startDateTime, endDateTime, studentIndexList, attendance, notes, isCompleted);
+    }
+
+    /**
+     * Converts a given {@code MasteryCheck} into this class for Jackson use.
+     */
+    public JsonAdaptedMasteryCheck(MasteryCheck source, ReadOnlyStudentBook studentBook) throws JsonProcessingException {
+        super(source.getDesc(), source.getTimePeriod(), studentBook.getIndexList(source.getStudents()),
+                source.getAttendance(), source.getGeneralNotes(), source.isCompleted());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public MasteryCheck toModelType() throws IllegalValueException {
-        if (this.getLessonDesc() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    LessonDesc.class.getSimpleName()));
-        }
-        if (LessonDesc.isValidLessonDesc(this.getLessonDesc())) {
+    public MasteryCheck toModelType(ReadOnlyStudentBook studentBook) throws IllegalValueException {
+        if (this.getLessonDesc() != null && !LessonDesc.isValidLessonDesc(this.getLessonDesc())) {
             throw new IllegalValueException(LessonDesc.MESSAGE_CONSTRAINTS);
         }
-        final LessonDesc modelLessonDesc = new LessonDesc(this.getLessonDesc());
+        final LessonDesc modelLessonDesc = this.getLessonDesc() != null
+                ? new LessonDesc(this.getLessonDesc())
+                : null;
 
-        if (this.getTimePeriod() == null) {
+        if (this.getStartDateTime() == null || this.getEndDateTime() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimePeriod.class.getSimpleName()));
         }
+        TimePeriod modelTimePeriod = new TimePeriod(this.getStartDateTime(),
+                this.getEndDateTime());
+
+        if (this.getStudentIndexList() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Student.class.getSimpleName()));
+        }
+        Set<Student> modelStudentSet = studentBook.studentSetOf(getStudentIndexList());
 
         if (this.getAttendance() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -59,9 +83,8 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
                     LessonNotes.class.getSimpleName()));
         }
 
-        MasteryCheck masteryCheck = new MasteryCheck(modelLessonDesc, this.getTimePeriod().toModelType(),
-                new LessonAttendance(List.of(SampleStudentUtil.getSampleStudents())),
-                new LessonNotes(List.of(SampleStudentUtil.getSampleStudents())));
+        MasteryCheck masteryCheck = new MasteryCheck(modelLessonDesc, modelTimePeriod,
+                modelStudentSet);
         if (this.isCompleted()) {
             masteryCheck.markAsCompleted();
         }

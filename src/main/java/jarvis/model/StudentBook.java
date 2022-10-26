@@ -2,8 +2,11 @@ package jarvis.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
+import jarvis.commons.core.index.Index;
 import jarvis.model.exceptions.MaxStudentsExceededException;
 import javafx.collections.ObservableList;
 
@@ -97,6 +100,16 @@ public class StudentBook implements ReadOnlyStudentBook {
      */
     public void removeStudent(Student key) {
         students.remove(key);
+    }
+
+    @Override
+    public Set<Integer> getIndexList(Collection<Student> students) {
+        return this.students.indexSetOf(students);
+    }
+
+    @Override
+    public Set<Student> studentSetOf(Set<Integer> studentIndexList) {
+        return this.students.studentSetOf(studentIndexList);
     }
 
     //// util methods

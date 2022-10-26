@@ -106,7 +106,7 @@ public class MainApp extends Application {
             }
             initialTaskData = taskBookOptional.orElseGet(SampleTaskUtil::getSampleTaskBook);
 
-            lessonBookOptional = storage.readLessonBook();
+            lessonBookOptional = storage.readLessonBook(initialStudentData);
             if (!lessonBookOptional.isPresent()) {
                 logger.info("Lesson data file not found. Will be starting with a sample lesson book");
             }

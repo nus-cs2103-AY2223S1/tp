@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.exceptions.IllegalValueException;
+import jarvis.model.GradeProfile;
 import jarvis.model.StudentName;
 
 public class JsonAdaptedStudentTest {
@@ -15,7 +16,7 @@ public class JsonAdaptedStudentTest {
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_MATRIC_NUM = BENSON.getMatricNum().toString();
-    private static final boolean VALID_PASS_MC = false;
+    private static final GradeProfile VALID_GRADE_PROFILE = new GradeProfile();
 
 
     @Test
@@ -27,7 +28,7 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(INVALID_NAME, VALID_MATRIC_NUM, VALID_PASS_MC, VALID_PASS_MC);
+                new JsonAdaptedStudent(INVALID_NAME, VALID_MATRIC_NUM, VALID_GRADE_PROFILE);
         String expectedMessage = StudentName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -35,7 +36,7 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent((String) null, VALID_MATRIC_NUM, VALID_PASS_MC, VALID_PASS_MC);
+                new JsonAdaptedStudent((String) null, VALID_MATRIC_NUM, VALID_GRADE_PROFILE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }

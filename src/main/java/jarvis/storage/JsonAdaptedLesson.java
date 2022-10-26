@@ -1,14 +1,30 @@
 package jarvis.storage;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jarvis.commons.core.index.Index;
 import jarvis.commons.exceptions.IllegalValueException;
+import jarvis.commons.util.CollectionUtil;
+import jarvis.model.Consult;
 import jarvis.model.Lesson;
 import jarvis.model.LessonAttendance;
+import jarvis.model.LessonDesc;
 import jarvis.model.LessonNotes;
+import jarvis.model.MasteryCheck;
+import jarvis.model.ReadOnlyStudentBook;
+import jarvis.model.Studio;
+import jarvis.model.TimePeriod;
 
 /**
  * Jackson-friendly version of {@link Lesson}.
@@ -22,11 +38,13 @@ import jarvis.model.LessonNotes;
 public abstract class JsonAdaptedLesson {
     // Identity fields
     private final String lessonDesc;
-    private final JsonAdaptedTimePeriod timePeriod;
+    private final LocalDateTime startDateTime;
+    private final LocalDateTime endDateTime;
+    private final Set<Integer> studentIndexList;
 
     // Data fields
-    private final LessonAttendance attendance;
-    private final LessonNotes notes;
+    private final String attendance;
+    private final String notes;
     private final boolean isCompleted;
 
     /**
@@ -34,42 +52,77 @@ public abstract class JsonAdaptedLesson {
      */
     @JsonCreator
     public JsonAdaptedLesson(@JsonProperty("lessonDesc") String lessonDesc,
-                             @JsonProperty("timePeriod") JsonAdaptedTimePeriod timePeriod,
-                             @JsonProperty("attendance") LessonAttendance attendance,
-                             @JsonProperty("notes") LessonNotes notes,
+                             @JsonProperty("startDateTime") LocalDateTime startDateTime,
+                             @JsonProperty("endDateTime") LocalDateTime endDateTime,
+                             @JsonProperty("studentIndexList") Set<Integer> studentIndexList,
+                             @JsonProperty("attendance") String attendance,
+                             @JsonProperty("notes") String notes,
                              @JsonProperty("isCompleted") boolean isCompleted) {
         this.lessonDesc = lessonDesc;
-        this.timePeriod = timePeriod;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.studentIndexList = studentIndexList;
         this.attendance = attendance;
         this.notes = notes;
         this.isCompleted = isCompleted;
     }
 
+    public JsonAdaptedLesson(LessonDesc lessonDesc, TimePeriod timePeriod, Set<Integer> studentIndexList,
+                             LessonAttendance attendance, String notes,
+                             boolean isCompleted) throws JsonProcessingException {
+        this.lessonDesc = lessonDesc == null ? null : lessonDesc.lessonDesc;
+        this.startDateTime = timePeriod.getStart();
+        this.endDateTime = timePeriod.getEnd();
+        this.studentIndexList = studentIndexList;
+        this.attendance = attendance.toFullString();
+        this.notes = notes;
+        this.isCompleted = isCompleted;
+    }
+
     /**
-     * Converts a given {@code Lesson} into this class for Jackson use.
+     * Constructs a {@code JsonAdaptedConsult}, {@code JsonAdaptedMasteryCheck} or
+     * {@code JsonAdaptedStudio} with the given lesson details.
+     *
+     * @param lesson The given lesson, which could be a {@code Consult}, {@code MasteryCheck} or {@code Studio}.
+     * @return The Jackson-friendly version of the lesson.
      */
-    public JsonAdaptedLesson(Lesson source) {
-        lessonDesc = source.getDesc().lessonDesc;
-        timePeriod = new JsonAdaptedTimePeriod(source.getTimePeriod());
-        attendance = source.getAttendance();
-        notes = source.getNotes();
-        isCompleted = source.isCompleted();
+    public static JsonAdaptedLesson createLesson(Lesson lesson, ReadOnlyStudentBook studentBook) throws JsonProcessingException {
+        CollectionUtil.requireAllNonNull(lesson);
+        if (lesson instanceof Consult) {
+            Consult consult = (Consult) lesson;
+            return new JsonAdaptedConsult(consult, studentBook);
+        } else if (lesson instanceof MasteryCheck) {
+            MasteryCheck masteryCheck = (MasteryCheck) lesson;
+            return new JsonAdaptedMasteryCheck(masteryCheck, studentBook);
+        } else if (lesson instanceof Studio) {
+            Studio studio = (Studio) lesson;
+            return new JsonAdaptedStudio(studio, studentBook);
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     protected String getLessonDesc() {
         return lessonDesc;
     }
 
-    protected JsonAdaptedTimePeriod getTimePeriod() {
-        return timePeriod;
+    protected LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
 
+    protected LocalDateTime getEndDateTime() {
+        return endDateTime;
+    }
 
-    protected LessonAttendance getAttendance() {
+    protected Set<Integer> getStudentIndexList() {
+        return studentIndexList;
+    }
+
+    protected String getAttendance() {
         return attendance;
     }
 
-    protected LessonNotes getNotes() {
+    protected String getNotes() {
         return notes;
     }
 
@@ -82,6 +135,6 @@ public abstract class JsonAdaptedLesson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted lesson.
      */
-    public abstract Lesson toModelType() throws IllegalValueException;
+    public abstract Lesson toModelType(ReadOnlyStudentBook studentBook) throws IllegalValueException, IOException;
 }
 
