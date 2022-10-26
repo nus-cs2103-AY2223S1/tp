@@ -214,7 +214,7 @@ When `execute` of `FilterCommand` is run, the `InternshipHasApplicationStatusPre
 
 The following activity diagram summarizes what happens when a user executes a filter command:
 
-<img src="images/FilterCommandActivityDiagram.png" width="350" />
+<img src="images/FilterCommandActivityDiagram.png" width="450" />
 
 #### Design Considerations
 
@@ -235,7 +235,7 @@ When `execute` of `MarkCommand` is run, a new `Internship` object with the updat
 
 The following activity diagram summarizes what happens when a user executes a mark command.
 
-<img src="images/MarkCommandActivityDiagram.png" width="350" />
+<img src="images/MarkCommandActivityDiagram.png" width="450" />
 
 
 #### Design Considerations
@@ -264,19 +264,20 @@ internship applications in the sorted order.
 
 The following sequence diagram illustrates how the list is updated when the user enters the `sort applied` command:
 
-<img src="images/SortSequenceDiagram.png" width="350" />
+<img src="images/SortSequenceDiagram.png" width="450" />
 
 
 #### Design Considerations
-	
-- **Storing the list of internship applications:**
+
+- Display internships in a reverse chronological order to easily refer to recent applications	
+- **Storing the list of internship applications**:
     - **Alternative 1:** Update the stored internship list according to the sort criteria
         - Pros: Easily view in sorted order without having to re-type sort command
         - Cons: Not able to view original order once sorted
     - **Alternative 2 (current choice):** Maintain the stored list according to the order it was added by user
         - Pros: Allow user to view internship applications in the original order it was added 
         - Cons: Have to re-enter the sort command when the reopens the application
-- Display internships in a reverse chronological order to easily refer to recent applications
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
