@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
@@ -90,8 +91,7 @@ public class ModuleClass implements Identity<ModuleClass> {
      */
     public ModuleClass removeSession(Session session) {
         requireNonNull(session);
-        List<Session> newSessions = new ArrayList<>(sessions);
-        newSessions.remove(session);
+        List<Session> newSessions = sessions.stream().filter(s -> !s.isSame(session)).collect(Collectors.toList());
         return new ModuleClass(className, newSessions);
     }
 
