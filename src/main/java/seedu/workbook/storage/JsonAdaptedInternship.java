@@ -30,6 +30,7 @@ class JsonAdaptedInternship {
     private final String email;
     private final String stage;
     private final String dateTime;
+    private final List<JsonAdaptedTag> languages = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,12 +41,16 @@ class JsonAdaptedInternship {
             @JsonProperty("email") String email,
             @JsonProperty("stage") String stage,
             @JsonProperty("dateTime") String dateTime,
+            @JsonProperty("languages") List<JsonAdaptedTag> languages,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
         this.role = role;
         this.email = email;
         this.stage = stage;
         this.dateTime = dateTime;
+        if (languages != null) {
+            this.languages.addAll(languages);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,6 +65,9 @@ class JsonAdaptedInternship {
         email = source.getEmail().value;
         stage = source.getStage().value;
         dateTime = source.getDateTime().value;
+        languages.addAll(source.getLanguageTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -73,9 +81,14 @@ class JsonAdaptedInternship {
      *                               the adapted Internship.
      */
     public Internship toModelType() throws IllegalValueException {
-        final List<Tag> internshipTags = new ArrayList<>();
+        final List<Tag> languageTags = new ArrayList<>();
+        for (JsonAdaptedTag language : languages) {
+            languageTags.add(language.toModelType());
+        }
+
+        final List<Tag> tags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            internshipTags.add(tag.toModelType());
+            tags.add(tag.toModelType());
         }
 
         if (company == null) {
@@ -93,7 +106,6 @@ class JsonAdaptedInternship {
             throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
         }
         final Role modelRole = new Role(role);
-
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -120,8 +132,12 @@ class JsonAdaptedInternship {
         }
         final DateTime modelDateTime = new DateTime(dateTime);
 
-        final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompany, modelRole, modelEmail, modelStage, modelDateTime, modelTags);
+        final Set<Tag> modelLanguageTags = new HashSet<>(languageTags);
+
+        final Set<Tag> modelTags = new HashSet<>(tags);
+
+        return new Internship(modelCompany, modelRole, modelEmail, modelStage, modelDateTime, modelLanguageTags,
+                modelTags);
     }
 
 }

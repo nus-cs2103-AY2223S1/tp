@@ -4,6 +4,7 @@ import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_LANGUAGE_TAG;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -36,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_ROLE,
-                PREFIX_EMAIL, PREFIX_STAGE, PREFIX_DATETIME, PREFIX_TAG);
+                PREFIX_EMAIL, PREFIX_STAGE, PREFIX_DATETIME, PREFIX_LANGUAGE_TAG, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_ROLE, PREFIX_STAGE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -53,9 +54,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         DateTime dateTime = argMultimap.getValue(PREFIX_DATETIME).isPresent()
                 ? ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATETIME).get())
                 : EMPTY_DATETIME;
+        Set<Tag> languageTagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_LANGUAGE_TAG));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Internship internship = new Internship(company, role, email, stage, dateTime, tagList);
+        Internship internship = new Internship(company, role, email, stage, dateTime, languageTagList, tagList);
 
         return new AddCommand(internship);
     }

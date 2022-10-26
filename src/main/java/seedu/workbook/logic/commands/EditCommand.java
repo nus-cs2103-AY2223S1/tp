@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_LANGUAGE_TAG;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -45,6 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_STAGE + "STAGE] "
             + "[" + PREFIX_DATETIME + "DATE AND TIME] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_LANGUAGE_TAG + "PROGRAMMING LANGUAGE]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -121,10 +123,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
         Stage updatedStage = editInternshipDescriptor.getStage().orElse(internshipToEdit.getStage());
         DateTime updatedDateTime = editInternshipDescriptor.getDate().orElse(internshipToEdit.getDateTime());
+        Set<Tag> updatedLanguageTags = editInternshipDescriptor.getLanguageTags()
+            .orElse(internshipToEdit.getLanguageTags());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
         return new Internship(updatedCompany, updatedRole,
-                updatedEmail, updatedStage, updatedDateTime, updatedTags);
+                updatedEmail, updatedStage, updatedDateTime, updatedLanguageTags, updatedTags);
     }
 
     @Override
@@ -155,6 +159,7 @@ public class EditCommand extends Command {
         private Email email;
         private Stage stage;
         private DateTime dateTime;
+        private Set<Tag> languageTags;
         private Set<Tag> tags;
 
         public EditInternshipDescriptor() {
@@ -170,6 +175,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setStage(toCopy.stage);
             setDate(toCopy.dateTime);
+            setLanguageTags(toCopy.languageTags);
             setTags(toCopy.tags);
         }
 
@@ -177,7 +183,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, role, email, stage, dateTime, tags);
+            return CollectionUtil.isAnyNonNull(company, role, email, stage, dateTime, languageTags, tags);
         }
 
         public void setCompany(Company company) {
@@ -210,12 +216,30 @@ public class EditCommand extends Command {
         public Optional<Stage> getStage() {
             return Optional.ofNullable(stage);
         }
+
         public void setDate(DateTime dateTime) {
             this.dateTime = dateTime;
         }
 
         public Optional<DateTime> getDate() {
             return Optional.ofNullable(dateTime);
+        }
+
+        /**
+         * Sets {@code languageTags} to this object's {@code languageTags}.
+         * A defensive copy of {@code languageTags} is used internally.
+         */
+        public void setLanguageTags(Set<Tag> languageTags) {
+            this.languageTags = (languageTags != null) ? new HashSet<>(languageTags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable language tag set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getLanguageTags() {
+            return (languageTags != null) ? Optional.of(Collections.unmodifiableSet(languageTags)) : Optional.empty();
         }
 
 
@@ -256,6 +280,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getStage().equals(e.getStage())
                     && getDate().equals(e.getDate())
+                    && getLanguageTags().equals(e.getLanguageTags())
                     && getTags().equals(e.getTags());
         }
     }

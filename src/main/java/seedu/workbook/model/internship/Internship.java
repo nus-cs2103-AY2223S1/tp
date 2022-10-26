@@ -24,19 +24,22 @@ public class Internship {
 
     // Data fields
 
+    private final Set<Tag> languageTags = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Internship(
-            Company company, Role role, Email email, Stage stage, DateTime dateTime, Set<Tag> tags) {
+            Company company, Role role, Email email, Stage stage, DateTime dateTime,
+            Set<Tag> languageTags, Set<Tag> tags) {
         requireAllNonNull(company, role, email, stage, dateTime, tags);
         this.company = company;
         this.role = role;
         this.email = email;
         this.stage = stage;
         this.dateTime = dateTime;
+        this.languageTags.addAll(languageTags);
         this.tags.addAll(tags);
     }
 
@@ -59,6 +62,13 @@ public class Internship {
         return dateTime;
     }
 
+    /**
+     * Returns an immutable language tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getLanguageTags() {
+        return Collections.unmodifiableSet(languageTags);
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -106,13 +116,14 @@ public class Internship {
                 && otherInternship.getEmail().equals(getEmail())
                 && otherInternship.getStage().equals(getStage())
                 && otherInternship.getDateTime().equals(getDateTime())
+                && otherInternship.getLanguageTags().equals(getLanguageTags())
                 && otherInternship.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, role, email, stage, dateTime, tags);
+        return Objects.hash(company, role, email, stage, dateTime, languageTags, tags);
     }
 
     @Override
@@ -132,6 +143,12 @@ public class Internship {
         if (!getEmail().value.isEmpty()) {
             builder.append("; Email: ")
                     .append(getEmail());
+        }
+
+        Set<Tag> languageTags = getLanguageTags();
+        if (!languageTags.isEmpty()) {
+            builder.append("; Language Tags: ");
+            languageTags.forEach(builder::append);
         }
 
         Set<Tag> tags = getTags();

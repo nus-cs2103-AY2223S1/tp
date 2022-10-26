@@ -26,6 +26,7 @@ public class SampleDataUtil {
                 new Email("alexyeoh@example.com"),
                 new Stage("HR Interview"),
                 new DateTime("11-Dec-2022 15:30"),
+                getTagSet("java"),
                 getTagSet("friends")),
             new Internship(
                 new Company("Hudson River Trading"),
@@ -33,6 +34,7 @@ public class SampleDataUtil {
                 new Email("berniceyu@example.com"),
                 new Stage("Team Lead Interview"),
                 new DateTime("11-Dec-2022 18:30"),
+                getTagSet("python"),
                 getTagSet("colleagues", "friends")),
             new Internship(
                 new Company("Shopee"),
@@ -40,6 +42,7 @@ public class SampleDataUtil {
                 new Email("charlotte@example.com"),
                 new Stage("Online Coding Assessment"),
                 new DateTime("12-Dec-2022 18:30"),
+                getTagSet("c"),
                 getTagSet("neighbours")),
             new Internship(
                 new Company("Visa"),
@@ -47,6 +50,7 @@ public class SampleDataUtil {
                 new Email("lidavid@example.com"),
                 new Stage("Technical Interview"),
                 new DateTime(""),
+                getTagSet("Java"),
                 getTagSet("family")),
             new Internship(
                 new Company("Binance"),
@@ -54,6 +58,7 @@ public class SampleDataUtil {
                 new Email("irfan@example.com"),
                 new Stage("Application Sent"),
                 new DateTime("10-Oct-2022 10:00"),
+                getTagSet("Java"),
                 getTagSet("classmates")),
             new Internship(
                 new Company("Optiver"),
@@ -61,6 +66,7 @@ public class SampleDataUtil {
                 new Email("royb@example.com"),
                 new Stage("Rejected"),
                 new DateTime("15-Feb-2022 10:20"),
+                getTagSet("rust"),
                 getTagSet("colleagues"))
         };
     }
