@@ -1,11 +1,9 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.util.function.Predicate;
-
 import java.util.Arrays;
 
+import seedu.address.commons.util.StringUtil;
 
 public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     private final String keywords;
@@ -78,14 +76,16 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     }
 
     private boolean matchesName(Person person) {
-        return findSimilarity(keywords,person.getName().fullName) > 0.5
-                || StringUtil.containsWordIgnoreCase(person.getName().fullName, keywords);
+        return findSimilarity(keywords, person.getName().fullName) > 0.5
+                || StringUtil.containsWordIgnoreCase(
+                        person.getName().fullName, keywords);
     }
 
     private boolean matchesAddress(Person person) {
         if (person.getAddress().isPresent()) {
             return findSimilarity(keywords, String.valueOf(person.getAddress().get().value)) > 0.5
-                    || StringUtil.containsWordIgnoreCase(String.valueOf(person.getAddress().get().value), keywords);
+                    || StringUtil.containsWordIgnoreCase(
+                            String.valueOf(person.getAddress().get().value), keywords);
         } else {
             return false;
         }
@@ -94,22 +94,23 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     private boolean matchesRole(Person person) {
         if (person.getRole().isPresent()) {
             return findSimilarity(keywords, String.valueOf(person.getRole().get().role)) > 0.5
-                    || StringUtil.containsWordIgnoreCase(String.valueOf(person.getRole().get().role), keywords);
+                    || StringUtil.containsWordIgnoreCase(
+                            String.valueOf(person.getRole().get().role), keywords);
         } else {
             return false;
         }
     }
 
     private boolean matchesGitHubUser(Person person) {
-        return findSimilarity(keywords,person.getGitHubUser().toString()) > 0.5
+        return findSimilarity(keywords, person.getGitHubUser().toString()) > 0.5
                 || StringUtil.containsWordIgnoreCase(person.getGitHubUser().toString(), keywords);
     }
 
     private boolean matchesTags(Person person) {
         Object[] tags = person.getTags().toArray();
         for (int i = 0; i < tags.length; i++) {
-            if (findSimilarity(keywords, tags[i].toString()) > 0.5 ||
-                    StringUtil.containsWordIgnoreCase(tags[i].toString(), keywords)) {
+            if (findSimilarity(keywords, tags[i].toString()) > 0.5
+                    || StringUtil.containsWordIgnoreCase(tags[i].toString(), keywords)) {
                 return true;
             }
         }
