@@ -73,11 +73,11 @@ public class Money {
     public Money subtract(Money amountToSubtract) throws CommandException {
         Integer finalAmount = this.value - amountToSubtract.value;
 
-        if (finalAmount < 0) {
+        try {
+            return new Money(finalAmount);
+        } catch (IllegalArgumentException e) {
             throw new CommandException(MESSAGE_NEGATIVE_AMOUNT);
         }
-
-        return new Money(finalAmount);
     }
 
     /**
