@@ -13,6 +13,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="RC4HDB" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -24,7 +25,6 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="Help">
@@ -33,7 +33,6 @@
                       visible="false"/>
           </Menu>
         </MenuBar>
-
         <TabPane fx:id="tableViewPane" minWidth="340" prefHeight="600" VBox.vgrow="ALWAYS">
             <Tab fx:id="residentTab" closable="false" styleClass="tab">
                 <VBox fx:id="residentTableView" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
@@ -44,31 +43,28 @@
                 </VBox>
             </Tab>
             <Tab fx:id="venueTab" closable="false" styleClass="tab">
-                <VBox styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-                    <Label fx:id="venueName" prefHeight="72.00" prefWidth="100.00" textAlignment="CENTER" />
-                    <VBox fx:id="venueTableView" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-                        <padding>
-                            <Insets top="10" right="10" bottom="10" left="10" />
-                        </padding>
+                <VBox fx:id="venueTabContainer" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="bookingTableView" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                         <StackPane fx:id="bookingTableViewPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
+                    <HBox styleClass="venue-label" prefHeight="80.00" alignment="CENTER">
+                        <Label fx:id="venueName" prefHeight="40.00" minWidth="340.0" textAlignment="CENTER" styleClass="venue-label-text"/>
+                        <Label fx:id="allVenue" prefHeight="40.00" minWidth="340.0" textAlignment="RIGHT" styleClass="venue-label-text"/>
+                    </HBox>
                 </VBox>
             </Tab>
         </TabPane>
-
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                    minHeight="100" prefHeight="100" maxHeight="100">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

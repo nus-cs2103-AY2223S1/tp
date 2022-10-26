@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
@@ -61,7 +62,13 @@ public class MainWindow extends UiPart<Stage> {
     private Tab venueTab;
 
     @FXML
+    private VBox venueTabContainer;
+
+    @FXML
     private Label venueName;
+
+    @FXML
+    private Label allVenue;
 
     @FXML
     private StackPane residentTableViewPlaceholder;
@@ -143,12 +150,19 @@ public class MainWindow extends UiPart<Stage> {
         residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
 
         bookingTableView = new BookingTableView(logic.getObservableBookings());
-        bookingTableViewPlaceholder.getChildren().add(bookingTableView.getRoot());
+        bookingTableViewPlaceholder.getChildren().addAll(bookingTableView.getRoot());
+
+        try {
+            venueName.setText("Currently Viewing: " + logic.getObservableBookings().get(0).getVenueName().toString());
+        } catch (IndexOutOfBoundsException e) {
+            venueName.setText("Currently Viewing: " + logic.getObservableVenues().get(0).toString());
+        }
+
+        allVenue.setText("All venues in RC4HDB: " + logic.getObservableVenues().toString());
 
         residentTab.setContent(residentTableViewPlaceholder);
-        venueTab.setContent(bookingTableViewPlaceholder);
+        venueTab.setContent(venueTabContainer);
 
-        venueName.setText("VenueA");
 
         tableViewPane.getTabs().addAll(residentTab, venueTab);
 
