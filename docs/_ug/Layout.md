@@ -3,13 +3,13 @@
 <!-- TODO: Update UI Images after UI updates are implemented -->
 When you launch FoodRem, FoodRem appears on your screen as a [Graphical User Interface](#graphical-user-interface), or GUI. Let's look at the layout of the different components of FoodRem.
 
-FoodRem's GUI:
+**FoodRem's GUI:**
 
 ![FullUiImage](images/FoodRemFullUi.png)
 
 This table breaks down the different components of FoodRem's GUI.
 
-| Name               | Description                                      |
+| Name               | Image                                            |
 |--------------------|--------------------------------------------------|
 | Command Input Box  | ![CommandInputBox](images/CommandInputBox.png)   |
 | Command Output Box | ![CommandOutputBox](images/CommandOutputBox.png) |
