@@ -9,6 +9,8 @@ MSS:
 1. User adds a new Item to the inventory with the specified arguments.
 1. FoodRem informs user that item has been successfully created.
 
+Use case ends.
+
 Extensions:
 
 * 1a. If the item name already exists in the inventory, FoodRem will throw an error.
@@ -34,6 +36,9 @@ MSS:
 1. FoodRem shows all items.
 1. User enters the command to edit the item with new fields.
 1. FoodRem informs user that item has been successfully edited.
+
+Use case ends.
+
 
 Extensions:
 
@@ -61,6 +66,8 @@ MSS:
 1. User enters the command to delete an item.
 1. FoodRem informs user that item has been successfully deleted.
 
+Use case ends.
+
 Extensions:
 
 * 3b. FoodRem detects that there is an issue with the command entered.
@@ -78,6 +85,8 @@ MSS:
 
 1. User adds a new Tag to the inventory with the specified arguments.
 1. FoodRem informs user that tag has been successfully created.
+
+Use case ends.
 
 Extensions:
 
@@ -102,6 +111,7 @@ MSS:
 1. FoodRem shows a list containing the items.
 1. User searches for an Item with one or more criteria.
 1. FoodRem displays all items in inventory which matches the given criteria.
+
    Use case ends.
 
 * 3a. FoodRem detects that there is an issue with the command entered.
