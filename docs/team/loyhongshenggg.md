@@ -17,8 +17,8 @@ Given below are my contributions to the project.
 
 * **New Feature**: Major Ui changes
   * Justification: This feature is to revamp the current AB3 to give our project GUI uniqueness
-  * Highlights:  It gives the GUI a whole new look
-  * Sample GUI: 
+  * Highlights: It gives the GUI a whole new look
+  * Sample GUI:
   * <img src="..\images\sampleGUI.png">
   * Credits: *NIL*
 

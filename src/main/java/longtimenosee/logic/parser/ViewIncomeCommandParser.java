@@ -2,9 +2,11 @@
 package longtimenosee.logic.parser;
 
 import static longtimenosee.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static longtimenosee.commons.core.Messages.MESSAGE_INVALID_YEAR_FORMAT;
 
 import longtimenosee.commons.core.index.Index;
 import longtimenosee.logic.commands.ViewIncomeCommand;
+import longtimenosee.logic.parser.exceptions.InvalidYearException;
 import longtimenosee.logic.parser.exceptions.ParseException;
 
 /**
@@ -19,10 +21,16 @@ public class ViewIncomeCommandParser {
     public ViewIncomeCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
+            if (index.getOneBased() < 1900 || index.getOneBased() > 2200) {
+                throw new InvalidYearException("Chosen year is invalid");
+            }
             return new ViewIncomeCommand(index.getOneBased());
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewIncomeCommand.MESSAGE_USAGE), pe);
+        } catch (InvalidYearException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_YEAR_FORMAT, ViewIncomeCommand.MESSAGE_USAGE), e);
         }
     }
 }

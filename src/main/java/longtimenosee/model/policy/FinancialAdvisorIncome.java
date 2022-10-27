@@ -2,6 +2,8 @@ package longtimenosee.model.policy;
 
 import static longtimenosee.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Set;
@@ -67,7 +69,7 @@ public class FinancialAdvisorIncome {
      * Calculates the income of financial advisor in the specified year
      */
     public float calculateIncome(LocalDate year, Model model) {
-        float yearlyIncome = 0;
+        float yearlyIncome = 0f;
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         ObservableList<Person> personList = model.getFilteredPersonList();
         LocalDate fullYear = LocalDate.of(year.getYear(), 1, 1);
@@ -85,10 +87,10 @@ public class FinancialAdvisorIncome {
                         || policy.getEndDate().getDate().equals(fullYear))
                         && (policy.getStartDate().getDate().isBefore(fullYear)
                         || policy.getStartDate().getDate().equals(fullYear))) {
-                    // for case that year falls within
-                    int months = duration.getMonths(); //why 0 months?
+
+                    int months = duration.getMonths();
                     if (months == 0) {
-                        if (duration.getYears() > 1) {
+                        if (duration.getYears() >= 1) {
                             months = 12;
                         }
                     }
@@ -102,7 +104,9 @@ public class FinancialAdvisorIncome {
             }
 
         }
-        return yearlyIncome;
+        BigDecimal bd = new BigDecimal(yearlyIncome);
+        BigDecimal formattedIncome = bd.setScale(2, RoundingMode.FLOOR);
+        return formattedIncome.floatValue();
     }
 
 }

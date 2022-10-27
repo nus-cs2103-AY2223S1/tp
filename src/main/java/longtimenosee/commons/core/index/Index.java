@@ -23,6 +23,14 @@ public class Index {
         this.zeroBasedIndex = zeroBasedIndex;
     }
 
+    private Index(int zeroBasedIndex, boolean isYear) {
+        if ((zeroBasedIndex < 1900 || zeroBasedIndex > 2100) && isYear) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        this.zeroBasedIndex = zeroBasedIndex;
+    }
+
     public int getZeroBased() {
         return zeroBasedIndex;
     }

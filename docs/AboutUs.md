@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/loyhongshenggg.md)]
 
 * Role: Team Lead and Developer
-* Responsibilities: UI/UX of LTNS, Wireframing/Figma diagram, Main reviewer for Damien
+* Responsibilities: Team Coordination, UI/UX of LTNS, Wireframing/Figma diagram, Main reviewer for Damien
 * In-charge of features: Ui, LTNS main UI/UX, pin, viewPin and viewIncome
 
 ### Damien Koh
