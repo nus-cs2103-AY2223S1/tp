@@ -16,15 +16,13 @@ import seedu.address.logic.commands.EditBuyerCommand;
 import seedu.address.logic.commands.EditPropertyCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterBuyersCommand;
-import seedu.address.logic.commands.FilterPropsCommand;
+import seedu.address.logic.commands.FilterPropertiesCommand;
 import seedu.address.logic.commands.FindBuyerCommand;
 import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListBuyersCommand;
 import seedu.address.logic.commands.ListPropertiesCommand;
 import seedu.address.logic.commands.MatchPropertyCommand;
-import seedu.address.logic.commands.MultiFlagFilterBuyersCommand;
-import seedu.address.logic.commands.MultiFlagFilterPropsCommand;
 import seedu.address.logic.commands.SortBuyersCommand;
 import seedu.address.logic.commands.SortPropertiesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -98,7 +96,7 @@ public class CobbParser {
         case FilterBuyersCommand.COMMAND_WORD:
             return new FilterBuyersCommandParser().parse(arguments);
 
-        case FilterPropsCommand.COMMAND_WORD:
+        case FilterPropertiesCommand.COMMAND_WORD:
             return new FilterPropertiesCommandParser().parse(arguments);
 
         case SortBuyersCommand.COMMAND_WORD:
@@ -106,12 +104,6 @@ public class CobbParser {
 
         case SortPropertiesCommand.COMMAND_WORD:
             return new SortPropertiesCommandParser().parse(arguments);
-
-        case MultiFlagFilterBuyersCommand.COMMAND_WORD:
-            return new MultiFlagFilterBuyersCommandParser().parse(arguments);
-
-        case MultiFlagFilterPropsCommand.COMMAND_WORD:
-            return new MultiFlagFilterPropsCommandParser().parse(arguments);
 
         case MatchPropertyCommand.COMMAND_WORD:
             return new MatchPropertyCommandParser().parse(arguments);

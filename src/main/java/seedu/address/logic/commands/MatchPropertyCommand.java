@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STRICT;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -10,12 +12,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.FilterBuyerByCharacteristicsPredicate;
 import seedu.address.model.buyer.FilterBuyerByPricePredicate;
+import seedu.address.model.buyer.FilterBuyerContainingAnyCharacteristicPredicate;
 import seedu.address.model.property.Property;
 
 /**
- * Matches a {@code property} to all {@code buyers} that match its attributes.
+ * Matches {@code properties} to {@code buyers} that either has a price within the buyer's price range,
+ * or has at least 1 characteristic that the buyer has as well.
  */
 public class MatchPropertyCommand extends Command {
 
@@ -23,16 +26,26 @@ public class MatchPropertyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             // TODO: Change description?
-            + ": Matches a property with all buyers who are most suitable to purchase the property\n"
+            + ": Matches a property with all buyers who are most suitable to purchase the property.\n"
+            + "Pass in " + PREFIX_STRICT + " after the index for a stricter but possibly less matches."
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_STRICT;
 
     public static final String MESSAGE_MATCHED_PROPERTY_SUCCESS = "Matched Property: %1$s";
 
     private final Index targetIndex;
+    private final boolean isMatchingAll;
 
-    public MatchPropertyCommand(Index targetIndex) {
+    /**
+     * Constructor for MatchPropertyCommand.
+     *
+     * @param targetIndex the index of the property to be matched.
+     * @param isMatchingAll whether all the conditions specified must be satisfied in each of the resulting buyers.
+     */
+    public MatchPropertyCommand(Index targetIndex, boolean isMatchingAll) {
         this.targetIndex = targetIndex;
+        this.isMatchingAll = isMatchingAll;
     }
 
     @Override
@@ -46,15 +59,24 @@ public class MatchPropertyCommand extends Command {
 
         Property propertyToMatch = lastShownList.get(targetIndex.getZeroBased());
 
-        // Start constructing the predicate
-        Predicate<Buyer> matchingPredicate = new FilterBuyerByPricePredicate(propertyToMatch.getPrice());
+        ArrayList<Predicate<Buyer>> predicatesList = new ArrayList<>();
+        predicatesList.add(new FilterBuyerByPricePredicate(propertyToMatch.getPrice()));
         if (propertyToMatch.getCharacteristics().isPresent()) {
-            matchingPredicate = matchingPredicate.and(new FilterBuyerByCharacteristicsPredicate(
-                    propertyToMatch.getCharacteristics().get()));
+            predicatesList.add(
+                    new FilterBuyerContainingAnyCharacteristicPredicate(propertyToMatch.getCharacteristics().get()));
         }
 
-        // N.B. Execution of a command within a command - does this break abstraction?
-        new MultiFlagFilterBuyersCommand(matchingPredicate).execute(model);
+        // predicatesList must not be empty, since at least FilterBuyerByPricePredicate should be added
+        assert(!predicatesList.isEmpty());
+
+        Predicate<Buyer> combinedPredicate;
+        if (isMatchingAll) {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::and).get();
+        } else {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::or).get();
+        }
+
+        new FilterBuyersCommand(combinedPredicate).execute(model);
 
         return new CommandResult(String.format(MESSAGE_MATCHED_PROPERTY_SUCCESS, propertyToMatch));
     }

@@ -55,18 +55,27 @@ public class Characteristics {
      * Returns true if a given string is contained in the
      * characteristics array.
      */
-    public boolean containsCharacteristic(String characteristic) {
+    private boolean containsCharacteristic(String characteristic) {
         return Arrays.stream(characteristicsArray)
                 .anyMatch(c -> c.toLowerCase().contains(characteristic.toLowerCase()));
     }
 
     /**
-     * Returns true if a given {@code Characteristic} contains a characteristic that
-     * is also found in this {@code Characteristic}
+     * Returns true if this {@code Characteristic} contains all the characteristics
+     * of the given {@code Characteristic}.
      */
     public boolean containsAllGivenCharacteristics(Characteristics other) {
         return Arrays.stream(other.getCharacteristicsArray())
                 .allMatch(c -> containsCharacteristic(c));
+    }
+
+    /**
+     * Returns true if this {@code Characteristic} contains at least 1 characteristic
+     * of the given {@code Characteristic}.
+     */
+    public boolean containsAnyGivenCharacteristic(Characteristics other) {
+        return Arrays.stream(other.getCharacteristicsArray())
+                .anyMatch(c -> containsCharacteristic(c));
     }
 
     @Override
