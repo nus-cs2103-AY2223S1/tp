@@ -81,7 +81,7 @@ Adds a person to PayMeLah.
 Format: `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -154,6 +154,10 @@ Example: `listdebtors m/10` displays the list of persons that owe more than $10.
 ### Sorting list of persons : `sort`
 
 Sorts and displays the list of persons using the given criteria and order. The criteria that you can sort by are name, amount owed, and time since oldest debt. Use the `+` symbol to indicate ascending order, and the `-` symbol for descending order.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When you sort by time since oldest debt, all persons who do not owe any debt will be placed at the end of the list, regardless of whether ascending or descending order is specified.
+</div>
 
 Format: `sort [n/<order>] OR [m/<order>] OR [date/<order>]`
 
