@@ -1,0 +1,37 @@
+package seedu.address.logic.parser;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
+
+import seedu.address.logic.commands.DeletePersonFromModuleCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.person.Name;
+
+/**
+ * Parses input arguments and creates a new {@code DeletePersonFromModuleCommand} object.
+ */
+public class DeletePersonFromModuleCommandParser implements Parser<DeletePersonFromModuleCommand> {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the
+     * {@code DeletePersonFromModuleCommand} and returns a {@code DeletePersonFromModuleCommand} object for
+     * execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public DeletePersonFromModuleCommand parse(String args) throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE, PREFIX_NAME);
+        boolean isPrefixModuleCodeOrNameAbsent = !arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE, PREFIX_NAME);
+        boolean isPreamblePresent = !argMultimap.getPreamble().isEmpty();
+        if (isPrefixModuleCodeOrNameAbsent || isPreamblePresent) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeletePersonFromModuleCommand.MESSAGE_USAGE));
+        }
+
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        return new DeletePersonFromModuleCommand(moduleCode, name);
+    }
+}
