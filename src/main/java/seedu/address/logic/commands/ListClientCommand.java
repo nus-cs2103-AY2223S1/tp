@@ -35,6 +35,7 @@ public class ListClientCommand extends Command {
         requireNonNull(model);
         if (this.object == null) {
             model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        }
         if (this.object instanceof DateKeyword) {
             model.updateFilteredClientList(client -> client.isBirthdayInPeriod((DateKeyword) object));
         }
