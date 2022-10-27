@@ -131,8 +131,8 @@ public class ParserUtil {
      */
     public static SubjectHandler parseSubjectHandler(String subjectHandler) {
         requireNonNull(subjectHandler);
-        String trimmedsubjectHandler = subjectHandler.trim();
-        return new SubjectHandler(trimmedsubjectHandler);
+        String trimmedSubjectHandler = subjectHandler.trim();
+        return new SubjectHandler(trimmedSubjectHandler);
     }
 
     /**

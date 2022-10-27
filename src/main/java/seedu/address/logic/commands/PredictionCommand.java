@@ -52,7 +52,7 @@ public class PredictionCommand extends Command {
         Attendance attendance = target.getAttendance();
         Subject targetSubject = target.getSubjectHandler().getSubject(subjectName);
         double gradePredicted = PredictionUtil.predictGrade(targetSubject.getGrades(), attendance, difficulty);
-        return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true,
+        return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true, false,
             String.format(MESSAGE_FORMAT, name, targetSubject.subjectName, gradePredicted));
     }
 }

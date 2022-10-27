@@ -5,11 +5,21 @@ title: User Guide
 
 # User Guide
 
-Watson is a **desktop app for teachers that helps with a multitude of tasks, such as handling student particulars, sorting students with different filters, and more. It adopts a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Watson can retrieve and handle the data of students faster than other GUI-based applications.
+Welcome to the **Watson** user guide! This guide covers all of Watson's features and how to use them.
+Throughout this guide, you may see some words in _italics_.
+These terms can be found in the [Glossary](#glossary).
+
+Watson is a **desktop app for teachers that helps with a multitude of tasks,
+such as handling student particulars, sorting students with different filters,
+and more.** It adopts a _Command Line Interface_ (CLI)
+while still having the benefits of a _Graphical User Interface_ (GUI).
+If you can type fast, Watson can retrieve and handle the data of students
+faster than other GUI-based applications.
 
 * Table of Contents
+    * [Glossary](#glossary)
     * [Quick Start](#quick-start)
-    * [Features](#features) `(Version 1.2)`
+    * [Features](#features) `(Version 1.3)`
         * Listing all persons: [`list`](#listing-all-persons--list)
         * Adding a person: [`add`](#adding-a-person-add)
         * Editing a person: [`edit`](#editing-a-person--edit)
@@ -20,11 +30,19 @@ Watson is a **desktop app for teachers that helps with a multitude of tasks, suc
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+* **CLI** : Command Line Interface
+* **GUI** : Graphical User Interface
+* **Main Window** : The main window of the application that shows the list of students.
+* **Home Folder** : The folder where Watson will store student data.
+
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer 
+(Not sure how? Check out [this](https://www.java.com/en/download/help/version_manual.html) guide).
 
-2. Download the latest `watson.jar` from here (Hyperlink will be added in the future).
+2. Download the latest `watson.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-1/tp/releases/tag/v.1.3.trial).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Watson.
 
@@ -34,11 +52,11 @@ Watson is a **desktop app for teachers that helps with a multitude of tasks, suc
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all persons in Watson.
+    * **`list`** : Lists all students in Watson.
 
-    * **`add`**`id/12345678 n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a person named `John Doe` to Watson.
+    * **`add`**`id/12345678 n/John Doe p/98765432 a/John street, #01-01` : Adds a student named `John Doe` to Watson, with `p`hone number 98765432 and `a`ddress "John Street, #01-01".
 
-    * **`delete`**`id/12345678` : Deletes the person with `ID number 12345678` from Watson.
+    * **`delete`**`id/12345678` : Deletes the student with `ID number 12345678` from Watson.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -106,11 +124,9 @@ Format: `list`
 
 Edits an existing person in Watson.
 
-Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br>
-`edit index/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CLASS] [rem/REMARK] [t/TAG]…​` <br>
 
-* Edits the person at the specified `ID` or `INDEX`. The ID refers to the unique Identification number assigned to the person.
-The index refers to the index of the person after using the find/list feature.
+* Edits the person at the specified `INDEX`. The index refers to the index of the person after using the find/list feature.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -118,28 +134,55 @@ The index refers to the index of the person after using the find/list feature.
   specifying any tags after it.
 
 Examples:
-* `edit index/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit index/2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-* `edit id/1234 n/Charlie Crackshot` Edits the name of the person with ID 1234 to be `Charlie Crackshot`.
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person displayed after 
+using the list/find feature to be `91234567` and `johndoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 4 n/Charlie Crackshot c/1B` Edits the name of the 4th person to be `Charlie Crackshot` and class to be `1B`.
 
-### Locating persons by name: `find`
+### Searching students by specified criteria: `find`
 
-Finds persons whose names contain any of the given keywords or through their given ID.
+Finds all persons matching the specified criteria and the specified keywords.
 
-Format: `find KEYWORD/ID [MORE_KEYWORDS/MORE_ID]`
+Format: `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name/ID is searched.
+* Only name, class and subject can be searched.
 * Only full words or ID will be matched e.g. `Han` will not match `Hans` / `123` will not match `1234`
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `findPersonality hard` returns `hard` and `Hardworking`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find n/alice bob charlie c/1A s/English` returns `alice` who is in 1A and taking English
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Sorting persons by grade: `sort`
+
+Sort all student by grade in ascending or descending order.
+
+Format: `sort asc` or `sort desc`
+
+* The search is case-insensitive. e.g. `sort ASC` will return the same result as `sort asc`
+* The returned list is sorted by grade which refers to the total percentage the student scored in all the subjects.
+
+
+Examples:
+* `sort DESC` returns list of students whose grades are in descending order
+
+### Add remark to a student: `remark`
+
+Adds a remark to a student by index.
+
+Format: `remark INDEX [REMARK]`
+
+* One remark can be added to one student at a time.
+
+
+Examples:
+* `remark 1 she is active in class` adds the remark `she is active in class` to the student with index 1 in the list
+ ![add remark example](images/AddRemark.png)
 
 ### Deleting a person : `delete`
 
@@ -156,6 +199,18 @@ Format: `delete id/ID` <br> `delete index/INDEX`
 Examples:
 * `delete id/2356`
 * `delete index/1`
+
+### Predicting a student's grade : `predict`
+
+Watson has rudimentary data analysis and prediction abilities.
+It can predict a student's grade based on the student's past grades.
+
+Format: `predict n/NAME s/SUBJECT`
+
+* Predicts the grade of the next assignment for the input subject for the input student/
+* The name refers to the name of the student.
+* The subject refers to the subject of the assignment to predict.
+* The student should be taking the subject.
 
 ### Clearing all entries : `clear`
 
@@ -202,7 +257,9 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX/ID`<br> e.g., `delete index/1`, `delete id/2356`
 **Edit** | `edit INDEX/ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit index/2 n/James Lee e/jameslee@example.com`,`edit id/1234 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD/ID [MORE_KEYWORDS/MORE_ID]`<br> e.g., `find James Jake`, `find 1234`
+**Find** | `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)`<br> e.g., `find n/alice bob charlie c/1A s/English`, `find s/English Math`
+**Sort** | `sort asc` or `sort desc`
+**Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`
 **List** | `list`
 **Help** | `help`
 
