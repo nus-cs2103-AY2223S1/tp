@@ -8,6 +8,7 @@ import static taskbook.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
 import static taskbook.logic.parser.CliSyntax.PREFIX_DATE;
 import static taskbook.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static taskbook.logic.parser.CliSyntax.PREFIX_INDEX;
+import static taskbook.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 
@@ -27,13 +28,15 @@ public class TaskEditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-        + "by the index number used in the displayed task list. "
+        + "by the index number used in the displayed task list. \n"
         + "Existing values will be overwritten by the input values.\n"
-        + "Parameters: " + PREFIX_INDEX + "INDEX (must be a positive integer) "
+        + "\n"
+        + "Parameters: \n" + PREFIX_INDEX + "INDEX (must be a positive integer) "
         + "[" + PREFIX_ASSIGN_FROM + "NAME] "
         + "[" + PREFIX_ASSIGN_TO + "NAME] "
         + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-        + "[" + PREFIX_DATE + "DATE\n] "
+        + "[" + PREFIX_DATE + "DATE] "
+        + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " " + PREFIX_INDEX + " 1 "
         + PREFIX_ASSIGN_FROM + "Jackie Chan "
         + PREFIX_DESCRIPTION + "Practice kick 10000 times";
@@ -75,13 +78,16 @@ public class TaskEditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        Person personToFind = model.findPerson(editedTask.getName());
-        if (personToFind == null) {
-            throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
+        if (!editedTask.isSelfAssigned()) {
+            Person personToFind = model.findPerson(editedTask.getName());
+            if (personToFind == null) {
+                throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
+            }
         }
 
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredTaskListPredicate(Model.PREDICATE_SHOW_ALL_TASKS);
+        model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 

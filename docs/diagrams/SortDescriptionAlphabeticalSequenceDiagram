@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant "commandTextField:CommandExecutor" as CommandExecutor UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
+participant ":TaskSortDescriptionAlphabeticalCommand" as TaskSortCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> CommandExecutor : task sort s/a
+activate CommandExecutor
+
+CommandExecutor -> LogicManager : execute(task sort s/a)
+activate LogicManager
+
+LogicManager -> TaskBookParser : parseCommand(task sort s/a)
+activate TaskBookParser
+
+TaskBookParser -> TaskSortCommand
+activate TaskSortCommand
+
+TaskSortCommand --> TaskBookParser : command
+deactivate TaskSortCommand
+
+TaskBookParser --> LogicManager : command
+deactivate TaskBookParser
+
+LogicManager -> TaskSortCommand : execute(model)
+activate TaskSortCommand
+
+TaskSortCommand -> Model : updateSortedTaskList(comparator)
+activate Model
+Model -[hidden]-> Model
+
+Model --> TaskSortCommand
+deactivate Model
+
+TaskSortCommand --> LogicManager : result
+deactivate TaskSortCommand
+TaskSortCommand -[hidden]-> LogicManager : result
+destroy TaskSortCommand
+
+LogicManager --> CommandExecutor
+deactivate LogicManager
+
+[<-- CommandExecutor
+deactivate CommandExecutor
+@enduml

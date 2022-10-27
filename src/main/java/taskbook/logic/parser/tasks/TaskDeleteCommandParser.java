@@ -14,7 +14,7 @@ import taskbook.logic.parser.Prefix;
 import taskbook.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new TaskDeleteCommand object
+ * Parses input arguments and creates a new TaskDeleteCommand object.
  */
 public class TaskDeleteCommandParser implements Parser<TaskDeleteCommand> {
 

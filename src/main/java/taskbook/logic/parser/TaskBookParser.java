@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
-import taskbook.logic.commands.HelpCommand;
+import taskbook.logic.commands.categoryless.HelpCommand;
 import taskbook.logic.parser.categoryless.CategorylessParser;
 import taskbook.logic.parser.contacts.ContactCategoryParser;
 import taskbook.logic.parser.exceptions.ParseException;
@@ -22,7 +22,9 @@ public class TaskBookParser {
      */
     private static final String CATEGORIES = String.join("|",
         ContactCategoryParser.CATEGORY_WORD,
-        TaskCategoryParser.CATEGORY_WORD
+        ContactCategoryParser.CATEGORY_WORD_SHORTCUT,
+        TaskCategoryParser.CATEGORY_WORD,
+        TaskCategoryParser.CATEGORY_WORD_SHORTCUT
     );
     private static final String BASIC_COMMAND_REGEX =
         String.format("(?:(?<category>%s)\\s)?(?<commandWord>\\S+)(?<arguments>.*)", CATEGORIES);
@@ -50,9 +52,11 @@ public class TaskBookParser {
 
         if (category == null) {
             return CategorylessParser.parseCommand(commandWord, arguments);
-        } else if (category.equals(ContactCategoryParser.CATEGORY_WORD)) {
+        } else if (category.equals(ContactCategoryParser.CATEGORY_WORD)
+                || category.equals(ContactCategoryParser.CATEGORY_WORD_SHORTCUT)) {
             return ContactCategoryParser.parseCommand(commandWord, arguments);
-        } else if (category.equals(TaskCategoryParser.CATEGORY_WORD)) {
+        } else if (category.equals(TaskCategoryParser.CATEGORY_WORD)
+                || category.equals(TaskCategoryParser.CATEGORY_WORD_SHORTCUT)) {
             return TaskCategoryParser.parseCommand(commandWord, arguments);
         }
 

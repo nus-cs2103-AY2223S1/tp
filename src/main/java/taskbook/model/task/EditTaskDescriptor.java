@@ -3,9 +3,13 @@ package taskbook.model.task;
 import static taskbook.commons.util.CollectionUtil.isAnyNonNull;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import taskbook.model.person.Name;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.enums.Assignment;
 
 /**
@@ -19,11 +23,13 @@ public class EditTaskDescriptor {
     private Description description;
     private Boolean isDone;
     private LocalDate date;
+    private Set<Tag> tags;
 
     public EditTaskDescriptor() {}
 
     /**
      * Copy constructor.
+     * A defensive copy of {@code tags} is used internally.
      */
     public EditTaskDescriptor(EditTaskDescriptor toCopy) {
         setName(toCopy.name);
@@ -31,13 +37,14 @@ public class EditTaskDescriptor {
         setDescription(toCopy.description);
         setIsDone(toCopy.isDone);
         setDate(toCopy.date);
+        setTags(toCopy.tags);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return isAnyNonNull(name, assignment, description, isDone, date);
+        return isAnyNonNull(name, assignment, description, isDone, date, tags);
     }
 
     public void setName(Name name) {
@@ -80,6 +87,23 @@ public class EditTaskDescriptor {
         this.date = date;
     }
 
+    /**
+     * Sets {@code tags} to this object's {@code tags}.
+     * A defensive copy of {@code tags} is used internally.
+     */
+    public void setTags(Set<Tag> tags) {
+        this.tags = (tags != null) ? new HashSet<>(tags) : null;
+    }
+
+    /**
+     * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * Returns {@code Optional#empty()} if {@code tags} is null.
+     */
+    public Optional<Set<Tag>> getTags() {
+        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -99,6 +123,7 @@ public class EditTaskDescriptor {
             && getAssignment().equals(e.getAssignment())
             && getDescription().equals(e.getDescription())
             && getIsDone().equals(e.getIsDone())
-            && getDate().equals(e.getDate());
+            && getDate().equals(e.getDate())
+            && getTags().equals(e.getTags());
     }
 }

@@ -14,7 +14,7 @@ import taskbook.model.ModelManager;
 import taskbook.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ContactListCommand.
  */
 public class ContactListCommandTest {
 

@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:on key press;
+
+' extra spaces used for formatting
+switch ()
+case (  [key press is "UP"])
+  :getPreviousCommand();
+case (  [key press is "DOWN"])
+    :getNextCommand();
+case (  [else])
+    stop
+endswitch
+
+:textField:setText(command);
+label ending
+stop
+
+@enduml

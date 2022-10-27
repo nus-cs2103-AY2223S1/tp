@@ -24,6 +24,7 @@ public class TaskDeleteCommand extends Command {
     public static final String MESSAGE_USAGE =
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + ": Deletes the task identified by the index number.\n"
+            + "\n"
             + "Parameters: " + CliSyntax.PREFIX_INDEX + "INDEX (must be a positive integer)\n"
             + "Example: " + TaskCategoryParser.CATEGORY_WORD + " "
             + COMMAND_WORD + " " + CliSyntax.PREFIX_INDEX + "1";
@@ -32,7 +33,7 @@ public class TaskDeleteCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates a TaskDeleteCommand to delete a task with the specified {@code Index index}
+     * Creates a TaskDeleteCommand to delete a task with the specified {@code Index index}.
      *
      * @param targetIndex Index of the Task in the task book.
      */
@@ -51,6 +52,7 @@ public class TaskDeleteCommand extends Command {
 
         Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTask(taskToDelete);
+        model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 

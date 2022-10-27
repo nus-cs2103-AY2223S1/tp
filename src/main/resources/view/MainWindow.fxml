@@ -21,12 +21,14 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@DarkBlueTheme.css" />
+        <URL value="@DarkBlueThemeDeadline.css" />
+            <URL value="@DarkBlueThemeEvent.css" />
+            <URL value="@Extensions.css" />
       </stylesheets>
 
       <VBox prefWidth="340.0">
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" styleClass="pane-with-border" stylesheets="@DarkBlueTheme.css" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -46,7 +48,7 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-            <GridPane hgap="5.0" styleClass="background" stylesheets="@DarkTheme.css" VBox.vgrow="ALWAYS">
+            <GridPane hgap="5.0" styleClass="background" stylesheets="@DarkBlueTheme.css" VBox.vgrow="ALWAYS">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -55,13 +57,13 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                             <VBox fx:id="personList" minWidth="165.0" prefWidth="340" styleClass="pane-with-border">
+                             <VBox fx:id="personList" minWidth="165.0" prefWidth="340" styleClass="pane-with-border" stylesheets="@DarkBlueTheme.css">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
                 <StackPane fx:id="personListPanelPlaceholder" prefWidth="318.0" VBox.vgrow="ALWAYS" />
               </VBox>
-                    <VBox fx:id="taskList" minWidth="165.0" prefWidth="340.0" styleClass="pane-with-border" GridPane.columnIndex="1">
+                    <VBox fx:id="taskList" minWidth="165.0" prefWidth="340.0" styleClass="pane-with-border" stylesheets="@DarkBlueTheme.css" GridPane.columnIndex="1">
                  <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                  </padding>

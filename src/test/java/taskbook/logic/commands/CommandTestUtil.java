@@ -16,6 +16,7 @@ import taskbook.model.TaskBook;
 import taskbook.model.person.NameContainsKeywordsPredicate;
 import taskbook.model.person.Person;
 import taskbook.model.task.EditTaskDescriptor;
+import taskbook.model.task.Task;
 import taskbook.model.task.enums.Assignment;
 import taskbook.testutil.Assert;
 import taskbook.testutil.EditPersonDescriptorBuilder;
@@ -145,6 +146,7 @@ public class CommandTestUtil {
         assertEquals(expectedTaskBook, actualModel.getTaskBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s task book.
@@ -154,9 +156,23 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonListPredicate(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s task book.
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        String name = task.getName().toString();
+        String desc = task.getDescription().toString();
+        model.updateFilteredTaskListPredicate((t) -> t.isQueryInTask(name) || t.isQueryInTask(desc));
+
+        assertEquals(1, model.getFilteredTaskList().size());
+    }
 }

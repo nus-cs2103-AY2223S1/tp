@@ -6,9 +6,12 @@ import taskbook.logic.commands.tasks.TaskDeadlineCommand;
 import taskbook.logic.commands.tasks.TaskDeleteCommand;
 import taskbook.logic.commands.tasks.TaskEditCommand;
 import taskbook.logic.commands.tasks.TaskEventCommand;
+import taskbook.logic.commands.tasks.TaskFindCommand;
 import taskbook.logic.commands.tasks.TaskListCommand;
+import taskbook.logic.commands.tasks.TaskMarkCommand;
 import taskbook.logic.commands.tasks.TaskSortCommand;
 import taskbook.logic.commands.tasks.TaskTodoCommand;
+import taskbook.logic.commands.tasks.TaskUnmarkCommand;
 import taskbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -16,6 +19,7 @@ import taskbook.logic.parser.exceptions.ParseException;
  */
 public class TaskCategoryParser {
     public static final String CATEGORY_WORD = "task";
+    public static final String CATEGORY_WORD_SHORTCUT = "t";
 
     /**
      * Parses user input into command for execution.
@@ -35,12 +39,18 @@ public class TaskCategoryParser {
             return new TaskEventCommandParser().parse(arguments);
         case TaskEditCommand.COMMAND_WORD:
             return new TaskEditCommandParser().parse(arguments);
+        case TaskMarkCommand.COMMAND_WORD:
+            return new TaskMarkCommandParser().parse(arguments);
+        case TaskUnmarkCommand.COMMAND_WORD:
+            return new TaskUnmarkCommandParser().parse(arguments);
         case TaskDeleteCommand.COMMAND_WORD:
             return new TaskDeleteCommandParser().parse(arguments);
         case TaskListCommand.COMMAND_WORD:
             return new TaskListCommand();
         case TaskSortCommand.COMMAND_WORD:
             return new TaskSortCommandParser().parse(arguments);
+        case TaskFindCommand.COMMAND_WORD:
+            return new TaskFindCommandParser().parse(arguments);
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

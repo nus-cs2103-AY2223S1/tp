@@ -7,8 +7,8 @@ import static taskbook.logic.commands.CommandTestUtil.TASK_STUDY;
 import static taskbook.logic.commands.CommandTestUtil.TASK_WORK;
 import static taskbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static taskbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static taskbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static taskbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static taskbook.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static taskbook.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,12 +40,12 @@ public class TaskEditCommandTest {
             .withIsDone(task.isDone())
             .build();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
-        TaskEditCommand editCommand = new TaskEditCommand(INDEX_SECOND_PERSON, descriptor);
+        TaskEditCommand editCommand = new TaskEditCommand(INDEX_SECOND_TASK, descriptor);
 
         String expectedMessage = String.format(TaskEditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
-        expectedModel.setTask(model.getFilteredTaskList().get(1), editedTask);
+        expectedModel.setTask(model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased()), editedTask);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -61,7 +61,7 @@ public class TaskEditCommandTest {
             .withIsDone(task.isDone())
             .build();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
-        TaskEditCommand editCommand = new TaskEditCommand(INDEX_FIRST_PERSON, descriptor);
+        TaskEditCommand editCommand = new TaskEditCommand(INDEX_FIRST_TASK, descriptor);
 
         String expectedMessage = TaskEditCommand.MESSAGE_PERSON_NOT_FOUND;
         assertCommandFailure(editCommand, model, expectedMessage);
@@ -86,11 +86,11 @@ public class TaskEditCommandTest {
 
     @Test
     public void equals() {
-        final TaskEditCommand standardCommand = new TaskEditCommand(INDEX_FIRST_PERSON, TASK_WORK);
+        final TaskEditCommand standardCommand = new TaskEditCommand(INDEX_FIRST_TASK, TASK_WORK);
 
         // same values -> returns true
         EditTaskDescriptor copyDescriptor = new EditTaskDescriptor(TASK_WORK);
-        TaskEditCommand commandWithSameValues = new TaskEditCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        TaskEditCommand commandWithSameValues = new TaskEditCommand(INDEX_FIRST_TASK, copyDescriptor);
         assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
@@ -103,9 +103,9 @@ public class TaskEditCommandTest {
         assertNotEquals(standardCommand, new ClearCommand());
 
         // different index -> returns false
-        assertNotEquals(standardCommand, new TaskEditCommand(INDEX_SECOND_PERSON, TASK_WORK));
+        assertNotEquals(standardCommand, new TaskEditCommand(INDEX_SECOND_TASK, TASK_WORK));
 
         // different descriptor -> returns false
-        assertNotEquals(standardCommand, new TaskEditCommand(INDEX_FIRST_PERSON, TASK_STUDY));
+        assertNotEquals(standardCommand, new TaskEditCommand(INDEX_FIRST_TASK, TASK_STUDY));
     }
 }
