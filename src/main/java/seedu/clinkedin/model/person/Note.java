@@ -21,7 +21,7 @@ public class Note {
      */
     public Note(String s) {
         requireNonNull(s);
-        value = s.trim();
+        this.value = s.trim();
     }
 
     @Override

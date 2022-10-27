@@ -26,9 +26,11 @@ import seedu.clinkedin.model.person.Phone;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
+import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
+import seedu.clinkedin.model.tag.exceptions.DuplicateTagException;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -405,39 +407,48 @@ public class ParserUtil {
             } else if (!check.startsWith("Links") && detail.length != 2) {
                 throw new InvalidPersonException("More arguments found than possible!");
             }
-            switch (check) {
-            case "Name":
-                name = new Name(detail[1]);
-                break;
-            case "Phone":
-                phone = new Phone(detail[1]);
-                break;
-            case "Email":
-                email = new Email(detail[1]);
-                break;
-            case "Address":
-                address = new Address(detail[1]);
-                break;
-            case "Status":
-                status = new Status(detail[1]);
-                break;
-            case "Note":
-                note = new Note(detail[1]);
-                break;
-            case "Tag:":
-                TagType tagTypeName = new TagType(tagType);
-                ParserUtil.addTags(tagTypeMap, tagTypeName, detail);
-                break;
-            case "Rating":
-                rating = new Rating(detail[1]);
-                break;
-            case "Links":
-                for (int i = 1; i < detail.length; i++) {
-                    links.add(new Link(detail[i]));
+            try {
+                switch (check) {
+                case "Name":
+                    name = new Name(detail[1]);
+                    break;
+                case "Phone":
+                    phone = new Phone(detail[1]);
+                    break;
+                case "Email":
+                    email = new Email(detail[1]);
+                    break;
+                case "Address":
+                    address = new Address(detail[1]);
+                    break;
+                case "Status":
+                    status = new Status(detail[1]);
+                    break;
+                case "Note":
+                    note = new Note(detail[1]);
+                    break;
+                case "Tag:":
+                    String[] prefixTagNamePair = tagType.split("-", 2);
+                    if (prefixTagNamePair.length != 2) {
+                        throw new InvalidPersonException();
+                    }
+                    Prefix p = new Prefix(prefixTagNamePair[0]);
+                    TagType tagTypeName = new TagType(prefixTagNamePair[1], p);
+                    ParserUtil.addTags(tagTypeMap, tagTypeName, detail);
+                    break;
+                case "Rating":
+                    rating = new Rating(detail[1]);
+                    break;
+                case "Links":
+                    for (int i = 1; i < detail.length; i++) {
+                        links.add(new Link(detail[i]));
+                    }
+                    break;
+                default:
+                    throw new InvalidPersonException("Invalid attribute found!");
                 }
-                break;
-            default:
-                throw new InvalidPersonException("Invalid attribute found!");
+            } catch (IllegalArgumentException | DuplicateTagException | TagTypeNotFoundException e) {
+                throw new InvalidPersonException();
             }
         }
         boolean foundAll = checkAllNonNull(name, phone, email, address, tagTypeMap, status, note, rating, links);

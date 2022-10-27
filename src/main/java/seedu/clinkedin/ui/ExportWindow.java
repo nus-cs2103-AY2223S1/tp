@@ -3,7 +3,6 @@ package seedu.clinkedin.ui;
 import java.io.File;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -22,7 +21,6 @@ import seedu.clinkedin.logic.parser.exceptions.ParseException;
 public class ExportWindow extends UiPart<Stage> {
     public static final String CHOOSE_PATH = "Choose Location";
     public static final String CHOOSE_NAME = "Name";
-    public static final String[] FORMATS = {"csv", "json"};
     private static final Logger logger = LogsCenter.getLogger(ExportWindow.class);
     private static final String FXML = "ExportWindow.fxml";
 
@@ -64,9 +62,6 @@ public class ExportWindow extends UiPart<Stage> {
         directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Choose Location");
         fileName.setText(CHOOSE_NAME);
-        fileFormat = new ComboBox<>();
-        fileFormat.setItems(FXCollections.observableArrayList(FORMATS));
-        fileFormat.setValue("csv");
     }
 
     /**
@@ -126,9 +121,9 @@ public class ExportWindow extends UiPart<Stage> {
         try {
             String filePath = null;
             if (chosenLocation.getText().trim().equals("")) {
-                filePath = userEnteredFileName.getText() + ".csv";
+                filePath = userEnteredFileName.getText() + fileFormat.getValue();
             } else {
-                filePath = chosenLocation.getText() + "/" + userEnteredFileName.getText() + ".csv";
+                filePath = chosenLocation.getText() + "/" + userEnteredFileName.getText() + fileFormat.getValue();
             }
             if (userEnteredFileName.getText().trim().contains("/")) {
                 throw new ParseException("File name cannot contain '/'. Try again!");
