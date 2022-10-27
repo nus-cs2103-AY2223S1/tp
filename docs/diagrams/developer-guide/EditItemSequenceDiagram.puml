@@ -15,6 +15,8 @@ box Model MODEL_COLOR_T1
 participant "model:Model" as Model MODEL_COLOR
 end box
 
+skinparam noteTextAlignment left
+
 [-> LogicManager : execute("editi 1 i/Chair q/20")
 activate LogicManager
 
@@ -32,7 +34,7 @@ TrackOParser -> EditItemCommandParser : parse ("1 i/Chair q/20")
 activate EditItemCommandParser
 
 EditItemCommandParser -> ArgumentTokenizer : tokenize("1 i/Chair q/20",\n"i/", "q/", "d/", "t/", "/sp", "/cp")
-note right: "n/": Prefix for item name inputs\n"q/": Prefix for quantity inputs\n"d/": Prefix for description inputs\n"t/": Prefix for tag inputs\n"sp/": Prefix for sell price inputs\n"cp/": Prefix for cost price inputs
+note right: (<i>omitted to reduce diagram complexity)\n**parse** method argument is processed as follows:\n*separated into prefixes("i/", "q/", etc) using the ArgumentTokenizer class,\n*have accompanying values (Chair, 200, etc)\nafter validation using the ParserUtil utility class,\n*passed as arguments for Item instantiation
 activate ArgumentTokenizer
 
 ArgumentTokenizer --> EditItemCommandParser : args
