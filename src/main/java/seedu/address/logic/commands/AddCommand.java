@@ -37,7 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "Frontend";
 
     public static final String MESSAGE_SUCCESS = "New internship added: %1$s";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in findMyIntern";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in findMyIntern.";
 
     private final Internship toAdd;
 

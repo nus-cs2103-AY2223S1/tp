@@ -113,7 +113,7 @@ Format: `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIM
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Changing application status**:
-To change application status, see [`mark` command](#marking-an-internship-application-status-mark)
+To change application status, see [`mark` command](#marking-an-internship-application-status-mark).
 
 </div>
 
@@ -165,7 +165,7 @@ Format: `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INT
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Changing application status**:
-To change application status, see [`mark` command](#marking-an-internship-application-status-mark)
+To change application status, see [`mark` command](#marking-an-internship-application-status-mark).
 
 </div>
 
@@ -173,23 +173,7 @@ To change application status, see [`mark` command](#marking-an-internship-applic
 
 :warning: **Date/time formats**
 
-The year can be omitted from `APPLIED_DATE` and `INTERVIEW_DATE_TIME` to default to current year.
-
-For `APPLIED_DATE`, the formats allowed:
-
-| Format       | Input      |
-|--------------|------------|
-| `d MMM yyyy` | 7 Oct 2022 |
-| `d/M/yyyy`   | 7/10/2022  |
-
-For `INTERVIEW_DATE_TIME`, the formats allowed:
-
-| Format               | Input               |
-|----------------------|---------------------|
-| `d MMM yyyy HH:mm`   | 7 Oct 2022 15:00    |
-| `d/M/yyyy HH:mm`     | 7/10/2022 15:00     |
-| `d MMM yyyy, h:mm a` | 7 Oct 2022, 3:00 pm |
-| `d/M/yyyy, h:mm a`   | 7/10/2022, 3:00 pm  |
+For the formats allowed, see under [`add` command](#adding-an-internship-application-add).
 
 </div>
 
@@ -203,7 +187,7 @@ Examples:
 
 #### Marking an internship application status: `mark` 
 
-Marks an internship application status as "applied", "shortlisted", "interviewed", "accepted", or "rejected".
+Marks an internship application status.
 
 Format: `mark INDEX s/APPLICATION_STATUS`
 
@@ -212,7 +196,7 @@ Format: `mark INDEX s/APPLICATION_STATUS`
 
 * Updates the internship application to the specified `APPLICATION_STATUS`. 
   The application status refers to the current status of the application. 
-  The status **must be one of the following**:
+  The status must differ from the current application status and **must be one of the following**:
   * `applied`
   * `shortlisted`
   * `interviewed`
@@ -282,6 +266,10 @@ Examples:
 Clears all internship applications from the tracker.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This command will clear the entire list of internships without warning.
+</div>
 
 #### Exiting the program: `exit`
 

@@ -177,12 +177,12 @@ The following activity diagram summarizes what happens when a user executes an a
 #### Design Considerations
 
 - **Adding of internships with same company name:**
-  - **Alternative 1:** Do not allow internships with same company name.
-    - Pros: Only need to check for duplicate company names.
-    - Cons: Do not allow multiple internships with the same company, even if the applications are for different roles.
-  - **Alternative 2 (current choice):** Allow internships with same company name if they have different tags.
-    - Pros: Allow multiple internships with the same company.
-    - Cons: Need to check for both duplicate company names and duplicate tags.
+  - **Alternative 1:** Do not allow internships with same company name
+    - Pros: Only need to check for duplicate company names
+    - Cons: Do not allow multiple internships with the same company, even if the applications are for different roles
+  - **Alternative 2 (current choice):** Allow internships with same company name if they have different tags
+    - Pros: Allow multiple internships with the same company
+    - Cons: Need to check for both duplicate company names and duplicate tags
 
 ### Find `Internships` from keywords
 
@@ -256,10 +256,10 @@ The following activity diagram summarizes what happens when a user executes a ma
 - The new `applicationStatus` must be different from the existing one for it to be updated.
 - **Types of `applicationStatus`:**
   - **Alternative 1:** Allow any user input as `applicationStatus`
-    * Pros: Variation of `applicationStatus` is not limited. 
+    * Pros: Variation of `applicationStatus` is not limited
     * Cons: Impossible to implement filter by `ApplicationStatus`
-    feature. 
-  - **Alternative 2 (current choice)**: Have a fixed set of `applicationStatus` that can be passed in. 
+    feature
+  - **Alternative 2 (current choice)**: Have a fixed set of `applicationStatus` that can be passed in
     - Pros: Allow easy filtering by `ApplicationStatus`
     - Cons: Fixed variation of `applicationStatus`
 
