@@ -33,6 +33,7 @@ This section will explain the parameters and the format of commands.
 | o/     | OFFICE_HOURS    | Professor's office hours for consultation <br>Refer to section 1.2 for the format of OFFICE_HOURS |
 | typ/   | TYPE            | Type of Contacts. (STRICTLY prof or stu or ta)                                                    |
 | []()   | INDEX           | Index of item in the recent displayed item list                                                   |
+
 <div style="page-break-after: always;"></div>
 
 ## 1.2 Format
