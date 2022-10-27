@@ -64,6 +64,12 @@ more quickly than a traditional GUI app.
 
 </div>
 
+### Viewing help: `help`
+
+Shows a message explaining how to access the user guide.
+
+Format: `help`
+
 ### Adding a contact: `add_contact`
 
 Adds a contact.
@@ -351,7 +357,7 @@ Note:
 | **Find Contact**   | `find_contact KEYWORD [MORE_KEYWORDS]`                                         |
 | **Edit Contact**   | `edit_contact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
 | **Delete Contact** | `delete_contact INDEX`                                                         |
-| **Select Contact**    | `select_contact INDEX`                                                      |
+| **Select Contact** | `select_contact INDEX`                                                         |
 | **Add Task**       | `add_task n/NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`            |
 | **List Tasks**     | `list_task c/CONTACT_INDEX`                                                    |
 | **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                            |
@@ -363,3 +369,4 @@ Note:
 | **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                          |
 | **Unassign Task**  | `unassign c/CONTACT_INDEX t/TASK_INDEX`                                        |
 | **Clear Data**     | `clear`                                                                        |
+| **Help**           | `help`                                                                         |
