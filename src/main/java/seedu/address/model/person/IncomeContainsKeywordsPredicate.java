@@ -39,13 +39,6 @@ public class IncomeContainsKeywordsPredicate implements Predicate<Person> {
                 if (personIncome.convertIncomeToLong() == Integer.parseInt(predicateIncomeName)) {
                     return true;
                 }
-            } else {
-                try {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            "Please enter >, < or = before the VALUE"));
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
             }
         }
         return false;
