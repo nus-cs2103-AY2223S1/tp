@@ -19,7 +19,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
@@ -40,13 +40,13 @@ public class Person {
         requireAllNonNull(name, tags);
         this.name = name;
         this.address = address;
-        // mock user
-        // Todo: Add githubUser to constructor
-        this.gitHubUser = new User("");
         this.role = role;
         this.timezone = timezone;
         this.tags.addAll(tags);
         this.contacts.putAll(contacts);
+        // TODO: CHANGE githubUser in constructor
+        // mock user
+        this.gitHubUser = null;
     }
 
     public Name getName() {
@@ -54,19 +54,19 @@ public class Person {
     }
 
     public Optional<Address> getAddress() {
-        return address == null ? Optional.empty() : Optional.of(address);
+        return Optional.ofNullable(address);
     }
 
-    public User getGitHubUser() {
-        return gitHubUser;
+    public Optional<User> getGitHubUser() {
+        return Optional.ofNullable(gitHubUser);
     }
 
     public Optional<Role> getRole() {
-        return role == null ? Optional.empty() : Optional.of(role);
+        return Optional.ofNullable(role);
     }
 
     public Optional<Timezone> getTimezone() {
-        return timezone == null ? Optional.empty() : Optional.of(timezone);
+        return Optional.ofNullable(timezone);
     }
 
     /**
@@ -95,7 +95,12 @@ public class Person {
         }
 
         return otherPerson != null
-            && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName());
+    }
+
+    @Override
+    public int compareTo(Person other) {
+        return this.getName().compareTo(other.getName());
     }
 
     /**
@@ -114,12 +119,12 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-            && otherPerson.getAddress().equals(getAddress())
-            && otherPerson.getTags().equals(getTags())
-            && otherPerson.getContacts().equals(getContacts())
-            && otherPerson.getRole().equals(getRole())
-            && otherPerson.getTimezone().equals(getTimezone())
-            && otherPerson.getGitHubUser().equals(getGitHubUser());
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getContacts().equals(getContacts())
+                && otherPerson.getRole().equals(getRole())
+                && otherPerson.getTimezone().equals(getTimezone())
+                && otherPerson.getGitHubUser().equals(getGitHubUser());
     }
 
     @Override

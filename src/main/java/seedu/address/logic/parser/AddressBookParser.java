@@ -16,7 +16,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.commands.SetCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.MainPanelName;
 
 /**
  * Parses user input.
@@ -35,7 +37,7 @@ public class AddressBookParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput, MainPanelName mainPanelName) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -49,7 +51,11 @@ public class AddressBookParser {
             return new AddCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            if (mainPanelName.equals(MainPanelName.Detail)) {
+                return new DeleteAttributeCommandParser().parse(arguments);
+            } else {
+                return new DeleteCommandParser().parse(arguments);
+            }
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -67,10 +73,13 @@ public class AddressBookParser {
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommandParser().parse(arguments);
 
         case SetCommand.COMMAND_WORD:
             return new SetCommandParser().parse(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

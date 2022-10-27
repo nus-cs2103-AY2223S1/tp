@@ -6,6 +6,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.Name;
+import seedu.address.testutil.ContactUtil;
+
 public class TelegramTest {
 
     @Test
@@ -17,6 +20,22 @@ public class TelegramTest {
     public void constructor_invalidTelegram_throwsIllegalArgumentException() {
         String invalidTelegram = "";
         assertThrows(IllegalArgumentException.class, () -> new Telegram(invalidTelegram));
+    }
+
+    @Test
+    public void equals() {
+        Telegram telegram1 = new Telegram("@test_hello");
+        Telegram telegram2 = new Telegram("@test_hello");
+
+        assertTrue(telegram1.equals(telegram1));
+        assertTrue(telegram1.equals(telegram2));
+    }
+
+    @Test
+    public void equals_invalidInstance_returnsFalse() {
+        Telegram telegram = new Telegram("@test_hello");
+        Name name = new Name("hello");
+        assertFalse(telegram.equals(name));
     }
 
     @Test
@@ -34,5 +53,11 @@ public class TelegramTest {
         // valid addresses
         assertTrue(Telegram.isValidTelegram("@rachel"));
         assertTrue(Telegram.isValidTelegram("@rach_el")); // with underscore
+    }
+
+    @Test
+    public void isValidUrl() {
+        Telegram validTelegram = new Telegram("@hello");
+        assertTrue(ContactUtil.isValidUrl(validTelegram.getLink()));
     }
 }
