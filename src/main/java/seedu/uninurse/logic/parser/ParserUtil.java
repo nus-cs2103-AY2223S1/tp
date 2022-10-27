@@ -389,7 +389,7 @@ public class ParserUtil {
     }
 
     private static boolean isOptionLimit(String s) {
-        return s.contains("/");
+        return Arrays.stream(PREFIXES_PATIENT_ALL).anyMatch(x -> (" " + s).contains(" " + x));
     }
 
     /**
