@@ -154,6 +154,25 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit Internship
+
+#### Implementation
+
+Given below is an example usage scenario.
+
+1. InterNUS shows a list of internships. The user edits the first internship in the list using the command `edit -i 1 s/R`.
+2. The command is accepted by the `Logic` component, which passes it to the `AddressBookParser`.
+3. The `AddressBookParser` creates the corresponding parser, `EditInternshipCommandParser` to parse the arguments `1 s/R`.
+4. The parser stores the details to edit in an `EditInternshipDescriptor`. The parser also creates an `EditInternshipCommand` with the index `1` and the descriptor as arguments.
+5. The `EditInternshipCommand` is returned to the `LogicManager`, which then calls its `execute()` method.
+6. To retrieve the list of internships, `Model#getFilteredInternshipList()` is called. The target internship (the one at index `1`) is retrieved from the `FilteredList`. An updated `Internship` is also created via a self invocation: `createEditedInternship()`.
+7. `Model#setInternship()` is called to replace the target internship with the updated internship.
+8. `Model#updateFilteredInternshipList()` is called to update the internship list to display all internships.
+9. Finally, `EditInternshipCommand` creates a `CommandResult` to denote that the operation is completed, and returns this `CommandResult` back to `LogicManager`.
+
+The sequence diagram is given below.
+![SortPersonSequence](images/EditInternshipSequence.png)
+
 ### Sort Person list
 
 #### Implementation
