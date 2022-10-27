@@ -289,12 +289,14 @@ Examples:
 
 Sort reminders by a chosen criteria.
 
-Format: `sort reminder /by SORT_CRITERIA`
+Format: `sort reminder by/SORT_CRITERIA`
 
 * `SORT_CRITERIA` must either be `priority` or `deadline`.
 * Specifying `priority` will sort reminders by their priority, with `HIGH` on top of the list, followed by `MEDIUM` and `LOW`.
 * Specifying `deadline` will sort reminders by their deadline, with the earliest deadline on top of the list.
 
+Examples:
+* `sort reminder by/priority`
 
 ### 3.5 Switch tabs: `switch`
 
@@ -319,7 +321,7 @@ Format: `clear f/FIELD`
 * `FIELD` including `all`, `student`, `tutorial`, `consultation`, `reminder`
 
 Examples:
-* `clear all`
+* `clear f/all`
 
 ### 3.7 Exiting the program: `exit`
 
@@ -354,31 +356,30 @@ _Details coming soon..._
 
 ## 5. Command summary
 
-| Action                        | Format, Examples                                                                                                                                                                                                      |
-|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Student**               | `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [t/TAG]…` <br> e.g., `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17` |
-| **Delete Student**            | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`                                                                                                                                              |
-| **Edit Student**              | `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g.,`edit student 1 ph/91234567 e/jameslee@example.com`                                                                                   |
-| **List All Students**         | `list`<br> e.g., `list`                                                                                                                                                                                               |
-| **Find Student**              | `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`<br> e.g., `find n/john m/CS2103T`                                                                                                                            |
-| **Extract Student Emails**    | `extract emails`                                                                                                                                                                                                      |
-| **Add Tutorial**              | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY` <br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`                                                                                         |
-| **Delete Tutorial**           | `delete tutorial INDEX` <br> e.g., `delete tutorial 3`                                                                                                                                                                |
-| **Edit Tutorial**             | `edit tutorial INDEX`<br> e.g., `edit tutorial 1 n/W17 m/CS2103T`                                                                                                                                                     |
-| **Add Consultation**          | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION` <br> e.g., `add consultation D/2022-10-24 t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                                |
-| **Delete Consultation**       | `delete consultation INDEX` <br> e.g., `delete consultation 3`                                                                                                                                                        |
-| **Edit Consultation**         | `edit consultation INDEX` <br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                   |
-| **Add Reminder**              | `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION` <br> e.g., `add reminder n/mark T/2022-03-21 p/HIGH d/300 papers to mark`                                                                                   |
-| **Delete Reminder**           | `delete reminder INDEX` <br> e.g., `delete reminder 3`                                                                                                                                                                |
-| **Edit Reminder**             | `edit reminder INDEX` <br> e.g., `delete reminder 1 T/2022-01-01 14:00`                                                                                                                                               |
-| **Mark Reminder**             | `mark reminder INDEX` <br> e.g., `mark reminder 3`                                                                                                                                                                    |
-| **Unmark Reminder**           | `unmark reminder INDEX` <br> e.g., `unmark reminder 3`                                                                                                                                                                |
-| **Sort Reminder by Priority** | `sort reminder priority`                                                                                                                                                                                              |
-| **Sort Reminder by Deadline** | `sort reminder deadline`                                                                                                                                                                                              |
-| **Switch Tabs**               | `switch f/FIELD` <br> e.g., `switch f/tutorial`                                                                                                                                                                       |
-| **Clear**                     | `clear f/FIELD` <br> e.g., `clear student`                                                                                                                                                                            |
-| **Exit**                      | `exit`                                                                                                                                                                                                                |
-| **Help**                      | `help`                                                                                                                                                                                                                |
+| Action                     | Format, Examples                                                                                                                                                                                                     |
+|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Student**            | `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [t/TAG]…`<br> e.g., `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17` |
+| **Delete Student**         | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`                                                                                                                                             |
+| **Edit Student**           | `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g., `edit student 1 ph/91234567 e/jameslee@example.com`                                                                                 |
+| **List All Students**      | `list`                                                                                                                                                                                                               |
+| **Find Student**           | `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`<br> e.g., `find n/john m/CS2103T`                                                                                                                           |
+| **Extract Student Emails** | `extract emails`                                                                                                                                                                                                     |
+| **Add Tutorial**           | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`<br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`                                                                                         |
+| **Delete Tutorial**        | `delete tutorial INDEX`<br> e.g., `delete tutorial 3`                                                                                                                                                                |
+| **Edit Tutorial**          | `edit tutorial INDEX`<br> e.g., `edit tutorial 1 n/W17 m/CS2103T`                                                                                                                                                    |
+| **Add Consultation**       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation D/2022-10-24 t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                                |
+| **Delete Consultation**    | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                        |
+| **Edit Consultation**      | `edit consultation INDEX`<br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                   |
+| **Add Reminder**           | `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark T/2022-03-21 p/HIGH d/300 papers to mark`                                                                                   |
+| **Delete Reminder**        | `delete reminder INDEX`<br> e.g., `delete reminder 3`                                                                                                                                                                |
+| **Edit Reminder**          | `edit reminder INDEX`<br> e.g., `delete reminder 1 T/2022-01-01 14:00`                                                                                                                                               |
+| **Mark Reminder**          | `mark reminder INDEX`<br> e.g., `mark reminder 3`                                                                                                                                                                    |
+| **Unmark Reminder**        | `unmark reminder INDEX`<br> e.g., `unmark reminder 3`                                                                                                                                                                |
+| **Sort Reminder**          | `sort reminder by/SORT_CRITERIA`<br> e.g., `sort reminder by/priority`                                                                                                                                               |
+| **Switch Tabs**            | `switch f/FIELD`<br> e.g., `switch f/tutorial`                                                                                                                                                                       |
+| **Clear**                  | `clear f/FIELD`<br> e.g., `clear f/student`                                                                                                                                                                          |
+| **Exit**                   | `exit`                                                                                                                                                                                                               |
+| **Help**                   | `help`                                                                                                                                                                                                               |
 
 ## 6. Prefix summary
 | Prefix    | Symbolise        |
