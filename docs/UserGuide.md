@@ -257,6 +257,76 @@ Examples:
 
 <img src="images/findappointmentAlex.png" width="800px" height ="400px">
 
+### Finding bills `findbill` `fb`
+
+Filters bills by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
+special characters).
+
+Format:
+```findbill <prefix><input> ...``` or ```fb <prefix><input>...```
+
+* The command words are `findbill` or `fb`.
+* The prefixes are n/ for Name, p/ for Payment Status, d/ for Date and a/ for Amount.
+* The filter is case-insensitive. e.g. han will match Han
+* Can filter using full words or partial words. e.g. han will match Hannah
+* Can filter using a combination of character(s) for a field, according to the constraints of the field.
+  e.g. a/23.45
+* Can filter using one field or multiple fields at once, but each field can only be used once in a single command.
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+Examples:
+
+### Deleting patients `deletepatient` `dp`
+
+Deletes a patient by the index number of the patient in the list.
+
+Format:
+```deletepatient <targetindex>``` or ```dp <targetindex>```
+
+* The command words are `deletepatient` or `dp`.
+* The patient to be deleted is identified by using the index in the displayed list.
+* Deleting a patient deletes their related appointments and bills.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be 
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+Examples:
+
+### Deleting appointments `deleteappointment` `da`
+
+Deletes an appointment by the index number of the appointment in the list.
+
+Format:
+```deleteappointment <targetindex>``` or ```da <targetindex>```
+
+* The command words are `deleteappointment` or `da`.
+* The appointment to be deleted is identified by using the index in the displayed list.
+* Deleting an appointment deletes its related bills.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+Examples:
+
+### Deleting bills `deletebill` `db`
+
+Deletes a bill by the index number of the bill in the list.
+
+Format:
+```deletebill <targetindex>``` or ```db <targetindex>```
+
+* The command words are `deletebill` or `db`.
+* The bill to be deleted is identified by using the index in the displayed list.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+Examples:
+
 ### 1.4.3 Finding a bill of an appointment
 
 ## 1.5 Sort
@@ -383,6 +453,7 @@ Deletes all patients, appointments and bills from the HealthContact.
 
 ### Format
 
+<<<<<<< HEAD
 `clear`
 
 ### Example
@@ -431,6 +502,9 @@ Opens the Help Window.
 * Executing `help`, the help window pops.
 
 <img src="images/othercommands/help.png" width="800px" height ="150px">
+=======
+## 1.14 Help
+>>>>>>> 3a9c8697bd1ed9e4de8817ffe3e59106bc5db9b8
 
 
 # 2. Commands Reference Sheet
@@ -520,77 +594,6 @@ Examples:
 * `edit John number: 12345678` John’s number has been changed to 12345678.
 * `edit John date: 2019-12-25` John’s appointment date has been changed to Dec 25th, 2019.
 * `edit John note: use medicine` Doctor’s notes for John has been changed to use medicine.
-
-
-### Finding bills `findbill` `fb`
-
-Filters bills by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
-special characters).
-
-Format:
-```findbill <prefix><input> ...``` or ```fb <prefix><input>...```
-
-* The command words are `findbill` or `fb`.
-* The prefixes are n/ for Name, p/ for Payment Status, d/ for Date and a/ for Amount.
-* The filter is case-insensitive. e.g. han will match Han
-* Can filter using full words or partial words. e.g. han will match Hannah
-* Can filter using a combination of character(s) for a field, according to the constraints of the field.
-  e.g. a/23.45
-* Can filter using one field or multiple fields at once, but each field can only be used once in a single command.
-* If there are no prefixes keyed in, an error message will be shown with the correct command format.
-* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
-
-Examples:
-
-### Deleting patients `deletepatient` `dp`
-
-Deletes a patient by the index number of the patient in the list.
-
-Format:
-```deletepatient <targetindex>``` or ```dp <targetindex>```
-
-* The command words are `deletepatient` or `dp`.
-* The patient to be deleted is identified by using the index in the displayed list.
-* Deleting a patient deletes their related appointments and bills.
-* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be 
-  shown with the correct command format.
-* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
-  saying the index is invalid.
-
-Examples:
-
-### Deleting appointments `deleteappointment` `da`
-
-Deletes an appointment by the index number of the appointment in the list.
-
-Format:
-```deleteappointment <targetindex>``` or ```da <targetindex>```
-
-* The command words are `deleteappointment` or `da`.
-* The appointment to be deleted is identified by using the index in the displayed list.
-* Deleting an appointment deletes its related bills.
-* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
-  shown with the correct command format.
-* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
-  saying the index is invalid.
-
-Examples:
-
-### Deleting bills `deletebill` `db`
-
-Deletes a bill by the index number of the bill in the list.
-
-Format:
-```deletebill <targetindex>``` or ```db <targetindex>```
-
-* The command words are `deletebill` or `db`.
-* The bill to be deleted is identified by using the index in the displayed list.
-* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
-  shown with the correct command format.
-* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
-  saying the index is invalid.
-
-Examples:
 
 
 ### Sorting by criteria: `sort` [coming soon]
