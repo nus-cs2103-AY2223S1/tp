@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.LogsCenter;
 import jeryl.fyp.commons.core.index.Index;
@@ -25,6 +26,9 @@ public class ModelManager implements Model {
     private final FypManager fypManager;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final SortedList<Student> sortedBySpecialisationUncompletedStudents;
+    private final SortedList<Student> sortedByProjectStatusUncompletedStudents;
+    private final SortedList<Student> sortedCompletedStudents;
     private final FilteredList<Student> completedStudents;
     private final FilteredList<Student> uncompletedStudents;
 
@@ -39,6 +43,12 @@ public class ModelManager implements Model {
         this.fypManager = new FypManager(fypManager);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.fypManager.getStudentList());
+        sortedBySpecialisationUncompletedStudents =
+                new SortedList<>(this.fypManager.getSortedBySpecialisationUncompletedStudentList());
+        sortedByProjectStatusUncompletedStudents =
+                new SortedList<>(this.fypManager.getSortedByProjectStatusUncompletedStudentList());
+        sortedCompletedStudents =
+                new SortedList<>(this.fypManager.getSortedCompletedStudentList());
         completedStudents = new FilteredList<>(this.fypManager.getCompletedStudentList());
         uncompletedStudents = new FilteredList<>(this.fypManager.getUncompletedStudentList());
     }
@@ -157,6 +167,8 @@ public class ModelManager implements Model {
         return fypManager.getIndexByStudentId(studentId);
     }
 
+
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**
@@ -184,6 +196,36 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Student> getCompletedStudentList() {
         return completedStudents;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Student} who have yet to complete
+     * their projects sorted by their specialisation,
+     * backed by the internal list of {@code versionedFypManager}
+     */
+    @Override
+    public ObservableList<Student> getSortedBySpecialisationUncompletedStudentList() {
+        return sortedBySpecialisationUncompletedStudents;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Student} who have yet to complete
+     * their projects sorted by their project status
+     * backed by the internal list of {@code versionedFypManager}
+     */
+    @Override
+    public ObservableList<Student> getSortedByProjectStatusUncompletedStudentList() {
+        return sortedByProjectStatusUncompletedStudents;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Student} who have completed
+     * their projects sorted by their specialisation (or equivalently alphabetical order)
+     * backed by the internal list of {@code versionedFypManager}
+     */
+    @Override
+    public ObservableList<Student> getSortedCompletedStudentList() {
+        return sortedCompletedStudents;
     }
 
     @Override

@@ -276,7 +276,7 @@ The `redo` command does the opposite — it calls `Model#redoFypManager()`, 
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the FYP manager, such as `list`, will usually not call `Model#commitFypManager()`, `Model#undoFypManager()` or `Model#redoFypManager()`. Thus, the `fypManagerStateList` remains unchanged.
+Step 5. The user then decides to execute the command `Exit`. Commands that do not modify the FYP manager, such as `Exit`, will usually not call `Model#commitFypManager()`, `Model#undoFypManager()` or `Model#redoFypManager()`. Thus, the `fypManagerStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -338,7 +338,7 @@ error message will be shown.
 
 The following sequence diagram shows how the MarkCommand operation works:
 
-![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
+![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.jpg)
 
 #### Design considerations:
 
@@ -385,23 +385,26 @@ The following sequence diagram shows how the help command works:
 <img src="images/helpMessage.png" width="550" />
 
 
-###  `List` Feature
+###  `Exit` Feature
 #### Proposed Implementation
-The proposed `List` Feature allows the professor to list all FYP students in the FYP Manager.
-The `List` feature mechanism is facilitated by `ListCommand`. It extends from the abstract class `Command`.
+The proposed `Exit` Feature allows the professor to list all FYP students in the FYP Manager.
+The `Exit` feature mechanism is facilitated by `ExitCommand`. It extends from the abstract class `Command`.
 To summarize, it implements the following operation:
-* `ListCommand#execute()` — oversees the execution process for `ListCommand`.
+* `ListCommand#execute()` — oversees the execution process for `ExitCommand`.
 
-Given below is an example usage scenario of `ListCommand`:
-1. The user enters the `list` command
-2. `FypManagerParser` creates a new `ListCommand` after preliminary check of user input.
-3. `LogicManager` executes the `ListCommand` using the `LogicManager#execute()` method.
-4. `ListCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+Given below is an example usage scenario of `ExitCommand`:
+1. The user enters the `Exit` command
+2. `FypManagerParser` creates a new `ExitCommand` after preliminary check of user input.
+3. `LogicManager` executes the `ExitCommand` using the `LogicManager#execute()` method.
+4. `ExitCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
 
-The following sequence diagram shows how the add student command works:
+The following sequence diagram shows how the list command works:
 
 <img src="images/ListCommandSequenceDiagram.png" width="550" />
 
+The following activity diagram summarizes what happens when a user executes a list command:
+
+<img src="images/ListCommandActivityDiagram.png" />
 
 ### \[Proposed\] `FindCommand` Feature
 #### Proposed Implementation
@@ -439,7 +442,7 @@ as there is no project whose project name contains `blockchain`.
 
 ![FindCommandState2](images/FindCommandState2.png)
 
-The following sequence diagram shows how the MarkCommand operation works:
+The following sequence diagram shows how the FindCommand operation works:
 
 ![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
 
@@ -470,6 +473,62 @@ The following sequence diagram shows how the MarkCommand operation works:
     * Pros: More comprehensive search for projects with the required keyword.
     * Cons: Much harder to implement, as it requires a field-less search.
 
+### `Sort` Feature
+#### Proposed Implementation
+
+This feature allows professors to sort the FYP projects by their specialisation, or by
+the project status in the order {YTS,IP,DONE}. 
+
+#### Implementation details
+The `Sort` feature is facilitated by 2 main Commands: `SortSpecialisationCommand` and `SortProjectStatusCommand`.
+Both of these commands extend from the abstract `Command`class. Note that we have fixed the sorting order
+of `SortProjectStatusCommand` to be sorted in the order {YTS,IP,DONE} since projects that have YTS are more urgent,
+hence we have placed them at the front of our FYP manager, followed by those that are IP, and finally 
+those that are DONE which are of the least urgency.
+
+We give an example usage scenario of `SortSpecialisationCommand` and `SortProjectStatusCommand`
+* `SortSpecialisationCommand`
+    1. The user enters `sort -p` if he wishes to execute the `SortSpecialisationCommand`
+    2. FypManagerParser creates a new `SortSpecialisationCommand` after preliminary check of user input.
+    3. `LogicManager` executes the `SortSpecialisationCommand` using the `LogicManager#execute()` method.
+    4. `SortSpecialisationCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be
+       identified as a `SortSpecialisationCommand` so that our `MainWindow` will show the sorted List.
+
+![SortSpecialisationCommandSequenceDiagram](images/SortSpecialisationCommandSequenceDiagram.jpg)
+
+* `SortProjectStatusCommand`
+    1. The user enters `sort -s` if he wishes to execute the `SortProjectStatusCommand`
+    2. FypManagerParser creates a new `SortSpecialisationCommand` after preliminary check of user input.
+    3. `LogicManager` executes the `SortProjectStatusCommand` using the `LogicManager#execute()` method.
+    4. `SortProjectStatusCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be 
+        identified as a `SortProjectStatusCommand` so that our `MainWindow` will show the sorted List.
+
+![SortProjectStatusCommandSequenceDiagram](images/SortProjectStatusCommandSequenceDiagram.jpg)
+
+#### Future Implementations
+* Sorting of deadlines to be included in future iterations as well
+
+###  `Exit` Feature
+#### Proposed Implementation
+The proposed `Exit` Feature allows the professor to exit the FYP Manager.
+The `Exit` feature mechanism is facilitated by `ExitCommand`. It extends from the abstract class `Command`.
+To summarize, it implements the following operation:
+* `ExitCommand#execute()` — oversees the execution process for `ExitCommand`.
+
+Given below is an example usage scenario of `ExitCommand`:
+1. The user enters the `Exit` command.
+2. `UiManager` calls `MainWindow#fillInnerParts()`.
+3. `MainWindow#fillInnerParts()` executes a `executeCommand()` and creates a `CommandResult`.
+4. `LogicManager` executes the `ExitCommand` using the `LogicManager#execute()` method.
+4.1. `fypManagerParser` will parse the command using `parseCommand` and generate 
+4.2. `ExitCommand` then creates a `CommandResult` and returns it to `MainWindow` to complete the command.
+4.3. `StorageManager` will save the record using method `StorageManager#saveFypManager()`.
+5. `handleExit()` is then executed to hide the main window.
+
+The following sequence diagram shows how the list command works:
+
+<img src="images/ExitSequenceDiagram.png" width="550" />
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -495,7 +554,6 @@ The following sequence diagram shows how the MarkCommand operation works:
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: To provide a platform for easier access to SoC professors to their students’ FYP status, rather than via plain e-mail correspondences.
-
 
 ### User stories
 
@@ -749,7 +807,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Prerequisites: List all students using the `Exit` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.

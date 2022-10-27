@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":UiManager" as UiManager UI_COLOR
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":CommandBox" as CommandBox UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FypManagerParser" as FypManagerParser LOGIC_COLOR
+participant ":ExitCommand" as ExitCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":StorageManager" as StorageManager MODEL_COLOR
+end box
+
+[-> UiManager : start()
+activate UiManager
+
+create MainWindow
+UiManager -> MainWindow
+activate MainWindow
+MainWindow -->  MainWindow : fillInnerParts()
+
+
+
+MainWindow -> LogicManager : execute("exit")
+activate LogicManager
+
+LogicManager -> FypManagerParser : parseCommand("exit")
+activate FypManagerParser
+
+
+create ExitCommand
+FypManagerParser -> ExitCommand
+activate ExitCommand
+ExitCommand --> FypManagerParser
+FypManagerParser --> LogicManager
+deactivate FypManagerParser
+
+LogicManager -> ExitCommand : execute()
+create CommandResult
+ExitCommand -> CommandResult
+activate CommandResult
+CommandResult --> ExitCommand : result
+deactivate CommandResult
+ExitCommand --> LogicManager : result
+deactivate ExitCommand
+
+LogicManager -> StorageManager
+activate StorageManager
+StorageManager -> StorageManager : saveFypManager()
+StorageManager --> LogicManager
+deactivate StorageManager
+LogicManager --> MainWindow
+
+MainWindow -> CommandBox
+activate CommandBox
+
+MainWindow -> LogicManager : setGuiSettings()
+LogicManager -->  MainWindow
+deactivate LogicManager
+
+MainWindow -> MainWindow : helpWindow.hide()
+MainWindow -> MainWindow : primaryStage.hide()
+MainWindow -->  UiManager
+deactivate CommandBox
+deactivate MainWindow
+[<--UiManager
+deactivate UiManager
+
+@enduml
