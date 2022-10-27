@@ -7,6 +7,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 class QuantityTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -36,95 +38,27 @@ class QuantityTest {
         // valid quantity numbers
         assertTrue(Quantity.isValidQuantity("1"));
         assertTrue(Quantity.isValidQuantity("91"));
-        assertTrue(Quantity.isValidQuantity("9312153"));
+        assertTrue(Quantity.isValidQuantity("000009353"));
         assertTrue(Quantity.isValidQuantity("122237"));
     }
 
     @Test
-    public void isValidQuantityNonZerp() {
+    public void parseQualityArguments() {
 
-        assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity_nonZero(null));
+        assertThrows(NullPointerException.class, () -> Quantity.parseQuantityArguments(null));
 
-        // invalid quantity numbers
-        assertFalse(Quantity.isValidQuantity_nonZero("0"));
-
-        // valid quantity numbers
-        assertTrue(Quantity.isValidQuantity_nonZero("1"));
-        assertTrue(Quantity.isValidQuantity_nonZero("91"));
-        assertTrue(Quantity.isValidQuantity_nonZero("91534"));
-        assertTrue(Quantity.isValidQuantity_nonZero("1202237"));
-    }
-
-    public void isValidQuantityEmpty() {
-
-        assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity_empty(null));
-
-        // invalid quantity numbers
-        assertFalse(Quantity.isValidQuantity_empty("")); // empty string
-        assertFalse(Quantity.isValidQuantity_empty(" ")); // spaces only
-
-        // valid quantity numbers
-        assertTrue(Quantity.isValidQuantity_empty("1"));
-        assertTrue(Quantity.isValidQuantity_empty("91"));
-        assertTrue(Quantity.isValidQuantity_empty("931214"));
-        assertTrue(Quantity.isValidQuantity_empty("120237"));
-    }
-
-    public void isValidQuantityRegex() {
-
-        assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity_regex(null));
-
-
-        // invalid quantity numbers
-        assertFalse(Quantity.isValidQuantity_regex("")); // empty string
-        assertFalse(Quantity.isValidQuantity_regex(" ")); // spaces only
-        assertFalse(Quantity.isValidQuantity_regex("test")); // non-numeric
-        assertFalse(Quantity.isValidQuantity_regex("9011p041")); // alphabets within digits
-        assertFalse(Quantity.isValidQuantity_regex("93 14")); // spaces within digits
-        assertFalse(Quantity.isValidQuantity_regex("93.55")); // decimals within digits
-        assertFalse(Quantity.isValidQuantity_regex("12000022371")); // too large quantity
-
-
-        // valid quantity numbers
-        assertTrue(Quantity.isValidQuantity("1"));
-        assertTrue(Quantity.isValidQuantity("91"));
-        assertTrue(Quantity.isValidQuantity("93121"));
-        assertTrue(Quantity.isValidQuantity("102237"));
-    }
-
-    @Test
-    public void isLargeQuantity() {
-        assertThrows(NullPointerException.class, () -> Quantity.isSmallQuantity(null));
-
-        assertFalse(Quantity.isSmallQuantity("1000000")); // 1 million and above
-
-        assertFalse(Quantity.isSmallQuantity("100000000000000")); // 1 million and above
-
-
-        assertTrue(Quantity.isSmallQuantity("999999"));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments(" "));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("."));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("-1"));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("0"));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("-0.5"));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("1000000000000"));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("2dasd0"));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("adsadad asdasdsad"));
 
     }
 
-    @Test
-    public void isValidPositiveQuantity() {
 
-        // null quantity number
-        assertThrows(NullPointerException.class, () -> Quantity.isPositiveQuantity(null));
-
-        // negative quantity numbers
-        assertFalse(Quantity.isPositiveQuantity("-1"));
-        assertFalse(Quantity.isPositiveQuantity("-8"));
-        assertFalse(Quantity.isPositiveQuantity("-09"));
-        assertFalse(Quantity.isPositiveQuantity("-1000"));
-        assertFalse(Quantity.isPositiveQuantity("-0"));
-
-        // positive quantity numbers
-        assertTrue(Quantity.isPositiveQuantity("012"));
-        assertTrue(Quantity.isPositiveQuantity("213"));
-        assertTrue(Quantity.isPositiveQuantity("91"));
-        assertTrue(Quantity.isPositiveQuantity("9312534"));
-        assertTrue(Quantity.isPositiveQuantity("12293823"));
-    }
     @Test
     public void testToString() {
         String value = "93124";
@@ -146,4 +80,6 @@ class QuantityTest {
         Quantity test = new Quantity(value);
         assertEquals(quantity, test);
     }
+
+
 }

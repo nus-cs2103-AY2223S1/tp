@@ -3,6 +3,8 @@ package seedu.address.model.transaction;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Class to store the quantity of goods transacted.
  */
@@ -11,15 +13,18 @@ public class Quantity {
     public static final String VALIDATION_REGEX = "\\d{1,}";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity should only contain numbers and no decimal point.";
+            "Quantity should only contain a positive integer.";
+
+    public static final String MESSAGE_CONSTRAINTS_REGEX =
+            "Quantity should not contain decimal point.";
 
     public static final String MESSAGE_CONSTRAINTS_ZERO =
             "Quantity should not be 0.";
     public static final String MESSAGE_CONSTRAINTS_POSITIVE =
-            "Quantity should be not be negative.";
+            "Quantity should not be be negative.";
 
     public static final String MESSAGE_CONSTRAINTS_LARGE =
-            "Quantity should be not be more than 1 million.";
+            "Quantity should be less than 1 million.";
 
     public static final String MESSAGE_CONSTRAINTS_EMPTY = "Quantity should not be left empty.";
 
@@ -32,12 +37,12 @@ public class Quantity {
     public Quantity(String quantity) {
         requireNonNull(quantity);
 
-        checkArgument(isValidQuantity_empty(quantity), MESSAGE_CONSTRAINTS_EMPTY);
-        checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidQuantityEmpty(quantity), MESSAGE_CONSTRAINTS_EMPTY);
+        checkArgument(isValidDouble(quantity), MESSAGE_CONSTRAINTS);
         checkArgument(isPositiveQuantity(quantity), MESSAGE_CONSTRAINTS_POSITIVE);
-        checkArgument(isValidQuantity_regex(quantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidQuantityRegex(quantity), MESSAGE_CONSTRAINTS_REGEX);
         checkArgument(isSmallQuantity(quantity), MESSAGE_CONSTRAINTS_LARGE);
-        checkArgument(isValidQuantity_nonZero(quantity), MESSAGE_CONSTRAINTS_ZERO);
+        checkArgument(isValidQuantityNonZero(quantity), MESSAGE_CONSTRAINTS_ZERO);
         this.quantity = Integer.toString(Integer.parseInt(quantity));
     }
 
@@ -47,20 +52,35 @@ public class Quantity {
 
     public static boolean isValidQuantity(String test) {
         requireNonNull(test);
-        boolean isInteger = true;
+        try {
+            parseQuantityArguments(test);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
+
+
+
+    /**
+     * Returns true if a given string is a valid double.
+     */
+    private static boolean isValidDouble(String test) {
+        requireNonNull(test);
+        boolean isDouble = true;
         try {
             Double.parseDouble(test);
         } catch (NumberFormatException e) {
-            isInteger = false;
+            isDouble = false;
         }
 
-        return isInteger;
+        return isDouble;
     }
 
     /**
      * Returns true of a given string fits the regex.
      */
-    public static boolean isValidQuantity_regex(String test) {
+    private static boolean isValidQuantityRegex(String test) {
         requireNonNull(test);
         return test.matches(VALIDATION_REGEX);
     }
@@ -68,7 +88,7 @@ public class Quantity {
     /**
      * Returns true of a given string is not empty.
      */
-    public static boolean isValidQuantity_empty(String test) {
+    private static boolean isValidQuantityEmpty(String test) {
         requireNonNull(test);
         return !test.isEmpty();
     }
@@ -77,7 +97,7 @@ public class Quantity {
     /**
      * Returns true of a given string is non-zero.
      */
-    public static boolean isValidQuantity_nonZero(String test) {
+    private static boolean isValidQuantityNonZero(String test) {
         requireNonNull(test);
         return Integer.parseInt(test) != 0;
     }
@@ -85,7 +105,7 @@ public class Quantity {
     /**
      * Returns true if a give string is a valid positive quantity.
      */
-    public static boolean isPositiveQuantity(String test) {
+    private static boolean isPositiveQuantity(String test) {
         requireNonNull(test);
         return !test.contains("-");
     }
@@ -93,12 +113,39 @@ public class Quantity {
     /**
      * Returns true if a give quantity is a less than 1 million.
      */
-    public static boolean isSmallQuantity(String test) {
+    private static boolean isSmallQuantity(String test) {
         requireNonNull(test);
         try {
             return Integer.parseInt(test) < 1000000;
         } catch (NumberFormatException e) {
             return false;
+        }
+    }
+
+    /**
+     * Parsers the quantity and checks if it is a valid quantity.
+     */
+    public static void parseQuantityArguments(String trimmedQuantity) throws ParseException {
+
+        requireNonNull(trimmedQuantity);
+
+        if (!Quantity.isValidQuantityEmpty(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_EMPTY);
+        }
+        if (!Quantity.isValidDouble(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        if (!Quantity.isPositiveQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_POSITIVE);
+        }
+        if (!Quantity.isValidQuantityRegex(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_REGEX);
+        }
+        if (!Quantity.isSmallQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_LARGE);
+        }
+        if (!Quantity.isValidQuantityNonZero(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_ZERO);
         }
     }
 

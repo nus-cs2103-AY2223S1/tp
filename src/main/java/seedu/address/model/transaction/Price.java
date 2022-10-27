@@ -4,20 +4,28 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.PriceFormatter.formatPrice;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Class to store the price of the goods transacted.
  */
 public class Price {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Price should only contain numbers and at most one decimal point.";
+    public static final String MESSAGE_CONSTRAINTS_NON_NUMBERS =
+            "Price should only contain positive numbers.";
+    public static final String MESSAGE_CONSTRAINTS_DECIMAL =
+            "Price should only contain one decimal point.";
 
     public static final String MESSAGE_CONSTRAINTS_EMPTY =
             "Price should not be left empty.";
     public static final String MESSAGE_CONSTRAINTS_POSITIVE =
-            "Price should be not be negative.";
+            "Price should not be negative.";
 
     public static final String MESSAGE_CONSTRAINTS_LARGE =
-            "Price should be not be more than 1 million.";
+            "Price should be less than 1 million.";
+
+    public static final String MESSAGE_CONSTRAINTS_GENERAL =
+            "Price should be a positive number and contain only 1 decimal point.";
+
 
     public final String price;
 
@@ -29,8 +37,8 @@ public class Price {
      */
     public Price(String price) {
         requireNonNull(price);
-        checkArgument(isValidPrice_empty(price), MESSAGE_CONSTRAINTS_EMPTY);
-        checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPriceEmpty(price), MESSAGE_CONSTRAINTS_EMPTY);
+        checkArgument(isValidDouble(price), MESSAGE_CONSTRAINTS_GENERAL);
         checkArgument(isPositivePrice(price), MESSAGE_CONSTRAINTS_POSITIVE);
         checkArgument(isSmallPrice(price), MESSAGE_CONSTRAINTS_LARGE);
         this.price = price;
@@ -40,6 +48,20 @@ public class Price {
      * Returns true if a given string is a valid price.
      */
     public static boolean isValidPrice(String test) {
+        requireNonNull(test);
+        try {
+            parsePriceArguments(test);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
+
+
+    /**
+     * Returns true if a given string is a valid double.
+     */
+    private static boolean isValidDouble(String test) {
         requireNonNull(test);
         boolean isDouble = true;
         try {
@@ -53,14 +75,14 @@ public class Price {
     /**
      * Returns true if a give string is a valid positive price.
      */
-    public static boolean isPositivePrice(String test) {
+    private static boolean isPositivePrice(String test) {
         return !test.contains("-");
     }
 
     /**
      * Returns true of a given string is not empty.
      */
-    public static boolean isValidPrice_empty(String test) {
+    private static boolean isValidPriceEmpty(String test) {
         requireNonNull(test);
         return !test.isEmpty();
     }
@@ -68,14 +90,29 @@ public class Price {
     /**
      * Returns true if a give price is a less than 1 million.
      */
-    public static boolean isSmallPrice(String test) {
+    private static boolean isSmallPrice(String test) {
         requireNonNull(test);
+        return Double.parseDouble(test) < 1000000;
+    }
 
-        boolean isSmall;
+    /**
+     * Parsers the price and checks if it is a valid price.
+     */
+    public static void parsePriceArguments(String trimmedPrice) throws ParseException {
+        requireNonNull(trimmedPrice);
 
-        isSmall = Double.parseDouble(test) < 1000000;
-
-        return isSmall;
+        if ((!Price.isValidPriceEmpty(trimmedPrice))) {
+            throw new ParseException((Price.MESSAGE_CONSTRAINTS_EMPTY));
+        }
+        if (!Price.isValidDouble(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS_GENERAL);
+        }
+        if (!Price.isPositivePrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS_POSITIVE);
+        }
+        if (!Price.isSmallPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS_LARGE);
+        }
     }
 
     @Override
