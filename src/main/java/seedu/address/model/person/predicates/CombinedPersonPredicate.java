@@ -61,7 +61,7 @@ public class CombinedPersonPredicate implements Predicate<Person> {
             addTagListPredicate(personPredicates);
         }
 
-        return personPredicates.stream().reduce(PREDICATE_SHOW_ALL_PERSONS, Predicate::and);
+        return personPredicates.stream().reduce(HiddenPredicateSingleton.getCurrPersonPredicate(), Predicate::and);
     }
 
     private void addNamePredicate(List<Predicate<Person>> personPredicates) {

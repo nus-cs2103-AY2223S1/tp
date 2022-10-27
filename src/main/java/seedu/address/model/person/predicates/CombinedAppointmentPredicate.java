@@ -58,7 +58,7 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
             addTagListPredicate(appointmentPredicates);
         }
 
-        return appointmentPredicates.stream().reduce(PREDICATE_SHOW_ALL_APPOINTMENTS, Predicate::and);
+        return appointmentPredicates.stream().reduce(HiddenPredicateSingleton.getCurrApptPredicate(), Predicate::and);
     }
 
     private void addReasonPredicate(List<Predicate<Appointment>> appointmentPredicates) {

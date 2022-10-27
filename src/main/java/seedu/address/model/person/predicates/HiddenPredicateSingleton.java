@@ -135,6 +135,10 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
         clearHiddenAppts();
     }
 
+    public static Predicate<Person> getCurrPersonPredicate() {
+        return currPersonPredicate;
+    }
+
     public static Predicate<Appointment> getCurrApptPredicate() {
         return currApptPredicate;
     }
