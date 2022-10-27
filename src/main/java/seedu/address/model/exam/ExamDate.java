@@ -14,11 +14,15 @@ import java.time.format.ResolverStyle;
  */
 public class ExamDate {
     public static final String DATE_CONSTRAINTS =
-            "Exam Date should be in dd-mm-yyyy format and a valid date where dd is from 1 to 31, mm is from 1 to 12";
+            "Exam Date should be in the format DD-MM-YYYY and a valid date. DD should be between "
+                    + "1 and 31(both inclusive)\nand MM "
+                    + "should be between 1 and 12(both inclusive)";
     public static final String DATE_FORMAT_CONSTRAINTS =
-            "Exam Date should be in dd-mm-yyyy format.";
+            "Exam Date should be in the format DD-MM-YYYY. DD should be between "
+                    + "1 and 31(both inclusive)\nand MM "
+                    + "should be between 1 and 12(both inclusive)";
     public static final String NOT_A_PAST_DATE_CONSTRAINTS =
-            "Exam Date inputted should not be a past date";
+            "Exam Date should not be earlier than today's date.";
     public static final String VALID_DATE_CONSTRAINTS =
             "Exam Date should be a valid date";
     public static final DateTimeFormatter DATE_TIME_FORMATTER =
