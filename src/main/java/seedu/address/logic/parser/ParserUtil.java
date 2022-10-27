@@ -166,12 +166,20 @@ public class ParserUtil {
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
+
+        if ((!Price.isValidPrice_empty(trimmedPrice))) {
+            throw new ParseException((Price.MESSAGE_CONSTRAINTS_EMPTY));
+        }
         if (!Price.isValidPrice(trimmedPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
         if (!Price.isPositivePrice(trimmedPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS_POSITIVE);
         }
+        if (!Price.isSmallPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS_LARGE);
+        }
+
         return new Price(price);
     }
 
@@ -196,9 +204,13 @@ public class ParserUtil {
         if (!Quantity.isValidQuantity_regex(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
+        if (!Quantity.isSmallQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_LARGE);
+        }
         if (!Quantity.isValidQuantity_nonZero(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_ZERO);
         }
+
         return new Quantity(quantity);
     }
 

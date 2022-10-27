@@ -18,6 +18,9 @@ public class Quantity {
     public static final String MESSAGE_CONSTRAINTS_POSITIVE =
             "Quantity should be not be negative.";
 
+    public static final String MESSAGE_CONSTRAINTS_LARGE =
+            "Quantity should be not be more than 1 million.";
+
     public static final String MESSAGE_CONSTRAINTS_EMPTY = "Quantity should not be left empty.";
 
     public final String quantity;
@@ -33,6 +36,7 @@ public class Quantity {
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
         checkArgument(isPositiveQuantity(quantity), MESSAGE_CONSTRAINTS_POSITIVE);
         checkArgument(isValidQuantity_regex(quantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isSmallQuantity(quantity), MESSAGE_CONSTRAINTS_LARGE);
         checkArgument(isValidQuantity_nonZero(quantity), MESSAGE_CONSTRAINTS_ZERO);
         this.quantity = Integer.toString(Integer.parseInt(quantity));
     }
@@ -44,10 +48,8 @@ public class Quantity {
     public static boolean isValidQuantity(String test) {
         requireNonNull(test);
         boolean isInteger = true;
-        int num = 0;
-
         try {
-            num = Integer.parseInt(test);
+            Double.parseDouble(test);
         } catch (NumberFormatException e) {
             isInteger = false;
         }
@@ -86,6 +88,18 @@ public class Quantity {
     public static boolean isPositiveQuantity(String test) {
         requireNonNull(test);
         return !test.contains("-");
+    }
+
+    /**
+     * Returns true if a give quantity is a less than 1 million.
+     */
+    public static boolean isSmallQuantity(String test) {
+        requireNonNull(test);
+        try {
+            return Integer.parseInt(test) < 1000000;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override

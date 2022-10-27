@@ -62,23 +62,53 @@ class PriceTest {
         assertTrue(Price.isPositivePrice("0"));
         assertTrue(Price.isPositivePrice("0.000"));
     }
+
+    public void isValidPriceEmpty() {
+
+        assertThrows(NullPointerException.class, () -> Price.isValidPrice_empty(null));
+
+        // invalid quantity numbers
+        assertFalse(Price.isValidPrice_empty("")); // empty string
+        assertFalse(Price.isValidPrice_empty(" ")); // spaces only
+
+        // valid quantity numbers
+        assertTrue(Price.isValidPrice_empty("1"));
+        assertTrue(Price.isValidPrice_empty("91"));
+        assertTrue(Price.isValidPrice_empty("93.121534"));
+        assertTrue(Price.isValidPrice_empty("1200.002237"));
+    }
+
+    @Test
+    public void isLargePrice() {
+        assertThrows(NullPointerException.class, () -> Price.isSmallPrice(null));
+
+        assertTrue(Price.isSmallPrice("999999.9999999"));
+
+        assertFalse(Price.isSmallPrice("1000000000000000000000")); // 1 million and above
+
+        assertFalse(Price.isSmallPrice("1000000")); // 1 million and above
+
+
+
+    }
+
     @Test
     public void testToString() {
-        String value = "93121534";
+        String value = "21534";
         Price price = new Price(value);
-        assertEquals(price.toString(), "$93,121,534");
+        assertEquals(price.toString(), "$21,534");
     }
 
     @Test
     public void value() {
-        String value = "93121534";
+        String value = "931234";
         Price price = new Price(value);
-        assertEquals(price.value(), 93121534);
+        assertEquals(price.value(), 931234);
     }
 
     @Test
     public void testEquals() {
-        String value = "93121534";
+        String value = "931234";
         Price price = new Price(value);
         Price test = new Price(value);
         assertEquals(price, test);

@@ -31,15 +31,13 @@ class QuantityTest {
         assertFalse(Quantity.isValidQuantity("test")); // non-numeric
         assertFalse(Quantity.isValidQuantity("9011p041")); // alphabets within digits
         assertFalse(Quantity.isValidQuantity("93 14")); // spaces within digits
-        assertFalse(Quantity.isValidQuantity("93.55")); // decimals within digits
-        assertFalse(Quantity.isValidQuantity("12000022371")); // too large quantity
 
 
         // valid quantity numbers
         assertTrue(Quantity.isValidQuantity("1"));
         assertTrue(Quantity.isValidQuantity("91"));
-        assertTrue(Quantity.isValidQuantity("93121534"));
-        assertTrue(Quantity.isValidQuantity("1200002237"));
+        assertTrue(Quantity.isValidQuantity("9312153"));
+        assertTrue(Quantity.isValidQuantity("122237"));
     }
 
     @Test
@@ -53,14 +51,13 @@ class QuantityTest {
         // valid quantity numbers
         assertTrue(Quantity.isValidQuantity_nonZero("1"));
         assertTrue(Quantity.isValidQuantity_nonZero("91"));
-        assertTrue(Quantity.isValidQuantity_nonZero("93121534"));
-        assertTrue(Quantity.isValidQuantity_nonZero("1200002237"));
+        assertTrue(Quantity.isValidQuantity_nonZero("91534"));
+        assertTrue(Quantity.isValidQuantity_nonZero("1202237"));
     }
 
     public void isValidQuantityEmpty() {
 
         assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity_empty(null));
-
 
         // invalid quantity numbers
         assertFalse(Quantity.isValidQuantity_empty("")); // empty string
@@ -69,8 +66,8 @@ class QuantityTest {
         // valid quantity numbers
         assertTrue(Quantity.isValidQuantity_empty("1"));
         assertTrue(Quantity.isValidQuantity_empty("91"));
-        assertTrue(Quantity.isValidQuantity_empty("93121534"));
-        assertTrue(Quantity.isValidQuantity_empty("1200002237"));
+        assertTrue(Quantity.isValidQuantity_empty("931214"));
+        assertTrue(Quantity.isValidQuantity_empty("120237"));
     }
 
     public void isValidQuantityRegex() {
@@ -91,8 +88,21 @@ class QuantityTest {
         // valid quantity numbers
         assertTrue(Quantity.isValidQuantity("1"));
         assertTrue(Quantity.isValidQuantity("91"));
-        assertTrue(Quantity.isValidQuantity("93121534"));
-        assertTrue(Quantity.isValidQuantity("1200002237"));
+        assertTrue(Quantity.isValidQuantity("93121"));
+        assertTrue(Quantity.isValidQuantity("102237"));
+    }
+
+    @Test
+    public void isLargeQuantity() {
+        assertThrows(NullPointerException.class, () -> Quantity.isSmallQuantity(null));
+
+        assertFalse(Quantity.isSmallQuantity("1000000")); // 1 million and above
+
+        assertFalse(Quantity.isSmallQuantity("100000000000000")); // 1 million and above
+
+
+        assertTrue(Quantity.isSmallQuantity("999999"));
+
     }
 
     @Test
@@ -112,26 +122,26 @@ class QuantityTest {
         assertTrue(Quantity.isPositiveQuantity("012"));
         assertTrue(Quantity.isPositiveQuantity("213"));
         assertTrue(Quantity.isPositiveQuantity("91"));
-        assertTrue(Quantity.isPositiveQuantity("93121534"));
-        assertTrue(Quantity.isPositiveQuantity("124293842033123"));
+        assertTrue(Quantity.isPositiveQuantity("9312534"));
+        assertTrue(Quantity.isPositiveQuantity("12293823"));
     }
     @Test
     public void testToString() {
-        String value = "93121534";
+        String value = "93124";
         Quantity quantity = new Quantity(value);
         assertEquals(quantity.toString(), value);
     }
 
     @Test
     public void value() {
-        String value = "93121534";
+        String value = "93124";
         Quantity quantity = new Quantity(value);
-        assertEquals(quantity.value(), 93121534);
+        assertEquals(quantity.value(), 93124);
     }
 
     @Test
     public void testEquals() {
-        String value = "93121534";
+        String value = "931214";
         Quantity quantity = new Quantity(value);
         Quantity test = new Quantity(value);
         assertEquals(quantity, test);
