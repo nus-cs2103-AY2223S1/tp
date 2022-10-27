@@ -54,7 +54,7 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 ## Features
 
 <div markdown="span" class="alert alert-info">
-**:information_source: **How to read the command format:**<br>
+**:information_source: How to read the command format:**<br>
   
 * Words in UPPER_CASE are the parameters to be supplied by the user.<br>
   e.g. in `t add m/MODULE`, `MODULE` is a parameter which can be used as `t add m/CS2030`.
