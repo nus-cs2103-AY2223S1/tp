@@ -39,14 +39,14 @@ public class RemarkTest {
         editedRemark = new RemarkBuilder(GOOD_BUYER).withText(VALID_TEXT_BAD_BUYER).build();
         assertFalse(GOOD_BUYER.isSameRemark(editedRemark));
 
-        // name differs in case, all other attributes same -> returns false
+        // text differs in case, all other attributes same -> returns true
         editedRemark = new RemarkBuilder(GOOD_BUYER).withText(VALID_TEXT_GOOD_BUYER.toLowerCase()).build();
-        assertFalse(GOOD_BUYER.isSameRemark(editedRemark));
+        assertTrue(GOOD_BUYER.isSameRemark(editedRemark));
 
-        // name has trailing spaces, all other attributes same -> returns false
+        // name has trailing spaces, all other attributes same -> returns true
         String nameWithTrailingSpaces = VALID_TEXT_GOOD_BUYER + " ";
         editedRemark = new RemarkBuilder(GOOD_BUYER).withText(nameWithTrailingSpaces).build();
-        assertFalse(GOOD_BUYER.isSameRemark(editedRemark));
+        assertTrue(GOOD_BUYER.isSameRemark(editedRemark));
     }
 
     @Test

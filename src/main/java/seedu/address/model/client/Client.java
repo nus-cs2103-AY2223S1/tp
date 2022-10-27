@@ -111,6 +111,7 @@ public class Client implements ReadOnlyClient {
      */
     public boolean hasRemark(Remark remark) {
         requireNonNull(remark);
+
         return remarks.contains(remark);
     }
 

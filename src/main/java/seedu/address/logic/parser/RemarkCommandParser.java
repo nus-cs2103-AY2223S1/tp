@@ -37,7 +37,8 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         }
 
         if (preambles.length < 2 || preambles[1].isEmpty()) {
-            throw new ParseException(RemarkCommand.MESSAGE_REMARK_INVALID);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RemarkCommand.MESSAGE_USAGE));
         }
 
         Text text = ParserUtil.parseText(preambles[1]);

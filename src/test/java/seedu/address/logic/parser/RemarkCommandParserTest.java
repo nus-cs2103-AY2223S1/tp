@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TEXT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEXT_GOOD_BUYER;
-import static seedu.address.logic.commands.RemarkCommand.MESSAGE_REMARK_INVALID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
@@ -33,17 +32,17 @@ class RemarkCommandParserTest {
         assertParseFailure(parser, "Bad Buyer", MESSAGE_INVALID_FORMAT);
 
         // missing keyword in preamble
-        assertParseFailure(parser, "1", MESSAGE_REMARK_INVALID);
+        assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidRemarkFields_failure() {
         // index but incorrect text
-        assertParseFailure(parser, "1" + INVALID_TEXT, MESSAGE_REMARK_INVALID);
+        assertParseFailure(parser, "1" + INVALID_TEXT, MESSAGE_INVALID_FORMAT);
         // only text
         assertParseFailure(parser, VALID_TEXT_GOOD_BUYER, MESSAGE_INVALID_FORMAT);
         // only index
-        assertParseFailure(parser, "1", MESSAGE_REMARK_INVALID);
+        assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
         // invalid tag
         assertParseFailure(parser, "1" + VALID_TEXT_GOOD_BUYER + INVALID_TAG_DESC, MESSAGE_INVALID_FORMAT);
     }
