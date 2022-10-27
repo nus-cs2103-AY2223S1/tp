@@ -35,7 +35,7 @@ public class NewTagCommandTest {
 
         CommandResult<TagsWithMessage> commandResult = new NewTagCommand(validTag).execute(modelStub);
 
-        TagsWithMessage expectedOutput = new TagsWithMessage(EXPECTED_SUCCESS_MESSAGE , List.of(validTag));
+        TagsWithMessage expectedOutput = new TagsWithMessage(EXPECTED_SUCCESS_MESSAGE, validTag);
         assertEquals(expectedOutput, commandResult.getOutput());
         assertEquals(List.of(validTag), modelStub.tagsAdded);
     }

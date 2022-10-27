@@ -6,6 +6,7 @@ import static seedu.foodrem.commons.enums.CommandType.LIST_TAG_COMMAND;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.Model;
+import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.viewmodels.TagsWithMessage;
 
 /**
@@ -18,7 +19,7 @@ public class ListTagCommand extends Command {
     public CommandResult<TagsWithMessage> execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTagList(Model.PREDICATE_SHOW_ALL_TAGS);
-        return CommandResult.from(new TagsWithMessage(MESSAGE_SUCCESS, model.getFilteredTagList()));
+        return CommandResult.from(new TagsWithMessage(MESSAGE_SUCCESS, model.getFilteredTagList().toArray(Tag[]::new)));
     }
 
     public static String getUsage() {

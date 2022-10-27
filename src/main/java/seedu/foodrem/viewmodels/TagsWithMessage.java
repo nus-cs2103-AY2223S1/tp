@@ -1,6 +1,6 @@
 package seedu.foodrem.viewmodels;
 
-import java.util.List;
+import java.util.Arrays;
 import java.util.Objects;
 
 import seedu.foodrem.model.tag.Tag;
@@ -10,7 +10,7 @@ import seedu.foodrem.model.tag.Tag;
  * @author Tan Yi Xian
  */
 public class TagsWithMessage {
-    private final List<Tag> tags;
+    private final Tag[] tags;
     private final String message;
 
     /**
@@ -18,12 +18,12 @@ public class TagsWithMessage {
      * @param tags the tags to display.
      * @param message the message to display.
      */
-    public TagsWithMessage(String message, List<Tag> tags) {
+    public TagsWithMessage(String message, Tag... tags) {
         this.tags = tags;
         this.message = message;
     }
 
-    public List<Tag> getTags() {
+    public Tag[] getTags() {
         return tags;
     }
 
@@ -41,6 +41,6 @@ public class TagsWithMessage {
 
     @Override
     public int hashCode() {
-        return Objects.hash(tags, message);
+        return Objects.hash(Arrays.hashCode(tags), message);
     }
 }
