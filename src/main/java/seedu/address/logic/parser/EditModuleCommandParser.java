@@ -1,7 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.*;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.EditModuleCommand.MESSAGE_NO_FIELDS_PROVIDED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
