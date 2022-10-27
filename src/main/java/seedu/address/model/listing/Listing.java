@@ -9,7 +9,6 @@ import java.util.Set;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,11 +19,11 @@ public class Listing implements Comparable<Listing> {
     // Identity fields
     private final ListingId id;
     private final Address address;
-    private final Person owner;
+    private final Name owner;
     private final Price askingPrice;
 
     // Data fields
-    private final List<Person> interestedClients;
+    private final List<Name> interestedClients;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -33,7 +32,7 @@ public class Listing implements Comparable<Listing> {
      * @param owner Person
      * @param askingPrice int
      */
-    public Listing(ListingId id, Address address, Person owner, Price askingPrice) {
+    public Listing(ListingId id, Address address, Name owner, Price askingPrice) {
         this.id = id;
         this.address = address;
         this.owner = owner;
@@ -54,14 +53,6 @@ public class Listing implements Comparable<Listing> {
      * @return name of owner
      */
     public Name getName() {
-        return this.owner.getName();
-    }
-
-    /**
-     * Gets the owner.
-     * @return owner
-     */
-    public Person getOwner() {
         return this.owner;
     }
 
@@ -85,7 +76,7 @@ public class Listing implements Comparable<Listing> {
      * Getter for a list of interested clients.
      * @return List(Person)
      */
-    public List<Person> getInterestedClients() {
+    public List<Name> getInterestedClients() {
         return interestedClients;
     }
 
@@ -93,10 +84,18 @@ public class Listing implements Comparable<Listing> {
      * Adds prospective client to the interestedClients list.
      * @param client the interested client
      */
-    public void addInterestedClient(Person client) {
+    public void addInterestedClient(Name client) {
         this.interestedClients.add(client);
     }
 
+    /**
+     * Checks if the client is already in the listing.
+     * @param client name of the client
+     * @return true if the client is in the listing, false otherwise
+     */
+    public boolean hasInterestedClient(Name client) {
+        return this.interestedClients.contains(client);
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -165,10 +164,10 @@ public class Listing implements Comparable<Listing> {
                 .append("; Asking Price: ")
                 .append(this.askingPrice);
 
-        List<Person> interestedClients = getInterestedClients();
+        List<Name> interestedClients = getInterestedClients();
         if (!interestedClients.isEmpty()) {
             builder.append("; Interested Clients: ");
-            for (Person client : interestedClients) {
+            for (Name client : interestedClients) {
                 builder.append(client).append("\n");
             }
         }

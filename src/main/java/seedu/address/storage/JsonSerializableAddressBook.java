@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.listing.Listing;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Client;
 
@@ -29,15 +30,18 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
     private final List<JsonAdaptedOffer> offers = new ArrayList<>();
+    private final List<JsonAdaptedListing> listings = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given clients and offers.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("clients") List<JsonAdaptedClient> clients,
-                                       @JsonProperty("offers") List<JsonAdaptedOffer> offers) {
+                                       @JsonProperty("offers") List<JsonAdaptedOffer> offers,
+                                       @JsonProperty("listings") List<JsonAdaptedListing> listings) {
         this.clients.addAll(clients);
         this.offers.addAll(offers);
+        this.listings.addAll(listings);
     }
 
     /**
@@ -48,6 +52,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
         offers.addAll(source.getOfferList().stream().map(JsonAdaptedOffer::new).collect(Collectors.toList()));
+        listings.addAll(source.getListingList().stream().map(JsonAdaptedListing::new).collect(Collectors.toList()));
     }
 
     /**
@@ -71,6 +76,14 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_OFFER);
             }
             addressBook.addOffer(offer);
+        }
+
+        for (JsonAdaptedListing jsonAdaptedListing : listings) {
+            Listing listing = jsonAdaptedListing.toModelType();
+            if (addressBook.hasListing(listing)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_LISTING);
+            }
+            addressBook.addListing(listing);
         }
         return addressBook;
     }
