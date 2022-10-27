@@ -44,7 +44,7 @@
             <MenuItem mnemonicParsing="false" onAction="#applyLightTheme" text="Light" />
             <MenuItem mnemonicParsing="false" onAction="#applyDarkTheme" text="Dark" />
           </Menu>
-          <Menu mnemonicParsing="false" text="Module">
+          <Menu mnemonicParsing="false" text="Modules">
             <MenuItem fx:id="tabModule" mnemonicParsing="false" onAction="#handleShowTabAllModules" text="Module" />
           </Menu>
           <Menu mnemonicParsing="false" text="Students">
