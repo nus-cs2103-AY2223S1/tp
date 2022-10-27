@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.classify.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.classify.commons.core.Messages.MESSAGE_SINGLE_PERSON_LISTED_OVERVIEW;
 import static seedu.classify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.classify.testutil.TypicalStudents.CARL;
 import static seedu.classify.testutil.TypicalStudents.ELLE;
@@ -63,6 +64,16 @@ public class FindCommandTest {
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_onePersonFound() {
+        String expectedMessage = String.format(MESSAGE_SINGLE_PERSON_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate predicate = preparePredicate("fiona");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(FIONA), model.getFilteredStudentList());
     }
 
     @Test

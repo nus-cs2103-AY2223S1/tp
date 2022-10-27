@@ -153,22 +153,25 @@ public class Student {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getStudentName())
-                .append("; Id: ")
+        builder.append("\nName: ")
+                .append(getStudentName())
+                .append("\nId: ")
                 .append(getId())
-                .append("; Class: ")
-                .append(getClassName())
-                .append("; Parent Name: ")
-                .append(getParentName())
-                .append("; Parent Phone: ")
-                .append(getPhone())
-                .append("; Parent Email: ")
-                .append(getEmail());
-
+                .append("\nClass: ")
+                .append(getClassName());
+        if (!getParentName().isEmpty()) {
+            builder.append("\nParent Name: ").append(getParentName());
+        }
+        if (!getPhone().isEmpty()) {
+            builder.append("\nParent Phone: ").append(getPhone());
+        }
+        if (!getEmail().isEmpty()) {
+            builder.append("\nParent Email: ").append(getEmail());;
+        }
         Set<Exam> examSet = getExams();
         if (!examSet.isEmpty()) {
-            builder.append("; Exams: ");
-            examSet.forEach(builder::append);
+            builder.append("\nExams: ");
+            examSet.forEach(exam -> builder.append("\n").append(exam));
         }
         return builder.toString();
     }
