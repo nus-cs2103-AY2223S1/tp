@@ -6,6 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORD;
 
 import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
@@ -62,14 +65,15 @@ public class FindRecordCommandParser implements Parser<FindRecordCommand> {
      * @param date date to be validated
      */
     public static boolean isValidFindDate(String date) {
+        ZoneId timeZone = ZoneOffset.UTC;
         DateTimeFormatter validateDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         try {
-            LocalDateTime.parse("01-" + date + " 1400", validateDate);
-            return true;
+            LocalDateTime toFind = LocalDateTime.parse("01-" + date + " 1400", validateDate);
+            YearMonth currentMonth = YearMonth.now(timeZone);
+            return !YearMonth.from(toFind).isAfter(currentMonth);
         } catch (DateTimeParseException e) {
             return false;
         }
     }
-
 }
 
