@@ -68,10 +68,4 @@ public class StatsView {
                 .collect(Collectors.joining("\n"));
     }
 
-    private static Node buildTagNodeFrom(String tagName) {
-        final Label label = new Label(tagName);
-        label.getStyleClass().add("item-detail-tag");
-        return label;
-    }
-
 }
