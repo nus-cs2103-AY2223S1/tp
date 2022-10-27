@@ -161,9 +161,8 @@ public class Profile implements Comparable<Profile> {
 
     /**
      * Adds the profile to the attendee list in the list of events {@code eventsToAdd} if it has not been added.
-     * they have not already been added.
      */
-    public void addEventsAttending(List<Event> eventsToAdd) {
+    public void addToEventsAttending(List<Event> eventsToAdd) {
         requireNonNull(eventsToAdd);
 
         eventsToAdd.forEach(event -> {
@@ -173,10 +172,18 @@ public class Profile implements Comparable<Profile> {
         });
     }
 
+    public void addAttendingEvent(Event eventToAdd) {
+        requireNonNull(eventToAdd);
+
+        if (!eventsToAttend.hasEventAttending(eventToAdd)) {
+            eventsToAttend.add(eventToAdd);
+        }
+    }
+
     /**
      * Removes the profile from the attendee list in the list of events {@code eventsToRemove} if it exists.
      */
-    public void removeEventsAttending(List<Event> eventsToRemove) {
+    public void removeFromEventsAttending(List<Event> eventsToRemove) {
         requireNonNull(eventsToRemove);
 
         eventsToRemove.forEach(event -> {

@@ -131,8 +131,8 @@ public class UniqueProfileList implements Iterable<Profile> {
             throw new ProfileNotFoundException();
         }
 
-        target.removeEventsAttending(eventsToSet);
-        editedProfile.addEventsAttending(eventsToSet);
+        target.removeFromEventsAttending(eventsToSet);
+        editedProfile.addToEventsAttending(eventsToSet);
     }
 
     /**
@@ -147,7 +147,7 @@ public class UniqueProfileList implements Iterable<Profile> {
             throw new ProfileNotFoundException();
         }
 
-        internalList.get(index).removeEventsAttending(eventsToEdit);
+        internalList.get(index).removeFromEventsAttending(eventsToEdit);
     }
 
     public void setProfiles(UniqueProfileList replacement) {

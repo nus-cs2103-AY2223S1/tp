@@ -233,9 +233,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * Profiles in {@code profilesToEdit} must also exist in the address book.
      */
-    public void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit) {
+    public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
         requireAllNonNull(target, profilesToEdit);
-        events.removeEventsFromAttendeesList(target, profilesToEdit);
+        events.removeEventFromAttendees(target, profilesToEdit);
     }
 
     //// util methods

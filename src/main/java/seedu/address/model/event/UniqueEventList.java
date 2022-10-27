@@ -138,7 +138,7 @@ public class UniqueEventList implements Iterable<Event> {
      * Deletes the event {@code target} from given list of profiles {@code profilesToEdit}.
      * Profiles in {@code profilesToEdit} must exist in the address book.
      */
-    public void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit) {
+    public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
         requireAllNonNull(target, profilesToEdit);
 
         int index = internalList.indexOf(target);

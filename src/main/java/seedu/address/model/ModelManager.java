@@ -157,9 +157,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit) {
+    public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
         requireAllNonNull(target, profilesToEdit);
-        addressBook.removeEventsFromAttendeesList(target, profilesToEdit);
+        addressBook.removeEventFromAttendees(target, profilesToEdit);
     }
 
     @Override

@@ -168,7 +168,7 @@ public interface Model {
     /**
      * Deletes the event {@code target} from list of profiles {@code profilesToEdit}.
      */
-    void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit);
+    void removeEventFromAttendees(Event target, List<Profile> profilesToEdit);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
