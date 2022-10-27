@@ -1,13 +1,15 @@
 package gim.logic.parser;
 
-import gim.logic.commands.ClearCommand;
-import org.junit.jupiter.api.Test;
-
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.logic.commands.CommandTestUtil.DESC_PREFIX_CONFIRM;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
 import static gim.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static gim.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import gim.logic.commands.ClearCommand;
+
 
 
 public class ClearCommandParserTest {
