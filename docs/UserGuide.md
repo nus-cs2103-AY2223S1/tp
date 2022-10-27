@@ -301,7 +301,7 @@ Examples:
 
 ### Clearing all data: `clear`
 
-Clears all data in the application.
+Deletes all data in the application.
 
 Format: `clear`
 
