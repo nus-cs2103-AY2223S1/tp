@@ -11,7 +11,7 @@ public abstract class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the application list "
-            + "in a specified order (either by company, position, or date) "
+            + "in a specified order (either by company, position, date or interview) "
             + "and optionally in reverse.\n"
             + "Parameters: [" + PREFIX_ORDER + "ORDER] [" + PREFIX_REVERSE + "]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_ORDER + "date " + PREFIX_REVERSE;

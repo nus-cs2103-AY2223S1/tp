@@ -45,6 +45,11 @@ public interface Model {
     void setApplicationBookFilePath(Path applicationBookFilePath);
 
     /**
+     * Returns the user prefs' sort setting.
+     */
+    SortSetting getSortSetting();
+
+    /**
      * Replaces application book data with the data in {@code applicationBook}.
      */
     void setApplicationBook(ReadOnlyApplicationBook applicationBook);
