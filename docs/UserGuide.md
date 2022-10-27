@@ -69,46 +69,45 @@ title: User Guide
 
 * `FYP_NAME` and `DEADLINE_NAME` should only include alphanumeric characters and space but **cannot start with a space**, e.g. `Support vector machine: some improvements` is invalid
 
-* `DEADLINE_DATETIME` can be in the format of "DD-MM-YYYY HH:mm" or "YYYY-MM-DD HH:mm"
+* `DEADLINE_DATETIME` can be in the format of **"DD-MM-YYYY HH:mm"** or **"YYYY-MM-DD HH:mm"**
 
 </div>
 
 ### Adding students FYP: `add`
 
-There are 2 types of Add Commands. 
+There are 2 types of `add` commands.
 1. `add -s`: Adds a new FYP of a student to the FYP manager.
 
-    Format: `add -s id/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​`
-2. `add -d`: Adds a new deadline task to a student specified by ID.
+    Format: `add [-s] id/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​`
 
-    Format: `add -d id/STUDENT_ID nDEADLINE_NAME d/DEADLINE_DATETIME`
+1. `add -d`: Adds a new deadline to a student specified by the student ID.
+
+    Format: `add -d id/STUDENT_ID n/DEADLINE_NAME d/DEADLINE_DATETIME`
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0)
+A student can have any number of tags! (including 0)
 </div>
 
 Examples:
-* `add -s id/A0123456G n/Jane Doe p/Neural Network e/e0123456@u.nus.edu t/NN`
+* `add -s id/A0123456G n/Jane Doe p/Neural Network e/e0123456@u.nus.edu t/NN t/Difficult`
 * `add -s id/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
-* `add -d id/A0123456G nRandom Task d/23-10-2022 23:59`
+* `add id/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
+* `add -d id/A0123456G n/Random Task d/23-10-2022 23:59`
 
 ### Removing students FYP: `delete`
 
-There are 2 types of Delete Commands.
-1. `delete -s`: Removes a FYP from the FYP manager. A FYP could be deleted for the following reasons:
-    * Student dropped the FYP
-    * Student finished the FYP
+There are 2 types of `delete` commands.
+1. `delete -s`: Removes a FYP from the FYP manager.
 
-    Format: `delete -s id/STUDENT_ID`
-    * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 uppercase letter), e.g. `A0123456G`
+    Format: `delete [-s] id/STUDENT_ID`
 
-2. `delete -d`: Removes a deadline assigned to a student specified by ID & a priority rank.
+1. `delete -d`: Removes a deadline assigned to a student specified by ID & a priority rank.
 
     Format: `delete -d id/STUDENT_ID r/DEADLINE_RANK`
 
 Example:
-* `delete -s id/A0123456G`
+* `delete -s id/A0987654X`, `delete id/A0987654X`
 * `delete -d id/A0123456G r/1`
 
 ### Marking project status: `mark`
@@ -127,58 +126,75 @@ Examples:
 
 ### Searching keyword: `find`
 
-Finds for projects whose field (to be specified by user) contains any of the given keyword(s).
+Finds projects whose field (to be specified by user) contains any of the given keyword(s).
 The four fields that the user can search by are:
+1) `ProjectName`
 1) `StudentId`
-2) `StudentName`
-3)  `Tags` (accorded to a student)
-4) `ProjectName`
+1) `StudentName`
+1) `Tags` (accorded to a student)
 
-Format for:
+Format for each variant of `find`:
+1) `ProjectName`: `find [-p] KEYWORD/[KEYWORD2/KEYWORD3/…]`
 1) `StudentId`: `find -id KEYWORD/[KEYWORD2/KEYWORD3/…]`
-2) `StudentName`: `find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`
-3) `Tags`: `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`
-4) `ProjectName`: `find -p KEYWORD/[KEYWORD2/KEYWORD3/…]`
+1) `StudentName`: `find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`
+1) `Tags`: `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`
 
 * Only the four specified fields above could be searched, and only one field can be searched at any one time.
-* The keyword is case-insensitive, e.g. `Neural NetWORK` will match `neural network`
-* The keyword could contain space, e.g. `practical guide of machine learning` is allowed
-* Partial keywords will also be matched, e.g. `Ne` will match `neural network` and `Genetic Algorithm`
-* Leading and trailing spaces are ignored, e.g. ` neural network  ` will match `neural network`
-* Projects matching at least one keyword will be returned (i.e. `OR` search), 
-  e.g. `find -t neural network/tree` will match project tags with `neural network` or `decision tree`
+* The keyword is case-insensitive, e.g. `Neural NetWORK` will match `neural network`.
+* The keyword could contain spaces, e.g. `practical guide of machine learning` is allowed.
+* Partial keywords will also be matched, e.g. `Ne` will match `neural network` and `Genetic Algorithm`.
+* Leading and trailing spaces are ignored, e.g. ` neural network  ` will match `neural network`.
+* Projects matching at least one keyword will be returned (i.e. `OR` search),
+  e.g. `find -t neural network/tree` will match project tags containing `neural network` or `decision tree`.
 
 Examples:
-* `find -t Neural Network` searches for all projects with the tag `Neural Network`.
+* `find -t Neural Network` searches for all projects with at least one tag containing `Neural Network`.
 * `find -p Neural/Network  /    Data` searches for all projects with `Neural` or `Network` or `Data` in their titles.
 
 ### Edit student details: `edit`
 
 Edit student details according to the input.
 
-Format: `edit STUDENT_ID id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL`
-
+Format: `edit STUDENT_ID [n/STUDENT_NAME] [p/FYP_NAME] [e/EMAIL] [t/TAG]…​`
 
 Examples:
-* `edit A0123456G id/A1234567B`
-* `edit A0234567H n/John Hoe`
+* `edit A0123456G p/Food Genetics` sets the project name the student with student ID `A0123456G` into `Food Genetics`.
+* `edit A0234567H n/John Hoe p/Food Genetics` sets the name the student with student ID `A0123456G` into `John Hoe` and at the same time sets the project name into `Food Genetics`.
 
 
-### List of commands: `help`
+### Viewing help: `help`
 
 Shows a list of valid commands or a help page on a particular command.
 
 Format: `help [COMMAND]`
 
 Examples:
-* `help add -s` - This shows a detailed help message on the `add -s` command
-* `help` - This shows only the list of commands
+* `help add -s` - This shows a detailed help message on the `add -s` command.
+* `help` - This shows a message explaining how to access the help page.
 
 ### List of FYPs: `list`
 
 Shows a list of final year projects with the student IDs.
 
 Format: `list`
+
+### Sorting the FYP list: `sort`
+
+Shows the sorted list of final year projects based on a specific field.
+
+The two fields that the user can sort by are:
+1) `ProjectName`
+1) `ProjectStatus`
+
+Format for each variant of `find`:
+1) `ProjectName`: `sort [-p]`
+1) `ProjectStatus`: `sort -s`
+
+### Clearing the FYP list: `clear`
+
+Clears the FYP list.
+
+Format: `clear`
 
 ### Exiting the application: `exit`
 
@@ -197,16 +213,22 @@ Format: `exit`
 
 ## Command summary
 
-| Action              | Format, Examples                                                                                                                                 |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Student**     | `add -s id/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add id/A0987654X n/John Doe p/Data Caching e/e09876567@u.nus.edu` |
-| **Add Deadline**    | `add -d id/STUDENT_ID nDEADLINE_NAME d/DEADLINE_DATETIME` <br> e.g., `add -d id/A0123456G nRandom Task d/23-10-2022 23:59`                       |
-| **Delete Student**  | `delete -s id` <br> e.g., `delete -s id/A0987654X`                                                                                               |
-| **Delete Deadline** | `delete -d id/STUDENT_ID r/DEADLINE_RANK` <br> e.g., `delete -d id/A0123456G r/1`                                                                |
-| **Mark**            | `mark id/STUDENT_ID s/STATUS`<br> e.g.,`mark id/A0123456G s/IP`                                                                                  |
-| **Find**            | `find KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find neural network/tree`                                                                        |
-| **Edit**            | `edit STUDENT_ID id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL`<br> e.g., `edit A0234567H n/John Hoe`                                       |
-| **Help**            | `help [COMMAND]`<br> e.g., `help add`, `help`                                                                                                    |
-| **List**            | `list`                                                                                                                                           |
-| **Exit**            | `exit`                                                                                                                                           |
+| Action                     | Format, Examples                                                                                                                                                                                                          |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Student**            | `add [-s] id/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add -s id/A0987654X n/John Doe p/Data Caching e/e09876567@u.nus.edu`, `add id/A0987654X n/John Doe p/Data Caching e/e09876567@u.nus.edu` |
+| **Add Deadline**           | `add -d id/STUDENT_ID n/DEADLINE_NAME d/DEADLINE_DATETIME` <br> e.g., `add -d id/A0123456G nRandom Task d/23-10-2022 23:59`                                                                                               |
+| **Delete Student**         | `delete [-s] id` <br> e.g., `delete -s id/A0987654X`, `delete id/A0987654X`                                                                                                                                               |
+| **Delete Deadline**        | `delete -d id/STUDENT_ID r/DEADLINE_RANK` <br> e.g., `delete -d id/A0123456G r/1`                                                                                                                                         |
+| **Mark**                   | `mark id/STUDENT_ID s/STATUS`<br> e.g.,`mark id/A0123456G s/IP`                                                                                                                                                           |
+| **Find by Project Name**   | `find [-p] KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -p data / software`, `find data / software`                                                                                                                     |
+| **Find by Student ID**     | `find -id KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -id 515W/123X/A09281`                                                                                                                                            |
+| **Find by Student Name**   | `find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -n John`                                                                                                                                                          |
+| **Find by Tags**           | `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -t Handsome/Look`                                                                                                                                                 |
+| **Edit**                   | `edit STUDENT_ID [n/STUDENT_NAME] [p/FYP_NAME] [e/EMAIL]`<br> e.g., `edit A0234567H n/John Hoe`                                                                                                                           |
+| **Help**                   | `help [COMMAND]`<br> e.g., `help add -s`, `help`                                                                                                                                                                          |
+| **List**                   | `list`                                                                                                                                                                                                                    |
+| **Sort by Project Name**   | `sort [-p]`                                                                                                                                                                                                               |
+| **Sort by Project Status** | `sort -s`                                                                                                                                                                                                                 |
+| **Clear**                  | `clear`                                                                                                                                                                                                                   |
+| **Exit**                   | `exit`                                                                                                                                                                                                                    |
 
