@@ -64,12 +64,23 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 </div>
 
+### Switch to light mode : `light`
+
+Switch to light mode.
+
+Format: `light`
+
+### Switch to dark mode : `dark`
+
+Switch to dark mode.
+
+Format: `dark`
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
-
 
 ### Adding a student/teaching assistant: `add`
 
@@ -241,7 +252,7 @@ Examples:
 
 Adds a schedule of a module in the ProfNUS.
 
-**Format**: `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cv/VENUE `
+**Format**: `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE`
 
 - Adds a schedule with the module it belongs to, the weekday, the time period, the type of the class, and the venue.
 - `MODULE_CODE` needs to abide by the [Module Code Format of NUS](https://www.nus.edu.sg/registrar/docs/info/nusbulletin/AY201213_GeneralInformation.pdf)
@@ -258,20 +269,20 @@ If the schedule to be added conflicts with any existing schedule, the ProfNUS wi
 </div>
 
 
-**Example**: `sadd m/CS2103T w/Wednesday ct/11:00-12:00 cc/tut cv/Zoom`
+**Example**: `sadd m/CS2103T w/Wednesday ct/11:00-12:00 cc/tut cg/T1 cv/Zoom`
 
 
 ### Edit a schedule `sedit`
 
 Edits a schedule in the ProfNUS.
 
-**Format**: `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cv/VENUE] `
+**Format**: `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE] `
 
 - The `INDEX` needs to be a positive integer and refers to the index number shown in the displayed schedule list.
 - At least one of the optional fields must be provided.
 - All optional fileds must abide by the requirements given in the feature ***Add a schedule `sadd`***, if any.
 
-**Example**: `sedit 3 w/Wednesday ct/09:00-10:00 cv/COM2-0218`
+**Example**: `sedit 3 w/Wednesday ct/09:00-10:00 cg/T09 cv/COM2-0218`
 
 
 ### Delete a schedule `sdelete`
@@ -363,6 +374,8 @@ _Details coming soon ..._
 
 | Action                                | Format                                                                                                             | Example                                                                                                                                                                     |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| switch to light mode                  | `light`                                                                                                            | `light`                                                                                                                                                                     |
+| switch to dark mode                   | `dark`                                                                                                             | `dark`                                                                                                                                                                      |
 | add a student/teaching assistant      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`            | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br> `add n/Adam Doink t/TA e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 c/CS1101S` |
 | edit a student                        | `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​` | `editstu 1 p/91234567 e/johndoe@example.com` <br> `editstu 2 n/Betsy Crower c/`                                                                                             |
 | edit a teaching assistant             | `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`  | `editta 1 p/97384723 e/davidlim@example.com` <br> `editta 2 n/Beth ta/CS2030S`                                                                                              |
@@ -372,6 +385,8 @@ _Details coming soon ..._
 | add a module                          | `madd`                                                                                                             | `madd CS2100`                                                                                                                                                               |
 | list all students/teaching assistants | `list`                                                                                                             | `list`                                                                                                                                                                      |
 | list all modules                      | `mlist`                                                                                                            | `mlist`                                                                                                                                                                     |
+| view more information about a module  | `vtarget INDEX`                                                                                                    | `vtarget 3`                                                                                                                                                                 |
+| view students and tutors in module    | `mview [c/MODULE_CODE]`                                                                                            | `mview CS1101S`                                                                                                                                                             |
 | view the teaching schedule            | `view schedule [-w WEEKDAY] [-m MODULE_CODE] [-d DATE] [-h] [-v]`                                                  | `view schedule -w Monday -m CS2103T` <br>`view schedule -d 2022-09-12` <br> `view schedule -h`                                                                              |
 | find a student/teaching assistant     | `find KEYWORD [MORE_KEYWORD]`                                                                                      | `find Adam Do`                                                                                                                                                              |
 | help                                  | `help`                                                                                                             | `help`                                                                                                                                                                      |
