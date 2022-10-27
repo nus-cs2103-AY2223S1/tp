@@ -299,7 +299,7 @@ This adds a new `ItemQuantityPair` object that references the found `InventoryIt
 
 Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Order`'s list of ordered items.
 
-![AddOrderState2Final](images/developer-guide/AddOrderState2Final.png);
+![AddOrderState2Final](images/developer-guide/AddOrderState3.png);
 
 Step 4. The user then enters `done` after inputting all the required order item details. On the following `AddOrderCommand#execute()` method call,
 the `AddOrderCommand` will no longer await input, and the `LogicManager` also removes its reference to the `AddOrderCommand`. The built up `Order` object is finally added to the model's `OrderList`.
