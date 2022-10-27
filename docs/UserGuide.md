@@ -47,14 +47,14 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 * The first word in the command is the command phrase that specifies which command will be carried out by PayMeLah.
   e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
 
-* Words in diamond brackets `<>` are parameters to be supplied by the user.<br>
+* Words in diamond brackets `<>` are parameters to be supplied by you.<br>
   e.g. in `add n/<name>`, `<name>` is a parameter which can be used as `add n/John`.
 
-* To separate parameters that represent different information, users should precede ambiguous parameters with their specified paired prefixes that end with `/`. <br>
+* To separate parameters that represent different information, you should precede ambiguous parameters with their paired prefixes that end with `/`. <br>
   e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the parameters `<name>` and `<tag>` respectively.
 
 * Items in square brackets `[]` are optional.<br>
-  e.g. in `add n/<name> [t/<tag>]…` can be used as `add n/Alan Poe t/shy pooper` or as `add n/Alan Poe`.
+  e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
 
 * Command fields with … can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
   e.g. in `adddebt <person index…>`, `<person index…>` is a parameter which can be used as `adddebt 1` or as `adddebt 1 2`.
