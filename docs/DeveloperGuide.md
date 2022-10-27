@@ -332,7 +332,9 @@ strings.
 
 We regard a string as a base 26 number (`'a'` - `'z'`). Every time the least significant digit shifts from `'z'`
 to `'a'`, we do a carry to the more significant digit. Repeat this step until there is no more carry or the most
-significant digit has a carry. In the latter case, we append another `'a'` as the most significant digit.
+significant digit has a carry. In the latter case, we append another `'a'` as the most significant digit. As shown below.
+
+![img.png](images/uniqueIdIllustration.png)
 
 For efficiency, the ID generator is implemented by a `List` of `char`, which avoids frequent string copying and
 concatenating. `List` facilitates fast in-place edit of a single `char` at a single index as well.
