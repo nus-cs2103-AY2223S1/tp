@@ -3,7 +3,7 @@ package eatwhere.foodguide.model.eatery;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_CUISINE_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,13 +32,13 @@ public class EateryTest {
 
         // same name, same location, all other attributes different -> returns true
         Eatery alsoEditedAlice = new EateryBuilder(TypicalEateries.ALICE)
-                .withPhone(VALID_PHONE_BOB).withCuisine(VALID_CUISINE_BOB)
+                .withPrice(VALID_PRICE_BOB).withCuisine(VALID_CUISINE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(TypicalEateries.ALICE.isSameEatery(alsoEditedAlice));
 
         // same name, all other attributes different -> returns false
         Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
-                .withPhone(VALID_PHONE_BOB).withCuisine(VALID_CUISINE_BOB)
+                .withPrice(VALID_PRICE_BOB).withCuisine(VALID_CUISINE_BOB)
                 .withLocation(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(TypicalEateries.ALICE.isSameEatery(editedAlice));
 
@@ -79,7 +79,7 @@ public class EateryTest {
         assertFalse(TypicalEateries.ALICE.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new EateryBuilder(TypicalEateries.ALICE).withPhone(VALID_PHONE_BOB).build();
+        editedAlice = new EateryBuilder(TypicalEateries.ALICE).withPrice(VALID_PRICE_BOB).build();
         assertFalse(TypicalEateries.ALICE.equals(editedAlice));
 
         // different email -> returns false
