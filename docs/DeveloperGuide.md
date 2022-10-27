@@ -276,7 +276,7 @@ The `redo` command does the opposite — it calls `Model#redoFypManager()`, 
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the FYP manager, such as `list`, will usually not call `Model#commitFypManager()`, `Model#undoFypManager()` or `Model#redoFypManager()`. Thus, the `fypManagerStateList` remains unchanged.
+Step 5. The user then decides to execute the command `Exit`. Commands that do not modify the FYP manager, such as `Exit`, will usually not call `Model#commitFypManager()`, `Model#undoFypManager()` or `Model#redoFypManager()`. Thus, the `fypManagerStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -385,23 +385,26 @@ The following sequence diagram shows how the help command works:
 <img src="images/helpMessage.png" width="550" />
 
 
-###  `List` Feature
+###  `Exit` Feature
 #### Proposed Implementation
-The proposed `List` Feature allows the professor to list all FYP students in the FYP Manager.
-The `List` feature mechanism is facilitated by `ListCommand`. It extends from the abstract class `Command`.
+The proposed `Exit` Feature allows the professor to list all FYP students in the FYP Manager.
+The `Exit` feature mechanism is facilitated by `ExitCommand`. It extends from the abstract class `Command`.
 To summarize, it implements the following operation:
-* `ListCommand#execute()` — oversees the execution process for `ListCommand`.
+* `ListCommand#execute()` — oversees the execution process for `ExitCommand`.
 
-Given below is an example usage scenario of `ListCommand`:
-1. The user enters the `list` command
-2. `FypManagerParser` creates a new `ListCommand` after preliminary check of user input.
-3. `LogicManager` executes the `ListCommand` using the `LogicManager#execute()` method.
-4. `ListCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+Given below is an example usage scenario of `ExitCommand`:
+1. The user enters the `Exit` command
+2. `FypManagerParser` creates a new `ExitCommand` after preliminary check of user input.
+3. `LogicManager` executes the `ExitCommand` using the `LogicManager#execute()` method.
+4. `ExitCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
 
-The following sequence diagram shows how the add student command works:
+The following sequence diagram shows how the list command works:
 
 <img src="images/ListCommandSequenceDiagram.png" width="550" />
 
+The following activity diagram summarizes what happens when a user executes a list command:
+
+<img src="images/ListCommandActivityDiagram.png" />
 
 ### \[Proposed\] `FindCommand` Feature
 #### Proposed Implementation
@@ -469,6 +472,28 @@ The following sequence diagram shows how the MarkCommand operation works:
 * **Alternative 2:** Allow the user to search for their keywords across all fields without specifying a field
     * Pros: More comprehensive search for projects with the required keyword.
     * Cons: Much harder to implement, as it requires a field-less search.
+
+
+###  `Exit` Feature
+#### Proposed Implementation
+The proposed `Exit` Feature allows the professor to exit the FYP Manager.
+The `Exit` feature mechanism is facilitated by `ExitCommand`. It extends from the abstract class `Command`.
+To summarize, it implements the following operation:
+* `ExitCommand#execute()` — oversees the execution process for `ExitCommand`.
+
+Given below is an example usage scenario of `ExitCommand`:
+1. The user enters the `Exit` command.
+2. `UiManager` calls `MainWindow#fillInnerParts()`.
+3. `MainWindow#fillInnerParts()` executes a `executeCommand()` and creates a `CommandResult`.
+4. `LogicManager` executes the `ExitCommand` using the `LogicManager#execute()` method.
+4.1. `fypManagerParser` will parse the command using `parseCommand` and generate 
+4.2. `ExitCommand` then creates a `CommandResult` and returns it to `MainWindow` to complete the command.
+4.3. `StorageManager` will save the record using method `StorageManager#saveFypManager()`.
+5. `handleExit()` is then executed to hide the main window.
+
+The following sequence diagram shows how the list command works:
+
+<img src="images/ExitSequenceDiagram.png" width="550" />
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -749,7 +774,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Prerequisites: List all students using the `Exit` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
