@@ -2,7 +2,6 @@
 layout: page
 title: Developer Guide
 ---
-# Developer Guide
 
 ## Table of contents
 * [Implementation](#implementation)
@@ -11,8 +10,9 @@ title: Developer Guide
     * [Design Considerations](#design-considerations)
   * [Next Available Class Feature](#next-available-class-feature)
   * [Statistics Display Feature](#statistics-display-feature)
+  * [Mark Student Feature](#mark-student-feature)
   * [Schedule List Feature](#schedule-list-feature)
-  * [[Proposed] Sort-by](#proposed-sort-by-feature)
+  * [Sort-by](#proposed-sort-by-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
   * [Value Proposition](#value-proposition)
@@ -160,7 +160,8 @@ The features covered in this guide are:
 
 * [Edit Class Feature](#edit-class-feature)
 * [Statistics Display Feature](#statistics-display-feature)
-* [[Proposed] Sort-by feature](#proposed-sort-by-feature)
+* [Sort-by feature](#sort-by-feature)
+* [Mark Student Feature](#mark-student-feature)
 * [[Proposed] Find-by feature](#proposed-find-by-feature)
 
 ### Edit Class Feature
@@ -326,16 +327,17 @@ This `UniqueScheduleList` would store the filtered version of the original `Addr
   * Pros: Achieved our purpose of a `ScheduleList`
   * Cons: Code duplication
 
-### [Proposed] Sort-by feature
+### Sort-by feature
 
-This feature allows the user (teacher) to sort the students from Teacher's Pet by one of the specified keywords.
+This feature allows the user (teacher) to sort the students from Teacher's Pet by specified `TYPE` and `ORDER`. `ORDER` is optional
+and will be `ASC` when `TYPE` is `NAME` or `CLASS` and `DESC` when `TYPE` is `OWED`.
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
 list of person as per usual. Additionally, it implements the following operation:
-- `TeachersPet#SortBy(ComparatorM<Person>)` -- Updates the `FilteredPersonList` by reordering the list with the given `Comparator`
+- `TeachersPet#SortPersons(ComparatorM<Person>)` -- Updates the `persons` by sorting the list with the given `Comparator`
 
 The following diagram illustrates how the operation works:
 
@@ -344,6 +346,36 @@ The following diagram illustrates how the operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortByCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+
+---
+
+### Mark Student Feature
+
+This feature allows the teacher to mark a student as present for class, which increases the student's amount owed by the rates per class, while setting the student's next class date to be a week later.
+
+#### Implementation Details
+
+This command executes 3 main actions, they are:
+1. Display a cross beside the student's name in the Schedule list.
+   - `ScheduleCard.java` contains a `Label` called `markStatus` to display the cross if the student is marked.
+   - `ScheduleCard#setMarkStatus(Person person)` sets the text of `markStatus` to be `[X]` if the `person` is marked, else `[ ]`.
+
+2. Increment the money owed by the student.
+   - This action will add `ratesPerClass` field to `moneyOwed` field in `Person`.
+   - The addition of money is called through `Money#addTo(Money money)` method.
+   - To prevent integer overflow from happening, `Money#addTo(Money money)` throws a `CommandException` if it occurs.
+
+3. Set the next class to be a week later.
+   - This action will update `Class` to be `7` days later at the same `startTime` and `endTime`.
+   - Addition of days to the current `Class` date is called through `Class#addDays(int numberOfDays)` method.
+   - The next `Class` will be checked if it clashes with another `Class`. If it does not, it will be saved in `ClassStorage`. All these are called through `ClassStorage#saveClass()`.
+   - The marked `Class` will be deleted from `ClassStorage`.
+
+The following diagram illustrates how the operation works:
+
+![MarkActivityDiagram](images/DG-images/MarkActivityDiagram.png)
+
+---
 
 ### [Proposed] Find-by feature
 
@@ -378,6 +410,7 @@ Below is an example of the general flow of a find by address command.
 The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
 
 ![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
+--------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Requirements
 
@@ -438,10 +471,10 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to list students
-2. Teacher’s Pet shows a list of students
-3. Teacher requests to delete a specific student in the list
-4. Teacher’s Pet deletes the student
+1. Teacher requests to list students.
+2. Teacher’s Pet shows a list of students.
+3. Teacher requests to delete a specific student in the list.
+4. Teacher’s Pet deletes the student.
 
    Use case ends.
 
@@ -457,12 +490,12 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
       Use case resumes at step 2.
 
-#### Use case: **Edit a student contact detail**
+#### Use case: **Edit a student's contact number**
 
 **MSS**
 
-1. Teacher requests to edit contact number of a specific student in the list
-2. Teacher’s Pet edits the student
+1. Teacher requests to edit contact number of a specific student in the list.
+2. Teacher’s Pet updates the student with the new contact number.
 
    Use case ends.
 
@@ -478,12 +511,50 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
   Use case ends.
 
+#### Use case: **Edit a student's class date **
+
+**MSS**
+
+1. Teacher requests to edit class date of a specific student in the list.
+2. Teacher’s Pet updates the student with the new class date.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The given class date is in invalid date format.
+    - 1a1. Teacher’s Pet shows an error message.
+
+  Use case ends.
+
+- 1b. The given class date is occupied by another student.
+    - 1b1. Teacher’s Pet shows an error message.
+
+  Use case ends.
+
+
+#### Use case: **Find student by class date**
+
+**MSS**
+
+1. Teacher requests to find all the students with classes on a particular date.
+2. Teacher’s Pet shows a list of all the students with their details.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. None of the students has classes on that date.
+    - 1a1. Teacher’s Pet shows no students listed.
+
+      Use case ends.
+
 #### Use case: **Find student contact details**
 
 **MSS**
 
-1. Teacher requests to find the details of a specific student
-2. Teacher’s Pet shows the student’s details
+1. Teacher requests to find the details of a specific student.
+2. Teacher’s Pet shows the student’s details.
 
    Use case ends.
 
@@ -503,8 +574,8 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to [find](#use-case-find-student-by-address) a student by address
-2. Teacher’s Pet shows a list of filtered students according to their provided query
+1. Teacher requests to [find](#use-case-find-student-by-address) a student by address.
+2. Teacher’s Pet shows a list of filtered students according to their provided query.
 
    Use case ends.
 
@@ -524,10 +595,10 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to list students
-2. Teacher’s Pet shows a list of students
-3. Teacher requests to mark a specific student in the list as present for class
-4. Teacher’s Pet marks the student as present for class
+1. Teacher requests to list students.
+2. Teacher’s Pet shows a list of students.
+3. Teacher requests to mark a specific student in the list as present for class.
+4. Teacher’s Pet marks the student as present for class.
 
     Use case ends.
 
@@ -553,13 +624,13 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to find the next available slot for class
-2. Teacher discusses with the student about whether the proposed slot is possible
-3. Teacher [edits](#use-case-edit-a-student-contact-detail) the student record with the next class date
+1. Teacher requests to find the next available slot for class.
+2. Teacher discusses with the student about whether the proposed slot is possible.
+3. Teacher [edits](#use-case-edit-a-student-contact-detail) the student record with the next class date.
 
 **Extensions**
 
-- 2a. The student cannot make it on the proposed slot
+- 2a. The student cannot make it on the proposed slot.
   - Step 1-2 is repeated until a mutually-agreed slot is found.
 
     Use case resumes at step 3.
@@ -577,12 +648,12 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 ### Glossary
 
-| Terms         | Definition                                           |
-|---------------|------------------------------------------------------|
-| Mainstream OS | Windows, Linux, Unix, OS-X                           |
-| CLI           | Command Line Interface                               |
-| Class         | The 1-1 tutoring time slot of a student              |
-| Day-of-Week   | 3-letter Abbreviation; case-insensitive eg. Mon, MON |
+| Terms         | Definition                                             |
+|---------------|--------------------------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X                             |
+| CLI           | Command Line Interface                                 |
+| Class         | The 1-1 tutoring time slot of a student                |
+| Day-of-Week   | 3-letter Abbreviation; case-insensitive e.g., Mon, MON |
 
 Note:
 - Command Line Interface: Text based user interface for the user to interact with, by passing in single line commands.
