@@ -8,11 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.image.ImageView?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -50,16 +48,10 @@
                 <Insets />
             </VBox.margin>
         </FlowPane>
-         <HBox fx:id="InformationArea">
-            <children>
-               <Label fx:id="information" text="Label" wrapText="true" />
-               <ImageView fx:id="avatarPane">
-                  <HBox.margin>
-                     <Insets left="40.0" />
-                  </HBox.margin>
-               </ImageView>
-            </children>
-         </HBox>
+         <Label fx:id="information" text="Label" wrapText="true">
+            <VBox.margin>
+               <Insets top="2.0" />
+            </VBox.margin></Label>
     </VBox>
       <rowConstraints>
          <RowConstraints />

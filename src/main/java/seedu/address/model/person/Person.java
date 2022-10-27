@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -101,7 +100,6 @@ public class Person {
         // TODO: Remove placeholder and implement TimesAvailable
         return Collections.unmodifiableSet(timeIntervals);
     }
-
 
     /**
      * Returns true if both persons have the same Minecraft name.
