@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.commons.core.LogsCenter;
+import seedu.condonery.logic.commands.Command;
+import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.property.Property;
 
@@ -26,6 +28,10 @@ public class ModelManager implements Model {
     private final ClientDirectory clientDirectory;
     private final FilteredList<Client> filteredClients;
 
+    private final ReadOnlyPropertyDirectory initialPropertyDirectory;
+    private final ReadOnlyClientDirectory initialClientDirectory;
+
+    private final CommandQueue commandQueue = new CommandQueue();
     /**
      * Initializes a ModelManager with the given propertyDirectory and userPrefs.
      */
@@ -36,11 +42,14 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + propertyDirectory + " and user prefs " + userPrefs);
 
         this.propertyDirectory = new PropertyDirectory(propertyDirectory, userPrefs.getUserImageDirectoryPath());
-        this.userPrefs = new UserPrefs(userPrefs);
+        this.initialPropertyDirectory = propertyDirectory;
         filteredProperties = new FilteredList<>(this.propertyDirectory.getPropertyList());
 
         this.clientDirectory = new ClientDirectory(clientDirectory);
+        this.initialClientDirectory = clientDirectory;
         filteredClients = new FilteredList<>(this.clientDirectory.getClientList());
+
+        this.userPrefs = new UserPrefs(userPrefs);
     }
 
     public ModelManager() {
@@ -101,6 +110,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetPropertyDirectory() {
+        this.propertyDirectory.resetData(initialPropertyDirectory);
+    }
+
+    @Override
     public ReadOnlyPropertyDirectory getPropertyDirectory() {
         return propertyDirectory;
     }
@@ -110,6 +124,11 @@ public class ModelManager implements Model {
     @Override
     public void setClientDirectory(ReadOnlyClientDirectory clientDirectory) {
         this.clientDirectory.resetData(clientDirectory);
+    }
+
+    @Override
+    public void resetClientDirectory() {
+        this.clientDirectory.resetData(initialClientDirectory);
     }
 
     @Override
@@ -223,4 +242,15 @@ public class ModelManager implements Model {
                 && filteredClients.equals(other.filteredClients);
     }
 
+
+    //=========== CommandQueue =============================================================
+    @Override
+    public void addCommand(Command cmd) {
+        this.commandQueue.addCommand(cmd);
+    }
+
+    @Override
+    public CommandQueue getCommandQueue() {
+        return this.commandQueue;
+    }
 }

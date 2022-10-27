@@ -4,9 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +27,7 @@ import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -41,6 +45,7 @@ public class EditPropertyCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_PRICE + "PRICE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_PROPERTY_TYPE + "PROPERTY TYPE] "
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Property successfully edited: %1$s";
@@ -77,9 +82,15 @@ public class EditPropertyCommand extends Command {
         }
 
         Property propertyToEdit = lastShownList.get(targetIndex.getZeroBased());
-        Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor);
+        Path imageDirectoryPath = model.getUserPrefs().getUserImageDirectoryPath();
+        Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor, imageDirectoryPath);
         if (!propertyToEdit.isSameProperty(editedProperty) && model.hasProperty(editedProperty)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
+        }
+
+        File existingImage = new File(propertyToEdit.getImagePath().toString());
+        if (existingImage.exists()) {
+            existingImage.renameTo(new File(editedProperty.getImagePath().toString()));
         }
 
         model.setProperty(propertyToEdit, editedProperty);
@@ -92,15 +103,23 @@ public class EditPropertyCommand extends Command {
      * edited with {@code editPropertyDescriptor}.
      */
     private static Property createEditedProperty(Property propertyToEdit,
-                                                 EditPropertyDescriptor editPropertyDescriptor) {
+                                                 EditPropertyDescriptor editPropertyDescriptor,
+                                                 Path imageDirectoryPath) {
         assert propertyToEdit != null;
 
         Name updatedName = editPropertyDescriptor.getName().orElse(propertyToEdit.getName());
         Address updatedAddress = editPropertyDescriptor.getAddress().orElse(propertyToEdit.getAddress());
         Price updatedPrice = editPropertyDescriptor.getPrice().orElse(propertyToEdit.getPrice());
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
+        PropertyTypeEnum propertyTypeEnum = editPropertyDescriptor
+                .getPropertyTypeEnum().orElse(propertyToEdit.getPropertyTypeEnum());
 
-        return new Property(updatedName, updatedAddress, updatedPrice, updatedTags);
+        Property updatedProperty = new Property(updatedName, updatedAddress,
+                updatedPrice,
+                updatedTags,
+                propertyTypeEnum);
+        updatedProperty.setImageDirectoryPath(imageDirectoryPath);
+        return updatedProperty;
     }
 
     @Override
@@ -133,6 +152,7 @@ public class EditPropertyCommand extends Command {
         private Address address;
         private Price price;
         private Set<Tag> tags;
+        private PropertyTypeEnum propertyTypeEnum;
 
         public EditPropertyDescriptor() {}
 
@@ -145,6 +165,7 @@ public class EditPropertyCommand extends Command {
             setAddress(toCopy.address);
             setPrice(toCopy.price);
             setTags(toCopy.tags);
+            setPropertyTypeEnum(toCopy.propertyTypeEnum);
         }
 
         /**
@@ -195,6 +216,14 @@ public class EditPropertyCommand extends Command {
             return Optional.ofNullable(price);
         }
 
+        public Optional<PropertyTypeEnum> getPropertyTypeEnum() {
+            return Optional.ofNullable(propertyTypeEnum);
+        }
+
+        public void setPropertyTypeEnum(PropertyTypeEnum propertyTypeEnum) {
+            this.propertyTypeEnum = propertyTypeEnum;
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -212,7 +241,9 @@ public class EditPropertyCommand extends Command {
 
             return getName().equals(e.getName())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getPrice().equals(e.getPrice())
+                    && getTags().equals(e.getTags())
+                    && getPropertyTypeEnum().equals(e.getPropertyTypeEnum());
         }
 
         @Override
@@ -222,6 +253,7 @@ public class EditPropertyCommand extends Command {
                     + ", address=" + address
                     + ", price=" + price
                     + ", tags=" + tags
+                    + ", propertyType=" + propertyTypeEnum
                     + '}';
         }
 
