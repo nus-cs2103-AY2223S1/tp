@@ -8,7 +8,7 @@ import seedu.address.model.buyer.Priority;
 
 
 /**
- * A comparator to compare two Names.
+ * A comparator to compare two Priorities.
  */
 public class PriorityComparator implements Comparator<Priority> {
 

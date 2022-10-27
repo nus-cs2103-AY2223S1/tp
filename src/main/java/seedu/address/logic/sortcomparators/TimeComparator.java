@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 
 /**
- * A comparator to compare two Names.
+ * A comparator to compare two LocalDateTimes.
  */
 public class TimeComparator implements Comparator<LocalDateTime> {
 

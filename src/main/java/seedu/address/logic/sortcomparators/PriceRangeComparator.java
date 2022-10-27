@@ -8,7 +8,7 @@ import seedu.address.model.pricerange.PriceRange;
 
 
 /**
- * A comparator to compare two Names.
+ * A comparator to compare two PriceRanges.
  */
 public class PriceRangeComparator implements Comparator<PriceRange> {
 
