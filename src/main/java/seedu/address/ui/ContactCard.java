@@ -44,9 +44,9 @@ public class ContactCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        nextOfKinName.setText(person.getNextOfKin().getNextOfKinName());
-        nextOfKinPhone.setText(person.getNextOfKin().getNextOfKinContact());
-        nextOfKinRelationship.setText(person.getNextOfKin().getNextOfKinRelationship());
+        nextOfKinName.setText("NOK name: " + person.getNextOfKin().getNextOfKinName());
+        nextOfKinPhone.setText("NOK contact: " + person.getNextOfKin().getNextOfKinContact());
+        nextOfKinRelationship.setText("Relationship: " + person.getNextOfKin().getNextOfKinRelationship());
     }
 
     /**

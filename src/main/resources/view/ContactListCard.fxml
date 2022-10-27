@@ -26,9 +26,9 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="nextOfKinName" styleClass="cell_small_label" text="name + \$nextOfKinName" />
+            <Label fx:id="nextOfKinName" styleClass="cell_small_label" text="\$nextOfKinName" />
             <Label fx:id="nextOfKinRelationship" styleClass="cell_small_label" text="\$nextOfKinRelationship" />
-            <Label fx:id="nextOfKinPhone" styleClass="cell_small_label" text="phone + \$nextOfKinPhone" />
+            <Label fx:id="nextOfKinPhone" styleClass="cell_small_label" text="\$nextOfKinPhone" />
         </VBox>
     </GridPane>
 </HBox>
