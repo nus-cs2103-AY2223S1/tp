@@ -36,5 +36,9 @@ public class TitleTest {
         assertTrue(Title.isValidTitle("peter the 2nd")); // alphanumeric characters
         assertTrue(Title.isValidTitle("Capital Tan")); // with capital letters
         assertTrue(Title.isValidTitle("David Roger Jackson Ray Jr 2nd")); // long names
+
+        // long names
+        assertTrue(Title.isValidTitle("David Roger Jackson Ray Jr 2nd David Rog")); // 40 chars
+        assertFalse(Title.isValidTitle("David Roger Jackson Ray Jr 2nd David Roge")); // 41 chars invalid
     }
 }
