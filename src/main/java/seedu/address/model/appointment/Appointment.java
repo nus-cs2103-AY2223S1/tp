@@ -7,12 +7,21 @@ import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
+/**
+ * Represents an appointment between a patient and a nurse.
+ */
 public class Appointment {
     private Patient patient;
     private Nurse nurse;
     private LocalDateTime startDateTime;
     private Boolean visited;
 
+    /**
+     * Appointment Constructor
+     * @param patient The provided patient
+     * @param nurse The provided nurse
+     * @param dateTime The provided start date time
+     */
     public Appointment(Patient patient, Nurse nurse, LocalDateTime dateTime) {
         this.patient = patient;
         this.nurse = nurse;
@@ -79,7 +88,7 @@ public class Appointment {
     /**
      * Returns if the given person is involved in this appointment
      *
-     * @param person The person to test against
+     * @param testPerson The person to test against
      * @return True if the given person is involved in this appointment
      */
     public boolean involvesPerson(Person testPerson) {

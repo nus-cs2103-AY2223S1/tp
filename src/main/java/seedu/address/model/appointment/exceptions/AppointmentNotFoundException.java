@@ -1,3 +1,7 @@
 package seedu.address.model.appointment.exceptions;
 
-public class AppointmentNotFoundException extends RuntimeException {}
+/**
+ * Signals that the appointment not found
+ */
+public class AppointmentNotFoundException extends RuntimeException {
+}

@@ -14,6 +14,10 @@ import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
+/**
+ * Represents an appointment manager that manages the appointments between a
+ * patients and nurses.
+ */
 public class AppointmentManager {
     private Set<Appointment> appointments;
 
