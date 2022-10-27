@@ -68,7 +68,7 @@ BuyerCard --> "*" OrderCard
 DelivererCard --> "*" OrderCard
 SupplierCard --> "*" PetCard
 
-BuyerCard .down.> Model
+BuyerCard .right.> Model
 DelivererCard .down.> Model
 SupplierCard .down.> Model
 OrderCard .down.> Model

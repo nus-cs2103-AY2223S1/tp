@@ -269,7 +269,7 @@ For efficiency, the ID generator is implemented by a `List` of `char`, which avo
 
 ### Display of person list
 
-#### Problems with the old UI and areas for improvements
+#### 1. Problems with the old UI and areas for improvements
 
 Given below is a partial class diagram of the **old UI**.
 
@@ -283,7 +283,7 @@ In addition, buyers, suppliers and deliverers have comprehensive information on 
 A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not helpful in helping the user obtain information quickly.
 Therefore, the UI needs to be **optimised for the situation where there is plentiful information** that the user wants to know about a single `Person`.
 
-#### Implementation of the new UI
+#### 2. Implementation of the new UI
 
 In the implementation as seen in the diagram below, the `MainWindow` can be filled by any one of the followings depending on the `Command` executed:
 * `BuyerListPanel`: displays information about each `Buyer` using a `BuyerCard` in a `ListView`.
@@ -313,7 +313,7 @@ Instead of a `ListView` of `OrderCard`, it has a `ListView` of `PetCard` which d
 By modifying the `PersonCard` to the three types of cards stated above, divided into a left section which shows contact details, and a right section which is a `ListView`, we can keep the information displayed organised and maintain the height of each card within a reasonable range
 (e.g. if the orders are displayed as plain text below the buyer's contact information, the card will be stretched vertically, potentially to an extent that the whole window can only show information of one single buyer).
 
-#### Alternatives considered
+#### 3. Alternatives considered
 
 * **Alternative 1 (current choice):** Has only one display window and displays items (`Order` or `Pet`) together with the person.
   * Pros: Easy to implement and can view all the information immediately after a command is executed.
@@ -323,6 +323,34 @@ By modifying the `PersonCard` to the three types of cards stated above, divided 
   * Cons: Hard to implement and need one more command such as `display INDEX` to display the information of the item.
 
 ### Pop-up window for add command
+
+#### 1. The need for a pop-up window for add command
+
+If the user wants to add a `Buyer` with multiple `Order`, or add a `Supplier` with multiple `Pet`, there will be repetitive entering of a lot of prefixes.
+The user need to memorise the prefixes for each attribute of the person or item, and they may get lost when entering such a long command line.
+
+Therefore, we recognise the need for a pop-up window for adding a `Person` (`Buyer` or `Supplier` for the current version),
+which has text fields that **prompt** the user to enter the required information **without prefixes**.
+
+#### 2. Implementation of the pop-up window
+
+Given below is the partial class diagram of `Ui` component related to `AddCommandPopupWindow`.
+
+<img src="images/PopupWindow.png" width="600" height="600"/>
+
+
+
+To cater to people who can type fast, keyboard shortcuts are included in the pop-up window.
+For example, pressing `ESC` closes the pop-up window without saving, while pressing `CTRL + S` saves the user input and closes the pop-up window.
+This is achieved using `EventHandler`, `EventFilter` and `KeyCodeCombination` of JavaFX.
+
+#### 3. Alternatives considered
+* **Alternative 1 (current choice):** Has a separate pop-up window when a `Command` in the form similar to `add supplier` is entered by the user, with multiple text fields that contain prompt text for the user to input.
+  * Pros: Recognition rather than recall, reducing the users' memorisation work
+  * Cons: Hard to implement, less CLI in nature
+* **Alternative 2 (also implemented):** Has a `Command` that can add a `Person` with multiple `Order`/`Pet` by prefixes in the `CommandBox` (single text field, no prompt text) of the `MainWndow`.
+  * Pros: Easy to implement, more CLI in nature.
+  * Cons: Tedious when entering the `Command`, a lot of memorisation work to remember the prefixes.
 
 --------------------------------------------------------------------------------------------------------------------
 
