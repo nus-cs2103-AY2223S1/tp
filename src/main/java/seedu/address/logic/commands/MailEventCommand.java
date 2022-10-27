@@ -35,7 +35,7 @@ public class MailEventCommand extends Command {
     public static final String EVENT_EMPTY_ERROR_MESSAGE = "There is no person in the event: %s.";
     private final Index eventIndex;
     /**
-     * Constructor of MailEvent Command
+     * Constructor of MailEvent Command.
      * @param eventIndex index of the event to create mailing list with.
      */
     public MailEventCommand(Index eventIndex) {
