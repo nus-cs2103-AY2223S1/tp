@@ -9,6 +9,7 @@ import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG_WHISTLER;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 

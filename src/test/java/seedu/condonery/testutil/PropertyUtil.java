@@ -55,7 +55,8 @@ public class PropertyUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        descriptor.getPropertyTypeEnum().ifPresent(propertyType -> sb.append(PREFIX_PROPERTY_TYPE).append(propertyType).append(" "));
+        descriptor.getPropertyTypeEnum()
+                .ifPresent(propertyType -> sb.append(PREFIX_PROPERTY_TYPE).append(propertyType).append(" "));
         descriptor.getPrice().ifPresent(price -> sb.append(PREFIX_PRICE).append(price.value).append(" "));
         System.out.println(sb.toString());
         return sb.toString();

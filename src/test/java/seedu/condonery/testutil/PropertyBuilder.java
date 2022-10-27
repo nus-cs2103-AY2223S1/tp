@@ -19,8 +19,8 @@ public class PropertyBuilder {
     public static final String DEFAULT_NAME = "Bishan";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_PRICE = "100000";
-    public static final Set<Tag> DEFAULT_TAGS = new HashSet<Tag>(){{
-    }};
+    public static final Set<Tag> DEFAULT_TAGS = new HashSet<Tag>() {{
+        }};
     public static final PropertyTypeEnum DEFAULT_PROPERTY_TYPE = PropertyTypeEnum.CONDO;
 
     private Name name;
