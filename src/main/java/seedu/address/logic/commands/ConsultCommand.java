@@ -15,6 +15,10 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.person.Person;
 
+/**
+ * Creates a past appointment for today for a patient, if the patient's upcoming appointment is on the same day,
+ * consume it and set it to empty.
+ */
 public class ConsultCommand extends Command {
     public static final String COMMAND_WORD = "consult";
 
@@ -34,7 +38,7 @@ public class ConsultCommand extends Command {
     private final EditCommand.EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * Creates a command to add past appointments to a patient's record.
+     * Creates a command to add a past appointment to a patient's record and update the upcoming appointment if needed.
      * @param index of the patient in the filtered patient list to edit
      */
     public ConsultCommand(Index index, PastAppointment appt, EditCommand.EditPersonDescriptor editPersonDescriptor) {
