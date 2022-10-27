@@ -21,7 +21,6 @@ public class GradeChart extends UiPart<Region> {
     public GradeChart(ObservableList<PieChart.Data> pieChartData) {
         super(FXML);
         pieChart.setData(pieChartData);
-        pieChart.setTitle("Grade chart");
         pieChart.setLegendSide(Side.LEFT);
         pieChart.setLabelsVisible(false);
     }
