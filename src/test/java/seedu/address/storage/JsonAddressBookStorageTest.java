@@ -260,19 +260,27 @@ public class JsonAddressBookStorageTest {
         Path expected = TEST_DATA_FOLDER.resolve("emptyStudentAddressBook.json");
         Path actual = testFolder.resolve("student.json");
         assertEquals(
-                FileUtil.readFromFile(expected),
-                FileUtil.readFromFile(actual));
+                FileUtil.readFromFile(expected)
+                        .replaceAll("\r", "").replaceAll("\n", ""),
+                FileUtil.readFromFile(actual)
+                        .replaceAll("\r", "").replaceAll("\n", ""));
 
-        expected = TEST_DATA_FOLDER.resolve("emptyTutorAddressBook.json");
-        actual = testFolder.resolve("tutor.json");
+        expected = TEST_DATA_FOLDER
+                .resolve("emptyTutorAddressBook.json");
+        actual = testFolder
+                .resolve("tutor.json");
         assertEquals(
-                FileUtil.readFromFile(expected),
-                FileUtil.readFromFile(actual));
+                FileUtil.readFromFile(expected)
+                        .replaceAll("\r", "").replaceAll("\n", ""),
+                FileUtil.readFromFile(actual)
+                        .replaceAll("\r", "").replaceAll("\n", ""));
 
         expected = TEST_DATA_FOLDER.resolve("emptyTuitionClassAddressBook.json");
         actual = testFolder.resolve("tuitionClass.json");
         assertEquals(
-                FileUtil.readFromFile(expected),
-                FileUtil.readFromFile(actual));
+                FileUtil.readFromFile(expected)
+                        .replaceAll("\r", "").replaceAll("\n", ""),
+                FileUtil.readFromFile(actual)
+                        .replaceAll("\r", "").replaceAll("\n", ""));
     }
 }
