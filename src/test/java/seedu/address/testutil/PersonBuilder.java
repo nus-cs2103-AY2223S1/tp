@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.github.GithubApi;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -11,6 +12,7 @@ import seedu.address.model.person.Role;
 import seedu.address.model.person.Timezone;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
+import seedu.address.model.person.github.User;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -18,18 +20,18 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Person objects.
  */
 public class PersonBuilder {
-
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_ROLE = "Software Engineer";
     public static final String DEFAULT_TIMEZONE = "+8";
-
+    private final GithubApi githubApi = new GithubApi();
+    private final HashMap<ContactType, Contact> contacts;
     private Name name;
     private Address address;
     private Role role;
     private Timezone timezone;
+    private User githubUser;
     private Set<Tag> tags;
-    private HashMap<ContactType, Contact> contacts;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,6 +43,7 @@ public class PersonBuilder {
         timezone = null;
         tags = new HashSet<>();
         contacts = new HashMap<>();
+        githubUser = null;
     }
 
     /**
@@ -104,12 +107,20 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code User} of the {@code Person} that we are building
+     */
+    public PersonBuilder withGithubUser(String user) {
+        this.githubUser = user != null ? githubApi.getUser(user) : null;
+        return this;
+    }
+
+    /**
      * Build the Person Model
      *
      * @return a Person
      */
     public Person build() {
-        return new Person(name, address, tags, contacts, role, timezone);
+        return new Person(name, address, tags, contacts, role, timezone, githubUser);
     }
 
 }

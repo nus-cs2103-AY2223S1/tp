@@ -18,8 +18,6 @@ import seedu.address.github.exceptions.RepoNotFoundException;
  * Class representing a wrapper over the requests and routes needed to get user repo information from GitHub
  */
 public class UserReposWrapper {
-    //@@author arnav-ag
-
     private static final String ID_KEY = "id";
     private static final String NAME_KEY = "name";
     private static final String URL_KEY = "html_url";

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -25,6 +26,7 @@ import seedu.address.model.person.Role;
 import seedu.address.model.person.Timezone;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
+import seedu.address.model.person.github.User;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,24 +50,43 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE, PREFIX_TIMEZONE,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SLACK, PREFIX_TELEGRAM);
+            PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE, PREFIX_TIMEZONE,
+            PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SLACK, PREFIX_TELEGRAM, PREFIX_GITHUB);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+        if (!(arePrefixesPresent(argMultimap, PREFIX_NAME) || arePrefixesPresent(argMultimap, PREFIX_GITHUB))
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        // At least one of the following needs to be non-null
+        User githubUser = null;
+        Name name;
+
+        if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
+            githubUser = ParserUtil.parseGithubUser(argMultimap.getValue(PREFIX_GITHUB).get());
+        }
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        } else {
+            assert githubUser != null;
+            name = githubUser.getName();
+            System.out.println(name);
+        }
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Map<ContactType, Contact> contacts = new HashMap<>();
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             contacts.put(ContactType.PHONE, ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
+
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             contacts.put(ContactType.EMAIL, ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        } else if (githubUser != null && githubUser.getEmail().isPresent()) {
+            contacts.put(ContactType.EMAIL, githubUser.getEmail().get());
         }
+
         if (argMultimap.getValue(PREFIX_SLACK).isPresent()) {
             contacts.put(ContactType.SLACK, ParserUtil.parseSlack(argMultimap.getValue(PREFIX_SLACK).get()));
         }
@@ -76,6 +97,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = null;
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        } else if (githubUser != null && githubUser.getAddress().isPresent()) {
+            address = githubUser.getAddress().get();
         }
 
         Timezone timezone = null;
@@ -88,7 +111,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         }
 
-        Person person = new Person(name, address, tagList, contacts, role, timezone);
+        Person person = new Person(name, address, tagList, contacts, role, timezone, githubUser);
 
         return new AddCommand(person);
     }

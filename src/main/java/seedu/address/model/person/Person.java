@@ -36,7 +36,7 @@ public class Person implements Comparable<Person> {
      * Every field must be present and not null.
      */
     public Person(Name name, Address address, Set<Tag> tags,
-                  Map<ContactType, Contact> contacts, Role role, Timezone timezone) {
+                  Map<ContactType, Contact> contacts, Role role, Timezone timezone, User githubUser) {
         requireAllNonNull(name, tags);
         this.name = name;
         this.address = address;
@@ -44,9 +44,7 @@ public class Person implements Comparable<Person> {
         this.timezone = timezone;
         this.tags.addAll(tags);
         this.contacts.putAll(contacts);
-        // TODO: CHANGE githubUser in constructor
-        // mock user
-        this.gitHubUser = null;
+        this.gitHubUser = githubUser;
     }
 
     public Name getName() {
@@ -57,7 +55,7 @@ public class Person implements Comparable<Person> {
         return Optional.ofNullable(address);
     }
 
-    public Optional<User> getGitHubUser() {
+    public Optional<User> getGithubUser() {
         return Optional.ofNullable(gitHubUser);
     }
 
@@ -124,7 +122,7 @@ public class Person implements Comparable<Person> {
                 && otherPerson.getContacts().equals(getContacts())
                 && otherPerson.getRole().equals(getRole())
                 && otherPerson.getTimezone().equals(getTimezone())
-                && otherPerson.getGitHubUser().equals(getGitHubUser());
+                && otherPerson.getGithubUser().equals(getGithubUser());
     }
 
     @Override
@@ -157,7 +155,7 @@ public class Person implements Comparable<Person> {
         getTimezone().ifPresent(t -> builder.append("; Timezone: " + t));
 
         builder.append("; Github: ")
-                .append(getGitHubUser());
+                .append(getGithubUser());
         return builder.toString();
     }
 
