@@ -13,7 +13,7 @@ import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
  */
 
 public class FindModulesCommand extends Command {
-    public static final String COMMAND_WORD = "findmods";
+    public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all modules whose module code"
             + " partially or fully contain any of "
