@@ -36,7 +36,7 @@ public class ModMarkAllCommandTest {
     }
 
     /**
-     * Tests the behaviour of ModMarkAllCommand when the student wants to mark all mods of all batchmates,
+     * Tests the behaviour of ModMarkAllCommand when the student wants to mark all mods of every batchmate,
      * where all mods initially have "is taking" as mod status.
      *
      * @throws CommandException If an error occurs during execution of ModMarkAllCommand.

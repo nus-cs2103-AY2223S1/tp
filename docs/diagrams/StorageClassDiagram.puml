@@ -19,7 +19,8 @@ Class "<<interface>>\nMassLinkersStorage" as MassLinkersStorage
 Class JsonMassLinkersStorage
 Class JsonSerializableMassLinkers
 Class JsonAdaptedStudent
-Class JsonAdaptedTag
+Class JsonAdaptedInterest
+Class JsonAdaptedMod
 }
 
 }
@@ -38,6 +39,7 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonMassLinkersStorage .up.|> MassLinkersStorage
 JsonMassLinkersStorage ..> JsonSerializableMassLinkers
 JsonSerializableMassLinkers --> "*" JsonAdaptedStudent
-JsonAdaptedStudent --> "*" JsonAdaptedTag
+JsonAdaptedStudent --> "*" JsonAdaptedInterest
+JsonAdaptedStudent --> "*" JsonAdaptedMod
 
 @enduml

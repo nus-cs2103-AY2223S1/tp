@@ -9,7 +9,7 @@ import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.student.Student;
 
 /**
- * Marks all mods of all batchmates as taken.
+ * Marks all mods of every batchmate as taken.
  */
 public class ModMarkAllCommand extends ModCommand {
 
@@ -17,7 +17,7 @@ public class ModMarkAllCommand extends ModCommand {
     public static final String MESSAGE_SUCCESS = "Successfully marked all mods of every batchmate as taken.";
 
     /**
-     * Constructs a command that marks all mods of all batchmates as taken.
+     * Constructs a command that marks all mods of every batchmate as taken.
      */
     public ModMarkAllCommand() {}
 
