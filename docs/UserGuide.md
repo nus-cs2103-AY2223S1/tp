@@ -27,6 +27,12 @@ title: User Guide
 * Exit the program (exit)
 * Help (help)
 * Clear all data (clear)
+* Select a patient (selectpatient)
+* Select a bill (selectbill)
+* Select an appointment (selectappointment)
+* Remark a patient (remark)
+* Set a bill to be paid (setpaid)
+* Set a bill to be unpaid (setunpaid)
 
 HealthContact is a software for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
 It helps to keep track of patient data, patient appointments and patient bills for the family clinic.
