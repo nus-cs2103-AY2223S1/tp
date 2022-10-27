@@ -1,10 +1,9 @@
 package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
 import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import swift.commons.core.Messages;
 import swift.logic.parser.Prefix;
@@ -17,7 +16,7 @@ import swift.model.Model;
 public class ListTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "list_task";
-    public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>();
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays all tasks as a list with\n"
             + "index numbers.\n"
@@ -27,7 +26,6 @@ public class ListTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()),

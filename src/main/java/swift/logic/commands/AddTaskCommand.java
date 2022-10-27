@@ -1,15 +1,14 @@
 package swift.logic.commands;
 
-import static java.util.Map.entry;
 import static swift.commons.util.CollectionUtil.requireAllNonNull;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static swift.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
@@ -23,11 +22,8 @@ import swift.model.task.Task;
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add_task";
-    public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>(
-            Map.ofEntries(entry(PREFIX_NAME, "<name>"),
-                          entry(PREFIX_DESCRIPTION, "<description>"),
-                          entry(PREFIX_DEADLINE, "<deadline>"),
-                          entry(PREFIX_CONTACT, "<contact_index>")));
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(
+            List.of(PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_CONTACT));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the task list.\n"

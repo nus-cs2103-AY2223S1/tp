@@ -5,6 +5,7 @@ import static swift.model.Model.PREDICATE_SHOW_ALL_BRIDGE;
 import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
 import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 import swift.commons.core.Messages;
 import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
+import swift.logic.parser.Prefix;
 import swift.model.Model;
 import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
@@ -22,6 +24,7 @@ import swift.model.task.Task;
  */
 public class SelectTaskCommand extends Command {
     public static final String COMMAND_WORD = "select_task";
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(new Prefix("", "task_index")));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Selects the task identified by the index number used in the displayed task list.\n"

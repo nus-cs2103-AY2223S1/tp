@@ -6,12 +6,15 @@ package swift.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_NAME = new Prefix("n/");
-    public static final Prefix PREFIX_PHONE = new Prefix("p/");
-    public static final Prefix PREFIX_EMAIL = new Prefix("e/");
-    public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
-    public static final Prefix PREFIX_CONTACT = new Prefix("c/");
-    public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
-    public static final Prefix PREFIX_DEADLINE = new Prefix("dl/");
+    public static final Prefix PREFIX_NAME = new Prefix("n/", "name");
+    public static final Prefix PREFIX_PHONE = new Prefix("p/", "phone");
+    public static final Prefix PREFIX_EMAIL = new Prefix("e/", "email");
+    public static final Prefix PREFIX_ADDRESS = new Prefix("a/", "address");
+    public static final Prefix PREFIX_TAG = new Prefix("t/", "tag");
+    public static final Prefix PREFIX_TASK = new Prefix("t/", "task_index");
+    public static final Prefix PREFIX_CONTACT = new Prefix("c/", "contact_index");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/", "description");
+    public static final Prefix PREFIX_DEADLINE = new Prefix("dl/", "deadline");
+    // PREFIX_KEYWORD is not a prefix, but a placeholder for the keyword argument
+    public static final Prefix PREFIX_KEYWORD = new Prefix("keyword", "keyword");
 }

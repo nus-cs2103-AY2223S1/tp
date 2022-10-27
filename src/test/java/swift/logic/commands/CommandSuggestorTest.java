@@ -27,10 +27,10 @@ public class CommandSuggestorTest {
     @Test
     public void suggestCommand_validCommand_success() {
         String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " "
-                + PREFIX_NAME + "<name> "
-                + PREFIX_DESCRIPTION + "<description> "
-                + PREFIX_CONTACT + "<contact_index> "
-                + PREFIX_DEADLINE + "<deadline>";
+                + PREFIX_NAME + PREFIX_NAME.getUserPrompt() + " "
+                + PREFIX_DESCRIPTION + PREFIX_DESCRIPTION.getUserPrompt() + " "
+                + PREFIX_DEADLINE + PREFIX_DEADLINE.getUserPrompt() + " "
+                + PREFIX_CONTACT + PREFIX_CONTACT.getUserPrompt();
         try {
             System.out.println(expectedSuggestion);
             System.out.println(commandSuggestor.suggestCommand("add_t"));
@@ -49,9 +49,9 @@ public class CommandSuggestorTest {
     public void suggestCommand_validCommandWithPrefix_success() {
         String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " "
                 + PREFIX_NAME + " "
-                + PREFIX_DESCRIPTION + "<description> "
-                + PREFIX_CONTACT + "<contact_index> "
-                + PREFIX_DEADLINE + "<deadline>";
+                + PREFIX_DESCRIPTION + PREFIX_DESCRIPTION.getUserPrompt() + " "
+                + PREFIX_DEADLINE + PREFIX_DEADLINE.getUserPrompt() + " "
+                + PREFIX_CONTACT + PREFIX_CONTACT.getUserPrompt();
         try {
             assertEquals(expectedSuggestion, commandSuggestor.suggestCommand("add_task n/ "));
         } catch (CommandException e) {
@@ -62,10 +62,10 @@ public class CommandSuggestorTest {
     @Test
     public void suggestCommand_validCommandWithPrefixAndValue_success() {
         String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " "
-                                        + PREFIX_NAME + "abc "
-                                        + PREFIX_DESCRIPTION + "<description> "
-                                        + PREFIX_CONTACT + "<contact_index> "
-                                        + PREFIX_DEADLINE + "<deadline>";
+                + PREFIX_NAME + "abc "
+                + PREFIX_DESCRIPTION + PREFIX_DESCRIPTION.getUserPrompt() + " "
+                + PREFIX_DEADLINE + PREFIX_DEADLINE.getUserPrompt() + " "
+                + PREFIX_CONTACT + PREFIX_CONTACT.getUserPrompt();
         try {
             assertEquals(expectedSuggestion, commandSuggestor.suggestCommand("add_task n/abc "));
         } catch (CommandException e) {
@@ -76,6 +76,29 @@ public class CommandSuggestorTest {
     @Test
     public void suggestCommand_validCommandWithInvalidPrefix_failure() {
         assertThrows(CommandException.class, () -> commandSuggestor.suggestCommand("add_task a"));
+    }
+
+    @Test
+    public void suggestCommand_validCommandWithIndex_success() {
+        String expectedSuggestion = DeleteTaskCommand.COMMAND_WORD + " <task_index>";
+        try {
+            assertEquals(expectedSuggestion, commandSuggestor.suggestCommand("delete_task "));
+        } catch (CommandException e) {
+            throw new AssertionError("Command Suggestion should not fail.", e);
+        }
+    }
+
+    @Test
+    public void suggestCommand_validCommandWithIndexGiven_success() {
+        String expectedSuggestion = EditTaskCommand.COMMAND_WORD + " 1 "
+                                        + PREFIX_NAME + PREFIX_NAME.getUserPrompt() + " "
+                                        + PREFIX_DESCRIPTION + PREFIX_DESCRIPTION.getUserPrompt() + " "
+                                        + PREFIX_DEADLINE + PREFIX_DEADLINE.getUserPrompt();
+        try {
+            assertEquals(expectedSuggestion, commandSuggestor.suggestCommand("edit_task 1 "));
+        } catch (CommandException e) {
+            throw new AssertionError("Command Suggestion should not fail.", e);
+        }
     }
 
     @Test
@@ -99,4 +122,16 @@ public class CommandSuggestorTest {
             throw new AssertionError("Autocomplete should not fail.", e);
         }
     }
+
+    @Test
+    public void autocomplete_validCommandWithNoArgs_success() {
+        String expectedSuggestion = ListTaskCommand.COMMAND_WORD;
+        try {
+            assertEquals(expectedSuggestion, commandSuggestor.autocompleteCommand("list_t",
+                    commandSuggestor.suggestCommand("list_t")));
+        } catch (CommandException e) {
+            throw new AssertionError("Autocomplete should not fail.", e);
+        }
+    }
+
 }
