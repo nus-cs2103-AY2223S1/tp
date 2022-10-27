@@ -1,7 +1,7 @@
 package gim.logic.parser;
 
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static gim.logic.parser.CliSyntax.PREFIX_DATE;
+import static gim.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_RANGE_ADVANCED;
 
@@ -23,12 +23,12 @@ public class RangeCommandParser implements Parser<RangeCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public RangeCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_END_DATE,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_START_DATE, PREFIX_END_DATE,
                 PREFIX_RANGE_ADVANCED);
 
         // advanced version: when the user does not input any of the dates, but only inputs an integer with prefix last/
         if (arePrefixesPresent(argMultimap, PREFIX_RANGE_ADVANCED)
-                && !arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_END_DATE)) {
+                && !arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE)) {
             int days;
             try {
                 days = Integer.parseInt(argMultimap.getValue(PREFIX_RANGE_ADVANCED).get());
@@ -50,14 +50,14 @@ public class RangeCommandParser implements Parser<RangeCommand> {
 
         // basic version: the user inputs both start date with prefix d/ and end date with prefix e/
         // both date inputs are compulsory for the basic version
-        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_END_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
         }
         Date startDate;
         Date endDate;
         try {
-            startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+            startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
             endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
         } catch (ParseException | IllegalArgumentException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
