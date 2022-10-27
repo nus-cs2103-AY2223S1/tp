@@ -223,7 +223,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN` <br> e.g., `add n/James Ho p/96775567 lp/english`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold`
 **Increase** | `clear`
 **Decrease** | `delete INDEX`<br> e.g., `delete 1`
 **Delete** | `edit [n/NAME p/PHONE_NUMBER lp/LESSON_PLAN]`<br> `edit [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g.,`edit 2 n/James Lee h/1 math`
