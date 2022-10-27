@@ -2,13 +2,19 @@ package seedu.clinkedin.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.clinkedin.commons.core.LogsCenter;
+import seedu.clinkedin.logic.parser.CliSyntax;
+import seedu.clinkedin.ui.utils.CommandRow;
 
 /**
  * Controller for a help page
@@ -19,49 +25,12 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String HELP_MESSAGE = "For more detailed instructions, please refer to the user guide: "
             + USERGUIDE_URL;
 
-    public static final String COMMAND_LIST = "Command\n"
-            + "\nModifying clinkedin book entries: \n"
-            + "add <parameters>\n"
-            + "delete <index>\n"
-            + "clear\n"
-            + "\nModifying information of a candidate: \n"
-            + "edit <index> <parameters>\n"
-            + "addTag <index> <parameters>\n"
-            + "deleteTag <index> <parameters>\n"
-            + "create <tag_type> <parameters>\n"
-            + "editTagType <old_tag>-<new_tag> <old_alias>-<new_alias>\n"
-            + "deleteTagType <tag_type>\n"
-            + "note <index> <note>\n"
-            + "rate <index> <rating>"
-            + "\nViewing Candidates:\n"
-            + "list\n"
-            + "find <keyword>\n"
-            + "\nGeneral:\n"
-            + "help\n"
-            + "exit\n";
-
-    public static final String DESCRIPTION_LIST = "Description\n\n"
-            + "\nAdds a candidate to the clinkedin book.\n"
-            + "Delete a candidate by index\n"
-            + "Clear all contacts\n"
-            + "\n\n"
-            + "Edits an existing candidate in the clinkedin book by index\n"
-            + "Adds a tag to an existing candidate in the clinkedin book\n"
-            + "Deletes a tag of an existing candidate in the clinkedin book\n"
-            + "Creates a custom tag type apart from the existing tag types\n"
-            + "Edits the name and alias of an existing tag type to new_tag and new_alias\n"
-            + "Deletes an existing tag type and its corresponding tag alias\n"
-            + "Adds/Edits additional optional information (notes) to the candidate\n"
-            + "Adds/Edits additional optional rating to the candidate\n"
-            + "\n\n"
-            + "List all contacts\n"
-            + "Find contacts by keywords\n"
-            + "\n\n"
-            + "Show all available commands\n"
-            + "Quit bot";
-
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+
     private static final String FXML = "HelpWindow.fxml";
+
+    private ObservableList<CommandRow> commandList;
+
 
     @FXML
     private Button copyButton;
@@ -70,21 +39,30 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
 
     @FXML
-    private Label commandList;
+    private TableView<CommandRow> commandTable;
 
     @FXML
-    private Label descriptionList;
+    private TableColumn<CommandRow, String> commandName;
+
+    @FXML
+    private TableColumn<CommandRow, String> commandUsage;
 
     /**
      * Creates a new HelpWindow.
-     *
      * @param root Stage to use as the root of the HelpWindow.
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
-        commandList.setText(COMMAND_LIST);
-        descriptionList.setText(DESCRIPTION_LIST);
+        try {
+            // Obtains the lists of commands and their usages from CLI syntax
+            commandList = CliSyntax.getAllCommandRows();
+            // Sets the table columns to display the command name and usage
+            // and populates the table with the command list
+            initialiseTableView();
+        } catch (Exception e) {
+            logger.warning("Error in getting command list");
+        }
     }
 
     /**
@@ -92,6 +70,15 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow() {
         this(new Stage());
+    }
+
+    /**
+     * Initialises the TableView help window with the command list.
+     */
+    public void initialiseTableView() {
+        commandName.setCellValueFactory(new PropertyValueFactory<CommandRow, String>("commandName"));
+        commandUsage.setCellValueFactory(new PropertyValueFactory<CommandRow, String>("commandUsage"));
+        commandTable.setItems(commandList);
     }
 
     /**
