@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +24,8 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
+    private int displayedIndex;
+    private CommandBox.CommandExecutor commandExecutor;
 
     @FXML
     private HBox cardPane;
@@ -37,14 +41,21 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
         this.person = person;
+        this.displayedIndex = displayedIndex;
+        this.commandExecutor = commandExecutor;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         patientType.setText(person.getPatientType().toString());
         person.getUpcomingAppointment().ifPresentOrElse(ua -> upcomingAppointment.setText(ua.toString()), () ->
                 upcomingAppointment.setVisible(false));
+    }
+
+    @FXML
+    public void handleViewPerson() throws CommandException, ParseException {
+        commandExecutor.execute("view " + displayedIndex);
     }
 
     @Override

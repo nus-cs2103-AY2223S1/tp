@@ -115,7 +115,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false);
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false, this::executeCommand);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -127,7 +127,6 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        // TODO add detailed person card implementation
         handleView();
     }
 
@@ -207,10 +206,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandText.contains(GetCommand.COMMAND_WORD + " "
                     + GetNextOfKinCommand.NEXT_OF_KIN_PREFIX)) {
-                personListPanel = new PersonListPanel(logic.getFilteredPersonList(), true);
+                personListPanel = new PersonListPanel(logic.getFilteredPersonList(), true,
+                        this::executeCommand);
                 personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             } else {
-                personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false);
+                personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false,
+                        this::executeCommand);
                 personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             }
 
