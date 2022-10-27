@@ -1,7 +1,11 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
+
+h1 {
+  color: #0B2545;
+}
 h2, h3, h4, h5, h6 {
-  color: #e46c0a;
+  color: #13315C;
 }
 
 // Bootstrap style alerts
@@ -31,4 +35,6 @@ h2, h3, h4, h5, h6 {
     @include alert-variant(color-level($value, $alert-bg-level), color-level($value, $alert-border-level), color-level($value, $alert-color-level));
   }
 }
+
+
 

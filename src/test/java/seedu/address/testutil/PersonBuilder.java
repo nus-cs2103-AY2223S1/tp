@@ -10,6 +10,7 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
@@ -28,6 +29,7 @@ public class PersonBuilder {
     public static final String DEFAULT_INCOME = "$5230";
     public static final String DEFAULT_MEETINGDATE = "20 Nov 2022";
     public static final String DEFAULT_RISK = "";
+    public static final String DEFAULT_NOTE = "";
 
     private Name name;
     private Phone phone;
@@ -38,6 +40,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Risk risk;
     private Set<Plan> plans;
+    private Note note;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -52,6 +55,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         risk = new Risk(DEFAULT_RISK);
         plans = new HashSet<>();
+        note = new Note(DEFAULT_NOTE);
     }
 
     /**
@@ -68,6 +72,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         risk = portfolio.getRisk();
         plans = new HashSet<>(portfolio.getPlans());
+        note = portfolio.getNote();
     }
 
     /**
@@ -142,8 +147,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Note} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNote(String note) {
+        this.note = new Note(note);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, income, meetingDate, tags, risk, plans);
+        return new Person(name, phone, email, address, income, meetingDate, tags, risk, plans, note);
     }
 
 }

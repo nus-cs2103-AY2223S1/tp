@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
@@ -48,6 +49,8 @@ public class CommandTestUtil {
     public static final String VALID_RISK_BOB = "low";
     public static final String VALID_PLANS_AMY = "prudential health";
     public static final String VALID_PLANS_BOB = "NTUC health";
+    public static final String VALID_NOTE_AMY = "is currently having COVID";
+    public static final String VALID_NOTE_BOB = "is currently travelling";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -67,6 +70,8 @@ public class CommandTestUtil {
     public static final String RISK_DESC_BOB = " " + PREFIX_RISK + VALID_RISK_BOB;
     public static final String PLAN_DESC_AMY = " " + PREFIX_PLAN + VALID_PLANS_AMY;
     public static final String PLAN_DESC_BOB = " " + PREFIX_PLAN + VALID_PLANS_BOB;
+    public static final String NOTE_DESC_AMY = " " + PREFIX_NOTE + VALID_NOTE_AMY;
+    public static final String NOTE_DESC_BOB = " " + PREFIX_NOTE + VALID_NOTE_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -87,12 +92,13 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withIncome(VALID_INCOME_AMY).withMeetingDate(VALID_MEETING_DATE_AMY)
-                .withTags(VALID_TAG_FRIEND).withRisk(VALID_RISK_AMY).withPlans(VALID_PLANS_AMY).build();
+                .withTags(VALID_TAG_FRIEND).withRisk(VALID_RISK_AMY).withPlans(VALID_PLANS_AMY)
+                .withNote(VALID_NOTE_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withIncome(VALID_INCOME_BOB).withMeetingDate(VALID_MEETING_DATE_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withRisk(VALID_RISK_BOB)
-                .withPlans(VALID_PLANS_BOB).build();
+                .withPlans(VALID_PLANS_BOB).withNote(VALID_NOTE_BOB).build();
     }
 
     /**

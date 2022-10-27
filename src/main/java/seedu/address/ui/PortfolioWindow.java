@@ -19,6 +19,7 @@ public class PortfolioWindow extends UiPart<Region> {
     private static final String FXML = "Portfolio.fxml";
     private static final String RISK_LEVEL = "Risk Level: ";
     private static final String NO_RISK_LEVEL = "no risk assessment yet";
+    private static final String NO_NOTE = "no notes yet";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -37,6 +38,8 @@ public class PortfolioWindow extends UiPart<Region> {
     private VBox plans;
     @FXML
     private ScrollPane scroller;
+    @FXML
+    private Label note;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -46,6 +49,7 @@ public class PortfolioWindow extends UiPart<Region> {
         scroller.setFitToWidth(true);
         this.portfolio = person.getPortfolio();
         id = displayedIndex;
+
         if (portfolio.getRisk().value != null && portfolio.getRisk().value != "") {
             risk.setText(RISK_LEVEL + portfolio.getRisk().value);
         } else {
@@ -54,6 +58,12 @@ public class PortfolioWindow extends UiPart<Region> {
         portfolio.getPlans().stream()
                 .sorted(Comparator.comparing(plan -> plan.value))
                 .forEach(plan -> plans.getChildren().add(new Label(plan.value)));
+
+        if (portfolio.getNote().value != null && portfolio.getNote().value != "") {
+            note.setText(portfolio.getNote().value);
+        } else {
+            note.setText(NO_NOTE);
+        }
     }
 
 }
