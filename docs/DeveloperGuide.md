@@ -363,11 +363,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Current choice:** Show an error to the user in the UI.
     * Rationale: Alert the user of the invalid action, stemming from a lack of actions to undo/redo, so that the user is aware that the command is invalid.
 
-### \[Proposed\] Mark/Unmark Task Command
+### Mark/Unmark Task Command
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed mark and unmark task command mechanism is facilitated by `TaskMarkCommand` and `TaskUnmarkCommand` which extend `Command`, `TaskMarkCommandParser`, `TaskUnmarkCommandParser` and `EditTaskDescriptor`. 
+The mark and unmark task command mechanism is facilitated by `TaskMarkCommand` and `TaskUnmarkCommand` which extend `Command`, `TaskMarkCommandParser`, `TaskUnmarkCommandParser` and `EditTaskDescriptor`. 
 
 Additionally, it implements the following operations:
 
@@ -445,11 +445,11 @@ The following sequence diagram shows how the `TaskTagCommand` works:
 * **Current choice:** Empty tags are not saved.
     * Rationale: Does not unnecessarily clutter the number of tags saved to a task.
   
-### \[Proposed\] ToDo/Deadline/Event Task types
+### ToDo/Deadline/Event Task types
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed Todo, Deadline and Event task types is facilitated by `TaskList`. It extends `Task` with 3 specific task types. Additional features of each task type:
+The Todo, Deadline and Event task types is facilitated by `TaskList`. It extends `Task` with 3 specific task types. Additional features of each task type:
 
 - ToDo: Nil
 - Event: Event Date
