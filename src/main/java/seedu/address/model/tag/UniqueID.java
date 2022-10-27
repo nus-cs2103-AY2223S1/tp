@@ -1,9 +1,9 @@
 package seedu.address.model.tag;
 
-import seedu.address.model.item.AbstractDisplayItem;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.item.AbstractDisplayItem;
 
 /**
  * A class for an unique ID for each item.

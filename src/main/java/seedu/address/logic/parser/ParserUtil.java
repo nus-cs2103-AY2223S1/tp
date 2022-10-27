@@ -38,6 +38,13 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses a {@code String level} into a {@code Progress}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @param level
+     * @return
+     * @throws ParseException if the given {@code level} is invalid.
+     */
     public static Progress parseProgress(String level) throws ParseException {
         requireNonNull(level);
         String trimmedProgress = level.trim();

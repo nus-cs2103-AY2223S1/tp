@@ -1,5 +1,7 @@
 package seedu.address.logic.parser.tasks;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.tasks.MarkTaskCommand;
 import seedu.address.logic.commands.tasks.ProgressCommand;
@@ -8,9 +10,16 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attribute.Progress;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
+/**
+ * A class that represents parsing a progress command.
+ */
 public class ProgressCommandParser implements Parser<ProgressCommand> {
+    /**
+     * Method to parse the arguments to set progress for tasks.
+     * @param args
+     * @return
+     * @throws ParseException
+     */
     @Override
     public ProgressCommand parse(String args) throws ParseException {
         try {

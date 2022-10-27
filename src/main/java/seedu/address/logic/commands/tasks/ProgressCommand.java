@@ -1,20 +1,21 @@
 package seedu.address.logic.commands.tasks;
 
-import seedu.address.logic.commands.Command;
+import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
 import seedu.address.model.attribute.Progress;
+import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-
-public class ProgressCommand extends TaskCommand{
+/**
+ * Class that represents command for Progress.
+ */
+public class ProgressCommand extends TaskCommand {
     public static final String SUBCOMMAND_WORD = "progress";
 
     public static final String MESSAGE_USAGE =
@@ -22,11 +23,16 @@ public class ProgressCommand extends TaskCommand{
                     + "Parameters: INDEX (must be a positive integer) and LEVEL (25%, 50%, 75% or 100%)\n"
                     + "Example: " + COMMAND_WORD + " 1" + " 25%\n";
     public static final String COMPLETE_SUCCESS = " progress for task %s is set.%n";
-    public static final String ALREADY_SET = " progess for task %s has already been set!%n";;
+    public static final String ALREADY_SET = " progess for task %s has already been set!%n";
 
     private final Index targetIndex;
     private final Progress level;
 
+    /**
+     * Constructor for progress command
+     * @param targetIndex
+     * @param level
+     */
     public ProgressCommand(Index targetIndex, Progress level) {
         this.targetIndex = targetIndex;
         this.level = level;

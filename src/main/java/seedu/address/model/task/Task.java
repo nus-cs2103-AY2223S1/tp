@@ -14,7 +14,6 @@ import java.util.stream.Stream;
 
 import seedu.address.model.attribute.Description;
 import seedu.address.model.attribute.Name;
-import seedu.address.model.attribute.Progress;
 import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.item.DisplayItem;
