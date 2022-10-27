@@ -24,3 +24,10 @@
     -fx-padding: 8px;
     -fx-background-color: -pw-surface;
 }
+
+#table {
+    -fx-background-color: -pw-primary;
+    -fx-font-size: 12px;
+    -fx-font-family: "Poppins Regular";
+}
+
