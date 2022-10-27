@@ -45,6 +45,12 @@ html {
     margin-top: 2rem;
   }
 
+  td {
+    *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   p,
   li {
     text-align: justify;
