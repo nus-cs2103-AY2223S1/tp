@@ -128,7 +128,8 @@ Item List Box:
 > Sorts the list of currently displayed items by the provided criteria
 
 ```warning
-You should only provide one sorting criteria. 
+* You should only provide one sorting criteria. 
+* The sort can only be done in an ascending order.
 ```
 
 **Example Input:**
@@ -256,7 +257,7 @@ Tags: {vegetables}
 
 #### Edit the information of an item: `edit`
 
-Command: `edit ITEM_INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE] [p/PRICE] [r/REMARKS]`
+Command: `edit INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE] [p/PRICE] [r/REMARKS]`
 
 > Updates the details of the item at the specified index
 
@@ -300,7 +301,7 @@ Tags: {vegetables}
 
 #### Add a remark to an item: `rmk`
 
-Command: `rmk ITEM_INDEX [r/REMARKS]`
+Command: `rmk INDEX [r/REMARKS]`
 
 > Adds a remark to the item at the specified index
 
@@ -334,7 +335,7 @@ Tags: {vegetables}
 
 #### Delete an item: `del`
 
-Command: `del ITEM_INDEX`
+Command: `del INDEX`
 
 > Deletes the item at the specified index.
 
