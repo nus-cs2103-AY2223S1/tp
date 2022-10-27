@@ -272,12 +272,12 @@ The followings are two ways to use this command:
 
 :information_source: **Useful keyboard shortcuts for the pop-up window:**
 
-| Keyboard shortcut |                                   Associated action                                    |
-|:-----------------:|:--------------------------------------------------------------------------------------:|
-|      ESCAPE       |                      Closes the pop-up window **without saving**                       |
-|       ENTER       |                           Goes to the next input text field                            |
-|     CTRL + A      |                        Adds an order/pet to the buyer/supplier                         |
-|     CTRL + D      |        Deletes the last order/pet under the buyer/supplier in the pop-up window        |
+| Keyboard shortcut | Associated action                                                                      |
+|:-----------------:|:---------------------------------------------------------------------------------------|
+|      ESCAPE       | Closes the pop-up window **without saving**                                            |
+|       ENTER       | Goes to the next input text field                                                      |
+|     CTRL + A      | Adds an order/pet to the buyer/supplier                                                |
+|     CTRL + D      | Deletes the last order/pet under the buyer/supplier in the pop-up window               |
 |     CTRL + S      | Saves the inputs, adds the buyer/supplier to the contacts, and closes the pop-p window |
 
 <div markdown="span" class="alert alert-primary">
@@ -346,20 +346,43 @@ Format: `delete-KEY INDEX`
 |           Pet            |  p  |
 
 Examples:
-* `delete-b 1`, deletes Buyer contact at index 1 of Buyer Contacts List, if index is found.
-* `delete-s 1`, deletes Supplier contact at index 1 of Supplier Contacts List, if index is found.
-* `delete-d 1`, deletes Deliverer contact at index 1 of Deliverer Contacts List, if index is found.
-* `delete-o 1`, deletes Order at index 1 of Orders List, if index is found.
-* `delete-p 1`, deletes Pet at index 1 of Pets List, if index is found.
+* `delete-b 1`, deletes `Buyer` contact at index 1 of Buyer List, if index is found.
+* `delete-s 1`, deletes `Supplier` contact at index 1 of Supplier List, if index is found.
+* `delete-d 1`, deletes `Deliverer` contact at index 1 of Deliverer List, if index is found.
+* `delete-o 1`, deletes `Order` at index 1 of Orders List, if index is found.
+* `delete-p 1`, deletes `Pet` at index 1 of Pets List, if index is found.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
 ### Editing attribute(s) of a contact : `edit`
 
-Edits a `Person` 
+Edits one or more attributes of `Person` by the index number used in the displayed person list.
+Existing values of that attribute will be overwritten by the input values.
 
-### Finding a contact using keywords : `find`
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: This command is only available for **editing the basic contact information** of the `Person` for the current version. In other words, **information regarding `Order`/`Pet`** that the `Person` possess **cannot be modified**.
+
+</div>
+
+Format: `edit-KEY INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
+
+#### KEY Types Table
+| Contact to Edit | KEY |
+|:---------------:|:---:|
+|      Buyer      |  b  |
+|    Supplier     |  s  |
+|    Deliverer    |  d  |
+
+Examples: 
+* `edit-b 1 n/Alex`, modifies the name of the `Buyer` contact at index 1 of Buyer List to Alex, if index is found.
+* `edit-s 3 n/Bobby p//884321` modifies the name to Bobby and phone to 884321, of the `Supplier` contact at index 3 of Supplier List to Alex, if index is found.
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
+### Finding contact(s) using keywords : `find`
 
 Displays all contacts which match ONE specific attribute. This command is especially useful when you want to quickly
 find contacts based on a keyword.
@@ -400,7 +423,6 @@ Examples:
 * `find-b e/blackball@furry.com`
 * `find-b p/98986668`
 
-
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
@@ -436,36 +458,10 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-### Filtering lists by attributes : `filter`
+### Filtering items by attributes : `filter`
 
-Displays contacts / items based on the specified tag(s). This command is especially useful when you want to coordinate
+Displays items based on the specified attribute(s). This command is especially useful when you want to coordinate
 sales between a Buyer and Supplier.
-
-
-In order to Find a particular category of persons, use the following command words instead:
-
-| Person Category | Command Word | Usage                  | Example                              |
-|-----------------|--------------|------------------------|--------------------------------------|
-| Buyer           | find-b       | find-b [PREFIX]/INPUT  | find-b a/6th College Ave. West |
-| Deliverer | find-d | find-d [PREFIX]/INPUT | find-d e/blackball@furry.com |
-| Supplier | find-s | find-s [PREFIX]/INPUT | find-s p/98986668 |
-
-[Go back to [Table of Contents](#table-of-contents)]
-[Go back to [Commands](#commands)]
-
-#### Filtering CONTACTS : `filter`
-
-Displays only buyers or suppliers based on the given tag(s).
-
-Format: `filter t/INPUT`
-
-Examples:
-
-* `filter t/cat`
-* `filter t/dog t/second-hand`
-
-[Go back to [Table of Contents](#table-of-contents)]
-[Go back to [Commands](#commands)]
 
 #### Filtering ORDERS : `filter-o`
 
@@ -489,7 +485,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-### Filtering PETS : `filter-p`
+#### Filtering PETS : `filter-p`
 
 Displays only Pets based on the given attributes. There are five possible attributes to filter: Color, Name,
 Price, Species, Vaccination status.
