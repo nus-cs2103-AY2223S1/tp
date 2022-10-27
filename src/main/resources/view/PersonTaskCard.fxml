@@ -31,33 +31,33 @@
                         <Insets right="10.0" />
                     </padding>
                 </Label>
-            <FlowPane alignment="TOP_RIGHT" columnHalignment="RIGHT" prefWidth="60.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label fx:id="deadline" alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="due_date_label" textAlignment="RIGHT">
-                     <padding>
-                        <Insets bottom="10.0" right="10.0" />
-                     </padding>
-                     <FlowPane.margin>
-                        <Insets bottom="5.0" />
-                     </FlowPane.margin>
-                  </Label>
-               </children>
-            </FlowPane>
-            <VBox.margin>
-               <Insets />
-            </VBox.margin>
+                <FlowPane alignment="TOP_RIGHT" columnHalignment="RIGHT" prefWidth="60.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label fx:id="deadline" alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="due_date_label" textAlignment="RIGHT">
+                            <padding>
+                                <Insets bottom="10.0" right="10.0" />
+                            </padding>
+                            <FlowPane.margin>
+                                <Insets bottom="5.0" />
+                            </FlowPane.margin>
+                        </Label>
+                    </children>
+                </FlowPane>
+                <VBox.margin>
+                    <Insets />
+                </VBox.margin>
             </HBox>
             <HBox prefWidth="130.0">
-            <children>
-               <FlowPane fx:id="contacts" styleClass="">
-                  <HBox.margin>
-                     <Insets left="20.0" />
-                  </HBox.margin>
-               </FlowPane>
-            </children>
-            <VBox.margin>
-               <Insets bottom="5.0" />
-            </VBox.margin>
+                <children>
+                    <FlowPane fx:id="contacts" styleClass="">
+                        <HBox.margin>
+                            <Insets left="20.0" />
+                        </HBox.margin>
+                    </FlowPane>
+                </children>
+                <VBox.margin>
+                    <Insets bottom="5.0" />
+                </VBox.margin>
             </HBox>
         </VBox>
         <rowConstraints>
