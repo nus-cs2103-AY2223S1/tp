@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.listing.Listing;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Person;
@@ -16,7 +16,7 @@ public class ListingBuilder {
     public static final Person DEFAULT_PERSON = TypicalPersons.BOB;
     public static final String DEFAULT_ASKING_PRICE = "1";
 
-    private ListingID id;
+    private ListingId id;
     private Address address;
     private Person owner;
     private Price askingPrice;
@@ -25,7 +25,7 @@ public class ListingBuilder {
      * Creates a {@code ListingBuilder} with the default details.
      */
     public ListingBuilder() {
-        this.id = new ListingID(DEFAULT_ID);
+        this.id = new ListingId(DEFAULT_ID);
         this.address = new Address(DEFAULT_ADDRESS);
         this.owner = DEFAULT_PERSON;
         this.askingPrice = new Price(DEFAULT_ASKING_PRICE);
@@ -44,7 +44,7 @@ public class ListingBuilder {
     /**
      * Sets the {@code id} of the {@code Listing} that we are building.
      */
-    public ListingBuilder withId(ListingID id) {
+    public ListingBuilder withId(ListingId id) {
         this.id = id;
         return this;
     }

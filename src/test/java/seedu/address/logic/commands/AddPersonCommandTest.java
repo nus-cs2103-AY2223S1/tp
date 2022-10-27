@@ -21,7 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.listing.Listing;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Address;
@@ -138,7 +138,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public Listing getListing(ListingID id) {
+        public Listing getListing(ListingId id) {
             throw new AssertionError("This method should not be called.");
         }
 

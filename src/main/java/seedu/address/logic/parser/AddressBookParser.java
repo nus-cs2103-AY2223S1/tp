@@ -22,11 +22,11 @@ import seedu.address.logic.commands.EditListingCommand;
 import seedu.address.logic.commands.EditOfferCommand;
 import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindOffersForListingCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ViewClientListCommand;
 import seedu.address.logic.commands.ViewListingClientsCommand;
-import seedu.address.logic.commands.ViewListingOffersCommand;
 import seedu.address.logic.commands.ViewListingsCommand;
 import seedu.address.logic.commands.ViewPersonListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -103,6 +103,9 @@ public class AddressBookParser {
         case FindPersonCommand.COMMAND_WORD:
             return new FindPersonCommandParser().parse(arguments);
 
+        case FindOffersForListingCommand.COMMAND_WORD:
+            return new FindOffersForListingCommandParser().parse(arguments);
+
         case ViewPersonListCommand.COMMAND_WORD:
             return new ViewPersonListCommand();
 
@@ -114,9 +117,6 @@ public class AddressBookParser {
 
         case ViewListingClientsCommand.COMMAND_WORD:
             return new ViewListingClientsCommandParser().parse(arguments);
-
-        case ViewListingOffersCommand.COMMAND_WORD:
-            return new ViewListingOffersCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

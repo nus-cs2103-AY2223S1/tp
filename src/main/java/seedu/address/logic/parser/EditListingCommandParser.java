@@ -14,7 +14,7 @@ import java.util.Set;
 import seedu.address.logic.commands.EditListingCommand;
 import seedu.address.logic.commands.EditListingCommand.EditListingDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,7 +36,7 @@ public class EditListingCommandParser implements Parser<EditListingCommand> {
 
         EditListingDescriptor editListingDescriptor = new EditListingDescriptor();
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
-            editListingDescriptor.setId(ParserUtil.parseListingID(argMultimap.getValue(PREFIX_ID).get()));
+            editListingDescriptor.setId(ParserUtil.parseListingId(argMultimap.getValue(PREFIX_ID).get()));
             id = argMultimap.getValue(PREFIX_ID).get();
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -53,7 +53,7 @@ public class EditListingCommandParser implements Parser<EditListingCommand> {
             throw new ParseException(EditListingCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditListingCommand(new ListingID(id), editListingDescriptor);
+        return new EditListingCommand(new ListingId(id), editListingDescriptor);
     }
 
     /**
