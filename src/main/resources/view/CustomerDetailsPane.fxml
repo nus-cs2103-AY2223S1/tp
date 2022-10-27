@@ -79,6 +79,46 @@
                     <Insets bottom="4.0" />
                 </VBox.margin>
             </Label>
+
+            <Label fx:id="commissionCount" styleClass="cell_small_label" text="\$commissionCount">
+                <minHeight>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE"/>
+                </minHeight>
+                <VBox.margin>
+                    <Insets bottom="4.0" />
+                </VBox.margin>
+            </Label>
+
+            <Label fx:id="commissionCompletedCount" styleClass="cell_small_label" text="\$commissionCompleteCount">
+                <minHeight>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE"/>
+                </minHeight>
+                <VBox.margin>
+                    <Insets bottom="4.0" />
+                </VBox.margin>
+            </Label>
+
+            <Label fx:id="commissionInProgressCount" styleClass="cell_small_label" text="\$commissionInProgressCount">
+                <minHeight>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE"/>
+                </minHeight>
+                <VBox.margin>
+                    <Insets bottom="4.0" />
+                </VBox.margin>
+            </Label>
+
+            <Label fx:id="commissionNotStartedCount" styleClass="cell_small_label" text="\$commissionNotStartedCount">
+                <minHeight>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE"/>
+                </minHeight>
+                <VBox.margin>
+                    <Insets bottom="4.0" />
+                </VBox.margin>
+            </Label>
         </VBox>
         <rowConstraints>
             <RowConstraints/>

@@ -43,6 +43,14 @@ public class CustomerDetailsPane extends UiPart<Region> {
     @FXML
     private Label totalRevenue;
     @FXML
+    private Label commissionCount;
+    @FXML
+    private Label commissionCompletedCount;
+    @FXML
+    private Label commissionInProgressCount;
+    @FXML
+    private Label commissionNotStartedCount;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -62,6 +70,10 @@ public class CustomerDetailsPane extends UiPart<Region> {
             address.setText("");
             email.setText("");
             totalRevenue.setText("");
+            commissionCount.setText("");
+            commissionCompletedCount.setText("");
+            commissionInProgressCount.setText("");
+            commissionNotStartedCount.setText("");
             tags.getChildren().clear();
         } else {
             name.setText(customer.getName().fullName);
@@ -69,6 +81,10 @@ public class CustomerDetailsPane extends UiPart<Region> {
             address.setText(customer.getAddress().map(address -> address.value).orElse(""));
             email.setText(customer.getEmail().value);
             totalRevenue.setText(String.format("%.2f", customer.getRevenue()));
+            commissionCount.setText(Long.toString(customer.getCommissionCount()));
+            commissionCompletedCount.setText(Long.toString(customer.getCompletedCommissionCount()));
+            commissionInProgressCount.setText(Long.toString(customer.getInProgressCommissionCount()));
+            commissionNotStartedCount.setText(Long.toString(customer.getNotStartedCommissionCount()));
             tags.getChildren().clear();
             customer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
