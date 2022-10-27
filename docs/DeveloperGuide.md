@@ -283,9 +283,31 @@ Cons:
 
 #### 4.2.4 Find command
 
-`FindCommand`, which extends `Command`, filters the current list of students based on a `Predicate<Student>` 
-that is generated using the user input. This depends on `FilteredStudents#updateFilteredStudentList(Predicate<Student>)`
-which is exposed in the `Model` interface as `Model#updateFilteredStudentList(Predicate<Student>)`.
+`FindCommand`, which extends `Command`, simulates searching through the `StudentRecord` for particular students. This is
+implemented through filtering the current list of students according to the user input, and displaying the filtered results
+to the user.
+
+`FindCommand` is executed through 2 steps:
+
+**Step 1: Parsing the command**
+
+The user input is first parsed by `StudentRecordParser`, in the same way as other commands. After the input is identified 
+to be a `find`command, a `FindCommandParser` instance will be created to further parse the command arguments.
+
+The `FindCommandParser` searches the input for either `PREFIX_STUDENT_NAME` or `PREFIX_ID` (but not both), and depending
+on which `Prefix` is present, instantiates a `NameContainsKeywordsPredicate` object or `IdPredicate` object respectively.
+Both inherit from `Predicate<Student>`.
+
+This `Predicate<Student>` will then be used to create a `FindCommand` object.
+
+**Step 2: Executing the command**
+
+The `FindCommand` object created will then interact with the `ModelManager` to execute the command.
+
+1. Using the `Preicate<Student>` created when parsing the command, `Model#updateFilteredStudentList(Predicate<Student>)`
+is called, to filter the list of students.
+2. The filtered list is returned to the user, and they will be able to view the list of students whose name contains the
+specified keyword(s), or whose Id matches the specified Id.
 
 Given below is an example usage scenario of `FindCommand`.
 
