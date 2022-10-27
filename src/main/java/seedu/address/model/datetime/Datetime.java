@@ -44,8 +44,7 @@ public class Datetime {
         }
         return true;
     }
-
-
+    
     /**
      * Creates a Datetime from a formatted string.
      * Does not do any validation on input, may throw a DateTimeParseException
