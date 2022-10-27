@@ -1,9 +1,9 @@
-#copyButton, #helpMessage, #helpCommands {
-    -fx-text-fill: white;
+#copyButton, #helpMessage {
+    -fx-text-fill: black;
 }
 
 #helpLink {
-    -fx-text-fill: #79cef2;
+    -fx-text-fill: #5876db;
 }
 
 #copyButton {
@@ -11,13 +11,31 @@
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: #f77f77;
 }
 
 #copyButton:armed {
     -fx-background-color: darkgray;
 }
 
-#helpMessageContainer, #helpCommandsContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+#helpMessageContainer {
+    -fx-background-color: #f5f5f5;
+}
+
+#listCommand {
+    -fx-hgap: 6;
+    -fx-vgap: 3;
+}
+
+#listCommand.label, #exitCommand.label, #clearCommand.label, #addCommand.label, #deleteCommand.label,
+#addTagCommand.label, #deleteTagCommand.label, #filterCommand.label, #findNameCommand.label,
+#findPositionCommand.label, #findTagCommand.label, #sortCommand.label, #statsCommand.label, #statusCommand.label,
+#selectCommand.label, #addTaskCommand.label, #deleteTaskCommand.label, #editCommand.label, #mailCommand.label,
+#remarkCommand.label {
+    -fx-text-fill: white;
+    -fx-background-color: #5174e8;
+    -fx-padding: 2 10 2 10;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 8px;
+    -fx-font-size: 12;
 }
