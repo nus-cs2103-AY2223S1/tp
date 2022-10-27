@@ -57,13 +57,11 @@ public class FoodRemParserTest {
     @Test
     public void parseCommand_clear() {
         assertTrue(parser.parseCommand(CommandType.RESET_COMMAND.getCommandWord()) instanceof ResetCommand);
-        assertTrue(parser.parseCommand(CommandType.RESET_COMMAND.getCommandWord() + " 3") instanceof ResetCommand);
     }
 
     @Test
     public void parseCommand_exit() {
         assertTrue(parser.parseCommand(CommandType.EXIT_COMMAND.getCommandWord()) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(CommandType.EXIT_COMMAND.getCommandWord() + " 3") instanceof ExitCommand);
     }
 
     // Item Commands
@@ -103,8 +101,6 @@ public class FoodRemParserTest {
     @Test
     public void parseCommand_list() {
         assertTrue(parser.parseCommand(CommandType.LIST_COMMAND.getCommandWord()) instanceof ListCommand);
-        assertTrue(parser.parseCommand(CommandType.LIST_COMMAND.getCommandWord()
-                + " 1") instanceof ListCommand);
     }
 
     @Test
