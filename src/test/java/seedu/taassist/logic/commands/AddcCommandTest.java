@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.logic.commands.AddcCommand.MESSAGE_DUPLICATE_MODULE_CLASS;
 import static seedu.taassist.logic.commands.AddcCommand.getCommandMessage;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -146,6 +147,11 @@ public class AddcCommandTest {
         public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
             return moduleClasses.size() == 1 && moduleClasses.contains(moduleClass);
         }
+
+        @Override
+        public void addModuleClasses(Set<ModuleClass> moduleClasses) {
+            requireAllNonNull(moduleClasses);
+        }
     }
     /**
      * A Model stub that always accepts the module class being added.
@@ -163,6 +169,12 @@ public class AddcCommandTest {
         public void addModuleClass(ModuleClass moduleClass) {
             requireNonNull(moduleClass);
             moduleClassesAdded.add(moduleClass);
+        }
+
+        @Override
+        public void addModuleClasses(Set<ModuleClass> moduleClasses) {
+            requireAllNonNull(moduleClasses);
+            moduleClassesAdded.addAll(moduleClasses);
         }
 
         @Override

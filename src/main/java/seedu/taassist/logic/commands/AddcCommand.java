@@ -51,9 +51,9 @@ public class AddcCommand extends Command {
                 duplicateClasses.add(moduleClass);
             } else {
                 newClasses.add(moduleClass);
-                model.addModuleClass(moduleClass);
             }
         }
+        model.addModuleClasses(newClasses);
 
         String message = getCommandMessage(newClasses, duplicateClasses);
         return new CommandResult(message);
