@@ -169,6 +169,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean excludesAndHasStudent(Student studentToExclude, Student studentToCheck) {
+        return studentRecord.excludesAndHasStudent(studentToExclude, studentToCheck);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
