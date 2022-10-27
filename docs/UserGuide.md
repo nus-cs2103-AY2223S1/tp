@@ -365,11 +365,58 @@ After:
 
 ## 1.11 Clear
 
-## 1.12 List
+Deletes all patients, appointments and bills from the HealthContact.
 
-## 1.13 Exit
+### Format
 
-## 1.14 Help
+`clear`
+
+### Example
+
+* Executing `clear`, all data is deleted.
+
+<img src="images/othercommands/clear.png" width="800px" height ="400px">
+
+
+## 1.12 List `list`, `ls`
+
+Removes all conditions previously applied to the list and shows all patients, appointments and bills.
+
+### Format
+
+`list` or `ls`
+
+### Example
+
+* Executing `list`, the program shows all patients, appointments and bills.
+
+<img src="images/othercommands/ls1.png" width="800px" height ="400px">
+
+## 1.13 Exit `exit`
+
+Quits the HealthContact.
+
+### Format
+
+`exit`
+
+### Example
+
+* Executing `exit`, the program closes.
+
+## 1.14 Help `help`
+
+Opens the Help Window.
+
+### Format
+
+`help`
+
+### Example
+
+* Executing `help`, the help window pops.
+
+<img src="images/othercommands/help.png" width="800px" height ="150px">
 
 
 # 2. Commands Reference Sheet
@@ -399,7 +446,7 @@ After:
 | Undo     | the last change                      | `undo`              |          |                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Redo     | the last undone change               | `redo`              |          |                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Clear    | all the data saved in the software   | `clear`             |          |                                                                                                                                                                                                                                                                                                                                                                                                              |
-| List     | all patients, appointments and bills | `list`              |          |                                                                                                                                                                                                                                                                                                                                                                                                              |
+| List     | all patients, appointments and bills | `list`              | `ls`     |                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Exit     | the program                          | `exit`              |          |                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Help     | the user with user guide             | `help`              |          |                                                                                                                                                                                                                                                                                                                                                                                                              |
 
