@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="NotionUS" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
     <icons>
@@ -51,7 +50,20 @@
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10"/>
                     </padding>
-                    <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    <TabPane fx:id="tabsPlaceholder" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                        <tabs>
+                            <Tab text="Upcoming">
+                                <content>
+                                    <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                                </content>
+                            </Tab>
+                            <Tab text="Archived">
+                                <content>
+                                    <StackPane fx:id="archiveListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                                </content>
+                            </Tab>
+                        </tabs>
+                    </TabPane>
                 </VBox>
 
                 <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
