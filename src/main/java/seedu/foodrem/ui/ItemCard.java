@@ -19,7 +19,7 @@ import seedu.foodrem.views.TagView;
  */
 public class ItemCard extends UiPart<Region> {
     private static final int CHAR_LIMIT = 45;
-    private static final int SPACING_UNIT = 3;
+    private static final int SPACING_UNIT = 4;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

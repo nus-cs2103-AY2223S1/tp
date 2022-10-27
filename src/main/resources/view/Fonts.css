@@ -11,3 +11,8 @@
 .root {
   -fx-font-family: "Montserrat";
 }
+
+.bold {
+  -fx-font-family: "Montserrat Bold";
+  -fx-font-weight: bold;
+}

@@ -20,8 +20,8 @@
         </HBox>
       </VBox>
       <VBox spacing="5" alignment="TOP_RIGHT">
-        <Label fx:id="quantity"/>
-        <Label fx:id="price" styleClass="item-listview-data"/>
+        <Label fx:id="quantity" styleClass="bold"/>
+        <Label fx:id="price" styleClass="item-listview-data, bold"/>
       </VBox>
     </HBox>
     <HBox spacing="5" alignment="CENTER_LEFT" fx:id="tags" />
