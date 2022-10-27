@@ -34,23 +34,23 @@
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: white;
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: white;
 }
 
 #copyButton:armed {
-    -fx-background-color: darkgray;
-}
-
-#openButton {
     -fx-background-color: dimgray;
 }
 
+#openButton {
+    -fx-background-color: white;
+}
+
 #openButton:hover {
-    -fx-background-color: darkgray;
+    -fx-background-color: dimgray;
 }
 
 #openButton:armed {
@@ -58,5 +58,5 @@
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#42BFDD, 20%);
+    -fx-background-color: derive(#E1F4F3, 20%);
 }

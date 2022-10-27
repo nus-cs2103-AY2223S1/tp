@@ -87,8 +87,7 @@ public class DeleteGroupMemberCommand extends Command {
 
 
         //deletes person from the group
-        Set<Person> groupMembers = new HashSet<>();
-        groupMembers.addAll(groupToDeletePerson.getMembers());
+        Set<Person> groupMembers = new HashSet<>(groupToDeletePerson.getMembers());
         groupMembers.remove(originalPersonBeforeEdit);
         Group editedGroup = new Group(groupToDeletePerson.getName(), groupMembers);
 
