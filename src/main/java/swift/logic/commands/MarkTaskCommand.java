@@ -25,9 +25,10 @@ public class MarkTaskCommand extends Command {
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(PREFIX_TASK_INDEX));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the task identified by the index number"
-            + "used in the displayed task list as completed.\n "
-            + "Parameters: INDEX (must be a positive integer)";
+            + ": Marks the task identified by the index number "
+            + "used in the displayed task list as completed.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task %1$s as completed.";
     public static final String MESSAGE_TASK_ALREADY_COMPLETED =

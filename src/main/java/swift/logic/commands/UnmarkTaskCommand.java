@@ -26,9 +26,10 @@ public class UnmarkTaskCommand extends Command {
             new ArrayList<>(List.of(PREFIX_TASK_INDEX));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the task identified by the index number"
-            + "used in the displayed task list as incomplete.\n "
-            + "Parameters: INDEX (must be a positive integer)";
+            + ": Marks the task identified by the index number "
+            + "used in the displayed task list as incomplete.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Marked Task %1$s as incomplete.";
     public static final String MESSAGE_TASK_ALREADY_INCOMPLETE =
