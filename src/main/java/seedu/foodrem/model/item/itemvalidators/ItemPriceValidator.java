@@ -30,9 +30,10 @@ public class ItemPriceValidator implements Validator {
                                       String messageNotANumber, String messageTooPrecise, String messageTooLarge,
                                       String messageIsNegative) {
         boolean isParsable = ValidationUtil.isParsableDouble(numericString);
+        boolean hasNoSpecialChars = numericString.matches("[0-9.-]*");
         boolean isTooPrecise = ValidationUtil.isDoubleTooPrecise(numericString, maxDecimalPlace);
 
-        checkArgument(isParsable, messageNotANumber);
+        checkArgument(isParsable && hasNoSpecialChars, messageNotANumber);
         checkArgument(!isTooPrecise, messageTooPrecise);
 
         double number = Double.parseDouble(numericString);
