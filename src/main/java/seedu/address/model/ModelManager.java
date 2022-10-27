@@ -199,10 +199,18 @@ public class ModelManager implements Model {
         return addressBook.getCensus(this);
     }
 
+    /**
+     * Class to represent the currently selected person Object.
+     */
     public static class CurrentlyViewedPerson {
         private final Person person;
         private final Index index;
 
+        /**
+         * Creates a Currently Viewed Person Object.
+         * @param person Person viewed.
+         * @param index The Index in the filteredPersonList.
+         */
         public CurrentlyViewedPerson(Person person, Index index) {
             this.person = person;
             this.index = index;

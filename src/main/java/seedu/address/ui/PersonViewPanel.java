@@ -1,20 +1,5 @@
 package seedu.address.ui;
 
-import com.sun.javafx.collections.ObservableListWrapper;
-
-import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import seedu.address.logic.parser.Prefix;
-import seedu.address.model.appointment.PastAppointment;
-import seedu.address.model.person.Person;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FLOOR_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOSPITAL_WING;
@@ -26,6 +11,19 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UPCOMING_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NUMBER;
 
+import com.sun.javafx.collections.ObservableListWrapper;
+
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.model.appointment.PastAppointment;
+import seedu.address.model.person.Person;
 
 /**
  * Panel which has the detailed view of a patient.
@@ -158,8 +156,16 @@ public class PersonViewPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Represents a function that can change the text in the command box.
+     */
     @FunctionalInterface
     public interface CommandTextEditor {
+        /**
+         * Changes the command box text.
+         *
+         * @see seedu.address.ui.CommandBox#setCommandTextField(String)
+         */
         void editText(Prefix prefix);
     }
 }
