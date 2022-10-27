@@ -558,7 +558,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 batchmates without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The GUI should work well with standard screen resolutions 1920x1080 and higher. i.e. GUI does not appear to be cut or distorted.
 5.  For every action by the user, the result should be visible within 5 seconds.
@@ -566,8 +566,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7.  The software and documentation should be accessible to users with a basic command of English.
 8.  The packaged JAR file should not exceed 100MB.
 9.  The software should work without the need for an installer.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -593,40 +591,96 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy it into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file <br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a batchmate
 
-### Deleting a student
+1. Adding a batchmate to the data
 
-1. Deleting a student while all students are being shown
+    1. Test case: `add n/John t/john`<br>
+       Expected: A new batchmate with the name John and telegram handle john is added at the bottom of the students pane in MassLinkers.
+       The status message indicates that John has been successfully added.
 
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    2. Prerequisite: A batchmate with the name Tom is already in MassLinkers <br>
+       Test case: `add n/Tom t/tom`<br>
+       Expected: No batchmate is added. The status message indicates that the batchmate already exists in MassLinkers.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    3. Test case: `add n/John t/john i/AI g/john`<br>
+       Expected: A new batchmate with the name John, telegram handle john, interests AI and GitHub john is added at the bottom of the students pane in MassLinkers.
+       The status message indicates that John has been successfully added.
 
-   1. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+    4. Test case: `add n/John`<br>
+       Expected: No batchmate is added. The status message indicates that the command is of an invalid format.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    5. Other incorrect add commands to try: `add`, `add n/John t/john x/invalid`, `...` (where x is any invalid prefix)<br>
+       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+### Deleting a batchmate
+
+1. Deleting a batchmate while all batchmates are being shown
+
+    1. Prerequisites: List all batchmates using the `list` command. Multiple batchmates in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+
+    3. Test case: `delete 0`<br>
+       Expected: No batchmate is deleted. Error details are shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Add mods to a batchmate
+
+1. Add mods to a batchmate
+
+    1. Prerequisites: List all batchmates using the `list` command. Multiple batchmates in the list.
+
+    2. Test case: `mod add 1 cs2103t cs2101`<br>
+       Expected: The mods CS2103T and CS2101 will be present in the mods pane when the batchmate located at index 1 is selected.
+
+    3. Other incorrect mod add commands to try: `mod add cs2103t`, `mod add 1 xxx` (where xxx is any invalid mod name)<br>
+       Expected: No mods are added, and the status message will indicate that the command is invalid.
+
+### Mark mod(s) for a batchmate
+
+1. Mark mod(s) for a batchmate
+
+    1. Prerequisites: List all batchmates using the `list` command. Multiple batchmates in the list.
+
+    2. Prerequisites: The batchmate at index 1 must have the mods CS2103T and CS2101.<br>
+       Test case: `mod mark 1 cs2103t cs2101`<br>
+       Expected: The mods CS2103T and CS2101 will be marked as taken in the mods pane when the batchmate located at index 1 is selected.
+
+    3. Other incorrect mod mark commands to try: `mod mark cs2103t`, `mod mark 1 xxx`
+       (where xxx is any mod name that is not in the list of mods for that batchmate)<br>
+       Expected: No mods are added, and the status message will indicate that the command is invalid
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Go to the data file located at `data/MassLinkers.json`. If the directory is not present,
+       run MassLinkers, modify the data, and exit. The data file should be present in the directory.
+    2. Attempt to corrupt the data by deleting a closing brace `}` at the end of the file.
+    3. Reopen MassLinkers <br>
+       Expected: MassLinkers will run and start with an empty data file (no batchmates will be shown on the student pane)
 
-1. _{ more test cases …​ }_
+2. All data saved
+
+    1. Add or edit batchmate(s) in MassLinkers
+    2. Close MassLinkers
+    3. Reopen MassLinkers <br>
+       Expected: The data is saved, and the changes you made to the data are still present.
+
