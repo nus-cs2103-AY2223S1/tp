@@ -17,7 +17,7 @@ import seedu.address.model.ReadOnlyDatabase;
 /**
  * A class to access Database data stored as a json file on the hard disk.
  */
-public class JsonDatabaseStorage implements AddressBookStorage {
+public class JsonDatabaseStorage implements DatabaseStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonDatabaseStorage.class);
 
