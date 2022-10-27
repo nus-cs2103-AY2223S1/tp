@@ -114,9 +114,10 @@ public class EditPropertyCommand extends Command {
         PropertyTypeEnum propertyTypeEnum = editPropertyDescriptor
                 .getPropertyTypeEnum().orElse(propertyToEdit.getPropertyTypeEnum());
 
-        return new Property(updatedName, updatedAddress, updatedPrice, updatedTags,
+        Property updatedProperty = new Property(updatedName, updatedAddress,
+                updatedPrice,
+                updatedTags,
                 propertyTypeEnum);
-        Property updatedProperty = new Property(updatedName, updatedAddress, updatedPrice, updatedTags);
         updatedProperty.setImageDirectoryPath(imageDirectoryPath);
         return updatedProperty;
     }
