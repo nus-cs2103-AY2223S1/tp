@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
+import seedu.address.model.profile.Profile;
 
 /**
  * An UI component that displays information of an {@code Event}.
@@ -26,6 +28,8 @@ public class EventCard extends UiPart<Region> {
     private Label title;
     @FXML
     private Label id;
+    @FXML
+    private FlowPane attendees;
     @FXML
     private HBox dateTime;
     @FXML
@@ -70,6 +74,13 @@ public class EventCard extends UiPart<Region> {
                     label.setMaxWidth(150.0);
                     tags.getChildren().add(label);
                 });
+
+        List<Profile> attendeesList = event.getAttendeesList();
+        attendeesList.stream()
+                .forEach(attendee -> {
+                    int index = attendeesList.indexOf(attendee) + 1;
+                    attendees.getChildren().add(new Label(index + " " + attendee.getName().toString()));
+                });                
     }
 
     @Override
