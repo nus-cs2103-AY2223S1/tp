@@ -75,12 +75,29 @@ h6:before {
   margin-left: 0;
 }
 
+// First Level
 #markdown-toc > li {
-  margin-left: 0; // remove margin from top level section
+  margin-left: 0;
 }
 
-#markdown-toc > li > ul li {
-  margin-left: 30px; // add margin to all other levels
+// Second Level
+#markdown-toc > li > ul > li {
+  margin-left: 20px;
+}
+
+// Third Level
+#markdown-toc > li > ul > li > ul > li {
+  margin-left: 28px;
+}
+
+// Fourth Level
+#markdown-toc > li > ul > li > ul > li > ul > li {
+  margin-left: 34px;
+}
+
+// Fifth Level
+#markdown-toc > li > ul > li > ul > li > ul > li > ul > li {
+  margin-left: 42px;
 }
 
 #markdown-toc li:before {
