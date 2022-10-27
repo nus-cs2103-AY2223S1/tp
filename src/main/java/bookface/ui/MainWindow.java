@@ -155,6 +155,23 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Sets the theme to dark mode.
+     */
+    @FXML
+    public void handleDarkTheme() {
+        super.getRoot().getScene().getStylesheets().clear();
+        super.getRoot().getScene().getStylesheets().add(FXML_FILE_FOLDER + "DarkTheme.css");
+    }
+
+    /**
+     * Sets the theme to light mode.
+     */
+    @FXML void handleLightTheme() {
+        super.getRoot().getScene().getStylesheets().clear();
+        super.getRoot().getScene().getStylesheets().add(FXML_FILE_FOLDER + "LightTheme.css");
+    }
+
     void show() {
         primaryStage.show();
     }
