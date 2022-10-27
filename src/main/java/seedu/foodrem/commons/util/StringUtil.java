@@ -111,11 +111,14 @@ public class StringUtil {
     }
 
     /**
-     * Validates if a string is can be parsed into an index, and if the index is non negative.
+     * Validates if a string is can be parsed into an index, and if the index is positive.
      *
      * @throws NullPointerException if {@code s} is null.
      */
-    public static Index validateAndGetIndexString(String string, String commandUsage) {
+    public static Index validateAndGetIndexFromString(String string, String commandUsage) {
+        requireNonNull(string);
+        requireNonNull(commandUsage);
+
         String trimmedArgument = string.trim();
 
         if (trimmedArgument.isEmpty()) {
