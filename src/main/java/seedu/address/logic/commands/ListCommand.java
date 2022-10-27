@@ -25,10 +25,10 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        int num_Person = model.getFilteredPersonList().size();
-        int num_Module = model.getFilteredModuleList().size();
-        String personResult = num_Person == 0 ? MESSAGE_NO_CONTACTS_IN_LIST : MESSAGE_SUCCESS_PERSON;
-        String moduleResult = num_Module == 0 ? MESSAGE_NO_MODULES_IN_LIST : MESSAGE_SUCCESS_MODULE;
+        int numPerson = model.getFilteredPersonList().size();
+        int numModule = model.getFilteredModuleList().size();
+        String personResult = numPerson == 0 ? MESSAGE_NO_CONTACTS_IN_LIST : MESSAGE_SUCCESS_PERSON;
+        String moduleResult = numModule == 0 ? MESSAGE_NO_MODULES_IN_LIST : MESSAGE_SUCCESS_MODULE;
         return new CommandResult(personResult + moduleResult);
     }
 }
