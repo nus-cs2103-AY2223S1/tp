@@ -20,6 +20,9 @@ public class Nurse extends Person {
     private final List<Date> unavailableDateList = new ArrayList<>();
     private final List<Date> fullyScheduledDateList = new ArrayList<>();
 
+    /**
+     * Every field must be present and not null.
+     */
     public Nurse(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags,
                  List<Date> unavailableDates, List<HomeVisit> homeVisits, List<Date> fullyScheduledDates) {
         super(uid, name, gender, phone, email, address, tags);
@@ -39,8 +42,8 @@ public class Nurse extends Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return super.hashCode() + Objects.hash(unavailableDateList) + Objects.hash(homeVisitList) +
-                Objects.hash(fullyScheduledDateList);
+        return super.hashCode() + Objects.hash(unavailableDateList) + Objects.hash(homeVisitList)
+                + Objects.hash(fullyScheduledDateList);
     }
 
     /**

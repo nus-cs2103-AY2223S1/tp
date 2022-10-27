@@ -31,8 +31,8 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_CATEGORY_AMY = "P";
-    public static final String VALID_CATEGORY_BOB = "N";
-    public static final String VALID_MISSPELT_CATEGORY_BOB = "Nurse";
+    public static final String VALID_CATEGORY_BOB = "P";
+    public static final String VALID_MISSPELT_CATEGORY_BOB = "Patient";
     public static final String INVALID_MISSPELT_CATEGORY_BOB = "Nursey";
     public static final String VALID_UID_AMY = "10";
     public static final String VALID_UID_BOB = "11";
@@ -88,8 +88,6 @@ public class CommandTestUtil {
     public static final String DATESLOT_DESC_BOB = " " + PREFIX_DATE_AND_SLOT + VALID_DATESLOT_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String VISIT_STATUS_DESC_AMY = " " + PREFIX_VISIT_STATUS + VALID_VISITED_STATUS;
-
     public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "NP"; // only N or P is allowed.
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "FM"; // only allowed F or M, either one
@@ -100,7 +98,6 @@ public class CommandTestUtil {
     public static final String INVALID_DATESLOT_DESC = " " + PREFIX_DATE_AND_SLOT
             + "2022/11/11 12.00PM"; // wrong format for date and slot
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_VISIT_STATUS = " " + PREFIX_VISIT_STATUS + "1"; // only allow "true" or "false"
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -111,8 +108,7 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withCategory(VALID_CATEGORY_AMY).withName(VALID_NAME_AMY)
                 .withGender(VALID_GENDER_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).withVisitStatus(VALID_NOT_VISITED_STATUS)
-                .build();
+                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withCategory(VALID_CATEGORY_BOB).withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();

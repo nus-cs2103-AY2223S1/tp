@@ -7,6 +7,7 @@ import java.util.Set;
 
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -50,8 +51,9 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private List<DateSlot> dateSlotList;
     private List<HomeVisit> homeVisitList;
-    private VisitStatus visitStatus;
     private Physician physician;
+    private List<Date> unavailableDateList;
+    private List<Date> fullyScheduledDateList;
 
 
     /**
@@ -67,11 +69,11 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         dateSlotList = new ArrayList<>();
-        dateSlotList.add(new DateSlot(DEFAULT_DATE_AND_SLOT));
-        visitStatus = new VisitStatus(DEFAULT_VISIT_STATUS);
         homeVisitList = new ArrayList<>();
         physician = new Physician(new Name(DEFAULT_CONTACT_NAME), new Phone(DEFAULT_CONTACT_PHONE),
                 new Email(DEFAULT_CONTACT_EMAIL));
+        unavailableDateList = new ArrayList<>();
+        fullyScheduledDateList = new ArrayList<>();
 
     }
 
@@ -97,6 +99,9 @@ public class PersonBuilder {
         } else {
             homeVisitList = new ArrayList<>(((Nurse) personToCopy).getHomeVisits());
             physician = null;
+            homeVisitList = new ArrayList<>(((Nurse) personToCopy).getHomeVisits());
+            unavailableDateList = new ArrayList<>(((Nurse) personToCopy).getUnavailableDates());
+            fullyScheduledDateList = new ArrayList<>(((Nurse) personToCopy).getFullyScheduledDates());
 
         }
     }
@@ -167,7 +172,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code datesSlots} into a {@code Set<DateSlot>} and
+     * Parses the {@code datesSlots} into a {@code List<DateSlot>} and
      * set it to the {@code Person} that we are building.
      * Applies only to Patient.
      */
@@ -178,7 +183,7 @@ public class PersonBuilder {
 
 
     /**
-     * Parses the {@code homeVisit} into a {@code Set<HomeVisit>} and
+     * Parses the {@code homeVisit} into a {@code List<HomeVisit>} and
      * set it to the {@code Person} that we are building.
      * Applies only to Nurse.
      */
@@ -187,13 +192,6 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code VisitStatus} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withVisitStatus(String visitStatus) {
-        this.visitStatus = new VisitStatus(visitStatus);
-        return this;
-    }
 
     /**
      * Sets the {@code Uid} of the {@code Person} that we are building to the
@@ -214,13 +212,35 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code unavailableDate} into a {@code List<Date>} and
+     * set it to the {@code Person} that we are building.
+     * Applies only to Nurse.
+     */
+    public PersonBuilder withUnavailableDateList(String... unavailableDates) {
+        this.unavailableDateList = SampleDataUtil.getUnavailableDateList(unavailableDates);
+        return this;
+    }
+
+    /**
+     * Parses the {@code fullyScheduledDate} into a {@code List<Date>} and
+     * set it to the {@code Person} that we are building.
+     * Applies only to Nurse.
+     */
+    public PersonBuilder withFullyScheduledDateList(String... fullyScheduledDate) {
+        this.fullyScheduledDateList = SampleDataUtil.getFullyScheduledDateList(fullyScheduledDate);
+        return this;
+    }
+
+    /**
      * Build a person for test.
      */
     public Person build() {
         if (category.categoryName.equals("N")) {
-            return new Nurse(uid, name, gender, phone, email, address, tags, homeVisitList);
+            return new Nurse(uid, name, gender, phone, email, address, tags,
+                    unavailableDateList, homeVisitList, fullyScheduledDateList);
         } else if (this.category.categoryName.equals("P")) {
             return new Patient(uid, name, gender, phone, email, address, tags, dateSlotList, physician, null);
+
         }
         return new Person(uid, name, gender, phone, email, address, tags);
 

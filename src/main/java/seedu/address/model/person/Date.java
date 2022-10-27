@@ -19,7 +19,7 @@ public class Date {
      * https://mkyong.com/regular-expressions/how-to-validate-date-with-regular-expression/
      * The Date can only be in YYYY-MM-DD format without any space.
      */
-    public static final String VALIDATION_REGEX= "((?:20)[0-9][0-9])-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])";
+    public static final String VALIDATION_REGEX = "((?:20)[0-9][0-9])-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])";
 
     public final LocalDate date;
     private final String dateInString;
@@ -36,6 +36,9 @@ public class Date {
         this.dateInString = date;
     }
 
+    /**
+     * Constructs a {@code Date}.
+     */
     public Date(LocalDate date) {
         requireNonNull(date);
         this.date = date;

@@ -80,14 +80,13 @@ public class UpdateContactCommand extends Command {
             Physician physician = new Physician(name, phone, email);
             editedPatient = new Patient(personToEdit.getUid(),
                     personToEdit.getName(), personToEdit.getGender(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), patientToEdit.getDatesTimes(),
-                    patientToEdit.getVisitStatus(), Optional.of(physician), patientToEdit.getNextOfKin());
+                    personToEdit.getAddress(), personToEdit.getTags(), patientToEdit.getDatesSlots(),
+                    Optional.of(physician), patientToEdit.getNextOfKin());
         } else if (category.equals(new Category(Category.NEXTOFKIN_SYMBOL))) {
             NextOfKin nextOfKin = new NextOfKin(name, phone, email);
             editedPatient = new Patient(personToEdit.getUid(),
                     personToEdit.getName(), personToEdit.getGender(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), patientToEdit.getDatesTimes(),
-                    patientToEdit.getVisitStatus(), patientToEdit.getAttendingPhysician(), Optional.of(nextOfKin));
+                    personToEdit.getAddress(), personToEdit.getTags(), patientToEdit.getDatesSlots());
         } else {
             throw new CommandException(Messages.MESSAGE_UPDATECONTACT_INVALID_CONTACT_CATEGORY);
         }

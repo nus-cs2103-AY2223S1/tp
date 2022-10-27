@@ -26,6 +26,9 @@ public class DateSlot {
             + "," + "([1-4])";
     // @@author
 
+    public static final String SUCCESS_VISIT_CHECK = "V";
+    public static final String FAIL_VISIT_CHECK = "FV";
+    public static final String SUCCESS_ASSIGNED_CHECK = "A";
     private static final String SLOT_ONE = "10:00:00";
     private static final String SLOT_TWO = "12:00:00";
     private static final String SLOT_THREE = "14:00:00";
@@ -33,9 +36,6 @@ public class DateSlot {
     private static final Boolean DEFAULT_BOOLEAN = false;
     private static final Long DEFAULT_EMPTY_ASSIGNED_NURSE = Long.valueOf(-1); //No nurse assigned
     private static final String DEFAULT_CHECK = " ";
-    public static final String SUCCESS_ASSIGNED_CHECK = "A";
-    public static final String SUCCESS_VISIT_CHECK = "V";
-    public static final String FAIL_VISIT_CHECK = "FV";
     public final LocalDateTime dateSlotTime;
     private final String dateSlotInString;
     private Boolean hasVisited;
@@ -60,8 +60,10 @@ public class DateSlot {
         checkDateTime();
     }
 
-    public DateSlot(String dateSlot, Boolean isAssigned, Boolean isVisited,
-                    Boolean isSucessVisit, Long nurseUidNo) {
+    /**
+     * Constructs a {@code DateSlot}.
+     */
+    public DateSlot(String dateSlot, Boolean isAssigned, Boolean isVisited, Boolean isSucessVisit, Long nurseUidNo) {
         requireNonNull(dateSlot);
         requireNonNull(isAssigned);
         requireNonNull(isVisited);

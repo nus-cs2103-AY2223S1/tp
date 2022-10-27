@@ -2,6 +2,10 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents a Nurse's home-visit.
+ * Guarantees: immutable; is valid as declared in {@link #isValidHomeVisit(String)}
+ */
 public class HomeVisit {
 
     public static final String MESSAGE_CONSTRAINTS = "Home Visit should be in YYYY-MM-DD,SLOT_NUMBER:"
@@ -19,6 +23,11 @@ public class HomeVisit {
     public final DateSlot homeVisitDateSlot;
     public final Long homeVisitPatientUidNo;
 
+    /**
+     * Constructs a {@code HomeVisit}.
+     *
+     * @param dateSlot A valid dateSlot, uid A valid uidNo.
+     */
     public HomeVisit(DateSlot dateSlot, Long uid) {
         requireNonNull(dateSlot);
         requireNonNull(uid);
@@ -26,6 +35,9 @@ public class HomeVisit {
         this.homeVisitPatientUidNo = uid;
     }
 
+    /**
+     * Constructs a {@code HomeVisit}.
+     */
     public HomeVisit(String dateSlotAndUid) {
         requireNonNull(dateSlotAndUid);
         String[] s = dateSlotAndUid.split(":");

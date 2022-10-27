@@ -141,11 +141,4 @@ public class EditPersonDescriptorBuilder {
         return descriptor;
     }
 
-    /**
-     * Sets the {@code VisitStatus} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withVisitStatus(String validVisitStatus) {
-        descriptor.setVisitStatus(new VisitStatus(validVisitStatus));
-        return this;
-    }
 }

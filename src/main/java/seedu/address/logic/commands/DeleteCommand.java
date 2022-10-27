@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Date;
@@ -77,35 +76,41 @@ public class DeleteCommand extends Command {
                         && targetUid.equals(((DeleteCommand) other).targetUid)); // state check
     }
 
-    public Boolean deleteRespectiveHomeVisit(Model model, Person person, List<Person> personList)
+    private Boolean deleteRespectiveHomeVisit(Model model, Person person, List<Person> personList)
             throws CommandException {
-       List<DateSlot> dateSlotList = ((Patient) person).getDatesSlots();
-       if (dateSlotList.size() == 0) {
-           return false;
-       } else {
-           for (DateSlot dateSlot:dateSlotList) {
-               removeHomeVisit(model, dateSlot, personList);
-           }
-           return true;
-       }
+        boolean hasDeleted = false;
+        List<DateSlot> dateSlotList = ((Patient) person).getDatesSlots();
+        if (dateSlotList.size() == 0) {
+            return hasDeleted;
+        } else {
+            for (DateSlot dateSlot:dateSlotList) {
+                if (dateSlot.getHasAssigned()) {
+                    removeHomeVisit(model, dateSlot, personList);
+                    hasDeleted = true;
+                }
+            }
+        }
+        return hasDeleted;
     }
 
-    public Boolean unmarkRespectiveDateSlot(Model model, Person person, List<Person> personList)
-            throws CommandException{
+    private Boolean unmarkRespectiveDateSlot(Model model, Person person, List<Person> personList)
+            throws CommandException {
+        boolean hasUnmarked = false;
         List<HomeVisit> homeVisitList = ((Nurse) person).getHomeVisits();
         if (homeVisitList.size() == 0) {
-            return false;
+            return hasUnmarked;
         } else {
             for (HomeVisit homevisit:homeVisitList) {
                 Long patientUidNo = homevisit.getHomeVisitPatientUidNo();
                 DateSlot dateSlot = homevisit.getDateSlot();
                 unmarkDateSlot(model, dateSlot, patientUidNo, personList);
+                hasUnmarked = true;
             }
-            return true;
         }
+        return hasUnmarked;
     }
 
-    public void removeHomeVisit(Model model, DateSlot dateSlot, List<Person> personList) throws CommandException {
+    private void removeHomeVisit(Model model, DateSlot dateSlot, List<Person> personList) throws CommandException {
         Long nurseUidNo = dateSlot.getNurseUidNo();
         Person nurse = personList.stream().filter(p -> p.getUid().getUid().equals(nurseUidNo)).findFirst().get();
         List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
@@ -123,7 +128,7 @@ public class DeleteCommand extends Command {
         Optional<Date> dateToBeDeleted = updatedFullyScheduledList.stream().filter(
                 h -> h.getDate().equals(dateSlot.getDate())).findFirst();
 
-        if(!dateToBeDeleted.isEmpty()) {
+        if (!dateToBeDeleted.isEmpty()) {
             updatedFullyScheduledList.remove(dateToBeDeleted.get());
         }
 
@@ -131,7 +136,7 @@ public class DeleteCommand extends Command {
         editNurse(model, nurse, updatedHomeVisitList, updatedFullyScheduledList);
     }
 
-    public void unmarkDateSlot(Model model, DateSlot dateslot, Long patientUidNo, List<Person> personList)
+    private void unmarkDateSlot(Model model, DateSlot dateslot, Long patientUidNo, List<Person> personList)
             throws CommandException {
         Person patient = personList.stream().filter(
                 p -> p.getUid().getUid().equals(patientUidNo)).findFirst().get();
@@ -144,7 +149,7 @@ public class DeleteCommand extends Command {
         editPatient(model, patient, updatedDateSlotList);
     }
 
-    public void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
+    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
 
         Uid uid = patient.getUid();
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -158,7 +163,7 @@ public class DeleteCommand extends Command {
     }
 
 
-    public void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
+    private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
                           List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();

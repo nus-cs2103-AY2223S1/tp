@@ -29,7 +29,6 @@ public class PatientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_VISITSTATUS = "false";
 
     private Uid uid;
     private String category;
@@ -69,7 +68,6 @@ public class PatientBuilder {
         address = patientToCopy.getAddress();
         dateSlots = new ArrayList<>(((Patient) patientToCopy).getDatesSlots());
         tags = new HashSet<>(patientToCopy.getTags());
-        visitStatus = ((Patient) patientToCopy).getVisitStatus();
     }
 
     /**
@@ -138,17 +136,9 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code visited} of the {@code Patient} that we are building.
-     */
-    public PatientBuilder withVisitStatus(String visitStatus) {
-        this.visitStatus = new VisitStatus(visitStatus);
-        return this;
-    }
-
-    /**
      * Build a patient.
      */
     public Patient build() {
-        return new Patient(uid, name, gender, phone, email, address, tags, dateSlots, visitStatus);
+        return new Patient(uid, name, gender, phone, email, address, tags, dateSlots);
     }
 }

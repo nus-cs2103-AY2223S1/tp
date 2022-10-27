@@ -52,7 +52,6 @@ class JsonAdaptedPerson {
     private final String pName;
     private final String pPhone;
     private final String pEmail;
-   
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -80,12 +79,10 @@ class JsonAdaptedPerson {
 
         if (dateSlot != null) {
             this.dateSlots.addAll(dateSlot);
-        }    
-
+        }
         this.pName = Objects.requireNonNullElse(pName, "NA");
         this.pPhone = Objects.requireNonNullElse(pPhone, "NA");
         this.pEmail = Objects.requireNonNullElse(pEmail, "NA");
-
 
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -113,11 +110,10 @@ class JsonAdaptedPerson {
         boolean isPatient = category.equals(PATIENT_SYMBOL);
 
         if (isPatient) {
-            Patient sourcePatient = (Patient) source; 
+            Patient sourcePatient = (Patient) source;
             dateSlots.addAll(sourcePatient.getDatesSlots().stream()
                     .map(JsonAdaptedDateSlot::new)
                     .collect(Collectors.toList()));
-            
             String[] physNameArr = new String[]{"NA"};
             sourcePatient.getAttendingPhysician().ifPresent(x -> physNameArr[0] = x.getName().fullName);
             pName = physNameArr[0];
@@ -127,20 +123,16 @@ class JsonAdaptedPerson {
             String[] physPhoneArr = new String[]{"NA"};
             sourcePatient.getAttendingPhysician().ifPresent(x -> physPhoneArr[0] = x.getPhone().value);
             pPhone = physPhoneArr[0];
-
         } else {
             homeVisits.addAll(((Nurse) source).getHomeVisits().stream()
                     .map(JsonAdaptedHomeVisit::new)
                     .collect(Collectors.toList()));
-
             unavailableDates.addAll(((Nurse) source).getUnavailableDates().stream()
                     .map(JsonAdaptedDate::new)
                     .collect(Collectors.toList()));
-
             fullyAssignedDates.addAll(((Nurse) source).getFullyScheduledDates().stream()
                     .map(JsonAdaptedDate::new)
                     .collect(Collectors.toList()));
-            
             pName = "NA";
             pPhone = "NA";
             pEmail = "NA";
@@ -170,17 +162,17 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        final List<HomeVisit> nurseHomeVisitList= new ArrayList<>();
+        final List<HomeVisit> nurseHomeVisitList = new ArrayList<>();
         for (JsonAdaptedHomeVisit homeVisit : homeVisits) {
             nurseHomeVisitList.add(homeVisit.toModelType());
         }
 
-        final List<Date> nurseUnavailableDate= new ArrayList<>();
+        final List<Date> nurseUnavailableDate = new ArrayList<>();
         for (JsonAdaptedDate date : unavailableDates) {
             nurseUnavailableDate.add(date.toModelType());
         }
 
-        final List<Date> nurseFullySchedulledDates= new ArrayList<>();
+        final List<Date> nurseFullySchedulledDates = new ArrayList<>();
         for (JsonAdaptedDate date : fullyAssignedDates) {
             nurseFullySchedulledDates.add(date.toModelType());
         }

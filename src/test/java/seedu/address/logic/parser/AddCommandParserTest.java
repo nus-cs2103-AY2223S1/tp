@@ -41,7 +41,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VISIT_STATUS_DESC_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -125,13 +124,13 @@ public class AddCommandParserTest {
         // zero dateTimes
         Person expectedPersonNoDatesTimes = new PersonBuilder(AMY).withDatesSlots().withUniversalUid().build();
         assertParseSuccess(parser, CATEGORY_DESC_AMY + NAME_DESC_AMY + GENDER_DESC_AMY
-                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + VISIT_STATUS_DESC_AMY,
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND,
                 new AddCommand(expectedPersonNoDatesTimes));
 
         // zero tags
         Person expectedPersonNoTag = new PersonBuilder(AMY).withTags().withUniversalUid().build();
         assertParseSuccess(parser, CATEGORY_DESC_AMY + NAME_DESC_AMY + GENDER_DESC_AMY
-                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + DATESLOT_DESC_AMY + VISIT_STATUS_DESC_AMY,
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + DATESLOT_DESC_AMY,
                 new AddCommand(expectedPersonNoTag));
     }
 
@@ -232,22 +231,22 @@ public class AddCommandParserTest {
         // Valid misspelt category
         assertParseSuccess(parser, VALID_MISSPELT_CATEGORY_DESC_BOB + NAME_DESC_BOB
                 + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // Invalid misspelt category
         assertParseFailure(parser, INVALID_MISSPELT_CATEGORY_DESC_BOB + NAME_DESC_BOB
                 + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, Category.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_FRIEND, Category.MESSAGE_CONSTRAINTS);
 
         // Valid misspelt gender
         assertParseSuccess(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB
                 + VALID_MISSPELT_GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // Invalid misspelt gender
         assertParseFailure(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB
                 + INVALID_MISSPELT_GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, Gender.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_FRIEND, Gender.MESSAGE_CONSTRAINTS);
 
     }
 }

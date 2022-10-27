@@ -70,7 +70,7 @@ public class EditCommand extends Command {
             + "Unavailable Date are only applicable to nurse and Unavailable Date Index is used to indicate"
             + "the specific unavailable date to be edited. \n"
             + "[" + PREFIX_UNAVAILABLE_DATE + "UNAVAILABLE_DATE] \n"
-            + "[" + PREFIX_UNAVAILABLE_DATE_INDEX+ "UNAVAILABLE_DATE_INDEX] \n"
+            + "[" + PREFIX_UNAVAILABLE_DATE_INDEX + "UNAVAILABLE_DATE_INDEX] \n"
             + "Example: " + COMMAND_WORD + PREFIX_UID + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -189,7 +189,7 @@ public class EditCommand extends Command {
                     toBeUpdateDateSlot, toBeUpdateDateSlotIndexes, model, personList);
 
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                        updatedAddress, updatedTags, updatedDateTime, 
+                        updatedAddress, updatedTags, updatedDateSlot,
                         updatedPhysician, updatedNextOfKin);
 
         } else if (updatedCategory.categoryName.equals("P")) {
@@ -200,7 +200,7 @@ public class EditCommand extends Command {
             List<DateSlot> updatedDateSlot = editPersonDescriptor.getDatesSlots().orElse(null);
 
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                    updatedAddress, updatedTags, updatedDateTime, 
+                    updatedAddress, updatedTags, updatedDateSlot,
                     updatedPhysician, updatedNextOfKin);
 
         } else if (personToEdit instanceof Nurse && updatedCategory.categoryName.equals("N")) {
@@ -228,14 +228,12 @@ public class EditCommand extends Command {
 
             return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags,
                     updatedUnavailableDate, updatedHomeVisitList, updatedFullyScheduledDateList);
-            
         } else {
-
             throw new IllegalArgumentException(Category.MESSAGE_CONSTRAINTS);
         }
     }
 
-    public List<DateSlot> createEditedDateSlotList(List<DateSlot> originalDateSlot,
+    private List<DateSlot> createEditedDateSlotList(List<DateSlot> originalDateSlot,
                                                            Optional<List<DateSlot>> toBeUpdateDateSlots,
                                                            Optional<List<Index>> toBeUpdateDateSlotsIndexes,
                                                            Model model, List<Person> personList)
@@ -282,7 +280,9 @@ public class EditCommand extends Command {
             toBeUpdateDateSlotIndexes.sort(comp);
             for (Index index: toBeUpdateDateSlotIndexes) {
                 DateSlot dateSlotToBeDeleted = updatedDateSlot.get(index.getZeroBased());
-                removeHomeVisit(model, dateSlotToBeDeleted, personList);
+                if (dateSlotToBeDeleted.getHasAssigned()) {
+                    removeHomeVisit(model, dateSlotToBeDeleted, personList);
+                }
                 updatedDateSlot.remove(index.getZeroBased());
             }
 
@@ -314,7 +314,9 @@ public class EditCommand extends Command {
                 int indexNoToBeUpdated = toBeUpdateDateSlotIndexes.get(i).getZeroBased();
                 DateSlot dateSlotToBeUpdated = toBeUpdateDateSlot.get(i);
                 DateSlot dateSlotToBeDeleted = updatedDateSlot.get(indexNoToBeUpdated);
-                removeHomeVisit(model, dateSlotToBeDeleted, personList);
+                if (dateSlotToBeDeleted.getHasAssigned()) {
+                    removeHomeVisit(model, dateSlotToBeDeleted, personList);
+                }
                 updatedDateSlot.set(indexNoToBeUpdated, dateSlotToBeUpdated);
             }
 
@@ -420,20 +422,24 @@ public class EditCommand extends Command {
 
     }
 
-    public Boolean deleteRespectiveHomeVisit(List<DateSlot> dateSlotList, Model model, List<Person> personList)
+    private Boolean deleteRespectiveHomeVisit(List<DateSlot> dateSlotList, Model model, List<Person> personList)
             throws CommandException {
+        Boolean hasDeleted = false;
         if (dateSlotList.size() == 0) {
-            return false;
+            return hasDeleted;
         } else {
             for (DateSlot dateSlot:dateSlotList) {
-                removeHomeVisit(model, dateSlot, personList);
+                if (dateSlot.getHasAssigned()) {
+                    removeHomeVisit(model, dateSlot, personList);
+                    hasDeleted = true;
+                }
             }
-            return true;
         }
+        return hasDeleted;
     }
 
-    public boolean unmarkRespectiveDateSlot(Model model, Person person, List<Person> personList)
-            throws CommandException{
+    private boolean unmarkRespectiveDateSlot(Model model, Person person, List<Person> personList)
+            throws CommandException {
         List<HomeVisit> homeVisitList = ((Nurse) person).getHomeVisits();
         if (homeVisitList.size() == 0) {
             return false;
@@ -447,27 +453,35 @@ public class EditCommand extends Command {
         }
     }
 
-    public void removeAndUnmarkRepectiveHomeVisitAndDateSlot(Model model, Person nurse,
+    private void removeAndUnmarkRepectiveHomeVisitAndDateSlot(Model model, Person nurse,
                                                                 Date unavailableDate, List<Person> personList)
-        throws CommandException {
+            throws CommandException {
 
         List<HomeVisit> homeVisitList = ((Nurse) nurse).getHomeVisits();
         List<HomeVisit> updatedHomeVisitList = new ArrayList<>();
         updatedHomeVisitList.addAll(homeVisitList);
-        for (HomeVisit homeVisit: updatedHomeVisitList) {
+        List<Date> fullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
+        List<Date> updatedFullyScheduledList = new ArrayList<>();
+        updatedFullyScheduledList.addAll(fullyScheduledList);
+        for (HomeVisit homeVisit: homeVisitList) {
             if (homeVisit.getDateSlot().getDate().equals(unavailableDate.getDate())) {
                 Long patientUid = homeVisit.getHomeVisitPatientUidNo();
                 unmarkDateSlot(model, homeVisit.getDateSlot(), patientUid, personList);
-                updatedHomeVisitList.remove(homeVisit);
-            }
-            if (updatedHomeVisitList.size() == 0) {
-                break;
+                HomeVisit homeVisitToBeDeleted = updatedHomeVisitList.stream().filter(
+                        h -> h.getDateSlot().getDateTime().equals(homeVisit.getDateSlot().getDateTime()))
+                        .findFirst().get();
+                updatedHomeVisitList.remove(homeVisitToBeDeleted);
             }
         }
-        editNurse(model, nurse, updatedHomeVisitList);
+
+        if (fullyScheduledList.contains(unavailableDate)) {
+            fullyScheduledList.remove(unavailableDate);
+        }
+
+        editNurseForUnavailableDate(updatedHomeVisitList, updatedFullyScheduledList);
     }
 
-    public void removeHomeVisit(Model model, DateSlot dateSlot, List<Person> personList) throws CommandException {
+    private void removeHomeVisit(Model model, DateSlot dateSlot, List<Person> personList) throws CommandException {
         Long nurseUidNo = dateSlot.getNurseUidNo();
         Person nurse = personList.stream().filter(p -> p.getUid().getUid().equals(nurseUidNo)).findFirst().get();
         List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
@@ -485,7 +499,7 @@ public class EditCommand extends Command {
         Optional<Date> dateToBeDeleted = updatedFullyScheduledList.stream().filter(
                 h -> h.getDate().equals(dateSlot.getDate())).findFirst();
 
-        if(!dateToBeDeleted.isEmpty()) {
+        if (!dateToBeDeleted.isEmpty()) {
             updatedFullyScheduledList.remove(dateToBeDeleted.get());
         }
 
@@ -493,7 +507,7 @@ public class EditCommand extends Command {
         editNurse(model, nurse, updatedHomeVisitList, updatedFullyScheduledList);
     }
 
-    public void unmarkDateSlot(Model model, DateSlot dateslot, Long patientUidNo, List<Person> personList)
+    private void unmarkDateSlot(Model model, DateSlot dateslot, Long patientUidNo, List<Person> personList)
             throws CommandException {
         Person patient = personList.stream().filter(
                 p -> p.getUid().getUid().equals(patientUidNo)).findFirst().get();
@@ -506,7 +520,7 @@ public class EditCommand extends Command {
         editPatient(model, patient, updatedDateSlotList);
     }
 
-    public void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
+    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
 
         Uid uid = patient.getUid();
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -521,22 +535,20 @@ public class EditCommand extends Command {
     }
 
 
-    public void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
+    private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
                           List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
-        editPersonDescriptor.setHomeVisits(homeVisitList);
-        editPersonDescriptor.setFullyScheduledDates(fullyScheduledDateList);
-        EditCommand editCommand1 = new EditCommand(uid, editPersonDescriptor);
+        EditCommand.EditPersonDescriptor editPersonDescriptor1 = new EditCommand.EditPersonDescriptor();
+        editPersonDescriptor1.setHomeVisits(homeVisitList);
+        editPersonDescriptor1.setFullyScheduledDates(fullyScheduledDateList);
+        EditCommand editCommand1 = new EditCommand(uid, editPersonDescriptor1);
         editCommand1.execute(model);
     }
 
-    public void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList) throws CommandException {
-        Uid uid = nurse.getUid();
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
-        editPersonDescriptor.setHomeVisits(homeVisitList);
-        EditCommand editCommand1 = new EditCommand(uid, editPersonDescriptor);
-        editCommand1.execute(model);
+    private void editNurseForUnavailableDate(List<HomeVisit> homeVisitList, List<Date> fullyScheduledDateList)
+            throws CommandException {
+        this.editPersonDescriptor.setHomeVisits(homeVisitList);
+        this.editPersonDescriptor.setFullyScheduledDates(fullyScheduledDateList);
     }
 
     @Override
@@ -604,7 +616,7 @@ public class EditCommand extends Command {
             setUnavailableDates(toCopy.unavailableDates);
             setDateIndexes(toCopy.dateIndexes);
             setFullyScheduledDates(toCopy.fullyScheduledDates);
-                        setPhysician(toCopy.physician);
+            setPhysician(toCopy.physician);
             setNextOfKin(toCopy.nextOfKin);
 
         }

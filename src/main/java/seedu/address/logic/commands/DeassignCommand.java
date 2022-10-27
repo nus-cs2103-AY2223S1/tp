@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +43,7 @@ public class DeassignCommand extends Command {
     public static final String MESSAGE_SUCCESS = "%1$s 's dateslot/homevisit has been deassigned.";
     public static final String MESSAGE_INVALID_DATESLOT_OR_HOMEVISIT = "The dateslot/homevisit %1$s "
             + "has already passed.";
-    public static final String MESSAGE_NOT_ASSIGNED_DATESLOT =  "The dateslot %1$s has not been assigned.";
+    public static final String MESSAGE_NOT_ASSIGNED_DATESLOT = "The dateslot %1$s has not been assigned.";
     public static final String MESSAGE_OUTOFBOUND_DATESLOT_INDEX = "The dateslot/homevisit index "
             + "given is out of bound.";
 
@@ -76,7 +75,7 @@ public class DeassignCommand extends Command {
         Person personToBeEdit1 = person1.get();
         if (personToBeEdit1 instanceof Patient) {
             unmarkAssignedPatient(model, personToBeEdit1, lastShownList);
-        }  else if (personToBeEdit1 instanceof Nurse) {
+        } else if (personToBeEdit1 instanceof Nurse) {
             unmarkAssignedNurse(model, personToBeEdit1, lastShownList);
         } else {
             throw new IllegalArgumentException(Category.MESSAGE_CONSTRAINTS);
@@ -85,7 +84,7 @@ public class DeassignCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToBeEdit1.getUid().getUid()));
     }
 
-    public void unmarkAssignedPatient(Model model, Person person, List<Person> personList) throws CommandException {
+    private void unmarkAssignedPatient(Model model, Person person, List<Person> personList) throws CommandException {
         List<DateSlot> patientDateSlotList = ((Patient) person).getDatesSlots();
         List<DateSlot> updatedDateSlotList = new ArrayList<>();
         updatedDateSlotList.addAll(patientDateSlotList);
@@ -105,7 +104,7 @@ public class DeassignCommand extends Command {
 
     }
 
-    public void unmarkAssignedNurse(Model model, Person person, List<Person> personList) throws CommandException {
+    private void unmarkAssignedNurse(Model model, Person person, List<Person> personList) throws CommandException {
         List<HomeVisit> homeVisitsList = ((Nurse) person).getHomeVisits();
         List<HomeVisit> updatedHomeVisitList = new ArrayList<>();
         updatedHomeVisitList.addAll(homeVisitsList);
@@ -133,7 +132,7 @@ public class DeassignCommand extends Command {
         editNurse(model, person, updatedHomeVisitList, updatedFullyScheduledDatesList);
     }
 
-    public void sortAndCheckIndexForPatient(List<DateSlot> dateSlotList) throws CommandException {
+    private void sortAndCheckIndexForPatient(List<DateSlot> dateSlotList) throws CommandException {
         ReverseIndexComparator comp = new ReverseIndexComparator();
         dateslotOrHomevisitIndex.sort(comp);
 
@@ -143,7 +142,7 @@ public class DeassignCommand extends Command {
 
     }
 
-    public void sortAndCheckIndexForNurse(List<HomeVisit> homeVisitsList) throws CommandException {
+    private void sortAndCheckIndexForNurse(List<HomeVisit> homeVisitsList) throws CommandException {
         ReverseIndexComparator comp = new ReverseIndexComparator();
         dateslotOrHomevisitIndex.sort(comp);
 
@@ -153,21 +152,21 @@ public class DeassignCommand extends Command {
 
     }
 
-    public void checkInvalid(DateSlot dateSlot) throws CommandException {
+    private void checkInvalid(DateSlot dateSlot) throws CommandException {
         if (dateSlot.getHasVisited() == true) {
             throw new CommandException(String.format(MESSAGE_INVALID_DATESLOT_OR_HOMEVISIT,
                     dateSlot.getDateSlotFormatted()));
         }
     }
 
-    public void checkNotAssigned(DateSlot dateSlot) throws CommandException {
+    private void checkNotAssigned(DateSlot dateSlot) throws CommandException {
         if (dateSlot.getHasAssigned() == false) {
             throw new CommandException(String.format(MESSAGE_NOT_ASSIGNED_DATESLOT,
                     dateSlot.getDateSlotFormatted()));
         }
     }
 
-    public void removeHomeVisit(Model model, DateSlot dateSlot, List<Person> personList) throws CommandException {
+    private void removeHomeVisit(Model model, DateSlot dateSlot, List<Person> personList) throws CommandException {
         Long nurseUidNo = dateSlot.getNurseUidNo();
         Person nurse = personList.stream().filter(p -> p.getUid().getUid().equals(nurseUidNo)).findFirst().get();
         List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
@@ -185,7 +184,7 @@ public class DeassignCommand extends Command {
         Optional<Date> dateToBeDeleted = updatedFullyScheduledList.stream().filter(
                 h -> h.getDate().equals(dateSlot.getDate())).findFirst();
 
-        if(!dateToBeDeleted.isEmpty()) {
+        if (!dateToBeDeleted.isEmpty()) {
             updatedFullyScheduledList.remove(dateToBeDeleted.get());
         }
 
@@ -194,7 +193,7 @@ public class DeassignCommand extends Command {
 
     }
 
-    public void unmarkActionForPatient(Model model, DateSlot dateSlot, List<Person> personList)
+    private void unmarkActionForPatient(Model model, DateSlot dateSlot, List<Person> personList)
             throws CommandException {
         checkInvalid(dateSlot);
         checkNotAssigned(dateSlot);
@@ -202,7 +201,7 @@ public class DeassignCommand extends Command {
         dateSlot.unmark();
     }
 
-    public void unmarkActionForNurse(Model model, HomeVisit homeVisit, List<Person> personList,
+    private void unmarkActionForNurse(Model model, HomeVisit homeVisit, List<Person> personList,
                                      List<HomeVisit> homeVisitList,
                                      List<Date> fullyScheduledList) throws CommandException {
         DateSlot homeVisitToBeDeleted = homeVisit.getDateSlot();
@@ -213,12 +212,12 @@ public class DeassignCommand extends Command {
         Optional<Date> dateToBeDeleted = fullyScheduledList.stream().filter(
                 h -> h.getDate().equals(homeVisitToBeDeleted.getDate())).findFirst();
 
-        if(!dateToBeDeleted.isEmpty()) {
+        if (!dateToBeDeleted.isEmpty()) {
             fullyScheduledList.remove(dateToBeDeleted.get());
         }
     }
 
-    public void unmarkDateSlot(Model model, DateSlot dateslot, Long patientUidNo, List<Person> personList)
+    private void unmarkDateSlot(Model model, DateSlot dateslot, Long patientUidNo, List<Person> personList)
             throws CommandException {
         Person patient = personList.stream().filter(
                 p -> p.getUid().getUid().equals(patientUidNo)).findFirst().get();
@@ -231,20 +230,19 @@ public class DeassignCommand extends Command {
         editPatient(model, patient, updatedDateSlotList);
     }
 
-    public void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
-        List<Index> indexList = new ArrayList<>();
-        editPersonDescriptor.setDateSlotIndexes(indexList);
+    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
         Uid uid = patient.getUid();
-        EditCommand editCommand = new EditCommand(uid, editPersonDescriptor);
-        editCommand.execute(model);
-        EditCommand.EditPersonDescriptor editPersonDescriptor1 = new EditCommand.EditPersonDescriptor();
-        editPersonDescriptor1.setDatesSlots(dateSlotList);
-        EditCommand editCommand1 = new EditCommand(uid, editPersonDescriptor1);
-        editCommand1.execute(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+        Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();
+        Person confirmedPersonToEdit = personToEdit.get();
+        Person newPerson = new Patient(confirmedPersonToEdit.getUid(), confirmedPersonToEdit.getName(),
+                confirmedPersonToEdit.getGender(), confirmedPersonToEdit.getPhone(), confirmedPersonToEdit.getEmail(),
+                confirmedPersonToEdit.getAddress(), confirmedPersonToEdit.getTags(), dateSlotList);
+        model.setPerson(confirmedPersonToEdit, newPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
-    public void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
+    private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
                           List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();

@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.index.ReverseIndexComparator;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.DateSlot;
@@ -45,8 +43,8 @@ public class AssignCommand extends Command {
 
     public static final String MESSAGE_BOTH_NURSE = "The given uids are both nurses.";
     public static final String MESSAGE_BOTH_PATIENT = "The given uids are both patients.";
-    public static final String MESSAGE_INVALID_DATESLOT= "The date slot %1$s has already passed.";
-    public static final String MESSAGE_ASSIGNED_DATESLOT =  "The date slot %1$s has been assigned already.";
+    public static final String MESSAGE_INVALID_DATESLOT = "The date slot %1$s has already passed.";
+    public static final String MESSAGE_ASSIGNED_DATESLOT = "The date slot %1$s has been assigned already.";
     public static final String MESSAGE_OUTOFBOUND_DATESLOT_INDEX = "The date slot index given is out of bound.";
 
     public static final String MESSAGE_TIME_CRASHES = "There is already an exisiting homevisit in this dateslot %1$s."
@@ -89,10 +87,10 @@ public class AssignCommand extends Command {
         Person nurse = getNurse(personToBeEdit1, personToBeEdit2);
         markAssign(model, patient, nurse);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS,patient.getUid().getUid(), nurse.getUid().getUid()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getUid().getUid(), nurse.getUid().getUid()));
     }
 
-    public Person getPatient(Person person1, Person person2) throws CommandException {
+    private Person getPatient(Person person1, Person person2) throws CommandException {
         Boolean isPerson1Patient = person1.getCategory().categoryName.equals("P");
         Boolean isPerson2Patient = person2.getCategory().categoryName.equals("P");
 
@@ -107,7 +105,7 @@ public class AssignCommand extends Command {
         }
     }
 
-    public Person getNurse(Person person1, Person person2) throws CommandException {
+    private Person getNurse(Person person1, Person person2) throws CommandException {
         Boolean isPerson1Nurse = person1.getCategory().categoryName.equals("N");
         Boolean isPerson2Nurse = person2.getCategory().categoryName.equals("N");
 
@@ -122,7 +120,7 @@ public class AssignCommand extends Command {
         }
     }
 
-    public void markAssign(Model model, Person patient, Person nurse) throws CommandException {
+    private void markAssign(Model model, Person patient, Person nurse) throws CommandException {
         List<DateSlot> patientDateSlotList = ((Patient) patient).getDatesSlots();
         Long nurseUidNo = nurse.getUid().getUid();
         List<DateSlot> updatedDateSlotList = new ArrayList<>();
@@ -152,19 +150,19 @@ public class AssignCommand extends Command {
         editNurse(model, nurse, updatedHomeVisitList, updatedFullyScheduledList);
     }
 
-    public void checkInvalid(DateSlot dateSlot) throws CommandException {
+    private void checkInvalid(DateSlot dateSlot) throws CommandException {
         if (dateSlot.getHasVisited() == true) {
             throw new CommandException(String.format(MESSAGE_INVALID_DATESLOT, dateSlot.getDateSlotFormatted()));
         }
     }
 
-    public void checkAssigned(DateSlot dateSlot) throws CommandException {
+    private void checkAssigned(DateSlot dateSlot) throws CommandException {
         if (dateSlot.getHasAssigned() == true) {
             throw new CommandException(String.format(MESSAGE_ASSIGNED_DATESLOT, dateSlot.getDateSlotFormatted()));
         }
     }
 
-    public void checkCrashes(DateSlot dateSlot, List<HomeVisit> homeVisitList) throws CommandException {
+    private void checkCrashes(DateSlot dateSlot, List<HomeVisit> homeVisitList) throws CommandException {
         Optional<HomeVisit> homeVisit = homeVisitList.stream().filter(
                 h -> h.getDateSlot().getDateTime().equals(dateSlot.getDateTime())).findFirst();
         if (!homeVisit.isEmpty()) {
@@ -172,7 +170,7 @@ public class AssignCommand extends Command {
         }
     }
 
-    public void checkUnavailability(DateSlot dateSlot, Person nurse) throws CommandException {
+    private void checkUnavailability(DateSlot dateSlot, Person nurse) throws CommandException {
         List<Date> unavailabilityDateList = ((Nurse) nurse).getUnavailableDates();
         Optional<Date> date = unavailabilityDateList.stream().filter(
                 d -> d.getDate().equals(dateSlot.getDate())).findFirst();
@@ -181,13 +179,13 @@ public class AssignCommand extends Command {
         }
     }
 
-    public void createHomeVisit(DateSlot date, Person patient, List<HomeVisit> homeVisitList,
+    private void createHomeVisit(DateSlot date, Person patient, List<HomeVisit> homeVisitList,
                                 List<Date> updatedFullyScheduledDateList) {
         HomeVisit homeVisit = new HomeVisit(date, ((Patient) patient).getUid().getUid());
         homeVisitList.add(homeVisit);
         LocalDate localdate = date.getDate();
         int frequencyCount = 0;
-        for(int i = 0; i < homeVisitList.size(); i++) {
+        for (int i = 0; i < homeVisitList.size(); i++) {
             LocalDate dateToCheck = homeVisitList.get(i).getDateSlot().getDate();
             if (dateToCheck.equals(localdate)) {
                 frequencyCount++;
@@ -198,7 +196,7 @@ public class AssignCommand extends Command {
         }
     }
 
-    public void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
+    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
 
         Uid uid = patient.getUid();
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -211,7 +209,7 @@ public class AssignCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
-    public void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
+    private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
                           List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
@@ -221,7 +219,7 @@ public class AssignCommand extends Command {
         editCommand1.execute(model);
     }
 
-    public void sortAndCheckIndexForPatient(List<DateSlot> dateSlotList) throws CommandException {
+    private void sortAndCheckIndexForPatient(List<DateSlot> dateSlotList) throws CommandException {
         ReverseIndexComparator comp = new ReverseIndexComparator();
         dateslotIndex.sort(comp);
 
@@ -231,8 +229,9 @@ public class AssignCommand extends Command {
 
     }
 
-    public void executeChecksAndActions(DateSlot dateSlot, List<HomeVisit> homeVisitList, List<Date> fullyScheduledDate,
-                                        Person nurse, Long nurseUidNo, Person patient) throws CommandException {
+    private void executeChecksAndActions(DateSlot dateSlot, List<HomeVisit> homeVisitList,
+                                         List<Date> fullyScheduledDate,
+                                         Person nurse, Long nurseUidNo, Person patient) throws CommandException {
         checkInvalid(dateSlot);
         checkAssigned(dateSlot);
         checkCrashes(dateSlot, homeVisitList);

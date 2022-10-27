@@ -35,7 +35,7 @@ public class DeassignCommandParser implements Parser<DeassignCommand> {
         Uid uid;
 
         if (argMultimap.getValue(PREFIX_UID).isPresent()) {
-            uid = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).get());
+            uid = parseUid(argMultimap.getValue(PREFIX_UID).get());
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }

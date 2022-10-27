@@ -10,18 +10,19 @@ import seedu.address.model.person.DateSlot;
  * Jackson-friendly version of {@link DateSlot}.
  */
 class JsonAdaptedDateSlot {
-
     private final String dateSlot;
     private final Boolean isAssigned;
     private final Boolean isVisited;
     private final Boolean isSuccessVisit;
     private final Long nurseUidNo;
+    private final String dateSlotInString;
 
     /**
      * Constructs a {@code JsonAdaptedDateSlot} with the given {@code DateSlot}.
      */
     @JsonCreator
     public JsonAdaptedDateSlot(String dateSlot) {
+        this.dateSlot = dateSlot;
         String[] s = dateSlot.split(":");
         if (s[0].equals(DateSlot.SUCCESS_ASSIGNED_CHECK)) {
             this.isAssigned = true;
@@ -38,7 +39,7 @@ class JsonAdaptedDateSlot {
             this.isVisited = false;
             this.isSuccessVisit = false;
         }
-        this.dateSlot = s[2];
+        this.dateSlotInString = s[2];
         this.nurseUidNo = Long.parseLong(s[3]);
     }
 
@@ -47,6 +48,7 @@ class JsonAdaptedDateSlot {
      */
     public JsonAdaptedDateSlot(DateSlot source) {
         dateSlot = source.getString();
+        dateSlotInString = source.getDateSlotInString();
         isAssigned = source.getHasAssigned();
         isVisited = source.getHasVisited();
         isSuccessVisit = source.getIsSuccessVisit();
@@ -64,10 +66,10 @@ class JsonAdaptedDateSlot {
      * @throws IllegalValueException if there were any data constraints violated in the adapted date slot.
      */
     public DateSlot toModelType() throws IllegalValueException {
-        if (!DateSlot.isValidDateSlot(dateSlot)) {
+        if (!DateSlot.isValidDateSlot(dateSlotInString)) {
             throw new IllegalValueException(DateSlot.MESSAGE_CONSTRAINTS);
         }
-        return new DateSlot(dateSlot, isAssigned, isVisited, isSuccessVisit, nurseUidNo);
+        return new DateSlot(dateSlotInString, isAssigned, isVisited, isSuccessVisit, nurseUidNo);
     }
 
 }

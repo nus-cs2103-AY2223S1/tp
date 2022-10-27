@@ -39,8 +39,8 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withDatesSlots("2022-11-11,2")
             .withTags("friends")
-            .withAttendingPhysician("John Doe", "81234567", "johndoe@example.com")
-            .withVisitStatus("false").build();
+            .withAttendingPhysician("John Doe", "81234567", "johndoe@example.com").build();
+
     public static final Person BENSON = new PersonBuilder()
             .withUid("2").withCategory("P")
             .withName("Benson Meier").withGender("M")
@@ -49,16 +49,14 @@ public class TypicalPersons {
             .withPhone("98765432")
             .withDatesSlots("2022-10-23,1")
             .withTags("owesMoney", "friends")
-            .withAttendingPhysician("John Doe", "81234567", "johndoe@example.com")
-            .withVisitStatus("true").build();
+            .withAttendingPhysician("John Doe", "81234567", "johndoe@example.com").build();
     public static final Person CARL = new PersonBuilder()
             .withUid("3").withCategory("P")
             .withName("Carl Kurz").withGender("M")
             .withPhone("95352563")
             .withDatesSlots("2022-11-10,1", "2022-12-10,2")
             .withEmail("heinz@example.com")
-            .withAddress("wall street")
-            .withVisitStatus("false").build();
+            .withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder()
             .withUid("4").withCategory("P")
             .withName("Daniel Meier")
@@ -68,8 +66,7 @@ public class TypicalPersons {
             .withDatesSlots("2022-11-10,4", "2022-09-10,2")
             .withAttendingPhysician("John Doe", "81234567", "johndoe@example.com")
             .withAddress("10th street")
-            .withTags("friends")
-            .withVisitStatus("true").build();
+            .withTags("friends").build();
     public static final Person ELLE = new PersonBuilder()
             .withUid("5").withCategory("N")
             .withName("Elle Meyer").withGender("F")
@@ -77,7 +74,9 @@ public class TypicalPersons {
             .withEmail("werner@example.com")
             .withDatesSlots("2022-11-15,4")
             .withAddress("michegan ave")
-            .withHomeVisits("2022-10-15,1:6").build();
+            .withHomeVisits("2022-10-15,1:6")
+            .withUnavailableDateList("2022-11-11")
+            .withFullyScheduledDateList().build();
     public static final Person FIONA = new PersonBuilder()
             .withUid("6").withCategory("P")
             .withName("Fiona Kunz")
@@ -85,8 +84,7 @@ public class TypicalPersons {
             .withPhone("9482427")
             .withEmail("lydia@example.com")
             .withDatesSlots("2022-10-15,1")
-            .withAddress("little tokyo")
-            .withVisitStatus("false").build();
+            .withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder()
             .withUid("7")
             .withCategory("P")
@@ -94,8 +92,7 @@ public class TypicalPersons {
             .withGender("M")
             .withPhone("9482442")
             .withEmail("anna@example.com")
-            .withAddress("4th street")
-            .withVisitStatus("true").build();
+            .withAddress("4th street").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder()
@@ -105,8 +102,7 @@ public class TypicalPersons {
             .withPhone("8482424")
             .withDatesSlots("2023-01-11,2")
             .withEmail("stefan@example.com")
-            .withAddress("little india")
-            .withVisitStatus("false").build();
+            .withAddress("little india").build();
     public static final Person IDA = new PersonBuilder()
             .withUid("9")
             .withCategory("P")
@@ -115,8 +111,7 @@ public class TypicalPersons {
             .withPhone("8482131")
             .withDatesSlots("2022-11-11,3")
             .withEmail("hans@example.com")
-            .withAddress("chicago ave")
-            .withVisitStatus("false").build();
+            .withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder()

@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -42,11 +41,6 @@ import seedu.address.model.tag.Tag;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
-    public static String MESSAGE_DATE_SLOT_NURSE = "The person to be added is a nurse, "
-            + "should not have date and slot.\n";
-    public static String MESSAGE_UNAVAILABLE_DATE_PATIENT = "The person to be added is a patient, "
-            + "should not have unavailable date.\n";
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -69,10 +63,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Boolean isPatient = category.categoryName.equals(PATIENT_SYMBOL);
         Boolean isNurse = category.categoryName.equals(NURSE_SYMBOL);
         if (isPatient && haveUnavailableDate) {
-            throw new ParseException(String.format(MESSAGE_UNAVAILABLE_DATE_PATIENT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(AddCommand.MESSAGE_INVALID_FIELD_PATIENT);
         }
         if (isNurse && haveDateSlot) {
-            throw new ParseException(String.format(MESSAGE_DATE_SLOT_NURSE, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(AddCommand.MESSAGE_INVALID_FIELD_NURSE);
         }
 
         Uid id = new Uid();

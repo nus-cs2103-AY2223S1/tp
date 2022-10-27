@@ -40,10 +40,10 @@ public class Patient extends Person {
      * Every field, except attending physician and next of kin, must be present and not null.
      */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
-                   Set<Tag> tags, List<DateTime> dateTime, Physician p, NextOfKin n) {
+                   Set<Tag> tags, List<DateSlot> dateTime, Physician p, NextOfKin n) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateTime);
-        this.dateTimes.addAll(dateTime);
+        this.dateSlots.addAll(dateTime);
         attendingPhysician = Optional.ofNullable(p);
         nextOfKin = Optional.ofNullable(n);
     }
@@ -52,11 +52,11 @@ public class Patient extends Person {
      * Initialise patient with given attending physician and next of kin.
      */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
-                   Set<Tag> tags, List<DateTime> dateTime,
+                   Set<Tag> tags, List<DateSlot> dateSlot,
                    Optional<Physician> p, Optional<NextOfKin> n) {
         super(uid, name, gender, phone, email, address, tags);
-        requireAllNonNull(dateTime);
-        this.dateTimes.addAll(dateTime);
+        requireAllNonNull(dateSlot);
+        this.dateSlots.addAll(dateSlot);
         attendingPhysician = p;
         nextOfKin = n;
     }
@@ -122,7 +122,7 @@ public class Patient extends Person {
     @Override
     public String toString() {
         String dateSlotList = getDatesSlotsInString();
-        return "Category: P "+ super.toString()
+        return "Category: P " + super.toString()
                 + "; Home Visits Date and Time:" + dateSlotList;
     }
 }
