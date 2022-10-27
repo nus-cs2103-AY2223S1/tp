@@ -104,6 +104,17 @@ Examples:
 
 `delete 3` deletes the first task in the task list
 
+### Find tasks
+Find tasks stored in the task list by the task's description.
+Format: t find KEYWORD
+- Find all tasks whose task description contains the keyword inputted by the user partially or fully and displays them as a list.
+- The keyword is case insensitive. For example, one can find a task with the task description of 'homework1' even if the keyword inputted is ‘HOMEWORK1’
+
+Examples:
+t find work displays homework1 homework2 worktodo
+t find do paper displays do paper 1 do paper 2
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Summary of Commands
