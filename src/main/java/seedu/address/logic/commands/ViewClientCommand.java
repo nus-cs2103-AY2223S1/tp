@@ -26,7 +26,7 @@ public class ViewClientCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an AddCommand to add the specified {@code Client}
+     * Creates an ViewClientCommand to view the specified {@code Client}
      */
     public ViewClientCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

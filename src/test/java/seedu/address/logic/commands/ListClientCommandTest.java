@@ -28,12 +28,14 @@ public class ListClientCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListClientCommand(), model, ListClientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListClientCommand(),
+                model, ListClientCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showClientAtIndex(model, INDEX_FIRST_ELEMENT);
-        assertCommandSuccess(new ListClientCommand(), model, ListClientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListClientCommand(),
+                model, ListClientCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
