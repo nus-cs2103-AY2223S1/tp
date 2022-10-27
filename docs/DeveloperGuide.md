@@ -283,9 +283,31 @@ Cons:
 
 #### 4.2.4 Find command
 
-`FindCommand`, which extends `Command`, filters the current list of students based on a `Predicate<Student>` 
-that is generated using the user input. This depends on `FilteredStudents#updateFilteredStudentList(Predicate<Student>)`
-which is exposed in the `Model` interface as `Model#updateFilteredStudentList(Predicate<Student>)`.
+`FindCommand`, which extends `Command`, simulates searching through the `StudentRecord` for particular students. This is
+implemented through filtering the current list of students according to the user input, and displaying the filtered results
+to the user.
+
+`FindCommand` is executed through 2 steps:
+
+**Step 1: Parsing the command**
+
+The user input is first parsed by `StudentRecordParser`, in the same way as other commands. After the input is identified 
+to be a `find`command, a `FindCommandParser` instance will be created to further parse the command arguments.
+
+The `FindCommandParser` searches the input for either `PREFIX_STUDENT_NAME` or `PREFIX_ID` (but not both), and depending
+on which `Prefix` is present, instantiates a `NameContainsKeywordsPredicate` object or `IdPredicate` object respectively.
+Both inherit from `Predicate<Student>`.
+
+This `Predicate<Student>` will then be used to create a `FindCommand` object.
+
+**Step 2: Executing the command**
+
+The `FindCommand` object created will then interact with the `ModelManager` to execute the command.
+
+1. Using the `Preicate<Student>` created when parsing the command, `Model#updateFilteredStudentList(Predicate<Student>)`
+is called, to filter the list of students.
+2. The filtered list is returned to the user, and they will be able to view the list of students whose name contains the
+specified keyword(s), or whose Id matches the specified Id.
 
 Given below is an example usage scenario of `FindCommand`.
 
@@ -301,12 +323,10 @@ Step 3. Classify returns a filtered list of students whose names contain `Alex`.
 
 The following activity diagram summarizes what happens when a user executes the find command. 
 
-*Insert activity diagram*
+<img src="images/FindCommandActivityDiagram.png" />
 
 Design considerations:
 1. `ArgumentTokenizer#tokenize()` used to identify the prefix, to generate the corresponding `Predicate<Student>`.
-
-*to be further updated*
 
 #### 4.2.5 ViewAll command
 Implementation: 
@@ -402,7 +422,55 @@ Design considerations:
 
 #### 4.2.8 ViewStats command
 
-*To be updated*
+`ViewStatsCommand` is a `Command` to present summary statistics for an `Exam` taken by a particular class of students. 
+In particular, the command is implemented to generate the mean score of the `Exam`. The entire process of generating summary statistics is executed in 2 steps. 
+
+**Step 1: Parsing the command**
+
+The user input is first parsed, in the same way as other commands. After the input is identified to be a viewStats 
+command, a `ViewStatsCommandParser` instance will parse the inputs to retrieve the class and exam of interest.
+
+Furthermore, the command will also be parsed to retrieve an input for an additional `Prefix` "filter/", which will indicate 
+if the list of students returned should be flagged. A flagged list contains only students whose score for that particular 
+`Exam` falls below the mean.
+
+**Step 2: Executing the command**
+
+The `ViewStatsCommand` then interacts with the `ModelManager` to execute the command, which is again done in 2 steps.
+
+Step 1: A `ViewClassCommand` is executed, depending mainly on `Model#updateFilteredStudentList(Predicate<Student)`, in 
+order to retrieve the class of interest.
+
+Step 2: The mean of the exam scores for that class is calculated using `Model#calculateMean(String exam)`. 
+
+Depending on the boolean value returned during the parsing of the filter prefix, the class list is further filtered using
+`Model#updateFilteredStudentList(Predicate<Student)` to show a flagged list. 
+
+The whole list is sorted according to the score of the particular exam, before it is returned and displayed to the user.
+
+The following sequence diagram depicts how different components such as `Logic` and `Model` interact.
+
+<img src="images/ViewStatsCommandSequenceDiagram.png" />
+:information_source: **Note:** The lifeline for `ViewStatsCommandParser` and `ViewClassCommand` should end at the destroy 
+marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+Design Considerations:
+1. Sorting the list of students according to grade
+- Option 1: sort the filtered list of students after retrieving the class
+  - Pros:
+    - Will not modify the current `StudentRecord`
+    - Will not unnecessarily sort students not in the class of interest
+  - Cons:
+    - `FilteredStudents` is meant to be unmodifiable, and sorting potentially breaks this behaviour
+    - `FilteredStudents` is implemented with `FilteredList<Student>` which does not maintain sorting, so additional wrapping
+    needs to be done to sort the filtered list
+- Option 2 (current choice): sort the entire student record, then filter to retrieve class
+  - Pros:
+    - Can maintain sorting even beyond the `ViewStats` command, ie. maintaining a sorted list of students, sorted by name,
+    each time an `addStudent` command or `edit` command is run
+  - Cons:
+    - Reorders the whole `StudentRecord` each time the sorting is done
+    
 
 --------------------------------------------------------------------------------------------------------------------
 
