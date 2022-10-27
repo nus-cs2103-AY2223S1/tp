@@ -32,7 +32,8 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
       5. [`unplan` Unscheduling an item](#unscheduling-an-item--unplan)
       6. [`free` Viewing vacant timeslots](#viewing-vacant-timeslots--free)
       7. [`home` Returning to main page](#returning-to-main-page--home)
-      8. [`export` Exporting to PDF file](#exporting-to-pdf-file--export)
+      8. [`copy` Copying to clipboard](#copying-to-clipboard--copy)
+      9. [`pdf` Exporting to PDF file](#exporting-to-pdf-file--pdf)
    3. [`exit` Exiting Waddle](#exiting-waddle--exit)<br><br>
 3. [**FAQ**](#faq)
 4. [**Command summary**](#command-summary)
@@ -278,11 +279,17 @@ Returns you to the main itinerary list page.
 
 Format: `home`
 
-### Exporting to PDF file : `export`
+### Copying to clipboard: `copy`
+
+Copies the itinerary onto your device's clipboard so you can paste it anywhere.
+
+Format: `copy`
+
+### Exporting to PDF file : `pdf`
 
 Exports the itinerary into a PDF file.
 
-Format: `export`
+Format: `pdf`
 
 ### Exiting Waddle : `exit`
 
@@ -338,5 +345,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Unschedule Item**](#unscheduling-an-item--unplan)         | `unplan INDEX`<br> e.g., `unplan 3.2`                                                                    |
 | [**View Vacant Timeslots**](#viewing-vacant-timeslots--free) | `free`                                                                                                   |
 | [**Return to Main Page**](#returning-to-main-page--home)     | `home`                                                                                                   |
-| [**Export to PDF**](#exporting-to-pdf-file--export)          | `export`                                                                                                 |
+| [**Copy to clipboard**](#copying-to-clipboard--copy)         | `copy`
+      |
+| [**Export to PDF**](#exporting-to-pdf-file--pdf)          | `pdf`                                                                                                 |
 | [**Exit**](#exiting-waddle--exit)                            | `exit`                                                                                                   |
