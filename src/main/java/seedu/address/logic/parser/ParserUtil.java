@@ -166,11 +166,11 @@ public class ParserUtil {
     public static Order parseOrder(String order) throws ParseException {
         switch (order.trim().toLowerCase()) {
         case "asc":
-            return Order.ASC;
+            return Order.ASCENDING;
         case "dsc":
-            return Order.DSC;
+            return Order.DESCENDING;
         case "res":
-            return Order.RES;
+            return Order.RESET;
         default:
             throw new ParseException("Enter a valid order to sort by!");
         }

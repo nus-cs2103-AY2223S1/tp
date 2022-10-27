@@ -43,23 +43,13 @@ public class SortTaskCommand extends Command {
         requireNonNull(model);
         Comparator<Task> comparator;
         switch (order) {
-        case ASC:
-            comparator = new Comparator<Task>() {
-                @Override
-                public int compare(Task o1, Task o2) {
-                    return o1.getName().toString().compareTo(o2.getName().toString());
-                }
-            };
+        case ASCENDING:
+            comparator = (t1, t2) -> t1.getName().toString().compareTo(t2.getName().toString());
             break;
-        case DSC:
-            comparator = new Comparator<Task>() {
-                @Override
-                public int compare(Task o1, Task o2) {
-                    return o2.getName().toString().compareTo(o1.getName().toString());
-                }
-            };
+        case DESCENDING:
+            comparator = (t1, t2) -> t2.getName().toString().compareTo(t1.getName().toString());
             break;
-        case RES:
+        case RESET:
             comparator = null;
             break;
         default:

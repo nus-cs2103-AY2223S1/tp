@@ -43,23 +43,13 @@ public class SortMemberCommand extends Command {
         requireNonNull(model);
         Comparator<Person> comparator;
         switch (order) {
-        case ASC:
-            comparator = new Comparator<Person>() {
-                @Override
-                public int compare(Person o1, Person o2) {
-                    return o1.getName().toString().compareTo(o2.getName().toString());
-                }
-            };
+        case ASCENDING:
+            comparator = (t1, t2) -> t1.getName().toString().compareTo(t2.getName().toString());
             break;
-        case DSC:
-            comparator = new Comparator<Person>() {
-                @Override
-                public int compare(Person o1, Person o2) {
-                    return o2.getName().toString().compareTo(o1.getName().toString());
-                }
-            };
+        case DESCENDING:
+            comparator = (t1, t2) -> t2.getName().toString().compareTo(t1.getName().toString());
             break;
-        case RES:
+        case RESET:
             comparator = null;
             break;
         default:
