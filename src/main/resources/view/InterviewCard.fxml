@@ -30,12 +30,23 @@
       </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5.0">
             <children>
+               <Label styleClass="cell_small_label_fade" text="Date Time" />
             <Label fx:id="interviewDate" styleClass="cell_small_label" text="\$interviewDate" />
             <Label fx:id="interviewTime" styleClass="cell_small_label" text="\$interviewTime" />
             </children>
          </HBox>
-      <Label fx:id="round" styleClass="cell_small_label" text="\$round" />
-      <Label fx:id="interviewLocation" styleClass="cell_small_label" text="\$interviewLocation" />
+         <HBox alignment="CENTER_LEFT" spacing="5.0">
+            <children>
+               <Label styleClass="cell_small_label_fade" text="Round" />
+            <Label fx:id="round" styleClass="cell_small_label" text="\$round" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="5.0">
+            <children>
+               <Label styleClass="cell_small_label_fade" text="Location" />
+            <Label fx:id="interviewLocation" styleClass="cell_small_label" text="\$interviewLocation" />
+            </children>
+         </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />

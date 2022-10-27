@@ -68,16 +68,16 @@ public class ApplicationCard extends UiPart<Region> {
         status.setText(application.getStatus().getValue());
         switch (application.getStatus()) {
         case INTERVIEW:
-            status.setStyle("-fx-background-color: darkblue");
+            status.setStyle("-fx-background-color: dodgerblue");
             break;
         case OFFERED:
             status.setStyle("-fx-background-color: green");
             break;
         case PENDING:
-            status.setStyle("-fx-background-color: orange");
+            status.setStyle("-fx-background-color: darkorange");
             break;
         case REJECTED:
-            status.setStyle("-fx-background-color: red");
+            status.setStyle("-fx-background-color: firebrick");
             break;
         default: // should not happen
         }
