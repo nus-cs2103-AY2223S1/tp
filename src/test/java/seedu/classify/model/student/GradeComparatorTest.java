@@ -16,9 +16,15 @@ public class GradeComparatorTest {
     private Student s4 = new StudentBuilder().withClassName("4A").withExams("SA1 70").build();
 
     @Test
-    public void compare_differentClasses_returnsOne() {
+    public void compare_studentOneDifferentClass_returnsOne() {
         GradeComparator gradeComparator = new GradeComparator("SA1", new Class("4A"));
-        assertEquals(1, gradeComparator.compare(s1, s3));
+        assertEquals(1, gradeComparator.compare(s3, s1));
+    }
+
+    @Test
+    public void compare_studentTwoDifferentClass_returnsNegative() {
+        GradeComparator gradeComparator = new GradeComparator("SA1", new Class("4A"));
+        assertEquals(-1, gradeComparator.compare(s1, s3));
     }
 
     @Test
