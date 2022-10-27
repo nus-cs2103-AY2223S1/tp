@@ -17,6 +17,8 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    public Predicate<Person> createPersonIsInClassPredicate(String studentClass);
+
     /**
      * Returns the user prefs.
      */

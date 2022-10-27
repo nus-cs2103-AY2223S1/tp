@@ -3,6 +3,7 @@ package seedu.watson.logic.parser;
 import static seedu.watson.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_INDEX_NUMBERS;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_REMARK;
@@ -18,6 +19,7 @@ import seedu.watson.logic.parser.exceptions.ParseException;
 import seedu.watson.model.person.Address;
 import seedu.watson.model.person.Attendance;
 import seedu.watson.model.person.Email;
+import seedu.watson.model.person.IndexNumber;
 import seedu.watson.model.person.Name;
 import seedu.watson.model.person.Person;
 import seedu.watson.model.person.Phone;
@@ -48,16 +50,20 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG,
-                                       PREFIX_STUDENTCLASS, PREFIX_REMARK, PREFIX_SUBJECT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                                PREFIX_STUDENTCLASS)
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDEX_NUMBERS, PREFIX_ADDRESS,
+                                       PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG, PREFIX_STUDENTCLASS,
+                                       PREFIX_REMARK);
+
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX_NUMBERS, PREFIX_ADDRESS,
+                                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTCLASS)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEX_NUMBERS).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
@@ -70,7 +76,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Subject> subjectList = ParserUtil.parseSubjects(argMultimap.getAllValues(PREFIX_SUBJECT));
         SubjectHandler subjectHandler = new SubjectHandler(subjectList);
 
-        Person person = new Person(name, phone, email, address, studentClass,
+        Person person = new Person(name, indexNumber, phone, email, address, studentClass,
             attendance, remarksList, subjectHandler, tagList);
 
         return new AddCommand(person);
