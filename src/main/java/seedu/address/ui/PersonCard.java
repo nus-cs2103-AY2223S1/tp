@@ -76,7 +76,7 @@ public class PersonCard extends UiPart<Region> {
             meetingTimes.setManaged(false);
             return;
         }
-        person.getMeetingTimes().stream()
+        person.getEarliestMeeting().stream()
                 .sorted(Comparator.comparing(meetingTime -> meetingTime.displayValue))
                 .forEach(meetingTime -> meetingTimes.getChildren().add(new Label(meetingTime.displayValue)));
     }
