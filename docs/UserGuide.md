@@ -152,9 +152,9 @@ Example:
 * `delcom 14`
 
 ### Adding iteration to a commission: `additer`
-Adds an image at the specified file path to the current commission.
+Adds an iteration to a specified commission.
 
-Format: `additer FILEPATH`
+Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
 
 * The file path specified should be an absolute path from your root directory.
 * The command requires a commission to be selected.
@@ -165,13 +165,41 @@ Format: `additer FILEPATH`
   your commission. To replace a commission image, first delete the image before adding a new image.
 
 <div markdown="span" class="alert alert-info">
+**:information_source: What is a filepath and my root directory?**<br>
+Just like how we use addresses to tell specify locations when talking to people, computers
+do the same! Each file in your computer has a unique address that can be used to identify the
+exact location in your computer where the file is stored.
+
+The address of each file in your computer can be viewed simply as "directions", guiding your
+computer to get to the file. Think about how you would tell someone how to open a specific file
+in your computer. You would probably say something along the lines of: "Go to the Downloads folder,
+where you'll find an  Image folder. Click into the Images folder and open the file Draft1.png".
+
+Well to computers, filepaths are just like these guiding instructions that help them locate
+a specific file! And your 'root directory' is simply a 'base point' that stores all your files in
+your computer. For most users using a Windows or Mac computer, this root directory is simply
+a folder named `/`.
+
+So what a file path `/Users/John/Downloads/Draft 1.png` really means is just a way of telling
+the computer, "Hey, from my root directory, you'll find a folder called Users, and in there a
+folder called John. Open that up and you'll find another folder called Downloads.
+Open the Downloads folder and you'll see the file I want called `Draft 1.png`".
+
+To easily copy a filepath of a file:
+* On Windows, in your File Explorer, hold shift down while you right-click on the file you want.
+Select the option `Copy as Path` and the filepath of your file will be copied!
+* On Mac, in your Finder, click on the file you want to select it and press the
+`Option`, `Command`, `C` keys simultaneously. The filepath of your file is now copied!
+</div>
+
+<div markdown="span" class="alert alert-info">
 **:information_source: Notes about images in ArtBuddy:**<br>
 
 ArtBuddy creates a copy of each file you upload. This means that you can edit, delete, or
 move your original copy of the file without affecting the uploaded image on ArtBuddy.
 </div>
 
-Example: `additer /Users/John/Downloads/Clown.png`
+Example: `additer /Users/John/Downloads/Draft 1.png`
 
 ### Deleting iteration from commission: `deliter`
 Deletes an iteration from a commission.
