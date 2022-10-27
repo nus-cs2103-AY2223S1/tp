@@ -290,7 +290,7 @@ the same convention as [adding a student](#adding-a-student-add).
 ```
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
-[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [rates/RATES_PER_CLASS] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] [t/TAG]…`
+[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [rate/RATES_PER_CLASS] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] [t/TAG]…`
 
 Examples:
 
@@ -724,6 +724,6 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Rates per Class                                     | rate/   | `rate/100`                                           |
 | Additional notes of student (create new notes)      | nt/     | `nt/I have created new notes for Alice`              |
 | Additional notes of student (append existing notes) | nt-a/   | `nt-a/I have added more notes to the existing notes` |
-| Tags of student                                     | t       | `t/python`                                           |
+| Tags of student                                     | t/      | `t/python`                                           |
 
 [↑ Back to top](#table-of-contents)
