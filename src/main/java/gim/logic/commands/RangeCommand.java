@@ -21,11 +21,13 @@ public class RangeCommand extends Command {
             + "Example: \n" + COMMAND_WORD + " start/10/10/2022 end/22/10/2022\n\n"
             + COMMAND_WORD + " last/NUMBER_OF_DAYS\n"
             + "displays all exercises within the last NUMBER_OF_DAYS days and and today's exercises.\n"
+            + "NUMBER_OF_DAYS can only take positive integer values, up to 6 digits.\n"
             + "Example usage: \n" + COMMAND_WORD + " last/7";
 
     public static final String MESSAGE_USAGE_TWO = "The range feature has two variations: \n\n"
             + COMMAND_WORD + " last/NUMBER_OF_DAYS\n"
             + "displays all exercises within the last NUMBER_OF_DAYS days and and today's exercises.\n"
+            + "NUMBER_OF_DAYS can only take positive integer values, up to 6 digits.\n"
             + "Example: \n" + COMMAND_WORD + " last/7\n\n"
             + COMMAND_WORD + " start/START_DATE end/END_DATE\n"
             + "displays all exercises with dates that are within "
