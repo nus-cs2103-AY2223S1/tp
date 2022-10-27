@@ -182,7 +182,26 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 
 ### Sorting the students: `sort`
 
-[Coming soon]
+Sorts the list by the specified attribute in the specified order.
+
+Format: `sort ORDER a/ATTRIBUTE`
+
+- `ORDER` should be `asc` for ascending and `dsc` for descending order
+- `ATTRIBUTE` currently supported are 
+  - `NAME`
+  - `MODULE`
+  - `PHONE`
+  - `ID`
+  - `GIT`
+  - `HANDLE`
+  - `EMAIL`
+  - `ATTENDANCE`
+
+Examples:
+
+* `sort asc a/name`
+* `sort dsc a/phone`
+* `sort asc a/attendance`
 
 ### Filtering the students: `filter`
 
@@ -200,6 +219,36 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 
 [Coming soon]
 
+### Recording participation of a student: `participate`
+
+Record participation of student(s)
+
+Format: `participate INDEX/ALL STATUS p/COMPONENT`
+
+- `INDEX` could be specified or use `ALL` to record participation component for all students in the list
+- `STATUS` is either `yes` for participated or `no` for not participated
+- `COMPONENT` is the participation component
+
+Examples:
+
+* `participate 1 yes p/P01`
+* `participate 1 no p/P02`
+* `participate all yes p/P03`
+
+### Removing participation of a student: `unparticipate`
+
+Remove participation of student(s)
+
+Format: `unparticipate INDEX/ALL p/COMPONENT`
+
+- `INDEX` could be specified or use `ALL` to remove specified participation component for all students in the list
+- `COMPONENT` is the participation component
+
+Examples:
+
+* `unparticipate 1 p/P01`
+* `unparticipate all p/P03 `
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -215,17 +264,17 @@ the data of your previous StudMap home folder.
 
 Action | Format, Examples
 --------|------------------
-**
-Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**
-Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Sort** | `sort`
+**Sort** | `sort ORDER a/ATTRIBUTE`
 **Filter** | `filter`
 **Mark** | `mark`
 **Unmark** | `unmark`
 **Add tag** | `addtag`
+**Record participation** | `participate INDEX/ALL STATUS p/COMPONENT`
+**Remove participation** | `unparticipate INDEX/ALL p/COMPONENT`
