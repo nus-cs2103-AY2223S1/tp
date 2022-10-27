@@ -25,9 +25,9 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
     * **`list`** : Lists all customers.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/1 r/0` : Adds a customer named `John Doe` to bobaBot.
+    * **`add n/John Doe p/98765432 e/johnd@example.com m/1 r/0`** : Adds a customer named `John Doe` to bobaBot.
 
-    * **`delete`**`p/98765432` : Deletes the customer with the corresponding phone number (aka John Doe).
+    * **`delete p/98765432`** : Deletes the customer with the corresponding phone number (aka John Doe).
 
     * **`clear`** : Deletes all customers.
 
