@@ -17,8 +17,7 @@ import seedu.address.logic.commands.reminder.AddReminderCommand;
 import seedu.address.logic.commands.reminder.DeleteReminderCommand;
 import seedu.address.logic.commands.reminder.EditReminderCommand;
 import seedu.address.logic.commands.reminder.MarkReminderCommand;
-import seedu.address.logic.commands.reminder.SortReminderByDeadlineCommand;
-import seedu.address.logic.commands.reminder.SortReminderByPriorityCommand;
+import seedu.address.logic.commands.reminder.SortReminderCommand;
 import seedu.address.logic.commands.reminder.UnmarkReminderCommand;
 import seedu.address.logic.commands.student.AddCommand;
 import seedu.address.logic.commands.student.DeleteCommand;
@@ -35,6 +34,7 @@ import seedu.address.logic.parser.reminder.AddReminderCommandParser;
 import seedu.address.logic.parser.reminder.DeleteReminderCommandParser;
 import seedu.address.logic.parser.reminder.EditReminderCommandParser;
 import seedu.address.logic.parser.reminder.MarkReminderCommandParser;
+import seedu.address.logic.parser.reminder.SortReminderCommandParser;
 import seedu.address.logic.parser.reminder.UnmarkReminderCommandParser;
 import seedu.address.logic.parser.student.AddStudentCommandParser;
 import seedu.address.logic.parser.student.DeleteStudentCommandParser;
@@ -111,11 +111,8 @@ public class AddressBookParser {
         case UnmarkReminderCommand.COMMAND_WORD:
             return new UnmarkReminderCommandParser().parse(arguments);
 
-        case SortReminderByPriorityCommand.COMMAND_WORD:
-            return new SortReminderByPriorityCommand();
-
-        case SortReminderByDeadlineCommand.COMMAND_WORD:
-            return new SortReminderByDeadlineCommand();
+        case SortReminderCommand.COMMAND_WORD:
+            return new SortReminderCommandParser().parse(arguments);
 
         case AddTutorialCommand.COMMAND_WORD:
             return new AddTutorialCommandParser().parse(arguments);

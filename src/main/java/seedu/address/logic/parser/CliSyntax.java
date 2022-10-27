@@ -23,4 +23,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_PARTICIPATION = new Prefix("c/");
     public static final Prefix PREFIX_FIELD = new Prefix("f/");
     public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
+    public static final Prefix PREFIX_SORT_CRITERIA = new Prefix("by/");
 }
