@@ -6,6 +6,7 @@ import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -97,6 +98,13 @@ public class UniqueStudentList implements Iterable<Student> {
         }
 
         internalList.setAll(students);
+    }
+
+    /**
+     * Filters the student list based on {@code studentPredicate}.
+     */
+    public ObservableList<Student> filter(Predicate<Student> studentPredicate) {
+        return internalList.filtered(studentPredicate);
     }
 
     /**

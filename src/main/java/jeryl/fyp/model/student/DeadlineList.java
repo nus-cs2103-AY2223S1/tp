@@ -3,8 +3,10 @@ package jeryl.fyp.model.student;
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,6 +50,7 @@ public class DeadlineList implements DeadlineListTemplate {
             throw new DuplicateDeadlineException();
         }
         internalList.add(toAdd);
+        internalList.sort(Comparator.comparing(ddl -> ddl.fullDeadlineDateTime));
     }
 
     /**
@@ -87,7 +90,7 @@ public class DeadlineList implements DeadlineListTemplate {
      *  Replaces the contents of this list with {@code replacement}.
      */
     @Override
-    public void setDeadlines(jeryl.fyp.model.student.DeadlineList replacement) {
+    public void setDeadlines(DeadlineList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -122,13 +125,21 @@ public class DeadlineList implements DeadlineListTemplate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof jeryl.fyp.model.student.DeadlineList // instanceof handles nulls
-                && internalList.equals(((jeryl.fyp.model.student.DeadlineList) other).internalList));
+                || (other instanceof DeadlineList // instanceof handles nulls
+                && internalList.equals(((DeadlineList) other).internalList));
     }
 
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "[" + internalList
+                .stream()
+                .map(ddl -> ddl.getDeadlineName().fullDeadlineName)
+                .collect(Collectors.joining(",")) + "]";
     }
 
     /**
@@ -146,7 +157,7 @@ public class DeadlineList implements DeadlineListTemplate {
     }
 
     /**
-     * Returns unique Deadline if {@code deadlines} contains the Deadline with the specified task name.
+     * Returns unique {@code Deadline} with the specified {@code taskName}.
      */
     @Override
     public Deadline getDeadlineByName(String taskName) {
@@ -160,7 +171,7 @@ public class DeadlineList implements DeadlineListTemplate {
     }
 
     /**
-     * Returns the index if {@code deadlines} contains the Deadline with the specified task name.
+     * Returns the {@code Index} of the deadline with the specified {@code taskName}.
      */
     @Override
     public Index getIndexByName(String taskName) {
@@ -173,14 +184,21 @@ public class DeadlineList implements DeadlineListTemplate {
         return new Index(index);
     }
 
-    // Pending implementation
+    /**
+     * Returns the {@code Deadline} at a given index {@code index}.
+     */
     @Override
-    public Deadline getDeadlineByRank(Integer rank) {
-        requireAllNonNull(rank);
-        if (rank > internalList.size()) {
-            throw new DeadlineNotFoundException("Deadline specified not exist!");
-        }
-        return internalList.get(rank);
+    public Deadline getDeadlineByRank(Integer index) {
+        requireAllNonNull(index);
+        return internalList.get(index);
+    }
+
+    /**
+     * Returns the size of the deadline list.
+     */
+    @Override
+    public int size() {
+        return internalList.size();
     }
 }
 

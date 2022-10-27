@@ -16,7 +16,6 @@ import jeryl.fyp.model.student.StudentId;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
-    Predicate<Deadline> PREDICATE_SHOW_ALL_DEADLINES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -129,6 +128,12 @@ public interface Model {
      * followed by alphabetical order
      */
     ObservableList<Student> getSortedByProjectStatusStudentList();
+
+    /** Returns an unmodifiable view of the uncompleted list of students */
+    ObservableList<Student> getUncompletedStudentList();
+
+    /** Returns an unmodifiable view of the completed list of students */
+    ObservableList<Student> getCompletedStudentList();
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.

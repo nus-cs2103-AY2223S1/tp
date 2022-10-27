@@ -58,7 +58,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private FlowPane deadlineList;
 
-    private Image emailThumbnail = new Image(this.getClass().getResourceAsStream("/images/address_book_32.png"));
+    private Image emailThumbnail = new Image(this.getClass().getResourceAsStream("/images/mail.png"));
 
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
@@ -107,7 +107,6 @@ public class StudentCard extends UiPart<Region> {
             deadlineList.getChildren().add(new Label("No deadline at the moment!"));
         } else {
             student.getDeadlineList().asUnmodifiableObservableList().stream()
-                    .sorted(Comparator.comparing(ddl -> ddl.fullDeadlineDateTime))
                     .forEach(ddl -> deadlineList.getChildren().add(new Label(index.incrementAndGet() + ". " + ddl)));
         }
         deadlineList.getChildren().stream().forEach(child -> child.setStyle("-fx-font-size: 12"));
