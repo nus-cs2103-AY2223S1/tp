@@ -26,14 +26,14 @@ public class SampleDataUtil {
                     new Price("1000000"),
                     getTagSet("High-End", "Available"),
                     PropertyTypeEnum.valueOf("CONDO")),
-                new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
-                        new Price("1000000"),
-                        getTagSet("High-End", "Sold"),
-                        PropertyTypeEnum.valueOf("CONDO")),
-                new Property(new Name("DLEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
-                        new Price("1000000"),
-                        getTagSet("High-End", "Reserved"),
-                        PropertyTypeEnum.valueOf("CONDO"))
+            new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
+                new Price("1000000"),
+                getTagSet("High-End", "Sold"),
+                PropertyTypeEnum.valueOf("CONDO")),
+            new Property(new Name("DLEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
+                    new Price("1000000"),
+                    getTagSet("High-End", "Reserved"),
+                    PropertyTypeEnum.valueOf("CONDO"))
         };
     }
 

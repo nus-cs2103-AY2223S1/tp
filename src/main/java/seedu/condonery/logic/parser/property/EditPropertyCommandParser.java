@@ -68,7 +68,10 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPropertyDescriptor::setTags);
 
         if (argMultimap.getValue(PREFIX_PROPERTY_TYPE).isPresent()) {
-            editPropertyDescriptor.setPropertyTypeEnum(ParserUtil.parsePropertyType(argMultimap.getValue(PREFIX_PROPERTY_TYPE).get()));
+            editPropertyDescriptor
+                    .setPropertyTypeEnum(
+                            ParserUtil.parsePropertyType(
+                                    argMultimap.getValue(PREFIX_PROPERTY_TYPE).get()));
         }
         System.out.println(argMultimap.getValue(PREFIX_TAG));
         return new EditPropertyCommand(index, editPropertyDescriptor);
