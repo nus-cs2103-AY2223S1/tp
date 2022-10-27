@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
@@ -55,6 +56,9 @@ public class InspectionPanel extends UiPart<Region> {
     @FXML
     private ImageView birthdayImage;
 
+    @FXML
+    private VBox basicInformation;
+
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -73,6 +77,9 @@ public class InspectionPanel extends UiPart<Region> {
                     InspectionPanel.this.address.setText(n.getAddress().value);
                     InspectionPanel.this.birthday.setText(n.getBirthday().value);
                 });
+
+        basicInformation.maxWidthProperty().bind(getRoot().widthProperty().multiply(0.33));
+        basicInformation.prefWidthProperty().bind(basicInformation.maxWidthProperty());
 
         personListView.getSelectionModel().select(0);
     }

@@ -33,7 +33,7 @@
     <padding>
       <Insets top="10" right="10" bottom="10" left="10" />
     </padding>
-    <VBox prefWidth="250" maxWidth="250">
+    <VBox fx:id="basicInformation" minWidth="250" prefWidth="250" maxWidth="250">
       <GridPane HBox.hgrow="NEVER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="250" />

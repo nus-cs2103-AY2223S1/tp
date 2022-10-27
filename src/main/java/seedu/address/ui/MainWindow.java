@@ -26,8 +26,6 @@ import seedu.address.model.person.Person;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
-    private static final double OFFSET_HEIGHT = 100;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -74,12 +72,11 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         primaryStage.heightProperty().addListener((ob, oldVal, newVal) ->
-                windowAnchorPane.resizeElements(primaryStage.getHeight() - OFFSET_HEIGHT,
+                windowAnchorPane.resizeElements(primaryStage.getHeight(),
                         primaryStage.getWidth())
         );
         primaryStage.widthProperty().addListener((ob, oldVal, newVal) ->
-                windowAnchorPane.resizeElements(primaryStage.getHeight() - OFFSET_HEIGHT,
-                        primaryStage.getWidth())
+                windowAnchorPane.resizeElements(primaryStage.getHeight(), primaryStage.getWidth())
         );
 
         primaryStage.getScene().setOnMouseClicked(e -> resultDisplayPlaceholder.requestFocus());
@@ -130,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         windowAnchorPane = new WindowAnchorPane(logic);
         windowAnchorPane.fillInnerParts();
         windowAnchorPaneHolder.getChildren().add(windowAnchorPane.getRoot());
-        windowAnchorPane.resizeElements(primaryStage.getHeight() - OFFSET_HEIGHT,
+        windowAnchorPane.resizeElements(primaryStage.getHeight(),
                 primaryStage.getWidth());
 
         resultDisplay = new ResultDisplay();
@@ -143,7 +140,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand,
                 windowAnchorPane.getPersonListPanel().getListView(),
                 resultDisplayPlaceholder);
+
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        resultDisplayPlaceholder.prefWidthProperty().bind(primaryStage.widthProperty().subtract(20));
     }
 
     /**
@@ -234,6 +233,11 @@ public class MainWindow extends UiPart<Stage> {
         personListView.getSelectionModel().select(index);
     }
 
+    private void handleShowNotePanel(boolean isVisible) {
+        windowAnchorPane.setNotesPaneVisibility(isVisible, primaryStage.getHeight(), primaryStage.getWidth());
+        windowAnchorPane.resizeElements(primaryStage.getHeight(), primaryStage.getWidth());
+    }
+
     private boolean matches(String currentName, String[] matching) {
         for (String word : matching) {
             if (StringUtil.containsWordIgnoreCase(currentName, word)) {
@@ -269,6 +273,14 @@ public class MainWindow extends UiPart<Stage> {
 
             case Inspect:
                 handleInspect(commandResult.getArgs());
+                break;
+
+            case HideNotes:
+                handleShowNotePanel(false);
+                break;
+
+            case ShowNotes:
+                handleShowNotePanel(true);
                 break;
 
             default:

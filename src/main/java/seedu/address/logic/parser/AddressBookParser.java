@@ -19,9 +19,11 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindNoteCommand;
 import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HideNotesPanelCommand;
 import seedu.address.logic.commands.InspectCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListNoteCommand;
+import seedu.address.logic.commands.ShowNotesPanelCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
@@ -81,6 +83,12 @@ public class AddressBookParser {
 
         case InspectCommand.COMMAND_WORD:
             return new InspectCommandParser(model).parse(arguments);
+
+        case ShowNotesPanelCommand.COMMAND_WORD:
+            return new ShowNotesPanelCommand();
+
+        case HideNotesPanelCommand.COMMAND_WORD:
+            return new HideNotesPanelCommand();
 
         case AddNoteCommand.COMMAND_WORD:
             return new AddNoteCommandParser(model).parse(arguments);

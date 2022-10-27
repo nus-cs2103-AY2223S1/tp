@@ -17,7 +17,7 @@ public class CommandResult {
         ShowHelp,
         Exit,
         Inspect,
-        None
+        HideNotes, ShowNotes, None
     }
 
     private final UiState state;

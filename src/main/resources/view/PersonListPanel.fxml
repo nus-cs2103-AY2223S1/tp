@@ -23,7 +23,5 @@
       <Insets top="5" bottom="10"/>
     </padding>
   </Separator>
-  <ListView fx:id="personListView" HBox.hgrow="ALWAYS" orientation="HORIZONTAL" styleClass="person-list"
-            maxHeight="200">
-  </ListView>
+  <ListView fx:id="personListView" HBox.hgrow="ALWAYS" maxHeight="200" orientation="HORIZONTAL" styleClass="person-list"/>
 </VBox>
