@@ -44,7 +44,7 @@ class JsonAdaptedProperty {
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                @JsonProperty("propertyType")String propertyType,
                                @JsonProperty("propertyStatus")String propertyStatus,
-                              @JsonProperty("interestedClients") List<JsonAdaptedClient> interestedClients,
+                              @JsonProperty("interestedClients") List<JsonAdaptedClient> interestedClients
     ) {
         this.name = name;
         this.address = address;

@@ -3,6 +3,7 @@ package seedu.condonery.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
@@ -24,11 +25,13 @@ public class PropertyBuilder {
         }};
     public static final PropertyTypeEnum DEFAULT_PROPERTY_TYPE = PropertyTypeEnum.CONDO;
     public static final PropertyStatusEnum DEFAULT_PROPERTY_STATUS = PropertyStatusEnum.AVAILABLE;
-
+    public static final Set<Client> DEFAULT_CLIENTS = new HashSet<Client>() {{
+    }};
     private Name name;
     private Address address;
     private Price price;
     private Set<Tag> tags;
+    private Set<Client> clients;
     private PropertyTypeEnum propertyTypeEnum;
     private PropertyStatusEnum propertyStatusEnum;
 
@@ -40,6 +43,7 @@ public class PropertyBuilder {
         address = new Address(DEFAULT_ADDRESS);
         price = new Price(DEFAULT_PRICE);
         tags = DEFAULT_TAGS;
+        clients = DEFAULT_CLIENTS;
         propertyTypeEnum = DEFAULT_PROPERTY_TYPE;
         propertyStatusEnum = DEFAULT_PROPERTY_STATUS;
     }
@@ -52,6 +56,7 @@ public class PropertyBuilder {
         address = propertyToCopy.getAddress();
         price = propertyToCopy.getPrice();
         tags = new HashSet<>(propertyToCopy.getTags());
+        clients = new HashSet<>(propertyToCopy.getInterestedClients());
         propertyTypeEnum = propertyToCopy.getPropertyTypeEnum();
         propertyStatusEnum = propertyToCopy.getPropertyStatusEnum();
     }
@@ -69,6 +74,14 @@ public class PropertyBuilder {
      */
     public PropertyBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code clients} into a {@code Set<Client>} and set it to the {@code Property} that we are building.
+     */
+    public PropertyBuilder withClients(Client... clients) {
+        this.clients = SampleDataUtil.getClientSet(clients);
         return this;
     }
 
@@ -105,7 +118,7 @@ public class PropertyBuilder {
     }
 
     public Property build() {
-        return new Property(name, address, price, tags, propertyTypeEnum, propertyStatusEnum);
+        return new Property(name, address, price, tags, clients, propertyTypeEnum, propertyStatusEnum);
     }
 
 }

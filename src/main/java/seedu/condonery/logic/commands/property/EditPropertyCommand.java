@@ -129,9 +129,9 @@ public class EditPropertyCommand extends Command {
         Property updatedProperty = new Property(updatedName, updatedAddress,
                 updatedPrice,
                 updatedTags,
-                propertyTypeEnum,
                 updatedInterestedClients,
-                propertyTypeEnum);
+                propertyTypeEnum,
+                propertyStatusEnum);
         updatedProperty.setImageDirectoryPath(imageDirectoryPath);
         return updatedProperty;
     }

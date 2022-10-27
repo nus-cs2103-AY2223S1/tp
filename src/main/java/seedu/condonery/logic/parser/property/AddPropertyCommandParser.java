@@ -61,7 +61,7 @@ public class AddPropertyCommandParser implements Parser<Command> {
         PropertyStatusEnum propertyStatusEnum =
                 ParserUtil.parsePropertyStatus(argMultimap.getValue(PREFIX_PROPERTY_STATUS).get());
 
-        Property property = new Property(name, address, price, tagList, interestedClientList
+        Property property = new Property(name, address, price, tagList, interestedClientList,
                 propertyTypeEnum, propertyStatusEnum);
 
 

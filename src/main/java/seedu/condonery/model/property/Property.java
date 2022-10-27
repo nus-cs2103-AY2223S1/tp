@@ -36,27 +36,13 @@ public class Property {
     /**
      * Every field must be present and not null.
      */
-    public Property(Name name,
-                    Address address,
-                    Price price,
-                    Set<Tag> tags,
-                    PropertyTypeEnum propertyTypeEnum,
-                    PropertyStatusEnum propertyStatusEnum) {
-        requireAllNonNull(name, address, price, tags, propertyTypeEnum, propertyStatusEnum);
+    public Property(Name name, Address address, Price price, Set<Tag> tags, Set<Client> interestedClients,
+                PropertyTypeEnum propertyTypeEnum, PropertyStatusEnum propertyStatusEnum) {
         this.name = name;
         this.address = address;
         this.price = price;
-        this.tags.addAll(tags);
         this.propertyTypeEnum = propertyTypeEnum;
         this.propertyStatusEnum = propertyStatusEnum;
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Property(Name name, Address address, Price price, Set<Tag> tags, Set<Client> interestedClients,
-                PropertyTypeEnum propertyTypeEnum) {
-        this(name, address, price, tags, propertyTypeEnum);
         this.interestedClients.addAll(interestedClients);
     }
 
@@ -185,8 +171,8 @@ public class Property {
             && otherProperty.getPrice().equals(getPrice())
             && otherProperty.getPropertyStatusEnum().equals(getPropertyStatusEnum())
             && otherProperty.getPropertyTypeEnum().equals(getPropertyTypeEnum())
-            && otherProperty.getTags().equals(getTags());
-            && otherProperty.getInterestedClients().equals(getInterestedClients())
+            && otherProperty.getTags().equals(getTags())
+            && otherProperty.getInterestedClients().equals(getInterestedClients());
     }
 
     @Override
