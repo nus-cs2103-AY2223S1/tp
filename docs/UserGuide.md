@@ -105,7 +105,7 @@ Allows user to view information relating to the specified module.
 Examples:
 - `cd CS2103T`
 
-#### Done a module: `done`
+#### Marks done a module: `done`
 
 Marks a module as done. 
 - After you marked a module as done, this will increment
@@ -118,7 +118,7 @@ Format: `done module <module code>`, `done mod <module code>`
 Examples:
 - `done module CS1101S`
 
-#### Undone a module: `undone`
+#### Marks undone a module: `undone`
 
 Marks a module as undone. 
 - After you unmarked a module, this will decrement
@@ -210,14 +210,14 @@ the data of your previous ModuleList home folder.
 
 ### Modules
 
-|        Action        | Format                                                                              | Examples                                                           |
-|:--------------------:|-------------------------------------------------------------------------------------|--------------------------------------------------------------------|
-|   **Add a Module**   | `add module <mod. code>`<br/>`add -m <mod. code>`                                   | `add module CS2103T`<br/>`add -m CS2103T`                          |
-| **Remove a Module**  | `remove module <mod. code>`<br/>`rm -m <mod, code>`                                 | `remove module CS2103T`<br/>`rm -m cS2103t`                        |
-|  **Go to a Module**  | `cd <mod, code>`                                                                    | `cd CS2103T`                                                       |
-|  **Done a Module**   | `done module <module code>` <br/> `done mod <module code>`                          | `done module CS1101S` <br/> `done mod CS1101S`                     |
-| **Undone a Module**  | `undone module <module code>` <br/> `undone mod <module code>`                      | `undone module CS1101S` <br/> `undone mod CS1101S`                 |
-| **List All Modules** | `list module [-a]` <br/> `list mod [-a]` <br/> `ls module [-a]` <br/> `ls mod [-a]` | `list module`<br/> `list mod -a`<br/> `ls module`<br/> `ls mod -a` |
+|          Action           | Format                                                                              | Examples                                                           |
+|:-------------------------:|-------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+|     **Add a Module**      | `add module <mod. code>`<br/>`add -m <mod. code>`                                   | `add module CS2103T`<br/>`add -m CS2103T`                          |
+|    **Remove a Module**    | `remove module <mod. code>`<br/>`rm -m <mod, code>`                                 | `remove module CS2103T`<br/>`rm -m cS2103t`                        |
+|    **Go to a Module**     | `cd <mod, code>`                                                                    | `cd CS2103T`                                                       |
+|  **Marks done a Module**  | `done module <module code>` <br/> `done mod <module code>`                          | `done module CS1101S` <br/> `done mod CS1101S`                     |
+| **Marks undone a Module** | `undone module <module code>` <br/> `undone mod <module code>`                      | `undone module CS1101S` <br/> `undone mod CS1101S`                 |
+|   **List All Modules**    | `list module [-a]` <br/> `list mod [-a]` <br/> `ls module [-a]` <br/> `ls mod [-a]` | `list module`<br/> `list mod -a`<br/> `ls module`<br/> `ls mod -a` |
 
 ### Tasks
 
