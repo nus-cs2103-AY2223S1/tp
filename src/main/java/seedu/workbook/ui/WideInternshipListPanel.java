@@ -1,6 +1,5 @@
 package seedu.workbook.ui;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -9,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
 import seedu.workbook.commons.core.LogsCenter;
 import seedu.workbook.model.internship.Internship;

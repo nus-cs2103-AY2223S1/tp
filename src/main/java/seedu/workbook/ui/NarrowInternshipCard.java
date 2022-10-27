@@ -2,7 +2,6 @@ package seedu.workbook.ui;
 
 
 import java.util.Comparator;
-import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,8 +10,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.Stage;
-import seedu.workbook.model.internship.util.StageUtil;
 
 /**
  * An UI component that displays information of a {@code Internship}.

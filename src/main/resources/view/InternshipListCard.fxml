@@ -39,7 +39,7 @@
     </VBox>
       <VBox alignment="TOP_RIGHT" minHeight="105" GridPane.columnIndex="1">
          <padding>
-            <Insets bottom="5" left="15" right="15" top="5" />
+            <Insets bottom="5" left="15" right="15" top="10" />
          </padding>
          <children>
             <HBox alignment="TOP_RIGHT">
