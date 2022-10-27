@@ -21,6 +21,7 @@ public class TagsWithMessageView {
      * @return the node to be displayed in the UI.
      */
     public static Node from(TagsWithMessage tagsWithMessage) {
+        // TODO: Refactor code duplication
         final VBox container = new VBox();
         container.setSpacing(SPACING_UNIT);
 
