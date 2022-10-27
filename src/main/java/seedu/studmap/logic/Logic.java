@@ -1,11 +1,13 @@
 package seedu.studmap.logic;
 
+import java.io.File;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.studmap.commons.core.GuiSettings;
 import seedu.studmap.logic.commands.CommandResult;
 import seedu.studmap.logic.commands.exceptions.CommandException;
+import seedu.studmap.logic.imports.exceptions.ImportException;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 import seedu.studmap.model.ReadOnlyStudMap;
 import seedu.studmap.model.student.Student;
@@ -47,4 +49,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    String importFile(File file) throws ImportException;
 }
