@@ -45,6 +45,15 @@ public class ListOfContainsKeywordsPredicates {
         }
         return chainedPredicate;
     }
+
+    /**
+     * Checks whether there is at least 1 predicate in the predicate list
+     * @return boolean
+     */
+    public boolean hasPredicate() {
+        return !predicates.isEmpty();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

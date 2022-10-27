@@ -159,19 +159,40 @@ Finds persons whose has a field containing any of the given keywords among all s
 
 Format: `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`
 
+* At least one of the field specifier must be provided.
 * The search is case-insensitive. E.g., `bobby` will match `Bobby`.
 * The order of the keywords does not matter. E.g., `Bobby cortez` will match `Cortez bobby`.
-* Only full words will be matched e.g., `Bobby` will not match `Bobbys`.
-  
-  <!--- Can consider a flag for subwords in future increments) -->
+* If a field specifier is given more than once, the command will search only for the latest specifier. E.g., `n/Bobby n/cortez` will only search and return names with `cortez` in them.
+* Applicants matching at least one keyword will be returned (i.e., OR search). E.g., `n/Bobby Cortez` will return applicants with the name `Bobby Lacruz`, `Alexander Cortez`
 
-* Applicants matching at least one keyword will be returned (i.e., OR search). E.g., `Bobby Cortez` will return `Bobby Lacruz`, `Alexander Cortez`
+Search Types:
+1. Matching word search: Keywords will only match if there is a full matching word. E.g., `Bobby` will not match `Bobbys`.
+2. Substring Search: Keywords will match as long as a substring match exists. E.g., `Bob` will match `Bobby` and `Robobson`
+3. Numeric Search: Search will search by its numeric value. E.g., Both `3` and `3.0` will match `3.0`
+
+Each field has its own specific search type. The search types are given below:
+
+Fields using _Matching word search_:
+* `n/NAME` searches _names_ by _Matching word search_
+* `p/PHONE` searches _phones_ by _Matching word search_
+* `a/ADDRESS` searches _addresses_ by _Matching word search_
+* `g/GENDER` searches _genders_ by _Matching word search_
+* `u/UNIVERSITY` searches _universities_ by _Matching word search_
+* `gd/GRADUATION_DATE` searches _graduation dates_ by _Matching word search_
+* `m/MAJOR` searches _majors_ by _Matching word search_
+* `ji/JOB_ID` searches _job Ids_ by _Matching word search_
+* `jt/JOB_TITLE` searches _job titles_ by _Matching word search_
+* `t/TAG` searches for all _tags_ by _Matching word search_
+
+Fields using _Other searches_:
+* `e/EMAIL` searches _emails_ by _Substring Search_
+* `c/CAP` searches _cap's values_ by _Numeric Search_
 
 Examples:
 * `find n/Bobby ` Returns applicants with names matching `bobby` and `Bobby Cortez`
-* `find g/Female c/3.5 5 ` returns female applicants with a CAP of 3.5 or 5
+* `find g/Female c/3.5 2 ` returns female applicants with a CAP value of 3.5 or 2.0
 * `find g/Male t/offered KIV` returns male applicants who have an offered or KIV tag attached to them
-
+* `find g/Male e/gmail` returns male applicants who have a `gmail` substring in their email address
 
 <br>
 

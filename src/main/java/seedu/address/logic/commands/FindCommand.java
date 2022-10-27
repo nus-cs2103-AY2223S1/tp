@@ -26,6 +26,7 @@ public class FindCommand extends Command {
             + PREFIX_GENDER + "Male "
             + PREFIX_CAP + "3.5 5 "
             + PREFIX_TAG + "offered KIV ";
+    public static final String MESSAGE_NO_FIELD_GIVEN = "At least one field specifier to search into must be provided.";
 
     private final ListOfContainsKeywordsPredicates predicates;
 
