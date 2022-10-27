@@ -80,7 +80,7 @@ public class OpenLinkCommand extends Command {
 
     /**
      * Iterates through the link aliases from {@code linkAliasesToOpen} and opens the corresponding link url
-     * in the user's default browser for each link alias is found in {@code moduleToOpenLinks}.
+     * in the user's default browser for each link alias that is found in {@code moduleToOpenLinks}.
      * Partial opening of links is supported, whereby links will be sequentially opened from Plannit till the end of
      * {@code linkAliasesToOpen} or till a non-matching link alias is detected from {@code linkAliasesToOpen}.
      */
