@@ -10,8 +10,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class DeadlineTag implements Comparable<DeadlineTag> {
     public static final String DEADLINE_TAG_FORMAT_CONSTRAINTS =
-            "The deadline should be in the format DD-MM-YYYY. DD should be between " +
-            "1 and 31(both inclusive)\nand MM should be between 1 and 12(both inclusive)";
+            "The deadline should be in the format DD-MM-YYYY. DD should be between "
+                    + "1 and 31(both inclusive)\nand MM "
+                    + "should be between 1 and 12(both inclusive)";
     public static final String DEADLINE_TAG_INVALID_DATE =
             "The deadline should be a valid date";
     public static final String DEADLINE_TAG_DATE_HAS_PASSED =
