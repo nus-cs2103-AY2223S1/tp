@@ -45,7 +45,7 @@ public class BookingDescriptor {
     }
 
     public Optional<VenueName> getVenueName() {
-        return Optional.of(venueName);
+        return Optional.ofNullable(venueName);
     }
 
     public void setResident(Resident resident) {

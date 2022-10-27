@@ -46,6 +46,15 @@ public class Venue implements BookingField {
     }
 
     /**
+     * Returns a copy of the input {@code Venue}.
+     * @param venueToCopy The venue to copy.
+     * @return A venue with the same venue name and list of bookings as the input venue.
+     */
+    public static Venue copyOf(Venue venueToCopy) {
+        return new Venue(venueToCopy.getObservableBookings(), venueToCopy.getVenueName());
+    }
+
+    /**
      * Removes expired bookings from the list of bookings.
      */
     public void clearExpiredBookings() {
