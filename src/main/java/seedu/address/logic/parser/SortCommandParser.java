@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.SortCommand;
@@ -30,8 +31,8 @@ public class SortCommandParser implements Parser<SortCommand> {
         try {
             index = ParserUtil.parseIndex(indexAndLatest[0]);
         } catch (ParseException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    SortCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX + "\n"
+                    + SortCommand.MESSAGE_USAGE, ive);
         }
 
         return new SortCommand(index, isLatest(indexAndLatest[1].trim()));
