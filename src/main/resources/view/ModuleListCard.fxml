@@ -34,13 +34,12 @@
                styleClass="cell_small_label" />
       </HBox>
       <!-- VBox with links. -->
-      <!-- prefWidth of 400 is same as module list's width. -->
-      <VBox styleClass="pane-with-border" minWidth="100" prefWidth="400">
+      <VBox styleClass="pane-with-border" minWidth="100" prefWidth="200">
         <FlowPane fx:id="links" />
       </VBox>
       <!-- VBox with tasks . -->
-      <!-- prefWidth of 400 is same as module list's width. -->
-      <VBox styleClass="pane-with-border" fx:id="taskListPane" minWidth="100" prefWidth="400">
+      <VBox styleClass="pane-with-border" fx:id="taskListPane" minWidth="100"
+            prefWidth="200">
         <StackPane fx:id="taskListPanelPlaceholder" />
       </VBox>
     </VBox>
