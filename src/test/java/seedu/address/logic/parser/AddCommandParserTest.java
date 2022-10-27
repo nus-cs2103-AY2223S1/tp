@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -37,7 +36,6 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -152,11 +150,6 @@ public class AddCommandParserTest {
                 + EMAIL_DESC_BOB + INVALID_TUTORIAL_DESC + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Tutorial.MESSAGE_CONSTRAINTS);
 
-        // invalid address
-        assertParseFailure(parser, OCCUPATION_DESC + NAME_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + TUTORIAL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
-
         // invalid tag
         assertParseFailure(parser, OCCUPATION_DESC + NAME_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + TUTORIAL_DESC_BOB + ADDRESS_DESC_BOB
@@ -164,7 +157,7 @@ public class AddCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, OCCUPATION_DESC + INVALID_NAME_DESC + PHONE_DESC_BOB
-                        + EMAIL_DESC_BOB + TUTORIAL_DESC_BOB + INVALID_ADDRESS_DESC,
+                        + EMAIL_DESC_BOB + INVALID_TUTORIAL_DESC + ADDRESS_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble

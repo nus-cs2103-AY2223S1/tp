@@ -25,8 +25,10 @@ public class TutorialTest {
         assertThrows(NullPointerException.class, () -> Tutorial.isValidTutorial(null));
 
         // invalid tutorial group
-        assertFalse(Tutorial.isValidTutorial("")); // empty string
         assertFalse(Tutorial.isValidTutorial("A")); // only one character
+
+        // unknown tutorial group
+        assertTrue(Tutorial.isValidTutorial("")); // empty string
 
         // valid tutorial group
         assertTrue(Tutorial.isValidTutorial("T08")); // 3 digits

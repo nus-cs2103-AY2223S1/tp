@@ -15,7 +15,7 @@ public class EmailTest {
 
     @Test
     public void constructor_invalidEmail_throwsIllegalArgumentException() {
-        String invalidEmail = "";
+        String invalidEmail = " ";
         assertThrows(IllegalArgumentException.class, () -> new Email(invalidEmail));
     }
 
@@ -25,7 +25,6 @@ public class EmailTest {
         assertThrows(NullPointerException.class, () -> Email.isValidEmail(null));
 
         // blank email
-        assertFalse(Email.isValidEmail("")); // empty string
         assertFalse(Email.isValidEmail(" ")); // spaces only
 
         // missing parts
@@ -51,6 +50,9 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peterjack@-example.com")); // domain name starts with a hyphen
         assertFalse(Email.isValidEmail("peterjack@example.com-")); // domain name ends with a hyphen
         assertFalse(Email.isValidEmail("peterjack@example.c")); // top level domain has less than two chars
+
+        // email not known
+        assertTrue(Email.isValidEmail("")); // empty string
 
         // valid email
         assertTrue(Email.isValidEmail("PeterJack_1190@example.com")); // underscore in local part
