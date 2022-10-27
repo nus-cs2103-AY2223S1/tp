@@ -40,3 +40,4 @@ public class FilterCurrModCommand extends Command {
                 && predicate.equals(((FilterCurrModCommand) other).predicate)); // state check
     }
 }
+
