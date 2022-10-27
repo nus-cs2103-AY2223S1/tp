@@ -93,7 +93,9 @@ Item List Box:
 * The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
 * The order of the `KEYWORDS` do not matter (e.g "rose apple" will match "apple rose").
 * The result will be items in which `ITEM_NAME` contain any one of the `KEYWORDS` provided.
-* You can use the [List Command](#List) to display all items again.
+```
+```tip
+* You can use the [List Command](#list-all-items-list) to display all items again!
 ```
 
 **Example Input:**
@@ -125,7 +127,7 @@ Item List Box:
 > Sorts the list of currently displayed items by the provided criteria
 
 ```info
-* Only one sorting criteria is to be provided.
+* You should only provide one sorting criteria. 
 ```
 
 **Example Input:**
