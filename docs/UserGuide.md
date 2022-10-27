@@ -142,15 +142,19 @@ Format:
 
 ### Add task to team : `add task`
 
-Add a new task to the current team. The task name is compulsory, while the other fields are optional.
+Add a new task to the current team. The task name is compulsory, while the other fields such as assignee index and
+deadline are optional.
 
 Format:
-* `add task -n TASK_NAME -a ASSIGNEES -d DEADLINE`
+* `add task -n "TASK_NAME" -a ASSIGNEE_INDEX -d "DEADLINE"`
 
 Examples:
 
-* `add task -n "Merge PR" -a "Alex Yeoh" -d "2023-12-12 23:59""` will add a task with the name "Merge PR", assignee
-"Alex Yeoh" and deadline "2023-12-12 23:59" to the current team's task list.
+* `add task -n "Merge PR" -a 1 -d "02-Dec-2022 23:59"` will add a task with the name "Merge PR", assign the task to the
+first member in the team list and set the deadline "02-Dec-2022 23:59", to the current team's task list.
+* `add task -n "Review PR" -a 1 -a 3 -d "02-Dec-2022 23:59"` will add a task with the name "Review PR", assign the task
+to the first and third member in the team list and set the deadline "02-Dec-2022 23:59", to the current team's
+task list.
 
 ### Edit task in team : `edit task`
 
@@ -159,12 +163,16 @@ will be overwritten accordingly.
 
 Format:
 
-- `edit task TASK_INDEX -n TASK_NAME -a ASSIGNEES -d DEADLINE`
+- `edit task TASK_INDEX -n "TASK_NAME" -a ASSIGNEE_INDEX -d "DEADLINE"`
 
 Examples:
 
-* `edit task 1 -n "Merge PR" -a "Alex Yeoh" -d "2023-12-12 23:59""` will edit the first task in the current team's task
-list, setting the name as "Merge PR", assignee as "Alex Yeoh" and deadline as "2023-12-12 23:59".
+* `edit task 1 -n "Merge PR" -a 1 -d "02-Dec-2022 23:59"` will edit the first task in the current team's task
+list, setting the name as "Merge PR", setting the assignee as the first member in the team list and deadline
+as "02-Dec-2022 23:59".
+* `edit task 1 -n "Update UG" -d "02-Dec-2022 23:59"` will edit the first task in the current team's task
+list, setting the name as "Update UG" and changing the deadline as "02-Dec-2022 23:59". The assignees are not changed
+in this case.
 
 ### Assign task to team member: `assign task`
 

@@ -33,9 +33,9 @@ public class AddTaskCommand extends Command {
             + FLAG_ASSIGNEE_STR + " ASSIGNEE "
             + "Example: " + COMMAND_WORD + " "
             + " \"Review PR\" "
-            + FLAG_DEADLINE_STR + " \"2023-12-04 23:59\" "
-            + FLAG_ASSIGNEE_STR + " \"Alex Yeoh\" "
-            + FLAG_ASSIGNEE_STR + " \"Bernice Yu\" ";
+            + FLAG_DEADLINE_STR + " \"02-Dec-2022 23:59\" "
+            + FLAG_ASSIGNEE_STR + " 1 "
+            + FLAG_ASSIGNEE_STR + " 2 ";
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Added Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the team";

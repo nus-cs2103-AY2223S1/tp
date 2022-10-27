@@ -41,7 +41,7 @@ public class EditTaskCommand extends Command {
                     + FLAG_ASSIGNEE_STR + "MEMBER_INDEX \n"
                     + "Example: " + COMMAND_WORD + " 1 "
                     + FLAG_NAME_STR + " \"Review PR\" "
-                    + FLAG_DEADLINE_STR + " \"2023-12-12 23:59\" "
+                    + FLAG_DEADLINE_STR + " \"02-Dec-2022 23:59\" "
                     + FLAG_ASSIGNEE_STR + "1";
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
