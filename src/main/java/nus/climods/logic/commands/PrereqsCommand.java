@@ -1,12 +1,5 @@
 package nus.climods.logic.commands;
 
-import nus.climods.logic.commands.exceptions.CommandException;
-import nus.climods.model.Model;
-import nus.climods.model.module.Module;
-import nus.climods.model.module.predicate.ModulesByCodesPredicate;
-import org.openapitools.client.ApiException;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +7,14 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import org.openapitools.client.ApiException;
+
+import nus.climods.logic.commands.exceptions.CommandException;
+import nus.climods.model.Model;
+import nus.climods.model.module.Module;
+
+
 
 /**
  * Lists prerequisites for a module.
@@ -25,7 +26,8 @@ public class PrereqsCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + "CS2103";
     public static final String MESSAGE_MODULE_NOT_FOUND = "Module '%s' not in current NUS curriculum";
     public static final String MESSAGE_MODULE_LOAD_ERROR = "Error loading prerequisites for %s";
-    public static final String MESSAGE_MODULE_NO_PREREQUISITES = "Module %s has no prerequisites";
+    public static final String MESSAGE_MODULE_NO_PREREQUISITES = "Module %s has no prerequisites in current NUS "
+            + "curriculum";
     public static final String MESSAGE_SUCCESS = "Showing available prerequisites for %s";
     /**
      * Pattern to extract module codes from a string
@@ -42,13 +44,12 @@ public class PrereqsCommand extends Command {
         this.moduleCode = moduleCode.toUpperCase().trim();
     }
 
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Optional<Module> moduleOptional = model.getListModule(moduleCode);
 
         if (moduleOptional.isEmpty()) {
-            return new CommandResult(String.format(MESSAGE_MODULE_NOT_FOUND, moduleCode), false, false);
+            throw new CommandException(String.format(MESSAGE_MODULE_NOT_FOUND, moduleCode));
         }
 
         Module module = moduleOptional.get();
@@ -57,19 +58,22 @@ public class PrereqsCommand extends Command {
         } catch (ApiException e) {
             throw new CommandException(String.format(MESSAGE_MODULE_LOAD_ERROR, moduleCode));
         }
-        String prereqString = module.getPrerequisite();
 
+        CommandResult noPrereqsResult = new CommandResult(String.format(MESSAGE_MODULE_NO_PREREQUISITES, moduleCode),
+                false, false);
+
+        String prereqString = module.getPrerequisite();
         if (prereqString == null) {
-            return new CommandResult(String.format(MESSAGE_MODULE_NO_PREREQUISITES, moduleCode), false, false);
+            return noPrereqsResult;
         }
         Matcher matcher = MODULE_CODE_EXTRACT_PATTERN.matcher(prereqString);
         List<String> prereqs = matcher.results().map(MatchResult::group).collect(Collectors.toList());
 
-        // e.g classes where prerequisite is a String describing O Level or A Level qualifications
-        if (prereqs.size() == 0) {
-            return new CommandResult(String.format(MESSAGE_MODULE_NO_PREREQUISITES, moduleCode), false, false);
+        // returns false for classes where no prereq in current NUS curriculum
+        if (!model.showModules(prereqs)) {
+            return noPrereqsResult;
         }
-        model.showModules(prereqs);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode), false, false);
     }
 }
