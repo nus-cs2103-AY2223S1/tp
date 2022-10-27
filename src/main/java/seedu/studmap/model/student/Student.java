@@ -176,7 +176,7 @@ public class Student {
      */
     public int getAssignmentMarkedCount() {
         return (int) getAssignments().stream()
-                .filter(x -> Assignment.statusToString(x.markingStatus) == "marked").count();
+                .filter(x -> x.markingStatus == Assignment.Status.MARKED).count();
     }
 
     /**
@@ -184,7 +184,7 @@ public class Student {
      */
     public int getAssignmentUnmarkedCount() {
         return (int) getAssignments().stream()
-                .filter(x -> Assignment.statusToString(x.markingStatus) == "received").count();
+                .filter(x -> x.markingStatus == Assignment.Status.RECEIVED).count();
     }
 
     /**

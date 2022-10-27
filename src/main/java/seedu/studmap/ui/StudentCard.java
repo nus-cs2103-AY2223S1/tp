@@ -71,8 +71,8 @@ public class StudentCard extends UiPart<Region> {
         email.setText(student.getEmail().toString());
         module.setText(student.getModule().toString());
         studentId.setText(student.getId().toString());
-        gitName.setText("Github: " + student.getGitName().toString());
-        handle.setText("Telegram: " + student.getTeleHandle().toString());
+        gitName.setText(student.getGitName().getDisplayString());
+        handle.setText(student.getTeleHandle().getDisplayString());
 
         Label attendanceRateName = new Label("Attendance: ");
         attendanceRateName.setId("info");
