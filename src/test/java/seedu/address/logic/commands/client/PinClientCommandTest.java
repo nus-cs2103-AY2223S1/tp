@@ -21,7 +21,7 @@ import seedu.address.model.Pin;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
-import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.ClientMobile;
 import seedu.address.ui.StubUiManager;
 import seedu.address.ui.Ui;
 
@@ -37,7 +37,7 @@ public class PinClientCommandTest {
     @Test
     public void execute_pinClient_success() {
         Model actualModel = new ModelManager();
-        Client stubClientUnpinned = new Client(new Name("Sammy"), new ClientPhone("98765432"),
+        Client stubClientUnpinned = new Client(new Name("Sammy"), new ClientMobile("98765432"),
                 new ClientEmail("sammy@gmail.com"), new ArrayList<>(),
                 new ClientId(1), new Pin(false));
         actualModel.addClient(stubClientUnpinned);
@@ -46,7 +46,7 @@ public class PinClientCommandTest {
                 String.format(MESSAGE_PIN_SUCCESS, stubClientUnpinned));
 
         Model expectedModel = new ModelManager();
-        Client stubClientPinned = new Client(new Name("Sammy"), new ClientPhone("98765432"),
+        Client stubClientPinned = new Client(new Name("Sammy"), new ClientMobile("98765432"),
                 new ClientEmail("sammy@gmail.com"), new ArrayList<>(),
                 new ClientId(1), new Pin(true));
         expectedModel.addClient(stubClientPinned);
@@ -59,7 +59,7 @@ public class PinClientCommandTest {
     @Test
     public void execute_unpinClient_success() {
         Model actualModel = new ModelManager();
-        Client stubClientPinned = new Client(new Name("Sammy"), new ClientPhone("98765432"),
+        Client stubClientPinned = new Client(new Name("Sammy"), new ClientMobile("98765432"),
                 new ClientEmail("sammy@gmail.com"), new ArrayList<>(),
                 new ClientId(1), new Pin(true));
         actualModel.addClient(stubClientPinned);
@@ -68,7 +68,7 @@ public class PinClientCommandTest {
                 String.format(MESSAGE_UNPIN_SUCCESS, stubClientPinned));
 
         Model expectedModel = new ModelManager();
-        Client stubClientUnpinned = new Client(new Name("Sammy"), new ClientPhone("98765432"),
+        Client stubClientUnpinned = new Client(new Name("Sammy"), new ClientMobile("98765432"),
                 new ClientEmail("sammy@gmail.com"), new ArrayList<>(),
                 new ClientId(1), new Pin(false));
         expectedModel.addClient(stubClientUnpinned);

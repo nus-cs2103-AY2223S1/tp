@@ -4,33 +4,33 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the phone of the client. This class is modelled after the Phone class in the Person package of AB3
+ * Represents the mobile of the client. This class is modelled after the Phone class in the Person package of AB3
  */
-public class ClientPhone {
+public class ClientMobile {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+            "Mobile numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
 
-    private String phone;
+    private String mobile;
 
     /**
-     * Constructs a Client Phone.
+     * Constructs a Client Mobile.
      *
-     * @param phone A valid phone number.
+     * @param mobile A valid mobile number.
      */
-    public ClientPhone(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidClientPhone(phone), MESSAGE_CONSTRAINTS);
-        this.phone = phone;
+    public ClientMobile(String mobile) {
+        requireNonNull(mobile);
+        checkArgument(isValidClientMobile(mobile), MESSAGE_CONSTRAINTS);
+        this.mobile = mobile;
     }
 
     /**
-     * Represents an Empty Client Phone.
+     * Represents an Empty Client Mobile.
      */
-    public static class EmptyClientPhone extends ClientPhone {
-        public static final ClientPhone EMPTY_PHONE = new EmptyClientPhone();
-        public EmptyClientPhone() {
+    public static class EmptyClientMobile extends ClientMobile {
+        public static final ClientMobile EMPTY_MOBILE = new EmptyClientMobile();
+        public EmptyClientMobile() {
             super("90000000");
         }
 
@@ -55,9 +55,9 @@ public class ClientPhone {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid mobile number.
      */
-    public static boolean isValidClientPhone(String test) {
+    public static boolean isValidClientMobile(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -70,20 +70,20 @@ public class ClientPhone {
     }
 
     /**
-     * Returns the phone of the client.
-     * @return String representing phone
+     * Returns the mobile of the client.
+     * @return String representing mobile
      */
     public String uiRepresentation() {
-        return "Contact Number: " + this.phone;
+        return "Contact Number: " + this.mobile;
     }
 
     /**
-     * Returns the String representation of the Client Phone.
-     * @return String representing the Client Phone
+     * Returns the String representation of the Client Mobile.
+     * @return String representing the Client Mobile
      */
     @Override
     public String toString() {
-        return this.phone;
+        return this.mobile;
     }
     /**
      * Checks if an object equals this.
@@ -94,9 +94,9 @@ public class ClientPhone {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        } else if (other instanceof ClientPhone) {
-            ClientPhone otherPhone = (ClientPhone) other;
-            return this.phone.equals(otherPhone.phone);
+        } else if (other instanceof ClientMobile) {
+            ClientMobile otherMobile = (ClientMobile) other;
+            return this.mobile.equals(otherMobile.mobile);
         } else {
             return false;
         }

@@ -12,8 +12,8 @@ import seedu.address.model.Deadline;
 import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
-import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Title;
+import seedu.address.model.issue.Urgency;
 import seedu.address.ui.Ui;
 
 /**
@@ -30,7 +30,7 @@ public class EditIssueCommand extends IssueCommand {
             + PREFIX_ISSUE_ID + "ISSUE_ID "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_URGENCY + "PRIORITY \n"
+            + PREFIX_URGENCY + "URGENCY "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_ISSUE_ID + "1 "
@@ -40,7 +40,7 @@ public class EditIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_SUCCESS = "Issue %1$s has been edited";
     private final Title newTitle;
-    private final Priority newPriority;
+    private final Urgency newUrgency;
     private final Deadline newDeadline;
     private final IssueId issueId;
 
@@ -48,11 +48,11 @@ public class EditIssueCommand extends IssueCommand {
     /**
      * Creates an EditIssueCommand to edit the specified {@code Issue}
      */
-    public EditIssueCommand(Title newTitle, Deadline newDeadline, Priority newPriority, IssueId issueId) {
+    public EditIssueCommand(Title newTitle, Deadline newDeadline, Urgency newUrgency, IssueId issueId) {
         // NULL values passed into constructor here represent absent optional inputs
         this.newTitle = newTitle;
         this.newDeadline = newDeadline;
-        this.newPriority = newPriority;
+        this.newUrgency = newUrgency;
         this.issueId = issueId;
     }
 
@@ -69,8 +69,8 @@ public class EditIssueCommand extends IssueCommand {
             toEditIssue.setDeadline(newDeadline);
         }
 
-        if (newPriority != null) {
-            toEditIssue.setPriority(newPriority);
+        if (newUrgency != null) {
+            toEditIssue.setUrgency(newUrgency);
         }
 
         model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);

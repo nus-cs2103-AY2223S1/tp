@@ -11,12 +11,12 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
-import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.ClientMobile;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
-import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Title;
+import seedu.address.model.issue.Urgency;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
@@ -46,31 +46,31 @@ public class SampleDataUtil {
     public static Client[] getSampleClients(Project[] sampleProjects) {
         Client[] sampleClients = new Client[] {
             new Client(new Name("Alex Yeoh"),
-                    new ClientPhone("87438807"),
+                    new ClientMobile("87438807"),
                     new ClientEmail("alexyeoh@example.com"),
                     new ArrayList<>(List.of(sampleProjects[0], sampleProjects[1])),
                     new ClientId(1),
                     new Pin(false)),
             new Client(new Name("Bernice Yu"),
-                    new ClientPhone("99272758"),
+                    new ClientMobile("99272758"),
                     new ClientEmail("berniceyu@example.com"),
                     new ArrayList<>(List.of(sampleProjects[2])),
                     new ClientId(2),
                     new Pin(false)),
             new Client(new Name("Charlotte Oliveiro"),
-                    new ClientPhone("93210283"),
+                    new ClientMobile("93210283"),
                     new ClientEmail("charlotte@example.com"),
                     new ArrayList<>(List.of(sampleProjects[3])),
                     new ClientId(3),
                     new Pin(false)),
             new Client(new Name("David Li"),
-                    new ClientPhone("91031282"),
+                    new ClientMobile("91031282"),
                     new ClientEmail("lidavid@example.com"),
                     new ArrayList<>(List.of(sampleProjects[4])),
                     new ClientId(4),
                     new Pin(false)),
             new Client(new Name("Irfan Ibrahim"),
-                    new ClientPhone("92492021"),
+                    new ClientMobile("92492021"),
                     new ClientEmail("irfan@example.com"),
                     new ArrayList<>(List.of(sampleProjects[5])),
                     new ClientId(5),
@@ -89,42 +89,42 @@ public class SampleDataUtil {
         Issue[] sampleIssues = new Issue[] {
             new Issue(new Title("Refactor UI Classes"),
                     new Deadline("2022-01-01"),
-                    Priority.LOW,
+                    Urgency.LOW,
                     new Status(false),
                     sampleProjects[0],
                     new IssueId(1),
                     new Pin(false)),
             new Issue(new Title("Fix loading screen bug"),
                     new Deadline("2022-10-04"),
-                    Priority.MEDIUM,
+                    Urgency.MEDIUM,
                     new Status(true),
                     sampleProjects[1],
                     new IssueId(2),
                     new Pin(false)),
             new Issue(new Title("Implement filter command"),
                     new Deadline("2022-09-03"),
-                    Priority.LOW,
+                    Urgency.LOW,
                     new Status(false),
                     sampleProjects[1],
                     new IssueId(3),
                     new Pin(false)),
             new Issue(new Title("Update collision logic"),
                     new Deadline("2023-07-14"),
-                    Priority.HIGH,
+                    Urgency.HIGH,
                     new Status(true),
                     sampleProjects[2],
                     new IssueId(4),
                     new Pin(false)),
             new Issue(new Title("Create Developer Guide"),
                     new Deadline("2022-02-04"),
-                    Priority.HIGH,
+                    Urgency.HIGH,
                     new Status(true),
                     sampleProjects[3],
                     new IssueId(5),
                     new Pin(false)),
             new Issue(new Title("Change default behaviour"),
                     new Deadline("2022-02-19"),
-                    Priority.MEDIUM,
+                    Urgency.MEDIUM,
                     new Status(false),
                     sampleProjects[4],
                     new IssueId(6),

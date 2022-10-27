@@ -24,14 +24,14 @@ public class SortIssueCommand extends IssueCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_FLAG
             + ": Sort issues in address book. \n"
             + "Sort by issue id: "
-            + PREFIX_DEADLINE + "0 (ascending) or "
-            + PREFIX_DEADLINE + "1 (descending). "
+            + PREFIX_ISSUE_ID + "0 (ascending) or "
+            + PREFIX_ISSUE_ID + "1 (descending). "
             + "Sort by deadline: "
             + PREFIX_DEADLINE + "0 (chronological) or "
             + PREFIX_DEADLINE + "1 (reverse chronological). "
-            + "Sort by priority: "
-            + PREFIX_URGENCY + "0 (lowest) or "
-            + PREFIX_URGENCY + "1 (highest). \n"
+            + "Sort by urgency: "
+            + PREFIX_URGENCY + "0 (ascending) or "
+            + PREFIX_URGENCY + "1 (descending). "
             + "Example: "
             + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
@@ -67,8 +67,8 @@ public class SortIssueCommand extends IssueCommand {
         }
 
         if (sortKey.equals(PREFIX_URGENCY)) {
-            model.sortIssuesByPriority(sortOrder);
-            sortKeyString = "priority.";
+            model.sortIssuesByUrgency(sortOrder);
+            sortKeyString = "urgency.";
         }
 
         model.sortIssuesByPin();
