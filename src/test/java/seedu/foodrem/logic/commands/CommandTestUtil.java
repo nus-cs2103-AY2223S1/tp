@@ -87,15 +87,15 @@ public class CommandTestUtil {
 
     public static final String VALID_DESC_ID_FIRST = " " + VALID_ID_NUMBER_ONE;
 
-    public static final String INVALID_ITEM_NAME_POTATOES = "Potatoe@s";
+    public static final String INVALID_ITEM_NAME_POTATOES = "Potatoes||";
     public static final String INVALID_ITEM_QUANTITY_POTATOES = "1@0";
-    public static final String INVALID_ITEM_UNIT_POTATOES = "k@g";
+    public static final String INVALID_ITEM_UNIT_POTATOES = "kg||";
     public static final String INVALID_ITEM_BOUGHT_DATE_POTATOES = "11-11-202@2";
     public static final String INVALID_ITEM_EXPIRY_DATE_POTATOES = "11-11-202@2";
 
-    public static final String INVALID_ITEM_NAME_CUCUMBERS = "Cucumber@s";
+    public static final String INVALID_ITEM_NAME_CUCUMBERS = "Cucumbers||";
     public static final String INVALID_ITEM_QUANTITY_CUCUMBERS = "2$00@0";
-    public static final String INVALID_ITEM_UNIT_CUCUMBERS = "gram@s";
+    public static final String INVALID_ITEM_UNIT_CUCUMBERS = "grams||";
     public static final String INVALID_ITEM_BOUGHT_DATE_CUCUMBERS = "12-12-202@2";
     public static final String INVALID_ITEM_EXPIRY_DATE_CUCUMBERS = "12-12-202@2";
     public static final String INVALID_ITEM_PRICE_CUCUMBERS = "1/2";
@@ -104,7 +104,6 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_NAME_DISALLOWED_PUNCTUATION = "Frui//ts";
     public static final String INVALID_TAG_NAME_EXCEED_CHAR_LIMIT =
             "vegetablesvegetablesvegetablesvegetablesvegetables";
-    public static final String INVALID_TAG_NAME_ILLEGAL_FIRST_CHAR = "@fruits";
 
     public static final String INVALID_DESC_ITEM_NAME_CUCUMBERS = " " + CliSyntax.PREFIX_NAME
             + INVALID_ITEM_NAME_CUCUMBERS;
@@ -138,10 +137,6 @@ public class CommandTestUtil {
     public static final String INVALID_DESC_TAG_NAME_EXCEED_CHAR_LIMIT = " " + CliSyntax.PREFIX_NAME
             + INVALID_TAG_NAME_EXCEED_CHAR_LIMIT;
 
-    public static final String INVALID_DESC_TAG_NAME_ILLEGAL_FIRST_CHAR = " " + CliSyntax.PREFIX_NAME
-            + INVALID_TAG_NAME_ILLEGAL_FIRST_CHAR;
-
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditItemDescriptor DESC_POTATOES;
