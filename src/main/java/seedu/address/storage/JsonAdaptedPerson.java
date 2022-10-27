@@ -177,7 +177,7 @@ class JsonAdaptedPerson {
 
         final Set<Group> modelGroups = new HashSet<>(personGroups);
 
-        final Social modelSocial = getModelSocial(social);
+        final Social modelSocial = getModelSocial(social + " .");
 
 
         return new Person(modelOccupation, modelName, modelPhone, modelEmail, modelTutorial, modelAddress, modelTags,
