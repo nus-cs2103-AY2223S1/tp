@@ -2,11 +2,15 @@
 layout: page
 title: Developer Guide
 ---
+<div style="text-align:center;">
+<img src="images/classifyLogo.png">
+</div>
+
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. **Introduction**
+## **1 Introduction**
 
 ### 1.1 Purpose
 
@@ -24,20 +28,20 @@ Teachers can generate exam statistics for each class, and Class-ify quickly flag
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. **Acknowledgements**
+## **2 Acknowledgements**
 
 * Class-ify is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the SE-EDU initiative.
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. **Setting up, getting started**
+## **3 Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. **Design and Implementation**
+## **4 Design and Implementation**
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/docs/diagrams/) folder.
@@ -165,7 +169,7 @@ Classes used by multiple components are in the `seedu.classify.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-#### 4.2.1 Adding new students
+#### 4.2.1 AddStudent command
 
 <u>**Description**</u>
 
@@ -283,15 +287,19 @@ Cons:
 
 #### 4.2.4 Find command
 
+<u>**Description**</u>
+
 `FindCommand`, which extends `Command`, simulates searching through the `StudentRecord` for particular students. This is
 implemented through filtering the current list of students according to the user input, and displaying the filtered results
 to the user.
+
+<u>**Implementation**</u>
 
 `FindCommand` is executed through 2 steps:
 
 **Step 1: Parsing the command**
 
-The user input is first parsed by `StudentRecordParser`, in the same way as other commands. After the input is identified 
+The user input is first parsed by `StudentRecordParser`, in the same way as other commands. After the input is identified
 to be a `find`command, a `FindCommandParser` instance will be created to further parse the command arguments.
 
 The `FindCommandParser` searches the input for either `PREFIX_STUDENT_NAME` or `PREFIX_ID` (but not both), and depending
@@ -305,15 +313,15 @@ This `Predicate<Student>` will then be used to create a `FindCommand` object.
 The `FindCommand` object created will then interact with the `ModelManager` to execute the command.
 
 1. Using the `Preicate<Student>` created when parsing the command, `Model#updateFilteredStudentList(Predicate<Student>)`
-is called, to filter the list of students.
+   is called, to filter the list of students.
 2. The filtered list is returned to the user, and they will be able to view the list of students whose name contains the
-specified keyword(s), or whose Id matches the specified Id.
+   specified keyword(s), or whose Id matches the specified Id.
 
 Given below is an example usage scenario of `FindCommand`.
 
-Step 1. The user launches the application and sees a list of students. 
+Step 1. The user launches the application and sees a list of students.
 
-Step 2. The user executes `find nm/Alex` to locate students with "Alex" in their name. 
+Step 2. The user executes `find nm/Alex` to locate students with "Alex" in their name.
 This command performs a search using the names of the students. Since the prefix `nm/` was used, a `NameContainsKeywordsPredicate`
 object, which extends `Predicate<Student>` will be created.
 
@@ -321,17 +329,21 @@ object, which extends `Predicate<Student>` will be created.
 
 Step 3. Classify returns a filtered list of students whose names contain `Alex`. All the details recorded will also be shown.
 
-The following activity diagram summarizes what happens when a user executes the find command. 
+The following activity diagram summarizes what happens when a user executes the find command.
 
 <img src="images/FindCommandActivityDiagram.png" />
 
-Design considerations:
+<u>**Design Considerations**</u>
+
 1. `ArgumentTokenizer#tokenize()` used to identify the prefix, to generate the corresponding `Predicate<Student>`.
 
 #### 4.2.5 ViewAll command
-Implementation: 
 
-The `viewAll` command displays a list of all student records. 
+<u>**Description**</u>
+
+The `viewAll` command displays a list of all student records.
+
+<u>**Implementation**</u>
 
 The sequence diagram below illustrates the interaction between the `Logic` and `Model` components. 
 
@@ -349,9 +361,14 @@ Step 4. Classify updates and displays a list of all student records
 
 #### 4.2.6 ViewClass command
 
-Current Implementation:
+<u>**Description**</u>
+
+The `viewClass` command displays a list of student records from the specified class.
+
+<u>**Implementation**</u>
+
 The `ViewClass` Command displays the list of Students in a particular class by updating the `FilteredStudentList` with a `ClassPredicate`.
-The ClassPredicate checks that a Student's Class matches the user input(ignoring case-sensitivity).
+The ClassPredicate checks that a Student's Class matches the user input (ignoring case-sensitivity).
 
 *Insert Basic Class Diagram*
 
@@ -375,16 +392,22 @@ Step 5. Class-ify displays the list of students with the class "1A" on the stude
 The following sequence diagram shows how the ViewClass Command works:
 *Insert Sequence Diagram*
 
-Design Considerations:
+<u>**Design Considerations**</u>
+
 1. Predicate logic for filtering students by their class
 2. Command name
 
 *To be further updated*
 
-#### 4.2.7 Toggle View command
-Implementation: 
+#### 4.2.7 ToggleView command
 
-The `ToggleViewCommand` toggles the application to display or hide all students' parent details. The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand`.
+<u>**Description**</u>
+
+The `ToggleViewCommand` toggles the application to display or hide all students' parent details.
+
+<u>**Implementation**</u>
+
+ The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand`.
 
 *Insert activity diagram*
 
@@ -406,7 +429,8 @@ Step 4. The `MainWindow` handles the updating of UI by requesting `StudentListPa
 
 With the above sequence, the UI is successfully updated to display the relevant student details according to the toggle status. 
 
-Design considerations:
+<u>**Design Considerations**</u>
+
 - Option 1: Each `Student` has a `isShowingParentDetails` `boolean` attribute
   - Pros:
     - The `StudentListPanel` will automatically update the `StudentCard` as it listens for changes in `FilteredStudentList`, thus reduces coupling (see Option 2 cons)   
@@ -422,8 +446,12 @@ Design considerations:
 
 #### 4.2.8 ViewStats command
 
+<u>**Description**</u>
+
 `ViewStatsCommand` is a `Command` to present summary statistics for an `Exam` taken by a particular class of students. 
 In particular, the command is implemented to generate the mean score of the `Exam`. The entire process of generating summary statistics is executed in 2 steps. 
+
+<u>**Implementation**</u>
 
 **Step 1: Parsing the command**
 
@@ -454,7 +482,8 @@ The following sequence diagram depicts how different components such as `Logic` 
 :information_source: **Note:** The lifeline for `ViewStatsCommandParser` and `ViewClassCommand` should end at the destroy 
 marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-Design Considerations:
+<u>**Design Considerations**</u>
+
 1. Sorting the list of students according to grade
 - Option 1: sort the filtered list of students after retrieving the class
   - Pros:
@@ -470,11 +499,10 @@ Design Considerations:
     each time an `addStudent` command or `edit` command is run
   - Cons:
     - Reorders the whole `StudentRecord` each time the sorting is done
-    
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. **Documentation, logging, testing, configuration, dev-ops**
+## **5 Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -484,7 +512,7 @@ Design Considerations:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. **Appendix: Requirements**
+## **6 Appendix: Requirements**
 
 ### 6.1 Product scope
 
@@ -692,7 +720,7 @@ which assumes that nothing goes wrong
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. **Appendix: Instructions for manual testing**
+## **7 Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -798,7 +826,11 @@ Expected: Shows/hides parent details in each student card UI.
 
 ### 7.9 Calculating exam statistics
 
-*To be updated*
+Prerequisites: Student records with class "4a" and exam results for "sa1" exists.
+
+1. Test case: `viewStats class/4a exam/sa1 filter/off`
+
+Expected: Displays the mean obtained by class "4A" for "SA1", as well as the list of all the students in the class '4A', arranged in ascending grades for "SA1".
 
 ### 7.10 Saving data
 
