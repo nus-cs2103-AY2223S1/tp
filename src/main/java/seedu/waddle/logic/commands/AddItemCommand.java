@@ -30,7 +30,7 @@ public class AddItemCommand extends Command {
             + PREFIX_DESCRIPTION + "Visit Taj Mahal "
             + PREFIX_PRIORITY + "3";
 
-    public static final String MESSAGE_SUCCESS = "New item added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New item added:\n%1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists";
 
     private final Item toAdd;
@@ -56,7 +56,7 @@ public class AddItemCommand extends Command {
         }
 
         itinerary.addItem(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getDescription()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

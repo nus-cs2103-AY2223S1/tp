@@ -149,7 +149,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredItineraryList().size());
 
         Itinerary itinerary = model.getFilteredItineraryList().get(targetIndex.getZeroBased());
-        final String[] splitName = itinerary.getName().description.split("\\s+");
+        final String[] splitName = itinerary.getDescription().description.split("\\s+");
         model.updateFilteredItineraryList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredItineraryList().size());

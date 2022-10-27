@@ -90,7 +90,7 @@ public class EditItemCommand extends Command {
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
         if (multiIndex.getDayIndex() == null) {
-            if (multiIndex.getTaskIndex().getZeroBased() >= itinerary.getItemSize()) {
+            if (multiIndex.getTaskIndex().getZeroBased() >= itinerary.getUnscheduledSize()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
             }
             Item itemToEdit = itinerary.getItem(multiIndex);

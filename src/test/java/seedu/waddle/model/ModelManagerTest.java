@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentWaddle, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = SPRING.getName().description.split("\\s+");
+        String[] keywords = SPRING.getDescription().description.split("\\s+");
         modelManager.updateFilteredItineraryList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(waddle, userPrefs)));
 

@@ -53,7 +53,7 @@ public class DeleteItemCommand extends Command {
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
         if (targetIndex.getDayIndex() == null) {
-            if (targetIndex.getTaskIndex().getZeroBased() >= itinerary.getItemSize()) {
+            if (targetIndex.getTaskIndex().getZeroBased() >= itinerary.getUnscheduledSize()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
             }
         } else {

@@ -16,6 +16,7 @@ import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.UniqueItemList;
+import seedu.waddle.model.text.Text;
 
 /**
  * Represents a Person in the address book.
@@ -24,7 +25,7 @@ import seedu.waddle.model.item.UniqueItemList;
 public class Itinerary {
 
     // Details field
-    private final Description name;
+    private final Description description;
     private final Country country;
     private final Date startDate;
     private final ItineraryDuration duration;
@@ -42,10 +43,10 @@ public class Itinerary {
     /**
      * Every field must be present and not null.
      */
-    public Itinerary(Description name, Country country, Date startDate, ItineraryDuration duration,
+    public Itinerary(Description description, Country country, Date startDate, ItineraryDuration duration,
                      People people, Budget budget) {
-        requireAllNonNull(name, startDate, duration);
-        this.name = name;
+        requireAllNonNull(description, startDate, duration);
+        this.description = description;
         this.country = country;
         this.startDate = startDate;
         this.duration = duration;
@@ -59,8 +60,8 @@ public class Itinerary {
         }
     }
 
-    public Description getName() {
-        return name;
+    public Description getDescription() {
+        return description;
     }
 
     public Country getCountry() {
@@ -73,17 +74,6 @@ public class Itinerary {
 
     public ItineraryDuration getDuration() {
         return this.duration;
-    }
-
-    public String getTimeString() {
-        if (this.startDate != null) {
-            if (this.duration != null) {
-                return this.startDate + " - " + this.startDate.getValue().plusDays(this.duration.getValue());
-            } else {
-                return this.startDate.toString();
-            }
-        }
-        return "(Not planned)";
     }
 
     public People getPeople() {
@@ -124,7 +114,7 @@ public class Itinerary {
         }
 
         return otherItinerary != null
-                && otherItinerary.getName().equals(getName());
+                && otherItinerary.getDescription().equals(getDescription());
     }
 
     public boolean hasItem(Item item) {
@@ -172,7 +162,7 @@ public class Itinerary {
         }
     }
 
-    public int getItemSize() {
+    public int getUnscheduledSize() {
         return this.unscheduledItemList.getSize();
     }
 
@@ -184,19 +174,13 @@ public class Itinerary {
         this.unscheduledItemList.sort(priorityComparator);
     }
 
-    /**
-     * Unplan an item.
-     *
-     * @param index A multiIndex to locate the day and index of task within the day
-     */
-    public Item unplanItem(MultiIndex index) {
-        Day day = this.days.get(index.getDayIndex().getZeroBased());
-        Item unplannedItem = day.removeItem(index.getTaskIndex());
-        unplannedItem.resetStartTime();
-        addItem(unplannedItem);
-        sortUnscheduledItemList();
-        this.budget.updateSpending(-unplannedItem.getCost().getValue());
-        return unplannedItem;
+    public Item getItem(MultiIndex index) {
+        if (index.getDayIndex() == null) {
+            return this.unscheduledItemList.get(index.getTaskIndex().getZeroBased());
+        } else {
+            Day day = this.days.get(index.getDayIndex().getZeroBased());
+            return day.getItem(index.getTaskIndex());
+        }
     }
 
     /**
@@ -218,13 +202,27 @@ public class Itinerary {
         return item;
     }
 
-    public Item getItem(MultiIndex index) {
-        if (index.getDayIndex() == null) {
-            return this.unscheduledItemList.get(index.getTaskIndex().getZeroBased());
-        } else {
-            Day day = this.days.get(index.getDayIndex().getZeroBased());
-            return day.getItem(index.getTaskIndex());
+    /**
+     * Unplan an item.
+     *
+     * @param index A multiIndex to locate the day and index of task within the day
+     */
+    public Item unplanItem(MultiIndex index) {
+        Day day = this.days.get(index.getDayIndex().getZeroBased());
+        Item unplannedItem = day.removeItem(index.getTaskIndex());
+        unplannedItem.resetStartTime();
+        addItem(unplannedItem);
+        sortUnscheduledItemList();
+        this.budget.updateSpending(-unplannedItem.getCost().getValue());
+        return unplannedItem;
+    }
+
+    public String getVacantSlots() {
+        StringBuilder vacantSlots = new StringBuilder();
+        for (Day day : this.days) {
+            vacantSlots.append(day.getVacantSlots()).append(System.getProperty("line.separator"));
         }
+        return vacantSlots.toString();
     }
 
     public ObservableList<ObservableList<Item>> getUnmodifiableItemGroups() {
@@ -237,12 +235,59 @@ public class Itinerary {
         return FXCollections.unmodifiableObservableList(itemGroups);
     }
 
-    public String getVacantSlots() {
-        StringBuilder vacantSlots = new StringBuilder();
-        for (Day day : this.days) {
-            vacantSlots.append(day.getVacantSlots()).append(System.getProperty("line.separator"));
+    public String getDescriptionString(int indents) {
+        return Text.indent(this.description.toString(), indents);
+    }
+
+    public String getCountryString(int indents) {
+        return Text.indent("Country: " + this.country, indents);
+    }
+
+    public String getDurationString(int indents) {
+        return Text.indent("Duration: " + this.duration.getValue() + " Days", indents);
+    }
+
+    public String getTimeString(int indents) {
+        if (this.startDate != null) {
+            if (this.duration != null) {
+                return Text.indent("Dates: " + this.startDate + " - "
+                        + this.startDate.getValue().plusDays(this.duration.getValue()), indents);
+            } else {
+                return Text.indent("Dates: " + this.startDate, indents);
+            }
         }
-        return vacantSlots.toString();
+        return Text.indent("Dates: (Not planned)", indents);
+    }
+
+    public String getPeopleString(int indents) {
+        return Text.indent("Waddlers: " + this.people, indents);
+    }
+
+    public String getBudgetString(int indents) {
+        if (this.budget.getSpending() == 0) {
+            return Text.indent("Budget: $" + this.budget.getValue(), indents);
+        } else {
+            return Text.indent("Budget: $" + this.budget.getValue() + ", $"
+                    + this.budget.calculateLeftOverBudget() + " remaining", indents);
+        }
+    }
+
+    /**
+     * Generates a text representation of the day.
+     *
+     * @return The text representation.
+     */
+    public String getTextRepresentation() {
+        StringBuilder itineraryText = new StringBuilder();
+        itineraryText.append(this)
+                .append(System.lineSeparator()).append(System.lineSeparator());
+        StringBuilder daysText = new StringBuilder();
+        for (Day day : this.days) {
+            daysText.append(day.getTextRepresentation());
+        }
+        itineraryText.append(daysText);
+
+        return itineraryText.toString();
     }
 
     /**
@@ -260,7 +305,7 @@ public class Itinerary {
         }
 
         Itinerary otherItinerary = (Itinerary) other;
-        return otherItinerary.getName().equals(getName())
+        return otherItinerary.getDescription().equals(getDescription())
                 && otherItinerary.getCountry().equals(getCountry())
                 && otherItinerary.getStartDate().equals(getStartDate())
                 && otherItinerary.getDuration().equals(getDuration())
@@ -271,25 +316,23 @@ public class Itinerary {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, country, startDate, duration, people, budget);
+        return Objects.hash(description, country, startDate, duration, people, budget);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Country: ")
-                .append(getCountry())
-                .append("; Start Date: ")
-                .append(getStartDate())
-                .append("; Duration: ")
-                .append(getDuration())
-                .append("; Number of people: ")
-                .append(getPeople())
-                .append("; Budget: ")
-                .append(getBudget())
-                .append("; Leftover Budget: ")
-                .append(getBudget().calculateLeftOverBudget());
+        builder.append(getDescriptionString(Text.INDENT_NONE))
+                .append(System.getProperty("line.separator"))
+                .append(getCountryString(Text.INDENT_FOUR))
+                .append(System.getProperty("line.separator"))
+                .append(getDurationString(Text.INDENT_FOUR))
+                .append(System.getProperty("line.separator"))
+                .append(getTimeString(Text.INDENT_FOUR))
+                .append(System.getProperty("line.separator"))
+                .append(getPeopleString(Text.INDENT_FOUR))
+                .append(System.getProperty("line.separator"))
+                .append(getBudgetString(Text.INDENT_FOUR));
 
         return builder.toString();
     }
@@ -297,5 +340,4 @@ public class Itinerary {
     public void setSpending(Budget budget) {
         this.budget.setSpending(budget.getSpending());
     }
-
 }

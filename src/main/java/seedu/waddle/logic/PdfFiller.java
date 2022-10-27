@@ -14,6 +14,7 @@ import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.UniqueItemList;
 import seedu.waddle.model.itinerary.Itinerary;
+import seedu.waddle.model.text.Text;
 
 /**
  * Class to fill pdf acroform with itinerary details.
@@ -53,7 +54,7 @@ public class PdfFiller {
         List<PDField> fieldList = new ArrayList<>();
         ArrayList<PdfFieldInfo> infoToFill = new ArrayList<>(infoList);
         form.setXFA(null);
-        infoToFill.add(new PdfFieldInfo("itinerary_name", this.itinerary.getName().description));
+        infoToFill.add(new PdfFieldInfo("itinerary_name", this.itinerary.getDescriptionString(Text.INDENT_NONE)));
         infoToFill.add(new PdfFieldInfo("day", "Day " + (day.getDayNumber() + 1)));
 
         for (PdfFieldInfo info : infoToFill) {
@@ -90,7 +91,8 @@ public class PdfFiller {
                 int targetIndex = i * MAX_DISPLAY + j;
                 if (targetIndex < itemListSize) {
                     Item item = itemList.get(targetIndex);
-                    PdfFieldInfo time = new PdfFieldInfo("time" + j, item.getTimeString());
+                    PdfFieldInfo time = new PdfFieldInfo("time" + j,
+                            item.getTimeString(Text.INDENT_NONE).replace("Time: ", ""));
                     PdfFieldInfo activity = new PdfFieldInfo("item" + j, item.getDescription().toString());
                     fieldList.add(time);
                     fieldList.add(activity);
@@ -117,7 +119,7 @@ public class PdfFiller {
             PDPage page = pdf.getPage(0);
             this.finalPdf.addPage(page);
         }
-        finalPdf.save("./data/" + this.itinerary.getName().description + ".pdf");
+        finalPdf.save("./data/" + this.itinerary.getDescriptionString(Text.INDENT_NONE) + ".pdf");
         finalPdf.close();
         // only can close when all operations are done
         for (PDDocument pdf : this.pdfList) {

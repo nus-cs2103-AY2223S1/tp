@@ -73,7 +73,7 @@ public class EditCommand extends Command {
                                                    EditItineraryDescriptor editItineraryDescriptor) {
         assert itineraryToEdit != null;
 
-        Description updatedName = editItineraryDescriptor.getName().orElse(itineraryToEdit.getName());
+        Description updatedName = editItineraryDescriptor.getName().orElse(itineraryToEdit.getDescription());
         Country updatedCountry = editItineraryDescriptor.getCountry().orElse(itineraryToEdit.getCountry());
         Date updatedStartDate = editItineraryDescriptor.getStartDate().orElse(itineraryToEdit.getStartDate());
         ItineraryDuration updatedDuration = editItineraryDescriptor.getDuration()
