@@ -121,6 +121,15 @@ You can click on each module to view more details about the module.
 
 Format: `mlist`
 
+### Viewing more details of a module in the list of modules : `vtarget`
+
+You can also choose to use a CLI-command to get more information about a module in the ProfNUS application
+at your specified `INDEX`.
+More information such as name of the module and module description,
+as well as any tags given to the module will be displayed.
+
+Format: `vtarget 3`
+
 ### Viewing module details : `mview`
 
 Shows a list of students and tutors in the module.
