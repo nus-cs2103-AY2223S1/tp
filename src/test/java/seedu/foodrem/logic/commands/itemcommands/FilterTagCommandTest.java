@@ -45,7 +45,8 @@ public class FilterTagCommandTest {
         expectedModelVegetable.updateFilteredItemList(item -> item.getTagSet().contains(vegetableTag));
 
         assertCommandSuccess(filterVegetableTagCommand, model,
-                new FilterByTag(vegetableTag, "Filtered by tag:", expectedMessageVegetable), expectedModelVegetable);
+                new FilterByTag(vegetableTag, "Filtered by tag:", expectedMessageVegetable),
+                             expectedModelVegetable);
 
         long expectedSizeNumbers = model.getCurrentList()
                 .stream()
@@ -60,7 +61,8 @@ public class FilterTagCommandTest {
         expectedModelNumbers.updateFilteredItemList(item -> item.getTagSet().contains(fruitsTag));
 
         assertCommandSuccess(filterNumbersTagCommand, model,
-                             new FilterByTag(fruitsTag, "Filtered by tag:", expectedMessageNumbers), expectedModelNumbers);
+                             new FilterByTag(fruitsTag, "Filtered by tag:", expectedMessageNumbers),
+                             expectedModelNumbers);
     }
 
     @Test
