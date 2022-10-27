@@ -108,12 +108,16 @@ public class DateTime implements Comparable<DateTime> {
      */
     public DateTime plusDuration(Recurrence recur, int freq) {
         switch (recur) {
+        case DAY:
         case DAYS:
             return new DateTime(dateTime.plusDays(freq));
+        case WEEK:
         case WEEKS:
             return new DateTime(dateTime.plusWeeks(freq));
+        case MONTH:
         case MONTHS:
             return new DateTime(dateTime.plusMonths(freq));
+        case YEAR:
         case YEARS:
             return new DateTime(dateTime.plusYears(freq));
         default:

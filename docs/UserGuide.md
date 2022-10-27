@@ -140,7 +140,7 @@ e.g. `2-7-2022 1345`, `28-10-2022` are valid dates.
 * `DATE TIME` itself can be omitted as well, this will result in the task being created with a task date and time of 24 hours from the moment of creation.
 * A task can be recurring, i.e if the Task date passes, it will automatically generate the next Task based on the recurrence.
 * A recurring task can be specified using parameters `INTERVAL TIME_PERIOD`, in addition to the `TASK_DESCRIPTION` and `DATE TIME`.
-* `TIME_PERIOD` can be: `days`, `weeks`, `months` or `years`
+* `TIME_PERIOD` can be: `day`/`days`, `week`/`weeks`, `month`/`months` or `year`/`years`
 * `INTERVAL` specifies the amount of such time periods between recurring tasks, and must be a **positive integer**.
 * Examples of valid `INTERVAL TIME_PERIOD` are: `3 days`, `7 weeks`, `2 months`.
 * Note that while a task can be created without `DATE TIME`, a recurring task must have a `DATE TIME`.
