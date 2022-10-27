@@ -14,7 +14,7 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
 
-    public static final String MESSAGE_USAGE= COMMAND_WORD + "Clears all the entities from the current list\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "Clears all the entities from the current list\n";
 
     public static final String MESSAGE_SUCCESS = "Displayed list has been cleared!";
 

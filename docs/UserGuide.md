@@ -100,20 +100,29 @@ Examples:
 * `delete tutor 1`
 * `delete class 1`
 
-### Searching by name: `find`
+### Searching by multiple fields: `find`
 
-Finds entities whose names contain any of the given keywords.
+Finds entities from the current list based on multiple fields at a time such that the fields of the entity specified contains the respective keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-* The search is case-insensitive. e.g. hans will match Hans
-* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
-* Only the name is searched.
-* Only full words will be matched e.g. Han will not match Hans
-* Persons or classes matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber, Bo Yang`
+Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]...`
+* The input `PREFIXES` is case-sensitive and must be in lowercase. e.g. `n/hans e/notgmail.com`
+* The input `KEYWORDS` is case-insensitive. e.g. `n/hans` will match a student named “Hans”
+* Partial `KEYWORDS` will be matched e.g. `n/Ha` will match a student named “Hans Jones”
+* The order of the `PREFIX/KEYWORD` pair does not matter. e.g. `n/Alice p/12345678` vs `p/12345678 n/Alice`
+* All fields are optional, but at least one pair of `PREFIX/KEYWORD` must be specified.
+* `KEYWORDS` must not contain the `/` character.
+* If there are repeated `PREFIXES`, only the latest one will be taken.
+
 
 Examples:
-* `find John` returns `John` and `John Doe`
-* `find alex david` returns `Alex Yeoh` and `David Li`
+(insert screenshot of the current list being the student list)
+* `find n/john s/evergarden` returns the students, `Johnny` and `John Doe`, from “Evergarden Secondary School” in the student list.
+
+(insert screenshot of the current list being the class list)
+* `find a/clementi e/example.com i/nus` returns the tutors who live in Clementi, have emails with domain name “example.com” and graduated from NUS.
+
+(insert screenshot of the current list being the class list)
+* `find l/p1math d/sunday #/difficult` returns all classes whose names contain “p1math”, conducted on Sundays and have the tag “difficult”.
 
 ### Assign class to a person: `assign`
 

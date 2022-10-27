@@ -107,6 +107,10 @@ public class CommandResult {
         this.commandType = CommandType.OTHER;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
     public CommandResult(String feedbackToUser, CommandType actualType, CommandType queryType) {
         assert (actualType == CommandType.HELP);
         this.feedbackToUser = requireNonNull(feedbackToUser);
@@ -219,7 +223,8 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, indexOfShownEntity, commandType, deletedStudent, deletedTutor, deletedClass);
+        return Objects.hash(feedbackToUser, indexOfShownEntity, commandType,
+                deletedStudent, deletedTutor, deletedClass);
     }
 
 }
