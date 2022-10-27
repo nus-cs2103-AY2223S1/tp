@@ -31,11 +31,11 @@ import seedu.address.ui.theme.ThemeException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final int STUDENTLIST = 0;
-    private static final int MODULELIST = 1;
-    private static final int MODULE = 2;
-    private static final int SCHEDULE = 3;
-    private static final int TIMETABLE = 4;
+    private static final int STUDENTLIST = 1;
+    private static final int MODULELIST = 2;
+    private static final int MODULE = 3;
+    private static final int SCHEDULE = 4;
+    private static final int TIMETABLE = 0;
     private static final String FXML = "MainWindow.fxml";
     private int timetableModel = 0;
     private final Logger logger = LogsCenter.getLogger(getClass());
