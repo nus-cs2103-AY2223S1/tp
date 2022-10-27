@@ -1,6 +1,5 @@
 package jarvis.storage;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jarvis.commons.util.CollectionUtil;
 import jarvis.model.Consult;
 import jarvis.model.Lesson;
+import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
+import jarvis.model.LessonNotes;
 import jarvis.model.MasteryCheck;
 import jarvis.model.Student;
 import jarvis.model.Studio;
@@ -145,7 +146,7 @@ public abstract class JsonAdaptedLesson {
      *
      * @throws IllegalArgumentException if there were any data constraints violated in the adapted lesson.
      */
-    public abstract Lesson toModelType() throws IllegalArgumentException, IOException;
+    public abstract Lesson toModelType() throws IllegalArgumentException;
 
 
     /**
@@ -164,5 +165,78 @@ public abstract class JsonAdaptedLesson {
         }
     }
 
+    /**
+     * Creates an {@code LessonDesc} object with the given description.
+     *
+     * @param lessonDesc The given description.
+     * @return The created object.
+     */
+    public static LessonDesc createModelLessonDesc(String lessonDesc) {
+        return lessonDesc != null
+                ? new LessonDesc(lessonDesc)
+                : null;
+    }
+
+    /**
+     * Creates an {@code TimePeriod} object with the given start and end times.
+     *
+     * @param missingFieldMsg The error message to be shown if any of the fields are missing.
+     * @param start The start time.
+     * @param end The end time.
+     * @return The created object.
+     */
+    public static TimePeriod createModelTimePeriod(String missingFieldMsg, LocalDateTime start, LocalDateTime end) {
+        checkNullArgument(TimePeriod.class, missingFieldMsg, start);
+        checkNullArgument(TimePeriod.class, missingFieldMsg, end);
+        final TimePeriod modelTimePeriod = new TimePeriod(start, end);
+        return modelTimePeriod;
+    }
+
+    /**
+     * Creates an {@code List<Student>} object.
+     *
+     * @param missingFieldMsg The error message to be shown if any of the fields are missing.
+     * @param jsonAdaptedStudentList The list of students in its Jackson adapted form.
+     * @return The created object.
+     */
+    public static List<Student> createModelStudentList(String missingFieldMsg,
+                                                       List<JsonAdaptedStudent> jsonAdaptedStudentList) {
+        checkNullArgument(Student.class, missingFieldMsg, jsonAdaptedStudentList);
+        List<Student> modelStudentList = JsonAdaptedStudent.toModelList(jsonAdaptedStudentList);
+        return modelStudentList;
+    }
+
+    /**
+     * Creates an {@code LessonAttendance} object with the given attendance details.
+     *
+     * @param missingFieldMsg The error message to be shown if any of the fields are missing.
+     * @param studentList The given list of students.
+     * @param map The student attendance data mapped by student index.
+     * @return The created object.
+     */
+    public static LessonAttendance createModelLessonAttendance(String missingFieldMsg, List<Student> studentList,
+                                                               Map<Integer, Boolean> map) {
+        checkNullArgument(LessonAttendance.class, missingFieldMsg, map);
+        LessonAttendance modelAttendance = new LessonAttendance(studentList, map);
+        return modelAttendance;
+    }
+
+    /**
+     * Creates an {@code LessonNotes} object with the given general and student notes.
+     *
+     * @param missingFieldMsg The error message to be shown if any of the fields are missing.
+     * @param studentList The given list of students.
+     * @param generalNotes The given general notes.
+     * @param studentNotes The given student notes, mapped by student index.
+     * @return The created object.
+     */
+    public static LessonNotes createModelLessonNotes(String missingFieldMsg, List<Student> studentList,
+                                                     ArrayList<String> generalNotes,
+                                                     Map<Integer, ArrayList<String>> studentNotes) {
+        checkNullArgument(LessonNotes.class, missingFieldMsg, generalNotes);
+        checkNullArgument(LessonNotes.class, missingFieldMsg, studentNotes);
+        LessonNotes modelLessonNotes = new LessonNotes(studentList, generalNotes, studentNotes);
+        return modelLessonNotes;
+    }
 }
 

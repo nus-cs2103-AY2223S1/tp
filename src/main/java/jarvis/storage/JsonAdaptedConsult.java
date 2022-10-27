@@ -1,6 +1,5 @@
 package jarvis.storage;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,31 +50,24 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
      * {@inheritDoc}
      */
     @Override
-    public Consult toModelType() throws IllegalArgumentException, IOException {
+    public Consult toModelType() throws IllegalArgumentException {
         // LessonDesc
-        final LessonDesc modelLessonDesc = this.getLessonDesc() != null
-                ? new LessonDesc(this.getLessonDesc())
-                : null;
+        final LessonDesc modelLessonDesc = createModelLessonDesc(getLessonDesc());
 
         // TimePeriod
-        checkNullArgument(TimePeriod.class, MISSING_FIELD_MESSAGE_FORMAT, this.getStartDateTime());
-        checkNullArgument(TimePeriod.class, MISSING_FIELD_MESSAGE_FORMAT, this.getEndDateTime());
-        final TimePeriod modelTimePeriod = new TimePeriod(this.getStartDateTime(),
-                this.getEndDateTime());
+        final TimePeriod modelTimePeriod = createModelTimePeriod(MISSING_FIELD_MESSAGE_FORMAT,
+                getStartDateTime(), getEndDateTime());
 
         // Student list for lesson
-        checkNullArgument(Student.class, MISSING_FIELD_MESSAGE_FORMAT, this.getStudentList());
-        List<Student> modelStudentList = JsonAdaptedStudent.toModelList(this.getStudentList());
+        List<Student> modelStudentList = createModelStudentList(MISSING_FIELD_MESSAGE_FORMAT, getStudentList());
 
         // LessonAttendance
-        checkNullArgument(LessonAttendance.class, MISSING_FIELD_MESSAGE_FORMAT, this.getAttendance());
-        LessonAttendance modelAttendance = new LessonAttendance(modelStudentList, this.getAttendance());
+        LessonAttendance modelAttendance = createModelLessonAttendance(MISSING_FIELD_MESSAGE_FORMAT,
+                modelStudentList, getAttendance());
 
         // LessonNotes
-        checkNullArgument(LessonNotes.class, MISSING_FIELD_MESSAGE_FORMAT, this.getGeneralNotes());
-        checkNullArgument(LessonNotes.class, MISSING_FIELD_MESSAGE_FORMAT, this.getStudentNotes());
-        LessonNotes modelLessonNotes = new LessonNotes(modelStudentList, this.getGeneralNotes(),
-                this.getStudentNotes());
+        LessonNotes modelLessonNotes = createModelLessonNotes(MISSING_FIELD_MESSAGE_FORMAT, modelStudentList,
+                getGeneralNotes(), getStudentNotes());
 
         Consult consult = new Consult(modelLessonDesc, modelTimePeriod,
                 modelStudentList, modelAttendance, modelLessonNotes);
