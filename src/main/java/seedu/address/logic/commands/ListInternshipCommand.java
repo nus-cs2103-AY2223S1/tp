@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class ListInternshipCommand extends Command {
 
-    public static final String COMMAND_WORD = "listi";
+    public static final String COMMAND_WORD = "list -i";
 
     public static final String MESSAGE_SUCCESS = "Listed all internships";
 

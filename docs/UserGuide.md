@@ -99,11 +99,11 @@ Shows a list of all persons in InterNUS.
 
 Format: `list -p`
 
-### Listing all internships : `listi`
+### Listing all internships : `list -i`
 
 Shows a list of all internships in InterNUS.
 
-Format: `listi`
+Format: `list -i`
 
 ### Editing a person : `edit -p`
 
@@ -173,16 +173,17 @@ Format: `find -i [c/ COMPANY_NAME_KEYWORD [MORE_KEYWORDS]...] [r/ INTERNSHIP_ROL
 
 Example of usage:
 The app contains the following company names in the internship list.
-- SBS Transit Ltd
-- SMRT Buses
-- SMRT Trains Ltd
-- Tower Transit Singapore
-- ABC Pte Ltd
+- Apple Inc
+- Alphabet Inc
+- Shopee Pte Ltd
+- Sea Ltd
+- Google Inc
+- Garena
 
 Then,
-- `find -i c/Transit` returns **SBS Transit Ltd** and **Tower Transit Singapore**
-- `find -i c/Buses Trains` returns **SMRT Buses** and **SMRT Trains Ltd**
-- `find -i c/ABC Pte Ltd` returns **SBS Transit Ltd**, **SMRT Trains Ltd** and **ABC Pte Ltd**
+- `find -i c/ltd` returns **Shopee Pte Ltd** and **Sea Ltd**
+- `find -i c/inc ltd` returns **Apple Inc**, **Alphabet Inc**, **Shopee Pte Ltd** and **Sea Ltd**
+- `find -i c/g` returns **Google Inc** and **Garena**
 
 
 ### Deleting a person by index : `delete -p`
@@ -213,20 +214,20 @@ Examples:
 * `list -i` followed by `delete -i 2` deletes the 2nd internship in InterNUS.
 * `find -i ABC Pte Ltd` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
 
-### Sorting persons by name: `sortp n/`
+### Sorting persons by name: `sort -p n/`
 
 Sorts the persons list by their names in alphabetical order, ignoring upper and lower cases.
 
-Format: `sortp n/`
+Format: `sort -p n/`
 
 Note:
 * The list will remain sorted by names in alphabetical order, until InterNUS is closed or if it is changed to sort by associated company names instead.
 
-### Sorting persons by associated company name: `sortp c/`
+### Sorting persons by associated company name: `sort -p c/`
 
 Sorts the persons list by their associated company names in alphabetical order, ignoring upper and lower cases.
 
-Format: `sortp c/`
+Format: `sort -p c/`
 
 Note:
 * For persons that are not associated with a company yet, they will be listed at the bottom of the list.
@@ -269,17 +270,18 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                   |
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [t/TAG]… [l/LINK_INDEX] [c/COMPANY]` <br> e.g., `add -p n/James Ho e/jamesho@example.com p/22224444 l/3 c/Meta` |
-| **Add internship**    | `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `addi n/TikTok r/Data Engineer s/rejected l/1`               |
-| **Clear**             | `clear`                                                                                                                                            |
-| **Delete person**     | `delete -p INDEX`<br> e.g., `delete -p 3`                                                                                                          |
-| **Delete internship** | `delete -i INDEX`<br> e.g., `delete -i 1`                                                                                                          |
-| **Edit person**       | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [t/TAG]…`<br> e.g.,`edit -p 2 n/James Lee e/jameslee@example.com`                   |
-| **Edit internship**   | `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`<br> e.g.,`edit -i 2 s/REJECTED`, `edit -i 3 d/2023-01-01 13:30`                 |
-| **Find person**       | `findp KEYWORD` <br> e.g., `findp James`                                                                                                           |
-| **Find internship**   | `findi KEYWORD` <br> e.g., `findi Google`                                                                                                          |
-| **List persons**      | `listp`                                                                                                                                            |
-| **List internships**  | `listi`                                                                                                                                            |
-| **Help**              | `help`                                                                                                                                             |
+| Action                | Format, Examples                                                                                                                                                                                        |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [t/TAG]… [l/LINK_INDEX] [c/COMPANY]` <br> e.g., `add -p n/James Ho e/jamesho@example.com p/22224444 l/3 c/Meta`                                                      |
+| **Add internship**    | `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `addi n/TikTok r/Data Engineer s/rejected l/1`                                                                    |
+| **Clear**             | `clear`                                                                                                                                                                                                 |
+| **Delete person**     | `delete -p INDEX`<br> e.g., `delete -p 3`                                                                                                                                                               |
+| **Delete internship** | `delete -i INDEX`<br> e.g., `delete -i 1`                                                                                                                                                               |
+| **Edit person**       | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [t/TAG]…`<br> e.g.,`edit -p 2 n/James Lee e/jameslee@example.com`                                                                        |
+| **Edit internship**   | `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`<br> e.g.,`edit -i 2 s/REJECTED`, `edit -i 3 d/2023-01-01 13:30`                                                                      |
+| **Find person**       | `findp KEYWORD` <br> e.g., `findp James`                                                                                                                                                                |
+| **Find internship**   | `find -i [c/ COMPANY_NAME_KEYWORD [MORE_KEYWORDS]...] [r/ INTERNSHIP_ROLE_KEYWORD [MORE_KEYWORDS]...] [s/ INTERNSHIP_STATUS_KEYWORD [MORE_KEYWORDS]...] [d/ INTERVIEW_DATE_KEYWORD [MORE_KEYWORDS]...]` |
+| **List persons**      | `listp`                                                                                                                                                                                                 |
+| **List internships**  | `list -i`                                                                                                                                                                                               |
+| **Sort persons**      | `sort -p c/` or `sort -p n/`                                                                                                                                                                            |
+| **Help**              | `help`                                                                                                                                                                                                  |
