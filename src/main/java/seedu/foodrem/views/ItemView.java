@@ -1,9 +1,5 @@
 package seedu.foodrem.views;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -13,7 +9,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import seedu.foodrem.model.item.Item;
-import seedu.foodrem.model.tag.Tag;
 
 /**
  * A view of an {@code Item}. This can be displayed.
@@ -35,16 +30,8 @@ public class ItemView {
         name.prefWidth(Double.MAX_VALUE);
 
         // Name and tags at the top left
-        final List<Node> tagsList = new ArrayList<>();
-        tagsList.add(new Label("Tags: "));
-        item.getTagSet().stream().sorted(Comparator.comparing(Tag::getName))
-                .forEach(tag -> tagsList.add(buildTagNodeFrom(tag.getName())));
-        if (tagsList.size() == 1) {
-            tagsList.add(new Label("-"));
-        }
-        final HBox tags = new HBox(tagsList.toArray(Node[]::new));
+        final HBox tags = new HBox(new Label("Tags: "), TagsView.from(item.getTagSet()));
         tags.setAlignment(Pos.CENTER_LEFT);
-        tags.setSpacing(SPACING_UNIT);
 
         // Quantity and unit at the top right
         final Label quantityLabel = new Label("Quantity\nRemaining:");
