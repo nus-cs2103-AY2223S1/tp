@@ -19,7 +19,12 @@ Class Email
 Class Name
 Class Phone
 Class Tag
-
+Class Birthday
+Class HealthInsurance
+Class CriticalIllnessInsurance
+Class DisabilityInsurance
+Class LifeInsurance
+Class Reminder
 }
 
 Class HiddenOutside #FFFFFF
@@ -41,6 +46,12 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> Birthday
+Person *--> HealthInsurance
+Person *--> LifeInsurance
+Person *--> CriticalIllnessInsurance
+Person *--> DisabilityInsurance
+Person *--> "*" Reminder
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
