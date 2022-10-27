@@ -1,10 +1,15 @@
 package coydir.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import coydir.model.person.Leave;
 import coydir.model.person.Person;
 import javafx.fxml.FXML;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -15,12 +20,17 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-
 /**
  * An UI component that displays detailed information of a {@code Person}.
  */
 public class PersonInfo extends UiPart<Region> {
     private static final String FXML = "PersonInfo.fxml";
+
+    @FXML
+    private CategoryAxis xAxis;
+
+    @FXML
+    private NumberAxis yAxis;
 
     @FXML
     private VBox personInfo;
@@ -50,6 +60,8 @@ public class PersonInfo extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private TableView<Leave> leaveTable;
+    @FXML
+    private LineChart<String, Number> lineChart;
 
     /**
      * Creates a {@code PersonInfo} to display the {@code Person} particulars.
@@ -123,5 +135,27 @@ public class PersonInfo extends UiPart<Region> {
         durations.setReorderable(false);
         leaveTable.getColumns().clear();
         leaveTable.getColumns().addAll(index, startDate, endDate, durations);
+
+        lineChart.setAnimated(false);
+        lineChart.setTitle("Performance History");
+        yAxis.setLabel("Rating");
+        xAxis.setLabel("Timestamp");
+
+        XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+        series.setName("Performance");
+
+        for (int i = 0; i < person.getRatingHistory().size(); i++) {
+            String timestamp = person.getRatingHistory().get(i).timestamp
+                .format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
+            int value = Integer.parseInt(person.getRatingHistory().get(i).value);
+            series.getData().add(new XYChart.Data<String, Number>(timestamp, value));
+        }
+
+        lineChart.getData().clear();
+        lineChart.getData().add(series);
+
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }

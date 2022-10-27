@@ -5,6 +5,9 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 
 <?import javafx.geometry.Insets?>
 <VBox fx:id="personInfo" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" prefHeight="400.0" prefWidth="600.0">
@@ -32,10 +35,24 @@
             <Label fx:id="email" styleClass="info_small_label" text="\$email" />
             <Label fx:id="phone" styleClass="info_small_label" text="\$phone" />
             <Label fx:id="address" styleClass="info_small_label" text="\$address" />
+            <Label fx:id="performance" styleClass="info_small_label" text="\$performance" />
+            <HBox>
+                <padding>
+                    <Insets top="10"/>
+                </padding>
+                <LineChart fx:id="lineChart" layoutX="14.0" layoutY="52.0" prefHeight="512.0"
+                    prefWidth="887.0" title="performanceHistory" style="-fx-background-color: #F5F5F5;">
+                    <xAxis>
+                        <CategoryAxis fx:id="xAxis" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis fx:id="yAxis" side="LEFT" />
+                    </yAxis>
+                </LineChart>
+            </HBox>
             <Label fx:id="onLeave" styleClass="info_small_label" text="\$onLeave" />
             <Label fx:id="totalLeave" styleClass="info_small_label" text="\$totalLeave" />
             <Label fx:id="leaveLeft" styleClass="info_small_label" text="\$leaveLeft" />
-            <Label fx:id="performance" styleClass="info_small_label" text="\$performance" />
             <HBox>
                 <padding>
                     <Insets top="10"/>
