@@ -206,8 +206,8 @@ Format: `find [n/NAME] [m/MODULE_CODE] [s/SPECIALISATION] [p/PHONE] [e/EMAIL] [g
 * `OFFICE_HOUR` input must be in the same format as office hour input. e.g. To find office hour `MONDAY, 03:00 PM - 05:00 PM` enter `find o/1-15:00-2`.
 
 Examples:
-* `find m/CS2103T t/friends goodCoder` Returns contacts who take module `CS2103T` OR have the tags `friends` OR `goodCoder`.
-* `find n/wong leong m/CS1231S l/COM3` Returns all contacts whose names have `wong` OR `leong` in them, OR take the module `CS1231S`, OR have the location `COM3`.
+* `find m/CS2103T t/friends goodCoder` -> Returns contacts who take module `CS2103T` OR have the tags `friends` OR `goodCoder`.
+* `find n/wong leong m/CS1231S l/COM3` -> Returns all contacts whose names have `wong` OR `leong` in them, OR take the module `CS1231S`, OR have the location `COM3`.
 * `find o/1-15:00-2 2-12:00-2` -> Returns all contacts with office time `MONDAY, 03:00 PM - 05:00 PM` OR `TUESDAY, 12:00 PM - 02:00 PM`.
 
 #### `ALL` search for `module` and `tag` fields
@@ -221,8 +221,8 @@ Format: `find [m/all/LIST OF MODULES] [t/all/LIST OF TAGS]`
 * `OR` search is still supported for modules and tags (omit the `all/`).
 
 Examples
-*  `find n/wong m/all/CS2100 CS2103T CS2109S` Returns all contacts who have `wong` in their name OR (take the modules: `CS2100` AND `CS2103T` and `CS2109S`).
-*  `find l/NUS t/all/friends owesMoney smart` Returns all contacts who have the location `NUS` OR (have the tags: `friends` AND `owesMoney` AND `smart`).
+*  `find n/wong m/all/CS2100 CS2103T CS2109S` -> Returns all contacts who have `wong` in their name OR (take the modules: `CS2100` AND `CS2103T` and `CS2109S`).
+*  `find l/NUS t/all/friends owesMoney smart` -> Returns all contacts who have the location `NUS` OR (have the tags: `friends` AND `owesMoney` AND `smart`).
 
 #### Type search
 
@@ -233,12 +233,13 @@ Format: `find typ/TYPE`
 Only the following are accepted for `TYPE`:
 * `stu` for Student
 * `prof` for Professor
-* `ta` for Teaching Assisstant
+* `ta` for Teaching Assistant
 * All are case-insensitive
 * More than one type can be provided
 
-Example:
-* `find typ/stu ta` will return contacts who are students or teaching assistants.
+Examples:
+* `find typ/stu ta` -> Returns contacts who are students or teaching assistants.
+* * `find typ/stu prof` -> Returns contacts who are students or professors.
 
 ### 3.3.2 List contact: `list`
 
@@ -250,7 +251,7 @@ After executing find command, only the contacts that matches your input will be 
 
 Format: `list`
 
-Example command: `list`
+Example Command: `list`
 
 ### 3.3.3 Sort contact
 
@@ -260,7 +261,7 @@ Sort the contact list in either ascending `A-Z` or descending `Z-A` order by nam
 
 Sort the contact list by name in either ascending `A-Z` or descending `Z-A` order.
 
-Format: `sort A-Z n/name`
+Format: `sort A-Z n/`
 
 Before executing the above command: ![before sorting](images/BeforeSort.png)
 
@@ -269,7 +270,7 @@ After executing the command: ![after sorting](images/AfterNameAscendingSort.png)
 Contacts are sorted by name in `A-Z` order.
 </div>
 
-Format: `sort Z-A n/NAME`
+Format: `sort Z-A n/`
 
 After executing the command: ![after sorting descending](images/AfterNameDescendingSort.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -280,14 +281,18 @@ Contacts are sorted by name in `Z-A` order.
 
 Sort the contact list by moduleCode in either ascending `A-Z` or descending `Z-A` order.
 
-Format: `sort Z-A m/moduleCode`
+Format: `sort Z-A m/`
+
+Example Command: `sort Z-A m/`
 
 After executing the above command: ![after sorting](images/SortModuleCodeAscending.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Module Codes sorted in order of CS1231S>CS2100>CS2103T>CS5000, lower level modules will appear higher.
 </div>
 
-Format: `sort A-Z m/moduleCode`
+Format: `sort A-Z m/`
+
+Example Command: `sort Z-A m/`
 
 After executing the above command: ![after sorting](images/SortModuleCodeDescending.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -410,7 +415,6 @@ Format: `clear-confirm`
 Example Command: `clear-confirm`
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## FAQ
 
