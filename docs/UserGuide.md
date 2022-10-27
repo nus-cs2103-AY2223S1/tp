@@ -141,15 +141,18 @@ Example : `t/ classmate`
 
 Adds a person to uNivUSal.
 
-Format: `add o/OCCUPATION n/NAME p/PHONE_NUMBER e/EMAIL tut/TUTORIAL a/ADDRESS [t/TAG]…​`
+Format: `add o/OCCUPATION n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+It is fine to add a person missing many details as long as the occupation and name are present.
+</div>
 
 Examples:
 * `add o/STUDENT n/John Doe p/98765432 e/johnd@example.com tut/T08 a/John street, block 123, #01-01`
-* `add o/TA n/Betsy Crowe e/betsycrowe@u.nus.edu p/1234567`
+* `add o/TA n/Betsy Crowe e/betsycrowe@u.nus.edu`
 
 ### b. Editing a person : `edit`
 
@@ -361,21 +364,21 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                                                                       |
-|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**              | `help`                                                                                                                                                                                                 |
-| **Add**               | `add o/OCCUPATION n/NAME p/PHONE_NUMBER e/EMAIL tut/TUTORIAL [t/TAG]…​` <br>e.g., `add o/STUDENT n/James Ho p/22224444 e/jamesho@example.com tut/T08 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **List**              | `list`                                                                                                                                                                                                 |
-| **Edit**              | `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                          |
-| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                    |
-| **Clear**             | `clear`                                                                                                                                                                                                |                                                                             |                                                                                                          |
-| **Undo**              | `undo`                                                                                                                                                                                                 |
-| **Sort**              | `sort FIELD_PREFIX/` <br> e.g., `sort n/`                                                                                                                                                              |
-| **Find**              | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                                                                         |
-| **Add To Group**      | `addtogroup INDEX GROUP`                                                                                                                                                                               |
-| **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                                                                  |
-| **Open Group Window** | `group GROUPNAME`                                                                                                                                                                                      |
-| **Favorite**          | `fav INDEX`                                                                                                                                                                                            |
-| **Social**            | `social SOCIAL`                                                                                                                                                                                        |
-| **Email All**         | `emailall GROUPNAME`                                                                                                                                                                                   |
-| **Exit**              | `exit`                                                                                                                                                                                                 |
+| Action                | Format, Examples                                                                                                                                                                                             |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**              | `help`                                                                                                                                                                                                       |
+| **Add**               | `add o/OCCUPATION n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​` <br>e.g., `add o/STUDENT n/James Ho p/22224444 e/jamesho@example.com tut/T08 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **List**              | `list`                                                                                                                                                                                                       |
+| **Edit**              | `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                |
+| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                          |
+| **Clear**             | `clear`                                                                                                                                                                                                      |                                                                             |                                                                                                          |
+| **Undo**              | `undo`                                                                                                                                                                                                       |
+| **Sort**              | `sort FIELD_PREFIX/` <br> e.g., `sort n/`                                                                                                                                                                    |
+| **Find**              | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                                                                               |
+| **Add To Group**      | `addtogroup INDEX GROUP`                                                                                                                                                                                     |
+| **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                                                                        |
+| **Open Group Window** | `group GROUPNAME`                                                                                                                                                                                            |
+| **Favorite**          | `fav INDEX`                                                                                                                                                                                                  |
+| **Social**            | `social SOCIAL`                                                                                                                                                                                              |
+| **Email All**         | `emailall GROUPNAME`                                                                                                                                                                                         |
+| **Exit**              | `exit`                                                                                                                                                                                                       |
