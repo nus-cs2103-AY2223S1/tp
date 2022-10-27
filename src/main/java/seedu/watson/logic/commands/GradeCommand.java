@@ -3,9 +3,12 @@ package seedu.watson.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.watson.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import java.util.function.Predicate;
 import seedu.watson.model.Model;
+import seedu.watson.model.ReadOnlyDatabase;
 import seedu.watson.model.person.Person;
 
 
@@ -35,15 +38,18 @@ public class GradeCommand extends Command {
      * @param assessmentString the name of the assessment to edit grades for
      */
     public GradeCommand(String subject, String assessmentString) {
-        this.subject = subject;
+        this.subject = subject.toUpperCase();
         this.assessmentString = assessmentString;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        List<Person> personList = model.getFilteredPersonList();
+        model.updateFilteredPersonList(person ->
+            person.getSubjectHandler().getSubjectsTaken().toString().contains(subject));
+
+        List<Person> personList = new ArrayList<>(model.getFilteredPersonList());
+
         return new CommandResult(MESSAGE_SUCCESS, true, personList, assessmentString);
     }
 

@@ -1,5 +1,6 @@
 package seedu.watson.ui;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -12,9 +13,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import seedu.watson.commons.core.LogsCenter;
+import seedu.watson.logic.Logic;
 import seedu.watson.model.person.Person;
 import seedu.watson.model.person.subject.Assessment;
 import seedu.watson.model.person.subject.Subject;
+import seedu.watson.storage.Storage;
 
 /**
  * Controller for a help page
@@ -25,6 +28,8 @@ public class GradeWindow extends UiPart<Stage> {
     private String assessmentString;
     private int index = 0;
     private List<Person> personList;
+    private final Logic logic;
+    private final Storage storage;
 
     @FXML
     private Button submitButton;
@@ -57,13 +62,16 @@ public class GradeWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
-    public GradeWindow(Stage root) {
+    public GradeWindow(Stage root, Logic logic) {
         super(FXML, root);
-        enteredScore.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent ke) {
-                if (ke.getCode().equals(KeyCode.ENTER)) {
+        this.logic = logic;
+        this.storage = logic.getStorage();
+        enteredScore.setOnKeyPressed(ke -> {
+            if (ke.getCode().equals(KeyCode.ENTER)) {
+                try {
                     enterGradeForStudent();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });
@@ -74,8 +82,8 @@ public class GradeWindow extends UiPart<Stage> {
     /**
      * Creates a new HelpWindow.
      */
-    public GradeWindow() {
-        this(new Stage());
+    public GradeWindow(Logic logic) {
+        this(new Stage(), logic);
     }
 
     /**
@@ -110,11 +118,11 @@ public class GradeWindow extends UiPart<Stage> {
      * updates UI Labels to the next person to be updated
      */
     public void updateUI() {
-        if (index > personList.size()) {
+        if (index > personList.size() - 1) {
             getRoot().hide();
             return;
         }
-        //parse assesment string
+        // parse assessment string
         String[] parsedString = assessmentString.split("_");
         String subject = parsedString[0].trim();
         String name = parsedString[1].trim();
@@ -127,14 +135,13 @@ public class GradeWindow extends UiPart<Stage> {
         assessmentTotalScore.setText("Total Score: " + totalScore);
         studentName.setText("Student Name: " + currentPerson.getName().toString());
         studentClass.setText("Student Class: " + currentPerson.getStudentClass());
-        return;
     }
 
     /**
      * Updates Grades of current student in focus
      * @param mark score received for the assignment
      */
-    public void updateGradesForCurrentStudent(String mark) {
+    public void updateGradesForCurrentStudent(String mark) throws IOException {
         String[] parsedString = assessmentString.split("_");
         String subjectName = parsedString[0].trim();
         String name = parsedString[1].trim();
@@ -143,10 +150,13 @@ public class GradeWindow extends UiPart<Stage> {
         double totalScore = Double.parseDouble(parsedString[2].trim());
         double weightage = Double.parseDouble(parsedString[3].trim());
         double difficulty = Double.parseDouble(parsedString[4].trim());
-        Assessment newAssesment = new Assessment(name, weightage, score, totalScore, difficulty);
+        Assessment newAssessment = new Assessment(name, weightage, score, totalScore, difficulty);
         Person currentPerson = personList.get(index);
         Subject subject = currentPerson.getSubjectHandler().getSubject(subjectName);
-        subject.updateGradeAssessment(newAssesment);
+        subject.updateGradeAssessment(newAssessment);
+
+        logic.getModel().setPerson(currentPerson, currentPerson);
+        storage.saveDatabase(logic.getModel().getDatabase());
     }
     /**
      * Returns true if the help window is currently being shown.
@@ -173,11 +183,10 @@ public class GradeWindow extends UiPart<Stage> {
      * Method to handle when a grade is entered for a student
      */
     @FXML
-    public void enterGradeForStudent() {
+    public void enterGradeForStudent() throws IOException {
         updateGradesForCurrentStudent(enteredScore.getText());
         enteredScore.clear();
         index += 1;
         updateUI();
     }
-
 }
