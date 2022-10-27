@@ -19,13 +19,14 @@ public class FloatCommand extends PureCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(String.format("created %d", num), false, false, num);
+        return new CommandResult(String.format("created %f", num), false, false, num);
     }
 
     public static Parser<FloatCommand> parser() {
         return new Parser<FloatCommand>() {
             @Override
             public FloatCommand parse(String userInput) throws ParseException {
+                userInput = userInput.trim();
                 if (userInput.length() == 0) {
                     throw new ParseException(INVALID_INPUT);
                 }

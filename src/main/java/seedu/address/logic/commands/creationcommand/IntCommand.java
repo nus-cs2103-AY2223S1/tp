@@ -27,6 +27,7 @@ public class IntCommand extends PureCommand {
         return new Parser<IntCommand>() {
             @Override
             public IntCommand parse(String userInput) throws ParseException {
+                userInput = userInput.trim();
                 if (userInput.length() == 0) {
                     throw new ParseException(INVALID_INPUT);
                 }

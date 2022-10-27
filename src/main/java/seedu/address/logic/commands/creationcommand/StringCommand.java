@@ -20,7 +20,7 @@ public class StringCommand extends PureCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(String.format("created %d", val), false, false, val);
+        return new CommandResult(String.format("created %s", val), false, false, val);
     }
 
     public static Parser<StringCommand> parser() {

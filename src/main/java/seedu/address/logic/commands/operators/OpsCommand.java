@@ -50,22 +50,25 @@ public class OpsCommand extends Command {
         if (num == null) {
             throw new CommandException(MISSINGINPUT);
         }
-        return new CommandResult(String.format("result: %d", func.apply(num)), false, false, func.apply(num));
+        return new CommandResult(String.format("result: %f", func.apply(num)), false, false, func.apply(num));
     }
 
     public static Parser<OpsCommand> parser() {
         return new Parser<OpsCommand>() {
             @Override
             public OpsCommand parse(String userInput) throws ParseException {
+                userInput = userInput.trim();
+                System.out.println(userInput);
                 if (userInput.length() == 0) {
                     throw new ParseException(INVALID_INPUT + "\n" + USE_MESSAGE);
                 }
-                Matcher res = Pattern.compile("([\\/+\\-*])\\s*([\\-+]?[0-9]+[.]?[0-9])\\s+").matcher(userInput);
+                Matcher res = Pattern.compile("([\\/+\\-*])\\s*([\\-+]?[0-9]+[.]?[0-9]*)\\s*").matcher(userInput);
                 if (!res.matches()) {
                     throw new ParseException(INVALID_INPUT + "\n" + USE_MESSAGE);
                 }
                 String op = res.group(1);
                 Float val = Float.parseFloat(res.group(2));
+                System.out.printf("%s: %f", op, val);
                 return new OpsCommand(op, val);
             }
 
@@ -83,6 +86,7 @@ public class OpsCommand extends Command {
             } catch (NumberFormatException e) {
                 throw new CommandException(RUNTIME_ERR);
             }
+            return;
         }
 
         num = (Float) additionalData;

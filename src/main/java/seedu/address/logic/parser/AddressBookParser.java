@@ -10,11 +10,14 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CustomCommandBuilder;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemoveFieldCommand;
 import seedu.address.logic.commands.RenameCommand;
+import seedu.address.logic.commands.creationcommand.CreateCommand;
+import seedu.address.logic.commands.creationcommand.DeleteCustomCommand;
 import seedu.address.logic.commands.creationcommand.FloatCommand;
 import seedu.address.logic.commands.creationcommand.IntCommand;
 import seedu.address.logic.commands.creationcommand.StringCommand;
@@ -47,16 +50,18 @@ import seedu.address.logic.parser.teams.TeamCommandParser;
  */
 public class AddressBookParser {
 
+    private static final Pattern NAME_CHECK = Pattern.compile("([a-zA-Z][a-zA-Z0-9])");
+    private static AddressBookParser bp = null;
+
+    private final Map<String, CustomCommandBuilder> bonusMapper;
+    private final Map<String, String> aliasMapper;
+    private static Map<String, ThrowFunction<String, Command>> defaultMapper;
+
     @FunctionalInterface
     private interface ThrowFunction<T, R> {
         R apply(T t) throws ParseException;
     }
 
-    private static AddressBookParser bp = null;
-
-    private final Map<String, ThrowFunction<String, Command>> bonusMapper;
-
-    private static Map<String, ThrowFunction<String, Command>> defaultMapper;
     static {
         defaultMapper = new HashMap<>();
         defaultMapper.put(ClearCommand.COMMAND_WORD, k -> new ClearCommand());
@@ -83,10 +88,13 @@ public class AddressBookParser {
         defaultMapper.put(OpsCommand.COMMAND_WORD, k -> OpsCommand.parser().parse(k));
         defaultMapper.put(PrintCommand.COMMAND_WORD, k -> PrintCommand.parser().parse(k));
         defaultMapper.put(StringReplaceCommand.COMMAND_WORD, k -> StringReplaceCommand.parser().parse(k));
+        defaultMapper.put(CreateCommand.COMMAND_WORD, k -> CreateCommand.parser().parse(k));
+        defaultMapper.put(DeleteCustomCommand.COMMAND_WORD, k -> DeleteCustomCommand.parser().parse(k));
     }
 
     private AddressBookParser() {
         bonusMapper = new HashMap<>();
+        aliasMapper = new HashMap<>();
     }
 
     public static AddressBookParser get() {
@@ -94,6 +102,49 @@ public class AddressBookParser {
             bp = new AddressBookParser();
         }
         return bp;
+    }
+
+    public static boolean isValidName(String test) {
+        return NAME_CHECK.matcher(test.trim()).matches();
+    }
+
+    public boolean isKeyAvailable(String key) {
+        return !defaultMapper.containsKey(key)
+                && !bonusMapper.containsKey(key)
+                && !aliasMapper.containsKey(key);
+    }
+
+    public void addCommand(CustomCommandBuilder builder) {
+        bonusMapper.put(builder.getRepr(), builder);
+    }
+
+    public void addAlias(String alias, String command) {
+        if (aliasMapper.containsKey(command)) {
+            addAlias(alias, aliasMapper.get(command));
+        }
+        if (defaultMapper.containsKey(command) || defaultMapper.containsKey(command)) {
+            aliasMapper.put(alias, command);
+        }
+    }
+
+    public void deleteCommand(String repr) {
+        if (repr == null) {
+            return;
+        }
+        if (aliasMapper.containsKey(repr)) {
+            aliasMapper.remove(repr);
+            return;
+        }
+
+        if (bonusMapper.containsKey(repr)) {
+            bonusMapper.remove(repr);
+        }
+
+        for (String value : aliasMapper.keySet()) {
+            if (aliasMapper.get(value).equals(repr)) {
+                aliasMapper.remove(value);
+            }
+        }
     }
 
     /**
@@ -114,13 +165,16 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
+        while (aliasMapper.containsKey(commandWord)) {
+            commandWord = aliasMapper.get(commandWord);
+        }
         if (defaultMapper.containsKey(commandWord)) {
             return defaultMapper.get(commandWord).apply(arguments);
         } else if (bonusMapper.containsKey(commandWord)) {
-            return bonusMapper.get(commandWord).apply(arguments);
+            return bonusMapper.get(commandWord).build();
         }
         throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
     }
