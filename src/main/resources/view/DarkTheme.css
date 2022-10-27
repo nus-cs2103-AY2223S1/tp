@@ -412,7 +412,7 @@
     -fx-background-color: transparent;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Georgia";
     -fx-font-size: 13pt;
     -fx-text-fill: #000000;
 }
@@ -424,7 +424,7 @@
     -fx-border-width: 1;
     -fx-font-family: "Georgia";
     -fx-font-size: 13pt;
-    -fx-text-fill: #1D1D1D;
+    -fx-text-fill: #6a7a91;
 }
 
 #filterField, #personListPanel, #personWebpage {
