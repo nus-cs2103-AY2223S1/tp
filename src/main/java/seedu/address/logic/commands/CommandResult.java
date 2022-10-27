@@ -20,7 +20,9 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    private final CommandType type;
+    private final CommandType commandType;
+
+    private CommandType queryType;
 
     /** the index of the entity being shown if the command is show **/
     private int indexOfShownEntity;
@@ -32,7 +34,9 @@ public class CommandResult {
     private TuitionClass deletedClass;
 
     /** Types of command which are passed to the Ui to determine actions to take for each type **/
-    public enum CommandType { ADD, ASSIGN, CLEAR, DELETE, EDIT, EXIT, LIST, SHOW, HELP, OTHER, NOK }
+    public enum CommandType {
+        ADD, EDIT, DELETE, SORT, CLEAR, FIND, LIST, EXIT, HELP, SHOW, ASSIGN, UNASSIGN, NOK, OTHER
+    }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -42,11 +46,11 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, CommandType type) {
         assert(type == CommandType.ADD
                 || type == CommandType.LIST
-                || type == CommandType.EXIT
                 || type == CommandType.HELP
+                || type == CommandType.EXIT
                 || type == CommandType.CLEAR);
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.type = type;
+        this.commandType = type;
     }
 
     /**
@@ -61,7 +65,7 @@ public class CommandResult {
                 || type == CommandType.NOK);
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.indexOfShownEntity = index;
-        this.type = type;
+        this.commandType = type;
     }
 
     /**
@@ -71,7 +75,7 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, Student deletedStudent) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.deletedStudent = deletedStudent;
-        this.type = CommandType.DELETE;
+        this.commandType = CommandType.DELETE;
     }
 
     /**
@@ -81,7 +85,7 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, Tutor deletedTutor) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.deletedTutor = deletedTutor;
-        this.type = CommandType.DELETE;
+        this.commandType = CommandType.DELETE;
     }
 
     /**
@@ -91,7 +95,7 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, TuitionClass deletedClass) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.deletedClass = deletedClass;
-        this.type = CommandType.DELETE;
+        this.commandType = CommandType.DELETE;
     }
 
     /**
@@ -100,7 +104,22 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.type = CommandType.OTHER;
+        this.commandType = CommandType.OTHER;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, CommandType actualType, CommandType queryType) {
+        assert (actualType == CommandType.HELP);
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.commandType = actualType;
+        this.queryType = queryType;
+    }
+
+    public CommandType getQueryType() {
+        return queryType;
     }
 
     public String getFeedbackToUser() {
@@ -108,10 +127,10 @@ public class CommandResult {
     }
 
     public int getIndex() {
-        assert(type == CommandType.SHOW
-        || type == CommandType.ASSIGN
-        || type == CommandType.EDIT
-        || type == CommandType.NOK);
+        assert(commandType == CommandType.SHOW
+        || commandType == CommandType.ASSIGN
+        || commandType == CommandType.EDIT
+        || commandType == CommandType.NOK);
 
         return indexOfShownEntity;
     }
@@ -132,38 +151,38 @@ public class CommandResult {
     }
 
     public boolean isClear() {
-        return this.type == CommandType.CLEAR;
+        return this.commandType == CommandType.CLEAR;
     }
 
     public boolean isShowHelp() {
-        return this.type == CommandType.HELP;
+        return this.commandType == CommandType.HELP;
     }
 
     public boolean isExit() {
-        return this.type == CommandType.EXIT;
+        return this.commandType == CommandType.EXIT;
     }
 
     public boolean isList() {
-        return this.type == CommandType.LIST;
+        return this.commandType == CommandType.LIST;
     }
 
     public boolean isUpdateListView() {
-        return this.type == CommandType.ASSIGN;
+        return this.commandType == CommandType.ASSIGN;
     }
 
     public boolean isUpdateDescription() {
-        return this.type == CommandType.ASSIGN
-                || this.type == CommandType.EDIT
-                || this.type == CommandType.SHOW
-                || this.type == CommandType.NOK;
+        return this.commandType == CommandType.ASSIGN
+                || this.commandType == CommandType.EDIT
+                || this.commandType == CommandType.SHOW
+                || this.commandType == CommandType.NOK;
     }
 
     public boolean isDelete() {
-        return this.type == CommandType.DELETE;
+        return this.commandType == CommandType.DELETE;
     }
 
     public boolean isAdd() {
-        return this.type == CommandType.ADD;
+        return this.commandType == CommandType.ADD;
     }
 
     @Override
@@ -196,7 +215,7 @@ public class CommandResult {
             }
         } else {
             return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                    && type == otherCommandResult.type
+                    && commandType == otherCommandResult.commandType
                     && indexOfShownEntity == otherCommandResult.indexOfShownEntity;
         }
         return false;
@@ -204,7 +223,8 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, indexOfShownEntity, type, deletedStudent, deletedTutor, deletedClass);
+        return Objects.hash(feedbackToUser, indexOfShownEntity, commandType,
+                deletedStudent, deletedTutor, deletedClass);
     }
 
 }

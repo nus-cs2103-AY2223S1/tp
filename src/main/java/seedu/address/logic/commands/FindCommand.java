@@ -31,18 +31,17 @@ public class FindCommand extends Command {
             + "based on pairs of prefixes and keywords (case-insensitive) and\n"
             + "displays them as a list with index numbers.\n"
             + "Format: PREFIX/KEYWORDS [MORE PREFIX/KEYWORDS]...\n"
-            + "Parameters for Student: n/NAME a/ADDRESS e/EMAIL p/PHONE s/SCHOOL l/LEVEL #/TAG\n"
-            + "Parameters for Tutor: n/NAME a/ADDRESS e/EMAIL p/PHONE q/QUALIFICATION i/INSTITUTION #/TAG\n"
-            + "Parameters for Tuition Class: n/NAME d/DAY s/SUBJECT l/LEVEL t/TIME #/TAG\n"
-            + "Example for Student: " + COMMAND_WORD + " n/alice e/alice@example.com s/Keming \n"
-            + "Example for Tutor: " + COMMAND_WORD + " n/john a/clementi q/computing #/alwaysLate\n"
-            + "Example for Tuition Class: " + COMMAND_WORD + " n/P2Math d/tuesday s/mathematics t/18:00\n"
-            + "NOTE: Must include at least one pair of prefix and keywords.\n"
+            + "\nParameters for Student:\nn/NAME a/ADDRESS e/EMAIL p/PHONE s/SCHOOL l/LEVEL #/TAG\n"
+            + "\nParameters for Tutor:\nn/NAME a/ADDRESS e/EMAIL p/PHONE q/QUALIFICATION i/INSTITUTION #/TAG\n"
+            + "\nParameters for Tuition Class:\nn/NAME d/DAY s/SUBJECT l/LEVEL t/TIME #/TAG\n"
+            + "\nExample for Student:\n" + COMMAND_WORD + " n/alice e/alice@example.com s/Keming \n"
+            + "\nExample for Tutor:\n" + COMMAND_WORD + " n/john a/clementi q/computing #/alwaysLate\n"
+            + "\nExample for Tuition Class:\n" + COMMAND_WORD + " n/P2Math d/tuesday s/mathematics t/18:00\n"
+            + "\nNOTE: Must include at least one pair of prefix and keywords.\n"
             + "NOTE: If repeated prefixes are specified, only the latest one will be taken.";
 
     public static final String FEEDBACK_MESSAGE = "Valid find command format:\n"
             + "find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]...\n";
-
 
     private final HashMap<Prefix, String> keywords;
 

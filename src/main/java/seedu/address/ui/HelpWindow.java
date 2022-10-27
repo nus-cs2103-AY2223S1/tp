@@ -3,12 +3,24 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AssignCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.NextOfKinCommand;
+import seedu.address.logic.commands.ShowCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.UnassignCommand;
 
 /**
  * Controller for a help page
@@ -16,16 +28,11 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
-
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
-    private Button copyButton;
-
-    @FXML
-    private Label helpMessage;
+    private TextArea textArea;
 
     /**
      * Creates a new HelpWindow.
@@ -34,7 +41,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        textArea.setText(HelpCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -66,6 +73,53 @@ public class HelpWindow extends UiPart<Stage> {
         logger.fine("Showing help page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    public void set() {
+        textArea.setText(HelpCommand.MESSAGE_USAGE);
+    }
+
+    public void set(CommandResult.CommandType commandType) {
+        assert(commandType != CommandResult.CommandType.EXIT
+                || commandType != CommandResult.CommandType.HELP
+                || commandType != CommandResult.CommandType.OTHER);
+        switch (commandType) {
+        case ADD:
+            textArea.setText(AddCommand.MESSAGE_USAGE);
+            break;
+        case EDIT:
+            textArea.setText(EditCommand.MESSAGE_USAGE);
+            break;
+        case DELETE:
+            textArea.setText(DeleteCommand.MESSAGE_USAGE);
+            break;
+        case SORT:
+            textArea.setText(SortCommand.MESSAGE_USAGE);
+            break;
+        case CLEAR:
+            textArea.setText(ClearCommand.MESSAGE_USAGE);
+            break;
+        case FIND:
+            textArea.setText(FindCommand.MESSAGE_USAGE);
+            break;
+        case LIST:
+            textArea.setText(ListCommand.MESSAGE_USAGE);
+            break;
+        case SHOW:
+            textArea.setText(ShowCommand.MESSAGE_USAGE);
+            break;
+        case ASSIGN:
+            textArea.setText(AssignCommand.MESSAGE_USAGE);
+            break;
+        case UNASSIGN:
+            textArea.setText(UnassignCommand.MESSAGE_USAGE);
+            break;
+        case NOK:
+            textArea.setText(NextOfKinCommand.MESSAGE_USAGE);
+            break;
+        default:
+            textArea.setText(HelpCommand.MESSAGE_USAGE);
+        }
     }
 
     /**

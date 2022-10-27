@@ -271,10 +271,27 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the help window depending on query commandType or focuses on it if it's already opened.
+     */
+    public void handleHelp(CommandResult.CommandType commandType) {
+        if (commandType == null) {
+            helpWindow.set();
+        } else {
+            helpWindow.set(commandType);
+        }
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
+        } else {
+            helpWindow.focus();
+        }
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
     public void handleHelp() {
+        helpWindow.set();
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
@@ -540,7 +557,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
-                handleHelp();
+                handleHelp(commandResult.getQueryType());
             }
 
             if (commandResult.isExit()) {
