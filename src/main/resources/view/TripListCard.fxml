@@ -48,7 +48,6 @@
                   <HBox.margin>
                      <Insets />
                   </HBox.margin></Label>
-
             </children>
             <padding>
                <Insets top="5.0" />
