@@ -1,7 +1,6 @@
 package seedu.address.model.client;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Client's email in the address book.
@@ -10,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ClientEmail {
 
     private static final String SPECIAL_CHARACTERS = "+_.-";
-    public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
+    public static final String WARNING = "Your email input does not follow the normal convention as follow: \n"
+            + "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
@@ -33,6 +33,8 @@ public class ClientEmail {
 
     public final String value;
 
+    private boolean hasWarning;
+
     /**
      * Constructs an {@code ClientEmail}.
      *
@@ -40,7 +42,6 @@ public class ClientEmail {
      */
     public ClientEmail(String email) {
         requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
     }
 
@@ -49,6 +50,14 @@ public class ClientEmail {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public void setWarning() {
+        this.hasWarning = true;
+    }
+
+    public boolean hasWarning() {
+        return this.hasWarning;
     }
 
     @Override
