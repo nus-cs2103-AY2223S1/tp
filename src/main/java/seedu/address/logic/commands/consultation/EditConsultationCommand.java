@@ -3,12 +3,20 @@ package seedu.address.logic.commands.consultation;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
+import seedu.address.model.consultation.*;
+import seedu.address.model.datetime.DatetimeRange;
+import seedu.address.model.student.Name;
 
 public class EditConsultationCommand extends Command {
     
@@ -19,19 +27,18 @@ public class EditConsultationCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_ID + "ID] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
-            + "[" + PREFIX_TUTORIAL + "TUTORIAL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MODULE + "MODULE] "
+            + "[" + PREFIX_VENUE + "VENUE] "
+            + "[" + PREFIX_DAY + "DAY] "
+            + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_MODULE + "CS2103T"
+            + PREFIX_DESCRIPTION + "Review past years' papers";
 
-    public static final String MESSAGE_EDIT_CONSULT_SUCCESS = "Edited Consult: %1$s";
+    public static final String MESSAGE_EDIT_CONSULTATION_SUCCESS = "Edited Consult: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CONSULT = "There is already a consultation at that timing.";
+    public static final String MESSAGE_DUPLICATE_CONSULTATION = "There is already a consultation at that timing.";
 
     private final Index index;
     private final EditConsultDescriptor editConsultDescriptor;
@@ -51,38 +58,41 @@ public class EditConsultationCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Consult> lastShownList = model.getFilteredConsultList();
+        List<Consultation> lastShownList = model.getFilteredConsultationList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CONSULT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CONSULTATION_DISPLAYED_INDEX);
         }
 
-        Consult consultToEdit = lastShownList.get(index.getZeroBased());
-        Consult editedConsult = createEditedConsult(consultToEdit, editConsultDescriptor);
+        Consultation consultToEdit = lastShownList.get(index.getZeroBased());
+        Consultation editedConsult = createEditedConsult(consultToEdit, editConsultDescriptor);
 
-        if (!consultToEdit.equals(editedConsult) && model.hasConsult(editedConsult)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CONSULT);
+        if (!consultToEdit.equals(editedConsult) && model.hasConsultation(editedConsult)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CONSULTATION);
         }
 
         model.setConsult(consultToEdit, editedConsult);
-        model.updateFilteredConsultList(PREDICATE_SHOW_ALL_CONSULTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_CONSULT_SUCCESS, editedConsult));
+        model.updateFilteredConsultationList(Model.PREDICATE_SHOW_ALL_CONSULTATIONS);
+        return new CommandResult(String.format(MESSAGE_EDIT_CONSULTATION_SUCCESS, editedConsult));
     }
 
     /**
      * Creates and returns a {@code Consult} with the details of {@code consultToEdit}
      * edited with {@code editConsultDescriptor}.
      */
-    private static Consult createEditedConsult(Consult consultToEdit, EditConsultDescriptor editConsultDescriptor) {
+    private static Consultation createEditedConsult(Consultation consultToEdit,
+                                                    EditConsultDescriptor editConsultDescriptor) {
         assert consultToEdit != null;
 
-        LocalDateTime updatedBeginStartTime = editConsultDescriptor.getConsultBeginDateTime()
-                .orElse(consultToEdit.getConsultBeginDateTime());
-        LocalDateTime updatedEndStartTime = editConsultDescriptor.getConsultEndDateTime()
-                .orElse(consultToEdit.getConsultEndDateTime());
-        Location updatedLocation = editConsultDescriptor.getLocation().orElse(consultToEdit.getPlace());
+        ConsultationName updatedName = editConsultDescriptor.getName().orElse(consultToEdit.getName());
+        ConsultationModule updatedModule = editConsultDescriptor.getModule().orElse(consultToEdit.getModule());
+        ConsultationVenue updatedVenue = editConsultDescriptor.getVenue().orElse(consultToEdit.getVenue());
+        DatetimeRange updatedTimeSlot = editConsultDescriptor.getTimeslot().orElse(consultToEdit.getName());
+        ConsultationDescription updatedDescription = editConsultDescriptor.getDescription()
+                .orElse(consultToEdit.getDescription());
 
-        return new Consult(updatedBeginStartTime, updatedEndStartTime, updatedLocation);
+
+        return new Consultation(updatedName, updatedModule, updatedVenue, updatedTimeSlot, updatedDescription);
     }
 
     @Override
@@ -108,9 +118,11 @@ public class EditConsultationCommand extends Command {
      * corresponding field value of the consult.
      */
     public static class EditConsultDescriptor {
-        private LocalDateTime consultBeginDateTime;
-        private LocalDateTime consultEndDateTime;
-        private Location location;
+        private ConsultationName name;
+        private ConsultationModule module;
+        private ConsultationVenue venue;
+        private DatetimeRange timeslot;
+        private ConsultationDescription description;
 
 
         public EditConsultDescriptor() {}
@@ -119,41 +131,58 @@ public class EditConsultationCommand extends Command {
          * Copy constructor.
          */
         public EditConsultDescriptor(EditConsultDescriptor toCopy) {
-            setConsultBeginDateTime(toCopy.consultBeginDateTime);
-            setConsultEndDateTime(toCopy.consultEndDateTime);
-            setLocation(toCopy.location);
+            setName(toCopy.name);
+            setModule(toCopy.module);
+            setVenue(toCopy.venue);
+            setTimeSlot(toCopy.timeslot);
+            setDescription(toCopy.description);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(consultBeginDateTime,
-                    consultEndDateTime, location);
+            return CollectionUtil.isAnyNonNull(name, module, venue, timeslot, description);
         }
 
-        public void setConsultBeginDateTime(LocalDateTime consultBeginDateTime) {
-            this.consultBeginDateTime = consultBeginDateTime;
+        public void setName(ConsultationName name) {
+            this.name = name;
         }
 
-        public Optional<LocalDateTime> getConsultBeginDateTime() {
-            return Optional.ofNullable(consultBeginDateTime);
+        public Optional<ConsultationName> getName() {
+            return Optional.ofNullable(name);
         }
 
-        public void setConsultEndDateTime(LocalDateTime consultEndDateTime) {
-            this.consultEndDateTime = consultEndDateTime;
+        public void setModule(ConsultationModule module) {
+            this.module = module;
         }
 
-        public Optional<LocalDateTime> getConsultEndDateTime() {
-            return Optional.ofNullable(consultEndDateTime);
+        public Optional<ConsultationModule> getModule() {
+            return Optional.ofNullable(module);
         }
 
-        public void setLocation(Location location) {
-            this.location = location;
+        public void setVenue(ConsultationVenue venue) {
+            this.venue = venue;
         }
 
-        public Optional<Location> getLocation() {
-            return Optional.ofNullable(location);
+        public Optional<ConsultationVenue> getVenue() {
+            return Optional.ofNullable(venue);
+        }
+
+        public void setTimeSlot(DatetimeRange timeslot) {
+            this.timeslot = timeslot;
+        }
+
+        public Optional<DatetimeRange> getTimeslot() {
+            return Optional.ofNullable(timeslot);
+        }
+
+        public void setDescription(ConsultationDescription description) {
+            this.description = description;
+        }
+
+        public Optional<ConsultationDescription> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         @Override
@@ -171,11 +200,11 @@ public class EditConsultationCommand extends Command {
             // state check
             EditConsultDescriptor e = (EditConsultDescriptor) other;
 
-            return getConsultBeginDateTime().equals(e.getConsultBeginDateTime())
-                    && getConsultEndDateTime().equals(e.getConsultEndDateTime())
-                    && getLocation().equals(e.getLocation());
+            return getName().equals(e.getName())
+                    && getModule().equals(e.getModule())
+                    && getVenue().equals(e.getVenue())
+                    && getTimeslot().equals(e.getTimeslot())
+                    && getDescription().equals(e.getDescription());
         }
-
-
     }
 }
