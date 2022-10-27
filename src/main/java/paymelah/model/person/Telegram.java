@@ -8,8 +8,8 @@ import static paymelah.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidHandle(String)}
  */
 public class Telegram {
-
-    //private static final String SPECIAL_CHARACTERS = "+_.-";
+    public static final Telegram EMPTY_TELEGRAM = new Telegram();
+    public static final String EMPTY_TELEGRAM_STRING = "Unknown";
     public static final String MESSAGE_CONSTRAINTS = "Telegram handles should be of the format @username "
             + "and adhere to the following constraints:\n"
             + "1. The username-part can optionally be preceded by a '@'.\n"
@@ -39,6 +39,10 @@ public class Telegram {
         } else {
             value = "@" + handle;
         }
+    }
+
+    private Telegram() {
+        value = EMPTY_TELEGRAM_STRING;
     }
 
     /**
