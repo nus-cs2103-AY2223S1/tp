@@ -82,7 +82,13 @@ public class MainWindow extends UiPart<Stage> {
     private Button btnChangeTheme;
 
     @FXML
+    private Button btnHide;
+
+    @FXML
     private ImageView imageTheme;
+
+    @FXML
+    private ImageView imageHide;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -116,6 +122,14 @@ public class MainWindow extends UiPart<Stage> {
                 setDarkTheme(pref);
             }
         });
+        btnHide.setOnMouseClicked(event -> {
+            int hidden = pref.getInt("hidden", 0);
+            if (hidden == 0) { //hide sensitive data
+                hide(pref);
+            } else { //show sensitive data
+                show(pref);
+            }
+        });
     }
 
     /**
@@ -128,6 +142,10 @@ public class MainWindow extends UiPart<Stage> {
         int mode = pref.getInt("mode", 0);
         if (mode == 1) {
             setLightTheme(pref);
+        }
+        int hidden = pref.getInt("hidden", 0);
+        if (hidden == 1) {
+            show(pref);
         }
     }
 
@@ -268,6 +286,28 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             primaryStage.show();
         }
+    }
+
+    /**
+     * Shows FinBook data by removing blurring of portfolioWindow and PersonListPanel data.
+     * @param pref Stored preference of hidden attribute.
+     */
+    void show(Preferences pref) {
+        pref.putInt("hidden", 0);
+        imageHide.setImage(new Image("images/open_eye.png"));
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
+    /**
+     * Hides FinBook data by censoring portfolioWindow and PersonListPanel data.
+     * @param pref Stored preference of hidden attribute.
+     */
+    void hide(Preferences pref) {
+        pref.putInt("hidden", 1);
+        imageHide.setImage(new Image("images/close_eye.png"));
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), true);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
     /**
