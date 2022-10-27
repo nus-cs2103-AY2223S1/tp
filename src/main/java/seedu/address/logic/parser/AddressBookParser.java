@@ -19,6 +19,7 @@ import seedu.address.logic.commands.FindPersonsCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListEventsCommand;
 import seedu.address.logic.commands.ListPersonsCommand;
+import seedu.address.logic.commands.MailEventCommand;
 import seedu.address.logic.commands.MakeStatsCommand;
 import seedu.address.logic.commands.TagEventCommand;
 import seedu.address.logic.commands.UntagEventCommand;
@@ -95,6 +96,9 @@ public class AddressBookParser {
 
         case UntagEventCommand.COMMAND_WORD:
             return new UntagEventCommandParser().parse(arguments);
+
+        case MailEventCommand.COMMAND_WORD:
+            return new MailEventCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
