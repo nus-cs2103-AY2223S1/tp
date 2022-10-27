@@ -11,6 +11,7 @@ import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 import seedu.rc4hdb.testutil.ResidentBuilder;
 import seedu.rc4hdb.testutil.ResidentStringDescriptorBuilder;
 
+
 public class AttributesMatchAllKeywordsPredicateTest {
 
     @Test

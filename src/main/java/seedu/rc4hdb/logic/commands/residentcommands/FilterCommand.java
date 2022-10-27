@@ -49,6 +49,7 @@ public class FilterCommand implements ModelCommand {
 
     /** description to filter the resident with */
     private final ResidentStringDescriptor filterPersonDescriptor;
+
     private final Specifier specifier;
 
     /**
