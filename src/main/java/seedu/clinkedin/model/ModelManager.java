@@ -13,7 +13,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import seedu.clinkedin.commons.core.GuiSettings;
 import seedu.clinkedin.commons.core.LogsCenter;
 import seedu.clinkedin.commons.exceptions.CannotRedoAddressBookException;
@@ -31,7 +30,7 @@ public class ModelManager implements Model {
     private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final SortedList<Person> sortedPersons;
+    // private final SortedList<Person> sortedPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -44,7 +43,7 @@ public class ModelManager implements Model {
         this.addressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        sortedPersons = new SortedList<>(filteredPersons);
+        // sortedPersons = new SortedList<>(filteredPersons);
     }
 
     public ModelManager() {
@@ -198,19 +197,22 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the
-     * internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getSortedPersonList() {
-        return sortedPersons;
-    }
+    // /**
+    // * Returns an unmodifiable view of the list of {@code Person} backed by the
+    // * internal list of
+    // * {@code versionedAddressBook}
+    // */
+    // @Override
+    // public ObservableList<Person> getSortedPersonList() {
+    //    return sortedPersons;
+    //}
 
     @Override
     public void updateSort(Comparator<Person> comparator) {
-        sortedPersons.setComparator(comparator);
+        requireNonNull(comparator);
+        List<Person> sortedList = new ArrayList<>(addressBook.getPersonList());
+        sortedList.sort(comparator);
+        addressBook.setPersons(sortedList);
     }
 
     @Override

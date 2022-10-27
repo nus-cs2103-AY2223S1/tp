@@ -27,7 +27,7 @@ public class SortCommand extends Command {
     private final Comparator<Person> comparator;
 
     public SortCommand() {
-        this.comparator = (p1, p2) -> p1.compareByRating(p2);
+        this.comparator = (p1, p2) -> p2.compareByRating(p1);
     }
 
     public Comparator<Person> getComparator() {
