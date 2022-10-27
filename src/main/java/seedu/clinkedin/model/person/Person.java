@@ -276,7 +276,7 @@ public class Person {
         return mergedLinks;
     }
 
-    public Note mergeNote(Note note) {
+    public Note mergeNote(Note note) throws DuplicateNoteException {
         if (this.note.value.equals(note.value)) {
             throw new DuplicateNoteException(note.value);
         }

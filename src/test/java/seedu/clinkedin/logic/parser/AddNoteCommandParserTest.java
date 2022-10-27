@@ -37,9 +37,9 @@ public class AddNoteCommandParserTest {
     @Test
     public void parse_validArgs_returnsNoteCommand() {
         // no leading and trailing whitespaces
-        AddNoteCommand expectedFindCommand = new AddNoteCommand(Index.fromOneBased(1), new Note("Test"));
-        assertParseSuccess(parser, "1 note/Test", expectedFindCommand);
-        
+        AddNoteCommand expectedNoteCommand = new AddNoteCommand(Index.fromOneBased(1), new Note("Test"));
+        assertParseSuccess(parser, "1 note/Test", expectedNoteCommand);
+
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n \t1 note/Test\t", expectedNoteCommand);
     }

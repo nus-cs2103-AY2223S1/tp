@@ -12,6 +12,7 @@ import seedu.clinkedin.model.ModelManager;
 import seedu.clinkedin.model.UserPrefs;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
+import seedu.clinkedin.model.person.exceptions.DuplicateNoteException;
 import seedu.clinkedin.testutil.PersonBuilder;
 
 public class AddNoteCommandTest {
@@ -29,28 +30,16 @@ public class AddNoteCommandTest {
     }
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexUnfilteredList_throwsDuplicateNoteException() {
         Note note = new Note("She is strong at Java.");
         AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), note);
-
-        Person personToEdit = model.getFilteredPersonList().get(0);
-        Person editedPerson = new PersonBuilder(personToEdit).withNote(note.value).build();
-        String expectedMessage = String.format(AddNoteCommand.MESSAGE_ADD_NOTE_SUCCESS, editedPerson);
-
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        assertCommandSuccess(addNoteCommand, model, expectedMessage, expectedModel);
+        assertThrows(DuplicateNoteException.class, () -> addNoteCommand.execute(model));
     }
 
     @Test
-    public void execute_noChangeInValue_success() {
+    public void execute_noChangeInValue_throwsDuplicateNoteException() {
         Person personToEdit = model.getFilteredPersonList().get(0);
         AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), personToEdit.getNote());
-
-        Person editedPerson = new PersonBuilder(personToEdit).withNote(personToEdit.getNote().value).build();
-        String expectedMessage = String.format(AddNoteCommand.MESSAGE_ADD_NOTE_SUCCESS, editedPerson);
-
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        assertCommandSuccess(addNoteCommand, model, expectedMessage, expectedModel);
+        assertThrows(DuplicateNoteException.class, () -> addNoteCommand.execute(model));
     }
-
 }
