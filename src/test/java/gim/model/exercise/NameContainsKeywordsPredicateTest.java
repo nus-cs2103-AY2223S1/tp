@@ -68,8 +68,8 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ExerciseBuilder().withName("Alice Bench Press").build()));
 
         // Keywords match weight, sets and reps, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "1", "1"));
-        assertFalse(predicate.test(new ExerciseBuilder().withName("Alice").withWeight("12345")
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("123", "1", "1"));
+        assertFalse(predicate.test(new ExerciseBuilder().withName("Alice").withWeight("123")
                 .withSets("1").withReps("1").build()));
     }
 }
