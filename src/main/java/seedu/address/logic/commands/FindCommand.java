@@ -20,6 +20,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
+import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 
 /**
  * Finds and lists all persons and their appointments in idENTify whose name contains any of the argument keywords.
@@ -80,9 +81,9 @@ public class FindCommand extends Command {
         and updates the model accordingly.
          */
         Predicate<Person> personFulfillingBothPredicates = !isUsingAppointmentPredicate
-                ? personPredicate
-                : personPredicate.and(person -> person.getAppointments().stream().anyMatch(appointmentPredicate));
-        model.updateFilteredPersonList(personFulfillingBothPredicates);
+                ? personPredicate.and(HiddenPredicateSingleton.getCurrPersonPredicate())
+                : personPredicate.and(person -> person.getAppointments().stream().anyMatch(
+                        appointmentPredicate)).and(HiddenPredicateSingleton.getCurrPersonPredicate());
 
         /*
         Creates a Predicate<Appointment> that returns true if an appointment's patient is one who satisfies
@@ -97,10 +98,14 @@ public class FindCommand extends Command {
         and updates the model accordingly.
          */
         Predicate<Appointment> appointmentFulfillingBothPredicates = !isUsingAppointmentPredicate
-                ? appointmentOfFilteredPersonsPredicate
+                ? appointmentOfFilteredPersonsPredicate.and(HiddenPredicateSingleton.getCurrApptPredicate())
                 : appointmentOfFilteredPersonsPredicate.and(appointmentPredicate);
-        model.updateFilteredAppointmentList(appointmentFulfillingBothPredicates);
 
+        Predicate<Person> combinedPersonPredicate = HiddenPredicateSingleton.combineWithRegularPredicate(personFulfillingBothPredicates);
+        Predicate<Appointment> combinedApptPredicate = HiddenPredicateSingleton.combineWithRegularApptPredicate(appointmentFulfillingBothPredicates);
+
+        model.updateFilteredPersonList(combinedPersonPredicate);
+        model.updateFilteredAppointmentList(combinedApptPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESULTS_LISTED_OVERVIEW,
                         model.getFilteredPersonList().size(),

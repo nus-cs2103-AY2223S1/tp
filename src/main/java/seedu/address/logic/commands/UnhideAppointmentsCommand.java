@@ -5,12 +5,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 
 /**
@@ -44,7 +47,10 @@ public class UnhideAppointmentsCommand extends Command {
         requireNonNull(model);
         Predicate<Appointment> combinedPredicate =
                 HiddenPredicateSingleton.combineWithUnhiddenApptPredicate(predicate);
-        model.updateFilteredAppointmentList(combinedPredicate);
+        List<Person> validPersons = model.getFilteredPersonList();
+        AppointmentOfFilteredPersonsPredicate appointmentPredicate =
+                new AppointmentOfFilteredPersonsPredicate(validPersons);
+        model.updateFilteredAppointmentList(combinedPredicate.and(appointmentPredicate));
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESULTS_LISTED_OVERVIEW,

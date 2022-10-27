@@ -81,6 +81,26 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
     }
 
     /**
+     * Combines the current predicate shown on idENTify with a new person predicate,
+     * @param p Predicate for the current model.
+     * @return The predicate result of combining the new predicate with the current predicate.
+     */
+    public static Predicate<Person> combineWithRegularPredicate(Predicate<Person> p) {
+        currPersonPredicate = currPersonPredicate.and(p);
+        return currPersonPredicate;
+    }
+
+    /**
+     * Combines the current predicate shown on idENTify with a new appointment predicate,
+     * @param p Predicate for the current model.
+     * @return The predicate result of combining the new predicate with the current predicate.
+     */
+    public static Predicate<Appointment> combineWithRegularApptPredicate(Predicate<Appointment> p) {
+        currApptPredicate = currApptPredicate.and(p);
+        return currApptPredicate;
+    }
+
+    /**
      * Combines the current predicate shown on idENTify with the new predicate to unhide patients by name or tag.
      * @param p Predicate to show patients by.
      * @return The predicate result of combining the non-exclusion predicate with the current predicate.
