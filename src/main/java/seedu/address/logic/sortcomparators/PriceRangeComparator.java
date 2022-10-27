@@ -34,6 +34,8 @@ public class PriceRangeComparator implements Comparator<PriceRange> {
     @Override
     public String toString() {
         return "Sorted by pricerange "
-                + (order.equals(new Order("ASC")) ? "lowerbound" : "upperbound");
+                + (order.equals(new Order("ASC")) ? "lowerbound" : "upperbound")
+                + " in "
+                + order;
     }
 }
