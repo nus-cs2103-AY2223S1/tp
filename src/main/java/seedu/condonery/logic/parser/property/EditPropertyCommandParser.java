@@ -53,10 +53,10 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
         }
 
         if (!argMultimap.getValue(PREFIX_NAME).isPresent()
-          && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
-                && !argMultimap.getValue(PREFIX_PRICE).isPresent()
-                && !argMultimap.getValue(PREFIX_PROPERTY_TYPE).isPresent()
-                && !argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent()
+            && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
+            && !argMultimap.getValue(PREFIX_PRICE).isPresent()
+            && !argMultimap.getValue(PREFIX_PROPERTY_TYPE).isPresent()
+            && !argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent()
             && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
             throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);
         }
