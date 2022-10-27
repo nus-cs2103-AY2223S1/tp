@@ -246,7 +246,7 @@ Examples:
 
 Switches between different lists in InternConnect.
 
-Format: `checkout file_name`
+Format: `checkout FILE_NAME`
 
 * New and existing lists will be stored at `data/file_name.json`
 
@@ -293,6 +293,6 @@ If your changes to the data file makes its format invalid, InternConnect will di
 | **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                        |
 | **Import**   | `import FILE_PATH`<br> e.g., `import nus_students.json`                                                                                                                                                                                                                           | 
 | **Export**   | `export`                                                                                                                                                                                                                                                                          |
-| **Checkout** | `checkout 27-oct-2022`                                                                                                                                                                                                                                                            |
+| **Checkout** | `checkout FILE_NAME`                                                                                                                                                                                                                                                              |
 | **Clear**    | `clear`                                                                                                                                                                                                                                                                           |
 | **Exit**     | `exit`                                                                                                                                                                                                                                                                            |
