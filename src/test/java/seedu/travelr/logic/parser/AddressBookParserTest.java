@@ -7,21 +7,15 @@ import static seedu.travelr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.travelr.testutil.Assert.assertThrows;
 import static seedu.travelr.testutil.TypicalIndexes.INDEX_FIRST_TRIP;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.travelr.logic.commands.AddCommand;
 import seedu.travelr.logic.commands.ClearCommand;
 import seedu.travelr.logic.commands.DeleteCommand;
 import seedu.travelr.logic.commands.ExitCommand;
-import seedu.travelr.logic.commands.FindCommand;
 import seedu.travelr.logic.commands.HelpCommand;
 import seedu.travelr.logic.commands.ListCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
-import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.TripBuilder;
 import seedu.travelr.testutil.TripUtil;
@@ -50,30 +44,10 @@ public class AddressBookParserTest {
         assertEquals(new DeleteCommand(INDEX_FIRST_TRIP), command);
     }
 
-    //Not working at the moment
-    /*
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Trip trip = new TripBuilder().build();
-        EditTripDescriptor descriptor = new EditTripDescriptorBuilder(trip).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_TRIP.getOneBased() + " " + TripUtil.getEditTripDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_TRIP, descriptor), command);
-    }
-     */
-
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
-    }
-
-    @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new TitleContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
