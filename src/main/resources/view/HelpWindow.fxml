@@ -58,9 +58,9 @@
                                       <Label prefWidth="216.0" style="-fx-padding: 0 0 0 20;" text="T sort c/CRITERIA" textFill="WHITE" />
                                       <Label style="-fx-padding: 0 0 0 160;" text="Sort the tasks in the task list based on the criteria" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />
                                   </HBox>
-                                  <HBox prefHeight="34.0" prefWidth="495.0">
-                                      <Label style="-fx-padding: 0 0 0 20;" text="T filter m/MODULE c/COMPLETE l/LINKED" textFill="WHITE" />
-                                      <Label style="-fx-padding: 0 0 0 56;" text="Edits the task in the task list" textFill="WHITE" />
+                                  <HBox prefHeight="47.0" prefWidth="495.0">
+                                      <Label prefHeight="34.0" prefWidth="371.0" style="-fx-padding: 0 0 0 20;" text="T filter [m/MODULE]* [c/COMPLETE]* [l/LINKED]*" textFill="WHITE" wrapText="true" />
+                                      <Label style="-fx-padding: 0 0 0 62;" text="Filters the task list by module, completion and/or link status" textFill="WHITE" wrapText="true" />
                                   </HBox>
                                   <HBox prefHeight="43.0" prefWidth="495.0">
                                       <Label prefHeight="17.0" prefWidth="242.0" style="-fx-padding: 0 0 0 20;" text="T find KEYWORD" textFill="WHITE" />

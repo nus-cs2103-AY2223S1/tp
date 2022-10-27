@@ -18,10 +18,10 @@ public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = "t " + COMMAND_WORD + ": Adds a task to the task list. "
+    public static final String MESSAGE_USAGE = "t " + COMMAND_WORD + ": Adds a task to the task list.\n"
             + "Parameters: "
             + PREFIX_MODULE + "MODULE "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example: t " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_DESCRIPTION + "lecture quiz";
