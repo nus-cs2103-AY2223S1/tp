@@ -280,7 +280,7 @@ Step 9: `ReminderCommand` then returns a new `CommandResult` with the result of 
 
 #### Implementation
 
-The mechanism to delete a reminder is facilitated by `DeleteReminderCommand` and `DeleteReminderCommandParser`. 
+The mechanism to delete a reminder is facilitated by `DeleteReminderCommand` and `DeleteReminderCommandParser`.
 
 #### Example Usage
 
