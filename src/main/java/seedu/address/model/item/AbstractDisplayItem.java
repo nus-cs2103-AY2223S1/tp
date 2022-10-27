@@ -27,9 +27,9 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     private int parentTypeFlag;
     private Set<Tag> tags;
 
-    protected AbstractDisplayItem(String name, int typeFlag, int parentTypeFlag) {
+    protected AbstractDisplayItem(Name name, int typeFlag, int parentTypeFlag) {
         requireAllNonNull(name, typeFlag);
-        this.name = new Name(name);
+        this.name = name;
         this.typeFlag = typeFlag;
         this.parentTypeFlag = parentTypeFlag;
         attributes = new AttributeList();
@@ -70,9 +70,6 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         this.tags = tags;
     }
 
-    protected boolean canBeChildOf(AbstractDisplayItem o) {
-        return (parentTypeFlag & o.typeFlag) > 0;
-    }
 
     protected abstract String getTitle(List<String> sb, AbstractDisplayItem o);
 
@@ -196,5 +193,8 @@ public abstract class AbstractDisplayItem implements DisplayItem {
             return false;
         }
         return stronglyEqual((AbstractDisplayItem) obj);
+    }
+    protected boolean canBeChildOf(AbstractDisplayItem o) {
+        return (parentTypeFlag & o.typeFlag) > 0;
     }
 }

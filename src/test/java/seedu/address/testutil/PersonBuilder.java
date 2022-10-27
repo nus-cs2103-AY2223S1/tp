@@ -170,7 +170,7 @@ public class PersonBuilder {
      * @return
      */
     public Person build() {
-        Person p = new Person(name.fullName, fields);
+        Person p = new Person(new Name(name.fullName), fields);
         p.setTags(tags);
         if (!fields.toList().isEmpty()) {
             fields.toList().forEach(p::addAttribute);

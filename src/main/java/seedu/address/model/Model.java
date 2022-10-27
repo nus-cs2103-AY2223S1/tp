@@ -201,4 +201,5 @@ public interface Model {
     void setTask(Task target, Task editedTask);
 
     Task getFromFilteredTasks(Index index) throws TaskOutOfBoundException;
+
 }

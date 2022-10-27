@@ -118,5 +118,7 @@ public interface DisplayItem {
     /**
      * Returns unique uid for this displayItem.
      */
-    UUID getUid();
+
+    UUID getUuid();
+
 }

@@ -29,7 +29,7 @@ public class Person extends AbstractDisplayItem {
     /**
      * Every field must be present and not null.
      */
-    public Person(String name) {
+    public Person(Name name) {
         super(name, PERSON, GROUP);
         requireAllNonNull(name);
     }
@@ -37,7 +37,7 @@ public class Person extends AbstractDisplayItem {
     /**
      * Every field must be present and not null.
      */
-    public Person(String name, AttributeList fields) {
+    public Person(Name name, AttributeList fields) {
         super(name, PERSON, GROUP);
         requireAllNonNull(name, fields);
         attributes = fields;
@@ -101,7 +101,7 @@ public class Person extends AbstractDisplayItem {
     }
 
     @Override
-    public UUID getUid() {
+    public UUID getUuid() {
         return UUID.nameUUIDFromBytes(("Person: " + getFullPath()).getBytes(StandardCharsets.UTF_8));
     }
 }

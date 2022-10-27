@@ -39,7 +39,7 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        super(source.getName().fullName, source.getUid().toString(),
+        super(source.getName().fullName, source.getUuid().toString(),
                 source.getAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),
@@ -109,7 +109,8 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
         final AttributeList modelFields = new AttributeList();
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        Person p = new Person(modelName.fullName, modelFields);
+        Name personName = new Name(modelName.fullName);
+        Person p = new Person(personName, modelFields);
         p.setTags(modelTags);
         modelAttributes.stream().forEach(attribute -> p.addAttribute(attribute));
         return p;

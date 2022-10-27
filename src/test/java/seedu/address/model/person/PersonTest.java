@@ -23,6 +23,7 @@ public class PersonTest {
         assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
     }
 
+
     @Test
     public void isSamePerson() {
         // same object -> returns true
@@ -88,4 +89,5 @@ public class PersonTest {
     //        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
     //        assertFalse(ALICE.equals(editedAlice));
     //    }
+
 }
