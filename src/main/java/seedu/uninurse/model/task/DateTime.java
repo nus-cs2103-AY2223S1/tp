@@ -180,7 +180,7 @@ public class DateTime implements Comparable<DateTime> {
             return 0;
         }
 
-        return dateTime.isBefore(o.dateTime) ? 1 : -1;
+        return dateTime.isBefore(o.dateTime) ? -1 : 1;
     }
 
 }
