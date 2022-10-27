@@ -17,6 +17,7 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
   - [Finding an employee](#finding-an-employee--find)
   - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee-addleave)
   - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee-deleteleave)
+  - [View details of a department](#view-details-of-a-department-viewdepartment)
   - [Exiting the program](#exiting-the-program--exit)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
@@ -213,6 +214,18 @@ Example:
 
 - `deleteleave id/1 i/3` deletes the third leave period for an employee of ID 1 in the list of leaves.
 
+### View details of a department: `viewdepartment`
+
+View the summarized details of a department given the name of the department.
+
+Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department and their corresponding performance ratings.
+
+Format: `viewdepartment DEPARTMENT`
+
+Example:
+
+- `viewdepartment Finance` displays a brief summary of the Finance department's details on the right panel.
+
 ### Rating the performance of an employee: `rate`
 
 Rate the performance of an employee given the employee ID and a numeric rating.
@@ -270,16 +283,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                                     |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Batch Add**    | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                            |
-| **View Details** | `view ID` <br> e.g. `view 1`                                                                                                                                         |
-| **Delete**       | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                   |
-| **Find**         | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                 |
-| **Add leave**    | `addleave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `addleave id/1 sd/01-01-2022 ed/02-01-2022`                                                                      |
-| **Delete leave** | `deleteleave id/ID i/INDEX`<br> e.g. `deleteleave id/1 i/3`                                                                                                          |
-| **rate** | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                          |
-| **List**         | `list`                                                                                                                                                               |
-| **Exit**         | `exit`                                                                                                                                                               |
-| **Help**         | `help`                                                                                                                                                               |
+| Action              | Format, Examples                                                                                                                                                     |
+|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Batch Add**       | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                            |
+| **View Details**    | `view ID` <br> e.g. `view 1`                                                                                                                                         |
+| **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                   |
+| **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                 |
+| **Add leave**       | `addleave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `addleave id/1 sd/01-01-2022 ed/02-01-2022`                                                                      |
+| **Delete leave**    | `deleteleave id/ID i/INDEX`<br> e.g. `deleteleave id/1 i/3`                                                                                                          |
+| **View Department** | `viewdepartment DEPARTMENT`<br> e.g. `viewdepartment Finance`                                                                                                        |
+| **rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                       |
+| **List**            | `list`                                                                                                                                                               |
+| **Exit**            | `exit`                                                                                                                                                               |
+| **Help**            | `help`                                                                                                                                                               |
