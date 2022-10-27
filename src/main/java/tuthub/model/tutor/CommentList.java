@@ -1,6 +1,7 @@
 package tuthub.model.tutor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents the list of comments attached to each tutor.
@@ -8,6 +9,17 @@ import java.util.ArrayList;
  */
 public class CommentList {
     private final ArrayList<Comment> comments = new ArrayList<>();
+
+    public CommentList() { }
+
+    /**
+     * Constructor for CommentList to be added with another list of comments
+     *
+     * @param comments
+     */
+    public CommentList(List<Comment> comments) {
+        this.comments.addAll(comments);
+    }
 
     /**
      * Adds a Comment to the CommentList.
@@ -29,6 +41,11 @@ public class CommentList {
         return comments.size();
     }
 
+    /**
+     * Verifies if the {@code CommentList} is empty.
+     *
+     * @return true if empty, otherwise false.
+     */
     public boolean isEmpty() {
         return comments.size() == 0;
     }
