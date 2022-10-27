@@ -15,15 +15,15 @@ public class CommandResult {
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private final boolean isHelpShown;
 
     /** The application should exit. */
-    private final boolean exit;
+    private final boolean isExit;
 
     /**
      * The application should show the list.
      */
-    private final boolean list;
+    private final boolean isList;
 
     /**
      * Specifies which group to list.
@@ -33,7 +33,7 @@ public class CommandResult {
     /**
      * Pop-up window for add command should be shown to the user.
      */
-    private final boolean addByPopup;
+    private final boolean isAddedByPopup;
 
     /**
      * Specifies which group to add.
@@ -43,7 +43,7 @@ public class CommandResult {
     /**
     * The application should check a selected object.
      */
-    private final boolean check;
+    private final boolean isCheck;
 
     /**
      * Specifies which group of objects to check.
@@ -58,16 +58,24 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean list, String listType,
-                         boolean addByPopup, String addType, boolean check, String checkType, Index index) {
+    public CommandResult(String feedbackToUser,
+                         boolean isHelpShown,
+                         boolean isExit,
+                         boolean isList,
+                         String listType,
+                         boolean isAddedByPopup,
+                         String addType,
+                         boolean isCheck,
+                         String checkType,
+                         Index index) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.list = list;
+        this.isHelpShown = isHelpShown;
+        this.isExit = isExit;
+        this.isList = isList;
         this.listType = listType;
-        this.addByPopup = addByPopup;
+        this.isAddedByPopup = isAddedByPopup;
         this.addType = addType;
-        this.check = check;
+        this.isCheck = isCheck;
         this.checkType = checkType;
         this.index = index;
     }
@@ -76,8 +84,51 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
+    public CommandResult(String feedbackToUser, boolean isHelpShown, boolean isExit) {
+        this(feedbackToUser,
+                isHelpShown,
+                isExit,
+                false,
+                null,
+                false,
+                null,
+                false,
+                null,
+                null);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean isHelpShown, String listType) {
+        this(feedbackToUser,
+                isHelpShown,
+                false,
+                true,
+                listType,
+                false,
+                null,
+                false,
+                null,
+                null);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, null, false, null, false, null, null);
+        this(feedbackToUser,
+                false,
+                false,
+                false,
+                null,
+                false,
+                null,
+                false,
+                null,
+                null);
     }
 
     /**
@@ -86,8 +137,16 @@ public class CommandResult {
      * @return A {@code CommandResult} for {@code HelpCommand}.
      */
     public static CommandResult createHelpCommandResult(String feedbackToUser) {
-        return new CommandResult(feedbackToUser, true, false, false, null,
-                false, null, false, null, null);
+        return new CommandResult(feedbackToUser,
+                true,
+                false,
+                false,
+                null,
+                false,
+                null,
+                false,
+                null,
+                null);
     }
 
     /**
@@ -96,8 +155,16 @@ public class CommandResult {
      * @return A {@code CommandResult} for {@code ExitCommand}.
      */
     public static CommandResult createExitCommandResult(String feedbackToUser) {
-        return new CommandResult(feedbackToUser, false, true, false, null,
-                false, null, false, null, null);
+        return new CommandResult(feedbackToUser,
+                false,
+                true,
+                false,
+                null,
+                false,
+                null,
+                false,
+                null,
+                null);
     }
 
     /**
@@ -106,8 +173,16 @@ public class CommandResult {
      * @return A {@code CommandResult} for {@code ListCommand}.
      */
     public static CommandResult createListCommandResult(String feedbackToUser, String listType) {
-        return new CommandResult(feedbackToUser, false, false, true, listType,
-                false, null, false, null, null);
+        return new CommandResult(feedbackToUser,
+                false,
+                false,
+                true,
+                listType,
+                false,
+                null,
+                false,
+                null,
+                null);
     }
 
     /**
@@ -116,40 +191,56 @@ public class CommandResult {
      * @return A {@code CommandResult} for {@code AddCommandWithPopup}.
      */
     public static CommandResult createAddByPopupCommandResult(String feedbackToUser, String addType) {
-        return new CommandResult(feedbackToUser, false, false, false, null,
-                true, addType, false, null, null);
+        return new CommandResult(feedbackToUser,
+                false,
+                false,
+                false,
+                null,
+                true,
+                addType,
+                false,
+                null,
+                null);
     }
 
     /**
      * Constructs a {@code CommandResult} with check, checkType and Index fields specified.
      */
     public static CommandResult createCheckCommandResult(String feedbackToUser, String checkType, Index index) {
-        return new CommandResult(feedbackToUser, false, false, false, null,
-                false, null, true, checkType, index);
+        return new CommandResult(feedbackToUser,
+                false,
+                false,
+                false,
+                null,
+                false,
+                null,
+                true,
+                checkType,
+                index);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
+    public boolean isHelpShown() {
+        return isHelpShown;
     }
 
     public boolean isExit() {
-        return exit;
+        return isExit;
     }
 
     public boolean isList() {
-        return list;
+        return isList;
     }
 
-    public boolean isAddByPopup() {
-        return addByPopup;
+    public boolean isAddedByPopup() {
+        return isAddedByPopup;
     }
 
     public boolean isCheck() {
-        return check;
+        return isCheck;
     }
 
     public String getCheckType() {
@@ -181,15 +272,15 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && list == otherCommandResult.list
+                && isHelpShown == otherCommandResult.isHelpShown
+                && isExit == otherCommandResult.isExit
+                && isList == otherCommandResult.isList
                 && ((listType == null && otherCommandResult.listType == null)
                     || (listType != null && listType.equals(otherCommandResult.listType)))
-                && addByPopup == otherCommandResult.addByPopup
+                && isAddedByPopup == otherCommandResult.isAddedByPopup
                 && ((addType == null && otherCommandResult.addType == null)
                 || (addType != null && addType.equals(otherCommandResult.addType)))
-                && check == otherCommandResult.check
+                && isCheck == otherCommandResult.isCheck
                 && ((checkType == null && otherCommandResult.checkType == null)
                     || (checkType != null && checkType.equals(otherCommandResult.checkType)))
                 && ((index == null && otherCommandResult.index == null)
@@ -198,8 +289,16 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, list, listType,
-                addByPopup, addType, check, checkType, index);
+        return Objects.hash(feedbackToUser,
+                isHelpShown,
+                isExit,
+                isList,
+                listType,
+                isAddedByPopup,
+                addType,
+                isCheck,
+                checkType,
+                index);
     }
 
 }
