@@ -21,6 +21,7 @@ public class MarkAttendanceCommand extends Command {
                                                + "Example: " + COMMAND_WORD + " d/05/08/2022 c/1B ind/4 7 9 10";
 
     private static final String MESSAGE_MARK_ATTENDANCE_SUCCESS = "Attendance for students have been marked.";
+    private static final String MESSAGE_MARK_ATTENDANCE_NONE = "No student's attendance has been marked.";
 
     private String date;
     private String studentClass;
@@ -33,17 +34,30 @@ public class MarkAttendanceCommand extends Command {
     }
 
     public CommandResult execute(Model model) {
+        boolean anyStudentsAttendanceMarked = false;
+        String markedAttendance = "";
         requireNonNull(model);
-        Predicate<Person> personIsInClassPredicate = model.createPersonIsInClassPredicate(studentClass);
-        model.updateFilteredPersonList(personIsInClassPredicate);
+        // Now we're iterating through the whole list of saved people in Watsons and checking against their
+        // indexNumber and studentClass to check if they should be marked attendance. Not the most efficient.
+
+        //Predicate<Person> personIsInClassPredicate = model.createPersonIsInClassPredicate(studentClass);
+        //model.updateFilteredPersonList(personIsInClassPredicate);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         List<Person> latestList = model.getFilteredPersonList();
         for (Person person: latestList) {
             if (indexNumbers.stream().anyMatch(ind -> ind.equals(person.getIndexNumberValue()))) {
-                person.getAttendance().updateAttendance(date + " 1");
+                if (person.getStudentClass().isSameClass(studentClass)) {
+                    person.getAttendance().updateAttendance(date + " 1");
+                    anyStudentsAttendanceMarked = true;
+                    markedAttendance = markedAttendance + person.getName().toString()
+                                       + " " + person.getAttendance().toString() + ", ";
+                }
             }
         }
-        return new CommandResult(MESSAGE_MARK_ATTENDANCE_SUCCESS);
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        return (anyStudentsAttendanceMarked)
+               ? new CommandResult(MESSAGE_MARK_ATTENDANCE_SUCCESS + " " + markedAttendance)
+               : new CommandResult(MESSAGE_MARK_ATTENDANCE_NONE);
     }
 }

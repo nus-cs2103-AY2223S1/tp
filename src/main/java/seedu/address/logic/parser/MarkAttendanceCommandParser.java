@@ -23,8 +23,8 @@ public class MarkAttendanceCommandParser implements Parser<MarkAttendanceCommand
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_STUDENTCLASS, PREFIX_INDEX_NUMBERS);
 
-        String date = String.valueOf(argMultimap.getValue(PREFIX_DATE));
-        String studentClass = String.valueOf(argMultimap.getValue(PREFIX_STUDENTCLASS));
+        String date = argMultimap.getValue(PREFIX_DATE).get();
+        String studentClass = argMultimap.getValue(PREFIX_STUDENTCLASS).get();
         List<String> indexNumbers = argMultimap.getAllValues(PREFIX_INDEX_NUMBERS);
 
         if (date.isEmpty() || studentClass.isEmpty() || indexNumbers == null) {
