@@ -10,8 +10,6 @@ import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;

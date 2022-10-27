@@ -4,8 +4,6 @@ import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
