@@ -10,11 +10,11 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **New Feature**: Integrated the `ModuleClass` class to the project. Implemented features that enables users to add class, delete class, list all classes, assign and unassign students from classes in TA assist. Implemented features to allow users to delete sessions from classes. Implemented feature to export module class data as CSV file.
+* **New Feature**: Integrated the `ModuleClass` class to the project. Implemented `addc`, `deletec`, `listc`, `assign`, `unassign` commands. Implemented `deletes` command. Implemented `export` command. Make `Session` and `ModuleClass` case-insensitive. Integrated `Comparator` to classes so that they can be sorted.
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Bubbl3T&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 * **Project management**: Created and maintained project milestones.
-* **Enhancements to existing features**: Make `Session` and `ModuleClass` case insensitive.
-* **Documentation**: Added documentation in Developer Guide regarding implementation of add class, delete class, and assigning students to classes. Added documentation in User Guide on class related commands, `clear` and `export`.
+* **Enhancements to existing features**: Changed `Tag` to `ModuleClass`.
+* **Documentation**: Drafted implementation of add class, delete class, and assigning students to classes in the Developer Guide. Added documentation in User Guide on class related commands, `clear` and `export`.
 * **Community**: To be added soon
 * **Tools**: To be added soon
 

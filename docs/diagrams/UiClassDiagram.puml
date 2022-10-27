@@ -13,6 +13,10 @@ Class HelpWindow
 Class ResultDisplay
 Class StudentListPanel
 Class StudentCard
+Class ModuleClassListPanel
+Class ModuleClassCard
+Class SessionListPanel
+Class SessionCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -33,10 +37,14 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" StudentListPanel
+MainWindow *-down-> "0..1" ModuleClassListPanel
+MainWindow *-down-> "0..1" SessionListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 StudentListPanel -down-> "*" StudentCard
+SessionListPanel -down-> "*" SessionCard
+ModuleClassListPanel -down-> "*" ModuleClassCard
 
 MainWindow -left-|> UiPart
 
@@ -44,17 +52,26 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 StudentListPanel --|> UiPart
 StudentCard --|> UiPart
+ModuleClassListPanel --|> UiPart
+ModuleClassCard ---|> UiPart
+SessionListPanel --|> UiPart
+SessionCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 StudentCard ..> Model
+ModuleClassCard -..> Model
+SessionCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
 StudentListPanel -[hidden]left- HelpWindow
+ModuleClassListPanel -[hidden]right- SessionListPanel
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+StudentCard -[hidden]right- ModuleClassCard
+ModuleClassCard -[hidden]right- SessionCard
 
 MainWindow -[hidden]-|> UiPart
 @enduml

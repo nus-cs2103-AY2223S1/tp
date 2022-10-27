@@ -4,13 +4,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -28,10 +28,11 @@
       </stylesheets>
 
       <VBox styleClass="pane-with-border">
-        <ButtonBar fx:id="buttonBar" VBox.vgrow="NEVER">
-          <buttons>
-            <Button fx:id="classTitle" disable="true" visible="false" />
-            <Button fx:id="unfocusButton" mnemonicParsing="false" onAction="#buttonHandleUnfocus" visible="false" ButtonBar.buttonData="LEFT">
+        <HBox fx:id="buttonBar" alignment="CENTER" maxHeight="20" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="4.0" left="20.0" right="20.0" top="4.0" />
+          </padding>
+            <Button fx:id="unfocusButton" mnemonicParsing="false" onAction="#buttonHandleUnfocus" visible="false">
               <graphic>
                 <ImageView fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -41,7 +42,13 @@
               </graphic>
             </Button>
 
-            <Button fx:id="helpButton" mnemonicParsing="false" onAction="#handleHelp" text="Help" translateX="-25">
+          <Pane HBox.hgrow="ALWAYS" />
+
+          <Label fx:id="classTitle" alignment="CENTER" disable="true" translateX="20" visible="false" />
+
+          <Pane HBox.hgrow="ALWAYS" />
+
+            <Button fx:id="helpButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleHelp" text="Help">
               <graphic>
                 <ImageView fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -50,11 +57,7 @@
                 </ImageView>
               </graphic>
             </Button>
-          </buttons>
-               <padding>
-                  <Insets bottom="4.0" left="20.0" top="4.0" />
-               </padding>
-        </ButtonBar>
+        </HBox>
 
         <HBox fx:id="studentList" minHeight="350" prefHeight="350" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
           <padding>
