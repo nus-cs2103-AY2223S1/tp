@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -30,7 +31,8 @@ public class FindPersonCommandParser implements Parser<FindPersonCommand> {
                         PREFIX_NAME,
                         PREFIX_EMAIL,
                         PREFIX_PHONE,
-                        PREFIX_TAG);
+                        PREFIX_TAG,
+                        PREFIX_COMPANY);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -73,11 +75,21 @@ public class FindPersonCommandParser implements Parser<FindPersonCommand> {
             tagKeywords = trimmedTagArgs.split("\\s+");
         }
 
+        String companyArgs = argMultimap.getValue(PREFIX_COMPANY).orElse("");
+        String trimmedCompanyArgs = companyArgs.trim();
+        String[] companyKeywords;
+        if (trimmedCompanyArgs.isEmpty()) {
+            companyKeywords = new String[]{};
+        } else {
+            companyKeywords = trimmedCompanyArgs.split("\\s+");
+        }
+
         return new FindPersonCommand(new PersonContainsKeywordsPredicate(
                 Arrays.asList(nameKeywords),
                 Arrays.asList(phoneKeywords),
                 Arrays.asList(emailKeywords),
-                Arrays.asList(tagKeywords)));
+                Arrays.asList(tagKeywords),
+                Arrays.asList(companyKeywords)));
     }
 
 }

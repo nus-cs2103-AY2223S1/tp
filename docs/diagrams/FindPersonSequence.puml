@@ -13,10 +13,13 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find -p n/")
+participant "predicate:PersonContainsKeywordsPredicate" as PersonContainsKeywordsPredicate #222222
+participant ":FilteredList" as FilteredList #222222
+
+[-> LogicManager : execute("find -p n/John")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("find -p n/")
+LogicManager -> AddressBookParser : parseCommand("find -p n/John")
 activate AddressBookParser
 
 create FindPersonCommandParser
@@ -26,11 +29,15 @@ activate FindPersonCommandParser
 FindPersonCommandParser --> AddressBookParser
 deactivate FindPersonCommandParser
 
-AddressBookParser -> FindPersonCommandParser : parse(" n/John")
+AddressBookParser -> FindPersonCommandParser : parse("n/John")
 activate FindPersonCommandParser
 
 create PersonContainsKeywordsPredicate
 FindPersonCommandParser -> PersonContainsKeywordsPredicate
+activate PersonContainsKeywordsPredicate
+
+PersonContainsKeywordsPredicate --> FindPersonCommandParser : predicate
+deactivate PersonContainsKeywordsPredicate
 
 create FindPersonCommand
 FindPersonCommandParser -> FindPersonCommand : FindPersonCommand(predicate)
@@ -54,7 +61,7 @@ activate FindPersonCommand
 FindPersonCommand -> Model : updateFilteredPersonList(predicate)
 activate Model
 
-Model --> FilteredList : setPredicate(predicate)
+Model -> FilteredList : setPredicate(predicate)
 activate FilteredList
 
 FilteredList --> Model
@@ -67,7 +74,7 @@ create CommandResult
 FindPersonCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> FindPersonCommand
+CommandResult --> FindPersonCommand : result
 deactivate CommandResult
 
 FindPersonCommand --> LogicManager : result
