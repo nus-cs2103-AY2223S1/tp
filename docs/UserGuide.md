@@ -49,9 +49,9 @@ Note how the app contains some sample data.
 
 **:information_source: Shortcut keys to use the application:**<br>
 
-* Use arrow keys to navigate around TABS.
+* Use the `TAB` key to navigate between command box, person pane, and group pane in TABS.
 
-* Use the `TAB` key to switch between *Contact details* and *Assignments*.
+* Use arrow keys to switch between *Contact details* and *Assignments*.
 
 **:information_source: Notes about the command format:**<br>
 
