@@ -111,7 +111,7 @@ Example: `unmark 2`
 
 Allows you to tag a task.
 
-Format : `tag TASK_NUMBER TAG_NAME`
+Format : `tag TASK_NUMBER -t TAG_NAME`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 * `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
@@ -289,6 +289,6 @@ Format meanings:
 | **Help**                    | `help`                                                                                                                                                                                                                                                                                                                                                |                                              |
 | **List** specific tasks     | `ls [-a] [-u] [-m] [--module MODULE] [-t TAG] [-d YYYY-MM-DD]`<br/>`ls -a` View all tasks<br/>`ls -u` View all incomplete tasks<br/> `ls -m` View all marked tasks<br/> `ls --module MODULE` View tasks under the specific module<br/> `ls -t TAG_NAME` View tasks with a specific tag<br/> `ls -d YYYY-MM-DD` View tasks on or after a specific date | `ls -u --module CS2103T`                     |
 | **Mark** tasks              | `mark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                    | `mark 2`                                     |
-| **Tagging** a task          | `tag TASK_NUMBER TAG_NAME`                                                                                                                                                                                                                                                                                                                            |                                              |
+| **Tagging** a task          | `tag TASK_NUMBER -t TAG_NAME`                                                                                                                                                                                                                                                                                                                         | `tag 1 -t highPriority`                       |
 | **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                  | `unmark 2`                                   |
 | Accessing previous commands | Use the up and down arrow keys                                                                                                                                                                                                                                                                                                                        |                                              |
