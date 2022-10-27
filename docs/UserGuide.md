@@ -339,6 +339,7 @@ Format: `:wq`
 **A**: You can do so by deleting the entry and adding a new entry. 
 
 **Q**: Why is my `:filter` not showing any list even though I have input a valid exercise name?
+<br>
 **A**: `:filter` works on the displayed list shown in the Exercise List Window so if your displayed list is empty, a valid `:filter` command will still display an empty list. Try executing the command `:list` to get the full displayed list before running `:filter` again.
 
 
