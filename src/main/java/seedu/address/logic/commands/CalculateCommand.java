@@ -168,12 +168,14 @@ public class CalculateCommand extends Command {
             return Double.valueOf(stack.pop());
         }
         public static String parseCalculation(String userInput) {
-            String reg = "((?<=[<=|>=|==|\\+|\\*|\\-|<|>|/|=])|(?=[<=|>=|==|\\+|\\*|\\-|<|>|/|=]))";
+            String reg = "((?<=[(|)|\\+|\\*|\\-|/])|(?=[(|)|\\+|\\*|\\-|/]))";
             String resultStr = "Not calculated";
+            System.out.println(userInput);
             try{
-                System.out.println("Enter Your Expression");
+                //System.out.println("Enter Your Expression");
                 //String[] input = "( 1 + 2 ) * ( 3 / 4 ) - ( 5 + 6 )".split(" ");
                 String[] input =  userInput.split(reg);
+                //System.out.println(input);
                 String[] output = expToRPN(input);
 
                 // Build output RPN string minus the commas
@@ -184,7 +186,7 @@ public class CalculateCommand extends Command {
                 System.out.println(" ");
                 // Feed the RPN string to RPNtoDouble to give result
                 Double result = RPNtoDouble( output );
-                resultStr = result.toString();
+                resultStr = String.format("%.2f", result);
             } catch (NumberFormatException | EmptyStackException nfe){
                 System.out.println("INVALID EXPRESSION");
             }
