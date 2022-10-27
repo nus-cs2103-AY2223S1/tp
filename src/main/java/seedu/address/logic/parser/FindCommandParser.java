@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANTAG;
@@ -11,6 +12,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.IncomeContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NormalTagContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
@@ -48,6 +50,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         } else if (trimmedArgs.startsWith(PREFIX_PHONE.getPrefix())) {
             return new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(keywords)));
+        } else if (trimmedArgs.startsWith(PREFIX_INCOME.getPrefix())) {
+            String predicate = tokenizedArgs.substring(1, 2);
+            String[] income = tokenizedArgs.substring(2).split("\\s+");
+            return new FindCommand(new IncomeContainsKeywordsPredicate(Arrays.asList(income), predicate));
         } else if (trimmedArgs.startsWith(PREFIX_PLANTAG.getPrefix())) {
             String planTag = trimmedArgs.substring(3);
             // since all planTag has a space and ends with Plan, we split the input every second space.

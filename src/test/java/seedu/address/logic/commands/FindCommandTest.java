@@ -22,6 +22,7 @@ import seedu.address.model.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.IncomeContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NormalTagContainsKeywordsPredicate;
 import seedu.address.model.person.PlanTagContainsKeywordsPredicate;
@@ -50,17 +51,23 @@ public class FindCommandTest {
         PlanTagContainsKeywordsPredicate fifthPredicate =
                 new PlanTagContainsKeywordsPredicate(Collections.singletonList("Savings Plan"));
 
+        IncomeContainsKeywordsPredicate sixthPredicate =
+                new IncomeContainsKeywordsPredicate(Collections.singletonList("100"), ">");
+
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
         FindCommand findThirdCommand = new FindCommand(thirdPredicate);
         FindCommand findFourthCommand = new FindCommand(fourthPredicate);
         FindCommand findFifthCommand = new FindCommand(fifthPredicate);
+        FindCommand findSixthCommand = new FindCommand(sixthPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(findSecondCommand.equals(findSecondCommand));
         assertTrue(findThirdCommand.equals(findThirdCommand));
         assertTrue(findFourthCommand.equals(findFourthCommand));
         assertTrue(findFifthCommand.equals(findFifthCommand));
+        assertTrue(findSixthCommand.equals(findSixthCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
@@ -69,6 +76,8 @@ public class FindCommandTest {
         assertTrue(findThirdCommand.equals(findThirdCommandCopy));
         FindCommand findFifthCommandCopy = new FindCommand(fifthPredicate);
         assertTrue(findFifthCommand.equals(findFifthCommandCopy));
+        FindCommand findSixthCommandCopy = new FindCommand(sixthPredicate);
+        assertTrue(findSixthCommand.equals(findSixthCommandCopy));
 
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));
@@ -158,6 +167,7 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
+    
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
@@ -185,6 +195,13 @@ public class FindCommandTest {
      */
     private PlanTagContainsKeywordsPredicate preparePlanPredicate(String userInput) {
         return new PlanTagContainsKeywordsPredicate(Arrays.asList(userInput.split("(?<=\\s\\S{1,100})\\s")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code PlanTagContainsKeywordsPredicate}.
+     */
+    private IncomeContainsKeywordsPredicate prepareIncomePredicate(String userInput) {
+        return new IncomeContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")), ">");
     }
 
 }
