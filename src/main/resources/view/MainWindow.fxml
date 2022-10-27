@@ -17,7 +17,7 @@
 <?import javafx.scene.image.Image?>
 
 <?import javafx.scene.control.Label?>
-<fx:root minHeight="650" minWidth="920" onCloseRequest="#handleExit" title="PleaseHireUs"
+<fx:root minHeight="675" minWidth="1000" onCloseRequest="#handleExit" title="PleaseHireUs"
          type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/pleasehireus_icon.png" />
@@ -45,7 +45,7 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100"
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="150" minHeight="150" prefHeight="200"
                    styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
@@ -53,7 +53,7 @@
         </StackPane>
 
         <GridPane maxHeight="Infinity" maxWidth="Infinity" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <VBox fx:id="internshipList" minWidth="300.0" prefHeight="300.0" prefWidth="350.0"
+          <VBox fx:id="internshipList" prefHeight="300.0"
                 styleClass="pane-with-border" GridPane.rowSpan="2" VBox.vgrow="ALWAYS">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
@@ -61,21 +61,21 @@
             <StackPane fx:id="internshipListPanelPlaceholder" alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" />
           </VBox>
 
-          <VBox fx:id="viewCommand" maxHeight="Infinity" minWidth="450.0" prefHeight="350.0"
+          <VBox fx:id="viewCommand" maxHeight="Infinity" minWidth="600.0" prefHeight="350.0"
                 styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="TOP_LEFT" VBox.vgrow="ALWAYS">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-            <Label style="-fx-font-size: 14pt; -fx-font-family: Segoe UI Light; -fx-text-fill: white; -fx-font-weight: 700" >
+            <Label style="-fx-font-size: 13pt; -fx-font-family: Segoe UI Light; -fx-text-fill: white; -fx-font-weight: 700" >
               Details
               <padding>
-                <Insets bottom="10" />
+                <Insets bottom="0" top="0"/>
               </padding>
             </Label>
             <StackPane fx:id="viewCommandPanelPlaceholder" alignment="TOP_RIGHT"/>
           </VBox>
 
-          <VBox fx:id="statistics" maxHeight="150.0" minWidth="450.0" prefHeight="150.0"
+          <VBox fx:id="statistics" maxHeight="150.0" minWidth="600.0" prefHeight="150.0"
                 styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="CENTER" VBox.vgrow="ALWAYS">
             <padding>
               <Insets bottom="30" left="10" right="10" top="10" />
@@ -88,7 +88,7 @@
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #fa9960; -fx-background-radius:20px;">
                   <Label style="-fx-text-fill: #af4505;">
-                    Applied
+                    APPLIED
                   </Label>
                 </VBox>
               </VBox>
@@ -98,7 +98,7 @@
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #33c2ff;-fx-background-radius:20px;">
                   <Label style="-fx-text-fill: #074e81;">
-                    Assessment
+                    ASSESSMENT
                   </Label>
                 </VBox>
               </VBox>
@@ -108,7 +108,7 @@
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #ffe74e;-fx-background-radius:20px;">
                   <Label style="-fx-text-fill: #9f6100;">
-                    Interview
+                    INTERVIEW
                   </Label>
                 </VBox>
               </VBox>
@@ -118,7 +118,7 @@
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #f487fc;-fx-background-radius:20px;">
                   <Label style="-fx-text-fill: #8d1296;">
-                    Offer
+                    OFFER
                   </Label>
                 </VBox>
               </VBox>
@@ -128,7 +128,7 @@
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #8df863;-fx-background-radius:20px;">
                   <Label style="-fx-text-fill: #05813b;">
-                    Accepted
+                    ACCEPTED
                   </Label>
                 </VBox>
               </VBox>
@@ -138,7 +138,7 @@
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #fc5f5f;-fx-background-radius:20px;">
                   <Label style="-fx-text-fill: #600505;">
-                    Rejected
+                    REJECTED
                   </Label>
                 </VBox>
               </VBox>
@@ -155,7 +155,7 @@
 
           <columnConstraints>
             <ColumnConstraints maxWidth="Infinity" prefWidth="350" hgrow="ALWAYS"/>
-            <ColumnConstraints maxWidth="Infinity" prefWidth="500" hgrow="ALWAYS"/>
+            <ColumnConstraints maxWidth="Infinity" prefWidth="600" hgrow="ALWAYS"/>
           </columnConstraints>
           <rowConstraints>
             <RowConstraints maxHeight="Infinity" minHeight="200.0" prefHeight="350.0" vgrow="ALWAYS" />

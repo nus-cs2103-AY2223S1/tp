@@ -17,7 +17,7 @@
 
     <VBox alignment="TOP_RIGHT" minHeight="5" GridPane.columnIndex="0">
       <padding>
-        <Insets top="10" right="15" bottom="5" left="5" />
+        <Insets top="5" right="15" bottom="5" left="5" />
       </padding>
       <HBox spacing="5" alignment="TOP_RIGHT">
         <Label fx:id="applicationProcess" styleClass="cell_small_label" text="\$applicationProcess" alignment="TOP_RIGHT"/>

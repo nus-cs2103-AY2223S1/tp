@@ -7,7 +7,7 @@
 
 <?import javafx.scene.control.Label?>
 <VBox maxHeight="Infinity" HBox.hgrow="ALWAYS" maxWidth="Infinity" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label style="-fx-font-size: 14pt; -fx-font-family: Segoe UI Light; -fx-text-fill: white; -fx-font-weight: 700" >
+    <Label style="-fx-font-size: 13pt; -fx-font-family: Segoe UI Light; -fx-text-fill: white; -fx-font-weight: 700" >
         Application Status Summary
     </Label>
     <GridPane fx:id="stackedBar" VBox.vgrow="ALWAYS" style="-fx-border-radius: 25px;" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity">
