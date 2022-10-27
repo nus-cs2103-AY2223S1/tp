@@ -15,7 +15,7 @@ YellowBook is optimised for use via a Command Line Interface (CLI).
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `yellowbook.jar` from [here]().
+1. Download the latest `yellowbook.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your YellowBook.
 
@@ -45,7 +45,7 @@ YellowBook is optimised for use via a Command Line Interface (CLI).
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/LABEL]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [r/REMARK]` can be used as `n/John Doe r/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/LABEL]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -71,11 +71,13 @@ Format:  `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]`
 
 * The remark of a contact is optional.
 
+* Remarks are limited to alphanumeric characters and spaces.
+
 Examples:
 
 * `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
-* `addC n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 r/Weird person.`
+* `addC n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 r/Weird person`
 
 ### Listing all contacts: `listC`
 
@@ -112,6 +114,8 @@ Format: `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 * At least one of the optional fields must be provided.
 
 * Input values will replace existing values.
+
+* Remarks are limited to alphanumeric characters and spaces.
 
 Example:
 
@@ -162,6 +166,25 @@ Format: `filterC KEYWORD [MORE_KEYWORDS]`
 Example:
 
 * `filterC cs2103t` may return a contact with label `CS2103T Software Engineering`.
+
+
+### Copying contact emails by label: `copyC`
+
+Displays a string of emails of contacts with a label that matches the given keyword for easier copy-pasting.
+
+Format: `copyC KEYWORD`
+
+* `copyC` is case-sensitive, e.g. `CS2103T` is different from `cs2103t`.
+
+* Only full words will be matched, e.g. `cs2103t` will not match `cs2103`.
+
+* Only one keyword is allowed. If more than one keyword is typed, e.g. `copyC CS2103T CS2101`, this will be taken as one
+keyword "CS2103T CS2101" and the command will not work.
+
+Example:
+
+* `copyC CS2103T` returns a string of emails of contacts that contain the label `CS2103T`.
+
 
 ## Section 2: Tasks
 ### Listing all tasks: `listT`
@@ -225,9 +248,9 @@ Example:
 
 * `editT 1 d/sleep D/22-10-2022` edits the first task’s description to be sleep and deadline to be 22-10-2022.
 
-### Marking task as done: `markT`
+### Marking task as completed: `markT`
 
-Marks a task in the task list as done.
+Marks a task in the task list as completed.
 
 Format: `markT INDEX`
 
@@ -241,9 +264,9 @@ Examples:
 
 * `findT book` followed by `markT 1` marks the first result of the `findT` command as done.
 
-### Marking task as undone: `unmarkT`
+### Marking task as incomplete: `unmarkT`
 
-Marks a task in the task list as undone.
+Marks a task in the task list as incomplete.
 
 Format: `unmarkT INDEX`
 
@@ -444,7 +467,7 @@ YellowBook data are saved in the hard disk automatically after any command that 
 
 ### Editing the data file
 
-YellowBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+YellowBook data are saved as a JSON file `[JAR file location]/data/yellowbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, YellowBook will discard all data and start with an empty data file at the next run.
@@ -468,19 +491,20 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 | **deleteC**   | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                 |
 | **editC**     | `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `editC 1 n/John p/12345678`                                               |
 | **findC**     | `findC KEYWORD [MORE_KEYWORDS]` <br> e.g., `findC Phineas Ferb`                                                                                        |
-| **filterC**   | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |                                                                                                 |
+| **filterC**   | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |
+| **copyC** | `copyC KEYWORD` <br> e.g. `copyC CS2103T`                                                                                                              |
 | **listT**     | `listT`                                                                                                                                                |
 | **addT**      | `addT d/DESCRIPTION D/DEADLINE`                                                                                                                        |
 | **deleteT**   | `deleteT INDEX` <br/> e.g., `deleteT 12`                                                                                                               |
 | **editT**     | `editT INDEX [d/DESCRIPTION] [D/DEADLINE]` <br> e.g., `editT 1 d/sleep D/22-10-2022`                                                                   |
-| **markT**     | `markT INDEX` <br> e.g., `mark 1`                                                                                                                      |
-| **unmarkT**   | `unmarkT INDEX` <br> e.g., `unmark 1`                                                                                                                  |
+| **markT**     | `markT INDEX` <br> e.g., `markT 1`                                                                                                                     |
+| **unmarkT**   | `unmarkT INDEX` <br> e.g., `unmarkT 1`                                                                                                                 |
 | **findT**     | `findT KEYWORD [MORE_KEYWORDS]` <br> e.g., `findT cs2103t`                                                                                             |
 | **filterT**   | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |
 | **remindT**   | `remindT DEADLINE` <br/> e.g., `remindT 12-09-2022`                                                                                                    |
 | **progressT** | `progressT KEYWORD [MORE_KEYWORDS]` <br/> e.g., `progressT cs2103t`                                                                                    |
-| **sortD**     | `sortD`                                                                                                                                                 |
-| **sortI**     | `sortI`                                                                                                                                                 |
+| **sortD**     | `sortD`                                                                                                                                                |
+| **sortI**     | `sortI`                                                                                                                                                |
 | **listL**     | `listL`                                                                                                                                                |
 | **addL**      | `addL c/INDEX n/LABEL_NAME` OR  `addL t/INDEX n/LABEL_NAME`                                                                                            |
 | **deleteL**   | `deleteL c/INDEX n/LABEL_NAME` OR `deleteL t/INDEX n/LABEL_NAME`                                                                                       |

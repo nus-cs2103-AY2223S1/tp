@@ -10,8 +10,8 @@ contacts and tasks.
 YellowBook is optimised for use via a Command Line Interface (CLI).
 
 ## Documentation
-* [User Guide](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/master/docs/UserGuide.md)
-* [Developer Guide](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/master/docs/DeveloperGuide.md)
+* [User Guide](https://ay2223s1-cs2103t-f11-4.github.io/tp/UserGuide.html)
+* [Developer Guide](https://ay2223s1-cs2103t-f11-4.github.io/tp/DeveloperGuide.html)
 * [About Us](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/master/docs/AboutUs.md)
 
 ## Acknowledgements
