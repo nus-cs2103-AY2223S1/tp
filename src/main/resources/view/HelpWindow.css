@@ -37,7 +37,6 @@
 *    Author: Chris
 *    Date: 2015
 *    Availability: https://stackoverflow.com/questions/33938811/styling-a-tableview-in-css-javafx
-*
 ***************************************************************************************/
 .table-view {
     -fx-background-color: transparent;
@@ -73,7 +72,7 @@
 .table-row-cell:odd{
     -fx-background-color: -fx-table-cell-border-color, derive(#171923, 40%);
     -fx-background-insets: 1;
-    -fx-margin: 5px; 
+    -fx-margin: 5px;
 }
 
 .table-row-cell:selected {
@@ -84,7 +83,7 @@
 
 .table-view > .virtual-flow > .scroll-bar:vertical,
 .table-view > .virtual-flow > .scroll-bar:vertical > .track,
-.table-view > .virtual-flow > .scroll-bar:vertical > .track-background, 
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
 .table-view > .virtual-flow > .scroll-bar:horizontal,
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track,
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
