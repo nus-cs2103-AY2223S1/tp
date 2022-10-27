@@ -28,7 +28,7 @@ import seedu.foodrem.testutil.TypicalTags;
 import seedu.foodrem.viewmodels.ItemWithMessage;
 
 public class TagCommandTest {
-    private static final String EXPECTED_SUCCESS_MESSAGE = "Item tagged successfully. View updated item below:";
+    private static final String EXPECTED_SUCCESS_MESSAGE = "Item tagged successfully. Updated item:";
     private static final String ERROR_DUPLICATE = "This item has already been tagged with this tag";
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";

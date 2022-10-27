@@ -129,9 +129,6 @@ public class ParserUtil {
     public static TagName parseTagName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!TagName.isValidName(trimmedName)) {
-            throw new ParseException(TagName.MESSAGE_CONSTRAINTS);
-        }
         return new TagName(trimmedName);
     }
 

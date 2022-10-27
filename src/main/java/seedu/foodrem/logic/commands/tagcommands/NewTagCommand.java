@@ -8,6 +8,7 @@ import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.viewmodels.TagsWithMessage;
 
 /**
  * Adds a tag to FoodRem.
@@ -16,7 +17,9 @@ public class NewTagCommand extends Command {
     private final Tag toAdd;
 
     /**
-     * Creates an AddTagCommand to add the specified {@code Tag}
+     * Creates a NewTagCommand to add the specified {@code Tag}
+     *
+     * @param tag the tag that will be added to foodRem.
      */
     public NewTagCommand(Tag tag) {
         requireNonNull(tag);
@@ -24,7 +27,7 @@ public class NewTagCommand extends Command {
     }
 
     @Override
-    public CommandResult<String> execute(Model model) throws CommandException {
+    public CommandResult<TagsWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (model.hasTag(toAdd)) {
@@ -32,7 +35,7 @@ public class NewTagCommand extends Command {
         }
 
         model.addTag(toAdd);
-        return CommandResult.from(String.format("New tag added: %1$s", toAdd));
+        return CommandResult.from(new TagsWithMessage("New tag added:", toAdd));
     }
 
     public static String getUsage() {

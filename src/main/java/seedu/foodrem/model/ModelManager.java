@@ -14,6 +14,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.foodrem.commons.core.GuiSettings;
 import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.model.item.Item;
+import seedu.foodrem.model.item.TagSetContainsTagPredicate;
 import seedu.foodrem.model.tag.Tag;
 
 /**
@@ -140,6 +141,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTag);
 
         foodRem.renameTag(target, editedTag);
+
+        Predicate<?> itemPredicate = filteredItems.getPredicate();
+        if (itemPredicate instanceof TagSetContainsTagPredicate
+                && ((TagSetContainsTagPredicate) itemPredicate).getTag().equals(target)) {
+            updateFilteredItemList(new TagSetContainsTagPredicate(editedTag));
+        }
     }
 
     //=========== Item List Accessors =============================================================

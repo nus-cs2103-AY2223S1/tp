@@ -10,9 +10,8 @@ public class MessageToUser {
     public static final String MESSAGE_FOR_NAME_TOO_LONG =
             "The item name should not exceed 200 characters";
     public static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME =
-            "The item name should only contain alphanumeric characters and spaces. It should not start with a blank "
-                    + "space.";
-
+            "The item name should only contain alphanumeric characters, spaces and the following symbols "
+                    + "[]{}()-+*=.,_'\"^$?@!#%&:;";
     // Item quantity validation
     public static final String MESSAGE_FOR_QUANTITY_NOT_A_NUMBER =
             "The item quantity should be a number.";
@@ -29,7 +28,8 @@ public class MessageToUser {
 
     // Item unit validation
     public static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT =
-            "The item unit should only contain alphanumeric characters and spaces.";
+            "The item unit should only contain alphanumeric characters, spaces and the following symbols "
+                    + "[]{}()-+*=.,_'\"^$?@!#%&:;";
     public static final String MESSAGE_FOR_UNIT_TOO_LONG =
             "The item unit should not exceed 10 characters.";
 
@@ -55,8 +55,8 @@ public class MessageToUser {
 
     // Remarks
     public static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_REMARKS =
-            "The item remark should only contain alphanumeric characters and spaces. "
-                    + "It should not start with a blank space.";
+            "The item remark should only contain alphanumeric characters, spaces and the following symbols "
+                    + "[]{}()-+*=.,_'\"^$?@!#%&:;";
     private static final String MESSAGE_FOR_REMARKS_TOO_LONG =
             "The item remark should not exceed 1000 characters";
 }

@@ -28,8 +28,8 @@ import seedu.foodrem.testutil.TypicalTags;
 import seedu.foodrem.viewmodels.ItemWithMessage;
 
 public class UntagCommandTest {
-    private static final String EXPECTED_SUCCESS_MESSAGE = "Item untagged successfully. View updated item below:";
-    private static final String ERROR_ITEM_DOES_NOT_CONTAIN_TAG = "This item is not tagged with this tag";
+    private static final String EXPECTED_SUCCESS_MESSAGE = "Item untagged successfully. Updated item:";
+    private static final String ERROR_ITEM_DOES_NOT_CONTAIN_TAG = "This item has not been tagged with this tag";
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
 

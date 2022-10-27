@@ -24,6 +24,6 @@
         <Label fx:id="price" styleClass="item-listview-data"/>
       </VBox>
     </HBox>
-    <HBox spacing="5" fx:id="tags" />
+    <HBox spacing="5" alignment="CENTER_LEFT" fx:id="tags" />
   </VBox>
 </HBox>

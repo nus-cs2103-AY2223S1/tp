@@ -8,6 +8,7 @@ import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.viewmodels.TagsWithMessage;
 
 /**
  * Deletes an existing tag in FoodRem.
@@ -17,6 +18,8 @@ public class DeleteTagCommand extends Command {
 
     /**
      * Creates an DeleteTagCommand to delete the specified {@code Tag}
+     *
+     * @param tagToDelete the tag that will be deleted from foodRem.
      */
     public DeleteTagCommand(Tag tagToDelete) {
         requireNonNull(tagToDelete);
@@ -24,7 +27,7 @@ public class DeleteTagCommand extends Command {
     }
 
     @Override
-    public CommandResult<String> execute(Model model) throws CommandException {
+    public CommandResult<TagsWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasTag(toDelete)) {
@@ -32,7 +35,7 @@ public class DeleteTagCommand extends Command {
         }
 
         model.deleteTag(toDelete);
-        return CommandResult.from(String.format("Tag deleted: %1$s", toDelete));
+        return CommandResult.from(new TagsWithMessage("Tag deleted:", toDelete));
     }
 
     public static String getUsage() {

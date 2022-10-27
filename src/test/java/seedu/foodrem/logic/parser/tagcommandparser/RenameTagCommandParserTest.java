@@ -6,10 +6,10 @@ import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.commons.core.Messages;
+import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
 import seedu.foodrem.model.tag.Tag;
-import seedu.foodrem.model.tag.TagName;
 import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.testutil.TypicalTags;
 
@@ -38,19 +38,19 @@ public class RenameTagCommandParserTest {
         assertParseFailure(parser,
                 CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS
                         + CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION,
-                TagName.MESSAGE_CONSTRAINTS);
+                 StringUtil.getInvalidCharactersMessage("tag name"));
 
         // invalid original tag
         assertParseFailure(parser,
                 CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION
                         + CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS,
-                TagName.MESSAGE_CONSTRAINTS);
+                 StringUtil.getInvalidCharactersMessage("tag name"));
 
         // both tags invalid
         assertParseFailure(parser,
-                CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION
+                       CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION
                         + CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION,
-                TagName.MESSAGE_CONSTRAINTS);
+                           StringUtil.getInvalidCharactersMessage("tag name"));
 
         // invalid args
         assertParseFailure(parser,

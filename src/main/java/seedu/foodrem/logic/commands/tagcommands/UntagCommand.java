@@ -22,7 +22,10 @@ public class UntagCommand extends Command {
     private final Tag tag;
 
     /**
-     * Creates a TagCommand to tag the specified {@code Item} with a specified {@code Tag}
+     * Creates an UntagCommand to untag the specified {@code Item} with a specified {@code Tag}
+     *
+     * @param tagName the name of the tag
+     * @param index the index of the item to untag
      */
     public UntagCommand(String tagName, Index index) {
         requireNonNull(tagName);
@@ -33,17 +36,18 @@ public class UntagCommand extends Command {
 
     @Override
     public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
-        Item itemToUntag = TagCommand.validateAndGetTargetItem(model, tag, index);
+        Item itemToUntag = TagCommandUtil.validateAndGetItem(model, tag, index);
+
         Set<Tag> itemTags = itemToUntag.getTagSet();
         if (!itemTags.contains(tag)) {
-            throw new CommandException("This item is not tagged with this tag");
+            throw new CommandException("This item has not been tagged with this tag");
         }
+
         itemTags.remove(tag);
         Item newTagSetItem = Item.createItemWithTags(itemToUntag, itemTags);
         model.setItem(itemToUntag, newTagSetItem);
 
-        return CommandResult.from(
-                new ItemWithMessage(newTagSetItem, "Item untagged successfully. View updated item below:"));
+        return CommandResult.from(new ItemWithMessage(newTagSetItem, "Item untagged successfully. Updated item:"));
     }
 
     public static String getUsage() {

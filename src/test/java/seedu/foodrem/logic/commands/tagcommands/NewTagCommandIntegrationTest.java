@@ -12,13 +12,14 @@ import seedu.foodrem.model.ModelManager;
 import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
+import seedu.foodrem.viewmodels.TagsWithMessage;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddTagCommand}.
  */
 public class NewTagCommandIntegrationTest {
     private static final String EXPECTED_ERROR_DUPLICATE = "This tag already exists in FoodRem";
-    private static final String EXPECTED_FORMAT_SUCCESS = "New tag added: %1$s";
+    private static final String EXPECTED_SUCCESS_MESSAGE = "New tag added:";
 
     private Model model;
 
@@ -35,7 +36,7 @@ public class NewTagCommandIntegrationTest {
         expectedModel.addTag(validTag);
 
         assertCommandSuccess(new NewTagCommand(validTag), model,
-                String.format(EXPECTED_FORMAT_SUCCESS, validTag), expectedModel);
+                new TagsWithMessage(EXPECTED_SUCCESS_MESSAGE, validTag), expectedModel);
     }
 
     @Test

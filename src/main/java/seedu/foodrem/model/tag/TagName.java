@@ -3,30 +3,20 @@ package seedu.foodrem.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 
+import seedu.foodrem.commons.util.StringUtil;
+
 /**
  * Represents a Tag's name in the FoodRem.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link StringUtil#isValidString(String)}
  */
 public class TagName {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters, spaces, and the punctuations within the "
-                    + "list of allowed punctuations. "
-                    + "Names must start with an alphanumeric character.";
+    private static final String MESSAGE_FOR_NAME_IS_BLANK =
+            "The tag name should not be blank.";
 
-    /*
-     * Regex to check for valid punctuation
-     */
-    public static final String ALLOWED_PUNCTUATION_REGEX =
-            "[\\?\\.\\'\\\"\\[\\]\\{\\}\\+\\^\\$\\*\\(\\)\\-<>,:;~@!#%&_=`]";
-
-    /*
-     * Only alphanumeric characters, whitespaces and punctuation within the ALLOWED_PUNCTUATION list are allowed.
-     * The first character of the name must be alphanumeric.
-     */
-    public static final String VALIDATION_REGEX = String.format(
-            "[\\p{Alnum}][\\p{Alnum} | \\p{Space} | %s]*",
-            ALLOWED_PUNCTUATION_REGEX
-    );
+    // Validation for name length
+    private static final int MAX_LENGTH = 20;
+    private static final String MESSAGE_FOR_NAME_TOO_LONG =
+            String.format("The tag name should not exceed %d characters", MAX_LENGTH);
 
     private final String fullName;
 
@@ -37,15 +27,14 @@ public class TagName {
      */
     public TagName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
-    }
 
-    /**
-     * Returns {@code true} if a given string is a valid name.
-     */
-    public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        boolean isNamePresent = !name.isBlank();
+        checkArgument(isNamePresent, MESSAGE_FOR_NAME_IS_BLANK);
+        boolean isNameLengthLessThanEqualMaxLength = name.length() <= MAX_LENGTH;
+        checkArgument(isNameLengthLessThanEqualMaxLength, MESSAGE_FOR_NAME_TOO_LONG);
+
+        checkArgument(StringUtil.isValidString(name), StringUtil.getInvalidCharactersMessage("tag name"));
+        fullName = name;
     }
 
     @Override
