@@ -279,7 +279,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
                     + "-fx-background-radius: 5;");
         }
 
-        taskBox.getChildren().addAll(getIndexBox(taskIndex),taskDateBox, taskTimeBox, taskNameLabel);
+        taskBox.getChildren().addAll(getIndexBox(taskIndex), taskDateBox, taskTimeBox, taskNameLabel);
         return taskBox;
     }
 
