@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox fx:id="currentVenueNameContainer" styleClass="pane-with-border" stylesheets="@DarkTheme.css" VBox.vgrow="ALWAYS">
+         <children>
+            <Label fx:id="currentVenueHeader" styleClass="label-bright" stylesheets="@DarkTheme.css" wrapText="true" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <ListView fx:id="venueListView" style="-fx-background-color: #FFFFFF;" styleClass="pane-with-border" stylesheets="@DarkTheme.css" VBox.vgrow="ALWAYS" />
+   </children>
+</VBox>

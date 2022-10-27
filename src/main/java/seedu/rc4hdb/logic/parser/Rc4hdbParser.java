@@ -18,6 +18,7 @@ import seedu.rc4hdb.logic.commands.residentcommands.FilterCommand;
 import seedu.rc4hdb.logic.commands.residentcommands.FindCommand;
 import seedu.rc4hdb.logic.commands.residentcommands.HideOnlyCommand;
 import seedu.rc4hdb.logic.commands.residentcommands.ListCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.RemoveCommand;
 import seedu.rc4hdb.logic.commands.residentcommands.ResetCommand;
 import seedu.rc4hdb.logic.commands.residentcommands.ShowOnlyCommand;
 import seedu.rc4hdb.logic.commands.venuecommands.VenueCommand;
@@ -29,6 +30,7 @@ import seedu.rc4hdb.logic.parser.commandparsers.FilterCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.HideOnlyCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.RemoveCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ShowOnlyCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.VenueCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
@@ -101,6 +103,9 @@ public class Rc4hdbParser {
 
         case ResetCommand.COMMAND_WORD:
             return new ResetCommand();
+
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

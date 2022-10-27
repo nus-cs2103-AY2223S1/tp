@@ -1,5 +1,6 @@
 package seedu.rc4hdb.logic.commands.residentcommands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_FILTER_ALL;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_GENDER;
@@ -10,9 +11,9 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.ModelCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
@@ -27,8 +28,8 @@ import seedu.rc4hdb.model.resident.predicates.AttributesMatchAnyKeywordPredicate
  * Filters and lists all residents in resident book whose attributes are equal to any of the argument keywords.
  * Keyword matching is case sensitive.
  */
-public class FilterCommand implements ModelCommand {
-    public static final String COMMAND_WORD = "filter";
+public class RemoveCommand implements ModelCommand {
+    public static final String COMMAND_WORD = "remove";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": "
             + "filters the resident book by the attributes specified in the command"
             + "Parameters: "
@@ -45,33 +46,49 @@ public class FilterCommand implements ModelCommand {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
+    public static final String MESSAGE_NOT_REMOVED = "At least one field to filter must be provided.";
+    public static final String MESSAGE_REMOVED_SUCCESS = "%1$d residents deleted!";
 
-    /** description to filter the resident with */
-    private final ResidentStringDescriptor filterPersonDescriptor;
+    /** description to remove the residents with */
+    private final ResidentStringDescriptor removePersonDescriptor;
     private final Specifier specifier;
 
     /**
-     * @param filterPersonDescriptor description object to filter the resident with
+     * @param removePersonDescriptor description object to remove the resident with
      */
-    public FilterCommand(ResidentStringDescriptor filterPersonDescriptor, Specifier specifier) {
-        assert filterPersonDescriptor != null : "Descriptor object is null";
-        this.filterPersonDescriptor = new ResidentStringDescriptor(filterPersonDescriptor);
+    public RemoveCommand(ResidentStringDescriptor removePersonDescriptor, Specifier specifier) {
+        assert removePersonDescriptor != null : "Descriptor object is null";
+        this.removePersonDescriptor = new ResidentStringDescriptor(removePersonDescriptor);
         this.specifier = specifier;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         assert model != null : "Model object is null";
+
+        requireNonNull(model);
+        List<Resident> lastShownList = model.getFilteredResidentList();
         Predicate<Resident> predicate;
-        if (specifier.getSpecifier().equals("any")) {
-            predicate = new AttributesMatchAnyKeywordPredicate(filterPersonDescriptor);
+        if (specifier.getSpecifier() == "any") {
+            predicate = new AttributesMatchAnyKeywordPredicate(removePersonDescriptor);
         } else {
-            predicate = new AttributesMatchAllKeywordsPredicate(filterPersonDescriptor);
+            predicate = new AttributesMatchAllKeywordsPredicate(removePersonDescriptor);
         }
-        model.updateFilteredResidentList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_RESIDENTS_LISTED_OVERVIEW, model.getFilteredResidentList().size()));
+
+        int deleted = 0;
+        int index = 0;
+
+        while (index < lastShownList.size()) {
+
+            Resident residentToDelete = lastShownList.get(index);
+            if (predicate.test(residentToDelete)) {
+                model.deleteResident(residentToDelete);
+                deleted++;
+            } else {
+                index++;
+            }
+        }
+        return new CommandResult(String.format(MESSAGE_REMOVED_SUCCESS, deleted));
     }
 
 
@@ -83,12 +100,12 @@ public class FilterCommand implements ModelCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FilterCommand)) {
+        if (!(other instanceof RemoveCommand)) {
             return false;
         }
 
         // state check
-        FilterCommand f = (FilterCommand) other;
-        return filterPersonDescriptor.equals(f.filterPersonDescriptor);
+        RemoveCommand r = (RemoveCommand) other;
+        return removePersonDescriptor.equals(r.removePersonDescriptor);
     }
 }
