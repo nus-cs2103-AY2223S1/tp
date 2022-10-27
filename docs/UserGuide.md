@@ -95,8 +95,7 @@ Format: `listo`
 
 Finds order with item names containing any of the given keywords.
 
-Format: `findo -d / -D -p / -P i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS] 
-            a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS] n/NAME_KEYWORD [MORE_NAME_KEYWORDS]`
+Format: `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]] [n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`
 
 * All 4 flags (`-d`, `-D`, `-p`, `-P`) are optional
   * `-d`: search for orders which are delivered
