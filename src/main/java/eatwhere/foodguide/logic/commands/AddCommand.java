@@ -3,7 +3,7 @@ package eatwhere.foodguide.logic.commands;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_CUISINE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PRICE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
@@ -22,13 +22,13 @@ public class AddCommand extends Command {
             + ": Adds an eatery to the food guide. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
+            + PREFIX_PRICE + "PHONE "
             + PREFIX_CUISINE + "CUISINE "
             + PREFIX_LOCATION + "LOCATION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Starbucks "
-            + PREFIX_PHONE + "68160981 "
+            + PREFIX_PRICE + "68160981 "
             + PREFIX_CUISINE + "cafe "
             + PREFIX_LOCATION + "Science Block S9 "
             + PREFIX_TAG + "coffee ";

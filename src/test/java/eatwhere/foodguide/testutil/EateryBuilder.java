@@ -7,7 +7,7 @@ import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
-import eatwhere.foodguide.model.eatery.Phone;
+import eatwhere.foodguide.model.eatery.Price;
 import eatwhere.foodguide.model.tag.Tag;
 import eatwhere.foodguide.model.util.SampleDataUtil;
 
@@ -17,12 +17,12 @@ import eatwhere.foodguide.model.util.SampleDataUtil;
 public class EateryBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_PRICE = "$$";
     public static final String DEFAULT_EMAIL = "amygmailcom";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
+    private Price price;
     private Cuisine cuisine;
     private Location location;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class EateryBuilder {
      */
     public EateryBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        price = new Price(DEFAULT_PRICE);
         cuisine = new Cuisine(DEFAULT_EMAIL);
         location = new Location(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class EateryBuilder {
      */
     public EateryBuilder(Eatery eateryToCopy) {
         name = eateryToCopy.getName();
-        phone = eateryToCopy.getPhone();
+        price = eateryToCopy.getPrice();
         cuisine = eateryToCopy.getCuisine();
         location = eateryToCopy.getLocation();
         tags = new HashSet<>(eateryToCopy.getTags());
@@ -74,10 +74,10 @@ public class EateryBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Eatery} that we are building.
+     * Sets the {@code Price} of the {@code Eatery} that we are building.
      */
-    public EateryBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public EateryBuilder withPrice(String phone) {
+        this.price = new Price(phone);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class EateryBuilder {
     }
 
     public Eatery build() {
-        return new Eatery(name, phone, cuisine, location, tags);
+        return new Eatery(name, price, cuisine, location, tags);
     }
 
 }

@@ -47,12 +47,12 @@ public class EditCommandTest {
 
         EateryBuilder eateryInList = new EateryBuilder(lastEatery);
         Eatery editedEatery = eateryInList.withName(CommandTestUtil.VALID_NAME_BOB)
-                .withPhone(CommandTestUtil.VALID_PHONE_BOB)
+                .withPrice(CommandTestUtil.VALID_PRICE_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
 
         EditCommand.EditEateryDescriptor descriptor = new EditEateryDescriptorBuilder()
                 .withName(CommandTestUtil.VALID_NAME_BOB)
-                .withPhone(CommandTestUtil.VALID_PHONE_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
+                .withPhone(CommandTestUtil.VALID_PRICE_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastEatery, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EATERY_SUCCESS, editedEatery);
