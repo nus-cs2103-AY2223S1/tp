@@ -126,7 +126,10 @@ public class EditCommand extends Command {
             .of(editPersonDescriptor.getPlans().orElse(new HashSet<>()), personToEdit.getPortfolio().getPlans())
             .flatMap(Collection::stream)
             .collect(Collectors.toSet());
-        Set<Note> updatedNotes = editPersonDescriptor.getNotes().orElse(portfolio.getNotes());
+        Set<Note> updatedNotes = Stream
+            .of(editPersonDescriptor.getNotes().orElse(new HashSet<>()), personToEdit.getPortfolio().getNotes())
+            .flatMap(Collection::stream)
+            .collect(Collectors.toSet());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncome,
             updatedMeetingDate, updatedTags, updatedRisk, updatedPlans, updatedNotes);
