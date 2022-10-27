@@ -4,23 +4,22 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 //@@author connlim
+
 /**
  * Create a task and assign it to a group
  */
-public class AddTaskCommand extends Command {
-    public static final String COMMAND_WORD = "task";
+public class AddTaskCommand extends TaskCommand {
+    public static final String SUBCOMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book current team. "
-            + "Parameters: "
-            + PREFIX_TITLE + "NAME "
-            + PREFIX_DESCRIPTION + "Description";
+    public static final String MESSAGE_USAGE =
+            TaskCommand.getFullCommand(SUBCOMMAND_WORD) + ": Adds a task to the address book current team. "
+                    + "Parameters: " + PREFIX_TITLE + "NAME " + PREFIX_DESCRIPTION + "Description";
 
     public static final String MESSAGE_SUCCESS = "New task have been added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists!";
@@ -55,6 +54,6 @@ public class AddTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddTaskCommand // instanceof handles nulls
-                        && toAdd.equals(((AddTaskCommand) other).toAdd));
+                && toAdd.equals(((AddTaskCommand) other).toAdd));
     }
 }
