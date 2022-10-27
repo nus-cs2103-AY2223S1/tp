@@ -196,7 +196,7 @@ The list items feature allows the user to list all the existing `Item`s in the i
 
 #### Implementation
 
-The list item feature is executed by the `ListItemsCommand`. It extends `Command`.
+The list item feature is supported by the `ListItemsCommand`. It extends `Command`.
 
 Given below is an example usage scenario and how the `ListItemsCommand` mechanism behaves at each step.
 
@@ -213,17 +213,19 @@ The sequence diagram below illustrates this process.
 
 #### Design Considerations
 
+**Aspect: How the `listi` command executes**
+
 - **Alternative 1 (current choice)**: The command lists all the items in the inventory list.
   - Pros: Easier to implement.
   - Cons: Unable to filter specific items.
 
 ### Find Item Feature
 
-The find item feature allows the user to find an `Item` by keyword/s given by the user.
+The find item feature allows the user to find `InventoryItem`(s) by keyword(s) given by the user.
 
 #### Implementation
 
-The find item command is executed by `FindItemCommand`. It extends `Command`.
+The find item command is supported by `FindItemCommand`. It extends `Command`.
 
 Given below is an example usage scenario and how the find order mechanism behaves at each step.
 
@@ -246,6 +248,7 @@ The sequence diagram below illustrates this process.
 
 #### Design Considerations
 
+**Aspect: How `findi` is implemented**
 - **Alternative 1 (current choice)**: The command finds items based on their `ItemName`.
     - Pros: Easier to implement, and users do not have to use prefixes to find items.
     - Cons: Cannot search based on other item fields, e.g. searching based on the price range of the items.
@@ -259,7 +262,9 @@ The edit item feature allows the user to edit an `Item` currently being tracked 
 
 #### Implementation
 
-The edit item command `editi` is implemented through the `Logic`, `Model` and `Storage` components. The `Logic`
+The edit item command `editi` is supported by the `EditItemCommand`. It extends `Command`.
+
+It is implemented through the `Logic`, `Model` and `Storage` components. The `Logic`
 component parses the user input, the `Model` component then performs the edit on the target item, the `Storage`
 component then saves the edited data into `data/trackO.json`.
 
@@ -395,7 +400,7 @@ The find order feature allows the user to find an `Order` to be tracked by the s
 
 #### Implementation
 
-The find order command is executed by `FindOrderCommand`. It extends `Command`.
+The find order command is supported by `FindOrderCommand`. It extends `Command`.
 
 Given below is an example usage scenario and how the find order mechanism behaves at each step.
 
@@ -435,7 +440,7 @@ The edit order feature allows the user to edit an `Order` to be tracked by the s
 
 #### Implementation
 
-The edit order feature is executed by `EditOrderCommand`. It extends `Command`.
+The edit order feature is supported by `EditOrderCommand`. It extends `Command`.
 
 Given below is an example usage scenario and how the `EditOrderCommand` mechanism behaves at each step.
 
@@ -489,7 +494,9 @@ The sequence diagram below illustrates this process.
 
 #### Design Considerations
 
-- **Alternative 1 (current choice)**: The command edits the order based on the prefixes that is inputted by the user.
+**Aspect: Whether to implement the edit order feature**
+- **Alternative 1 (current choice)**: The command is implemented and edits the order based on the prefixes 
+that is inputted by the user.
   - Pros: The user can edit only the fields that they want to edit.
   - Cons: The user may have to input long commands.
 - **Alternative 2**: No edit command, users have to delete and re-add orders should there be any change.
