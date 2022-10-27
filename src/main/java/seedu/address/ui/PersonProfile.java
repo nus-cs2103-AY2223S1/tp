@@ -57,11 +57,15 @@ public class PersonProfile extends UiPart<Region> {
     @FXML
     private Label description_label;
     @FXML
+    private Label tags_label;
+    @FXML
     private FlowPane tags;
     @FXML
     private Label netWorth;
     @FXML
     private Label netWorth_label;
+    @FXML
+    private Label meeting_label;
     @FXML
     private FlowPane meetingTimes;
     @FXML
@@ -164,6 +168,7 @@ public class PersonProfile extends UiPart<Region> {
     private void setMeetingsField() {
         if (person.getMeetingTimes().isEmpty()) {
             meetingTimes.setManaged(false);
+            meeting_label.setManaged(false);
             return;
         }
         person.getMeetingTimes().stream()
@@ -177,6 +182,7 @@ public class PersonProfile extends UiPart<Region> {
     private void setTagsField() {
         if (person.getTags().isEmpty()) {
             tags.setManaged(false);
+            tags_label.setManaged(false);
             return;
         }
         person.getTags().stream()
