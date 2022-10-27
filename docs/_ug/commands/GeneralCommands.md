@@ -48,7 +48,7 @@ FoodRem has been reset!
 
 #### Exit FoodRem: `exit`
 
-Command: `exit`
+**Format**: `exit`
 
 > Exits FoodRem.
 
