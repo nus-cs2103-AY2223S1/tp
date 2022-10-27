@@ -1,8 +1,8 @@
 package nus.climods.ui.module;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.Lesson;
@@ -95,8 +95,8 @@ public class ModuleCard extends UiPart<Region> {
         lessonInfo.managedProperty().bind(lessonInfo.visibleProperty());
         lessonInfo.setVisible(false);
 
-         //for testing of view lesson type of a module
-         //TODO: Remove in production
+        // for testing of view lesson type of a module
+        // TODO: Remove in production
         try {
             module.requestFocus();
             showLessonInformation();
@@ -105,9 +105,9 @@ public class ModuleCard extends UiPart<Region> {
         }
 
         // comment this out before testing the view lesson type part
-//        if (module.isFocused()) {
-//            showDetailedModuleInformation();
-//        }
+        //if (module.isFocused()) {
+        //    showDetailedModuleInformation();
+        //}
     }
 
     private void showDetailedModuleInformation() {
@@ -122,14 +122,19 @@ public class ModuleCard extends UiPart<Region> {
 
     private void showLessonInformation() {
         lessonInfo.setVisible(true);
-        lessonInfo.getChildren().addAll(Stream.of(SemestersEnum.values())
-                .map(sem -> addSemesterLessons(sem)).collect(Collectors.toList()));
+        for (SemestersEnum sem : SemestersEnum.values()) {
+            HashMap<LessonType, Module.ModuleLessonIdMap> lessons = module.getLessons(sem);
+            if (lessons == null) {
+                continue;
+            }
+            lessonInfo.getChildren().addAll(new SemesterPill(sem), addSemesterLessons(lessons));
+        }
     }
 
-    private Accordion addSemesterLessons(SemestersEnum sem) {
+    private Accordion addSemesterLessons(HashMap<LessonType, Module.ModuleLessonIdMap> sem) {
         Accordion a = new Accordion();
         a.getPanes()
-                .addAll(module.getLessons(sem).entrySet().stream()
+                .addAll(sem.entrySet().stream()
                         .map(entry -> addLessonType(entry.getKey(), entry.getValue()))
                         .collect(Collectors.toList()));
         return a;
