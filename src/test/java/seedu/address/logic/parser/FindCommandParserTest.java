@@ -124,5 +124,4 @@ public class FindCommandParserTest {
                 + "ji/JID1234 jt/Software  \t Engineer m/Computer \t Science \n  n/Alice Bob p/12345 "
                 + "t/offered \t KIV  \n \t u/University", expectedFindCommand);
     }
-
 }

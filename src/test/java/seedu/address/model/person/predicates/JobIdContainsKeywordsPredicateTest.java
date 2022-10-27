@@ -52,6 +52,10 @@ public class JobIdContainsKeywordsPredicateTest {
         predicate = new JobIdContainsKeywordsPredicate(Arrays.asList("JID1234", "JID5678"));
         assertTrue(predicate.test(new PersonBuilder().withId("JID1234").build()));
 
+        // Keywords are substrings
+        predicate = new JobIdContainsKeywordsPredicate(Arrays.asList("1234", "JID"));
+        assertTrue(predicate.test(new PersonBuilder().withId("JID1234").build()));
+
         // Mixed-case keywords
         predicate = new JobIdContainsKeywordsPredicate(Arrays.asList("jiD1234", "jId5678"));
         assertTrue(predicate.test(new PersonBuilder().withId("JID1234").build()));
@@ -68,9 +72,6 @@ public class JobIdContainsKeywordsPredicateTest {
         predicate = new JobIdContainsKeywordsPredicate(Arrays.asList("JID5678", "0JID12340"));
         assertFalse(predicate.test(new PersonBuilder().withId("JID1234").build()));
 
-        // Keywords are substrings
-        predicate = new JobIdContainsKeywordsPredicate(Arrays.asList("1234", "JID"));
-        assertFalse(predicate.test(new PersonBuilder().withId("JID1234").build()));
 
         // Keywords match name, phone, email and address, but does not match JobId
         predicate = new JobIdContainsKeywordsPredicate(

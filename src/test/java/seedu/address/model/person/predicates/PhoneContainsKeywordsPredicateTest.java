@@ -50,6 +50,10 @@ public class PhoneContainsKeywordsPredicateTest {
         predicate = new PhoneContainsKeywordsPredicate(Arrays.asList("98765432", "12345678"));
         assertTrue(predicate.test(new PersonBuilder().withPhone("98765432").build()));
 
+        // Substring keyword
+        predicate = new PhoneContainsKeywordsPredicate(Arrays.asList("8765"));
+        assertTrue(predicate.test(new PersonBuilder().withPhone("98765432").build()));
+
     }
 
     @Test
@@ -60,8 +64,6 @@ public class PhoneContainsKeywordsPredicateTest {
 
         // Non-matching keyword
         predicate = new PhoneContainsKeywordsPredicate(Arrays.asList("12345678")); // diff keyword
-        assertFalse(predicate.test(new PersonBuilder().withPhone("98765432").build()));
-        predicate = new PhoneContainsKeywordsPredicate(Arrays.asList("8765")); // substring
         assertFalse(predicate.test(new PersonBuilder().withPhone("98765432").build()));
         predicate = new PhoneContainsKeywordsPredicate(Arrays.asList("987654321")); // Longer keyword
         assertFalse(predicate.test(new PersonBuilder().withPhone("98765432").build()));
