@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `ModListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -124,7 +124,7 @@ The `Model` component,
 * stores the mass linkers data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `MassLinkers`, which `Student` references. This allows `MassLinkers` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
@@ -142,7 +142,7 @@ The `Model` component,
 The `Storage` component,
 * can save both mass linkers data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `MassLinkersStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -178,8 +178,8 @@ The following activity diagram summarises what happens when a student enters a `
 **Aspect: How `findInt` executes:**
 
 * **Alternative 1 (current choice):** Finds all batchmates whose interests match all interests specified (i.e. a superset of those specified).
-    * Pros: A specific search to find batchmates who have the same interests as the student. (Specifying `tennis` and `baking` will result in a batchmate whose interests are `tennis`, `baking` and `music` to be displayed)
-    * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `tennis` and `baking` will not result in a batchmate whose only interest is `tennis` to be displayed)
+    * Pros: A specific search to find batchmates who have the same interests as the student. (Specifying `tennis` and `baking` will result in a batchmate whose interests are `tennis`, `baking` and `music` to be displayed).
+    * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `tennis` and `baking` will not result in a batchmate whose only interest is `tennis` to be displayed).
 
 * **Alternative 2:** Finds all batchmates whose interests match at least one of the interests specified.
     * Pros: A more general search might be useful for finding a greater number of batchmates who share some of the interests as the student.
@@ -252,7 +252,7 @@ The following activity diagram summarises what happens when a student enters a `
 Module categorisation is handled by `ParserUtil#parseModsToCategory(String modName)`.
 A category is assigned to every mod upon creating it through its constructor.
 This categorisation is not saved in Storage.
-The module categories can be viewed [here](UserGuide.md#module-categorisation)
+The module categories can be viewed [here](UserGuide.md#module-categorisation).
 
 Upon calling the constructor of `Mod` to create a new instance, the constructor
 will then call `ParserUtil#parseModsToCategory(String modName)` which returns a `ModCategory`
@@ -270,7 +270,7 @@ assuming no errors occur.
 
 ![ModCategorisationActivityDiagram](images/ModCategorisationActivityDiagram.png)
 
-Activity: Determines and returns a category
+Activity: Determines and returns a category.
 
 ![ModCategorisationActivityDiagramRake](images/ModCategorisationActivityDiagramRake.png)
 
@@ -316,14 +316,14 @@ In addition, the below sequence diagram illustrates how the ```AddInterestComman
 ![AddInterestRefSequenceDiagram](images/AddInterestRefSequenceDiagram.png)
 
 #### Design considerations:
-1. Usefulness of ```AddInterestCommand```
+1. Usefulness of ```AddInterestCommand```.
 - The current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` is useful to provide a quick way to add new interests to a ```Student```.
-2. Managing the List of Interests
+2. Managing the List of Interests.
 - **Alternative 1 (current choice)**: Store the set of```Interest``` as a field in the ```Student``` class.
     * Pros: It is easier to implement. The use of a ```HashSet``` can handle duplicates.
     * Cons: There is less abstraction as the logic of getting the list and adding to the list is handled by ```Student```.
 
-- **Alternative 2**: Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniqueStudentList```)
+- **Alternative 2**: Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniqueStudentList```).
   * Pros: The low-level details of adding, removing and checking the interests are abstracted. There is greater adherence to the Single Responsibility Principle as the list of interests are handled by the ```UniqueInterestList``` class.
   * Cons: The number of ```Interest``` is usually not that large so Alternative 2 could result in unnecessary implementation overhead.
 
@@ -345,7 +345,7 @@ In addition, the below sequence diagram illustrates how the ```AddInterestComman
 
 **Target user profile**:
 
-* CS2103T students in a tutorial group <br>
+* CS2103T students in a tutorial group. <br>
 Students can search for their teammates, view their repos and view each other’s code reviews (with their information such as GitHub repos etc).
 
 
@@ -427,7 +427,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-* 1a. Mass Linkers detects an invalid input. (No interests specified by the student)
+* 1a. Mass Linkers detects an invalid input. (No interests specified by the student).
     * 1a1. Mass Linkers requests for at least one interest to be specified.
     * 1a2. Student inputs new interests.
     * Steps 1a1-1a2 are repeated until input is valid.
