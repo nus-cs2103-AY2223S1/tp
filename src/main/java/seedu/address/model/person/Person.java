@@ -153,12 +153,6 @@ public class Person {
                 .append(getAddress())
                 .append("; Location: ")
                 .append(getLocation());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
 
