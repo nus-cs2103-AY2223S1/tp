@@ -49,9 +49,61 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
 
 --------------------------------------------------------------------------------------------------------------------
 
+## General Command Syntax
+
+Every command starts with a **command phrase**, which may be single or multiple words.
+
+> For example, `help` is a single-word command phrase.
+> `add module` and `add task` are examples of multiple-word command phrases, but `add` itself is not a valid command.
+
+The command phrase may be followed (after a space) by a **main parameter**, depending on the command.
+Fret not about the specifics of the commands in this section; we will cover each command in detail in the following sections.
+
+> For example, `CS2040S` is the main parameter in the commands `add module CS2040S` and `cd CS2040S`. 
+
+Most commands have **parameters** which are prefixed with a dash (`-`). Each parameter can have _at most_ a **_single_ value**
+immediately after it (and the mandatory space).
+
+> Let's break down the command `add task "tP v1.3" -d 2022-10-28`.</br>
+> We know from above that `add task` is the command phrase, and `"tP v1.3"` is the main parameter.</br>
+> Here, `-d` is a parameter, and `2022-10-28` is its value.
+
+Some commands even have **multiple parameters**, each separated by a space.
+
+> For example, `add task -d 2022-10-28 "tP v1.3" -p high` has two parameters: `-d` and `-p`.
+
+In the example above, notice how the position of the main parameter does not matter.
+This is possible because every parameter has at most one value, so the command is still valid (and correct)!
+
+Also, notice how we have been enclosing some parameter values in quotes (`"` or `'`)—this is only necessary if your value
+contains a space.
+
+Some parameters are optional. By default all parameters in the command formats we specify are mandatory.
+We will surround **optional parameters** with square brackets (`[]`).
+
+> For example, we define the list command format to be `list task [-a]`. This means you need not specify the `-a` parameter
+> depending on your intention with the usage of the command.
+
+That's it! You should now be able to understand the command syntax for the rest of this document.
+
+### Command Quirks
+
+You may be wondering how to include quotes in your parameter values. For example, what if you want to add a task with the name
+`CS2103T "iP" Week 6`?
+
+You can do so by enclosing the entire value in quotes of the other type. For example, if you use double-quotes in your
+value, you can enclose the entire value in single-quotes, and vice versa.
+
+> For example, `add task 'CS2103T "iP" Week 6' -d 2022-10-28` includes the double-quotes in the task description.
+
+Alternatively, you can escape the quotes (or any symbol) by using a backslash (\) before the quote,
+which tells ModtRekt to treat the quote as a normal character.
+
+> The command `add task "CS2103T \"iP\" Week 6" -d 2022-10-28` is equivalent to the previous example.
+
 ## Features
 
-In this section, we will cover the features of ModtRekt, and introduce the command syntaxes.
+In this section, we will cover the features of ModtRekt, and introduce each command in detail.
 
 <div markdown="block" class="alert alert-info">
 
