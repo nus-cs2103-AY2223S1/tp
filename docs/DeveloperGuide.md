@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on [MassLinkers-Level3](https://se-education.org/massLinkers-level3/) by [SE-EDU initiative](https://se-education.org/).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [PlantUML](https://plantuml.com/).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/masslinkers-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T11-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/Main.java) and [`MainApp`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +70,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/ui/Ui.java).
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `ModListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/resources/view/MainWindow.fxml).
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -86,7 +87,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +115,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,12 +136,12 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both mass linkers data and user preference data in json format, and read them back into corresponding objects.
+* can save both Mass Linkers data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `MassLinkersStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
@@ -162,7 +163,7 @@ The `FindInterestCommandParser` reads the specified interests entered by the stu
 The specified interests are then passed as a `StudentContainsInterestPredicate` predicate for execution in `FindInterestCommand#execute`.
 
 During execution, the interests of every batchmate will be tested against the aforementioned predicate.
-If all interests specified are found in the set of a batchmates' interests, that batchmate will then be filtered out and displayed.
+If all interests specified are found in a batchmate's interests, that batchmate will be filtered out and displayed.
 The result would be a list of all batchmates that are filtered out.
 
 The following (partial) class diagram shows how the different classes involved in the find interest operation interact with one another:
@@ -178,8 +179,8 @@ The following activity diagram summarises what happens when a student enters a `
 **Aspect: How `findInt` executes:**
 
 * **Alternative 1 (current choice):** Finds all batchmates whose interests match all interests specified (i.e. a superset of those specified).
-    * Pros: A specific search to find batchmates who have the same interests as the student. (Specifying `tennis` and `baking` will result in a batchmate whose interests are `tennis`, `baking` and `music` to be displayed).
-    * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `tennis` and `baking` will not result in a batchmate whose only interest is `tennis` to be displayed).
+    * Pros: A specific search to find batchmates who have the same interests as the student. (Specifying `AI` and `SWE` will result in a batchmate whose interests are `AI`, `SWE` and `algo` to be displayed).
+    * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `AI` and `SWE` will not result in a batchmate whose only interest is `AI` to be displayed).
 
 * **Alternative 2:** Finds all batchmates whose interests match at least one of the interests specified.
     * Pros: A more general search might be useful for finding a greater number of batchmates who share some of the interests as the student.
@@ -203,7 +204,7 @@ The following activity diagram summarises what happens when a student enters a `
 
 #### Design considerations:
 
-**Aspect: How mod mark executes:**
+**Aspect: How `mod mark` executes:**
 
 * **Alternative 1 (current choice):** Marks mods of a batchmate whose index is specified.
     * Pros: Easier to implement. Shorter command to enter.
@@ -221,11 +222,11 @@ The `ModCommandParser` implements the operation `ModCommandParser#parseFindComma
 
 During execution, the user inputs of module codes are passed into a `List` to `ModContainsKeywordsPredicate`.
 
-For simplicity, we will call this `List` of module codes `keywords`. `ModContainsKeywordsPredicate#test(Student student)` returns `true` for a particular `student` only if every elements in `keywords` is in the `Mod`s of this `student` (stored as `ObservableList<Mod>`).
+For simplicity, we will call this `List` of module codes `keywords`. `ModContainsKeywordsPredicate#test(Student student)` returns `true` for a particular `Student` only if every element in `keywords` is in `Mod` of this `Student` (stored as `ObservableList<Mod>`).
 
-Checking of whether the elements in the `keywords` and the `Mod`s match is done by the `StringUtil#containsWordIgnoreCase(String sentence, String word)`.
+Checking of whether the elements in the `keywords` and `Mod` match each other is done by the `StringUtil#containsWordIgnoreCase(String sentence, String word)`.
 
-The result of `ModContainsKeywordsPredicate#test(Student student)` is then used by `Model#updateFilteredStudentList` to filter those `Students` who have taken or are taking the specified module(s)) when `ModFindCommand#execute(Model model)` is called.
+The result of `ModContainsKeywordsPredicate#test(Student student)` is then used by `Model#updateFilteredStudentList` to filter those `Student` with the specified module(s) when `ModFindCommand#execute(Model model)` is called.
 
 The following sequence diagram shows how the different classes involved in the `mod find` operation interacts with one another:
 
@@ -237,13 +238,15 @@ The following activity diagram summarises what happens when a student enters a `
 
 #### Design considerations:
 
-* **Alternative 1 (current choice):** Modules will be identified only if user inputs fully matches the module code. For instance, `mod find cs1231` does not return `student` has taken or is taking the module `CS1231S` (lacking an "S").
-    * Pros: Reduces confusion. Requiring exact module code will display `students` that are tailored to the specifications, reducing the need to manually filter through the `students`. Imagine that if the system allows partial matching of module codes, typing `mod find cs` yields those who are taking or have taken modules with code "CS", regardless of whether he/she has "CS1231S".
+**Aspect: How `mod find` executes:**
+
+* **Alternative 1 (current choice):** Modules will be identified only if user inputs fully match the module code. For instance, `mod find cs1231` does not return batchmates with the module `CS1231S` (lacking an "S").
+    * Pros: Reduces confusion. Requiring exact module code will display batchmates that are tailored to the specifications, reducing the need to manually filter through the list of `Student`. Imagine that if the system allows partial matching of module codes, typing `mod find cs` yields all Computer Science batchmates with modules having the code "CS" to be displayed.
     * Cons: If the desired module code is so unique that partial matching can suffice to pinpoint the module, requiring a fully matching input would cause some inconvenience to the user.
 
-* **Alternative 2:** Modules can be identified by partially matching inputs of module codes. For instance, `mod find 123` will return `student` has taken or is taking the module `CS1231S`.
-    * Pros: Shorter commands to enter and grants greater convenience to the users.
-    * Cons: If many module codes share the partial module code that user inputs, many `students` will be returned, rendering the `mod find` function ineffective as users still need to manually search for the `students` with the desired module.
+* **Alternative 2:** Modules can be identified by partially matching inputs of module codes. For instance, `mod find 123` will return `Student` with the module `CS1231S`.
+    * Pros: Shorter commands to enter and grants greater convenience to users.
+    * Cons: If many module codes share the same partial module code that user inputs, many batchmates will be returned, rendering the `mod find` function ineffective as users still need to manually search for batchmates with the desired module.
 
 ### Module Categorisation
 
@@ -287,19 +290,18 @@ Activity: Determines and returns a category.
     * Cons: Increased complexity.
     
 ### Add Interest Feature
+
+#### Implementation
 The ```addInt``` command allows students to add one or more interests to a batchmate by indicating the index held by the batchmate and the list of interests to be added.
 
 The command takes in two arguments:
 - ```Index``` targetIndex
 - ```Set<Interest>``` interests
 
-#### Implementation
-Each ```Student``` has a ```Set``` of ```Interest```. Adding an ```Interest``` to a batchmate would add to the set of ```Interest``` of the ```Student``` with the ```targetIndex```.
-
-The Add Interest mechanism is facilitated by ```AddInterestCommand```, which extends from ```Command``` and ```AddInterestCommandParser```, which extends from
+Each ```Student``` has a ```Set``` of ```Interest```. Adding an ```Interest``` to a batchmate would add to the set of ```Interest``` of the ```Student``` with the ```targetIndex```. The Add Interest mechanism is facilitated by ```AddInterestCommand```, which extends from ```Command``` and ```AddInterestCommandParser```, which extends from
 ```Parser```. ```AddInterestCommandParser``` serves to parse the command arguments and create a new ```AddInterestCommand``` object. ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Student```.
 
-#### Steps:
+Below are the steps:
 1. When the student enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```MassLinkersParser``` to parse the command.
 2. A new ```AddInterestCommandParser``` object is constructed.
 3. ```AddInterestCommandParser#parse``` parses the command arguments and returns a set of Interests. A new ```AddInterestCommand``` is constructed.
@@ -311,21 +313,25 @@ The sequence diagram for the command ```addInt 1 anime``` is as follows.
 
 ![AddInterestSequenceDiagram](images/AddInterestSequenceDiagram.png)
 
-In addition, the below sequence diagram illustrates how the ```AddInterestCommand``` interacts with ```Model``` to update the added interests in Mass Linkers. 
+In addition, the sequence diagram below illustrates how the ```AddInterestCommand``` interacts with ```Model``` to update the added interests in Mass Linkers. 
 
 ![AddInterestRefSequenceDiagram](images/AddInterestRefSequenceDiagram.png)
 
 #### Design considerations:
-1. Usefulness of ```AddInterestCommand```.
-- The current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` is useful to provide a quick way to add new interests to a ```Student```.
-2. Managing the List of Interests.
-- **Alternative 1 (current choice)**: Store the set of```Interest``` as a field in the ```Student``` class.
-    * Pros: It is easier to implement. The use of a ```HashSet``` can handle duplicates.
+
+**Aspect: Usefulness of ```AddInterestCommand```:**
+
+* The current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` is useful to provide a quick way to add new interests to a ```Student```.
+
+**Aspect: Managing the List of Interests:**
+
+* **Alternative 1 (current choice):** Store the set of```Interest``` as a field in the ```Student``` class.
+    * Pros: Easier to implement. The use of a ```HashSet``` can handle duplicates.
     * Cons: There is less abstraction as the logic of getting the list and adding to the list is handled by ```Student```.
 
-- **Alternative 2**: Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniqueStudentList```).
-  * Pros: The low-level details of adding, removing and checking the interests are abstracted. There is greater adherence to the Single Responsibility Principle as the list of interests are handled by the ```UniqueInterestList``` class.
-  * Cons: The number of ```Interest``` is usually not that large so Alternative 2 could result in unnecessary implementation overhead.
+* **Alternative 2:** Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniqueStudentList```).
+    * Pros: The low-level details of adding, removing and checking the interests are abstracted. There is greater adherence to the Single Responsibility Principle as the list of interests are handled by the ```UniqueInterestList``` class.
+    * Cons: The number of ```Interest``` is usually not that large so Alternative 2 could result in unnecessary implementation overhead.
 
 --------------------------------------------------------------------------------------------------------------------
 

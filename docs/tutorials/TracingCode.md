@@ -78,7 +78,7 @@ Next, let's find out which statement(s) in the `UI` code is calling this method,
 
 ![`Find Usages` tool window. `Edit` \> `Find` \> `Find Usages`.](../images/tracing/FindUsages.png)
 
-Bingo\! `MainWindow#executeCommand()` seems to be exactly what we’re looking for\!
+Bingo! `MainWindow#executeCommand()` seems to be exactly what we’re looking for!
 
 Now let’s set the breakpoint. First, double-click the item to reach the corresponding code. Once there, click on the left gutter to set a breakpoint, as shown below.
  ![LeftGutter](../images/tracing/LeftGutter.png)
@@ -292,10 +292,10 @@ Here are some quick questions you can try to answer based on your execution path
 
     2.  Allow `delete` to remove more than one index at a time
 
-    3.  Save the mass linkers in the CSV format instead
+    3.  Save Mass Linkers in the CSV format instead
 
     4.  Add a new command
 
     5.  Add a new field to `Student`
 
-    6.  Add a new entity to the mass linkers
+    6.  Add a new entity to Mass Linkers
