@@ -5,7 +5,7 @@ title: User Guide
 
 # GithubContact
 
-![Ui](images/Ui.png)
+![Ui](images/ug/Ui.png)
 
 GithubContact is an address book **integrated with Github's Public API**, targeted at programmers to help them communicate and collaborate smoothly.
 
