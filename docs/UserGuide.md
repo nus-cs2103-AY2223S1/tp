@@ -44,7 +44,7 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
   e.g. in `create n/NAME`, `NAME` is a parameter which can be used as `create n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [p/HP_NUMBER]` can be used as `n/John Doe p/90338099` or as `n/John Doe`.
+  e.g `n/NAME [a/HOME_ADDRESS]` can be used as `n/John Doe a/Blk 30 Geylang Street 29` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times.<br>
   e.g. `NAME…​` can be used as `Jon`, `Jon Jack` etc.
@@ -67,12 +67,11 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
 ### Creating a contact: `create`
 
 Creates a contact that is stored in the FABook and contains their contact information. Any contact information that is not available can be updated later.
 
-Format: `create n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
+Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
 
 :bulb: **Note:**
 Name and Phone number are the only compulsory inputs. Parameters not provided will be left blank.
@@ -86,7 +85,6 @@ Examples:
 Input shortcut: `c` can be used in place of `create`.
 Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
 
-
 ### Listing all persons : `list`
 
 Shows a list of all persons in the FABook.
@@ -95,7 +93,7 @@ Format: `list`
 
 ### Updating a person : `update`
 
-Searches for a contact that is stored in the FABook and updates its contact information.
+Updates the information of a contact stored in the FABook.
 
 Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
 
@@ -103,15 +101,15 @@ Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIP
 Parameters not provided will stay unchanged.
 
 * Edits the person with the provided index.
-* INDEX needs to be a current index in the person list.
-* INDEX is based off the current person list displayed.
+* INDEX is the index of the person in the currently displayed list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Updating description of a contact can also be done through the 'description' command. See [Description](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#Giving-a-description-to-a-person--description)
 
-Examples:
+Example:
 * `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed person's 
-* name, phone number and address to be `John Doe`, `91234567` and `21 Lower Kent Ridge Rd` respectively.
+ name, phone number and address to be `John Doe`, `91234567` and `21 Lower Kent Ridge Rd` respectively.
+
 
 :white_check_mark: **Tip:**
 Input shortcut: `u` can be used in place of `update`.
@@ -141,14 +139,11 @@ Format: `f n/NAME…`
 ### Locating persons by phone number: `find`
 
 Finds persons whose stored number matches the given number.
-
-Format: `find p/NUMBER`
+   
+Format: `find p/NUMBER...`
 
 * Only full numbers will be matched e.g. `7654` will not match `80765432`
 * All persons matching the number will be returned. e.g. All contacts in the same household will be returned if they share a home number.
-
-:heavy_exclamation_mark: **Caution:**
-`NUMBER` should be a string of numbers.
 
 Examples:
 * `find p/90333333` returns the person(s) with `90333333` stored as their number
@@ -202,7 +197,7 @@ Format: `filepath INDEX f/FILEPATH`
 * Moving or renaming the PDF file in the local disk does not change the person's assigned file path, so you would have to assign it manually.
 
 Examples:
-* `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf` assigns second person in displayed list with the PDF file located at the absolute path `C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
+* `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf` assigns second person on the displayed list with the PDF file located at the absolute path `C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
 
 ### Opening PDF file of a person: `file`
 
@@ -216,6 +211,15 @@ Format: `file INDEX`
 Examples:
 * `file 2` opens the PDF file assigned to the second person in the displayed list.
 
+### Remove past meetings: `sync`
+
+Removes every scheduled meeting time that has already passed.
+   
+* This uses your device's present local time as reference. All meetings scheduled to be earlier than the present time will removed.
+   
+:heavy_exclamation_mark: **Caution:**
+As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
+   
 ### Deleting a person : `delete`
 
 Deletes the specified person from the FABook.
@@ -290,16 +294,18 @@ If your changes to the data file makes its format invalid, FABook will discard a
 
 | Action          | Format, Examples                                                                                                            | Shortcut |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------|----------|
-| **Create**      | `create n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [mt/TIME] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567`         | c        |
+| **Create**      | `create n/NAME p/PHONE_NUMBER [a/ADDRESS] [mt/TIME] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567`           | c        |
 | **Clear**       | `clear`                                                                                                                     | cl       |
-| **Delete**      | `delete NAME`<br> e.g., `delete Aaron Judge`                                                                                | d        |
-| **Update**      | `update n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [mt/TIME]`<br> e.g.,`update n/John Doe p/91234567 a/21 Lower Kent Ridge Rd`     | u        |
-| **Find**        | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or 'find a/Bedok' | f        |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                         | d        |
+| **Update**      | `update INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [mt/TIME]`<br> e.g.,`edit 2 p/91234567 a/21 Lower Kent Ridge Rd`        | u        |
 | **Description** | `description INDEX d/DESCRIPTION` <br> e.g., `description 3 d/Accident prone`                                               | desc     |
+| **Find**        | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`| f        |
 | **List**        | `list`                                                                                                                      | l        |
-| **Open File**   | `file [INDEX]`<br/> e.g. `file 2`                                                                                           |          |
-| **Assign File** | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                             |          |
+| **Open File**   | `file INDEX`<br/> e.g. `file 2`                                                                                             |          |
+| **Assign File** | `filepath INDEX f/FILEPATH`<br/> e.g. `find 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                 |          |
+| **Remove past meetings** | `sync`                                                                                                             |          |
 | **Undo**        | `undo`                                                                                                                      |          |
 | **Redo**        | `redo`                                                                                                                      |          |
 | **Help**        | `help`                                                                                                                      |          |
 | **Exit**        | `exit`                                                                                                                      | e        |
+
