@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_MARKED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_UNMARKED;
-
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -67,20 +66,20 @@ public class ListCommandParser implements Parser<ListCommand> {
 
     private Predicate<Task> getPredicate(Prefix prefix, String keyword) throws ParseException {
         switch (prefix.toString()) {
-            case ListAllCommand.COMMAND_WORD:
-                return PREDICATE_SHOW_ALL_PERSONS;
-            case ListModuleCommand.COMMAND_WORD:
-                return new ListModuleCommandParser().getPredicate(keyword);
-            case ListUnmarkedCommand.COMMAND_WORD:
-                return new TaskIsDonePredicate(List.of("false"));
-            case ListMarkedCommand.COMMAND_WORD:
-                return new TaskIsDonePredicate(List.of("true"));
-            case ListDeadlineCommand.COMMAND_WORD:
-                return new ListDeadlineCommandParser().getPredicate(keyword);
-            case ListTagCommand.COMMAND_WORD:
-                return new ListTagCommandParser().getPredicate(keyword);
-            default:
-                return PREDICATE_SHOW_ALL_PERSONS;
+        case ListAllCommand.COMMAND_WORD:
+            return PREDICATE_SHOW_ALL_PERSONS;
+        case ListModuleCommand.COMMAND_WORD:
+            return new ListModuleCommandParser().getPredicate(keyword);
+        case ListUnmarkedCommand.COMMAND_WORD:
+            return new TaskIsDonePredicate(List.of("false"));
+        case ListMarkedCommand.COMMAND_WORD:
+            return new TaskIsDonePredicate(List.of("true"));
+        case ListDeadlineCommand.COMMAND_WORD:
+            return new ListDeadlineCommandParser().getPredicate(keyword);
+        case ListTagCommand.COMMAND_WORD:
+            return new ListTagCommandParser().getPredicate(keyword);
+        default:
+            return PREDICATE_SHOW_ALL_PERSONS;
         }
     }
 }
