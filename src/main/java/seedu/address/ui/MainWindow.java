@@ -1,10 +1,12 @@
 package seedu.address.ui;
 
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -121,6 +123,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Sets FinBook to light mode if user set his/her preference as light mode (mode == 1).
      * FinBook's default theme is dark mode. (mode == 0)
+     *
      * @param pref Stored preference of application theme.
      */
     void initializeTheme(Preferences pref) {
@@ -133,6 +136,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Sets FinBook UI to light mode by changing MainWindow, HelpWindow and LockWindow stylesheet to their
      * respective light stylesheet and sets the button to sun icon.
+     *
      * @param pref Stored preference of application theme.
      */
     void setLightTheme(Preferences pref) {
@@ -147,6 +151,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Sets FinBook UI to dark mode by changing MainWindow, HelpWindow and LockWindow stylesheet to their
      * respective dark stylesheet and sets the button to moon icon.
+     *
      * @param pref Stored preference of application theme.
      */
     void setDarkTheme(Preferences pref) {
@@ -175,6 +180,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void getPortfolio() {
         portfolioWindow = new PortfolioWindow(logic.getFilteredPersonList().get(index), index);
+        portfolioListPanelPlaceholder.getChildren().clear();
         portfolioListPanelPlaceholder.getChildren().add(portfolioWindow.getRoot());
     }
 
@@ -272,7 +278,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+            (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
