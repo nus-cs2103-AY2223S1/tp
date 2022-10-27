@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
+
 import seedu.address.model.address.Address;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
@@ -9,8 +11,6 @@ import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
-
-import java.time.LocalDateTime;
 
 /**
  * A utility class to help with building Property objects.
