@@ -59,21 +59,9 @@ NUScheduler is a desktop app for **managing contacts, optimised for use via a Co
 
 </div>
 
+### Profiles
 
-
-### Viewing help: `help`
-
-Opens a help window displaying all the recognised commands, and a link to access the user guide.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Open the help window using <kbd>F1</kbd> on your keyboard
-</div>
-
-### Adding a profile: `profile -a`
+#### Adding a profile: `profile -a`
 
 Adds a profile to NUScheduler.
 
@@ -88,13 +76,13 @@ Examples:
 * `profile -a n/Jane Smith e/jane_s@u.nus.edu p/91234580 tg/jane_s`
 * `profile -a n/Betsy Crowe e/betsycrowe@u.nus.edu p/1234567 t/professor t/lecturer`
 
-### Viewing all profiles: `profile -v`
+#### Viewing all profiles: `profile -v`
 
 Shows a list of all profiles in the NUScheduler.
 
 Format: `profile -v`
 
-### Editing a profile: `profile -e`
+#### Editing a profile: `profile -e`
 
 Edits an existing profile in NUScheduler.
 
@@ -112,7 +100,7 @@ Examples:
 * `profile -e 2 n/Betsy Crower t/` Edits the name of the 2nd profile to be `Betsy Crower` and clears all existing tags.
 * `profile -e 3 tg/ t/` Clears the telegram username and tags of the 3rd profile.
 
-### Finding profiles by name: `profile -f KEYWORD [MORE_KEYWORDS]`
+#### Finding profiles by name: `profile -f KEYWORD [MORE_KEYWORDS]`
 
 Find profiles whose names contain any of the given keywords.
 
@@ -129,7 +117,7 @@ Examples:
   ![result for 'profile -f alex david john'](images/findAlexDavidJohnResult.png)
 
 
-### Deleting a profile: `profile -d`
+#### Deleting a profile: `profile -d`
 
 Deletes a specified profile from NUScheduler.
 
@@ -142,7 +130,9 @@ Format: `profile -d INDEX`
 Example:
 * `profile -d 1` deletes the first profile listed.
 
-### Adding an event: `event -a`
+### Events
+
+#### Adding an event: `event -a`
 
 Adds an event with a name, a start timing and end timing.
 
@@ -155,7 +145,7 @@ Format: `event -a n/TITLE s/START e/END [t/TAG]… [p/PROFILE]…`
 An event can have 0 or more profiles. An event can have 0 or more tags.
 </div>
 
-### Viewing upcoming events: `event -u`
+#### Viewing upcoming events: `event -u`
 
 Displays a list of upcoming events, ordered by the date, for the next specified number of days.
 
@@ -167,13 +157,13 @@ Format: `event -u DAYS`
 Example:
 * `event -u 5` displays all events taking place in the next 5 days ordered by date.
 
-### Viewing all events: `event -v`
+#### Viewing all events: `event -v`
 
 Shows a list of all events in the NUScheduler.
 
 Format: `event -v`
 
-### Editing a event: `event -e`
+#### Editing a event: `event -e`
 
 Edits an existing event in NUScheduler.
 
@@ -186,7 +176,7 @@ Format: `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]… [p/PROFILE]…`
 * You can remove all the event’s tags by typing `t/` without specifying any tags after it.
 * The start and end dates can be specified in [various formats](#accepted-date-time-formats).
 
-### Finding events by date or title: `event -f KEYWORD_OR_DATE [MORE]`
+#### Finding events by date or title: `event -f KEYWORD_OR_DATE [MORE]`
 
 Find events whose title contain any of the given keywords or start times contain any of the given start times.
 
@@ -197,7 +187,7 @@ Find events whose title contain any of the given keywords or start times contain
 * Partial match will also be returned. e.g. `inter` will match `interview`
 * Events matching at least one keyword will be returned (i.e. `OR` search) e.g. `interview meeting` will return `Meeting Tom`, `Job Interview`.
 
-### Deleting an event: `event -d`
+#### Deleting an event: `event -d`
 
 Deletes a specified event from NUScheduler.
 
@@ -210,13 +200,27 @@ Format: `event -d INDEX`
 Example:
 * `event -v` followed by `event -d 2` deletes the 2nd event displayed.
 
-### Clearing all profiles and events: `clear`
+### General
+
+#### Viewing help: `help`
+
+Opens a help window displaying all the recognised commands, and a link to access the user guide.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Open the help window using <kbd>F1</kbd> on your keyboard
+</div>
+
+#### Clearing all profiles and events: `clear`
 
 Clears all profiles and events from the NUScheduler.
 
 Format: `clear`
 
-### Exiting the program: `exit`
+#### Exiting the program: `exit`
 
 Exits the program.
 
