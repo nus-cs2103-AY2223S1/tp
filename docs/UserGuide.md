@@ -17,22 +17,23 @@ This section will explain the parameters and the format of commands.
 
 ## 1.1 Parameters
 
-| Prefix | Parameter       | Meaning                                                                                           |
-|--------|-----------------|---------------------------------------------------------------------------------------------------|
-| n/     | NAME            | Name of person                                                                                    |
-| p/     | PHONE           | Phone number of person                                                                            |
-| g/     | GENDER          | Gender of person (STRICTLY F or M)                                                                |
-| git/   | GITHUB_USERNAME | GitHub Username of person                                                                         |
-| e/     | EMAIL           | Email address of person                                                                           |
-| m/     | MODULE          | Module that person is participating in                                                            |
-| t/     | TAG             | Tag person (i.e tag as friend)                                                                    |
-| r/     | RATING          | Rate Professor/Teaching Assistant (on a scale of 0 to 5)                                          |
-| y/     | YEAR            | Year of Undergraduate Study (from 1 - 4)                                                          |
-| l/     | LOCATION        | Location of Professor/Teaching Assistant/Student in NUS                                           |
-| s/     | SPECIALISATION  | Professor's Specialisation                                                                        |
-| o/     | OFFICE_HOURS    | Professor's office hours for consultation <br>Refer to section 1.2 for the format of OFFICE_HOURS |
-| typ/   | TYPE            | Type of Contacts. (STRICTLY prof or stu or ta)                                                    |
-| []()   | INDEX           | Index of item in the recent displayed item list                                                   |
+| Prefix | Parameter       | Meaning                                                                                                         |
+|--------|-----------------|-----------------------------------------------------------------------------------------------------------------|
+| n/     | NAME            | Name of person                                                                                                  |
+| p/     | PHONE           | Phone number of person                                                                                          |
+| g/     | GENDER          | Gender of person (STRICTLY F or M)                                                                              |
+| git/   | GITHUB_USERNAME | GitHub Username of person                                                                                       |
+| e/     | EMAIL           | Email address of person                                                                                         |
+| m/     | MODULE          | Module that person is participating in                                                                          |
+| t/     | TAG             | Tag person (i.e tag as friend)                                                                                  |
+| r/     | RATING          | Rate Professor/Teaching Assistant (on a scale of 0 to 5)                                                        |
+| y/     | YEAR            | Year of Undergraduate Study (from 1 - 4)                                                                        |
+| l/     | LOCATION        | Location of Professor/Teaching Assistant/Student in NUS                                                         |
+| s/     | SPECIALISATION  | Professor's Specialisation                                                                                      |
+| o/     | OFFICE_HOURS    | Professor's office hours for consultation <br>Refer to section [1.2](#12-format) for the format of OFFICE_HOURS |
+| typ/   | TYPE            | Type of Contacts. (STRICTLY prof or stu or ta)                                                                  |
+| []()   | INDEX           | Index of item in the recent displayed item list                                                                 |
+|        | FILENAME        | Name that you wish to name the export file or Name of file you wish to import from                              |
 
 <div style="page-break-after: always;"></div>
 
@@ -227,9 +228,9 @@ Examples
 
 Find contacts by type: `Student` `Professor` `Teaching Assistant`
 
-Format: `find [typ/TYPE]`
+Format: `find typ/TYPE`
 
-Only the following are accepted:
+Only the following are accepted for `TYPE`:
 * `stu` for Student
 * `prof` for Professor
 * `ta` for Teaching Assisstant
@@ -268,7 +269,7 @@ After executing the command: ![after sorting](images/AfterNameAscendingSort.png)
 Contacts are sorted by name in `A-Z` order.
 </div>
 
-Format: `sort Z-A n/name`
+Format: `sort Z-A n/NAME`
 
 After executing the command: ![after sorting descending](images/AfterNameDescendingSort.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -346,14 +347,14 @@ Examples:
 
 Allow users to share the current state of their contact list.
 
-### 3.7.1 Export Contact as CSV
+### 3.7.1 Export Contact as CSV: `export`
 
 User can export the current state of his/ her contact list into a CSV file.
 
-Format: `export filename`
+Format: `export FILENAME`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Filename cannot contain any of `$%&` symbols.
+FILENAME cannot contain any of `$%&` symbols.
 </div>
 
 Examples:
@@ -365,6 +366,37 @@ Upon successfully exporting, users will see the CSV file:
 
 Also the directory where the exported file is located at will be displayed:
 ![file directory](images/ExportSuccessful.png)
+
+### 3.7.2 Import address book in CSV format into address book: `import`
+
+User can import a CSV file generated by Export Contact to ease sharing of contact information.
+
+Format: `import FILENAME`
+
+<div markdown="span" class="alert alert-info">:information_source: Note:
+FILENAME cannot contain any of $%& symbols.
+</div>
+
+Examples:
+* `import testing`
+* `import myContacts`
+
+Step by Step Guide:
+1. User create an import directory in the same directory as the SoConnect.jar
+   ![Import File Location](images/ImportFileLocation.jpg)
+2. User adds the desired import file into the import directory
+   ![Nested File Location](images/NestedImportFile.jpg)
+3. Enter into the CLI import sampleimportdata.csv
+
+Before import:
+![before import](images/BeforeImport.jpg)
+
+After import:
+![after import](images/AfterImport.jpg)
+
+<div markdown="span" class="alert alert-info">:information_source: Note:
+Reload the application to see the updated pie chart.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -383,7 +415,7 @@ Example Command: `clear-confirm`
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install SoConnect in the other computer and overwrite the empty data file it creates with the file that contains the data in your previous SoConnect home folder.
+**A**: Install SoConnect in the other computer and overwrite the empty data file it creates with the file that contains the data in your previous SoConnect home folder. Or you could export your contacts as csv and import it back into the other computer using the import and export command explained in section [3.7](#37-sharing-related-commands)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -394,11 +426,12 @@ Example Command: `clear-confirm`
 |-----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add a Person**                        | Adding a Student: `student n/NAME [y/YEAR] m/MODULE_CODE... p/PHONE e/EMAIL g/GENDER [t/TAG]... [l/LOCATION] [git/GITHUB_USERNAME]`<br>e.g.`student n/James Ho m/CS1231 p/12345678 e/jamesho@example.com g/M t/bestfriend t/colleague l/UTown Residences git/jamesho y/2`<br><br> Adding prof: `prof n/NAME m/MODULE_CODE [s/SPECIALISATION] p/PHONE e/EMAIL g/GENDER [t/TAG]... [l/LOCATION] [git/GITHUB_USERNAME] [r/RATING] [o/OFFICE_HOURS]` <br> e.g. `prof n/Wong Tin Lok m/CS1231S s/Discrete Math p/98765432 e/WongTK@example.com g/M t/greatVoice git/WongExample l/COM2 LT4 r/5 o/2-12:00-2` <br><br> Adding TA: `ta n/NAME m/MODULE_CODE p/PHONE e/EMAIL g/GENDER [t/TAG]... [l/LOCATION] [git/GITHUB_USERNAME] [r/RATING]` <br> e.g. `ta n/Danny m/CS2103T p/67598442 e/Danny@example.com g/M t/Korean l/COM2-0204 git/DannyTA r/5` |
 | **Clear**                               | `clear-confirm`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **Delete**                              | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **Opens Contact's GitHub Profile Page** | `github Index` <br> e.g, `github 2`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Delete**                              | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Opens Contact's GitHub Profile Page** | `github Index` <br> e.g. `github 2`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **Edit**                                | `edit INDEX PREFIX [MORE_PREFIX]` <br> `edit 1 n/John`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| **Find**                                | `find [n/NAME] [m/MODULE_CODE] [s/SPECIALISATION] [p/PHONE] [e/EMAIL] [g/GENDER] [g/GITHUB_USERNAME] [y/YEAR] [t/TAG] [l/LOCATION] [r/RATING] [o/OFFICE_HOUR] [typ/TYPE]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **Find**                                | `find [n/NAME] [m/MODULE_CODE] [s/SPECIALISATION] [p/PHONE] [e/EMAIL] [g/GENDER] [g/GITHUB_USERNAME] [y/YEAR] [t/TAG] [l/LOCATION] [r/RATING] [o/OFFICE_HOUR] [typ/TYPE]`<br> e.g. `find James Jake`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **List**                                | `list`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | **Help**                                | `help`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| **Generation of Person's Template**     | `tt PERSON` where PERSON is `prof / student / ta` <br> e.g., `tt prof`, `tt ta`, `tt student`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| **Export**                              | `export filename` <br> eg, `export contacts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Generation of Person's Template**     | `tt PERSON` where PERSON is `prof / student / ta` <br> e.g. `tt prof`, `tt ta`, `tt student`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Export**                              | `export FILENAME` <br> e.g. `export contacts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Import**                              | `import FILENAME` <br> e.g. `import contacts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
