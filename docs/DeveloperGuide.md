@@ -249,7 +249,7 @@ Starting from the default persons, the user has executed `addgroup g/CS2103T` to
 User executes `addmember g/CS2103T n/Alice` to add `Alice` to the
 group `CS2103T`. The associated command `AddGroupMemberCommand` first
 constructs an `editedPerson` and `editedGroup` to replace `Alice` and
-`CS2103T` respectively, before calling `Model#setPerson()` and 
+`CS2103T` respectively, before calling `Model#setPerson()` and
 `Model#setGroup()` with the respective edits to change `Alice` and
 `CS2103T`.
 The `AddressBook` model is reflected below:
