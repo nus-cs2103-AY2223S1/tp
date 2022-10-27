@@ -19,7 +19,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.classify.logic.commands.AddStudCommand;
+import seedu.classify.logic.commands.AddStudentCommand;
 import seedu.classify.logic.commands.CommandResult;
 import seedu.classify.logic.commands.ViewAllCommand;
 import seedu.classify.logic.commands.exceptions.CommandException;
@@ -72,16 +72,16 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        // Setup LogicManager with JsonStudentRecordIoExceptionThrowingStub
         JsonStudentRecordStorage studentRecordStorage =
-                new JsonStudentRecordIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonStudentRecordIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionStudentRecord.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(studentRecordStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddStudCommand.COMMAND_WORD + STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY
+        String addCommand = AddStudentCommand.COMMAND_WORD + STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY
                 + PARENT_NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
         Student expectedPerson = new StudentBuilder(AMY).withExams().build();
         ModelManager expectedModel = new ModelManager();

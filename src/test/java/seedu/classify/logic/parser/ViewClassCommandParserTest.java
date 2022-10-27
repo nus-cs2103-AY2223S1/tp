@@ -21,7 +21,7 @@ public class ViewClassCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsViewClassCommand() {
         // no leading and trailing whitespaces
         ViewClassCommand expectedViewClassCommand =
                 new ViewClassCommand(new ClassPredicate(new Class("CLASS1")));

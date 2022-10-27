@@ -93,7 +93,7 @@ public class JsonStudentRecordStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code studentRecord} at the specified {@code filePath}.
      */
     private void saveStudentRecord(ReadOnlyStudentRecord studentRecord, String filePath) {
         try {

@@ -1,6 +1,7 @@
 package seedu.classify.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -52,6 +53,9 @@ public interface Model {
     /** Returns the StudentRecord */
     ReadOnlyStudentRecord getStudentRecord();
 
+    /** Sorts the StudentRecord. */
+    void sortStudentRecord(Comparator<Student> studentComparator);
+
     /**
      * Returns true if a student with the same identity as {@code student} exists in the student record.
      */
@@ -86,6 +90,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Calculates the mean {@code String exam} score of the filtered student list.
+     */
+    double calculateExamMean(String exam);
 
     /**
      * Toggles between showing all students' information and hiding students' parent details
