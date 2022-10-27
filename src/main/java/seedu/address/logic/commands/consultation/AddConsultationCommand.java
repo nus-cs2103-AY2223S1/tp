@@ -1,10 +1,6 @@
 package seedu.address.logic.commands.consultation;
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -24,12 +20,14 @@ public class AddConsultationCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_VENUE + "VENUE "
+            + PREFIX_DAY + "DAY"
             + PREFIX_TIMESLOT + "TIMESLOT "
             + PREFIX_DESCRIPTION + "DESCRIPTION"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "JakeLim"
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_VENUE + "COM1-0203 "
+            + PREFIX_DAY + "2022-12-31"
             + PREFIX_TIMESLOT + "1500-1800 "
             + PREFIX_DESCRIPTION + "Review past year paper";
 
