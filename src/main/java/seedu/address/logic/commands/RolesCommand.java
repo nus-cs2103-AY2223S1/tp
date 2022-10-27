@@ -44,22 +44,7 @@ public class RolesCommand extends Command {
         requireAllNonNull(index, roles);
 
         this.index = index;
-        switch (roles.toLowerCase(Locale.ROOT)) {
-        case "coordinator":
-            this.roles = "Coordinator";
-            break;
-        case "lecturer":
-            this.roles = "Lecturer";
-            break;
-        case "tutor":
-            this.roles = "Tutor";
-            break;
-        case "advisor":
-            this.roles = "Advisor";
-            break;
-        default:
-            this.roles = "Unassigned";
-        }
+        this.roles = roles;
     }
 
     /**
