@@ -112,6 +112,36 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void specialUpdateCommissionList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addCommissionToUniverse(Commission commission) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void removeCommissionFromUniverse(Commission commission) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setCommissionInUniverse(Commission oldCommission, Commission editedCommission) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void initCommissionUniverse() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Double getTotalRevenue() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasSelectedCustomer() {
         throw new AssertionError("This method should not be called.");
     }

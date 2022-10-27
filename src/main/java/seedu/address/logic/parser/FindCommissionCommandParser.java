@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -9,13 +10,22 @@ import java.util.Set;
 
 import seedu.address.logic.commands.FindCommissionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.commission.CompositePredicate;
+import seedu.address.model.commission.CompositeCommissionPredicate;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new FindCommissionCommand object
+ */
 public class FindCommissionCommandParser implements Parser<FindCommissionCommand> {
     private static final String INTERSECT_FLAG = "-all";
     private static final String UNION_FLAG = "-any";
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindCommissionCommand
+     * and returns a FindCommissionCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format.
+     */
     public FindCommissionCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         int intersectTagsGroupStart = trimmedArgs.indexOf(INTERSECT_FLAG);
@@ -26,12 +36,15 @@ public class FindCommissionCommandParser implements Parser<FindCommissionCommand
         String rawKeywords = "";
         String rawIntersectTags = "";
         String rawUnionTags = "";
+
+        String possibleRawUnionTags = unionTagsContentStart >= trimmedArgs.length() ? ""
+                : trimmedArgs.substring(unionTagsContentStart).trim();
+
         if (intersectTagsGroupStart != -1) {
             rawKeywords = trimmedArgs.substring(0, intersectTagsGroupStart).trim();
             if (unionTagsGroupStart != -1) {
                 rawIntersectTags = trimmedArgs.substring(intersectTagsGroupStart + 4, unionTagsGroupStart);
-                rawUnionTags = unionTagsContentStart >= trimmedArgs.length() ? ""
-                        : trimmedArgs.substring(unionTagsContentStart).trim();
+                rawUnionTags = possibleRawUnionTags;
             } else {
                 rawIntersectTags = intersectTagsContentStart >= trimmedArgs.length() ? ""
                         : trimmedArgs.substring(intersectTagsContentStart).trim();
@@ -39,12 +52,12 @@ public class FindCommissionCommandParser implements Parser<FindCommissionCommand
         } else {
             if (unionTagsGroupStart != -1) {
                 rawKeywords = trimmedArgs.substring(0, unionTagsGroupStart).trim();
-                rawUnionTags = unionTagsContentStart >= trimmedArgs.length() ? ""
-                        : trimmedArgs.substring(unionTagsContentStart).trim();
+                rawUnionTags = possibleRawUnionTags;
             } else {
                 rawKeywords = trimmedArgs;
             }
         }
+
 
         List<String> keywords = new ArrayList<>();
         List<Tag> intersectTags = new ArrayList<>();
@@ -73,6 +86,11 @@ public class FindCommissionCommandParser implements Parser<FindCommissionCommand
             unionTags.addAll(givenUnionTags);
         }
 
-        return new FindCommissionCommand(new CompositePredicate(keywords, intersectTags, unionTags));
+        if (keywords.isEmpty() && intersectTags.isEmpty() && unionTags.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindCommissionCommand.MESSAGE_USAGE));
+        }
+
+        return new FindCommissionCommand(new CompositeCommissionPredicate(keywords, intersectTags, unionTags));
     }
 }

@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,8 +26,8 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.OpenCustomerCommand;
 import seedu.address.logic.commands.SortCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commission.CompositeCustomerPredicate;
 import seedu.address.model.customer.Customer;
-import seedu.address.model.customer.NameContainsKeywordsPredicate;
 import seedu.address.testutil.CustomerBuilder;
 import seedu.address.testutil.CustomerUtil;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
@@ -67,8 +68,9 @@ public class AddressBookParserTest {
     public void parseCommand_edit() throws Exception {
         Customer customer = new CustomerBuilder().build();
         EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder(customer).build();
-        EditCustomerCommand command = (EditCustomerCommand) parser.parseCommand(EditCustomerCommand.COMMAND_WORD + " "
-                + INDEX_FIRST.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
+        EditCustomerCommand command = (EditCustomerCommand) parser.parseCommand(
+                EditCustomerCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
         assertEquals(new EditCustomerCommand(INDEX_FIRST, descriptor), command);
     }
 
@@ -78,12 +80,14 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
+    // TODO: Update test case for FindCommand
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " k/" + String.join(" k/", keywords));
+        assertEquals(new FindCommand(new CompositeCustomerPredicate(keywords,
+                new ArrayList<>(), new ArrayList<>())), command);
     }
 
     @Test

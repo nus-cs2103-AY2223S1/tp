@@ -4,10 +4,15 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.commission.CompositePredicate;
+import seedu.address.model.commission.CompositeCommissionPredicate;
 import seedu.address.storage.Storage;
 import seedu.address.ui.GuiTab;
 
+/**
+ * Finds and lists all commissions in context that has a title which contains any of the argument keywords
+ * and possesses all the necessary tags and at least one of the optional tags if specified.
+ * Keyword matching is case-insensitive.
+ */
 public class FindCommissionCommand extends Command {
     public static final String COMMAND_WORD = "findcom";
 
@@ -18,9 +23,9 @@ public class FindCommissionCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]... -all TAG [MORE_TAGS]... -any TAG [MORE_TAGS]\n"
             + "Example: " + COMMAND_WORD + " k/Berserk k/Fate -all t/tag1 t/tag2 t/tag3 -any t/tag4 t/tag5";
 
-    private final CompositePredicate predicate;
+    private final CompositeCommissionPredicate predicate;
 
-    public FindCommissionCommand(CompositePredicate predicate) {
+    public FindCommissionCommand(CompositeCommissionPredicate predicate) {
         this.predicate = predicate;
     }
 
