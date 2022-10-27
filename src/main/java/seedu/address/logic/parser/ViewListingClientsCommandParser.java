@@ -1,11 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LISTING_ID;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddListingCommand;
 import seedu.address.logic.commands.ViewListingClientsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.listing.ListingId;
@@ -22,14 +21,15 @@ public class ViewListingClientsCommandParser implements Parser<ViewListingClient
      */
     public ViewListingClientsCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ID);
+                ArgumentTokenizer.tokenize(args, PREFIX_LISTING_ID);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ID)
+        if (!arePrefixesPresent(argMultimap, PREFIX_LISTING_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddListingCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ViewListingClientsCommand.MESSAGE_USAGE));
         }
 
-        ListingId id = ParserUtil.parseListingId(argMultimap.getValue(PREFIX_ID).get());
+        ListingId id = ParserUtil.parseListingId(argMultimap.getValue(PREFIX_LISTING_ID).get());
 
         return new ViewListingClientsCommand(id);
     }
