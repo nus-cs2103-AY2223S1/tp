@@ -38,6 +38,7 @@ public class TypicalMeetings {
             Client oldClient = meeting.getClient();
             Client newClient = new ClientBuilder(oldClient).withMeeting(meeting).build();
             myInsuRec.setClient(oldClient, newClient);
+            myInsuRec.addMeeting(meeting);
         }
         return myInsuRec;
     }
