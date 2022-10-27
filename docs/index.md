@@ -6,7 +6,7 @@ title: HobbyList
 [![Java CI](https://github.com/AY2223S1-CS2103T-T12-3/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-T12-3/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T12-3/tp/branch/master/graph/badge.svg?token=N1GXOPW52H)](https://codecov.io/gh/AY2223S1-CS2103T-T12-3/tp)
 
-![Ui](images/default_gui.jpg)
+![Ui](images/default_gui.png)
 
 **HobbyList is a desktop application for managing your hobby activities.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
