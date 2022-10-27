@@ -52,7 +52,7 @@ the user guide from start to end to fully understand how to use Class-ify. Howev
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`addstud`**`nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 exam/CA1 90` : Adds a new student named `John Doe` with his details to *Class-ify*.
+   * **`addStudent`**`nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 exam/CA1 90` : Adds a new student named `John Doe` with his details to *Class-ify*.
 
    * **`viewAll`** : Shows a list of all student records.
 
@@ -111,13 +111,13 @@ will delete all data stored locally and this action is irreversible. You will lo
   * Additional parameters for commands that do not require parameters will be ignored.<br>
   e.g. `exit hello123` will be accepted as the `exit` command.
   * Optional parameters are indicated by square brackets `[]`. <br>
-  e.g. For the `addStud` command, the command format is `addStud nm/NAME id/ID class/CLASS [pn/PARENTNAME] [hp/PHONENUMBER]...`<br>
+  e.g. For the `addStudent` command, the command format is `addStudent nm/NAME id/ID class/CLASS [pn/PARENTNAME] [hp/PHONENUMBER]...`<br>
   `[pn/PARENTNAME]` and `[hp/PHONENUMBER]` refer to optional parameters that can be supplied by the user.
 </div><br>
 
 ### 4.1 Managing student records
 
-#### 4.1.1 Adding a new student record : `addstud`
+#### 4.1.1 Adding a new student record : `addStudent`
 
 Creates a new student record with the following details:
 
@@ -129,7 +129,7 @@ Creates a new student record with the following details:
 * Mobile Number of Parent `hp/`
 * Email Address of Parent `e/`
 
-Format: `addstud nm/[STUDENT-NAME] id/[ID] class/[CLASS] exam/[NAME SCORE] pn/[PARENT-NAME] hp/[PHONE-NUMBER] e/[EMAIL]`
+Format: `addStudent nm/[STUDENT-NAME] id/[ID] class/[CLASS] exam/[NAME SCORE] pn/[PARENT-NAME] hp/[PHONE-NUMBER] e/[EMAIL]`
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip #1:** All **bolded** fields are compulsory. Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
@@ -141,9 +141,9 @@ Example: `exam/CA1 50 exam/SA1 60 exam/CA1 80` will add grades 80 for CA1 and 60
 </div>
 
 Examples:
-* `addstud nm/Peter Tan id/452B class/1F`
-* `addstud nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
-* `addstud nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
+* `addStudent nm/Peter Tan id/452B class/1F`
+* `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
+* `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
 
 #### 4.1.2 Clearing all student records : `clear`
 
@@ -167,7 +167,7 @@ Edits the respective details of an existing student.
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3 ...
 * Existing values will be updated to the new input values.
-* Refer to the complete list of tags for each field under [addstud command](#411-adding-a-new-student-record--addstud).
+* Refer to the complete list of tags for each field under [addStudent command](#411-adding-a-new-student-record--addstudent).
 
 Format: `edit [INDEX] nm/[STUDENT-NAME] id/[ID] exam/[NAME SCORE] pn/[PARENT-NAME]...`
 
