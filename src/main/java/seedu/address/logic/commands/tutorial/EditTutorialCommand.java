@@ -43,6 +43,7 @@ public class EditTutorialCommand extends Command {
         + "[" + PREFIX_DAY + "DAY]\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_VENUE + "COM1 B1-01 "
+        + PREFIX_TIMESLOT + "14:00-16:00 "
         + PREFIX_DAY + "2";
 
     public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: %1$s";
