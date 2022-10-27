@@ -275,7 +275,7 @@ public class EditPropertyCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getPrice().equals(e.getPrice())
                     && getTags().equals(e.getTags())
-                    && getInterestedClients().equals(e.getInterestedClients());
+                    && getInterestedClients().equals(e.getInterestedClients())
                     && getPropertyTypeEnum().equals(e.getPropertyTypeEnum());
         }
 

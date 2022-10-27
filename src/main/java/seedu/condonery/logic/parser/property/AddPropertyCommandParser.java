@@ -42,7 +42,6 @@ public class AddPropertyCommandParser implements Parser<Command> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG,
                         PREFIX_IMAGE_UPLOAD, PREFIX_INTERESTEDCLIENTS, PREFIX_PROPERTY_TYPE);
-                        PREFIX_IMAGE_UPLOAD, PREFIX_PROPERTY_TYPE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE,
                 PREFIX_PROPERTY_TYPE)

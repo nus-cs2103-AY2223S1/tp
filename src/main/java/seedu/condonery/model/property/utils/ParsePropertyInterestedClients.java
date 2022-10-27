@@ -53,6 +53,6 @@ public class ParsePropertyInterestedClients {
     public Property getNewProperty() {
         return new Property(originalProperty.getName(), originalProperty.getAddress(),
                 originalProperty.getPrice(), originalProperty.getTags(),
-                filteredInterestedClients);
+                filteredInterestedClients, originalProperty.getPropertyTypeEnum());
     }
 }

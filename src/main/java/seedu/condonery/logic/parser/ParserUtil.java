@@ -162,7 +162,8 @@ public class ParserUtil {
                 new Address("placeholder"),
                 new Price("1000000"),
                 new HashSet<>(),
-                new HashSet<>());
+                new HashSet<>(),
+                PropertyTypeEnum.valueOf("CONDO"));
     }
 
     /**

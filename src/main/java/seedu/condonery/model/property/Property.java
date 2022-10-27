@@ -171,7 +171,8 @@ public class Property {
             && otherProperty.getAddress().equals(getAddress())
             && otherProperty.getPrice().equals(getPrice())
             && otherProperty.getTags().equals(getTags())
-            && otherProperty.getInterestedClients().equals(getInterestedClients());
+            && otherProperty.getInterestedClients().equals(getInterestedClients())
+            && otherProperty.getPropertyTypeEnum().equals(getPropertyTypeEnum());
     }
 
     @Override
