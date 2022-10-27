@@ -6,7 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static paymelah.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static paymelah.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static paymelah.testutil.TypicalPersons.BENSON;
+import static paymelah.testutil.TypicalPersons.CARL;
 import static paymelah.testutil.TypicalPersons.DANIEL;
+import static paymelah.testutil.TypicalPersons.FIONA;
+import static paymelah.testutil.TypicalPersons.GEORGE;
 import static paymelah.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -18,6 +21,7 @@ import paymelah.model.Model;
 import paymelah.model.ModelManager;
 import paymelah.model.UserPrefs;
 import paymelah.model.person.PersonMatchesDescriptorPredicate;
+import paymelah.testutil.DebtsDescriptorBuilder;
 import paymelah.testutil.PersonDescriptorBuilder;
 
 /**
@@ -75,5 +79,49 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BENSON, DANIEL), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_findAboveMiddlingAmount_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        PersonMatchesDescriptorPredicate predicate = new PersonMatchesDescriptorPredicate(
+                new DebtsDescriptorBuilder().withAbove("20").build());
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_findBelowLowAmount_onePersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        PersonMatchesDescriptorPredicate predicate = new PersonMatchesDescriptorPredicate(
+                new DebtsDescriptorBuilder().withBelow("4.5").build()); // boundary value (lowest debt value)
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(GEORGE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_findBeforeMiddlingDate_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        PersonMatchesDescriptorPredicate predicate = new PersonMatchesDescriptorPredicate(
+                new DebtsDescriptorBuilder().withBefore("2022-10-1").build());
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, GEORGE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_findAfterLateDate_onePersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        PersonMatchesDescriptorPredicate predicate = new PersonMatchesDescriptorPredicate(
+                new DebtsDescriptorBuilder().withAfter("2022-10-12").build()); // boundary value (latest date)
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(FIONA), model.getFilteredPersonList());
     }
 }

@@ -204,9 +204,9 @@ The activity diagram below details the behaviour of PayMeLah when a user request
 
 **(Insert activity diagram here)**
 
-* **Alternative for listing all debtors:** use a `DebtGreaterEqualAmountPredicate` with $0 as the amount
+* **Alternative for listing all debtors:** use a `DebtGreaterEqualAmountPredicate` with $0.01 as the amount
     * Pros: More consistent behaviour: every `ListDebtorsCommand` will have an associated `DebtGreaterEqualAmountPredicate`.
-    * Cons: May not work properly with possible future extensions (e.g. Debts extended to be able to take negative values to indicate user owing the person money)
+    * Cons: May not work properly with possible future extensions (e.g. Money modified to use other precisions besides 2 decimal points)
 
 ### Mark debts as paid/unpaid feature
 
@@ -350,7 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user    | remove debts                                                       | I do not mistakenly think I have not yet been paid                  |
 | `* * *`  | user    | see how much I am owed in total                                    | I know how much I expect to be paid                                 |
 | `* * *`  | user    | split a debt fairly among several people                           | I do not need to manually divide the amount that each person owes   |
-| `* * *`  | user    | mark debts as paid/unpaid                                       | I know whether the debts has been paid or not                       |
+| `* * *`  | user    | mark debts as paid/unpaid                                          | I know whether the debts has been paid or not                       |
 | `* * *`  | user    | close the application                                              |                                                                     |
 | `* *`    | user    | see an overview of all the debts owed                              | I am in better control of my overall financial situation            |
 | `* *`    | user    | search for a person’s contact                                      | I can easily access his contact details                             |
