@@ -42,20 +42,20 @@ public class AddressContainsKeywordsPredicateTest {
     @Test
     public void test_addressContainsKeywords_returnsTrue() {
         // One keyword
-        AddressContainsKeywordsPredicate predicate = new AddressContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new PersonBuilder().withAddress("Alice Bob").build()));
+        AddressContainsKeywordsPredicate predicate = new AddressContainsKeywordsPredicate(Collections.singletonList("Labrador"));
+        assertTrue(predicate.test(new PersonBuilder().withAddress("Tampines Labrador").build()));
 
         // Multiple keywords
-        predicate = new AddressContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        predicate = new AddressContainsKeywordsPredicate(Arrays.asList("Tampines", "Labrador"));
+        assertTrue(predicate.test(new PersonBuilder().withAddress("Tampines Labrador").build()));
 
         // Only one matching keyword
-        predicate = new AddressContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
+        predicate = new AddressContainsKeywordsPredicate(Arrays.asList("Labrador", "Caldecott"));
+        assertTrue(predicate.test(new PersonBuilder().withAddress("Labrador Caldecott").build()));
 
         // Mixed-case keywords
-        predicate = new AddressContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        predicate = new AddressContainsKeywordsPredicate(Arrays.asList("tAMpiNes", "lAbrAdOR"));
+        assertTrue(predicate.test(new PersonBuilder().withAddress("Tampines Labrador").build()));
     }
 
     @Test
