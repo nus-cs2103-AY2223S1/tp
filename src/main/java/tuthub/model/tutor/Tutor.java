@@ -160,9 +160,12 @@ public class Tutor {
                 .append("; Teaching nominations: ")
                 .append(getTeachingNomination())
                 .append("; Rating: ")
-                .append(getRating())
-                .append(" Comments: ")
-                .append(getComments());
+                .append(getRating());
+
+        if (!comments.isEmpty()) {
+            builder.append("; Comments: ")
+                   .append(getComments());
+        }
 
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
