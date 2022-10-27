@@ -15,7 +15,7 @@ import seedu.address.model.bill.Bill;
  * Sorts Bill data in Address Book.
  */
 public class SortBillCommand extends Command {
-    public static final CommandWord COMMAND_WORD = new CommandWord("sortbill");
+    public static final CommandWord COMMAND_WORD = new CommandWord("sortbill", "sob");
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Sorts the list of bills according to the specified field."
                     + "by alphabetical order.\n"

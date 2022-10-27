@@ -14,7 +14,7 @@ import seedu.address.model.appointment.Appointment;
  * Sorts Appointment data in Address Book.
  */
 public class SortAppointmentCommand extends Command {
-    public static final CommandWord COMMAND_WORD = new CommandWord("sortappointment");
+    public static final CommandWord COMMAND_WORD = new CommandWord("sortappointment", "soa");
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Sorts the list of appointments according to the specified field."
                     + "by alphabetical order.\n"

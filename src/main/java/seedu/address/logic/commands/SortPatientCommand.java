@@ -14,7 +14,7 @@ import seedu.address.model.patient.Patient;
  * Sorts Patient data in Address Book.
  */
 public class SortPatientCommand extends Command {
-    public static final CommandWord COMMAND_WORD = new CommandWord("sortpatient");
+    public static final CommandWord COMMAND_WORD = new CommandWord("sortpatient", "sop");
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Sorts the list of patients according to the specified field."
             + "by alphabetical order.\n"
