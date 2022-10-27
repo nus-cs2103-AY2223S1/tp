@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-// import static seedu.address.testutil.TypicalInternships.ALIBABA;
-// import static seedu.address.testutil.TypicalInternships.HUAWEI;
-// import static seedu.address.testutil.TypicalInternships.INDEED;
-// import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalInternships.ALIBABA;
+import static seedu.address.testutil.TypicalInternships.getTypicalFindMyIntern;
+import static seedu.address.testutil.TypicalInternships.HUAWEI;
+import static seedu.address.testutil.TypicalInternships.INDEED;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -60,33 +60,31 @@ public class JsonFindMyInternStorageTest {
         assertThrows(DataConversionException.class, () -> readFindMyIntern("invalidAndValidFindMyIntern.json"));
     }
 
-    /* Passes locally but not on GitHub Actions
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
-        AddressBook original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        Path filePath = testFolder.resolve("TempFindMyIntern.json");
+        FindMyIntern original = getTypicalFindMyIntern();
+        JsonFindMyInternStorage jsonAddressBookStorage = new JsonFindMyInternStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new AddressBook(readBack));
+        jsonAddressBookStorage.saveFindMyIntern(original, filePath);
+        ReadOnlyFindMyIntern readBack = jsonAddressBookStorage.readFindMyIntern(filePath).get();
+        assertEquals(original, new FindMyIntern(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addInternship(HUAWEI);
         original.removeInternship(ALIBABA);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new AddressBook(readBack));
+        jsonAddressBookStorage.saveFindMyIntern(original, filePath);
+        readBack = jsonAddressBookStorage.readFindMyIntern(filePath).get();
+        assertEquals(original, new FindMyIntern(readBack));
 
         // Save and read without specifying file path
         original.addInternship(INDEED);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
-        assertEquals(original, new AddressBook(readBack));
+        jsonAddressBookStorage.saveFindMyIntern(original); // file path not specified
+        readBack = jsonAddressBookStorage.readFindMyIntern().get(); // file path not specified
+        assertEquals(original, new FindMyIntern(readBack));
 
     }
-     */
 
     @Test
     public void saveFindMyIntern_nullFindMyIntern_throwsNullPointerException() {
