@@ -30,7 +30,6 @@ public class Person {
     private final Set<GameType> gameTypes;
     private final Set<Tag> tags;
     private final Set<ITimesAvailable> timeIntervals;
-    private final Image avatar;
 
     /**
      * Every field must be present and not null.
@@ -53,7 +52,6 @@ public class Person {
         this.country = country == null ? new Country("") : country;
         this.gameTypes = gameTypes == null ? new HashSet<>() : gameTypes;
         this.timeIntervals = timeIntervals == null ? new HashSet<>() : timeIntervals;
-        this.avatar = AvatarList.getRandomImage();
     }
 
     public Name getName() {
@@ -105,9 +103,6 @@ public class Person {
         return Collections.unmodifiableSet(timeIntervals);
     }
 
-    public Image getAvatar() {
-        return avatar;
-    }
 
     /**
      * Returns true if both persons have the same Minecraft name.

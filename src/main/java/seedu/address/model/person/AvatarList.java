@@ -50,4 +50,10 @@ public class AvatarList {
         int randomNum = RANDOM.nextInt(listOfAvatars.avatarList.size());
         return listOfAvatars.avatarList.get(randomNum);
     }
+
+    public static Image getImage(int i) {
+        AvatarList listOfAvatars = new AvatarList();
+        int sizeOfList = listOfAvatars.avatarList.size();
+        return listOfAvatars.avatarList.get(i % sizeOfList);
+    }
 }
