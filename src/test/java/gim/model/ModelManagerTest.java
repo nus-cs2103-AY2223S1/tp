@@ -95,7 +95,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        ExerciseTracker exerciseTracker = new ExerciseTrackerBuilder().withExercise(ABDUCTION).withExercise(BICEP_CURLS).build();
+        ExerciseTracker exerciseTracker = new ExerciseTrackerBuilder().withExercise(ABDUCTION)
+                .withExercise(BICEP_CURLS).build();
         ExerciseTracker differentExerciseTracker = new ExerciseTracker();
         UserPrefs userPrefs = new UserPrefs();
 

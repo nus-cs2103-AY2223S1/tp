@@ -84,7 +84,8 @@ public class TypicalExercises {
     }
 
     public static List<Exercise> getTypicalExercises() {
-        return new ArrayList<>(Arrays.asList(ABDUCTION, BICEP_CURLS, CALF_RAISES, DEADLIFT, ELEVATED_SQUATS, FRONT_SQUATS, GLUTE_RAISES));
+        return new ArrayList<>(Arrays.asList(ABDUCTION, BICEP_CURLS, CALF_RAISES, DEADLIFT,
+                ELEVATED_SQUATS, FRONT_SQUATS, GLUTE_RAISES));
     }
 
     /**

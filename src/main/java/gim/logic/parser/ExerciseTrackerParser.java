@@ -10,7 +10,6 @@ import gim.logic.commands.AddCommand;
 import gim.logic.commands.ClearCommand;
 import gim.logic.commands.Command;
 import gim.logic.commands.DeleteCommand;
-import gim.logic.commands.EditCommand;
 import gim.logic.commands.ExitCommand;
 import gim.logic.commands.FindCommand;
 import gim.logic.commands.GenerateCommand;
