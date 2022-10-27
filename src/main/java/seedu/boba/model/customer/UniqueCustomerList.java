@@ -20,7 +20,7 @@ import seedu.boba.model.customer.exceptions.PersonNotFoundException;
  * that the customer being added or updated is unique in terms of identity in the UniqueCustomerList.
  * However, the removal of a customer uses Customer#equals(Object) so as to ensure that the customer with
  * exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Customer#isSamePerson(Customer)
@@ -174,22 +174,22 @@ public class UniqueCustomerList implements Iterable<Customer> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueCustomerList // instanceof handles nulls
-                        && internalList.equals(((UniqueCustomerList) other).internalList));
+                && internalList.equals(((UniqueCustomerList) other).internalList));
     }
 
     public boolean strictlyEquals(Object other) {
-        if (other==this) {
+        if (other == this) {
             return true;
         }
         if (!(other instanceof UniqueCustomerList)) {
             return false;
         }
-        UniqueCustomerList otherList=(UniqueCustomerList) other;
-        if (this.internalList.size()!=otherList.internalList.size()) {
+        UniqueCustomerList otherList = (UniqueCustomerList) other;
+        if (this.internalList.size() != otherList.internalList.size()) {
             return false;
         }
-        for (int i=0; i<this.internalList.size(); i++){
-            if (!internalList.get(i).strictlyEquals(otherList.internalList.get(i))){
+        for (int i = 0; i < this.internalList.size(); i++) {
+            if (!internalList.get(i).strictlyEquals(otherList.internalList.get(i))) {
                 return false;
             }
         }

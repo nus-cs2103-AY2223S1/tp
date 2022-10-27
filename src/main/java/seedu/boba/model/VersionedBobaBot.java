@@ -35,8 +35,8 @@ public class VersionedBobaBot extends BobaBot {
     /**
      * Creates an instance of VersionedBobaBot.
      *
-     * @param bobaBot BobaBot to be initialised as the first state
-     * @param stepLimit   maximum number of previous states tracked
+     * @param bobaBot   BobaBot to be initialised as the first state
+     * @param stepLimit maximum number of previous states tracked
      */
     public VersionedBobaBot(ReadOnlyBobaBot bobaBot, int stepLimit) {
         this.currentStatePointer = 0;

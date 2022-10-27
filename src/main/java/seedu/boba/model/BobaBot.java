@@ -26,12 +26,12 @@ public class BobaBot implements ReadOnlyBobaBot {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         persons = new UniqueCustomerList();
     }
 
-    public BobaBot() {}
+    public BobaBot() {
+    }
 
     /**
      * Creates an BobaBot using the Persons in the {@code toBeCopied}

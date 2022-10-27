@@ -46,12 +46,12 @@ public class CustomerTest {
 
         // same phone number, all other attributes different -> return true
         editedCustomer = new CustomerBuilder(AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_BOB)
-            .withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD).build();
+                .withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD).build();
         assertTrue(AMY.isSamePerson(editedCustomer));
 
         // same email address, all other attributes different -> return true
         editedCustomer = new CustomerBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
-            .withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD).build();
+                .withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD).build();
         assertTrue(AMY.isSamePerson(editedCustomer));
 
         // name differs in case, all other attributes same -> returns true
