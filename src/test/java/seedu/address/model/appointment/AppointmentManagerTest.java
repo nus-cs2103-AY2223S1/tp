@@ -5,11 +5,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.NURSE;
 import static seedu.address.testutil.TypicalPersons.PATIENT;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.appointment.enums.AppointmentSlotNumber;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.NurseIsBusyException;
 import seedu.address.model.appointment.exceptions.PatientIsBusyException;
@@ -24,7 +25,8 @@ public class AppointmentManagerTest {
     private final Optional<Nurse> optionalNurse = Optional.of(NURSE);
     private final Optional<Patient> emptyPatient = Optional.empty();
     private final Optional<Nurse> emptyNurse = Optional.empty();
-    private final LocalDateTime testDateTime = LocalDateTime.now();
+    private final AppointmentDateTime testDateTime = new AppointmentDateTime(LocalDate.now(),
+            AppointmentSlotNumber.ONE);
 
     private Appointment createMockAppointment() {
         try {
@@ -104,53 +106,55 @@ public class AppointmentManagerTest {
     public void hasAppointment_validArguments_returnsAppointment() {
         Appointment createdAppointment = createMockAppointment();
         Optional<Appointment> foundAppointment = appointmentManager.findAppointment(optionalNurse, optionalPatient,
-            testDateTime);
+                testDateTime);
         assertEquals(createdAppointment, foundAppointment.orElseThrow(AppointmentNotFoundException::new));
     }
 
     // @Test
     // public void hasAppointment_invalidArguments_throwsException() {
-    //     Appointment createdAppointment = createMockAppointment();
+    // Appointment createdAppointment = createMockAppointment();
     // }
 
     // @Test
     // public void changeNurse_validArguments_successfullyChangesNurse() {
-    //     assertTrue(true);
+    // assertTrue(true);
     // }
 
     // @Test
     // public void changeNurse_invalidArguments_throwsException() {
-    //     assertTrue(true);
+    // assertTrue(true);
     // }
 
     // @Test
     // public void findAppointment_validArguments_successfullyFindsAppointment() {
-    //     assertTrue(true);
+    // assertTrue(true);
     // }
 
     // @Test
     // public void findAppointment_invalidArguments_throwsException() {
-    //     assertTrue(true);
+    // assertTrue(true);
     // }
 
     // @Test
-    // public void getAppointmentsByPatient_validArguments_successfullyRetrievesAppointments() {
-    //     assertTrue(true);
+    // public void
+    // getAppointmentsByPatient_validArguments_successfullyRetrievesAppointments() {
+    // assertTrue(true);
     // }
 
     // @Test
     // public void getAppointmentsByPatient_invalidArguments_throwsException() {
-    //     assertTrue(true);
+    // assertTrue(true);
     // }
 
     // @Test
-    // public void getAppointmentsByNurse_validArguments_successfullyRetrievesAppointments() {
-    //     assertTrue(true);
+    // public void
+    // getAppointmentsByNurse_validArguments_successfullyRetrievesAppointments() {
+    // assertTrue(true);
     // }
 
     // @Test
     // public void getAppointmentsByNurse_invalidArguments_throwsException() {
-    //     assertTrue(true);
+    // assertTrue(true);
     // }
 
 }

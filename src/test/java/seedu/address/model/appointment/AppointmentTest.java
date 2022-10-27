@@ -5,27 +5,45 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.NURSE;
 import static seedu.address.testutil.TypicalPersons.PATIENT;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.appointment.enums.AppointmentSlotNumber;
+
 public class AppointmentTest {
+
+    private AppointmentDateTime testAppointmentDateTime = new AppointmentDateTime(LocalDate.now(),
+            AppointmentSlotNumber.ONE);
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Appointment(null, null, null));
-        assertThrows(NullPointerException.class, () -> new Appointment(PATIENT, null, null));
-        assertThrows(NullPointerException.class, () -> new Appointment(null, NURSE, null));
-        assertThrows(NullPointerException.class, () -> new Appointment(null, null, LocalDateTime.now()));
-        assertThrows(NullPointerException.class, () -> new Appointment(PATIENT, NURSE, null));
-        assertThrows(NullPointerException.class, () -> new Appointment(null, NURSE, LocalDateTime.now()));
-        assertThrows(NullPointerException.class, () -> new Appointment(PATIENT, null, LocalDateTime.now()));
+        assertThrows(NullPointerException.class, () ->
+            new Appointment(null, null, null));
+
+        assertThrows(NullPointerException.class, () ->
+            new Appointment(PATIENT, null, null));
+
+        assertThrows(NullPointerException.class, () ->
+            new Appointment(null, NURSE, null));
+
+        assertThrows(NullPointerException.class, () ->
+            new Appointment(null, null, testAppointmentDateTime));
+
+        assertThrows(NullPointerException.class, () ->
+            new Appointment(PATIENT, NURSE, null));
+
+        assertThrows(NullPointerException.class, () ->
+            new Appointment(null, NURSE, testAppointmentDateTime));
+
+        assertThrows(NullPointerException.class, () ->
+            new Appointment(PATIENT, null, testAppointmentDateTime));
+
     }
 
     @Test
     public void constructor_valid_returnsNewAppointment() {
-        LocalDateTime testDateTime = LocalDateTime.now();
-        Appointment newAppt = new Appointment(PATIENT, NURSE, testDateTime);
-        assertEquals(newAppt, new Appointment(PATIENT, NURSE, testDateTime));
+        Appointment newAppt = new Appointment(PATIENT, NURSE, testAppointmentDateTime);
+        assertEquals(newAppt, new Appointment(PATIENT, NURSE, testAppointmentDateTime));
     }
 }

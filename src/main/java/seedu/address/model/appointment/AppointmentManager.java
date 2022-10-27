@@ -2,7 +2,6 @@ package seedu.address.model.appointment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
@@ -32,11 +31,11 @@ public class AppointmentManager {
 
     /**
      * Creates a new appointment using the given nurse, patient and
-     * appointmentStartDateTime
+     * appointmentDateTime
      *
-     * @param nurse                    The requested nurse
-     * @param patient                  The requested patient
-     * @param appointmentStartDateTime The requested appointmentStartDateTime
+     * @param nurse               The requested nurse
+     * @param patient             The requested patient
+     * @param appointmentDateTime The requested appointment Date
      * @throws NullPointerException   Any of the required parameters are null
      *                                correctly
      * @throws NurseIsBusyException   The nurse is current busy at this point of
@@ -44,11 +43,11 @@ public class AppointmentManager {
      * @throws PatientIsBusyException The patient is current busy at this point of
      *                                time
      */
-    public Appointment createNewAppointment(Patient patient, Nurse nurse, LocalDateTime appointmentStartDateTime)
+    public Appointment createNewAppointment(Patient patient, Nurse nurse, AppointmentDateTime appointmentDateTime)
             throws NurseIsBusyException, PatientIsBusyException {
-        requireAllNonNull(patient, nurse, appointmentStartDateTime);
+        requireAllNonNull(patient, nurse, appointmentDateTime);
         Optional<Appointment> appointment = findAppointment(Optional.of(nurse), Optional.of(patient),
-                appointmentStartDateTime);
+                appointmentDateTime);
         if (appointment.isPresent()) {
             Appointment foundAppointment = appointment.get();
             if (foundAppointment.hasNurse(nurse)) {
@@ -58,30 +57,30 @@ public class AppointmentManager {
                 throw new PatientIsBusyException();
             }
         }
-        Appointment newAppointment = new Appointment(patient, nurse, appointmentStartDateTime);
+        Appointment newAppointment = new Appointment(patient, nurse, appointmentDateTime);
         this.appointments.add(newAppointment);
         return newAppointment;
     }
 
     /**
-     * Removes an appointment given the nurse, patient and appointmentStartDateTime
+     * Removes an appointment given the nurse, patient and appointmentDateTime
      *
-     * @param nurse                    The nurse of the appointment to be removed
-     * @param patient                  The patient of the appointment to be removed
-     * @param appointmentStartDateTime The appointmentStartDateTime of the
-     *                                 appointment to be removed
+     * @param nurse               The nurse of the appointment to be removed
+     * @param patient             The patient of the appointment to be removed
+     * @param appointmentDateTime The appointmentDateTime of the
+     *                            appointment to be removed
      * @throws IllegalArgumentException     When the appointment start datetime is
      *                                      not given or the patient or nurse is
      *                                      not provided
      * @throws AppointmentNotFoundException When the appointment cannot be found
      */
     public void removeAppointment(Optional<Patient> patient, Optional<Nurse> nurse,
-            LocalDateTime appointmentStartDateTime) throws IllegalArgumentException, AppointmentNotFoundException {
-        requireAllNonNull(patient, nurse, appointmentStartDateTime);
+            AppointmentDateTime appointmentDateTime) throws IllegalArgumentException, AppointmentNotFoundException {
+        requireAllNonNull(patient, nurse, appointmentDateTime);
         if (patient.isEmpty() && nurse.isEmpty()) {
             throw new IllegalArgumentException("Patient or Nurse must be given");
         }
-        Appointment appointment = findAppointment(nurse, patient, appointmentStartDateTime)
+        Appointment appointment = findAppointment(nurse, patient, appointmentDateTime)
                 .orElseThrow(AppointmentNotFoundException::new);
         this.appointments.remove(appointment);
     }
@@ -89,49 +88,50 @@ public class AppointmentManager {
     /**
      * Returns true if the given person has an appointment during the given dateTime
      *
-     * @param person   The person to check
-     * @param dateTime The dateTime to check
+     * @param person              The person to check
+     * @param appointmentDateTime The appointment date time to check
      * @return True if the given person has an appointment during the given dateTime
      */
-    public boolean hasAppointment(Person person, LocalDateTime dateTime) {
-        return this.appointments.stream().filter(x -> x.involvesPerson(person)).anyMatch(x -> x.isClashing(dateTime));
+    public boolean hasAppointment(Person person, AppointmentDateTime appointmentDateTime) {
+        return this.appointments.stream().filter(x -> x.involvesPerson(person))
+                .anyMatch(x -> x.getAppointmentDateTime().equals(appointmentDateTime));
     }
 
     /**
      * Changes the nurse for the appointment given the old and new nurse and the
-     * appointmentStartDateTime
+     * appointmentDateTime
      *
-     * @param oldNurse                 The old nurse associated with the appointment
-     * @param newNurse                 The new nurse to be associated with the
-     *                                 appointment
-     * @param appointmentStartDateTime The appointment's start datetime
+     * @param oldNurse            The old nurse associated with the appointment
+     * @param newNurse            The new nurse to be associated with the
+     *                            appointment
+     * @param appointmentDateTime The appointment's start datetime
      * @throws IllegalArgumentException     When the appointment start date time is
      *                                      not provided
      * @throws IllegalArgumentException     When both the old and new nurses are not
      *                                      provided
      * @throws AppointmentNotFoundException When the appointment cannot be found
      */
-    public void changeNurseForAppointment(Nurse oldNurse, Nurse newNurse, LocalDateTime appointmentStartDateTime)
+    public void changeNurseForAppointment(Nurse oldNurse, Nurse newNurse, AppointmentDateTime appointmentDateTime)
             throws IllegalArgumentException, AppointmentNotFoundException {
-        if (Objects.isNull(appointmentStartDateTime)) {
+        if (Objects.isNull(appointmentDateTime)) {
             throw new IllegalArgumentException("Appointment start datetime must be given");
         }
         if (Objects.isNull(oldNurse) || Objects.isNull(newNurse)) {
             throw new IllegalArgumentException("Both Nurses must be given");
         }
         Appointment appointment = findAppointment(Optional.of(oldNurse), Optional.empty(),
-                appointmentStartDateTime).orElseThrow(AppointmentNotFoundException::new);
+                appointmentDateTime).orElseThrow(AppointmentNotFoundException::new);
         appointment.setNurse(newNurse);
     }
 
     /**
      * Returns an optional of an appointment given the nurse, patient and
-     * appointmentStartDateTime of the supposed appointment
+     * appointmentDateTime of the supposed appointment
      *
-     * @param nurse                    The nurse of the requested appointment
-     * @param patient                  The patient of the requested appointment
-     * @param appointmentStartDateTime The appointment start date time of the
-     *                                 requested appointment
+     * @param nurse               The nurse of the requested appointment
+     * @param patient             The patient of the requested appointment
+     * @param appointmentDateTime The appointment start date time of the requested
+     *                            appointment
      * @return The optional of the appointment
      * @throws IllegalArgumentException When the appointment start date time is
      *                                  not provided
@@ -139,8 +139,8 @@ public class AppointmentManager {
      *                                  provided
      */
     public Optional<Appointment> findAppointment(Optional<Nurse> nurse, Optional<Patient> patient,
-            LocalDateTime appointmentStartDateTime) throws IllegalArgumentException {
-        if (Objects.isNull(appointmentStartDateTime)) {
+            AppointmentDateTime appointmentDateTime) throws IllegalArgumentException {
+        if (Objects.isNull(appointmentDateTime)) {
             throw new IllegalArgumentException("Appointment start datetime must be given");
         }
         if (patient.isEmpty() && nurse.isEmpty()) {
@@ -148,9 +148,9 @@ public class AppointmentManager {
         }
         try {
             Optional<Appointment> filteredAppointment = this.appointments.stream()
-                    .filter(x -> x.getAppointmentStartDateTime().equals(appointmentStartDateTime)
-                            && (nurse.map(n -> x.getNurse().equals(n)).orElse(false)
-                            || patient.map(p -> x.getPatient().equals(p)).orElse(false)))
+                    .filter(x -> x.getAppointmentDateTime().equals(appointmentDateTime))
+                    .filter(x -> nurse.map(n -> x.getNurse().equals(n)).orElse(false)
+                            || patient.map(p -> x.getPatient().equals(p)).orElse(false))
                     .findFirst();
             return filteredAppointment;
         } catch (NullPointerException e) {
