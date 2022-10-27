@@ -24,6 +24,7 @@ import swift.logic.commands.ListTaskCommand;
 import swift.logic.commands.MarkTaskCommand;
 import swift.logic.commands.SelectContactCommand;
 import swift.logic.commands.SelectTaskCommand;
+import swift.logic.commands.UnassignCommand;
 import swift.logic.commands.UnmarkTaskCommand;
 import swift.logic.parser.exceptions.ParseException;
 
@@ -86,6 +87,8 @@ public class AddressBookParser {
             return new UnmarkTaskCommandParser().parse(arguments);
         case AssignCommand.COMMAND_WORD:
             return new AssignCommandParser().parse(arguments);
+        case UnassignCommand.COMMAND_WORD:
+            return new UnassignCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:

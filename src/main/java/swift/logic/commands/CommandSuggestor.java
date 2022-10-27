@@ -76,6 +76,9 @@ public class CommandSuggestor {
 
         commandList.add(AssignCommand.COMMAND_WORD);
         argPrefixList.add(AssignCommand.ARGUMENT_PREFIXES);
+
+        commandList.add(UnassignCommand.COMMAND_WORD);
+        argPrefixList.add(UnassignCommand.ARGUMENT_PREFIXES);
     }
 
     /**

@@ -164,6 +164,13 @@ public interface Model {
      */
     void addBridge(PersonTaskBridge bridge);
 
+    /**
+     * Deletes a relationship between a given task and person.
+     *
+     * @param bridge The bridge to be deleted.
+     */
+    void deleteBridge(PersonTaskBridge bridge);
+
     /** Returns an unmodifiable view of the unfiltered bridge list */
     ObservableList<PersonTaskBridge> getUnfilteredBridgeList();
 

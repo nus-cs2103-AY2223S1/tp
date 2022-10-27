@@ -1,3 +1,30 @@
+@font-face {
+    font-family: "Inter SemiBold";
+    font-style: normal;
+    font-weight: 500;
+    src: url("/fonts/Inter-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Inter Regular";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/fonts/Inter-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Inter Medium";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/fonts/Inter-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Space Grotesk";
+    font-style: normal;
+    src: url("/fonts/SpaceGrotesk-Regular.ttf");
+}
+
 .background {
     -fx-background-color: #FAFAFA;
     background-color: #FAFAFA; /* Used in the default.html file */
@@ -27,7 +54,7 @@
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "SpaceGrotesk Regular";
 }
 
 .tab-pane {
@@ -102,11 +129,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #EFEFF1;
+    -fx-background-color: #FEFEFE;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #FBFBFB;
+    -fx-background-color: #F9F9F9;
 }
 
 .list-cell:filled:selected {
@@ -123,12 +150,7 @@
     -fx-background-color: #FAFAFA;
 }
 
-.task-side-panel .list-cell:filled:odd {
-    -fx-background-color: #FAFAFA;
-    -fx-padding: 5;
-}
-
-.task-side-panel .list-cell:filled:even {
+.task-side-panel .list-cell:filled {
     -fx-background-color: #FAFAFA;
     -fx-padding: 5;
 }
@@ -144,19 +166,21 @@
 
 .side-panel-cell-big-label {
     -fx-font-size: 15px;
-    -fx-font-family: "Georgia";
-    -fx-background-color: transparent;
-}
-
-.cell_big_label {
-    -fx-font-family: "Georgia";
-    -fx-font-size: 18px;
+    -fx-font-family: "Inter Medium";
+    -fx-font-weight: bold;
     -fx-text-fill: #333333;
     -fx-background-color: transparent;
 }
 
+.cell_big_label {
+    -fx-font-family: "Inter SemiBold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #444444;
+    -fx-background-color: transparent;
+}
+
 .cell_small_label {
-    -fx-font-family: "Tahoma";
+    -fx-font-family: "Inter Medium";
     -fx-font-size: 12px;
     -fx-text-fill: #64748B;
     -fx-background-color: transparent;
@@ -171,7 +195,7 @@
 }
 
 .cell_small_flowPane .label {
-    -fx-font-family: "Tahoma";
+    -fx-font-family: "Inter Medium";
     -fx-font-size: 13px;
     -fx-text-fill: #AFB4FF;
     -fx-background-color: #AFB4FF;
@@ -232,7 +256,7 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Arial";
+    -fx-font-family: "Space Grotesk";
     -fx-font-size: 13pt;
     -fx-text-fill: #7C3AED;
 }
@@ -417,14 +441,14 @@
 
 #commandTypeLabel {
     -fx-font-size: 11px;
-    -fx-text-fill: #F70D1A;
+    -fx-text-fill: #F1F1F1;
 }
 
 #commandTextField {
     -fx-background-color: transparent;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Georgia";
+    -fx-font-family: "Space Grotesk";
     -fx-font-size: 13pt;
     -fx-text-fill: #000000;
 }
@@ -434,9 +458,9 @@
     -fx-background-insets: 0;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Georgia";
+    -fx-font-family: "Space Grotesk";
     -fx-font-size: 13pt;
-    -fx-text-fill: #6a7a91;
+    -fx-text-fill: #91919A;
 }
 
 #filterField, #personListPanel, #personWebpage {

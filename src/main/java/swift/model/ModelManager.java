@@ -164,6 +164,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteBridge(PersonTaskBridge target) {
+        addressBook.removeBridge(target);
+    }
+
+    @Override
     public void hotUpdateAssociatedContacts() throws CommandException {
         List<Person> currentPersonList = this.getFilteredPersonList();
         boolean isSelected = currentPersonList.size() == 1;
