@@ -152,7 +152,10 @@ Example:
 * `delcom 14`
 
 ### Adding iteration to a commission: `additer`
-Adds an iteration to a specified commission.
+Just like the other add commands, adding iterations can be done either via the command-line, or
+the graphical interface.
+
+**Adding by the Command-Line Interface**
 
 Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
 
@@ -164,6 +167,8 @@ Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
   existing image will not be allowed. Your existing image will not be overridden, but the new image will not be added to
   your commission. To replace a commission image, first delete the image before adding a new image.
 
+<details>
+<summary><strong>What is a filepath and my root directory?</strong></summary>
 <div markdown="span" class="alert alert-info">
 **:information_source: What is a filepath and my root directory?**<br>
 Just like how we use addresses to tell specify locations when talking to people, computers
@@ -191,6 +196,21 @@ Select the option `Copy as Path` and the filepath of your file will be copied!
 * On Mac, in your Finder, click on the file you want to select it and press the
 `Option`, `Command`, `C` keys simultaneously. The filepath of your file is now copied!
 </div>
+</details>
+
+**Adding by Graphical Interface**
+
+Adding an iteration can also be done via the graphical interface by clicking on
+the `Add Iteration` button inside the Commission you wish to add the iteration to.
+
+<img src="images/AddIterationButton.png" width="450" />
+
+A new window will then pop up, where you will be prompted to fill in the details of
+the new iteration. An image can be added to the iteration by selecting a file in
+your file manager by clicking on the `Add Image` button, or by dragging and dropping
+an image to the grey image drop area.
+
+<img src="images/AddIterationWindow.png" width="450" />
 
 <div markdown="span" class="alert alert-info">
 **:information_source: Notes about images in ArtBuddy:**<br>
