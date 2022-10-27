@@ -139,7 +139,7 @@ public class PersonInfo extends UiPart<Region> {
         lineChart.setAnimated(false);
         lineChart.setTitle("Performance History");
         yAxis.setLowerBound(0);
-        yAxis.setLowerBound(5);
+        yAxis.setUpperBound(5);
         yAxis.setLabel("Rating");
         xAxis.setLabel("Timestamp");
 
