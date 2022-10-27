@@ -80,12 +80,18 @@ public class PersonListPanel extends UiPart<Region> {
         HBox region = new HBox();
         region.setMaxWidth(Double.MAX_VALUE);
         HBox.setHgrow(region, Priority.ALWAYS);
+        
+        Label name = new Label(oneBasedIndex + ". " + person.getName().fullName);
+        name.setMaxWidth(250);
+
+        Label totalAmount = new Label("Total: $" + person.getDebtsAmountAsMoney().toString());
+        totalAmount.setMaxWidth(100);
 
         // Add our nodes to the contentPane
         contentPane.getChildren().addAll(
-            new Label(oneBasedIndex + ". " + person.getName().fullName),
+            name,
             region,
-            new Label("Total: $" + person.getDebtsAmountAsMoney().toString())
+            totalAmount
         );
 
         // Add the contentPane as the graphic for the TitledPane
