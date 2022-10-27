@@ -1,14 +1,13 @@
 ---
 layout: page
 title: User Guide
+subtitle: Explore our guide to use Arrow
 ---
-
-<div class="subtitle">Explore our guide to use Arrow.</div><br>
 
 [**Address Book**](#address-book-commands)<br>
 [**Task Management**](#task-management-commands)<br>
 [**FAQ**](#faq)<br>
-[**Command Summary**](#command-summary)<br>
+[**Command Summary**](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -39,8 +38,8 @@ title: User Guide
    * **`exit`** : Exits the app.
 
 6. Read the [Notes](#notes) on the command format
-7. Refer to [AddressBook](#address-book-commands) for details of AddressBook commands.
-8. Refer to [TaskPanel](#task-management-commands) for details of Task commands.
+7. Refer to [Address Book](#address-book-commands) for details of AddressBook commands.
+8. Refer to [Task Management](#task-management-commands) for details of Task commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
