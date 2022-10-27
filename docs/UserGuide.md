@@ -14,8 +14,9 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
   * [Removing events from trips: `delete-et`](#removing-events-from-trips-delete-et)
   * [View all completed trips and events: `completed`](#view-all-completed-trips-and-events-completed)
   * [View all trips and events: `view`](#view-all-trips-and-events-view)
+  * [View lifetime summary: `summary`](#view-lifetime-summary-summary)
   * [Saving data](#saving-data)
-  * [Exiting the program: `bye`](#exiting-the-program-bye)
+  * [Exiting the program: `exit`](#exiting-the-program-bye)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -156,6 +157,7 @@ Sorts the trips according to the provided factor.
 
 Format: `sort by/FACTOR r/`
 - Sorts the trip according to provided FACTOR.
+- Marked and unmarked trips are sorted separately.
 - Order of sort reversed when the `r/` prefix is provided.
 - The parameters for this command are optional. 
 - The trips will be sorted by their title in alphabetical order by default.
@@ -169,7 +171,6 @@ Format: `sort by/FACTOR r/`
 | `time` | Sort by trip's date in chronological order |
 | `location` | Sort by trips' location in alphabetical order |
 | `eventcount` | Sort by trips' number of events in ascending order |
-| `mark` | Shift the marked trips to the bottom of unmarked trips. |
 
 ### View all completed trips and events: `completed`
 Displays all completed trips and events.
@@ -192,12 +193,23 @@ Displays the full title, description of the event at the specified INDEX of the 
 
 Format: `display-e INDEX`
 
+### View lifetime summary: `summary`
+Displays a summary window.
+
+Format: `summary`
+
+- Includes list of completed trips.
+- Total number of completed trips and events.
+- Progress indicator for trips and events.
+- Command must be used again to view updates to the summary.
+
+
 ### Saving data
 Travelr data are saved locally automatically after any command that changes the data. There is no need to save manually.
 
-### Exiting the program: `bye`
+### Exiting the program: `exit`
 Exits the program.
-Format: `bye`
+Format: `exit`
 
 ### Glossary
 

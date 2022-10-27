@@ -99,4 +99,8 @@ public class Event {
         return builder.toString();
     }
 
+    public int compareTo(Event other) {
+        return title.compareTo(other.title);
+    }
+
 }

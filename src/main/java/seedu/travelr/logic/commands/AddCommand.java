@@ -5,6 +5,7 @@ import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_COMPLETION;
 
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
@@ -51,6 +52,7 @@ public class AddCommand extends Command {
         }
 
         model.addTrip(toAdd);
+        model.sortTripsByComparator(COMPARE_BY_COMPLETION);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
