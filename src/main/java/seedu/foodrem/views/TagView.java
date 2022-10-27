@@ -9,6 +9,11 @@ import seedu.foodrem.model.tag.Tag;
  * @author Richard Dominick
  */
 public class TagView {
+    private static final String[] COLORS = new String[] {
+        "f3d3b5", "abdee6", "ffccb6", "ff9aa2", "c7ceea", "a5e3b3", "e2f0cb", "c5d7c0", "f3d1dc", "e6ede5",
+        "c8b4ba", "98afba", "70ae98"
+    };
+
     private TagView() {} // Prevents instantiation
 
     /**
@@ -29,6 +34,12 @@ public class TagView {
     public static Node from(Tag tag, boolean isSmall) {
         final Label label = new Label(tag.getName());
         label.getStyleClass().add(isSmall ? "item-listview-tag" : "item-detail-tag");
+        label.setStyle(String.format("-fx-background-color: #%s;", getColor(tag)));
         return label;
+    }
+
+    private static String getColor(Tag tag) {
+        final int index = tag.hashCode() % COLORS.length;
+        return COLORS[index];
     }
 }
