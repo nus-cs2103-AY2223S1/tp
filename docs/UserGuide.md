@@ -396,6 +396,7 @@ Examples:
 * `find-b e/blackball@furry.com`
 * `find-b p/98986668`
 
+
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
@@ -435,6 +436,15 @@ Examples:
 
 Displays contacts / items based on the specified tag(s). This command is especially useful when you want to coordinate 
 sales between a Buyer and Supplier.
+
+
+In order to Find a particular category of persons, use the following command words instead:
+
+| Person Category | Command Word | Usage                  | Example                              |
+|-----------------|--------------|------------------------|--------------------------------------|
+| Buyer           | find-b       | find-b [PREFIX]/INPUT  | find-b a/6th College Ave. West |
+| Deliverer | find-d | find-d [PREFIX]/INPUT | find-d e/blackball@furry.com |
+| Supplier | find-s | find-s [PREFIX]/INPUT | find-s p/98986668 |
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
