@@ -1,17 +1,10 @@
-#copyButton, #helpMessage {
+.hyperlink {
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+#helpMessage {
     -fx-text-fill: #364378;
-}
-
-#copyButton {
-    -fx-background-color: #f1f2f6;
-}
-
-#copyButton:hover {
-    -fx-background-color: #dfe4ea;
-}
-
-#copyButton:armed {
-    -fx-background-color: #ced6e0;
 }
 
 #helpMessageContainer {
