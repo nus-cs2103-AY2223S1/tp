@@ -30,7 +30,7 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
       6. [Deleting an existing tag type `deleteTagType`](#deleting-an-existing-tag-type--deleteTagType)
       7. [Adding optional information `note`](#adding-optional-information--note)
       8. [Adding optional rating `rate`](#adding-optional-rating--rate)
-   4. [Modifying contacts views in CLInkedIn](#modifying-contacts-views-in-clinkedin)
+   4. [Modifying contacts view in CLInkedIn](#modifying-contacts-view-in-clinkedin)
       1. [Listing all contacts `list`](#listing-all-contacts-list)
       2. [Finding people `find`](#finding-people-find)
       3. [Sorting people `sort`](#sorting-people-sort)
@@ -119,7 +119,7 @@ While exploring CLInkedIn's features with this user guide, do take note of these
 
 </div>
 
-### Viewing help : `help`
+## Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
@@ -127,6 +127,9 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+## Adding/Deleting contacts in CLInkedIn
+
+The following functions deal with adding or deleting contacts from your address book in CLInkedIn.
 
 ### Adding a person: `add`
 
@@ -141,16 +144,33 @@ You can have any number and any kind of tags (including 0).
 * By default, you can add 3 types of tags - `SKILL_TAG`, `DEGREE_TAG`, `JOB_TYPE_TAG`.
 * Alternatively, you can create your own custom tag type and alias for it. See `create` command.
 
-
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java dt/Bachelors jt/Internship, rate/4`
 * `add n/Betsy Crowe st/java e/betsycrowe@example.com a/Newgate Prison p/1234567 s/Rejected`
 
-### Listing all persons : `list`
+### Deleting a person : `delete`
 
-Shows a list of all persons in the address book.
+Deletes the specified person from the address book.
 
-Format: `list`
+Format: `delete INDEX`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+## Modifying contacts in CLInkedIn
+
+The following functions deal with modifying the information about the contacts saved in CLInkedIn.
 
 ### Editing a person : `edit`
 
@@ -196,45 +216,6 @@ Format: `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alia
 Examples:
 * `deleteTag 3 st/Java` Deletes the **Skill** tag `Java` of the 3rd person.
 * `deleteTag 2 dt/Bachelors` Deletes the **Degree** tag `Bachelors` of the 2nd person.
-
-### Finding personal information and tags: `find`
-
-Finds candidates whose personal information and tags contain any of the given keywords.
-
-
-Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
-[MORE_TAGGED_KEYWORDS]...`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* The personal information and tags will be searched.
-* Partial words will be matched e.g. `Han` will match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* Search can be further refined by specifying the type of tag to search for.
-  e.g. `find n/John p/867` will return `John Doe` with **Phone** number `8675309`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find Java` returns list of candidates with Java skills
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-* `find n/John` returns `John Doe`
-* `find n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
-* `find s/application pending` returns list of candidates with status `application pending`
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Creating a custom tag type: `createTagType`
 
@@ -298,14 +279,72 @@ Format: `rate INDEX rate/<RATING>`
 Examples:
 * `rate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
 
+## Modifying contacts view in CLInkedIn
 
-### Clearing all entries : `clear`
+The following functions modify the contact list view in CLInkedIn.
 
-Clears all entries from the address book.
+### Listing all persons : `list`
 
-Format: `clear`
+Shows a list of all persons in the address book.
 
-### Exiting the program : `exit`
+Format: `list`
+
+### Finding personal information and tags: `find`
+
+Finds candidates whose personal information and tags contain any of the given keywords.
+
+
+Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
+[MORE_TAGGED_KEYWORDS]...`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The personal information and tags will be searched.
+* Partial words will be matched e.g. `Han` will match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Search can be further refined by specifying the type of tag to search for.
+  e.g. `find n/John p/867` will return `John Doe` with **Phone** number `8675309`
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find Java` returns list of candidates with Java skills
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `John Doe`
+* `find n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
+* `find s/application pending` returns list of candidates with status `application pending`
+
+### Sorting candidates based on Rating: `sort`
+
+Sorts candidates in CLInkedIn according to their rating given. Candidates will be sorted according to their ratings in descending order (highest rating to lowest). 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Recall that rating is an optional field for a candidate. Thus, candidates with no ratings given will be displayed at the bottom, after candidates with a rating.
+</div>
+
+Format: `sort`
+
+Example:
+* `sort` will return a list of the candidates, sorted in order of descending rating.
+
+## Miscellaneous Features/Commands
+
+The following miscallenous features are implemented in CLInkedIn and are available to users.
+
+### Viewing Statistics: `stat`
+
+Views statistics of the candidates currently saved in CLInkedIn.
+
+Format: `stat`
+
+Example:
+* `stat` displays the statistics regarding the contacts saved in CLInkedIn.
+
+### Importing contacts: `import`
+
+### Exporting contacts: `export`
+
+### Exiting CLInkedIn : `exit`
 
 Exits the program.
 
