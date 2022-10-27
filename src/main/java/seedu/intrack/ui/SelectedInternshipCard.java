@@ -2,8 +2,6 @@ package seedu.intrack.ui;
 
 import java.awt.Desktop;
 import java.net.URI;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicInteger;
 
