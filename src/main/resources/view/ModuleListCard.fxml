@@ -19,6 +19,7 @@
       <padding>
         <Insets top="5" right="5" bottom="5" left="5" />
       </padding>
+      <!-- HBox with module code and title. -->
       <HBox VBox.vgrow="ALWAYS" spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
@@ -30,27 +31,16 @@
         <Label fx:id="moduleTitle" text="\$moduleTitle"
                styleClass="cell_small_label" />
       </HBox>
-      <!-- HBox with tasks and links. -->
-      <HBox>
-        <!-- prefWidth of 200 is half of module list's width. -->
-        <VBox styleClass="pane-with-border" minWidth="100"
-              prefWidth="200" HBox.hgrow="ALWAYS" >
-          <Label alignment="CENTER" styleClass="underlined-text"
-                 maxWidth="Infinity">
-            Tasks
-          </Label>
-          <StackPane fx:id="taskListPanelPlaceholder" />
-        </VBox>
-        <!-- prefWidth of 200 is half of module list's width. -->
-        <VBox styleClass="pane-with-border" minWidth="100"
-              prefWidth="200" HBox.hgrow="ALWAYS">
-          <Label alignment="CENTER" styleClass="underlined-text"
-                 maxWidth="Infinity">
-            Links
-          </Label>
-          <FlowPane fx:id="links" />
-        </VBox>
-      </HBox>
+      <!-- VBox with links. -->
+      <!-- prefWidth of 400 is same as module list's width. -->
+      <VBox styleClass="pane-with-border" minWidth="100" prefWidth="400">
+        <FlowPane fx:id="links" />
+      </VBox>
+      <!-- VBox with tasks . -->
+      <!-- prefWidth of 400 is same as module list's width. -->
+      <VBox styleClass="pane-with-border" minWidth="100" prefWidth="400">
+        <StackPane fx:id="taskListPanelPlaceholder" />
+      </VBox>
     </VBox>
   </GridPane>
 </HBox>
