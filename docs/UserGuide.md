@@ -2,15 +2,15 @@
 layout: page
 title: User Guide
 ---
-
-ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command Line Interface(CLI). It allows the professors to keep track of their students, teaching assistants and timetable for their courses.
+## 1. Introduction
+ModQuik is a desktop app that allows Teaching Assistants to keep track of their responsibilities, students’ progress and schedules for the ongoing semester.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -38,7 +38,7 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 3. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -63,7 +63,10 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-### Adding a student: `add student`
+
+### 3.1 Students Features
+
+#### 3.1.1 Adding a student: `add student`
 
 Adds a student to the specified module.
 
@@ -76,15 +79,24 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add student n/John Doe i/A0000000J p/98765432 e/johnd@example.com h/johnDoe m/CS2103T l/W17`
-* `add student n/Betsy Crowe i/A0000000B t/friend e/betsycrowe@example.com p/91234567 h/betsy_crowe m/CS2105 l/G03 g/C a/3 c/1 t/criminal`
+* `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com p/91234567 h/betsy_crowe m/CS2105 l/G03 a/3 c/1 g/C t/quiet`
 
-### Listing all students : `list student`
+#### 3.1.2 Deleting a student : `delete student`
 
-Shows a list of all students.
+Deletes the specified student from the list of people.
 
-Format: `list`
+Format: `delete student INDEX`
 
-### Editing a student : `edit student`
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` followed by `delete student 2` deletes the 2nd student in the list of people.
+* `find n/Betsy` followed by `delete student 1` deletes the 1st student in the results of the `find` command.
+* `find m/CS2103T` followed by `delete student 2` deletes the 2nd student in the results of the `find` command.
+
+#### 3.1.3 Editing a student : `edit student`
 
 Edits an existing student in a specified module.
 
@@ -93,17 +105,25 @@ Format: `edit student INDEX [n/NAME] [m/MODULE] [p/PHONE] [e/EMAIL] [t/TAG]…`
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the student will be removed i.e. adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
-*  `edit student 1 p/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
-*  `edit student 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+* `edit student 1 p/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
+* `edit student 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+* `find m/CS2103T` followed by `edit student 2 n/Betsy Crower` Edits the name of the 2nd student to be `Betsy Crower` in the results of the `find` command.
 
-### Locating students by name and other attributes : `find student`
+#### 3.1.4 Listing all students : `list`
 
-Finds students by names, student ID, module or tutorial. by checking if respective attribute contains any of the given keywords.
+Shows a list of all students.
+
+Format: `list`
+
+
+#### 3.1.5 Locating students by their attributes : `find`
+
+Finds students by names, student ID, module or tutorial, by checking if respective attribute contains any of the given keywords.
 
 Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [l/TUTORIAL]`
 
@@ -114,40 +134,23 @@ Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [l/TUTORIAL]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find m/CS2103T` returns list of students in CS2103T<br>
 
-### Deleting a student : `delete student`
-
-Deletes the specified student from the list of people.
-
-Format: `delete student INDEX [m/MODULE]`
-
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the list of people.
-* `list m/CS2103T` followed by `delete 3` deletes the 3rd student in the CS2103T module.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-
-### Showing grades
-
-Shows a pie chart representing proportions of students' grade.
-
-Format: `show grade`
-
-### Adding a tutorial : `add tutorial`
+### 3.2 Tutorials Features
+#### 3.2.1 Adding a tutorial : `add tutorial`
 
 Adds a tutorial to the tutorial database.
 
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Day should take in a number from 1 (Monday) to 7 (Sunday).
+</div>
 
 Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`
 
-### Deleting a tutorial : `delete tutorial`
+#### 3.2.2 Deleting a tutorial : `delete tutorial`
 
 Deletes a specified tutorial from the tutorial database.
 
@@ -160,7 +163,24 @@ Format: `delete tutorial INDEX`
 Examples:
 * `delete tutorial 3`
 
-### Adding a consultation : `add consultation`
+#### 3.2.3 Editing a tutorial : `edit tutorial`
+
+Edits an existing student in a specified module.
+
+Format: `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`
+
+* Edits the tutorial at the specified `INDEX`. The index refers to the index number shown in the displayed tutorial list. The index **must be a positive integer** 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing the timeslot or the day, both fields must be given.
+
+Examples:
+* `edit tutorial 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
+* `edit tutorial 2 T/14:00-16:00 D/2` Edits the timeslot of the 2nd tutorial to be `14:00 to 16:00` and sets tutorial day to `Tue`.
+
+### 3.3 Consultations Features
+
+#### 3.3.1 Adding a consultation : `add consultation`
 
 Adds a consultation to the consultation database.
 
@@ -169,7 +189,7 @@ Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTIO
 Examples:
 * `add consultation n/JakeKim m/CS2103T D/2022-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
 
-### Deleting a consultation : `delete consultation`
+#### 3.3.2 Deleting a consultation : `delete consultation`
 
 Deletes a specified consultation from the consultation database.
 
@@ -181,6 +201,31 @@ Format: `delete consultation INDEX`
 
 Examples:
 * `delete consultation 3`
+
+#### 3.3.3 Editing a consultation : `edit consultation`
+
+Edits an existing student in a specified module.
+
+Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DATE] [d/description]`
+
+* Edits the consultation at the specified `INDEX`. The index refers to the index number shown in the displayed consultation list. The index **must be a positive integer** 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing the timeslot or the date, both fields must be given.
+
+Examples:
+* `edit consultation 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
+* `edit tutorial 2 T/14:00-16:00 D/2` Edits the timeslot of the 2nd tutorial to be `14:00 to 16:00` and sets tutorial day to `Tue`.
+
+
+### Showing grades
+
+Shows a pie chart representing proportions of students' grade.
+
+Format: `show grade`
+
+
+
 
 ### Adding a reminder : `add reminder`
 
