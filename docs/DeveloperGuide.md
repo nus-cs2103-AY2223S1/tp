@@ -335,7 +335,7 @@ Hence, no additional overhead will be incurred with delete or edit commands.
 </tr>
 <tr><td colspan="4">Overall, the team agreed that using a randomly generated hash was definitely
 the most elegant way of handling file naming. Furthermore, the tradeoffs are almost negligible
-as duplicate filenames can be easily handled by generating a new hash a unique filename is obtained.</td></tr>
+as duplicate filenames can be easily handled by generating a new hash until a unique filename is obtained.</td></tr>
 </table>
 
 ### \[Proposed\] Undo/redo feature
