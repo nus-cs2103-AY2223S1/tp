@@ -12,7 +12,7 @@ public enum SortCriteria {
     Applied("applied"),
     Interview("interview");
 
-    public static final String MESSAGE_CONSTRAINTS = "Sort criteria can be applied or interview";
+    public static final String MESSAGE_CONSTRAINTS = "Sort criteria can only be applied or interview";
 
     private final String criteria;
 

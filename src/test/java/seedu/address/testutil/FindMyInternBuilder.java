@@ -5,8 +5,6 @@ import seedu.address.model.internship.Internship;
 
 /**
  * A utility class to help with building FindMyIntern objects.
- * Example usage: <br>
- *     {@code FindMyIntern ab = new FindMyInternBuilder().withPerson("John", "Doe").build();}
  */
 public class FindMyInternBuilder {
 

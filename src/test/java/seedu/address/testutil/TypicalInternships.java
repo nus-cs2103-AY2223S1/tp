@@ -99,11 +99,11 @@ public class TypicalInternships {
      * Returns an {@code FindMyIntern} with all the typical persons.
      */
     public static FindMyIntern getTypicalFindMyIntern() {
-        FindMyIntern ab = new FindMyIntern();
+        FindMyIntern fmi = new FindMyIntern();
         for (Internship internship : getTypicalInternships()) {
-            ab.addInternship(internship);
+            fmi.addInternship(internship);
         }
-        return ab;
+        return fmi;
     }
 
     public static List<Internship> getTypicalInternships() {

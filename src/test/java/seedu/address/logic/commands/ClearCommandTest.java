@@ -13,7 +13,7 @@ import seedu.address.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyFindMyIntern_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,7 +21,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyFindMyIntern_success() {
         Model model = new ModelManager(getTypicalFindMyIntern(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalFindMyIntern(), new UserPrefs());
         expectedModel.setFindMyIntern(new FindMyIntern());

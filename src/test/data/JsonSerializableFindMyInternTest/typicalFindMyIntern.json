@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "FindMyIntern save file which contains the same Internship values as in TypicalInternships#getTypicalFindMyIntern()",
   "internships" : [ {
     "company" : "Alibaba",
     "link" : "https://careers.alibaba.com/positionDetail",

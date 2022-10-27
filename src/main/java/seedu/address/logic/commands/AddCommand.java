@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -25,12 +26,14 @@ public class AddCommand extends Command {
             + PREFIX_LINK + "LINK "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_APPLIED_DATE + "APPLIED_DATE "
+            + "[" + PREFIX_INTERVIEW_DATE_TIME + "INTERVIEW_DATE_TIME] "
             + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_COMPANY + "Tiktok "
+            + PREFIX_COMPANY + "TikTok "
             + PREFIX_LINK + "https://careers.tiktok.com/position "
             + PREFIX_DESCRIPTION + "Global e-Commerce "
             + PREFIX_APPLIED_DATE + "11/10/2022 "
+            + PREFIX_INTERVIEW_DATE_TIME + "11/11/2022 15:00 "
             + PREFIX_TAG + "Frontend";
 
     public static final String MESSAGE_SUCCESS = "New internship added: %1$s";

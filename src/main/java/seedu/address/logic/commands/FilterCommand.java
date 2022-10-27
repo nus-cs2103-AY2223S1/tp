@@ -14,8 +14,8 @@ public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filter internships based on application status.\n"
-            + "Parameters: [STATUS]\n"
-            + "Valid filters: \"accepted\" \"applied\" \"interviewed\" \"shortlisted\" \"rejected\"\n"
+            + "Parameters: STATUS\n"
+            + "Valid filters for status: \"accepted\" \"applied\" \"interviewed\" \"shortlisted\" \"rejected\"\n"
             + "Example: " + COMMAND_WORD + " accepted";
 
     private final InternshipHasApplicationStatusPredicate predicate;
