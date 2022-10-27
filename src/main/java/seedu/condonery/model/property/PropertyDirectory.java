@@ -6,8 +6,6 @@ import java.nio.file.Path;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.condonery.model.property.Property;
-import seedu.condonery.model.property.UniquePropertyList;
 import seedu.condonery.model.property.exceptions.UniquePropertyNotFoundException;
 
 /**
@@ -100,7 +98,6 @@ public class PropertyDirectory implements ReadOnlyPropertyDirectory {
     }
 
     //// util methods
-    
     /**
      * Returns true if a property whos name contains the given String exists in the property directory.
      */

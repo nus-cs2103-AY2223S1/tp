@@ -26,18 +26,22 @@ public class SampleDataUtil {
                     new Price("1000000"), getTagSet("High-End", "Available"),
                     getClientSet(
                             new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet(""), new HashSet<>()),
-                            new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"), new HashSet<>()))),
+                            new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"),
+                                    new HashSet<>()))),
             new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
                     new Price("1000000"),
                     getTagSet("High-End", "Sold"),
-                    getClientSet(new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich"), new HashSet<>()))),
+                    getClientSet(new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich"),
+                            new HashSet<>()))),
             new Property(new Name("D'LEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
                     new Price("1000000"),
                     getTagSet("High-End", "Reserved"),
                     getClientSet(
-                            new Client(new Name("Jac"), new Address("JacAddress"), getTagSet("Urgent"), new HashSet<>()),
+                            new Client(new Name("Jac"), new Address("JacAddress"), getTagSet("Urgent"),
+                                    new HashSet<>()),
                             new Client(new Name("Jack"), new Address("JackAddress"), getTagSet(""), new HashSet<>()),
-                            new Client(new Name("Hamster"), new Address("Hamster"), getTagSet("Friend", "Rich"), new HashSet<>())))
+                            new Client(new Name("Hamster"), new Address("Hamster"), getTagSet("Friend", "Rich"),
+                                    new HashSet<>())))
         };
     }
 

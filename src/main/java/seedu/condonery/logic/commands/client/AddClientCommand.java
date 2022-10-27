@@ -50,7 +50,8 @@ public class AddClientCommand extends Command {
     /**
      * Gets an updated sucess message based on the presence of missing properties or duplicate properties.
      */
-    private String getUpdatedSuccessMessage(ArrayList<String> missingProperties, ArrayList<String> duplicateProperties) {
+    private String getUpdatedSuccessMessage(ArrayList<String> missingProperties,
+                ArrayList<String> duplicateProperties) {
         String newSuccessMessage = MESSAGE_SUCCESS + ". ";
 
         if (missingProperties.isEmpty() && duplicateProperties.isEmpty()) {
@@ -85,7 +86,8 @@ public class AddClientCommand extends Command {
 
         Client newClientToAdd = parser.getNewClient();
 
-        String newMessageSuccess = getUpdatedSuccessMessage(parser.getMissingProperties(), parser.getDuplicateProperties());
+        String newMessageSuccess = getUpdatedSuccessMessage(parser.getMissingProperties(),
+                parser.getDuplicateProperties());
 
         model.addClient(newClientToAdd);
 

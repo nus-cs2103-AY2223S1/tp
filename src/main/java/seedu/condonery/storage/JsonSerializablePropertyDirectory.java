@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.condonery.commons.exceptions.IllegalValueException;
+import seedu.condonery.model.property.Property;
 import seedu.condonery.model.property.PropertyDirectory;
 import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
-import seedu.condonery.model.property.Property;
 
 /**
  * An Immutable PropertyDirectory that is serializable to JSON format.
