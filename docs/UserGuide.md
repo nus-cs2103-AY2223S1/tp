@@ -155,7 +155,10 @@ Format: `view INDEX`
 Examples:
 * `view 2` displays the full details of the 2nd person in Tuthub.
 
-:bulb: **Tip:** You may also click on a tutor list card to execute a 'view' command instead
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may also click on a tutor list card to execute a 'view' command instead
+</div>
+
 
 ### Commenting on a tutor : `comment`
 
