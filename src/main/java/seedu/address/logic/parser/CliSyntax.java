@@ -33,4 +33,9 @@ public class CliSyntax {
 
     /* Descriptions for flags */
     public static final String FLAG_HELP_DESCRIPTION = "Shows this message";
+    public static final String FLAG_NAME_DESCRIPTION = "Name of person (e.g. \"John Doe\")";
+    public static final String FLAG_PHONE_DESCRIPTION = "Phone of person (e.g. 98765432)";
+    public static final String FLAG_EMAIL_DESCRIPTION = "Email of person (e.g. johnd@example.com)";
+    public static final String FLAG_ADDRESS_DESCRIPTION = "Address of person (e.g. \"311, Clementi Ave 2, #02-25\")";
+    public static final String FLAG_TAGS_DESCRIPTION = "Tags of person (e.g. \"Frontend\" \"Backend\"";
 }
