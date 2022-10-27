@@ -21,6 +21,7 @@ import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.ClassContainsDatePredicate;
 import seedu.address.model.person.predicate.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.NokPhoneContainsNumberPredicate;
 import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
 
 /**
@@ -48,14 +49,14 @@ public class FindCommandParser implements Parser<FindCommand> {
             String nameToFind = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).fullName.trim();
             String[] nameKeywords = nameToFind.split("\\s+");
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+
         } else if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             String phoneToFind = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()).toString();
             return new FindCommand(new PhoneContainsNumberPredicate(phoneToFind));
 
         } else if (argMultimap.getValue(PREFIX_NOK_PHONE).isPresent()) {
-
-            // TODO: Implement NOK phone search here, remove the exception below
-            throw new ParseException("np/ search not implemented yet.");
+            String nokPhoneToFind = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_NOK_PHONE).get()).toString();
+            return new FindCommand(new NokPhoneContainsNumberPredicate(nokPhoneToFind));
 
         } else if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String emailToFind = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()).value.trim();
