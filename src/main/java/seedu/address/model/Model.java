@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
@@ -113,8 +112,7 @@ public interface Model {
      * @return a new meeting
      */
     Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
-                             String meetingDateAndTime, String meetingLocation)
-            throws ParseException, seedu.address.logic.parser.exceptions.ParseException;
+                             String meetingDateAndTime, String meetingLocation);
 
     /**
      * Checks if a meeting exists in the address book.

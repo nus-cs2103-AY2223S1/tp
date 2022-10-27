@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Meeting;
 //import seedu.address.model.person.Address;
 //import seedu.address.model.person.Email;
@@ -186,9 +185,8 @@ public class ModelManager implements Model {
 
     @Override
     public Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
-                                    String meetingDateAndTime, String meetingLocation)
-            throws ParseException, java.text.ParseException {
-        return new Meeting(peopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation);
+                                    String processedMeetingDateAndTime, String meetingLocation) {
+        return new Meeting(peopleToMeet, meetingTitle, processedMeetingDateAndTime, meetingLocation);
     }
 
     @Override
