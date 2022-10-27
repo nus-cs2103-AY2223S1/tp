@@ -7,10 +7,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.intrack.logic.commands.AddCommand;
+import seedu.intrack.logic.commands.AddTagCommand;
 import seedu.intrack.logic.commands.AddTaskCommand;
 import seedu.intrack.logic.commands.ClearCommand;
 import seedu.intrack.logic.commands.Command;
 import seedu.intrack.logic.commands.DeleteCommand;
+import seedu.intrack.logic.commands.DeleteTagCommand;
 import seedu.intrack.logic.commands.DeleteTaskCommand;
 import seedu.intrack.logic.commands.EditCommand;
 import seedu.intrack.logic.commands.ExitCommand;
@@ -103,6 +105,12 @@ public class InTrackParser {
 
         case StatusCommand.COMMAND_WORD:
             return new StatusCommandParser().parse(arguments);
+
+        case AddTagCommand.COMMAND_WORD:
+            return new AddTagCommandParser().parse(arguments);
+
+        case DeleteTagCommand.COMMAND_WORD:
+            return new DeleteTagCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
