@@ -142,12 +142,23 @@ After the command is executed:
 
 #### Find a Person : `find`
 
-Displays the persons that match a given keyword.
+Displays the persons that match a given keyword. Keyword could be any of the following
+attributes of the person :
+- `name`
+- `address`
+- `role`
+- `github user`
+- `tags`
+
+A fuzzy search is done to display the results. The keyword can have minor spelling errors
+, and still return correct results. It is also case-insensitive.
 
 Format: `find KEYWORD`
 
 Example:
 - Find all the people named David: `find david`
+- Find all the people with role SWE: `find SWE`
+- Find all the people with tag friends: `find friends`
 
 Before the command is executed:
 ![before find](images/ug/find_before.png)
@@ -200,15 +211,15 @@ There are two ways to show person details
 1. Keyboard-friendly way
 
    1. Double tap the `<TAB>` button to begin navigating the list of persons.
-   
+
    2. Use the arrow keys to navigate to the desired person.
-   
+
    3. Press `<ENTER>` to show the person's details.
-   
+
 2. General usage
 
    1. Double-click on the person card in the list of persons.
-   
+
 Keyboard usage example:
 
 Step 1: Enter navigation mode by double tapping the `<TAB>` key.
