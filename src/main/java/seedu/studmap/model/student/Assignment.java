@@ -17,7 +17,7 @@ public class Assignment {
             + "new, received or marked";
     public static final String VALIDATION_REGEX = "[\\p{Alnum} \\-_]+";
     /**
-     * Reprents the possible status the assignment can take.
+     * Represents the possible status the assignment can take.
      */
     public static enum Status {
         MARKED,

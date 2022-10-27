@@ -19,6 +19,7 @@ public class StudentCard extends UiPart<Region> {
     private static final String FXML = "StudentListCard.fxml";
 
     private static final float ATTENDANCE_THRESHOLD = 50;
+    private static final float PARTICIPATION_THRESHOLD = 50;
     private static final float MARK_THRESHOLD = 2;
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -58,6 +59,11 @@ public class StudentCard extends UiPart<Region> {
     private FlowPane attendances;
     @FXML
     private FlowPane assignments;
+    @FXML
+    private FlowPane participations;
+    @FXML
+    private Label participationRate;
+
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -90,8 +96,24 @@ public class StudentCard extends UiPart<Region> {
         TextFlow attTextFlow = new TextFlow(attendanceRateName, attendanceRateLabel);
         attendanceRate.setGraphic(attTextFlow);
 
+        Label participationRateName = new Label("Participation: ");
+        participationRateName.setId("info");
+        Label participationRateLabel = new Label(String.format("%.0f%%", student.getParticipationPercentage()));
+
+        if (Float.isNaN(student.getParticipationPercentage())) {
+            participationRateLabel.setStyle("-fx-text-fill: lightgrey;");
+            participationRateLabel.setText("No Records");
+        } else if (student.getParticipationPercentage() >= PARTICIPATION_THRESHOLD) {
+            participationRateLabel.setId("success");
+        } else {
+            participationRateLabel.setId("fail");
+        }
+
+        TextFlow partTextFlow = new TextFlow(participationRateName, participationRateLabel);
+        participationRate.setGraphic(partTextFlow);
+
         Label assignmentRateName = new Label("Unmarked: ");
-        attendanceRateName.setId("info");
+        participationRateName.setId("info");
         Label assignmentRateLabel = new Label(String.format("%d",
                 student.getAssignmentUnmarkedCount()));
 
@@ -127,6 +149,14 @@ public class StudentCard extends UiPart<Region> {
                     return x;
                 })
                 .forEach(assignment -> assignments.getChildren().add(assignment));
+        student.getParticipations().stream()
+               .sorted(Comparator.comparing(participation -> participation.participationComponent))
+               .map(participation -> {
+                   Label x = new Label(participation.participationComponent);
+                   x.setId(participation.hasParticipated ? "participated" : "didNotParticipate");
+                   return x;
+               })
+               .forEach(participation -> participations.getChildren().add(participation));
     }
 
     @Override

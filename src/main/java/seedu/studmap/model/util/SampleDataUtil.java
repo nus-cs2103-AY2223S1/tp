@@ -13,6 +13,7 @@ import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Module;
 import seedu.studmap.model.student.Name;
+import seedu.studmap.model.student.Participation;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.model.student.StudentData;
@@ -39,6 +40,8 @@ public class SampleDataUtil {
         studentData.setTags(getTagSet("friends"));
         studentData.setAttendances(getAttendedSet("T01", "T02"));
         studentData.addAttendances(getNotAttendedSet("T03"));
+        studentData.setParticipations(getParticipatedSet("P01", "P02"));
+        studentData.addParticipations(getNotParticipatedSet("P03"));
         data.add(studentData);
 
         studentData = new StudentData();
@@ -52,6 +55,7 @@ public class SampleDataUtil {
         studentData.setTags(getTagSet("colleagues", "friends"));
         studentData.setAssignments(getMarkedAssignments("A01", "A02"));
         studentData.addAssignments(getReceivedAssignments("A03", "A04"));
+        studentData.addAssignments(getNewAssignments("A05", "A06"));
         studentData.addAssignments(getNewAssignments("A05", "A06"));
         data.add(studentData);
 
@@ -137,6 +141,24 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(className -> new Attendance(className, Boolean.FALSE))
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a Participation set from the given string of participated components.
+     */
+    public static Set<Participation> getParticipatedSet(String... strings) {
+        return Arrays.stream(strings)
+                     .map(participationComponent -> new Participation(participationComponent, Boolean.TRUE))
+                     .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a Participation set from the given string of not participated components.
+     */
+    public static Set<Participation> getNotParticipatedSet(String... strings) {
+        return Arrays.stream(strings)
+                     .map(participationComponent -> new Participation(participationComponent, Boolean.FALSE))
+                     .collect(Collectors.toSet());
     }
 
     /**

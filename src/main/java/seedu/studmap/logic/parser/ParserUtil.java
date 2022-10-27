@@ -18,6 +18,7 @@ import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Module;
 import seedu.studmap.model.student.Name;
+import seedu.studmap.model.student.Participation;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.StudentID;
 import seedu.studmap.model.student.TeleHandle;
@@ -225,5 +226,20 @@ public class ParserUtil {
             throw new ParseException(Order.MESSAGE_CONSTRAINTS);
         }
         return trimmedOrder.matches("asc") ? ORDER_ASC : ORDER_DSC;
+    }
+
+    /**
+     * Parses a {@code String participationComponent} checking for any errors.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code participationComponent} is invalid.
+     */
+    public static String parseParticipationComponent(String participationComponent) throws ParseException {
+        requireNonNull(participationComponent);
+        String trimmedPartCom = participationComponent.trim();
+        if (!Participation.isValidParticipationName(trimmedPartCom)) {
+            throw new ParseException(Participation.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedPartCom;
     }
 }
