@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import picocli.CommandLine;
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Task;
@@ -42,7 +41,7 @@ public class FindTaskCommand extends Command {
             return new TaskNameContainsKeywordsPredicate(List.of(nameKeywords));
         }
         String keywordsToString() {
-            return List.of(nameKeywords).stream().reduce("", (a,b) -> a + " " + b);
+            return List.of(nameKeywords).stream().reduce("", (a, b) -> a + " " + b);
         }
     }
 

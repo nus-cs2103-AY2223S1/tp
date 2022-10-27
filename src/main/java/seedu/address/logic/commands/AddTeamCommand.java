@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_DESCRIPTION_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
 
@@ -32,7 +31,7 @@ public class AddTeamCommand extends Command {
             + "[" + FLAG_DESCRIPTION_STR + " TEAM_DESCRIPTION] \n"
             + "Example:\n"
             + "1. " + COMMAND_WORD + " "
-            + FLAG_NAME_STR + " CS2103T "
+            + "CS2103T "
             + FLAG_DESCRIPTION_STR + " \"A team to manage CS2103T\"\n"
             + "2. " + COMMAND_WORD + " "
             + FLAG_NAME_STR + " CS2102 ";

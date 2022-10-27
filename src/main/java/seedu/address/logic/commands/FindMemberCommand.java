@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import picocli.CommandLine;
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
@@ -60,8 +59,8 @@ public class FindMemberCommand extends Command {
 
         String keywordsToString() {
             return nameKeywords == null
-                    ? List.of(emailKeywords).stream().reduce("", (a,b) -> a + " " + b)
-                    : List.of(nameKeywords).stream().reduce("", (a,b) -> a + " " + b);
+                    ? List.of(emailKeywords).stream().reduce("", (a, b) -> a + " " + b)
+                    : List.of(nameKeywords).stream().reduce("", (a, b) -> a + " " + b);
         }
     }
 

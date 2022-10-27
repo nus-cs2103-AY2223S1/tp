@@ -52,7 +52,7 @@ public class AddTaskCommand extends Command {
     private String taskName;
 
     @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "",
-            description = FLAG_TASK_ASSIGNEES_DESCRIPTION)
+            description = FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
     private String[] assignees;
 
     @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG}, defaultValue = "",
