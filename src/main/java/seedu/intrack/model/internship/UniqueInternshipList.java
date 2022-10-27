@@ -144,7 +144,17 @@ public class UniqueInternshipList implements Iterable<Internship> {
      * with the nearest date and time in ascending order
      */
     public void dateSortAscending() {
+        ObservableList<Internship> noDates = FXCollections.observableArrayList();
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getTasks().size() == 0) {
+                noDates.add(internalList.get(i));
+                internalList.remove(i);
+            }
+        }
         internalList.sort(Comparator.comparing(o -> o.getNearestTaskDate()));
+        for (int i = 0; i < noDates.size(); i++) {
+            internalList.add(noDates.get(i));
+        }
     }
 
     /**
@@ -152,8 +162,18 @@ public class UniqueInternshipList implements Iterable<Internship> {
      * with the nearest date and time in descending order
      */
     public void dateSortDescending() {
+        ObservableList<Internship> noDates = FXCollections.observableArrayList();
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getTasks().size() == 0) {
+                noDates.add(internalList.get(i));
+                internalList.remove(i);
+            }
+        }
         internalList.sort(Comparator.comparing(o -> o.getNearestTaskDate()));
         Collections.reverse(internalList);
+        for (int i = 0; i < noDates.size(); i++) {
+            internalList.add(noDates.get(i));
+        }
     }
 
     /**
