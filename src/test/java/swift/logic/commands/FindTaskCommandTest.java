@@ -76,7 +76,7 @@ public class FindTaskCommandTest {
         FindTaskCommand command = new FindTaskCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, commandResult, expectedModel);
-        assertEquals(Arrays.asList(BUY_MILK, CS2103T), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(CS2103T, BUY_MILK), model.getFilteredTaskList());
     }
 
     /**
