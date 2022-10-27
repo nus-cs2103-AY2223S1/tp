@@ -5,6 +5,7 @@ import com.beust.jcommander.Parameters;
 
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.model.Model;
+import modtrekt.model.module.ModCode;
 
 /**
  * Lists all tasks.
@@ -29,7 +30,9 @@ public class ListModulesCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (model.getCurrentModule() != null) {
+        ModCode previousCode = model.getCurrentModule();
+
+        if (previousCode != null) {
             throw new CommandException("Please exit the current module using 'cd ..' command!");
         }
 
