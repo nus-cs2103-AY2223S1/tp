@@ -443,11 +443,12 @@ Format: `find a/KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g., `Labrador` will match `LABRADOR`.
 - The order of the keywords does not matter. e.g. `Bukit Timah` will match `Timah Bukit`.
-- Students matching at least one keyword will be returned. e.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+- Students matching at least one keyword will be returned. e.g., `Bukit Timah` will return `Bukit Batok`, `Timah Hill`.
+- Only full words will be matched e.g., `Labra` will not match `Labrador`.
 
 Example:
 
-`find n/tan` returns `Tan Xiao Ming` and `John Tan`.
+`find a/street` returns `Bukit Timah Street 3` and `Labrador Street 27`.
 
 #### Find by Student's Contact Number:
 
