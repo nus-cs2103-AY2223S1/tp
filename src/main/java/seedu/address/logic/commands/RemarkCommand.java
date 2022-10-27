@@ -30,10 +30,6 @@ public class RemarkCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Remark created: %1$s\nLinked to Client: %2$s; Email: %3$s";
     public static final String MESSAGE_DUPLICATE_REMARK = "This client already has %1$s as Remark";
-    public static final String MESSAGE_REMARK_INVALID = "Remark cannot be created. Enter a valid Remark details:\n"
-            + "INDEX "
-            + "REMARK"
-            + "[" + PREFIX_TAG + "TAG]...\n";
 
     private final Index index;
     private final Remark remark;
