@@ -63,6 +63,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        primaryStage.setMinWidth(1430);
 
         setAccelerators();
 
@@ -149,6 +150,7 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+        resultDisplay.setFeedbackToUser("Welcome back! Try typing addp for starters!");
     }
 
     void show() {

@@ -31,8 +31,6 @@
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="File">
                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="Help">
                         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
                     </Menu>
                 </MenuBar>
@@ -53,7 +51,7 @@
 
                 <GridPane hgap="0.0" styleClass="pane-without-border" VBox.vgrow="ALWAYS">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" prefWidth="100.0"/>
+                        <ColumnConstraints prefWidth="600.0"/>
                         <ColumnConstraints hgrow="ALWAYS" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>

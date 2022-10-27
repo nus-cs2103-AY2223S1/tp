@@ -144,9 +144,6 @@
     -fx-padding: 10px;
 }
 
-.context-menu {
-    -fx-background-color: #563d4d;
-}
 
 .context-menu .label {
     -fx-text-fill: white;
@@ -165,6 +162,13 @@
 
 .menu .left-container {
     -fx-background-color: #b0b0b0;
+}
+
+/*
+ * CSS for help dropdown
+ */
+.context-menu {
+    -fx-background-color: #313b59;
 }
 
 /*
@@ -291,7 +295,7 @@
 }
 
 .list-title {
-    -fx-font-size: 20;
+    -fx-font-size: 40;
     -fx-text-fill: #e7decd;
     -fx-font-family: "Roboto Mono";
     -fx-padding: 0 0 7 0;
@@ -301,7 +305,7 @@
     -fx-font-size: 60;
     -fx-text-fill: rgba(63, 100, 17, 0.41) !important;
     -fx-font-family: "Poppins Bold";
-    -fx-translate-x: -20;
+    -fx-translate-x: -10;
 }
 
 #cardPane {

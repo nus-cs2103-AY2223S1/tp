@@ -30,7 +30,7 @@
                             <Region fx:constant="USE_PREF_SIZE"/>
                         </minWidth>
                     </Label>
-                    <Label fx:id="moduleTitle" styleClass="cell_big_label"/>
+                    <Label fx:id="moduleTitle" minWidth="415" styleClass="cell_big_label"/>
                 </HBox>
                 <FlowPane fx:id="assignmentDetails">
                     <padding>
@@ -73,8 +73,8 @@
                     </Button>
                 </HBox>
             </VBox>
-            <Label fx:id="moduleCode" alignment="TOP_RIGHT" minWidth="295" maxWidth="295"
-                   text="\$first" styleClass="module_big_label"/>
+            <Label fx:id="moduleCode" alignment="TOP_RIGHT" minWidth="320" text="\$first"
+                   styleClass="module_big_label"/>
         </HBox>
     </GridPane>
 </HBox>
