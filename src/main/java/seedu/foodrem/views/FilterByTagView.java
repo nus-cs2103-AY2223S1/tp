@@ -29,6 +29,7 @@ public class FilterByTagView {
         final Separator separator = new Separator();
         separator.getStyleClass().add("lined-separator");
         final HBox itemView = new HBox(TagsView.from(filterByTag.getTag()));
+        itemView.setSpacing(SPACING_UNIT);
         final Label secondaryMessage = new Label(filterByTag.getSecondaryMessage());
         secondaryMessage.setWrapText(true);
 
