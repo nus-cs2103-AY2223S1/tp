@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -17,7 +16,7 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         String trimmedArgs = args.trim();
 
         if (!trimmedArgs.equals("")) {
-            throw new ParseException(ExitCommand.MESSAGE_FAILURE);
+            throw new ParseException(HelpCommand.MESSAGE_FAILURE);
         }
 
         return new HelpCommand();
