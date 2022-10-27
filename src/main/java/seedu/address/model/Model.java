@@ -195,7 +195,8 @@ public interface Model {
     /**
      * Replaces the given consultation {@code target} with {@code editedConsultation}.
      * {@code target} must exist in the Modquik.
-     * The consultation identity of {@code editedConsultation} must not be the same as another existing consultation in Modquik.
+     * The consultation identity of {@code editedConsultation} must not be the same as another existing consultation
+     * in Modquik.
      */
     void setConsultation(Consultation target, Consultation editedConsultation);
 
