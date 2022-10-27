@@ -109,6 +109,17 @@ public class UniqueCustomerList implements Iterable<Customer> {
         return internalList.iterator();
     }
 
+    /**
+     * Checks if the commission list contains the same commissions as the oher list of commissions.
+     */
+    public boolean isSameUniqueCustomerList(UniqueCustomerList other) {
+        if (internalList.size() != other.internalList.size()) {
+            return false;
+        }
+        return internalList.stream().allMatch(
+                customer -> other.internalList.stream().anyMatch(customer::isSameCustomer));
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

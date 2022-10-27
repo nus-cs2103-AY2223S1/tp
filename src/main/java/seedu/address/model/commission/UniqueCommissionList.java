@@ -145,6 +145,17 @@ public class UniqueCommissionList implements Iterable<Commission> {
         return internalList.iterator();
     }
 
+    /**
+     * Checks if the commission list contains the same commissions as the oher list of commissions.
+     */
+    public boolean isSameUniqueCommissionList(UniqueCommissionList other) {
+        if (internalList.size() != other.internalList.size()) {
+            return false;
+        }
+        return internalList.stream().allMatch(
+            commission -> other.internalList.stream().anyMatch(commission::isSameCommission));
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
