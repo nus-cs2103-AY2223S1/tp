@@ -1,16 +1,17 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.predicate.ClassContainsDatePredicate;
 import seedu.address.testutil.PersonBuilder;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 public class ClassContainsDatePredicateTest {
 
-    ClassContainsDatePredicate predicate = new ClassContainsDatePredicate("2022-10-12");
+    private ClassContainsDatePredicate predicate = new ClassContainsDatePredicate("2022-10-12");
 
     @Test
     public void equals() {
