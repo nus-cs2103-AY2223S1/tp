@@ -86,7 +86,7 @@ public class MarkTaskCommand extends Command {
 
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getStatus());
+        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getCompletionStatus());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
         // Id cannot be updated
         Id id = taskToEdit.getId();

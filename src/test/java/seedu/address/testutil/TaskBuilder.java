@@ -42,7 +42,7 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         description = taskToCopy.getDescription();
         deadline = taskToCopy.getDeadline();
-        isDone = taskToCopy.getStatus();
+        isDone = taskToCopy.getCompletionStatus();
         tags = new HashSet<>(taskToCopy.getTags());
         id = taskToCopy.getId();
     }
