@@ -374,7 +374,7 @@
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-font-size: 14;
 }
 
 .pane-with-header {
@@ -401,4 +401,14 @@
 
 .meeting-condensed {
     -fx-background-color: #4D4D4D;
+    -fx-border-color: white;
+}
+
+.header-box {
+    -fx-border-color: white;
+    -fx-border-width: 0 0 1 0;
+}
+
+.scrollpane-client {
+    -fx-background: #232323;
 }
