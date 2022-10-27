@@ -170,8 +170,8 @@ public class EditModuleCommand extends Command {
             this.moduleCode = moduleCode;
         }
 
-        public void setModuleTitle() {
-            moduleCode.setModuleTitle(NusModulesParser.getModuleTitle(moduleCode.moduleCode));
+        public void setModuleTitle(NusModulesParser nusModulesParser) {
+            moduleCode.setModuleTitle(nusModulesParser.getModuleTitle(moduleCode.moduleCode));
         }
 
         public Optional<ModuleCode> getModuleCode() {
