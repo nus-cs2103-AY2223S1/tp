@@ -14,7 +14,6 @@ import seedu.address.model.Model;
     EditLinkCommand.class,
     EditPersonCommand.class,
     EditTaskCommand.class,
-    EditTeamCommand.class
 })
 public class EditCommand extends Command {
     @Override
