@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.Accordion?>
-<?import javafx.scene.layout.VBox?>
-
-<VBox fx:id="lessonInfo" prefHeight="600" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-
-</VBox>
-

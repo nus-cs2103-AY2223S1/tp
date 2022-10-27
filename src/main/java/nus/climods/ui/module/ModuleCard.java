@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.openapitools.client.ApiException;
 import org.openapitools.client.model.Lesson;
 import org.openapitools.client.model.SemestersEnum;
 
@@ -95,19 +94,9 @@ public class ModuleCard extends UiPart<Region> {
         lessonInfo.managedProperty().bind(lessonInfo.visibleProperty());
         lessonInfo.setVisible(false);
 
-        // for testing of view lesson type of a module
-        // TODO: Remove in production
-        try {
-            module.requestFocus();
-            showLessonInformation();
-        } catch (ApiException e) {
-            System.out.println("cry");
+        if (module.isFocused()) {
+            showDetailedModuleInformation();
         }
-
-        // comment this out before testing the view lesson type part
-        //if (module.isFocused()) {
-        //    showDetailedModuleInformation();
-        //}
     }
 
     private void showDetailedModuleInformation() {
@@ -118,6 +107,7 @@ public class ModuleCard extends UiPart<Region> {
 
         prerequisite.setText(module.getPrerequisite());
         preclusion.setText(module.getPreclusion());
+        showLessonInformation();
     }
 
     private void showLessonInformation() {
