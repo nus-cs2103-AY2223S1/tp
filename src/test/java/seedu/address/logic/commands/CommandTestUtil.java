@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditPersonTagsBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -54,6 +55,11 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_ALPHA;
     public static final EditCommand.EditPersonDescriptor DESC_BETA;
+
+    public static final TagCommand.EditPersonTags TAG_ALPHA =
+            new EditPersonTagsBuilder().withTags(VALID_TAG_HIGH_PRIORITY).build();
+    public static final TagCommand.EditPersonTags TAG_BETA =
+            new EditPersonTagsBuilder().withTags(VALID_TAG_TUTORIAL).build();
 
     static {
         DESC_ALPHA = new EditPersonDescriptorBuilder().withName(VALID_NAME_TASK_ALPHA)
