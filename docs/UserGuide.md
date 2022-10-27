@@ -183,7 +183,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/STATUS] [note/NO
 * While editing **Skill** tags, the existing `OLD_SKILL` of the person will be renamed to `NEW_SKILL`(Same for **Degree**, **JobType** and **Custom** tags).
 * You can remove **all** the person’s tags by typing `t/` without specifying any tags after it.
 * You can remove **all** the person’s **Skill** tags by typing `st/` without specifying any tags after it (Same for **Degree**, **JobType** and **Custom** tags).
-* 
+*
 
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -236,7 +236,7 @@ You can use existing tag types: Skill, or Degree, or Job Type.
 
 ### Editing tag type name: `editTagType`
 
-Edits the name and alias of an existing tag type to `NEW_TAG_TYPE` and `NEW_TAG_ALIAS`  
+Edits the name and alias of an existing tag type to `NEW_TAG_TYPE` and `NEW_TAG_ALIAS`
 
 Format: `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS`
 
@@ -272,9 +272,9 @@ Examples:
 ### Adding optional rating: `rate`
 
 Format: `rate INDEX rate/<RATING>`
-* The INDEX refers to the index number shown in the displayed person list. 
+* The INDEX refers to the index number shown in the displayed person list.
 * The INDEX must be a positive integer 1, 2, 3, …​
-* The RATING must be an integer between 0 and 10 inclusive. 
+* The RATING must be an integer between 0 and 10 inclusive.
 
 Examples:
 * `rate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
@@ -341,7 +341,7 @@ Examples:
 
 ### Sorting candidates based on Rating: `sort`
 
-Sorts candidates in CLInkedIn according to their rating given. Candidates will be sorted according to their ratings in descending order (highest rating to lowest). 
+Sorts candidates in CLInkedIn according to their rating given. Candidates will be sorted according to their ratings in descending order (highest rating to lowest).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Recall that rating is an optional field for a candidate. Thus, candidates with no ratings given will be displayed at the bottom, after candidates with a rating.

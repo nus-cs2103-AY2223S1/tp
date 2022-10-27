@@ -183,7 +183,7 @@ then passed to a newly created `FindCommand` object.
 
 Step 4. The `FindCommand` object calls the `Model#updateFilteredPersonList()` method with the
 `DetailsContainsKeywordsPredicate` object as the argument. The `Model#updateFilteredPersonList()` method will then
-update the `filteredPersons` list in `ModelManager` to show only persons that matches the predicate. 
+update the `filteredPersons` list in `ModelManager` to show only persons that matches the predicate.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `DetailsContainsKeywordsPredicate`
 object will check if the person's details contains the keywords using the `containsKeywordsIgnoreCase` method in its
 `test` method.
@@ -288,7 +288,7 @@ Step 3. The user executes `deleteTag 3 st/JavaScript dt/Bachelors` to delete the
 
 For the ease of classifying tags and storing candidate information in a more organised way, users can now also create Tag Types and assign tags to the relevant Tag Types.
 
-This feature is facilitated by `UniqueTagTypeMap` class. It implements the `Iterable<TagType>` interface.  
+This feature is facilitated by `UniqueTagTypeMap` class. It implements the `Iterable<TagType>` interface.
 Additionally, it implements the following operations:
 
 * UniqueTagTypeMap#createTagType()  —  Creates a unique Tag Type and adds it to the prefixMap of available Tag Types.
