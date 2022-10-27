@@ -21,7 +21,7 @@ import seedu.foodrem.viewmodels.TagsWithMessage;
  */
 public class NewTagCommandIntegrationTest {
     private static final String EXPECTED_ERROR_DUPLICATE = "This tag already exists in FoodRem";
-    private static final String EXPECTED_FORMAT_SUCCESS = "New tag added:";
+    private static final String EXPECTED_SUCCESS_MESSAGE = "New tag added:";
 
     private Model model;
 
@@ -37,10 +37,8 @@ public class NewTagCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.addTag(validTag);
 
-        TagsWithMessage expectedResult = new TagsWithMessage(List.of(validTag) , EXPECTED_FORMAT_SUCCESS);
-
         assertCommandSuccess(new NewTagCommand(validTag), model,
-                             expectedResult, expectedModel);
+                new TagsWithMessage(List.of(validTag) , EXPECTED_SUCCESS_MESSAGE), expectedModel);
     }
 
     @Test
