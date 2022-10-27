@@ -8,7 +8,6 @@ import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_TYPE;
 import seedu.pennywise.logic.commands.ViewCommand;
 import seedu.pennywise.logic.commands.ViewCommand.ViewEntriesDescriptor;
 import seedu.pennywise.logic.parser.exceptions.ParseException;
-import seedu.pennywise.model.entry.GraphType;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -29,23 +28,18 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
                 viewEntriesDescriptor.setEntryType(
                         ParserUtil.parseEntryType(argMultimap.getValue(PREFIX_TYPE).get()));
+            } else {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
             }
             if (argMultimap.getValue(PREFIX_MONTH).isPresent()) {
                 viewEntriesDescriptor.setYearMonth(
                         ParserUtil.parseYearMonth(argMultimap.getValue(PREFIX_MONTH).get()));
-                viewEntriesDescriptor.setGraphType(ParserUtil.parseGraphType(GraphType.GRAPH_TYPE_MONTH));
-            } else {
-                viewEntriesDescriptor.setGraphType(ParserUtil.parseGraphType(GraphType.GRAPH_TYPE_CATEGORY));
-
             }
 
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
-        }
-
-        if (!viewEntriesDescriptor.isValid()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
         return new ViewCommand(viewEntriesDescriptor);

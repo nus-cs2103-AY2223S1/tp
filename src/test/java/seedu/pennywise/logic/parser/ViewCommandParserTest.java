@@ -3,11 +3,11 @@ package seedu.pennywise.logic.parser;
 import static seedu.pennywise.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pennywise.logic.commands.CommandTestUtil.EXPENDITURE_BY_CATEGORY;
 import static seedu.pennywise.logic.commands.CommandTestUtil.EXPENDITURE_BY_MONTH;
-import static seedu.pennywise.logic.commands.CommandTestUtil.INVALID_GRAPH;
+import static seedu.pennywise.logic.commands.CommandTestUtil.INCOME_BY_CATEGORY;
+import static seedu.pennywise.logic.commands.CommandTestUtil.INCOME_BY_MONTH;
 import static seedu.pennywise.logic.commands.CommandTestUtil.INVALID_MONTH;
 import static seedu.pennywise.logic.commands.CommandTestUtil.INVALID_TYPE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.TYPE_EXPENDITURE;
-import static seedu.pennywise.logic.commands.CommandTestUtil.TYPE_GRAPH_MONTH;
 import static seedu.pennywise.logic.commands.CommandTestUtil.TYPE_INCOME;
 import static seedu.pennywise.logic.commands.CommandTestUtil.TYPE_MONTH;
 import static seedu.pennywise.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -16,8 +16,6 @@ import static seedu.pennywise.logic.parser.CommandParserTestUtil.assertParseSucc
 import org.junit.jupiter.api.Test;
 
 import seedu.pennywise.logic.commands.ViewCommand;
-import seedu.pennywise.logic.commands.ViewCommand.ViewEntriesDescriptor;
-import seedu.pennywise.testutil.ViewEntriesDescriptorBuilder;
 
 public class ViewCommandParserTest {
 
@@ -25,56 +23,45 @@ public class ViewCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsViewCommand() {
-        String validUserInputForExpenditureMonth = TYPE_EXPENDITURE + TYPE_MONTH;
-        assertParseSuccess(parser, validUserInputForExpenditureMonth, new ViewCommand(EXPENDITURE_BY_MONTH));
+        // Valid user input for expenditure by month
+        assertParseSuccess(parser, TYPE_EXPENDITURE + TYPE_MONTH, new ViewCommand(EXPENDITURE_BY_MONTH));
 
-        String validUserInputForExpenditureCategory = TYPE_EXPENDITURE;
-        assertParseSuccess(parser, validUserInputForExpenditureCategory, new ViewCommand(EXPENDITURE_BY_CATEGORY));
+        // Valid user input for expenditure by category
+        assertParseSuccess(parser, TYPE_EXPENDITURE, new ViewCommand(EXPENDITURE_BY_CATEGORY));
 
-        String validUserInputForExpenditureCategoryWithMonth = TYPE_EXPENDITURE;
-        ViewEntriesDescriptor expenditureCategoryWithMonthDescriptor = new ViewEntriesDescriptorBuilder(
-                EXPENDITURE_BY_CATEGORY
-        ).build();
+        // Valid user input for income by month
+        assertParseSuccess(parser, TYPE_INCOME + TYPE_MONTH, new ViewCommand(INCOME_BY_MONTH));
 
-        assertParseSuccess(parser, validUserInputForExpenditureCategoryWithMonth,
-                new ViewCommand(expenditureCategoryWithMonthDescriptor));
+        // Valid user input for income by category
+        assertParseSuccess(parser, TYPE_INCOME, new ViewCommand(INCOME_BY_CATEGORY));
     }
 
     @Test
     public void parse_invalidValid_throwsParseException() {
-        String invalidUserInputForMonth = TYPE_INCOME + INVALID_MONTH + TYPE_GRAPH_MONTH;
+        String invalidUserInputForMonth = TYPE_INCOME + INVALID_MONTH;
         assertParseFailure(
                 parser,
                 invalidUserInputForMonth,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
 
-        String invalidUserInputForEntryType = INVALID_TYPE + TYPE_MONTH + TYPE_GRAPH_MONTH;
+        String invalidUserInputForEntryType = INVALID_TYPE + TYPE_MONTH;
         assertParseFailure(
                 parser,
                 invalidUserInputForEntryType,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
-
-        String invalidUserInputForGraphType = TYPE_EXPENDITURE + TYPE_MONTH + INVALID_GRAPH;
-        assertParseFailure(
-                parser,
-                invalidUserInputForGraphType,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_missingParts_throwsParseException() {
-        // Specified 'm' graph type without providing a valid month
-        String invalidUserInputForMonthGraphType = TYPE_INCOME + TYPE_GRAPH_MONTH;
-        assertParseFailure(
-                parser,
-                invalidUserInputForMonthGraphType,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
-
-
         // Missing entry type
         assertParseFailure(
                 parser,
-                TYPE_GRAPH_MONTH + TYPE_MONTH,
+                "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+
+        assertParseFailure(
+                parser,
+                TYPE_MONTH,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
     }
 }

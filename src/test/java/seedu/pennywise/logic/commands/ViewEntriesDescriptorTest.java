@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.pennywise.logic.commands.CommandTestUtil.EXPENDITURE_BY_CATEGORY;
 import static seedu.pennywise.logic.commands.CommandTestUtil.EXPENDITURE_BY_MONTH;
-import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_GRAPH_CATEGORY;
 import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_MONTH_APRIL;
 import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_TYPE_INCOME;
 
@@ -41,12 +40,6 @@ public class ViewEntriesDescriptorTest {
         // different entry type -> returns false
         editedExpenditureByMonth = new ViewEntriesDescriptorBuilder(EXPENDITURE_BY_MONTH)
                 .withEntryType(VALID_TYPE_INCOME)
-                .build();
-        assertNotEquals(EXPENDITURE_BY_MONTH, editedExpenditureByMonth);
-
-        // different graph type -> returns false
-        editedExpenditureByMonth = new ViewEntriesDescriptorBuilder(EXPENDITURE_BY_MONTH)
-                .withGraphType(VALID_GRAPH_CATEGORY)
                 .build();
         assertNotEquals(EXPENDITURE_BY_MONTH, editedExpenditureByMonth);
     }
