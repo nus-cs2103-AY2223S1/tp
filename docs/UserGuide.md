@@ -67,11 +67,17 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+![help](images/UserGuide/help.png)
+
 ### Creating a contact: `create`
 
 Creates a contact that is stored in the FABook and contains their contact information. Any contact information that is not available can be updated later.
 
 Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
+
+![create](images/UserGuide/create.png) 
+                  
+* To input multiple meeting times, repeat the field `mt/TIME` as many times as you need. 
 
 :bulb: **Note:**
 Name and Phone number are the only compulsory inputs. Parameters not provided will be left blank.
@@ -79,7 +85,7 @@ Name and Phone number are the only compulsory inputs. Parameters not provided wi
 Examples:
 * `create n/John Doe p/98765432 a/John street, block 123, #01-01`
 * `create n/Betsy Crowe a/Newgate Prison p/1234567`
-* 'create n/Benedict Lee p/91281329 e/benedict@gmail.com a/Redhill Ave 3 d/Risk averse nw/$20000 mt/10-11-2022-16:00 t/SECURED'
+* `create n/Benedict Lee p/91281329 e/benedict@gmail.com a/Redhill Ave 3 d/Risk averse nw/$20000 mt/10-11-2022-16:00 t/SECURED`
 
 :white_check_mark: **Tip:**
 Input shortcut: `c` can be used in place of `create`.
@@ -91,11 +97,15 @@ Shows a list of all persons in the FABook.
 
 Format: `list`
 
+![list](images/UserGuide/list.png) 
+
 ### Updating a person : `update`
 
 Updates the information of a contact stored in the FABook.
 
-Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
+Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]...`
+                        
+![update](images/UserGuide/update.png)  
 
 :bulb: **Note:**
 Parameters not provided will stay unchanged.
@@ -104,7 +114,12 @@ Parameters not provided will stay unchanged.
 * INDEX is the index of the person in the currently displayed list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Updating description of a contact can also be done through the 'description' command. See [Description](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#Giving-a-description-to-a-person--description)
+* Updating description of a contact can also be done through the `description` command.
+  See [Description](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#Giving-a-description-to-a-person--description)
+* Updating meeting time of a contact must be done through the `meeting`, `deletemeeting` and `sync` commands.
+  See [Meeting](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#Add-meetings--meeting)
+  , [Delete Meeting](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#Delete-meetings--deletemeeting)
+  and [Sync](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#Remove-past-meetings--sync)
 
 Example:
 * `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed person's 
@@ -113,13 +128,15 @@ Example:
 
 :white_check_mark: **Tip:**
 Input shortcut: `u` can be used in place of `update`.
-Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]`
+Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
 
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
 Format: `find n/NAME…`
+
+![findname](images/UserGuide/findname.png)
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -142,6 +159,8 @@ Finds persons whose stored number matches the given number.
    
 Format: `find p/NUMBER...`
 
+![findphone](images/UserGuide/findphone.png)     
+
 * Only full numbers will be matched e.g. `7654` will not match `80765432`
 * All persons matching the number will be returned. e.g. All contacts in the same household will be returned if they share a home number.
 
@@ -156,6 +175,8 @@ Format: `f p/NUMBER...`
 
 Format: `find a/ADDRESS`
 
+![findaddress](images/UserGuide/findaddress.png)     
+
 * The search is case-insensitive. e.g `serangoon` will match `Serangoon`
 * The order of the keywords does not matter. e.g. `Kio Mo Ang` will match `Ang Mo Kio`
 * Only the address is searched. e.g. `find a/Kent` won’t return contacts with the name 'Kent'
@@ -163,10 +184,10 @@ Format: `find a/ADDRESS`
 * Persons with address matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Buona Clementi` will return `Buona Vista Drive`, `6 Clementi Ave`
 * Address can contain numbers. Find results will return all persons with that address keyword. 
-  e.g. '30' will return 'Blk 30 Geylang Street 29', 'Blk 30 Lorong 3 Serangoon Gardens'
+  e.g. `find a/30` will return `Blk 30 Geylang Street 29`, `Blk 30 Lorong 3 Serangoon Gardens`
 
 Examples:
-* `find a/Bedok` returns the person(s) with 'Bedok' stored as their address
+* `find a/Bedok` returns the person(s) with `Bedok` stored as their address
 
 :white_check_mark: **Tip:**
 Input shortcut: `f` can be used in place of `find`.
@@ -176,7 +197,9 @@ Format: `f a/ADDRESS…`
 
 Updates the person with a description data field.
 
-Format: 'description INDEX d/DESCRIPTION'
+Format: `description INDEX d/DESCRIPTION`
+
+![description](images/UserGuide/description.png)     
 
 * INDEX is the index of the person in the currently displayed list.
 * Updating description of a contact can also be done through the 'update' command. See [Update](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#updating-a-person--update)
@@ -191,6 +214,8 @@ Assigns a PDF file to a person in the FABook.
 
 Format: `filepath INDEX f/FILEPATH`
 
+![filepath](images/UserGuide/filepath.png) 
+
 * INDEX is the index of the person in the currently displayed list.
 * The filepath is the absolute path of the PDF on the local disk of the computer. e.g. `C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
 * Only file paths that lead to a PDF is allowed. e.g. `C:/Users/Ryzen/Downloads/CS2103T-T08-3.docx` is an invalid filepath.
@@ -204,6 +229,8 @@ Examples:
 Opens a person's assigned PDF file in user's PDF file viewer.
 
 Format: `file INDEX`
+
+![file](images/UserGuide/file.png)
 
 * INDEX is the index of the person in the currently displayed list.
 * Moving or renaming the PDF file in the local disk will cause the command to not work, which will require you to reassign a file path to the person again.
@@ -242,6 +269,10 @@ Examples:
 
 ### Remove past meetings: `sync`
 
+Format: `sync`
+
+![sync](images/UserGuide/sync.png)    
+
 Removes every scheduled meeting time that has already passed.
    
 * This uses your device's present local time as reference. All meetings scheduled to be earlier than the present time will removed.
@@ -255,6 +286,8 @@ Deletes the specified person from the FABook.
 
 Format: `delete INDEX`
 
+![delete](images/UserGuide/delete.png) 
+
 * INDEX is the index of the person in the currently displayed list.
 * Deletes the person with the specified index in the FABook.
 
@@ -267,13 +300,19 @@ Clears all entries from the FABook.
 
 Format: `clear`
 
+![clear](images/UserGuide/clear.png)   
+
 :heavy_exclamation_mark: **Important**
 If you run this command by accident, you can undo the command to restore all previously cleared entries.
 See [Undo](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#undoing-a-previous-command--undo)
 
-### Undoing a previous command : `undo`
+### Undoing a previous command : `undo`                                      
 
 Undos the last command from the FABook.
+
+Format: `undo`
+
+![undo](images/UserGuide/undo.png) 
 
 * The command intended to be undone should be an undoable command.
 * Undoable commands are: 'clear', 'create', 'delete', 'description', 'meeting', 'deletemeeting', 'redo' and 'update'
@@ -286,7 +325,9 @@ You can undo a `redo` command. See [Redo](https://github.com/AY2223S1-CS2103T-T1
 
 Redos the last undone command from the FABook.
 
-Format: 'redo'
+Format: `redo`
+
+![redo](images/UserGuide/redo.png) 
 
 ### Exiting the program : `exit`
 
@@ -321,22 +362,22 @@ If your changes to the data file makes its format invalid, FABook will discard a
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                            | Shortcut |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------|----------|
-| **Create**      | `create n/NAME p/PHONE_NUMBER [a/ADDRESS] [mt/TIME] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567`           | c        |
-| **Clear**       | `clear`                                                                                                                     | cl       |
-| **Delete Person**| `delete INDEX`<br> e.g., `delete 3`                                                                                         | d        |
-| **Update**      | `update INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [mt/TIME]`<br> e.g.,`edit 2 p/91234567 a/21 Lower Kent Ridge Rd`        | u        |
-| **Description** | `description INDEX d/DESCRIPTION` <br> e.g., `description 3 d/Accident prone`                                               | desc     |
-| **Find**        | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`| f        |
-| **List**        | `list`                                                                                                                      | l        |
-| **Open File**   | `file INDEX`<br/> e.g. `file 2`                                                                                             |          |
-| **Assign File** | `filepath INDEX f/FILEPATH`<br/> e.g. `find 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                 |          |
-| **Add meetings**| `meeting INDEX mt/MEETINGTIME...` <br> e.g. `meeting 2 mt/09-10-2023-23:50 mt/28-02-2020-15:16`                             |          |
-| **Delete Meeting**| `deletemeeting INDEX mt/MEETINGTIME` <br> e.g. `deletemeeting 2 mt/09-10-2023-23:50`                                      |          |
-| **Remove past meetings** | `sync`                                                                                                             |          |
-| **Undo**        | `undo`                                                                                                                      |          |
-| **Redo**        | `redo`                                                                                                                      |          |
-| **Help**        | `help`                                                                                                                      |          |
-| **Exit**        | `exit`                                                                                                                      | e        |
+| Action                   | Format, Examples                                                                                                                                                  | Shortcut |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| **Create**               | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567` | c        |
+| **Clear**                | `clear`                                                                                                                                                           | cl       |
+| **Delete**               | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               | d        |
+| **Update**               | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`edit 2 p/91234567 a/21 Lower Kent Ridge Rd`        | u        |
+| **Description**          | `description INDEX d/DESCRIPTION` <br> e.g., `description 3 d/Accident prone`                                                                                     | desc     |
+| **Find**                 | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`                                      | f        |
+| **List**                 | `list`                                                                                                                                                            | l        |
+| **Open File**            | `file INDEX`<br/> e.g. `file 2`                                                                                                                                   |          |
+| **Assign File**          | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                                   |          |
+| **Add Meeting**          | `meeting INDEX mt/TIME` <br/> e.g. `meeting 5 mt/19-11-2022-19:00`                                                                                                |          |
+| **Delete Meeting**       | `deletemeeting INDEX mt/TIME` <br/> e.g. `deletemeeting 4 mt/15-12-2022-13:00`                                                                                    |          |
+| **Remove past meetings** | `sync`                                                                                                                                                            |          |
+| **Undo**                 | `undo`                                                                                                                                                            |          |
+| **Redo**                 | `redo`                                                                                                                                                            |          |
+| **Help**                 | `help`                                                                                                                                                            |          |
+| **Exit**                 | `exit`                                                                                                                                                            | e        |
 
