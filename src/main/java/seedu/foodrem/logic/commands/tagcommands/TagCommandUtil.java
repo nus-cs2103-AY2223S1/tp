@@ -23,7 +23,7 @@ public class TagCommandUtil {
      * @param tag the tag to be validated
      * @param index the index of the item
      */
-    public static Item getItemWithValidation(Model model, Tag tag, Index index) throws CommandException {
+    public static Item validateAndGetItem(Model model, Tag tag, Index index) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasTag(tag)) {

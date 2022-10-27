@@ -36,7 +36,7 @@ public class TagCommand extends Command {
 
     @Override
     public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
-        Item itemToTag = TagCommandUtil.getItemWithValidation(model, tag, index);
+        Item itemToTag = TagCommandUtil.validateAndGetItem(model, tag, index);
 
         Set<Tag> itemTags = itemToTag.getTagSet();
         if (itemTags.contains(tag)) {
