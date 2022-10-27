@@ -85,16 +85,42 @@ Coydir v1.2 supports 3 user functions that allow for complete control of your co
 
 Adds an employee to Coydir.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb:
-An employee can have any number of tags (including 0)
+An employee can have any number of tags (including 0).
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb:
+The only compulsory fields are name, position and department.
+Leaves will be default 14 while the other fields will be initialised as N/A.
 </div>
 
 Examples:
 
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal`
+
+### Editting an employee: `edit`
+
+Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb:
+An employee can have any number of tags (including 0)
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb:
+The only compulsory fields are name, position and department.
+Leaves will be default 14 while the other fields will be initialised as N/A
+</div>
+
+Examples:
+
+- `edit 1 p/91234567 e/johndoe@example.com`
+- `edit 2 p/91234567 l/20 t/colleagues`
+
 
 ### Adding multiple employees at once: `batchadd`
 
@@ -188,6 +214,10 @@ and the employee has sufficient leaves, the leave period will be added and the t
 
 If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt the users accordingly, and the command will not execute.
 
+<div markdown="span" class="alert alert-primary">:bulb:
+Leaves are ordered by reverse chronological order.
+</div>
+
 Format: `addleave id/ID sd/START_DATE ed/END_DATE`
 
 Example:
@@ -196,7 +226,7 @@ Example:
 
 ### Deleting a leave period for an employee: `deleteleave`
 
-Removes a leave period for an employee given the employee ID and index of leave in the list.
+Removes a leave period for an employee given the employee ID and index of leave in the table.
 
 This command results in one of two cases below:
 
@@ -268,9 +298,6 @@ Coydir data are saved as a JSON file `[JAR file location]/data/coydir.json`. Adv
 If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 ---
 
@@ -285,7 +312,8 @@ _Details coming soon ..._
 
 | Action              | Format, Examples                                                                                                                                                     |
 |---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add**             | `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal`|
+| **Edit**            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal`|
 | **Batch Add**       | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                            |
 | **View Details**    | `view ID` <br> e.g. `view 1`                                                                                                                                         |
 | **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                   |
@@ -296,4 +324,5 @@ _Details coming soon ..._
 | **rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                       |
 | **List**            | `list`                                                                                                                                                               |
 | **Exit**            | `exit`                                                                                                                                                               |
+| **Clear**           | `clear`                                                                                                                                                              |
 | **Help**            | `help`                                                                                                                                                               |
