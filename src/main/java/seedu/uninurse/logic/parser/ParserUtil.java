@@ -1,6 +1,7 @@
 package seedu.uninurse.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -384,6 +385,10 @@ public class ParserUtil {
         return new RemarkList(remarkList);
     }
 
+    private static boolean isOptionLimit(String s) {
+        return s.contains("/");
+    }
+
     /**
      * Parses the value of {@code String option} from {@code String arguments}.
      */
@@ -392,7 +397,7 @@ public class ParserUtil {
         requireNonNull(option);
         String[] options = arguments.trim().split("\\s+");
         for (int i = 0; i < options.length; i++) {
-            if (options[i].contains("/")) {
+            if (isOptionLimit(options[i])) {
                 break;
             }
             if (i > 0 && options[i - 1].equals(option)) {
@@ -427,10 +432,13 @@ public class ParserUtil {
         requireNonNull(arguments);
         requireNonNull(option);
         String[] options = arguments.trim().split("\\s+");
-        for (int i = 0; i + 1 < options.length; i++) {
-            if (options[i].equals(option)) {
+        for (int i = 0; i < options.length; i++) {
+            if (isOptionLimit(options[i])) {
+                break;
+            }
+            if (i > 0 && options[i - 1].equals(option)) {
+                options[i - 1] = "";
                 options[i] = "";
-                options[i + 1] = "";
                 break;
             }
         }
@@ -448,5 +456,17 @@ public class ParserUtil {
             arguments = eraseOption(arguments, options[i].toString());
         }
         return arguments;
+    }
+
+    /**
+     * Checks if in the given argumentMultimap, *only* the given validOptions occur.
+     */
+    public static boolean optionsOnlyContains(ArgumentMultimap argumentMultimap, Prefix... validOptions) {
+        requireNonNull(argumentMultimap);
+        requireNonNull(validOptions);
+        // (option in validOptions and isPresent()) || (option not in validOptions and !isPresent())
+        return Arrays.stream(PREFIXES_OPTION_ALL).allMatch(option ->
+                Arrays.stream(validOptions).anyMatch(x -> x.equals(option))
+                        ^ !argumentMultimap.getValue(option).isPresent());
     }
 }

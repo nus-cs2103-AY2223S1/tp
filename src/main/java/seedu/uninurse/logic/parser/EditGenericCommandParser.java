@@ -1,10 +1,9 @@
 package seedu.uninurse.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TASK_INDEX;
-
-import java.util.Optional;
 
 import seedu.uninurse.logic.commands.EditGenericCommand;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
@@ -23,18 +22,20 @@ public class EditGenericCommandParser implements Parser<EditGenericCommand> {
     public EditGenericCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TASK_INDEX);
-        args = ParserUtil.eraseOptions(args, PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TASK_INDEX);
+        ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIXES_OPTION_ALL);
+        args = ParserUtil.eraseOptions(args, PREFIXES_OPTION_ALL);
 
-        Optional<String> patientIndex = options.getValue(PREFIX_OPTION_PATIENT_INDEX);
-        Optional<String> taskIndex = options.getValue(PREFIX_OPTION_TASK_INDEX);
-
-        if (patientIndex.isPresent() && !taskIndex.isPresent()) {
-            return new EditPatientCommandParser().parse(patientIndex.get() + " " + args);
+        if (ParserUtil.optionsOnlyContains(options,
+                PREFIX_OPTION_PATIENT_INDEX)) {
+            return new EditPatientCommandParser().parse(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " " + args);
         }
 
-        if (patientIndex.isPresent() && taskIndex.isPresent()) {
-            return new EditTaskCommandParser().parse(patientIndex.get() + " " + taskIndex.get() + " " + args);
+        if (ParserUtil.optionsOnlyContains(options,
+                PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TASK_INDEX)) {
+            return new EditPatientCommandParser().parse(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " "
+                            + options.getValue(PREFIX_OPTION_TASK_INDEX) + " " + args);
         }
 
         throw new ParseException(ParserUtil.MESSAGE_INVALID_OPTIONS);
