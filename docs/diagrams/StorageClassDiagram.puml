@@ -17,6 +17,7 @@ package "TaskPanel Storage" #F4F6F6 {
     Class JsonTaskPanelStorage
     Class JsonSerializableTaskPanel
     Class JsonAdaptedTask
+    Class JsonAdaptedContact
 }
 
 Class "<<interface>>\nStorage" as Storage
@@ -54,5 +55,6 @@ JsonAdaptedPerson --> "*" JsonAdaptedTag
 JsonTaskPanelStorage .up.|> TaskPanelStorage
 JsonTaskPanelStorage ..> JsonSerializableTaskPanel
 JsonSerializableTaskPanel --> "*" JsonAdaptedTask
+JsonAdaptedTask --> "*" JsonAdaptedContact
 
 @enduml

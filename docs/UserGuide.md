@@ -165,7 +165,7 @@ Format: `clear`
 
 Adds a task to the task panel.
 
-Format: `task add TITLE by/DEADLINE [#/PROJECT] [@/PERSON_INDEX]...`
+Format: `task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...`
 
 * `TITLE` refers to the task and **cannot be empty**.
 * You can use English to describe the deadline (e.g. `today`, `tomorrow`, `next thursday`, `14 november`)
@@ -173,8 +173,8 @@ Format: `task add TITLE by/DEADLINE [#/PROJECT] [@/PERSON_INDEX]...`
 * `PERSON_INDEX` refers to the index number shown in the displayed person list.
 
 Examples:
-* `task add Task 1 by/next friday #/CS2103T @/1`
-* `task add Finish GUI by/sunday #/CS2100 @/2`
+* `task add Task 1 by/next friday #CS2103T @1`
+* `task add Finish GUI by/sunday #CS2100 @2`
 
 
 ### Viewing tasks of a contact: `task list @`
@@ -291,16 +291,16 @@ Format: `task list [KEYWORD] [#PROJECT]... [@PERSON_INDEX]... [before/ DATE] [af
 
 Assigns or unassigns the specified persons from address book to a task from task panel.
 
-Format: `task assign TASK_INDEX [+@/PERSON_INDEX]…​ [+@/PERSON_NAME]…​ [-@/PERSON_INDEX]…​ [-@/PERSON_NAME]…​`
-* +@/: Assigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` to task at the specified TASK_INDEX from `task list`.
-* -@/: Unassigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` from task at the specified TASK_INDEX from `task list`.
+Format: `task assign TASK_INDEX [+@PERSON_INDEX]…​ [+@PERSON_NAME]…​ [-@PERSON_INDEX]…​ [-@PERSON_NAME]…​`
+* +@: Assigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` to task at the specified TASK_INDEX from `task list`.
+* -@: Unassigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` from task at the specified TASK_INDEX from `task list`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A task can have any number of assigned contacts (including 0)
 </div>
 
 Examples:
-* `task assign 1 +@/1 +@/Alex Yeoh -@/Bernice Yu` assigns the 1st person and "Alex Yeoh" from the address book to the 1st task from task list, and unassigns "Bernice Yu" from the same task.
+* `task assign 1 +@1 +@Alex Yeoh -@Bernice Yu` assigns the 1st person and "Alex Yeoh" from the address book to the 1st task from task list, and unassigns "Bernice Yu" from the same task.
 
 
 ### Editing a task: `task edit`
@@ -372,13 +372,13 @@ _Details coming soon ..._
 | Action          | Format, Examples                                                                                                                                                      |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Task add**    | ``task add TITLE by/DEADLINE [#/PROJECT] [@/PERSON_INDEX]...``<br> e.g., `task add Task 1 by/next friday #/CS2103T @/1`                                               |
-| **Task list**   | `tasks list [FILTER]`<br> e.g., `tasks list @1`, `task list keyword`                                                                                                  |
+| **Task add**    | ``task add TITLE by/DEADLINE [#PROJECT] [@PERSON_INDEX]...``<br> e.g., `task add Task 1 by/next friday #CS2103T @1`                                                   |
+| **Tasks**       | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                     |
 | **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
 | **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
 | **Task clear**  | `task clear`<br> e.g., `task clear`                                                                                                                                   |
 | **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                    |
-| **Task assign** | `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`<br> e.g., `task assign 3 ca/1 ca/Alex Yeoh cd/2`               |
+| **Task assign** | `task assign TASK_INDEX [+@/PERSON_INDEX]…​ [+@/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [-@/PERSON_NAME]…​`<br> e.g., `task assign 3 +@/1 +@/Alex Yeoh @-/2`               |
 | **Clear**       | `clear`                                                                                                                                                               |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |

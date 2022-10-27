@@ -26,6 +26,9 @@ Package Model <<Rectangle>> {
     Class UniqueTaskList
     Class Task
     Class Title
+    Class Deadline
+    Class Project
+    Class Contact
 
 }
 
@@ -56,6 +59,9 @@ Person *--> "*" Tag
 TaskPanel *--> "1" UniqueTaskList
 UniqueTaskList --> "~* all" Task
 Task *--> Title
+Task *--> Deadline
+Task *--> Project
+Task *--> "*" Contact
 
 ModelManager -->"~* filtered" Person
 ModelManager -->"~* filtered" Task
