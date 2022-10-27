@@ -107,15 +107,6 @@ Edits the details of the person identified by the index number used in the displ
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb:
-An employee can have any number of tags (including 0)
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb:
-The only compulsory fields are name, position and department.
-Leaves will be default 14 while the other fields will be initialised as N/A
-</div>
-
 Examples:
 
 - `edit 1 p/91234567 e/johndoe@example.com`
