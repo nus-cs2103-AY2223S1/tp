@@ -178,8 +178,8 @@ The following activity diagram summarises what happens when a student enters a `
 **Aspect: How `findInt` executes:**
 
 * **Alternative 1 (current choice):** Finds all batchmates whose interests match all interests specified (i.e. a superset of those specified).
-    * Pros: A specific search to find batchmates who have the same interests as the student. (Specifying `tennis` and `baking` will result in a batchmate whose interests are `tennis`, `baking` and `music` to be displayed).
-    * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `tennis` and `baking` will not result in a batchmate whose only interest is `tennis` to be displayed).
+    * Pros: A specific search to find batchmates who have the same interests as the student. (Specifying `AI` and `SWE` will result in a batchmate whose interests are `AI`, `SWE` and `algo` to be displayed).
+    * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `AI` and `SWE` will not result in a batchmate whose only interest is `AI` to be displayed).
 
 * **Alternative 2:** Finds all batchmates whose interests match at least one of the interests specified.
     * Pros: A more general search might be useful for finding a greater number of batchmates who share some of the interests as the student.
@@ -307,7 +307,7 @@ The Add Interest mechanism is facilitated by ```AddInterestCommand```, which ext
 5. The ```Index``` is verified to be valid and if so, the list of interests is added to the ```Student``` marked by ```Index```.
 6. ```Student``` is updated with the added interests. ```ModelManager``` will also be updated with the changes.
 
-The sequence diagram for the command ```addInt 1 anime``` is as follows.
+The sequence diagram for the command ```addInt 1 algo``` is as follows.
 
 ![AddInterestSequenceDiagram](images/AddInterestSequenceDiagram.png)
 
@@ -345,17 +345,14 @@ In addition, the below sequence diagram illustrates how the ```AddInterestComman
 
 **Target user profile**:
 
-* CS2103T students in a tutorial group. <br>
-Students can search for their teammates, view their repos and view each other’s code reviews (with their information such as GitHub repos etc).
+* Computer Science students at NUS <br>
+  Provides a centralised platform for Computer Science (CS) students to find study support from batchmates with common modules. It allows students to save their CS batchmates’ contact details in one place, find common modules and form study groups.
 
 
-**Value proposition**: All your contacts and projects in one place.
-* Provides more convenience for both instructors and students.
-* Promotes peer interaction and review as students can find each other’s work and leave constructive feedback with greater ease.
-* Promotes self-learning as students can see how others write their code.
-* Easier for instructors to keep track of students’ progress.
-* Saves time.
-
+**Value proposition**: Easily find batchmates to form study groups or asking for module-related advice.
+* Provides a centralised platform for students to share their contact info for easier communication.
+* Provides convenience for students to find batchmates who are taking the same modules or have the same interests as them.
+* Provides convenience for students to find batchmates who have taken their mods before to ask them for module-related advice.
 
 
 ### User stories
@@ -417,7 +414,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       \
       Use case ends.
 
-**Use case 3: Search batchmates via interests**
+**Use case 3: Add an interest to a batchmate**
+
+**MSS**
+
+1. Student chooses to add an interest to a batchmate.
+2. Mass Linkers searches through the list of batchmates for the selected batchmate.
+3. Mass Linkers adds the interests to the batchmate.
+   \
+   Use case ends.
+
+**Extensions**
+* 2a. The list of batchmates is empty.
+    * 2a1. Mass Linkers warns adding an interest is invalid.
+      \
+      Use case ends.
+* 2b. Mass Linkers detects an error in specified batchmate (non valid index).
+    * 2b1. Mass Linkers requests for new batchmate details.
+    * Step 2b1 is repeated until a batchmate is found.
+      \
+      Use case resumes from step 2.
+
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
+      \
+      Use case ends.
+
+**Use case 4: Search batchmates via interests**
 
 **MSS**
 
@@ -434,32 +457,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     \
     Use case resumes from step 1.
 * *a. At any time, Student chooses to close Mass Linkers.
-      \
-      Use case ends.
-
-**Use case 4: Add an interest to a batchmate**
-
-**MSS**
-
-1. Student chooses to add an interest to a batchmate.
-2. Mass Linkers searches through the list of batchmates for the selected batchmate.
-3. Mass Linkers adds the interests to the batchmate.
-   \
-   Use case ends.
-
-**Extensions**
-* 2a. The list of batchmates is empty.
-  * 2a1. Mass Linkers warns adding an interest is invalid.
-    \
-    Use case ends.
-* 2b. Mass Linkers detects an error in specified batchmate (non valid index).
-  * 2b1. Mass Linkers requests for new batchmate details.
-  * Step 2b1 is repeated until a batchmate is found.
-    \
-    Use case resumes from step 2.
-
-* *a. At any time, Student chooses to close Mass Linkers.
-    * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
 
@@ -488,8 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
-
-
+    
 **Use case 6: Edit Batchmate**
 
 **MSS**
@@ -522,7 +518,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
-
 
 **Use case 7: Add module**
 
