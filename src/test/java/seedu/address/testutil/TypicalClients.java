@@ -71,7 +71,6 @@ public class TypicalClients {
         MyInsuRec myInsuRec = new MyInsuRec();
         for (Client client : getTypicalClients()) {
             myInsuRec.addClient(client);
-            client.getMeetings().forEach(meeting -> myInsuRec.addMeeting(meeting));
         }
         for (Product product : getTypicalProducts()) {
             myInsuRec.addProduct(product);

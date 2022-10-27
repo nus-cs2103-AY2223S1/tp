@@ -109,7 +109,7 @@
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
-    -fx-border-color: #3e7b91;
+    -fx-border-color: white;
 }
 
 .list-cell:filled:even {
@@ -121,12 +121,11 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #d9d9d9;
+    -fx-background-color: white;
 }
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
 }
 
 .list-cell .label {
@@ -172,7 +171,7 @@
 }
 
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: #e6e6e6;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
@@ -289,6 +288,7 @@
 
 .dialog-pane {
     -fx-background-color: #e6e6e6;
+    -fx-background-radius: 15;
 }
 
 .dialog-pane > *.button-bar > *.container {
@@ -364,9 +364,8 @@
 }
 
 #resultDisplay .content {
-    -fx-border-color: #3e7b91;
-    -fx-background-color: transparent, white, transparent, white;
-    -fx-background-radius: 0;
+    -fx-border-color: black;
+    -fx-background-color: white;
 }
 
 #products {
@@ -375,10 +374,45 @@
 }
 
 #products .label {
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-background-color: #3e7b91;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-font-size: 14;
+}
+
+.pane-with-header {
+    -fx-border-color: black;
+    -fx-border-radius: 15;
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+}
+
+.pane-with-header .grid-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-color: black;
+    -fx-border-width: 0 0 1 0;
+}
+
+.pane-with-header .list-view {
+    -fx-background-color: white;
+}
+
+.table-header {
+    -fx-text-fill: black;
+}
+
+.header-box {
+    -fx-border-color: black;
+    -fx-border-width: 0 0 1 0;
+}
+
+.scrollpane-client {
+    -fx-background: white;
+}
+
+.scrollpane-client:selected {
+    -fx-background: white;
 }

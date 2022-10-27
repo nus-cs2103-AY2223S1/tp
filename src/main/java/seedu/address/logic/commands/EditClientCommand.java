@@ -9,8 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETING;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -75,9 +74,7 @@ public class EditClientCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredClientList();
-
+        ObservableList<Client> lastShownList = model.getFilteredClientList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
@@ -96,14 +93,7 @@ public class EditClientCommand extends Command {
             throw new CommandException(MESSAGE_NON_EXISTING_PRODUCT);
         }
 
-
         model.setClient(clientToEdit, editedClient);
-        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        clientToEdit.getMeetings().forEach(meeting ->
-                model.deleteMeeting(meeting));
-        editedClient.getMeetings().forEach(meeting ->
-                model.addMeeting(meeting));
-        model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETING);
         return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient), CommandSpecific.CLIENT);
     }
 
@@ -132,6 +122,7 @@ public class EditClientCommand extends Command {
 
         // update client in each meeting this client has
         List<Meeting> meetings = clientToEdit.getMeetings();
+
         Meeting meeting;
         Meeting updatedMeeting;
         for (int i = 0; i < meetings.size(); i++) {
@@ -186,7 +177,6 @@ public class EditClientCommand extends Command {
             address = toCopy.address;
             birthday = toCopy.birthday;
             products = toCopy.products;
-
         }
 
         /**

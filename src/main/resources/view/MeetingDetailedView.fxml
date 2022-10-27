@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="300.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" percentWidth="50.0" prefWidth="300.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" percentWidth="50.0" prefWidth="300.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="350.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="380.0" minHeight="10.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <HBox alignment="CENTER_LEFT" GridPane.columnSpan="2">
@@ -41,9 +41,16 @@
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </GridPane.margin>
       </HBox>
-      <VBox GridPane.rowIndex="1">
+      <VBox prefHeight="380.0" styleClass="pane-with-header" GridPane.rowIndex="1">
          <children>
-            <Label styleClass="label-subheader" text="Information" />
+            <HBox styleClass="header-box">
+               <children>
+                  <Label styleClass="label-subheader" text="Information" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
             <GridPane>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="143.0" />
@@ -68,7 +75,7 @@
                   </Label>
                </children>
                <padding>
-                  <Insets left="10.0" />
+                  <Insets left="10.0" right="10.0" />
                </padding>
             </GridPane>
          </children>
@@ -76,25 +83,31 @@
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </GridPane.margin>
       </VBox>
-      <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <VBox prefHeight="380.0" styleClass="pane-with-header" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <GridPane prefHeight="175.0" prefWidth="280.0">
+            <HBox styleClass="header-box">
+               <children>
+                  <Label styleClass="label-subheader" text="Meeting Details:" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <GridPane prefHeight="300.0" prefWidth="280.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="151.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="149.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="37.0" minHeight="3.0" prefHeight="25.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label styleClass="label-subheader" text="Meeting Details:" GridPane.columnSpan="2" />
-                  <Label styleClass="label-subheader" text="Description:" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                  <Label styleClass="label-bright" text="Description:" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
                      <children>
-                        <Label fx:id="description" text="asdfasdfdsafdsafdasfdsafdsafdsafsdafdsafdsafdsafdsafdsafadsfdsafdsafadsfasdfsadfdsafsdafasdfadsfdsafdsafadsf" wrapText="true">
+                        <Label fx:id="description" text="Lorem Ipsum" wrapText="true">
                            <font>
                               <Font name="System Italic" size="13.0" />
                            </font>
@@ -104,7 +117,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Label fx:id="date" text="\$date">
                            <HBox.margin>
@@ -123,7 +136,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
                         <Label fx:id="time" text="\$time">
                            <HBox.margin>
@@ -143,6 +156,9 @@
                      </children>
                   </HBox>
                </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
             </GridPane>
          </children>
          <GridPane.margin>
@@ -150,4 +166,7 @@
          </GridPane.margin>
       </VBox>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" />
+   </padding>
 </GridPane>

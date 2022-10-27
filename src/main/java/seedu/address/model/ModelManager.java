@@ -123,6 +123,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedClient);
 
         myInsuRec.setClient(target, editedClient);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
     @Override
