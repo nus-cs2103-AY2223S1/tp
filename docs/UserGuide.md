@@ -40,6 +40,7 @@ should be used. Start by looking at the quick start guide to get you started.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+### Modes
 In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
 [some commands](#features-available-in-focus-mode) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also
 be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
@@ -81,7 +82,7 @@ Format: `help`
 
 {% include note.html content="
 
-Add a student to TA-Assist.
+Adds a student to TA-Assist.
 
 " %}
 
@@ -104,7 +105,7 @@ Edits an existing student in TA-Assist.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 
-- Edits student data at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3,…
+- Edits student data at the specified `INDEX`.
 - Only fields that are specified will be modified.
 
 Examples:
@@ -124,9 +125,7 @@ Deletes the specified student from TA-Assist.
 
 Format: `delete INDEX`
 
-- Deletes the student at the specified `INDEX`
-- The index refers to the index number shown in the displayed student list.
-- The index **must be a positive integer** 1, 2, 3, …
+- Deletes the student at the specified `INDEX`.
 
 Examples:
 
@@ -144,14 +143,14 @@ Finds students whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS...]`
 
-- The search is case-insensitive, i.e. `Joh` will match with `john` and `JOHN`.
+- The search is **case-insensitive**, i.e. `Joh` will match with `john` and `JOHN`.
 - The search is performed on the current displayed list of students. 
 - To clear the current search, use the `list` command.
 
 Examples:
 
-- `find John` will find people with a **John** in their name (case-insensitive), i.e. **John Doe**, **John Brown**, **harry jOHn**, etc.
-- `find ben chris` will find people with either a **ben** or a **chris** in their name, i.e. **chris ben**, **ChRIs wonders**, **bEn ten**, etc.
+- `find John` will find students with **John** in their name (case-insensitive), i.e. **John Doe**, **John Brown**, **harry jOHn**, etc.
+- `find ben chris` will find students with either **ben** or a **chris** in their name, i.e. **chris ben**, **ChRIs wonders**, **bEn ten**, etc.
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
@@ -165,20 +164,28 @@ Shows a list of all the students.
 
 Format: `list`
 
-- Note that `list` has different behavior in focus mode and outside focus mode.
-- In the focus mode, only students within the class will be listed.
+- The list of students you will see contains all the students in TA-Assist.
+
+{% include important.html content="
+
+Note that `list` has different [behavior in focus mode](#list-all-students-in-the-class-list) and outside focus mode.
+
+" %} 
+
 
 ### Add classes: `addc`
 
 {% include note.html content="
 
-Add one or more classes to TA-Assist.
+Adds one or more classes to TA-Assist.
 
 " %}
 
 Format: `addc c/CLASS_NAME...`
 
-- Add classes with specified names.
+- Add classes with specified names. 
+- The class names are **case-insensitive** (i.e. if a class with a name **CS1101S** already exists, `addc c/cs1101s` will not add a
+new class `cs1101s`).
 
 Examples:
 
@@ -188,13 +195,14 @@ Examples:
 
 {% include note.html content="
 
-Delete one or more classes from TA-Assist.
+Deletes one or more classes from TA-Assist.
 
 " %}
 
 Format: `deletec c/CLASS_NAME...`
 
-- Delete classes with specified names.
+- Deletes the classes with the specified names.
+- The class names are **case-insensitive**.
 
 Examples:
 
@@ -211,10 +219,11 @@ Assigns students to a class.
 Format: `assign INDEX... c/CLASS_NAME`
 
 - Assigns students at the given indices to an existing `CLASS_NAME` class.
+- The class names are **case-insensitive**.
 
 Example:
 
-- `list` followed by `assign 1 3 5 6 c/CS1231S` assigns **1st**, **3rd**, **5th** and **6th** student in TA-Assist to the **CS1231S** class.
+- `list` followed by `assign 1 3 5 6 c/CS1231S` assigns **1st**, **3rd**, **5th** and **6th** student in the current visible student list to the **CS1231S** class.
 
 ### Unassign students from class: `unassign`
 
@@ -227,22 +236,23 @@ Unassigns students from a class.
 Format: `unassign INDEX... c/CLASS_NAME`
 
 - Unassigns students at the given indices from an existing `CLASS_NAME` class.
+- The class names are **case-insensitive**.
 
 Example:
 
-- `list` followed by `unassign 1 3 5 6 c/CS1231S` unassigns **1st**, **3rd**, **5th** and **6th** student in TA-Assist from the **CS1231S** class.
+- `list` followed by `unassign 1 3 5 6 c/CS1231S` unassigns **1st**, **3rd**, **5th** and **6th** student in the current visible student list from the **CS1231S** class.
 
 ### List classes: `listc`
 
 {% include note.html content="
 
-List the classes that have been created.
+Lists the classes that have been created.
 
 " %}
 
 Format: `listc`
 
-- List the classes that have been created.
+- Lists the classes that have been created.
 
 ### Exit the program: `exit`
 
@@ -264,11 +274,12 @@ Enter focus mode to manage a given class, enabling features that are only availa
 
 Format: `focus CLASS_NAME`
 
-- Enters focus mode for the class named `CLASS_NAME`
+- Enters focus mode for the class named `CLASS_NAME`.
+- The class name is **case-insensitive**.
 
 Example:
 
-- `focus CS1231S` will enter focus mode to the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
+- `focus CS1231S` will enter focus mode for the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
 
 ### Clear all existing data: `clear`
 
@@ -284,7 +295,7 @@ Format: `clear`
 
 ## Features Available in Focus Mode
 
-The following commands are only available in **focus mode.**
+The following commands are only available in [**focus mode.**](#modes)
 
 
 | Command   | Format                                        |
@@ -310,8 +321,13 @@ Shows a list of all students in the class.
 
 Format: `list`
 
-- Note that `list` has different behavior in focus mode and outside focus mode.
-- In the focus mode, only students within the class will be listed.
+- The list of students only shows the students that were assigned to the currently focused class.
+
+{% include important.html content="
+
+Note that `list` in focused mode has different [behavior outside focus mode](#list-all-students-list).
+
+" %}
 
 ### Create session: `session`
 
@@ -321,26 +337,36 @@ Creates a new session.
 
 " %}
 
+{% include tip.html content="
+
+A session can be treated as a "task" a student has to complete in the class. These tasks usually have an associated
+grade. For example, **Tutorial 3 Participation** of **CS2100** is a task because they contribute to the
+overall grade for the module CS2100.
+
+" %}
+
 Format: `session s/SESSION_NAME [d/DATE]`
 
 - Creates a new session with name `SESSION_NAME` on `DATE`. If the `DATE` field is empty, the current date will be used.
-- `DATE` field should follow the format `dd-MM-yyyy`
+- `DATE` field should follow the format `YYYY-MM-DD`.
+- The session names are **case-insensitive** (i.e. if a session **Lab 1** already exists, `session s/lab 1` will not create a new session **lab 1**). 
 
 Example:
 
-- `session s/Lab1 d/11-08-2022` will create a session `Lab1` on 11  August 2022.
+- `session s/Lab 1 d/2022-08-11` will create a session `Lab 1` on 11 August 2022.
 
 ### Delete sessions: `deletes`
 
 {% include note.html content="
 
-Delete one or more sessions from the focused class.
+Deletes one or more sessions from the focused class.
 
 " %}
 
 Format: `deletes s/SESSION_NAME...`
 
-- Delete sessions with specified names.
+- Deletes the sessions with the specified names.
+- The session names are **case-insensitive**.
 
 Examples:
 
@@ -356,78 +382,97 @@ Grades one or multiple students for the session.
 
 Format: `grade INDEX... s/SESSION_NAME g/GRADE_VALUE`
 
-- Grades the students in `INDEX...` on the session `SESSION_NAME` with a grade of `GRADE_VALUE`.
+- Grades the students in the specified indices on the session `SESSION_NAME` with a grade of `GRADE_VALUE`.
 - `GRADE_VALUE` must be a number (decimal points are allowed).
+- The session name is **case-insensitive**.
 
 Example:
 
-- `session s/Lab1 d/06-10-2022` followed by `grade 1 2 s/Lab1 g/93` will give the students at index 1 and 2 a grade of 93 for the session `Lab1`.
+- `grade 1 2 s/Lab 1 g/93` will give the students at index 1 and 2 a grade of 93 for the session **Lab 1**.
+- The session name is **case-insensitive**.
 
 ### Show students' grades for a session: `scores`
 
 {% include note.html content="
 
-Show grades of all students for a session.
+Shows the grades of all students for a session.
 
 " %}
 
 Format: `scores s/SESSION_NAME`
 
 - Shows the grades of all students for the session `SESSION_NAME`.
+- The session name is **case-insensitive**.
 
 Example:
 
-- `scores s/Assignment 1` will show the grades of all students for the session `Assignment 1`, as shown below.
+- `scores s/Assignment 1` will show the grades of all students for the session **Assignment 1**, as shown below.
   <br/>   
   <img src="images/scoresAssignment1Result.PNG" width="600"/>
   
   In the above example,     
-  - Alex Yeoh and Bernice Yu have been graded with the scores `100.0` and `85.0` respectively.
-  - Charlotte Oliveiro and Irfan Ibrahim have not been graded, hence their cells have been marked red.
+  - **Alex Yeoh** and **Bernice Yu** have been graded with the scores `100.0` and `85.0` respectively.
+  - **Charlotte Oliveiro** and **Irfan Ibrahim** have not been graded, hence their cells have been marked red.
 
 ### View session grade of student: `view`
 
 {% include note.html content="
 
-View all session grades of a student within the focused class.
+Views all session grades of a student within the focused class.
 
 " %}
 
 Format: `view INDEX`
 
-- View the grade of the student at index `INDEX` for the currently focused class.
+- Views the grade of the student at index `INDEX` for the currently focused class.
 
 Example:
 
-- `grade 2 s/Lab1 g/93` then `view 2` will return `1. Lab1: 93`, which is the grade of the student at index 2 for the session `Lab1`.
+- `grade 2 s/Lab 1 g/93` then `view 2` will return `1. Lab 1: 93`, which is the grade of the student at index 2 for the session **Lab 1**.
 
 ### List all sessions: `lists`
 
 {% include note.html content="
 
-List the sessions that have been created for the class.
+Lists the sessions that have been created for the focused class.
 
 " %}
 
 Format: `lists`
 
-- List the sessions that have been created for the class.
+- Lists the sessions that have been created for the focused class.
 
 ### Export class data: `export`
 
 {% include note.html content="
 
-Export the class as a CSV file containing grade information of the class's students on all sessions of the class.
+Exports the class data as a CSV file.
+
+" %}
+
+{% include tip.html content="
+
+Comma-Separated Values (CSV) files can be opened with **Microsoft Excel**, where you can get an organised view
+of all the data.
 
 " %}
 
 Format: `export`
 
+- The exported class data includes:
+  * Student names of the class.
+  * All session names of the class.
+  * The grades of the students corresponding to each session.
+- An example generated csv file when opened in Microsoft Excel:
+![Example Excel file](images/exampleExcelFile.png)
+  - First column shows all the student names.
+  - Subsequent columns show the grades for a student for a session (e.g. **David Li** scores **0** for **Tutorial 1**).
+
 ### Exit focus mode: `unfocus`
 
 {% include note.html content="
 
-Exits focus mode on a class.
+Exits focus mode.
 
 " %}
 
