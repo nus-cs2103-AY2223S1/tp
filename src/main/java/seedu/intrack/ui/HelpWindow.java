@@ -45,7 +45,7 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpCommands;
 
     @FXML
-    private Label helpURL;
+    private Label helpLink;
 
     /**
      * Creates a new HelpWindow.
@@ -55,7 +55,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
-        helpURL.setText(USERGUIDE_URL);
+        helpLink.setText(USERGUIDE_URL);
         helpCommands.setText(HELP_COMMANDS);
     }
 
