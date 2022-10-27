@@ -68,6 +68,18 @@ public class CommandHistoryTest {
     }
 
     @Test
+    public void addDuplicateValidCommand() {
+        CommandHistory expected = new CommandHistory();
+        expected.addToCommandHistory("list");
+
+        CommandHistory actual = new CommandHistory();
+        for (int i = 0; i < MAX_COMMAND_HISTORY_SIZE; i++) {
+            actual.addToCommandHistory("list");
+        }
+
+        assertEquals(actual, expected);
+    }
+    @Test
     public void getPrevCommand_onEmptyCommandList() {
         CommandHistory actual = new CommandHistory();
         assertEquals("", actual.getPrevCommand());
@@ -170,6 +182,7 @@ public class CommandHistoryTest {
 
         assertEquals(actual.getCurrentZeroBasedIndex(), MAX_COMMAND_HISTORY_SIZE);
     }
+
 
 
     @Test

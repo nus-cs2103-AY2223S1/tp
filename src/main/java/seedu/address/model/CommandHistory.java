@@ -41,7 +41,15 @@ public class CommandHistory implements ReadOnlyCommandHistory {
      * @param commandInput latest valid command entered bu user
      */
     public void addToCommandHistory(String commandInput) {
-        if (commandHistoryList.size() >= MAX_COMMAND_HISTORY_SIZE) {
+        int size = commandHistoryList.size();
+        int latestIndex = size - 1;
+
+        // prevent saving of consecutive duplicate commands
+        if (!commandHistoryList.isEmpty()
+                && commandHistoryList.get(latestIndex).equals(commandInput)) {
+            return;
+        }
+        if (size >= MAX_COMMAND_HISTORY_SIZE) {
             commandHistoryList.remove(0);
         }
         commandHistoryList.add(commandInput);
