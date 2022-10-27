@@ -7,14 +7,20 @@ Gim is a **desktop app for managing gym exercises, optimized for use via a Comma
 
 ### Table of Contents
 #### Getting Started
+#### GUI Orientation
+* Exercise List 
+* Result Display 
+* Recognised Exercise Names List
+
 #### Features
-* Adding an exercise **:a**
-* Deleting an exercise **:d**
-* Listing all exercises **:ls**
+* Adding an exercise **:add**
+* Deleting an exercise **:delete**
+* Listing all exercises **:list**
 * Sorting all exercises **:sort**
 * Viewing all exercises within a time period **:range**
 * Viewing help **:help**
 * Exiting the program **:wq**
+
 #### Command Summary
 #### Glossary of Terminologies
 
@@ -38,6 +44,47 @@ Gim is a **desktop app for managing gym exercises, optimized for use via a Comma
 
 --------------------------------------------------------------------------------------------------------------------
 
+## GUI Orientation 
+
+![GUI](images/GUIOrientation.png)
+
+
+### Exercise List
+
+The `Exercise List Window` displays the latest input exercise (by the user) at the top of the list by default. All exercises
+added will be displayed in the list. The list may morph or reorder depending on the command issued by the user.
+
+### Result Display 
+
+The `Result Display Window` displays feedback after executing a command. It gives feedback to the user on the command executed.
+
+### Recognised Exercise Name List
+
+The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered 
+with the system. 
+<br><br>This list updates in real time and allows you to quickly keep track of the exercises you have input in the 
+past. Hence, even if the exercise list is populated, the `Recognised Exercise Name List Window` helps you in keeping track of 
+what you named your exercises so that your entries are consistent. It also helps you to identify any wrong spellings in the name 
+of the exercises you have input.
+
+![RecognisedList](images/RecognisedExercisesOrientation.png)
+
+* The Recognised Exercises count provides the number of unique exercises registered with the system. 
+* The Exercise List Entries count provide the number of entries in the `Exercise List Window`. 
+<br>
+#### Adding and Deleting from the Exercise Name List
+
+The `Recognised Exercise Name List Window` is generated based on the state of the Exercise List. Hence, by adding and deleting 
+to the Exercise List, the Recognised Exercise Name List is automatically updated.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+Exercise names are recognised as equal if their lower-cased, white-spaces removed forms are the same.<br><br> 
+I.E. "Bench Press", "BENCH PRESS", "BenchPress" will be logged as the same exercise for your convenience in adding.<br><br>
+However, the first time you add an exercise with a unrecognised name, the Recognised Exercise Name List will save the form 
+you have input. Choose wisely!
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 
 
@@ -121,9 +168,10 @@ Format: `:wq`
 
 ## FAQ
 
-**Q**: Coming soon...
+**Q**: What is the use of the :list command? 
 <br>
-**A**:
+**A**: The List command is used to make the Exercise List display all exercises after a Exercise List morphing command 
+such as Find or Range has been executed. 
 
 --------------------------------------------------------------------------------------------------------------------
 
