@@ -34,7 +34,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `internconnect.jar` from [here](https://github.com/AY2223S1-CS2103-F14-2/tp/releases).
+2. Download the latest `addressbook.jar` from [here](https://github.com/AY2223S1-CS2103-F14-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your InternConnect.
 
@@ -93,12 +93,13 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 | **Name**            | `n`       | 50           | Can only contain alphanumeric characters and spaces                           |
 | **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                              |
 | **Address**         | `a`       | 100          | Can take any values, but not blank                                            |
-| **CAP**             | `c`       | None         | Can only consist of 2 decimal values in the form of `CURRENT_CAP/MAX_CAP`     |
+| **CAP**             | `c`       | None         | Can only consist of 2 numeric values in the form of `CURRENT_CAP/MAX_CAP`     |
 | **Gender**          | `g`       | None         | Can only be `male` or `female` in any capitalization                          |
 | **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                           |
 | **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of mm-YYYY, starting from the year 0000 |                           
 | **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                           |
 | **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces     |
+* `CURRENT_CAP` must be smaller than or equal to `MAX_CAP`
 * Special punctuations: `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
 
 
@@ -217,7 +218,7 @@ Examples:
 
 ### 3.7 Locating applicants by field: `find`
 
-Finds applicants whose has a field containing any of the given keywords among all specifed fields.
+Finds applicants whose has a field containing any of the given keywords among all specified fields.
 
 Format: `find parameter/KEYWORD [parameter/MORE_KEYWORDS]...`
 
@@ -282,14 +283,16 @@ Examples:
 
 ### 3.10 Checking-out a new or existing list: `checkout`
 
-Switches between different lists in InternConnect.
+Switches between different lists in InternConnect stored in `data/` folder.
 
 Format: `checkout FILE_NAME`
 
-* New and existing lists will be stored at `data/FILE_NAME.json`
+* `FILE_NAME` should not include any extension, as it would always be a JSON file.
+* The command will create a new list populated with the sample data if the specified `FILE_NAME.json` doesn't exist. Otherwise, it will switch to a previously created list.
 
 Examples:
 * `checkout 27-oct-2022` loads data from `data/27-oct-2022.json` if it exists. Otherwise, a new file will be created and populated with sample data.
+
 
 ### 3.11 Clearing all entries: `clear`
 
