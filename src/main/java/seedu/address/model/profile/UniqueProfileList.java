@@ -120,10 +120,11 @@ public class UniqueProfileList implements Iterable<Profile> {
     }
 
     /**
-     * Updates the profiles {@code target} in list of events {@code eventsToSet} to the new edited profile
+     * Updates the profile {@code target} in each event in {@code eventsToSet} to the new edited profile
      * {@code editedProfile}.
+     * The profile {@code target} must exist in the list.
      */
-    public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
+    public void setProfileForAttendingEvents(Profile target, Profile editedProfile, List<Event> eventsToSet) {
         requireAllNonNull(target, editedProfile, eventsToSet);
 
         int index = internalList.indexOf(target);
@@ -131,15 +132,16 @@ public class UniqueProfileList implements Iterable<Profile> {
             throw new ProfileNotFoundException();
         }
 
-        target.removeFromEventsAttending(eventsToSet);
-        editedProfile.addToEventsAttending(eventsToSet);
+        target.removeAttendingEvents(eventsToSet);
+        editedProfile.addToAllEvents(eventsToSet);
     }
 
     /**
      * Deletes the profile {@code target} from given list of events {@code eventsToEdit}.
      * Events in {@code eventsToEdit} must exist in the address book.
+     * The profile {@code target} must exist in the list.
      */
-    public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
+    public void removeProfileFromAttendingEvents(Profile target, List<Event> eventsToEdit) {
         requireAllNonNull(target, eventsToEdit);
 
         int index = internalList.indexOf(target);
@@ -147,7 +149,7 @@ public class UniqueProfileList implements Iterable<Profile> {
             throw new ProfileNotFoundException();
         }
 
-        internalList.get(index).removeFromEventsAttending(eventsToEdit);
+        internalList.get(index).removeAttendingEvents(eventsToEdit);
     }
 
     public void setProfiles(UniqueProfileList replacement) {

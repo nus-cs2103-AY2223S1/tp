@@ -22,7 +22,7 @@ public class EventsAttending {
     }
 
     /**
-     * Constructs an {@code EventsToAttend} with the given list.
+     * Constructs an {@code EventsAttending} with the given list.
      *
      * @param events A list of events the profile is attending.
      */
@@ -33,7 +33,7 @@ public class EventsAttending {
     }
 
     /**
-     * Returns an immutable profile set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable event set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public List<Event> getEventsList() {
@@ -42,19 +42,30 @@ public class EventsAttending {
     }
 
     /**
-     * Adds event to the list of events profile is attending.
+     * Adds the given event if it has not already been added.
      */
-    public void add(Event event) {
-        if (!hasEventAttending(event)) {
+    public void addEvent(Event event) {
+        requireNonNull(event);
+        if (!hasEvent(event)) {
             this.eventsAttending.add(event);
         }
     }
 
-    public void remove(Event event) {
-        this.eventsAttending.remove(event);
+    /**
+     * Removes the given event if it exists.
+     */
+    public void removeEvent(Event event) {
+        requireNonNull(event);
+        if (hasEvent(event)) {
+            this.eventsAttending.remove(event);
+        }
     }
 
-    public boolean hasEventAttending(Event event) {
+    /**
+     * Returns true if the given event is in the list of events.
+     */
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
         return this.eventsAttending.contains(event);
     }
 

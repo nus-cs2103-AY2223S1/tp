@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Attendees;
 import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 
@@ -46,8 +47,7 @@ public class DeleteEventCommand extends EventCommand {
         }
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
-        List<Profile> profiles = eventToDelete.getAttendees().getAttendeesList();
-        eventToDelete.removeEventFromAttendees(profiles);
+        eventToDelete.removeFromAttendees();
         model.deleteEvent(eventToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));
     }

@@ -105,8 +105,8 @@ public class EditProfileCommand extends ProfileCommand {
         List<Event> events = profileToEdit.getEventsToAttend().getEventsList();
         model.setProfile(profileToEdit, editedProfile);
         for (Event e : events) {
-            e.getAttendees().remove(profileToEdit);
-            e.getAttendees().add(editedProfile);
+            e.getAttendees().removeAttendee(profileToEdit);
+            e.getAttendees().addProfile(editedProfile);
             Event eventCopy = new Event(e.getTitle(), e.getStartDateTime(), e.getEndDateTime(),
                     e.getTags(), e.getAttendees());
             model.setEvent(e, eventCopy);

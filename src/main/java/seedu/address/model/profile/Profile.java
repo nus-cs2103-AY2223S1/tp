@@ -83,6 +83,54 @@ public class Profile implements Comparable<Profile> {
         return Collections.unmodifiableSet(tags);
     }
 
+    // eventsAttending operations
+
+    /**
+     * Adds the specified event to the profile's list of events to attend if it
+     * has not already been added.
+     */
+    public void addAttendingEvent(Event eventToAdd) {
+        requireNonNull(eventToAdd);
+        eventsToAttend.addEvent(eventToAdd);
+    }
+
+    /**
+     * Removes the specified event from the profile's list of events to attend if it exists in the list.
+     */
+    public void removeAttendingEvent(Event eventToRemove) {
+        requireNonNull(eventToRemove);
+        eventsToAttend.removeEvent(eventToRemove);
+    }
+
+    /**
+     * Returns true if the specified event is in the profile's list of events to attend.
+     */
+    public boolean isAttendingEvent(Event event) {
+        return eventsToAttend.hasEvent(event);
+    }
+
+    // event operations
+
+    /**
+     * Removes each specified event in {@code eventsToRemove} from the profile's list of events to attend
+     * if they exist in the list.
+     */
+    public void removeAttendingEvents(List<Event> eventsToRemove) {
+        requireNonNull(eventsToRemove);
+        eventsToRemove.forEach(this::removeAttendingEvent);
+    }
+
+    /**
+     * Adds the profile to the list of attendees of each event in {@code eventsToAdd} if it has not
+     * already been added.
+     */
+    public void addToAllEvents(List<Event> eventsToAdd) {
+        requireNonNull(eventsToAdd);
+        eventsToAdd.forEach(event -> event.addAttendee(this));
+    }
+
+    // equality checks
+
     /**
      * Returns true if both profiles have the same email.
      */
@@ -157,52 +205,6 @@ public class Profile implements Comparable<Profile> {
     @Override
     public int compareTo(Profile other) {
         return this.getName().compareTo(other.getName());
-    }
-
-    /**
-     * Adds the profile to the attendee list in the list of events {@code eventsToAdd} if it has not been added.
-     */
-    public void addToEventsAttending(List<Event> eventsToAdd) {
-        requireNonNull(eventsToAdd);
-
-        eventsToAdd.forEach(event -> {
-            if (!event.hasAttendee(this)) {
-                event.getAttendees().add(this);
-            }
-        });
-    }
-
-    /**
-     * Adds the specified event {@code eventToAdd} to the profile's list of attending events if it
-     * has not already been added.
-     * @param eventToAdd
-     */
-    public void addAttendingEvent(Event eventToAdd) {
-        requireNonNull(eventToAdd);
-
-        if (!eventsToAttend.hasEventAttending(eventToAdd)) {
-            eventsToAttend.add(eventToAdd);
-        }
-    }
-
-    /**
-     * Removes the profile from the attendee list in the list of events {@code eventsToRemove} if it exists.
-     */
-    public void removeFromEventsAttending(List<Event> eventsToRemove) {
-        requireNonNull(eventsToRemove);
-
-        eventsToRemove.forEach(event -> {
-            if (event.hasAttendee(this)) {
-                event.getAttendees().remove(this);
-            }
-        });
-    }
-
-    /**
-     * Returns true if the specified event is in the profile's list of eventsAttending.
-     */
-    public boolean hasEventAttending(Event event) {
-        return eventsToAttend.hasEventAttending(event);
     }
 
     @Override

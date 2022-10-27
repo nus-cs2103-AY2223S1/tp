@@ -113,7 +113,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteProfile(Profile target) {
-        //removeProfileFromEventsAttending(target, target.getEventsToAttend().getEventsList());
+        //removeProfileFromAttendingEvents(target, target.getEventsToAttend().getEventsList());
         addressBook.removeProfile(target);
     }
 
@@ -132,7 +132,7 @@ public class ModelManager implements Model {
     @Override
     public void setProfile(Profile target, Profile editedProfile) {
         requireAllNonNull(target, editedProfile);
-        //setProfileForEventsAttending(target, editedProfile, target.getEventsToAttend().getEventsList());
+        //setProfileForAttendingEvents(target, editedProfile, target.getEventsToAttend().getEventsList());
         addressBook.setProfile(target, editedProfile);
     }
 

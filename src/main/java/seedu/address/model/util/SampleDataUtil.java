@@ -62,8 +62,8 @@ public class SampleDataUtil {
     }
 
     private static void addEventsAttending() {
-        formalDinner.addEventToAttendees(List.of(alex));
-        presentation.addEventToAttendees(List.of(bernice, roy));
+        formalDinner.addToAllAttendees(List.of(alex));
+        presentation.addToAllAttendees(List.of(bernice, roy));
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {

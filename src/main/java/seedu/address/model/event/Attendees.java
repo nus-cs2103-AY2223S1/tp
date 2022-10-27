@@ -42,20 +42,50 @@ public class Attendees {
     }
 
     /**
-     * Adds the specified profile if it does not already exist in the list.
+     * Adds the given profile if it has not already been added.
      */
-    public void add(Profile profile) {
+    public void addProfile(Profile profile) {
         if (!hasAttendee(profile)) {
             this.attendees.add(profile);
         }
     }
 
-    public void remove(Profile profile) {
-        this.attendees.remove(profile);
+    /**
+     * Adds the list of profiles in {@code profilesToAdd} if they have not already been added.
+     */
+    public void addProfiles(List<Profile> profilesToAdd) {
+        profilesToAdd.forEach(this::addProfile);
     }
 
+    /**
+     * Removes the given profile if it exists.
+     */
+    public void removeAttendee(Profile attendeeToRemove) {
+        if (hasAttendee(attendeeToRemove)) {
+            this.attendees.remove(attendeeToRemove);
+        }
+    }
+
+    /**
+     * Removes each profile in {@code attendeesToRemove} if they exist.
+     */
+    public void removeAttendees(List<Profile> attendeesToRemove) {
+        attendeesToRemove.forEach(this::removeAttendee);
+    }
+
+    /**
+     * Returns true if the given profile is in the list of profiles.
+     */
     public boolean hasAttendee(Profile profile) {
         return this.attendees.contains(profile);
+    }
+
+    /**
+     * Removes the given event from each profile in the list of profiles.
+     */
+    public void removeEventFromAttendees(Event eventToRemove) {
+        requireNonNull(eventToRemove);
+        attendees.forEach(attendee -> attendee.removeAttendingEvent(eventToRemove));
     }
 
     public int size() {

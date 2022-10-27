@@ -109,7 +109,7 @@ class JsonAdaptedEvent {
             if (addressBook.hasProfile(p)) {
                 int index = addressBook.getProfileList().indexOf(p);
                 p = addressBook.getProfileList().get(index);
-                modelAttendees.add(p);
+                modelAttendees.addProfile(p);
             }
         }
 

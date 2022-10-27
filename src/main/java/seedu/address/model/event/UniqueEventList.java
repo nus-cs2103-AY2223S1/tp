@@ -117,11 +117,12 @@ public class UniqueEventList implements Iterable<Event> {
             throw new EventNotFoundException();
         }
 
-        internalList.get(index).deleteAttendees(profilesToDelete);
+        internalList.get(index).removeAttendees(profilesToDelete);
     }
 
     /**
      * Adds event {@code event} to the profiles in list of profiles {@code profilesToAddEventTo}.
+     * The event must exist in the list.
      */
     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
         requireAllNonNull(event, profilesToAddEventTo);
@@ -131,27 +132,13 @@ public class UniqueEventList implements Iterable<Event> {
             throw new EventNotFoundException();
         }
 
-        internalList.get(index).addEventToAttendees(profilesToAddEventTo);
+        internalList.get(index).addToAllAttendees(profilesToAddEventTo);
     }
 
     /**
-     * Deletes the event {@code target} from given list of profiles {@code profilesToEdit}.
-     * Profiles in {@code profilesToEdit} must exist in the address book.
-     */
-    public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
-        requireAllNonNull(target, profilesToEdit);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new EventNotFoundException();
-        }
-
-        internalList.get(index).removeEventFromAttendees(profilesToEdit);
-    }
-
-    /**
-     * Updates the events {@code target} in list of profiles {@code profilesToSet} to the new edited event
+     * Updates the event {@code target} in each profile in {@code profilesToSet} to the new edited event
      * {@code editedEvent}.
+     * The event {@code target} must exist in the list.
      */
     public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
         requireAllNonNull(target, editedEvent, profilesToEdit);
@@ -161,8 +148,24 @@ public class UniqueEventList implements Iterable<Event> {
             throw new EventNotFoundException();
         }
 
-        target.removeEventFromAttendees(profilesToEdit);
-        editedEvent.addEventToAttendees(profilesToEdit);
+        target.removeFromAttendees(profilesToEdit);
+        editedEvent.addToAllAttendees(profilesToEdit);
+    }
+
+    /**
+     * Removes the event {@code target} from each profile in {@code profilesToEdit}.
+     * Profiles in {@code profilesToEdit} must exist in the address book.
+     * The event {@code target} must exist in the list.
+     */
+    public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, profilesToEdit);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        internalList.get(index).removeFromAttendees(profilesToEdit);
     }
 
     public void setEvents(UniqueEventList replacement) {

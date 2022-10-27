@@ -75,74 +75,47 @@ public class Event implements Comparable<Event> {
         return attendees;
     }
 
+    // attendee operations
+
     /**
-     * Adds the profiles in {@code profilesToAdd} to the event's list of attendees if
+     * Adds the specified profile to the event's list of attendees if it has not already been added.
+     */
+    public void addAttendee(Profile profileToAdd) {
+        requireNonNull(profileToAdd);
+        attendees.addProfile(profileToAdd);
+    }
+
+    /**
+     * Adds the specified profiles in {@code profilesToAdd} to the event's list of attendees if
      * they have not already been added.
      */
     public void addAttendees(List<Profile> profilesToAdd) {
         requireNonNull(profilesToAdd);
-
-        profilesToAdd.forEach(profile -> {
-            if (!attendees.hasAttendee(profile)) {
-                attendees.add(profile);
-            }
-        });
+        attendees.addProfiles(profilesToAdd);
     }
 
     /**
-     * Removes the profiles in {@code profilesToRemove} from the event's list of attendees if
-     * they exist.
+     * Removes the specified profile from the event's list of attendees if exists in the list.
      */
-    public void removeAttendees(List<Profile> profilesToRemove) {
-        requireNonNull(profilesToRemove);
-
-        profilesToRemove.forEach(profile -> {
-            if (attendees.hasAttendee(profile)) {
-                attendees.remove(profile);
-            }
-        });
+    public void removeAttendee(Profile profileToRemove) {
+        requireNonNull(profileToRemove);
+        attendees.removeAttendee(profileToRemove);
     }
 
     /**
-     * Adds the event to {@code profilesToAddEventTo} in the profile's list of eventsAttending if
-     * they have not already been added.
+     * Removes each specified profile in {@code profilesToRemove} from the event's list of attendees if
+     * they exist in the list.
      */
-    public void addEventToAttendees(List<Profile> profilesToAddEventTo) {
-        requireNonNull(profilesToAddEventTo);
-
-        profilesToAddEventTo.forEach(profile -> {
-            if (!profile.hasEventAttending(this)) {
-                profile.getEventsToAttend().add(this);
-            }
-        });
-    }
-
-    /***
-     * Deletes the profiles in {@code profilesToDelete} from the event's list of attendees if
-     * they have not already been deleted.
-     */
-    public void deleteAttendees(List<Profile> profilesToDelete) {
-        requireNonNull(profilesToDelete);
-
-        profilesToDelete.forEach(profile -> {
-            if (attendees.hasAttendee(profile)) {
-                attendees.remove(profile);
-            }
-        });
+    public void removeAttendees(List<Profile> attendeesToRemove) {
+        requireNonNull(attendeesToRemove);
+        attendees.removeAttendees(attendeesToRemove);
     }
 
     /**
-     * Removes the event in {@code profilesToRemoveEventFrom} from the profile's list of eventsAttending if
-     * they exist.
+     * Removes the event from each attendee in its own list of attendees {@code attendees}.
      */
-    public void removeEventFromAttendees(List<Profile> profilesToRemoveEventFrom) {
-        requireNonNull(profilesToRemoveEventFrom);
-
-        profilesToRemoveEventFrom.forEach(profile -> {
-            if (profile.hasEventAttending(this)) {
-                profile.getEventsToAttend().remove(this);
-            }
-        });
+    public void removeFromAttendees() {
+        attendees.removeEventFromAttendees(this);
     }
 
     public int numberOfAttendees() {
@@ -159,6 +132,28 @@ public class Event implements Comparable<Event> {
     public boolean hasAttendee(Profile profile) {
         return attendees.hasAttendee(profile);
     }
+
+    // profile operations
+
+    /**
+     * Adds the event to the list of eventsAttending of each profile in {@code profilesToAddEventTo} if
+     * it has not already been added.
+     */
+    public void addToAllAttendees(List<Profile> profilesToAddEventTo) {
+        requireNonNull(profilesToAddEventTo);
+        profilesToAddEventTo.forEach(profile -> profile.addAttendingEvent(this));
+    }
+
+    /**
+     * Removes the event from the list of eventsAttending of each attendee in {@code attendeesToRemoveFrom}
+     * if it exists in the list.
+     */
+    public void removeFromAttendees(List<Profile> attendeesToRemoveFrom) {
+        requireNonNull(attendeesToRemoveFrom);
+        attendeesToRemoveFrom.forEach(attendee -> attendee.removeAttendingEvent(this));
+    }
+
+    // equality checks
 
     /**
      * Returns true if both events have the same title, start, and end times.

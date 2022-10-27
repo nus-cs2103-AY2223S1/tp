@@ -97,8 +97,8 @@ public class EditEventCommand extends EventCommand {
 
         List<Profile> profiles = eventToEdit.getAttendees().getAttendeesList();
         for (Profile p : profiles) {
-            p.getEventsToAttend().remove(eventToEdit);
-            p.getEventsToAttend().add(editedEvent);
+            p.removeAttendingEvent(eventToEdit);
+            p.addAttendingEvent(editedEvent);
         }
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);

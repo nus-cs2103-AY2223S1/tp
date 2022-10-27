@@ -130,7 +130,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
         requireAllNonNull(target, editedProfile, eventsToSet);
-        profiles.setProfileForEventsAttending(target, editedProfile, eventsToSet);
+        profiles.setProfileForAttendingEvents(target, editedProfile, eventsToSet);
     }
 
     /**
@@ -140,7 +140,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
         requireAllNonNull(target, eventsToEdit);
-        profiles.removeProfileFromEventsAttending(target, eventsToEdit);
+        profiles.removeProfileFromAttendingEvents(target, eventsToEdit);
     }
 
     /**
