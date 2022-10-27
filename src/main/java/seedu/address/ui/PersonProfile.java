@@ -16,7 +16,6 @@ import seedu.address.model.person.Person;
  * An UI component that displays information of a {@code Person}.
  */
 public class PersonProfile extends UiPart<Region> {
-    public static final String EMPTY_DISPLAY_VALUE = "-";
     private static final String FXML = "PersonProfile.fxml";
     private static final String FILE_EXISTS = "Client Information";
     private static final String NO_FILE_EXISTS = "No File Exists";
@@ -79,6 +78,13 @@ public class PersonProfile extends UiPart<Region> {
     public PersonProfile(Person person) {
         super(FXML);
         this.person = person;
+        setProfileFields();
+    }
+
+    /**
+     * Sets all the fields in person profile.
+     */
+    private void setProfileFields() {
         setNameField();
         setPhoneField();
         setAddressField();
@@ -99,7 +105,7 @@ public class PersonProfile extends UiPart<Region> {
             nameLabel.setManaged(false);
             return;
         }
-        name.setText(person.getName().getFullDisplayName());
+        name.setText(person.getName().getFullName());
     }
 
     /**
@@ -111,7 +117,7 @@ public class PersonProfile extends UiPart<Region> {
             phoneLabel.setManaged(false);
             return;
         }
-        phone.setText(person.getPhone().getDisplayValue());
+        phone.setText(person.getPhone().getValue());
     }
 
     /**
@@ -123,7 +129,7 @@ public class PersonProfile extends UiPart<Region> {
             addressLabel.setManaged(false);
             return;
         }
-        address.setText(person.getAddress().getDisplayValue());
+        address.setText(person.getAddress().getValue());
     }
 
     /**
@@ -135,7 +141,7 @@ public class PersonProfile extends UiPart<Region> {
             emailLabel.setManaged(false);
             return;
         }
-        email.setText(person.getEmail().getDisplayValue());
+        email.setText(person.getEmail().getValue());
     }
 
     /**
@@ -147,7 +153,7 @@ public class PersonProfile extends UiPart<Region> {
             descriptionLabel.setManaged(false);
             return;
         }
-        description.setText(person.getDescription().getDisplayValue());
+        description.setText(person.getDescription().getValue());
     }
 
     /**
@@ -159,7 +165,7 @@ public class PersonProfile extends UiPart<Region> {
             netWorthLabel.setManaged(false);
             return;
         }
-        netWorth.setText(person.getNetWorth().getDisplayValue());
+        netWorth.setText(person.getNetWorth().getValue());
     }
 
     /**
@@ -217,23 +223,45 @@ public class PersonProfile extends UiPart<Region> {
         }
     }
 
+    /**
+     * Shows the Client Information button.
+     */
     private void showValidFilePathButton() {
         personFileButton.setStyle(VALID_BUTTON_BGCOLOUR);
         personFileButton.setText(FILE_EXISTS);
     }
 
+    /**
+     * Shows the no file exists button
+     */
     private void showInvalidFilePathButton() {
         personFileButton.setStyle(INVALID_BUTTON_BGCOLOUR);
         personFileButton.setText(NO_FILE_EXISTS);
     }
 
+    /**
+     * Hides error message.
+     */
     private void hideButtonErrorMessage() {
         buttonErrorMessage.setManaged(false);
     }
 
+    /**
+     * Shows error message.
+     * @param e error message to be shown.
+     */
     private void showButtonErrorMessage(IOException e) {
         buttonErrorMessage.setText("Error: " + e.getMessage());
         buttonErrorMessage.setManaged(true);
+    }
+
+    /**
+     * Returns true if otherPerson is same as person in person profile.
+     * @param otherPerson Person to check
+     * @return True if is same person
+     */
+    public boolean isSamePerson(Person otherPerson) {
+        return person.isSamePerson(otherPerson);
     }
 
     @Override

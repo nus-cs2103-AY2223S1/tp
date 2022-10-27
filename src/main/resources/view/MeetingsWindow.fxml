@@ -32,9 +32,6 @@
                 </children>
 
                 <StackPane VBox.vgrow="ALWAYS" fx:id="meetingListPanelPlaceholder">
-<!--                    <padding>-->
-<!--                        <Insets top="5" right="10" bottom="5" left="10" />-->
-<!--                    </padding>-->
                 </StackPane>
 
                 <opaqueInsets>
