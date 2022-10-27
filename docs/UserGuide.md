@@ -9,12 +9,16 @@ Teacher’s Pet can get your contact and class management tasks done faster than
 **Teacher’s Pet** allows you to manage your schedule and keep track of your students.
 The app stores basic information about your students, such as `Name`, `Contact Number`, `Money Owed`, `Class Date` and more.
 
+Before you get started, you may want to read [how to get started with the User Guide](#how-to-read-the-user-guide)!
 To get started with using our application, jump straight to the [Quick Start](#quick-start) section.
 For a full list of commands and detailed instructions, head to the [Features](#features) section.
 
 ## Table of contents
 * [Quick Start](#quick-start)
 * [UI Overview](#ui-overview)
+* [How to read the User Guide](#how-to-read-the-user-guide)
+    * [Command format](#notes-about-the-command-format)
+    * [Callouts](#callouts)
 * [Features](#features)
     * [Viewing help: `help`](#viewing-help-help)
     * [Adding a student: `add`](#adding-a-student-add)
@@ -56,8 +60,9 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 
 ![UI introduction](images/UG-screenshots/UiIntro.png)
 
+---
 
-### UI Overview
+## UI Overview
 
 ![Partition](images/UG-screenshots/UiPartition.png)
 
@@ -86,9 +91,9 @@ Basic Instructions:
 
 ---
 
-## Features
+## How to read the User Guide
 
-**Notes about the command format:**
+### Notes about the command format:
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter
   which can be used as `add n/John Doe`.
@@ -103,6 +108,21 @@ Basic Instructions:
   be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 - Commands that require the use of index from the Schedule panel list (right side) will be represented as `INDEX-s`,
   while index from the Student's Details panel list (left side) will be represented as `INDEX`.
+
+### Callouts:
+
+Do refer to the callouts icons below! They will be useful when you are reading this user guide.
+
+| Icon | Definition                                                                                                                |
+|------|---------------------------------------------------------------------------------------------------------------------------|
+| ℹ️   | Indicates additional information that can help you to gain a better understanding. They are good to know but not crucial. |
+| 💡   | Indicates tips and solutions for potential problems you may encounter.                                                    |
+| ❗    | Indicates information that are important to know so as to minimise confusion.                                             |
+| ⚠️   | Indicates a warning to ensure you will proceed with care.                                                                 |
+
+---
+
+## Features
 
 ### Viewing help: `help`
 
@@ -125,7 +145,7 @@ Adds a student to the Teacher’s Pet.
     - Student’s Name must only contain alphanumeric characters.
 
 ```yaml
-Note: Multiple students may share the same name.
+ℹ️ Note: Multiple students may share the same name.
 ```
 
 2. Student’s Contact Number:
@@ -134,7 +154,7 @@ Note: Multiple students may share the same name.
    - Student's contact number must begin with `6`, `8` or `9`. 
 
 ```yaml
-Note: Contact number must contain exactly 8 digits.
+ℹ️ Note: Contact number must contain exactly 8 digits.
       Contact number must be unique.
 ```
 
@@ -144,7 +164,7 @@ Note: Contact number must contain exactly 8 digits.
     - Next of Kin’s contact number must begin with `6`, `8` or `9`. 
 
 ```yaml
-Note: Next of Kin’s contact number must contain exactly 8 digits.
+ℹ️ Note: Next of Kin’s contact number must contain exactly 8 digits.
 ```
 
 4. Address:
@@ -152,7 +172,7 @@ Note: Next of Kin’s contact number must contain exactly 8 digits.
     - Address may contain any kinds of character.
 
 ```yaml
-Note: Address cannot be empty. It must contain at least 1 character.
+ℹ️ Note: Address cannot be empty. It must contain at least 1 character.
 ```
 
 5. Email:
@@ -171,7 +191,7 @@ Note: Address cannot be empty. It must contain at least 1 character.
     - Tags must only contain alphanumeric characters.
 
 ```yaml
-Note: Tags must contain at least 1 alphanumeric character and
+ℹ️ Note: Tags must contain at least 1 alphanumeric character and
       cannot contain spacings.
 ```
 
@@ -184,7 +204,7 @@ Example:
 ![Add](images/UG-screenshots/UiAdd.png)
 
 ```yaml
-Note: Amount paid, Amount owed, Additional notes fields are to be updated via `edit` command.
+ℹ️ Note: Amount paid, Amount owed, Additional notes fields are to be updated via `edit` command.
 ```
 
 [Back to top](#table-of-contents)
@@ -222,7 +242,7 @@ the same convention as [adding a student](#adding-a-student-add).
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
 
 ```yaml
-❗Caution: If a chosen date is occupied by another student, a class conflict error
+❗ Caution: If a chosen date is occupied by another student, a class conflict error
           will arise.
 ```
 
@@ -235,7 +255,7 @@ the same convention as [adding a student](#adding-a-student-add).
     - Amount owed must be non-negative.
 
 ```yaml
-Note: Amount Owed and Amount Paid can only be between $0 and $2147483647.
+ℹ️ Note: Amount Owed and Amount Paid can only be between $0 and $2147483647.
       They are modified independent of each other.
 ```
 
@@ -246,12 +266,12 @@ Note: Amount Owed and Amount Paid can only be between $0 and $2147483647.
     - Use `nt-a/` to append the additional notes.
 
 ```yaml
-Note: Using both nt/ and nt-a/ in a single command will set the content
+❗ Caution: Using both nt/ and nt-a/ in a single command will reset the content
       of Additional Notes to the content behind both nt/ and nt-a/ prefixes.
 ```
 
 ```yaml
-Important: Note at least one of these fields must exist in order to make the
+❗ Caution: Note at least one of these fields must exist in order to make the
            edit command valid.
 ```
 
@@ -290,9 +310,9 @@ Example:
 ![UiMark](images/UG-screenshots/UiMark.png)
 
 ```yaml
-Tip: If you want to charge the student for missing the class, you can do so by the
-     mark command. This increases the amount owed but frees up that time slot for
-     another student.
+💡 Tip: If you want to charge the student for missing the class, you can do so by the
+        mark command. This increases the amount owed but frees up that time slot for
+        another student.
 ```
 
 [Back to top](#table-of-contents)
@@ -318,7 +338,7 @@ Example:
 ![UiPay](images/UG-screenshots/UiPay.png)
 
 ```yaml
-Note: The student cannot pay more than what he/she owes. There is also a maximum cap
+ℹ️ Note: The student cannot pay more than what he/she owes. There is also a maximum cap
       of $2147483647 for every payment.
 ```
 
@@ -363,7 +383,7 @@ Fields supported in `find`:
 - Tag `t/`
 
 ```yaml
-Note: Only one field can be searched at once.
+❗ Caution: Only one field can be searched at once.
 ```
 
 #### Find by Name:
@@ -556,7 +576,7 @@ Examples:
 - `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
-❗ Caution: Deleting a student by mistake can be reversed by "undo" command!
+💡 Tip: Deleting a student by mistake can be reversed by "undo" command!
 ```
 
 [Back to top](#table-of-contents)
@@ -570,7 +590,7 @@ Clears all students and their details from the list.
 Format: `clear`
 
 ```yaml
-❗ Caution: Clearing all students by mistake can be reversed by "undo" command!
+💡 Tip: Clearing all students by mistake can be reversed by "undo" command!
 ```
 
 [Back to top](#table-of-contents)
@@ -610,7 +630,8 @@ Teacher’s Pet data are saved in the hard disk automatically after any command 
 Students' data is saved as a JSON file `[JAR file location]/data/teachersPet.json`. Advanced users are welcome to edit the data file.
 
 ```yaml
-❗ Caution: If your changes to the data file makes its format invalid, Teacher’s Pet
+⚠️ Warning: Proceed with care!
+            If your changes to the data file makes its format invalid, Teacher’s Pet
             will discard all data and start with an empty data file at the next run!
 ```
 
@@ -635,8 +656,8 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON     |
 | INDEX       | The index number shown in the Student's Details panel list |
 | INDEX-s     | The index number shown in the Schedule panel list          |
-| Prefix      |                                                            |
-| Parameter   |                                                            |
+| Prefix      | e.g. `n/`, `p/`, `np`                                      |
+| Parameter   | e.g. `NAME`, `EMAIL`, `ADDRESS`                            |
 
 ## Command Summary
 
