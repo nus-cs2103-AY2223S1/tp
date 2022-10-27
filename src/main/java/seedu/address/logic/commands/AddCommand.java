@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code add}.
  */
-@CommandLine.Command(name = "add", mixinStandardHelpOptions = true, aliases = {"a", "ad"}, subcommands = {
+@CommandLine.Command(name = "add", aliases = {"a"}, mixinStandardHelpOptions = true, subcommands = {
     AddPersonCommand.class,
     AddMemberCommand.class,
     AddTaskCommand.class,
