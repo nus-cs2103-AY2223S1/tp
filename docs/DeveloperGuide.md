@@ -315,13 +315,18 @@ Design considerations:
 #### 4.2.6 ViewClass command
 
 <u>**Description**</u>
-
-The `ViewClassCommand` allows users to view the list of students in a given class.
+The `ViewClassCommand` displays the list of students in a particular class.
 
 <u>**Implementation**</u>
-Current Implementation:
-The `ViewClassCommand` displays the list of Students in a particular class by updating the `FilteredStudentList` with a `ClassPredicate`.
+This command can be divided into 3 main steps: 
+1. Parsing the command
+2. Creating the Predicate
+3. Executing the command
+by updating the `FilteredStudentList` with a `ClassPredicate`.
 The ClassPredicate checks that a Student's Class matches the user input(ignoring case-sensitivity).
+
+The following Sequence diagram shows how the `ViewClassCommand` works:
+*Insert Sequence Diagram*
 
 **Step 1: Parsing the command**
 
@@ -333,27 +338,17 @@ The delete command is first parsed.
 
 **Step 2: Executing the command**
 
-*Insert Basic Class Diagram*
-
 Given below is an example usage scenario and how the ViewClass mechanism behaves at each step.
 
 Step 1. Assuming Class-ify has been populated with sample data, the `FilteredStudentList` currently contains all Students and user can see all the students listed in the Student List Panel.
-*Insert Object Diagram showing user fields*
 
-Step 2. The user executes `viewClass 1A` command. 
-*Insert Object Diagram*
+Step 2. The user executes `viewClass 1A` command.
 
 Step 3. A new ClassPredicate object is created with the user input.
-*Insert Object Diagram*
 
 Step 4. The `updateFilteredStudentList` method in `model` is called with the ClassPredicate.
-*Insert Object Diagram*
 
 Step 5. Class-ify displays the list of students with the class "1A" on the student card list panel according to the updated `FilteredStudentList`.
-*Insert Object Diagram*
-
-The following sequence diagram shows how the ViewClass Command works:
-*Insert Sequence Diagram*
 
 Design Considerations:
 1. Predicate logic for filtering students by their class
