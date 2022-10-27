@@ -7,7 +7,11 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.parser.sort.*;
+import seedu.address.logic.parser.sort.SortByAppointment;
+import seedu.address.logic.parser.sort.SortByIncome;
+import seedu.address.logic.parser.sort.SortByMonthly;
+import seedu.address.logic.parser.sort.SortByName;
+import seedu.address.logic.parser.sort.SortByRiskTag;
 
 
 public class SortCommandParserTest {
@@ -48,7 +52,7 @@ public class SortCommandParserTest {
 
         SortCommand expectedSortCommandMonthly =
                 new SortCommand(new SortByMonthly("asc"), "monthly");
-        assertParseSuccess(parser, "monthly asc", expectedSortCommandMonthly);
+        assertParseSuccess(parser, "monthly", expectedSortCommandMonthly);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n name \n", expectedSortCommandName);
