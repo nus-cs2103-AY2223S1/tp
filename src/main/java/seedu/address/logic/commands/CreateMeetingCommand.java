@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -46,10 +47,10 @@ public class CreateMeetingCommand extends Command {
         + "matches more than one person in the address book! \n"
         + "Please include a more precise name.";
 
-    public final String[] peopleToMeet;
-    public final String meetingTitle;
-    public final String processedMeetingDateAndTime;
-    public final String meetingLocation;
+    private final String[] peopleToMeet;
+    private final String meetingTitle;
+    private final String processedMeetingDateAndTime;
+    private final String meetingLocation;
 
     /**
      * Constructor for CreateMeetingCommand.
@@ -114,24 +115,11 @@ public class CreateMeetingCommand extends Command {
         }
     }
 
-    // Methods that strips whitespace away from every name in the array before comparison
-    private boolean nameArraysAreEqual(String[] other) {
-        if (this.peopleToMeet.length != other.length) {
-            return false;
-        }
-        for (int i = 0; i < peopleToMeet.length; i++) {
-            if (!this.peopleToMeet[i].strip().equals(other[i].strip())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof CreateMeetingCommand // instanceof handles nulls
-            && nameArraysAreEqual(((CreateMeetingCommand) other).peopleToMeet)
+            && Arrays.equals(this.peopleToMeet, ((CreateMeetingCommand) other).peopleToMeet)
             && this.meetingTitle.equals(((CreateMeetingCommand) other).meetingTitle)
             && this.processedMeetingDateAndTime.equals(((CreateMeetingCommand) other).processedMeetingDateAndTime)
             && this.meetingLocation.equals(((CreateMeetingCommand) other).meetingLocation)); // state check

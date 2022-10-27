@@ -38,7 +38,7 @@ public class CreateMeetingCommandParser implements Parser<CreateMeetingCommand> 
         try {
             String[] newMeetingInformation = meetingInfo.split(";;;");
 
-            String[] peopleToMeet = newMeetingInformation[0].strip().split("}}");
+            String[] peopleToMeet = newMeetingInformation[0].strip().split("\\s*}}\\s*");
             String meetingTitle = newMeetingInformation[1].strip();
             String meetingDateAndTime = newMeetingInformation[2].strip();
             String meetingLocation = newMeetingInformation[3].strip();
