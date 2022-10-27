@@ -300,7 +300,7 @@ The Add Interest mechanism is facilitated by ```AddInterestCommand```, which ext
 ```Parser```. ```AddInterestCommandParser``` serves to parse the command arguments and create a new ```AddInterestCommand``` object. ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Student```.
 
 #### Steps:
-1. When the user enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```MassLinkersParser``` to parse the command.
+1. When the student enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```MassLinkersParser``` to parse the command.
 2. A new ```AddInterestCommandParser``` object is constructed.
 3. ```AddInterestCommandParser#parse``` parses the command arguments and returns a set of Interests. A new ```AddInterestCommand``` is constructed.
 4. ```AddInterestCommand``` is returned to the ```LogicManager```, which invokes ```AddInterestCommand#execute```.
@@ -322,9 +322,10 @@ In addition, the below sequence diagram illustrates how the ```AddInterestComman
 - **Alternative 1 (current choice)**: Store the set of```Interest``` as a field in the ```Student``` class.
     * Pros: It is easier to implement. The use of a ```HashSet``` can handle duplicates.
     * Cons: There is less abstraction as the logic of getting the list and adding to the list is handled by ```Student```.
+
 - **Alternative 2**: Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniqueStudentList```)
   * Pros: The low-level details of adding, removing and checking the interests are abstracted. There is greater adherence to the Single Responsibility Principle as the list of interests are handled by the ```UniqueInterestList``` class.
-  * Cons: The number of ```Interest``` is usually not that large so Alternative 2 could result in unnecessary implementation overhead complexity.
+  * Cons: The number of ```Interest``` is usually not that large so Alternative 2 could result in unnecessary implementation overhead.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
