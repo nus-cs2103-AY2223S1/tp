@@ -60,11 +60,14 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        case DisplayTripCommand.COMMAND_WORD:
+            return new DisplayTripCommandParser().parse(arguments);
+
+        case DisplayEventCommand.COMMAND_WORD:
+            return new DisplayEventCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
 
         case EventListCommand.COMMAND_WORD:
             return new EventListCommand();

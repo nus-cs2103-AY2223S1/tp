@@ -1,7 +1,7 @@
 package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_COMPLETION;
+import static seedu.travelr.commons.core.Messages.MESSAGE_RESET_VIEW;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import seedu.travelr.model.trip.Trip;
 
 
 /**
- * Represents the AddEventToTripCommand. Extends the Command class.
+ * Represents the MarkTripDoneCommand. Extends the Command class.
  */
 public class MarkTripDoneCommand extends Command {
 
@@ -56,8 +56,8 @@ public class MarkTripDoneCommand extends Command {
         }
 
         tripToMarkDone.markDone();
-        model.sortTripsByComparator(COMPARE_BY_COMPLETION);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, tripToMarkDone.getTitle().toString()));
+        model.resetView();
+        return new CommandResult(String.format(MESSAGE_SUCCESS + "\n" + MESSAGE_RESET_VIEW, tripToMarkDone.getTitle()));
     }
 
     @Override

@@ -108,7 +108,7 @@ public class Trip {
         events.remove(event);
     }
 
-    public boolean contains(Event event) {
+    public boolean containsEvent(Event event) {
         return events.contains(event);
     }
 
@@ -185,7 +185,8 @@ public class Trip {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
+        builder.append("Title: ")
+                .append(getTitle())
                 .append("; Description: ")
                 .append(getDescription());
 

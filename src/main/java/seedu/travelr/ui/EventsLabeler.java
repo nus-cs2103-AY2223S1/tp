@@ -12,9 +12,11 @@ import javafx.scene.layout.Region;
  */
 public class EventsLabeler extends UiPart<Region> {
 
+    private static final String FXML = "EventsLabeler.fxml";
+
     @FXML
     private Label eventsTextField;
-    private static final String FXML = "EventsLabeler.fxml";
+
 
     /**
      * Labels event.
@@ -27,7 +29,6 @@ public class EventsLabeler extends UiPart<Region> {
         eventsTextField.setGraphic(eventsIcon);
         eventsTextField.setContentDisplay(ContentDisplay.RIGHT);
     }
-
 
 
 }

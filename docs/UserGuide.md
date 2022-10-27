@@ -131,7 +131,7 @@ Examples:
 ### Adding events to trips: `add-et`
 Adds the specified event from the bucket list to the specified trip.
 
-Format: `add-et n/EVENT NAME T/TRIP NAME`
+Format: `add-et n/EVENT NAME t/TRIP NAME`
 - Adds the event with the specified EVENT NAME
 - Event is added to the trip at the specified TRIP NAME
 - The TRIP NAME must exist in the trips list.
@@ -143,7 +143,7 @@ Examples:
 ### Removing events from trips: `delete-et`
 Remove the specified event from the specified trip to the bucket list.
 
-Format: `delete-et n/EVENT NAME T/TRIP NAME`
+Format: `delete-et n/EVENT NAME t/TRIP NAME`
 - Remove the event with the specified event titled EVENT NAME from the specified trip titled TRIP NAME 
 - Event is added to the bucket list.
 - The TRIP NAME must exist in the trips list.

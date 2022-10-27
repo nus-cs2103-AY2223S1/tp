@@ -2,6 +2,7 @@ package seedu.travelr.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_COMPLETION;
 
 import java.nio.file.Path;
 import java.util.Comparator;
@@ -126,20 +127,27 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean bucketlistHasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.bucketlistHasEvent(event);
+    }
+
+    @Override
     public void deleteTrip(Trip target) {
         addressBook.removeTrip(target);
+        if (selectedTrip.isEqual(target)) {
+            resetSelectedTrip();
+        }
     }
 
     @Override
     public void deleteEvent(Event e) {
         addressBook.removeEvent(e);
-        updateFilteredEventList(getBucketPredicate());
     }
 
     @Override
     public void addTrip(Trip trip) {
         addressBook.addTrip(trip);
-        updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
     }
 
     /**
@@ -253,6 +261,15 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
     }
+
+    @Override
+    public void resetView() {
+        updateFilteredEventList(getBucketPredicate());
+        updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
+        resetSelectedTrip();
+        sortTripsByComparator(COMPARE_BY_COMPLETION);
+    }
+
 
     @Override
     public ObservableList<Event> getBucketList() {
