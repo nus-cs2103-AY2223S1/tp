@@ -179,7 +179,7 @@ Shows a list of all exercises.
 Format: `:list`
 
 ##### Example:
-`:list` shows the list of exercises user has completed
+`:list` Shows the list of exercises user has completed
 
 
 ### Filtering exercises by their name(s) : `:filter`
@@ -220,7 +220,7 @@ Sorts the list of exercises displayed in the Exercise List Window according to t
 Format: `:sort`
 
 ##### Example:
-* `:sort` shows the list of exercises after sort command has been executed
+* `:sort` Shows the sorted list of exercises.
 
 ![ListAfterSortCommand](images/ListAfterSortCommand.png)
 
@@ -237,14 +237,14 @@ Shows a list of all exercises sorted within a date range; the entry with the mos
 Format (1) : `:range start/START_DATE end/END_DATE`
 
 ##### Example:
-`:range start/25/10/2022 end/26/10/2022` shows the exercises done between October 25, 2022 and October 26, 2022 (both inclusive)
+`:range start/25/10/2022 end/26/10/2022` Shows the exercises done between October 25, 2022 and October 26, 2022 (both inclusive).
 
 ![RangeCommandOne](images/RangeCommandOneSample.png)
 
 Format (2) : `:range last/NUMBER_OF_DAYS`
 
 ##### Example:
-`:range last/3` shows the exercises done today and the last 3 days
+`:range last/3` Shows the exercises done today and the last 3 days.
 
 ![RangeCommandTwo](images/RangeCommandTwoSample.png)
 
@@ -295,7 +295,7 @@ Format (1): `:gen INDEX [INDEX]... level/DIFFICULTY_LEVEL`
 
 ##### Parameter constraints:
 * The index must be a positive integer 1, 2, 3, ...
-* The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}
+* The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}.
 
 ##### Examples:
 `:gen 1,2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Deadlift and Incline Bench.
@@ -311,8 +311,8 @@ Note that only one sample workout is generated for each unique exercise name. Fo
 Format (2): `:gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL`
 
 ##### Parameter constraints:
-* Name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**
-* The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}
+* Name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**.
+* The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 Extraneous parameters (before the first `n/` flag) will be ignored. <br> e.g. if the command specifies `:gen 1,2,3 n/Squat level/easy`, it will be interpreted as `:gen n/Squat level/easy`.
@@ -329,8 +329,7 @@ Note that only one sample workout is generated for each unique exercise name. Fo
 
 ### Viewing help : `:help`
 
-Access the help menu, containing a brief summary of the commands supported. The help menu also provides a link to the
-user guide.
+Access the help menu, containing a brief summary of the commands supported. The help menu also provides a link to the user guide.
 
 Format: `:help`
 
