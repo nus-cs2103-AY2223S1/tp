@@ -54,7 +54,7 @@ public class AddressBookParser {
      */
     // Quick workaround to extract preamble instead of just first word by changing regex
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(
-            "(?<commandWords>[a-z]+( [a-z]+(?!\\/))*)(?<arguments>.*)");
+            "(?<commandWords>[\\s a-z]+\\b(?!\\/))(?<arguments>\\s.*)");
 
     /**
      * Parses user input into command for execution.
