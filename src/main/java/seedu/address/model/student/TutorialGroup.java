@@ -19,12 +19,13 @@ public class TutorialGroup {
      */
     public static final String VALIDATION_REGEX = "[T][0-9]{2}";
 
-    public static final String DEFAULT_TUTORIAL_GROUP = "T01";
+    public static final String DEFAULT_TUTORIAL_GROUP = "T00";
+
+    public static final TutorialGroup EMPTY_TUTORIAL_GROUP = new TutorialGroup(DEFAULT_TUTORIAL_GROUP);
 
     private final String tutorialGroup;
 
     private final ArrayList<Student> students = new ArrayList<>();
-
 
 
     /**
@@ -76,6 +77,14 @@ public class TutorialGroup {
         }
         return this.tutorialGroup.equals(group.tutorialGroup);
     }
+
+    /**
+     * Returns true if this is initiated.
+     */
+    public boolean isInitiated() {
+        return !this.equals(EMPTY_TUTORIAL_GROUP);
+    }
+
 
     @Override
     public String toString() {

@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_STUDENT_AMY_WITH
 import static seedu.address.logic.commands.CommandTestUtil.DESC_STUDENT_BOB_WITH_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -52,15 +52,16 @@ public class StudentEnrollCommandTest {
 
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_enrollToTheSameTutorialGroup_failure() {
         StudentEnrollCommand enrollCommand = new StudentEnrollCommand(INDEX_FIRST_PERSON, new EditStudentDescriptor());
         Student editedStudent = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(StudentEnrollCommand.MESSAGE_ENROLL_PERSON_SUCCESS, editedStudent);
+        String expectedMessage = String.format(StudentEnrollCommand.MESSAGE_STUDENT_ALREADY_ENROLLED, editedStudent
+                .getTutorialGroup());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(enrollCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(enrollCommand, model, expectedMessage);
     }
 
 

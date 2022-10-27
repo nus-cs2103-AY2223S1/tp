@@ -61,6 +61,11 @@ public class Student {
         return email;
     }
 
+
+    public boolean isEnrolledInTutorial() {
+        return tutorialGroup.isInitiated();
+    }
+
     public TutorialGroup getTutorialGroup() {
         return tutorialGroup;
     }

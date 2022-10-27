@@ -22,25 +22,29 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
+
+
+
 /**
  * Edits the details of an existing person in the address book.
  */
-public class StudentEnrollCommand extends Command {
+public class StudentExpelCommand extends Command {
 
-    public static final String COMMAND_WORD = "student enroll";
+    public static final String COMMAND_WORD = "student expel";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enroll the student identified to the given tutorial "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Expel the student identified to the given tutorial "
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TUTORIAL_GROUP + "TUTORIAL GROUP ";
 
-    public static final String MESSAGE_ENROLL_PERSON_SUCCESS = "Enrolled Student to: %1$s ";
+    public static final String MESSAGE_EXPEL_PERSON_SUCCESS = "Expelled Student from: %1$s ";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
     public static final String MESSAGE_TUTORIAL_GROUP_NOT_FOUND = "This tutorial group is not found.";
     public static final String MESSAGE_NOT_EDITED = "Tutorial group not edited.";
-    public static final String MESSAGE_STUDENT_ALREADY_ENROLLED = "Student already enrolled in a tutorial: %1$s."
-            + "Expel him first then enroll.";
+    public static final String MESSAGE_DOES_NOT_BELONG_TO_THIS_GROUP = "The student does not belong to this group";
+    public static final String MESSAGE_TUTORIAL_NOT_INITIATED = "Tutorial group not initiated for this student. "
+            + "Cannot expel the student.";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -49,12 +53,11 @@ public class StudentEnrollCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editStudentDescriptor details to edit the person with
      */
-    public StudentEnrollCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
+    public StudentExpelCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
         requireNonNull(editStudentDescriptor);
 
         this.index = index;
-
         this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
     }
 
@@ -79,14 +82,20 @@ public class StudentEnrollCommand extends Command {
             throw new CommandException(MESSAGE_TUTORIAL_GROUP_NOT_FOUND);
         }
 
-        if (studentToEdit.isEnrolledInTutorial()) {
-            throw new CommandException(String.format(MESSAGE_STUDENT_ALREADY_ENROLLED,
-                    studentToEdit.getTutorialGroup()));
+        if (!studentToEdit.isEnrolledInTutorial()) {
+            throw new CommandException(MESSAGE_TUTORIAL_NOT_INITIATED);
         }
+
+        if (!studentToEdit.belongsTo(editedStudent.getTutorialGroup())) {
+            throw new CommandException(MESSAGE_DOES_NOT_BELONG_TO_THIS_GROUP);
+        }
+
+
+        //TODO: remove stu from tut group
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ENROLL_PERSON_SUCCESS, editedStudent.getTutorialGroup()));
+        return new CommandResult(String.format(MESSAGE_EXPEL_PERSON_SUCCESS, editedStudent.getTutorialGroup()));
     }
 
     /**
@@ -113,12 +122,12 @@ public class StudentEnrollCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StudentEnrollCommand)) {
+        if (!(other instanceof StudentExpelCommand)) {
             return false;
         }
 
         // state check
-        StudentEnrollCommand e = (StudentEnrollCommand) other;
+        StudentExpelCommand e = (StudentExpelCommand) other;
         return index.equals(e.index)
                 && editStudentDescriptor.equals(e.editStudentDescriptor);
     }
@@ -129,9 +138,6 @@ public class StudentEnrollCommand extends Command {
      */
     public static class EditStudentDescriptor {
         private TutorialGroup tutorialGroup;
-        private Name name;
-        private Phone phone;
-        private Email email;
 
         public EditStudentDescriptor() {}
 
@@ -150,40 +156,21 @@ public class StudentEnrollCommand extends Command {
             return CollectionUtil.isAnyNonNull(tutorialGroup);
         }
 
-
         public void setTutorialGroup(TutorialGroup tutorialGroup) {
             this.tutorialGroup = tutorialGroup;
+        }
+
+        /**
+         * Resets tutorial group.
+         */
+        public void resetTutorialGroup(TutorialGroup tutorialGroup) {
+            this.tutorialGroup = tutorialGroup;
+            //TODO: change later
         }
 
         public Optional<TutorialGroup> getTutorialGroup() {
             return Optional.ofNullable(tutorialGroup);
         }
-
-        public void setName(Name name) {
-            this.name = name;
-        }
-
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-
 
         @Override
         public boolean equals(Object other) {
