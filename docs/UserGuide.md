@@ -58,9 +58,6 @@ With NUScheduler, you can store contact details of the NUS community around you.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 **:information_source: Notes about the display:**<br>
 
 * `Profile`'s are listed in alphabetical order while `Event`'s are listed in chronological order, sorted by their starting date.
