@@ -118,9 +118,9 @@ public class EditPropertyCommand extends Command {
                 propertyTypeEnum);
         Property updatedProperty = new Property(updatedName, updatedAddress, updatedPrice, updatedTags);
         updatedProperty.setImageDirectoryPath(imageDirectoryPath);
-        return updatedProperty;    
+        return updatedProperty;
     }
-
+    
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
