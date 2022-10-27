@@ -13,14 +13,18 @@ import java.util.List;
  */
 public class Category {
 
-    public static final String MESSAGE_CONSTRAINTS = "Category names can be only N or P, N for nurse and P for patient";
+    public static final String MESSAGE_CONSTRAINTS = "Category names can be only N for nurse, "
+            + "P for patient, D for physician or K for next of kin.";
     public static final String NURSE_SYMBOL = "N";
     public static final String PATIENT_SYMBOL = "P";
+    public static final String PHYSICIAN_SYMBOL = "D";
+    public static final String NEXTOFKIN_SYMBOL = "K";
+    public static final String VALIDATION_REGEX = "[" + NURSE_SYMBOL + "|" + PATIENT_SYMBOL + "|"
+            + PHYSICIAN_SYMBOL + "|" + NEXTOFKIN_SYMBOL + "]";
     public static final ArrayList<String> COMMON_NURSE_MISSPELLINGS = new ArrayList<>(
             List.of("nurse", "nurses", "n"));
     public static final ArrayList<String> COMMON_PATIENT_MISSPELLINGS = new ArrayList<>(
             List.of("patient", "patients", "p"));
-    public static final String VALIDATION_REGEX = "[" + NURSE_SYMBOL + "|" + PATIENT_SYMBOL + "]";
 
     public final String categoryName;
 

@@ -31,10 +31,12 @@ import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Physician;
 import seedu.address.model.person.Uid;
 import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
@@ -151,6 +153,10 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         if (personToEdit instanceof Patient && updatedCategory.categoryName.equals("P")) {
+            Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
+                    .orElse(((Patient) personToEdit).getAttendingPhysician());
+            Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin()
+                    .orElse(((Patient) personToEdit).getNextOfKin());
             List<DateTime> originalDateTime = ((Patient) personToEdit).getDatesTimes();
             Optional<List<DateTime>> toBeUpdateDateTime = editPersonDescriptor.getDatesTimes();
             Optional<List<Index>> toBeUpdateDateTimeIndexes = editPersonDescriptor.getDateTimeIndexes();
@@ -159,13 +165,19 @@ public class EditCommand extends Command {
             VisitStatus updatedVisitStatus = editPersonDescriptor.getVisitStatus()
                     .orElse(((Patient) personToEdit).getVisitStatus());
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                        updatedAddress, updatedTags, updatedDateTime, updatedVisitStatus);
+                        updatedAddress, updatedTags, updatedDateTime, updatedVisitStatus,
+                        updatedPhysician, updatedNextOfKin);
         } else if (updatedCategory.categoryName.equals("P")) {
+            Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
+                    .orElse(((Patient) personToEdit).getAttendingPhysician());
+            Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin()
+                    .orElse(((Patient) personToEdit).getNextOfKin());
             List<DateTime> updatedDateTime = editPersonDescriptor.getDatesTimes().orElse(null);
             VisitStatus updatedVisitStatus = editPersonDescriptor.getVisitStatus()
                     .orElse(((Patient) personToEdit).getVisitStatus());
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                    updatedAddress, updatedTags, updatedDateTime, updatedVisitStatus);
+                    updatedAddress, updatedTags, updatedDateTime, updatedVisitStatus,
+                    updatedPhysician, updatedNextOfKin);
         } else if (updatedCategory.categoryName.equals("N")) {
             return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags);
         } else {
@@ -309,6 +321,8 @@ public class EditCommand extends Command {
         private List<DateTime> datesTimes;
         private List<Index> dateTimeIndexes;
         private VisitStatus visitStatus;
+        private Optional<Physician> physician;
+        private Optional<NextOfKin> nextOfKin;
 
         public EditPersonDescriptor() {
         }
@@ -329,6 +343,8 @@ public class EditCommand extends Command {
             setDatesTimes(toCopy.datesTimes);
             setDateTimeIndexes(toCopy.dateTimeIndexes);
             setVisitStatus(toCopy.visitStatus);
+            setPhysician(toCopy.physician);
+            setNextOfKin(toCopy.nextOfKin);
         }
 
         /**
@@ -464,6 +480,40 @@ public class EditCommand extends Command {
          */
         public Optional<VisitStatus> getVisitStatus() {
             return (visitStatus != null) ? Optional.of(visitStatus) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code p} to this object's {@code physician}.
+         * @return
+         */
+        public EditPersonDescriptor setPhysician(Optional<Physician> p) {
+            physician = p;
+            return this;
+        }
+
+        /**
+         * Returns the attending physician
+         * @return {@code Optional#empty()} if {@code physician} is null.
+         */
+        public Optional<Optional<Physician>> getPhysician() {
+            return (physician != null) ? Optional.of(physician) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code n} to this object's {@code nextOfKin}
+         * @return
+         */
+        public EditPersonDescriptor setNextOfKin(Optional<NextOfKin> n) {
+            nextOfKin = n;
+            return this;
+        }
+
+        /**
+         * Returns the next of kin
+         * @return {@code Optioanl.empty()} if {@code nextOfKin} is null.
+         */
+        public Optional<Optional<NextOfKin>> getNextOfKin() {
+            return (nextOfKin != null) ? Optional.of(nextOfKin) : Optional.empty();
         }
 
         @Override
