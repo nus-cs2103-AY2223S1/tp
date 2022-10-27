@@ -38,9 +38,23 @@ public class UniquePersonList implements Iterable<Person> {
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
-    public Optional<Person> getPersonByEmail(Email email) {
+    /**
+     * Finds and returns a person based on their email. Returns null if the email provided is the noEmailInstance.
+     *
+     * @param email to search for
+     * @return null if email is the noEmailInstance, person if match found
+     * @throws PersonNotFoundException
+     */
+    public Person getPersonByEmail(Email email) throws PersonNotFoundException {
         requireNonNull(email);
-        return internalList.stream().filter(p -> p.getEmail().equals(email)).findFirst();
+        if (email.equals(Email.getNoEmailInstance())) {
+            return null;
+        }
+        Optional<Person> person = internalList.stream().filter(p -> p.getEmail().equals(email)).findFirst();
+        if (person.isEmpty()) {
+            throw new PersonNotFoundException();
+        }
+        return person.get();
     }
 
     /**

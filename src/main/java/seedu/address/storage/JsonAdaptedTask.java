@@ -136,8 +136,9 @@ public class JsonAdaptedTask {
                 throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
             }
             final Email modelEmail = new Email(email);
+
             for (Person person : personList) {
-                if (person.getEmail().equals(modelEmail)) {
+                if (person.emailMatches(modelEmail)) {
                     modelPerson = person;
                     break;
                 }

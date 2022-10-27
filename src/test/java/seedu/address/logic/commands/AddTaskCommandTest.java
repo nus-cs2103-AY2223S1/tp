@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -120,7 +119,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public Optional<Person> getPersonByEmail(Email email) {
+        public Person getPersonByEmail(Email email) {
             throw new AssertionError("This method should not be called.");
         }
 

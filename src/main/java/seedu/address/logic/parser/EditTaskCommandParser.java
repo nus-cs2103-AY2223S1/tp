@@ -7,11 +7,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Email;
 
 /**
  * Parses input arguments and creates a new EditTaskCommand object
@@ -28,7 +30,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_CATEGORY,
-                        PREFIX_DEADLINE, PREFIX_DONE);
+                        PREFIX_DEADLINE, PREFIX_DONE, PREFIX_PERSON);
 
         Index index;
 
@@ -59,6 +61,18 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         }
         if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
             editTaskDescriptor.setDone(ParserUtil.parseTaskIsDone(argMultimap.getValue(PREFIX_DONE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PERSON).isPresent()) {
+            if (argMultimap.getValue(PREFIX_PERSON).get().equalsIgnoreCase("none")) {
+                editTaskDescriptor.setPersonEmail(Email.getNoEmailInstance());
+            } else {
+                try {
+                    Email personEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_PERSON).get());
+                    editTaskDescriptor.setPersonEmail(personEmail);
+                } catch (ParseException pe) {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage()));
+                }
+            }
         }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {

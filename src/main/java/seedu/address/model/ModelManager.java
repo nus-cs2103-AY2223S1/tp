@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -19,6 +18,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
 
 
@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Optional<Person> getPersonByEmail(Email email) {
+    public Person getPersonByEmail(Email email) throws PersonNotFoundException {
         requireNonNull(email);
         return addressBook.getPersonByEmail(email);
     }

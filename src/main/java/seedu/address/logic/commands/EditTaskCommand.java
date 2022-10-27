@@ -9,8 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +18,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
@@ -54,8 +53,8 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
+    private static final String MESSAGE_NO_PERSON_WITH_EMAIL = "There is no person with that email";
 
-    private static final Name NO_PERSON_ASSIGNED = new Name("No person currently assigned");
     private final Index index;
     private final EditTaskCommand.EditTaskDescriptor editTaskDescriptor;
 
@@ -72,10 +71,11 @@ public class EditTaskCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
+     * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
+    private static Task createEditedTask(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor,
+                                         Model model) throws CommandException {
         assert editTaskDescriptor != null;
 
         TaskName updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
@@ -83,14 +83,19 @@ public class EditTaskCommand extends Command {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
         TaskDeadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Person updatedPerson = editTaskDescriptor.getPerson()
-                .orElse(taskToEdit.getPerson());
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
 
-        taskToEdit.editTask(updatedName, updatedDescription, updatedPriority, updatedCategory, updatedDeadline,
-                updatedPerson, updatedIsDone);
+        Person updatedPerson = taskToEdit.getPerson();
+        if (!editTaskDescriptor.getPersonEmail().isEmpty()) {
+            try {
+                updatedPerson = model.getPersonByEmail(editTaskDescriptor.getPersonEmail().get());
+            } catch (PersonNotFoundException e) {
+                throw new CommandException(MESSAGE_NO_PERSON_WITH_EMAIL);
+            }
+        }
 
-        return taskToEdit;
+        return new Task(updatedName, updatedDescription, updatedPriority, updatedCategory, updatedDeadline,
+                updatedPerson, updatedIsDone);
     }
 
     @Override
@@ -103,15 +108,26 @@ public class EditTaskCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor, model);
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
+        Person previouslyAssignedPerson = taskToEdit.getPerson();
+        Person newlyAssignedPerson = editedTask.getPerson();
+
+        System.out.println("taskToEdit: " + taskToEdit);
+        System.out.println("previouslyAssignedPerson: " + previouslyAssignedPerson);
+        if (previouslyAssignedPerson != null) {
+            System.out.println("trying to remove!");
+            previouslyAssignedPerson.removeTask(taskToEdit);
+        }
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        if (newlyAssignedPerson != null) {
+            newlyAssignedPerson.addTask(editedTask);
+        }
+
         model.update();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
@@ -147,10 +163,9 @@ public class EditTaskCommand extends Command {
         // Data fields
         private Priority priority;
         private TaskDeadline deadline;
-        private Person person;
         private boolean isDone;
 
-        private Name personName;
+        private Email personEmail;
 
         public EditTaskDescriptor() {
         }
@@ -165,9 +180,8 @@ public class EditTaskCommand extends Command {
             setDescription(toCopy.description);
             setPriority(toCopy.priority);
             setDeadline(toCopy.deadline);
-            setPerson(toCopy.person);
             setDone(toCopy.isDone);
-            setPersonName(toCopy.personName);
+            setPersonEmail(toCopy.personEmail);
         }
 
         /**
@@ -175,7 +189,7 @@ public class EditTaskCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, category, description, priority,
-                    deadline, person, isDone);
+                    deadline, personEmail, isDone);
         }
 
         public Optional<TaskName> getName() {
@@ -218,14 +232,6 @@ public class EditTaskCommand extends Command {
             this.deadline = deadline;
         }
 
-        public void setPerson(Person person) {
-            this.person = person;
-        }
-
-        public Optional<Person> getPerson() {
-            return ofNullable(person);
-        }
-
         public void setDone(boolean isDone) {
             this.isDone = isDone;
         }
@@ -234,12 +240,12 @@ public class EditTaskCommand extends Command {
             return Optional.of(isDone);
         }
 
-        public void setPersonName(Name personName) {
-            this.personName = personName;
+        public void setPersonEmail(Email personEmail) {
+            this.personEmail = personEmail;
         }
 
-        public Optional<Name> getpersonName() {
-            return Optional.of(personName);
+        public Optional<Email> getPersonEmail() {
+            return ofNullable(personEmail);
         }
 
 
@@ -263,7 +269,7 @@ public class EditTaskCommand extends Command {
                     && getDescription().equals(e.getDescription())
                     && getPriority().equals(e.getPriority())
                     && getDeadline().equals(e.getDeadline())
-                    && getPerson().equals(e.getPerson())
+                    && getPersonEmail().equals(e.getPersonEmail())
                     && getIsDone().equals(e.getIsDone());
         }
     }

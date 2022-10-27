@@ -195,9 +195,9 @@ public class Task {
     }
 
     /**
-     * Returns the Email Address of the person assigned to this Task.
+     * Returns the person assigned to this Task.
      *
-     * @return assigned to this Task
+     * @return person assigned to this Task
      */
     public Person getPerson() {
         return person;

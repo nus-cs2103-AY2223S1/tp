@@ -28,6 +28,7 @@ import seedu.address.model.task.TaskName;
  */
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand
      * and returns an AddTaskCommand object for execution.
@@ -40,16 +41,17 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                         PREFIX_DEADLINE, PREFIX_PERSON);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_CATEGORY,
-                PREFIX_DEADLINE, PREFIX_PERSON) || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_DEADLINE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        Email personEmailAddress;
-
-        try {
-            personEmailAddress = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_PERSON).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE), pe);
+        Email personEmailAddress = null;
+        if (argMultimap.getValue(PREFIX_PERSON).isPresent()) {
+            try {
+                personEmailAddress = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_PERSON).get());
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage()));
+            }
         }
 
         TaskName taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get());
@@ -76,10 +78,6 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         if (!TaskDeadline.isValidTaskDeadline(deadline.toString())) {
             throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
-        }
-
-        if (!Email.isValidEmail(personEmailAddress.toString())) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
 
         Task task = new Task(taskName, description, priority, category, deadline, null, false);

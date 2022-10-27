@@ -9,12 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
-import java.util.Optional;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
 
 /**
@@ -39,7 +38,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_PERSON + "johnd@example.com ";
 
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
-    private static final String MESSAGE_INVALID_EMAIL = "There is no person with that email";
+    private static final String MESSAGE_NO_PERSON_WITH_EMAIL = "There is no person with that email";
     private static final String MESSAGE_SUCCESS = "New task added: %1$s";
     private final Task toAdd;
     private final Email personEmailAddress;
@@ -62,17 +61,18 @@ public class AddTaskCommand extends Command {
         }
 
         if (personEmailAddress != null) {
-            Optional<Person> person = model.getPersonByEmail(personEmailAddress);
-            if (person.isEmpty()) {
-                throw new CommandException(MESSAGE_INVALID_EMAIL);
+            try {
+                Person person = model.getPersonByEmail(personEmailAddress);
+                toAdd.setPerson(person);
+                person.addTask(toAdd);
+            } catch (PersonNotFoundException e) {
+                throw new CommandException(MESSAGE_NO_PERSON_WITH_EMAIL);
             }
-            toAdd.setPerson(person.get());
         }
 
         model.addTask(toAdd);
         model.update();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-
     }
 
     @Override

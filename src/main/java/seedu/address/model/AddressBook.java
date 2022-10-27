@@ -1,19 +1,17 @@
 package seedu.address.model;
 
 
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
-
 
 
 /**
@@ -75,7 +73,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
-    public Optional<Person> getPersonByEmail(Email email) {
+    public Person getPersonByEmail(Email email) throws PersonNotFoundException {
         requireNonNull(email);
         return persons.getPersonByEmail(email);
     }
