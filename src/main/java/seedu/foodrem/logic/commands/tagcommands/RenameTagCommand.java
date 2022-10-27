@@ -17,7 +17,10 @@ public class RenameTagCommand extends Command {
     private final Tag renamedTag;
 
     /**
-     * Creates an AddTagCommand to add the specified {@code Tag}
+     * Creates a RenameTagCommand to rename a specified {@code Tag}
+     *
+     * @param originalTag the tag to be renamed
+     * @param renamedTag the new tag
      */
     public RenameTagCommand(Tag originalTag, Tag renamedTag) {
         requireNonNull(originalTag);
