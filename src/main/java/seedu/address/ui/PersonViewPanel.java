@@ -10,6 +10,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.person.Person;
@@ -44,6 +45,9 @@ public class PersonViewPanel extends UiPart<Region> {
 
     @FXML
     private Label phone;
+
+    @FXML
+    private VBox nok;
 
     @FXML
     private Label nokName;
@@ -100,11 +104,9 @@ public class PersonViewPanel extends UiPart<Region> {
         phone.setText(person.getPhone().toString());
         phone.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_PHONE));
         nokName.setText("Name: " + person.getNextOfKin().getNextOfKinName());
-        nokName.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_NEXT_OF_KIN));
         nokRelationship.setText("Relationship: " + person.getNextOfKin().getNextOfKinRelationship());
-        nokName.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_NEXT_OF_KIN));
         nokContact.setText("Contact: " + person.getNextOfKin().getNextOfKinContact());
-        nokName.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_NEXT_OF_KIN));
+        nok.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_NEXT_OF_KIN));
         if (person.getMedications().size() > 0) {
             medications.getChildren().add(new Label(person.getMedicationString()));
             medications.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_MEDICATION));
