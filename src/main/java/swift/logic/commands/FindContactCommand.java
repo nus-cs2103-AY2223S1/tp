@@ -1,11 +1,11 @@
 package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static swift.logic.parser.CliSyntax.PREFIX_KEYWORD;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import swift.commons.core.Messages;
 import swift.logic.parser.Prefix;
 import swift.model.Model;

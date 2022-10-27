@@ -79,7 +79,7 @@ public class CommandSuggestor {
 
         for (String command : commandList) {
             if (command.startsWith(commandWord)) {
-                if(isCommandComplete && !command.equals(commandWord)) {
+                if (isCommandComplete && !command.equals(commandWord)) {
                     continue;
                 }
                 suggestedCommand = command;
@@ -152,7 +152,7 @@ public class CommandSuggestor {
 
         if (hasKeyword) {
             // Check if user input contains keyword
-            if(userInput.equals("")) {
+            if (userInput.equals("")) {
                 argumentSuggestion += " " + argPrefixes.get(0).getUserPrompt();
             }
             argumentMultimap.put(PREFIX_KEYWORD, "");
