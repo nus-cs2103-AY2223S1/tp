@@ -189,6 +189,8 @@ There are two ways to show person details
 
    1. Double-click on the person card in the list of persons.
    
+Keyboard usage example:
+
 Step 1: Enter navigation mode by double tapping the `<TAB>` key.
 ![step 1](images/ug/detail_step1.png)
 
