@@ -37,6 +37,10 @@ public class DateTime implements Comparable<DateTime> {
         return dateTime.format(DATE_TIME_FORMATTER);
     }
 
+    public boolean isInThePast() {
+        return dateTime.isBefore(LocalDateTime.now());
+    }
+
     @Override
     public int compareTo(DateTime other) {
         return this.getLocalDateTime().compareTo(other.getLocalDateTime());

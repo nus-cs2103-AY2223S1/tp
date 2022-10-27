@@ -375,6 +375,11 @@
     -fx-padding: 10 6;
 }
 
+.reminder-card.expired {
+    -fx-background-color: #eab2b5;
+    -fx-text-fill: #fff;
+}
+
 .reminder-description {
     -fx-font-size: 18px;
     -fx-text-fill: #333 !important;

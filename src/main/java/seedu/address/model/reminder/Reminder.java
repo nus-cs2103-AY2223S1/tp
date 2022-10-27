@@ -78,6 +78,13 @@ public class Reminder implements Comparable<Reminder> {
         return true;
     }
 
+    /**
+     * Returns true if reminder is set in the past.
+     */
+    public boolean isExpired() {
+        return dateTime.isInThePast();
+    }
+
     @Override
     public int compareTo(Reminder other) {
         int value = this.dateTime.compareTo(other.dateTime);

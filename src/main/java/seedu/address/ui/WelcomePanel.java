@@ -80,7 +80,7 @@ class ReminderListViewCell extends ListCell<Reminder> {
             setText(null);
         } else {
             pane.getChildren().clear();
-            pane.getChildren().add(new ReminderCard(reminder).getRoot());
+            pane.getChildren().add(new ReminderCard(reminder, getIndex() + 1).getRoot());
             setGraphic(pane);
         }
     }
