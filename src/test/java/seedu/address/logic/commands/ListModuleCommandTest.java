@@ -74,7 +74,7 @@ public class ListModuleCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code ModuleContainsKeywordsPredicate}.
      * @return
      */
     private ModuleContainsKeywordsPredicate preparePredicate(String userInput) {
