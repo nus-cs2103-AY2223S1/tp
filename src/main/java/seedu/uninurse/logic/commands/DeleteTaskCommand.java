@@ -66,7 +66,6 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
         Patient editedPerson = new Patient(patientToEdit, updatedTaskList);
 
         model.setPerson(patientToEdit, editedPerson);
-        model.updateFilteredPersonList(patient -> patient.equals(editedPerson));
         model.setPatientOfInterest(editedPerson);
 
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
