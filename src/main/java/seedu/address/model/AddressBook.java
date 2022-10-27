@@ -220,6 +220,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorials.add(t);
     }
 
+    public void setTutorial(Tutorial target, Tutorial editedTutorial) {
+        requireNonNull(editedTutorial);
+
+        tutorials.setTutorial(target, editedTutorial);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -334,6 +340,4 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
-
-
 }

@@ -221,6 +221,11 @@ public class AddReminderCommandTest {
         }
 
         @Override
+        public void setTutorial(Tutorial tutorialToEdit, Tutorial editedTutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Tutorial> getFilteredTutorialList() {
             throw new AssertionError("This method should not be called.");
         }

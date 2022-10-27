@@ -160,6 +160,9 @@ public interface Model {
      */
     void deleteTutorial(Tutorial target);
 
+
+    void setTutorial(Tutorial tutorialToEdit, Tutorial editedTutorial);
+
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();
 
@@ -224,6 +227,5 @@ public interface Model {
     boolean reminderIsMarked(Reminder reminderToMark);
 
     void unmarkReminder(Reminder reminderToUnmark);
-
 
 }
