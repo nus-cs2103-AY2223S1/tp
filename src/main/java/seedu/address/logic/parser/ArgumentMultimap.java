@@ -1,10 +1,12 @@
 package seedu.address.logic.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -50,6 +52,19 @@ public class ArgumentMultimap {
             return new ArrayList<>();
         }
         return new ArrayList<>(argMultimap.get(prefix));
+    }
+
+    /**
+     * Returns all values of {@code prefix} separated by spaces.
+     * If the prefix does not exist or has no values, this will return an empty list.
+     * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
+     */
+    public List<String> getAllValuesSeparatedBySpace(Prefix prefix) {
+        if (!argMultimap.containsKey(prefix)) {
+            return new ArrayList<>();
+        }
+        String value = getValue(prefix).get();
+        return Arrays.stream(value.split(" ")).collect(Collectors.toList());
     }
 
     /**

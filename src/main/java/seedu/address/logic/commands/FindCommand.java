@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -39,32 +40,38 @@ public class FindCommand extends Command {
             + COMMAND_WORD + " " + PREFIX_PLANTAG.getPrefix() + " savings plan"
             + COMMAND_WORD + " " + PREFIX_PHONE.getPrefix() + " 912345678";
 
-    private final Predicate<Person> predicate;
+    //private final Predicate<Person> predicate;
+    private final List<Predicate<Person>> predicates;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }
+//    public FindCommand(NameContainsKeywordsPredicate predicate) {
+//        this.predicate = predicate;
+//    }
+//
+//    public FindCommand(RiskTagContainsKeywordsPredicate predicate) {
+//        this.predicate = predicate;
+//    }
+//
+//    public FindCommand(NormalTagContainsKeywordsPredicate predicate) {
+//        this.predicate = predicate;
+//    }
+//
+//    public FindCommand(PlanTagContainsKeywordsPredicate predicate) {
+//        this.predicate = predicate;
+//    }
+//
+//    public FindCommand(PhoneContainsKeywordsPredicate predicate) {
+//        this.predicate = predicate;
+//    }
 
-    public FindCommand(RiskTagContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }
-
-    public FindCommand(NormalTagContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }
-
-    public FindCommand(PlanTagContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }
-
-    public FindCommand(PhoneContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }
+    public FindCommand(List<Predicate<Person>> predicates) {
+        this.predicates = predicates;
+    };
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        Predicate<Person> requiredPredicates = predicates.stream().reduce((x, y) -> x.or(y)).get();
+        model.updateFilteredPersonList(requiredPredicates);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -73,6 +80,6 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                && predicates.equals(((FindCommand) other).predicates)); // state check
     }
 }
