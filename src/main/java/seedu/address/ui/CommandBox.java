@@ -32,7 +32,7 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final List<String> LIST_OF_COMMANDS = Arrays.asList("add ", "delete ", "ls -a", "ls -m",
             "ls -u", "ls -t ", "ls --module ", "ls -n ", "mark ", "unmark ", "find ", "edit ", "clear ",
-            "exit", "help", "tag");
+            "exit", "help", "tag", "showarchive", "archive ");
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
