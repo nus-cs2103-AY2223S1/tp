@@ -310,8 +310,8 @@ Format: `remind`
 * `remind` can only be used on the main application list page (i.e. not to be used on list-archive page).
 * To refresh the list of upcoming interviews, close the reminder window (if it is currently opened) and input `remind` command again.
 
-### Clearing all entries: `clear`
-Clears all entries from CinternS.
+### Clearing all entries: `clear` 
+Clears all entries from CinternS. 
 
 Format: `clear`
 
