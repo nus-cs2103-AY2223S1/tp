@@ -27,8 +27,6 @@ public class ModuleCard extends UiPart<Region> {
     private static final String LINK_HEADER_PLAIN_TEXT = "http";
     private static final String LINK_HEADER_TEXT_WITH_SLASH = "https://";
     private static final String LINK_TEXT_COLOR = "-fx-text-fill: #FFCC66"; //Light Yellow
-    private static final NoLinksCard noLinksCard = new NoLinksCard();
-    private static final NoTasksCard noTasksCard = new NoTasksCard();
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved
@@ -40,7 +38,9 @@ public class ModuleCard extends UiPart<Region> {
      */
 
     public final Module module;
-    public final Boolean isNotOnHome;
+    public final ObservableList<Boolean> isOnHome;
+    private final NoLinksCard noLinksCard = new NoLinksCard();
+    private final NoTasksCard noTasksCard = new NoTasksCard();
 
     @FXML
     private HBox cardPane;
@@ -60,7 +60,8 @@ public class ModuleCard extends UiPart<Region> {
      * Creates a {@code ModuleCode} with the given {@code Module} and index to
      * display.
      */
-    public ModuleCard(Module module, int displayedIndex, Boolean isHomeStatus) {
+    public ModuleCard(Module module, int displayedIndex,
+                      ObservableList<Boolean> isHomeStatus) {
         super(FXML);
         this.module = module;
         id.setText(displayedIndex + ". ");
@@ -74,7 +75,8 @@ public class ModuleCard extends UiPart<Region> {
         } else {
             links.getChildren().add(noLinksCard.getRoot());
         }
-        this.isNotOnHome = !isHomeStatus;
+        isOnHome = isHomeStatus;
+        Boolean isNotOnHome = !isOnHome.get(0);
         Boolean hasTasksAdded = module.getTasks().size() > 0;
         if (isNotOnHome && hasTasksAdded) {
             ObservableList<Task> taskList = module.getTasks();
@@ -120,7 +122,7 @@ public class ModuleCard extends UiPart<Region> {
         ModuleCard card = (ModuleCard) other;
         return id.getText().equals(card.id.getText())
                 && module.equals(card.module)
-                && isNotOnHome.equals(card.isNotOnHome);
+                && isOnHome.equals(card.isOnHome);
     }
 
     /**

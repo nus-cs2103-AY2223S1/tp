@@ -49,8 +49,7 @@ public class ModuleListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new ModuleCard(module, getIndex() + 1,
-                        isHomeStatus.get(INDEX_OF_HOME_STATUS))
-                                .getRoot());
+                        isHomeStatus).getRoot());
             }
         }
     }
