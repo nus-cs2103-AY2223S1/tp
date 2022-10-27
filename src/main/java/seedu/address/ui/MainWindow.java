@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -33,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
+    private TaskListPanel archivedTaskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private FilterStatusDisplay filterStatusDisplay;
@@ -49,10 +51,18 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane taskListPanelPlaceholder;
 
     @FXML
+    private StackPane archiveListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane tabsPlaceholder;
+
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -119,6 +129,9 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanel = new TaskListPanel(logic.getFilteredPersonList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
+        archivedTaskListPanel = new TaskListPanel(logic.getFilteredArchivedTaskList());
+        archiveListPanelPlaceholder.getChildren().add(archivedTaskListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -141,6 +154,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -155,6 +169,16 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+    }
+
+    @FXML
+    public void handleShowArchive() {
+        tabsPlaceholder.getSelectionModel().select(1);
+    }
+
+    @FXML
+    public void handleShowUpcoming() {
+        tabsPlaceholder.getSelectionModel().select(0);
     }
 
     /**
@@ -187,6 +211,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            } else if (commandResult.isShowArchived()) {
+                handleShowArchive();
+            } else {
+                handleShowUpcoming();
             }
 
             if (commandResult.isExit()) {

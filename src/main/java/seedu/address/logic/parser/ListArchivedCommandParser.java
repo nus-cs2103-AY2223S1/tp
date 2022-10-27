@@ -7,23 +7,23 @@ import java.util.List;
 
 import seedu.address.logic.commands.list.ListAllCommand;
 import seedu.address.logic.commands.list.ListArchiveCommand;
+import seedu.address.logic.commands.list.ListArchivedModuleCommand;
+import seedu.address.logic.commands.list.ListArchivedUnmarkedCommand;
 import seedu.address.logic.commands.list.ListCommand;
-import seedu.address.logic.commands.list.ListDeadlineCommand;
-import seedu.address.logic.commands.list.ListMarkedCommand;
 import seedu.address.logic.commands.list.ListModuleCommand;
-import seedu.address.logic.commands.list.ListTagCommand;
 import seedu.address.logic.commands.list.ListUnmarkedCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.ModuleContainsKeywordsPredicate;
 import seedu.address.model.task.TaskIsDonePredicate;
 
 /**
- * Parses input arguments and creates a matching new List command
+ * Parse input for listArchive command.
  */
-public class ListCommandParser implements Parser<ListCommand> {
+public class ListArchivedCommandParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a ListCommand object for execution.
+     * and returns a lListCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
@@ -37,19 +37,11 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         switch (listTypes[0]) {
         case ListAllCommand.COMMAND_WORD:
-            return new ListAllCommand();
-        case ListModuleCommand.COMMAND_WORD:
-            return new ListModuleCommandParser().parse(trimmedArgs);
-        case ListUnmarkedCommand.COMMAND_WORD:
-            return new ListUnmarkedCommand(new TaskIsDonePredicate(List.of("false")));
-        case ListMarkedCommand.COMMAND_WORD:
-            return new ListMarkedCommand(new TaskIsDonePredicate(List.of("true")));
-        case ListDeadlineCommand.COMMAND_WORD:
-            return new ListDeadlineCommandParser().parse(trimmedArgs);
-        case ListTagCommand.COMMAND_WORD:
-            return new ListTagCommandParser().parse(trimmedArgs);
-        case ListArchiveCommand.COMMAND_WORD:
             return new ListArchiveCommand();
+        case ListModuleCommand.COMMAND_WORD:
+            return new ListArchivedModuleCommand(new ModuleContainsKeywordsPredicate(List.of(listTypes[1])));
+        case ListUnmarkedCommand.COMMAND_WORD:
+            return new ListArchivedUnmarkedCommand(new TaskIsDonePredicate(List.of("false")));
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
