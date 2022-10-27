@@ -59,18 +59,18 @@ public class AddressContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_addressDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         AddressContainsKeywordsPredicate predicate = new AddressContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new PersonBuilder().withAddress("Tampines").build()));
 
         // Non-matching keyword
-        predicate = new AddressContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        predicate = new AddressContainsKeywordsPredicate(Arrays.asList("Caldecott"));
+        assertFalse(predicate.test(new PersonBuilder().withAddress("Tampines Labrador").build()));
 
-        // Keywords match phone, email and address, but does not match name
-        predicate = new AddressContainsKeywordsPredicate(Arrays.asList("81234567", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("81234567")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+        // Keywords match phone, email and name, but does not match address
+        predicate = new AddressContainsKeywordsPredicate(Arrays.asList("81234567", "alice@email.com", "Alice", "Streep"));
+        assertFalse(predicate.test(new PersonBuilder().withAddress("21 main street Downing Road").withPhone("81234567")
+                .withEmail("alice@email.com").withName("Alice Streep").build()));
     }
 }
