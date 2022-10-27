@@ -2,11 +2,13 @@
 layout: page
 title: User Guide
 ---
+#Welcome to TaskBook!
 
 TaskBook is a **desktop app for managing contacts and tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskBook can get your contact and task management tasks done faster than traditional GUI apps.
 
+Choose a topic from the table of contents below to find out how to manage your apps using Task Book!
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,19 +26,19 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
 1. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
-   * **`contact list`** : Lists all contacts, including ones hidden by a previous command.
+    * **`contact list`** : Lists all contacts, including ones hidden by a previous command.
 
-   * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contact list.
+    * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contact list.
 
-   * **`contact delete`**`i/3` : Deletes the 3rd contact currently shown in the displayed contact list.
- 
-   * **`task list`** : Lists all tasks, including ones hidden by a previous command.
+    * **`contact delete`**`i/3` : Deletes the 3rd contact currently shown in the displayed contact list.
 
-   * **`task todo`**`m/John d/Finish user guide` : Adds a todo with the description `Finish user guide` to the task list.
+    * **`task list`** : Lists all tasks, including ones hidden by a previous command.
 
-   * **`task delete`**`i/3` : Deletes the 3rd task currently shown in the displayed task list.
+    * **`task todo`**`m/John d/Finish user guide` : Adds a todo with the description `Finish user guide` to the task list.
 
-   * **`bye`** : Exits the app.
+    * **`task delete`**`i/3` : Deletes the 3rd task currently shown in the displayed task list.
+
+    * **`bye`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -76,7 +78,7 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
 
 ### Viewing help : `help`
 
-Shows either the list of commands available or information about a particular command.
+Shows you either the list of commands available or information about a particular command.
 
 Format: `help [c/COMMAND]`
 
@@ -86,29 +88,29 @@ Examples:
 
 ### Listing all Contacts : `contact list`
 
-Shows a list of all contacts in the task book in the order they were added.<br> 
+Shows you a list of all contacts in your task book in the order they were added.<br>
 
 Format: `contact list`
 
 ### Listing all Tasks : `task list`
 
-Shows a list of all assigned tasks in the task book in the order they were added.<br>
+Shows you a list of all assigned tasks in your task book in the order they were added.<br>
 
 Format: `task list`
 
 ### Adding a contact : `contact add`
 
-Adds a contact to the task book.
+Adds a contact to your task book.
 
 Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
 
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `contact add n/Betsy Crowe #/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 #/criminal`
- 
+
 ### Adding a todo : `task todo`
 
-Adds a task of type todo into the task list.
+Adds a task of type todo into your task list.
 
 **Assigned by** Format:  `task todo m/NAME d/DESCRIPTION [#/TAG]…`
 
@@ -117,14 +119,14 @@ Adds a task of type todo into the task list.
 **Self-assigned** Format:  `task todo d/DESCRIPTION`
 
 * Adds a todo assigned by (`m/`) or assigned to (`o/`) a contact with a description. Optional to include tags.
-* Input "Myself" or omit the `m/` and `o/` flags to self-assign a todo.
-  * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
+* Input "Myself" or omit the `m/` and `o/` flags to assign yourself a todo.
+    * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 
 Examples:
-* `task todo m/John d/Finish user guide` adds a todo called “Finish user guide” assigned by John to the user.
+* `task todo m/John d/Finish user guide` adds a todo called “Finish user guide” assigned by John to you.
 * `task todo o/Sam d/Finish the assignment #/cs2103` adds a todo called “Finish the assignment” tagged as "cs2103" and assigned to Sam.
-* `task todo o/Myself d/Upload slides` adds a todo called “Upload slides” which is self-assigned by the user.
-* `task todo d/Finish essay` adds a todo called "Finish essay" which is self-assigned to the user.
+* `task todo o/Myself d/Upload slides` adds a todo called “Upload slides” which is self-assigned by you.
+* `task todo d/Finish essay` adds a todo called "Finish essay" which you assign to yourself.
 
 ### Adding a deadline : `task deadline`
 
@@ -137,19 +139,19 @@ Adds a task of type deadline into the task list.
 **Self-assigned** Format: `task deadline d/DESCRIPTION t/DATE`
 
 * Adds a deadline assigned by (`m/`) or assigned to (`o/`) a contact with a description and a deadline date. Optional to include tags.
-* Input "Myself" or omit the `m/` and `o/` flags to self-assign.
-  * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
+* Input "Myself" or omit the `m/` and `o/` flags to assign yourself the deadline.
+    * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 * For more information on `DATE` formats, scroll down to "Accepted Date Formats"
 
 Examples:
-* `task deadline m/John d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by John to the user.
+* `task deadline m/John d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by John to you.
 * `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #/cs2103` adds a deadline called “Finish the assignment” and tagged as "cs2103" which is assigned to Sam.
-* `task deadline o/Myself d/Upload slides t/2022-12-31` adds a deadline called “Upload Slides” which self-assigned by the user.
-* `task deadline d/Finish essay t/Jan 31 2022` adds a deadline called “Finish essay” which is self-assigned to the user.
+* `task deadline o/Myself d/Upload slides t/2022-12-31` adds a deadline called “Upload Slides” which self-assigned by you.
+* `task deadline d/Finish essay t/Jan 31 2022` adds a deadline called “Finish essay” which you assign to yourself.
 
 ### Adding an event : `task event`
 
-Adds a task of type event into the task list.
+Adds a task of type event into your task list.
 
 **Assigned by** Format: `task event m/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
@@ -158,23 +160,25 @@ Adds a task of type event into the task list.
 **Self-assigned** Format: `task event d/DESCRIPTION t/DATE`
 
 * Adds an event assigned by (`m/`) or assigned to (`o/`) a contact with a description and an event date. Optional to include tags.
+    * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
+* For more information on `DATE` formats, scroll down to "Accepted Date Formats"
 
 Examples:
-* `task event m/John d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by John to the user.
+* `task event m/John d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by John to you.
 * `task event o/Sam d/Finish the assignment t/Jan 31 2022 #/cs2103` adds an event called “Finish the assignment” tagged as "cs2103" which is assigned to Sam.
-* `task event o/Myself d/Upload Slides t/Jan 31 2022` adds an event called “Upload Slides” which is self-assigned by the user.
-* `task event d/Finish essay t/Jan 31 2022` adds an event called “Finish essay” which is assigned to the user.
+* `task event o/Myself d/Upload Slides t/Jan 31 2022` adds an event called “Upload Slides” which is self-assigned by you.
+* `task event d/Finish essay t/Jan 31 2022` adds an event called “Finish essay” which you assigned to yourself.
 
 ### Editing a contact : `contact edit`
 
-Edits the specified contact in the contact list.
+Edits the specified contact in your contact list.
 
-Format: `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
+Format: `contact edit i/INDEX <n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS #/TAG…>`
 
 * Edits the contact at the specified `INDEX` with the parameters provided.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* **At least 1 field** must be edited.
+* All included fields **must** be edited.
 
 Examples:
 * `contact edit i/1 n/James Lee e/jameslee@example.com`
@@ -182,14 +186,14 @@ Examples:
 
 ### Editing a task : `task edit`
 
-Edits the specified task in the task list.
+Edits the specified task in your task list.
 
-Format: `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE] [#/TAG]…`
+Format: `task edit i/INDEX <m/NAME o/NAME d/DESCRIPTION t/DATE #/TAG…>`
 
 * Edits the contact at the specified `INDEX` with the parameters provided.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* **At least 1 field** must be edited.
+* All included fields **must** be edited.
 * Only one of assignor `m/` or assignee `o/` can be specified.
     * A task can be **re-assigned to** "Person Y" by providing parameter `o/Person Y`.
     * A task can be **re-assigned by** "Person X" by providing parameter `m/Person X`.
@@ -202,45 +206,45 @@ Examples:
 
 ### Deleting a contact : `contact delete`
 
-Deletes the specified contact from the contact list.
+Deletes the specified contact from your contact list.
 
 Format: `contact delete i/INDEX`
 
 * Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
+* The index refers to the index number shown in your displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Deletion of contact is blocked if the contact has tasks associated to it.
 
 Examples:
-* `contact list` followed by `contact delete i/2` deletes the 2nd contact in the contact list.
+* `contact list` followed by `contact delete i/2` deletes the 2nd contact in your contact list.
 
 ### Deleting a task : `task delete`
 
-Deletes the specified task from the task list.
+Deletes the specified task from your task list.
 
 Format: `task delete i/INDEX`
 
 * Deletes the task at the specified `INDEX`.
-* The index refers to the index number shown in the displayed task list.
+* The index refers to the index number shown in your displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `task list` followed by `task delete i/2` deletes the 2nd task in the task list.
+* `task list` followed by `task delete i/2` deletes the 2nd task in your task list.
 
 ### Finding contacts : `contact find`
 
-Displays all contacts matching the arguments provided by the user.
+Displays all contacts matching the arguments provided by you.
 
 Format: `contact find q/QUERY`
 
 * QUERY is not case sensitive.
 
 Examples:
-* `contact find q/ea` will change the contact list in the GUI to show a contact list where all contacts will have "ea" in their name.
+* `contact find q/ea` will change your displayed contact list to show a contact list where all contacts will have "ea" in their name.
 
 ### Finding tasks : `task find`
 
-Displays all tasks matching the arguments provided by the user.
+Displays all tasks matching the arguments provided by you.
 
 Format: `task find <q/QUERY x/DONE a/ASSIGNMENT>`
 
@@ -249,14 +253,14 @@ Format: `task find <q/QUERY x/DONE a/ASSIGNMENT>`
 * DONE is either X or O, representing 'Done' and 'Not done' respectively.
 
 Examples:
-* `task find q/ea` will change the task list in the GUI to show a task list where all tasks will have "ea" in either their connected person, or their description.
-* `task find x/X` will change the task list in the GUI to show a task list where all tasks are marked done, with [X].
-* `task find a/FROM` will change the task list in the GUI to show a task list where all tasks are assigned to the user by someone else.
+* `task find q/ea` will change the displayed task list to show a task list where all tasks will have "ea" in either their connected person, or their description.
+* `task find x/X` will change the displayed task list to show a task list where all tasks are marked done, with [X].
+* `task find a/FROM` will change the displayed task list to show a task list where all tasks are assigned to you by someone else.
 * `task find q/ea x/X` is equivalent to `task find x/X q/ea`.
 
 ### Sorting contacts : `contact sort`
 
-Sorts the contact list based on the input flag.
+Sorts your contact list based on the input flag.
 
 Format: `contact sort s/SORT`
 
@@ -268,11 +272,11 @@ SORT flags:
 * rp: Numerically sort contact phone numbers in descending order.
 
 Examples:
-* `contact sort s/a` will change the contact list in the GUI to show a contact list where names are sorted by alphabetical order.
+* `contact sort s/a` will change the displayed contact list to show a contact list where names are sorted by alphabetical order.
 
 ### Sorting tasks : `task sort`
 
-Sorts the task list based on the input flag.
+Sorts your task list based on the input flag.
 
 Format: `task sort s/SORT`
 
@@ -284,37 +288,37 @@ SORT flags:
 * rcd: Chronologically sort tasks by their associated dates in descending order. Tasks without dates are at the end of the list, in no particular order.
 
 Examples:
-* `task sort s/a` will change the task list in the GUI to show a task list sorted by description alphabetical order
+* `task sort s/a` will change the displayed task list to show a task list sorted by description alphabetical order
 
 ### Marking a task : `task mark`
 
-Marks the specified task from the task list as done.
+Marks the specified task from your task list as done.
 
 Format: `task mark i/INDEX`
 
 * Marks the task at the specified `INDEX` as done.
-* The index refers to the index number shown in the displayed task list.
+* The index refers to the index number shown in your displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `task list` followed by `task mark i/2` marks the 2nd task in the task list.
+* `task list` followed by `task mark i/2` marks the 2nd task in your task list.
 
 ### Unmarking a task : `task unmark`
 
-Marks the specified task from the task list as not done.
+Marks the specified task from your task list as not done.
 
 Format: `task unmark i/INDEX`
 
 * Marks the task at the specified `INDEX` as not done.
-* The index refers to the index number shown in the displayed task list.
+* The index refers to the index number shown in your displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `task list` followed by `task unmark i/2` marks the 2nd task in the task list.
+* `task list` followed by `task unmark i/2` marks the 2nd task in your task list.
 
 ### Undo Command : `undo`
 
-Undoes the previous command and reverts the TaskBook to the previous state. A _minimum_ of 15 previous states are guaranteed to be kept in the history, if there are that many commands executed.
+Undoes the previous command and reverts your TaskBook to the previous state. A _minimum_ of 15 previous states are guaranteed to be kept in the history, if there are that many commands executed.
 
 Note: Commands that do not cause a change in state cannot be undone.
 
@@ -326,7 +330,7 @@ Examples:
 
 ### Redo Command : `redo`
 
-Redoes the previous undo action and reverts the TaskBook to a previously undone state.
+Redoes the previous undo action and reverts your TaskBook to a previously undone state.
 
 Format: `redo`
 
