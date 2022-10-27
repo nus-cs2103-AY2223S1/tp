@@ -35,6 +35,9 @@ public class WideInternshipListPanel extends UiPart<Region> {
         wideInternshipListView.setItems(internshipList);
         wideInternshipListView.setCellFactory(listView -> new WideInternshipListViewCell());
         setInternshipSelectedEventHandlers();
+
+        // put first card into focus
+        wideInternshipListView.getSelectionModel().selectFirst();
     }
 
     /**
@@ -62,12 +65,13 @@ public class WideInternshipListPanel extends UiPart<Region> {
                 .getSelectionModel()
                 .selectedItemProperty()
                 .addListener((observable, oldVal, newVal) -> {
-
-                    Internship selectedInternship = wideInternshipListView.getSelectionModel().getSelectedItem();
-                    TipsPanel tipsPanel = tipPanelBuilder(selectedInternship.getStage());
                     tipsPanelContainer.getChildren().clear();
+                    // should not show tips when no card is selected
+                    if (newVal == null) {
+                        return;
+                    }
+                    TipsPanel tipsPanel = tipPanelBuilder(newVal.getStage());
                     tipsPanelContainer.getChildren().add(tipsPanel.getRoot());
-
                 });
     }
 
