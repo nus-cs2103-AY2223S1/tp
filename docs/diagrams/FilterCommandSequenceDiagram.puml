@@ -2,7 +2,7 @@
 skinparam style strictuml
 box "Logic" #LightBlue
 participant ":LogicManager" as LM
-participant ":AddressBookParser" as ABParser
+participant ":StudMapParser" as ABParser
 participant ":FilterParser" as FParser
 participant ":FilterCommand" as FilterCommand
 end box
@@ -36,7 +36,7 @@ deactivate ABParser
 LM -> FilterCommand : execute(args)
 activate FilterCommand
 
-FilterCommand -> Model : filterPersonListWithTag(predicate)
+FilterCommand -> Model : filterStudentListWithTag(predicate)
 activate Model
 
 Model -> FL : setPredicate(predicate)

@@ -36,9 +36,9 @@ public class FilterCommandTest {
     @Test
     public void execute_zeroKeywords_noStudentFound() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
-        TagContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FilterCommand command = new FilterCommand(predicate);
-        expectedModel.filterStudentListWithTag(predicate);
+        TagContainsKeywordsPredicate tPredicate = preparePredicate("busy");
+        FilterCommand command = new FilterCommand(tPredicate);
+        expectedModel.filterStudentListWithPredicate(tPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
     }
@@ -52,7 +52,7 @@ public class FilterCommandTest {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 2);
         TagContainsKeywordsPredicate predicate = preparePredicate("friends");
         FilterCommand command = new FilterCommand(predicate);
-        outputModel.filterStudentListWithTag(predicate);
+        outputModel.filterStudentListWithPredicate(predicate);
         assertCommandSuccess(command, initialModel, expectedMessage, outputModel);
         assertEquals(Arrays.asList(john, cena), outputModel.getFilteredStudentList());
 
