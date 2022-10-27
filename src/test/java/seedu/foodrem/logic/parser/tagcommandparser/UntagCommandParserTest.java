@@ -1,6 +1,7 @@
 package seedu.foodrem.logic.parser.tagcommandparser;
 
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.foodrem.commons.core.Messages.MESSAGE_NON_POSITIVE_INDEX;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_ID_FIRST;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS;
@@ -61,7 +62,7 @@ public class UntagCommandParserTest {
     public void parse_invalidPreamble_failure() {
         // Number preamble
         assertParseFailure(parser, "-1 " + VALID_DESC_TAG_NAME_FRUITS
-                + VALID_DESC_ID_FIRST, MESSAGE_INVALID_FORMAT);
+                + VALID_DESC_ID_FIRST, MESSAGE_NON_POSITIVE_INDEX);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "some random string  " + VALID_DESC_TAG_NAME_FRUITS
