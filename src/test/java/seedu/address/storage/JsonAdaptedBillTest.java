@@ -20,6 +20,12 @@ public class JsonAdaptedBillTest {
     public static final String VALID_NAME = "Benson";
     private static final String INVALID_NAME = "R@chel";
     @Test
+    public void toModelType_validBill_returnsAppointment() throws Exception {
+        JsonAdaptedBill bill = new JsonAdaptedBill(BILL_1);
+        assertEquals(BILL_1, bill.toModelType());
+    }
+
+    @Test
     public void toModelType_validBillDetails_returnsAppointment() throws Exception {
         JsonAdaptedBill bill = new JsonAdaptedBill(BILL_1.getAppointment().getName().toString(),
                 BILL_1.getAppointment().getSlot().toString(),
