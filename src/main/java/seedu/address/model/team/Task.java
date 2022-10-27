@@ -108,7 +108,11 @@ public class Task {
     }
 
     public Optional<LocalDateTime> getDeadline() {
-        return Optional.of(deadline);
+        if (deadline != null) {
+            return Optional.of(deadline);
+        } else {
+            return Optional.empty();
+        }
     }
 
     public String getDeadlineStorage() {
