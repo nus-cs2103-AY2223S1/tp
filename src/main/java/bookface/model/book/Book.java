@@ -68,6 +68,9 @@ public class Book {
         return Optional.ofNullable(loanee);
     }
 
+    /**
+     * Checks if book is loaned out
+     */
     public boolean isLoaned() {
         return this.loanee != null;
     }
@@ -94,10 +97,23 @@ public class Book {
 
 
     /**
-     * Return this loaned book .
+     * Return this loaned book.
      */
     public void markBookAsReturned() {
         this.loanee = null;
+    }
+
+    /**
+     * Checks if the book is overdue.
+     * @return True if book is overdue, false otherwise
+     */
+    public boolean isOverdue() {
+        if (this.isLoaned()) {
+            long millis = System.currentTimeMillis();
+            Date todayDate = new Date(millis);
+            return todayDate.after(this.getReturnDate());
+        }
+        return false;
     }
 
     /**
