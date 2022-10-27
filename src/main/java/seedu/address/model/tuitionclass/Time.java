@@ -89,6 +89,6 @@ public class Time {
     @Override
     public String toString() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
-        return startTime.format(dtf) + " - " + endTime.format(dtf);
+        return startTime.format(dtf) + "-" + endTime.format(dtf);
     }
 }
