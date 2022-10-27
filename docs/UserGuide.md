@@ -337,6 +337,7 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
 | Action         | Format, Examples                                                                                                                                       |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**        | `add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`<br> e.g., `add n/Alice a/Yishun Street 81 p/9876543 e/alice@gmail.com`                             |
@@ -356,6 +357,7 @@ _Details coming soon ..._
 | **View**       | `view INDEX` <br> e.g., `view 5`                                                                                                                       |
 
 ## Prefix Summary
+
 | Prefix     | Meaning                                        | Restrictions                                                | Example                       |
 |------------|------------------------------------------------|-------------------------------------------------------------|-------------------------------|
 | **n/**     | Name of the client                             | Alphanumeric characters and spaces, required                | `n/Alice`                     |
