@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.intrack.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.intrack.testutil.Assert.assertThrows;
 import static seedu.intrack.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 

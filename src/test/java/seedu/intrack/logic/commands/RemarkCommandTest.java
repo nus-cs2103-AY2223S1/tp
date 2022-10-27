@@ -4,17 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_REMARK_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_REMARK_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.intrack.logic.commands.CommandTestUtil.showInternshipAtIndex;
 import static seedu.intrack.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
-import static seedu.intrack.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
 import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrack;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.intrack.commons.core.Messages;
-import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.model.InTrack;
 import seedu.intrack.model.Model;
 import seedu.intrack.model.ModelManager;
