@@ -29,6 +29,7 @@ public class StatsView {
 
         // Statistics header on top left
         final Label statsHeader = new Label("FoodRem Statistics");
+        statsHeader.getStyleClass().add("item-detail-name");
 
         // Section for amount wasted due to expired food
         final Label amountWasted = new Label("Total cost due to food wastage: " + stats.getAmountWasted());
@@ -47,7 +48,6 @@ public class StatsView {
 
         // Combine everything
         final VBox itemView = new VBox(statsHeader, amountWasted, row3);
-        itemView.setSpacing(SPACING_UNIT);
         return itemView;
     }
 
