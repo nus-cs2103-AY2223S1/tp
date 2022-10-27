@@ -146,6 +146,9 @@ public class SubjectHandler {
     public String dataString() {
         String str = "";
         Set<String> keys = subjectsTaken.keySet();
+        if (subjectsTaken.isEmpty()) {
+            return str;
+        }
         for (String key : keys) {
             Subject keyValue = subjectsTaken.get(key);
             str += keyValue.dataString();
