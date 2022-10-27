@@ -117,10 +117,7 @@ public class EditTaskCommand extends Command {
         Person previouslyAssignedPerson = taskToEdit.getPerson();
         Person newlyAssignedPerson = editedTask.getPerson();
 
-        System.out.println("taskToEdit: " + taskToEdit);
-        System.out.println("previouslyAssignedPerson: " + previouslyAssignedPerson);
         if (previouslyAssignedPerson != null) {
-            System.out.println("trying to remove!");
             previouslyAssignedPerson.removeTask(taskToEdit);
         }
         model.setTask(taskToEdit, editedTask);

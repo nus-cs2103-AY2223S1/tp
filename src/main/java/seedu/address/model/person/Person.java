@@ -105,8 +105,6 @@ public class Person {
      * @param taskToDelete task to be deleted
      */
     public void removeTask(Task taskToDelete) {
-        System.out.println("taskToDelete: " + taskToDelete);
-        System.out.println("this task: " + this);
         this.tasks.remove(taskToDelete);
     }
 
