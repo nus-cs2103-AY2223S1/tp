@@ -17,13 +17,13 @@ public class ContainsProjectsPredicate implements Predicate<Task> {
     public ContainsProjectsPredicate(List<String> projectNames) {
         this.projectNames = projectNames
                 .stream()
-                .map(String::trim)
+                .map(x -> x.trim().toLowerCase())
                 .collect(Collectors.toList());
     }
 
     @Override
     public boolean test(Task task) {
-        return projectNames.isEmpty() || projectNames.contains(task.getProject().projectName.trim());
+        return projectNames.isEmpty() || projectNames.contains(task.getProject().projectName.trim().toLowerCase());
     }
 
     @Override
