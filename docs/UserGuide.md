@@ -283,8 +283,8 @@ _Details coming soon ..._
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Clear**               | `clear`                                                                                                                                                             |
-| **Delete**              | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                 |
-| **Delete by attribute** | `delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`<br> e.g. `delete ra/Chinese`,                 |
+| **Delete**              | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                  |
+| **Delete by attribute** | `delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`<br> e.g. `delete ra/Chinese`                  |
 | **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                          |
 | **Clone**               | `clone INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `clone 1 n/James Lee p/91234567 e/jameslee@example.com`                                                |
