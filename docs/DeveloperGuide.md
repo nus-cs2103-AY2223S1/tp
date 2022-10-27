@@ -194,7 +194,7 @@ _{more aspects and alternatives to be added}_
 
 The list items feature allows the user to list all the existing `Item`s in the inventory.
 
-#### Implementation 
+#### Implementation
 
 The list item feature is executed by the `ListItemsCommand`. It extends `Command`.
 
@@ -203,8 +203,8 @@ Given below is an example usage scenario and how the `ListItemsCommand` mechanis
 Step 1. The user inputs `listi`. This calls `LogicManager#execute`, which then calls `TrackOParser#parseCommand`.
 This method will return a new instance of `ListItemsCommand`.
 
-Step 2. `ListItemsCommand#execute` is called, which then calls the method 
-`Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS)`. This will show all the `Item`s in the existing 
+Step 2. `ListItemsCommand#execute` is called, which then calls the method
+`Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS)`. This will show all the `Item`s in the existing
 inventory list.
 
 The sequence diagram below illustrates this process.
@@ -231,10 +231,10 @@ Step 1. The user executes `findi chair mattress` command to find the orders cont
 keychain or apple. The `findi` command calls `FindItemCommandParser` which checks for the correct command
 syntax and separates the keywords, utilising each space as a delimiter. 
 
-Step 2. The keywords are then passed into a constructor for `ItemContainsKeywordsPredicate`, 
-which extends `Predicate<Item>`, to construct a predicate that will filter the items according to the keywords. 
-The predicate is passed into a new instance of `FindItemCommand`. `FindItemCommand` then calls 
-`Model#updateFilteredItemList()` to filter `Model#filteredOrders` according to the previously constructed 
+Step 2. The keywords are then passed into a constructor for `ItemContainsKeywordsPredicate`,
+which extends `Predicate<Item>`, to construct a predicate that will filter the items according to the keywords.
+The predicate is passed into a new instance of `FindItemCommand`. `FindItemCommand` then calls
+`Model#updateFilteredItemList()` to filter `Model#filteredOrders` according to the previously constructed
 `ItemContainsKeywordsPredicate`.
 
 The sequence diagram below illustrates this process.
@@ -249,7 +249,7 @@ The sequence diagram below illustrates this process.
 - **Alternative 1 (current choice)**: The command finds items based on their `ItemName`.
     - Pros: Easier to implement, and users do not have to use prefixes to find items.
     - Cons: Cannot search based on other item fields, e.g. searching based on the price range of the items.
-- **Alternative 2**: The command can find items based on all of their fields. 
+- **Alternative 2**: The command can find items based on all of their fields.
     - Pros: Can search based on more fields, useful if the user has large number of items to navigate through.
     - Cons: Harder to implement.
 
@@ -259,12 +259,12 @@ The edit item feature allows the user to edit an `Item` currently being tracked 
 
 #### Implementation
 
-The edit item command `editi` is implemented through the `Logic`, `Model` and `Storage` components. The `Logic` 
-component parses the user input, the `Model` component then performs the edit on the target item, the `Storage` 
+The edit item command `editi` is implemented through the `Logic`, `Model` and `Storage` components. The `Logic`
+component parses the user input, the `Model` component then performs the edit on the target item, the `Storage`
 component then saves the edited data into `data/trackO.json`.
 
 Step 1. The user inputs the command `editi 1 i/Chair q/20`. This calls `LogicCommand#execute()` which calls
-`TrackOParser#parseCommand`. This parses the command as an `EditItemCommand` and returns an `EditItemCommandParser`. 
+`TrackOParser#parseCommand`. This parses the command as an `EditItemCommand` and returns an `EditItemCommandParser`.
 `EditItemCommandParser#parse()` parses the arguments and returns an `EditItemCommand` with the target index and the
 appropriate `EditItemDescriptor` as input. The `EditItemDescriptor` contains information which the newly edited `Item`
 should have and is used in the creation of the new `Item` object. In this case, the `EditItemDescriptor` contains a new
@@ -410,7 +410,7 @@ that will filter the items according to the keywords. The predicate is passed in
 `FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter `Model#filteredOrders`
 according to the previously constructed `OrderContainsKeywordsPredicate`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect, 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect,
 `FindOrderCommandParser` will throw a `ParseException`.
 
 </div>
@@ -439,28 +439,33 @@ The edit order feature is executed by `EditOrderCommand`. It extends `Command`.
 
 Given below is an example usage scenario and how the `EditOrderCommand` mechanism behaves at each step.
 
-Step 1. The user inputs `edito 3 n/John Doe i/Banana q/5`. This calls `LogicManager#execute`, which then calls `TrackOParser#parseCommand`.
-As the method is still running, it will call the constructor of `EditOrderCommandParser`. `EditOrderCommandParser#parse` will parse the user command based on the prefixes given 
-by the user, and returns an `EditOrderCommand` with the target index and `EditOrderDescriptor` as input. The `EditOrderDescriptor` contains information
-that a newly edited order should have; in this case, it contains a `Name`, `Item`, and `Quantity`. The rest of the fields that are not provided
-are copied from the existing order at target index `3` (This index is **one-based**).
+Step 1. The user inputs `edito 3 n/John Doe i/Banana q/5`. This calls `LogicManager#execute`, which then calls
+`TrackOParser#parseCommand`. As the method is still running, it will call the constructor of `EditOrderCommandParser`.
+`EditOrderCommandParser#parse` will parse the user command based on the prefixes given by the user, and returns an
+`EditOrderCommand` with the target index and `EditOrderDescriptor` as input. The `EditOrderDescriptor` contains
+information that a newly edited order should have; in this case, it contains a `Name`, `Item`, and `Quantity`.
+The rest of the fields that are not provided are copied from the existing order at target index `3` (This index is
+**one-based**).
 
-Step 2. The `EditOrderCommand#createEditedOrder` creates an edited order using the information in the 
+Step 2. The `EditOrderCommand#createEditedOrder` creates an edited order using the information in the
 `EditOrderDescriptor`. When the user inputs an `Item` and `Quantity`, it checks whether:
 
 - **the `Item` exists in the `InventoryList`.**
-  - If it does not exist, the method will throw an exception. *This is because customers cannot order things that are not in stock*.
+  - If it does not exist, the method will throw an exception.
+  *This is because customers cannot order things that are not in stock*.
   - If it exists, the method will keep running.
-- **the `Item` exists in the `Order`'s list of ordered items, which is stored as a `List<ItemQuantityPair>`.** This is done by `Item#isSameItem`, which returns true if
-both the newly inputted `Item` and the `Item` referenced in `ItemQuantityPair` share the same `ItemName` (case-insensitive).
+- **the `Item` exists in the `Order`'s list of ordered items, which is stored as a `List<ItemQuantityPair>`.** This is
+done by `Item#isSameItem`, which returns true if both the newly inputted `Item` and the `Item` referenced in 
+`ItemQuantityPair` share the same `ItemName` (case-insensitive).
   - If it does not exist, then the `Item` and `Quantity` will form a
-    new instance of `ItemQuantityPair` which will be added to the `List<ItemQuantityPair>`. 
+    new instance of `ItemQuantityPair` which will be added to the `List<ItemQuantityPair>`.
   - If it exists, it will check whether:
     - The `Quantity` is `0`. If it is, then the `ItemQuantityPair` will be removed from the `List<ItemQuantityPair>`.
-    - The newly inputted`Quantity` is different from the existing `Quantity`. If it is, then it will update to the newly inputted `Quantity`. 
+    - The newly inputted`Quantity` is different from the existing `Quantity`. If it is, then it will update 
+to the newly inputted `Quantity`.
     - Otherwise, nothing happens.
 
-Step 3. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`, successfully 
+Step 3. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`, successfully
 executing the edit order command in the `Model`. `Model#refreshData` is called to refresh the GUI, and `Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS)`
 is called to update the list to show all orders.
 
@@ -475,7 +480,7 @@ The sequence diagram below illustrates this process.
 
 - **Alternative 1 (current choice)**: The command edits the order based on the prefixes that is inputted by the user.
   - Pros: The user can edit only the fields that they want to edit.
-  - Cons: The user may have to input long commands. 
+  - Cons: The user may have to input long commands.
 - **Alternative 2**: No edit command, users have to delete and re-add orders should there be any change.
   - Pros: Less bug-prone, more convenient for the developers to implement.
   - Cons: Not user-friendly and makes things more difficult for the user.

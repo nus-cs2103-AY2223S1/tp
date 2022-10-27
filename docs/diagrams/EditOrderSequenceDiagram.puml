@@ -126,3 +126,4 @@ destroy EditOrderCommand
 [<--LogicManager
 deactivate LogicManager
 @enduml
+
