@@ -122,6 +122,9 @@ public class ModelManager implements Model {
     @Override
     public void deleteTrip(Trip target) {
         addressBook.removeTrip(target);
+        if (selectedTrip.isEqual(target)) {
+            resetSelectedTrip();
+        }
     }
 
     @Override
@@ -132,7 +135,6 @@ public class ModelManager implements Model {
     @Override
     public void addTrip(Trip trip) {
         addressBook.addTrip(trip);
-        // updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
     }
 
     /**
@@ -222,10 +224,15 @@ public class ModelManager implements Model {
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
-        //        if (!(predicate instanceof EventInItineraryPredicate)) {
-        //            resetSelectedTrip();
-        //        }
     }
+
+    @Override
+    public void resetView() {
+        updateFilteredEventList(getBucketPredicate());
+        updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
+        resetSelectedTrip();
+    }
+
 
     @Override
     public ObservableList<Event> getBucketList() {

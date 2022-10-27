@@ -204,6 +204,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void resetView() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public AllInBucketListPredicate getBucketPredicate() {
             throw new AssertionError("This method should not be called.");
         }

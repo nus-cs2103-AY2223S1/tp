@@ -80,6 +80,7 @@ public interface Model {
      * Returns true if the bucketlist has event in Travelr.
      */
     boolean bucketlistHasEvent(Event event);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -164,6 +165,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Resets the filtered event list to buckets and filtered trips to show all events {@code predicate}.
+     */
+    void resetView();
+
 
     ObservableTrip getSelectedTrip();
 

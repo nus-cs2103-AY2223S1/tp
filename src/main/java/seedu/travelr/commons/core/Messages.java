@@ -12,5 +12,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_DISPLAYED_INDEX = "The index provided is invalid";
     public static final String MESSAGE_INVALID_DISPLAYED_INDEX_FROM_BUCKET_LIST = "The event index provided "
             + "is invalid in the bucket list";
-
+    public static final String MESSAGE_RESET_VIEW = "Displaying all trips and all events in bucket list: ";
 }
