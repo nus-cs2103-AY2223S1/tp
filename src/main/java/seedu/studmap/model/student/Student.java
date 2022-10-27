@@ -163,6 +163,38 @@ public class Student {
     }
 
     /**
+     * Returns assignments marked in percentage.
+     */
+    public float getAssignmentPercentage() {
+        float numOfAssignments = getAssignmentCount();
+        float marked = (float) getAssignmentMarkedCount();
+        return marked / numOfAssignments * 100;
+    }
+
+    /**
+     * Returns number of assignments marked.
+     */
+    public int getAssignmentMarkedCount() {
+        return (int) getAssignments().stream()
+                .filter(x -> x.markingStatus == Assignment.Status.MARKED).count();
+    }
+
+    /**
+     * Returns number of assignments received but unmarked.
+     */
+    public int getAssignmentUnmarkedCount() {
+        return (int) getAssignments().stream()
+                .filter(x -> x.markingStatus == Assignment.Status.RECEIVED).count();
+    }
+
+    /**
+     * Returns number of assignments recorded.
+     */
+    public int getAssignmentCount() {
+        return getAssignments().size();
+    }
+
+    /**
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
      */

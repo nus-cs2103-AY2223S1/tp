@@ -11,6 +11,8 @@ public class GitName {
 
     public static final String NO_GITNAME_STRING = "No GitHub username";
 
+    public static final String GITNAME_DISPLAY_PREFIX = "GitHub: ";
+
     public static final String MESSAGE_CONSTRAINTS = "Github username can be anything";
 
     public static final String VALIDATION_REGEX = "[\\p{all}]*";
@@ -33,6 +35,17 @@ public class GitName {
         requireNonNull(username);
         checkArgument(isValidGitName(username), MESSAGE_CONSTRAINTS);
         this.value = username;
+    }
+
+    /**
+     * Returns string used for display in UI.
+     *
+     * @return String to be displayed
+     */
+    public String getDisplayString() {
+        return this.value.isEmpty()
+                ? NO_GITNAME_STRING
+                : GITNAME_DISPLAY_PREFIX + value;
     }
 
     /**
