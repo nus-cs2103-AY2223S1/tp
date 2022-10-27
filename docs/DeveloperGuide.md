@@ -95,8 +95,8 @@ Detailed implementation of the `AddCommandPopupWindow` is written [here](#pop-up
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
 classes that represent parts of the visible GUI.
 
-Furthermore, the `MainWindow` has different list panels such as `BuyerListPanel` and `PetListPanel` as shown below.
-List panels are used to fill the `MainWindow` for display. Which list panel is displayed depends on the input `Command`.
+Furthermore, the `MainWindow` can be filled by **one** List panels, such as `BuyerListPanel` and `PetListPanel`, for display. 
+Which list panel is displayed depends on the input `Command`.
 Each list panel can have any number of the corresponding card. For example, `BuyerListPanel` can have any number
 of `BuyerCard`.
 All the list panels and cards inherit from the abstract `UiPart`, but **not shown** in the diagram below to reduce graph
