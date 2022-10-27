@@ -1,8 +1,10 @@
 package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static swift.logic.parser.CliSyntax.PREFIX_KEYWORD;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 import swift.commons.core.Messages;
 import swift.logic.parser.Prefix;
@@ -16,7 +18,7 @@ import swift.model.task.TaskNameContainsKeywordsPredicate;
 public class FindTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "find_task";
-    public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>();
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(PREFIX_KEYWORD));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

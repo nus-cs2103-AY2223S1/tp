@@ -1,6 +1,6 @@
 package swift.logic.commands;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import swift.logic.parser.Prefix;
 import swift.model.Model;
@@ -11,7 +11,7 @@ import swift.model.Model;
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
-    public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>();
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>();
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 

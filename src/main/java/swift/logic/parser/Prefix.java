@@ -6,9 +6,20 @@ package swift.logic.parser;
  */
 public class Prefix {
     private final String prefix;
+    private String userPrompt;
 
     public Prefix(String prefix) {
         this.prefix = prefix;
+    }
+
+    /**
+     * Constructs a {@code Prefix} with given prefix and user prompt.
+     * @param prefix Prefix
+     * @param userPrompt User prompt for prefix
+     */
+    public Prefix(String prefix, String userPrompt) {
+        this.prefix = prefix;
+        this.userPrompt = userPrompt;
     }
 
     public String getPrefix() {
@@ -17,6 +28,10 @@ public class Prefix {
 
     public String toString() {
         return getPrefix();
+    }
+
+    public String getUserPrompt() {
+        return userPrompt == null ? "" : "<" + userPrompt + ">";
     }
 
     @Override

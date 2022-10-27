@@ -1,6 +1,5 @@
 package swift.logic.commands;
 
-import static java.util.Map.entry;
 import static java.util.Objects.requireNonNull;
 import static swift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static swift.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -8,8 +7,8 @@ import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 import static swift.logic.parser.CliSyntax.PREFIX_PHONE;
 import static swift.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.Prefix;
@@ -22,12 +21,8 @@ import swift.model.person.Person;
 public class AddContactCommand extends Command {
 
     public static final String COMMAND_WORD = "add_contact";
-    public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>(
-            Map.ofEntries(entry(PREFIX_NAME, "<name>"),
-                          entry(PREFIX_ADDRESS, "<address>"),
-                          entry(PREFIX_PHONE, "<phone>"),
-                          entry(PREFIX_EMAIL, "<email>"),
-                          entry(PREFIX_TAG, "<tag>")));
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(
+            List.of(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "

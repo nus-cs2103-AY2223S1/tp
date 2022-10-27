@@ -2,7 +2,7 @@ package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 import swift.commons.core.Messages;
@@ -18,7 +18,8 @@ import swift.model.task.Task;
 public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_task";
-    public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>();
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(
+            List.of(new Prefix("", "task_index")));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the displayed task list.\n"

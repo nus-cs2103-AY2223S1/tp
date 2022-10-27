@@ -1,7 +1,8 @@
 package swift.logic.commands;
 
+import static swift.logic.parser.CliSyntax.PREFIX_KEYWORD;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.ArgumentMultimap;
@@ -13,53 +14,59 @@ import swift.logic.parser.Prefix;
  */
 public class CommandSuggestor {
     private final ArrayList<String> commandList;
-    private final ArrayList<HashMap<Prefix, String>> argPromptList;
+    private final ArrayList<ArrayList<Prefix>> argPrefixList;
 
     /**
      * Constructs a {@code CommandSuggestor} with predefined commands and argument prompts.
      */
     public CommandSuggestor() {
         commandList = new ArrayList<>();
-        argPromptList = new ArrayList<>();
+        argPrefixList = new ArrayList<>();
 
         commandList.add(AddContactCommand.COMMAND_WORD);
-        argPromptList.add(AddContactCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(AddContactCommand.ARGUMENT_PREFIXES);
 
         commandList.add(AddTaskCommand.COMMAND_WORD);
-        argPromptList.add(AddTaskCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(AddTaskCommand.ARGUMENT_PREFIXES);
 
         commandList.add(ClearCommand.COMMAND_WORD);
-        argPromptList.add(ClearCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(ClearCommand.ARGUMENT_PREFIXES);
 
         commandList.add(DeleteContactCommand.COMMAND_WORD);
-        argPromptList.add(DeleteContactCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(DeleteContactCommand.ARGUMENT_PREFIXES);
 
         commandList.add(DeleteTaskCommand.COMMAND_WORD);
-        argPromptList.add(DeleteTaskCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(DeleteTaskCommand.ARGUMENT_PREFIXES);
 
         commandList.add(EditContactCommand.COMMAND_WORD);
-        argPromptList.add(EditContactCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(EditContactCommand.ARGUMENT_PREFIXES);
 
         commandList.add(EditTaskCommand.COMMAND_WORD);
-        argPromptList.add(EditTaskCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(EditTaskCommand.ARGUMENT_PREFIXES);
 
         commandList.add(ExitCommand.COMMAND_WORD);
-        argPromptList.add(ExitCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(ExitCommand.ARGUMENT_PREFIXES);
 
         commandList.add(FindContactCommand.COMMAND_WORD);
-        argPromptList.add(FindContactCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(FindContactCommand.ARGUMENT_PREFIXES);
 
         commandList.add(FindTaskCommand.COMMAND_WORD);
-        argPromptList.add(FindTaskCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(FindTaskCommand.ARGUMENT_PREFIXES);
 
         commandList.add(HelpCommand.COMMAND_WORD);
-        argPromptList.add(HelpCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(HelpCommand.ARGUMENT_PREFIXES);
 
         commandList.add(ListContactCommand.COMMAND_WORD);
-        argPromptList.add(ListContactCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(ListContactCommand.ARGUMENT_PREFIXES);
 
         commandList.add(ListTaskCommand.COMMAND_WORD);
-        argPromptList.add(ListTaskCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(ListTaskCommand.ARGUMENT_PREFIXES);
+
+        commandList.add(SelectContactCommand.COMMAND_WORD);
+        argPrefixList.add(SelectContactCommand.ARGUMENT_PREFIXES);
+
+        commandList.add(SelectTaskCommand.COMMAND_WORD);
+        argPrefixList.add(SelectTaskCommand.ARGUMENT_PREFIXES);
     }
 
     /**
@@ -71,11 +78,16 @@ public class CommandSuggestor {
      */
     public String suggestCommand(String userInput) throws CommandException {
         assert userInput != null && !userInput.isEmpty();
-        String[] userInputArray = userInput.split(" ");
+        String[] userInputArray = userInput.split(" ", 2);
         String commandWord = userInputArray[0];
         String suggestedCommand = "";
+        boolean isCommandComplete = userInput.contains(" ");
+
         for (String command : commandList) {
             if (command.startsWith(commandWord)) {
+                if (isCommandComplete && !command.equals(commandWord)) {
+                    continue;
+                }
                 suggestedCommand = command;
                 break;
             }
@@ -84,12 +96,12 @@ public class CommandSuggestor {
         if (suggestedCommand.equals("") && !commandWord.equals("")) {
             throw new CommandException("Invalid command");
         }
-        HashMap<Prefix, String> argPrompt = argPromptList.get(commandList.indexOf(suggestedCommand));
+        ArrayList<Prefix> argPrefixes = argPrefixList.get(commandList.indexOf(suggestedCommand));
 
         if (userInputArray.length > 1) {
-            return userInput.stripTrailing() + suggestArguments(argPrompt, userInput);
+            return userInput.stripTrailing() + suggestArguments(argPrefixes, userInputArray[1]);
         } else {
-            return suggestedCommand + suggestArguments(argPrompt, userInput);
+            return suggestedCommand + suggestArguments(argPrefixes, "");
         }
     }
 
@@ -106,6 +118,10 @@ public class CommandSuggestor {
         boolean isCommandComplete = userInput.contains(" ");
         int autocompleteUptoIndex = suggestedCommand.indexOf(isCommandComplete ? "/" : " ") + 1;
 
+        // If command has no prefix arguments
+        if (autocompleteUptoIndex == 0) {
+            autocompleteUptoIndex = suggestedCommand.length();
+        }
         userInput = userInput + suggestedCommand.substring(0, autocompleteUptoIndex);
         return userInput;
     }
@@ -113,31 +129,54 @@ public class CommandSuggestor {
     /**
      * Suggests prompts for arguments based on the user input.
      *
-     * @param argPrompt Argument prompts for specified command.
+     * @param argPrefixes Argument prefixes for specified command.
      * @param userInput Current user input.
      * @return Suggested arguments.
      * @throws CommandException If the user input is invalid.
      */
-    public String suggestArguments(HashMap<Prefix, String> argPrompt, String userInput) throws CommandException {
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, argPrompt.keySet()
-            .toArray(new Prefix[] {}));
+    public String suggestArguments(
+            ArrayList<Prefix> argPrefixes, String userInput) throws CommandException {
+        ArgumentMultimap argumentMultimap =
+                ArgumentTokenizer.tokenize(" " + userInput, argPrefixes.toArray(new Prefix[] {}));
         String argumentSuggestion = "";
         String[] userInputArray = userInput.split(" ");
         Prefix currPrefix = null;
+        boolean isIndexRequired = argPrefixes.contains(new Prefix(""));
+        boolean hasKeyword = argPrefixes.contains(PREFIX_KEYWORD);
+        boolean hasPrefix = (!userInput.isEmpty() && (!isIndexRequired || userInputArray.length > 1));
 
-        // Check if user is trying to autocomplete a prefix
-        if (userInputArray.length > 1 && !userInputArray[userInputArray.length - 1].contains("/")) {
-            argumentSuggestion += "/ ";
+        // Check if user input for index is valid (only if required)
+        if (isIndexRequired) {
+            if (userInputArray[0].equals("")) {
+                argumentSuggestion += " " + argPrefixes.get(0).getUserPrompt();
+            } else {
+                if (!userInputArray[0].matches("-?\\d+(\\.\\d+)?")) {
+                    throw new CommandException("Invalid index");
+                }
+            }
+        }
+
+        if (hasKeyword) {
+            // Check if user input contains keyword
+            if (userInput.equals("")) {
+                argumentSuggestion += " " + argPrefixes.get(0).getUserPrompt();
+            }
+            argumentMultimap.put(PREFIX_KEYWORD, "");
+        } else if (hasPrefix && !userInputArray[userInputArray.length - 1].contains("/")) {
+            // Check if user is trying to autocomplete a prefix
             currPrefix = new Prefix(userInputArray[userInputArray.length - 1] + "/");
             argumentMultimap.put(currPrefix, "");
-            if (argPrompt.get(currPrefix) == null) {
+
+            if (argPrefixes.contains(currPrefix)) {
+                argumentSuggestion += "/ ";
+            } else if (!userInput.contains("/")) {
                 throw new CommandException("Invalid prefix");
             }
         }
 
-        for (Prefix key : argPrompt.keySet()) {
-            if (argumentMultimap.getValue(key).isEmpty()) {
-                argumentSuggestion += " " + key + argPrompt.get(key);
+        for (Prefix prefix : argPrefixes) {
+            if (argumentMultimap.getValue(prefix).isEmpty()) {
+                argumentSuggestion += " " + prefix + prefix.getUserPrompt();
             }
         }
         return argumentSuggestion;
