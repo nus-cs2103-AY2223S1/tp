@@ -9,13 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Tutorial {
 
     public static final String MESSAGE_CONSTRAINTS = "Tutorial should only start with a letter from [W/T/F] followed ,"
-            + "by two digits, and it should not be blank";
+            + "by two digits";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[W/T/F]\\d{2}.*";
+    public static final String VALIDATION_REGEX = "[W/T/F]\\d{2}.*|^$";
 
     public final String tut;
 
