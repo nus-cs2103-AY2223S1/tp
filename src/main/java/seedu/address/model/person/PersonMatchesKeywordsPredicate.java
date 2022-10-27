@@ -143,7 +143,7 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
         return matchesName(person)
                 || matchesAddress(person)
                 || matchesTags(person)
-                ||matchesRole(person)
+                || matchesRole(person)
                 || matchesGitHubUser(person);
     }
 
