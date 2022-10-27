@@ -41,29 +41,23 @@ public class ItemView {
         tags.setHgap(SPACING_UNIT);
         tags.setVgap(SPACING_UNIT);
 
-        // Quantity and unit at the top right
-        final Label quantityLabel = new Label("Quantity\nRemaining:");
-        quantityLabel.setTextAlignment(TextAlignment.RIGHT);
-        final Label quantityAndUnit = new Label(buildItemQuantityAndUnitStringFrom(item));
-        quantityAndUnit.getStyleClass().add("item-detail-quantity");
-        final VBox quantityBox = new VBox(quantityLabel, quantityAndUnit);
-        quantityBox.setAlignment(Pos.CENTER_RIGHT);
+        // Quantity/unit and price row
+        final Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        final HBox quantityAndPrice = new HBox(
+                new Label("Quantity: " + buildItemQuantityAndUnitStringFrom(item)),
+                spacer,
+                new Label("Price: $" + item.getPrice().toString()));
 
-        // Set up top half
-        final VBox col1 = new VBox(name, tags);
-        col1.setSpacing(SPACING_UNIT);
-        final HBox row1 = new HBox(col1, quantityBox);
-        HBox.setHgrow(col1, Priority.ALWAYS);
-        row1.setSpacing(SPACING_UNIT);
-
-        final Label remarks = new Label(
-                String.valueOf(item.getRemarks()).isBlank() ? "-" : item.getRemarks().toString());
+        final Label remarks = new Label(item.getRemarks().toString().isBlank() ? "-" : item.getRemarks().toString());
         remarks.setWrapText(true);
 
         // Combine everything
         final VBox itemView = new VBox(
-                row1,
-                new Label("$" + item.getPrice().toString()),
+                name,
+                quantityAndPrice,
+                new Separator(),
+                tags,
                 new Separator(),
                 new Label("Bought Date: " + buildBoughtDateStringFrom(item)),
                 new Label("Expiry Date: " + buildExpiryDateStringFrom(item)),
