@@ -204,7 +204,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Command Parsing
 The [**Logic**](#logic-component) section briefly explains how the user's input is broken down, but the process is explained more thoroughly here.
 
-Parsing of commands is a three-step process - processing the first command word, then the arguments (if any), and constructing the Command instance. 
+Parsing of commands is a three-step process - processing the first command word, then the arguments (if any), and constructing the Command instance.
 
 The `add`, `find`, `list`, and `delete` commands can apply to either users or books. These commands need additional subcommands and additional parsers to handle the different execution logic and command-line flags for users and books. Thus, the arguments to these commands are actually subcommands.
 
@@ -216,7 +216,7 @@ These commands (and subcommands) are represented as enums to associate each poss
 
 This approach was chosen to reduce code duplication, and to manage the complexity of `PrimaryParser`. Now, `DeleteUserCommand` (`delete user`) and `DeleteBookCommand` (`delete book`) can share similar code through a common parent `DeleteCommand` (`delete`).
 
-Enums were chosen, as they use less memory (as enums are `final` subclasses of java.lang.Enum) than HashMap for key-value storage, and are easy to modify. Furthermore, they help to ensure type-checking during compile-time, preventing bugs. They also have a semantic value; they represent to both readers and future developers the current allowed constants. 
+Enums were chosen, as they use less memory (as enums are `final` subclasses of java.lang.Enum) than HashMap for key-value storage, and are easy to modify. Furthermore, they help to ensure type-checking during compile-time, preventing bugs. They also have a semantic value; they represent to both readers and future developers the current allowed constants.
 
 ### Adding a book/user
 
@@ -295,7 +295,7 @@ The `delete` allows the user to delete a book or a user from the system.
 
 #### Deleting a book with `delete book`
 
-`delete book` deletes a book from the model. Specifically, `ModelManager` maintains a list of books and contains the method `deleteBook()` that is invoked by `DeleteBookCommand` to perform this deletion.
+`delete book` deletes a book from the model. Specifically, `ModelManager` maintains a list of books and contains the method `deleteBook()` that is invoked by `DeleteBookCommand`to perform this deletion.
 
 The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("delete user 
 1")` API call.
@@ -321,7 +321,7 @@ The following activity diagram summarizes what happens when the librarian execut
 
 #### Implementation
 
-The find feature is faciliated by `FindUserCommand` and `FindUserArgumentsParser` for finding users, and `FindBookCommand` and `FindBookArgumentsParser` for finding books. 
+The find feature is faciliated by `FindUserCommand` and `FindUserArgumentsParser` for finding users, and `FindBookCommand` and `FindBookArgumentsParser` for finding books.
 It implements the following operations:
 * `#updateFilteredPersonList(predicate)` — Display users with names matching predicate.
 * `updatedFilteredBookList(predicate)` — Display books with title/authors matching predicate.
@@ -329,7 +329,7 @@ It implements the following operations:
 
 Given below is an example usage scenario and how the find users mechanism behaves at each step.
 
-Step 1. Assume that BookFace contains some users that are added through several `AddUserCommand` executed by the user. The user executes `find user alex` command to find any user with name 'alex' within the address book. 
+Step 1. Assume that BookFace contains some users that are added through several `AddUserCommand` executed by the user. The user executes `find user alex` command to find any user with name 'alex' within the address book.
 
 Step 2. `LogicManager` executes the `find user alex` command.
 
@@ -354,7 +354,7 @@ The following activity diagram summarizes what happens when the librarian execut
 
 The process for finding books goes through a similar process as the process for finding users. Given below is an example usage scenario and how the find books mechanism behaves at each step.
 
-Step 1. Assume that BookFace contains some books that are added through several `AddBookCommand` executed by the user. The user executes `find book moby` command to find any book with title or author with 'moby' within the book list. 
+Step 1. Assume that BookFace contains some books that are added through several `AddBookCommand` executed by the user. The user executes `find book moby` command to find any book with title or author with 'moby' within the book list.
 
 Step 2. `LogicManager` executes the `find book moby` command.
 
@@ -378,7 +378,7 @@ The following activity diagram summarizes what happens when the librarian execut
 ![FindBookActivityDiagram](images/FindBookActivityDiagram.png)
 
 #### Design considerations
-The find command is designed such that the matches within `BookList` and `UniquePersonList` are easily found and listed onto the UI of BookFace. 
+The find command is designed such that the matches within `BookList` and `UniquePersonList` are easily found and listed onto the UI of BookFace.
 
 
 ### Loan feature
