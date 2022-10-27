@@ -452,11 +452,11 @@ sales between a Buyer and Supplier.
 
 In order to Find a particular category of persons, use the following command words instead:
 
-| Person Category | Command Word | Usage                  | Example                              |
-|-----------------|--------------|------------------------|--------------------------------------|
-| Buyer           | find-b       | find-b [PREFIX]/INPUT  | find-b a/6th College Ave. West |
-| Deliverer | find-d | find-d [PREFIX]/INPUT | find-d e/blackball@furry.com |
-| Supplier | find-s | find-s [PREFIX]/INPUT | find-s p/98986668 |
+| Person Category | Command Word | Usage                 | Example                        |
+|-----------------|--------------|-----------------------|--------------------------------|
+| Buyer           | find-b       | find-b [PREFIX]/INPUT | find-b a/6th College Ave. West |
+| Deliverer       | find-d       | find-d [PREFIX]/INPUT | find-d e/blackball@furry.com   |
+| Supplier        | find-s       | find-s [PREFIX]/INPUT | find-s p/98986668              |
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -531,8 +531,8 @@ Check out the acceptable List Parameters for different types of contacts / items
 
 #### List Attribute Table
 
-| List type | Attributes                                                                                                                       |
-|-----------|----------------------------------------------------------------------------------------------------------------------------------|
+| List type | Attributes                                                                                                                  |
+|-----------|-----------------------------------------------------------------------------------------------------------------------------|
 | Buyer     | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
 | Supplier  | *Number of Pet On sale*, Name, Phone, Email, Location, Address                                                              |
 | Deliverer | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
@@ -718,7 +718,7 @@ These prefixes are for you to indicate different fields when you add a new perso
 | **Filter Pets**              | `filter-p PREFIX/KEYWORD`<br> e.g., `filter-p c/white s/capybara`                                                                                                                                          |
 | **Help**                     | `help`                                                                                                                                                                                                     |
 | **List**                     | `list all`, `list buyer`, `list supplier`, `list delivery`, `list order`, `list pet`                                                                                                                       |
-| **Sort**                     | `sort LIST_PARAMETER [ATTRIBUTES...]`<br> e.g., `sort pet price height weight`                                                                                                                            |
+| **Sort**                     | `sort LIST_PARAMETER [ATTRIBUTES...]`<br> e.g., `sort pet price height weight`                                                                                                                             |
 | **Check**                    | `check LIST_TYPE INDEX` <br> e.g., `check buyer 1`                                                                                                                                                         |
 
 [Go back to [Table of Contents](#table-of-contents)]
