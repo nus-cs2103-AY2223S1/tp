@@ -111,6 +111,11 @@ public class Version implements Comparable<Version> {
         if (!isEarlyAccess) {
             hash = "1" + hash;
         }
-        return Integer.parseInt(hash);
+        try {
+            return Integer.parseInt(hash);
+        } catch (NumberFormatException ex) {
+            // no more overflows
+            return hash.hashCode();
+        }
     }
 }

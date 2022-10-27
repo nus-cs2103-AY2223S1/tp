@@ -61,25 +61,6 @@ class JsonAdaptedStall {
     }
 
     /**
-     * Checks if a review is of this stall.
-     *
-     * @throws IllegalValueException if there are data constraints violated in the name of the stall.
-     */
-    public boolean isReviewOfStall(Review review) throws IllegalValueException {
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        return name.equals(review.getName().fullName);
-    }
-
-    /**
-     * Adds the review to the stall.
-     */
-    public void addReview(Review review) {
-        reviews.add(new JsonAdaptedReview(review));
-    }
-
-    /**
      * Converts this Jackson-friendly adapted stall object into the model's {@code Stall} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted stall.
