@@ -71,6 +71,12 @@ public class TypicalCustomers {
     }
 
     public static List<Customer> getTypicalCustomers() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(new CustomerBuilder(ALICE).build(),
+                new CustomerBuilder(BENSON).build(),
+                new CustomerBuilder(CARL).build(),
+                new CustomerBuilder(DANIEL).build(),
+                new CustomerBuilder(ELLE).build(),
+                new CustomerBuilder(FIONA).build(),
+                new CustomerBuilder(GEORGE).build()));
     }
 }

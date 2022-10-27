@@ -115,9 +115,9 @@ public class UniqueCommissionList implements Iterable<Commission> {
         }
     }
 
-    public void setCommissions(UniqueCommissionList replacement) {
+    public void setCommissions(ObservableList<Commission> replacement) {
         requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+        internalList.setAll(replacement);
     }
 
     /**

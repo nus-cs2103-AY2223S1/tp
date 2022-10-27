@@ -214,7 +214,7 @@ public class Commission {
                 && otherCommission.getTags().equals(getTags())
                 && otherCommission.getDescription().equals(getDescription())
                 && otherCommission.getCompletionStatus().equals(getCompletionStatus())
-                && otherCommission.getCustomer().equals(getCustomer());
+                && otherCommission.getCustomer().isSameCustomer(getCustomer());
     }
 
     @Override
