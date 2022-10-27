@@ -23,6 +23,7 @@ import seedu.clinkedin.model.person.Phone;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
+import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
@@ -38,12 +39,11 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<List<JsonAdaptedTag>> tags = new ArrayList<>();
+    private final List<List<JsonAdaptedTag>> tags;
     private final String status;
     private final String note;
     private final String rating;
-
-    private final List<JsonAdaptedLink> links = new ArrayList<>();
+    private final List<JsonAdaptedLink> links;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -58,15 +58,11 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
+        this.tags = new ArrayList<>(tags);
         this.note = note;
         this.status = status;
         this.rating = rating;
-        if (links != null) {
-            this.links.addAll(links);
-        }
+        this.links = new ArrayList<>(links);
     }
 
     /**
@@ -77,6 +73,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        tags = new ArrayList<>();
         ObservableMap<TagType, UniqueTagList> map = source.getTags();
         for (TagType t: map.keySet()) {
             Tag tagtype = new Tag(t.getTagTypeName());
@@ -89,6 +86,7 @@ class JsonAdaptedPerson {
         status = source.getStatus().status;
         note = source.getNote().value;
         rating = source.getRating().toString();
+        links = new ArrayList<>();
         links.addAll(source.getLinks().stream().map(JsonAdaptedLink::new).collect(Collectors.toList()));
     }
 
@@ -98,12 +96,20 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
+        if (tags == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "tags"));
+        }
         final Map<TagType, UniqueTagList> personTags = new HashMap<>();
 
         for (List<JsonAdaptedTag> tags : tags) {
             String tagType = tags.get(0).toModelType().toString();
             tagType = tagType.substring(1, tagType.length() - 1);
-            TagType t = new TagType(tagType, UniqueTagTypeMap.getPrefixFromTagType(tagType));
+            TagType t;
+            try {
+                t = new TagType(tagType, UniqueTagTypeMap.getPrefixFromTagType(tagType));
+            } catch (TagTypeNotFoundException tte) {
+                throw new IllegalValueException(tte.getMessage());
+            }
             List<Tag> tagList = new ArrayList<>();
             for (JsonAdaptedTag jsonAdaptedTag : tags.subList(1, tags.size())) {
                 Tag toModelType = jsonAdaptedTag.toModelType();
@@ -114,6 +120,9 @@ class JsonAdaptedPerson {
             personTags.put(t, uniqueTagList);
         }
 
+        if (links == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "links"));
+        }
         final List<Link> personLinks = new ArrayList<>();
         for (JsonAdaptedLink link : links) {
             personLinks.add(link.toModelType());
