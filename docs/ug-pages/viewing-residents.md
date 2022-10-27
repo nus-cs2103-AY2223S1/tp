@@ -19,11 +19,21 @@ This can be done using `list /i` or `list /e`.
 
 Format:
 
-- `list` to display *all* residents from the database with *all* columns included in the table
+- `list` to display *all* residents from the database with *all* columns included in the table.
+
+   Calling `list` on our sample data will produce the following result:
+   ![list command](../images/ug-photos/list_command.png)
+
+
 - `list /i LETTER [MORE_LETTERS]` to display *all* residents in **RC4HDB** while **including** only the fields
-   corresponding to the specified letters.
+   corresponding to the specified letters
+
+
 - `list /e LETTER [MORE_LETTERS]` to display *all* residents in **RC4HDB** while **excluding** only the fields
-   corresponding to the specified letters.
+   corresponding to the specified letters
+
+  Calling `list /i n p e` or `list /e i r g h m t` would both produce the following result:
+![list command](../images/ug-photos/list_i_list_e_command.png)
 
 Examples:
 
@@ -69,6 +79,10 @@ This command works similar to `list /i`, with two key differences:
 
 Format: `showonly LETTER [MORE_LETTERS]`
 
+Calling `filter g/M` (click [here](#filtering-residents-by-field--filter) to learn about `filter`) followed by `showonly n g h` will produce the following result:
+![showonly](../images/ug-photos/showonly_command.png)
+As you can see,`showonly` works with a list of residents that have passed the filter! This is one way you can use our commands in conjunction with one another.
+
 Examples **(sequential)**:
 
 - `showonly n p e` on a full table returns a table with only the *name*, *phone* and *email* columns shown.
@@ -77,6 +91,7 @@ Examples **(sequential)**:
 - However, calling `showonly n e` on said table is **valid**, and will return a table with only the *name* and 
   *email* columns shown.
 
+<br>
 Note:
 
 - Like in `list`, each column to be shown should be entered as a single letter that corresponds to the first 
@@ -172,6 +187,10 @@ Format: `find NAME [ADDITIONAL_NAMES]`
 * Residents matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+Calling `find mel` on our sample data will produce the following result:
+![find_command](../images/ug-photos/find_command.png)
+As you can see, the resident with the name "Melvin" contains the string "mel", and thus would appear as one a result of the `find` command.
+
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
@@ -188,14 +207,20 @@ Examples:
 
 Shows a list of residents whose fields match the input keywords.
 
-Format: `filter KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-* The fields have to be the same (no substrings allowed) for the resident to be filtered.
-* Commands with multiple fields require the resident to match all the fields to be filtered.
+Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
+* Filters will be applied based on the given `SPECIFIER` as well as `KEY/VALUE` pairs.
+* `SPECIFIER`s will either be `/all` or `/any`. In the event that there are multiple `KEY/VALUE` pairs, 
+  filters with the `all` specifier will only return results that satisfy **all** the keywords, while filters with the
+  `any` specifier will return results that satisfy **any** of the keywords present.
 * Valid keys are those included [here](./modifying-residents.md#format-for-resident-fields), and any additional tags.
 
+Calling `filter /all t/Head` on our sample data will produce the following result:
+![filter](../images/ug-photos/filter_command_2.png)
+As you can see, 
+
 Examples:
-* `filter h/D g/M` returns residents who are in Draco house, **and** are Male.
-* `filter g/M` returns residents who are male.
+* `filter /all h/D g/M` returns residents who are in Draco house, **and** are Male.
+* `filter /any g/M t/Head` returns residents who have a tag corresponding to a head, **or** are male.
 
 [Back to Top](#back-to-menu)
 
