@@ -20,7 +20,7 @@ public class ParticipationTest {
     }
 
     @Test
-    public void isValidClassName() {
+    public void isValidParticipationName() {
         // null class name
         assertThrows(NullPointerException.class, () -> Participation.isValidParticipationName(null));
 

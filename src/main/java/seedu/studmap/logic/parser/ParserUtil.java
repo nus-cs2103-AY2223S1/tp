@@ -18,6 +18,7 @@ import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Module;
 import seedu.studmap.model.student.Name;
+import seedu.studmap.model.student.Participation;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.StudentID;
 import seedu.studmap.model.student.TeleHandle;
@@ -236,8 +237,8 @@ public class ParserUtil {
     public static String parseParticipationComponent(String participationComponent) throws ParseException {
         requireNonNull(participationComponent);
         String trimmedPartCom = participationComponent.trim();
-        if (!Attendance.isValidClassName(trimmedPartCom)) {
-            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+        if (!Participation.isValidParticipationName(trimmedPartCom)) {
+            throw new ParseException(Participation.MESSAGE_CONSTRAINTS);
         }
         return trimmedPartCom;
     }

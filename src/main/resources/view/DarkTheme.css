@@ -420,6 +420,11 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
+#participationRate .label {
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
 #success {
     -fx-text-fill: #00C851;
 }
