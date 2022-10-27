@@ -3,7 +3,7 @@ package eatwhere.foodguide.logic.commands;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_CUISINE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PRICE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
@@ -22,7 +22,7 @@ import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
-import eatwhere.foodguide.model.eatery.Phone;
+import eatwhere.foodguide.model.eatery.Price;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
@@ -37,12 +37,12 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_PRICE + "PHONE] "
             + "[" + PREFIX_CUISINE + "EMAIL] "
             + "[" + PREFIX_LOCATION + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_PRICE + "91234567 "
             + PREFIX_CUISINE + "chinese";
 
     public static final String MESSAGE_EDIT_EATERY_SUCCESS = "Edited Eatery: %1$s";
@@ -93,12 +93,12 @@ public class EditCommand extends Command {
         assert eateryToEdit != null;
 
         Name updatedName = editEateryDescriptor.getName().orElse(eateryToEdit.getName());
-        Phone updatedPhone = editEateryDescriptor.getPhone().orElse(eateryToEdit.getPhone());
+        Price updatedPrice = editEateryDescriptor.getPhone().orElse(eateryToEdit.getPrice());
         Cuisine updatedCuisine = editEateryDescriptor.getEmail().orElse(eateryToEdit.getCuisine());
         Location updatedLocation = editEateryDescriptor.getAddress().orElse(eateryToEdit.getLocation());
         Set<Tag> updatedTags = editEateryDescriptor.getTags().orElse(eateryToEdit.getTags());
 
-        return new Eatery(updatedName, updatedPhone, updatedCuisine, updatedLocation, updatedTags);
+        return new Eatery(updatedName, updatedPrice, updatedCuisine, updatedLocation, updatedTags);
     }
 
     @Override
@@ -125,7 +125,7 @@ public class EditCommand extends Command {
      */
     public static class EditEateryDescriptor {
         private Name name;
-        private Phone phone;
+        private Price price;
         private Cuisine cuisine;
         private Location location;
         private Set<Tag> tags;
@@ -138,7 +138,7 @@ public class EditCommand extends Command {
          */
         public EditEateryDescriptor(EditEateryDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setPhone(toCopy.price);
             setCuisine(toCopy.cuisine);
             setAddress(toCopy.location);
             setTags(toCopy.tags);
@@ -148,7 +148,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, cuisine, location, tags);
+            return CollectionUtil.isAnyNonNull(name, price, cuisine, location, tags);
         }
 
         public void setName(Name name) {
@@ -159,12 +159,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPhone(Price price) {
+            this.price = price;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Price> getPhone() {
+            return Optional.ofNullable(price);
         }
 
         public void setCuisine(Cuisine cuisine) {

@@ -4,7 +4,7 @@ import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_CUISINE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_HELP;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PRICE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
 import static eatwhere.foodguide.logic.parser.ParserUtil.arePrefixesPresent;
 
@@ -18,7 +18,7 @@ import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
-import eatwhere.foodguide.model.eatery.Phone;
+import eatwhere.foodguide.model.eatery.Price;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
@@ -35,7 +35,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException, DisplayCommandHelpException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CUISINE,
-                        PREFIX_LOCATION, PREFIX_PHONE, PREFIX_TAG, PREFIX_HELP);
+                        PREFIX_LOCATION, PREFIX_PRICE, PREFIX_TAG, PREFIX_HELP);
 
         if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
             throw new DisplayCommandHelpException(AddCommand.MESSAGE_USAGE);
@@ -52,11 +52,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Eatery eatery;
-        if (argMultimap.getAllValues(PREFIX_PHONE).isEmpty()) {
+        if (argMultimap.getAllValues(PREFIX_PRICE).isEmpty()) {
             eatery = new Eatery(name, cuisine, location, tagList);
         } else {
-            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-            eatery = new Eatery(name, phone, cuisine, location, tagList);
+            Price price = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PRICE).get());
+            eatery = new Eatery(name, price, cuisine, location, tagList);
         }
 
         return new AddCommand(eatery);

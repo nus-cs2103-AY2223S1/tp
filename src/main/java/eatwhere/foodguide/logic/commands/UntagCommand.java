@@ -15,7 +15,7 @@ import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
-import eatwhere.foodguide.model.eatery.Phone;
+import eatwhere.foodguide.model.eatery.Price;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
@@ -96,7 +96,7 @@ public class UntagCommand extends Command {
         assert eateryToUntag != null;
 
         Name name = eateryToUntag.getName();
-        Phone phone = eateryToUntag.getPhone();
+        Price price = eateryToUntag.getPrice();
         Cuisine email = eateryToUntag.getCuisine();
         Location location = eateryToUntag.getLocation();
         Set<Tag> tags = new HashSet<>(eateryToUntag.getTags()); //hashset supports removeAll()
@@ -107,7 +107,7 @@ public class UntagCommand extends Command {
         }
         tags.removeAll(tagsToRemove);
 
-        return new Eatery(name, phone, email, location, tags);
+        return new Eatery(name, price, email, location, tags);
     }
 
     @Override
