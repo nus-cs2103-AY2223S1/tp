@@ -30,7 +30,8 @@ public class ItemView {
         name.prefWidth(Double.MAX_VALUE);
 
         // Name and tags at the top left
-        final HBox tags = new HBox(new Label("Tags: "), TagsView.from(item.getTagSet()));
+        final HBox tags = new HBox(new Label("Tags: "));
+        tags.getChildren().addAll(TagsView.from(item.getTagSet()));
         tags.setAlignment(Pos.CENTER_LEFT);
         tags.setSpacing(SPACING_UNIT);
 

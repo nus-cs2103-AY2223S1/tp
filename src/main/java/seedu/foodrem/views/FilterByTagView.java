@@ -3,6 +3,7 @@ package seedu.foodrem.views;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import seedu.foodrem.viewmodels.FilterByTag;
 
@@ -27,7 +28,7 @@ public class FilterByTagView {
         primaryMessage.setWrapText(true);
         final Separator separator = new Separator();
         separator.getStyleClass().add("lined-separator");
-        final Node itemView = TagsView.from(filterByTag.getTag());
+        final HBox itemView = new HBox(TagsView.from(filterByTag.getTag()));
         final Label secondaryMessage = new Label(filterByTag.getSecondaryMessage());
         secondaryMessage.setWrapText(true);
 

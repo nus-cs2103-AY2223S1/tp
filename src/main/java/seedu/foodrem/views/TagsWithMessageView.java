@@ -3,6 +3,7 @@ package seedu.foodrem.views;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import seedu.foodrem.viewmodels.TagsWithMessage;
 
@@ -27,7 +28,7 @@ public class TagsWithMessageView {
         messageView.setWrapText(true);
         final Separator separator = new Separator();
         separator.getStyleClass().add("lined-separator");
-        final Node itemView = TagsView.from(tagsWithMessage.getTags());
+        final Node itemView = new HBox(TagsView.from(tagsWithMessage.getTags()));
 
         container.getChildren().addAll(messageView, separator, itemView);
         return container;
