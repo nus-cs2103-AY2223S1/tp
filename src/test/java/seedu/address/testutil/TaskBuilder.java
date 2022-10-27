@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import java.time.LocalDate;
 
-import seedu.address.logic.commands.CommandUtil;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Description;
@@ -50,7 +49,6 @@ public class TaskBuilder {
         taskPriority = new Priority(defaultPriority);
         taskDeadline = new TaskDeadline(defaultLocalDate);
         taskPersonEmailAddress = new Email("test@gmail.com");
-        taskPerson = new CommandUtil.NotFoundPerson(taskPersonEmailAddress);
         taskStatus = defaultStatus;
     }
 

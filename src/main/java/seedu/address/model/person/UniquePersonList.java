@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +19,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Person#isSamePerson(Person)
@@ -35,6 +36,25 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Finds and returns a person based on their email. Returns null if the email provided is the noEmailInstance.
+     *
+     * @param email to search for
+     * @return null if email is the noEmailInstance, person if match found
+     * @throws PersonNotFoundException
+     */
+    public Person getPersonByEmail(Email email) throws PersonNotFoundException {
+        requireNonNull(email);
+        if (email.equals(Email.getNoEmailInstance())) {
+            return null;
+        }
+        Optional<Person> person = internalList.stream().filter(p -> p.getEmail().equals(email)).findFirst();
+        if (person.isEmpty()) {
+            throw new PersonNotFoundException();
+        }
+        return person.get();
     }
 
     /**
@@ -114,7 +134,7 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override

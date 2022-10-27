@@ -42,12 +42,12 @@ public class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name,
-                             @JsonProperty("categoryName") String categoryName,
-                             @JsonProperty("description") String description,
-                             @JsonProperty("priority") String priority,
-                             @JsonProperty("deadline") String deadline,
-                             @JsonProperty("email") String email,
-                             @JsonProperty("isDone") String isDone) {
+                           @JsonProperty("categoryName") String categoryName,
+                           @JsonProperty("description") String description,
+                           @JsonProperty("priority") String priority,
+                           @JsonProperty("deadline") String deadline,
+                           @JsonProperty("email") String email,
+                           @JsonProperty("isDone") String isDone) {
         this.name = name;
         this.categoryName = categoryName;
         this.description = description;
@@ -66,7 +66,7 @@ public class JsonAdaptedTask {
         description = source.getDescription().toString();
         priority = source.getPriority().getPriority().toString();
         deadline = source.getDeadline().toString();
-        email = source.getPerson().getEmail().toString();
+        email = source.getPerson() == null ? null : source.getEmail().toString();
         isDone = Task.covertIsDoneFromBooleanToString(source.isDone());
     }
 
@@ -121,15 +121,6 @@ public class JsonAdaptedTask {
         }
         final TaskDeadline modelDeadline = new TaskDeadline(LocalDate.parse(deadline));
 
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
         if (isDone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Boolean.class.getSimpleName()));
@@ -140,11 +131,20 @@ public class JsonAdaptedTask {
         final Boolean modelIsDone = Task.covertIsDoneFromStringToBoolean(isDone);
 
         Person modelPerson = null;
-        for (Person person : personList) {
-            if (person.getEmail().equals(modelEmail)) {
-                modelPerson = person;
+        if (email != null) {
+            if (!Email.isValidEmail(email)) {
+                throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+            }
+            final Email modelEmail = new Email(email);
+
+            for (Person person : personList) {
+                if (person.emailMatches(modelEmail)) {
+                    modelPerson = person;
+                    break;
+                }
             }
         }
+
         return new Task(modelName, modelDescription, modelPriority, modelCategory,
                 modelDeadline, modelPerson, modelIsDone);
     }

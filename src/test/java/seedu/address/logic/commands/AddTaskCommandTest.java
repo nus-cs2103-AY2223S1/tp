@@ -34,9 +34,6 @@ import seedu.address.model.task.TaskList;
 import seedu.address.model.task.TaskName;
 
 
-
-
-
 public class AddTaskCommandTest {
     private final TaskList testList = new TaskList();
     private final TaskName testName = new TaskName("Test");
@@ -118,6 +115,11 @@ public class AddTaskCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getPersonByEmail(Email email) {
             throw new AssertionError("This method should not be called.");
         }
 
