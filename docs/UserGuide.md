@@ -224,7 +224,7 @@ Format: `exit`
 
 ### Advanced Features
 
-###### Session-Based Command History
+#### Session-Based Command History
 
 Access the previous commands you've made within each session.
 
@@ -241,11 +241,11 @@ Access the previous commands you've made within each session.
 
 </div>
 
-###### Tag Shortcuts
+#### Tag Shortcuts
 
 Lorem Ipsum
 
-###### Quick Links
+#### Quick Links
 
 Get easy access to some of your favourite NUS websites, right from the menu. 
 
