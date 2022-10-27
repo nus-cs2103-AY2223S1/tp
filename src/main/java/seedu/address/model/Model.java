@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 
 /**
@@ -88,12 +89,15 @@ public interface Model {
     /** Returns the Person currently being viewed. */
     Person getCurrentlyViewedPerson();
 
+    /** Returns the Index of the Person currently being viewed. */
+    Index getCurrentlyViewedIndex();
+
     /**
      * Updates the Person currently being viewed.
      * @param person The person to set as the new Person to view.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateCurrentlyViewedPerson(Person person);
+    void updateCurrentlyViewedPerson(Person person, Index index);
 
     /**
      * Returns count of people stored in the address book.
