@@ -6,10 +6,53 @@
   "minima/skins/{{ site.minima.skin | default: 'classic' }}",
   "minima/initialize";
 
+html {
+  scroll-behavior: smooth;
+}
+
 .icon {
     height: 21px;
     width: 21px
 }
+
+.toc-button {
+  height: 16px;
+  padding: 6px 8px;
+  background-color: rgba(12, 12, 12, 0.75);
+  border-radius: 16px;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.toc-button:hover {
+  background-color: rgba(12, 12, 12, 0.85);
+}
+
+.toc-button svg {
+  height: 16px;
+  width: 16px;
+}
+
+.toc-button span {
+  margin-left: 4px;
+  color: white;
+  font-size: 0.875rem;
+}
+
+@media screen and (max-width: $on-palm) {
+  .toc-button span {
+    display: none;
+  }
+
+  .toc-button {
+    padding: 6px;
+  }
+}
+
 
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
 kbd {
