@@ -4,10 +4,9 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
-participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
-participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant "a:AddModuleCommand" as AddModuleCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant "<<class>>\nModuleParser" as ModuleParser LOGIC_COLOR
+participant ":ModuleParser" as ModuleParser LOGIC_COLOR
 
 end box
 
@@ -16,49 +15,37 @@ participant ":Model" as Model MODEL_COLOR
 participant ":ModuleList" as ModuleList MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add -m -c CS2103T")
+[-> LogicManager : execute("add mod CS2103T")
 activate LogicManager
 
-LogicManager -> ModtrektParser : parseCommand("add -m -c CS2103T")
+LogicManager -> ModtrektParser : parseCommand("add mod CS2103T")
 activate ModtrektParser
 
-create AddCommandParser
-ModtrektParser -> AddCommandParser
-activate AddCommandParser
+create AddModuleCommand
+ModtrektParser -> AddModuleCommand
+activate AddModuleCommand
 
-AddCommandParser --> ModtrektParser
-deactivate AddCommandParser
+AddModuleCommand --> ModtrektParser
+deactivate AddModuleCommand
 
-ModtrektParser -> AddCommandParser : parse("CS2103T")
-activate AddCommandParser
-
-create ModuleParser
-AddCommandParser -> ModuleParser : fetchModule(CS2103T)
-activate ModuleParser
-
-ModuleParser --> AddCommandParser : m
-deactivate ModuleParser
-
-create AddCommand
-AddCommandParser -> AddCommand
-activate AddCommand
-
-AddCommand --> AddCommandParser : a
-deactivate AddCommand
-
-AddCommandParser --> ModtrektParser : a
-deactivate AddCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddCommandParser -[hidden]-> ModtrektParser
-destroy AddCommandParser
+AddModuleCommand -[hidden]-> ModtrektParser
+'destroy AddCommandParser
 
 ModtrektParser --> LogicManager : a
 deactivate ModtrektParser
 
-LogicManager -> AddCommand : execute()
-activate AddCommand
+LogicManager -> AddModuleCommand : execute()
+activate AddModuleCommand
 
-AddCommand -> Model : addModule(Module)
+create ModuleParser
+AddModuleCommand -> ModuleParser : fetchModule(CS2103T)
+activate ModuleParser
+
+ModuleParser --> AddModuleCommand : module
+deactivate ModuleParser
+
+AddModuleCommand -> Model : addModule(module)
 activate Model
 
 Model -> ModuleList : add(module)
@@ -67,18 +54,18 @@ activate ModuleList
 ModuleList --> Model
 deactivate ModuleList
 
-Model --> AddCommand
+Model --> AddModuleCommand
 deactivate Model
 
 create CommandResult
-AddCommand -> CommandResult
+AddModuleCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddCommand
+CommandResult --> AddModuleCommand : result
 deactivate CommandResult
 
-AddCommand --> LogicManager : result
-deactivate AddCommand
+AddModuleCommand --> LogicManager : result
+deactivate AddModuleCommand
 
 [<--LogicManager
 deactivate LogicManager
