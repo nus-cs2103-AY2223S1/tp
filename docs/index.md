@@ -16,5 +16,5 @@ title: Mass Linkers
 
 **Acknowledgements**
 
-* This project is based on [MassLinkers-Level3](https://se-education.org/massLinkers-level3/) by [SE-EDU initiative](https://se-education.org/).
+* This project is based on [AddressBook-Level3](https://se-education.org/addressbook-level3/) by [SE-EDU initiative](https://se-education.org/).
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [PlantUML](https://plantuml.com/).
