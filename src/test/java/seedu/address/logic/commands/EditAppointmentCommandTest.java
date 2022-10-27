@@ -17,6 +17,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 
 
@@ -61,6 +62,7 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
+        HiddenPredicateSingleton.clearHiddenAll();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT,
                 new EditAppointmentDescriptor());
         Person person = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());

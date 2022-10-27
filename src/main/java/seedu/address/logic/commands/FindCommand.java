@@ -101,8 +101,10 @@ public class FindCommand extends Command {
                 ? appointmentOfFilteredPersonsPredicate.and(HiddenPredicateSingleton.getCurrApptPredicate())
                 : appointmentOfFilteredPersonsPredicate.and(appointmentPredicate);
 
-        Predicate<Person> combinedPersonPredicate = HiddenPredicateSingleton.combineWithRegularPredicate(personFulfillingBothPredicates);
-        Predicate<Appointment> combinedApptPredicate = HiddenPredicateSingleton.combineWithRegularApptPredicate(appointmentFulfillingBothPredicates);
+        Predicate<Person> combinedPersonPredicate = HiddenPredicateSingleton
+                .combineWithRegularPredicate(personFulfillingBothPredicates);
+        Predicate<Appointment> combinedApptPredicate = HiddenPredicateSingleton
+                .combineWithRegularApptPredicate(appointmentFulfillingBothPredicates);
 
         model.updateFilteredPersonList(combinedPersonPredicate);
         model.updateFilteredAppointmentList(combinedApptPredicate);

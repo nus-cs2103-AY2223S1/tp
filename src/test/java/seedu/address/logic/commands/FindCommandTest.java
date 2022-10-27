@@ -39,6 +39,7 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
+import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 
 /**
@@ -98,6 +99,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_allPersonsAndAppointmentsListed() {
+        HiddenPredicateSingleton.clearHiddenAll();
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW,
                 model.getFilteredPersonList().size(),
                 model.getFilteredAppointmentList().size());
@@ -110,6 +112,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_findAllAppointments_onlyPersonsWithAppointmentsListed() {
+        HiddenPredicateSingleton.clearHiddenAll();
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 2, 3);
         CombinedPersonPredicate personPredicate = generateEmptyCombinedPersonPredicate();
         CombinedAppointmentPredicate appointmentPredicate = generateEmptyCombinedAppointmentPredicate();
@@ -127,6 +130,7 @@ public class FindCommandTest {
     public void execute_findPersonName_onlyAppointmentsFromFoundPersonsListed() {
         // Search for patients whose names contain "e".
         // Should only find Alice, Benson, Daniel, Elle and George, and display Benson's appointment.
+        HiddenPredicateSingleton.clearHiddenAll();
         String searchName = "e";
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 5, 1);
         CombinedPersonPredicate personPredicate = generateCombinedPersonPredicateWithOnlyName(searchName);
@@ -146,6 +150,7 @@ public class FindCommandTest {
     public void execute_findAppointmentReason_onlyPersonsFromFoundAppointmentsListed() {
         // Search for appointment with reason "cough".
         // Should only find Carl, and display only the cough appointment.
+        HiddenPredicateSingleton.clearHiddenAll();
         String searchReason = "cough";
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 1, 1);
         CombinedPersonPredicate personPredicate = generateEmptyCombinedPersonPredicate();
