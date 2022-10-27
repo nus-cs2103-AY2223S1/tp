@@ -1,9 +1,10 @@
+
 ---
 layout: page
 title: User Guide
 ---
 
-DevEnable is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DevEnable can get your contact management tasks done faster than traditional GUI apps.
+DevEnable is a **desktop app for managing developer projects, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DevEnable can get your project management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -16,20 +17,20 @@ DevEnable is a **desktop app for managing contacts, optimized for use via a Comm
 
 2. Download the latest `devenable.jar`.
 
-3. Copy the file to the folder you want to use as the _home folder_ for your DevEnable.
+3. Copy the file to the folder you want to use as the _home folder_ for DevEnable.
 
 4. Double-click the file to start the app.
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all projects.
+   * **`project -l`** : Lists all projects.
 
-   * **`project -a`**`n/Orbital` : Adds a project named `Orbital` to the Address Book.
+   * **`project -a`**`n/Orbital` : Adds a project named `Orbital` to the project list.
 
    * **`project -d`**`3` : Deletes the project with project id `3`.
 
-   * **`clear`** : Deletes all projects.
+   * **`clear`** : Deletes all data from all lists.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -152,6 +153,19 @@ Examples:
 * `project -f n/AB4 AB3 r/tp/F13` Finds and lists all the projects whose `PROJECT_NAME` contains the word AB4 or AB3 
   and with `REPOSITORY` tp/F13.
 
+### Pin a project: `project -p`
+
+Pins a project to the top of the project list.
+
+Format: `project -p PROJECT_ID`
+
+* Pins the project with the specified `PROJECT_ID`.
+* The ID **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `project -p 1` Pins the project with `PROJECT_ID` 1.
+* `project -p 4` Pins the project with `PROJECT_ID` 4.
+
 ### Sorting all projects: `project -s`
 
 Sorts all projects based on a specified key.
@@ -261,6 +275,19 @@ Examples:
   `CLIENT_NAME` contains the word `Amy` or `Bob` and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with 
   `CLIENT_MOBILE` 12345678.
 
+### Pin a client: `client -p`
+
+Pins a client to the top of the client list.
+
+Format: `client -p CLIENT_ID`
+
+* Pins the client with the specified `CLIENT_ID`.
+* The ID **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `client -p 1` Pins the client with `CLIENT_ID` 1.
+* `client -p 4` Pins the client with `CLIENT_ID` 4.
+
 ### Sorting all clients: `client -s`
 
 Sorts all clients based on a specified key.
@@ -357,6 +384,19 @@ Examples:
   enhancement and `URGENCY` HIGH or LOW and tied to project with `PROJECT_NAME` containing DevEnable or AB3.
 * `issue -f s/Incomplete` Finds and lists all the issues with `STATUS` Incomplete.
 
+### Pin an issue: `issue -p`
+
+Pins an issue to the top of the issue list.
+
+Format: `issue -p ISSUE_ID`
+
+* Pins the issue with the specified `ISSUE_ID`.
+* The ID **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `issue -p 1` Pins the issue with `ISSUE_ID` 1.
+* `issue -p 4` Pins the issue with `ISSUE_ID` 4.
+
 ### Sorting all issues: `issue -s`
 
 Sorts all issues based on a specified key.
@@ -410,11 +450,11 @@ Format: `issue -v`
 
 ### Saving the data
 
-DevEnable data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+DevEnable data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-DevEnable data are saved as a txt file `[JAR file location]/data/devenable.txt`. Advanced users are welcome to update data directly by editing that data file.
+DevEnable data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, DevEnable will discard all data and start with an empty data file at the next run.
@@ -429,7 +469,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DevEnable home folder.
+**A**: Install the app in the other computer and overwrite the data file it creates with the file that contains the data of your previous DevEnable home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -442,6 +482,7 @@ _Details coming soon ..._
 | **Delete Project**             | `project -d`     |
 | **List Projects**              | `project -l`     |
 | **Find Project**               | `project -f`     |
+| **Pin Projects**               | `project -p`     |
 | **Sort Projects**              | `project -s`     |
 | **Set Default View (Project)** | `project -v`     |
 | **Add Client**                 | `client -a`      |
@@ -449,6 +490,7 @@ _Details coming soon ..._
 | **Delete Client**              | `client -d`      |
 | **List Clients**               | `client -l`      |
 | **Find Client**                | `client -f`      |
+| **Pin Clients**                | `client -p`      |
 | **Sort Clients**               | `client -s`      |
 | **Set Default View (Client)**  | `client -v`      |
 | **Add Issue**                  | `issue -a`       |
@@ -456,10 +498,12 @@ _Details coming soon ..._
 | **Delete Issue**               | `issue -d`       |
 | **List Issues**                | `issue -l`       |
 | **Find Issue**                 | `issue -f`       |
+| **Pin Issue**                  | `issue -p`       |
 | **Sort Issues**                | `issue -s`       |
 | **Mark Issue**                 | `issue -m`       |
 | **Unmark Issue**               | `issue -u`       |
 | **Set Default View (Issue)**   | `issue -v`       |
 | **Clear**                      | `clear`          |
 | **Help**                       | `help`           |
+| **Exit**                       | `exit`           |
 
