@@ -4,7 +4,7 @@ import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingId;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Client;
 
 /**
  * A utility class to help with building Listing objects.
@@ -13,12 +13,12 @@ public class ListingBuilder {
 
     public static final String DEFAULT_ID = "House";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final Person DEFAULT_PERSON = TypicalPersons.BOB;
+    public static final Client DEFAULT_CLIENT = TypicalClients.BOB;
     public static final String DEFAULT_ASKING_PRICE = "1";
 
     private ListingId id;
     private Address address;
-    private Person owner;
+    private Client owner;
     private Price askingPrice;
 
     /**
@@ -27,7 +27,7 @@ public class ListingBuilder {
     public ListingBuilder() {
         this.id = new ListingId(DEFAULT_ID);
         this.address = new Address(DEFAULT_ADDRESS);
-        this.owner = DEFAULT_PERSON;
+        this.owner = DEFAULT_CLIENT;
         this.askingPrice = new Price(DEFAULT_ASKING_PRICE);
     }
 
@@ -52,7 +52,7 @@ public class ListingBuilder {
     /**
      * Sets the {@code owner} of the {@code Listing} that we are building.
      */
-    public ListingBuilder withOwner(Person owner) {
+    public ListingBuilder withOwner(Client owner) {
         this.owner = owner;
         return this;
     }
