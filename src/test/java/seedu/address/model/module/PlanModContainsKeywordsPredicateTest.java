@@ -39,37 +39,27 @@ public class PlanModContainsKeywordsPredicateTest {
 
     @Test
     public void test_planModContainsKeywords_returnsTrue() {
-        // One keyword
-        PlanModContainsKeywordsPredicate predicate = new PlanModContainsKeywordsPredicate("Alice");
-        assertTrue(predicate.test(new PersonBuilder().withPlannedModules("Alice").build()));
+        // One module
+        PlanModContainsKeywordsPredicate predicate = new PlanModContainsKeywordsPredicate("CS2100");
+        assertTrue(predicate.test(new PersonBuilder().withPlannedModules("CS2100").build()));
 
-        // Multiple keywords
-        predicate = new PlanModContainsKeywordsPredicate("Alice");
-        assertTrue(predicate.test(new PersonBuilder().withPlannedModules("Alice", "Bob").build()));
-
-        // Only one matching keyword
-        predicate = new PlanModContainsKeywordsPredicate("Carol");
-        assertTrue(predicate.test(new PersonBuilder().withPlannedModules("Bob", "Carol").build()));
-
-        // Mixed-case keywords
-        predicate = new PlanModContainsKeywordsPredicate("ALIce");
-        assertTrue(predicate.test(new PersonBuilder().withPlannedModules("Alice", "Bob").build()));
+        // Multiple modules
+        predicate = new PlanModContainsKeywordsPredicate("CS2100");
+        assertTrue(predicate.test(new PersonBuilder().withPlannedModules("CS2100", "CS2101").build()));
     }
 
     @Test
     public void test_planModDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
+        // Zero modules
         PlanModContainsKeywordsPredicate predicate = new PlanModContainsKeywordsPredicate("");
-        assertFalse(predicate.test(new PersonBuilder().withPlannedModules("Alice").build()));
+        assertFalse(predicate.test(new PersonBuilder().withPlannedModules("CS2100").build()));
 
-        // Non-matching keyword
-        predicate = new PlanModContainsKeywordsPredicate("Carol");
-        assertFalse(predicate.test(new PersonBuilder().withPlannedModules("Alice").build()));
+        // Non-matching module
+        predicate = new PlanModContainsKeywordsPredicate("CS2101");
+        assertFalse(predicate.test(new PersonBuilder().withPlannedModules("CS2100").build()));
 
-        // Keywords match phone, email and address, but does not match name
-        predicate = new PlanModContainsKeywordsPredicate("Alice");
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").withGithub("alice").withTags("Friend")
-                .withPlannedModules("Hello", "Bye").build()));
+        // Invalid Module
+        predicate = new PlanModContainsKeywordsPredicate("cs2101");
+        assertFalse(predicate.test(new PersonBuilder().withPlannedModules("CS2100").build()));
     }
 }

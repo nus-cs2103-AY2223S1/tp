@@ -9,8 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Module {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Module names should contain a 2-4 capitalised-letter prefix, "
+            + "followed by a 4 digit module code, and an optional capitalised-letter suffix";
+    public static final String VALIDATION_REGEX = "^[A-Z]{2,4}[0-9]{4}[A-Z]{0,1}$";
 
     public final String moduleName;
 
