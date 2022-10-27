@@ -16,7 +16,7 @@ public class CommentList {
     /**
      * Constructor for CommentList to be added with another list of comments
      *
-     * @param comments
+     * @param comments The list of comments to copy from.
      */
     public CommentList(List<Comment> comments) {
         this.comments.addAll(comments);
