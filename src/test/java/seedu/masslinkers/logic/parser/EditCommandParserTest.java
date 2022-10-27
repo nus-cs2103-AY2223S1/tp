@@ -1,6 +1,6 @@
 package seedu.masslinkers.logic.parser;
 
-import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_MISSING_ARGUMENTS;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.INTEREST_DESC_AI;
@@ -50,7 +50,7 @@ public class EditCommandParserTest {
     private static final String MOD_EMPTY = " " + PREFIX_MOD;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_MISSING_ARGUMENTS, EditCommand.MESSAGE_USAGE);
 
     private EditCommandParser parser = new EditCommandParser();
 
@@ -224,6 +224,6 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MODS_PASSED_TO_EDIT));
+                String.format(MESSAGE_INVALID_MISSING_ARGUMENTS, EditCommand.MODS_PASSED_TO_EDIT));
     }
 }
