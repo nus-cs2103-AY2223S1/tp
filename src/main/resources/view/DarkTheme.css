@@ -292,7 +292,7 @@
     -fx-text-fill: white;
 }
 .text-input-label{
-    -fx-background-color:rgb(0,0,0,0.9);
+    -fx-background-color:rgb(0,0,0,0);
     -fx-text-fill: white;
 }
 .cover {
@@ -305,9 +305,7 @@
     -fx-opacity:0.7;
     -fx-control-inner-background: transparent;
 }
-.cover2 > .corner {
-      -fx-background-color: black;
-}
+
 .cover2 .scroll-bar{
     -fx-background-color:black;
 }

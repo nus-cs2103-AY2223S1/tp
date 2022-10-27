@@ -290,7 +290,7 @@
 
 .text-input{
     -fx-background-color:rgb(88,120,120,0.9);
-    -fx-background-radius:10;
+
     -fx-text-fill: white;
 }
 .text-input-label{
@@ -309,9 +309,7 @@
     -fx-opacity:0.7;
     -fx-control-inner-background: transparent;
 }
-.cover2 > .corner {
-      -fx-background-color: black;
-}
+
 .cover2 .scroll-bar{
     -fx-background-color:black;
 }
