@@ -58,7 +58,7 @@ public class StatsCommand extends Command {
                 ((int) itemList.parallelStream().filter(item -> item.getTagSet().contains(tag)).count())));
 
         return tagToFrequencyMap.entrySet().stream()
-                .sorted(Comparator.comparing(Map.Entry::getValue, Comparator.reverseOrder()))
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(3)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
