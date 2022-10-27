@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -35,6 +36,10 @@ public class MainWindow extends UiPart<Stage> {
     private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private Image completed = new Image("/images/completed.png");
+    private Image tripsIcon = new Image("/images/trips.png");
+    private Image eventsIcon = new Image("/images/events.png");
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -123,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        tripListPanel = new TripListPanel(logic.getFilteredTripList(), logic.getSelectedTrip());
+        tripListPanel = new TripListPanel(logic.getFilteredTripList(), logic.getSelectedTrip(), completed);
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         personListPanelPlaceholder.getChildren().add(tripListPanel.getRoot());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
@@ -133,10 +138,10 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        TripsLabeler tripsLabel = new TripsLabeler();
+        TripsLabeler tripsLabel = new TripsLabeler(tripsIcon);
         tripsTextField.getChildren().add(tripsLabel.getRoot());
 
-        EventsLabeler eventsLabel = new EventsLabeler();
+        EventsLabeler eventsLabel = new EventsLabeler(eventsIcon);
         eventsTextField.getChildren().add(eventsLabel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

@@ -2,8 +2,11 @@ package seedu.travelr.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 import seedu.travelr.model.trip.ObservableTrip;
 
 /**
@@ -12,6 +15,8 @@ import seedu.travelr.model.trip.ObservableTrip;
 public class SelectedTripCard extends UiPart<Region> {
 
     private static final String FXML = "SelectedTripCard.fxml";
+
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -29,7 +34,6 @@ public class SelectedTripCard extends UiPart<Region> {
     private Label title;
     @FXML
     private Label description;
-
     /**
      * Creates a selectedTrip to display
      *
