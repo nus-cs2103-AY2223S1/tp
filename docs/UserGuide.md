@@ -8,8 +8,8 @@ optimized for use via a Command Line Interface** (CLI) while still having the
 benefits of a Graphical User Interface (GUI). If you can type fast, TAA can get your students and tasks management done
 faster than traditional GUI apps.
 
-- Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
 
 ---
 
