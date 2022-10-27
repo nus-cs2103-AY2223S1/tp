@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -25,11 +26,21 @@ public class TaskListPanel extends UiPart<Region> {
     @FXML
     private Label taskCompletion;
 
+    private final ObservableList<Task> taskList;
+
     /**
      * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
      */
     public TaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
+        this.taskList = taskList;
+        updateCompletion();
+        taskListView.setItems(taskList);
+        taskListView.setCellFactory(listView -> new TaskListViewCell());
+        taskList.addListener((ListChangeListener<? super Task>) _change -> updateCompletion());
+    }
+
+    private void updateCompletion() {
         int numTasks = taskList.size();
         if (numTasks > 0) {
             long numCompletedTasks = taskList.stream().filter(Task::isComplete).count();
@@ -39,8 +50,6 @@ public class TaskListPanel extends UiPart<Region> {
         } else {
             taskCompletion.setText("No tasks added yet!");
         }
-        taskListView.setItems(taskList);
-        taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
     /**
