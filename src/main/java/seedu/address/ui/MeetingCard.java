@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Person;
 
 /**
@@ -42,7 +43,7 @@ public class MeetingCard extends UiPart<Region> {
         name.setText(person.getName().getFullName());
         person.getMeetingTimes().stream()
                 .filter(meetingTime -> isWithinOneWeek(meetingTime.getDate()))
-                .sorted(Comparator.comparing(meetingTime -> meetingTime.displayValue))
+                .sorted(Comparator.comparing(MeetingTime::getDate))
                 .forEach(meetingTime -> meetingTimes.getChildren().add(new Label(meetingTime.displayValue)));
     }
 
