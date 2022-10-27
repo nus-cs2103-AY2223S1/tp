@@ -54,7 +54,7 @@ If you can type fast, OmniHealth can get your patient management tasks done fast
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/DustAllergy` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/DustAllergy`, `t/DustAllergy t/PollenAllergy` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/GlutenAllergy`, `t/DustAllergy t/PollenAllergy` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -101,8 +101,13 @@ Format: `add n/NAME b/BIRTHDATE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * The command can only be called when the patient addressbook is displayed (after using `list`).
 * Patient's name entered in is case-insensitive.
+* Birthdate **cannot be after the current date**.
 * Duplicate patients are not allowed.
     * Patients are considered duplicate when they have the same `NAME` and `ADDRESS`.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Birthdate must be given in DD-MM-YYYY HHmm format!
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of tags (including 0)
@@ -141,18 +146,17 @@ Edits an existing patient in the address book.
 
 Format: `edit INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* * The command can only be called when the patient addressbook is displayed (after using `list`).
+* The command can only be called when the patient addressbook is displayed (after using `list`).
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided
     * if the same field is specified more than once, only the latest instance of the field is used.
     * eg. edit 1 n/Johnny n/Becky -> Person's name is edited to Becky.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
-* You can remove all the patient’s tags by typing `t/` without
-  specifying any tags after it.
+* Existing values will be overridden by the input values.
+  * eg. when editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Birthdate must be given in DD-MM-YYYY HHmm format!
+You can remove all the patient’s tags by typing `t/` without
+  specifying any tags after it.
 </div>
 
 Examples:
@@ -194,10 +198,10 @@ Adds an appointment for a specified patient. This command is only valid in the p
 Format: `appt INDEX d/DATE`
 
 * The command can only be called when the patient addressbook is displayed (after using `list`).
-* Adds a new appointment for the patient under the specified `INDEX`.
+* Adds a new appointment for the patient under the specified `INDEX`, with the given date.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The appointment is created with the given date.
+* The appointment date **cannot be before the current date**.
 * If a pre-existing appointment is present, it will be overridden by the new appointment.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -226,6 +230,7 @@ Format: `radd d/RECORD_DATE r/RECORD_DATA [m/MEDICATION]…`
 * The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
 * Adds a new record to the patient with given `RECORD_DATE`, `RECORD_DATA` and `MEDICATION` information.
   * `RECORD_DATA` field cannot be empty.
+* The record date **cannot be after the current date**.
   
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Dates must be given in DD-MM-YYYY HHmm format!
@@ -344,22 +349,25 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                   | Format, Examples                                                                                                                                               |
-|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Patient**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/DustAllergy` |
-| **Add Record**           | `radd INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., radd 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                |
-| **Clear**                | `clear`                                                                                                                                                        |
-| **Clear Records**        | `rclear`                                                                                                                                                       |
-| **Delete**               | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
-| **Delete Record**        | `rdelete INDEX`                                                                                                                                                |
-| **Edit**                 | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |
-| **Edit Record**          | `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever`                                                                  |
-| **Find**                 | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                     |
-| **Find Record**          | `rfind KEYWORD [MORE_KEYWORDS]`<br> e.g., `rfind foo bar`                                                                                                      |
-| **List**                 | `list`                                                                                                                                                         |
-| **List Records**         | `rlist`                                                                                                                                                        |
-| **Show Unfiltered List** | `showall`                                                                                                                                                      |
-| **Add Appointment**      | `appt INDEX [d/DATE]` <br> e.g., `appt 1 d/01-01-2000 1230`                                                                                                    |
-| **Clear Appointment**    | `apptcl`                                                                                                                                                       |
-| **Help**                 | `help`                                                                                                                                                         |
+| Action                   | Format, Examples                                                                                                                                                                        |
+|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                 | `help`                                                                                                                                                                                  |
+| **Show Unfiltered List** | `showall`                                                                                                                                                                               |
+| **Exit Program**         | `exit`                                                                                                                                                                                  |
+| **Add Patient**          | `add n/NAME b/BIRTHDATE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho b/12-12-2000 p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/DustAllergy` |
+| **Delete Patient**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                     |
+| **List Patients**        | `list`                                                                                                                                                                                  |
+| **Edit Patient**         | `edit INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                               |
+| **Find Patients**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                              |
+| **Clear Patients**       | `clear`                                                                                                                                                                                 |
+| **Add Appointment**      | `appt INDEX d/DATE` <br> e.g., `appt 1 d/01-01-2000 1230`                                                                                                                               |
+| **Clear Appointment**    | `apptcl INDEX`                                                                                                                                                                          |
+| **Add Record**           | `radd d/RECORD_DATE r/RECORD_DATA [m/MEDICATION]` <br> e.g., `e.g., radd 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                         |
+| **Delete Record**        | `rdelete INDEX`                                                                                                                                                                         |
+| **List Records**         | `rlist INDEX`                                                                                                                                                                           |
+| **Edit Record**          | `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever m/Paracetamol`                                                                             |
+| **Find Record**          | `rfind KEYWORD [MORE_KEYWORDS]`<br> e.g., `rfind foo bar`                                                                                                                               |
+| **Clear Records**        | `rclear`                                                                                                                                                                                |
+                                                                                                                                                    |
+                                                                 
 

@@ -20,7 +20,7 @@ public class AddRecordCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new record to the list of records.\n"
             + "Parameters: "
             + PREFIX_DATE + "Record Date "
-            + PREFIX_RECORD + "Record Content"
+            + PREFIX_RECORD + "Record Content "
             + "[" + PREFIX_MEDICATION + "Medication]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DATE + "31-10-2022 1430 (must be formatted in dd-MM-yyyy HHmm) "
