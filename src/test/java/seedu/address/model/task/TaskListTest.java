@@ -44,9 +44,9 @@ public class TaskListTest {
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         taskList.addTask(READ_BOOK);
-        Task editedReadBook = new TaskBuilder(READ_BOOK).withDeadline(VALID_DEADLINE_QUIZ).build();
+        Task editedReadBook = new TaskBuilder(READ_BOOK).withCompletionStatus(false).build();
         assertTrue(taskList.contains(editedReadBook));
     }
 
@@ -207,22 +207,22 @@ public class TaskListTest {
     }
 
     @Test
-    public void sortByDeadline_editTaskDeadlineInSortedList_sortedList() {
+    public void sortByDeadline_editTaskCompletionStatusInSortedList_sortedList() {
         taskList.setTasks(getTypicalTasks());
         taskList.sortByDeadline();
 
         TaskList expectedTaskList = new TaskList();
-        Task editedReadBook = new TaskBuilder(READ_BOOK).withDeadline(VALID_DEADLINE_EARLIEST).build();
-        expectedTaskList.addTask(editedReadBook);
+        Task editedWriteTestCases = new TaskBuilder(WRITE_TEST_CASES).withCompletionStatus(true).build();
+        expectedTaskList.addTask(editedWriteTestCases);
         for (Task task : getTypicalTasksSortedByDeadline()) {
-            if (task.isSameTask(editedReadBook)) {
+            if (task.isSameTask(editedWriteTestCases)) {
                 continue;
             }
 
             expectedTaskList.addTask(task);
         }
 
-        taskList.setTask(READ_BOOK, editedReadBook);
+        taskList.setTask(WRITE_TEST_CASES, editedWriteTestCases);
         assertEquals(expectedTaskList, taskList);
     }
 
@@ -249,7 +249,7 @@ public class TaskListTest {
         taskList.setTasks(getTypicalTasks());
 
         TaskList expectedTaskList = new TaskList();
-        Task editedReadBook = new TaskBuilder(READ_BOOK).withDeadline(VALID_DEADLINE_EARLIEST).build();
+        Task editedReadBook = new TaskBuilder(READ_BOOK).withCompletionStatus(true).build();
         expectedTaskList.addTask(editedReadBook);
         for (Task task : getTypicalTasks()) {
             if (task.isSameTask(editedReadBook)) {
