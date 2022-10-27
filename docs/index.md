@@ -6,7 +6,8 @@ title: CodeConnect
 [![CI Status](https://github.com/AY2223S1-CS2103T-T14-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-T14-2/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
 
-![Ui](images/Ui.png)
+![UiTasks](images/UiTasks.png)
+![UiContacts](images/UiContacts.png)
 
 **CodeConnect is a desktop application for managing contacts and tasks of your modules.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
@@ -16,4 +17,4 @@ title: CodeConnect
 
 **Acknowledgements**
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [jchronic](https://github.com/samtingleff/jchronic)
