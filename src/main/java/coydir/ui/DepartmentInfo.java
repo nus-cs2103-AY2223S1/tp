@@ -75,7 +75,7 @@ public class DepartmentInfo extends UiPart<Region> {
         updateFilteredPersonListByDepartment(unfilteredPersonList, department);
         ratingTable.setItems(FXCollections.observableArrayList(filteredPersonListByDepartment));
 
-        TableColumn<Person, String> id = new TableColumn<>("Id");
+        TableColumn<Person, String> id = new TableColumn<>("ID");
         id.setCellValueFactory(new PropertyValueFactory<>("col1"));
         id.setSortable(false);
         id.setReorderable(false);
