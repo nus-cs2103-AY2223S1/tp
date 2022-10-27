@@ -48,6 +48,7 @@ public class EditTutorialCommand extends Command {
     public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the address book.";
+    public static final String MESSAGE_DATETIME_TUTORIAL = "Both new day and new timeslot must be given.";
 
     private final Index index;
     private final EditTutorialDescriptor editTutorialDescriptor;

@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.tutorial.EditTutorialCommand;
 import seedu.address.logic.commands.tutorial.EditTutorialCommand.EditTutorialDescriptor;
@@ -16,6 +17,10 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.datetime.DatetimeCommonUtils;
+
+import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -51,7 +56,25 @@ public class EditTutorialCommandParser implements Parser<EditTutorialCommand> {
             editTutorialDescriptor.setModule(TutorialParserUtil
                     .parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get()));
         }
+        if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
+            editTutorialDescriptor.setVenue(TutorialParserUtil
+                    .parseTutorialVenue(argMultimap.getValue(PREFIX_VENUE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DAY).isPresent() && argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
+            String date = argMultimap.getValue(PREFIX_DAY).get();
+            String timeslot = argMultimap.getValue(PREFIX_TIMESLOT).get();
+            editTutorialDescriptor.setTimeslot(DatetimeCommonUtils
+                    .parseWeeklyTimeslot(date, timeslot));
+        }
 
+        //Only day
+        if (argMultimap.getValue(PREFIX_DAY).isPresent() && !argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
+            throw new ParseException(EditTutorialCommand.MESSAGE_DATETIME_TUTORIAL);
+        }
+        //Only timeslot
+        if (!argMultimap.getValue(PREFIX_DAY).isPresent() && argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
+            throw new ParseException(EditTutorialCommand.MESSAGE_DATETIME_TUTORIAL);
+        }
         if (!editTutorialDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditTutorialCommand.MESSAGE_NOT_EDITED);
         }
