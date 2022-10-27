@@ -569,7 +569,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample students, tasks and lists. The window size may not be optimum.
+   1. Double-click the jar file 
+       Expected: Shows the GUI with a set of sample students, tasks and lists. The window size may not be optimum.
 
 1. Saving window preferences
 
