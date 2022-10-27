@@ -210,6 +210,23 @@ Format: `delClient i/INDEX`
 Examples:
 * `delClient i/2`
 
+#### 3.1.5 Editing a client: `editClient`
+
+Edits detail of the specified client.
+
+Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
+
+* Edits the client at the specified `INDEX`.
+*`INDEX` refers to the index number shown by executing [`listClient`](#312-listing-all-clients--listclient) command.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* At least one optional detail must be modified.
+* Maintains value of details not edited by the command.
+
+Examples:
+Suppose MyInsuRec contains only one client 'John Tan' having phone number '0123456789':
+* `editClient i/1 n/John Smith` changes the name of this client to 'John Smith'.
+* `editClient i/1 e/johntan@insurec.com`adds the email 'johntan@insurec.com' to the client.
+
 ### 3.2 Meeting commands
 
 #### 3.2.1 Adding a meeting : `addMeeting`
@@ -265,6 +282,23 @@ Format: `delMeeting i/INDEX`
 
 Examples:
 * `delMeeting i/2`
+
+#### 3.2.5 Editing a meeting: `editMeeting`
+
+Edits details of the specified meeting.
+
+Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`
+
+* Edits information about the meeting at the specific `INDEX`.
+* The `INDEX` refers to the index number shown in the displayed meetings' list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least one optional detail must be modified.
+* Maintains values of details not edited by the command.
+
+Examples:
+Suppose MyInsuRec contains only one meeting as created in the [`addMeeting`](#adding-a-meeting--addmeeting) command:
+* `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
+* `editMeeting i/1 st/1500 et/1200` will show error saying invalid time since start time is later than end time.
 
 ### 3.3 Product commands
 
@@ -361,10 +395,12 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 | **List all clients**  | `listClient`                                                                                                                                                                                                                                       |
 | **View client**       | `viewClient i/INDEX` <br> e.g., <br> • `viewClient i/1`                                                                                                                                                                                            |
 | **Delete client**     | `delClient i/INDEX` <br> e.g., <br> • `delClient i/2`                                                                                                                                                                                              |
+| **Edit client**       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` <br> e.g., <br> • `editClient i/1 n/John Smith`                                                                                                     |
 | **Add meeting**       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION` <br> e.g., <br> • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                                                             |
 | **List all meetings** | `listMeeting`                                                                                                                                                                                                                                      |
 | **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <br> • `viewMeeting i/1`                                                                                                                                                                                          |
 | **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <br> • `delMeeting i/2`                                                                                                                                                                                            |
+| **Edit meeting**      | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]` <br> e.g., <br> • `i/1 dn/Follow up team meeting`                                                                                                                    |
 | **Help**              | `help`                                                                                                                                                                                                                                             |
 | **Exit**              | `exit`                                                                                                                                                                                                                                             |                                                                                                                                               |
 
