@@ -8,11 +8,14 @@ import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.viewmodels.TagToRename;
 
 /**
  * Renames an existing tag in FoodRem.
  */
 public class RenameTagCommand extends Command {
+    private static final String MESSAGE_SUCCESS = "Tag renamed:";
+
     private final Tag originalTag;
     private final Tag renamedTag;
 
@@ -30,7 +33,7 @@ public class RenameTagCommand extends Command {
     }
 
     @Override
-    public CommandResult<String> execute(Model model) throws CommandException {
+    public CommandResult<TagToRename> execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasTag(originalTag)) {
@@ -42,7 +45,7 @@ public class RenameTagCommand extends Command {
         }
 
         model.setTag(originalTag, renamedTag);
-        return CommandResult.from(String.format("Original tag: %s\nRenamed tag: %s\n", originalTag, renamedTag));
+        return CommandResult.from(new TagToRename(originalTag, renamedTag, MESSAGE_SUCCESS));
     }
 
     public static String getUsage() {
