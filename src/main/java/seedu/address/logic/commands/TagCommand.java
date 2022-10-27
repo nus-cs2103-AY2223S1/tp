@@ -72,7 +72,6 @@ public class TagCommand extends Command {
         model.setTask(taskToTag, taggedTask);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         CommandResult result = new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS, taggedTask));
-        System.out.println(taggedTask);
         return result;
     }
 

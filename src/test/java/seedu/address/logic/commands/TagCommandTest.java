@@ -39,7 +39,6 @@ public class TagCommandTest {
                 new PersonBuilder(taskToTag).withTags(VALID_TAG_HIGH_PRIORITY).addTags(taskToTag.getTags()).build();
         EditPersonTags editPersonTags = new EditPersonTagsBuilder().withTags(VALID_TAG_HIGH_PRIORITY).build();
         TagCommand tagCommand = new TagCommand(INDEX_FIRST_PERSON, editPersonTags);
-        System.out.println(taggedTask);
 
         String expectedMessage = String.format(TagCommand.MESSAGE_TAG_PERSON_SUCCESS, taggedTask);
 
