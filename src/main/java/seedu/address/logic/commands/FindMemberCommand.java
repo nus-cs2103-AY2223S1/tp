@@ -20,7 +20,7 @@ import seedu.address.model.person.Person;
 /**
  * Finds and lists all members on the current team based on argument keywords.
  */
-@CommandLine.Command(name = "member")
+@CommandLine.Command(name = "member", aliases = {"m"})
 public class FindMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "find member";
