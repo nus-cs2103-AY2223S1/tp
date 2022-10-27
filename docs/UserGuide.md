@@ -64,12 +64,12 @@ Note that the app contains sample data.<br><br>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-6. To kickstart your journey, you can add a guest using the **`add`** command. For example, you could add a guest named `John Doe` to GuestBook.
+6. To kickstart your journey, you can add a guest, `John Doe`, to GuestBook using the **`add`** command.
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to GuestBook.
 
-7. To find `John Doe`, you can use the **`find`** command, and search any of `John Doe`'s `fields`, such has his name or room. This command can help you find guests that match the keywords you entered.
+7. To find `John Doe`, you can use the **`find`** command, and search any of `John Doe`'s `fields`, such has his name or room. The command below can help you find guests that match the keywords you entered.
 
-   * **`find`** `John Doe` : Finds all the guests where at least one of the fields contains `John` or `Doe` (case in-sensitive).
+   * **`find`** `John Doe` : Finds all the guests where at least one of the fields contains `John` or `Doe` (case-insensitive).
 
 8. To make changes to `John Doe`, you can use the **`edit`** command. This changes the guest's fields based on the values you have inputted. The other values will remain the same. <br> For example, if `John Doe` is the second guest in the list, and you want to change his room number to 05-55, you can do this.
     * **`edit`**`2` `rm/05-55`n: Changes the `Room` of `John Doe` to `05-55` in GuestBook.
@@ -77,7 +77,7 @@ Note that the app contains sample data.<br><br>
 9. After running a **`find`** function, you might realise that some of your guests are no longer visible, as they are not in the current list. To see a list of all your guests, you can use the **`list`** command.
     * **`list`**: List all the guests in GuestBook.
 
-10. In the situation that a guest purchases additional necessities, you can bill to the guest using the **`bill`** command. For example, supposed you want bill the third guest a service that costs 30.35. You can run the following command.
+10. In the situation that a guest purchases additional necessities, you can bill the guest using the **`bill`** command. For example, you can bill the third guest a service that costs 30.35 by running the command below.
     * **`bill`** `3` `b/+30.35`: Adds 30.35 to the bill of the third guest.
 
 11. When a guest checkouts, you might want to delete the guest. In that case, you can use the **`delete`** command.
