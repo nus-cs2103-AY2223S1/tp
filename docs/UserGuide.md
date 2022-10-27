@@ -238,6 +238,35 @@ Format: `file INDEX`
 Examples:
 * `file 2` opens the PDF file assigned to the second person in the displayed list.
 
+### Add meetings: `meeting`
+   
+Adds one or more meeting times to a person in the FABook.
+   
+Format: `meeting INDEX mt/MEETINGTIME...`
+   
+* INDEX is the index of the person in the currently displayed list.
+* MEETINGTIME should be in the format `DD-MM-YYYY-HH:MM`.
+* mt/ should be put before each separate meeting time.
+* The person's existing meeting times remain unchanged.
+   
+Examples:
+* `meeting 2 mt/09-10-2023-23:50 mt/28-02-2020-15:16` adds two meetings to the second person in the displayed list, 
+   one at 9 November 2023 23:50, the other at 28 February 2020 15:16.
+   
+### Delete meetings: `deletemeeting`
+   
+Deletes a meeting from a person in the FABook.
+
+Format: `deletemeeting INDEX mt/MEETINGTIME`
+   
+* INDEX is the index of the person in the currently displayed list.
+* MEETINGTIME should be in the format `DD-MM-YYYY-HH:MM`.
+* If the given meeting time is not on the list, the person's meetings remain unchanged.
+   
+Examples:
+* `deletemeeting 2 mt/09-10-2023-23:50` deletes the meeting at 9 November 2023 23:50 from to the second person in the displayed list,
+   if such a meeting was scheduled.
+
 ### Remove past meetings: `sync`
 
 Format: `sync`
@@ -286,8 +315,8 @@ Format: `undo`
 ![undo](images/UserGuide/undo.png) 
 
 * The command intended to be undone should be an undoable command.
-* Undoable commands are: `clear`, `create`, `delete`, `deletemeeting`, `meeting`, `description`, `redo`, and `update`
-* Non-undoable commands are: `exit`, `find */`, `help`, `list`, `file` and `filepath`
+* Undoable commands are: 'clear', 'create', 'delete', 'description', 'meeting', 'deletemeeting', 'redo' and 'update'
+* Non-undoable commands are: 'exit', 'find */', 'help', 'list', 'file' and 'filepath'
 
 :heavy_exclamation_mark: **Important**
 You can undo a `redo` command. See [Redo](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#redoing-a-previous-command--redo)
