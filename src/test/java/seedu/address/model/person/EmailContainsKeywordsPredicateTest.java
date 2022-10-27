@@ -43,34 +43,26 @@ public class EmailContainsKeywordsPredicateTest {
     public void test_emailContainsKeywords_returnsTrue() {
         // One keyword
         EmailContainsKeywordsPredicate predicate = new EmailContainsKeywordsPredicate(Collections.singletonList("jon_snow@winterfell.com"));
-        assertTrue(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com ghost@woods.com").build()));
+        assertTrue(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com").build()));
 
-        // Multiple keywords
-        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("jon_snow@winterfell.com", "ghost@woods.com"));
-        assertTrue(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com ghost@woods.com").build()));
-
-        // Only one matching keyword
-        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("ghost@woods.com", "RobStark@winterfell.com"));
-        assertTrue(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com RobStark@winterfell.com").build()));
+        // Mixed-case keywords
+        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("gHoSt@woOds.cOm"));
+        assertTrue(predicate.test(new PersonBuilder().withEmail("ghost@woods.com").build()));
     }
 
     @Test
     public void test_emailDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         EmailContainsKeywordsPredicate predicate = new EmailContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withEmail("Alice").build()));
+        assertFalse(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com").build()));
 
         // Non-matching keyword
-        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withEmail("Alice Bob").build()));
-
-        // Mixed-case keywords: email different case, assert false
-        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("jOn_SnoW@winterfell.com", "gHoSt@woOds.cOm"));
-        assertFalse(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com ghost@woods.com").build()));
+        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("RobStark@winterfell.com"));
+        assertFalse(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com").build()));
 
         // Keywords match phone, name and address, but does not match email
-        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("81234567", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withEmail("Alice").withPhone("81234567")
-                .withName("alice@email.com").withAddress("Main Street").build()));
+        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("81234567", "jon", "chua", "Main", "Street"));
+        assertFalse(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com").withPhone("81234567")
+                .withName("jon chua").withAddress("Main Street").build()));
     }
 }
