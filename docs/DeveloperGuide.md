@@ -165,12 +165,11 @@ the `Logic` component as the other commands described above.
 
 However, during execution, tasks commands may update the context of the current tasks of a team. To understand tasks better,
 it should be understood that Tasks are an attribute of a Teams object, which is used to indicate if a tasks is done (also known as marked),
-or not (also known as unmarked).
+or not (also known as unmarked). Moreover, progress of each task can be tracked with specific levels (namely 25%, 50%, 75% and 100 %).
 
+Below is the class diagram that illustrates the interactions between Logic and Model components, in relation to tasks.
 
-The Sequence Diagram below shows the interaction between `Logic` and `Model` components when `execute("at ..")` is called.
-
-[insert Sequence Diagram]
+![Interactions Inside the Logic Component for the `cg ..` Command](images/TaskClassDiagram.png)
 
 This way of implementation of maintains abstraction of details of the `Logic` component, in the `Model` component.
 
