@@ -120,6 +120,21 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
+    /** Returns an unmodifiable view of the sorted Uncompleted student list by specialisation */
+    ObservableList<Student> getSortedBySpecialisationUncompletedStudentList();
+
+    /**
+     * Returns an unmodifiable view of the sorted Uncompleted student list by project status
+     * followed by alphabetical order
+     */
+    ObservableList<Student> getSortedByProjectStatusUncompletedStudentList();
+
+    /**
+     * Returns an unmodifiable view of the sorted Completed student list by specialisation
+     * which is equivalent to sorting by  alphabetical order
+     */
+    ObservableList<Student> getSortedCompletedStudentList();
+
     /** Returns an unmodifiable view of the uncompleted list of students */
     ObservableList<Student> getUncompletedStudentList();
 

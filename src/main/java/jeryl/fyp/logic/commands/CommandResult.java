@@ -17,13 +17,22 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should show a sorted List by specialisation*/
+    private final boolean sortBySpecialisation;
+
+    /** The application should show a sorted List by project status then alphabetical order*/
+    private final boolean sortByProjectStatus;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean sortBySpecialisation, boolean sortByProjectStatus) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.sortBySpecialisation = sortBySpecialisation;
+        this.sortByProjectStatus = sortByProjectStatus;
     }
 
     /**
@@ -31,7 +40,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +53,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isSortBySpecialisation() {
+        return sortBySpecialisation;
+    }
+
+    public boolean isSortByProjectStatus() {
+        return sortByProjectStatus;
     }
 
     @Override

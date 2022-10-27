@@ -3,6 +3,7 @@ package jeryl.fyp.model;
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -19,7 +20,6 @@ import jeryl.fyp.model.student.UniqueStudentList;
 public class FypManager implements ReadOnlyFypManager {
 
     private final UniqueStudentList students;
-
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -149,6 +149,43 @@ public class FypManager implements ReadOnlyFypManager {
         student.getDeadlineList().setDeadline(target, editedDeadline);
         setStudent(student, student);
     }
+
+    /**
+     * Sorts our Uncompleted student list by specialisation (which naturally sorts it by alphabetical order as well)
+     */
+    public ObservableList<Student> getSortedBySpecialisationUncompletedStudentList() {
+        return getUncompletedStudentList().sorted((Student a, Student b) -> a.getProjectName().toString()
+                .toLowerCase().compareTo(b.getProjectName().toString().toLowerCase()));
+    }
+
+    /**
+     * Sorts our Uncompleted student list by project Status(YTS, IP then DONE) then by alphabetical order
+     */
+    public ObservableList<Student> getSortedByProjectStatusUncompletedStudentList() {
+        return getUncompletedStudentList().sorted(new Comparator<Student>() {
+
+            public int compare(Student a, Student b) {
+                int statusComp = b.getProjectStatus().toString().toLowerCase()
+                        .compareTo(a.getProjectStatus().toString().toLowerCase());
+
+                if (statusComp != 0) {
+                    return statusComp;
+                }
+
+                return a.getProjectName().toString().toLowerCase()
+                        .compareTo(b.getProjectName().toString().toLowerCase());
+            }
+        });
+    }
+
+    /**
+     * Sorts our Completed student list by specialisation, which naturally sorts it in alphabetical order
+     */
+    public ObservableList<Student> getSortedCompletedStudentList() {
+        return getCompletedStudentList().sorted((Student a, Student b) -> a.getProjectName().toString()
+                .toLowerCase().compareTo(b.getProjectName().toString().toLowerCase()));
+    }
+
 
     //// util methods
 

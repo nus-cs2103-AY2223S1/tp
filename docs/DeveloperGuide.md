@@ -338,7 +338,7 @@ error message will be shown.
 
 The following sequence diagram shows how the MarkCommand operation works:
 
-![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
+![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.jpg)
 
 #### Design considerations:
 
@@ -442,7 +442,7 @@ as there is no project whose project name contains `blockchain`.
 
 ![FindCommandState2](images/FindCommandState2.png)
 
-The following sequence diagram shows how the MarkCommand operation works:
+The following sequence diagram shows how the FindCommand operation works:
 
 ![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
 
@@ -473,6 +473,40 @@ The following sequence diagram shows how the MarkCommand operation works:
     * Pros: More comprehensive search for projects with the required keyword.
     * Cons: Much harder to implement, as it requires a field-less search.
 
+### `Sort` Feature
+#### Proposed Implementation
+
+This feature allows professors to sort the FYP projects by their specialisation, or by
+the project status in the order {YTS,IP,DONE}. 
+
+#### Implementation details
+The `Sort` feature is facilitated by 2 main Commands: `SortSpecialisationCommand` and `SortProjectStatusCommand`.
+Both of these commands extend from the abstract `Command`class. Note that we have fixed the sorting order
+of `SortProjectStatusCommand` to be sorted in the order {YTS,IP,DONE} since projects that have YTS are more urgent,
+hence we have placed them at the front of our FYP manager, followed by those that are IP, and finally 
+those that are DONE which are of the least urgency.
+
+We give an example usage scenario of `SortSpecialisationCommand` and `SortProjectStatusCommand`
+* `SortSpecialisationCommand`
+    1. The user enters `sort -p` if he wishes to execute the `SortSpecialisationCommand`
+    2. FypManagerParser creates a new `SortSpecialisationCommand` after preliminary check of user input.
+    3. `LogicManager` executes the `SortSpecialisationCommand` using the `LogicManager#execute()` method.
+    4. `SortSpecialisationCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be
+       identified as a `SortSpecialisationCommand` so that our `MainWindow` will show the sorted List.
+
+![SortSpecialisationCommandSequenceDiagram](images/SortSpecialisationCommandSequenceDiagram.jpg)
+
+* `SortProjectStatusCommand`
+    1. The user enters `sort -s` if he wishes to execute the `SortProjectStatusCommand`
+    2. FypManagerParser creates a new `SortSpecialisationCommand` after preliminary check of user input.
+    3. `LogicManager` executes the `SortProjectStatusCommand` using the `LogicManager#execute()` method.
+    4. `SortProjectStatusCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be 
+        identified as a `SortProjectStatusCommand` so that our `MainWindow` will show the sorted List.
+
+![SortProjectStatusCommandSequenceDiagram](images/SortProjectStatusCommandSequenceDiagram.jpg)
+
+#### Future Implementations
+* Sorting of deadlines to be included in future iterations as well
 
 ###  `Exit` Feature
 #### Proposed Implementation
@@ -520,7 +554,6 @@ The following sequence diagram shows how the list command works:
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: To provide a platform for easier access to SoC professors to their students’ FYP status, rather than via plain e-mail correspondences.
-
 
 ### User stories
 

@@ -99,5 +99,4 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         }
 
     }
-
 }

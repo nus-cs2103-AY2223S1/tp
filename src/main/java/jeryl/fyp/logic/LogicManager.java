@@ -66,6 +66,21 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Student> getSortedBySpecialisationUncompletedStudentList() {
+        return model.getSortedBySpecialisationUncompletedStudentList();
+    }
+
+    @Override
+    public ObservableList<Student> getSortedByProjectStatusUncompletedStudentList() {
+        return model.getSortedByProjectStatusUncompletedStudentList();
+    }
+
+    @Override
+    public ObservableList<Student> getSortedCompletedStudentList() {
+        return model.getSortedCompletedStudentList();
+    }
+
+    @Override
     public ObservableList<Student> getUncompletedStudentList() {
         return model.getUncompletedStudentList();
     }
