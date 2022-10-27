@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -9,7 +7,6 @@ import java.util.Stack;
 import picocli.CommandLine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.tag.Tag;
 
 /**
  * Converter from {@code String} to {@code NameContainsKeywordsPredicate}.

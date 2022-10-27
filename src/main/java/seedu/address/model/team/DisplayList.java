@@ -7,6 +7,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 
+/**
+ * An abstraction of the lists to be displayed in the UI
+ */
 public class DisplayList<T> {
     private final SortedList<T> sorted;
     private final FilteredList<T> filtered;

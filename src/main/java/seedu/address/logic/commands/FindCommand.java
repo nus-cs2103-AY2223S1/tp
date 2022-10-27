@@ -6,10 +6,13 @@ import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Command that contains all subcommands starting with {@code find}.
+ */
 @CommandLine.Command(name = "find", subcommands = {
-        FindPersonCommand.class,
-        FindMemberCommand.class,
-        FindTaskCommand.class
+    FindPersonCommand.class,
+    FindMemberCommand.class,
+    FindTaskCommand.class
 })
 public class FindCommand extends Command {
     @Override

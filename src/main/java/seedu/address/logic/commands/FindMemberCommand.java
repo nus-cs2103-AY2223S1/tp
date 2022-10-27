@@ -36,16 +36,16 @@ public class FindMemberCommand extends Command {
     public static final String MESSAGE_ONE_FLAG = "Please supply only 1 flag by selecting name or email only.";
 
     @CommandLine.ArgGroup(exclusive = true, multiplicity = "1")
-    public Exclusive predicate;
+    private Exclusive predicate;
 
     static class Exclusive {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG},
                 required = true, arity = "1..*")
-        String[] nameKeywords;
+        private String[] nameKeywords;
 
         @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG},
-                required = true, arity ="1..*")
-        String[] emailKeywords;
+                required = true, arity = "1..*")
+        private String[] emailKeywords;
 
         Predicate<Person> getPredicate() {
             return nameKeywords == null

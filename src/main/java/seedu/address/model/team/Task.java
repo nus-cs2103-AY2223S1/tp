@@ -6,7 +6,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -133,6 +132,9 @@ public class Task {
         return name.hashCode();
     }
 
+    /**
+     * Assigns a Task to a person and returns a new Task
+     */
     public Task assignTo(Person assignee) {
         String name = getName();
         assignees.add(assignee);
@@ -152,6 +154,9 @@ public class Task {
         return this.assignees.contains(assignee);
     }
 
+    /**
+     * Set a new deadline and returns a new Task with that deadline
+     */
     public Task setDeadline(LocalDateTime date) {
         String name = getName();
         List<Person> assignees = getAssigneesList();
@@ -160,6 +165,9 @@ public class Task {
         return new Task(name, assignees, completionStatus, newDate);
     }
 
+    /**
+     * Marks a Task and returns a new Task
+     */
     public Task mark(boolean completionStatus) {
         String name = getName();
         List<Person> assignees = getAssigneesList();
