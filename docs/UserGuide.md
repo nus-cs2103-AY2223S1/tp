@@ -193,7 +193,7 @@ Format: `deleteTask TASK_NUMBER`
 Examples:
 * `deleteTask 1` deletes the first task from the tasklist
 
-### viewing all tasks: `list Tasks`
+### viewing all tasks: `listTasks`
 
 Edits the details of the task identified by the index number used in the displayed task list. 
 Existing values will be overwritten by the input values.
