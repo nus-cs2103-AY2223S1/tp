@@ -27,7 +27,7 @@ public class TuitionClass {
      * Every field must be present and not null.
      */
     public TuitionClass(Name name, Subject subject, Level level, Day day, Time time, Set<Tag> tags) {
-        requireAllNonNull(name, subject, day, time, tags);
+        requireAllNonNull(name, subject, level, day, time, tags);
         id++;
         this.name = name;
         this.subject = subject;

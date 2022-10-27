@@ -123,6 +123,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             keywords.put(PREFIX_SUBJECT_OR_SCHOOL, subjectKeywords);
             keywords.put(PREFIX_LEVEL, levelKeywords);
             keywords.put(PREFIX_TIME, timeKeywords);
+            break;
         }
 
         tagKeywords = argMultimap.getValue(PREFIX_TAG).orElse("");
@@ -132,7 +133,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
 
-    private void validateArguments(ArgumentMultimap argMultimap) throws ParseException {
+    public void validateArguments(ArgumentMultimap argMultimap) throws ParseException {
 
         // Check if prefixes specified is relevant to the current list
         switch (listType) {

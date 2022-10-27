@@ -26,11 +26,14 @@ public class AssignCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
+    public static final String FEEDBACK_MESSAGE = "Valid assign command format:\n"
+            + "assign INDEX " + PREFIX_NAME + "CLASS NAME\n";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign the person identified by the index "
             + "number used in the displayed person list to the specified class if it exists.\n"
             + "Parameters: assign"
             + "INDEX (must be a positive integer)"
-            + "[" + PREFIX_NAME + " CLASS NAME] \n"
+            + "[" + PREFIX_NAME + " CLASS NAME]\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NAME + "P2MATHS";
 
     public static final String MESSAGE_ASSIGN_STUDENT_SUCCESS = "Assigned Student: %1$s";

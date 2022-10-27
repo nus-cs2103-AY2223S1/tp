@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -55,8 +54,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAllAddressBook()
-            throws DataConversionException, IllegalValueException, IOException {
+    public Optional<ReadOnlyAddressBook> readAllAddressBook() {
         return addressBookStorage.readAllAddressBook();
     }
 

@@ -22,6 +22,9 @@ public class ShowCommand extends Command {
 
     public static final String COMMAND_WORD = "show";
 
+    public static final String FEEDBACK_MESSAGE = "Valid show command format:\n"
+            + "show INDEX\n";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows the entity identified by the index number used in the displayed current list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"

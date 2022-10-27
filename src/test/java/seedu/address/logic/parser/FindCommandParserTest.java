@@ -24,23 +24,4 @@ public class FindCommandParserTest {
         assertParseFailure(parser, "someone",
                 String.format(MESSAGE_KEYWORDS_WITHOUT_PREFIX, FindCommand.MESSAGE_USAGE));
     }
-    /*
-    @Test
-    public void parse_validArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
-        HashMap<Prefix, String> keywords = new HashMap<>();
-        keywords.put(PREFIX_NAME, "Alice");
-        keywords.put(PREFIX_ADDRESS, "");
-        keywords.put(PREFIX_EMAIL, "alice@example.com");
-        keywords.put(PREFIX_PHONE, "");
-        keywords.put(PREFIX_SUBJECT_OR_SCHOOL, "");
-        keywords.put(PREFIX_LEVEL, "");
-        keywords.put(PREFIX_TAG, "");
-        FindCommand expectedFindCommand = new FindCommand(keywords);
-        assertParseSuccess(parser, "n/Alice", expectedFindCommand);
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, "n/ \n Alice \n e/ \t alice@example.com  \t", expectedFindCommand);
-    }
-    */
 }

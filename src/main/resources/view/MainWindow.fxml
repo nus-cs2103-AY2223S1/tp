@@ -25,7 +25,7 @@
             <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="950.0" styleClass="background">
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="    File    ">
-                  <MenuItem mnemonicParsing="false" onAction="#handleExport" text="Export" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleExport" text="Export to csv" />
                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                     </Menu>
                     <Menu mnemonicParsing="false" text="     Help     ">

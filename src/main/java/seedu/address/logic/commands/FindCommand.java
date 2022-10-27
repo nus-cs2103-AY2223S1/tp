@@ -40,6 +40,10 @@ public class FindCommand extends Command {
             + "NOTE: Must include at least one pair of prefix and keywords.\n"
             + "NOTE: If repeated prefixes are specified, only the latest one will be taken.";
 
+    public static final String FEEDBACK_MESSAGE = "Valid find command format:\n"
+            + "find KEYWORD [MORE_KEYWORDS]...\n";
+
+
     private final HashMap<Prefix, String> keywords;
 
     private StudentContainsKeywordsPredicate<Student> studentPredicate;

@@ -30,6 +30,6 @@ public class AssignCommandParserTest {
     @Test
     public void parse_invalidArgs_throwParseException() {
         assertParseFailure(parser, "abc",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.FEEDBACK_MESSAGE));
     }
 }
