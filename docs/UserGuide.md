@@ -67,7 +67,7 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 
 </div>
 
-### Adding a person: add
+### Adding a person: `add`
 
 Adds a person to the address book.
 
@@ -81,13 +81,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : list
+### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : edit
+### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
@@ -104,7 +104,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be 91234567 and johndoe@example.com respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
 
-### Locating persons by name: find
+### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -122,7 +122,7 @@ Examples:
 * `find alex david` returns Alex Yeoh, David Li<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : delete
+### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
@@ -200,8 +200,7 @@ Existing values will be overwritten by the input values.
 
 Format: `listTasks`
 
-### Editing a Task : edit
-
+### Editing a Task : `edit`
 
 Edits an existing task in the tasklist.
 
@@ -215,6 +214,21 @@ Examples:
 *  `edit 1 n/Create UI pr/high` Edits the name and priority of the 1st task to be Create UI and HIGH respectively.
 *  `edit 2 c/frontend pe/charlotte@example.com` Edits the category of the 2nd task to be frontend and assign the task to new person(charlotte).
 
+### Filtering a Task : `filter`
+
+Filters the tasklist based on either **TASK_CATEGORY** or **TASK_DEADLINE** or **BOTH**.
+
+Format: `filter [c/TASK_CATEGORY] [dl/DEADLINE]`
+
+* Filters the task based on the user input. 
+* At least one of the optional fields must be provided.
+* Filtered tasks will be displayed in the tasklist.
+* To list all tasks, call the `listTasks` command.
+
+Examples:
+*  `filter c/backend` Only display tasks that have backend as **TASK_CATEGORY**
+*  `filter dl/2022-12-12` Only displays tasks that have **DEADLINE** before or equal to 2022-12-12
+*  `filter c/backend dl/2022-12-12` Only displays tasks that have backend as **TASK_CATEGORY** and **DEADLINE** before or equal to 2022-12-12
 
 ## FAQ
 
@@ -237,7 +251,8 @@ Action | Format, Examples
 **Help** | `help`
 **Add Task** | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com`
 **Edit Task** | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`
-**deleteTask** | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`
+**Delete Task** | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`
 **list Tasks** | `listTasks`
+**Filter Task** | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`
 
 
