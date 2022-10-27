@@ -19,7 +19,7 @@ public class MeetingTimePastPredicate implements Predicate<MeetingTime> {
 
     @Override
     public boolean test(MeetingTime meetingTime) {
-        return meetingTime.getDate().isBefore(now);
+        return meetingTime.date.isBefore(now);
     }
 
     @Override
