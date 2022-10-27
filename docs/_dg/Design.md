@@ -30,7 +30,7 @@ The rest of the App consists of four components.
 
 #### How the architecture components interact with each other
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `del 1`. This deletes the first item from the List Box.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `del 1`. This deletes the first item from the Item List Box.
 
 ![](images/ArchitectureSequenceDiagram.png)
 
@@ -95,17 +95,6 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `NewCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model Component
-
-**API** : [`Model.java`]({{ page.master_branch }}/{{ page.main_src }}/model/Model.java)
-
-![](images/ModelClassDiagram.png)
-
-The `Model` component,
-
-* stores the FoodRem data i.e., all `Item` objects (which are contained in a `UniqueItemList` object).
-* stores the currently 'selected' `Item` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 {% include_relative _dg/ModelComponent.md %}
 
