@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DeleteCommissionCommand" as DeleteCommissionCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "lastShownList:List<Commission>" as lastShownList MODEL_COLOR
+participant "commissionToDelete:Commission" as commissionToDelete MODEL_COLOR
+participant "customer:Customer" as customer MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delcom 1")
+activate LogicManager
+
+LogicManager -> DeleteCommissionCommand : execute()
+activate DeleteCommissionCommand
+
+DeleteCommissionCommand -> Model : getFilteredCommissionList()
+activate Model
+
+Model --> DeleteCommissionCommand : lastShownList
+deactivate Model
+
+DeleteCommissionCommand -> lastShownList : get(1)
+activate lastShownList
+
+lastShownList --> DeleteCommissionCommand : commissionToDelete
+deactivate lastShownList
+
+DeleteCommissionCommand -> commissionToDelete : getCustomer()
+activate commissionToDelete
+
+commissionToDelete --> DeleteCommissionCommand : customer
+deactivate commissionToDelete
+
+DeleteCommissionCommand -> customer : removeCommission(commissionToDelete)
+activate customer
+
+customer --> DeleteCommissionCommand
+deactivate customer
+
+DeleteCommissionCommand -> Model : selectTab(GuiTab.COMMISSION)
+activate Model
+
+Model --> DeleteCommissionCommand
+deactivate Model
+
+DeleteCommissionCommand -> Model : updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS)
+activate Model
+
+Model --> DeleteCommissionCommand
+deactivate Model
+
+DeleteCommissionCommand -> Model : getSelectedCommission()
+activate Model
+
+Model --> DeleteCommissionCommand
+deactivate Model
+
+opt commissionToDelete is the current selectedCommission
+DeleteCommissionCommand -> Model : selectCommission(null)
+activate Model
+
+Model --> DeleteCommissionCommand
+deactivate Model
+
+end
+
+create CommandResult
+DeleteCommissionCommand -> CommandResult
+activate CommandResult
+CommandResult --> DeleteCommissionCommand : result
+deactivate CommandResult
+
+DeleteCommissionCommand --> LogicManager
+deactivate DeleteCommissionCommand
+
+@enduml
