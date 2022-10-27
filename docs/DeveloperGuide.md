@@ -342,7 +342,7 @@ Step 6. The user executes a `remove s/3` command which removes the instance of `
 
 ### Remove feature
 
-####Implementation
+#### Implementation
 
 The remove feature allows the user to remove a specified detail from the homework, session, attendance, or grade progress lists. It can only be used when the user is in the 'view' state of the student.
 
