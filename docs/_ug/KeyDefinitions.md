@@ -42,15 +42,15 @@ You would put in the corresponding [Placeholder](#placeholders) immediately afte
 
 Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
 
-| Flag  | Corresponding Placeholder |
-|-------|---------------------------|
-| n/    | ITEM_NAME<br>TAG_NAME     |
-| qty/  | QUANTITY                  |
-| u/    | UNIT                      |
-| buy/  | BOUGHT_DATE               |
-| exp/  | EXPIRY_DATE               |
-| p/    | PRICE                     |
-| r/    | REMARKS                   |
+| Flag | Corresponding Placeholder |
+|------|---------------------------|
+| n/   | ITEM_NAME<br>TAG_NAME     |
+| qty/ | QUANTITY                  |
+| u/   | UNIT                      |
+| bgt/ | BOUGHT_DATE               |
+| exp/ | EXPIRY_DATE               |
+| p/   | PRICE                     |
+| r/   | REMARKS                   |
 
 #### Placeholders
 
