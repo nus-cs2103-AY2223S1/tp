@@ -89,7 +89,8 @@ public class FindCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code descriptions}, {@code monies}, {@code dates}, and {@code times} are used internally.
+         * A defensive copy of {@code descriptions}, {@code monies},
+         * {@code dates}, and {@code times} are used internally.
          */
         public DebtsDescriptor(DebtsDescriptor toCopy) {
             setDescriptions(toCopy.descriptions);
