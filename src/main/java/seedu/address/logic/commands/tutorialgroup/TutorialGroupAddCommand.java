@@ -19,7 +19,8 @@ public class TutorialGroupAddCommand extends Command {
         + "Parameters: ";
 
     public static final String MESSAGE_SUCCESS = "New tutorial group added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TUTORIAL_GROUP = "This task already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL_GROUP = "This tutorial group"
+            + " already exists in the address book";
 
     private final TutorialGroup toAdd;
 

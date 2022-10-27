@@ -20,10 +20,9 @@ public class TutorialGroupFilterCommand extends Command {
     public static final String COMMAND_WORD = "tutorial filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters students based on tutorial groups. "
-        + "Parameters: ";
+        + "Parameters: tutorial group name";
 
-    public static final String MESSAGE_SUCCESS = "Students filtered in this tutorial group: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "All students from the tutorial group %1$s:";
     public static final String MESSAGE_TUTORIAL_NOT_FOUND = "Tutorial group not found";
     private final TutorialGroup toFilter;
 

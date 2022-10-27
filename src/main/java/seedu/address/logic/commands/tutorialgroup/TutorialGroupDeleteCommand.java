@@ -20,12 +20,10 @@ import seedu.address.model.student.TutorialGroup;
 public class TutorialGroupDeleteCommand extends Command {
     public static final String COMMAND_WORD = "tutorial delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial group to the address book. "
-        + "Parameters: ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a tutorial group from the address book. "
+        + "Parameters: index of the tutorial group";
 
     public static final String MESSAGE_DELETE_TUTORIAL_GROUP_SUCCESS = "This tutorial group deleted: %1$s";
-
-    public static final String MESSAGE_GROUP_NOT_FOUND = "This tutorial group is not found in the records";
 
     private Index targetIndex;
 
