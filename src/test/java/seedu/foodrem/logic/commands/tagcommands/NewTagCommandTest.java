@@ -17,10 +17,11 @@ import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.ReadOnlyFoodRem;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
+import seedu.foodrem.viewmodels.TagsWithMessage;
 
 public class NewTagCommandTest {
     private static final String EXPECTED_ERROR_DUPLICATE = "This tag already exists in FoodRem";
-    private static final String EXPECTED_FORMAT_SUCCESS = "New tag added: %1$s";
+    private static final String EXPECTED_FORMAT_SUCCESS = "New tag added:";
 
     @Test
     public void constructor_nullTag_throwsNullPointerException() {
@@ -32,9 +33,11 @@ public class NewTagCommandTest {
         ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
         Tag validTag = new TagBuilder().build();
 
-        CommandResult commandResult = new NewTagCommand(validTag).execute(modelStub);
+        CommandResult<TagsWithMessage> commandResult = new NewTagCommand(validTag).execute(modelStub);
 
-        assertEquals(String.format(EXPECTED_FORMAT_SUCCESS, validTag), commandResult.getOutput());
+        TagsWithMessage expectedResult = new TagsWithMessage(List.of(validTag) , EXPECTED_FORMAT_SUCCESS);
+
+        assertEquals(expectedResult, commandResult.getOutput());
         assertEquals(List.of(validTag), modelStub.tagsAdded);
     }
 
