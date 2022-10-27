@@ -25,7 +25,7 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
    ![UiTasks](images/UiTasks.png)
 
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`listc`** : Lists all contacts.
@@ -38,7 +38,7 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
 
    * **`exit`** : Exits the app.
 
-7. Refer to the [Features](#features) below for details of all available commands.
+6. Refer to the [Features](#features) below for details of all available commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
