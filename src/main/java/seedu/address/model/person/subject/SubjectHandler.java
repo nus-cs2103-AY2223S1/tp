@@ -145,13 +145,15 @@ public class SubjectHandler {
      */
     public String dataString() {
         StringBuilder str = new StringBuilder();
+        Set<String> keys = subjectsTaken.keySet();
         if (subjectsTaken.isEmpty()) {
-            return "";
+            return str.toString();
         }
-        for (Subject subject : subjectsTaken.values()) {
-            str.append(subject.toString());
+        for (String key : keys) {
+            Subject keyValue = subjectsTaken.get(key);
+            str.append(keyValue.dataString());
         }
-        str = new StringBuilder(str.substring(0, str.length() - 2));
+        str = new StringBuilder(new StringBuilder(str.substring(0, str.length() - 2)));
         return str.toString();
     }
 
