@@ -192,9 +192,6 @@ Examples:
 * `find n/ alex david` returns `Alex Yeoh`, `David Li`
 * `find r/ high` returns `john` and `Alex Yeoh`<br>
 
-[//]: # (To be updated)
-[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
-
 #### 4.1.6 Deleting a client : `delete`
 
 Deletes the specified client from the list of clients.
@@ -220,9 +217,6 @@ Types of `KEYWORD`: `name`, `appt`, `risk`, `income`, `monthly`
 
 * Returns all the contacts sorted by the given `KEYWORD`
 
-[//]: # (To be updated)
-
-[//]: # (  ![result for 'sort name']&#40;images/sortAlphabetResult.png&#41;)
 
 #### 4.1.8 Clearing all entries : `clear`
 
