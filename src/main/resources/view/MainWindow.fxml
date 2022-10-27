@@ -66,7 +66,7 @@
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-            <Label style="-fx-font-size: 14pt; -fx-font-family: Segoe UI Light; -fx-text-fill: white; -fx-font-weight: 700" >
+            <Label style="-fx-font-size: 13pt; -fx-font-family: Segoe UI Light; -fx-text-fill: white; -fx-font-weight: 700" >
               Details
               <padding>
                 <Insets bottom="10" />
@@ -88,7 +88,7 @@
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #fa9960; -fx-background-radius:20px;">
                   <Label style="-fx-text-fill: #af4505;">
-                    Applied
+                    APPLIED
                   </Label>
                 </VBox>
               </VBox>
@@ -98,7 +98,7 @@
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #33c2ff;-fx-background-radius:20px;">
                   <Label style="-fx-text-fill: #074e81;">
-                    Assessment
+                    ASSESSMENT
                   </Label>
                 </VBox>
               </VBox>
@@ -108,7 +108,7 @@
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #ffe74e;-fx-background-radius:20px;">
                   <Label style="-fx-text-fill: #9f6100;">
-                    Interview
+                    INTERVIEW
                   </Label>
                 </VBox>
               </VBox>
@@ -118,7 +118,7 @@
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #f487fc;-fx-background-radius:20px;">
                   <Label style="-fx-text-fill: #8d1296;">
-                    Offer
+                    OFFER
                   </Label>
                 </VBox>
               </VBox>
@@ -128,7 +128,7 @@
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #8df863;-fx-background-radius:20px;">
                   <Label style="-fx-text-fill: #05813b;">
-                    Accepted
+                    ACCEPTED
                   </Label>
                 </VBox>
               </VBox>
@@ -138,7 +138,7 @@
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #fc5f5f;-fx-background-radius:20px;">
                   <Label style="-fx-text-fill: #600505;">
-                    Rejected
+                    REJECTED
                   </Label>
                 </VBox>
               </VBox>
