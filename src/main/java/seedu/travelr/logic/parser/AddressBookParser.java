@@ -24,6 +24,7 @@ import seedu.travelr.logic.commands.MarkTripDoneCommand;
 import seedu.travelr.logic.commands.SelectCommand;
 import seedu.travelr.logic.commands.SortEventsCommand;
 import seedu.travelr.logic.commands.SortTripsCommand;
+import seedu.travelr.logic.commands.SummaryCommand;
 import seedu.travelr.logic.commands.UnmarkDoneTripCommand;
 import seedu.travelr.logic.commands.ViewAllCommand;
 import seedu.travelr.logic.commands.ViewCompletedCommand;
@@ -112,6 +113,9 @@ public class AddressBookParser {
 
         case SortTripsCommand.COMMAND_WORD:
             return new SortTripsCommandParser().parse(arguments);
+
+        case SummaryCommand.COMMAND_WORD:
+            return new SummaryCommand();
 
         case SortEventsCommand.COMMAND_WORD:
             return new SortEventsCommandParser().parse(arguments);

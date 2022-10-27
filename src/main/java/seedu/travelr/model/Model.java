@@ -178,7 +178,12 @@ public interface Model {
 
     void sortTripsByComparator(Comparator<Trip> comp);
 
+    SummaryVariables getSummaryVariables();
+
+    void refreshSummaryVariables();
+
     void sortBucketList(Comparator<Event> comparator);
 
     boolean hasEventInBucketList(Event event);
+
 }

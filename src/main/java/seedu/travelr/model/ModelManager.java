@@ -17,6 +17,7 @@ import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
+import seedu.travelr.model.trip.TripCompletedPredicate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,9 +28,14 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Trip> filteredTrips;
-    private ObservableTrip selectedTrip;
+    private final ObservableTrip selectedTrip;
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Event> bucketList;
+
+    /**
+     * For use by Summary Command only.
+     */
+    private final SummaryVariables summaryVariables;
 
 
     /**
@@ -45,7 +51,12 @@ public class ModelManager implements Model {
         filteredTrips = new FilteredList<>(this.addressBook.getTripList());
         filteredEvents = new FilteredList<>(this.addressBook.getAllEventList());
         bucketList = new FilteredList<>(this.addressBook.getEventList());
+
+        // Initialize the selected trip
         selectedTrip = new ObservableTrip();
+
+        // Initialize the summary variables
+        summaryVariables = new SummaryVariables();
 
         // Set initial view to Bucket List
         filteredEvents.setPredicate(getBucketPredicate());
@@ -167,6 +178,42 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setTrip(Trip target, Trip editedTrip) {
+        requireAllNonNull(target, editedTrip);
+
+        addressBook.setTrip(target, editedTrip);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        addressBook.setEvent(target, editedEvent);
+    }
+
+    //=========== Summary Variables Accessors =============================================================
+
+    @Override
+    public void refreshSummaryVariables() {
+        updateFilteredTripList(Model.PREDICATE_SHOW_ALL_TRIPS);
+        updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
+        summaryVariables.refresh(filteredTrips, filteredEvents);
+
+        updateFilteredTripList(new TripCompletedPredicate());
+
+        // resets to AllTrips and bucketList
+        updateFilteredTripList(Model.PREDICATE_SHOW_ALL_TRIPS);
+        updateFilteredEventList(getBucketPredicate());
+        resetSelectedTrip();
+    }
+
+    @Override
+    public SummaryVariables getSummaryVariables() {
+        return summaryVariables;
+    }
+
+    //=========== Selected Trip Accessors =============================================================
+
+    @Override
     public ObservableTrip getSelectedTrip() {
         return selectedTrip;
     }
@@ -179,19 +226,6 @@ public class ModelManager implements Model {
     @Override
     public void resetSelectedTrip() {
         selectedTrip.resetTrip();
-    }
-
-    @Override
-    public void setTrip(Trip target, Trip editedTrip) {
-        requireAllNonNull(target, editedTrip);
-
-        addressBook.setTrip(target, editedTrip);
-    }
-
-    @Override
-    public void setEvent(Event target, Event editedEvent) {
-        requireAllNonNull(target, editedEvent);
-        addressBook.setEvent(target, editedEvent);
     }
 
     //=========== Filtered Trip List Accessors =============================================================

@@ -1,40 +1,31 @@
 package seedu.travelr.ui;
 
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import seedu.travelr.commons.core.LogsCenter;
-import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
 
 /**
  * Panel containing the list of persons.
  */
-public class TripListPanel extends UiPart<Region> {
-    private static final String FXML = "TripListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TripListPanel.class);
+public class CompletedTripListPanel extends UiPart<Region> {
+    private static final String FXML = "CompletedTripListPanel.fxml";
+    private final Image completed;
 
-    private Image completed;
-
-    @FXML
-    private StackPane selectedTripCardPlaceholder;
     @FXML
     private ListView<Trip> tripListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public TripListPanel(ObservableList<Trip> tripList, ObservableTrip selectedTrip, Image completed) {
+    public CompletedTripListPanel(ObservableList<Trip> tripList, Image completed) {
         super(FXML);
+        tripList = tripList.filtered(Trip::isDone);
         tripListView.setItems(tripList);
         tripListView.setCellFactory(listView -> new TripListViewCell());
-        selectedTripCardPlaceholder.getChildren().add(new SelectedTripCard(selectedTrip).getRoot());
         this.completed = completed;
     }
 
