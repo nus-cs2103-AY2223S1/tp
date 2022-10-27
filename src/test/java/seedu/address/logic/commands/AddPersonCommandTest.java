@@ -179,6 +179,21 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void deleteListingsOwnedBy(Client target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeetingsWith(Client target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteOffersMadeBy(Client target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteListing(Listing target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -194,6 +209,16 @@ public class AddPersonCommandTest {
 
         @Override
         public void setListing(Listing target, Listing editedListing) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteOffersFor(Listing target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeetingsAbout(Listing target) {
             throw new AssertionError("This method should not be called.");
         }
 

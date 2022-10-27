@@ -6,12 +6,15 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.listing.Listing;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 
@@ -116,6 +119,24 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         }
 
         internalList.setAll(meetings);
+    }
+
+    /**
+     * Remove all meetings with the client.
+     */
+    public void deleteMeetingsWithClient(Client toBeRemoved) {
+        List<Meeting> newInternalList = internalList.stream().filter(toBeRemoved::doNotHaveMeeting)
+            .collect(Collectors.toList());
+        setMeetings(newInternalList);
+    }
+
+    /**
+     * Remove all meetings about the listing.
+     */
+    public void deleteMeetingsAboutListing(Listing toBeRemoved) {
+        List<Meeting> newInternalList = internalList.stream().filter(toBeRemoved::doNotHaveMeeting)
+            .collect(Collectors.toList());
+        setMeetings(newInternalList);
     }
 
     /**

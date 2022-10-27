@@ -148,6 +148,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes all listings owned by {@code key} from this {@code AddressBook}
+     */
+    public void removeAllListingOwnedBy(Client key) {
+        listings.deleteListingsOfClient(key);
+    }
+
+    public void removeAllOffersMadeBy(Client key) {
+        offers.deleteOffersOfClient(key);
+    }
+
+    public void removeAllMeetingsWith(Client key) {
+        meetings.deleteMeetingsWithClient(key);
+    }
+
 
     //// client-level operations
 
@@ -239,6 +254,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeListing(Listing listing) {
         listings.remove(listing);
+    }
+
+    public void removeAllOffersFor(Listing target) {
+        offers.deleteOffersForListing(target);
+    }
+
+    public void removeAllMeetingsAbout(Listing target) {
+        meetings.deleteMeetingsAboutListing(target);
     }
 
     //// offer-level operations
@@ -383,5 +406,4 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return clients.hashCode();
     }
-
 }
