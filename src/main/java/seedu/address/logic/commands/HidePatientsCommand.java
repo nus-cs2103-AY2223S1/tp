@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.predicates.HiddenPredicateSingleton;
@@ -42,8 +43,9 @@ public class HidePatientsCommand extends Command {
         Predicate<Person> combinedPredicate = HiddenPredicateSingleton.combineWithHiddenPredicate(predicate);
         model.updateFilteredPersonList(combinedPredicate);
         List<Person> validPersons = model.getFilteredPersonList();
-        AppointmentOfFilteredPersonsPredicate appointmentPredicate =
-                new AppointmentOfFilteredPersonsPredicate(validPersons);
+        Predicate<Appointment> appointmentPredicate =
+                HiddenPredicateSingleton.combineWithRegularApptPredicate(
+                        new AppointmentOfFilteredPersonsPredicate(validPersons));
         model.updateFilteredAppointmentList(appointmentPredicate);
 
         return new CommandResult(

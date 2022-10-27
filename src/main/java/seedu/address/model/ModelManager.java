@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -115,26 +116,26 @@ public class ModelManager implements Model {
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
         addressBook.setAppointment(target, editedAppointment);
-        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        updateFilteredAppointmentList(HiddenPredicateSingleton.getCurrApptPredicate());
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
-        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        updateFilteredAppointmentList(HiddenPredicateSingleton.getCurrApptPredicate());
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(HiddenPredicateSingleton.getCurrPersonPredicate());
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(HiddenPredicateSingleton.getCurrPersonPredicate());
     }
 
     //=========== Filtered Person List Accessors =============================================================
