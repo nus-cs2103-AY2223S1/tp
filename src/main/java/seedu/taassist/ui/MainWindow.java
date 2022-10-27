@@ -178,7 +178,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    private void handleUnfocusMode() {
+    private void handleUnfocusMode() throws CommandException, ParseException {
         sessionClassText.setText("Classes");
         unfocusButton.setVisible(false);
         classTitle.setVisible(false);
@@ -187,6 +187,11 @@ public class MainWindow extends UiPart<Stage> {
         buttonBar.setStyle("-fx-background-color: derive(#EDA7A7, 20%);");
         moduleClassListPanelPlaceholder.getChildren().remove(sessionListPanel.getRoot());
         moduleClassListPanelPlaceholder.getChildren().add(moduleClassListPanel.getRoot());
+    }
+
+    @FXML
+    private void buttonHandleUnfocus() throws CommandException, ParseException {
+        executeCommand("unfocus");
     }
 
     public StudentListPanel getStudentListPanel() {
