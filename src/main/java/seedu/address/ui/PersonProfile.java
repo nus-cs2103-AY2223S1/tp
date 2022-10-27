@@ -39,17 +39,33 @@ public class PersonProfile extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label name_label;
+    @FXML
     private Label phone;
+    @FXML
+    private Label phone_label;
     @FXML
     private Label address;
     @FXML
+    private Label address_label;
+    @FXML
     private Label email;
     @FXML
+    private Label email_label;
+    @FXML
     private Label description;
+    @FXML
+    private Label description_label;
+    @FXML
+    private Label tags_label;
     @FXML
     private FlowPane tags;
     @FXML
     private Label netWorth;
+    @FXML
+    private Label netWorth_label;
+    @FXML
+    private Label meeting_label;
     @FXML
     private FlowPane meetingTimes;
     @FXML
@@ -63,18 +79,125 @@ public class PersonProfile extends UiPart<Region> {
     public PersonProfile(Person person) {
         super(FXML);
         this.person = person;
+        setNameField();
+        setPhoneField();
+        setAddressField();
+        setEmailField();
+        setDescriptionField();
+        setNetWorthField();
+        setMeetingsField();
+        setTagsField();
+        setPersonFileButton();
+    }
+
+    /**
+     * Sets name value in name if value is not empty.
+     */
+    private void setNameField() {
+        if (person.getName().isEmpty()) {
+            name.setManaged(false);
+            name_label.setManaged(false);
+            return;
+        }
         name.setText(person.getName().getFullDisplayName());
+    }
+
+    /**
+     * Sets phone value in phone if value is not empty.
+     */
+    private void setPhoneField() {
+        if (person.getPhone().isEmpty()) {
+            phone.setManaged(false);
+            phone_label.setManaged(false);
+            return;
+        }
         phone.setText(person.getPhone().getDisplayValue());
+    }
+
+    /**
+     * Sets address value in address if value is not empty.
+     */
+    private void setAddressField() {
+        if (person.getAddress().isEmpty()) {
+            address.setManaged(false);
+            address_label.setManaged(false);
+            return;
+        }
         address.setText(person.getAddress().getDisplayValue());
+    }
+
+    /**
+     * Sets email value in email if value is not empty.
+     */
+    private void setEmailField() {
+        if (person.getEmail().isEmpty()) {
+            email.setManaged(false);
+            email_label.setManaged(false);
+            return;
+        }
         email.setText(person.getEmail().getDisplayValue());
+    }
+
+    /**
+     * Sets description value in description if value is not empty.
+     */
+    private void setDescriptionField() {
+        if (person.getDescription().isEmpty()) {
+            description.setManaged(false);
+            description_label.setManaged(false);
+            return;
+        }
         description.setText(person.getDescription().getDisplayValue());
+    }
+
+    /**
+     * Sets netWorth value in netWorth if value is not empty.
+     */
+    private void setNetWorthField() {
+        if (person.getNetWorth().isEmpty()) {
+            netWorth.setManaged(false);
+            netWorth_label.setManaged(false);
+            return;
+        }
         netWorth.setText(person.getNetWorth().getDisplayValue());
+    }
+
+    /**
+     * Sets person meetingTimes in meetingTimes if meetingTimes is not empty.
+     */
+    private void setMeetingsField() {
+        if (person.getMeetingTimes().isEmpty()) {
+            meetingTimes.setManaged(false);
+            meeting_label.setManaged(false);
+            return;
+        }
         person.getMeetingTimes().stream()
                 .sorted(Comparator.comparing(meetingTime -> meetingTime.displayValue))
                 .forEach(meetingTime -> meetingTimes.getChildren().add(new Label(meetingTime.displayValue)));
+    }
+
+    /**
+     * Sets person tags in tags if tags is not empty.
+     */
+    private void setTagsField() {
+        if (person.getTags().isEmpty()) {
+            tags.setManaged(false);
+            tags_label.setManaged(false);
+            return;
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Sets personFileButton to unmanaged if filepath is empty.
+     */
+    private void setPersonFileButton() {
+        if (person.getFilePath().isEmpty()) {
+            personFileButton.setManaged(false);
+            return;
+        }
     }
 
     /**
@@ -88,8 +211,7 @@ public class PersonProfile extends UiPart<Region> {
             if (buttonErrorMessage.isManaged()) {
                 hideButtonErrorMessage();
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             showInvalidFilePathButton();
             showButtonErrorMessage(e);
         }

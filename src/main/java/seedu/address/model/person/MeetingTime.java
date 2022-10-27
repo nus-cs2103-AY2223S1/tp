@@ -21,6 +21,8 @@ public class MeetingTime {
     public final String value;
     public final String displayValue;
 
+    public final LocalDateTime date;
+
     /**
      * Constructs a {@code MeetingTime}.
      *
@@ -31,6 +33,7 @@ public class MeetingTime {
         checkArgument(isValidMeetingTime(meetingTimeString), MESSAGE_CONSTRAINTS);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm");
         LocalDateTime date = LocalDateTime.parse(meetingTimeString, formatter);
+        this.date = date;
         value = meetingTimeString;
         int day = date.getDayOfMonth();
         String month = date.getMonth().toString();

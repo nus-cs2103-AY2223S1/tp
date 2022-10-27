@@ -98,6 +98,13 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Deletes meetings with times that are before the local time on machine.
+     */
+    public void syncMeetingTimes() {
+        internalList.forEach(Person::syncMeetingTimes);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {

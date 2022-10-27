@@ -112,6 +112,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void syncMeetingTimes() {
+        addressBook.syncMeetingTimes();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
