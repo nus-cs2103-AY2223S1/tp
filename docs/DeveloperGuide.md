@@ -238,65 +238,78 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Proposed\] Navigate previous commands with arrow keys
+### Navigate previous commands with arrow keys
 
 #### Motivation
 
-Currently, once a command is executed successfully, there is no way for the user to get it back easily. 
+Currently, once a command is executed successfully, there is no way for the user to get it back easily.
 However, a user who frequently uses command line interfaces (CLIs) might expect the use of arrow keys to bring
 back previous commands, as a way to quickly input multiple similar commands at once.
 
 #### Implementation
 `CommandBox` in the `commandbox` package represents the GUI component where the user enters commands.
-To capture the event when the Up and Down keystrokes are depressed, we add the `onKeyReleased` parameter
-to the `TextField` in the FXML file, `CommandBox.fxml`. This fires the `CommandBox#handleKeyReleased` method in `CommandBox`
-whenever a key is released. 
+`CommandRetriever` is a static nested class within `CommandBox`, used to contain and retrieve the history of
+successful commands. It implements the following public methods:
+- `CommandRetriever#addCommand(String command, TextField textfield)` - Adds a successful command to the command history,
+and clears the TextField
+- `CommandRetriever#getPreviousCommand(TextField textfield)` - Displays the previous command in the Textfield, if it
+exists in the history
+- `CommandRetriever#getNextCommand(TextField textfield)` - Displays the next command in the Textfield, if it
+exists in the history
 
-`CommandBox#handleKeyReleased` changes the text field in the GUI to the previous or next command on release of the Up and Down
-arrow key respectively, if the previous or next command exists. The list of commands is stored in an ArrayList of 
-strings, `previousCommands`. `previousCommandsIndex` always represents the `previousCommands` index of the command 
-currently being displayed in the GUI.
+These methods are called by `CommandBox#handleCommandEntered()` and `CommandBox#handleKeyReleased(KeyEvent e)`.
+
+Here is the UML diagram for `CommandRetriever`.
+
+![CommandRetrieverClassDiagram](images/CommandRetrieverClassDiagram.png)
+
+`CommandRetriever` only keeps track of the commands executed successfully, as invalid commands are highlighted red
+and do not disappear from the TextField. Thus, there is no need to store these invalid commands since the user can
+already edit the invalid command in the current implementation without having to retype it. Storing invalid commands
+in `CommandRetriever` would only clutter up the history, especially if the user inputted numerous invalid commands.
 
 Given below is an example usage scenario and how the arrow key changes the `CommandBox` text field at each step.
-A sequence diagram is also provided. (to be added)
+A sequence diagram is also provided below.
 
-Step 1. The user launches the application for the first time. `previousCommands` is initialised with an empty string as
-its first element. This element will represent the command that the user executes, if it executes correctly.
+![CommandRetrieverSequenceDiagram](images/CommandRetrieverSequenceDiagram.png)
+
+Step 1. The user launches the application for the first time. `commandHistory` is initialised as an empty
+`ArrayList<String>`, and index is initialised as 0.
 
 Step 2. The user executes a command, `listbuyers` by pressing the Enter key. `CommandBox#handleCommand` is fired,
-getting the text from the text field. Since it is a valid command, it is executed successfully. The last element 
-is set to `listbuyers` and an empty string is appended to `previousCommands`. The `previousCommandsIndex` is set to
-the last element.
+getting the text from the text field. Since it is a valid command, it is executed successfully. `listbuyers` is added
+to the `commandHistory` list, and index is set to `commandHistory.size()`.
 
 Step 3. The user types a command halfway, but does not press the Enter key. He/she now wishes to use the previous
 command to type the command.
 
 Step 4. The user presses and releases the Up arrow. `CommandBox#handleKeyReleased` is fired, which sets the text field
-to display the `(previousCommandsIndex - 1)`th element in `previousCommands`. The user's unexecuted command from Step 3 
-is also saved as the last element in `previousCommands`.
+to display the `(index - 1)`th element in `commmandHistory`. Because the current command is one that has not been
+executed, it is saved in the field `currentCommand`.
 
-Step 5. The user presses and releases the Up arrow again. `CommandBox#handleKeyReleased` is fired, but since
-`previousCommandsIndex == 0`, nothing happens, since there is no more previous command to be shown. 
+Step 5. The user presses and releases the Up arrow again. `CommandBox#handleKeyReleased` is fired, but since there are
+no more previous commands, nothing happens.
 
-Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyReleased` is fired, which sets the text field
-to display the `(previousCommandsIndex + 1)`th element in `previousCommands`. This would be the user's unexecuted
-command from Step 3.
+Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyReleased` is fired. Since this is the last
+element in `commandHistory`, the text field is set to display the string `currentCommand`. This would be the user's
+unexecuted command from Step 3.
 
 ### Creating a buyer
 
-The `Person` class represents a buyer with buyer-specific fields. `Price Range`, `Characteristics`, and `Priority` denote his budget, requirements for the property, and buyer priority respectively. 
+The `Person` class represents a buyer with buyer-specific fields. `Price Range`, `Characteristics`, and `Priority`
+denote his budget, requirements for the property, and buyer priority respectively.
 
-These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`. 
+These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
 When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
 
-This is the class diagram of a `Person`. 
+This is the class diagram of a `Person`.
 
 ![PersonClassDiagram](images/PersonClassDiagram.png)
 
-The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide. 
+The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
-Design considerations: 
-No duplicate buyers can be added to the buyer list. This means that no two buyers with the same name can exist. We considered using not only name but also contact number to identify a buyer, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user. 
+Design considerations:
+No duplicate buyers can be added to the buyer list. This means that no two buyers with the same name can exist. We considered using not only name but also contact number to identify a buyer, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user.
 
 ### Creating a property
 
@@ -328,7 +341,7 @@ To support retrieving the `Owner` of a `Property`, we added the following method
 This is the class diagram showing the full `Property` class diagram, with the `Owner` class included:
 ![FullPropertyClassDiagram](images/FullPropertyClassDiagram.png)
 
-The `Owner` class enacts the Composition relationship, as the `Property` class contains the `Owner` object. Hence, if the property is deleted, it's associated owner will also be deleted. 
+The `Owner` class enacts the Composition relationship, as the `Property` class contains the `Owner` object. Hence, if the property is deleted, it's associated owner will also be deleted.
 The tradeoffs for this approach is examined below:
 
 #### Design considerations:
@@ -340,26 +353,32 @@ The tradeoffs for this approach is examined below:
       * The `Owner` class is only used in the `Property` class, so it makes sense to couple them together.
       * You do not need to create an owner object separately using another command.
       * This reduces complexity of the system, and unexpected behaviours.
-    * Cons: 
+    * Cons:
       * This creates a 1-to-1 relationship between the owner and the property.
       * Each owner is coupled tightly with the property, and cannot be used for other properties.
 
 * **Alternative 2:** Users will have to create an `Owner` object separately, and link it to the property manually.
     * Pros:
       * This allows for a many-to-many relationship between the owners and properties.
-      * This allows for better OOP design, as owners will be treated as a separate, first-class entity, similar to `Buyer`.
+      * This allows for better OOP design, as owners will be treated as a separate, first-class entity, similar to
+      `Buyer`.
     * Cons:
       * Increases complexity for a possibly limited use case of linking an owner to multiple properties.
-      * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when the owner is deleted.
+      * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when
+      the owner is deleted.
 
 ### Filtering properties by price range
 
-The `Properties` list is filtered using a predicate, `filterPropsByPricePredicate`. This predicate checks if the property's price falls within a specified price range. 
+The `Properties` list is filtered using a predicate, `filterPropsByPricePredicate`. This predicate checks if the
+property's price falls within a specified price range.
 
-The structure for executing a `filterprops` command follows the flow as mentioned in the “Logic component” section of this guide. 
+The structure for executing a `filterprops` command follows the flow as mentioned in the “Logic component” section of
+this guide.
 
-Design considerations: 
-As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is unlikely to match any property. Instead, we decided to filter by a price range instead, where any property whose price falls within this range would be displayed. 
+Design considerations:
+As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is
+unlikely to match any property. Instead, we decided to filter by a price range instead, where any property whose price
+falls within this range would be displayed.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -397,12 +416,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------------------------- | --------------------------------------------|
-| `* * *`  | property agent                             | add new buyers             
-| `* * *`  | property agent                             | add new properties     
-| `* *`    | property agent                             | edit information without needing internet access                                         
+| `* * *`  | property agent                             | add new buyers
+| `* * *`  | property agent                             | add new properties
+| `* *`    | property agent                             | edit information without needing internet access
 | `* *`    | disorganised property agent                | categorise contacts as "buyer" or "seller         | keep track of demand and supply
 | `* *`    | property agent                             | edit contacts' details                            | easily update any changes
-| `* * *`  | property agent with a large number of contacts | sort contacts in different ways (alphabetical order, date of transaction, location)           | easily update any changes                                         
+| `* * *`  | property agent with a large number of contacts | sort contacts in different ways (alphabetical order, date of transaction, location)           | easily update any changes
 | `* *`    | property agent                             | search and filter for certain characteristics     | easily find matches
 | `*`      | property agent                             | link a buyer to a property
 | `*`      | non tech-savvy user                        | be able to make use of the command-line interface without too much difficulty
@@ -515,7 +534,7 @@ Use case continues at 3.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should work on any computer fewer than five years old. 
+2.  Should work on any computer fewer than five years old.
 3. Should be able to hold up to 1000 buyers without a noticeable sluggishness in performance for typical usage.
 4. Should be able to respond within two seconds.
 5. Should be downloaded and available to use within one minute.

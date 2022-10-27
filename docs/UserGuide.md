@@ -28,8 +28,8 @@ Cobb can also run on any machine, *without the need for an internet connection*.
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display some help text.<br>
    Some example commands you can try:
 
-* **`listbuyers`** : Lists all buyers in the database, that is, clears any buyer filters currently in place..
-   
+* **`listbuyers`** : Lists all buyers in the database, that is, clears any buyer filters currently in place.
+
 * **`addbuyer -n Tim Cook -ph 91234567 -r 1000000-2500000 -c bright; sunny`**: Adds a buyer named "Tim Cook" with phone number "91234567" to the database.
  This buyer has a specified price range, and desired characteristics for the property he wants to buy.
 
@@ -293,7 +293,7 @@ The `-t` flag indicates that we will be sorting buyers according to entry time.
 Examples:<br>
 `sortbuyers -priority DESC`: Sort buyers from `HIGH` priority level to `LOW` priority level.
 `sortbuyers -r ASC` Sort buyers according to the upper price bound in ascending order.
-`sortbuyers -t ASC` Sort buyers according to the time of entry from oldest to most recent. 
+`sortbuyers -t ASC` Sort buyers according to the time of entry from oldest to most recent.
 
 ### Sort properties in database: `sortprops`
 
@@ -373,7 +373,7 @@ If the problem persists, report the bug to us!
 | **Add buyer**         | `addbuyer [-n NAME] [-ph PHONE] [-e EMAIL] [-a address] {-r PRICE RANGE} {-c CHARACTERISTICS}}` <br> e.g., `addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234`                                                                                |
 | **Add property**      | `addprop [-n NAME] [-price PRICE] [-a ADDRESS] [-d DESCRIPTION] {-c CHARACTERISTICS} [-owner OWNER NAME] [-ph PHONE]` <br> e.g.`addprop -n Peak Residences -a 333 Thompson Road -price 1000000 -d long property description -owner Bob -ph 91234567` |
 | **Delete buyer**      | `deletebuyer INDEX` <br> e.g. `deletebuyer 5`                                                                                                                                                                                                        |
-| **Delete property**   | `deleteprop INDEX` <br> e.g. `deleteprop 5`                                                                                                                                                                                                          | 
+| **Delete property**   | `deleteprop INDEX` <br> e.g. `deleteprop 5`                                                                                                                                                                                                          |
 | **Update buyer**      | `editbuyer INDEX {-n NAME} {-p PHONE} {-e EMAIL} {-a ADDRESS} {-r PRICERANGE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}`<br> e.g.,`editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -priority HIGH`                    |
 | **Update property**   | `editprop INDEX {-n NAME} {-price PRICE} {-a ADDRESS} {-d DESCRIPTION} {-c CHARACTERISTICS} {-owner OWNERNAME} {-p PHONE}`<br> e.g., `editprop 3 -n Hill Residence -a Block 225 -p 750000`                                                           |
 | **Find buyer**        | `findbuyer [-k KEYWORDS]` <br> e.g. `findbuyer John`                                                                                                                                                                                                 |
