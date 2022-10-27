@@ -26,6 +26,7 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
+        requireNonNull(storage);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss_SSS");
         LocalDateTime currDateTime = LocalDateTime.now();
@@ -35,7 +36,7 @@ public class ExportCommand extends Command {
         ObservableList<Person> displayedList = model.getFilteredPersonList();
 
         try {
-            Storage.exportDisplayedList(displayedList, filePath);
+            storage.exportDisplayedList(displayedList, filePath);
         } catch (IOException ioe) {
             throw new CommandException("An error has occurred during exporting. Please try again.");
         }

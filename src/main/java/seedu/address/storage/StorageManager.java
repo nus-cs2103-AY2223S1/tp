@@ -1,15 +1,23 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.util.FileUtil;
+import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -78,6 +86,17 @@ public class StorageManager implements Storage {
     @Override
     public void setAddressBookStorage(AddressBookStorage addressBookStorage) {
         this.addressBookStorage = addressBookStorage;
+    }
+
+    @Override
+    public void exportDisplayedList(ObservableList<Person> displayedList, String filePathString) throws IOException {
+        requireNonNull(displayedList);
+        requireNonNull(filePathString);
+
+        Path filePath = Paths.get(filePathString);
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(displayedList.stream().map(JsonAdaptedPerson::new)
+                .collect(Collectors.toList()), filePath);
     }
 
 }

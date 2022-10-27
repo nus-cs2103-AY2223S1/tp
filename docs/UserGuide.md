@@ -30,7 +30,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Quick start
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -109,6 +109,23 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 --------------------------------------------------------------------------------------------------------------------
 
+## 2.4 Specifiers:
+Each field of an applicant is specified by a specifier as follows:
+* `n/NAME`
+* `p/PHONE`
+* `e/EMAIL`
+* `a/ADDRESS`
+* `c/CAP`
+* `g/GENDER`
+* `u/UNIVERSITY`
+* `gd/GRADUATION_DATE`
+* `m/MAJOR`
+* `ji/JOB_ID`
+* `jt/JOB_TITLE`
+* `t/TAG`
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## 3. Features
 
 <div markdown="block" class="alert alert-info">
@@ -160,7 +177,7 @@ Adds an applicant to InternConnect.
 
 Format: `add {mandatory_field_parameter/IDENTITY_FIELD} [t/TAG]...`
 
-* For `mandatory_field_parameter` arguments, please refer to the `parameter` of each fields in the [Fields](#2-fields) section above.
+* For `mandatory_field_parameter` arguments, please refer to the `specifier` of each fields in the [Specifier](#2.4 Specifiers) section above.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV`
@@ -195,8 +212,8 @@ Format: `edit [parameter/NEW_PARAMETER_DETAIL]...`
 * You can remove all the applicant’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 phone/91234567 email/bob@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `bob@example.com` respectively.
-*  `edit 2 name/Betty` Edits the name of the 2nd person to be `Betty`.
+*  `edit 1 p/91234567 e/bob@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `bob@example.com` respectively.
+*  `edit 2 n/Betty` Edits the name of the 2nd person to be `Betty`.
 
 
 ### 3.6 Deleting an applicant: `delete`
@@ -216,21 +233,44 @@ Examples:
 
 ### 3.7 Locating applicants by field: `find`
 
-Finds applicants whose names contain any of the given keywords.
+Finds applicants whose has a field containing any of the given keywords among all specifed fields.
 
 Format: `find parameter/KEYWORD [parameter/MORE_KEYWORDS]...`
 
+* At least one of the field specifier must be provided.
 * The search is case-insensitive. E.g., `bobby` will match `Bobby`.
 * The order of the keywords does not matter. E.g., `Bobby cortez` will match `Cortez bobby`.
-* Only full words will be matched e.g., `Bobby` will not match `Bobbys`.
-  
-  <!--- Can consider a flag for sub-words in future increments) -->
+* If a field specifier is given more than once, the command will search only for the latest specifier. E.g., `n/Bobby n/cortez` will only search and return names with `cortez` in them.
+* Applicants matching at least one keyword will be returned (i.e., OR search). E.g., `n/Bobby Cortez` will return applicants with the name `Bobby Lacruz`, `Alexander Cortez`
 
-* Applicants matching at least one keyword will be returned (i.e., OR search). E.g., `Bobby Cortez` will return `Bobby Lacruz`, `Alexander Cortez`
+Search Types:
+1. Matching word search: Keywords will only match if there is a full matching word. E.g., `Bobby` will not match `Bobbys`.
+2. Substring Search: Keywords will match as long as a substring match exists. E.g., `Bob` will match `Bobby` and `Robobson`
+3. Numeric Search: Search will search by its numeric value. E.g., Both `3` and `3.0` will match `3.0`
+
+Each field has its own specific search type. The search types are given below:
+
+Fields using _Matching word search_:
+* `n/NAME` searches _names_ by _Matching word search_
+* `p/PHONE` searches _phones_ by _Matching word search_
+* `a/ADDRESS` searches _addresses_ by _Matching word search_
+* `g/GENDER` searches _genders_ by _Matching word search_
+* `u/UNIVERSITY` searches _universities_ by _Matching word search_
+* `gd/GRADUATION_DATE` searches _graduation dates_ by _Matching word search_
+* `m/MAJOR` searches _majors_ by _Matching word search_
+* `ji/JOB_ID` searches _job Ids_ by _Matching word search_
+* `jt/JOB_TITLE` searches _job titles_ by _Matching word search_
+* `t/TAG` searches for all _tags_ by _Matching word search_
+
+Fields using _Other searches_:
+* `e/EMAIL` searches _emails_ by _Substring Search_
+* `c/CAP` searches _cap's values_ by _Numeric Search_
 
 Examples:
-* `find name/Bobby ` Returns applicants with names matching `bobby` and `Bobby Cortez`
-* `find gender/F cap/5 ` returns female applicants with a CAP of 5
+* `find n/Bobby ` Returns applicants with names matching `bobby` and `Bobby Cortez`
+* `find g/Female c/3.5 2 ` returns female applicants with a CAP value of 3.5 or 2.0
+* `find g/Male t/offered KIV` returns male applicants who have an offered or KIV tag attached to them
+* `find g/Male e/gmail` returns male applicants who have a `gmail` substring in their email address
 
 
 ### 3.8 Importing applicants from an external text file: `import`
@@ -308,9 +348,9 @@ If your changes to the data file makes its format invalid, InternConnect will di
 | **View**     | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                   |
 | **Edit**     | `edit INDEX [parameter/NEW_PARAMETER_DETAIL]...`<br> e.g.,`edit 1 p/91234567 e/bob@example.com`                                                                                                                                                                                   |
 | **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                               |
-| **Find**     | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find James Jake`                                                                                                                                                                                                                     |
+| **Find**     | `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`<br> e.g., `find g/Male t/offered KIV`                                                                                                                                                                                     |
 | **Import**   | `import FILE_PATH`<br> e.g., `import nus_students.json`                                                                                                                                                                                                                           | 
 | **Export**   | `export`                                                                                                                                                                                                                                                                          |
-| **Checkout** | `checkout FILE_NAME` <br> e.g., `checkout 27-oct-2022`                                                                                                                                                                                                                                                        |
+| **Checkout** | `checkout FILE_NAME` <br> e.g., `checkout 27-oct-2022`                                                                                                                                                                                                                            |
 | **Clear**    | `clear`                                                                                                                                                                                                                                                                           |
 | **Exit**     | `exit`                                                                                                                                                                                                                                                                            |
