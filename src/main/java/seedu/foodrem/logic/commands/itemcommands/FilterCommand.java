@@ -24,8 +24,12 @@ public abstract class FilterCommand extends Command {
     public CommandResult<String> execute(Model model) {
         requireNonNull(model);
         model.updateFilteredItemList(pred);
+
+        // String primaryMessage = "Filtered by tag:";
+        // String secondaryMessage = String.format("%s items filtered", model.getCurrentList().size());
+        // return CommandResult.from(new FilterByTag(<< Pass tag here >>, primaryMessage, secondaryMessage));
         return CommandResult.from(String.format(this.getSuccessMessage(),
-                model.getCurrentList().size()));
+                                                model.getCurrentList().size()));
     }
 
     protected String getSuccessMessage() {
