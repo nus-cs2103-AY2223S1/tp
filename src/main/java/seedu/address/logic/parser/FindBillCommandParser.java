@@ -81,8 +81,13 @@ public class FindBillCommandParser implements Parser<FindBillCommand> {
         if (argMultimap.getValue(PREFIX_BILL_DATE).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_BILL_DATE).get().trim();
 
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBillCommand.MESSAGE_USAGE));
+            }
+
             if (!trimmedArgs.matches("^[0-9:-]+$")) {
-                throw new ParseException("Only numbers, - and : are allowed as input for finding by slot");
+                throw new ParseException("Only numbers, - and : are allowed as input for finding by bill date");
             }
 
             this.billDatePredicate = (billDate -> billDate.toString().contains(trimmedArgs.toLowerCase()));
@@ -93,12 +98,13 @@ public class FindBillCommandParser implements Parser<FindBillCommand> {
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             String trimmedArgs = ParserUtil.parseAmount(argMultimap
                     .getValue(PREFIX_AMOUNT).get()).toString().trim();
+
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBillCommand.MESSAGE_USAGE));
             }
 
-            this.amountPredicate = (amount -> amount.toString().equals(trimmedArgs));
+            this.amountPredicate = (amount -> amount.toString().contains(trimmedArgs));
         }
 
         Optional<Predicate<Amount>> finalAmountPredicate = Optional.ofNullable(this.amountPredicate);
