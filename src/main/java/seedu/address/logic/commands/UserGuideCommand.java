@@ -9,7 +9,8 @@ public class UserGuideCommand extends Command {
 
     public static final String COMMAND_WORD = "user_guide";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Shows the user guide url for the program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Opened User Guide window.";
