@@ -5,9 +5,11 @@ import static java.util.Objects.requireNonNull;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.ui.ResultDisplay;
 import seedu.foodrem.viewmodels.ItemWithMessage;
+import seedu.foodrem.viewmodels.Stats;
 
 /**
  * A UI view manager to handle view updates to a result display.
+ *
  * @author Richard Dominick
  */
 public class UiView {
@@ -15,6 +17,7 @@ public class UiView {
 
     /**
      * Creates a UI view manager linked to the given display box.
+     *
      * @param display the display box to show the views at.
      */
     public UiView(ResultDisplay display) {
@@ -25,6 +28,7 @@ public class UiView {
 
     /**
      * Updates the display with the view generated from the given object.
+     *
      * @param object the object to generate the view for.
      */
     public void viewFrom(Object object) {
@@ -40,6 +44,10 @@ public class UiView {
         }
         if (object instanceof ItemWithMessage) {
             display.place(ItemWithMessageView.from((ItemWithMessage) object));
+            return;
+        }
+        if (object instanceof Stats) {
+            display.place(StatsView.from((Stats) object));
             return;
         }
 
