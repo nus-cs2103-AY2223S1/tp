@@ -27,14 +27,15 @@ For a full list of commands and detailed instructions, head to the [Features](#f
       * [Find by email](#)
       * [Find by address](#)
       * [Find by student's contact number](#)
-      * [Find by Next of Kin's contact number](#)
+      * [Find by Next of Kin's contact number](#find-by-next-of-kins-contact-number)
       * [Find by class date](#find-by-class-date)
-      * [Find by tag](#)
+      * [Find by tag](#find-by-tag)
+    * [Next available class: `avail`](#next-available-class)
     * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
       * [Sort by Name](#sort-by-name)
       * [Sort by Class](#sort-by-class)
       * [Sort by Money_Owed](#sort-by-money_owed)
-    * [Deleting student(s): `delete`](#deleting-students-delete)
+    * [Deleting a student: `delete`](#deleting-students-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
     * [Undo a command: `undo`](#undo-the-last-command-undo)
     * [Exiting the program : `exit`](#exiting-the-program-exit)
@@ -378,6 +379,24 @@ Example:
 
 `find p/81234567` returns the student with the phone number set as `81234567`.
 
+#### Find by Next of Kin's Contact number:
+
+Finds all students with a particular next of kin contact number.
+
+Formats: `find np/NOKPHONE`
+
+- Only one phone number can be searched at each time.
+```yaml
+❗ Caution: Do not include more than one phone number like `find np/91232323 81231232`.
+```
+
+Examples:
+
+`find np/91232323` returns the student with the next of kin phone number of 91232323.
+
+[Back to top](#table-of-contents)
+
+
 #### Find by Class Date:
 
 Finds all students with classes on a particular date.
@@ -396,6 +415,49 @@ Examples:
 
 `find dt/2022-10-15` returns all students with classes on 15 October 2022.
 `find dt/Mon` returns all students with classes on the coming monday.
+
+[Back to top](#table-of-contents)
+
+#### Find by Tag:
+
+Finds all students with a particular tag.
+
+Formats: `find t/tagName`
+
+- Only one tag can be searched at each time.
+```yaml
+❗ Caution: Do not include more than one tag like `find t/python java`.
+```
+
+Examples:
+
+`find t/python` returns all students who have python as a tag, including students who have other tags on top of the
+python tag.
+`find dt/javascript` returns all students with javascript as a tag and other tags besides javascript.
+
+[Back to top](#table-of-contents)
+
+---
+### Next available class: `avail`
+
+Finds the next available class given a time range and duration and returns the next available class within the time 
+range and with the specified class duration.
+
+Format: `avail TIME_RANGE DURATION`
+
+- The `TIME_RANGE` would follow a 24 hour format of 0000-2359.
+- The `DURATION` is in minutes.
+```yaml
+❗ Caution: The duration should not exceed the time range.
+        Eg: If the time range is 1000-1100 and the duration is 70, this would be invalid.
+```
+
+Examples:
+- Given that there is 1 student on the current day of 2022-10-27 from 0900-1000, `avail 1100-1200 60` would return
+  `2022-10-27 1100-1200` since there is no student at that slot.
+- Given that there are 2 students on the current day of 2022-10-27 from 0900-1000 and at 1030-1130, 
+`avail 0830-1300 60` would return `2022-10-27 1130-1230` as the next slot since there is no sufficient duration
+between 1000-1030 for a 60 minutes class.
 
 [Back to top](#table-of-contents)
 
@@ -480,7 +542,7 @@ Examples:
 
 ---
 
-### Clearing all student: 'clear'
+### Clearing all student: `clear`
 
 Clears all students and their details from the list.
 
