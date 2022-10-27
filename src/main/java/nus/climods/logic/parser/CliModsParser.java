@@ -14,6 +14,7 @@ import nus.climods.logic.commands.FindCommand;
 import nus.climods.logic.commands.HelpCommand;
 import nus.climods.logic.commands.ListCommand;
 import nus.climods.logic.commands.PickCommand;
+import nus.climods.logic.commands.PrereqsCommand;
 import nus.climods.logic.commands.ViewCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 
@@ -60,6 +61,8 @@ public class CliModsParser {
             return new PickCommandParser().parse(arguments);
         case (ViewCommand.COMMAND_WORD):
             return new ViewCommandParser().parse(arguments);
+        case (PrereqsCommand.COMMAND_WORD):
+            return new PrereqsCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
