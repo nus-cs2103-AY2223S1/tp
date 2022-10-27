@@ -132,7 +132,7 @@ public class AssignTaskCommand extends TaskCommand {
                 continue;
             }
             Contact contactToAssign =
-                    new Contact(personList.get(personIndex.getZeroBased()).getName().fullName);
+                new Contact(personList.get(personIndex.getZeroBased()).getName().fullName);
             assignedContacts.add(contactToAssign);
         }
         return assignedContacts;
@@ -142,7 +142,7 @@ public class AssignTaskCommand extends TaskCommand {
         Set<Contact> assignedContacts = new HashSet<>();
         for (String personName : personNames) {
             String matchingPersonsName = Contact.corrNameInPersonsList(personList, personName);
-            if (matchingPersonsName == "") {
+            if (matchingPersonsName.isEmpty()) {
                 invalidNames.add(personName);
                 continue;
             }
@@ -160,29 +160,29 @@ public class AssignTaskCommand extends TaskCommand {
     }
 
     private String buildErrorMessage() {
-        String errorMessage = "";
+        StringBuilder errorMessage = new StringBuilder();
         for (Index invalidIndex : invalidIndexes) {
             String currMessage = String.format(Messages.MESSAGE_INVALID_PERSON_INDEX_CUSTOM,
                     invalidIndex.getOneBased());
-            errorMessage += currMessage;
-            errorMessage += "\n";
+            errorMessage.append(currMessage);
+            errorMessage.append("\n");
         }
         for (String invalidName : invalidNames) {
             String currMessage = String.format(Messages.MESSAGE_INVALID_PERSON_NAME, invalidName);
-            errorMessage += currMessage;
-            errorMessage += "\n";
+            errorMessage.append(currMessage);
+            errorMessage.append("\n");
         }
         for (Contact contact : alreadyAddedContacts) {
             String currMessage = String.format(MESSAGE_REPEATED_CONTACT, contact.toString());
-            errorMessage += currMessage;
-            errorMessage += "\n";
+            errorMessage.append(currMessage);
+            errorMessage.append("\n");
         }
         for (Contact contact : notAddedContacts) {
             String currMessage = String.format(MESSAGE_CONTACT_DOES_NOT_EXIT, contact.toString());
-            errorMessage += currMessage;
-            errorMessage += "\n";
+            errorMessage.append(currMessage);
+            errorMessage.append("\n");
         }
-        return errorMessage;
+        return errorMessage.toString();
     }
 
     @Override

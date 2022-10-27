@@ -1,13 +1,11 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Project;
 import seedu.address.model.task.Task;
 
 /**
@@ -104,6 +102,11 @@ public interface Model {
     ReadOnlyTaskPanel getTaskPanel();
 
     /**
+     * Replaces task panel data with the data in {@code taskPanel}.
+     */
+    void setTaskPanel(ReadOnlyTaskPanel taskPanel);
+
+    /**
      * Returns true if a task with the same identity as {@code task} exists in the task panel.
      */
     boolean hasTask(Task task);
@@ -137,10 +140,4 @@ public interface Model {
      * The task of {@code editedTask} must not be the same as another existing task in the address book.
      */
     void setTask(Task target, Task editedTask);
-
-    /**
-     * Retrieves all available project names that are open.
-     * @return Returns as a list of Projects.
-     */
-    List<Project> getProjectList();
 }

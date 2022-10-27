@@ -3,7 +3,6 @@ package seedu.address.model.task;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,15 +19,15 @@ public class Task {
     // data fields
     private final Deadline deadline; // optional
     private final Project project; // optional
-    private final Set<Contact> assignedContacts = new HashSet<>();
+    private final Set<Contact> assignedContacts;
 
     /**
-     * Creates a new {@code Task} with no assigned contacts and an unspecified deadline.
+     * Creates a new {@code Task}.
      *
      * @param title Title of task
      */
-    public Task(Title title) {
-        this(title, false, Deadline.UNSPECIFIED, Project.UNSPECIFIED, new HashSet<>());
+    public Task(Title title, Deadline deadline, Project project, Set<Contact> assignedContacts) {
+        this(title, false, deadline, project, assignedContacts);
     }
 
     /**
@@ -41,7 +40,7 @@ public class Task {
         this.isCompleted = isCompleted;
         this.deadline = deadline;
         this.project = project;
-        this.assignedContacts.addAll(assignedContacts);
+        this.assignedContacts = assignedContacts;
     }
 
     public Title getTitle() {

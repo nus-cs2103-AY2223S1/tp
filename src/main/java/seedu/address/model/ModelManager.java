@@ -4,17 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Project;
 import seedu.address.model.task.Task;
 
 /**
@@ -154,14 +151,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<Project> getProjectList() {
-        List<Project> projectList = filteredTasks.stream().map(x -> x.getProject())
-                .filter(s -> !s.projectName.isBlank())
-                .collect(Collectors.toList());
-        return projectList;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -186,6 +175,11 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyTaskPanel getTaskPanel() {
         return taskPanel;
+    }
+
+    @Override
+    public void setTaskPanel(ReadOnlyTaskPanel taskPanel) {
+        this.taskPanel.resetData(taskPanel);
     }
 
     @Override
