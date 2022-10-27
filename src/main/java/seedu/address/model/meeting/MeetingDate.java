@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a Meeting's date in MyInsuRec.
  */
-public class MeetingDate {
+public class MeetingDate implements Comparable<MeetingDate> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Meeting dates should be in the format DDMMYYYY";
@@ -33,5 +33,10 @@ public class MeetingDate {
         return other == this
                 || (other instanceof MeetingDate
                 && date.equals(((MeetingDate) other).date));
+    }
+
+    @Override
+    public int compareTo(MeetingDate other) {
+        return date.compareTo(other.date);
     }
 }
