@@ -237,6 +237,13 @@ Clears all book and user entries from BookFace.
 
 Format: `clear all`
 
+### Changing the theme: `theme` *COMING SOON*
+Changes the theme of BookFace.
+
+Format: `theme <supported theme>`
+
+Examples: `theme light`
+
 ### Exit BookFace: `exit`
 
 Exit the BookFace program.
