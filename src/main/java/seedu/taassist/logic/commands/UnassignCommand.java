@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.taassist.commons.core.Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.List;
@@ -23,20 +24,20 @@ public class UnassignCommand extends Command {
 
     public static final String COMMAND_WORD = "unassign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns students from a class.\n"
-            + "Parameters: INDEX... (must be positive integers) "
-            + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
+    public static final String MESSAGE_USAGE = "> Unassigns students from a class.\n"
+            + "Parameters: INDEX... "
+            + PREFIX_MODULE_CLASS + "CLASS_NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 2 3 "
             + PREFIX_MODULE_CLASS + "CS1231S";
 
-    public static final String MESSAGE_SUCCESS = "Students with %1$s %2$s are unassigned from: %3$s";
+    public static final String MESSAGE_SUCCESS = "Students unassigned from [ %1$s ]:\n[ %2$s ]";
 
     private final List<Index> indices;
     private final ModuleClass moduleClassToUnassign;
 
     /**
-     * Creates an UnassignCommand to unassign the given {@Code ModuleClass} from students at the given {@Code Indices}.
+     * Creates an UnassignCommand to unassign the given {@code ModuleClass} from students at the given {@code Indices}.
      */
     public UnassignCommand(List<Index> indices, ModuleClass moduleClassToUnassign) {
         requireAllNonNull(indices);
@@ -64,8 +65,12 @@ public class UnassignCommand extends Command {
 
         studentsToUnassign.forEach(s -> model.setStudent(s, s.removeModuleClass(moduleClassToUnassign)));
 
-        String indexOrIndices = indices.size() == 1 ? "index" : "indices";
-        return new CommandResult(String.format(MESSAGE_SUCCESS, indexOrIndices, indices, moduleClassToUnassign));
+        return new CommandResult(getSuccessMessage(studentsToUnassign, moduleClassToUnassign));
+    }
+
+    public static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {
+        String studentNames = commaSeparate(students, student -> student.getName().toString());
+        return String.format(MESSAGE_SUCCESS, moduleClass, studentNames);
     }
 
     @Override

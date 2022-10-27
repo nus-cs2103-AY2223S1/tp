@@ -23,7 +23,8 @@ public class ScoresCommandParser implements Parser<ScoresCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SESSION);
 
         if (!argMultimap.containsPrefixes(PREFIX_SESSION) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScoresCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ScoresCommand.COMMAND_WORD, ScoresCommand.MESSAGE_USAGE));
         }
 
         Session session;
@@ -31,7 +32,8 @@ public class ScoresCommandParser implements Parser<ScoresCommand> {
         try {
             session = ParserUtil.parseSession(argMultimap.getValue(PREFIX_SESSION).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScoresCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScoresCommand.COMMAND_WORD,
+                    ScoresCommand.MESSAGE_USAGE));
         }
 
         return new ScoresCommand(session);

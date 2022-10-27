@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taassist.logic.commands.DeletecCommand.MESSAGE_MODULE_CLASSES_DOES_NOT_EXIST;
 import static seedu.taassist.testutil.Assert.assertThrows;
@@ -16,16 +17,15 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
-import seedu.taassist.model.ModelStub;
 import seedu.taassist.model.UserPrefs;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.stubs.ModelStub;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
 import seedu.taassist.testutil.ModuleClassBuilder;
@@ -51,11 +51,9 @@ public class DeletecCommandTest {
 
         CommandResult commandResult = new DeletecCommand(validModuleClasses).execute(modelStub);
 
-        String validModuleClassesStr = validModuleClasses
-                .stream().map(Object::toString).collect(Collectors.joining(" "));
+        String expectedMessage = DeletecCommand.getCommandMessage(validModuleClasses, new HashSet<>());
 
-        assertEquals(String.format(DeletecCommand.MESSAGE_SUCCESS, validModuleClassesStr),
-                commandResult.getFeedbackToUser());
+        assertEquals(expectedMessage, commandResult.getFeedbackToUser());
 
         assertTrue(modelStub.getModuleClasses().isEmpty());
     }
@@ -116,7 +114,7 @@ public class DeletecCommandTest {
         Set<ModuleClass> moduleClasses = new HashSet<>(Arrays.asList(expectedModel.getModuleClassList().get(0)));
         new DeletecCommand(moduleClasses).execute(expectedModel);
 
-        String moduleClassesStr = moduleClasses.stream().map(Object::toString).collect(Collectors.joining(" "));
+        String moduleClassesStr = commaSeparate(moduleClasses, ModuleClass::toString);
 
         assertCommandSuccess(new DeletecCommand(moduleClasses), model,
                 String.format(DeletecCommand.MESSAGE_SUCCESS, moduleClassesStr), expectedModel);

@@ -27,7 +27,8 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_GRADE, PREFIX_SESSION);
 
         if (!argMultimap.containsPrefixes(PREFIX_GRADE, PREFIX_SESSION) || argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.COMMAND_WORD,
+                    GradeCommand.MESSAGE_USAGE));
         }
 
         List<Index> indices;

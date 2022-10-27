@@ -21,18 +21,18 @@ import seedu.taassist.testutil.SessionBuilder;
 
 public class SessionCommandParserTest {
 
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, SessionCommand.COMMAND_WORD, SessionCommand.MESSAGE_USAGE);
     private SessionCommandParser parser = new SessionCommandParser();
 
     @Test
     public void parse_emptyUserInput_failure() {
-        assertParseFailure(parser, PREAMBLE_WHITESPACE, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                SessionCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, PREAMBLE_WHITESPACE, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_nonEmptyPreamble_failure() {
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + SESSION_DESC_LAB1,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SessionCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + SESSION_DESC_LAB1, MESSAGE_INVALID_FORMAT);
     }
 
 

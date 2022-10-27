@@ -1,6 +1,6 @@
 package seedu.taassist.logic.parser;
 
-import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taassist.commons.core.Messages.MESSAGE_EMPTY_COMMAND;
 import static seedu.taassist.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
@@ -51,7 +51,7 @@ public class TaAssistParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_EMPTY_COMMAND);
         }
 
         final String commandWord = matcher.group("commandWord");

@@ -22,7 +22,8 @@ public class AddcCommandParser implements Parser<AddcCommand> {
     public AddcCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CLASS);
         if (!argMultimap.containsPrefixes(PREFIX_MODULE_CLASS) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddcCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddcCommand.COMMAND_WORD,
+                    AddcCommand.MESSAGE_USAGE));
         }
         List<String> moduleClassNames = argMultimap.getAllValues(PREFIX_MODULE_CLASS);
         Set<ModuleClass> moduleClasses = ParserUtil.parseModuleClasses(moduleClassNames);

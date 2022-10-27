@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.commands.AddcCommand.MESSAGE_DUPLICATE_MODULE_CLASS;
 import static seedu.taassist.logic.commands.AddcCommand.getCommandMessage;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -13,22 +14,19 @@ import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
 import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
-import seedu.taassist.model.ModelStub;
-import seedu.taassist.model.ReadOnlyTaAssist;
-import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.UserPrefs;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.stubs.ModelStub;
+import seedu.taassist.model.stubs.ModelStubAcceptingModuleClasses;
 import seedu.taassist.testutil.ModuleClassBuilder;
 
 public class AddcCommandTest {
@@ -50,10 +48,10 @@ public class AddcCommandTest {
 
         CommandResult commandResult = new AddcCommand(validModuleClasses).execute(modelStub);
 
-        String validClassesStr = validModuleClasses.stream().map(Object::toString).collect(Collectors.joining(" "));
+        String validClassesStr = commaSeparate(validModuleClasses, ModuleClass::toString);
 
         assertEquals(String.format(AddcCommand.MESSAGE_SUCCESS, validClassesStr), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(CS1101S), modelStub.moduleClassesAdded);
+        assertEquals(Arrays.asList(CS1101S), modelStub.getModuleClassList());
     }
 
     @Test
@@ -151,35 +149,6 @@ public class AddcCommandTest {
         @Override
         public void addModuleClasses(Set<ModuleClass> moduleClasses) {
             requireAllNonNull(moduleClasses);
-        }
-    }
-    /**
-     * A Model stub that always accepts the module class being added.
-     */
-    private class ModelStubAcceptingModuleClasses extends ModelStub {
-        private final ArrayList<ModuleClass> moduleClassesAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasModuleClass(ModuleClass moduleClass) {
-            requireNonNull(moduleClass);
-            return false;
-        }
-
-        @Override
-        public void addModuleClass(ModuleClass moduleClass) {
-            requireNonNull(moduleClass);
-            moduleClassesAdded.add(moduleClass);
-        }
-
-        @Override
-        public void addModuleClasses(Set<ModuleClass> moduleClasses) {
-            requireAllNonNull(moduleClasses);
-            moduleClassesAdded.addAll(moduleClasses);
-        }
-
-        @Override
-        public ReadOnlyTaAssist getTaAssist() {
-            return new TaAssist();
         }
     }
 }

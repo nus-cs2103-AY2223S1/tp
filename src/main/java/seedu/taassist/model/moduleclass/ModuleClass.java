@@ -20,12 +20,11 @@ import seedu.taassist.model.uniquelist.Identity;
  */
 public class ModuleClass implements Identity<ModuleClass> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private final String className;
 
-    // TODO: Implement a more robust solution to check for session uniqueness within the list.
     private final List<Session> sessions;
 
     /**
@@ -136,7 +135,7 @@ public class ModuleClass implements Identity<ModuleClass> {
      * Formats state as text for viewing.
      */
     public String toString() {
-        return '[' + className + ']';
+        return getClassName();
     }
 
 }

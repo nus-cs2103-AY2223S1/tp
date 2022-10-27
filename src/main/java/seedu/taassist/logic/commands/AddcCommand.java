@@ -2,11 +2,11 @@ package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
@@ -19,16 +19,15 @@ public class AddcCommand extends Command {
 
     public static final String COMMAND_WORD = "addc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds classes to TA-Assist.\n"
+    public static final String MESSAGE_USAGE = "> Adds classes to TA-Assist.\n"
             + "Parameters: "
-            + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
+            + PREFIX_MODULE_CLASS + "CLASS_NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CLASS + "CS1231" + " "
             + PREFIX_MODULE_CLASS + "CS1101S";
 
-    public static final String MESSAGE_SUCCESS = "New class(es) added: %1$s";
-    public static final String MESSAGE_DUPLICATE_MODULE_CLASS = "The class(es) %1$s already exist(s) in TA-Assist";
+    public static final String MESSAGE_SUCCESS = "Added new class(es): [ %1$s ]";
+    public static final String MESSAGE_DUPLICATE_MODULE_CLASS = "The class(es) [ %1$s ] already exists!";
 
     private final Set<ModuleClass> moduleClasses;
 
@@ -76,14 +75,13 @@ public class AddcCommand extends Command {
 
     private static String getClassesAddedMessage(Set<ModuleClass> newClasses) {
         requireAllNonNull(newClasses);
-        String newClassesStr = newClasses.stream().map(Object::toString).collect(Collectors.joining(" "));
+        String newClassesStr = commaSeparate(newClasses, ModuleClass::toString);
         return String.format(MESSAGE_SUCCESS, newClassesStr);
     }
 
     private static String getDuplicateClassesMessage(Set<ModuleClass> duplicateClasses) {
         requireAllNonNull(duplicateClasses);
-        String duplicateClassesStr = duplicateClasses.stream().map(Object::toString)
-                .collect(Collectors.joining(" "));
+        String duplicateClassesStr = commaSeparate(duplicateClasses, ModuleClass::toString);
         return String.format(MESSAGE_DUPLICATE_MODULE_CLASS, duplicateClassesStr);
     }
 

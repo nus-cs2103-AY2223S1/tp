@@ -16,7 +16,8 @@ public class FocusCommandParser implements Parser<FocusCommand> {
     public FocusCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FocusCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FocusCommand.COMMAND_WORD,
+                    FocusCommand.MESSAGE_USAGE));
         }
         ModuleClass moduleClass = parseModuleClass(trimmedArgs);
         return new FocusCommand(moduleClass);
