@@ -241,6 +241,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleSortTransaction(CommandResult result) {
         ObservableList<Client> clientList = logic.getFilteredClientList();
         remarkListPanel.setRemarkList(FXCollections.observableArrayList());
+        double updatedNetTransaction = logic.calculateTotalTransaction(clientList);
         ObservableList<Transaction> transactions = FXCollections.observableArrayList();
         Client client = clientList.get(0);
         if (isOldestSort(result)) {
@@ -248,7 +249,10 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             transactions.addAll(client.getSortLatestTransaction());
         }
+        ObservableList<Remark> remarks = client.getRemarks().asUnmodifiableObservableList();
+        remarkListPanel.setRemarkList(remarks);
         transactionListPanel.setTransactionList(transactions);
+        netTransactionBox.setNetTransaction(updatedNetTransaction);
     }
 
     private boolean isBuyFilter(CommandResult result) {

@@ -74,7 +74,7 @@ public class JsonAdaptedTransaction {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
         }
         if (!Price.isValidPrice(price)) {
-            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS_GENERAL);
         }
         final Price modelPrice = new Price(price);
 
