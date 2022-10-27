@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import nus.climods.model.module.predicate.ModulesByCodesPredicate;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.SemestersEnum;
 
@@ -23,7 +22,9 @@ import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
+import nus.climods.model.module.predicate.ModulesByCodesPredicate;
 import nus.climods.model.module.predicate.ViewModulePredicate;
+
 
 /**
  * Represents the in-memory model of module list data.
@@ -126,8 +127,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void showModules(List<String> moduleCodes) {
+    public boolean showModules(List<String> moduleCodes) {
+        long validCodes = moduleCodes.stream().filter(this::isModuleOffered).count();
+        if (validCodes == 0) {
+            return false;
+        }
         this.setFilteredModuleList(new ModulesByCodesPredicate(moduleCodes));
+        return true;
     }
 
     @Override

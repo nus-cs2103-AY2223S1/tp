@@ -70,10 +70,12 @@ public interface Model {
     void setModuleInFocus(Module module) throws ApiException;
 
     /**
-     * Show modules specified in moduleCodes list
+     * Show modules specified in moduleCodes list. If no module codes are in the current curriculum,
+     *      showModules returns false and does not show any new modules.
      * @param moduleCodes List of module codes specifying modules to show
+     * @return true if at least one of the given module codes is a valid module in current curriculum
      */
-    void showModules(List<String> moduleCodes);
+    boolean showModules(List<String> moduleCodes);
 
     /**
      * Resets active module to be inactive
