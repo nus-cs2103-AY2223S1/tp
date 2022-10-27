@@ -26,7 +26,10 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`addTask coding assignment`** : Adds a task `coding assignment` to the task list.
+
+   * **`listTasks`** : Lists all tasks in tasklist.
+
+   * **`editTask`**`2 c/frontend pe/charlotte@example.com` : Adds a task `coding assignment` to the task list.
 
    * **`deleteTask`**`3` : Deletes the 3rd task from the task list.
 
@@ -63,6 +66,75 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+### Adding a person: add
+
+Adds a person to the address book.
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+A person can have any number of tags (including 0)
+</div>
+
+Examples:
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### Listing all persons : list
+
+Shows a list of all persons in the address book.
+
+Format: `list`
+
+### Editing a person : edit
+
+Edits an existing person in the address book.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing t/ without
+    specifying any tags after it.
+
+Examples:
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be 91234567 and johndoe@example.com respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
+
+### Locating persons by name: find
+
+Finds persons whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g hans will match Hans
+* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
+* Only the name is searched.
+* Only full words will be matched e.g. Han will not match Hans
+* Persons matching at least one keyword will be returned (i.e. OR search).
+  e.g. Hans Bo will return Hans Gruber, Bo Yang
+
+Examples:
+* `find John` returns john and John Doe
+* `find alex david` returns Alex Yeoh, David Li<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Deleting a person : delete
+
+Deletes the specified person from the address book.
+
+Format: `delete INDEX`
+
+* Deletes the person at the specified INDEX.
+* The index refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* list followed by `delete 2` deletes the 2nd person in the address book.
+* find Betsy followed by `delete 1` deletes the 1st person in the results of the find command.
 
 ### Viewing help : `help`
 
@@ -101,37 +173,48 @@ If your changes to the data file makes its format invalid, HackASsist will disca
 
 Adds a task to the tasklist.
 
-Format: `addTask  [n/NAME] [d/DESCRIPTION] [pr/PRIORITY (low/medium/high)] [c/CATEGORY (database/frontend/backend/uiux/presentation/others)] [dl/DEADLINE (YYYY-MM-DD, must be after current date)] [pe/PERSON EMAIL ADDRESS (must be a valid email)]`
+Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED`
 
 Examples:
-* `addTask n/Create Initial UIUX Design d/Use FIGMA to create initial UIUX Design pr/medium c/uiux dl/2023-01-01 pe/johnd@example.com ` adds Create Initial UIUX Design to the task list
+
+* `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` add Fix toggle to the task list
+* `addTask n/Fix routing 3  d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/John@example.com` add Fix routing to the task list
+
 
 ### Deleting a task: `deleteTask`
 
 Deletes a task from the tasklist.
 
-Format: `deleteTask [INDEX (must be a positive integer)]`
-* Deletes the task at the specified `INDEX`.
-* The INDEX refers to the task number shown in the displayed task list.
-* The INDEX **must be a positive integer** 1, 2, 3, …​
+Format: `deleteTask TASK_NUMBER`
+* Deletes the task at the specified `TASK_NUMBER`.
+* The tasknumber refers to the task number shown in the displayed task list.
+* The tasknumber **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `deleteTask 1` deletes the first task from the tasklist
 
-### Editing a task: `editTask`
+### viewing all tasks: `list Tasks`
 
 Edits the details of the task identified by the index number used in the displayed task list. 
 Existing values will be overwritten by the input values.
 
-Format: `editTask [INDEX (must be a positive integer)] [n/NAME] [d/DESCRIPTION] [pr/PRIORITY (low/medium/high)] [c/CATEGORY (database/frontend/backend/uiux/presentation/others)] [dl/DEADLINE (YYYY-MM-DD)] [pe/PERSON EMAIL ADDRESS (must be a valid email)] [do/ISDONE (t/f)]`
-* Edits the task at the specified `INDEX`.
-* The INDEX refers to the task number shown in the displayed task list.
-* The INDEX **must be a positive integer** 1, 2, 3, …​
+Format: `listTasks`
+
+### Editing a Task : edit
+
+
+Edits an existing task in the tasklist.
+
+Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]`
+
+* Edits the task at the specified INDEX. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
 
 Examples:
-* `editTask 1 n/Create Initial UIUX Design dl/2023-01-01 do/t` edits the name and deadline of the first task from the tasklist
+*  `edit 1 n/Create UI pr/high` Edits the name and priority of the 1st task to be Create UI and HIGH respectively.
+*  `edit 2 c/frontend pe/charlotte@example.com` Edits the category of the 2nd task to be frontend and assign the task to new person(charlotte).
 
---------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
@@ -142,10 +225,19 @@ Examples:
 
 ## Command summary
 
-Action          | Format            | Example
-----------------|-------------------|---------
-**Clear**       | `clear`           |
-**Help**        | `help`            |
-**Add Task**    | `addTask  [n/NAME] [d/DESCRIPTION] [pr/PRIORITY (low/medium/high)] [c/CATEGORY (database/frontend/backend/uiux/presentation/others)] [dl/DEADLINE (YYYY-MM-DD, must be after current date)] [pe/PERSON EMAIL ADDRESS (must be a valid email)]` | `addTask n/Create Initial UIUX Design d/Use FIGMA to create initial UIUX Design pr/medium c/uiux dl/2023-01-01 pe/johnd@example.com`
-**Delete Task** | `deleteTask [INDEX (must be a positive integer)]` | `deleteTask 1`
-**Edit Task**   | `editTask [INDEX (must be a positive integer)] [n/NAME] [d/DESCRIPTION] [pr/PRIORITY (low/medium/high)] [c/CATEGORY (database/frontend/backend/uiux/presentation/others)] [dl/DEADLINE (YYYY-MM-DD)] [pe/PERSON EMAIL ADDRESS (must be a valid email)] [do/ISDONE (t/f)]` | `editTask 1 n/Create Initial UIUX Design dl/2023-01-01 do/t`
+
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
+**List** | `list`
+**Clear** | `clear`
+**Help** | `help`
+**Add Task** | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com`
+**Edit Task** | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`
+**deleteTask** | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`
+**list Tasks** | `listTasks`
+
+

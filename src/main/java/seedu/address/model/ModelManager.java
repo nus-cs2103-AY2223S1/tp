@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -29,6 +31,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Task> filteredTasks;
     private final SortedList<Task> sortedTasks;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -140,6 +143,15 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask);
         addressBook.setTask(target, editedTask);
     }
+
+    @Override
+    public void update() {
+        List<Person> newPersonList = new ArrayList<>(addressBook.getPersonList());
+        List<Task> newTaskList = new ArrayList<>(addressBook.getTaskList());
+        addressBook.setPersons(newPersonList);
+        addressBook.setTasks(newTaskList);
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 
