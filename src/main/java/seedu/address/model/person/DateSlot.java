@@ -207,8 +207,7 @@ public class DateSlot {
     public LocalDate getDate() {
         String[] s = dateSlotInString.split(",");
         String date = s[0];
-        LocalDate parsedDate = LocalDate.parse(date);
-        return parsedDate;
+        return LocalDate.parse(date);
     }
 
     @Override

@@ -231,12 +231,6 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final List<DateSlot> modelDatesSlots = patientHomeVisitDatesSlots;
-
-        final List<HomeVisit> modelHomeVisits = nurseHomeVisitList;
-        final List<Date> modelUnavailableDates = nurseUnavailableDate;
-        final List<Date> modelFullyScheduledDates = nurseFullySchedulledDates;
-
         if (category == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Category.class.getSimpleName()));
@@ -244,11 +238,11 @@ class JsonAdaptedPerson {
 
         if (category.equals(NURSE_SYMBOL)) {
             return new Nurse(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags,
-                    modelUnavailableDates, modelHomeVisits, modelFullyScheduledDates);
+                    nurseUnavailableDate, nurseHomeVisitList, nurseFullySchedulledDates);
 
         } else if (category.equals(PATIENT_SYMBOL)) {
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
-                    modelAddress, modelTags, modelDatesSlots);
+                    modelAddress, modelTags, patientHomeVisitDatesSlots);
 
         } else {
             throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
