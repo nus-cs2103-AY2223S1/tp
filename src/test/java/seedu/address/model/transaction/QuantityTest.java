@@ -7,6 +7,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 class QuantityTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -21,8 +23,9 @@ class QuantityTest {
 
     @Test
     public void isValidQuantity() {
-        // null quantity number
+
         assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity(null));
+
 
         // invalid quantity numbers
         assertFalse(Quantity.isValidQuantity("")); // empty string
@@ -30,33 +33,53 @@ class QuantityTest {
         assertFalse(Quantity.isValidQuantity("test")); // non-numeric
         assertFalse(Quantity.isValidQuantity("9011p041")); // alphabets within digits
         assertFalse(Quantity.isValidQuantity("93 14")); // spaces within digits
-        assertFalse(Quantity.isValidQuantity("93.55")); // decimals within digits
+
 
         // valid quantity numbers
         assertTrue(Quantity.isValidQuantity("1"));
         assertTrue(Quantity.isValidQuantity("91"));
-        assertTrue(Quantity.isValidQuantity("93121534"));
-        assertTrue(Quantity.isValidQuantity("124293842033123"));
+        assertTrue(Quantity.isValidQuantity("000009353"));
+        assertTrue(Quantity.isValidQuantity("122237"));
     }
+
+    @Test
+    public void parseQualityArguments() {
+
+        assertThrows(NullPointerException.class, () -> Quantity.parseQuantityArguments(null));
+
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments(" "));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("."));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("-1"));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("0"));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("-0.5"));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("1000000000000"));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("2dasd0"));
+        assertThrows(ParseException.class, () -> Quantity.parseQuantityArguments("adsadad asdasdsad"));
+
+    }
+
+
     @Test
     public void testToString() {
-        String value = "93121534";
+        String value = "93124";
         Quantity quantity = new Quantity(value);
         assertEquals(quantity.toString(), value);
     }
 
     @Test
     public void value() {
-        String value = "93121534";
+        String value = "93124";
         Quantity quantity = new Quantity(value);
-        assertEquals(quantity.value(), 93121534);
+        assertEquals(quantity.value(), 93124);
     }
 
     @Test
     public void testEquals() {
-        String value = "93121534";
+        String value = "931214";
         Quantity quantity = new Quantity(value);
         Quantity test = new Quantity(value);
         assertEquals(quantity, test);
     }
+
+
 }

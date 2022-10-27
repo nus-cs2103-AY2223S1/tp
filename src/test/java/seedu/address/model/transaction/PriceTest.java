@@ -20,7 +20,7 @@ class PriceTest {
     }
 
     @Test
-    public void isValidPrice() {
+    public void isValidDouble() {
         // null price number
         assertThrows(NullPointerException.class, () -> Price.isValidPrice(null));
 
@@ -36,29 +36,33 @@ class PriceTest {
         assertTrue(Price.isValidPrice("0.1"));
         assertTrue(Price.isValidPrice("1.1827872"));
         assertTrue(Price.isValidPrice("91"));
-        assertTrue(Price.isValidPrice("93121534"));
-        assertTrue(Price.isValidPrice("124293842033123"));
+        assertTrue(Price.isValidPrice("0093534"));
+        assertTrue(Price.isValidPrice("12419"));
     }
+
+
     @Test
     public void testToString() {
-        String value = "93121534";
+        String value = "21534";
         Price price = new Price(value);
-        assertEquals(price.toString(), "$93,121,534");
+        assertEquals(price.toString(), "$21,534");
     }
 
     @Test
     public void value() {
-        String value = "93121534";
+        String value = "931234";
         Price price = new Price(value);
-        assertEquals(price.value(), 93121534);
+        assertEquals(price.value(), 931234);
     }
 
     @Test
     public void testEquals() {
-        String value = "93121534";
+        String value = "931234";
         Price price = new Price(value);
         Price test = new Price(value);
         assertEquals(price, test);
     }
+
+
 
 }
