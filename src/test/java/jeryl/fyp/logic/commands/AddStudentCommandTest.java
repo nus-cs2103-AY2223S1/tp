@@ -208,7 +208,7 @@ public class AddStudentCommandTest {
         @Override
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return this.student.isSameStudentName(student);
+            return this.student.isSameStudentId(student);
         }
     }
 
@@ -221,7 +221,7 @@ public class AddStudentCommandTest {
         @Override
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudentName);
+            return studentsAdded.stream().anyMatch(student::isSameStudentId);
         }
 
         @Override
