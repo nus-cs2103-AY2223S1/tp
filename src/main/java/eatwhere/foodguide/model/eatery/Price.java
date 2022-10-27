@@ -11,8 +11,8 @@ import eatwhere.foodguide.commons.util.AppUtil;
 public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Price should only contain 1-3 '$' characters, with 1 ($) indicating cheapest " +
-                    "and 3 ($$$) indicating most expensive";
+            "Price should only contain 1-3 '$' characters, with 1 ($) indicating cheapest "
+                    + "and 3 ($$$) indicating most expensive";
     public static final String VALIDATION_REGEX = "[$]{1,3}";
     public final String value;
 
