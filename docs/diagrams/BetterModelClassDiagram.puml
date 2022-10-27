@@ -15,7 +15,10 @@ UniqueStudentList -right-> Student
 Student -up-> "*" Tag
 
 Student *--> Name
+Student *--> Telegram
+Student *--> GitHub
 Student *--> Phone
 Student *--> Email
-Student *--> Address
+Student *--> Interest
+Student *--> Module
 @enduml
