@@ -1,18 +1,24 @@
 package seedu.address.model.person;
 
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class PhoneContainsKeywordsPredicate implements Predicate<Person> {
+public class PhoneContainsKeywordsPredicate extends FindPredicate {
     private final List<String> phones;
 
+    /**
+     * Constructs a {@code PhoneContainsKeywordsPredicate}.
+     *
+     * @param phones Phones to be tested against.
+     */
     public PhoneContainsKeywordsPredicate(List<String> phones) {
-        this.phones = phones;
+        super(phones);
+        this.phones = phones.stream().map(x -> x.toUpperCase()).collect(Collectors.toList());
     }
 
     @Override

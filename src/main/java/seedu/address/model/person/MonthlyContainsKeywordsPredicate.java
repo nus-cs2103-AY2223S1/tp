@@ -1,20 +1,20 @@
 package seedu.address.model.person;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Monthly} matches any of the keywords given.
  */
-public class MonthlyContainsKeywordsPredicate implements Predicate<Person> {
+public class MonthlyContainsKeywordsPredicate extends FindPredicate {
     private final List<String> monthly;
     private String predicate;
 
     /**
-     * Tests that a {@code Person}'s {@code Income} is greater or lesser than given value.
+     * Tests that a {@code Person}'s {@code Monthly} is greater or lesser than given value.
      */
     public MonthlyContainsKeywordsPredicate(List<String> monthly, String predicate) {
+        super(monthly);
         this.monthly = monthly;
         this.predicate = predicate;
     }

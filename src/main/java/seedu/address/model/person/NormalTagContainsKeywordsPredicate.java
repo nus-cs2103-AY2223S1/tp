@@ -2,18 +2,24 @@ package seedu.address.model.person;
 
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.NormalTag;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class NormalTagContainsKeywordsPredicate implements Predicate<Person> {
+public class NormalTagContainsKeywordsPredicate extends FindPredicate {
     private final List<String> tags;
 
+    /**
+     * Constructs a {@code NormalTagContainsKeywordsPredicate}.
+     *
+     * @param tags Tags to be tested against.
+     */
     public NormalTagContainsKeywordsPredicate(List<String> tags) {
-        this.tags = tags;
+        super(tags);
+        this.tags = tags.stream().map(x -> x.toUpperCase()).collect(Collectors.toList());
     }
 
     @Override

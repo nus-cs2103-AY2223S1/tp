@@ -2,18 +2,24 @@ package seedu.address.model.person;
 
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class RiskTagContainsKeywordsPredicate implements Predicate<Person> {
+public class RiskTagContainsKeywordsPredicate extends FindPredicate {
     private final List<String> riskTags;
 
+    /**
+     * Constructs a {@code RiskTagContainsKeywordsPredicate}.
+     *
+     * @param riskTags RiskTags to be tested against.
+     */
     public RiskTagContainsKeywordsPredicate(List<String> riskTags) {
-        this.riskTags = riskTags;
+        super(riskTags);
+        this.riskTags = riskTags.stream().map(x -> x.toUpperCase()).collect(Collectors.toList());
     }
 
     @Override
@@ -26,7 +32,6 @@ public class RiskTagContainsKeywordsPredicate implements Predicate<Person> {
                 }
             }
         }
-
         return false;
     }
 

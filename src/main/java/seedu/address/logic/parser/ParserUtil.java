@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -94,6 +96,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> names} into a {@code List<Name>}.
+     */
+    public static List<Name> parseAllSpaceSeparatedNames(Collection<String> names) throws ParseException {
+        requireNonNull(names);
+        final List<Name> nameList = new ArrayList<>();
+        for (String name: names) {
+            nameList.add(parseName(name));
+        }
+        return nameList;
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -106,6 +120,18 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses {@code Collection<String> phones} into a {@code List<Phone>}.
+     */
+    public static List<Phone> parseAllSpaceSeparatedPhone(Collection<String> phones) throws ParseException {
+        requireNonNull(phones);
+        final List<Phone> phoneList = new ArrayList<>();
+        for (String phone: phones) {
+            phoneList.add(parsePhone(phone));
+        }
+        return phoneList;
     }
 
     /**
@@ -231,6 +257,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> riskTags} into a {@code List<RiskTag>}.
+     */
+    public static List<RiskTag> parseAllSpaceSeparatedRiskTag(Collection<String> riskTags) throws ParseException {
+        requireNonNull(riskTags);
+        final List<RiskTag> riskTagList = new ArrayList<>();
+        for (String riskTag: riskTags) {
+            riskTagList.add(parseRiskTag(riskTag.toUpperCase()));
+        }
+        return riskTagList;
+    }
+
+    /**
      * Parses a {@code String planTag} into an {@code PlanTag}.
      * Leading and trailing whitespaces will be trimmed.
      */
@@ -241,6 +279,18 @@ public class ParserUtil {
             throw new ParseException(PlanTag.MESSAGE_CONSTRAINTS);
         }
         return new PlanTag(trimmedPlanTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> names} into a {@code List<Name>}.
+     */
+    public static List<PlanTag> parseAllSpaceSeparatedPlanTags(Collection<String> planTags) throws ParseException {
+        requireNonNull(planTags);
+        final List<PlanTag> planTagList = new ArrayList<>();
+        for (String planTag: planTags) {
+            planTagList.add(parsePlanTag(planTag));
+        }
+        return planTagList;
     }
 
     /**
@@ -268,5 +318,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> normalTags} into a {@code List<NormalTag>}.
+     */
+    public static List<NormalTag> parseAllSpaceSeparatedNormalTags(Collection<String> normalTags)
+            throws ParseException {
+        requireNonNull(normalTags);
+        final List<NormalTag> normalTagList = new ArrayList<>();
+        for (String normalTag: normalTags) {
+            normalTagList.add(parseTag(normalTag));
+        }
+        return normalTagList;
+    }
+
+    /**
+     * Parses {@code Collection<String> monetaryValues} into a {@code List<String>}.
+     */
+    public static List<String> parseMonetaryValues(Collection<String> monetaryValues)
+            throws ParseException {
+        requireNonNull(monetaryValues);
+        final List<String> incomeLevelList = new ArrayList<>(monetaryValues);
+        for (int i = 0; i < incomeLevelList.size(); i++) {
+            if (i == 0) {
+                parseIncomeLevel("$" + incomeLevelList.get(i).substring(1));
+            } else {
+                parseIncomeLevel("$" + incomeLevelList.get(i));
+            }
+        }
+        return incomeLevelList;
     }
 }

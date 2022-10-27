@@ -1,12 +1,11 @@
 package seedu.address.model.person;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class IncomeContainsKeywordsPredicate implements Predicate<Person> {
+public class IncomeContainsKeywordsPredicate extends FindPredicate {
     private final List<String> income;
     private String predicate;
 
@@ -14,13 +13,13 @@ public class IncomeContainsKeywordsPredicate implements Predicate<Person> {
      * Tests that a {@code Person}'s {@code Income} is greater or lesser than given value.
      */
     public IncomeContainsKeywordsPredicate(List<String> income, String predicate) {
+        super(income);
         this.income = income;
         this.predicate = predicate;
     }
 
     @Override
     public boolean test(Person person) {
-
         IncomeLevel personIncome = person.getIncome();
         for (String predicateIncomeName : income) {
             if (predicate.equals(">")) {

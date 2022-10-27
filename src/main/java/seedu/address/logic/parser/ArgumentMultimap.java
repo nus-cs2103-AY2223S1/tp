@@ -1,10 +1,12 @@
 package seedu.address.logic.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -53,6 +55,19 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns all values of {@code prefix} separated by spaces.
+     * If the prefix does not exist or has no values, this will return an empty list.
+     * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
+     */
+    public List<String> getAllValuesSeparatedByRegex(Prefix prefix, String regex) {
+        if (!argMultimap.containsKey(prefix)) {
+            return new ArrayList<>();
+        }
+        String value = getValue(prefix).get();
+        return Arrays.stream(value.split(regex)).collect(Collectors.toList());
+    }
+
+    /**
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */
     public String getPreamble() {
@@ -73,5 +88,13 @@ public class ArgumentMultimap {
      */
     public static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if none of the prefixes are present {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean noPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).noneMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
