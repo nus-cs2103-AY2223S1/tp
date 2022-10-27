@@ -9,6 +9,7 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_CONTACT_FAC
 import static seedu.application.logic.commands.CommandTestUtil.VALID_DATE_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_EMAIL_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_STATUS_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
 
 import org.junit.jupiter.api.Test;
@@ -55,6 +56,10 @@ public class EditApplicationDescriptorTest {
 
         // different date -> returns false
         editedGoogle = new EditApplicationDescriptorBuilder(DESC_GOOGLE).withDate(VALID_DATE_FACEBOOK).build();
+        assertFalse(DESC_GOOGLE.equals(editedGoogle));
+
+        // different status -> returns false
+        editedGoogle = new EditApplicationDescriptorBuilder(DESC_GOOGLE).withStatus(VALID_STATUS_FACEBOOK).build();
         assertFalse(DESC_GOOGLE.equals(editedGoogle));
 
         // different tags -> returns false

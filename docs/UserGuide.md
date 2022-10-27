@@ -3,20 +3,23 @@ layout: page
 title: User Guide
 ---
 
-# User Guide
 **CinternS** is a **desktop app for managing internship applications, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **CinternS** can get your internship application management tasks done faster than traditional GUI apps. It consists of several useful features which the users are able to execute using commands.
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-    * [Getting help: `help`](#getting-help-help)
+    * [Viewing help: `help`](#viewing-help-help)
     * [Adding an internship application: `add`](#adding-an-internship-application-add)
     * [Listing all internship applications: `list`](#listing-all-internship-applications-list)
     * [Listing all archived internship application: `list-archive`](#listing-all-archived-internship-applications)
     * [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
     * [Finding an internship application: `find`](#finding-an-internship-application-find)
     * [Editing an internship application: `edit`](#editing-an-internship-application-edit)
+    * [Adding or editing an interview: `interview`](#adding--editing-an-interview-interview)
+    * [Removing an interview: `remove-i`](#removing-an-interview-remove-i)
     * [Archiving an internship application: `archive`](#archiving-an-internship-application-archive)
     * [Retrieving an internship application from archives: `retrieve`](#retrieving-an-internship-application-from-archives-retrieve)
+    * [Undoing the previous command: `undo`](#undoing-the-previous-command-undo)
+    * [Redoing the previously undone command: `redo`](#redoing-the-previously-undone-command-redo)
     * [Clearing all entries: `clear`](#clearing-all-entries-clear)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
@@ -41,7 +44,7 @@ title: User Guide
     * **`help`**: Shows a message explaining the way to access help page.
    
     * **`list`** : Displays internship application.
-   
+
     * **`list-archive`** : Displays archived internship application.
    
     * **`add`**`c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer` : Adds an internship application that was submitted on `2022-01-01` to `Google` with contact number `11111111` and email `google@example.com` for the role of `Software Engineer` to **CinternS**.
@@ -51,11 +54,19 @@ title: User Guide
     * **`find`**`google` : Finds the applications that contain keyword **google** in their company name and/or position.
    
     * **`edit`**`1 e/hr@internship.sg`: Edits the 1st application shown in the current list with new email address.
-   
+
+    * **`interview`**`5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`: Adds interview to the 5th application in the displayed application list / Edits existing interview in the 5th displayed application.
+
+    * **`remove-i`**`3`: Removes the 3rd interview in the displayed interview list.
+
     * **`archive`**`3`: Archives the 3rd application shown in the current list. The application must be unarchived.
    
     * **`retrieve`**`1`: Retrieves the 1st application shown in the current list. The application must be archived.
-   
+    
+    * **`undo`**: Undoes the previous command.
+    
+    * **`redo`**: Redoes the previously undone command.
+
     * **`clear`**: Clears CinternS data.
 
     * **`exit`** : Exits the app.
@@ -91,24 +102,31 @@ title: User Guide
 </div>
 
 ### Viewing help: `help`
-Shows a message explaining how to access the help page
-![HelpWindow](images/HelpWindow.png)
+Shows a message explaining how to access the help page.
+
+![HelpWindow](images/HelpWindow.PNG)
+
 Format: `help`
+
+* Press `Copy URL` button to have the User Guide link copied to your clipboard.
+* Press `Go` button to open the User Guide in your web browser.
 
 ### Adding an internship application: `add`
 
 Adds an internship application to the list.
 
-Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION [t/TAG]...`
+Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION s/STATUS [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
-Date must be specified in the format <em>yyyy-MM-dd</em>.
+<br>
+1. Date must be specified in the format <em>yyyy-MM-dd</em>.<br>
+2. Status must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.
 </div>
 <br>
 
 Examples:
-* `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred`
-* `add c/Facebook ct/22222222 d/2022-01-02 e/facebook@example.com p/Backend Engineer`
+* `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer s/pending t/preferred`
+* `add c/Facebook ct/22222222 d/2022-01-02 e/facebook@example.com p/Backend Engineer s/interview`
 
 ### Listing all internship applications: `list`
 
@@ -124,7 +142,7 @@ Format: `list-archive`
 
 ### Deleting an internship application: `delete`
 
-Deletes the specified internship application from the list.
+Deletes the specified internship application from the list. If the application has an interview, it will also be deleted from the interview list.
 
 Format: `delete INDEX`
 
@@ -134,7 +152,7 @@ Format: `delete INDEX`
 * The index must be within the range of available internships in the application list.
 
 Example:
-* `list` followed by `delete 2` deletes the 2nd internship application in the list.
+* `list` followed by `delete 2` deletes the 2nd internship application in the list (and its interview from the interview list).
 
 ### Finding an internship application: `find`
 
@@ -150,25 +168,63 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Example:
 * `find Software` returns `Google` and `Wise` application whose position contain software keyword.
-![FindExample](images/FindExample.png)
+
+![FindExample](images/FindExample.PNG)
 
 ### Editing an internship application: `edit`
 Edits an existing application in the CinternS.
 
-Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`
+Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [s/STATUS] [t/TAG]...`
 
 * Edits the application at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed application list. 
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Changes to the company name and the position will also be reflected in the interview list.
 * When editing tags, the existing tags of the application will be removed i.e adding of tags is not cumulative.
 * You can remove all the application’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 
-`edit 1 ct/91234567 e/grab@example.com` edits the contact and email of the 1st application to be 91234567 and grab@example.com respectively.
-`edit 2 c/Garena t/` edits the company of the 2nd application to be `Garena` and clears all existing tags.
+* `edit 1 ct/91234567 e/grab@example.com` edits the contact and email of the 1st application to be 91234567 and grab@example.com respectively.
+* `edit 2 c/Garena t/` edits the company of the 2nd application and the corresponding interview to be `Garena` and clears all existing tags.
+
+### Adding / Editing an interview: `interview`
+Adds an interview to an existing application or edits an existing interview in an application.
+
+Format: `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b><br>
+1. <code>INTERVIEW_DATE</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
+2. <code>INTERVIEW_TIME</code> must be specified in the format <em>HHmm</em>.<br>
+</div>
+<br>
+
+* Adds interview to the application at the specified `INDEX`.
+* The index refers to the index number shown in the displayed **application** list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* All fields must be provided.
+* Supports edit of the existing interview by overwriting the old interview.
+
+Examples:
+
+* `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546` adds interview to application with displayed index `5`.
+* if application with displayed index `5` has an existing interview, the above input overwrites the previous existing interview.
+
+### Removing an interview: `remove-i`
+Removes an interview from an existing application in the CinternS.
+
+Format: `remove-i INDEX`
+
+* Removes the interview at the specified `INDEX`.
+* The index refers to the index number shown in the displayed **interview** list which has a prefix `i`.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the range of available interviews in the interview list.
+
+Example:
+
+* `remove-i 3` removes the interview in the interview list with display index `i3`.
 
 ### Archiving an internship application: `archive`
 
@@ -180,25 +236,48 @@ Format: `archive INDEX`
 * The application specified must be unarchived.
 * The index refers to the index number shown in the displayed internship application list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The index must be within the range of available internships in the shown application list.
+* The index must be within the range of available internships in the application list shown.
 
 Example:
 * `list` followed by `archive 2` archives the 2nd internship application in the list.
 
 ### Retrieving an internship application from archives: `retrieve`
 
-Retrieves the specified internship application from the list.
+Retrieves the specified internship application from the list of archived applications.
 
 Format: `retrieve INDEX`
 
 * Retrieves the internship application at the specified `INDEX`.
-* The application specified must be archived, `list-archive` command is recommended to be used before using this command.
-* The index refers to the index number shown in the displayed internship application list.
+* The application specified must have been archived, `list-archive` command is recommended to be used before using this command.
+* The index refers to the index number shown in the displayed list of archived applications.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The index must be within the range of available internships in the shown application list.
+* The index must be within the range of available internships in the list of archived applications.
 
 Example:
-* `list-archive` followed by `retrieve 1` retrieves the 1st internship application in the list.
+* `list-archive` followed by `retrieve 1` retrieves the 1st internship application in the list of archived applications.
+
+### Undoing the previous command: `undo`
+
+Restores the state of CinternS before the change made by the previous command.
+
+Format: `undo`
+
+* There must be a previous state to restore to.
+* Commands that do not change the state, e.g. list, find, etc., will not be undone.
+
+Example:
+* `delete 1` followed by `undo` makes no change to the application list or the interview list.
+
+### Redoing the previously undone command: `redo`
+
+Restores the state of CinternS before the command `undo`.
+
+Format: `redo`
+
+* There must be a previously undone state to restore to.
+
+Example:
+* `delete 1` followed by `undo` then `redo` deletes the first application in the list (and its interview in the interview list).
 
 ### Clearing all entries: `clear`
 Clears all entries from CinternS.
@@ -245,8 +324,12 @@ We will assist you as soon as possible.
 | **Delete**      | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                         |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                    |
 | **Edit**        | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
+| **Interview**   | `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`<br> e.g., `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`        |
+| **Remove-i**    | `remove-i INDEX`<br/> e.g., `remove-i 3`                                                                                                                                                    |
 | **Archive**     | `archive INDEX`<br> e.g., `archive 2`                                                                                                                                                       |
 | **Retrieve**    | `retrieve INDEX`<br> e.g., `retrieve 2`                                                                                                                                                     |
+| **Undo**        | `undo`                                                                                                                                                                                       |
+| **Redo**        | `redo`                                                                                                                                                                                       |
 | **Clear**       | `clear`                                                                                                                                                                                     |
 | **Exit**        | `exit`                                                                                                                                                                                      |
 

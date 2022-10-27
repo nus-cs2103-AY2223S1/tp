@@ -10,6 +10,7 @@ import static seedu.application.testutil.TypicalCommands.UNDO_COMMAND;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.application.logic.commands.exceptions.CommandException;
 import seedu.application.model.Model;
 import seedu.application.model.ModelManager;
 import seedu.application.model.UserPrefs;
@@ -19,21 +20,19 @@ public class UndoCommandTest {
     private Model expectedModel = new ModelManager(getTypicalApplicationBook(), new UserPrefs());
 
     @Test
-    public void execute_singlePreviousState_success() {
-        CommandTestUtil.executeCommand(CLEAR_COMMAND, model);
+    public void execute_singlePreviousState_success() throws CommandException {
+        CLEAR_COMMAND.execute(model);
 
-        UndoCommand undoCommand = new UndoCommand();
-        assertCommandSuccess(undoCommand, model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(UNDO_COMMAND, model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_multiplePreviousStates_success() {
-        CommandTestUtil.executeCommand(ADD_COMMAND, model);
-        CommandTestUtil.executeCommand(DELETE_COMMAND, model);
-        CommandTestUtil.executeCommand(UNDO_COMMAND, model);
+    public void execute_multiplePreviousStates_success() throws CommandException {
+        ADD_COMMAND.execute(model);
+        DELETE_COMMAND.execute(model);
+        UNDO_COMMAND.execute(model);
 
-        UndoCommand undoCommand = new UndoCommand();
-        assertCommandSuccess(undoCommand, model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(UNDO_COMMAND, model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test

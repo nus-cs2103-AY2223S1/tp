@@ -17,6 +17,7 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.Status;
 import seedu.application.model.application.interview.Interview;
 import seedu.application.model.application.interview.InterviewDate;
 import seedu.application.model.application.interview.InterviewTime;
@@ -37,6 +38,7 @@ class JsonAdaptedApplication {
     private final String email;
     private final String position;
     private final String date;
+    private final String status;
     private final boolean isArchived;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -85,6 +87,7 @@ class JsonAdaptedApplication {
     public JsonAdaptedApplication(@JsonProperty("company") String company, @JsonProperty("contact") String contact,
                                   @JsonProperty("email") String email, @JsonProperty("position") String position,
                                   @JsonProperty("date") String date,
+                                  @JsonProperty("status") String status,
                                   @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                   @JsonProperty("isArchived") boolean isArchived, @JsonProperty("round") String round,
                                   @JsonProperty("interviewDate") String interviewDate,
@@ -95,6 +98,7 @@ class JsonAdaptedApplication {
         this.email = email;
         this.position = position;
         this.date = date;
+        this.status = status;
         this.isArchived = isArchived;
         this.round = round;
         this.interviewDate = interviewDate;
@@ -114,6 +118,7 @@ class JsonAdaptedApplication {
         email = source.getEmail().value;
         position = source.getPosition().value;
         date = source.getDate().value.toString();
+        status = source.getStatus().getValue();
         isArchived = source.isArchived();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -185,10 +190,17 @@ class JsonAdaptedApplication {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDate = new Date(date);
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
+        if (!Status.isValidStatus(status)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        }
+        final Status modelStatus = Status.getStatus(status);
         final Set<Tag> modelTags = new HashSet<>(applicationTags);
 
         Application modelApplication = new Application(modelCompany, modelContact, modelEmail, modelPosition,
-                modelDate, modelTags);
+                modelDate, modelStatus, modelTags);
 
         Application modelUpdatedApplication;
 
