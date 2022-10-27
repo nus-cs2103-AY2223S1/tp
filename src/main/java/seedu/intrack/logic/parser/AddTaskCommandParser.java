@@ -3,6 +3,7 @@ package seedu.intrack.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,6 +21,13 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      */
     private static final Pattern TASK_COMMAND_FORMAT =
             Pattern.compile("(?<description>.*)\\s+/at(?<dateTime>.*)");
+
+    /**
+     * Regex pattern for a valid datetime format, this ensures that the datetime format would be dd-MM-yyyy HH:mm
+     */
+    private static final String DATETIME_FORMAT = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} "
+        + "([01]?[0-9]|2[0-3]):[0-5][0-9]$^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} "
+        + "([01]?[0-9]|2[0-3]):[0-5][0-9]$";
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code AddTaskCommand}
@@ -40,6 +48,10 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         int commandLength = args.split("\\s+").length;
         if (commandLength < 3) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+        }
+
+        if (!dateTimeString.matches(DATETIME_FORMAT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
