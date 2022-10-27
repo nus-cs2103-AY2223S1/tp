@@ -6,14 +6,14 @@ title: User Guide
 Gim is a **desktop app for managing and tracking gym exercises, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). Gim commands are inspired by those of Vim. If you are an avid Vim user and can type fast, Gim can help you keep track of your workouts and personal records for each exercise. Gim can also help you to craft a workout based on your personal records.
 
 ### Table of Contents
-#### Getting Started
-#### GUI Orientation
+#### [Getting Started](#quick-start)
+#### [GUI Orientation](#gui-orientation)
 * Command Box
 * Exercise List 
 * Result Display 
 * Recognised Exercise Names List
 
-#### Commands
+#### [Commands](#commands)
 * Adding an exercise **:add**
 * Deleting an exercise **:del**
 * Listing all exercises **:list**
@@ -26,8 +26,8 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 * Displaying the help menu **:help**
 * Exiting the application **:wq**
 
-#### Command Summary
-#### Glossary of Terminologies
+#### [Command Summary](#command-summary)
+#### [Glossary of Terminologies](#glossary-of-terminologies)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`:help`** and pressing Enter will open the help window.<br>
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -94,7 +94,7 @@ you have input. Choose wisely!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-## Features
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -152,7 +152,9 @@ Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 
 ##### Examples:
 * `:add n/Squat w/30 s/3 r/5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps for today's date.
-* `:add n/Deadlift w/60 s/1 r/1 d/27-10-22` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th October 2022.
+* `:add n/Deadlift w/60 s/1 r/1 d/27-01-22` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th January 2022.
+* 
+![AddCommand](images/AddCommand.png)
 
 
 ### Deleting an exercise : `:del`
@@ -165,7 +167,9 @@ Format: `:del INDEX`
 * The index must be a positive integer 1, 2, 3, ...
 
 ##### Example:
-* `:del 3` Deletes an exercise at index 3 of the list
+* `:del 9` Deletes an exercise at index 9 of the list
+
+![DeleteCmomand](images/DeleteCommand.png)
 
 
 ### Listing all exercises : `:list`
@@ -176,8 +180,6 @@ Format: `:list`
 
 ##### Example:
 `:list` shows the list of exercises user has completed
-
-![ListBeforeSortCommand](images/ListBeforeSortCommand.png)
 
 
 ### Filtering exercises by their name(s) : `:filter`
@@ -194,6 +196,8 @@ Format: `:filter KEYWORD [KEYWORD]...`
 
 ##### Example:
 * `:filter Deadlift Squat` Shows the list of Deadlift and Squat exercises.
+
+![FilterCommand](images/FilterCommand.png)
 
 ### Clearing all exercises : `:clear`
 
@@ -216,10 +220,6 @@ Sorts the list of exercises displayed in the Exercise List Window according to t
 Format: `:sort`
 
 ##### Example:
-* `:list` shows the list of exercises user has completed
-
-![ListBeforeSortCommand](images/ListBeforeSortCommand.png)
-
 * `:sort` shows the list of exercises after sort command has been executed
 
 ![ListAfterSortCommand](images/ListAfterSortCommand.png)
@@ -268,6 +268,8 @@ Format (1): `:pr n/NAME [n/NAME]...`
 * `:pr n/Squat` Lists the personal record for the 'Squat' exercise (if any).
 * `:pr n/Deadlift n/Bench press n/Squat` Lists the personal records for the 'Deadlift', 'Bench press' and 'Squat' exercises (if any).
 
+![PrCommandExample1](images/PrCommandExample1.png)
+
 Format (2): `:pr all/`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
@@ -276,6 +278,8 @@ Extraneous parameters (before and after the `all/` flag) will be ignored. <br> e
 
 ##### Example:
 * `:pr all/` Lists the personal records for all uniquely registered exercises in the exercise tracker.
+
+![PrCommandExample2](images/PrCommandExample2.png)
 
 ### Generating a sample workout based on Personal Records: `:gen`
 
@@ -294,11 +298,11 @@ Format (1): `:gen INDEX [INDEX]... level/DIFFICULTY_LEVEL`
 * The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}
 
 ##### Examples:
-`:gen 1,2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Squat and Deadlift
+`:gen 1,2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Deadlift and Incline Bench.
 
 ![GenerateCommandExample1](images/GenerateCommandExample1.png)
 
-Note that only one sample workout is generated for each unique exercise name. For example, `:gen 1,3 level/easy` will generate one sample workout for squat, as both index 1 and 3 in the displayed list are Squat exercises.
+Note that only one sample workout is generated for each unique exercise name. For example, `:gen 4, 5 level/easy` will generate one sample workout for squat, as both index 4 and 5 in the displayed list are Squat exercises.
 
 ![GenerateCommandExample2](images/GenerateCommandExample2.png)
 
@@ -315,13 +319,11 @@ Extraneous parameters (before the first `n/` flag) will be ignored. <br> e.g. if
 </div>
 
 ##### Examples:
-`:gen n/Squat n/Deadlift level/easy` Generates a sample workout for exercises Squat and Deadlift
+`:gen n/Squat n/Deadlift level/easy` Generates a sample workout for exercises Squat and Deadlift.
 
-![GenerateCommandExample1](images/GenerateCommandExample1.png)
+![GenerateCommandNameExample1](images/GenerateCommandNameExample1.png)
 
 Note that only one sample workout is generated for each unique exercise name. For example, `:gen n/Squat n/Squat level/easy` will generate one sample workout for squat.
-
-![GenerateCommandExample2](images/GenerateCommandExample2.png)
 
 
 
@@ -331,6 +333,8 @@ Access the help menu, containing a brief summary of the commands supported. The 
 user guide.
 
 Format: `:help`
+
+![HelpCommand](images/HelpCommand.png)
 
 
 ### Exiting the program : `:wq`
