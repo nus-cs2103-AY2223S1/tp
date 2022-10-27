@@ -132,7 +132,7 @@ public class EditStuCommandParserTest {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withStudentId(VALID_ID_AMY)
                 .withTelegramHandle(VALID_TELEGRAM_BOB).withStudentModuleInfo(VALID_INFO_AMY)
-                .withTeachingAssistantInfo(VALID_INFO_AMY).build();
+                .withTeachingAssistantInfo("CS2107").build();
         EditStuCommand expectedCommand = new EditStuCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -203,7 +203,7 @@ public class EditStuCommandParserTest {
 
         // teaching info
         userInput = targetIndex.getOneBased() + STUDENT_DESC_TEACHING_INFO;
-        descriptor = new EditStudentDescriptorBuilder().withTeachingAssistantInfo(VALID_INFO_AMY).build();
+        descriptor = new EditStudentDescriptorBuilder().withTeachingAssistantInfo("CS2107").build();
         expectedCommand = new EditStuCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

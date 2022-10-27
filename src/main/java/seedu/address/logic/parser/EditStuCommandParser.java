@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditStuCommand;
 import seedu.address.logic.commands.EditStuCommand.EditStudentDescriptor;
@@ -70,6 +71,24 @@ public class EditStuCommandParser implements Parser<EditStuCommand> {
                     .parseTelegramHandle(argMultimap.getValue(PREFIX_HANDLE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
+
+        //checks for same modules in ta and student
+        Optional<Set<ModuleCode>> studentModules =
+                parseStudentModuleInfoForEdit(argMultimap.getAllValues(PREFIX_MODULE_CODE));
+        Optional<Set<ModuleCode>> teachingModules =
+                parseTeachingAssistantInfoForEdit(argMultimap.getAllValues(PREFIX_STUDENT_TA));
+        if (studentModules.isPresent() && teachingModules.isPresent()) {
+            Set<ModuleCode> student = studentModules.get();
+            Set<ModuleCode> teaching = teachingModules.get();
+            for (ModuleCode moduleCode : student) {
+                for (ModuleCode otherModuleCode: teaching) {
+                    if (moduleCode.equals(otherModuleCode)) {
+                        throw new ParseException(Messages.MESSAGE_STUDENT_AND_TA);
+                    }
+                }
+            }
+        }
+
         parseStudentModuleInfoForEdit(argMultimap.getAllValues(PREFIX_MODULE_CODE))
                 .ifPresent(editStudentDescriptor::setStudentModuleInfo);
         parseTeachingAssistantInfoForEdit(argMultimap.getAllValues(PREFIX_STUDENT_TA))

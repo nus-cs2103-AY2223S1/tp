@@ -16,6 +16,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -74,6 +75,17 @@ public class EditTeachingAssistantCommand extends EditStuCommand {
 
         Student studentToEdit = lastShownList.get(teachingIndex.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editTeachingDescriptor);
+
+        //checks for same module in student and ta
+        Set<ModuleCode> student = editedStudent.getStudentModuleInfo();
+        Set<ModuleCode> teacher = editedStudent.getTeachingAssistantInfo();
+        for (ModuleCode moduleCode : student) {
+            for (ModuleCode otherModuleCode: teacher) {
+                if (moduleCode.equals(otherModuleCode)) {
+                    throw new CommandException(Messages.MESSAGE_STUDENT_AND_TA);
+                }
+            }
+        }
 
         if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
