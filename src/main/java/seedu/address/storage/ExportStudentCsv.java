@@ -1,5 +1,8 @@
 package seedu.address.storage;
 
+import seedu.address.commons.util.FileUtil;
+import seedu.address.model.person.student.Student;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,9 +13,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SequenceWriter;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-
-import seedu.address.commons.util.FileUtil;
-import seedu.address.model.person.student.Student;
 
 /**
  * A class to export {@link Student} to a csv-readable format.
@@ -46,7 +46,7 @@ public class ExportStudentCsv {
         SequenceWriter seqW = csvMapper.writer().writeValues(csvFilePath.toFile());
         seqW.write(Arrays.asList("name", "phone", "email", "address", "school", "level", "nok_name", "nok_phone",
                 "nok_email", "nok_address", "nok_relationship", "nok_tagged", "tagged", "tuitionClasses"));
-        if (jsonTree.isEmpty()) {
+        if (jsonTree.isNull()) {
             seqW.close();
             return;
         }

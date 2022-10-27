@@ -45,7 +45,7 @@ public class ExportTuitionClassCsv {
         CsvMapper csvMapper = new CsvMapper();
         SequenceWriter seqW = csvMapper.writer().writeValues(this.csvFilePath.toFile());
         seqW.write(Arrays.asList("name", "subject", "level", "day", "startTime", "endTime", "tagged"));
-        if (jsonTree.isEmpty()) {
+        if (jsonTree.isNull()) {
             seqW.close();
             return;
         }
