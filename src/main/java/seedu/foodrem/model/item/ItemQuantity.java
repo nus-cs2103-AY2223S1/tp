@@ -30,6 +30,10 @@ public class ItemQuantity {
         itemQuantity = Double.parseDouble(itemQuantityString);
     }
 
+    public double getItemQuantity() {
+        return itemQuantity;
+    }
+
     /**
      * Returns an itemQuantity after performing an arithmetic operation on them.
      */

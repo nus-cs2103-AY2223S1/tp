@@ -15,6 +15,7 @@ public class ItemPrice {
     private static final double DEFAULT_PRICE = 0;
 
     private final double itemPrice;
+
     /**
      * {@inheritDoc}
      */
@@ -26,6 +27,10 @@ public class ItemPrice {
         }
         ItemPriceValidator.validate(itemPriceString);
         itemPrice = Double.parseDouble(itemPriceString);
+    }
+
+    public double getItemPrice() {
+        return itemPrice;
     }
 
     /**
