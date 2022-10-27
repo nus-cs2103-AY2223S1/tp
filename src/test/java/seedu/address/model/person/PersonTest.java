@@ -199,4 +199,100 @@ public class PersonTest {
         assertFalse(nonDebtor.isOwingMoney());
     }
 
+    @Test
+    public void compareToByNameAscTest() {
+        Person alice = new PersonBuilder(ALICE).build();
+        Person bob = new PersonBuilder(BOB).build();
+        assertTrue(alice.compareToByNameAsc(bob) < 0);
+        assertTrue(alice.compareToByNameAsc(alice) == 0);
+        assertTrue(bob.compareToByNameAsc(alice) > 0);
+    }
+    @Test
+    public void compareToByNameDescTest() {
+        Person alice = new PersonBuilder(ALICE).build();
+        Person bob = new PersonBuilder(BOB).build();
+        assertTrue(alice.compareToByNameDesc(bob) > 0);
+        assertTrue(alice.compareToByNameDesc(alice) == 0);
+        assertTrue(bob.compareToByNameDesc(alice) < 0);
+    }
+
+    @Test
+    public void compareToByClassAscTest() {
+        Person alice;
+        Person bob;
+        Person ava;
+        Person bobWithoutClass;
+        try {
+            alice = new PersonBuilder(ALICE).withClass("2022-10-11 0200-0400").build();
+            bob = new PersonBuilder(BOB).withClass("2022-10-11 0400-0500").build();
+            ava = new PersonBuilder(AVA).build();
+            bobWithoutClass = new PersonBuilder(BOB).build();
+        } catch (ParseException e) {
+            throw new RuntimeException();
+        }
+        // both with class fields initialized
+        assertTrue(alice.compareToByClassAsc(bob) < 0);
+        assertTrue(alice.compareToByClassAsc(alice) == 0);
+        assertTrue(bob.compareToByClassAsc(alice) > 0);
+
+        // one is non-initialized
+        assertTrue(alice.compareToByClassAsc(ava) < 0);
+        assertTrue(ava.compareToByClassAsc(bob) > 0);
+
+        // both class fields not initialized, now sort by name
+        assertTrue(ava.compareToByClassAsc(bobWithoutClass) < 0);
+        assertTrue(bobWithoutClass.compareToByClassAsc(ava) > 0);
+        assertTrue(ava.compareToByClassAsc(ava) == 0);
+    }
+
+    @Test
+    public void compareToByClassDescTest() {
+        Person alice;
+        Person bob;
+        Person ava;
+        Person bobWithoutClass;
+        try {
+            alice = new PersonBuilder(ALICE).withClass("2022-10-11 0200-0400").build();
+            bob = new PersonBuilder(BOB).withClass("2022-10-11 0400-0500").build();
+            ava = new PersonBuilder(AVA).build();
+            bobWithoutClass = new PersonBuilder(BOB).build();
+        } catch (ParseException e) {
+            throw new RuntimeException();
+        }
+        // both with class fields initialized
+        assertTrue(alice.compareToByClassDesc(bob) > 0);
+        assertTrue(alice.compareToByClassDesc(alice) == 0);
+        assertTrue(bob.compareToByClassDesc(alice) < 0);
+
+        // one is non-initialized
+        assertTrue(alice.compareToByClassDesc(ava) < 0);
+        assertTrue(ava.compareToByClassDesc(bob) > 0);
+
+        // both class fields not initialized, now sort by name
+        assertTrue(ava.compareToByClassDesc(bobWithoutClass) < 0);
+        assertTrue(bobWithoutClass.compareToByClassDesc(ava) > 0);
+        assertTrue(ava.compareToByClassDesc(ava) == 0);
+    }
+
+    @Test
+    public void compareToByMoneyOwedAscTest() {
+        Person alice = new PersonBuilder(ALICE).withMoneyOwed(100).build();
+        Person ava = new PersonBuilder(AVA).withMoneyOwed(100).build();
+        Person bob = new PersonBuilder(BOB).withMoneyOwed(200).build();
+
+        assertTrue(alice.compareToByMoneyOwedAsc(ava) < 0);
+        assertTrue(alice.compareToByMoneyOwedAsc(bob) < 0);
+        assertTrue(ava.compareToByMoneyOwedAsc(bob) < 0);
+    }
+
+    @Test
+    public void compareToByMoneyOwedDescTest() {
+        Person alice = new PersonBuilder(ALICE).withMoneyOwed(100).build();
+        Person ava = new PersonBuilder(AVA).withMoneyOwed(100).build();
+        Person bob = new PersonBuilder(BOB).withMoneyOwed(200).build();
+
+        assertTrue(alice.compareToByMoneyOwedDesc(ava) < 0);
+        assertTrue(alice.compareToByMoneyOwedDesc(bob) > 0);
+        assertTrue(ava.compareToByMoneyOwedDesc(bob) > 0);
+    }
 }

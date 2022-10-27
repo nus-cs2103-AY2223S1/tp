@@ -291,11 +291,71 @@ public class Person {
         return -1 * this.compareToByNameAsc(person);
     }
 
-    public int compareToByClass(Person person) {
-        return this.aClass.compareToByStartTime(person.aClass);
+    /**
+     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * When one of the two has empty {@code Class}, this person should be placed at the end.
+     * When both have empty {@code Class}, they are compared by their {@code name} in ascending order.
+     */
+    public int compareToByClassAsc(Person person) {
+        if (this.aClass.isEmpty() && person.aClass.isEmpty()) {
+            return this.compareToByNameAsc(person);
+        } else if (this.aClass.isEmpty()) {
+            return 1;
+        } else if (person.aClass.isEmpty()) {
+            return -1;
+        } else {
+            return this.aClass.compareToByStartTime(person.aClass);
+        }
     }
 
+    /**
+     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * When one of the two has empty {@code Class}, this person should be placed at the end.
+     * When both have empty {@code Class}, they are compared by their {@code name} in ascending order.
+     */
+    public int compareToByClassDesc(Person person) {
+        if (this.aClass.isEmpty() && person.aClass.isEmpty()) {
+            return this.compareToByNameAsc(person);
+        } else if (this.aClass.isEmpty()) {
+            return 1;
+        } else if (person.aClass.isEmpty()) {
+            return -1;
+        } else {
+            return -1 * this.aClass.compareToByStartTime(person.aClass);
+        }
+    }
+
+    /**
+     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * When they have same amount of {@code moneyOwed}, they are compared by their {@code name} in ascending order.
+     */
+    public int compareToByMoneyOwedAsc(Person person) {
+        int result = this.moneyOwed.compareTo(person.moneyOwed);
+        if (result == 0) {
+            return this.compareToByNameAsc(person);
+        } else {
+            return result;
+        }
+    }
+
+    /**
+     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * When they have same amount of {@code moneyOwed}, they are compared by their {@code name} in ascending order.
+     */
+    public int compareToByMoneyOwedDesc(Person person) {
+        int result = -1 * this.moneyOwed.compareTo(person.moneyOwed);
+        if (result == 0) {
+            return this.compareToByNameAsc(person);
+        } else {
+            return result;
+        }
+    }
+
+    /**
+     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     */
     public int compareToByDisplayClass(Person person) {
+        requireAllNonNull(this.displayedClass, person.displayedClass);
         return this.displayedClass.compareToByStartTime(person.displayedClass);
     }
 

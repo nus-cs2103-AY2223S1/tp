@@ -1,0 +1,30 @@
+@startuml
+start
+:User executes avail command;
+
+if () then ([valid avail command])
+    if () then ([valid time range])
+        if () then([invalid duration])
+            :Display invalid duration
+                message to user;
+        else if () then ([invalid end time])
+            :Display invalid end time
+                message to user;
+        else ([else])
+            :Return TimeRange
+                    object;
+                :Get next available class;
+                :Display class to user;
+        endif
+'        else if () then([invalid end time])
+
+    else ([else])
+      :Display invalid time
+        range message;
+    endif
+else ([else])
+    :Display unknown
+    command message;
+endif
+stop
+@enduml

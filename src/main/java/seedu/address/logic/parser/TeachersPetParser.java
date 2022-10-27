@@ -19,6 +19,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.PayCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -69,6 +70,15 @@ public class TeachersPetParser {
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 
+        case PayCommand.COMMAND_WORD:
+            return new PayCommandParser().parse(arguments);
+
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
@@ -77,12 +87,6 @@ public class TeachersPetParser {
 
         case AvailCommand.COMMAND_WORD:
             return new AvailCommandParser().parse(arguments);
-
-        case PayCommand.COMMAND_WORD:
-            return new PayCommandParser().parse(arguments);
-
-        case MarkCommand.COMMAND_WORD:
-            return new MarkCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

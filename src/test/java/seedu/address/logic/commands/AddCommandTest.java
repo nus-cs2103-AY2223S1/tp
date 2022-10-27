@@ -21,7 +21,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTeachersPet;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TeachersPet;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Person;
+import seedu.address.model.timeRange.TimeRange;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -163,6 +165,25 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void updateTeachersPetHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undo() throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTeachersPetHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Class findAvailableClass(TimeRange timeRange) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
