@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.tag.Tag;
 
@@ -38,7 +39,7 @@ public class HideAppointmentPredicate implements Predicate<Appointment> {
         switch (condition) {
         case KEYWORD:
             passed = keywords.stream()
-                    .anyMatch(keyword -> appt.getReason().contains(keyword));
+                    .anyMatch(keyword -> StringUtil.containsIgnoreCase(appt.getReason(), keyword));
             break;
         case TAG:
             Set<Tag> tags = appt.getTags();
