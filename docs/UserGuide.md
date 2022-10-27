@@ -18,7 +18,9 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 * [Features](#features)
     * [Viewing help: `help`](#viewing-help-help)
     * [Adding a student: `add`](#adding-a-student-add)
-    * [Editing a student's details: `edit`](#editing-student-details-edit)
+    * [Editing student details: `edit`](#editing-student-details-edit)
+    * [Marking a student: `mark`](#marking-a-student-mark)
+    * [Receiving money from a student: `pay`](#receiving-money-from-a-student-pay)
     * [Viewing all students: `list`](#viewing-all-students-list)
     * [Finding a student: `find`](#finding-a-student-find)
       * [Find by name](#find-by-name)
@@ -28,8 +30,13 @@ For a full list of commands and detailed instructions, head to the [Features](#f
       * [Find by Next of Kin's contact number](#)
       * [Find by class date](#find-by-class-date)
       * [Find by tag](#)
-    * [Deleting a student: `delete`](#deleting-students-delete)
+    * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
+      * [Sort by Name](#sort-by-name)
+      * [Sort by Class](#sort-by-class)
+      * [Sort by Money_Owed](#sort-by-money_owed)
+    * [Deleting student(s): `delete`](#deleting-students-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
+    * [Undo a command: `undo`](#undo-the-last-command-undo)
     * [Exiting the program : `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
@@ -93,6 +100,8 @@ Basic Instructions:
   of the parameter will be taken. e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
   be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+- Commands that require the use of index from the Schedule list (right side) will be represented as `INDEX-s`,
+  while index from the Student's Details list (left side) will be represented as `INDEX`.
 
 ### Viewing help: `help`
 
@@ -249,6 +258,59 @@ Examples:
 
 ---
 
+### Marking a student: `mark`
+
+Allows the user to mark a student as present for a class.
+
+The application will increase the student's owed amount by the rates per class.
+A cross will be displayed beside the student's name indicating that the student has attended the class.
+The student's next class will be set a week later at the same time, provided if there is a free time slot.
+
+Format: `mark INDEX-s`
+
+- Marks the student as present at the specified `INDEX-s`.
+- The index refers to the index number shown in the Schedule panel (bottom right).
+- The index must be a positive integer. e.g. `1, 2, 3, ...`.
+
+Example:
+- `mark 2` marks the 2nd student in the Schedule panel.
+
+![UiMark](images/UG-screenshots/UiMark.png)
+
+```yaml
+Tip: If you want to charge the student for missing the class, you can do so by the `mark` command. This increases the amount owed but frees up that time slot for another student.
+```
+
+[Back to top](#table-of-contents)
+
+---
+
+### Receiving money from a student: `pay`
+
+Allows the user to indicate that a student has paid a certain amount of money.
+
+The application will reduce the student's owed amount by the amount paid.
+
+Format: `pay INDEX-s AMOUNT_PAID`
+
+- Marks the student as present at the specified `INDEX-s`.
+- The index refers to the index number shown in the Schedule panel (bottom right).
+- The index must be a positive integer. e.g. `1, 2, 3, ...`.
+- The amount paid must be an integer and cannot be negative. e.g. `0, 1, 2, ...`.
+
+Example:
+- `pay 2 40` indicates that the 2nd student in the Schedule panel has paid $40.
+
+![UiPay](images/UG-screenshots/UiPay.png)
+
+```yaml
+Note: The student cannot pay more than what he/she owes. There is also a maximum cap of $2147483647 for every payment.
+```
+
+[Back to top](#table-of-contents)
+
+---
+
 ### Viewing all students: `list`
 
 Allows the user to view students and their information which includes:
@@ -275,15 +337,19 @@ Format: `list`
 
 Finds an existing student in the list. You can only find by one field at a time. Fields supported in `find`:
 
-- Name
-- Email
-- Address
-- Student's Contact Number
-- Next of Kin's Contact number
-- Class Date
-- Tag
+- Name `n/`
+- Email `e/`
+- Address `a/`
+- Student's Contact Number `p/`
+- Next of Kin's Contact number `np/`
+- Class Date `dt/`
+- Tag `t/`
 
-### Find by Name:
+```yaml
+Note: Only one field can be searched at once.
+```
+
+#### Find by Name:
 
 Finds all students with names matching the keywords.
 
@@ -298,9 +364,19 @@ Example:
 
 `find n/tan` returns `Tan Xiao Ming` and `John Tan`.
 
-![UiFind](images/UG-screenshots/UiFind.png)
+![UiFindName](images/UG-screenshots/UiFindName.png)
 
-[Back to top](#table-of-contents)
+#### Find by Student's Contact Number:
+
+Finds student with the matching phone number.
+
+Format: `find p/PHONE_NUMBER`
+
+- Only full numbers will be matched e.g. `8123` will not match `81234567`.
+
+Example:
+
+`find p/81234567` returns the student with the phone number set as `81234567`.
 
 #### Find by Class Date:
 
@@ -311,6 +387,7 @@ Formats:
     2. `find dt/Day-of-Week`
 
 - Only the date is searched.
+
 ```yaml
 ❗ Caution: Do not include class timing.
 ```
@@ -324,7 +401,64 @@ Examples:
 
 ---
 
-### Deleting students: 'delete'
+### Sort the displayed students: 'sort'
+
+Sort the displayed list of students (in the Student's Details panel) by the given `type` and `order`.
+
+Format: `sort TYPE [ORDER]`
+
+- `TYPE` must be followed by either one of the below options:
+  - `NAME`
+  - `CLASS`
+  - `OWED`
+- `ORDER`, if present, must be from 
+  - `ASC`
+  - `DESC`
+  - If it is left as blank, it will follow the default order for the type.
+- Default order for `NAME` and `CLASS` is `ASC` while default order for `OWED` is `DESC`.
+- The two parameters `TYPE` and `ORDER` can be non-capitalized such as `name`, `nAMe` and so on.
+
+[Back to top](#table-of-contents)
+
+#### Sort by NAME
+
+Sort the displayed list of students (in the Students' Details panel) by `NAME` and given `order`.
+
+When `order` is left blank, it will be `ASC` by default.
+
+Examples:
+
+- `list` followed by `sort NAME` will list all the students according to their names in ascending order.
+- `list` followed by `sort NAME ASC` will list all the students according to their names in ascending order.
+- `list` followed by `sort NAME DESC` will list all the students according to their names in descending order.
+
+#### Sort by CLASS
+
+Sort the displayed list of students (in the Students' Details panel) by `CLASS` and given `order`.
+
+When `order` is left blank, it will be `ASC` by default.
+
+Examples:
+
+- `list` followed by `sort CLASS` will list all the students according to their upcoming classes in ascending order.
+- `list` followed by `sort CLASS ASC` will list all the students according to their upcoming classes in ascending order.
+- `list` followed by `sort CLASS DESC` will list all the students according to their upcoming classes in descending order.
+
+
+#### Sort by MONEY_OWED
+
+Sort the displayed list of students (in the Students' Details panel) by `OWED`(Amount of Money Owed) and given `order`.
+
+When `order` is left blank, it will be `DESC` by default.
+
+Examples:
+
+- `list` followed by `sort OWED` will list all the students according to how much money they owe in **descending** order.
+- `list` followed by `sort OWED ASC` will list all the students according to how much money they owe in ascending order.
+- `list` followed by `sort OWED DESC` will list all the students according to how much money they owe in descending order.
+---
+
+### Deleting student(s): 'delete'
 
 Deletes the specified student(s) from the student list.
 
@@ -339,7 +473,7 @@ Examples:
 - `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
-❗ Caution: Deleting a student is irreversible! Please input the correct index number(s).
+❗ Caution: Deleting a student by mistake can be reversed by "undo" command.
 ```
 
 [Back to top](#table-of-contents)
@@ -353,8 +487,18 @@ Clears all students and their details from the list.
 Format: `clear`
 
 ```yaml
-❗ Caution: Clearing all students is irreversible!
+❗ Caution: Clearing all students by mistake can be reversed by "undo" command!
 ```
+
+[Back to top](#table-of-contents)
+
+---
+
+### Undo the last command: 'undo'
+
+Undoes the last command executed and restores the Teacher's Pet to the previous state.
+
+Format: `undo`
 
 [Back to top](#table-of-contents)
 
@@ -409,16 +553,18 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command Summary
 
-| Action               | Format, Examples                                                                                                                                                                                                                  |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL [t/TAG]... `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com t/python t/beginner`                                         |
-| Edit a student       | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] `e.g., edit 2 p/98765431` |
-| Get help             | `help`                                                                                                                                                                                                                            |
-| List all students    | `list`                                                                                                                                                                                                                            |
-| Find a student       | find NAME `e.g., find John Doe`                                                                                                                                                                                                   |
-| Delete a student     | delete INDEX `e.g., delete 2`                                                                                                                                                                                                     |
-| Clear all students   | `clear`                                                                                                                                                                                                                           |
-| Exit the application | `exit`                                                                                                                                                                                                                            |
-
+| Action                       | Format, Examples                                                                                                                                                                                                                  |
+|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add a student                | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL [t/TAG]... `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com t/python t/beginner`                                         |
+| Edit a student               | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] `e.g., edit 2 p/98765431` |
+| Get help                     | `help`                                                                                                                                                                                                                            |
+| List all students            | `list`                                                                                                                                                                                                                            |
+| Find a student               | find n/NAME `e.g., find n/John Doe` or other supported fields                                                                                                                                                                     |
+| Mark a student               | mark INDEX-s `e.g., mark 2`                                                                                                                                                                                                       |
+| Receive money from a student | pay INDEX-s AMOUNT_PAID `e.g., pay 2 300`                                                                                                                                                                                         |
+| Delete a student             | delete INDEX `e.g., delete 2`                                                                                                                                                                                                     |
+| Clear all students           | `clear`                                                                                                                                                                                                                           |
+| Undo a command               | `undo`                                                                                                                                                                                                                            |
+| Exit the application         | `exit`                                                                                                                                                                                                                            |
 
 [Back to top](#table-of-contents)
