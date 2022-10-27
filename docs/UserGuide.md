@@ -114,7 +114,7 @@ Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3
 
 ### Viewing help window : `help`
 
-Pops open a help window which contains a link that directs the user to this user guide for detailed help
+Pops open a help window which contains a link that directs the user to this user guide.
 
 ![help message](images/helpMessage.png)
 
@@ -140,11 +140,15 @@ add n/NAME p/PHONE_NUMBER e/EMAIL s/SCHOLARSHIP as/APPLICATION_STATUS [m/MAJOR]â
 ```
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
-An applicant can have at most 2 majors (including 0)
+Duplicate names are not allowed in TrackAScholar, as such any attempts to add an applicant with the same name as an existing applicant will be rejected.
+</div>
+
+<div markdown="block" class="alert alert-info">:information_source: **Note:**
+An applicant can have at most 2 majors(including 0).
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Application status is case-insensitive, entering the status PENDING, ACCEPTED or REJECTED in any combination of upper or lower case is acceptable.
+Application status is **case-insensitive**, entering the status PENDING, ACCEPTED or REJECTED in any combination of upper or lower case is acceptable.
 </div>
 
 Examples:
@@ -160,7 +164,7 @@ Sample output for `add n/Samuel Cheong m/Medicine e/samuelcheong1234@gmail.com p
 
 ### Listing all applicants : `list`
 
-List out all the applicants stored in TrackAScholar
+List out all the applicants stored in TrackAScholar.
 
 Format: 
 ```
@@ -176,7 +180,7 @@ Sample output for `list`:
 
 ### Editing an existing applicant : `edit`
 
-Edits an existing applicant stored in TrackAScholar
+Edits an existing applicant stored in TrackAScholar.
 
 Format: 
 ```
@@ -194,7 +198,11 @@ e.g. `edit INDEX m/Business` on an applicant with Majors `Business` and `Mathema
 * You can remove all the applicant's majors by typing `m/` without specifying any majors after it.
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
-Since an applicant can have at most 2 Majors, any attempts to edit an applicant such that he/she has more than two majors will be rejected
+Duplicate names are not allowed in TrackAScholar, as such any attempts to edit an applicant's name to have the same name as an existing applicant will be rejected.
+</div>
+
+<div markdown="block" class="alert alert-info">:information_source: **Note:**
+Since an applicant can have at most 2 Majors, any attempts to edit an applicant such that he/she has more than two majors will be rejected.
 </div>
 
 Examples:
@@ -211,7 +219,7 @@ Sample output for `edit 2 n/Samuel Cheong m/`:
 
 ### Deleting an applicant : `delete`
 
-Deletes the specified applicant from TrackAScholar
+Deletes the specified applicant from TrackAScholar.
 
 Format: 
 ```
@@ -236,7 +244,7 @@ Sample output for `delete 2`:
 
 ### Removing applicants by status : `remove`
 
-All applicants with the corresponding statuses stored in TrackAScholar are removed
+All applicants with the corresponding statuses stored in TrackAScholar are removed.
 
 Format: 
 ```
@@ -244,7 +252,7 @@ remove <ACCEPTED>/<REJECTED>
 ```
 
 * The user selects the applicant(s) with application status of either `ACCEPTED` or `REJECTED` to be removed from TrackAScholar.
-* remove command is case-insensitive. e.g. `Accepted` or `accepted` both matches `ACCEPTED`
+* Remove command is **case-insensitive**. e.g. `Accepted` or `accepted` both matches `ACCEPTED`
 
 Examples:
 * `remove accepted` removes all entries with `ACCEPTED` as an application status from TrackAScholar.
@@ -262,7 +270,7 @@ Sample output for `remove accepted`:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from data stored in TrackAScholar
+Clears all entries from data stored in TrackAScholar.
 
 Format: 
 ```
@@ -281,14 +289,14 @@ Sample output for `clear`:
 
 ### Finding applicants by name, scholarship or major : `find`
 
-Finds all scholarship applicants whose credentials match any of the attributes searched
+Finds all scholarship applicants whose credentials match any of the attributes searched.
 
 Format: 
 ```
 find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...
 ```
 
-* The search is case-insensitive. e.g `find n/hans` will match applicant with Name `Hans`.
+* The search is **case-insensitive**. e.g `find n/hans` will match an applicant with `NAME` `Hans`.
 * The order of the keywords does not matter. e.g. `find n/Hans Bo` will match applicant with Name `Bo Hans`.
 * Only full words will be matched e.g. `find m/Engineer` will not match the Major `Software Engineering`.
 * Applicant whose credentials matching at least one keyword will be returned (i.e. `OR` search).
@@ -309,7 +317,7 @@ Sample output for `find n/alex m/Business`:
 
 ### Filtering applicants by application status: `filter`
 
-Filters and list all applicants whose application status matches the specified application status
+Filters and list all applicants whose application status matches the specified application status.
 
 Format: 
 ```
@@ -317,7 +325,7 @@ filter <PENDING>/<ACCEPTED>/<REJECTED>
 ```
 
 * The user specifies to filter the applicants with application status of either `PENDING` or `ACCEPTED` or `REJECTED`.
-* filter command is case-insensitive. e.g. `pEnDiNg` or `Pending` both matches `PENDING`.
+* Filter command is **case-insensitive**. e.g. `pEnDiNg` or `Pending` both matches `PENDING`.
 
 Examples:
 * `filter pending` displays all applicants with the application status `PENDING`.
@@ -332,7 +340,7 @@ Sample output for `filter pending`:
 
 ### Sorting applicants by either name, scholarship or application status : `sort`
 
-All applicants in TrackAScholar will be sorted in the specified manner 
+All applicants in TrackAScholar will be sorted in the specified manner.
 
 Format: 
 ```
@@ -341,12 +349,13 @@ sort <NAME>/<SCHOLARSHIP>/<STATUS> [-r]
 
 * The user can choose to sort the list according the applicant's `NAME`, `SCHOLARSHIP` or Application `STATUS`.
 * The optional `-r` flag specifies that the sort will be in reverse order.
-* sort command is case-insensitive. e.g. `NamE` or `name` both matches `NAME`.
+* Sort command is **case-insensitive**. e.g. `NamE` or `name` both matches `NAME`.
+* In the event where two applicants have the same `SCHOLARSHIP` or Application `STATUS`, the applicants' name is used as a tiebreaker, as duplicate applicant names are not allowed.
 
 Examples:
 * `sort name` All applicants in TrackAScholar will be sorted based on their name in a lexicographical manner.
-* `sort scholarship` All applicants in TrackAScholar will be sorted based on the type of scholarship they have applied for. 
-* `sort status` All applicants in TrackAScholar will be sorted according to their application status.
+* `sort scholarship` All applicants in TrackAScholar will be sorted based on the type of scholarship they have applied for, in a lexicographical manner.
+* `sort status` All applicants in TrackAScholar will be sorted according to their application status in the following order: pending, accepted and rejected applicants.
 
 Sample output for `sort name`:
 
@@ -358,7 +367,7 @@ Sample output for `sort name`:
 
 ### Importing a trackAScholar file : `import`
 
-Imports a trackAScholar file into the current trackAScholar file
+Imports a trackAScholar file into the current trackAScholar file.
 
 Format: 
 ```
@@ -369,7 +378,7 @@ import <r>/<k>
 * Imported applicants that are duplicates of applicants in the current list are handled with the `r` or `k` input.
 * `r` stands for replacing the duplicate applicants with the imported applicants.
 * `k` stands for keeping the current applicants and disregarding the imported duplicate applicants.
-* import command is case-insensitive. e.g. `import R` is the same as `import r`.
+* Import command is **case-insensitive**. e.g. `import R` is the same as `import r`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 It is necessary for a trackAScholar file to be named as a readable format (trackAScholarImport.json) and be placed in the ./data directory. 
@@ -422,7 +431,7 @@ unpin NAME
 * Unpins the scholarship applicant with the specified `NAME`.
 * `NAME` refers to the name of the scholarship applicant.
 * `NAME` **must be a full name:** `Bernice Yu` instead of `Bernice`.
-* `NAME` is **case-insensitive**.
+* Unpin Command is **case-insensitive**. e.g. `BernICE yU` will match the applicant with `NAME` `Bernice Yu`.
 
 Examples:
 * `unpin Bernice Yu` unpins the applicant with the name `Bernice Yu` in TrackAScholar.
@@ -437,7 +446,7 @@ Sample output for `unpin Bernice Yu`:
 
 ### Exiting the app : `exit`
 
-Exits TrackAScholar
+Exits TrackAScholar.
 
 Format: 
 ```
