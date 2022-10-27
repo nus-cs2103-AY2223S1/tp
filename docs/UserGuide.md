@@ -8,19 +8,23 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 ### Table of Contents
 #### Getting Started
 #### GUI Orientation
+* Command Box
 * Exercise List 
 * Result Display 
 * Recognised Exercise Names List
 
 #### Commands
 * Adding an exercise **:add**
-* Deleting an exercise **:delete**
+* Deleting an exercise **:del**
 * Listing all exercises **:list**
-* Sorting all exercises **:sort**
+* Filtering exercises by their name(s) **:filter**
+* Clearing the saved exercises and resets the data in the system **:clear**
+* Sorting exercises **:sort**
 * Viewing all exercises within a time period **:range**
+* Displaying the stored Personal Records **:pr**
 * Generating a sample workout based on Personal Records **:gen**
-* Viewing help **:help**
-* Exiting the program **:wq**
+* Displaying the help menu **:help**
+* Exiting the application **:wq**
 
 #### Command Summary
 #### Glossary of Terminologies
@@ -35,11 +39,11 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Gim.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the one shown below should appear in a few seconds. Note how the app contains some sample data.<br>
    <br>![Ui](images/Ui.png)
 
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`:help`** and pressing Enter will open the help window.<br>
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -49,11 +53,14 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 
 ![GUI](images/GUIOrientation.png)
 
+### Command Box
+
+The `Command Box` is where users can input their commands.
 
 ### Exercise List
 
 The `Exercise List Window` displays the latest input exercise (by the user) at the top of the list by default. All exercises
-added will be displayed in the list. The list may morph or reorder depending on the command issued by the user.
+added will be displayed in the list. The list may change or reorder depending on the command issued by the user.
 
 ### Result Display 
 
@@ -62,26 +69,27 @@ The `Result Display Window` displays feedback after executing a command. It give
 ### Recognised Exercise Name List
 
 The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered 
-with the system. 
+in the system. 
 <br><br>This list updates in real time and allows you to quickly keep track of the exercises you have input in the 
-past. Hence, even if the exercise list is populated, the `Recognised Exercise Name List Window` helps you in keeping track of 
-what you named your exercises so that your entries are consistent. It also helps you to identify any wrong spellings in the name 
+past. Hence, even if the exercise list is populated, the `Recognised Exercise Name List Window` helps you keep track of
+what you named your exercises. It also helps you to identify any wrong spellings in the name 
 of the exercises you have input.
 
 ![RecognisedList](images/RecognisedExercisesOrientation.png)
 
-* The Recognised Exercises count provides the number of unique exercises registered with the system. 
-* The Exercise List Entries count provide the number of entries in the `Exercise List Window`. 
-<br><br>
+* The `Recognised Exercises Count` provides the number of unique exercises registered in the system. 
+* The `Exercise List Entries Count` provides the total number of exercise entries in the system. 
+<br>
+
 #### Adding and Deleting from the Exercise Name List
 
-The `Recognised Exercise Name List Window` is generated based on the state of the Exercise List. Hence, by adding and deleting 
-to the Exercise List, the Recognised Exercise Name List is automatically updated.
+The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised 
+Exercise Name List is automatically updated whenever an entry is added to or deleted from the system.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
-Exercise names are recognised as equal if their lower-cased, white-spaces removed forms are the same.<br><br> 
+Exercise names are recognised as equal if, upon removing white spaces and setting the names to lowercase, the names are the same.<br><br> 
 I.E. "Bench Press", "BENCH PRESS", "BenchPress" will be logged as the same exercise for your convenience in adding.<br><br>
-However, the first time you add an exercise with a unrecognised name, the Recognised Exercise Name List will save the form 
+However, the first time you add an exercise with an unrecognised name, the Recognised Exercise Name List will save the form 
 you have input. Choose wisely!
 </div>
 
@@ -102,7 +110,7 @@ you have input. Choose wisely!
   e.g. `[n/NAME]…` can be used as ` ` (i.e. 0 times), `n/Squat` (i.e. 1 time), `n/Squat n/Deadlift` (i.e. 2 times) etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME a/WEIGHT`, `a/WEIGHT n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME w/WEIGHT`, `w/WEIGHT n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/Squat n/Deadlift`, only `n/Deadlift` will be taken.
@@ -113,14 +121,6 @@ you have input. Choose wisely!
 </div>
 
 
-### Viewing help : `:help`
-
-Access the help menu, containing a brief summary of the commands supported. The help menu also provides a link to the 
-user guide.
-
-Format: `:help`
-
-
 ### Adding an exercise: `:add`
 
 Adds an exercise that we have done for the day. If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise. 
@@ -128,8 +128,8 @@ Adds an exercise that we have done for the day. If an exercise (identified by th
 Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 
 ##### Parameter constraints:
-* The name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**
-  * Examples: Squat, Bench press, deadlift...
+* The name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**.
+  * Examples: Squat, Bench press, Deadlift...
 * The weight **must be a positive decimal number, up to 3 digits for the whole number and up to 2 digits for the decimal place**.
   * Examples: 0, 0.55, 35, 100.1, 200.00...
 * The sets **must be a positive integer, up to 3 digits, with no leading zeroes**.
@@ -149,7 +149,7 @@ Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 
 Deletes a particular exercise from our list. The index refers to the index number shown in the displayed exercise list. If the deleted exercise was the last exercise with the same name, then the exercise is automatically un-registered from the list of unique exercises.
 
-Format: `:del <index>`
+Format: `:del INDEX`
 
 ##### Parameter constraints:
 * The index must be a positive integer 1, 2, 3, ...
@@ -164,50 +164,88 @@ Shows a list of all exercises.
 
 Format: `:list`
 
-
-### Sorting all exercises : `:sort`
-
-Sorts the list of exercises displayed according to their date of completion, with the latest exercise completed displayed at the top of the list.
-
-Format: `:sort`
-
-Example usage: 
-
+##### Example:
 `:list` shows the list of exercises user has completed
 
 ![ListBeforeSortCommand](images/ListBeforeSortCommand.png)
 
-`:sort` shows the list of exercises after sort command has been executed
+
+### Filtering exercises by their name(s) : `:filter`
+
+Filters exercises from the displayed list with names containing any of the given keywords.
+
+Format: `:filter NAME [NAME]...`
+
+* The filter is case-insensitive. e.g bench will match Bench
+* The order of the keywords does not matter. e.g. Deadlift Squat will match Squat Deadlift
+* Only the exercise name is searched.
+* Only full words will be matched e.g. Squat will not match Squats
+* Exercises matching at least one keyword will be returned e.g. `:filter Bench press` will return Bench press and Leg press
+
+##### Example:
+* `:filter Deadlift Squat` shows the list of Deadlift and Squat exercises.
+
+### Clearing all exercises : `:clear`
+
+Clears the saved exercises and resets the data in the system.
+
+Format: `:clear`
+
+
+### Sorting exercises : `:sort`
+
+Sorts the list of exercises displayed in the Exercise List Window according to their date of completion, with the latest exercise completed displayed at the top of the list.
+
+Format: `:sort`
+
+##### Example:
+* `:list` shows the list of exercises user has completed
+
+![ListBeforeSortCommand](images/ListBeforeSortCommand.png)
+
+* `:sort` shows the list of exercises after sort command has been executed
 
 ![ListAfterSortCommand](images/ListAfterSortCommand.png)
 
 ### Viewing all exercises within a time period : `:range`
 
-Shows a list of all exercises within a date range, in sorted order.
-The order is based on latest to oldest date, then by alphabetical order of exercise name.
+Shows a list of all exercises sorted within a date range; the entry with the most recent date will be displayed at the top of the list.
 
-Format (1) : `:range start/<start date> end/<end date>`
+<div markdown="block" class="alert alert-info">
 
-Example: `:range start/25/10/2022 end/26/10/2022` shows the exercises done between October 20, 2022 
-and October 25, 2022 (both inclusive)
+**:information_source: There are 2 formats supported for this command.**<br>
+
+</div>
+
+Format (1) : `:range start/START_DATE end/END_DATE`
+
+##### Example:
+`:range start/25/10/2022 end/26/10/2022` shows the exercises done between October 25, 2022 and October 26, 2022 (both inclusive)
 
 ![RangeCommandOne](images/RangeCommandOneSample.png)
 
-Format (2) : `:range last/<number of days>`
+Format (2) : `:range last/NUMBER_OF_DAYS`
 
-Example: `:range last/3` shows the exercises done today and the last 3 days
+##### Example:
+`:range last/3` shows the exercises done today and the last 3 days
 
 ![RangeCommandTwo](images/RangeCommandTwoSample.png)
 
-### Listing Personal Records : `:pr`
+### Listing Personal Records (PR): `:pr`
 
-Finds the personal record of certain exercises in the exercise tracker.
+Finds the Personal Record of certain exercises in the exercise tracker.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: There are 2 formats supported for this command.**<br>
+
+</div>
 
 Format (1): `:pr n/NAME [n/NAME]...`
 
 ##### Parameter constraints:
 * Name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**
-  * Examples: Squat, Bench press, deadlift...
+  * Examples: Squat, Bench press, Deadlift...
 
 ##### Examples:
 * `:pr n/Squat` Lists the personal record for the 'Squat' exercise (if any).
@@ -224,22 +262,53 @@ Extraneous parameters (before and after the `all/` flag) will be ignored. <br> e
 
 ### Generating a sample workout based on Personal Records: `:gen`
 
-Generates a sample workout suggestion based on existing personal records of the exercises, according to the difficulty level specified. Exercises are indicated by their index numbers shown in the displayed exercise list.
+Generates a sample workout suggestion based on existing personal records of the exercises, according to the difficulty level specified. Exercises are indicated either by their index numbers shown in the displayed exercise list or their exercise names.
 
-Format: `:gen <index> [, index]... l/<difficulty level>`
+<div markdown="block" class="alert alert-info">
+
+**:information_source: There are 2 formats supported for this command.**<br>
+
+</div>
+
+Format (1): `:gen INDEX [INDEX]... level/DIFFICULTY_LEVEL`
 
 ##### Parameter constraints:
 * The index must be a positive integer 1, 2, 3, ...
 * The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}
 
 ##### Examples:
-`:gen 1,2 l/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Squat and Deadlift
+`:gen 1,2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Squat and Deadlift
 
 ![GenerateCommandExample1](images/GenerateCommandExample1.png)
 
-Note that only one sample workout is generated for each unique exercise name. For example, `:gen 1,3 l/easy` will generate one sample workout for squat, as both index 1 and 3 in the displayed list are Squat exercises.
+Note that only one sample workout is generated for each unique exercise name. For example, `:gen 1,3 level/easy` will generate one sample workout for squat, as both index 1 and 3 in the displayed list are Squat exercises.
 
 ![GenerateCommandExample2](images/GenerateCommandExample2.png)
+
+Format (2): `:gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL`
+
+##### Parameter constraints:
+* Name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**
+* The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}
+
+##### Examples:
+`:gen n/Squat n/Deadlift level/easy` Generates a sample workout for exercises Squat and Deadlift
+
+![GenerateCommandExample1](images/GenerateCommandExample1.png)
+
+Note that only one sample workout is generated for each unique exercise name. For example, `:gen n/Squat n/Squat level/easy` will generate one sample workout for squat.
+
+![GenerateCommandExample2](images/GenerateCommandExample2.png)
+
+
+
+### Viewing help : `:help`
+
+Access the help menu, containing a brief summary of the commands supported. The help menu also provides a link to the
+user guide.
+
+Format: `:help`
+
 
 ### Exiting the program : `:wq`
 
@@ -251,37 +320,48 @@ Format: `:wq`
 
 ## FAQ
 
-**Q**: What is the use of the :list command? 
+**Q**: When should I use the `:list` command? 
 <br>
-**A**: The List command is used to make the Exercise List display all exercises after a Exercise List morphing command 
-such as Find or Range has been executed. 
+**A**: The `:list` command resets the display of the exercise list, displaying all the exercise entries in the system (in the order the entries were input in the system). This can be used after commands such as `:find` or `:range` are used to change the display list.
 
-**Q**: How do I change the way an exercise is stored and displayed?
+**Q**: Can I change the name of my uniquely registered exercise?
 <br>
-**A**: The way you format the exercise name when you first add it will be the way it is displayed in the system. After that,
-all exercises added that have the [same defined name](#Adding-and-Deleting-from-the-Exercise-Name-List) will be grouped under the same exercise and generate the same exercise card. 
-To change the way it is represented, you can find the exercise with the name, delete the entries and re-enter the exercises. 
+**A**: To change the way it is represented, you can find the exercise with the name, delete the entries and re-enter the exercises with your new name of choice. 
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: The way you format the exercise name when you first add it will be the way it is displayed in the system. After that, all exercises added that have the [same name](#adding-and-aeleting-from-the-exercise-name-list) will be categorised under the same exercise.**<br>
+
+</div>
 
 **Q**: Can I edit an exercise?
 <br>
 **A**: You can do so by deleting the entry and adding a new entry. 
+
+**Q**: Why is my `:filter` not showing any list even though I have input a valid exercise name?
+**A**: `:filter` works on the displayed list shown in the Exercise List Window so if your displayed list is empty, a valid `:filter` command will still display an empty list. Try executing the command `:list` to get the full displayed list before running `:filter` again.
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
 
-| Action              | Format                                           | Examples                               |
-|---------------------|--------------------------------------------------|----------------------------------------|
-| **Add exercise**    | :a n/<exercise> w/<weight(kg)> s/<sets> r/<reps> | :a n/Squat w/60 s/5 r/5                |
-| **Delete exercise** | :d <index>                                       | :d 3                                   |
-| **List exercises**  | :ls                                              | :ls                                    |
-| **Sort exercises**  | :sort                                            | :sort                                  |
-| **View range (1)**  | :range start/<start_date> end/<end_date>         | :range start/10/10/2022 end/15/10/2022 |
-| **View range (2)**  | :range last/<number_of_days>                     | :range last/3                          |
-| **Generate workout**| :gen <index> [, index]... l/<difficulty_level>   | :gen 1,2 l/easy                        |
-| **Help menu**       | :help                                            | :help                                  |
-| **Exit program**    | :wq                                              | :wq                                    |
+| Action                          | Format                                         | Examples                                |
+|---------------------------------|------------------------------------------------|-----------------------------------------|
+| **Add exercise**                | :add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]    | :add n/Deadlift w/60 s/1 r/1 d/27-10-22 |
+| **Delete exercise**             | :del INDEX                                     | :d 3                                    |
+| **List all exercises**          | :list                                          | :list                                   |
+| **Filter exercise(s)**          | :filter NAME [NAME]...                         | :filter Deadlift Squat                  |
+| **Clear all exercises**         | :clear                                         | :clear                                  |
+| **Sort exercises**              | :sort                                          | :sort                                   |
+| **View range (1)**              | :range start/START_DATE end/END_DATE           | :range start/25/10/2022 end/26/10/2022  |
+| **View range (2)**              | :range last/NUMBER_OF_DAYS                     | :range last/3                           |
+| **List Personal Record(s) (1)** | :pr n/NAME [n/NAME]...                         | :pr n/Deadlift n/Squat                  |
+| **List Personal Record(s) (2)** | :pr all/                                       | :pr all/                                |
+| **Generate workout (1)**        | :gen INDEX [INDEX]... level/DIFFICULTY_LEVEL   | :gen 1,2 level/easy                     |
+| **Generate workout (2)**        | :gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL | :gen n/Deadlift level/easy              |
+| **Help menu**                   | :help                                          | :help                                   |
+| **Exit program**                | :wq                                            | :wq                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -292,5 +372,5 @@ some weights
 * **Reps** : Number of times you perform a specific exercise
 * **Sets** : Number of cycles of reps that you complete
 * **Weight**: Total weight (include barbell if applicable, exclude body weight)
-* **Personal Record**: Heaviest weight recorded in the exercise tracker for a specific exercise
+* **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise
 
