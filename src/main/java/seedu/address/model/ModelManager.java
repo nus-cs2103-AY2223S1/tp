@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.person.PersonComparators.DEFAULT_COMPARATOR;
 
 import java.nio.file.Path;
 import java.util.Comparator;
@@ -39,7 +40,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        sortedPersons = new SortedList<>(filteredPersons);
+        sortedPersons = new SortedList<>(filteredPersons, DEFAULT_COMPARATOR);
 
         selectedPerson = new SimpleObjectProperty<>();
     }

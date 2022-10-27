@@ -7,7 +7,10 @@ import java.util.Optional;
  * Comparators for fields in person model.
  */
 public class PersonComparators {
+
     public static final Comparator<Person> NAME_COMPARATOR = (Comparator.comparing(Person::getName));
+
+    public static final Comparator<Person> DEFAULT_COMPARATOR = NAME_COMPARATOR;
 
     public static final Comparator<Person> ADDRESS_COMPARATOR = ((o1, o2) -> {
         if (o1.getAddress().isEmpty() || o2.getAddress().isEmpty()) {
