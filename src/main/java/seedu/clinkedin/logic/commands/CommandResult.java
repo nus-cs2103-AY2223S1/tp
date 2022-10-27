@@ -2,7 +2,15 @@ package seedu.clinkedin.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 
 /**
  * Represents the result of a command execution.
@@ -10,6 +18,8 @@ import java.util.Objects;
 public class CommandResult {
 
     private final String feedbackToUser;
+
+    private final Map<String, Map<String, Integer>> stats;
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
@@ -27,36 +37,84 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, false, false);
+        this(feedbackToUser, showHelp, exit, false, false, new HashMap<>());
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isExport) {
-        this(feedbackToUser, showHelp, exit, isExport, false);
+        this(feedbackToUser, showHelp, exit, isExport, false, new HashMap<>());
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isExport, boolean isImport) {
+        this(feedbackToUser, showHelp, exit, isExport, isImport, new HashMap<>());
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code stats}.
+     */
+    public CommandResult(String feedbackToUser, Map<String, Map<String, Integer>> stats) {
+        this(feedbackToUser, false, false, false, false, stats);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isExport, boolean isImport,
+                         Map<String, Map<String, Integer>> stats) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.isExport = isExport;
         this.isImport = isImport;
+        this.stats = stats;
     }
+
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+        this(feedbackToUser, false, false, false, false,
+                new HashMap<>());
+    }
+
+    public List<String> getStatsTitles() {
+        return new ArrayList<>(stats.keySet());
+    }
+
+    public List<ObservableList<PieChart.Data>> getPieChartStats() {
+        if (stats.isEmpty()) {
+            return null;
+        }
+
+        List<ObservableList<PieChart.Data>> datas = new ArrayList<>();
+
+        for (Map.Entry<String, Map<String, Integer>> entry : stats.entrySet()) {
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+            for (Map.Entry<String, Integer> entry2 : entry.getValue().entrySet()) {
+                pieChartData.add(new PieChart.Data(entry2.getKey(), entry2.getValue()));
+            }
+            datas.add(pieChartData);
+        }
+
+        return datas;
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public boolean isShowStats() {
+        return !stats.isEmpty();
+    }
+
+    public boolean isShowFeedback() {
+        return stats.isEmpty();
     }
 
     public boolean isShowHelp() {

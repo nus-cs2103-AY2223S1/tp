@@ -85,6 +85,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -214,7 +215,16 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            resultDisplay.clearCharts();
+
+            if (commandResult.isShowFeedback()) {
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            } else if (commandResult.isShowStats()) {
+                resultDisplay.setChartToUser(commandResult.getPieChartStats(), commandResult.getStatsTitles(),
+                        commandResult.getFeedbackToUser());
+            }
+
             personCountDisplay.setPersonCountMessage(logic.getFilteredPersonList(), logic.getAddressBook());
 
             if (commandResult.isShowHelp()) {
@@ -244,16 +254,26 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Executes the command and returns the result.
+     *
      * @param command The command to be executed.
      * @return The result of the command execution.
      * @throws CommandException If an error occurs during command execution.
-     * @throws ParseException If an error occurs during parsing.
+     * @throws ParseException   If an error occurs during parsing.
      */
     public CommandResult executeCommand(Command command) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(command);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            resultDisplay.clearCharts();
+
+            if (commandResult.isShowFeedback()) {
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            } else if (commandResult.isShowStats()) {
+                resultDisplay.setChartToUser(commandResult.getPieChartStats(), commandResult.getStatsTitles(),
+                        commandResult.getFeedbackToUser());
+            }
+
             personCountDisplay.setPersonCountMessage(logic.getFilteredPersonList(), logic.getAddressBook());
 
             if (commandResult.isShowHelp()) {
