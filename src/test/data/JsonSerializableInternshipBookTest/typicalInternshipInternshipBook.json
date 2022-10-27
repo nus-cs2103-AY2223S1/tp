@@ -9,7 +9,7 @@
     "position" : "Backend Intern",
     "website" : "https://www.amazon.jobs",
     "date" : "11-12-2022",
-    "applicationProcess" : "APPLY"
+    "applicationProcess" : "APPLIED"
   }, {
     "name" : "Bytedance",
     "phone" : "98765432",
@@ -29,7 +29,7 @@
     "position" : "backend engineer",
     "website" : "NA",
     "date" : "24-09-2022",
-    "applicationProcess" : "APPLY"
+    "applicationProcess" : "APPLIED"
   }, {
     "name" : "DSTA",
     "phone" : "87652533",
@@ -49,7 +49,7 @@
     "position" : "data engineer",
     "website" : "NA",
     "date" : "24-09-2022",
-    "applicationProcess" : "APPLY"
+    "applicationProcess" : "APPLIED"
   }, {
     "name" : "Fastly",
     "phone" : "9482427",
@@ -59,7 +59,7 @@
     "position" : "AI engineer",
     "website" : "NA",
     "date" : "24-09-2022",
-    "applicationProcess" : "APPLY"
+    "applicationProcess" : "APPLIED"
   }, {
     "name" : "Google",
     "phone" : "9482442",
@@ -69,6 +69,6 @@
     "position" : "Data analyst",
     "website" : "NA",
     "date" : "24-09-2022",
-    "applicationProcess" : "APPLY"
+    "applicationProcess" : "APPLIED"
   } ]
 }

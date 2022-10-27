@@ -58,7 +58,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE)
                 .orElse(LocalDate.now().format(Date.DEFAULT_FORMATTER)));
         ApplicationProcess applicationProcess = ParserUtil.parseApplicationProcess(
-                argMultimap.getValue(PREFIX_APPLICATION_PROCESS).orElse("APPLY"));
+                argMultimap.getValue(PREFIX_APPLICATION_PROCESS).orElse("APPLIED"));
         Internship internship = new Internship(name, phone, email, remark, position,
                 applicationProcess, date, website, tagList);
 

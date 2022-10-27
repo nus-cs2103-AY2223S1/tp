@@ -8,5 +8,5 @@ public enum FindableCategory {
     APPLICATION_PROCESS,
     POSITION,
     DATE,
-    TAGS
+    TAG
 }

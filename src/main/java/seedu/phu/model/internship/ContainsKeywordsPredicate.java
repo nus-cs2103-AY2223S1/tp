@@ -45,7 +45,7 @@ public class ContainsKeywordsPredicate implements Predicate<Internship> {
         case APPLICATION_PROCESS:
             return testApplicationProcess(internship.getApplicationProcess());
 
-        case TAGS:
+        case TAG:
             return testTags(internship.getTags());
 
         default:

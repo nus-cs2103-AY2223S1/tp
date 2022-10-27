@@ -9,7 +9,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is adapted from **[AddressBook 3(AB3)](https://github.com/se-edu/addressbook-level3)**
+* Undo and Redo commands are adapted and modified from  **[AddressBook 4(AB4)](https://github.com/se-edu/addressbook-level4)**
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -73,7 +76,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `InternshipListPanel`, `ReminderBarFooter`, `ViewCommandPanel`, `StackedBarPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W17-4/tp/tree/master/src/main/java/seedu/phu/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -153,6 +156,40 @@ Classes used by multiple components are in the `seedu.phu.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add feature
+
+#### Proposed Implementation
+The implementation of the add command involves creating a new `Internship` objects and storing them in the 
+InternshipBook.json using the `JsonAdaptedInternship` class.
+
+The add command has the following fields:
+- `n/` prefix followed by the name of the company
+- `p/` prefix followed by the name of the position
+- `pr/` prefix followed by the application status (Optional)
+- `d/` prefix followed by important dates to be taken note of (Optional)
+- `ph/` prefix followed by the phone number of the HR (Optional)
+- `e/` prefix followed by the email of the HR (Optional)
+- `web/` prefix followed by the website link for more internship details (Optional)
+- `r/` prefix followed by any additional remarks (Optional)
+- `t/` prefix followed by relevant tags (Optional)
+
+The system will validate the parameters supplied by the user. When input validation fails, error message specifying the
+first identified error will be shown to the user.
+
+The following sequence diagram shows how the add command works.
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+#### Design Considerations
+**Whether an internship application can be added without all attributes**:
+* **Alternative 1 (current choice)**: Allow for optional parameters with default values
+    * Pros: Enhances users' convenience
+    * Cons: Modifications of `equals` method for optional parameters required
+  
+* **Alternative 2** All parameters must be filled up
+    * Pros: Easier to implement
+    * Cons: Lengthy command
 
 ### List feature
 
@@ -329,10 +366,102 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: Quite hard to implement as we must ensure that the implementation of each individual command are correct
-  
+
+
+### View feature
+
+#### Proposed Implementation
+The proposed view mechanism is implemented mainly using the help of `ExactMatchPredicate`.
+It implements `Predicate<Internship>` where the test method looks for the exact match of the internship requested.
+
+The predicate is used in the Model interface on the `updateViewItem` method
+
+The following sequence diagram shows how the view command works.
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+#### Design Considerations
+**How to view the Internship**:
+* Use a class for the predicate and `javafx.collections.transformation.FilteredList` (current)
+    * Pros: Simple, Better cohesion, more maintainability
+    * Cons: More code to write
+
+**How to display the internship in view panel**:
+* **Alternative 1 (current choice)**: Fully display with prefix denoting category
+    * Pros: More descriptive and easier to understand
+    * Cons: Makes UI seem wordy
+
+* **Alternative 2** Only display details with no category
+    * Pros: Looks cleaner
+    * Cons: Difficult to understand for new users
+
+**Parameters for view command**:
+* **Alternative 1 (current choice)**: `INDEX` parameter only takes in one index
+    * Pros: Easier to implement
+    * Cons: User will have to use the `view` command multiple times to view multiple internships
+
+* **Alternative 2** `INDEX` parameter can have multiple indexes
+    * Pros: User can view multiple details at once
+    * Cons: Makes `view` UI panel large, difficult to implement
+
+### Copy feature
+
+#### Proposed Implementation
+The proposed copy mechanism is implemented mainly using the help of `CopyCommandParser`
+It implements `Predicate<Internship>` where the test method looks for the exact match of the internship requested.
+
+The following sequence diagram shows how the copy command works.
+
+![CopySequenceDiagram](images/CopySequenceDiagram.png)
+
+#### Design Considerations
+**How to copy the Internship**:
+* Use `java.awt` library `Toolkit` and `StringSelection` classes (current)
+    * Pros: Simple, cleaner code
+    * Cons: Limited extensibility
+
+**How to copy the internship details**:
+* **Alternative 1 (current choice)**: Copy to clipboard
+    * Pros: Easy to use
+    * Cons: Unable to choose the exact selection to copy
+
+* **Alternative 2** Make text highlightable to manually copy
+    * Pros: Can choose the exact selection to copy
+    * Cons: Slow to use
+
+**Parameters for copy command**:
+* `INDEX` parameter only takes in one index
+    * Pros: Easier to implement, makes more sense
+
+### Bar Chart
+
+#### Implementation
+The Bar Chart is implemented to using a mix of the MVC Pattern.
+It is mainly facilitated by the `StackedBarPanel` class which acts as the controller
+on the MCV design pattern and the `Statistic` class which provides the calculation
+logic on the width of each section of the Bar Chart.
+
+The following sequence diagram shows how the Bar Chart works when a change is triggered.
+
+![Barchart Sequence Diagram](images/BarChartSequenceDiagram.png)
+
+#### Design Considerations
+**Data to be processed**:
+* **Alternative 1 (current choice)**: Only process the displated data
+  * Pros: More flexible, easier to implement
+  * Cons: Might confuse users initially
+
+* **Alternative 2**: Process all the data including the one not currently displayed
+  * Pros: More intuitive for users
+  * Cons: Less flexible, harder to implement 
+
+**How to update the data**:
+* Use the Observer Design Pattern
+  * Pros: Inbuilt support for the Observer pattern, prevent coupling 
+
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+_{To be updated}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -422,6 +551,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. System shows an error message.
 
     Use case resumes at step 1.
+<br>
+<br>
 
 **Use case: List internship(s)**
 
@@ -444,7 +575,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. System shows an error message.
 
   Use case ends.
-* 
+<br>
+<br>
+
 **Use case: Delete internship(s)**
 
 **MSS**
@@ -460,6 +593,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PleaseHireUs shows an error message.
 
   Use case ends.
+<br>
+<br>
 
 **Use case: View internship(s)**
 
@@ -473,6 +608,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given index is invalid.
 
     * 1a1. PleaseHireUs shows an error message.
+<br>
+<br>
 
 **Use case: Filter internship(s)**
 
@@ -484,7 +621,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 1a. No keywords is given
+* 1a. No keywords are given
     * 1a1. PleaseHireUs shows an error message.
     
   Use case ends.
@@ -502,6 +639,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty. 
 
     Use case ends.
+<br>
+<br>
 
 **Use case: Update internship**
 
@@ -535,6 +674,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1d1. PleaseHireUs shows an error message.
   
   Use case ends.
+<br>
+<br>
 
 **Use case: View help message**
 
@@ -544,6 +685,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  System displays command summary and link to user guide.
 
     Use case ends.
+<br>
+<br>
 
 **Use case: Undo command**
 
@@ -559,6 +702,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PleaseHireUs shows an error message.
 
   Use case ends.
+<br>
+<br>
 
 **Use case: Redo command**
 
@@ -574,6 +719,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PleaseHireUs shows an error message.
 
   Use case ends.
+<br>
+<br>
 
 *{More to be added}*
 
@@ -622,15 +769,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding an internship
 
-   1. Test case: `dd n/Google p/Backend Intern pr/APPLY d/11-12-2022 ph/98765432 e/johnd@example.com web/https://careers.google.com/jobs r/offer for Y2 summer break t/high t/java` <br>
+   1. Test case: `add n/Google p/Backend Intern pr/APPLIED d/11-12-2022 ph/98765432 e/johnd@example.com web/https://careers.google.com/jobs r/offer for Y2 summer break t/high t/java` <br>
       Expected: An internship application is added to PHU internship list, with company name `Google`, position `Backend Intern`,
-      date being `11 Dec 2022`, arnd application process `OFFER`, phone `98765432`, email `johnd@example.com`, 
+      date being `11 Dec 2022`, application process `OFFER`, phone `98765432`, email `johnd@example.com`, 
       website `https://careers.google.com/jobs`, remark `offer for Y2 summer break`, and 2 tags: `high` and `java`. 
       A success message is shown with the details of the added internship. The entire application list is displayed.
    
    2. Test case: `add n/Google p/Backend Intern`<br>
       Expected: An internship application is added to PHU internship list, with company name `Google`, position `Backend Intern`,
-      date being today's date (by default), arnd application process `APPLY` (by default), phone `NA` (by default),
+      date being today's date (by default), application process `APPLIED` (by default), phone `NA` (by default),
       email `NA` (by default), website `NA` (by default), and empty remark. A success message is shown with the details
       of the added internship. The entire application list is displayed.
 
@@ -668,7 +815,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Shows the full list of internships sorted by the company name in lexicographically order
    
     4. Test case: `list c/d true`<br>
-      Expected: Shows the full list of internships sorted by the company name in descending order
+      Expected: Shows the full list of internships sorted by the date. Internships are sorted from the latest to earliest date
 
 ### Deleting internship(s)
 
@@ -717,8 +864,8 @@ testers are expected to do more *exploratory* testing.
     8. Test case: `find c/d 2022-02-02`
         Expected: The application throws an error message since an invalid date format is given.
    
-    9. Test case: `find c/pr APPLY`
-        Expected: The application lists all application process in stage `APPLY`
+    9. Test case: `find c/pr APPLIED`
+        Expected: The application lists all application process in stage `APPLIED`
    
     10. Test case: `find c/pr Unknown_Process`
         Expected: The applications throws an error message.
@@ -734,7 +881,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `edit 1` <br>
        Expected: No internship is edited. Error details shown in the status message.
     
-    4. Test case: `edit 1 cuk/high salary`
+    4. Test case: `edit 1 cuk/high salary`<br>
        Expected: No internship is edited. Error details shown in the status message.
    
 2. Updating internship while only the selected internships are being shown
@@ -807,7 +954,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `redo`<br>
        Expected: No command is redone. Error details shown in the status message.
 
-### Saving data
+### Saving data [To be updated]
 
 1. Dealing with missing/corrupted data files
 

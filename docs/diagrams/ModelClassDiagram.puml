@@ -13,17 +13,25 @@ Class VersionedInternshipBook
 Class ModelManager
 Class UserPrefs
 
-Class UniqueInternshipList
-Class ApplicationProcess
+Package "Internship" <<Rectangle>> {
+Class "Internship" as Internship
+Class Name
+Class Position
+Class "ApplicationProcess" as ApplicationProcess
 Class Date
 Class Email
-Class Internship
-Class Name
 Class Phone
-Class Position
 Class Remark
-Class Tag
 Class Website
+Class UniqueInternshipList
+Class "<<enumeration>>\nApplicationProcessState" as ApplicationProcessState
+'Class "{abstract}\nComparableModel" as ComparableModel
+'Class "<<enumeration>>\nComparableCategory" as ComparableCategory
+}
+
+Package "Tag" <<Rectangle>> {
+Class "Tag" as Tag
+}
 
 }
 
@@ -53,5 +61,13 @@ Internship *--> Remark
 Internship *--> Website
 Internship *--> "*" Tag
 
+'ComparableCategory -- Internship
+
+ApplicationProcess --> ApplicationProcessState
+
+'ApplicationProcess --|> ComparableModel
+'Date --|> ComparableModel
+'Name --|> ComparableModel
+'Position --|> ComparableModel
 
 @enduml

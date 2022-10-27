@@ -11,10 +11,12 @@ import javafx.collections.ObservableList;
  * A class representing the logic for the statistic bar.
  */
 public class Statistic {
+    private static final ApplicationProcess.ApplicationProcessState[] states =
+            ApplicationProcess.ApplicationProcessState.values();
     private ObservableList<Internship> internships;
 
     /**
-     * Constructs a Statistinc instance representing the
+     * Constructs a Statistic instance representing the
      * list of internships.
      *
      * @param internships an ObservableList.
@@ -35,8 +37,6 @@ public class Statistic {
         int totalNum = internships.size();
 
         assert totalNum > 0;
-
-        ApplicationProcess.ApplicationProcessState[] states = ApplicationProcess.ApplicationProcessState.values();
 
         for (ApplicationProcess.ApplicationProcessState s : states) {
             double width = (double) statesNum.get(s) / totalNum * 100;

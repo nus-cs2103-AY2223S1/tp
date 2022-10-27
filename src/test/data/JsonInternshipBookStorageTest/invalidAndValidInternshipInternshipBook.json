@@ -7,7 +7,7 @@
     "position" : "Backend Intern",
     "website" : "https://www.amazon.jobs",
     "date" : "11-12-2022",
-    "applicationProcess" : "APPLY"
+    "applicationProcess" : "APPLIED"
   }, {
     "name" : "Internship With Invalid Phone Field",
     "phone" : "948asdf2424",
@@ -16,6 +16,6 @@
     "position" : "backend engineer",
     "website" : "NA",
     "date" : "24-09-2022",
-    "applicationProcess" : "APPLY"
+    "applicationProcess" : "APPLIED"
   } ]
 }

@@ -78,7 +78,48 @@ This guides aims to:
 **Highlights** <br>
 `commands` or `PARAMETERS`
 
+**Keyboard Inputs**<br>
+
+<kbd>enter</kbd>   <kbd>&uarr;</kbd>   <kbd>&darr;</kbd>
+
 ## Navigating the GUI
+![Ui](images/navigate_ui.png)
+
+**Command Box** <br>
+Enter your command here.
+
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** <br>
+You can use <kbd>&uarr;</kbd> or <kbd>&darr;</kbd> to navigate through your command history
+</div>
+
+**Result Display** <br>
+Returns a feedback message after a command is executed.
+
+**Main Panel** <br>
+Displays the list of internships.
+
+**View Panel** <br>
+The panel displays the internship being viewed in greater detail. 
+
+**Statistic Panel** <br>
+![Bar Chart](images/BarChart.png)
+
+The Bar Chart (located in the bottom right corner of the application) displays the number of
+applications on every stage of the possible application process **which are currently listed by
+the application**.
+
+For example, If you do `find c/n Shopee` before viewing the bar chart, the bar chart will only shows
+the data for all internships whose company name contains the word `Shopee`.
+
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** <br>
+- Use tags to help you differentiate your internships eg. `Winter` and `Summer` <br>
+- Do `find c/t Summer` for an overview of your summer internship application
+</div>
+
+**Reminder Panel**<br>
+The reminder panel displays the number of interviews, assessments or pending offers due in the next 7 days.
 
 ## Command Format
 <div markdown="block" class="alert alert-info">
@@ -108,12 +149,17 @@ This guides aims to:
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** <br>
+- Press <kbd>esc</kbd> to close the Help window <br>
+- Press <kbd>C</kbd> to copy the User Guide url into the clipboard when the Help window is opened
+</div>
 
 ### Adding an internship: `add`
 
@@ -121,25 +167,32 @@ Adds an internship into the list.
 
 Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​`
 
-* Possible options for `APPLICATION_PROCESS` : `APPLY`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED` 
-* Case-insensitive: `Apply`, `APPLY`, and `apply` are all acceptable inputs.
-* `APPLICATION_PROCESS` will be set to `APPLY` by default.
+* Possible options for `APPLICATION_PROCESS` : `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED` 
+* Case-insensitive: `Applied`, `APPLIED`, and `applied` are all acceptable inputs.
+* `APPLICATION_PROCESS` will be set to `APPLIED` by default.
 * `DATE` should be in dd-mm-yyyy format.
 * `DATE` will be set to today’s date by default.
 * `PHONE` will be set to "NA" by default.
 * `EMAIL` will be set to "NA" by default.
-* `WEBSITE` will be set to “NA” by default.
+* `WEBSITE` will be set to “NA” by default. 
+* `WEBSITE` must start with `http://` or `https://`
 * `REMARK` will be empty by default.
+* `TAG` will be empty by default. All tags must be alphanumeric.
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLY d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
+* `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLIED d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
 * `add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`
 * `add n/Tiktok p/backend engineer`
-* `add n/Shopee p/frontend engineer pr/INTERVIEW d/14-09-2022`
+
+![help message](images/BeforeAddCommand.png)
+_Before executing command:  `add n/Gojek p/Mobile Intern`_
+
+![help message](images/AfterAddCommand.png)
+_After executing command: `add n/Gojek p/Mobile Intern`_
 
 ### Listing all internships : `list`
 
@@ -150,15 +203,14 @@ Format: `list [c/CATEGORY [DESCENDING]]`
 * List the internships 
 * Internships can be sorted by category and in ascending or descending order
 * The `CATEGORY` is optional. By default, without stating the category, `list` will display all internships in no particular order
-  * Possible options for `CATEGORY` : `company_name`,`n`, `position`,`p`, `application_process`,`pr`, `date`,`d` (case-insensitive)
-  * Case-insensitive: `company_name`, `Company_Name`, and `N` are all acceptable inputs.
-* The `DESCENDING` tag is optional. It can take on the value `true` or `false` (case-insensitive). 
-  * The DESCENDING tag is set to `false` by default if not stated. List of internships will be shown in ascending order.
-  * The `DESCENDING` tag can only be set to `true` if the `CATEGORY` is stated
+  * Possible options for `CATEGORY` : `company_name`, `position`, `application_process`, `date` (case-insensitive)
+  * Case-insensitive: `company_name`, `Company_Name` are all acceptable inputs.
+* The `DESCENDING` parameter is optional. It can take on the value `true` or `false` (case-insensitive). 
+  * The `DESCENDING` parameter is set to `false` by default if not stated. List of internships will be shown in ascending order.
+  * The `DESCENDING` parameter can only be set to `true` if the `CATEGORY` is stated
   * If `DESCENDING` is set to `true`. List of internships will be displayed in descending order
 
 Examples:
-* `list c/n true`
 * `list c/date true`
 * `list c/position false`
 
@@ -166,26 +218,45 @@ Examples:
 **:information_source: Info:** `DESCENDING` parameter will always default to `false` if the input is misspelt
 </div>
 
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** Shortcuts for `CATEGORY`:<br>
+- `company_name` --> `c`<br>
+- `position`--> `p`<br>
+- `application_process` --> `pr`<br>
+- `date` --> `d`<br>
+
+`list c/company_name` is equivalent to `list c/n`
+</div>
+
 ### Locating internships by: `find`
 
-Find internships whose data in the target category matched the given keyword/s.
+Find internships whose data in the target category matches the given keyword/s.
 
 Format: `find [c/CATEGORY] KEYWORDS…`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* The `CATEGORY` tag refers to company_name (or n), position (or p), application_process (or pr), tags (or t), date (or d) (case-insensitive)
-* If not specified, the `CATEGORY` tag will be set to company_name as a default
+* Possible options for `CATEGORY` : `company_name`, `position`, `application_process`, `date`, `tag` (case-insensitive)
+* If not specified, the `CATEGORY` parameter will be set to `company_name` as the default category.
 * Only the target category is searched.
 * A `KEYWORD` will match any string if the `KEYWORD` is contained in that string e.g. `Han` will match both `Reyhan` and `Handy`
-* Internships whose target category match at least one keyword will be returned (i.e. OR search). e.g. `c/company_name Hans Bo` can return internships with company name of `Hans Gruber` or `Bo Yang`
+* Internships whose target category matches at least one keyword will be returned (i.e. OR search). e.g. `c/company_name Hans Bo` can return internships with company name of `Hans Gruber` or `Bo Yang`
 * For the find by date category, all `KEYWORD` must be a valid date in `dd-mm-yyyy` format
 
 Examples:
-* `find c/p engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer
+* `find c/position engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer
 * `find sea shop` returns a list of internships with company name of Sea Labs, Shopee, and Shopback
 
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** Shortcuts for `CATEGORY`:<br>
+- `company_name` --> `c`<br>
+- `position`--> `p`<br>
+- `application_process` --> `pr`<br>
+- `date` --> `d`<br>
+- `tag` --> `t`<br>
 
+`find c/position engineer` is equivalent to `find c/p engineer`
+</div>
 
 ### Deleting internship(s) : `delete`
 
@@ -195,7 +266,7 @@ Format: `delete INDEX...`
 
 * Deletes the internship at the specified `INDEX`.
 * The index refers to the index number shown in the displayed internship list.
-* The list use 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
+* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
 * Can add multiple `INDEX` to delete multiple internships.
 
 Examples:
@@ -209,7 +280,8 @@ View details of list item at index
 Format: `view INDEX`
 
 * Only the index is searched.
-* The list use 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
+* Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
+* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
 * More details about the company at the index will be displayed. 
 
 Examples:
@@ -219,7 +291,7 @@ Examples:
 ### Editing internship : `edit`
 Edit details of an internship
 
-Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...`
+Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK] [t/TAG]…​`
 
 * Edit the details of internship at the specified `INDEX`.
 * Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
@@ -228,12 +300,29 @@ Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
 * `find hrt` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
 
+### Copy details of internship : `copy`
+
+Copies all details of internship at index into clipboard
+
+Format: `copy INDEX`
+
+* Only the internship at the specified `INDEX` is copied.
+* Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
+* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
+* Full details of the internship will be copied into system clipboard.
 
 ### Undo previous command : `undo`
 
 Undo the most recent command that modified the internship book.
 
 Format: `undo`
+
+**Information Box**
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:** **NOTE:** <br>
+You can only undo `add`,`clear`,`delete`,`edit` commands
+
+</div>
 
 ### Redo previous undone command : `redo`
 
@@ -255,19 +344,17 @@ Format: `exit`
 
 ### Saving the data
 
-PleaseHireUs data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+PleaseHireUs data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-PleaseHireUs data are saved as a JSON file `[JAR file location]/data/internshipbook.json`. Advanced users are welcome to update data directly by editing that data file.
+PleaseHireUs data is saved as a JSON file `[JAR file location]/data/internshipbook.json`. Advanced users are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, PleaseHireUs will discard all data and start with an empty data file at the next run.
 </div>
 
-
-
-### Archiving data files `[coming in v1.3]`
+### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -282,21 +369,61 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`
-**Clear** | `clear`
-**Delete** | `delete INDEX...`<br> e.g., `delete 1 3`
-**View** | `view INDEX`<br> e.g., `view 1`
-**Edit** | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022`
-**Find** | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`
-**List** | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`
-**Help** | `help`
-**Undo** | `undo`
-**Redo** | `redo`
+| Action     | Undo               | Format, Examples                                                                                                                                                                                               |
+|------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                        |
+| **Clear**  | :heavy_check_mark: | `clear`                                                                                                                                                                                                        |
+| **Delete** | :heavy_check_mark: | `delete INDEX...`<br> e.g., `delete 1 3`                                                                                                                                                                       |
+| **View**   | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                |
+| **Edit**   | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
+| **Find**   | :x:                | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`                                                                                                                                                  |
+| **List**   | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g,  `list c/d true`, `list c/date`                                                                                                                                     |
+| **Help**   | :x:                | `help`                                                                                                                                                                                                         |
+| **Copy**   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                               |
+| **Undo**   | :x:                | `undo`                                                                                                                                                                                                         |
+| **Redo**   | :heavy_check_mark: | `redo`                                                                                                                                                                                                         |
 
+**Information Box**
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:** Valid inputs for `CATEGORY` parameter in `list` and `find` <br>
+
+Command | Valid Categories (case-insensitive)
+--------| -----
+**`list`** | `COMPANY_NAME` `POSITION` `APPLICATION_PROCESS` `DATE`
+**`find`** | `COMPANY_NAME` `POSITION` `APPLICATION_PROCESS` `DATE` `TAG`
+
+</div>
+
+
+
+## Prefix Summary
+
+Prefix | Symbolize
+--------| -----
+**n/** | Company Name
+**p/** | Position
+**pr/** | Application Process
+**d/** | Date
+**web/** | Website
+**ph/** | Phone Number
+**e/** | Email
+**r/** | Remark
+**t/** | Tags
+**c/** | Category
+
+## Glossary
+
+| Term                           | Description                                                                                                                                        |
+|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Graphical User Interface (GUI) | GUI allows user to interact with an application through graphics such as icons, menu, etc.                                                         |
+| Command Line Interface (CLI)   | CLI allows user to use text as commands to be executed by an application.                                                                          |
+| Command                        | Instruction typed by the user for PHU to execute.                                                                                                  |
+| Parameter                      | A component of a command for the user to input information. For PHU context, this refers to the internship application details.                    |
+| Prefix                         | An abbreviation for the name of the parameter. Prefix should be entered before the actual parameter in a command and always ends with a slash (/). |
+| Alphanumeric                   | Characters that are either a number or a letter.                                                                                                   |
 
 ## Acknowledgements
 * This project is adapted from **[AddressBook 3(AB3)](https://github.com/se-edu/addressbook-level3)**
+* Undo and Redo commands are adapted and modified from  **[AddressBook 4(AB4)](https://github.com/se-edu/addressbook-level4)**
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 * The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)

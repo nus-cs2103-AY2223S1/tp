@@ -134,7 +134,7 @@ public class AddCommandParserTest {
                 new AddCommand(expectedInternship));
 
         // no application process
-        Internship expectedInternship1 = new InternshipBuilder(APPLE).withApplicationProcess("apply").build();
+        Internship expectedInternship1 = new InternshipBuilder(APPLE).withApplicationProcess("applied").build();
         assertParseSuccess(parser, NAME_DESC_APPLE + PHONE_DESC_APPLE + EMAIL_DESC_APPLE + REMARK_DESC_APPLE
                         + POSITION_DESC_APPLE + DATE_DESC_APPLE + WEBSITE_DESC_APPLE + TAG_DESC_STOCK,
                 new AddCommand(expectedInternship1));

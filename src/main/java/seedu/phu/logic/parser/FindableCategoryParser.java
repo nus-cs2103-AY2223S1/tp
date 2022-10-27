@@ -10,7 +10,7 @@ public class FindableCategoryParser {
 
     public static final String EXCEPTION_MESSAGE = "Category can only be one of the following:\n"
             + "company_name (or n), position (or p), "
-            + "application_process(or pr), tags (or t), date (or d)";
+            + "application_process(or pr), tag (or t), date (or d)";
 
     /**
      * Parses the string to a FindableCategory instance.
@@ -34,9 +34,9 @@ public class FindableCategoryParser {
         case "date":
         case "d":
             return FindableCategory.DATE;
-        case "tags":
+        case "tag":
         case "t":
-            return FindableCategory.TAGS;
+            return FindableCategory.TAG;
         default:
             throw new InvalidCategoryException(EXCEPTION_MESSAGE);
         }

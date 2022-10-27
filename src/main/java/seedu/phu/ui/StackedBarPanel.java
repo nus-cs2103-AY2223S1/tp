@@ -21,6 +21,8 @@ import seedu.phu.model.internship.Statistic;
 public class StackedBarPanel extends UiPart<Node> {
     private static final String NO_DATA_MESSAGE = "No Data Found";
     private static final String FXML = "StackedBarPanel.fxml";
+    private static final ApplicationProcess.ApplicationProcessState[] states =
+            ApplicationProcess.ApplicationProcessState.values();
     private final ObservableList<Internship> internships;
     private final Statistic statistic;
     private final HashMap<ApplicationProcess.ApplicationProcessState, ColumnConstraints> constraints;
@@ -88,7 +90,7 @@ public class StackedBarPanel extends UiPart<Node> {
         //initialize constraints
         constraints.put(ApplicationProcess.ApplicationProcessState.ACCEPTED, acceptedConstraint);
         constraints.put(ApplicationProcess.ApplicationProcessState.ASSESSMENT, assessmentConstraint);
-        constraints.put(ApplicationProcess.ApplicationProcessState.APPLY, appliedConstraint);
+        constraints.put(ApplicationProcess.ApplicationProcessState.APPLIED, appliedConstraint);
         constraints.put(ApplicationProcess.ApplicationProcessState.REJECTED, rejectedConstraint);
         constraints.put(ApplicationProcess.ApplicationProcessState.INTERVIEW, interviewConstraint);
         constraints.put(ApplicationProcess.ApplicationProcessState.OFFER, offerConstraint);
@@ -96,7 +98,7 @@ public class StackedBarPanel extends UiPart<Node> {
         //initialize label
         labels.put(ApplicationProcess.ApplicationProcessState.ACCEPTED, acceptedLabel);
         labels.put(ApplicationProcess.ApplicationProcessState.ASSESSMENT, assessmentLabel);
-        labels.put(ApplicationProcess.ApplicationProcessState.APPLY, appliedLabel);
+        labels.put(ApplicationProcess.ApplicationProcessState.APPLIED, appliedLabel);
         labels.put(ApplicationProcess.ApplicationProcessState.REJECTED, rejectedLabel);
         labels.put(ApplicationProcess.ApplicationProcessState.INTERVIEW, interviewLabel);
         labels.put(ApplicationProcess.ApplicationProcessState.OFFER, offerLabel);
@@ -122,8 +124,6 @@ public class StackedBarPanel extends UiPart<Node> {
     private void updateWidth() {
         Map<ApplicationProcess.ApplicationProcessState, Double> width = statistic.getWidth();
 
-        ApplicationProcess.ApplicationProcessState[] states = ApplicationProcess.ApplicationProcessState.values();
-
         for (ApplicationProcess.ApplicationProcessState s : states) {
             constraints.get(s).setPercentWidth(width.get(s));
         }
@@ -133,8 +133,6 @@ public class StackedBarPanel extends UiPart<Node> {
     }
 
     private void handleNoData() {
-        ApplicationProcess.ApplicationProcessState[] states = ApplicationProcess.ApplicationProcessState.values();
-
         for (ApplicationProcess.ApplicationProcessState s : states) {
             constraints.get(s).setPercentWidth(0);
             labels.get(s).setText("");
@@ -147,8 +145,6 @@ public class StackedBarPanel extends UiPart<Node> {
 
     private void updateText() {
         Map<ApplicationProcess.ApplicationProcessState, Integer> num = statistic.getGroupedData();
-
-        ApplicationProcess.ApplicationProcessState[] states = ApplicationProcess.ApplicationProcessState.values();
 
         for (ApplicationProcess.ApplicationProcessState s : states) {
             int amount = num.get(s);

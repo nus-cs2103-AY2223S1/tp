@@ -23,7 +23,7 @@ create FindParser
 AddressBookParser -> FindParser
 activate FindParser
 
-FindParser -> AddressBookParser
+FindParser --> AddressBookParser
 deactivate FindParser
 
 AddressBookParser -> FindParser : parse("find c/n Shop")
@@ -32,24 +32,24 @@ activate FindParser
 FindParser -> CategoryParser : parse("n")
 activate CategoryParser
 
-CategoryParser -> FindParser
+CategoryParser --> FindParser
 deactivate CategoryParser
 
 create Predicate
 FindParser -> Predicate
 activate Predicate
 
-Predicate -> FindParser : p
+Predicate --> FindParser : p
 deactivate Predicate
 
 create FindCommand
 FindParser -> FindCommand
 activate FindCommand
 
-FindCommand -> FindParser
+FindCommand --> FindParser
 deactivate FindCommand
 
-FindParser -> AddressBookParser : f
+FindParser --> AddressBookParser : f
 deactivate FindParser
 
 AddressBookParser --> LogicManager : f

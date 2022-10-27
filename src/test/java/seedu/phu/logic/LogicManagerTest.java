@@ -85,7 +85,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_APPLE + PHONE_DESC_APPLE + EMAIL_DESC_APPLE
                 + REMARK_DESC_APPLE + POSITION_DESC_APPLE;
-        Internship expectedInternship = new InternshipBuilder(APPLE).withTags().withApplicationProcess("apply")
+        Internship expectedInternship = new InternshipBuilder(APPLE).withTags().withApplicationProcess("applied")
                 .withDate(LocalDate.now().format(Date.DEFAULT_FORMATTER)).withWebsite("NA").build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addInternship(expectedInternship);
