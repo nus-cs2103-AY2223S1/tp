@@ -16,6 +16,8 @@ public class SortTaskCommand extends Command {
             + COMMAND_WORD + " " + PREFIX_CRITERIA + "CRITERIA";
     public static final String TASK_SORTED_SUCCESSFULLY =
             "Task list has been successfully sorted";
+    public static final String NO_TASK_TO_SORT =
+            "There are no tasks in the task list to sort!";
     private final Criteria criteria;
 
     /**
@@ -33,6 +35,9 @@ public class SortTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.sortTaskList(criteria);
+        if (model.getFilteredTaskList().size() == 0) {
+            throw new CommandException(NO_TASK_TO_SORT);
+        }
         return new CommandResult(TASK_SORTED_SUCCESSFULLY);
     }
 }
