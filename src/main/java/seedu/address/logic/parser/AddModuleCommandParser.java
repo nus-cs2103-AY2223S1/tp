@@ -33,7 +33,7 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME,
                         PREFIX_MODULE_CODE, PREFIX_MODULE_DESCRIPTION, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_MODULE_DESCRIPTION, PREFIX_TAG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_MODULE_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
         }
