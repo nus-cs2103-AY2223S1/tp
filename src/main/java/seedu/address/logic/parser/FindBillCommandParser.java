@@ -104,13 +104,14 @@ public class FindBillCommandParser implements Parser<FindBillCommand> {
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             checkNumberOfPrefixes(PREFIX_AMOUNT, argMultimap);
 
-            String trimmedArgs = ParserUtil.parseAmount(argMultimap
-                    .getValue(PREFIX_AMOUNT).get()).toString().trim();
+            String trimmedArgs = argMultimap.getValue(PREFIX_AMOUNT).get().trim();
 
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBillCommand.MESSAGE_USAGE));
             }
+
+            ParserUtil.parseAmount(trimmedArgs);
 
             this.amountPredicate = (amount -> amount.toString().contains(trimmedArgs));
         }
