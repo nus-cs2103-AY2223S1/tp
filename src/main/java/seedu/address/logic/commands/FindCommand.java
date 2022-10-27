@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.IncomeContainsKeywordsPredicate;
+import seedu.address.model.person.MonthlyContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NormalTagContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -66,6 +67,9 @@ public class FindCommand extends Command {
     }
 
     public FindCommand(IncomeContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
+    }
+    public FindCommand(MonthlyContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

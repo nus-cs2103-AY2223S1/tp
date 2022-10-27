@@ -23,10 +23,10 @@ public class SortByMonthly implements Comparator<Person> {
     public int compare(Person p1, Person p2) {
 
         if (this.order.equals("desc")) {
-            return p2.getMonthly().convertMonthlyToInt() - p1.getMonthly().convertMonthlyToInt();
+            return (int) (p2.getMonthly().convertMonthlyToLong() - p1.getMonthly().convertMonthlyToLong());
         }
 
-        return p1.getMonthly().convertMonthlyToInt() - p2.getMonthly().convertMonthlyToInt();
+        return (int) (p1.getMonthly().convertMonthlyToLong() - p2.getMonthly().convertMonthlyToLong());
     }
 
     @Override
