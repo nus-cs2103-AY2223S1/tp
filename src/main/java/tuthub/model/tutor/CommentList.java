@@ -64,4 +64,16 @@ public class CommentList {
         }
         return result.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CommentList // instanceof handles nulls
+                && comments.equals(((CommentList) other).comments)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return comments.hashCode();
+    }
 }
