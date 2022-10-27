@@ -153,7 +153,7 @@ Examples:
 *  `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
    `91234567` and `johndoe@example.com` respectively.
 *  `editPerson 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
-*  `editPerson 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`,
+*  `editPerson 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`, 
 edits gender to be `Female` and edits date of birth to be `3.4.1998`.
 
 ### Locating persons by name: `find`
@@ -288,6 +288,19 @@ Example:
 * `untagEvent 1 p/2` untags the 2nd person in the contact list from the 1st event in the event list
 * `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person in the contact list from the 2nd event in the event list
 
+### Create mailing list for an event : `mailEvent`
+
+Format: `mailEvent EVENT_INDEX`
+
+* The `EVENT_INDEX` refers to the index number shown in the displayed event list.
+* The `EVENT_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+* The mailing list is saved as a CSV file `[JAR file location]/data/EVENT_TITLE.csv`, where EVENT_TITLE refers to the chosen event's title. The CSV file has 2 columns:
+`Name` and `Email`, representing the name and email for a person in the event.
+
+Example:
+* `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event in the events list.
+* `mailEvent 4` creates mailing list as a CSV file, the name of the csv file is the same as the title of 4th event in the events list.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the application.
@@ -323,12 +336,13 @@ _Details coming soon ..._
 
 ## Command summary
 
+<<<<<<< HEAD
 | Action            | Format, Examples                                                                                                                                                                        |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] [d/DOB] [t/TAG]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20 MAR 2002`  |
+| **AddPerson**     | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] [d/DOB]` <br> e.g., `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20 MAR 2002`  |
 | **Clear**         | `clear`                                                                                                                                                                                 |
 | **DeletePerson**  | `deletePerson INDEX`<br> e.g., `deletePerson 3`                                                                                                                                         |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                   |
+| **EditPerson**    | `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`                                                   |
 | **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                              |
 | **ListPersons**   | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                    |
 | **AddEvent**      | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                         |

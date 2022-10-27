@@ -22,7 +22,7 @@ public class EventSortField {
     // Comparator logic
     private static final Comparator<Event> SORT_BY_NO_FIELD = (e1, e2) -> 0;
     private static final Comparator<Event> SORT_BY_EVENT_TITLE = (e1, e2)
-            -> e1.getEventTitle().compareToIgnoreCase(e2.getEventTitle());
+            -> e1.getEventTitle().compareTo(e2.getEventTitle());
 
     private static final Comparator<Event> SORT_BY_DATE = new Comparator<Event>() {
 

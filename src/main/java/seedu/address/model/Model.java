@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventSortField;
@@ -148,4 +149,14 @@ public interface Model {
      * Updates the reference to Persons from Events.
      */
     void updateEventPersonReference();
+
+    /**
+     * Updates the list of Statistical PieChart datapoints.
+     */
+    void setData(ObservableList<PieChart.Data> newData);
+
+    /**
+     * Return the list of Statistical PieChart datapoints.
+     */
+    ObservableList<PieChart.Data> getPieChartData();
 }

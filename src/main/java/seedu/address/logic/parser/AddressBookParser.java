@@ -12,13 +12,15 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.DeletePersonCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditEventCommand;
+import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindEventsCommand;
 import seedu.address.logic.commands.FindPersonsCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListEventsCommand;
 import seedu.address.logic.commands.ListPersonsCommand;
+import seedu.address.logic.commands.MailEventCommand;
 import seedu.address.logic.commands.MakeStatsCommand;
 import seedu.address.logic.commands.TagEventCommand;
 import seedu.address.logic.commands.UntagEventCommand;
@@ -54,8 +56,8 @@ public class AddressBookParser {
         case AddPersonCommand.COMMAND_WORD:
             return new AddPersonCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditPersonCommand.COMMAND_WORD:
+            return new EditPersonCommandParser().parse(arguments);
 
         case DeletePersonCommand.COMMAND_WORD:
             return new DeletePersonCommandParser().parse(arguments);
@@ -65,6 +67,9 @@ public class AddressBookParser {
 
         case FindPersonsCommand.COMMAND_WORD:
             return new FindPersonsCommandParser().parse(arguments);
+
+        case FindEventsCommand.COMMAND_WORD:
+            return new FindEventsCommandParser().parse(arguments);
 
         case ListPersonsCommand.COMMAND_WORD:
             return new ListPersonsCommandParser().parse(arguments);
@@ -76,7 +81,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case MakeStatsCommand.COMMAND_WORD:
-            return new MakeStatsCommand();
+            return new MakeStatsCommandParser().parse(arguments);
 
         case ListEventsCommand.COMMAND_WORD:
             return new ListEventsCommandParser().parse(arguments);
@@ -95,6 +100,9 @@ public class AddressBookParser {
 
         case UntagEventCommand.COMMAND_WORD:
             return new UntagEventCommandParser().parse(arguments);
+
+        case MailEventCommand.COMMAND_WORD:
+            return new MailEventCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
