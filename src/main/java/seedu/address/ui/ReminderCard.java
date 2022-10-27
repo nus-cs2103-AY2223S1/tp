@@ -28,10 +28,10 @@ public class ReminderCard extends UiPart<Region> {
      * Creates a {@code ReminderCard} with the given {@code Reminder} to display.
      * @param reminder
      */
-    public ReminderCard(Reminder reminder) {
+    public ReminderCard(Reminder reminder, int displayedIndex) {
         super(FXML);
         this.reminder = reminder;
-        description.setText(reminder.getDescription());
+        description.setText(String.valueOf(displayedIndex) + ". " + reminder.getDescription());
         dateText.setText(reminder.getDateTimeString());
         name.setText(reminder.getNameString());
         phone.setText(reminder.getPhoneString());
