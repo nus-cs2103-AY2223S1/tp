@@ -222,12 +222,12 @@ Finds events whose event titles contain any of the given keywords.
 
 Format: `findEvents KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g. `cars` will match `Cars`
+* The order of the keywords does not matter. e.g. `Cars Sale` will match `Sale Cars`
 * Only the event title is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Car` will not match `Cars`
 * Events matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Car Sale` will return `Car Discount`, `Marketing Sale`
 
 Examples:
 * `findEvents Sale` returns `sale` and `Marketing Sale`
