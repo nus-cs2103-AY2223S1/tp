@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'HR_PRO_MAX++.jar'
 }
 
 defaultTasks 'clean', 'test'

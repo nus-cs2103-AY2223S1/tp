@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TaskMark {
     public static final String MESSAGE_CONSTRAINTS =
-            "Task can only be marked as true for completed or false for not completed";
+            "Task mark can only be true or false, for completed and not completed respectively";
 
     /**
      * Accepts only true or false as valid input.

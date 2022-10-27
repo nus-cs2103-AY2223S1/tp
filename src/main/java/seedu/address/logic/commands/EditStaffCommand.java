@@ -42,7 +42,8 @@ public class EditStaffCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": The project name refers to the project whose staff is to be edited. The command "
             + "looks for the staff identified by the INDEX\nwithin the displayed staff list and edits the "
-            + "staff if its in the project. Make sure you view the correct staff list before editing a staff.\n"
+            + "staff if its in the project. Checking if the staff is in the project is through staff name only.\n"
+            + "Make sure you view the correct staff list before editing a staff. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + "STAFF_INDEX (must be a positive integer) "
