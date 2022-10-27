@@ -24,8 +24,10 @@ import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.storage.Storage;
+import seedu.rc4hdb.ui.ObservableItem;
 
 /**
  * The main LogicManager of the app.
@@ -134,6 +136,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Booking> getObservableBookings() {
         return model.getObservableBookings();
+    }
+
+    @Override
+    public ObservableItem<VenueName> getCurrentlyDisplayedVenueName() {
+        return model.getCurrentlyDisplayedVenueName();
     }
 
 }
