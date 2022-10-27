@@ -1,6 +1,8 @@
 package seedu.uninurse.logic.parser;
 
 import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.ViewPatientCommand;
@@ -16,8 +18,10 @@ public class ViewPatientCommandParser implements Parser<ViewPatientCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewPatientCommand parse(String args) throws ParseException {
+        ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIXES_OPTION_ALL);
+
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = ParserUtil.parseIndex(options.getValue(PREFIX_OPTION_PATIENT_INDEX).orElse(""));
             return new ViewPatientCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(

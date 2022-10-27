@@ -13,6 +13,7 @@ public class ViewTaskCommandParser implements Parser<ViewTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewTaskCommand
      * and returns a ViewTaskCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewTaskCommand parse(String args) throws ParseException {

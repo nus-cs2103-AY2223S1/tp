@@ -7,7 +7,7 @@ import seedu.uninurse.model.Model;
 /**
  * Lists all tasks associated to all patients in the uninurse book to the user.
  */
-public class ListTaskCommand extends Command {
+public class ListTaskCommand extends DisplayTasksGenericCommand {
 
     public static final String COMMAND_WORD = "listTask";
 

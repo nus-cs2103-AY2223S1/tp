@@ -1,17 +1,20 @@
 package seedu.uninurse.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_CONDITION_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_MEDICATION_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_REMARK_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TAG_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TASK_INDEX;
-
-import java.util.Optional;
 
 import seedu.uninurse.logic.commands.DeleteGenericCommand;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates either a new DeletePatientCommand object or
- * a new DeleteTaskCommand object based on option values.
+ * Parses input arguments and creates either a new DeleteGenericCommand
+ * object based on option values.
  */
 public class DeleteGenericCommandParser implements Parser<DeleteGenericCommand> {
     /**
@@ -23,18 +26,48 @@ public class DeleteGenericCommandParser implements Parser<DeleteGenericCommand> 
     public DeleteGenericCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TASK_INDEX);
-        args = ParserUtil.eraseOptions(args, PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TASK_INDEX);
+        ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIXES_OPTION_ALL);
+        args = ParserUtil.eraseOptions(args, PREFIXES_OPTION_ALL);
 
-        Optional<String> patientIndex = options.getValue(PREFIX_OPTION_PATIENT_INDEX);
-        Optional<String> taskIndex = options.getValue(PREFIX_OPTION_TASK_INDEX);
-
-        if (patientIndex.isPresent() && !taskIndex.isPresent()) {
-            return new DeletePatientCommandParser().parse(patientIndex.get() + " " + args);
+        if (ParserUtil.optionsOnlyContains(options,
+                PREFIX_OPTION_PATIENT_INDEX)) {
+            return new DeletePatientCommandParser().parse(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " " + args);
         }
 
-        if (patientIndex.isPresent() && taskIndex.isPresent()) {
-            return new DeleteTaskCommandParser().parse(patientIndex.get() + " " + taskIndex.get() + " " + args);
+        if (ParserUtil.optionsOnlyContains(options,
+                PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TASK_INDEX)) {
+            return new DeleteTaskCommandParser().parse(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " "
+                            + options.getValue(PREFIX_OPTION_TASK_INDEX).get() + " " + args);
+        }
+
+        if (ParserUtil.optionsOnlyContains(options,
+                PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TAG_INDEX)) {
+            return new DeleteTagCommandParser().parse(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " "
+                            + options.getValue(PREFIX_OPTION_TAG_INDEX).get() + " " + args);
+        }
+
+        if (ParserUtil.optionsOnlyContains(options,
+                PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_CONDITION_INDEX)) {
+            return new DeleteConditionCommandParser().parse(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " "
+                            + options.getValue(PREFIX_OPTION_CONDITION_INDEX).get() + " " + args);
+        }
+
+        if (ParserUtil.optionsOnlyContains(options,
+                PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_MEDICATION_INDEX)) {
+            return new DeleteMedicationCommandParser().parse(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " "
+                            + options.getValue(PREFIX_OPTION_MEDICATION_INDEX).get() + " " + args);
+        }
+
+        if (ParserUtil.optionsOnlyContains(options,
+                PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_REMARK_INDEX)) {
+            return new DeleteRemarkCommandParser().parse(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " "
+                            + options.getValue(PREFIX_OPTION_REMARK_INDEX).get() + " " + args);
         }
 
         throw new ParseException(ParserUtil.MESSAGE_INVALID_OPTIONS);

@@ -14,7 +14,7 @@ import seedu.uninurse.model.person.Patient;
  * Shows a given patient's details in the uninurse book to the user.
  */
 public class ViewPatientCommand extends Command {
-    public static final String COMMAND_WORD = "view";
+    public static final String COMMAND_WORD = "focus";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows a patient's details identified by the index number used in the displayed patient list.\n"

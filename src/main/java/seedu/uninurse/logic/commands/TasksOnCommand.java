@@ -9,7 +9,7 @@ import seedu.uninurse.model.task.DateTime;
 /**
  * Shows all tasks that are for a particular day.
  */
-public class TasksOnCommand extends Command {
+public class TasksOnCommand extends DisplayTasksGenericCommand {
 
     public static final String COMMAND_WORD = "tasksOn";
 

@@ -1,6 +1,8 @@
 package seedu.uninurse.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_PATIENT_ALL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +40,8 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     public static final String MESSAGE_INVALID_OPTIONS = "Command options is invalid";
+
+    public static final String MESSAGE_INVALID_PARAMETERS = "Command parameters is invalid";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -384,6 +388,10 @@ public class ParserUtil {
         return new RemarkList(remarkList);
     }
 
+    private static boolean isOptionLimit(String s) {
+        return s.contains("/");
+    }
+
     /**
      * Parses the value of {@code String option} from {@code String arguments}.
      */
@@ -391,15 +399,16 @@ public class ParserUtil {
         requireNonNull(arguments);
         requireNonNull(option);
         String[] options = arguments.trim().split("\\s+");
+        Optional<String> ret = Optional.empty();
         for (int i = 0; i < options.length; i++) {
-            if (options[i].contains("/")) {
+            if (isOptionLimit(options[i])) {
                 break;
             }
             if (i > 0 && options[i - 1].equals(option)) {
-                return Optional.of(options[i]);
+                ret = Optional.of(options[i]);
             }
         }
-        return Optional.empty();
+        return ret;
     }
 
     /**
@@ -427,12 +436,18 @@ public class ParserUtil {
         requireNonNull(arguments);
         requireNonNull(option);
         String[] options = arguments.trim().split("\\s+");
-        for (int i = 0; i + 1 < options.length; i++) {
-            if (options[i].equals(option)) {
-                options[i] = "";
-                options[i + 1] = "";
+        int ret = -1;
+        for (int i = 0; i < options.length; i++) {
+            if (isOptionLimit(options[i])) {
                 break;
             }
+            if (i > 0 && options[i - 1].equals(option)) {
+                ret = i;
+            }
+        }
+        if (ret != -1) {
+            options[ret - 1] = "";
+            options[ret] = "";
         }
         return Arrays.stream(options).reduce((x, y) -> x + " " + y).get().trim();
     }
@@ -448,5 +463,29 @@ public class ParserUtil {
             arguments = eraseOption(arguments, options[i].toString());
         }
         return arguments;
+    }
+
+    /**
+     * Checks if in the given argumentMultimap, *only* the given validOptions occur.
+     */
+    public static boolean optionsOnlyContains(ArgumentMultimap argumentMultimap, Prefix... validOptions) {
+        requireNonNull(argumentMultimap);
+        requireNonNull(validOptions);
+        // (option in validOptions and isPresent()) || (option not in validOptions and !isPresent())
+        return Arrays.stream(PREFIXES_OPTION_ALL).allMatch(option ->
+                Arrays.stream(validOptions).anyMatch(x -> x.equals(option))
+                        ^ !argumentMultimap.getValue(option).isPresent());
+    }
+
+    /**
+     * Checks if in the given argumentMultimap, *only* the given validParameters occur.
+     */
+    public static boolean parametersOnlyContains(ArgumentMultimap argumentMultimap, Prefix... validParameters) {
+        requireNonNull(argumentMultimap);
+        requireNonNull(validParameters);
+        // (option in validOptions and isPresent()) || (option not in validOptions and !isPresent())
+        return Arrays.stream(PREFIXES_PATIENT_ALL).allMatch(option ->
+                Arrays.stream(validParameters).anyMatch(x -> x.equals(option))
+                        ^ !argumentMultimap.getValue(option).isPresent());
     }
 }
