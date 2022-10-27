@@ -118,6 +118,10 @@ public class StudentData {
         return assignments;
     }
 
+    public Set<Participation> getParticipations() {
+        return participations;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

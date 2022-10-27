@@ -148,6 +148,11 @@ public class StudentBuilder {
         return this;
     }
 
+    public StudentBuilder setParticipated(Set<Participation> participations) {
+        this.participations = participations;
+        return this;
+    }
+
     /**
      * Parses the {@code participationComponent} which the student has participated into a
      * {@code Set<Participation>} and adds it to the {@code Student} that we are building.

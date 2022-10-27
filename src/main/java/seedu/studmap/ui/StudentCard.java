@@ -156,7 +156,7 @@ public class StudentCard extends UiPart<Region> {
                    x.setId(participation.hasParticipated ? "participated" : "didNotParticipate");
                    return x;
                })
-               .forEach(participation -> attendances.getChildren().add(participation));
+               .forEach(participation -> participations.getChildren().add(participation));
     }
 
     @Override

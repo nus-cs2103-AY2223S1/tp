@@ -226,4 +226,19 @@ public class ParserUtil {
         }
         return trimmedOrder.matches("asc") ? ORDER_ASC : ORDER_DSC;
     }
+
+    /**
+     * Parses a {@code String participationComponent} checking for any errors.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code participationComponent} is invalid.
+     */
+    public static String parseParticipationComponent(String participationComponent) throws ParseException {
+        requireNonNull(participationComponent);
+        String trimmedPartCom = participationComponent.trim();
+        if (!Attendance.isValidClassName(trimmedPartCom)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedPartCom;
+    }
 }

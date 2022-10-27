@@ -41,7 +41,7 @@ public class Student {
         requireAllNonNull(studentData.getId(), studentData.getGitUser(),
                 studentData.getTeleHandle(), studentData.getName(), studentData.getPhone(),
                 studentData.getEmail(), studentData.getModule(), studentData.getTags(),
-                studentData.getAttendances(), studentData.getAssignments());
+                studentData.getAttendances(), studentData.getAssignments(), studentData.getParticipations());
 
         this.id = studentData.getId();
         this.module = studentData.getModule();
@@ -53,6 +53,7 @@ public class Student {
         this.tags.addAll(studentData.getTags());
         this.attendances.addAll(studentData.getAttendances());
         this.assignments.addAll(studentData.getAssignments());
+        this.participations.addAll(studentData.getParticipations());
     }
 
     public StudentID getId() {
