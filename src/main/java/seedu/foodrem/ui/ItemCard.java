@@ -1,6 +1,9 @@
 package seedu.foodrem.ui;
 
 import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -49,8 +52,36 @@ public class ItemCard extends UiPart<Region> {
         quantity.setText(ItemView.buildItemQuantityAndUnitStringFrom(item));
         quantity.setTextAlignment(TextAlignment.RIGHT);
 
-        item.getTagSet().stream().sorted(Comparator.comparing(Tag::getName))
-                .forEach(tag -> tags.getChildren().add(buildTagNodeFrom(tag.getName())));
+        // TODO: Abstract this somewhere else
+        Set<Tag> tagSet = item.getTagSet();
+        if (tagSet.isEmpty()) {
+            Label noTags = new Label("-");
+            tags.getChildren().add(noTags);
+        }
+
+        List<Tag> tagList = tagSet.stream().sorted(Comparator.comparing(Tag::getName)).collect(Collectors.toList());
+
+        int maxChars = 45;
+        int currChars = 0;
+        int numberOfTags = 0;
+        for (Tag tag : tagList) {
+            String tagName = tag.getName();
+            int newCurr = currChars + tagName.length();
+            if (newCurr > maxChars) {
+                break;
+            }
+            currChars = newCurr;
+            numberOfTags += 1;
+            tags.getChildren().add(buildTagNodeFrom(tagName));
+        }
+
+        int restOfTags = tagSet.size() - numberOfTags;
+        if (restOfTags > 0) {
+            tags.getChildren().add(new Label("..."));
+        }
+
+        tags.setMaxWidth(400);
+        name.setMaxWidth(240);
     }
 
     private static Node buildTagNodeFrom(String tagName) {
