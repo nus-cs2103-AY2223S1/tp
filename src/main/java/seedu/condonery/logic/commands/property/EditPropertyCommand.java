@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
@@ -42,6 +43,7 @@ public class EditPropertyCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_PRICE + "PRICE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_PROPERTY_TYPE + "PROPERTY TYPE] "
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Property successfully edited: %1$s";
