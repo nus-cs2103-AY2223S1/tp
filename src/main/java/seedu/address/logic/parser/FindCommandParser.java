@@ -34,9 +34,6 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     private Model.ListType listType;
 
-    private HashMap<Prefix, String> keywords = new HashMap<>();
-
-
     public FindCommandParser(Model.ListType listType) {
         this.listType = listType;
     }
@@ -72,6 +69,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         String timeKeywords;
 
         String tagKeywords;
+
+        HashMap<Prefix, String> keywords = new HashMap<>();
 
         switch (listType) {
 

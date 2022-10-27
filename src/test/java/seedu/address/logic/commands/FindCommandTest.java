@@ -14,8 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
@@ -179,7 +178,7 @@ public class FindCommandTest {
         keywords.put(PREFIX_ADDRESS, "");
         keywords.put(PREFIX_EMAIL, "");
         keywords.put(PREFIX_PHONE, "");
-        keywords.put(PREFIX_SCHOOL, "");
+        keywords.put(PREFIX_SUBJECT_OR_SCHOOL, "");
         keywords.put(PREFIX_LEVEL, "");
         keywords.put(PREFIX_TAG, "");
         StudentContainsKeywordsPredicate<Student> predicate = new StudentContainsKeywordsPredicate<>(keywords);
@@ -215,7 +214,7 @@ public class FindCommandTest {
         HashMap<Prefix, String> keywords = new HashMap<>();
         keywords.put(PREFIX_NAME, "P2Math");
         keywords.put(PREFIX_DAY, "");
-        keywords.put(PREFIX_SUBJECT, "");
+        keywords.put(PREFIX_SUBJECT_OR_SCHOOL, "");
         keywords.put(PREFIX_LEVEL, "");
         keywords.put(PREFIX_TIME, "");
         keywords.put(PREFIX_TAG, "");

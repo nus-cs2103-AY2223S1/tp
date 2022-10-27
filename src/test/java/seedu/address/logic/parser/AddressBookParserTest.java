@@ -12,7 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -116,7 +116,7 @@ public class AddressBookParserTest {
         keywords.put(PREFIX_ADDRESS, "bar");
         keywords.put(PREFIX_EMAIL, "baz");
         keywords.put(PREFIX_PHONE, "");
-        keywords.put(PREFIX_SCHOOL, "");
+        keywords.put(PREFIX_SUBJECT_OR_SCHOOL, "");
         keywords.put(PREFIX_LEVEL, "");
         keywords.put(PREFIX_TAG, "");
         FindCommand command = (FindCommand) parser.parseCommand(
