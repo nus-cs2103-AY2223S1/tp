@@ -14,7 +14,7 @@ public class AddGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "addgroup";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an empty group to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an empty group to the address book.\n"
             + "Parameters: "
             + PREFIX_GROUP + "GROUPNAME\n"
             + "Example: " + COMMAND_WORD + " "

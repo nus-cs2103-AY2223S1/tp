@@ -37,6 +37,9 @@ public class TypicalGroups {
     public static final Group ORAL_PRESENTATION =
             new GroupBuilder().withName("Oral Presentation").withMembers(ELLE, FIONA, GEORGE).build();
 
+    public static final Group TEAM_COURSEWORK =
+            new GroupBuilder().withName("Team Coursework").withMembers(CARL).build();
+
     /**
      * Returns an {@code AddressBook} with all the typical persons and sample groups.
      * @return
@@ -53,6 +56,6 @@ public class TypicalGroups {
     }
 
     public static List<Group> getTypicalGroups() {
-        return new ArrayList<>(Arrays.asList(TEAM_PROJECT, INDIVIDUAL_PROJECT, ORAL_PRESENTATION));
+        return new ArrayList<>(Arrays.asList(TEAM_PROJECT, INDIVIDUAL_PROJECT, ORAL_PRESENTATION, TEAM_COURSEWORK));
     }
 }

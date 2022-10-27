@@ -47,6 +47,18 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private TableView<CommandFeatures> commandFeaturesTableView;
 
+    @FXML
+    private TableView<CommandFeatures> personFeaturesTableView;
+
+    @FXML
+    private TableView<CommandFeatures> groupFeaturesTableView;
+
+    @FXML
+    private TableView<CommandFeatures> taskFeaturesTableView;
+
+    @FXML
+    private TableView<CommandFeatures> utilityFeaturesTableView;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -115,9 +127,8 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     private void buildTable(TableView<CommandFeatures> tableView, ObservableList<CommandFeatures> commands) {
-        int totalHeight = (6) * MIN_ROW_HEIGHT;
+        int totalHeight = Math.min(6, commands.size() - 1) * MIN_ROW_HEIGHT;
 
-        tableView.setSelectionModel(null);
         tableView.setItems(commands);
         tableView.setFixedCellSize(MIN_ROW_HEIGHT);
         tableView.setMinSize(MIN_TABLE_WIDTH, MIN_TABLE_HEIGHT);

@@ -9,6 +9,10 @@ import static seedu.address.model.group.testutil.TypicalGroups.TEAM_PROJECT;
 import static seedu.address.model.group.testutil.TypicalGroups.getTypicalAddressBookWithGroups;
 import static seedu.address.model.person.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -16,6 +20,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupName;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonGroup;
 import seedu.address.model.person.testutil.GroupBuilder;
 
 public class DeleteGroupCommandTest {
@@ -30,6 +37,34 @@ public class DeleteGroupCommandTest {
         String expectedMessage = String.format(DeleteGroupCommand.MESSAGE_SUCCESS, groupToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        Set<Person> currMembers = new HashSet<Person>(expectedModel
+                .getGroupWithName(groupToDelete.getName()).get(0).getMembers());
+
+        PersonGroup personGroupToRemove = new PersonGroup(groupToDelete.getName().groupName);
+
+        for (Person p : currMembers) {
+            ArrayList<PersonGroup> editedPersonGroup = new ArrayList<>(p.getPersonGroups());
+
+            editedPersonGroup.remove(personGroupToRemove);
+            Person editedPerson = new Person(p.getName(), p.getPhone(), p.getEmail(), p.getAddress(),
+                    p.getTags(), p.getAssignments(), editedPersonGroup);
+
+            for (PersonGroup pg : editedPersonGroup) {
+                Group currGroup = expectedModel.getGroupWithName(new GroupName(pg.getGroupName())).get(0);
+                Set<Person> editedPersonList = new HashSet<Person>(currGroup.getMembers());
+
+                editedPersonList.remove(p);
+                editedPersonList.add(editedPerson);
+
+                Group expectedGroup = new Group(currGroup.getName(), editedPersonList);
+
+                expectedModel.setGroup(currGroup, expectedGroup);
+            }
+
+            expectedModel.setPerson(p, editedPerson);
+        }
+
         expectedModel.deleteGroup(groupToDelete);
 
         assertCommandSuccess(deleteGroupCommand, model, expectedMessage, expectedModel);

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.EditPersonCommand.MESSAGE_INVALID_PERSON_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -19,13 +18,16 @@ public class DeletePersonCommand extends Command {
     public static final String COMMAND_WORD = "deleteperson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the person identified by name of the person in the displayed person list.\n"
+        + ": Deletes the specified person from the address book.\n"
         + "Parameters: NAME (must be exactly the same as person's name)\n"
-        + "Example: " + COMMAND_WORD + " UserName ";
+        + "Example: " + COMMAND_WORD + " John Doe";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     public static final String MESSAGE_INVALID_PERSON_NAME = "The person to delete cannot be found!";
+
+    public static final String MESSAGE_PERSON_IN_EXISITING_GROUP =
+        "The person specified is still in one or more groups!";
 
     private final FullNamePredicate predicate;
 
@@ -52,6 +54,11 @@ public class DeletePersonCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex);
+
+        if (personToDelete.getPersonGroups().size() > 0) {
+            throw new CommandException(MESSAGE_PERSON_IN_EXISITING_GROUP);
+        }
+
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }

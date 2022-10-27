@@ -25,7 +25,7 @@ public class AddGroupMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "addmember";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds member to a specified group. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a member to a specified group.\n"
             + "Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_NAME + "NAME\n"
             + "Example: " + COMMAND_WORD + " g/Group Alpha n/Alice Chee";
     public static final String MESSAGE_DUPLICATE_PERSON_IN_GROUP = "%1$s already exists in the group.";

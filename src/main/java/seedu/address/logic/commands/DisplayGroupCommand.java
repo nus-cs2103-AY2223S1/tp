@@ -21,7 +21,7 @@ public class DisplayGroupCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Shows the group identified by its name in the displayed group list.\n"
         + "Parameters: NAME (must be exactly the same as group's name)\n"
-        + "Example: " + COMMAND_WORD + " GroupName ";
+        + "Example: " + COMMAND_WORD + " CS2103T Team Project";
 
     public static final String MESSAGE_SUCCESS = "Group found!";
 

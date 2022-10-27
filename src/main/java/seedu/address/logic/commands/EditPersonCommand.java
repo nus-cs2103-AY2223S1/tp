@@ -6,13 +6,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GROUPS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FullNamePredicate;
@@ -28,8 +31,7 @@ public class EditPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "editperson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by their full name. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an existing person in the address book.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: NAME (must be exactly the same as person's name) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -40,7 +42,7 @@ public class EditPersonCommand extends Command {
             + "Example: " + COMMAND_WORD + " John "
             + PREFIX_NAME + "Alice "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "alice@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -87,7 +89,22 @@ public class EditPersonCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
+
+        List<Group> groupListToEdit = model.getFilteredGroupList();
+        for (int i = 0; i < groupListToEdit.size(); i++) {
+            Group currGroup = groupListToEdit.get(i);
+            if (currGroup.contains(personToEdit)) {
+                Set<Person> currMembers = new HashSet<Person>(currGroup.getMembers());
+                currMembers.remove(personToEdit);
+                currMembers.add(editedPerson);
+
+                Group editedGroup = new Group(currGroup.getName(), currMembers);
+                model.setGroup(currGroup, editedGroup);
+            }
+        }
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.awt.Color;
-import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,14 +8,13 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonGroup;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Assignments}.
  */
-public class PersonCard extends UiPart<Region> {
+public class AssignmentCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "AssignmentListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -35,28 +33,12 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
-    @FXML
-    private FlowPane personGroup;
-
-    @FXML
-    private HBox phoneContainer;
-    @FXML
-    private HBox addressContainer;
-    @FXML
-    private HBox emailContainer;
-
+    private FlowPane assignments;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * A UI component that displays information of a {@code Assignment}.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public AssignmentCard(Person person, int displayedIndex) {
         super(FXML);
         Color color = getColourFromWorkload(person.getWorkloadScore());
         String colorString = "rgb(" + color.getRed() + "," + color.getGreen() + "," + color.getBlue() + ");";
@@ -65,18 +47,17 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        person.getPersonGroups().stream()
-                .sorted(Comparator.comparing(PersonGroup::getGroupName))
-                .forEach(group -> personGroup.getChildren()
-                        .add((new Label(group.getGroupName()))));
+        person.getAssignments()
+                .forEach((key, value) -> {
+                    String input = "";
+                    int a = 1;
+                    for (int i = 0; i < value.size(); i++) {
+                        input += a + ". " + value.get(i) + "\n";
+                        a++;
+                    }
+                    String assignmentString = key + ": \n" + input;
+                    assignments.getChildren().add(new Label(assignmentString));
+                });
     }
 
     @Override
@@ -87,12 +68,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof AssignmentCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        AssignmentCard card = (AssignmentCard) other;
         return id.getText().equals(card.id.getText())
                 && person.equals(card.person);
     }
