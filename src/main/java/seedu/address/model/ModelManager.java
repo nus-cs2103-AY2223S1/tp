@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingID;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
@@ -31,6 +32,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Listing> filteredListings;
     private final FilteredList<Offer> filteredOffers;
+    private final FilteredList<Meeting> filteredMeetings;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -46,6 +48,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredListings = new FilteredList<>(this.addressBook.getListingList());
         filteredOffers = new FilteredList<>(this.addressBook.getOfferList());
+        filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
     }
 
     public ModelManager() {
@@ -220,6 +223,28 @@ public class ModelManager implements Model {
         addressBook.setOffer(target, editedOffer);
     }
 
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return addressBook.hasMeeting(meeting);
+    }
+
+    @Override
+    public void deleteMeeting(Meeting meeting) {
+        addressBook.removeMeeting(meeting);
+    }
+
+    @Override
+    public void addMeeting(Meeting meeting) {
+        addressBook.addMeeting(meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    }
+
+    @Override
+    public Meeting getMeeting(Name name, Address address) {
+        return addressBook.getMeeting(name, address);
+    }
+
     //=========== Filtered List Accessors =============================================================
 
     /**
@@ -272,6 +297,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -289,6 +320,7 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredClients.equals(other.filteredClients)
                 && filteredListings.equals(other.filteredListings)
-                && filteredOffers.equals(other.filteredOffers);
+                && filteredOffers.equals(other.filteredOffers)
+                && filteredMeetings.equals(other.filteredMeetings);
     }
 }
