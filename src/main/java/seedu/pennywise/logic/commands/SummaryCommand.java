@@ -24,10 +24,9 @@ public class SummaryCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MONTH + "2022-10";
 
-    public static final String MESSAGE_SUCCESS = "Financials Summarized \n"
-            + "Total Expenditure: %.2f\n"
-            + "Total Income: %.2f\n"
-            + "Total Balance: %.2f";
+    public static final String MESSAGE_SUCCESS = "Total Expenditure: $%.2f\n"
+            + "Total Income: $%.2f\n"
+            + "Total Balance: $%.2f";
 
     private final Predicate<Entry> predicate;
 

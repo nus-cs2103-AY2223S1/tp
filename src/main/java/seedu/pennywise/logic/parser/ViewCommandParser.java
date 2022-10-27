@@ -36,6 +36,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
                 viewEntriesDescriptor.setYearMonth(
                         ParserUtil.parseYearMonth(argMultimap.getValue(PREFIX_MONTH).get()));
             }
+
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);

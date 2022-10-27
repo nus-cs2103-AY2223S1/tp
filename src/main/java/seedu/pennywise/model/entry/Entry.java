@@ -83,9 +83,15 @@ public abstract class Entry {
         if (otherEntry == this) {
             return true;
         }
+        if (!(otherEntry instanceof Entry)) {
+            return false;
+        }
 
-        return otherEntry != null
-                && otherEntry.getDescription().equals(getDescription());
+        Entry otherEntryCopy = (Entry) otherEntry;
+        return otherEntryCopy.getDescription().equals(getDescription())
+                && otherEntryCopy.getDate().equals(getDate())
+                && otherEntryCopy.getAmount().equals(getAmount())
+                && otherEntryCopy.getTag().equals(getTag());
     }
 
     /**
