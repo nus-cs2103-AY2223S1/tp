@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+:User types the command in main window;
+:Main window creates the pop-up window;
+:User inputs information in text fields;
+:User saves the inputs;
+
+while () is ([else])
+    if () then ([has empty fields])
+            :Pop-up window highlights the empty fields;
+        else ([else])
+            :Main window displays the error message;
+        endif
+        :User saves the edited inputs;
+
+endwhile ([ble to generate command from inputs])
+:Pop-up window executes the command;
+:Main window displays the result;
+:Pop-up window closes;
+stop
+
+@enduml

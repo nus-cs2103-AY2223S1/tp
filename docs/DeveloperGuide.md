@@ -402,16 +402,18 @@ vertically, potentially to an extent that the whole window can only show informa
   the person.
     * Pros: Easy to implement and can view all the information immediately after a command is executed.
     * Cons: Too cramped, which may lead to information overload.
-* **Alternative 2:** Has one display window for person and a separate display window for items.
+* **Alternative 2:** Has one display window for person and a separate display window for items, as shown below.
     * Pros: More organised and visually pleasant.
-    * Cons: Hard to implement and need one more command such as `display INDEX` to display the information of the item.
+    * Cons: Hard to implement and need one more command such as `display INDEX` to display the information of the person or item.
+
+<img src="images/AlternativeUi.png"/>
 
 ### Pop-up window for add command
 
 #### 1. Motivation
 
 If the user wants to add a `Buyer` with multiple `Order`, or add a `Supplier` with multiple `Pet`, there will be repetitive entering of a lot of prefixes.
-The user need to memorise the prefixes for each attribute of the person or item, and they may get lost when entering such a long command line.
+The user needs to memorise the prefixes for each attribute of the person or item, and they may get lost when entering such a long command line.
 
 Therefore, we recognise the need for a pop-up window for adding a `Person` (`Buyer` or `Supplier` for the current version),
 which has text fields that **prompt** the user to enter the required information **without prefixes**.
@@ -420,26 +422,50 @@ which has text fields that **prompt** the user to enter the required information
 
 Given below is the partial class diagram of `Ui` component related to `AddCommandPopupWindow`.
 
-<img src="images/PopupWindow.png" width="600" height="600"/>
+<img src="images/PopupWindowClassDiagram.png" width="600" height="600"/>
 
-The `AddCommandPopupWindow` is made up of either `PopupWindowForBuyer` or `PopupWindowForSupplier`, depending on the type of `Person` that the user wants to add.
-`PopupWindowForBuyer` can have any number of `PopupWindowForOrder`, while `PopupWindowForSupplier` can have any number of `PopupWindowForPet`.
+The `AddCommandPopupWindow` is made up of either `PopupPanelForBuyer` or `PopupPanelForSupplier`, depending on the type of `Person` that the user wants to add.
+`PopupPanelForBuyer` can have any number of `PopupPanelForOrder`, while `PopupPanelForSupplier` can have any number of `PopupPanelForPet`.
 All the pop-up panels inherit from an abstract class `PopupPanel`, which captures the commonalities between classes that represent parts of the content in pop-up window.
 
 Each subclass of `PopupPanel` can generate a `Command` based on the attributes specified in some classes of the `Model` component. Therefore, it has a dependency on the `Model` component.
 The `Command` is then passed to `AddCommandPopupWindow`, which keeps a reference to `Logic` for the execution of the given `Command`, and a reference to `ResultDisplay` for the display of `CommandResult` in the `MainWindow`.
 
-Given below is the sequence diagram showing how the command line `add supplier` is executed with the pop-up window.
+Given below is the sequence diagram showing how the command line `add supplier` creates the pop-up window step by step.
 
-(Image placeholder)
+<img src="images/PopupWindowSequenceDiagram1.png"/>
 
-To cater to people who can type fast, keyboard shortcuts are included in the pop-up window.
+* Step 1. Based on the graph above, after the user enters the command line "add supplier", `MainWindow` calls `LogicManager#execute(String)`.
+
+* Step 2. The user input is then parsed by `AddressBookParser` and an `AddCommandWithPopup` instance is created.
+
+* Step 3. `LogicManager` then executes the `AddCommandWithPopup` and returns the `CommandResult` back to the `MainWIndow`
+
+* Step 4. The `MainWindow` recognises from the result that a pop-up window is required for adding a `Supplier`, and invokes the `handleAddByPopup` method in itself.
+
+* Step 5. The `handleAddByPopup` method then creates a `AddCommandPopupWindow`, which has a `StackPane`. The `StackPane` is in turn filled by a `PopupPanelForSupplier`.
+
+* Step 6. The filled `AddCommandPopupWindow` is displayed to the user.
+
+After the pop-up window is created, the user enters information of the `Supplier` in the provided text fields and saves the inputs. The sequence diagram below illustrates how the pop-up window deals with user inputs on saving step by step.
+
+<img src="images/PopupWindowSequenceDiagram2.png"/>
+
+* Step 1. The UI detects there is a saving action (either by pressing the save button or using `CTRL + S`).
+* Step 2. The `AddCommandPopupWindow` calls `PopupPanelForSupplier#checkAllPartsFilled`. If there is at least one compulsory text field without any user input, the pop-up window will do nothing.
+* Step 3. If all required text fields have user inputs, the `AddCommandPopupWindow` tries to generate a `Command`, during which the `PopupPanelForSupplier` generates a `supplier` using the `generateSupplier()` method in itself.
+* Step 4. The generation of supplier invokes the corresponding static methods in the `ParserUtil` class for each of the supplier's attribute, until all inputs are parsed.
+* Step 5 **(not shown on the graph)**. When there are subcomponents in the `PopupPanelForSupplier` (`PopupPanelForPet` in this context), it also parses the inputs in these subcomponents by calling `PopupPanelForPet#generatePet()` after the `generateSupplier` call.
+* Step 6. The generated `supplier` (without / without `order`) is used to create an `AddSupplierCommand` instance, which is then returned to the `AddCommandPopupWindow`.
+* Step 7. The `AddCommandPopupWindow` executes the `AddSupplierCommand` instance, and the gets back the `CommandResult`.
+
+The following activity diagram summarises how the UI responds to an add command with the pop-up window.
+
+<img src="images/PopupWindowActivityDiagram.png" height="600"/>
+
+To cater to people who can **type fast**, **keyboard shortcuts** are included in the pop-up window.
 For example, pressing `ESC` closes the pop-up window without saving, while pressing `CTRL + S` saves the user input and closes the pop-up window.
 This is achieved using `EventHandler`, `EventFilter` and `KeyCodeCombination` of JavaFX.
-
-The following activity diagram summarises how the UI respond to an add command with the pop-up window.
-
-(Image placeholder)
 
 #### 3. Alternatives considered
 * **Alternative 1 (current choice):** Has a separate pop-up window when a `Command` in the form similar to `add supplier` is entered by the user, with multiple text fields that contain prompt text for the user to input.
@@ -465,7 +491,7 @@ sub-scores.
 Every sub-score is the product of an indicator variable `s_i` and a weight `w_i`. Every indicator-weight pair
 corresponds to a field that both `Pet` and `Order` have.
 
-![img.png](images/matchScoreCalculationFormula.png)
+<img src="images/matchScoreCalculationFormula.png" width="200" height="100"/>
 
 Every indicator variable depends on the field it corresponds to. We basically have two types of indicators:
 
