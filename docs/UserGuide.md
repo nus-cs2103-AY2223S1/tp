@@ -206,10 +206,10 @@ Adds a string description of homework to student in address book.
 
 Format: `homework INDEX h/HOMEWORK`
 
-*Adds homework to student with the specified `INDEX`.
+* Adds homework to student with the specified `INDEX`.
 
 Examples:
-*`homework 1 h/math assignment` adds math assignment to first student in address book.
+* `homework 1 h/math assignment` adds math assignment to first student in address book.
 
 ### Adding Grade Progress to student: `grade`
 
@@ -217,10 +217,10 @@ Adds a string description of grade progress to student in address book.
 
 Format: `grade INDEX g/GRADE_PROGRESS`
 
-*Adds grade progress to student with the specified `INDEX`.
+* Adds grade progress to student with the specified `INDEX`.
 
 Examples:
-*`grade 1 g/Math: D+` adds Math: D+ grade to first student in address book.
+* `grade 1 g/Math: D+` adds Math: D+ grade to first student in address book.
 
 ### Adding Attendance to student : `attendance`
 
@@ -228,11 +228,11 @@ Adds a formatted description of dates students attended class in address book.
 
 Format: `attendance INDEX h/ATTENDACE`
 
-*Adds attendance to student with the specified `INDEX`.<br>
-*Attendance must be in `YYYY-MM-DD` format
+* Adds attendance to student with the specified `INDEX`.<br>
+* Attendance must be in `YYYY-MM-DD` format
 
 Examples:
-*`attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in address book.
+* `attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in address book.
 
 ### Adding Session to student: `session`
 
@@ -240,11 +240,11 @@ Adds a formatted session timing to student, expected to repeat weekly.
 
 Format: `session INDEX s/TUITION_TIME`
 
-*Adds tuition time to student with the specified `INDEX`.<br>
-*Tuition time must be in `DDD HH:MM` format
+* Adds tuition time to student with the specified `INDEX`.<br>
+* Tuition time must be in `DDD HH:MM` format
 
 Examples:
-*`session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
+* `session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
 
 ### Update Lesson Plan for student: `lesson`
 
@@ -252,10 +252,10 @@ Updates a student's lesson plan by overwriting the current one. Can only be used
 
 Format: `lesson INDEX lp/LESSON_PLAN`
 
-*Updates lesson plan of student with the specified `INDEX`.<br>
+* Updates lesson plan of student with the specified `INDEX`.<br>
 
 Examples:
-*`lesson 1 lp/science` changes lesson plan of first student to science.
+* `lesson 1 lp/science` changes lesson plan of first student to science.
 
 ### Viewing daily schedule: `show`
 
@@ -264,7 +264,7 @@ Displays all sessions scheduled on a certain day of the week. Changes address bo
 Format: `show [DDD]`
 
 Examples:
-*`show MON` lists all tuition timings scheduled for Monday.
+* `show MON` lists all tuition timings scheduled for Monday.
 
 ### Exiting the program : `exit`
 
@@ -326,6 +326,8 @@ Action | Format, Examples
 **Lesson** | `lesson INDEX lp/LESSON_PLAN`<br> e.g., `lesson 1 lp/Biology`
 **List** | `list`
 **Remove** | `remove [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g., `remove h/1`
+**Mark** | `mark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `mark a/1`
+**Unmark** | `unmark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `unmark h/2`
 **Show** | `show [DDD]`<br> e.g., `show MON`
 **View** | `view NAME`<br> e.g., `view James Ho`
 
