@@ -15,6 +15,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.iteration.Iteration;
 
 /**
  * A UI component that displays information of a {@code Customer}.
@@ -194,9 +195,16 @@ public class CustomerDetailsPane extends UiPart<Region> {
 
     private void handleCustomerCommissionChanges(Customer newValue) {
         if (newValue != null) {
-            ObservableList<Commission> observableList = newValue.getCommissionList();
-            observableList.addListener((ListChangeListener<Commission>) c -> {
+            ObservableList<Commission> observableCommissionList = newValue.getCommissionList();
+
+            observableCommissionList.addListener((ListChangeListener<Commission>) c -> {
                 updateUI(newValue);
+            });
+
+            observableCommissionList.forEach(commission -> {
+                commission.getIterationList().addListener((ListChangeListener<Iteration>) c -> {
+                    updateUI(newValue);
+                });
             });
         }
         updateUI(newValue);
