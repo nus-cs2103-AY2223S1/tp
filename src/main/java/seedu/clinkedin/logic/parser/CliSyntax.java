@@ -79,7 +79,7 @@ public class CliSyntax {
             ListCommand.class,
             NoteCommand.class,
             AddRateCommand.class,
-            StatsCommand.class
+            StatsCommand.class,
             ExportCommand.class,
             ImportCommand.class,
             ViewCommand.class
