@@ -315,7 +315,7 @@ The `viewAll` command displays a list of all student records.
 
 The sequence diagram below illustrates the interaction between the `Logic` and `Model` components. 
 
-*Insert sequence diagram*
+<img src="images/ViewAllCommandSequenceDiagram.png" />
 
 Given below is an example usage scenario of how the ViewAll mechanism behaves at each step. 
 
