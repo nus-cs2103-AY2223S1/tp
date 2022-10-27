@@ -2,8 +2,25 @@
 > * This guide assumes that the reader is familiar with using [Java](https://www.java.com/)
 
 # Table of Contents
-
-{:toc}
+<!-- TOC -->
+* [Table of Contents](#table-of-contents)
+  * [Introduction](#introduction)
+  * [Quick start](#quick-start)
+  * [Features](#features)
+  * [Before Using](#before-using)
+    * [Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`](#adding-entries--add-tentry_type-ddescription-aamount-dadate-ccategory)
+    * [Deleting entries: `del INDEX_OF_ENTRY t/ENTRY_TYPE`](#deleting-entries--del-index_of_entry-tentry_type)
+    * [Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`](#editing-entries--edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category)
+    * [Summary of entries : `summary [mo/MONTH]`](#summary-of-entries--summary-momonth)
+    * [View entries by category: `view t/ENTRY_TYPE`](#view-entries-by-category--view-tentry_type)
+    * [View entries by month: `view t/ENTRY_TYPE mo/MONTH`](#view-entries-by-month--view-tentry_type-momonth)
+    * [Clearing all entries : `clear`](#clearing-all-entries--clear)
+    * [Exiting the program : `exit`](#exiting-the-program--exit)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+  * [FAQ](#faq)
+  * [Command summary](#command-summary)
+<!-- TOC -->
 
 ## Introduction
 
