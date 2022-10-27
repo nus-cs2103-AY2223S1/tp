@@ -45,6 +45,13 @@ public class ItemQuantity {
     }
 
     /**
+     * Returns true if the current item quantity is zero.
+     */
+    public boolean isZero() {
+        return itemQuantity == 0;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
