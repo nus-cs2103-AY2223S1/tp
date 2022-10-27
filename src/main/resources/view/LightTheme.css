@@ -169,16 +169,21 @@
     -fx-background-color: derive(#f1f1f1, 20%);
 }
 
-.list-cell .label {
-    -fx-text-fill: #f1f1f1;
-}
-
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap: 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: transparent;
+}
+
+.list-cell .label {
+    -fx-text-fill: #f1f1f1;
+}
+
+.list-cell:filled {
     -fx-background-color: #797ef6;
     -fx-background-radius: 20;
+    -fx-text-fill: #f1f1f1;
 }
 
 .list-cell:filled:selected {
@@ -205,13 +210,13 @@
 .info_big_label {
     -fx-font-family: "SF Mono Semibold";
     -fx-font-size: 24px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #1e2f97;
 }
 
 .info_small_label {
     -fx-font-family: "SF Mono";
     -fx-font-size: 17px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #1e2f97;
 }
 
 .stack-pane {
@@ -220,9 +225,8 @@
 
 .pane-with-border {
     -fx-background-color: derive(#f1f1f1, 20%);
-    -fx-border-color: derive(#f1f1f1, 10%);
-    -fx-border-top-width: 1px;
-    -fx-border-radius: 20px;
+    -fx-border-color: transparent;
+    -fx-border-top-width: 2px;
 }
 
 .result-display {
@@ -396,6 +400,14 @@
     -fx-padding: 8 1 8 1;
 }
 
+.scroll-pane .viewport {
+    -fx-background-color: derive(#f1f1f1, 20%);
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 1;
@@ -444,4 +456,16 @@
     -fx-border-radius: 20;
     -fx-background-radius: 20;
     -fx-font-size: 11;
+}
+
+#lineChart .chart-title {
+    -fx-text-fill: #1e2f97;
+}
+
+#lineChart .axis-label {
+    -fx-text-fill: #1e2f97;
+}
+
+#lineChart .chart-legend-item {
+    -fx-text-fill: #1e2f97;
 }

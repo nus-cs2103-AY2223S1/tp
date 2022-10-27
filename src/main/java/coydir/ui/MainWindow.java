@@ -40,11 +40,15 @@ public class MainWindow extends UiPart<Stage> {
     private HomePanel homePanel;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
+
+    private DepartmentInfo departmentInfo;
     private HelpWindow helpWindow;
     private PersonInfo personInfo;
 
     private int currentIndex;
     private EmployeeId currentEmployee;
+
+    private String currentDepartment;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -131,7 +135,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // init personInfo component but do not display
         personInfo = new PersonInfo();
-        personInfo.initializeLeaveTable();
 
         // init homePanel component
         homePanel = new HomePanel();
@@ -139,6 +142,7 @@ public class MainWindow extends UiPart<Stage> {
         // set side panel to home panel
         sidePanelPlaceholder.getChildren().add(homePanel.getRoot());
 
+        departmentInfo = new DepartmentInfo(logic.getUnfilteredPersonList());
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -242,6 +246,16 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    private void handleViewDepartmentUpdate(String department) {
+        departmentInfo.update(logic.getUnfilteredPersonList(), department);
+    }
+
+    private void handleViewDepartment(String department) {
+        departmentInfo.update(logic.getUnfilteredPersonList(), department);
+        sidePanelPlaceholder.getChildren().clear();
+        sidePanelPlaceholder.getChildren().add(departmentInfo.getRoot());
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -256,6 +270,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            handleUpdate(currentIndex);
+            handleViewDepartmentUpdate(currentDepartment);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -264,8 +280,9 @@ public class MainWindow extends UiPart<Stage> {
             } else if (commandResult.isViewPerson()) {
                 int viewIndex = commandResult.getViewIndex();
                 handleViewPerson(viewIndex);
-            } else if (commandResult.isUpdate()) {
-                handleUpdate(currentIndex);
+            } else if (commandResult.isViewDepartment()) {
+                currentDepartment = commandResult.getDepartment();
+                handleViewDepartment(commandResult.getDepartment());
             }
 
             return commandResult;

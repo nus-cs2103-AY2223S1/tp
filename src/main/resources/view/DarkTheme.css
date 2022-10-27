@@ -126,9 +126,13 @@
     -fx-base: derive(#020042, 20%);
     -fx-control-inner-background: derive(#020042, 20%);
     -fx-background-color: derive(#020042, 20%);
-    -fx-table-cell-border-color: #05d1ce;
+    -fx-table-cell-border-color: derive(#05d1ce, -50%);
     -fx-table-header-border-color: #05d1ce;
     -fx-padding: 5;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: #f1f1f1;
 }
 
 .table-view .column-header-background {
@@ -178,6 +182,10 @@
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap: 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: transparent;
+}
+
+.list-cell:filled {
     -fx-background-color: derive(#020042, 50%);
     -fx-background-radius: 20;
 }
@@ -213,6 +221,12 @@
     -fx-text-fill: #f1f1f1;
 }
 
+.info_title {
+    -fx-font-family: "SF Mono Semibold";
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
 .info_small_label {
     -fx-font-family: "SF Mono";
     -fx-font-size: 17px;
@@ -225,9 +239,8 @@
 
 .pane-with-border {
     -fx-background-color: derive(#020042, 20%);
-    -fx-border-color: transparent;
-    -fx-border-top-width: 1px;
-    -fx-border-radius: 20px;
+    -fx-border-color: #020042;
+    -fx-border-width: 2px;
 }
 
 .result-display {
@@ -399,6 +412,14 @@
 .scroll-bar:horizontal .increment-arrow,
 .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: derive(#020042, 20%);
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
 }
 
 #cardPane {

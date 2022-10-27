@@ -50,8 +50,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_POSITION + "POSITION] "
             + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_LEAVE + "LEAVE] \n"
+            + "[" + PREFIX_LEAVE + "LEAVE] "
+            + "[" + PREFIX_TAG + "TAG] \n "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";

@@ -13,6 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Region;
 
 
 /**
@@ -23,12 +25,14 @@ import javafx.scene.text.FontWeight;
 public class HomePanel extends UiPart<Region> {
     private static final String FXML = "HomePanel.fxml";
     private static final coydir.commons.core.Version VERSION = MainApp.VERSION;
-    private static final String MESSAGE = String.format("Welcome To\nCoydir %s", VERSION.toString());
+    private static final String MESSAGE = String.format("\tWelcome To\t\n\tCoydir %s\t", VERSION.toString());
 
     @FXML
     private VBox homePanel;
     @FXML
     private ImageView logo;
+    @FXML
+    private BorderPane borderPane;
     @FXML
     private Label message;
 

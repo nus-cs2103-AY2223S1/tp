@@ -20,11 +20,12 @@ public class CommandResult {
     /** The application should display a person's profile. */
     private final boolean viewPerson;
 
-    /** The displayed person should be updated. */
-    private final boolean update;
+    /** The application should display information on a department. */
+    private final boolean viewDepartment;
 
     private int viewIndex;
 
+    private String department;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -34,7 +35,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.viewPerson = false;
-        this.update = true;
+        this.viewDepartment = false;
     }
 
     /**
@@ -46,8 +47,21 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.viewPerson = true;
-        this.update = false;
+        this.viewDepartment = false;
         this.viewIndex = index;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, String department) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.viewPerson = false;
+        this.viewDepartment = true;
+        this.viewIndex = 0;
+        this.department = department;
     }
 
     /**
@@ -74,12 +88,16 @@ public class CommandResult {
         return viewPerson;
     }
 
-    public boolean isUpdate() {
-        return update;
+    public boolean isViewDepartment() {
+        return viewDepartment;
     }
 
     public int getViewIndex() {
         return viewIndex;
+    }
+
+    public String getDepartment() {
+        return department;
     }
 
     @Override
@@ -98,13 +116,14 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && viewPerson == otherCommandResult.viewPerson
-                && update == otherCommandResult.update
-                && viewIndex == otherCommandResult.viewIndex;
+                && viewIndex == otherCommandResult.viewIndex
+                && viewDepartment == otherCommandResult.viewDepartment
+                && department == otherCommandResult.department;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, viewPerson, update, viewIndex);
+        return Objects.hash(feedbackToUser, showHelp, exit, viewPerson, viewIndex, viewDepartment, department);
     }
 
 }

@@ -9,9 +9,11 @@
 
 <?import javafx.geometry.Insets?>
 <VBox fx:id="homePanel" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" prefHeight="400.0" prefWidth="600.0">
-  <AnchorPane>
-    <ImageView fx:id="logo" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" />
-  </AnchorPane>
+    <HBox>
+        <AnchorPane fx:id="anchorPane" HBox.hgrow="ALWAYS" >
+            <ImageView fx:id="logo" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+        </AnchorPane>
+    </HBox>
     <HBox fx:id="messageBox" HBox.hgrow="ALWAYS">
         <Label fx:id="message" text="\$message" styleClass="info_big_label" textAlignment="center" />
     </HBox>
