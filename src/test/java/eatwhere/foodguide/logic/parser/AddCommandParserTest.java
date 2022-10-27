@@ -10,7 +10,7 @@ import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
-import eatwhere.foodguide.model.eatery.Phone;
+import eatwhere.foodguide.model.eatery.Price;
 import eatwhere.foodguide.model.tag.Tag;
 import eatwhere.foodguide.testutil.EateryBuilder;
 import eatwhere.foodguide.testutil.TypicalEateries;
@@ -38,7 +38,7 @@ public class AddCommandParserTest {
 
         // multiple phones - last phone accepted
         CommandParserTestUtil.assertParseSuccess(parser,
-                CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_AMY
+                CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PRICE_DESC_AMY
                         + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.CUISINE_DESC_BOB
                         + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND,
                         new AddCommand(expectedEatery));
@@ -73,7 +73,7 @@ public class AddCommandParserTest {
         // zero tags
         Eatery expectedEatery = new EateryBuilder(TypicalEateries.AMY).withTags().build();
         CommandParserTestUtil.assertParseSuccess(parser,
-                CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
+                CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PRICE_DESC_AMY
                         + CommandTestUtil.CUISINE_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY,
                         new AddCommand(expectedEatery));
     }
@@ -102,7 +102,7 @@ public class AddCommandParserTest {
 
         // all prefixes missing
         CommandParserTestUtil.assertParseFailure(parser,
-                CommandTestUtil.VALID_NAME_BOB + CommandTestUtil.VALID_PHONE_BOB
+                CommandTestUtil.VALID_NAME_BOB + CommandTestUtil.VALID_PRICE_BOB
                         + CommandTestUtil.VALID_CUISINE_BOB + CommandTestUtil.VALID_ADDRESS_BOB,
                         expectedMessage);
     }
@@ -118,10 +118,10 @@ public class AddCommandParserTest {
 
         // invalid phone
         CommandParserTestUtil.assertParseFailure(parser,
-                CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.INVALID_PHONE_DESC
+                CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.INVALID_PRICE_DESC
                         + CommandTestUtil.CUISINE_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
                         + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
-                        Phone.MESSAGE_CONSTRAINTS);
+                        Price.MESSAGE_CONSTRAINTS);
 
         // invalid cuisine
         CommandParserTestUtil.assertParseFailure(parser,

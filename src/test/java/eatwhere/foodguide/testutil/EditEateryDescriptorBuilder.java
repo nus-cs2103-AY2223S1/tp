@@ -10,7 +10,7 @@ import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
-import eatwhere.foodguide.model.eatery.Phone;
+import eatwhere.foodguide.model.eatery.Price;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
@@ -34,7 +34,7 @@ public class EditEateryDescriptorBuilder {
     public EditEateryDescriptorBuilder(Eatery eatery) {
         descriptor = new EditEateryDescriptor();
         descriptor.setName(eatery.getName());
-        descriptor.setPhone(eatery.getPhone());
+        descriptor.setPhone(eatery.getPrice());
         descriptor.setCuisine(eatery.getCuisine());
         descriptor.setAddress(eatery.getLocation());
         descriptor.setTags(eatery.getTags());
@@ -49,10 +49,10 @@ public class EditEateryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditEateryDescriptor} that we are building.
+     * Sets the {@code Price} of the {@code EditEateryDescriptor} that we are building.
      */
     public EditEateryDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        descriptor.setPhone(new Price(phone));
         return this;
     }
 

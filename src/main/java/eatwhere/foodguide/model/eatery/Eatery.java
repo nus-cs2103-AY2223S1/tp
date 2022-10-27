@@ -16,7 +16,7 @@ public class Eatery {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Price price;
     private final Cuisine cuisine;
 
     // Data fields
@@ -26,17 +26,17 @@ public class Eatery {
     /**
      * Every field must be present and not null.
      */
-    public Eatery(Name name, Phone phone, Cuisine cuisine, Location location, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, phone, cuisine, location, tags);
+    public Eatery(Name name, Price price, Cuisine cuisine, Location location, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(name, price, cuisine, location, tags);
         this.name = name;
-        this.phone = phone;
+        this.price = price;
         this.cuisine = cuisine;
         this.location = location;
         this.tags.addAll(tags);
     }
 
     /**
-     * Constructor for an eatery that does not require a phone.
+     * Constructor for an eatery that does not require a price.
      */
     public Eatery(Name name, Cuisine cuisine, Location location, Set<Tag> tags) {
         CollectionUtil.requireAllNonNull(name, cuisine, location, tags);
@@ -44,15 +44,15 @@ public class Eatery {
         this.cuisine = cuisine;
         this.location = location;
         this.tags.addAll(tags);
-        this.phone = new Phone();
+        this.price = new Price();
     }
 
     public Name getName() {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Price getPrice() {
+        return price;
     }
 
     public Cuisine getCuisine() {
@@ -101,7 +101,7 @@ public class Eatery {
 
         Eatery otherEatery = (Eatery) other;
         return otherEatery.getName().equals(getName())
-                && otherEatery.getPhone().equals(getPhone())
+                && otherEatery.getPrice().equals(getPrice())
                 && otherEatery.getCuisine().equals(getCuisine())
                 && otherEatery.getLocation().equals(getLocation())
                 && otherEatery.getTags().equals(getTags());
@@ -110,15 +110,15 @@ public class Eatery {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, cuisine, location, tags);
+        return Objects.hash(name, price, cuisine, location, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; Price: ")
+                .append(getPrice())
                 .append("; Cuisine: ")
                 .append(getCuisine())
                 .append("; Location: ")

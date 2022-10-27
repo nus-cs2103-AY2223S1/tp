@@ -5,7 +5,7 @@ import static eatwhere.foodguide.logic.commands.CommandTestUtil.DESC_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_CUISINE_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -41,7 +41,7 @@ public class EditEateryDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditEateryDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        editedAmy = new EditEateryDescriptorBuilder(DESC_AMY).withPhone(VALID_PRICE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
