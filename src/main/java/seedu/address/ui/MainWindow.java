@@ -16,7 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.item.AbstractContainerItem;
+import seedu.address.model.item.AbstractSingleItem;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -28,7 +28,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private AbstractContainerItem prev = null;
+    private AbstractSingleItem prev = null;
 
     private Stage primaryStage;
     private Logic logic;
@@ -142,7 +142,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    private void handleContextChange(AbstractContainerItem o) {
+    private void handleContextChange(AbstractSingleItem o) {
         if (prev == o) {
             return;
         }

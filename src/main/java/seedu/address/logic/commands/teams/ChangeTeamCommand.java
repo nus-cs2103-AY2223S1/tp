@@ -11,7 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
-import seedu.address.model.item.AbstractContainerItem;
+import seedu.address.model.item.AbstractSingleItem;
 
 //@@author autumn-sonata
 /**
@@ -38,7 +38,7 @@ public class ChangeTeamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        AbstractContainerItem toSwitch;
+        AbstractSingleItem toSwitch;
         if (targetIndex == null) {
             if (model.getContextContainer() != null) {
                 toSwitch = model.getContextContainer().getParent();

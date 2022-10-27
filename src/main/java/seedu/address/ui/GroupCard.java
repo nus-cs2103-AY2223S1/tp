@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.group.Group;
 
 /**
@@ -28,6 +29,8 @@ public class GroupCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private VBox parentContainer;
+    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -40,7 +43,8 @@ public class GroupCard extends UiPart<Region> {
         super(FXML);
         this.grp = grp;
         id.setText(displayedIndex + ". ");
-        name.setText(grp.getFullPathName());
+        name.setText(grp.getFullPath());
+        grp.getAttributes().forEach(attr -> parentContainer.getChildren().add(attr.getJavaFxRepresentation()));
     }
 
     @Override

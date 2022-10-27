@@ -1,22 +1,32 @@
 package seedu.address.model.task;
 
-import java.time.LocalDateTime;
+import static seedu.address.model.AccessDisplayFlags.GROUP;
+import static seedu.address.model.AccessDisplayFlags.PERSON;
+import static seedu.address.model.AccessDisplayFlags.TASK;
 
-import seedu.address.model.item.AbstractContainerItem;
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import seedu.address.model.attribute.Description;
+import seedu.address.model.item.AbstractDisplayItem;
+import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.item.DisplayItem;
-import seedu.address.model.item.EntryType;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
+import seedu.address.model.person.Person;
 
 /**
  * Stores task details.
  */
-public class Task implements DisplayItem {
+public class Task extends AbstractSingleItem {
 
-    private final String title;
-    private final String description;
+    private final Description description;
     private final LocalDateTime completedTime;
-
-    private AbstractContainerItem parent;
+    private Set<Person> assignedParents = new HashSet<>();
 
     /**
      * Create a new task with no completed_time
@@ -36,8 +46,8 @@ public class Task implements DisplayItem {
      * @param completedTime The completed_time of the task.
      */
     public Task(String title, String description, LocalDateTime completedTime) {
-        this.title = title;
-        this.description = description;
+        super(title, TASK, GROUP | PERSON);
+        this.description = new Description(description);
         this.completedTime = completedTime;
     }
 
@@ -48,7 +58,7 @@ public class Task implements DisplayItem {
         if (this.completedTime != null) {
             return this;
         }
-        Task ret = new Task(title, description, LocalDateTime.now());
+        Task ret = new Task(name.fullName, description.getAttributeContent(), LocalDateTime.now());
         ret.parent = parent;
         return ret;
     }
@@ -60,26 +70,17 @@ public class Task implements DisplayItem {
         if (this.completedTime == null) {
             return this;
         }
-        Task ret = new Task(title, description);
+        Task ret = new Task(name.fullName, description.getAttributeContent());
         ret.parent = parent;
         return ret;
-    }
-
-    public String getStatus() {
-        return description;
     }
 
     public LocalDateTime getCompletedTime() {
         return completedTime;
     }
 
-    /**
-     * Returns the parent {@code Group} of this Task.
-     *
-     * @return The parent Group.
-     */
-    public AbstractContainerItem getParentGroup() {
-        return parent;
+    public Description getDescription() {
+        return description;
     }
 
     /**
@@ -88,20 +89,7 @@ public class Task implements DisplayItem {
      * tasks.
      */
     public boolean isSameTask(Task t) {
-        if (completedTime != null) {
-            return title.equals(t.title) && description.equals(t.description) && completedTime.equals(t.completedTime);
-        }
-        return title.equals(t.title) && description.equals(t.description) && (t.completedTime == null);
-    }
-
-    /**
-     * Returns the entry type of the displayable item to determine which fxml layout
-     * card will be used to display this
-     * item.
-     */
-    @Override
-    public EntryType getEntryType() {
-        return EntryType.TASK;
+        return getFullPath().equals(t.getFullPath());
     }
 
     /**
@@ -111,7 +99,12 @@ public class Task implements DisplayItem {
      */
     @Override
     public boolean stronglyEqual(DisplayItem o) {
-        return equals(o);
+        if (!weaklyEqual(o)) {
+            return false;
+        }
+        Task task = (Task) o;
+        return completedTime.equals(task.completedTime) && description.equals(task.description)
+                && getAttributes().equals(task.getAttributes());
     }
 
     /**
@@ -138,47 +131,45 @@ public class Task implements DisplayItem {
             parent = null;
             return;
         }
-        if (!(o instanceof AbstractContainerItem)) {
+        assert o instanceof AbstractDisplayItem;
+
+        if (!canBeChildOf((AbstractDisplayItem) o)) {
             throw new ItemCannotBeParentException(o);
         }
-        parent = (AbstractContainerItem) o;
+
+        if (o instanceof AbstractSingleItem) {
+            setParentForSingleGrp((AbstractSingleItem) o);
+        }
+
+        if (o instanceof Person) {
+            setContactParent((Person) o);
+        }
+
     }
 
-    public String getParentPath() {
-        return parent.getFullPathName();
-    }
-
-    /**
-     * Returns true if {@code DisplayItem o} is a parent of this item
-     *
-     * @param o The item that may be a parent of this Task
-     */
     @Override
-    public boolean isPartOfContext(DisplayItem o) {
+    public Set<? extends DisplayItem> getParents() {
+        return Stream.concat(super.getParents().stream(), assignedParents.stream()).collect(Collectors.toSet());
+    }
+
+    private void setParentForSingleGrp(AbstractSingleItem o) {
+        super.setParent(o);
+    }
+
+    private void setContactParent(Person o) {
         if (o == null) {
-            return true;
+            return;
         }
-        AbstractContainerItem tmp = parent;
-        while (tmp != null) {
-            if (tmp.equals(o)) {
-                return true;
-            }
-            tmp = tmp.getParent();
+        if (!assignedParents.contains(o)) {
+            throw new ItemCannotBeParentException(o);
         }
-        return false;
+
+        assignedParents.add(o);
     }
 
     @Override
-    public String toString() {
-        return title;
+    public UUID getUid() {
+        return UUID.nameUUIDFromBytes(("Task: " + getFullPath()).getBytes(StandardCharsets.UTF_8));
     }
 
-    /**
-     * Prints this class as a json txt
-     */
-    public String toJson() {
-        return "Task{" + "title: '" + title + '\'' + "; description: '" + description + '\'' + "; completedTime: "
-                + completedTime
-                + "; parent: " + parent + '}';
-    }
 }
