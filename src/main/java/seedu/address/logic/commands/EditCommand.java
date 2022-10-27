@@ -36,6 +36,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the project identified "
             + "by the index number used in the displayed project list. "
             + "Existing values will be overwritten by the input values.\n"
+            + "Staff list for each project will not be changed and can only be updated using staff commands\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_PROJECT_NAME + "PROJECT_NAME] "
             + "[" + PREFIX_BUDGET + "PROJECT_BUDGET] "
