@@ -178,7 +178,7 @@ public class PersonCard extends UiPart<Region> {
         person.getLinks().stream().sorted(Comparator.comparing(link -> link.platform))
                 .forEach(link -> {
                     Button button = new Button();
-                    button.setOnAction(openBrowser(link.link));
+                    button.setOnAction(openBrowser(link.link.toString()));
                     Image image = ImageUtil.getSocialIcon(link.platform);
                     if (image == null) {
                         button.setText(link.platform + " : " + link.link);

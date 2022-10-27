@@ -1,7 +1,6 @@
 package seedu.clinkedin.logic.commands;
 
 import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.clinkedin.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -16,22 +15,20 @@ import seedu.clinkedin.model.person.UniqueTagTypeMap;
 /**
  * Changes the note of an existing person in the address book.
  */
-public class NoteCommand extends Command {
+public class AddNoteCommand extends Command {
 
-    public static final String COMMAND_WORD = "note";
+    public static final String COMMAND_WORD = "addnote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an optional note to the person identified"
-            + "by the index number in the address book. "
-            + "Existing notes will be overwritten by the input.\n"
+            + "by the index number in the address book.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "note INDEX note/NOTE\n\n"
+            + "addNote INDEX note/NOTE\n\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "note/Strong in Java\n\n"
-            + " will add a note 'Strong in Java' to the first person in the address book.";
+            + "note/Strong in Java";
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
-    public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists";
 
     private final Index index;
     private final Note note;
@@ -40,7 +37,7 @@ public class NoteCommand extends Command {
      * @param index of the person in the filtered person list to edit the note
      * @param note  note of the person to be updated to
      */
-    public NoteCommand(Index index, Note note) {
+    public AddNoteCommand(Index index, Note note) {
         requireAllNonNull(index, note);
         this.index = index;
         this.note = note;
@@ -54,29 +51,21 @@ public class NoteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToUpdate = lastShownList.get(index.getZeroBased());
+        Note updatedNote = personToUpdate.mergeNote(note);
         UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
-        tagMap.setTagTypeMap(personToEdit.getTags());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), tagMap, personToEdit.getStatus(), note, personToEdit.getRating(),
-                personToEdit.getLinks());
+        tagMap.setTagTypeMap(personToUpdate.getTags());
+        Person updatedPerson = new Person(personToUpdate.getName(), personToUpdate.getPhone(),
+                personToUpdate.getEmail(), personToUpdate.getAddress(), tagMap, personToUpdate.getStatus(),
+                updatedNote, personToUpdate.getRating(), personToUpdate.getLinks());
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        if (!personToUpdate.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
-    }
+        model.setPerson(personToUpdate, updatedPerson);
 
-    /**
-     * Generates a command execution success message based on whether
-     * the note is added or removed from {@code personToEdit}.
-     *
-     * @param personToEdit the person whose note is edited
-     * @return the success message
-     */
-    private String generateSuccessMessage(Person personToEdit) {
-        String message = !note.value.isEmpty() ? MESSAGE_ADD_NOTE_SUCCESS : MESSAGE_DELETE_NOTE_SUCCESS;
-        return String.format(message, personToEdit);
+        return new CommandResult(String.format(MESSAGE_ADD_NOTE_SUCCESS, updatedPerson));
     }
 
     @Override
@@ -87,12 +76,12 @@ public class NoteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NoteCommand)) {
+        if (!(other instanceof AddNoteCommand)) {
             return false;
         }
 
         // state check
-        NoteCommand e = (NoteCommand) other;
+        AddNoteCommand e = (AddNoteCommand) other;
         return index.equals(e.index)
                 && note.equals(e.note);
     }
