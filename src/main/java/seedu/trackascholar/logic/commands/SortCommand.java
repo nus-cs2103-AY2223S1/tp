@@ -22,7 +22,7 @@ public class SortCommand extends Command {
             + "Parameters: name/scholarship/status [-r]\n"
             + "Example: " + COMMAND_WORD + " name -r";
 
-    public static final String MESSAGE_SUCCESS = "Applicants have been sorted";
+    public static final String MESSAGE_SORT_SUCCESS = "Applicants have been sorted";
 
     private final Comparator<Applicant> comparator;
 
@@ -35,7 +35,7 @@ public class SortCommand extends Command {
         requireNonNull(model);
         model.sortApplicants(comparator);
         model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SORT_SUCCESS);
     }
 
     @Override
