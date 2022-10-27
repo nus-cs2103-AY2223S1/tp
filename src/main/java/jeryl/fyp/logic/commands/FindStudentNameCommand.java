@@ -8,7 +8,7 @@ import jeryl.fyp.model.student.StudentNameContainsKeywordsPredicate;
  */
 public class FindStudentNameCommand extends FindCommand {
 
-    public static final String COMMAND_WORD = "find-n";
+    public static final String COMMAND_WORD = "find -n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -22,4 +22,5 @@ public class FindStudentNameCommand extends FindCommand {
     public FindStudentNameCommand(StudentNameContainsKeywordsPredicate studentNamePredicate) {
         super(studentNamePredicate);
     }
+
 }

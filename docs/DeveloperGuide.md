@@ -52,7 +52,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-s id/A0123456X`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete -s id/A0123456X`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -98,9 +98,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete-s id/A0123456X")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete -s id/A0123456X")` API call.
 
-![Interactions Inside the Logic Component for the `delete-s id/A0123456X` Command](images/DeleteStudentSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete -s id/A0123456X` Command](images/DeleteStudentSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -218,7 +218,7 @@ The following activity diagram summarizes what happens when a user executes a de
 #### Design considerations
 
 The delete student command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
-to find students taking machine learning projects before doing `delete-s id/A0123456X` to remove student from FYP Manager.
+to find students taking machine learning projects before doing `delete -s id/A0123456X` to remove student from FYP Manager.
 
 This integration between delete student command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
 By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student id, users can delete the student from the FYPManager once he/she drops the FYP.
@@ -428,13 +428,13 @@ Given below is an example usage scenario and how FindCommand is utilised:
 Step 1. The user launches the application for the first time. The 'FypManager' will be initialised with its
 'FypManager' state.
 
-Step 2: The user finds a project by keying in `find-proj tree` to find all projects whose name contains the keyword
+Step 2: The user finds a project by keying in `find -p tree` to find all projects whose name contains the keyword
 `tree`. FypManager returns a list of projects whose names contain the `tree` keyword.
 
 ![FindCommandState1](images/FindCommandState1.png)
 
-Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in
-`find-proj blockchain` to find all projects which contain the keyword `blockchain`. FypManager returns an empty list,
+Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in 
+`find -p blockchain` to find all projects which contain the keyword `blockchain`. FypManager returns an empty list,
 as there is no project whose project name contains `blockchain`.
 
 ![FindCommandState2](images/FindCommandState2.png)
