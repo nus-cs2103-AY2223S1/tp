@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.condonery.commons.exceptions.DataConversionException;
-import seedu.condonery.model.ReadOnlyClientDirectory;
+import seedu.condonery.model.client.ReadOnlyClientDirectory;
 
 /**
  * Represents a storage for {@link seedu.condonery.model.ClientDirectory}.
