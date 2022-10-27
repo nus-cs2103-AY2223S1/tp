@@ -10,6 +10,7 @@ import eatwhere.foodguide.logic.commands.Command;
 import eatwhere.foodguide.logic.commands.DeleteCommand;
 import eatwhere.foodguide.logic.commands.EditCommand;
 import eatwhere.foodguide.logic.commands.ExitCommand;
+import eatwhere.foodguide.logic.commands.FavouriteCommand;
 import eatwhere.foodguide.logic.commands.FindCommand;
 import eatwhere.foodguide.logic.commands.FindCuisineCommand;
 import eatwhere.foodguide.logic.commands.FindLocationCommand;
@@ -17,6 +18,7 @@ import eatwhere.foodguide.logic.commands.FindTagCommand;
 import eatwhere.foodguide.logic.commands.HelpCommand;
 import eatwhere.foodguide.logic.commands.ListCommand;
 import eatwhere.foodguide.logic.commands.TagCommand;
+import eatwhere.foodguide.logic.commands.UnfavouriteCommand;
 import eatwhere.foodguide.logic.commands.UntagCommand;
 import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
@@ -87,6 +89,12 @@ public class FoodGuideParser {
 
         case FindLocationCommand.COMMAND_WORD:
             return new FindLocationCommandParser().parse(arguments);
+
+        case FavouriteCommand.COMMAND_WORD:
+            return new FavouriteCommandParser().parse(arguments);
+
+        case UnfavouriteCommand.COMMAND_WORD:
+            return new UnfavouriteCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
