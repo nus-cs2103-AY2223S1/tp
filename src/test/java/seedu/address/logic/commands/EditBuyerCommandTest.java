@@ -133,7 +133,7 @@ public class EditBuyerCommandTest {
                 .build();
         EditBuyerCommand editBuyerCommand = new EditBuyerCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editBuyerCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editBuyerCommand, model, Messages.MESSAGE_INVALID_BUYER_DISPLAYED_INDEX);
     }
 
     /**

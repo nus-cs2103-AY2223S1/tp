@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.FilterBuyerByPricePredicate;
+import seedu.address.model.buyer.FilterBuyerContainingAllCharacteristicsPredicate;
 import seedu.address.model.buyer.FilterBuyerContainingAnyCharacteristicPredicate;
 import seedu.address.model.property.Property;
 
@@ -32,7 +33,7 @@ public class MatchPropertyCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_STRICT;
 
-    public static final String MESSAGE_MATCHED_PROPERTY_SUCCESS = "Matched Property: %1$s";
+    public static final String MESSAGE_MATCHED_PROPERTY_SUCCESS = "%s matched buyers for the property:\n%s";
 
     private final Index targetIndex;
     private final boolean isMatchingAll;
@@ -62,8 +63,13 @@ public class MatchPropertyCommand extends Command {
         ArrayList<Predicate<Buyer>> predicatesList = new ArrayList<>();
         predicatesList.add(new FilterBuyerByPricePredicate(propertyToMatch.getPrice()));
         if (propertyToMatch.getCharacteristics().isPresent()) {
-            predicatesList.add(
-                    new FilterBuyerContainingAnyCharacteristicPredicate(propertyToMatch.getCharacteristics().get()));
+            if (isMatchingAll) {
+                predicatesList.add(new FilterBuyerContainingAllCharacteristicsPredicate(
+                        propertyToMatch.getCharacteristics().get()));
+            } else {
+                predicatesList.add(new FilterBuyerContainingAnyCharacteristicPredicate(
+                        propertyToMatch.getCharacteristics().get()));
+            }
         }
 
         // predicatesList must not be empty, since at least FilterBuyerByPricePredicate should be added
@@ -78,13 +84,15 @@ public class MatchPropertyCommand extends Command {
 
         new FilterBuyersCommand(combinedPredicate).execute(model);
 
-        return new CommandResult(String.format(MESSAGE_MATCHED_PROPERTY_SUCCESS, propertyToMatch));
+        return new CommandResult(String.format(MESSAGE_MATCHED_PROPERTY_SUCCESS,
+                model.getFilteredPersonList().size(), propertyToMatch));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof MatchPropertyCommand // instanceof handles nulls
-                && targetIndex.equals(((MatchPropertyCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((MatchPropertyCommand) other).targetIndex))
+                && isMatchingAll == (((MatchPropertyCommand) other).isMatchingAll); // state check
     }
 }

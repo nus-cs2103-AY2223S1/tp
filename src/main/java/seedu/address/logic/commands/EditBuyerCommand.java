@@ -75,7 +75,7 @@ public class EditBuyerCommand extends Command {
         List<Buyer> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_BUYER_DISPLAYED_INDEX);
         }
 
         Buyer buyerToEdit = lastShownList.get(index.getZeroBased());
