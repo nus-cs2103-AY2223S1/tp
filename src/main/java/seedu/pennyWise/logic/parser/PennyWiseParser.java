@@ -12,9 +12,7 @@ import seedu.pennyWise.logic.commands.Command;
 import seedu.pennyWise.logic.commands.DeleteCommand;
 import seedu.pennyWise.logic.commands.EditCommand;
 import seedu.pennyWise.logic.commands.ExitCommand;
-import seedu.pennyWise.logic.commands.FindCommand;
 import seedu.pennyWise.logic.commands.HelpCommand;
-import seedu.pennyWise.logic.commands.ListCommand;
 import seedu.pennyWise.logic.commands.SummaryCommand;
 import seedu.pennyWise.logic.commands.ViewCommand;
 import seedu.pennyWise.logic.parser.exceptions.ParseException;
@@ -57,12 +55,6 @@ public class PennyWiseParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

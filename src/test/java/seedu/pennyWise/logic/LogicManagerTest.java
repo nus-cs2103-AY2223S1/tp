@@ -21,7 +21,6 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.pennyWise.logic.commands.AddCommand;
 import seedu.pennyWise.logic.commands.CommandResult;
 import seedu.pennyWise.logic.commands.DeleteCommand;
-import seedu.pennyWise.logic.commands.ListCommand;
 import seedu.pennyWise.logic.commands.exceptions.CommandException;
 import seedu.pennyWise.logic.parser.CliSyntax;
 import seedu.pennyWise.logic.parser.exceptions.ParseException;
@@ -69,11 +68,6 @@ public class LogicManagerTest {
         assertCommandException(deleteCommand, MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
-    @Test
-    public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-    }
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {

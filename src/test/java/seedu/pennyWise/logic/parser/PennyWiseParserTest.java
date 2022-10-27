@@ -7,10 +7,6 @@ import static seedu.pennyWise.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.pennyWise.testutil.Assert.assertThrows;
 import static seedu.pennyWise.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.pennyWise.logic.commands.AddCommand;
@@ -19,16 +15,13 @@ import seedu.pennyWise.logic.commands.CommandTestUtil;
 import seedu.pennyWise.logic.commands.DeleteCommand;
 import seedu.pennyWise.logic.commands.EditCommand;
 import seedu.pennyWise.logic.commands.ExitCommand;
-import seedu.pennyWise.logic.commands.FindCommand;
 import seedu.pennyWise.logic.commands.HelpCommand;
-import seedu.pennyWise.logic.commands.ListCommand;
 import seedu.pennyWise.logic.commands.SummaryCommand;
 import seedu.pennyWise.logic.commands.ViewCommand;
 import seedu.pennyWise.logic.parser.exceptions.ParseException;
 import seedu.pennyWise.model.entry.Entry;
 import seedu.pennyWise.model.entry.EntryType;
 import seedu.pennyWise.model.entry.GraphType;
-import seedu.pennyWise.model.entry.NameContainsKeywordsPredicate;
 import seedu.pennyWise.testutil.EditEntryDescriptorBuilder;
 import seedu.pennyWise.testutil.EntryUtil;
 import seedu.pennyWise.testutil.ExpenditureBuilder;
@@ -78,13 +71,6 @@ public class PennyWiseParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
-    @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    }
 
     @Test
     public void parseCommand_help() throws Exception {
@@ -92,11 +78,6 @@ public class PennyWiseParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
-    @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
-    }
 
     @Test
     public void parseCommand_summary() throws Exception {
