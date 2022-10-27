@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Tags a user with one or more tags.
+ * Lists all tags available.
  */
 public class ListTagCommand extends TagCommandGroup {
     public static final String COMMAND_SPECIFIER = "list";
