@@ -15,22 +15,22 @@ public class RangeCommand extends Command {
     public static final String COMMAND_WORD = ":range";
 
     public static final String MESSAGE_USAGE = "The range feature has two variations: \n\n"
-            + COMMAND_WORD + " d/START_DATE e/END_DATE\n"
+            + COMMAND_WORD + " start/START_DATE end/END_DATE\n"
             + "displays all exercises with dates that are within "
             + "the specified start date and end date.\n"
-            + "Example: \n" + COMMAND_WORD + " d/10/10/2022 e/22/10/2022\n\n"
-            + COMMAND_WORD + " last/DAYS\n"
-            + "displays all exercises within the last DAYS days and and today's exercises.\n"
-            + "Example: \n" + COMMAND_WORD + " last/7";
+            + "Example: \n" + COMMAND_WORD + " start/10/10/2022 end/22/10/2022\n\n"
+            + COMMAND_WORD + " last/NUMBER\n"
+            + "displays all exercises within the last NUMBER days and and today's exercises.\n"
+            + "Example usage: \n" + COMMAND_WORD + " last/7";
 
     public static final String MESSAGE_USAGE_TWO = "The range feature has two variations: \n\n"
-            + COMMAND_WORD + " last/DAYS\n"
-            + "displays all exercises within the last DAYS days and and today's exercises.\n"
+            + COMMAND_WORD + " last/NUMBER\n"
+            + "displays all exercises within the last NUMBER days and and today's exercises.\n"
             + "Example: \n" + COMMAND_WORD + " last/7\n\n"
-            + COMMAND_WORD + " d/START_DATE e/END_DATE\n"
+            + COMMAND_WORD + " start/START_DATE end/END_DATE\n"
             + "displays all exercises with dates that are within "
             + "the specified start date and end date.\n"
-            + "Example: \n" + COMMAND_WORD + " d/10/10/2022 e/22/10/2022";
+            + "Example: \n" + COMMAND_WORD + " start/10/10/2022 end/22/10/2022";
 
     public final boolean isAdvanced;
     private final DateWithinRangePredicate predicate;

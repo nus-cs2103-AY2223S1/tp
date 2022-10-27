@@ -41,7 +41,7 @@ public class ExerciseCard extends UiPart<Region> {
     private FlowPane dates;
 
     /**
-     * Creates a {@code ExerciseCode} with the given {@code Exercise} and index to display.
+     * Creates a {@code ExerciseCard} with the given {@code Exercise} and index to display.
      */
     public ExerciseCard(Exercise exercise, int displayedIndex) {
         super(FXML);
@@ -51,9 +51,8 @@ public class ExerciseCard extends UiPart<Region> {
         weight.setText("Weight: " + exercise.getWeight().value + "kg");
         reps.setText("Reps: " + exercise.getReps().value);
         sets.setText("Sets: " + exercise.getSets().value);
-        String dayString = exercise.getDate().getDayString();
-        String dateString = exercise.getDateString();
-        dates.getChildren().add(new Label(dayString + " " + dateString));
+        dates.getChildren().add(new Label(exercise.getDate().getDayString()));
+        dates.getChildren().add(new Label(exercise.getDateString()));
     }
 
     @Override

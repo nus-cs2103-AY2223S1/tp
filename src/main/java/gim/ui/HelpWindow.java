@@ -20,9 +20,9 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String HELP_MESSAGE = USERGUIDE_URL;
 
     public static final String HELP_PARA = "Hi there, welcome to GIM! Here is a list of supported commands.\n"
-            + "1) :a - Adds an exercise\n"
-            + "2) :d - Deletes an exercise\n"
-            + "3) :ls - Lists all exercise entries\n"
+            + "1) :add - Adds an exercise\n"
+            + "2) :del - Deletes an exercise\n"
+            + "3) :list - Lists all exercise entries\n"
             + "4) :find - Finds exercises by their name\n"
             + "5) :clear - Clears the saved exercises and resets the data in the system\n"
             + "6) :sort - Sorts the exercises by date, if they have the same date, by name \n"

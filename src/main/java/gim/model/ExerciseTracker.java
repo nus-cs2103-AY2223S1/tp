@@ -138,10 +138,10 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     }
 
     /**
-     * Returns the internalUnmodifiableList of type ObservableList in ExerciseList.
+     * Returns a duplicated displayed list of type ObservableList in ExerciseList.
      * */
-    public ObservableList<Exercise> getUnmodifiableList() {
-        return exerciseList.asUnmodifiableList();
+    public ObservableList<Exercise> getDuplicatedDisplayedList() {
+        return exerciseList.asDuplicatedDisplayedList();
     }
 
     /**
