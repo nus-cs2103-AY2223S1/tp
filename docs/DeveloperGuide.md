@@ -428,7 +428,7 @@ The whole list is sorted according to the score of the particular exam, before i
 
 The following sequence diagram depicts how different components such as `Logic` and `Model` interact.
 
-*insert sequence diagram*
+<img src="images/ViewStatsCommandSequenceDiagram.png" />
 
 Design Considerations:
 1. Sorting the list of students according to grade
@@ -446,9 +446,7 @@ Design Considerations:
     each time an `addStudent` command or `edit` command is run
   - Cons:
     - Reorders the whole `StudentRecord` each time the sorting is done
-  
-
-*To be updated*
+    
 
 --------------------------------------------------------------------------------------------------------------------
 
