@@ -1,4 +1,4 @@
-package seedu.condonery.logic.commands;
+package seedu.condonery.logic.commands.client;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
-import seedu.condonery.logic.commands.client.EditClientCommand;
+import seedu.condonery.logic.commands.CommandTestUtil;
 import seedu.condonery.logic.commands.client.EditClientCommand.EditClientDescriptor;
 import seedu.condonery.logic.commands.property.ClearPropertyCommand;
 import seedu.condonery.model.ClientDirectory;
