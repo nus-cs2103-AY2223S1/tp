@@ -1,10 +1,8 @@
-# PennyWise User Guide
 > :warning: Prerequisite:
 > * This guide assumes that the reader is familiar with using [Java](https://www.java.com/)
 
 # Table of Contents
 <!-- TOC -->
-* [PennyWise User Guide](#pennywise-user-guide)
 * [Table of Contents](#table-of-contents)
   * [Introduction](#introduction)
   * [Quick start](#quick-start)
@@ -154,11 +152,12 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 Adds an entry to the specified list. <br>
 1. Add expense <br>
    - Example: `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`<br>
-   - An expense of $15.60 on 10/10/2022 will be added to the Expenditure list, under the Food category.
-
+   Expected: New entry added: Lunch; Date: 10-10-2022; Amount: 15.60; Tag: Food
+   ![AddCommand1](images/AddCommand1.png)
 1. Add income <br>
    - Example: `add t/i d/Tuition a/40.00 da/10-10-2022 c/Salary`<br>
-   - An income of 40.00 on 10/10/2022 will be added to the Income list, under the Salary category.
+   Expected: New entry added: Tuition; Date: 10-10-2022; Amount: 40.00; Tag: Salary
+   ![AddCommand2](images/AddCommand2.png)
 
 ### Deleting entries : `del INDEX_OF_ENTRY t/ENTRY_TYPE`
 Deletes an entry.
@@ -167,13 +166,13 @@ Deletes an entry.
    1. Movie 15.60 12 Sep 2022 c/Entertainment
    2. Drink 1.20 12 Sep 2022 c/Food <br>
    Expected: `Deleted Entry: Drink; Date: 12-09-2022; Amount: 1.20; Tag: Food`
-   
+   ![DeleteCommand1](images/DeleteCommand1.png)
 1. Example: `del 2 t/i` deletes the 2nd item on the income list
    Income list:
    1. Tuition 40.00 12 Sep 2022 c/Salary
    2. Allowance 100.00 12 Sep 2022 c/Allowance <br>
    Expected: `Deleted Entry: Allowance; Date: 12-09-2022; Amount: 100.00 Tag: Allowance`
-
+   ![DeleteCommand2](images/DeleteCommand2.png)
 
 ### Editing entries : `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`
 Edits an entry, at least **1** of the optional fields must be present.
@@ -182,11 +181,12 @@ Edits an entry, at least **1** of the optional fields must be present.
    * Example: `edit 1 t/e d/ChickenRice`
    * The expenditure at index 1 will have its description edited <br>
    Expected: `Edited Entry: ChickenRice; Date: 21-10-2022; Amount: 4.20; Tag: Food`
+   ![EditCommand1](images/EditCommand1.png)
 1. Edits income with specified fields
    * Example: `edit 2 t/i a/150.00 da/22-10-2022`
    * The income at index 2 will have its amount and date edited <br>
    Expected: `Edited Entry: CafeSalary; Date: 22-10-2022; Amount: 150.00; Tag: Salary`
-
+   ![EditCommand2](images/EditCommand2.png)
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The default date is the current date on your computer!
 </div>
@@ -197,16 +197,18 @@ The default date is the current date on your computer!
    * Examples: `summary`
      * Expected: <br/>
        Financials Summarized <br/>
-       Total Expenditure: 154.40 <br/>
-       Total Income: 150.00 <br/>
-       Total Balance: -4.40 <br/>
+       Total Expenditure: 154.49 <br/>
+       Total Income: 250.00 <br/>
+       Total Balance: 95.51 <br/>
+     ![SummaryCommand1](images/SummaryCommand1.png)
 2. Summary of all entries the specified month
-    * Examples: `summary mo/2022-09`
+    * Examples: `summary mo/2022-10`
     * Expected: <br/>
       Financials Summarized <br/>
-      Total Expenditure: 80.40 <br/>
-      Total Income: 50.00 <br/>
-      Total Balance: -30.40 <br/>
+      Total Expenditure: 4.20 <br/>
+      Total Income: 250.00 <br/>
+      Total Balance: 245.80 <br/>
+    ![SummaryCommand2](images/SummaryCommand2.png)
 * Provides a financial summary recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application displays the summary for all entries.
 
@@ -215,17 +217,21 @@ The default date is the current date on your computer!
 1. View a PieChart of all expenditures by categories
     * Examples: `view t/e g/c` <br>
    Expected: `Show graphically all expenditure by category` and a PieChart on the right of the application
+   ![ViewCategory1](images/ViewCategory1.png)
 1. View a PieChart of all incomes by categories
    * Examples: `view t/i g/c` <br>
    Expected: `Show graphically all income by category` and a PieChart on the right of the application
+   [ViewCategory2](images/ViewCategory2.png)
 
 ### View entries by month : `view t/ENTRY_TYPE g/GRAPH_TYPE mo/MONTH`
 1. View a LineGraph of all expenditures in a specified month
    * Examples: `view t/e g/m mo/2022-10` <br>
    Expected: `Show graphically all expenditure by month` and a LineGraph on the right of the application
+   ![ViewMonth1](images/ViewMonth1.png)
 1. View a LineGraph of all incomes in a specified month
    * Examples: `view t/i g/m mo/2022-10` <br>
    Expected: `Show graphically all income by month` and a LineGraph on the right of the application
+   ![ViewMonth2](images/ViewMonth2.png)
 
 * View all entries recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is required for the LineGraph, if no month is specified, the application displays an error.
