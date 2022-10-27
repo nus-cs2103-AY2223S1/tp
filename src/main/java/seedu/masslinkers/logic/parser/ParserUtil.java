@@ -146,11 +146,11 @@ public class ParserUtil {
      * @throws ParseException if the given {@code mod} is invalid.
      */
     public static Mod parseMod(String mod) throws ParseException {
-        String trimmedMod = mod.trim();
-        if (!Mod.isValidModName(trimmedMod)) {
+        String trimmedUpperCasedMod = mod.trim().toUpperCase();
+        if (!Mod.isValidModName(trimmedUpperCasedMod)) {
             throw new ParseException(Mod.MESSAGE_CONSTRAINTS);
         }
-        return new Mod(trimmedMod);
+        return new Mod(trimmedUpperCasedMod);
     }
 
     /**
