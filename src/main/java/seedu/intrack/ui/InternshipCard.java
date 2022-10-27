@@ -2,7 +2,11 @@ package seedu.intrack.ui;
 
 import java.awt.Desktop;
 import java.net.URI;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
@@ -13,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.TextFlow;
 import seedu.intrack.model.internship.Internship;
+import seedu.intrack.model.internship.Task;
 
 /**
  * An UI component that displays information of a {@code Internship}.
@@ -65,7 +70,14 @@ public class InternshipCard extends UiPart<Region> {
         PseudoClass offered = PseudoClass.getPseudoClass("offered");
         lab.pseudoClassStateChanged(offered, (internship.getStatus().toString()).equals("Offered"));
         status.getChildren().add(lab);
-        upcomingTask.setText("Upcoming Task: " + internship.getTasks().get(0).toString());
+        List<Task> taskList = internship.getTasks().stream()
+                .filter(task -> task.getTaskTime().isAfter(LocalDateTime.now()))
+                .collect(Collectors.toList());
+        if (taskList.size() == 0) {
+            upcomingTask.setText("Currently no upcoming tasks!");
+        } else if (taskList.size() > 0) {
+            upcomingTask.setText("Upcoming Task: " + taskList.get(0));
+        }
         Hyperlink hyperlink = new Hyperlink(internship.getWebsite().value);
         website.getChildren().add(hyperlink);
         hyperlink.setOnAction(e -> {

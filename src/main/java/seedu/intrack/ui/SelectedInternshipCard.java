@@ -89,7 +89,6 @@ public class SelectedInternshipCard extends UiPart<Region> {
         tasks.setMaxWidth(0);
         AtomicInteger count = new AtomicInteger();
         internship.getTasks().stream()
-                .filter(task -> task.getTaskTime().isAfter(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES)))
                 .forEach(task -> {
                     Label temp = new Label(count.incrementAndGet() + ". " + task.taskName
                             + " at " + task.taskTime.format(Task.FORMATTER));
