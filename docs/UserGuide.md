@@ -233,6 +233,18 @@ Note:
 * For persons that are not associated with a company yet, they will be listed at the bottom of the list.
 * The list will remain sorted by associated company names in alphabetical order, until InterNUS is closed or if it is changed to sort by person names instead.
 
+### Sorting internships in the list: `sort -i`
+
+Sorts the internship list given a sorting criterion.
+
+Format: `sort -i [c/] [d/] [s/]`
+- Exactly one of the optional fields must be provided.
+- `c/` sorts internships by company name (in lexicographic order).
+- `d/` sorts internships by interview date.
+- `s/` sorts internships by status in the given order: `BOOKMARKED`, `PENDING`, `ACCEPTED`, `COMPLETED`, `REJECTED`.
+- When sorted by interview date, internships with no interview dates are listed at the bottom of the list.
+- The list will remain sorted by the last given criterion until InterNUS is closed.
+
 ### Clearing all entries : `clear`
 
 Clears all person and internship entries from InterNUS.
@@ -284,4 +296,5 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 | **List persons**      | `listp`                                                                                                                                                                                                 |
 | **List internships**  | `list -i`                                                                                                                                                                                               |
 | **Sort persons**      | `sort -p c/` or `sort -p n/`                                                                                                                                                                            |
+| **Sort internships**  | `sort -i [c/] [d/] [s/]` <br> e.g., `sort -i d/`                                                                                                                                                        |
 | **Help**              | `help`                                                                                                                                                                                                  |
