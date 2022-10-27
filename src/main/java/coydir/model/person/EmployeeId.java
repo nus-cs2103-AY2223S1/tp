@@ -65,7 +65,7 @@ public class EmployeeId {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EmployeeId // instanceof handles nulls
-                && this.value.equals(((EmployeeId) other).value)); // state check
+                && Integer.valueOf(this.value).equals(Integer.valueOf(((EmployeeId) other).value))); // state check
     }
 
     @Override
