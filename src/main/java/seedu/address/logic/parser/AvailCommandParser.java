@@ -20,12 +20,9 @@ public class AvailCommandParser implements Parser<AvailCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AvailCommand.MESSAGE_USAGE));
         }
-        try {
-            TimeRange timeRange = ParserUtil.parseTimeRange(args);
-            return new AvailCommand(timeRange);
-        } catch (ParseException pe) {
-            throw pe;
-        }
+
+        TimeRange timeRange = ParserUtil.parseTimeRange(args);
+        return new AvailCommand(timeRange);
     }
 
     /**

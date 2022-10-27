@@ -115,10 +115,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
         teachersPet.setPerson(target, editedPerson);
     }
+1
     @Override
-    public Class getAvailableClass(TimeRange timeRange) {
+    public Class findAvailableClass(TimeRange timeRange) {
         requireNonNull(timeRange);
-        return teachersPet.getAvailableClass(timeRange);
+        return teachersPet.findAvailableClass(timeRange);
     }
 
     @Override

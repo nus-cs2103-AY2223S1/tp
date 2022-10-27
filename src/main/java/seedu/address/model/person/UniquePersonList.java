@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -144,14 +145,15 @@ public class UniquePersonList implements Iterable<Person> {
      * @param tr a timeRange object containing the {@code startTime}, {@code endTime} and {@code duration}.
      * @return the next first available Class.
      */
-    public Class getAvailableClass(TimeRange tr) {
+    public Class findAvailableClass(TimeRange tr) {
         LocalDate currDate = LocalDate.now();
         List<Person> list = internalList
                 .stream()
                 .filter(person -> person.getAClass().startTime != null
                         && person.getAClass().endTime != null
                         && person.getAClass().date != null
-                        && person.getAClass().date.compareTo(currDate) >= 0)
+                        && person.getAClass().date.compareTo(currDate) >= 0
+                        && person.getAClass().startTime.compareTo(LocalTime.now()) >= 0)
                 .sorted(Person::compareTo)
                 .collect(Collectors.toList());
         Class newClass = new Class();
@@ -159,37 +161,15 @@ public class UniquePersonList implements Iterable<Person> {
             newClass = new Class(currDate, tr.startTimeRange,
                     tr.startTimeRange.plusMinutes(tr.duration));
             return newClass;
-        }
-
-        if (list.size() == 1) {
-            Class classToCompare = list.get(0).getAClass();
-            // When the startTimeRange is before the earliest slot
-            assert classToCompare.endTime != null;
-            assert classToCompare.startTime != null;
-
-            if (classToCompare.endTime.compareTo(tr.startTimeRange) <= 0
-                    || (classToCompare.startTime.compareTo(tr.startTimeRange) >= 0
-                    && tr.startTimeRange.plusMinutes(tr.duration).compareTo(classToCompare.startTime) <= 0)) {
-                newClass = new Class(currDate, tr.startTimeRange,
-                        tr.startTimeRange.plusMinutes(tr.duration));
-            } else if (classToCompare.startTime.compareTo(tr.endTimeRange) >= 0
-                    || (classToCompare.endTime.plusMinutes(tr.duration).compareTo(tr.endTimeRange) <= 0)) {
-                // When the startTimeRange is after the earliest slot
-                newClass = new Class(currDate, classToCompare.endTime,
-                        classToCompare.endTime.plusMinutes(tr.duration));
-            } else {
-                // Else go to the next day and find the next available slot
-                newClass = new Class(currDate.plusDays(1), tr.startTimeRange,
-                        tr.startTimeRange.plusMinutes(tr.duration));
-            }
-            return newClass;
+        } else if (list.size() == 1) {
+            return findAvailableClassWithSingleRecord(tr, currDate, list);
         }
 
         for (int i = 0; i < list.size(); i++) {
             Class aFirstClass = list.get(i).getAClass();
             if (i == list.size() - 1) {
                 /*
-                    if the list.size() - 1, that means that you are only looking at one element in the list.
+                    if the list.size() - 1, that means that you are only looking at the last element in the list.
                     in which case, you are looking at a few cases
                     Case 1: The startTimeRange is before the startTime of the class, in which case, you should
                             create a class from the start time and check to see if it exceeds the startTime of the
@@ -199,8 +179,7 @@ public class UniquePersonList implements Iterable<Person> {
                     Case 3: If it exceeds the endTimeRange then you look at the next day, but will be handled by next
                             iteration
                  */
-                assert aFirstClass.endTime != null;
-                assert aFirstClass.startTime != null;
+
                 if (tr.startTimeRange.compareTo(aFirstClass.startTime) < 0) {
                     newClass = new Class(aFirstClass.date, tr.startTimeRange,
                             tr.startTimeRange.plusMinutes(tr.duration));
@@ -208,19 +187,13 @@ public class UniquePersonList implements Iterable<Person> {
                     if (newClass.endTime.compareTo(aFirstClass.startTime) <= 0) {
                         break;
                     }
-                } else {
-                    newClass = new Class(aFirstClass.date, aFirstClass.endTime,
-                            aFirstClass.endTime.plusMinutes(tr.duration));
-                    assert newClass.endTime != null;
-                    if (newClass.endTime.compareTo(tr.endTimeRange) <= 0) {
-                        break;
-                    }
                 }
-
                 newClass = new Class(aFirstClass.date, aFirstClass.endTime,
                         aFirstClass.endTime.plusMinutes(tr.duration));
                 assert newClass.endTime != null;
-                if (newClass.endTime.compareTo(tr.endTimeRange) > 0) {
+                if (newClass.endTime.compareTo(tr.endTimeRange) <= 0) {
+                    break;
+                } else {
                     assert aFirstClass.date != null;
                     newClass = new Class(aFirstClass.date.plusDays(1),
                             tr.startTimeRange, tr.startTimeRange.plusMinutes(tr.duration));
@@ -237,10 +210,7 @@ public class UniquePersonList implements Iterable<Person> {
                     && !ClassStorage.hasConflict(fromTrStartTime.startTime, fromTrStartTime.endTime,
                     aSecondClass.startTime, aSecondClass.endTime)) {
                 assert fromTrStartTime.endTime != null;
-                if (fromTrStartTime.endTime.compareTo(tr.endTimeRange) <= 0) {
-                    newClass = fromTrStartTime;
-                    break;
-                }
+                newClass = fromTrStartTime;
             }
 
             assert aFirstClass.date != null;
@@ -292,6 +262,30 @@ public class UniquePersonList implements Iterable<Person> {
         return newClass;
     }
 
+    private static Class findAvailableClassWithSingleRecord(TimeRange tr, LocalDate currDate, List<Person> list) {
+        Class newClass;
+        Class classToCompare = list.get(0).getAClass();
+        // When the startTimeRange is before the earliest slot
+        assert classToCompare.endTime != null;
+        assert classToCompare.startTime != null;
+
+        if (classToCompare.endTime.compareTo(tr.startTimeRange) <= 0
+                || (classToCompare.startTime.compareTo(tr.startTimeRange) >= 0
+                && tr.startTimeRange.plusMinutes(tr.duration).compareTo(classToCompare.startTime) <= 0)) {
+            newClass = new Class(currDate, tr.startTimeRange,
+                    tr.startTimeRange.plusMinutes(tr.duration));
+        } else if (classToCompare.startTime.compareTo(tr.endTimeRange) >= 0
+                || (classToCompare.endTime.plusMinutes(tr.duration).compareTo(tr.endTimeRange) <= 0)) {
+            // When the startTimeRange is after the earliest slot
+            newClass = new Class(currDate, classToCompare.endTime,
+                    classToCompare.endTime.plusMinutes(tr.duration));
+        } else {
+            // Else go to the next day and find the next available slot
+            newClass = new Class(currDate.plusDays(1), tr.startTimeRange,
+                    tr.startTimeRange.plusMinutes(tr.duration));
+        }
+        return newClass;
+    }
 
 
     @Override

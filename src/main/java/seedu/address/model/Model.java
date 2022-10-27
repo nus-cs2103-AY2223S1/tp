@@ -83,7 +83,7 @@ public interface Model {
      * Returns the first available class within the range specified by {@code TimeRange}
      * @return the first available {@code Class}
      */
-    Class getAvailableClass(TimeRange timeRange);
+    Class findAvailableClass(TimeRange timeRange);
 
     /**
      * Sorts the current filtered person list with the given {@code comparator}.

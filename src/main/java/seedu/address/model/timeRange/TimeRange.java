@@ -11,7 +11,9 @@ import java.time.LocalTime;
  */
 public class TimeRange {
     public static final String MESSAGE_CONSTRAINTS = "TimeRange can take any string"
-            + " in a '0000-2359 MINUTES' format"
+            + " in a `hhmm-hhmm MINUTES` format where 'hh' stands for hour and 'mm' stands for minute"
+            + " the start time would have to be before the end time and both the start time and end time are on the"
+            + " same day. The duration should also be before "
             + "\nExamples:  1000-1300 120";
     public static final String VALIDATION_TIME_REGEX = "[0-9]{4}";
     public static final String VALIDATION_DURATION_REGEX = "[0-9]*";
@@ -43,13 +45,14 @@ public class TimeRange {
      * @param dateTimeRange String to be validated.
      * @return True if a given string fits the format of '0000-2359'.
      */
-    public static boolean isValidTimeRange(String dateTimeRange) {
+    public static boolean isValidTimeRangeFormat(String dateTimeRange) {
         if (!dateTimeRange.matches(VALIDATION_TIME_RANGE_REGEX)) {
             return false;
         }
-        // 1000-1200 120
         String startTimeStr = dateTimeRange.substring(0, 4);
         String endTimeStr = dateTimeRange.substring(5, 9);
+
+        // The duration is correct as long as it passes the regex test which checks if it is a number.
         return isValidTimeString(startTimeStr) && isValidTimeString(endTimeStr);
     }
 

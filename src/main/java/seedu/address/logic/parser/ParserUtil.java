@@ -231,16 +231,14 @@ public class ParserUtil {
     public static TimeRange parseTimeRange(String classTimeRange) throws ParseException {
         requireNonNull(classTimeRange);
         String trimmedTimeRange = classTimeRange.trim();
-        System.out.println("trimmedTimeRange is " + trimmedTimeRange);
-        if (TimeRange.isValidTimeRange(trimmedTimeRange)) {
+
+        if (TimeRange.isValidTimeRangeFormat(trimmedTimeRange)) {
             LocalTime startTime = parseTime(trimmedTimeRange.substring(0, 4));
             LocalTime endTime = parseTime(trimmedTimeRange.substring(5, 9));
             Integer duration = Integer.valueOf(trimmedTimeRange.substring(10));
-            if (!Class.isValidDuration(startTime, endTime)) {
+            if (!Class.isValidDuration(startTime, endTime)
+                    || !TimeRange.isValidEndTime(startTime, endTime, duration)) {
                 throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
-            }
-            if (!TimeRange.isValidEndTime(startTime, endTime, duration)) {
-                throw new ParseException(TimeRange.INVALID_DURATION_ERROR_MESSAGE);
             }
             return new TimeRange(startTime, endTime, duration);
         } else {

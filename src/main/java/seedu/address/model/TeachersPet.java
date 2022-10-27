@@ -115,8 +115,8 @@ public class TeachersPet implements ReadOnlyTeachersPet {
      * Returns the first available class from {@code TeachersPet} within the time range.
      * @return the first available class.
      */
-    public Class getAvailableClass(TimeRange timeRange) {
-        return persons.getAvailableClass(timeRange);
+    public Class findAvailableClass(TimeRange timeRange) {
+        return persons.findAvailableClass(timeRange);
     }
 
     //// util methods
