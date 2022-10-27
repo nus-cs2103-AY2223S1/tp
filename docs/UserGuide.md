@@ -20,21 +20,21 @@ tasks done faster than traditional GUI apps.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ArtBuddy.
 
-4. Double-click the file to start the app. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/UiCustomerList.png)
 5. The following commands are available in Customer View:
 
-   * **`addcus`**`n/John Doe e/johnd@example.com a/John t/animal cartoons t/vip` :  Creates a new customer named John Doe.
-   * **`delcus`**`4` :  Deletes the 4th customer displayed on the list.
-   * **`opencus`**`2` : Opens the 2nd customer (Simon) on the list and brings you to the Commission View for Simon.
+   * **`addcus`**`addcus n/Betsy Crowe e/betsycrowe@example.com p/1234586` :  Creates a new customer named Betsy Crowe.
+   * **`delcus`**`2` :  Deletes the 2nd customer displayed on the list.
+   * **`opencus`**`2` : Selects the 2nd customer (Meg) on the list and brings you to the Commission View for Meg.
 
-6. In the Commission View, the list of all commissions from the opened customer (Simon) is displayed. <br> ![Ui](images/Ui.png)
+6. In the Commission View, the list of all commissions from the opened customer (Meg) is displayed. <br> ![Ui](images/UiCommissionList.png)
 7. The following commands are available in Commission View:
-    * **`addcom`**` n/Tokyo Ghoul Fan art f/50 d/2022-10-10` : Creates a new commission titled Tokyo Ghoul Fan art under Simon.
-    * **`delcom`**`5` : Deletes the 5th commission from Simon on the list.
-    * **`opencom`**`1` : Opens the 1st commission titled Digital half-body portrait and brings you to the Commission Details View.
-8. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Digital half-body portrait) is displayed. ![Ui](images/UiCommissionDetails.png)
+    * **`addcom`**` n/Fate Archer f/60 d/2022-10-15 s/true p/Archery t/night t/city` : Creates a new commission titled "Fate Archer" under Meg.
+    * **`delcom`**`4` : Deletes the 5th commission from Meg on the list.
+    * **`opencom`**`5` : Opens the 5th commission titled "Berserk" and brings you to the Commission Details View.
+8. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Berserk) is displayed. ![Ui](images/UiCommissionDetail.png)
 9. The following commands are available in Commission Details View:
-   * **`additer`**`/Users/Joseph/CSP/half-body-portrait.png` : Attaches the image at the specified file path to the opened commission.
+   * **`additer`**`d/2022-10-11 n/Add lighting p//Users/Joseph/CSP/sunshine_highlight.png f/Warmer tone might be better` : Adds an iteration to the selected commission and attaches the image at the specified file path to the iteration.
    * **`openimg`** : Expands the attached image for the commission for better view
 10. Refer to the [Features](#features) below for details of each command.
 
@@ -118,11 +118,11 @@ Examples:
 
 Adds a commission to the currently opened customer.
 
-Format: `addcom n/TITLE f/FEE d/DEADLINE [t/TAG]…​`
+Format: `addcom n/TITLE f/FEE d/DEADLINE s/STATUS [p/DESCRIPTION] [t/TAG]…​`
 
 Examples:
-* `addcom n/Rimuru f/40 d/2022-11-01 t/traditional t/chibi` creates the commission entry titled "Rimuru" with the given fee, due date and tags.
-* `addcom n/Tokyo Ghoul Kaneki f/50 d/2022-10-15` creates a commission entry titled with the given fee and due date.
+* `addcom n/Rimuru f/40 d/2022-11-01 t/traditional s/Y t/chibi` creates the commission entry titled "Rimuru" with the given fee, due date, completion status and tags.
+* `addcom n/Fate Archer f/60 d/2022-10-15 s/false p/Archery t/night t/city` creates a commission entry titled "Fate Archer" with the given fee, due date, completion status, description and tags.
 
 ### Deleting a customer : `delcus` [coming soon]
 
