@@ -43,7 +43,7 @@ public class TypicalApplications {
     public static final Application INTEL = new ApplicationBuilder().withCompany("Intel")
             .withContact("84893063").withDate("2022-05-06").withEmail("intel@recruitment.com")
             .withPosition("Software Developer").withStatus("rejected")
-            .withArchiveStatus(true).build();
+            .withArchiveStatus(true).withStatus("pending").build();
 
     // Manually added - Application's details found in {@code CommandTestUtil}
     public static final Application GOOGLE = new ApplicationBuilder().withCompany(VALID_COMPANY_GOOGLE)
@@ -75,6 +75,12 @@ public class TypicalApplications {
         for (Application application : getTypicalApplicationsWithArchive()) {
             ab.addApplication(application);
         }
+        return ab;
+    }
+
+    public static ApplicationBook getApplicationBookWithOneApplication() {
+        ApplicationBook ab = new ApplicationBook();
+        ab.addApplication(INTEL);
         return ab;
     }
 
