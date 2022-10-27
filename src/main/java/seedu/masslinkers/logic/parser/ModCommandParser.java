@@ -12,7 +12,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.masslinkers.commons.core.index.Index;
@@ -286,7 +285,6 @@ public class ModCommandParser implements Parser<ModCommand> {
     private Set<String> getModsFromCommand(String args) {
         String[] splittedArgs = args.split(" ");
         List<String> extractedMods = Arrays.asList(splittedArgs).subList(1, splittedArgs.length);
-        extractedMods = extractedMods.stream().map(String::toUpperCase).collect(Collectors.toList());
         return new HashSet<>(extractedMods);
     }
 }
