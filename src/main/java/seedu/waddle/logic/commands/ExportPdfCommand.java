@@ -12,15 +12,15 @@ import seedu.waddle.model.itinerary.Itinerary;
 /**
  * Export an itinerary into pdf format.
  */
-public class ExportCommand extends Command {
+public class ExportPdfCommand extends Command {
 
-    public static final String COMMAND_WORD = "export";
+    public static final String COMMAND_WORD = "pdf";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": export current itinerary to PDF\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_EXPORT_SUCCESS = "PDF created!";
+    public static final String MESSAGE_EXPORT_SUCCESS = "PDF created! Find your document in the data folder.";
     public static final String MESSAGE_EXPORT_FAILURE = "Failed to export!";
 
     public static final String MESSAGE_EXPORT_WRONG_STAGE = "Please select an itinerary before exporting.";
@@ -36,8 +36,8 @@ public class ExportCommand extends Command {
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
         try {
-            String exportTemplate = "./src/main/resources/template/waddle_template.pdf";
-            PdfFiller pdfFiller = new PdfFiller(itinerary, exportTemplate);
+            String pdfTemplate = "/template/waddle_template.pdf";
+            PdfFiller pdfFiller = new PdfFiller(itinerary, pdfTemplate);
             pdfFiller.fillItinerary();
         } catch (IOException e) {
             return new CommandResult(MESSAGE_EXPORT_FAILURE);
@@ -53,7 +53,7 @@ public class ExportCommand extends Command {
         }
 
         // instanceof handles nulls
-        return other instanceof ExportCommand;
+        return other instanceof ExportPdfCommand;
 
     }
 }

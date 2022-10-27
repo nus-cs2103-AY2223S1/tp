@@ -35,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_PEOPLE + "4 "
             + PREFIX_BUDGET + "1000 ";
 
-    public static final String MESSAGE_SUCCESS = "New itinerary added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New itinerary added:\n%1$s";
     public static final String MESSAGE_DUPLICATE_ITINERARY = "This itinerary already exists";
 
     private final Itinerary toAdd;

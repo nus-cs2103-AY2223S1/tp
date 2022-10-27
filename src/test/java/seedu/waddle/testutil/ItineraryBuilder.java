@@ -42,7 +42,7 @@ public class ItineraryBuilder {
      * Initializes the ItineraryBuilder with the data of {@code itineraryToCopy}.
      */
     public ItineraryBuilder(Itinerary itineraryToCopy) {
-        name = itineraryToCopy.getName();
+        name = itineraryToCopy.getDescription();
         country = itineraryToCopy.getCountry();
         startDate = itineraryToCopy.getStartDate();
         duration = itineraryToCopy.getDuration();

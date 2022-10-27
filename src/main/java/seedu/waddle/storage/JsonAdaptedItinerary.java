@@ -60,7 +60,7 @@ class JsonAdaptedItinerary {
      * Converts a given {@code Itinerary} into this class for Jackson use.
      */
     public JsonAdaptedItinerary(Itinerary source) {
-        name = source.getName().description;
+        name = source.getDescription().description;
         country = source.getCountry().country;
         startDate = source.getStartDate().date.toString();
         duration = source.getDuration().toString();

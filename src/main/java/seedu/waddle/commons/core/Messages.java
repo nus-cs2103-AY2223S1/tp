@@ -6,6 +6,7 @@ package seedu.waddle.commons.core;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_COPY_ERROR = "Unable to copy to clipboard";
     public static final String MESSAGE_UNAVAILABLE_COMMAND_HOME = "Command is unavailable in the home page";
     public static final String MESSAGE_UNAVAILABLE_COMMAND_ITINERARY = "Command is unavailable in the itinerary page";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";

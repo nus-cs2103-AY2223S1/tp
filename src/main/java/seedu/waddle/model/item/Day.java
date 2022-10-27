@@ -11,6 +11,7 @@ import seedu.waddle.logic.PdfFieldInfo;
 import seedu.waddle.logic.PdfFiller;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.exceptions.Period;
+import seedu.waddle.model.text.Text;
 
 /**
  * Encapsulates a day in an itinerary.
@@ -23,7 +24,7 @@ public class Day {
         }
     };
     private final int dayNumber;
-    private UniqueItemList itemList;
+    private final UniqueItemList itemList;
 
     /**
      * Constructor.
@@ -175,18 +176,51 @@ public class Day {
         return splitPeriods;
     }
 
+    /**
+     * Generates a text representation of the day.
+     *
+     * @return The text representation.
+     */
+    public String getTextRepresentation() {
+        StringBuilder dayText = new StringBuilder();
+        dayText.append("Day ").append((this.dayNumber + 1)).append(System.lineSeparator());
+        StringBuilder itemsText = new StringBuilder();
+        int itemCount = 1;
+        for (Item item : this.itemList) {
+            itemsText.append(itemCount).append(". ").append(item.toString())
+                    .append(System.lineSeparator());
+            if (itemCount < this.itemList.getSize()) {
+                itemsText.append(System.lineSeparator());
+            }
+            itemCount++;
+        }
+        dayText.append(Text.indent(itemsText.toString(), Text.INDENT_FOUR))
+                .append(System.lineSeparator());
+
+        return dayText.toString();
+    }
+
     public List<PdfFieldInfo> getPdfFieldInfoList() {
         List<PdfFieldInfo> fieldList = new ArrayList<>();
-        PdfFieldInfo day = new PdfFieldInfo("day", "Day " + Integer.toString(dayNumber + 1));
-        fieldList.add(day);
-        for (int i = 0; i < PdfFiller.MAX_DISPLAY; i++) {
-            if (i < this.itemList.getSize()) {
-                Item item = this.itemList.get(i);
-                PdfFieldInfo time = new PdfFieldInfo("time" + i, item.getTimeString());
-                PdfFieldInfo activity = new PdfFieldInfo("item" + i, item.getDescription().toString());
+        for (int i = 0; i < this.itemList.getSize(); i++) {
+            Item item = this.itemList.get(i);
+            PdfFieldInfo time = new PdfFieldInfo("time" + i, item.getTimeString(Text.INDENT_NONE));
+            PdfFieldInfo activity = new PdfFieldInfo("item" + i, item.getDescription().toString());
+            fieldList.add(time);
+            fieldList.add(activity);
+        }
+        int remainder = (fieldList.size() / 2) % PdfFiller.MAX_DISPLAY;
+        if (remainder != 0) {
+            for (int i = 0; i < PdfFiller.MAX_DISPLAY - remainder; i++) {
+                int nextPos = remainder + i;
+                PdfFieldInfo time = new PdfFieldInfo("time" + nextPos, "");
+                PdfFieldInfo activity = new PdfFieldInfo("item" + nextPos, "");
                 fieldList.add(time);
                 fieldList.add(activity);
-            } else {
+            }
+        }
+        if (fieldList.size() == 0) {
+            for (int i = 0; i < PdfFiller.MAX_DISPLAY; i++) {
                 PdfFieldInfo time = new PdfFieldInfo("time" + i, "");
                 PdfFieldInfo activity = new PdfFieldInfo("item" + i, "");
                 fieldList.add(time);

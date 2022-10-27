@@ -46,7 +46,7 @@ public class JsonAdaptedItem {
      */
     public JsonAdaptedItem(Item source) {
         description = source.getDescription().description;
-        stars = source.getPriority().getStars();
+        stars = source.getPriority().getValue();
         cost = source.getCost().toString();
         //TODO duration and startTime null error
         duration = source.getDuration().toString();
