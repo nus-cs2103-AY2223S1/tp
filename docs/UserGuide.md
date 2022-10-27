@@ -176,9 +176,12 @@ Example:
 * `delcom 14`
 
 ### Adding iteration to a commission: `additer`
-Adds an image at the specified file path to the current commission.
+Just like the other add commands, adding iterations can be done either via the command-line, or
+the graphical interface.
 
-Format: `additer FILEPATH`
+**Adding by the Command-Line Interface**
+
+Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
 
 * The file path specified should be an absolute path from your root directory.
 * The command requires a commission to be selected.
@@ -188,6 +191,51 @@ Format: `additer FILEPATH`
   existing image will not be allowed. Your existing image will not be overridden, but the new image will not be added to
   your commission. To replace a commission image, first delete the image before adding a new image.
 
+<details>
+<summary><strong>What is a filepath and my root directory?</strong></summary>
+<div markdown="span" class="alert alert-info">
+**:information_source: What is a filepath and my root directory?**<br>
+Just like how we use addresses to tell specify locations when talking to people, computers
+do the same! Each file in your computer has a unique address that can be used to identify the
+exact location in your computer where the file is stored.
+
+The address of each file in your computer can be viewed simply as "directions", guiding your
+computer to get to the file. Think about how you would tell someone how to open a specific file
+in your computer. You would probably say something along the lines of: "Go to the Downloads folder,
+where you'll find an  Image folder. Click into the Images folder and open the file Draft1.png".
+
+Well to computers, filepaths are just like these guiding instructions that help them locate
+a specific file! And your 'root directory' is simply a 'base point' that stores all your files in
+your computer. For most users using a Windows or Mac computer, this root directory is simply
+a folder named `/`.
+
+So what a file path `/Users/John/Downloads/Draft 1.png` really means is just a way of telling
+the computer, "Hey, from my root directory, you'll find a folder called Users, and in there a
+folder called John. Open that up and you'll find another folder called Downloads.
+Open the Downloads folder and you'll see the file I want called `Draft 1.png`".
+
+To easily copy a filepath of a file:
+* On Windows, in your File Explorer, hold shift down while you right-click on the file you want.
+Select the option `Copy as Path` and the filepath of your file will be copied!
+* On Mac, in your Finder, click on the file you want to select it and press the
+`Option`, `Command`, `C` keys simultaneously. The filepath of your file is now copied!
+</div>
+</details>
+
+**Adding by Graphical Interface**
+
+Adding an iteration can also be done via the graphical interface by clicking on
+the `Add Iteration` button inside the Commission you wish to add the iteration to.
+
+<img src="images/AddIterationButton.png" width="450" />
+
+A new window will then pop up, where you will be prompted to fill in the details of
+the new iteration. An image can be added to the iteration by selecting a file in
+your file manager by clicking on the `Add Image` button, or by dragging and dropping
+an image to the grey image drop area.
+
+<img src="images/AddIterationWindow.png" width="450" />
+
 <div markdown="span" class="alert alert-info">
 **:information_source: Notes about images in ArtBuddy:**<br>
 
@@ -195,7 +243,7 @@ ArtBuddy creates a copy of each file you upload. This means that you can edit, d
 move your original copy of the file without affecting the uploaded image on ArtBuddy.
 </div>
 
-Example: `additer /Users/John/Downloads/Clown.png`
+Example: `additer /Users/John/Downloads/Draft 1.png`
 
 ### Deleting iteration from commission: `deliter`
 Deletes an iteration from a commission.
