@@ -159,13 +159,26 @@ Examples:
 
 #### 3.1.2 Listing all clients : `listClient`
 
-List all clients in MyInsuRec.
+* List clients in MyInsuRec with a valid filter.
+* A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
+* `BIRTHDAY` is specified by keywords. The possible keywords are:
+    * `tomorrow` for a list of clients whose birthday is tomorrow;
+    * `week` for a list of clients whose birthday is in the next week;
+    * `month` for a list of clients whose birthday is in the next month.
 
-Format: `listClient`
+Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
+
+Examples:
+* `listClient`
+* `listClient pd/Product1`
+* `listClient b/week`
+
+<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. A user can only apply one filter at each time. For example, `listClient pd/Product1 bd/week` is strictly not allowed.
+</div>
 
 #### 3.1.3 Viewing a client: `viewClient`
 
-View details associated with a client, such as client's name and phone number.
+View details associated with a client, such as the client's name and phone number.
 
 Format: `viewClient i/INDEX`
 
@@ -204,27 +217,20 @@ Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
 Examples:
 * `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
 
-#### 3.2.2 Listing meetings: `listMeeting`
-
-Shows a list of all meetings in MyInsuRec.
-
-Format: `listMeeting`
-
-##### List meetings by time period
+#### 3.2.2 List meetings by time period
 
 Shows a list of meetings in MyInsuRec during a specified time period.
 
 Format: `listMeeting d/DATE`
 
 * Time periods are specified by keywords. The possible keywords are:
-* * `tomorrow` for a list of meetings happening tomorrow;
-* * `week` for a list of meetings happening in the next week;
-* * `month` for a list of meetings happening in the next month.
+  * `tomorrow` for a list of meetings happening tomorrow;
+  * `week` for a list of meetings happening in the next week;
+  * `month` for a list of meetings happening in the next month.
 
 Examples:
 * `listMeeting d/tomorrow`
 * `listMeeting d/month`
-
 
 #### 3.2.3 Viewing a meeting: `viewMeeting`
 
@@ -256,7 +262,15 @@ Examples:
 
 #### 3.3.1 Adding a product: `addProduct`
 
-{addProduct PLACEHOLDER}
+Adds a new product to MyInsuRec.
+
+Format: `addProduct pd/PRODUCT`
+
+* Adds a product having name `PRODUCT`.
+* A product must have a product name which is `PRODUCT`.
+
+Examples:
+* `addProduct pd/Product1`
 
 #### 3.3.2 Listing products: `listProduct`
 
