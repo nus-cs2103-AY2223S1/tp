@@ -23,7 +23,7 @@ public class PinIssueCommand extends IssueCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
             + ": Pins the issue identified by the issue id \n"
-            + "Parameters: ISSUE_ID (must be a positive integer) "
+            + "Parameters: ISSUE_ID (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " 1";
 

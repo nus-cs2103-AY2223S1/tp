@@ -23,7 +23,7 @@ public class PinClientCommand extends ClientCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
             + ": Pins the client identified by the client id \n"
-            + "Parameters: CLIENT_ID (must be a positive integer) "
+            + "Parameters: CLIENT_ID (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " 1";
 
