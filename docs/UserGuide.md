@@ -45,6 +45,9 @@ show-toc: true
 
 {% include_relative _ug/commandSummary/TagCommands.md %}
 
+### Statistics Command
+
+{% include_relative _ug/commandSummary/StatisticsCommands.md %}
 
 
 ## Troubleshooting
