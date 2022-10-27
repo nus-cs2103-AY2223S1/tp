@@ -35,6 +35,9 @@ public class FindMemberCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "-" + FLAG_NAME_STR + " Alex ";
 
+    public static final String MESSAGE_SUCCESS = "Showing all %1$d members containing search string(s)%2$s. \n"
+            + "Type `list members` to show all tasks again.";
+
     public static final String MESSAGE_ONE_FLAG = "Please supply only 1 flag by selecting name or email only.";
 
     @CommandLine.ArgGroup(exclusive = true, multiplicity = "1")
@@ -54,6 +57,12 @@ public class FindMemberCommand extends Command {
                     ? new EmailContainsKeywordsPredicate(List.of(emailKeywords))
                     : new NameContainsKeywordsPredicate(List.of(nameKeywords));
         }
+
+        String keywordsToString() {
+            return nameKeywords == null
+                    ? List.of(emailKeywords).stream().reduce("", (a,b) -> a + " " + b)
+                    : List.of(nameKeywords).stream().reduce("", (a,b) -> a + " " + b);
+        }
     }
 
     public FindMemberCommand() {
@@ -64,7 +73,7 @@ public class FindMemberCommand extends Command {
         requireNonNull(model);
         model.updateFilteredMembersList(predicate.getPredicate());
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredMemberList().size()));
+                String.format(MESSAGE_SUCCESS, model.getFilteredMemberList().size(), predicate.keywordsToString()));
     }
 
     @Override
