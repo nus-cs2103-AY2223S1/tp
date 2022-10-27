@@ -1,17 +1,11 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
-
-import com.sun.javafx.scene.control.LabeledText;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -24,8 +18,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.getcommands.GetNextOfKinCommand;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
+
+import java.util.logging.Logger;
 
 /**
  * The Main Window. Provides the basic application layout containing
