@@ -202,6 +202,12 @@
     -fx-text-fill: white;
 }
 
+.info_title {
+    -fx-font-family: "SF Mono Semibold";
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
 .info_small_label {
     -fx-font-family: "SF Mono";
     -fx-font-size: 17px;

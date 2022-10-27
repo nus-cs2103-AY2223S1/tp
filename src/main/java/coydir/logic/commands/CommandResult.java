@@ -23,6 +23,10 @@ public class CommandResult {
 
     private int viewIndex;
 
+    private String department;
+
+    private final boolean viewDepartment;
+
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -33,6 +37,7 @@ public class CommandResult {
         this.exit = exit;
         this.view = false;
         this.update = true;
+        this.viewDepartment = false;
     }
 
     /**
@@ -45,6 +50,21 @@ public class CommandResult {
         this.view = view;
         this.viewIndex = index;
         this.update = false;
+        this.viewDepartment = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, String department) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.view = false;
+        this.viewIndex = 0;
+        this.update = false;
+        this.viewDepartment = true;
+        this.department = department;
     }
 
     /**
@@ -75,8 +95,16 @@ public class CommandResult {
         return update;
     }
 
+    public boolean isViewDepartment() {
+        return viewDepartment;
+    }
+
     public int getViewIndex() {
         return viewIndex;
+    }
+
+    public String getDepartment() {
+        return department;
     }
 
 
@@ -94,7 +122,10 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && view == otherCommandResult.view
+                && update == otherCommandResult.update
+                && viewDepartment == otherCommandResult.viewDepartment;
     }
 
     @Override

@@ -69,6 +69,7 @@ public class PersonInfo extends UiPart<Region> {
     public PersonInfo(Person person) {
         super(FXML);
         update(person);
+        initializeLeaveTable();
     }
 
     /**
