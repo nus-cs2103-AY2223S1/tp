@@ -246,9 +246,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 The sort command will be executed by `SortCommand`. `SortCommandParser` uses `Prefix`es and `Order`s in `CliSyntax` to
 parse the user input and decide what comparator is passed to `SortCommand`. The sorted list is stored as `sortedStudents`
-in `ModelManager`, and is updated every time `SortCommand` is run. To assist with the sorting, classes `Name`, `TelegramHandle`,
-`Consultation`, and `MasteryCheck` implement the `Comparable` interface, where the natural ordering of `String` and `LocalDate`
-are used to implement the `compareTo` method.
+in `ModelManager`, and is updated every time `SortCommand` is run. 
+
+To assist with the sorting, classes `Name`, `TelegramHandle`, `Consultation`, and `MasteryCheck` implement the `Comparable` 
+interface, where the natural ordering of `String` and `LocalDate` are used to implement the `compareTo` method. The `Grade`
+class does not implement the interface as its attributes are public. 
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
