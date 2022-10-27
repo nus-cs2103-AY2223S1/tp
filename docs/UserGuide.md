@@ -121,6 +121,10 @@ Minecraft Server (prefix:ms) [**Optional**] <br>
 Each person can have multiple Minecraft servers.<br>
 Minecraft servers are in the format of `ServerName@IpAddress`.
 
+Social Handle (prefix:s) [**Optional**] <br>
+Each person can have multiple Social Handles.<br>
+Social Handles are in the format of `SocialMedia@Username`.
+
 #### Examples:
 
 ##### Adding with only compulsory fields
