@@ -23,7 +23,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "1) :add - Adds an exercise\n"
             + "2) :del - Deletes an exercise\n"
             + "3) :list - Lists all exercise entries\n"
-            + "4) :filter - Finds exercises by their name\n"
+            + "4) :filter - Filters exercises by their name\n"
             + "5) :clear - Clears the saved exercises and resets the data in the system\n"
             + "6) :sort - Sorts the exercises by date, if they have the same date, by name \n"
             + "7) :range - Displays the exercises saved over a range of days\n"

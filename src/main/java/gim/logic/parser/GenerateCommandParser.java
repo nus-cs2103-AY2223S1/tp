@@ -61,7 +61,12 @@ public class GenerateCommandParser implements Parser<GenerateCommand> {
 
     // return a GenerateCommand with a set of names
     private GenerateCommand getGenerateCommandWithNames(ArgumentMultimap argMultimap) throws ParseException {
-        Set<Name> nameSet = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
+        Set<Name> nameSet;
+        try {
+            nameSet = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
+        } catch (ParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GenerateCommand.MESSAGE_USAGE));
+        }
         String level = argMultimap.getValue(PREFIX_LEVEL).orElse("");
         ValidLevel validLevel = validateLevel(level);
         return new GenerateCommand(nameSet, validLevel);
