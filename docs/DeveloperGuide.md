@@ -284,9 +284,9 @@ tuition classes in the student/tutor.
   * Cons: Hard and tedious to implement the storing of information in Json. 
 
 
-### \[Proposed\] Find by fields feature
+### \[Implemented\] Find by fields feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed find by fields mechanism searches the currently displayed list based on multiple fields by taking in a set of prefixes with their respective keywords and updating the respective `FilteredList`.
 
