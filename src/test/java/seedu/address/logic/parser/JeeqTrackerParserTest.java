@@ -81,7 +81,7 @@ public class JeeqTrackerParserTest {
         EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_CLIENT.getOneBased() + " m/client "
                 + ClientUtil.getEditClientDescriptorDetails(descriptor));
-        assertEquals(new EditClientCommand(INDEX_FIRST_CLIENT, descriptor), command);
+        assertEquals(new EditClientCommand(INDEX_FIRST_CLIENT, descriptor, ""), command);
     }
 
     @Test
