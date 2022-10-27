@@ -14,4 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_CONTACT = new Prefix("c/", "contact_index");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/", "description");
     public static final Prefix PREFIX_DEADLINE = new Prefix("dl/", "deadline");
+    // PREFIX_KEYWORD is not a prefix, but a placeholder for the keyword argument
+    public static final Prefix PREFIX_KEYWORD = new Prefix("keyword", "keyword");
 }

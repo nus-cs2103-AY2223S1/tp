@@ -1,5 +1,7 @@
 package swift.logic.commands;
 
+import static swift.logic.parser.CliSyntax.PREFIX_KEYWORD;
+
 import java.util.ArrayList;
 
 import swift.logic.commands.exceptions.CommandException;
@@ -129,6 +131,7 @@ public class CommandSuggestor {
         String[] userInputArray = userInput.split(" ");
         Prefix currPrefix = null;
         boolean isIndexRequired = argPrefixes.contains(new Prefix(""));
+        boolean hasKeyword = argPrefixes.contains(PREFIX_KEYWORD);
         boolean hasPrefix = (!userInput.isEmpty() && (!isIndexRequired || userInputArray.length > 1));
 
         // Check if user input for index is valid (only if required)
@@ -142,8 +145,14 @@ public class CommandSuggestor {
             }
         }
 
-        // Check if user is trying to autocomplete a prefix
-        if (hasPrefix && !userInputArray[userInputArray.length - 1].contains("/")) {
+        if (hasKeyword) {
+            // Check if user input contains keyword
+            if(userInput.equals("")) {
+                argumentSuggestion += " " + argPrefixes.get(0).getUserPrompt();
+            }
+            argumentMultimap.put(PREFIX_KEYWORD, "");
+        } else if (hasPrefix && !userInputArray[userInputArray.length - 1].contains("/")) {
+            // Check if user is trying to autocomplete a prefix
             currPrefix = new Prefix(userInputArray[userInputArray.length - 1] + "/");
             argumentMultimap.put(currPrefix, "");
 
