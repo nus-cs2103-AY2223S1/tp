@@ -99,7 +99,7 @@ Adds a person to PayMeLah.
 Format: `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -181,9 +181,23 @@ Format: `list`
 
 ### Listing all debtors : `listdebtors`
 
-Shows a list of all persons that owe you money in PayMeLah.
+Shows a list of all persons that owe you more than or equal to a certain amount of money in PayMeLah. If no amount is provided, a list of persons who owe any amount of debt is displayed.
 
-Format: `listdebtors`
+Format: `listdebtors [m/<money>]`
+
+Example: `listdebtors m/10` displays the list of persons that owe more than $10.00.
+
+### Sorting list of persons : `sort`
+
+Sorts and displays the list of persons using the given criteria and order. The criteria that you can sort by are name, amount owed, and time since oldest debt. Use the `+` symbol to indicate ascending order, and the `-` symbol for descending order.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When you sort by time since oldest debt, all persons who do not owe any debt will be placed at the end of the list, regardless of whether ascending or descending order is specified.
+</div>
+
+Format: `sort [n/<order>] OR [m/<order>] OR [date/<order>]`
+
+Example: `sort n/+` sorts and displays the list of persons in ascending alphabetical order of their names.
 
 ### Editing a person : `edit`
 
@@ -302,6 +316,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Find**          | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]… [d/<debt description>]… [m/<debt money>]… [date/<debt date>]… [time/<debt time>]…`<br> e.g., `find d/bowling t/friends t/classmate` |
 | **Find debts**    | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                          |
 | **List**          | `list`                                                                                                                                                                                                             |
-| **List debtors**  | `listdebtors`                                                                                                                                                                                                      |
+| **List debtors**  | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                             |
+| **Sort**          | `sort [n/<order>] OR [m/<order>] OR [date/<order>]`<br> e.g., `sort n/+`                                                                                                                                           |
 | **Get statement** | `statement`                                                                                                                                                                                                        |
 | **Help**          | `help`                                                                                                                                                                                                             |
