@@ -17,11 +17,12 @@ public class DeleteEventCommand extends Command {
     public static final String COMMAND_WORD = "delete-e";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the event identified by the index number used in the displayed event list.\n"
+            + ": Deletes the event identified by the index number used in the bucket list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s \n"
+            + "at specified index of bucket list";
 
     private final Index targetIndex;
 
@@ -32,10 +33,10 @@ public class DeleteEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Event> lastShownList = model.getFilteredEventList();
+        List<Event> lastShownList = model.getBucketList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DELETE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX_FROM_BUCKET_LIST);
         }
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());

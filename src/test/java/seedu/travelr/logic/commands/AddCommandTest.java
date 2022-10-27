@@ -22,6 +22,7 @@ import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ReadOnlyAddressBook;
 import seedu.travelr.model.ReadOnlyUserPrefs;
+import seedu.travelr.model.SummaryVariables;
 import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.ObservableTrip;
@@ -142,6 +143,12 @@ public class AddCommandTest {
         public boolean hasEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean bucketlistHasEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void deleteEvent(Event event) {
             throw new AssertionError("This method should not be called.");
@@ -183,12 +190,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Event> getBucketList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredTripList(Predicate<Trip> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetView() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -227,6 +244,25 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void sortBucketList(Comparator<Event> comp) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEventInBucketList(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public SummaryVariables getSummaryVariables() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void refreshSummaryVariables() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -268,6 +304,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public void sortTripsByComparator(Comparator<Trip> comp) {
+            tripsAdded.sort(comp);
         }
     }
 

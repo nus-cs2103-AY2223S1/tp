@@ -3,6 +3,7 @@ package seedu.travelr.model.list;
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -151,6 +152,11 @@ public class Itineraries extends EventList {
         return internalList.hashCode();
     }
 
+    @Override
+    public void sort(Comparator<Event> comp) {
+        internalList.sort(comp);
+    }
+
     /**
      * Returns true if {@code trips} contains only unique trips.
      */
@@ -200,6 +206,10 @@ public class Itineraries extends EventList {
 
     public void removeEvent(Event event) {
         events.remove(event);
+    }
+
+    public int getAmountOfEvents() {
+        return events.size();
     }
 
 }

@@ -2,6 +2,7 @@ package seedu.travelr.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_COMPLETION;
 
 import java.nio.file.Path;
 import java.util.Comparator;
@@ -16,6 +17,7 @@ import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
+import seedu.travelr.model.trip.TripCompletedPredicate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,9 +28,14 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Trip> filteredTrips;
-    private ObservableTrip selectedTrip;
+    private final ObservableTrip selectedTrip;
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Event> bucketList;
+
+    /**
+     * For use by Summary Command only.
+     */
+    private final SummaryVariables summaryVariables;
 
 
     /**
@@ -44,7 +51,15 @@ public class ModelManager implements Model {
         filteredTrips = new FilteredList<>(this.addressBook.getTripList());
         filteredEvents = new FilteredList<>(this.addressBook.getAllEventList());
         bucketList = new FilteredList<>(this.addressBook.getEventList());
+
+        // Initialize the selected trip
         selectedTrip = new ObservableTrip();
+
+        // Initialize the summary variables
+        summaryVariables = new SummaryVariables();
+
+        // Set initial view to Bucket List
+        filteredEvents.setPredicate(getBucketPredicate());
     }
 
     public ModelManager() {
@@ -111,20 +126,27 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean bucketlistHasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.bucketlistHasEvent(event);
+    }
+
+    @Override
     public void deleteTrip(Trip target) {
         addressBook.removeTrip(target);
+        if (selectedTrip.isEqual(target)) {
+            resetSelectedTrip();
+        }
     }
 
     @Override
     public void deleteEvent(Event e) {
         addressBook.removeEvent(e);
-        updateFilteredEventList(getBucketPredicate());
     }
 
     @Override
     public void addTrip(Trip trip) {
         addressBook.addTrip(trip);
-        updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
     }
 
     /**
@@ -135,7 +157,6 @@ public class ModelManager implements Model {
     @Override
     public void addEvent(Event event) {
         addressBook.addEventToBucketListAndAllEventsList(event);
-        //update filtered trip list??
     }
 
     @Override
@@ -157,6 +178,42 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setTrip(Trip target, Trip editedTrip) {
+        requireAllNonNull(target, editedTrip);
+
+        addressBook.setTrip(target, editedTrip);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        addressBook.setEvent(target, editedEvent);
+    }
+
+    //=========== Summary Variables Accessors =============================================================
+
+    @Override
+    public void refreshSummaryVariables() {
+        updateFilteredTripList(Model.PREDICATE_SHOW_ALL_TRIPS);
+        updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
+        summaryVariables.refresh(filteredTrips, filteredEvents);
+
+        updateFilteredTripList(new TripCompletedPredicate());
+
+        // resets to AllTrips and bucketList
+        updateFilteredTripList(Model.PREDICATE_SHOW_ALL_TRIPS);
+        updateFilteredEventList(getBucketPredicate());
+        resetSelectedTrip();
+    }
+
+    @Override
+    public SummaryVariables getSummaryVariables() {
+        return summaryVariables;
+    }
+
+    //=========== Selected Trip Accessors =============================================================
+
+    @Override
     public ObservableTrip getSelectedTrip() {
         return selectedTrip;
     }
@@ -169,19 +226,6 @@ public class ModelManager implements Model {
     @Override
     public void resetSelectedTrip() {
         selectedTrip.resetTrip();
-    }
-
-    @Override
-    public void setTrip(Trip target, Trip editedTrip) {
-        requireAllNonNull(target, editedTrip);
-
-        addressBook.setTrip(target, editedTrip);
-    }
-
-    @Override
-    public void setEvent(Event target, Event editedEvent) {
-        requireAllNonNull(target, editedEvent);
-        addressBook.setEvent(target, editedEvent);
     }
 
     //=========== Filtered Trip List Accessors =============================================================
@@ -218,6 +262,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetView() {
+        updateFilteredEventList(getBucketPredicate());
+        updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
+        resetSelectedTrip();
+        sortTripsByComparator(COMPARE_BY_COMPLETION);
+    }
+
+
+    @Override
+    public ObservableList<Event> getBucketList() {
+        return bucketList;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -239,6 +297,16 @@ public class ModelManager implements Model {
     @Override
     public void sortTripsByComparator(Comparator<Trip> comp) {
         addressBook.sortTrips(comp);
+    }
+
+    @Override
+    public void sortBucketList(Comparator<Event> comp) {
+        addressBook.sortBucketList(comp);
+    }
+
+    @Override
+    public boolean hasEventInBucketList(Event event) {
+        return bucketList.contains(event);
     }
 
 }

@@ -237,8 +237,8 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Display trip's events
 
 #### Proposed Implementation
-The proposed display trip's events mechanism is facilitated by the use of `EventInItineraryPredicate`. 
-It extends the `Predicate` with a test that checks if an event is part of the given Itinerary, which is stored
+The proposed display trip's events mechanism is facilitated by the use of `EventInItineraryPredicate`.
+It extends `Predicate` with a test that checks if an event is part of the given Itinerary, which is stored
 interally as an `Itinerary`. This predicate is then set as the predicate of the `filteredEventList`, which
 contains all events added to Travelr.
 
@@ -247,7 +247,7 @@ Given below is an example usage scenario of how the display trip's events mechan
 Step 1. The user launches the application for the first time. The `TravelrBook` will be initialised with the
 initial Travelr book state, with no trips and events added.
 
-Step 2. The user executes `add n/Trip to Japan ...` to add a new trip, and also executes `add-e n/Try Takoyakis ...` 
+Step 2. The user executes `add n/Trip to Japan ...` to add a new trip, and also executes `add-e n/Try Takoyakis ...`
 to add a new event to Travelr.
 
 Step 3. The user adds the `Event` 'Try Takoyakis' to the `Trip` titled 'Trip to Japan', which results in 'Try Takoyakis'
@@ -274,6 +274,36 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 {more aspects and alternatives to be added}
 
+### \[Proposed\] Display completed trips and events
+
+#### Proposed Implementation
+The proposed display completed trips and events mechanism is facilitated by the use of `EventCompletedPredicate`
+and `TripCompletedPredicate`. `TripCompletedPredicate` and `EventCompletedPredicate` extends `Predicate` with
+a test that checks if an event is part of a list of itineararies belonging to completed trips.
+
+These predicates
+are then set as the predicate of the `filteredTripList` and `filteredEventList` respectively, which will result
+in the display of completed trips and events.
+The proposed display trip's events mechanism is facilitated by the use of `EventInItineraryPredicate`.
+It extends the `Predicate` with a test that checks if an event is part of the given Itinerary, which is stored
+interally as an `Itinerary`. This predicate is then set as the predicate of the `filteredEventList`, which
+contains all events added to Travelr.
+
+Given below is an example usage scenario of how the display trip's events mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `TravelrBook` will be initialised with the
+initial Travelr book state, with no trips and events added.
+
+Step 2. The user executes `add n/Trip to Japan ...` to add a new trip, and also executes `add-e n/Try Takoyakis ...`
+to add a new event to Travelr.
+
+Step 3. The user adds the `Event` 'Try Takoyakis' to the `Trip` titled 'Trip to Japan', which results in 'Try Takoyakis'
+being in its `Itinerary`.
+
+Step 4. The user executes `mark 1`, which marks the first trip as well as the events in its itinerary as completed.
+
+Step 5. The user executes `completed`, which displays all completed trips and events, which includes both 'Trip to Japan'
+and 'Try Takoyakis'.
 
 ### \[Proposed\] Data archiving
 
@@ -355,7 +385,7 @@ Software System: Travelr
     * 3b1. Travelr shows an error message.
 
       Use Case Ends
-      
+
 
 Software System: Travelr
 
@@ -516,7 +546,7 @@ Software System: Travelr
 
 **MSS :**
 1. User request the list of events in bucket list.
-2. Travelr lists events in bucket list. 
+2. Travelr lists events in bucket list.
 3. User request to delete an event from the bucket list.
 4. Travelr deletes the event.
 
@@ -524,16 +554,16 @@ Software System: Travelr
 
 **Extensions:**
 
-* 2a. Bucket list is empty.  
+* 2a. Bucket list is empty.
   Use case ends.
-  
+
 * 3a. The requested event doesn't exist
-  
-    * 3a1. Travelr shows an error message.  
+
+    * 3a1. Travelr shows an error message.
       Use case ends
 
 * 3b. Invalid input
-    * 3b1. Travelr shows an error message.  
+    * 3b1. Travelr shows an error message.
       Use Case Ends
 
 **Use case: UC08 Sort trips**
@@ -542,7 +572,7 @@ Software System: Travelr
 
 **MSS :**
 1. User request the list of trips.
-2. Travelr lists trips in UniqueTripList. 
+2. Travelr lists trips in UniqueTripList.
 3. User request to sort the list of trips.
 4. Travelr sorts the trips according to the user's request.
 
@@ -550,16 +580,16 @@ Software System: Travelr
 
 **Extensions:**
 
-* 2a. UniqueTripList is empty.  
+* 2a. UniqueTripList is empty.
   Use case ends.
-  
+
 * 3a. The requested sorting factor does not exist
-  
-    * 3a1. Travelr shows an error message.  
+
+    * 3a1. Travelr shows an error message.
       Use case ends
 
 * 3b. Invalid input
-    * 3b1. Travelr shows an error message.  
+    * 3b1. Travelr shows an error message.
       Use Case Ends
 
 

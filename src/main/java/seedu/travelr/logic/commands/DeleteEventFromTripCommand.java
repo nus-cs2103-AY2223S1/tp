@@ -1,6 +1,7 @@
 package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.travelr.commons.core.Messages.MESSAGE_RESET_VIEW;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
 
@@ -21,18 +22,18 @@ public class DeleteEventFromTripCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-et";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to specified trip. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an event from specified trip. "
             + "Parameters: "
-            + PREFIX_TITLE + "Event TITLE "
+            + PREFIX_TITLE + "EVENTTITLE "
             + PREFIX_TRIP + "TRIP "
             + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Swim "
             + PREFIX_TRIP + "Honeymoon ";
 
-    public static final String MESSAGE_SUCCESS = "Event removed to trip: %1$s\nThe specified event has been returned"
-            + "to the bucket list. Current bucket list:";
-    public static final String MESSAGE_DUPLICATE_TRIP = "This event doesn't exists in the specified trip";
+    public static final String MESSAGE_SUCCESS = "Event %s removed from Trip %s.\n"
+            + "The specified event has been returned "
+            + "to the bucket list.";
 
     private Title eventToDelete;
     private Title tripToDeleteFrom;
@@ -59,7 +60,7 @@ public class DeleteEventFromTripCommand extends Command {
         Trip toDeleteFrom = model.getTrip(new Trip(tripToDeleteFrom, new Description("random"), new HashSet<>()));
 
 
-        if (!toDeleteFrom.contains(new Event((eventToDelete)))) {
+        if (!toDeleteFrom.containsEvent(new Event((eventToDelete)))) {
             throw new CommandException("Please enter a valid Event");
         }
 
@@ -67,9 +68,10 @@ public class DeleteEventFromTripCommand extends Command {
 
         toDeleteFrom.removeEvent(event);
         model.returnToBucketList(event);
-        model.updateFilteredEventList(model.getBucketPredicate());
+        model.resetView();
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, event));
+        return new CommandResult(String.format(
+                MESSAGE_SUCCESS + "\n" + MESSAGE_RESET_VIEW, event.getTitle(), toDeleteFrom.getTitle()));
     }
 
     @Override

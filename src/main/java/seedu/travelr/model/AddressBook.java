@@ -73,7 +73,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-        assert !newData.getTripList().isEmpty();
         setAllEventsList(newData.getAllEventList());
         setTrips(newData.getTripList());
         setEvents(newData.getEventList());
@@ -94,8 +93,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
+        return allEventsList.contains(event);
+    }
+
+    /**
+     * Returns true if this event exists in the bucket list.
+     */
+    public boolean bucketlistHasEvent(Event event) {
+        requireNonNull(event);
         return bucketList.contains(event);
     }
+
 
     /**
      * Adds a person to the address book.
@@ -157,6 +165,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeTrip(Trip key) {
+        for (Event event : key.getEvents()) {
+            bucketList.add(event);
+        }
         trips.remove(key);
     }
 
@@ -225,4 +236,29 @@ public class AddressBook implements ReadOnlyAddressBook {
         return trips.hashCode();
     }
 
+    /**
+     * Sorts the BucketList according to provided Comparator.
+     * @param comp
+     */
+    public void sortBucketList(Comparator<Event> comp) {
+        bucketList.sort(comp);
+        comp = this.makeBucketComparator(comp);
+        allEventsList.sort(comp);
+    }
+
+    private Comparator<Event> makeBucketComparator(Comparator<Event> comp) {
+        return (x, y) -> {
+            int xInBucket = bucketList.contains(x) ? 1 : 0;
+            int yInBucket = bucketList.contains(y) ? 1 : 0;
+            // This partitions the events within bucket list and events outside the bucket list.
+            if (xInBucket != yInBucket) {
+                return xInBucket - yInBucket;
+            } else if (xInBucket == 0) {
+                //This checks if both events are outside the bucket list. If so, do nothing.
+                return 0;
+            } else {
+                return comp.compare(x, y);
+            }
+        };
+    }
 }
