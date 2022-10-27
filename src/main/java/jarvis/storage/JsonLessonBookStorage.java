@@ -1,6 +1,7 @@
 package jarvis.storage;
 
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -43,7 +44,7 @@ public class JsonLessonBookStorage implements LessonBookStorage {
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyLessonBook> readLessonBook(Path filePath) throws DataConversionException {
-        requireAllNonNull(filePath);
+        requireNonNull(filePath);
 
         Optional<JsonSerializableLessonBook> jsonLessonBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableLessonBook.class);

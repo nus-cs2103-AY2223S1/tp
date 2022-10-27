@@ -76,10 +76,6 @@ public class LessonAttendance {
         return studentsNameBuilder.toString();
     }
 
-    public Map<Student, Boolean> getAttendance() {
-        return attendance;
-    }
-
     public void setStudent(Student targetStudent, Student editedStudent) {
         boolean b = attendance.get(targetStudent);
         attendance.remove(targetStudent);

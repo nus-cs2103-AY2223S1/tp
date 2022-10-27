@@ -139,8 +139,8 @@ public abstract class Lesson {
 
     public Map<Integer, Boolean> getAttendance() {
         Map<Integer, Boolean> resMap = new TreeMap<>();
-        for (Student student : attendance.getAttendance().keySet()) {
-            resMap.put(studentList.indexOf(student), attendance.getAttendance().get(student));
+        for (Student student : studentList) {
+            resMap.put(studentList.indexOf(student), attendance.isPresent(student));
         }
         return resMap;
     }
@@ -159,8 +159,8 @@ public abstract class Lesson {
 
     public Map<Integer, ArrayList<String>> getStudentNotes() {
         TreeMap<Integer, ArrayList<String>> resMap = new TreeMap<>();
-        for (Student student: notes.getStudentNotes().keySet()) {
-            resMap.put(studentList.indexOf(student), notes.getStudentNotes().get(student));
+        for (Student student: studentList) {
+            resMap.put(studentList.indexOf(student), notes.getStudentNotes(student));
         }
         return resMap;
     }

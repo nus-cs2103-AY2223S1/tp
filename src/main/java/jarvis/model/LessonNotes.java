@@ -130,8 +130,8 @@ public class LessonNotes {
         return generalNotes;
     }
 
-    public TreeMap<Student, ArrayList<String>> getStudentNotes() {
-        return studentNotes;
+    public ArrayList<String> getStudentNotes(Student student) {
+        return studentNotes.get(student);
     }
 
     public void setStudent(Student targetStudent, Student editedStudent) {
