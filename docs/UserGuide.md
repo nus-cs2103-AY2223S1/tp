@@ -6,7 +6,7 @@ title: User Guide
 _NUSEatWhere is a **Command Line (CLI) application** which helps you search for the available 
 food options in NUS and thus make an informed decision on where to eat._
 
-##Table of Contents
+## Table of Contents
 * Introduction
 * Table of Contents
 * [Quick Start](#quick-start)
