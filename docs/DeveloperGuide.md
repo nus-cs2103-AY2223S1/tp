@@ -6,13 +6,13 @@ title: Developer Guide
 ## Table of contents
 * [Implementation](#implementation)
   * [Edit Class Feature](#edit-class-feature)
-    * [Implementation details](#implementation-details)
-    * [Design Considerations](#design-considerations)
   * [Next Available Class Feature](#next-available-class-feature)
   * [Statistics Display Feature](#statistics-display-feature)
   * [Mark Student Feature](#mark-student-feature)
   * [Schedule List Feature](#schedule-list-feature)
-  * [Sort-by](#proposed-sort-by-feature)
+  * [Sort-by](#sort-by-feature)
+  * [Undo Command Feature](#undo-command-feature)
+  * [Proposed Find by Feature](#proposed-find-by-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
   * [Value Proposition](#value-proposition)
@@ -161,9 +161,11 @@ This section describes some noteworthy details on how certain features are imple
 The features covered in this guide are:
 
 * [Edit Class Feature](#edit-class-feature)
+* [Next Available Class Feature](#next-available-class-feature)
 * [Statistics Display Feature](#statistics-display-feature)
-* [Sort-by feature](#sort-by-feature)
 * [Mark Student Feature](#mark-student-feature)
+* [Sort-by feature](#sort-by-feature)
+* [Undo Command Feature](#undo-command-feature)
 * [[Proposed] Find-by feature](#proposed-find-by-feature)
 
 ### Edit Class Feature
@@ -329,28 +331,6 @@ This `UniqueScheduleList` would store the filtered version of the original `Addr
   * Pros: Achieved our purpose of a `ScheduleList`
   * Cons: Code duplication
 
-### Sort-by feature
-
-This feature allows the user (teacher) to sort the students from Teacher's Pet by specified `TYPE` and `ORDER`. `ORDER` is optional
-and will be `ASC` when `TYPE` is `NAME` or `CLASS` and `DESC` when `TYPE` is `OWED`.
-
-#### Implementation
-
-The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
-The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
-list of person as per usual. Additionally, it implements the following operation:
-- `TeachersPet#SortPersons(ComparatorM<Person>)` -- Updates the `persons` by sorting the list with the given `Comparator`
-
-The following diagram illustrates how the operation works:
-
-![SortBySequenceDiagram](images/DG-images/SortBySequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortByCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
----
-
 ### Mark Student Feature
 
 This feature allows the teacher to mark a student as present for class, which increases the student's amount owed by the rates per class, while setting the student's next class date to be a week later.
@@ -376,6 +356,63 @@ This command executes 3 main actions, they are:
 The following diagram illustrates how the operation works:
 
 ![MarkActivityDiagram](images/DG-images/MarkActivityDiagram.png)
+
+---
+
+### Sort-by feature
+
+This feature allows the user(teacher) to sort the students from Teacher's Pet by specified `TYPE` and `ORDER`.
+`ORDER` is optional and by default, it will be set to `ASC` for `NAME` and `CLASS` sort, and `DESC` for `OWED` sort, unless otherwise specified.
+
+#### Implementation Details
+
+The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
+list of person as per usual. Additionally, it implements the following operation:
+- `TeachersPet#SortPersons(ComparatorM<Person>)` -- Updates the `persons` by sorting the list with the given `Comparator`
+
+The following diagram illustrates how the operation works:
+
+![SortBySequenceDiagram](images/DG-images/SortBySequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortByCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+---
+
+### Undo command feature
+
+#### Implementation Details
+
+The undo mechanism is facilitated by `teachersPetHistory` within [ModelManager.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/ModelManager.java). Additionally, it implements the following operations:
+
+* `ModelManager#updateTeachersPeyHistory()` — Saves the current teacher's pet state in its history.
+* `ModelManager#undo()` — Restores the previous teacher's pet state from its history.
+* `ModelManager#deleteTeachersPetHistory()` — Removes the latest teacher's pet state from its history.
+
+These operations are exposed in the `Model` interface as `Model#updateTeachersPeyHistory()`, `Model#undo()` and `Model#deleteTeachersPetHistory()` respectively.
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/DG-images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Design considerations:
+
+**Aspect: How undo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire teacher's pet.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo by
+  itself.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 ---
 

@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATES_PER_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 
@@ -21,7 +22,9 @@ import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.ClassContainsDatePredicate;
 import seedu.address.model.person.predicate.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.NokPhoneContainsNumberPredicate;
 import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
+import seedu.address.model.person.predicate.TagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -38,7 +41,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_NOK_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_CLASS_DATE_TIME, PREFIX_MONEY_OWED, PREFIX_MONEY_PAID,
-                PREFIX_RATES_PER_CLASS, PREFIX_ADDITIONAL_NOTES);
+                PREFIX_RATES_PER_CLASS, PREFIX_ADDITIONAL_NOTES, PREFIX_TAG);
 
         if (argMultimap.containsMultiplePrefix()) {
             throw new ParseException(FindCommand.ONLY_ONE_PREFIX_MESSAGE);
@@ -48,14 +51,14 @@ public class FindCommandParser implements Parser<FindCommand> {
             String nameToFind = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).fullName.trim();
             String[] nameKeywords = nameToFind.split("\\s+");
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+
         } else if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             String phoneToFind = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()).toString();
             return new FindCommand(new PhoneContainsNumberPredicate(phoneToFind));
 
         } else if (argMultimap.getValue(PREFIX_NOK_PHONE).isPresent()) {
-
-            // TODO: Implement NOK phone search here, remove the exception below
-            throw new ParseException("np/ search not implemented yet.");
+            String nokPhoneToFind = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_NOK_PHONE).get()).toString();
+            return new FindCommand(new NokPhoneContainsNumberPredicate(nokPhoneToFind));
 
         } else if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String emailToFind = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()).value.trim();
@@ -70,6 +73,10 @@ public class FindCommandParser implements Parser<FindCommand> {
                     ParserUtil.parseDateToFind(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()).toString();
             return new FindCommand(new ClassContainsDatePredicate(dateToFind));
 
+        } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            String tagToFind = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()).tagName.trim();
+            String[] tagKeywords = tagToFind.split("\\s+");
+            return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords)));
         } else {
             // Other prefixes that are not supported by the search system, or no prefix found.
             throw new ParseException(

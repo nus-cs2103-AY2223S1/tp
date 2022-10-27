@@ -30,22 +30,26 @@ public class SortCommandTest {
 
     @Test
     public void equals() {
-        SortCommand sortCommand1 = new SortCommand(Type.NAME, Order.ASC);
-        SortCommand sortCommand2 = new SortCommand(Type.NAME, Order.DESC);
+        SortCommand sortCommand1 = new SortCommand(Type.OWED, Order.ASC);
+        SortCommand sortCommand2 = new SortCommand(Type.OWED, Order.DESC);
+        SortCommand sortCommand3 = new SortCommand(Type.CLASS, Order.ASC);
+        SortCommand sortCommand4 = new SortCommand(Type.CLASS, Order.DESC);
 
         // same object -> returns true
         assertTrue(sortCommand1.equals(sortCommand1));
 
         // same value -> returns true
-        assertTrue(sortCommand1.equals(new SortCommand(Type.NAME, Order.ASC)));
+        assertTrue(sortCommand1.equals(new SortCommand(Type.OWED, Order.ASC)));
 
         // different types -> returns false
-        assertFalse(sortCommand1.equals(1));
+        assertFalse(sortCommand2.equals(1));
 
         // null -> returns false
-        assertFalse(sortCommand1.equals(null));
+        assertFalse(sortCommand3.equals(null));
 
         // different values -> returns false
         assertFalse(sortCommand1.equals(sortCommand2));
+        assertFalse(sortCommand2.equals(sortCommand4));
+        assertFalse(sortCommand3.equals(sortCommand4));
     }
 }

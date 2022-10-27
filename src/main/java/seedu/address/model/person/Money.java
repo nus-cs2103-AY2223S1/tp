@@ -9,7 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
  * Represents a Person's Money in the Address Book.
  * Guarantees: immutable; is valid as declared in {@link #isValidMoney(Integer)}
  */
-public class Money {
+public class Money implements Comparable<Money> {
     public static final String MESSAGE_CONSTRAINTS = "Money can take any positive integer values,"
             + " and its default value is 0";
 
@@ -89,6 +89,14 @@ public class Money {
         return value > 0;
     }
 
+    /**
+     * Returns 1 if this is greater than the given {@code money}, 0 if equal, -1 if smaller.
+     */
+    @Override
+    public int compareTo(Money money) {
+        requireNonNull(money);
+        return this.value.compareTo(money.value);
+    }
     @Override
     public String toString() {
         return value.toString();
