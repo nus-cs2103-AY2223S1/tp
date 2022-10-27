@@ -108,7 +108,7 @@ public class EditCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateViewedPersonList(new SamePersonPredicate(editedPerson));
-        return new CommandResult(MESSAGE_EDIT_PERSON_SUCCESS + editedPerson);
+        return new CommandResult(MESSAGE_EDIT_PERSON_SUCCESS);
     }
 
     /**
