@@ -61,6 +61,9 @@ public class DeletecCommand extends Command {
     }
 
     public static String getCommandMessage(Set<ModuleClass> existingClasses, Set<ModuleClass> nonExistentClasses) {
+        requireAllNonNull(existingClasses);
+        requireAllNonNull(nonExistentClasses);
+
         StringBuilder outputString = new StringBuilder();
         if (!existingClasses.isEmpty()) {
             outputString.append(getClassesDeletedMessage(existingClasses)).append("\n");
