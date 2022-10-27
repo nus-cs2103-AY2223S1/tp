@@ -78,6 +78,7 @@ public class UnmarkCommandTest {
         expectedMessage.append("1. ").append(toUnmark.toString()).append("\n");
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        showDebtors(expectedModel);
         expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), editedDebtor);
 
         assertCommandSuccess(unmarkCommand, model, expectedMessage.toString(), expectedModel);
@@ -126,6 +127,7 @@ public class UnmarkCommandTest {
         expectedMessage.append("2. ").append(toUnmarkTwo.toString()).append("\n");
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        showDebtors(expectedModel);
         expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIFTH_PERSON.getZeroBased()), editedDebtor);
 
         assertCommandSuccess(unmarkCommand, model, expectedMessage.toString(), expectedModel);
