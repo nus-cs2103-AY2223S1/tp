@@ -39,7 +39,7 @@ public class AddTeamCommand extends Command {
     @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true)
     private String teamName;
 
-    @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG}, defaultValue = "")
+    @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG}, defaultValue = Team.DEFAULT_DESCRIPTION)
     private String description;
 
     public AddTeamCommand() {
