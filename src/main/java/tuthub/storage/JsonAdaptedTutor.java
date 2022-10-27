@@ -11,16 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tuthub.commons.exceptions.IllegalValueException;
 import tuthub.model.tag.Tag;
-import tuthub.model.tutor.CommentList;
-import tuthub.model.tutor.Email;
+import tuthub.model.tutor.*;
 import tuthub.model.tutor.Module;
-import tuthub.model.tutor.Name;
-import tuthub.model.tutor.Phone;
-import tuthub.model.tutor.Rating;
-import tuthub.model.tutor.StudentId;
-import tuthub.model.tutor.TeachingNomination;
-import tuthub.model.tutor.Tutor;
-import tuthub.model.tutor.Year;
 
 /**
  * Jackson-friendly version of {@link Tutor}.
@@ -37,6 +29,7 @@ class JsonAdaptedTutor {
     private final String studentId;
     private final String teachingNomination;
     private final String rating;
+    private final List<JsonAdaptedComment> comments = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -44,11 +37,11 @@ class JsonAdaptedTutor {
      */
     @JsonCreator
     public JsonAdaptedTutor(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("module") List<JsonAdaptedModule> module,
-            @JsonProperty("year") String year, @JsonProperty("studentId") String studentId,
-            @JsonProperty("teaching nominations") String teachingNomination,
-            @JsonProperty("rating") String rating,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                            @JsonProperty("email") String email, @JsonProperty("module") List<JsonAdaptedModule> module,
+                            @JsonProperty("year") String year, @JsonProperty("studentId") String studentId,
+                            @JsonProperty("teaching nominations") String teachingNomination,
+                            @JsonProperty("rating") String rating, @JsonProperty("comments") List<JsonAdaptedComment> comments,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -59,6 +52,9 @@ class JsonAdaptedTutor {
         this.studentId = studentId;
         this.rating = rating;
         this.teachingNomination = teachingNomination;
+        if (comments != null) {
+            this.comments.addAll(comments);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -72,12 +68,15 @@ class JsonAdaptedTutor {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         modules.addAll(source.getModules().stream()
-            .map(JsonAdaptedModule::new)
-            .collect(Collectors.toList()));
+                .map(JsonAdaptedModule::new)
+                .collect(Collectors.toList()));
         year = source.getYear().value;
         studentId = source.getStudentId().value;
         teachingNomination = source.getTeachingNomination().value;
         rating = source.getRating().value;
+        comments.addAll(source.getComments().getList().stream()
+                .map(JsonAdaptedComment::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -97,6 +96,11 @@ class JsonAdaptedTutor {
         final List<Module> tutorModules = new ArrayList<>();
         for (JsonAdaptedModule module : modules) {
             tutorModules.add(module.toModelType());
+        }
+
+        final List<Comment> tutorComments = new ArrayList<>();
+        for (JsonAdaptedComment comment : comments) {
+            tutorComments.add(comment.toModelType());
         }
 
         if (name == null) {
@@ -163,10 +167,16 @@ class JsonAdaptedTutor {
         }
         final Rating modelRating = new Rating(rating);
 
+        if (comments == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CommentList.class.getSimpleName()));
+        }
+        final CommentList modelComments = new CommentList(tutorComments);
+
         final Set<Tag> modelTags = new HashSet<>(tutorTags);
 
         return new Tutor(modelName, modelPhone, modelEmail, modelModule, modelYear,
-                modelStudentId, new CommentList(), modelTeachingNomination, modelRating, modelTags);
+                modelStudentId, modelComments, modelTeachingNomination, modelRating, modelTags);
     }
 
 }
