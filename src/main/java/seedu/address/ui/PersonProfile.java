@@ -39,33 +39,33 @@ public class PersonProfile extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label name_label;
+    private Label name_Label;
     @FXML
     private Label phone;
     @FXML
-    private Label phone_label;
+    private Label phone_Label;
     @FXML
     private Label address;
     @FXML
-    private Label address_label;
+    private Label address_Label;
     @FXML
     private Label email;
     @FXML
-    private Label email_label;
+    private Label email_Label;
     @FXML
     private Label description;
     @FXML
-    private Label description_label;
+    private Label description_Label;
     @FXML
-    private Label tags_label;
+    private Label tags_Label;
     @FXML
     private FlowPane tags;
     @FXML
     private Label netWorth;
     @FXML
-    private Label netWorth_label;
+    private Label netWorth_Label;
     @FXML
-    private Label meeting_label;
+    private Label meeting_Label;
     @FXML
     private FlowPane meetingTimes;
     @FXML
@@ -96,7 +96,7 @@ public class PersonProfile extends UiPart<Region> {
     private void setNameField() {
         if (person.getName().isEmpty()) {
             name.setManaged(false);
-            name_label.setManaged(false);
+            name_Label.setManaged(false);
             return;
         }
         name.setText(person.getName().getFullDisplayName());
@@ -108,7 +108,7 @@ public class PersonProfile extends UiPart<Region> {
     private void setPhoneField() {
         if (person.getPhone().isEmpty()) {
             phone.setManaged(false);
-            phone_label.setManaged(false);
+            phone_Label.setManaged(false);
             return;
         }
         phone.setText(person.getPhone().getDisplayValue());
@@ -120,7 +120,7 @@ public class PersonProfile extends UiPart<Region> {
     private void setAddressField() {
         if (person.getAddress().isEmpty()) {
             address.setManaged(false);
-            address_label.setManaged(false);
+            address_Label.setManaged(false);
             return;
         }
         address.setText(person.getAddress().getDisplayValue());
@@ -132,7 +132,7 @@ public class PersonProfile extends UiPart<Region> {
     private void setEmailField() {
         if (person.getEmail().isEmpty()) {
             email.setManaged(false);
-            email_label.setManaged(false);
+            email_Label.setManaged(false);
             return;
         }
         email.setText(person.getEmail().getDisplayValue());
@@ -144,7 +144,7 @@ public class PersonProfile extends UiPart<Region> {
     private void setDescriptionField() {
         if (person.getDescription().isEmpty()) {
             description.setManaged(false);
-            description_label.setManaged(false);
+            description_Label.setManaged(false);
             return;
         }
         description.setText(person.getDescription().getDisplayValue());
@@ -156,7 +156,7 @@ public class PersonProfile extends UiPart<Region> {
     private void setNetWorthField() {
         if (person.getNetWorth().isEmpty()) {
             netWorth.setManaged(false);
-            netWorth_label.setManaged(false);
+            netWorth_Label.setManaged(false);
             return;
         }
         netWorth.setText(person.getNetWorth().getDisplayValue());
@@ -168,7 +168,7 @@ public class PersonProfile extends UiPart<Region> {
     private void setMeetingsField() {
         if (person.getMeetingTimes().isEmpty()) {
             meetingTimes.setManaged(false);
-            meeting_label.setManaged(false);
+            meeting_Label.setManaged(false);
             return;
         }
         person.getMeetingTimes().stream()
@@ -182,7 +182,7 @@ public class PersonProfile extends UiPart<Region> {
     private void setTagsField() {
         if (person.getTags().isEmpty()) {
             tags.setManaged(false);
-            tags_label.setManaged(false);
+            tags_Label.setManaged(false);
             return;
         }
         person.getTags().stream()

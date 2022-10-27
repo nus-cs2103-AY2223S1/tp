@@ -18,22 +18,22 @@
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="name" styleClass="display_header" text="\$first" />
+                <Label fx:id="name" styleClass="display_Header" text="\$first" />
             </HBox>
-            <Label fx:id="tags_label" styleClass="display_label" text="Status" />
+            <Label fx:id="tags_Label" styleClass="display_Label" text="Status" />
             <FlowPane fx:id="tags" />
-            <Label fx:id="meeting_label" styleClass="display_label" text="Meeting Times" />
+            <Label fx:id="meeting_Label" styleClass="display_Label" text="Meeting Times" />
             <FlowPane fx:id="meetingTimes" />
-            <Label fx:id="phone_label" styleClass="display_label" text="Phone Number" />
-            <Label fx:id="phone" styleClass="display_content" text="\$phone" />
-            <Label fx:id="address_label" styleClass="display_label" text="Address" />
-            <Label fx:id="address" styleClass="display_content" text="\$address" />
-            <Label fx:id="email_label" styleClass="display_label" text="Email" />
-            <Label fx:id="email" styleClass="display_content" text="\$email" />
-            <Label fx:id="description_label" styleClass="display_label" text="Description" />
-            <Label fx:id="description" styleClass="display_content" text="\$description" />
-            <Label fx:id="netWorth_label" styleClass="display_label" text="Net Worth" />
-            <Label fx:id="netWorth" styleClass="display_content" text="\$netWorth" />
+            <Label fx:id="phone_Label" styleClass="display_Label" text="Phone Number" />
+            <Label fx:id="phone" styleClass="display_Content" text="\$phone" />
+            <Label fx:id="address_Label" styleClass="display_Label" text="Address" />
+            <Label fx:id="address" styleClass="display_Content" text="\$address" />
+            <Label fx:id="email_Label" styleClass="display_Label" text="Email" />
+            <Label fx:id="email" styleClass="display_Content" text="\$email" />
+            <Label fx:id="description_Label" styleClass="display_Label" text="Description" />
+            <Label fx:id="description" styleClass="display_Content" text="\$description" />
+            <Label fx:id="netWorth_Label" styleClass="display_Label" text="Net Worth" />
+            <Label fx:id="netWorth" styleClass="display_Content" text="\$netWorth" />
             <Button fx:id="personFileButton" styleClass="display_button" onMouseClicked="#openPersonFile" text="Client Information" />
             <Label fx:id="buttonErrorMessage" styleClass="error_message" managed="false" />
         </VBox>
