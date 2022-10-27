@@ -80,7 +80,6 @@ public class MarkCommand extends Command {
         Person updatedDebtor = createUpdatedDebtor(debtorToUpdate, debtsToMark);
 
         model.setPerson(debtorToUpdate, updatedDebtor);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         String result = String.format(MESSAGE_MARK_DEBT_SUCCESS, updatedDebtor.getName());
         StringBuilder builder = new StringBuilder(result);

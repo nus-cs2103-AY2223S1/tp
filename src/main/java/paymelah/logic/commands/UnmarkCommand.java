@@ -80,7 +80,6 @@ public class UnmarkCommand extends Command {
         Person updatedDebtor = createUpdatedDebtor(debtorToUpdate, debtsToUnmark);
 
         model.setPerson(debtorToUpdate, updatedDebtor);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         String result = String.format(MESSAGE_UNMARK_DEBT_SUCCESS, updatedDebtor.getName());
         StringBuilder builder = new StringBuilder(result);
