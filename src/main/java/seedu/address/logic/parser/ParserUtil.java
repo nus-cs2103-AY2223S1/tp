@@ -160,6 +160,9 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses {@code String order} into a {@code Order}
+     */
     public static Order parseOrder(String order) throws ParseException {
         switch (order.trim().toLowerCase()) {
         case "asc":

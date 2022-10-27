@@ -10,6 +10,9 @@ import seedu.address.logic.parser.Order;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Command that sorts the current member list.
+ */
 @CommandLine.Command(name = "member", aliases = {"m"}, mixinStandardHelpOptions = true)
 public class SortMemberCommand extends Command {
 

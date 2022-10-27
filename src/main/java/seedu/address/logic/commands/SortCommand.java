@@ -9,9 +9,12 @@ import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Command that contains all subcommands starting with {@code sort}.
+ */
 @CommandLine.Command(name = "sort", aliases = {"so"}, mixinStandardHelpOptions = true, subcommands = {
-        SortMemberCommand.class,
-        SortTaskCommand.class
+    SortMemberCommand.class,
+    SortTaskCommand.class
 })
 public class SortCommand extends Command {
     @CommandLine.Spec

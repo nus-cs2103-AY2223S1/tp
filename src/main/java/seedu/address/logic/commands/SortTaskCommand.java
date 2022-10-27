@@ -10,6 +10,9 @@ import seedu.address.logic.parser.Order;
 import seedu.address.model.Model;
 import seedu.address.model.team.Task;
 
+/**
+ * Command that sorts the current task list
+ */
 @CommandLine.Command(name = "task", aliases = {"ta"}, mixinStandardHelpOptions = true)
 public class SortTaskCommand extends Command {
     public static final String COMMAND_WORD = "sort task";
