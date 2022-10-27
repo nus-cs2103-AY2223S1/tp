@@ -9,12 +9,14 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.studmap.commons.core.GuiSettings;
 import seedu.studmap.commons.core.LogsCenter;
 import seedu.studmap.logic.Logic;
 import seedu.studmap.logic.commands.CommandResult;
 import seedu.studmap.logic.commands.exceptions.CommandException;
+import seedu.studmap.logic.imports.exceptions.ImportException;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 
 /**
@@ -163,6 +165,16 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Opens the file explorer for the user to choose a file.
+     */
+    @FXML
+    private String handleChooseFile() throws ImportException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files", "*.csv"));
+        return logic.importFile(fileChooser.showOpenDialog(this.primaryStage));
+    }
+
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
     }
@@ -172,7 +184,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.studmap.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText)
+            throws CommandException, ParseException, ImportException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -184,6 +197,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isChooseFile()) {
+                resultDisplay.setFeedbackToUser(handleChooseFile());
             }
 
             return commandResult;

@@ -16,6 +16,7 @@ import seedu.studmap.logic.commands.FilterCommand;
 import seedu.studmap.logic.commands.FindCommand;
 import seedu.studmap.logic.commands.GradeCommand;
 import seedu.studmap.logic.commands.HelpCommand;
+import seedu.studmap.logic.commands.ImportCommand;
 import seedu.studmap.logic.commands.ListCommand;
 import seedu.studmap.logic.commands.MarkCommand;
 import seedu.studmap.logic.commands.ParticipateCommand;
@@ -74,6 +75,9 @@ public class StudMapParser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommand();
 
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);

@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.studmap.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.VALID_HANDLE_BOB;
-import static seedu.studmap.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.studmap.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -37,10 +35,9 @@ public class StudentTest {
         // null -> returns false
         assertFalse(ALICE.isSameStudent(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, module, studentid, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withModule(VALID_MODULE_BOB).withId(VALID_ID_BOB).withGitName(VALID_NAME_BOB)
-                .withTeleHandle(VALID_HANDLE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withGitName(VALID_NAME_BOB).withTeleHandle(VALID_HANDLE_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns false
