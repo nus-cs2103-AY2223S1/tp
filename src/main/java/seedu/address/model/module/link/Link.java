@@ -25,12 +25,12 @@ public class Link implements Comparable<Link> {
     //Main check -> Allowed symbols -> alphanumeric, "()@:%_\+.~#?&\/=";
     //Domain has to be between 1-256 characters, top-level domain between 1-6 characters
     //@@author shwene-reused
-    //Reused from https://uibakery.io/regex-library/url-regex-java
+    //Reused from https://uibakery.io/regex-library/url-regex-java with minor modifications
     public static final String VALIDATION_REGEX_URL_WITH_HTTPS = "^https?:\\/\\/(?:www\\.)?"
             + "[-a-zA-Z0-9@:%_\\+~#=]{1,256}\\."
             + "[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$";
     public static final String VALIDATION_REGEX_URL_WITHOUT_HTTPS =
-            "^[-a-zA-Z0-9@:%_\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}"
+            "^(?:www\\.)?[-a-zA-Z0-9@:%_\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}"
             + "\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&//=]*)$";
     //@@shwene
     public static final String VALIDATION_REGEX_ALIAS = "^[a-zA-Z0-9 ]{1,15}$";

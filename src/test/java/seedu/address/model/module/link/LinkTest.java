@@ -16,6 +16,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_4;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_4_WITHOUT_HTTPS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_4_WITH_HTTP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_5_WITH_HTTPS_WWW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_5_WITH_WWW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_WITHOUT_HTTPS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalLinks.VALID_LINK_2;
@@ -84,6 +86,8 @@ public class LinkTest {
         String linkUrlWithWhitespace = INVALID_MODULE_LINK_URL_2;
         String linkUrlWithNoDomain = INVALID_MODULE_LINK_URL_3;
         String linkUrlWithForbiddenSpecialCharacters = INVALID_MODULE_LINK_URL_4;
+        String linkUrlWithWww = VALID_MODULE_LINK_URL_5_WITH_WWW;
+        String linkUrlWithHttpsWww = VALID_MODULE_LINK_URL_5_WITH_HTTPS_WWW;
 
         //valid link url with https header -> returns true
         assertTrue(Link.isValidLinkUrl(linkUrlWithHttps));
@@ -97,6 +101,12 @@ public class LinkTest {
         assertFalse(Link.isValidLinkUrl(linkUrlWithNoDomain));
         //link url with forbidden special characters -> returns false
         assertFalse(Link.isValidLinkUrl(linkUrlWithForbiddenSpecialCharacters));
+
+        //link url with www prefix -> returns true
+        assertTrue(Link.isValidLinkUrl(linkUrlWithWww));
+
+        //link url with https://www prefix -> returns true
+        assertTrue(Link.isValidLinkUrl(linkUrlWithHttpsWww));
     }
 
     @Test
