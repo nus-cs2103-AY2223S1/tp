@@ -10,6 +10,20 @@ title: User Guide
 GithubContact is an address book **integrated with Github's Public API**, targeted at programmers to help them communicate and collaborate smoothly.
 
 --------------------------------------------------------------------------------------------------------------------
+## Table of Contents
+1. [Getting Started](#getting-started)
+2. [Features](#features)
+   1. [Add a person](#add-a-person--add)
+   2. [Remove a person](#delete-person--delete)
+   3. [Find a person](#find-person--find)
+   4. [Sort people](#sort-persons--sort)
+   5. [Show a person's details](#show-person-details--enter-or-double-click)
+   6. [Set a person's details](#edit-person-details--set)
+   7. [Delete a person's details](#delete-person-details-delete)
+   8. [Return to previous page](#back-to-previous-page--back-or-esc)
+   9. [Show help page](#show-help--help)
+3. [FAQ](#faq)
+4. [Command Summary](#command-summary)
 
 ## Getting Started
 
@@ -71,6 +85,33 @@ Example:
 - `add name/Alex address/22 Clementi phone/86609830 email/alex@gmail.com`
 - `add name/Mike address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123`
 
+### Delete Person : `delete`
+
+Delete the specified person from the address book.
+
+Format: `delete INDEX`
+
+- You can only run this command in person listing page.
+- The index refers to the index number shown in the person list.
+- The index must be **positive integer** 1, 2, 3...
+
+### Find Person : `find`
+
+Find person and displays the persons that match the keyword.
+
+Format: `find KEYWORD`
+
+### Sort Persons : `sort`
+
+Sort persons in the list.
+
+Format: `sort [name|address|role][/desc]`
+
+Example:
+
+- Sort name in descending order: `sort name/desc`
+- Sort role in ascending order: `sort role`
+
 ### Show Person Details : `<ENTER>` or double click
 
 Shows person details in another page.
@@ -114,33 +155,6 @@ Attributes (`ATTRIBUTE_NAME`) that are able to delete:
 - `phone`
 - `slack`
 - `telegram`
-
-### Delete Person : `delete`
-
-Delete the specified person from the address book.
-
-Format: `delete INDEX`
-
-- You can only run this command in person listing page.
-- The index refers to the index number shown in the person list.
-- The index must be **positive integer** 1, 2, 3...
-
-### Find Person : `find`
-
-Find person and displays the persons that match the keyword.
-
-Format: `find KEYWORD`
-
-### Sort Persons : `sort`
-
-Sort persons in the list.
-
-Format: `sort [name|address|role][/desc]`
-
-Example:
-
-- Sort name in descending order: `sort name/desc`
-- Sort role in ascending order: `sort role`
 
 ### Back to previous page : `back` or `<ESC>`
 
