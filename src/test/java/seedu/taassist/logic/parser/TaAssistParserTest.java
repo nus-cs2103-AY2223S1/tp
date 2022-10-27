@@ -84,7 +84,8 @@ public class TaAssistParserTest {
     @Test
     public void parseCommand_focus() throws Exception {
         ModuleClass moduleClass = new ModuleClassBuilder().build();
-        String commandString = joinWithSpace(FocusCommand.COMMAND_WORD, moduleClass.getClassName());
+        String commandString = joinWithSpace(FocusCommand.COMMAND_WORD,
+                PREFIX_MODULE_CLASS + moduleClass.getClassName());
         FocusCommand command = (FocusCommand) parser.parseCommand(commandString);
         assertEquals(new FocusCommand(moduleClass), command);
     }

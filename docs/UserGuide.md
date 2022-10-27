@@ -62,7 +62,7 @@ Let's first begin with the commands available in the default mode.
 | `unassign` | `unassign INDEX... c/CLASS_NAME`                                   |
 | `listc`    | `listc`                                                            |
 | `exit`     | `exit`                                                             |
-| `focus`    | `focus CLASS_NAME`                                                 |
+| `focus`    | `focus c/CLASS_NAME`                                               |
 | `clear`    | `clear`                                                            |
 
 ### Viewing help : `help`
@@ -263,7 +263,7 @@ Enter focus mode to manage a given class, enabling features that are only availa
 
 " %}
 
-Format: `focus CLASS_NAME`
+Format: `focus c/CLASS_NAME`
 
 * Enters focus mode for the class named `CLASS_NAME`
 
