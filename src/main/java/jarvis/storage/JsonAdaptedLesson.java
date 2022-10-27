@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.commons.util.CollectionUtil;
 import jarvis.model.Consult;
 import jarvis.model.Lesson;
