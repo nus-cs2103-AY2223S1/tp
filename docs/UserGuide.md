@@ -103,7 +103,7 @@ which tells ModtRekt to treat the quote as a normal character.
 
 ## Features
 
-In this section, we will cover the features of ModtRekt, and introduce each command in detail.
+In this section, we will cover the features of ModtRekt, and introduce the syntax of the various commands.
 
 <div markdown="block" class="alert alert-info">
 
@@ -359,8 +359,8 @@ the data of your previous ModuleList home folder.
 
 |          Action           | Format                                                                              | Examples                                                           |
 |:-------------------------:|-------------------------------------------------------------------------------------|--------------------------------------------------------------------|
-|     **Add a Module**      | `add module <module code>`<br/>`add mod <module code>`                              | `add module CS2103T`<br/>`add mod CS2103T`                          |
-|    **Remove a Module**    | `remove module <module code>`<br/>`rm mod <module code>`                             | `remove module CS2103T`<br/>`rm mod cS2103t`                        |
+|     **Add a Module**      | `add module <module code>`<br/>`add mod <module code>`                              | `add module CS2103T`<br/>`add mod CS2103T`                         |
+|    **Remove a Module**    | `remove module <module code>`<br/>`rm mod <module code>`                            | `remove module CS2103T`<br/>`rm mod cS2103t`                       |
 |    **Go to a Module**     | `cd <mod, code>`                                                                    | `cd CS2103T`                                                       |
 |  **Marks done a Module**  | `done module <module code>` <br/> `done mod <module code>`                          | `done module CS1101S` <br/> `done mod CS1101S`                     |
 | **Marks undone a Module** | `undone module <module code>` <br/> `undone mod <module code>`                      | `undone module CS1101S` <br/> `undone mod CS1101S`                 |
@@ -373,3 +373,18 @@ the data of your previous ModuleList home folder.
 |   **Add a Task**   | `add task <description> [-d <deadline>] -c <module code>` | `add task do Assignment 1 -d 15/09/2022 -c CS2100`    |
 | **Remove a Task**  | `remove task <index> `<br/>`rm -t <index>`                | `remove task 1`<br/>`rm -t 1`                         |
 | **List All Tasks** | `list tasks` <br/> `ls -t`                                | `list tasks`<br/>`ls -t`                              |
+
+
+### Glossary
+
+|       Terms        | Description                                                                                             |
+|:------------------:|---------------------------------------------------------------------------------------------------------|
+|   **AY**           | Academic Year                                                                                           |
+| **GUI**            | Graphical User Interface                                                                                |
+| **CLI**            | Command Line Interface                                                                                  |
+| **Syntax**         | Structure of statements                                                                                 |
+| **NUSMods**        | A timetabling application created for NUS students, containing information about all modules in NUS.    |
+| **cd**             | Shorthand for `change directory`, in the context of our application, modules can be seen as directories |
+| **MCs**            | Modular credits                                                                                         |
+| **ASCII**          | American Standard Code for Information Interchange                                                      |
+| **NUS**            | National University of Singapore                                                                        |
