@@ -176,13 +176,13 @@ This feature allows the user to add a new Customer.
 
 **Below is a sample usage and how the add sequence behaves at each step.**
 
-1. User chooses the Customer he/she wants to add and enters the command `add n/Bob p/12345678 e/johnd@example.com r/5000 t/GOLD t/MEMBER`
+1. User chooses the Customer he/she wants to add and enters the command `add n/Bob p/12345678 e/johnd@example.com m/1 r/5000 t/GOLD t/MEMBER`
 2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `AddCommandParser` and
    returns the `AddCommand` containing the Customer with all the required fields
 3. The `LogicManager` executes the `AddCommand` and Customer is added to database
 4. The `CommandResult` reflects this Customer
 
-The following sequence diagram shows how the add feature works, following the flow of entering the command `add n/Bob p/12345678 e/johnd@example.com r/5000 t/GOLD t/MEMBER`:
+The following sequence diagram shows how the add feature works, following the flow of entering the command `add n/Bob p/12345678 e/johnd@example.com m/1 r/5000 t/GOLD t/MEMBER`:
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
