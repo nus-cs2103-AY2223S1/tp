@@ -3,32 +3,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane minWidth="340" prefWidth="340.0" style="-fx-background-color: transparent;"
-            HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <VBox minWidth="340" HBox.hgrow="ALWAYS">
+<ScrollPane styleClass="scroll-pane" prefHeight="674.0" fitToWidth="true" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox HBox.hgrow="ALWAYS" style="-fx-padding: 5 0 0 0">
       <children>
-         <Label fx:id="name" styleClass="cell_big_label" />
+         <Label alignment="TOP_CENTER" prefWidth="Infinity" id="name" fx:id="name" styleClass="cell_name_label" HBox.hgrow="ALWAYS" />
 
-         <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Personal Details" textAlignment="CENTER" />
-         <Label fx:id="email" styleClass="cell_small_label" />
-         <Label fx:id="phone" styleClass="cell_small_label" />
+         <Label styleClass="cell_big_label" text="Personal Details" textAlignment="CENTER" style="-fx-padding: 0 0 0 10" />
+         <Label fx:id="email" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+         <Label fx:id="phone" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
 
-         <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Next-of-Kin Details" textAlignment="CENTER" />
-         <Label fx:id="nokName" styleClass="cell_small_label" />
-         <Label fx:id="nokRelationship" styleClass="cell_small_label" />
-         <Label fx:id="nokContact" styleClass="cell_small_label" />
+         <Label styleClass="cell_big_label" text="Next-of-Kin Details" textAlignment="CENTER" style="-fx-padding: 10 0 0 10" />
+         <Label fx:id="nokName" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+         <Label fx:id="nokRelationship" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+         <Label fx:id="nokContact" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
 
-         <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Long Term Medications" />
-         <FlowPane fx:id="medications" styleClass="cell_small_label" />
+         <Label styleClass="cell_big_label" text="Long Term Medications" style="-fx-padding: 10 0 0 10" />
+         <FlowPane fx:id="medications" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
 
-         <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Hospitalisation Details" />
-         <Label fx:id="patientType" styleClass="cell_small_label" />
-         <Label fx:id="hospitalWing" styleClass="cell_small_label" />
-         <Label fx:id="floorNumber" styleClass="cell_small_label" />
-         <Label fx:id="wardNumber" styleClass="cell_small_label" />
+         <Label styleClass="cell_big_label" text="Hospitalisation Details" style="-fx-padding: 10 0 0 10" />
+         <Label fx:id="patientType" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+         <Label fx:id="hospitalWing" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+         <Label fx:id="floorNumber" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+         <Label fx:id="wardNumber" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
 
-         <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Appointment Details" />
-         <Label fx:id="upcomingAppointment" styleClass="cell_small_label" />
-         <ListView id="pastAppointments" fx:id="pastAppointments" HBox.hgrow="ALWAYS" />
+         <Label styleClass="cell_big_label" text="Appointment Details" style="-fx-padding: 10 0 0 10" />
+         <Label fx:id="upcomingAppointment" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+         <Label styleClass="cell_small_label" text="Past Appointments, if any, are listed below." style="-fx-padding: 0 0 0 10" />
+         <ListView accessibleText="Past Appointments" id="pastAppointments" fx:id="pastAppointments" HBox.hgrow="ALWAYS" />
       </children></VBox>
 </ScrollPane>

@@ -134,7 +134,7 @@ public class EditCommand extends Command {
         }
         Set<Medication> updatedMedications = editPersonDescriptor.getMedications()
                 .orElse(personToEdit.getMedications());
-        List<PastAppointment> pastAppointments = editPersonDescriptor.getPastAppointments();
+        List<PastAppointment> pastAppointments = personToEdit.getPastAppointments();
         UpcomingAppointment updatedUpcomingAppointment = editPersonDescriptor.getUpcomingAppointment()
                 .orElse(personToEdit.getUpcomingAppointment().orElse(null));
 
