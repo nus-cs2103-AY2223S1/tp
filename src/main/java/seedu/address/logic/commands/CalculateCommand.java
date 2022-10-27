@@ -61,6 +61,9 @@ public class CalculateCommand extends Command {
 
     /**
      * Class for reading and understanding the arithmetic expression.
+     * Adapted from: https://www.daniweb.com/programming/software-development/
+     *      threads/442690/java-expression-parser-calculator
+     * with modifications
      */
     private static class ArithmeticExpressionReader {
         private static final int HIGH_PRECEDENCE = 2;
@@ -112,7 +115,7 @@ public class CalculateCommand extends Command {
                     stack.push(token);
                 } else if (token.equals("(")) {
                     // If token is a left parenthesis
-                    stack.push(token);  //
+                    stack.push(token);
                 } else if (token.equals(")")) {
                     // If token is a right parenthesis
                     while (!stack.empty() && !stack.peek().equals("(")) {
@@ -135,7 +138,7 @@ public class CalculateCommand extends Command {
             Stack<String> stack = new Stack<>();
 
             for (String token : tokens) {
-                // If the token is a value push it onto the stack
+                // If the token is a value, push it onto the stack
                 if (!isOperator(token)) {
                     stack.push(token);
                 } else {
@@ -143,7 +146,7 @@ public class CalculateCommand extends Command {
                     Double d2 = Double.valueOf(stack.pop());
                     Double d1 = Double.valueOf(stack.pop());
 
-                    //Get the result
+                    // Calculate the result
                     Double result = token.compareTo("*") == 0
                         ? d1 * d2
                         : token.compareTo("/") == 0
