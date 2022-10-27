@@ -1,26 +1,25 @@
 ---
 layout: page
 title: User Guide
+subtitle: Explore our guide to use Arrow
 ---
 
-<div class="subtitle">Explore our guide to use Arrow.</div>
-
-[**AddressBook**](#addressbook-commands)<br>
-[**Task Management**](#taskpanel-commands)<br>
+[**Address Book**](#address-book-commands)<br>
+[**Task Management**](#task-management-commands)<br>
 [**FAQ**](#faq)<br>
-[**Command Summary**](#command-summary)<br>
+[**Command Summary**](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. If you are unsure of how to check, refer to the [FAQ](#faq).
 
 2. Download the latest `arrow.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Arrow.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. If the app does not start and an error appears on your screen, do refer to the [FAQ](#faq).<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -39,8 +38,8 @@ title: User Guide
    * **`exit`** : Exits the app.
 
 6. Read the [Notes](#notes) on the command format
-7. Refer to [AddressBook](#addressbook-commands) for details of AddressBook commands.
-8. Refer to [TaskPanel](#taskpanel-commands) for details of Task commands.
+7. Refer to [Address Book](#address-book-commands) for details of AddressBook commands.
+8. Refer to [Task Management](#task-management-commands) for details of Task commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -70,7 +69,7 @@ title: User Guide
 
 </div>
 
-## AddressBook Commands
+## Address Book Commands
 
 ### Viewing help : `help`
 
@@ -160,7 +159,7 @@ Clears all entries from the address book.
 Format: `clear`
 
 
-## TaskPanel Commands
+## Task Management Commands
 
 ### Adding a task: `task add`
 
@@ -352,7 +351,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I check my Java version?<br>
-**A**:
+**A**: Open Terminal if you're on Mac or Command Prompt if you're on Windows. Type "java -version" and press Enter.
 
 **Q**: What if the app does not open when I double-click it?<br>
 **A**: Follow the steps listed to open the app.
@@ -368,13 +367,13 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 | Action          | Format, Examples                                                                                                                                                      |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Task add**    | ``task add TITLE by/DEADLINE [#/PROJECT] [@/PERSON_INDEX]...``<br> e.g., `task add Task 1 by/next friday #/CS2103T @/1`                                               |
-| **Tasks**       | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                     |
+| **Task list**   | `tasks list [FILTER]`<br> e.g., `tasks list @1`, `task list keyword`                                                                                                  |
 | **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
 | **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
 | **Task clear**  | `task clear`<br> e.g., `task clear`                                                                                                                                   |
