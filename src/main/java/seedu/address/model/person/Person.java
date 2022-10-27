@@ -141,9 +141,9 @@ public class Person {
 
     /**
      * Returns the earliest meeting time from the person's meeting times.
-     * @return The earliest Meeting Time object in a Set.
+     * @return The earliest Meeting Time object
      */
-    public Set<MeetingTime> getEarliestMeeting() {
+    public MeetingTime getEarliestMeeting() {
         Set<MeetingTime> copyMeetingTimes = new HashSet<>();
         copyMeetingTimes.addAll(meetingTimes);
         MeetingTime earliestMeeting = removeFirst(copyMeetingTimes);
@@ -153,8 +153,7 @@ public class Person {
                 earliestMeeting = temp;
             }
         }
-        copyMeetingTimes.add(earliestMeeting);
-        return copyMeetingTimes;
+        return earliestMeeting;
     }
 
     /**
