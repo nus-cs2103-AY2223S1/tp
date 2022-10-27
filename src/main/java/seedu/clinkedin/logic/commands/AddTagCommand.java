@@ -89,7 +89,7 @@ public class AddTagCommand extends Command {
 
         return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), updatedTags, personToEdit.getStatus(), personToEdit.getNote(),
-                personToEdit.getLinks());
+                personToEdit.getRating(), personToEdit.getLinks());
     }
 
     @Override

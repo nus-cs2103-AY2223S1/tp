@@ -55,6 +55,22 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public CommandResult execute(Command command) throws CommandException {
+        logger.info("----------------[USER COMMAND][" + command + "]");
+
+        CommandResult commandResult;
+        commandResult = command.execute(model);
+
+        try {
+            storage.saveAddressBook(model.getAddressBook());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+
+        return commandResult;
+    }
+
+    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
     }
