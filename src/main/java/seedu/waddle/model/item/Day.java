@@ -11,6 +11,7 @@ import seedu.waddle.logic.PdfFieldInfo;
 import seedu.waddle.logic.PdfFiller;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.exceptions.Period;
+import seedu.waddle.model.text.Text;
 
 /**
  * Encapsulates a day in an itinerary.
@@ -182,7 +183,7 @@ public class Day {
         for (int i = 0; i < PdfFiller.MAX_DISPLAY; i++) {
             if (i < this.itemList.getSize()) {
                 Item item = this.itemList.get(i);
-                PdfFieldInfo time = new PdfFieldInfo("time" + i, item.getTimeString());
+                PdfFieldInfo time = new PdfFieldInfo("time" + i, item.getTimeString(Text.indentNone));
                 PdfFieldInfo activity = new PdfFieldInfo("item" + i, item.getDescription().toString());
                 fieldList.add(time);
                 fieldList.add(activity);

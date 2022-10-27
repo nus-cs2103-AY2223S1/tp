@@ -5,6 +5,7 @@ import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalTime;
 
 import seedu.waddle.model.itinerary.Description;
+import seedu.waddle.model.text.Text;
 
 /**
  * Represents an item in the itinerary.
@@ -34,16 +35,32 @@ public class Item {
         return description;
     }
 
+    public String getDescriptionString(int indents) {
+        return Text.indent(this.description.toString(), indents);
+    }
+
     public Priority getPriority() {
         return priority;
+    }
+
+    public String getPriorityString(int indents) {
+        return Text.indent("★".repeat(this.priority.getValue()), indents);
     }
 
     public Cost getCost() {
         return this.cost;
     }
 
+    public String getCostString(int indents) {
+        return Text.indent("Cost " + this.cost.getValue(), indents);
+    }
+
     public Duration getDuration() {
         return duration;
+    }
+
+    public String getDurationString(int indents) {
+        return Text.indent("Duration " + this.duration + " mins", indents);
     }
 
     public LocalTime getStartTime() {
@@ -63,15 +80,15 @@ public class Item {
         return end;
     }
 
-    public String getTimeString() {
+    public String getTimeString(int indents) {
         if (this.startTime != null) {
             if (this.duration != null) {
-                return this.startTime + " - " + getEndTime();
+                return Text.indent("Time: " + this.startTime + " - " + getEndTime(), indents);
             } else {
-                return this.startTime.toString();
+                return Text.indent("Time: " + this.startTime.toString(), indents);
             }
         }
-        return "(Not planned)";
+        return Text.indent("Time: (Not planned)", indents);
     }
 
     public void resetStartTime() {
@@ -94,13 +111,15 @@ public class Item {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getDescription())
-                .append("; Priority: ")
-                .append(getPriority())
-                .append("; Cost: ")
-                .append(getCost())
-                .append("; Duration: ")
-                .append(getDuration());
+        builder.append(getDescriptionString(Text.indentNone))
+                .append(System.getProperty("line.separator"))
+                .append(getPriorityString(Text.indentFour))
+                .append(System.getProperty("line.separator"))
+                .append(getCostString(Text.indentFour))
+                .append(System.getProperty("line.separator"))
+                .append(getDurationString(Text.indentFour))
+                .append(System.getProperty("line.separator"))
+                .append(getTimeString(Text.indentFour));
         return builder.toString();
     }
 }

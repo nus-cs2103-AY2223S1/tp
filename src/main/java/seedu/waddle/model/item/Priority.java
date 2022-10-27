@@ -32,7 +32,7 @@ public class Priority {
         return test > 0 && test <= 5;
     }
 
-    public int getStars() {
+    public int getValue() {
         return this.stars;
     }
 
@@ -45,7 +45,7 @@ public class Priority {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Priority // instanceof handles nulls
-                && this.stars.equals(((Priority) other).getStars())); // state check
+                && this.stars.equals(((Priority) other).getValue())); // state check
     }
 
     @Override
@@ -54,6 +54,6 @@ public class Priority {
     }
 
     public int compareTo(Priority p) {
-        return this.stars.compareTo(p.getStars());
+        return this.stars.compareTo(p.getValue());
     }
 }

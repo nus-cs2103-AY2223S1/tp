@@ -60,7 +60,7 @@ public class PdfFiller {
         List<PDField> fieldList = new ArrayList<>();
         form.setXFA(null);
         List<PdfFieldInfo> infoToFill = day.getPdfFieldInfoList();
-        infoToFill.add(new PdfFieldInfo("itinerary_name", this.itinerary.getName().description));
+        infoToFill.add(new PdfFieldInfo("itinerary_name", this.itinerary.getDescription().description));
         fillForm(infoToFill, form, fieldList);
         form.flatten(fieldList, true);
         pdf.getDocumentCatalog().setAcroForm(form);
@@ -79,7 +79,7 @@ public class PdfFiller {
             PDPage page = pdf.getPage(0);
             this.finalPdf.addPage(page);
         }
-        finalPdf.save("./data/" + this.itinerary.getName().description + ".pdf");
+        finalPdf.save("./data/" + this.itinerary.getDescription().description + ".pdf");
         finalPdf.close();
         // only can close when all operations are done
         for (PDDocument pdf : this.pdfList) {

@@ -55,7 +55,7 @@ public class SelectCommand extends Command {
         // instead of going to wish stage by default
 
         // return command result with stage change to wish by default for now (refer above)
-        return new CommandResult(String.format(MESSAGE_SELECT_ITINERARY_SUCCESS, selectedItinerary.getName()),
+        return new CommandResult(String.format(MESSAGE_SELECT_ITINERARY_SUCCESS, selectedItinerary.getDescription()),
                 Stages.WISH);
     }
 
