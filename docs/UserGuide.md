@@ -86,7 +86,7 @@ Adds a trip to the trip list.
 Format: `add n/TITLE d/DESCRIPTION [l/LOCATION] [D/DATE] `
 - Location and Date are optional fields.
 - Date must follow the format {dd-mm-yyyy}.
-- If you do not specify a location, it will be set to the value "Default".
+- If you do not specify a location, it will be set to the value "No location set".
 - If you do not specify a date, it will be set to the value "01-01-0000".
 - Hence, any trip with the above location or date values will be assumed to have an unspecified location or date, and it will be reflected as such in the UI.
 

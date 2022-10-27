@@ -57,9 +57,7 @@ public class TripCard extends UiPart<Region> {
         description.setText(trip.getDescription().value);
         eventCount.setText("Events: " + trip.getEvents().size());
         // location is a reserved keyword in FXML
-        tripLocation.setText(trip.getLocation().isDefaultValue()
-                ? "No location set"
-                : trip.getLocation().locationName);
+        tripLocation.setText(trip.getLocation().locationName);
         ImageView locationIcon = new ImageView("/images/location.png");
         setIconDimensions(locationIcon, 15);
         tripLocation.setGraphic(locationIcon);
