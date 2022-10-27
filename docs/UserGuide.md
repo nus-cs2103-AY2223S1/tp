@@ -12,7 +12,7 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
 
 1. Download the latest `paymelah.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases).
 
