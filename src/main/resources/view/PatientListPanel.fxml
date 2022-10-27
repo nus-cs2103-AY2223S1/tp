@@ -4,7 +4,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <Label styleClass="section-header-label" text="PATIENTS" />
   <ListView fx:id="patientListView" VBox.vgrow="ALWAYS" />
 </VBox>
