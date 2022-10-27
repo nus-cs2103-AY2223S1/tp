@@ -302,8 +302,8 @@ public class Team {
      *
      * @return Map of person to number of tasks assigned
      */
-    public Map<Person, Integer> getTasksPerPerson() {
-        return taskList.getTasksPerPerson();
+    public Map<Person, Integer> getNumTasksPerPerson() {
+        return taskList.getNumTasksPerPerson();
     }
 
     /**

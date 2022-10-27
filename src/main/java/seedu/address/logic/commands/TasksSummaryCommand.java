@@ -44,7 +44,7 @@ public class TasksSummaryCommand extends Command {
         }
         requireNonNull(model);
         List<Person> members = model.getTeam().getTeamMembers();
-        Map<Person, Integer> tasks = model.getTeam().getTasksPerPerson();
+        Map<Person, Integer> tasks = model.getTeam().getNumTasksPerPerson();
 
         StringBuilder taskSummary = new StringBuilder();
         for (int i = 0; i < members.size(); i++) {
