@@ -30,7 +30,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class TagCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -41,7 +41,8 @@ public class TagCommandTest {
 
         String expectedMessage = String.format(TagCommand.MESSAGE_TAG_PERSON_SUCCESS, taggedTask);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(),
+                model.getArchivedAddressBook(), new UserPrefs());
         expectedModel.setTask(taskToTag, taggedTask);
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
@@ -54,7 +55,8 @@ public class TagCommandTest {
 
         String expectedMessage = String.format(TagCommand.MESSAGE_TAG_PERSON_SUCCESS, taggedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                model.getArchivedAddressBook(), new UserPrefs());
         expectedModel.setTask(taggedTask, taggedTask);
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
@@ -71,7 +73,8 @@ public class TagCommandTest {
 
         String expectedMessage = String.format(TagCommand.MESSAGE_TAG_PERSON_SUCCESS, taggedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                model.getArchivedAddressBook(), new UserPrefs());
         expectedModel.setTask(model.getFilteredPersonList().get(0), taggedTask);
 
         assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
