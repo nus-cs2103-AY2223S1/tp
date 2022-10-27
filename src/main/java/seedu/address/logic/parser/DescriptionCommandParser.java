@@ -31,8 +31,8 @@ public class DescriptionCommandParser implements Parser<DescriptionCommand> {
                     DescriptionCommand.MESSAGE_USAGE), ive);
         }
 
-        String description = argMultimap.getValue(PREFIX_DESCRIPTION).orElse("");
+        String remark = argMultimap.getValue(PREFIX_DESCRIPTION).orElse("");
 
-        return new DescriptionCommand(index, new Description(description));
+        return new DescriptionCommand(index, new Description(remark));
     }
 }

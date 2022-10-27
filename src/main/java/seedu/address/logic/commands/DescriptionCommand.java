@@ -26,7 +26,7 @@ public class DescriptionCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing description will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_DESCRIPTION + "[DESCRIPTION]\n"
+            + PREFIX_DESCRIPTION + "[REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Likes to swim.";
 
