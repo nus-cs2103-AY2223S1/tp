@@ -72,8 +72,13 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 **:information_source: Notes about the command format:**<br>
 
 - All command follow this format:<br>
-  `command | entry identifier | input | [optional inputs]`<br>
-  Example: `add t/e d/Lunch a/15.60 da/15-08-2022 c/Meal` <br>
+  <pre>
+    command | entry identifier | input | [optional inputs]
+  </pre>
+  Example: 
+  <pre>
+    add t/e d/Lunch a/15.60 da/15-08-2022 c/Meal
+  </pre>
     - Command : add<br>
     - Identifier : t/e<br>
     - Input : d/Lunch a/15.60 da/15-08-2022 c/Meal<br>
@@ -142,13 +147,13 @@ Deletes an entry.
 1. Example: `del 2 t/e` deletes the 2nd item on the expenditure list 
    Expenditure list:
    1. Movie 15.60 12 Sep 2022 c/Entertainment
-   2. Drink 1.20 12 Sep 2022 c/Food 
+   2. Drink 1.20 12 Sep 2022 c/Food <br>
    Expected: `Deleted Entry: Drink; Date: 12-09-2022; Amount: 1.20; Tag: Food`
    
 1. Example: `del 2 t/i` deletes the 2nd item on the income list
    Income list:
    1. Tuition 40.00 12 Sep 2022 c/Salary
-   2. Allowance 100.00 12 Sep 2022 c/Allowance
+   2. Allowance 100.00 12 Sep 2022 c/Allowance <br>
    Expected: `Deleted Entry: Allowance; Date: 12-09-2022; Amount: 100.00 Tag: Allowance`
 
 
@@ -157,12 +162,12 @@ Edits an entry, at least **1** of the optional fields must be present.
 
 1. Edits expenditure with specified fields
    * Example: `edit 1 t/e d/ChickenRice`
-   * The expenditure at index 1 will have its description edited
-   * Expected: `Edited Entry: ChickenRice; Date: 21-10-2022; Amount: 4.20; Tag: Food`
+   * The expenditure at index 1 will have its description edited <br>
+   Expected: `Edited Entry: ChickenRice; Date: 21-10-2022; Amount: 4.20; Tag: Food`
 1. Edits income with specified fields
    * Example: `edit 2 t/i a/150.00 da/22-10-2022`
-   * The income at index 2 will have its amount and date edited
-   * Expected: `Edited Entry: CafeSalary; Date: 22-10-2022; Amount: 150.00; Tag: Salary`
+   * The income at index 2 will have its amount and date edited <br>
+   Expected: `Edited Entry: CafeSalary; Date: 22-10-2022; Amount: 150.00; Tag: Salary`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The default date is the current date on your computer!
@@ -190,19 +195,19 @@ The default date is the current date on your computer!
 ### View entries by category : `view t/ENTRY_TYPE g/GRAPH_TYPE`
 
 1. View a PieChart of all expenditures by categories
-    * Examples: `view t/e g/c`
-    * Expected: `Show graphically all expenditure by category` and a PieChart on the right of the application
+    * Examples: `view t/e g/c` <br>
+   Expected: `Show graphically all expenditure by category` and a PieChart on the right of the application
 1. View a PieChart of all incomes by categories
-   * Examples: `view t/i g/c`
-   * Expected: `Show graphically all income by category` and a PieChart on the right of the application
+   * Examples: `view t/i g/c` <br>
+   Expected: `Show graphically all income by category` and a PieChart on the right of the application
 
 ### View entries by month : `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`
 1. View a LineGraph of all expenditures in a specified month
-   * Examples: `view t/e g/m mo/2022-10`
-   * Expected: `Show graphically all expenditure by month` and a LineGraph on the right of the application
+   * Examples: `view t/e g/m mo/2022-10` <br>
+   Expected: `Show graphically all expenditure by month` and a LineGraph on the right of the application
 1. View a LineGraph of all incomes in a specified month
-   * Examples: `view t/i g/m mo/2022-10`
-   * Expected: `Show graphically all income by month` and a LineGraph on the right of the application
+   * Examples: `view t/i g/m mo/2022-10` <br>
+   Expected: `Show graphically all income by month` and a LineGraph on the right of the application
 
 * View all entries recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is required for the LineGraph, if no month is specified, the application displays an error.
@@ -247,11 +252,11 @@ the data of your previous PennyWise home folder.
 
 | Action              | Format, Examples                                                                                                                                        |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**             | `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY` <br> e.g., `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`                                  |
-| **Delete**          | `del INDEX_OF_ENTRY t/ENTRY_TYPE` <br> e.g., `del 2 t/e`                                                                                                |
-| **Edit**            | `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`<br> e.g.,`edit 2 t/i a/150.00 da/22-10-2022` |
-| **Summary**         | `summary [mo/MONTH]`<br> e.g., `summary mo/2022-09`                                                                                                     |
-| **View (Category)** | `view t/ENTRY_TYPE g/GRAPH_TYPE` <br> e.g,, `view t/e g/c`                                                                                              |
-| **View (Month)**    | `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]` <br> e.g., `view t/i g/m mo/2022-10`                                                                        |
+| **Add**             | `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY` <br> e.g. `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`                                   |
+| **Delete**          | `del INDEX_OF_ENTRY t/ENTRY_TYPE` <br> e.g. `del 2 t/e`                                                                                                 |
+| **Edit**            | `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`<br> e.g. `edit 2 t/i a/150.00 da/22-10-2022` |
+| **Summary**         | `summary [mo/MONTH]`<br> e.g. `summary mo/2022-09`                                                                                                      |
+| **View (Category)** | `view t/ENTRY_TYPE g/GRAPH_TYPE` <br> e.g. `view t/e g/c`                                                                                               |
+| **View (Month)**    | `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]` <br> e.g. `view t/i g/m mo/2022-10`                                                                         |
 | **Clear**           | `clear`                                                                                                                                                 |
 | **Exit**            | `exit`                                                                                                                                                  |
