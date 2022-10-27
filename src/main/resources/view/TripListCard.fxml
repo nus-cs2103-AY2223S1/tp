@@ -40,7 +40,7 @@
             </VBox.margin></Label>
         <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-            <Label fx:id="tripLocation" styleClass="cell_small_label" text="\$tripLocation">
+=            <Label fx:id="tripLocation" styleClass="cell_small_label" text="\$tripLocation">
                   <padding>
                      <Insets right="4.0" />
                   </padding></Label>
@@ -48,7 +48,6 @@
                   <HBox.margin>
                      <Insets />
                   </HBox.margin></Label>
-
             </children>
             <padding>
                <Insets top="5.0" />

@@ -9,8 +9,9 @@ import javafx.beans.property.SimpleStringProperty;
 public class ObservableTrip {
     private final SimpleStringProperty tripTitle;
     private final SimpleStringProperty tripDescription;
-
     private final SimpleBooleanProperty tripIsDone;
+    private final SimpleStringProperty tripLocation;
+    private final SimpleStringProperty tripDate;
 
     /**
      * Every field must be present and not null.
@@ -19,12 +20,20 @@ public class ObservableTrip {
         tripTitle = new SimpleStringProperty();
         tripDescription = new SimpleStringProperty();
         tripIsDone = new SimpleBooleanProperty();
+        tripLocation = new SimpleStringProperty();
+        tripDate = new SimpleStringProperty();
     }
 
     public void setTrip(Trip trip) {
+        tripIsDone.set(trip.isDone());
+        tripLocation.set(trip.getLocation().isDefaultValue()
+                ? "No location set"
+                : "" + trip.getLocation());
+        tripDate.set(trip.getDateField().isDefaultValue()
+                ? "No date set"
+                : "" + trip.getDateField());
         tripTitle.set(trip.getTitle().fullTitle);
         tripDescription.set(trip.getDescription().value);
-        tripIsDone.set(trip.isDone());
     }
 
     /**
@@ -42,6 +51,9 @@ public class ObservableTrip {
     public SimpleStringProperty getObservableDescription() {
         return tripDescription;
     }
+
+    public SimpleStringProperty getObservableDate() { return tripDate; }
+    public SimpleStringProperty getObservableLocation() { return tripLocation; }
 
     public boolean isEqual(Trip trip) {
         return trip.getTitle().fullTitle.equals(tripTitle.get());
