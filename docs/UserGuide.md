@@ -4,16 +4,31 @@ title: User Guide
 ---
 # HealthContact User Guide
 
-HealthContact is a software for **XXX**.
+HealthContact is a software for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
+It helps to keep track of patient data, patient appointments and patient bills for the family clinic.
 
 * Table of Contents
   {:toc}
 
 ---
+# Quick Start
+1. Ensure you have Java 11 or above installed in your Computer.
+
+2. Download the latest HealthContact.jar from here.
+
+3. Copy the file to the folder you want to use as the home folder for your HealthContact application.
+
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+
+<img src="images/Ui.png" width="800px" height ="400px">
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
+
+6. Refer to the [Features](#1.-Features) below for details of each command.
 
 # 1. Features
 
-## 1.1 Adding
+## 1.1 Add
 
 ### 1.1.1 Adding a patient
 
@@ -21,7 +36,7 @@ HealthContact is a software for **XXX**.
 
 ### 1.1.3 Adding a bill of an appointment
 
-## 1.2 Editing
+## 1.2 Edit
 
 ### 1.2.1 Editing a patient
 
@@ -29,7 +44,7 @@ HealthContact is a software for **XXX**.
 
 ### 1.2.3 Editing a bill of an appointment
 
-## 1.3 Deleting
+## 1.3 Delete
 
 ### 1.3.1 Deleting a patient
 
@@ -37,7 +52,7 @@ HealthContact is a software for **XXX**.
 
 ### 1.3.3 Deleting a bill of an appointment
 
-## 1.4 Finding
+## 1.4 Find
 
 ### 1.4.1 Finding patients `findpatient` `fp`
 
@@ -66,7 +81,7 @@ Examples:
 
 <img src="images/findpatientBernice.png" width="800px" height ="400px">
 
-### 1.4.2 Finding an appointment of a patient `findappointment` `fa`
+### 1.4.2 Finding appointments `findappointment` `fa`
 
 Filters appointments by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
@@ -95,7 +110,7 @@ Examples:
 
 ### 1.4.3 Finding a bill of an appointment
 
-## 1.5 Sorting
+## 1.5 Sort
 
 ### 1.5.1 Sorting patients
 
@@ -103,7 +118,7 @@ Examples:
 
 ### 1.5.3 Sorting bills
 
-## 1.6 Selecting
+## 1.6 Select
 
 ### 1.6.1 Selecting a patient
 
@@ -111,56 +126,92 @@ Examples:
 
 ## 1.7 Setting Bill Payment Status
 
-### 1.7.1 Setting Bill As Paid
+### 1.7.1 Setting Bill As Paid `setpaid` `sp`
+
+Sets the payment status of a bill to "paid".
+
+Format:
+```setpaid <index>``` or ```sp <index>```
+
+* The command words are `setpaid` or `sp`.
+* The index refers to the index number of the bill shown in the displayed bill list.
+* The index must be a valid positive integer 1, 2, 3, …​
+
+Example:
+* ```setpaid 1``` sets the first bill in the displayed bill list as paid, in this case, `Bernice Yu`'s bill.
+
+Before:
+<img src="images/setpaidcommand.png" width="800px" height ="400px">
+
+After:
+<img src="images/setpaidcommandafter.png" width="800px" height ="400px">
 
 ### 1.7.2 Setting Bill As Unpaid
 
-## 1.8 Remarking
+Sets the payment status of a bill to "unpaid".
 
-## 1.9 Undoing
+Format:
+```setunpaid <index>``` or ```sup <index>```
 
-## 1.10 Redoing
+* The command words are `setunpaid` or `sup`.
+* The index refers to the index number of the bill shown in the displayed bill list.
+* The index must be a valid positive integer 1, 2, 3, …​
 
-## 1.11 Clearing
+Example:
+* ```setunpaid 1``` sets the first bill in the displayed bill list as unpaid, in this case, `Bernice Yu`'s bill.
 
-## 1.12 Listing
+Before:
+<img src="images/setunpaidcommand.png" width="800px" height ="400px">
 
-## 1.13 Exiting
+After:
+<img src="images/setunpaidcommandafter.png" width="800px" height ="400px">
 
-## 1.14 Helping
+## 1.8 Remark
+
+## 1.9 Undo
+
+## 1.10 Redo
+
+## 1.11 Clear
+
+## 1.12 List
+
+## 1.13 Exit
+
+## 1.14 Help
 
 
 # 2. Commands Reference Sheet
 
 
-| Feature      |                                      | Command Word        | Shortcut | Parameters                                                                                                                                                                                                                                                                                                                                                                                                              |
-|--------------|--------------------------------------|---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Adding       | a patient                            | `addpatient`        | `ap`     | *`n/` Name of patient in non-empty alphanumeric characters and spaces<br/>*`p/` Phone number of patient in at least than 3 digits<br/>*`e/` Email address of patient in `local-part@domain`<br/>*`a/` Home address of patient in non-empty characters<br/>`r/` Remark of patient in non-empty characters<br/>+`t/` Tag(s) of patient in one alphanumeric word                                                           |
-|              | an appointment of a patient          | `addappointment`    | `aa`     | *`n/` Name of patient in non-empty alphanumeric characters and spaces<br/>*`s/` Slot of appointment in `yyyy-MM-dd HH:mm`<br/>*`d/` Doctor name of the appointment in non-empty alphanumeric characters and spaces<br/>*`t/` Medical test of patient in non-empty characters                                                                                                                                            |
-|              | a bill to an appointment             | `addbill`           | `ab`     | **`INDEX` Index of appointment<br/>*`a/` Amount of bill in a positive number with at most two decimal places<br/>*`d/` Bill date of bill in `yyyy-MM-dd`                                                                                                                                                                                                                                                                |
-| Editing      | a patient                            | `editpatient`       | `ep`     | **`INDEX` Index of target patient<br/>`n/` New name of patient in non-empty alphanumeric characters and spaces<br/>`p/` New phone number of patient in at least than 3 digits<br/>`e/` New email address of patient in `local-part@domain`<br/>`a/` New home address of patient in non-empty characters<br/>`r/` New remark of patient in non-empty characters<br/>+`t/` New tag(s) of patient in one alphanumeric word |
-|              | an appointment of a patient          | `editappointment`   | `ea`     | **`INDEX` Index of target appointment<br/>`n/` Name of another patient in non-empty alphanumeric characters and spaces<br/>`s/` New slot of appointment in `yyyy-MM-dd HH:mm`<br/>`d/` New doctor name of the appointment in non-empty alphanumeric characters and spaces<br/>`t/` New medical test of patient in non-empty characters                                                                                  |
-|              | a bill to an appointment             | `editbill`          | `eb`     | **`INDEX` Index of target bill<br/>`a/` New amount of bill in a positive number with at most two decimal places <br/>`d/` New bill date of bill  in `yyyy-MM-dd`                                                                                                                                                                                                                                                        |
-| Deleting     | a patient                            | `deletepatient`     | `dp`     | **`INDEX` Index of patient                                                                                                                                                                                                                                                                                                                                                                                              |
-|              | an appointment of a patient          | `deleteappointment` | `da`     | **`INDEX` Index of appointment                                                                                                                                                                                                                                                                                                                                                                                          |
-|              | a bill to an appointment             | `deletebill`        | `db`     | **`INDEX` Index of bill                                                                                                                                                                                                                                                                                                                                                                                                 |
-| Finding      | a patient                            | `findpatient`       | `fp`     | `n/` Name of patient<br/>`p/` Phone number of patient <br/>`e/` Email address of patient <br/>`a/` Home address of patient <br/>`r/` Remark of patient <br/>+`t/` Tag(s) of patient                                                                                                                                                                                                                                     |
-|              | an appointment of a patient          | `findappointment`   | `fa`     | `n/` Name of patient<br/>`s/` Slot of appointment<br/>`d/` Doctor name of the appointment<br/>`t/` Medical test of patient                                                                                                                                                                                                                                                                                              |
-|              | a bill to an appointment             | `findbill`          | `fb`     | `n/` Name of patient<br/>`a/` Amount of bill<br/>`d/` Bill date of bill                                                                                                                                                                                                                                                                                                                                                 |
-| Sorting      | a patient                            | `sortpatient`       | `sop`    |                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|              | an appointment of a patient          | `sortappointment`   | `soa`    |                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|              | a bill to an appointment             | `sortbill`          | `sob`    |                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Selecting    | a patient                            | `selectpatient`     | `slp`    | **`INDEX` Index of target patient                                                                                                                                                                                                                                                                                                                                                                                       |
-|              | an appointment                       | `selectappointment` | `sla`    | **`INDEX` Index of target patient                                                                                                                                                                                                                                                                                                                                                                                       |
-| Setting bill | as Paid                              | `setpaid`           | `sp`     | **`INDEX` Index of target bill                                                                                                                                                                                                                                                                                                                                                                                          |
-|              | as Unpaid                            | `setunpaid`         | `sup`    | **`INDEX` Index of target bill                                                                                                                                                                                                                                                                                                                                                                                          |
-| Remarking    | a patient                            | `remark`            | `r`      | **`INDEX` Index of target patient <br/> *`r/` New remark of patient in non-empty characters                                                                                                                                                                                                                                                                                                                             |
-| Undoing      | the last change                      | `undo`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Redoing      | the last undone change               | `redo`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Clearing     | all the data saved in the software   | `clear`             |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Listing      | all patients, appointments and bills | `list`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Exiting      | the program                          | `exit`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Helping      | the user with user guide             | `help`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Feature  |                                      | Command Word        | Shortcut | Parameters                                                                                                                                                                                                                                                                                                                                                                                                              |
+|----------|--------------------------------------|---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add      | a patient                            | `addpatient`        | `ap`     | *`n/` Name of patient in non-empty alphanumeric characters and spaces<br/>*`p/` Phone number of patient in at least than 3 digits<br/>*`e/` Email address of patient in `local-part@domain`<br/>*`a/` Home address of patient in non-empty characters<br/>`r/` Remark of patient in non-empty characters<br/>+`t/` Tag(s) of patient in one alphanumeric word                                                           |
+|          | an appointment of a patient          | `addappointment`    | `aa`     | *`n/` Name of patient in non-empty alphanumeric characters and spaces<br/>*`s/` Slot of appointment in `yyyy-MM-dd HH:mm`<br/>*`d/` Doctor name of the appointment in non-empty alphanumeric characters and spaces<br/>*`t/` Medical test of patient in non-empty characters                                                                                                                                            |
+|          | a bill to an appointment             | `addbill`           | `ab`     | **`INDEX` Index of appointment<br/>*`a/` Amount of bill in a positive number with at most two decimal places<br/>*`d/` Bill date of bill in `yyyy-MM-dd`                                                                                                                                                                                                                                                                |
+| Edit     | a patient                            | `editpatient`       | `ep`     | **`INDEX` Index of target patient<br/>`n/` New name of patient in non-empty alphanumeric characters and spaces<br/>`p/` New phone number of patient in at least than 3 digits<br/>`e/` New email address of patient in `local-part@domain`<br/>`a/` New home address of patient in non-empty characters<br/>`r/` New remark of patient in non-empty characters<br/>+`t/` New tag(s) of patient in one alphanumeric word |
+|          | an appointment of a patient          | `editappointment`   | `ea`     | **`INDEX` Index of target appointment<br/>`n/` Name of another patient in non-empty alphanumeric characters and spaces<br/>`s/` New slot of appointment in `yyyy-MM-dd HH:mm`<br/>`d/` New doctor name of the appointment in non-empty alphanumeric characters and spaces<br/>`t/` New medical test of patient in non-empty characters                                                                                  |
+|          | a bill to an appointment             | `editbill`          | `eb`     | **`INDEX` Index of target bill<br/>`a/` New amount of bill in a positive number with at most two decimal places <br/>`d/` New bill date of bill  in `yyyy-MM-dd`                                                                                                                                                                                                                                                        |
+| Delete   | a patient                            | `deletepatient`     | `dp`     | **`INDEX` Index of patient                                                                                                                                                                                                                                                                                                                                                                                              |
+|          | an appointment of a patient          | `deleteappointment` | `da`     | **`INDEX` Index of appointment                                                                                                                                                                                                                                                                                                                                                                                          |
+|          | a bill to an appointment             | `deletebill`        | `db`     | **`INDEX` Index of bill                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Find     | a patient                            | `findpatient`       | `fp`     | `n/` Name of patient<br/>`p/` Phone number of patient <br/>`e/` Email address of patient <br/>`a/` Home address of patient <br/>`r/` Remark of patient <br/>+`t/` Tag(s) of patient                                                                                                                                                                                                                                     |
+|          | an appointment of a patient          | `findappointment`   | `fa`     | `n/` Name of patient<br/>`s/` Slot of appointment<br/>`d/` Doctor name of the appointment<br/>`t/` Medical test of patient                                                                                                                                                                                                                                                                                              |
+|          | a bill to an appointment             | `findbill`          | `fb`     | `n/` Name of patient<br/>`a/` Amount of bill<br/>`d/` Bill date of bill                                                                                                                                                                                                                                                                                                                                                 |
+| Sort     | a patient                            | `sortpatient`       | `sop`    |                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|          | an appointment of a patient          | `sortappointment`   | `soa`    |                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|          | a bill to an appointment             | `sortbill`          | `sob`    |                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Select   | a patient                            | `selectpatient`     | `slp`    | **`INDEX` Index of target patient                                                                                                                                                                                                                                                                                                                                                                                       |
+|          | an appointment                       | `selectappointment` | `sla`    | **`INDEX` Index of target patient                                                                                                                                                                                                                                                                                                                                                                                       |
+| Set bill | as Paid                              | `setpaid`           | `sp`     | **`INDEX` Index of target bill                                                                                                                                                                                                                                                                                                                                                                                          |
+|          | as Unpaid                            | `setunpaid`         | `sup`    | **`INDEX` Index of target bill                                                                                                                                                                                                                                                                                                                                                                                          |
+| Remark   | a patient                            | `remark`            | `r`      | **`INDEX` Index of target patient <br/> *`r/` New remark of patient in non-empty characters                                                                                                                                                                                                                                                                                                                             |
+| Undo     | the last change                      | `undo`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Redo     | the last undone change               | `redo`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Clear    | all the data saved in the software   | `clear`             |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| List     | all patients, appointments and bills | `list`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Exit     | the program                          | `exit`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Help     | the user with user guide             | `help`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 Notes on symbols in parameters column:
 
