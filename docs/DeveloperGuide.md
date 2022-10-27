@@ -283,18 +283,18 @@ Activity: Determines and returns a category
     * Cons: User is unable to edit the mod categories. Lowers performance.
 
 * **Alternative 2:** Categories of mods are saved into Storage.
-    * Pros: Users can edit mod categories with less changes to the code base. Increased performance.
+    * Pros: Users can edit mod categories with fewer changes to the code base. Increased performance.
     * Cons: Increased complexity.
     
 ### Add Interest Feature
-The ```addInt``` command allows users to add one or more interests to a student by indicating the index of the student and the list of interests to be added.
+The ```addInt``` command allows students to add one or more interests to a batchmate by indicating the index held by the batchmate and the list of interests to be added.
 
-The command takes in:
-- ```Index```
-- ```Set<Interest>```
+The command takes in two arguments:
+- ```Index``` targetIndex
+- ```Set<Interest>``` interests
 
 #### Implementation
-Each ```Student``` has a ```Set``` of ```Interest``` and adding an ```Interest``` would add the specified ```Interest``` into this set.
+Each ```Student``` has a ```Set``` of ```Interest```. Adding an ```Interest``` to a batchmate would add to the set of ```Interest``` of the ```Student``` with the ```targetIndex```.
 
 The Add Interest mechanism is facilitated by ```AddInterestCommand```, which extends from ```Command``` and ```AddInterestCommandParser```, which extends from
 ```Parser```. ```AddInterestCommandParser``` serves to parse the command arguments and create a new ```AddInterestCommand``` object. ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Person```.
