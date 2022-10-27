@@ -506,7 +506,6 @@ Examples:
 - `list` followed by `sort CLASS ASC` will list all the students according to their upcoming classes in ascending order.
 - `list` followed by `sort CLASS DESC` will list all the students according to their upcoming classes in descending order.
 
-
 #### Sort by MONEY_OWED
 
 Sort the displayed list of students (in the Students' Details panel) by `OWED`(Amount of Money Owed) and given `order`.
@@ -518,6 +517,7 @@ Examples:
 - `list` followed by `sort OWED` will list all the students according to how much money they owe in **descending** order.
 - `list` followed by `sort OWED ASC` will list all the students according to how much money they owe in ascending order.
 - `list` followed by `sort OWED DESC` will list all the students according to how much money they owe in descending order.
+
 ---
 
 ### Deleting student(s): 'delete'
