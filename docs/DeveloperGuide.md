@@ -247,7 +247,7 @@ Step 1. The `EditCommand` object's `execute()` method is called.
 
 ### \[Proposed\] Export
 
-The Export feature is facilitated by the pdfbox library. 
+The Export feature is facilitated by the pdfbox library.
 
 The conversion from Objects to a text output can be done by calling the `getTextRepresentation()` method of the `Itinerary` ,`Day` and  `item` classes in a cascading manner.
 
