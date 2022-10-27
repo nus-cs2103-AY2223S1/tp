@@ -60,6 +60,10 @@ public class AddEventToTripCommand extends Command {
             throw new CommandException("Please enter a valid Trip");
         }
 
+        if (!model.hasEventInBucketList(new Event(eventToAdd))) {
+            throw new CommandException("This event is no longer in the bucket list!");
+        }
+
         Event event = model.getEvent(new Event(eventToAdd));
         Trip toAddInto = model.getTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()));
 
@@ -70,6 +74,7 @@ public class AddEventToTripCommand extends Command {
         model.removeFromBucketList(event);
         toAddInto.addEvent(event);
         model.updateFilteredEventList(model.getBucketPredicate());
+        model.resetSelectedTrip();
         model.sortTripsByComparator(DO_NOTHING);
         return new CommandResult(String.format(MESSAGE_SUCCESS, event));
     }
