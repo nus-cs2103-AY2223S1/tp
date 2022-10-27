@@ -8,28 +8,28 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import hobbylist.logic.commands.FilterTagCommand;
+import hobbylist.logic.commands.FindTagCommand;
 import hobbylist.model.activity.TagMatchesKeywordPredicate;
 
-public class FilterTagCommandParserTest {
+public class FindTagCommandParserTest {
 
-    private FilterTagCommandParser parser = new FilterTagCommandParser();
+    private FindTagCommandParser parser = new FindTagCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FilterTagCommand.MESSAGE_USAGE));
+                FindTagCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindTagCommand() {
         // no leading and trailing whitespaces
-        FilterTagCommand expectedFilterTagCommand =
-                new FilterTagCommand(new TagMatchesKeywordPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFilterTagCommand);
+        FindTagCommand expectedFindTagCommand =
+                new FindTagCommand(new TagMatchesKeywordPredicate(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, "Alice Bob", expectedFindTagCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFilterTagCommand);
+        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindTagCommand);
     }
 
 }

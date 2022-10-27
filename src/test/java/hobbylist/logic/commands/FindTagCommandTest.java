@@ -20,7 +20,7 @@ import hobbylist.testutil.TypicalActivities;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindTagCommand}.
  */
-public class FilterTagCommandTest {
+public class FindTagCommandTest {
     private Model model = new ModelManager(TypicalActivities.getTypicalHobbyList(), new UserPrefs());
     private Model expectedModel = new ModelManager(TypicalActivities.getTypicalHobbyList(), new UserPrefs());
 
@@ -31,14 +31,14 @@ public class FilterTagCommandTest {
         TagMatchesKeywordPredicate secondPredicate =
                 new TagMatchesKeywordPredicate(Collections.singletonList("second"));
 
-        FilterTagCommand findTagFirstCommand = new FilterTagCommand(firstPredicate);
-        FilterTagCommand findTagSecondCommand = new FilterTagCommand(secondPredicate);
+        FindTagCommand findTagFirstCommand = new FindTagCommand(firstPredicate);
+        FindTagCommand findTagSecondCommand = new FindTagCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findTagFirstCommand.equals(findTagFirstCommand));
 
         // same values -> returns true
-        FilterTagCommand findFirstCommandCopy = new FilterTagCommand(firstPredicate);
+        FindTagCommand findFirstCommandCopy = new FindTagCommand(firstPredicate);
         assertTrue(findTagFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -55,7 +55,7 @@ public class FilterTagCommandTest {
     public void execute_zeroKeywords_noActivityFound() {
         String expectedMessage = String.format(MESSAGE_ACTIVITIES_LISTED_OVERVIEW, 0);
         TagMatchesKeywordPredicate predicate = preparePredicate(" ");
-        FilterTagCommand command = new FilterTagCommand(predicate);
+        FindTagCommand command = new FindTagCommand(predicate);
         expectedModel.updateFilteredActivityList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredActivityList());
@@ -63,9 +63,9 @@ public class FilterTagCommandTest {
 
     @Test
     public void setCommandWord_validWord_success() {
-        FilterTagCommand.setCommandWord("test");
-        assertEquals(FilterTagCommand.getCommandWord(), "test");
-        FilterTagCommand.setCommandWord("filter");
+        FindTagCommand.setCommandWord("test");
+        assertEquals(FindTagCommand.getCommandWord(), "test");
+        FindTagCommand.setCommandWord("filter");
     }
 
     /**

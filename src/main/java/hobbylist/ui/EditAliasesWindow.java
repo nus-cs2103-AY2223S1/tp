@@ -17,6 +17,7 @@ public class EditAliasesWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(EditAliasesWindow.class);
     private static final String FXML = "EditAliasesWindow.fxml";
+    private static final String VALIDATION_REGEX = "[\\S]+";
 
     private final Logic logic;
 
@@ -31,11 +32,11 @@ public class EditAliasesWindow extends UiPart<Stage> {
     @FXML
     private TextField exit;
     @FXML
-    private TextField filterStatus;
-    @FXML
-    private TextField filterTag;
-    @FXML
     private TextField find;
+    @FXML
+    private TextField findStatus;
+    @FXML
+    private TextField findTag;
     @FXML
     private TextField list;
     @FXML
@@ -120,8 +121,8 @@ public class EditAliasesWindow extends UiPart<Stage> {
             return;
         }
         AliasSettings newSettings = new AliasSettings(add.getText(), clear.getText(), delete.getText(), edit.getText(),
-                exit.getText(), filterTag.getText(), find.getText(), list.getText(), help.getText(), rate.getText(),
-                filterStatus.getText(), rateAbove.getText(), select.getText());
+                exit.getText(), findTag.getText(), find.getText(), list.getText(), help.getText(), rate.getText(),
+                findStatus.getText(), rateAbove.getText(), select.getText());
         logic.setAliasSettings(newSettings);
         this.hide();
     }
@@ -133,9 +134,9 @@ public class EditAliasesWindow extends UiPart<Stage> {
         delete.setText(settings.getDelete());
         edit.setText(settings.getEdit());
         exit.setText(settings.getExit());
-        filterStatus.setText(settings.getFilterStatus());
-        filterTag.setText(settings.getFilterTag());
         find.setText(settings.getFind());
+        findStatus.setText(settings.getFindStatus());
+        findTag.setText(settings.getFindTag());
         list.setText(settings.getList());
         help.setText(settings.getHelp());
         rate.setText(settings.getRate());
@@ -145,10 +146,10 @@ public class EditAliasesWindow extends UiPart<Stage> {
 
     private boolean isValidAliases() {
         String[] arr = {add.getText(), clear.getText(), delete.getText(), edit.getText(),
-                exit.getText(), filterTag.getText(), find.getText(), list.getText(), help.getText(), rate.getText(),
-                filterStatus.getText(), rateAbove.getText(), select.getText()};
+                exit.getText(), findTag.getText(), find.getText(), list.getText(), help.getText(), rate.getText(),
+                findStatus.getText(), rateAbove.getText(), select.getText()};
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i].equals("")) {
+            if (arr[i].equals("") || !isValidString(arr[i])) {
                 return false;
             }
         }
@@ -160,5 +161,9 @@ public class EditAliasesWindow extends UiPart<Stage> {
             }
         }
         return true;
+    }
+
+    private boolean isValidString(String string) {
+        return string.matches(VALIDATION_REGEX);
     }
 }
