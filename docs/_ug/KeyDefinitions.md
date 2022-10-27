@@ -58,4 +58,8 @@ Placeholders show you what type of parameters you can supply to a command. These
 
 Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
 
+```note
+The placeholders `INDEX`, `COMMAND_WORD`, and `KEYWORD` do not have any corresponding flags. They are marked as "Not Applicable" in the table below.
+```
+
 {% include_relative _ug/Placeholders.md %}
