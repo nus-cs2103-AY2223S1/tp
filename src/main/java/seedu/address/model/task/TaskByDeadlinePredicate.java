@@ -32,8 +32,8 @@ public class TaskByDeadlinePredicate implements Predicate<Task> {
     @Override
     public String toString() {
         return this.dates.size() == 1
-                ? "Tasks due on '" + dates.get(0) + "'"
-                : "Tasks due on ''";
+                ? "Tasks due on or after '" + dates.get(0) + "'"
+                : "Tasks with no deadline";
     }
 
 }
