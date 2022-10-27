@@ -446,3 +446,11 @@
     -fx-text-fill: red;
     -fx-padding: 0 0 5 0;
 }
+
+.scroll-pane .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
