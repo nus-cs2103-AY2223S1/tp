@@ -95,7 +95,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * @param main The general address book to load the student entries in.
      * @param studentAddressBook The student address book to be loaded.
      */
-    private void loadStudentAddressBook(AddressBook main, Optional<ReadOnlyAddressBook> studentAddressBook) {
+    public void loadStudentAddressBook(AddressBook main, Optional<ReadOnlyAddressBook> studentAddressBook) {
         if (studentAddressBook.isPresent()) {
             List<Student> studentList = studentAddressBook.get().getStudentList();
             for (Student s : studentList) {
@@ -117,7 +117,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * @param main The general address book to load the tutor entries in.
      * @param tutorAddressBook The tutor address book to be loaded.
      */
-    private void loadTutorAddressBook(AddressBook main, Optional<ReadOnlyAddressBook> tutorAddressBook) {
+    public void loadTutorAddressBook(AddressBook main, Optional<ReadOnlyAddressBook> tutorAddressBook) {
         if (tutorAddressBook.isPresent()) {
             List<Tutor> tutorList = tutorAddressBook.get().getTutorList();
             for (Tutor t : tutorList) {
@@ -139,7 +139,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * @param main The general address book to load the tuition class entries in.
      * @param tuitionClassAddressBook The tuition class address book to be loaded.
      */
-    private void loadTuitionClassesAddressBook(AddressBook main,
+    public void loadTuitionClassesAddressBook(AddressBook main,
                                                Optional<ReadOnlyAddressBook> tuitionClassAddressBook) {
         if (tuitionClassAddressBook.isPresent()) {
             List<TuitionClass> tuitionClassList = tuitionClassAddressBook.get().getTuitionClassList();

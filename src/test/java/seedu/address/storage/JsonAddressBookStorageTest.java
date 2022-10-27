@@ -11,13 +11,18 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.testutil.TypicalStudents;
+import seedu.address.testutil.TypicalTuitionClasses;
+import seedu.address.testutil.TypicalTutors;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
@@ -205,5 +210,81 @@ public class JsonAddressBookStorageTest {
     public void saveTuitionClassAddressBook_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveAddressBook(new AddressBook(), null,
                 AddressBookStorage.AddressBookCategories.TUITIONCLASSES));
+    }
+
+    @Test
+    public void loadStudentAddressBook_validJson() {
+        JsonAddressBookStorage storage = new JsonAddressBookStorage(
+                Paths.get(testFolder.resolve("student.json").toUri()),
+                Paths.get(testFolder.resolve("tutor.json").toUri()),
+                Paths.get(testFolder.resolve("tuitionclass.json").toUri()));
+        AddressBook clean = new AddressBook();
+        AddressBook studentAddressBook = TypicalStudents.getTypicalStudentsAddressBook();
+        storage.loadStudentAddressBook(clean, Optional.of(studentAddressBook));
+        assertEquals(clean.getStudentList(), studentAddressBook.getStudentList());
+    }
+
+    @Test
+    public void loadTutorAddressBook_validJson() {
+        JsonAddressBookStorage storage = new JsonAddressBookStorage(
+                Paths.get(testFolder.resolve("student.json").toUri()),
+                Paths.get(testFolder.resolve("tutor.json").toUri()),
+                Paths.get(testFolder.resolve("tuitionclass.json").toUri()));
+        AddressBook clean = new AddressBook();
+        AddressBook tutorAddressBook = TypicalTutors.getTypicalTutorsAddressBook();
+        storage.loadTutorAddressBook(clean, Optional.of(tutorAddressBook));
+        assertEquals(clean.getTutorList(), tutorAddressBook.getTutorList());
+    }
+
+    @Test
+    public void loadTuitionClass_validJson() {
+        JsonAddressBookStorage storage = new JsonAddressBookStorage(
+                Paths.get(testFolder.resolve("student.json").toUri()),
+                Paths.get(testFolder.resolve("tutor.json").toUri()),
+                Paths.get(testFolder.resolve("tuitionClass.json").toUri()));
+        AddressBook clean = new AddressBook();
+        AddressBook tuitionClassAddressBook =
+                TypicalTuitionClasses.getTypicalTuitionClassesAddressBook();
+        storage.loadTuitionClassesAddressBook(clean, Optional.of(tuitionClassAddressBook));
+        assertEquals(clean.getTuitionClassList(), tuitionClassAddressBook.getTuitionClassList());
+    }
+
+    @Test
+    public void readAllAddressBook_invalidJson_checkFileCreated() {
+        JsonAddressBookStorage storage = new JsonAddressBookStorage(
+                Paths.get(testFolder.resolve("tutor.json").toUri()),
+                Paths.get(testFolder.resolve("student.json").toUri()),
+                Paths.get(testFolder.resolve("tuitionClass.json").toUri()));
+        storage.readAllAddressBook();
+        Path expected = TEST_DATA_FOLDER.resolve("emptyStudentAddressBook.json");
+        Path actual = testFolder.resolve("student.json");
+        try {
+            assertEquals(
+                    FileUtil.readFromFile(expected).replace(System.getProperty(System.lineSeparator()), ""),
+                    FileUtil.readFromFile(actual).replace(System.getProperty(System.lineSeparator()), ""));
+        } catch (Exception e) {
+
+        }
+
+        expected = TEST_DATA_FOLDER.resolve("emptyTutorAddressBook.json");
+        actual = testFolder.resolve("tutor.json");
+        try {
+            assertEquals(
+                    FileUtil.readFromFile(expected).replace(System.getProperty(System.lineSeparator()), ""),
+                    FileUtil.readFromFile(actual).replace(System.getProperty(System.lineSeparator()), ""));
+        } catch (Exception e) {
+
+        }
+
+        expected = TEST_DATA_FOLDER.resolve("emptyTuitionClassAddressBook.json");
+        actual = testFolder.resolve("tuitionClass.json");
+        try {
+            assertEquals(
+                    FileUtil.readFromFile(expected).replace(System.getProperty(System.lineSeparator()), ""),
+                    FileUtil.readFromFile(actual).replace(System.getProperty(System.lineSeparator()), ""));
+        } catch (Exception e) {
+
+        }
+
     }
 }
