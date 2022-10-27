@@ -195,6 +195,12 @@ public class AddCommandTest {
         public boolean setTimetable(Set<Lesson> lessons) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void nextSem() {
+            throw new AssertionError("This method should not be called.");
+
+        }
     }
 
     /**
