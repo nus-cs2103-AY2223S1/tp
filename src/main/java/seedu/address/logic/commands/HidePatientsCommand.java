@@ -44,7 +44,7 @@ public class HidePatientsCommand extends Command {
         model.updateFilteredPersonList(combinedPredicate);
         List<Person> validPersons = model.getFilteredPersonList();
         Predicate<Appointment> appointmentPredicate =
-                HiddenPredicateSingleton.combineWithRegularApptPredicate(
+                HiddenPredicateSingleton.getCurrApptPredicate().and(
                         new AppointmentOfFilteredPersonsPredicate(validPersons));
         model.updateFilteredAppointmentList(appointmentPredicate);
 
