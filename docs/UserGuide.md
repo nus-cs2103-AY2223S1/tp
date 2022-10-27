@@ -14,14 +14,14 @@ GithubContact is an address book **integrated with Github's Public API**, target
 1. [Getting Started](#getting-started)
 2. [Features](#features)
    1. [Add a person](#add-a-person--add)
-   2. [Remove a person](#delete-person--delete)
-   3. [Find a person](#find-person--find)
-   4. [Sort people](#sort-persons--sort)
-   5. [Show a person's details](#show-person-details--enter-or-double-click)
-   6. [Set a person's details](#edit-person-details--set)
-   7. [Delete a person's details](#delete-person-details-delete)
-   8. [Return to previous page](#back-to-previous-page--back-or-esc)
-   9. [Show help page](#show-help--help)
+   2. [Remove a person](#delete-a-person--delete)
+   3. [Find a person](#find-a-person--find)
+   4. [Sort people](#sort-the-list-of-persons--sort)
+   5. [Show a person's details](#show-a-persons-details--enter-or-double-click)
+   6. [Set a person's details](#set-a-persons-details--set)
+   7. [Delete a person's details](#delete-a-persons-details-delete)
+   8. [Return to previous page](#return-to-previous-page--back-or-esc)
+   9. [Show help page](#show-help-page--help)
 3. [FAQ](#faq)
 4. [Command Summary](#command-summary)
 
@@ -85,7 +85,7 @@ Example:
 - `add name/Alex address/22 Clementi phone/86609830 email/alex@gmail.com`
 - `add name/Mike address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123`
 
-### Delete Person : `delete`
+### Delete a Person : `delete`
 
 Delete the specified person from the address book.
 
@@ -95,13 +95,13 @@ Format: `delete INDEX`
 - The index refers to the index number shown in the person list.
 - The index must be **positive integer** 1, 2, 3...
 
-### Find Person : `find`
+### Find a Person : `find`
 
 Find person and displays the persons that match the keyword.
 
 Format: `find KEYWORD`
 
-### Sort Persons : `sort`
+### Sort the list of Persons : `sort`
 
 Sort persons in the list.
 
@@ -112,7 +112,7 @@ Example:
 - Sort name in descending order: `sort name/desc`
 - Sort role in ascending order: `sort role`
 
-### Show Person Details : `<ENTER>` or double click
+### Show a Person's Details : `<ENTER>` or double click
 
 Shows person details in another page.
 
@@ -128,7 +128,7 @@ There are two ways to show person details
 
    1. Double-click on the person card in persons' list.
 
-### Edit Person Details : `set`
+### Set a Person's Details : `set`
 
 Set attribute of a person.
 
@@ -138,7 +138,7 @@ Format `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone
 - At least one optional attribute must be provided.
 - Existing values will be updated to provided values.
 
-### Delete Person Details: `delete`
+### Delete a Person's Details: `delete`
 
 Delete attribute of a person.
 
@@ -156,13 +156,13 @@ Attributes (`ATTRIBUTE_NAME`) that are able to delete:
 - `slack`
 - `telegram`
 
-### Back to previous page : `back` or `<ESC>`
+### Return to previous page : `back` or `<ESC>`
 
 Back to previous page
 
 Format: `back` or `<ESC>`
 
-### Show help : `help`
+### Show help page : `help`
 
 Shows help page or usage instruction of specified command.
 
