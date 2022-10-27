@@ -115,14 +115,23 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validAddressPrefix_returnsFindCommand() {
-        FindCommand expectedAddressCommand =
+        FindCommand expectedSingleWordAddressCommand =
+                new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList("Tampines", "Labrador")));
+
+        FindCommand expectedMultipleWordAddressCommand =
                 new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList("Pasir", "Ris", "Bukit", "Timah")));
 
         // no leading and trailing whitespaces
-        assertParseSuccess(parser, " a/Pasir Ris Bukit Timah", expectedAddressCommand);
+        assertParseSuccess(parser, " a/Tampines Labrador", expectedSingleWordAddressCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " a/Pasir Ris             Bukit Timah", expectedAddressCommand);
+        assertParseSuccess(parser, " a/Tampines             Labrador", expectedSingleWordAddressCommand);
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, " a/Pasir Ris Bukit Timah", expectedMultipleWordAddressCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " a/Pasir Ris             Bukit Timah", expectedMultipleWordAddressCommand);
     }
 
     @Test

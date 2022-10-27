@@ -193,5 +193,4 @@ public class FindCommandTest {
     private EmailContainsKeywordsPredicate prepareEmailPredicate(String userInput) {
         return new EmailContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
-
 }
