@@ -24,7 +24,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 3. Copy the file to the folder you want to use as the _home folder_ for Plannit.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
-   [image coming soon]
+   ![](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g.
    `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary)
