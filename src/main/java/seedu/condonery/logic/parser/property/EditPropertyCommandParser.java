@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.property.EditPropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
@@ -51,12 +52,12 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
                     EditPropertyCommand.MESSAGE_USAGE), pe);
         }
 
-        if (!argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
-                && !argMultimap.getValue(PREFIX_PRICE).isPresent()
-                && !argMultimap.getValue(PREFIX_PROPERTY_TYPE).isPresent()
-            && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
-            throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);
-        }
+//        if (!argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
+//                && !argMultimap.getValue(PREFIX_PRICE).isPresent()
+//                && !argMultimap.getValue(PREFIX_PROPERTY_TYPE).isPresent()
+//            && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
+//            throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);
+//        }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPropertyDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -82,10 +83,13 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent()) {
-            editPropertyDescriptor
-                    .setPropertyStatusEnum(
-                            ParserUtil.parsePropertyStatus(
-                                    argMultimap.getValue(PREFIX_PROPERTY_STATUS).get()));
+            try {
+                editPropertyDescriptor.setPropertyStatusEnum(
+                        ParserUtil.parsePropertyStatus(
+                                argMultimap.getValue(PREFIX_PROPERTY_STATUS).get()));
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException(Messages.MESSAGE_INVALID_STATUS);
+            }
         }
 
         return new EditPropertyCommand(index, editPropertyDescriptor);

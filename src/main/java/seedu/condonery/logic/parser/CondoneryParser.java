@@ -25,6 +25,7 @@ import seedu.condonery.logic.commands.property.FindPropertyCommand;
 import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.commands.property.RangePropertyCommand;
 import seedu.condonery.logic.commands.property.SelectPropertyCommand;
+import seedu.condonery.logic.commands.property.StatusPropertyCommand;
 import seedu.condonery.logic.parser.client.AddClientCommandParser;
 import seedu.condonery.logic.parser.client.FilterClientCommandParser;
 import seedu.condonery.logic.parser.client.FindClientCommandParser;
@@ -37,6 +38,7 @@ import seedu.condonery.logic.parser.property.FilterPropertyCommandParser;
 import seedu.condonery.logic.parser.property.FindPropertyCommandParser;
 import seedu.condonery.logic.parser.property.RangePropertyCommandParser;
 import seedu.condonery.logic.parser.property.SelectPropertyCommandParser;
+import seedu.condonery.logic.parser.property.StatusPropertyCommandParser;
 
 /**
  * Parses user input.
@@ -90,6 +92,9 @@ public class CondoneryParser {
 
         case ClearClientCommand.COMMAND_WORD:
             return new ClearClientCommand();
+
+        case StatusPropertyCommand.COMMAND_WORD:
+            return new StatusPropertyCommandParser().parse(arguments);
 
         case FindPropertyCommand.COMMAND_WORD:
             return new FindPropertyCommandParser().parse(arguments);
