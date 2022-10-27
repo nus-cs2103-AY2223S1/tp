@@ -84,17 +84,17 @@ Format: `help`
 
 Format: `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [dt/DATE_AND_TIME]…​`
 
-<div markdown="span" class="alert alert-primary"> 
+<div markdown="span" class="alert alert-primary">
 
 :bulb:**Tips:**
 * A patient can have any number of tags (including 0).
 * A patient can have any number of home-visit date and time (including 0).
-* Date and time need to be in the format of yyyy-MM-dTHH:mm, eg 2022-11-11T15:00. 
+* Date and time need to be in the format of yyyy-MM-dTHH:mm, eg 2022-11-11T15:00.
 * To add a patient, type c/P specifically.
 
 </div>
 
-Examples: 
+Examples:
 * `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma dt/2022-12-12T13:50`
 * `add c/P n/Betsy t/VIP e/betsy@example.com g/F a/Bugis street p/98345432 t/Heart disease t/children`
 
@@ -102,9 +102,9 @@ Examples:
 
 Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary"> 
+<div markdown="span" class="alert alert-primary">
 
-:bulb:**Tips**: 
+:bulb:**Tips**:
 * A nurse can have any number of tags (including 0).
 * You may type it in any order.
 * To add a nurse, type c/N specifically.
@@ -114,7 +114,7 @@ Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​`
 Examples:
 * `add c/N n/Jason p/98723432 e/jason@example.com g/M a/Blk 855 Woodlands Street 83, Singapore 730855, block 123, #01-01 t/Asthma`
 * `add c/N n/Betsy t/Pediatric nurse e/betsy@example.com g/F p/98345432 a/Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-01 t/Heart disease specialist`
-  
+
 
 ### Listing nurses or patients : `list`
 
@@ -127,32 +127,32 @@ Examples:
 * `list c/P t/DIABETIC g/M` - Lists all male diabetic patients enrolled in the database.
 * `list c/P a/Bugis t/heartDisease` - List all patients tagged with heart disease in the Bugis region.
 
-### Editing a person : `edit` 
+### Editing a person : `edit`
 
 Edits an existing person in the Healthcare Xpress book.
 
 Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [dt/DATE_AND_TIME]…​ [dti/DATE_AND_TIME_INDEX]…​`
 
-* Edits the person with the specified `ID`. 
+* Edits the person with the specified `ID`.
 * The ID refers to the unique ID number shown in the displayed person list.
 * The ID **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
-* The DATE_AND_TIME_INDEX is the index of the date and time list of a patient starting from 1. 
+* The DATE_AND_TIME_INDEX is the index of the date and time list of a patient starting from 1.
 * When editing date and time, there are 4 options:
 * To delete all the existing date and time of a patient: you can type `dt/` or `dti/` or `dt/ dti/` without specifying any date and time or its index after it.
-* To delete a specific date and time of a patient: you can type `dt/ dti/TO_BE_DELETED_DATE_AND_TIME_INDEX` or `dti/TO_BE_DELETED_DATE_AND_TIME_INDEX`. The to be deleted date and time index is the index of the specific date and time you want to delete. 
-* To add a new date and time of a patient: you can type `dt/NEW_DATE_AND_TIME dti/` or `dt/NEW_DATE_AND_TIME`. 
-* To change a specific date and time of a patient: you can type `dt/UPDATE_DATE_AND_TIME dti/TO_BE_UPDATED_DATE_AND_TIME_INDEX`. The date and time at this index in the list will be updated to the new date and time given by you. 
-* You can only use `dt/` and `dti/` for patient. Nurse do not have any home-visit date and time. 
+* To delete a specific date and time of a patient: you can type `dt/ dti/TO_BE_DELETED_DATE_AND_TIME_INDEX` or `dti/TO_BE_DELETED_DATE_AND_TIME_INDEX`. The to be deleted date and time index is the index of the specific date and time you want to delete.
+* To add a new date and time of a patient: you can type `dt/NEW_DATE_AND_TIME dti/` or `dt/NEW_DATE_AND_TIME`.
+* To change a specific date and time of a patient: you can type `dt/UPDATE_DATE_AND_TIME dti/TO_BE_UPDATED_DATE_AND_TIME_INDEX`. The date and time at this index in the list will be updated to the new date and time given by you.
+* You can only use `dt/` and `dti/` for patient. Nurse do not have any home-visit date and time.
 Examples:
 *  `edit id/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the nurse/patient with id 1 to be `91234567` and `johndoe@example.com` respectively.
 *  `edit id/2 n/Betsy Crower t/` Edits the name of the nurse/patient with id 2 to be `Betsy Crower` and clears all existing tags.
 *  `edit id/2 dti/1 dt/2022-12-11T17:30` Change the first date and time of the patient with id 2 to `2022-12-11T17:30`.
 
-### Locating persons by name: `find` 
+### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -241,7 +241,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 
-**Add** | `add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​` <br> e.g., `add c/N n/Jason p/98723432 e/jason@example.com g/M t/asthma a/Yishun Street 211, block 230, #03-03 ` 
+**Add** | `add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​` <br> e.g., `add c/N n/Jason p/98723432 e/jason@example.com g/M t/asthma a/Yishun Street 211, block 230, #03-03 `
 **Add** | `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS dt/DATE_AND_TIME [t/TAG]…​` <br> e.g., `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma dt/2022-12-12T13:50`
 **Clear** | `clear`
 **Delete** | `delete id/ID`<br> e.g., `delete id/3`

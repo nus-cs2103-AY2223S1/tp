@@ -170,21 +170,21 @@ The `AddCommand` will then be executed and add the `Patient` to the `Model`'s `A
 
 Given below is an example usage scenario and how the add patient mechanism behaves at each step.
 
-Step 1. The user executes `Add c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily@gmail.com t/heartDisease dt/2022-10-10T15:20` command to add a new patient that requires nurse's home-visit. 
+Step 1. The user executes `Add c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily@gmail.com t/heartDisease dt/2022-10-10T15:20` command to add a new patient that requires nurse's home-visit.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `c/P` is needed to indicate that the person added is a patient.`Name`, `Gender`, `Phone`, `Address`, `Email` is compulsory but `Tag` and `DateTime` has been made optional. The `n/`, `g/`, `p/` ... are the prefixes used to extract different details' field of the patient.
-   
+
 </div>
 
 Step 2. The `AddressBookParser` will parse the user command to return an `AddCommandParser` with the patient's details.
 
-Step 3. The `AddCommandParser` will parse the respective patient's details using fixed prefixes and check their validity. The `Uid` for the patient will also be generated and used along with the parsed patient's details to create a patient if all the inputs are valid. Then, it returns an `AddCommand` with the patient created. 
+Step 3. The `AddCommandParser` will parse the respective patient's details using fixed prefixes and check their validity. The `Uid` for the patient will also be generated and used along with the parsed patient's details to create a patient if all the inputs are valid. Then, it returns an `AddCommand` with the patient created.
 
-Step 4. The `AddCommand` will be executed and the patient will be added to the `Model`'s `AddressBook`'s `UniquePersonList`. In the `UniquePersonList`, potential duplication will be checked. 
+Step 4. The `AddCommand` will be executed and the patient will be added to the `Model`'s `AddressBook`'s `UniquePersonList`. In the `UniquePersonList`, potential duplication will be checked.
 
 The following sequence diagram shows how the add patient operation works:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** For simplification purpose, `c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily@gmail.com t/heartDisease dt/2022-10-10T15:20` will be written as userInput and all the parsed patient's details will be written as patientDetails. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For simplification purpose, `c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily@gmail.com t/heartDisease dt/2022-10-10T15:20` will be written as userInput and all the parsed patient's details will be written as patientDetails.
 
 </div>
 
@@ -204,10 +204,10 @@ The following activity diagram summarizes what happens when a user executes an a
     * Pros: Easy to implement.
     * Cons: If the 2 different patients have the exact same name, the user would not be able to add that patient.
 
-* **Alternative 2:** Check the name. If the name is the same, then shows duplicate warning but that patient would still be added. 
+* **Alternative 2:** Check the name. If the name is the same, then shows duplicate warning but that patient would still be added.
     * Pros: If the 2 different patients have the exact same name, the user would still be able to add that patient. At the same time, it will show potential duplication to the user.
-    * Cons: The user have to manually check whether it is the same person and delete it if it is a duplication. 
-    * Cons: The user might miss out the duplicated patients. 
+    * Cons: The user have to manually check whether it is the same person and delete it if it is a duplication.
+    * Cons: The user might miss out the duplicated patients.
 
 **Aspect: The home-visit `DateTime` input:**
 
@@ -219,6 +219,53 @@ The following activity diagram summarizes what happens when a user executes an a
 * **Alternative 2:** The `DateTime` input will be in the format of `YYYY-MM-DD` and slot. The slot will have fixed starting time and fixed duration.
     * Pros: It is easy to determine/check time crashes when assigning a home-visit `DateTime` slot to a nurse.
     * Cons: Less flexible in the home visit date and time that a patient can choose.
+    
+### \[Proposed\] Mark feature
+
+#### Proposed implementation for marking Appointments between Nurses and Patients
+
+The marking mechanism is facilitated by `Appointment`, `VisitStatus`, LogicManager`, `AddressBookParser`, `MarkCommandParser`, `MarkCommand`, `Model`, `AddressBook`, and `UniquePersonList`
+
+`Appointment` is an association class between Nurse and Patient, and also keeps track of the date and time of the appointment, and if the Patient has been visited by the Nurse.
+
+![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
+
+The `AddressBookParser` will take in user input and recognise it as a `MarkCommand`, and pass on the user input to `MarkCommandParser`
+
+`MarkCommandParser` will then identify the appointment of interest, by parsing the index given by the user.
+
+Should the index provided by the user be valid, the `MarkCommand` returned by the `MarkCommandParser` will create a marked version of the `Appointment` specified by the user.
+
+Upon execution, the `MarkCommand` will replace the `Appointment` with the marked version.
+
+Given blow is an example usage scenario and how the mark mechanism works.
+
+Step 1. The user enters the command `mark id/1` command to mark the appointment at index 1 as visited.
+
+Step 2. The `AddressBookParser` will parse the user command and pass the input to the `MarkCommandParser`
+
+Step 3. The `MarkCommandParser` will parse the index, and ensure that the index is present. It will then return a `MarkCommand` with the index.
+
+Step 4. The `MarkCommand` will execute, and change the `VisitStatus` of the `Appointment` to reflect that the `Patient` has been visited.
+
+The following sequence diagram shows how marking an appointment works:
+
+![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user marks an appointment as visited.
+
+![MarkActivityDiagram](images/MarkActivityDiagram.png)
+
+#### Design considerations
+
+** Aspect: Marking Appointments that are already marked: **
+* **Alternative 1:** Print and error message to inform the user that the Appointment has already been marked.
+  * Pros: User will be made aware that they have probably erroneously marked the wrong Appointment, and make the necessary correction.
+  * Cons: More difficult to implement, requires more thorough testing.
+
+* **Alternative 2:** Make no changes and raise no exceptions.
+  * Pros: Easier to implement and test.
+  * Cons: User may have erroneously marked the wrong Appointment, and may not notice.
 
 ### List feature
 
@@ -263,6 +310,7 @@ The following activity diagram summarizes what happens when a user executes the 
     * Cons: Possibly inefficient if exact matching is not vital.
 
 ### \[Proposed\] Undo/redo feature
+
 
 #### Proposed Implementation
 
@@ -733,7 +781,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2d2. Healthcare Xpress shows an error message.
 
-      Use case ends. 
+      Use case ends.
 
 * *a. At any time, medical administrator choose to exit the program.
 
@@ -751,12 +799,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. Any given id number is invalid.
-    
-    * 2a1. Healthcare Xpress shows an error message.                    
+
+    * 2a1. Healthcare Xpress shows an error message.              
 
       Use case resumes at step 1.
 
-* 2b. The given id numbers are both patients or nurses. 
+* 2b. The given id numbers are both patients or nurses.
 
     * 2b1. Healthcare Xpress shows an error message.
 
@@ -793,7 +841,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2b1. Healthcare Xpress shows an error message.
 
-      Use case resumes at step 1. 
+      Use case resumes at step 1.
 
 * 2c. Two given id numbers is both patients or both nurses.
 
@@ -810,8 +858,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Medical administrator requests to <ins>list patients / nurses (UC01)</ins> or <ins>find a specific patient / nurse (UC02)</ins>.
-2.  Medical administrator requests to swap a patient's nurse. 
-3.  Healthcare Xpress swaps the patient's nurse to a new nurse. 
+2.  Medical administrator requests to swap a patient's nurse.
+3.  Healthcare Xpress swaps the patient's nurse to a new nurse.
 
     Use case ends.
 
