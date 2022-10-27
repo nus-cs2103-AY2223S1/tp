@@ -33,7 +33,7 @@ public class Team {
     /**
      * Constructs a {@code Team}.
      *
-     * @param teamName    A valid team name.
+     * @param teamName A valid team name.
      */
     public Team(String teamName) {
         requireNonNull(teamName);
