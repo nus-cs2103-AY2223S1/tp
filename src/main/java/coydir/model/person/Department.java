@@ -1,7 +1,5 @@
 package coydir.model.person;
 
-import javafx.collections.ObservableList;
-
 import static coydir.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
