@@ -9,26 +9,23 @@ import static seedu.application.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
  */
 public enum Status {
-    INTERVIEW("interview", "darkblue"),
-    OFFERED("offered", "green"),
-    PENDING("pending", "orange"),
-    REJECTED("rejected", "red");
+    INTERVIEW("interview"),
+    OFFERED("offered"),
+    PENDING("pending"),
+    REJECTED("rejected");
 
     public static final String MESSAGE_CONSTRAINTS =
             "Status should be one of the following: pending, interview, offered, rejected.";
 
     private final String value;
-    private final String color;
 
     /**
      * Constructs a {@code Status}.
      *
      * @param value A valid value in String.
-     * @param color A valid color in String.
      */
-    private Status(String value, String color) {
+    private Status(String value) {
         this.value = value;
-        this.color = color;
     }
 
     /**
@@ -62,12 +59,5 @@ public enum Status {
      */
     public String getValue() {
         return value;
-    }
-
-    /**
-     * Returns the String color of the status.
-     */
-    public String getColor() {
-        return color;
     }
 }
