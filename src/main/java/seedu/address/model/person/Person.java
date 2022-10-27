@@ -42,6 +42,9 @@ public class Person {
         this.tasks.addAll(tasks);
     }
 
+    /**
+     * Function used to edit the person
+     */
     public void editPerson(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Task> tasks) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;

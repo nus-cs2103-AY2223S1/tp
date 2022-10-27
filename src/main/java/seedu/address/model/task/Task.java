@@ -54,7 +54,8 @@ public class Task {
         isDone = status;
     }
 
-    /** A method used to update the value of the task/
+    /**
+    * A method used to update the value of the task/
      *
      * @param name               Name of task
      * @param category           Category of task

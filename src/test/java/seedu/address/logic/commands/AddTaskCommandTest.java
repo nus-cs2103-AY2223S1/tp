@@ -5,11 +5,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
 import java.util.Comparator;
->>>>>>> 16bdbba170c44da1432c5a263d6d9a480e71e215
 import java.util.HashSet;
 import java.util.function.Predicate;
 

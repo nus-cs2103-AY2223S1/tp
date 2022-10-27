@@ -27,10 +27,6 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalTasks;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 16bdbba170c44da1432c5a263d6d9a480e71e215
 public class AddCommandTest {
 
     @Test
