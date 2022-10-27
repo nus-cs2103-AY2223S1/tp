@@ -8,7 +8,7 @@ import seedu.foodrem.viewmodels.TagsWithMessage;
 
 /**
  * A view of an {@code TagsWithMessage}. This can be displayed.
- * @author Richard Dominick
+ * @author Tan Yi Xian
  */
 public class TagsWithMessageView {
     private static final double SPACING_UNIT = 8;

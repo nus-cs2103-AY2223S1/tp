@@ -9,7 +9,7 @@ import seedu.foodrem.viewmodels.TagToRename;
 
 /**
  * A view of an {@code TagToRename}. This can be displayed.
- * @author Richard Dominick
+ * @author Tan Yi Xian
  */
 public class TagToRenameView {
     private static final double SPACING_UNIT = 8;

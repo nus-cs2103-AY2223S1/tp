@@ -12,7 +12,7 @@ import seedu.foodrem.model.tag.Tag;
 
 /**
  * A view of a list of {@code Tags}. This can be displayed.
- * @author Richard Dominick
+ * @author Tan Yi Xian
  */
 public class TagsView {
 

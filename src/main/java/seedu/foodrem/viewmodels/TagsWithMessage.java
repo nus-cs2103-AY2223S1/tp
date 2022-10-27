@@ -7,7 +7,7 @@ import seedu.foodrem.model.tag.Tag;
 
 /**
  * A view model for generating a view with tags as well as a message.
- * @author Richard Dominick
+ * @author Tan Yi Xian
  */
 public class TagsWithMessage {
     private final List<Tag> tags;

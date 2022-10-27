@@ -8,7 +8,7 @@ import seedu.foodrem.viewmodels.FilterByTag;
 
 /**
  * A view of a {@code FilterByTag}. This can be displayed.
- * @author Richard Dominick
+ * @author Tan Yi Xian
  */
 public class FilterByTagView {
     private static final double SPACING_UNIT = 8;
