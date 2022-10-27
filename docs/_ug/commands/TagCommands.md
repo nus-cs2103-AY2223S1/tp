@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-Example of Tags:
+Example of [Tag](#tag):
 
 ![Tags](images/TagImage.png)
 
@@ -177,7 +177,7 @@ Filtered by tag: fruits
 2 items left after filtering!
 ```
 
-List Box:
+Item List Box:
 
 ```text
 1. Apples 8 kg (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)

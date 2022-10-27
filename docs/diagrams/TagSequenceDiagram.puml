@@ -7,6 +7,8 @@ participant ":FoodRemParser" as FoodRemParser LOGIC_COLOR
 participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
 participant "t:TagCommand" as TagCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":Item" as Item LOGIC_COLOR
+
 end box
 
 box Model MODEL_COLOR_T1
@@ -48,8 +50,12 @@ deactivate FoodRemParser
 LogicManager -> TagCommand : execute(model)
 activate TagCommand
 
-TagCommand -> TagCommand : createTaggedItem(itemToTag, tag)
+create Item
+TagCommand -> Item : createItemWithTags(itemToTag, itemTags)
+activate Item
 
+Item --> TagCommand
+deactivate Item
 
 TagCommand -> Model : setItem(itemToTag, newTagSetItem)
 activate Model
