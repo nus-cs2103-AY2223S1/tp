@@ -1,5 +1,7 @@
 package seedu.clinkedin.model.person;
 
+import seedu.clinkedin.model.person.exceptions.DuplicateNoteException;
+
 import static java.util.Objects.requireNonNull;
 
 /**

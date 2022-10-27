@@ -11,6 +11,8 @@ import java.util.Set;
 
 import javafx.collections.ObservableMap;
 import seedu.clinkedin.model.link.Link;
+import seedu.clinkedin.model.person.exceptions.DuplicateLinkException;
+import seedu.clinkedin.model.person.exceptions.DuplicateNoteException;
 import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
@@ -257,5 +259,24 @@ public class Person {
      */
     public void setTagTypeMap(UniqueTagTypeMap tagTypeMap) throws TagTypeNotFoundException {
         this.tagTypeMap.setTagTypeMap(tagTypeMap);
+    }
+
+    public Set<Link> mergeLinks(Set<Link> linksToAdd) {
+        Set<Link> mergedLinks = new HashSet<>(links);
+        for (Link l: linksToAdd) {
+            if (links.contains(l)) {
+                throw new DuplicateLinkException(l.toString());
+            } else {
+                mergedLinks.add(l);
+            }
+        }
+        return mergedLinks;
+    }
+
+    public Note mergeNote(Note note) {
+        if (this.note.value.equals(note.value)) {
+            throw new DuplicateNoteException(note.value);
+        }
+        return new Note(this.note.value + "\n" + note.value);
     }
 }
