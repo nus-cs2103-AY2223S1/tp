@@ -66,7 +66,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'NotionUS.jar'
 }
 
 run {
@@ -74,7 +74,3 @@ run {
 }
 
 defaultTasks 'clean', 'test'
-
-run {
-    enableAssertions = true
-}
