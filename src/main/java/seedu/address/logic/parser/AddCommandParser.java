@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UPCOMING_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NUMBER;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NEXT_OF_KIN,
                         PREFIX_PATIENT_TYPE, PREFIX_HOSPITAL_WING, PREFIX_FLOOR_NUMBER,
-                        PREFIX_WARD_NUMBER, PREFIX_MEDICATION);
+                        PREFIX_WARD_NUMBER, PREFIX_MEDICATION, PREFIX_UPCOMING_APPOINTMENT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_NEXT_OF_KIN, PREFIX_PATIENT_TYPE)
@@ -72,7 +73,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             wardNumber = ParserUtil.parseWardNumber(argMultimap.getValue(PREFIX_WARD_NUMBER).get());
         }
 
-        UpcomingAppointment upcomingAppointment = null;
+        String strUpcomingAppointment = argMultimap.getValue(PREFIX_UPCOMING_APPOINTMENT).orElse(null);
+        UpcomingAppointment upcomingAppointment = ParserUtil.parseUpcomingAppointment(strUpcomingAppointment);
 
         Person person = new Person(name, phone, email, nextOfKin, patientType, hospitalWing,
                 floorNumber, wardNumber, medicationList, new ArrayList<>(), upcomingAppointment);

@@ -49,7 +49,7 @@ public class CreatePastAppointmentCommandParser implements Parser<CreatePastAppo
         if (argMultimap.getValue(PREFIX_DATE).isEmpty()) {
             throw new ParseException(MESSAGE_MISSING_DATE);
         }
-        if (!Appointment.isValidDate(argMultimap.getValue(PREFIX_DATE).get())) {
+        if (!PastAppointment.isValidDate(argMultimap.getValue(PREFIX_DATE).get())) {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
         PastAppointment appt = new PastAppointment(

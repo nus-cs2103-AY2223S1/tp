@@ -8,7 +8,10 @@ import java.time.format.DateTimeParseException;
  * Represents an appointment for a patient.
  */
 public abstract class Appointment {
-    public static final String MESSAGE_CONSTRAINTS = "Date string should be of the format dd-MM-yyyy.";
+    private static final String DATE_FORMAT = "dd-MM-yyyy";
+    public static final String MESSAGE_CONSTRAINTS = "Date string should be of the format " + DATE_FORMAT + ". "
+            + "An upcoming appointment can only be on or after the current date "
+            + "and a past appointment can only be on or before the current date.";
     private final LocalDate date;
 
     /**
@@ -51,10 +54,14 @@ public abstract class Appointment {
             return true;
         }
         try {
-            LocalDate.parse(test, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            parseLocalDate(test);
         } catch (DateTimeParseException e) {
             return false;
         }
         return true;
+    }
+
+    public static LocalDate parseLocalDate(String str) throws DateTimeParseException {
+        return LocalDate.parse(str, DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
 }

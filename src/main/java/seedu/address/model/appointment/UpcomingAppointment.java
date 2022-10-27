@@ -36,7 +36,12 @@ public class UpcomingAppointment extends Appointment {
         if (test.equals("")) {
             return true;
         }
-        return Appointment.isValidDate(test);
+        // An Upcoming Appointment can only be today or later.
+        if (Appointment.isValidDate(test)) {
+            LocalDate date = parseLocalDate(test);
+            return date.isEqual(LocalDate.now()) || date.isAfter(LocalDate.now());
+        }
+        return false;
     }
 
     @Override
