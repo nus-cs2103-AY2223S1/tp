@@ -1,14 +1,15 @@
 package seedu.address.model.person.predicates;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 public class GenderContainsKeywordsPredicateTest {
 
@@ -17,14 +18,17 @@ public class GenderContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        GenderContainsKeywordsPredicate firstPredicate = new GenderContainsKeywordsPredicate(firstPredicateKeywordList);
-        GenderContainsKeywordsPredicate secondPredicate = new GenderContainsKeywordsPredicate(secondPredicateKeywordList);
+        GenderContainsKeywordsPredicate firstPredicate = new GenderContainsKeywordsPredicate(
+                firstPredicateKeywordList);
+        GenderContainsKeywordsPredicate secondPredicate = new GenderContainsKeywordsPredicate(
+                secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        GenderContainsKeywordsPredicate firstPredicateCopy = new GenderContainsKeywordsPredicate(firstPredicateKeywordList);
+        GenderContainsKeywordsPredicate firstPredicateCopy = new GenderContainsKeywordsPredicate(
+                firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -40,7 +44,8 @@ public class GenderContainsKeywordsPredicateTest {
     @Test
     public void test_genderContainsKeywords_returnsTrue() {
         // One keyword
-        GenderContainsKeywordsPredicate predicate = new GenderContainsKeywordsPredicate(Collections.singletonList("male"));
+        GenderContainsKeywordsPredicate predicate = new GenderContainsKeywordsPredicate(
+                Collections.singletonList("male"));
         assertTrue(predicate.test(new PersonBuilder().withGender("male").build()));
 
         // Only one matching keyword

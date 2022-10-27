@@ -1,14 +1,15 @@
 package seedu.address.model.person.predicates;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 public class CapContainsKeywordsPredicateTest {
 
@@ -42,30 +43,30 @@ public class CapContainsKeywordsPredicateTest {
         // One keyword
         CapContainsKeywordsPredicate predicate = new CapContainsKeywordsPredicate(
                 Collections.singletonList("3.5"));
-        assertTrue(predicate.test(new PersonBuilder().withCap(3.5,5).build()));
+        assertTrue(predicate.test(new PersonBuilder().withCap(3.5, 5).build()));
 
         // Only one matching keyword
         predicate = new CapContainsKeywordsPredicate(Arrays.asList("3.5", "4"));
-        assertTrue(predicate.test(new PersonBuilder().withCap(3.5,5).build()));
+        assertTrue(predicate.test(new PersonBuilder().withCap(3.5, 5).build()));
 
         // Keyword is converted to double
         predicate = new CapContainsKeywordsPredicate(Collections.singletonList("3"));
-        assertTrue(predicate.test(new PersonBuilder().withCap(3.0,5).build()));
+        assertTrue(predicate.test(new PersonBuilder().withCap(3.0, 5).build()));
     }
 
     @Test
     public void test_capDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         CapContainsKeywordsPredicate predicate = new CapContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withCap(3.5,5).build()));
+        assertFalse(predicate.test(new PersonBuilder().withCap(3.5, 5).build()));
 
         // Non-matching keyword
         predicate = new CapContainsKeywordsPredicate(Arrays.asList("3", "4.0", "5"));
-        assertFalse(predicate.test(new PersonBuilder().withCap(3.5,5).build()));
+        assertFalse(predicate.test(new PersonBuilder().withCap(3.5, 5).build()));
 
         // Keywords match phone, and name, but does not match cap
         predicate = new CapContainsKeywordsPredicate(Arrays.asList("100", "12345", "3"));
         assertFalse(predicate.test(new PersonBuilder().withName("100").withPhone("12345")
-                .withCap(3.5,5).build()));
+                .withCap(3.5, 5).build()));
     }
 }

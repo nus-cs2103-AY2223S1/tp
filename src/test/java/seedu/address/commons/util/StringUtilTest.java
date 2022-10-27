@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 public class StringUtilTest {
 
     //---------------- Tests for isNonZeroUnsignedInteger --------------------------------------
-
     @Test
     public void isNonZeroUnsignedInteger() {
 
@@ -124,7 +123,7 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
-//---------------- Tests for containsSubstringIgnoreCase --------------------------------------
+    //---------------- Tests for containsSubstringIgnoreCase --------------------------------------
 
     /*
      * Invalid equivalence partitions for word: null, empty, multiple words
@@ -134,24 +133,26 @@ public class StringUtilTest {
 
     @Test
     public void containsSubstringIgnoreCase_nullWord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsSubstringIgnoreCase("typical sentence", null));
+        assertThrows(NullPointerException.class, () ->
+                StringUtil.containsSubstringIgnoreCase("typical sentence", null));
     }
 
     @Test
     public void containsSubstringIgnoreCase_emptyWord_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-                -> StringUtil.containsSubstringIgnoreCase("typical sentence", "  "));
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", () ->
+                StringUtil.containsSubstringIgnoreCase("typical sentence", "  "));
     }
 
     @Test
     public void containsSubstringIgnoreCase_multipleWords_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-                -> StringUtil.containsSubstringIgnoreCase("typical sentence", "aaa BBB"));
+        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", () ->
+                StringUtil.containsSubstringIgnoreCase("typical sentence", "aaa BBB"));
     }
 
     @Test
     public void containsSubstringIgnoreCase_nullSentence_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsSubstringIgnoreCase(null, "abc"));
+        assertThrows(NullPointerException.class, () ->
+                StringUtil.containsSubstringIgnoreCase(null, "abc"));
     }
 
     /*
@@ -188,8 +189,8 @@ public class StringUtilTest {
         assertFalse(StringUtil.containsSubstringIgnoreCase("    ", "123"));
 
         // Matches a partial word
-        assertTrue(StringUtil.containsSubstringIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
-        assertFalse(StringUtil.containsSubstringIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
+        assertTrue(StringUtil.containsSubstringIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger
+        assertFalse(StringUtil.containsSubstringIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger
 
         // Matches word or partial in the sentence, different upper/lower case letters
         assertTrue(StringUtil.containsSubstringIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)

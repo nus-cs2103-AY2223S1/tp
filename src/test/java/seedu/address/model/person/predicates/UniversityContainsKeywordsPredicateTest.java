@@ -1,14 +1,15 @@
 package seedu.address.model.person.predicates;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 public class UniversityContainsKeywordsPredicateTest {
 
@@ -72,7 +73,7 @@ public class UniversityContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withUniversity("National University of Tango Sierra").build()));
 
         // Keywords are substrings
-        predicate = new UniversityContainsKeywordsPredicate(Arrays.asList("Nat","Uni"));
+        predicate = new UniversityContainsKeywordsPredicate(Arrays.asList("Nat", "Uni"));
         assertFalse(predicate.test(new PersonBuilder().withUniversity("National University of Tango Sierra").build()));
 
         // Keywords match name, phone, email and address, but does not match University

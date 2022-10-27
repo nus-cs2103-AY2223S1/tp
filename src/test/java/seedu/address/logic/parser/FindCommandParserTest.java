@@ -43,7 +43,7 @@ public class FindCommandParserTest {
         ListOfContainsKeywordsPredicates predicateList = ListOfContainsKeywordsPredicates
                 .newListOfContainsKeywordsPredicates();
         AddressContainsKeywordsPredicate addressPredicate = new AddressContainsKeywordsPredicate(
-                Arrays.asList("Main","Street"));
+                Arrays.asList("Main", "Street"));
         CapContainsKeywordsPredicate capPredicate = new CapContainsKeywordsPredicate(Arrays.asList("3.5"));
         EmailContainsKeywordsPredicate emailPredicate = new EmailContainsKeywordsPredicate(Arrays.asList("gmail"));
         GenderContainsKeywordsPredicate genderPredicate = new GenderContainsKeywordsPredicate(Arrays.asList("Female"));
@@ -83,46 +83,46 @@ public class FindCommandParserTest {
 
         predicateList.addPredicate(jobIdPredicate);
         expectedFindCommand = new FindCommand(predicateList);
-        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 " +
-                "ji/JID1234", expectedFindCommand);
+        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
+                + "ji/JID1234", expectedFindCommand);
 
         predicateList.addPredicate(jobTitlePredicate);
         expectedFindCommand = new FindCommand(predicateList);
-        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 " +
-                "ji/JID1234 jt/Software Engineer", expectedFindCommand);
+        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
+                + "ji/JID1234 jt/Software Engineer", expectedFindCommand);
 
         predicateList.addPredicate(majorPredicate);
         expectedFindCommand = new FindCommand(predicateList);
-        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 " +
-                "ji/JID1234 jt/Software Engineer m/Computer Science", expectedFindCommand);
+        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
+                + "ji/JID1234 jt/Software Engineer m/Computer Science", expectedFindCommand);
 
         predicateList.addPredicate(namePredicate);
         expectedFindCommand = new FindCommand(predicateList);
-        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 " +
-                "ji/JID1234 jt/Software Engineer m/Computer Science n/Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
+                + "ji/JID1234 jt/Software Engineer m/Computer Science n/Alice Bob", expectedFindCommand);
 
         predicateList.addPredicate(phonePredicate);
         expectedFindCommand = new FindCommand(predicateList);
-        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 " +
-                "ji/JID1234 jt/Software Engineer m/Computer Science n/Alice Bob p/12345", expectedFindCommand);
+        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
+                + "ji/JID1234 jt/Software Engineer m/Computer Science n/Alice Bob p/12345", expectedFindCommand);
 
         predicateList.addPredicate(tagPredicate);
         expectedFindCommand = new FindCommand(predicateList);
-        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 " +
-                "ji/JID1234 jt/Software Engineer m/Computer Science n/Alice Bob p/12345 " +
-                "t/offered KIV", expectedFindCommand);
+        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
+                + "ji/JID1234 jt/Software Engineer m/Computer Science n/Alice Bob p/12345 "
+                + "t/offered KIV", expectedFindCommand);
 
         predicateList.addPredicate(universityPredicate);
         expectedFindCommand = new FindCommand(predicateList);
-        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 " +
-                "ji/JID1234 jt/Software Engineer m/Computer Science n/Alice Bob p/12345 " +
-                "t/offered KIV u/University", expectedFindCommand);
+        assertParseSuccess(parser, "a/Main Street c/3.5 e/gmail g/Female gd/05-2024 "
+                + "ji/JID1234 jt/Software Engineer m/Computer Science n/Alice Bob p/12345 "
+                + "t/offered KIV u/University", expectedFindCommand);
 
 
         // multiple whitespaces between keywords and fields
-        assertParseSuccess(parser, "a/Main \n Street c/3.5 e/gmail \n \t g/Female gd/05-2024 " +
-                "ji/JID1234 jt/Software  \t Engineer m/Computer \t Science \n  n/Alice Bob p/12345 " +
-                "t/offered \t KIV  \n \t u/University", expectedFindCommand);
+        assertParseSuccess(parser, "a/Main \n Street c/3.5 e/gmail \n \t g/Female gd/05-2024 "
+                + "ji/JID1234 jt/Software  \t Engineer m/Computer \t Science \n  n/Alice Bob p/12345 "
+                + "t/offered \t KIV  \n \t u/University", expectedFindCommand);
     }
 
 }

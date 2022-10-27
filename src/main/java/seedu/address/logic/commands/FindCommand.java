@@ -5,8 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CAP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.function.Predicate;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.predicates.ListOfContainsKeywordsPredicates;
