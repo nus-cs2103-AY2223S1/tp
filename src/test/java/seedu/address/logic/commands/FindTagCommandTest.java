@@ -100,7 +100,7 @@ public class FindTagCommandTest {
         assertAll(() -> new AddNoteCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NOTES_TITLE + noteTitle + " "
                         + CliSyntax.PREFIX_NOTES_CONTENT + noteContent + " "
-                        + CliSyntax.PREFIX_NOTES_TAG + tagName)
+                        + CliSyntax.PREFIX_TAG + tagName)
                 .execute(model));
 
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
@@ -136,13 +136,13 @@ public class FindTagCommandTest {
         assertAll(() -> new AddNoteCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NOTES_TITLE + noteTitleA + " "
                         + CliSyntax.PREFIX_NOTES_CONTENT + noteContentA + " "
-                        + CliSyntax.PREFIX_NOTES_TAG + tagNameA)
+                        + CliSyntax.PREFIX_TAG + tagNameA)
                 .execute(model));
 
         assertAll(() -> new AddNoteCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NOTES_TITLE + noteTitleB + " "
                         + CliSyntax.PREFIX_NOTES_CONTENT + noteContentB + " "
-                        + CliSyntax.PREFIX_NOTES_TAG + tagNameB)
+                        + CliSyntax.PREFIX_TAG + tagNameB)
                 .execute(model));
 
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
