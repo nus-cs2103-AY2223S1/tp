@@ -211,6 +211,7 @@ public class ModelManager implements Model {
     @Override
     public void addBill(Bill bill) {
         addressBook.addBill(bill);
+        updateFilteredBillList(PREDICATE_SHOW_ALL_BILLS);
     }
 
     /**
