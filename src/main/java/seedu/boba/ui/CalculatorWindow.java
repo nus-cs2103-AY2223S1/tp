@@ -1,5 +1,7 @@
 package seedu.boba.ui;
 
+import static seedu.boba.commons.util.AppUtil.getImage;
+
 import java.math.BigDecimal;
 import java.util.logging.Logger;
 
@@ -17,6 +19,7 @@ public class CalculatorWindow extends UiPart<Stage> {
 
     private static final String FXML = "CalculatorWindow.fxml";
     private static final Logger logger = LogsCenter.getLogger(CalculatorWindow.class);
+    private static final String ICON_APPLICATION = "/images/calculator.png";
     private BigDecimal left;
     private String selectedOperator;
     private boolean numberInputting;
@@ -34,6 +37,9 @@ public class CalculatorWindow extends UiPart<Stage> {
         this.left = BigDecimal.ZERO;
         this.selectedOperator = "";
         this.numberInputting = false;
+
+        //Set the application icon.
+        root.getIcons().add(getImage(ICON_APPLICATION));
     }
 
     /**
