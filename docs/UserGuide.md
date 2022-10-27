@@ -102,14 +102,14 @@ Example:
 Splits a debt among several people in PayMeLah such that each person owes the same amount (rounded up to the closest cent).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can split a debt among as many people as you want. You can even include yourself with index '0'
+You can split a debt among as many people as you want. You can even include yourself with index '0'. But you cannot split a debt between just yourself.
 </div>
 
-Format: `splitdebt <person index...> d/<description> m/<money>`
+Format: `splitdebt <person index>… d/<description> m/<money> [date/<date>] [time/<time>]`
 
 Examples:
-* `splitdebt 1 2 d/Pizza m/33.99`
-* `splitdebt 0 2 5 d/KFC Fish m/13`
+* `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`
+* `splitdebt 0 2 5 d/KFC Fish m/13+ date/2022-10-12`
 
 ### Clearing debts: `cleardebts`
 

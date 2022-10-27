@@ -26,7 +26,7 @@ public class AddDebtCommand extends Command {
     public static final String COMMAND_WORD = "adddebt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a debt to a person. "
-            + "Parameters: <person index>... (must be a positive integer)\n"
+            + "Parameters: <person index>… (must be a positive integer)\n"
             + PREFIX_DESCRIPTION + "<description> "
             + PREFIX_MONEY + "<money> "
             + "[" + PREFIX_DATE + "<date>] "
