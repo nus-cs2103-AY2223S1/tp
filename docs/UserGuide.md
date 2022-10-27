@@ -35,7 +35,7 @@ title: User Guide
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `cinterns.jar` from [here](https://github.com/AY2223S1-CS2103-F14-3/tp/releases).
+2. Download the latest `CinternS.jar` from [here](https://github.com/AY2223S1-CS2103-F14-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your **CinternS** app.
 

@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'v1.3(trial).jar'
+    archiveFileName = 'CinternS.jar'
 }
 
 defaultTasks 'clean', 'test'
