@@ -562,9 +562,24 @@ Before:
 After:
 <img src="images/setunpaidcommandafter.png" width="800px" height ="500px">
 
-## 1.8 Remark
+## 1.8 Remark `remark`
 
-## 1.9 Undoing `undo`
+Remarks a patient with a remark.
+
+Format: `remark <index> r/<remark>`
+
+* The index refers to the index number shown in the displayed patient list.
+* The index must be a positive integer 1, 2, 3, …​
+* The remark can be any characters except the empty string, and it will be trimmed.
+* If the remark is empty, the remark of the patient will be removed.
+* If the index is invalid, an error message will be shown.
+* If the remark is invalid, an error message will be shown.
+
+Examples:
+* `remark 1 r/Has fever` remarks the first patient in the patient list with the remark `Has fever`.
+<img src="images/remarkpatient.png" width="800px" height ="500px">
+
+## 1.9 Undo `undo`
 
 Reverses the most recent command.
 
@@ -580,7 +595,7 @@ Examples:
 
 <img src="images/undo1.png" width="800px" height ="400px">
 
-## 1.10 Redoing `redo`
+## 1.10 Redo `redo`
 
 Reverses the most recent undo command.
 
