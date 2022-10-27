@@ -12,8 +12,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_TA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Student;
 
 /**
@@ -66,6 +72,28 @@ public class AddStuCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        }
+
+        if (toAdd.getStudentModuleInfo().size() > 0 || toAdd.isTeachingAssistant()) {
+            List<Module> moduleList = model.getFilteredModuleList();
+            List<ModuleCode> studentModules = new ArrayList<>();
+            studentModules.addAll(toAdd.getStudentModuleInfo());
+            studentModules.addAll(toAdd.getTeachingAssistantInfo());
+            ModuleCode lastViewedCode = null;
+            for (ModuleCode moduleCode : studentModules) {
+                boolean isValid = false;
+                for (Module module : moduleList) {
+                    if (module.getCode().equals(moduleCode)) {
+                        isValid = true;
+                    } else {
+                        lastViewedCode = moduleCode;
+                    }
+                }
+                if (!isValid) {
+                    throw new CommandException(Messages.MESSAGE_MODULE_DOES_NOT_EXIST
+                            + " Module not found: " + lastViewedCode);
+                }
+            }
         }
 
         model.addPerson(toAdd);

@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.ProfNus;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Student;
 
 /**
@@ -44,7 +45,7 @@ public class TypicalStudents {
             .withId("A0123456W")
             .withTelegramHandle("@good_user")
             .withStudentInfo("CS1101S")
-            .withTeachingInfo("CS1101S").build();
+            .withTeachingInfo("CS2030S").build();
     public static final Student CARL = new StudentBuilder(new PersonBuilder().withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build())
@@ -113,6 +114,12 @@ public class TypicalStudents {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
+    public static final Module CS2030S = new ModuleBuilder().withName("Programming Methodology 2")
+            .withModuleCode("CS2030S").withModuleDescription("Good Mod").build();
+
+    public static final Module CS1101S = new ModuleBuilder().withName("Programming Methodology 1")
+            .withModuleCode("CS1101S").withModuleDescription("Decent Mod").build();
+
     private TypicalStudents() {} // prevents instantiation
 
     /**
@@ -126,10 +133,17 @@ public class TypicalStudents {
                 ab.addTutor(student);
             }
         }
+        for (Module module : getTypicalModules()) {
+            ab.addModule(module);
+        }
         return ab;
     }
 
     public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Module> getTypicalModules() {
+        return new ArrayList<>(Arrays.asList(CS1101S, CS2030S));
     }
 }

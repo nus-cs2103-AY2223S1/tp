@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +25,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -98,6 +100,29 @@ public class EditStuCommand extends Command {
 
         if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        }
+
+        //checks if module exists
+        if (editedStudent.getStudentModuleInfo().size() > 0 || editedStudent.isTeachingAssistant()) {
+            List<Module> moduleList = model.getFilteredModuleList();
+            List<ModuleCode> studentModules = new ArrayList<>();
+            studentModules.addAll(editedStudent.getStudentModuleInfo());
+            studentModules.addAll(editedStudent.getTeachingAssistantInfo());
+            ModuleCode lastViewedCode = null;
+            for (ModuleCode moduleCode : studentModules) {
+                boolean isValid = false;
+                for (Module module : moduleList) {
+                    if (module.getCode().equals(moduleCode)) {
+                        isValid = true;
+                    } else {
+                        lastViewedCode = moduleCode;
+                    }
+                }
+                if (!isValid) {
+                    throw new CommandException(Messages.MESSAGE_MODULE_DOES_NOT_EXIST
+                            + " Module not found: " + lastViewedCode);
+                }
+            }
         }
 
         model.setPerson(studentToEdit, editedStudent);
