@@ -2,6 +2,7 @@ package seedu.travelr.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_COMPLETION;
 
 import java.nio.file.Path;
 import java.util.Comparator;
@@ -231,6 +232,7 @@ public class ModelManager implements Model {
         updateFilteredEventList(getBucketPredicate());
         updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
         resetSelectedTrip();
+        sortTripsByComparator(COMPARE_BY_COMPLETION);
     }
 
 

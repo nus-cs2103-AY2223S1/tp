@@ -2,7 +2,6 @@ package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.core.Messages.MESSAGE_RESET_VIEW;
-import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_COMPLETION;
 
 import java.util.List;
 
@@ -57,7 +56,6 @@ public class UnmarkDoneTripCommand extends Command {
 
         tripToUnmark.markNotDone();
         model.resetView();
-        model.sortTripsByComparator(COMPARE_BY_COMPLETION);
         return new CommandResult(String.format(MESSAGE_SUCCESS + "\n" + MESSAGE_RESET_VIEW, tripToUnmark.getTitle()));
     }
 
