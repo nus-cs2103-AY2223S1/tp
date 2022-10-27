@@ -1,23 +1,28 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.persons;
 
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.PureCommandInterface;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all persons in address book whose name contains any of the
+ * argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends PureCommand {
+public class FindCommand extends PersonCommand implements PureCommandInterface {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String SUBCOMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = getFullCommand(SUBCOMMAND_WORD)
+            + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + getFullCommand(SUBCOMMAND_WORD) + " alice bob charlie";
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -37,6 +42,11 @@ public class FindCommand extends PureCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                        && predicate.equals(((FindCommand) other).predicate)); // state check
+    }
+
+    @Override
+    public void setInput(Object additionalData) throws CommandException {
+        return;
     }
 }

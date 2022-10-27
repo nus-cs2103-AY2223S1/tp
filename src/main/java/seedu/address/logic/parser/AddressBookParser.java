@@ -6,14 +6,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddFieldCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemoveFieldCommand;
@@ -21,6 +16,7 @@ import seedu.address.logic.commands.RenameCommand;
 import seedu.address.logic.commands.logicalcommand.CheckTaskCompleteCommand;
 import seedu.address.logic.commands.logicalcommand.ContainsAttributeCommand;
 import seedu.address.logic.commands.logicalcommand.IfCommand;
+import seedu.address.logic.commands.persons.PersonCommand;
 import seedu.address.logic.commands.tasks.MarkTaskCommand;
 import seedu.address.logic.commands.tasks.TaskCommand;
 import seedu.address.logic.commands.tasks.UnmarkTaskCommand;
@@ -31,6 +27,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.logiccommands.CheckTaskCompleteCommandParser;
 import seedu.address.logic.parser.logiccommands.ContainsAttributeCommandParser;
 import seedu.address.logic.parser.logiccommands.IfCommandParser;
+import seedu.address.logic.parser.persons.PersonCommandParser;
 import seedu.address.logic.parser.tasks.MarkTaskCommandParser;
 import seedu.address.logic.parser.tasks.TaskCommandParser;
 import seedu.address.logic.parser.tasks.UnmarkTaskCommandParser;
@@ -62,20 +59,8 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
-
-            case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().parse(arguments);
-
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
-
             case ClearCommand.COMMAND_WORD:
                 return new ClearCommand();
-
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
 
             case ListCommand.COMMAND_WORD:
                 return new ListCommand();
@@ -85,9 +70,6 @@ public class AddressBookParser {
 
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();
-
-            case AddFieldCommand.COMMAND_WORD:
-                return new AddFieldCommandParser().parse(arguments);
 
             case RemoveFieldCommand.COMMAND_WORD:
                 return new RemoveFieldCommandParser().parse(arguments);
@@ -121,6 +103,9 @@ public class AddressBookParser {
 
             case RenameCommand.COMMAND_WORD:
                 return new RenameCommandParser().parse(arguments);
+
+            case PersonCommand.COMMAND_WORD:
+                return new PersonCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -15,7 +15,8 @@ import seedu.address.model.group.Group;
 public class AddTeamCommand extends TeamCommand implements PureCommandInterface {
     public static final String SUBCOMMAND_WORD = "new";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUBCOMMAND_WORD + ": Add a new group in the current "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUBCOMMAND_WORD
+            + ": Add a new group in the current "
             + "group scope if the group name does not currently exist.\n"
             + "The group name should only begin with a letter and"
             + "be alphanumeric and have hyphens and/or underscores only\n"
@@ -47,6 +48,6 @@ public class AddTeamCommand extends TeamCommand implements PureCommandInterface 
     @Override
     public void setInput(Object additionalData) throws CommandException {
         // this method does not take in an input
-        return;        
+        return;
     }
 }

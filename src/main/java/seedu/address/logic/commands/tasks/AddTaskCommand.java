@@ -18,9 +18,9 @@ import seedu.address.model.task.Task;
 public class AddTaskCommand extends TaskCommand implements PureCommandInterface {
     public static final String SUBCOMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE =
-            TaskCommand.getFullCommand(SUBCOMMAND_WORD) + ": Adds a task to the address book current team. "
-                    + "Parameters: " + PREFIX_TITLE + "NAME " + PREFIX_DESCRIPTION + "Description";
+    public static final String MESSAGE_USAGE = TaskCommand.getFullCommand(SUBCOMMAND_WORD)
+            + ": Adds a task to the address book current team. "
+            + "Parameters: " + PREFIX_TITLE + "NAME " + PREFIX_DESCRIPTION + "Description";
 
     public static final String MESSAGE_SUCCESS = "New task have been added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists!";
@@ -55,7 +55,7 @@ public class AddTaskCommand extends TaskCommand implements PureCommandInterface 
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddTaskCommand // instanceof handles nulls
-                && toAdd.equals(((AddTaskCommand) other).toAdd));
+                        && toAdd.equals(((AddTaskCommand) other).toAdd));
     }
 
     @Override
