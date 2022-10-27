@@ -43,6 +43,10 @@ public class StudentClass {
         personsInClass.add(student);
     }
 
+    public boolean isSameClass(String studentClass) {
+        return studentClass.equals(value);
+    }
+
     @Override
     public int hashCode() {
         return value.hashCode();

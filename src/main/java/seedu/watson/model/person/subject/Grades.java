@@ -120,7 +120,7 @@ public class Grades {
     @Override
     public String toString() {
         currentPercentageObtained = getCurrentPercentageObtained(assessmentMarks);
-        return String.format("Grades: %.1f", currentPercentageObtained);
+        return String.format("Grade = %.1f", currentPercentageObtained);
     }
 
 }

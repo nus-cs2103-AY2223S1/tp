@@ -190,7 +190,7 @@ The edit command consists of these following classes:
 
 - `EditCommand` which extends `Command`
 - `EditCommandParser` which extends `Parser<EditCommand>`
-  
+
 As with all other commands, the edit command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object.
 It allows the editing of a person's name, phone, email, address, class, remarks and tags.
 

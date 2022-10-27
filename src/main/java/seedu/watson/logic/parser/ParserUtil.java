@@ -12,6 +12,7 @@ import seedu.watson.logic.parser.exceptions.ParseException;
 import seedu.watson.model.person.Address;
 import seedu.watson.model.person.Attendance;
 import seedu.watson.model.person.Email;
+import seedu.watson.model.person.IndexNumber;
 import seedu.watson.model.person.Name;
 import seedu.watson.model.person.Phone;
 import seedu.watson.model.person.Remark;
@@ -54,6 +55,23 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String indexNumber} into a {@code IndexNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param indexNumber indexNumber to be parsed.
+     * @return An IndexNumber object created using indexNumber.
+     * @throws ParseException if the given {@code indexNumber} is invalid.
+     */
+    public static IndexNumber parseIndexNumber(String indexNumber) throws ParseException {
+        requireNonNull(indexNumber);
+        String trimmedIndexNumber = indexNumber.trim();
+        if (!IndexNumber.isValidIndexNumber(trimmedIndexNumber)) {
+            throw new ParseException(IndexNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new IndexNumber(trimmedIndexNumber);
     }
 
     /**

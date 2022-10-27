@@ -11,18 +11,11 @@ import seedu.watson.logic.commands.FindCommand;
 import seedu.watson.logic.commands.FindNameCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
 import seedu.watson.model.person.FindCommandPredicate;
-import seedu.watson.model.person.Name;
-import seedu.watson.model.person.StudentClass;
-import seedu.watson.model.person.subject.Subject;
 
 /**
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindNameCommand> {
-
-    private static final Name DEFAULT_NAME = new Name("AMY");
-    private static final StudentClass DEFAULT_CLASS = new StudentClass("1A");
-    private static final Subject DEFAULT_SUBJECT = new Subject("MATH");
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand

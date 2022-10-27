@@ -17,6 +17,7 @@ import seedu.watson.logic.commands.FindNameCommand;
 import seedu.watson.logic.commands.GradeCommand;
 import seedu.watson.logic.commands.HelpCommand;
 import seedu.watson.logic.commands.ListCommand;
+import seedu.watson.logic.commands.MarkAttendanceCommand;
 import seedu.watson.logic.commands.PredictionCommand;
 import seedu.watson.logic.commands.RemarkCommand;
 import seedu.watson.logic.commands.SortCommand;
@@ -82,13 +83,14 @@ public class DatabaseParser {
         case PredictionCommand.COMMAND_WORD:
             return new PredictionCommandParser().parse(arguments);
 
+        case MarkAttendanceCommand.COMMAND_WORD:
+            return new MarkAttendanceCommandParser().parse(arguments);
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommandParser().parse(arguments);
-
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
