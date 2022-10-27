@@ -3,6 +3,7 @@ package swift.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_TASK;
+import static swift.model.Model.PREDICATE_SHOW_ALL_BRIDGE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +75,10 @@ public class AssignCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_BRIDGE);
         }
         model.addBridge(selectedPerson, selectedTask);
+
+        model.updateFilteredBridgeList(PREDICATE_SHOW_ALL_BRIDGE);
+        model.updateFilteredBridgeList(filteredBridge -> model.getFilteredPersonList().stream()
+                .anyMatch(person -> person.getId().equals(filteredBridge.getPersonId())));
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_SUCCESS, selectedTask, selectedPerson),
                 CommandType.ASSIGN);
