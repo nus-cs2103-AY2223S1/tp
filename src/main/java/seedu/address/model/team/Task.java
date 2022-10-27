@@ -16,7 +16,7 @@ import seedu.address.model.person.UniquePersonList;
 public class Task {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Task names should not be blank and cannot begin with a whitespace";
+            "Task names should not be blank and cannot begin with a whitespace";
 
     /*
      * The first character of the task name must not be a whitespace,
@@ -71,7 +71,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return getCompletionStatus() + name + getAssigneesAsString() + getDeadlineAsString();
+        return getCompletionStatus() + name + " " + getAssigneesAsString() + " " + getDeadlineAsString();
     }
 
     public String getName() {
@@ -80,9 +80,9 @@ public class Task {
 
     public String getAssigneesAsString() {
         if (getAssigneesList().isEmpty()) {
-            return " (Not assigned to any member yet)";
+            return "(Not assigned to any member yet)";
         } else {
-            StringBuilder assigneeNames = new StringBuilder(" (Assigned to: ");
+            StringBuilder assigneeNames = new StringBuilder("(Assigned to: ");
             assigneeNames.append(getAssigneesList().get(0).getName());
             for (int i = 1; i < getAssigneesList().size(); i++) {
                 assigneeNames.append(", ").append(getAssigneesList().get(i).getName());
@@ -100,7 +100,7 @@ public class Task {
         if (deadline == null) {
             return "";
         } else {
-            return String.format(" (By %s)", deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            return String.format("(By %s)", deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
         }
     }
 
@@ -121,8 +121,8 @@ public class Task {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Task // instanceof handles nulls
-            && name.equals(((Task) other).name))
+                || (other instanceof Task // instanceof handles nulls
+                && name.equals(((Task) other).name))
                 && assignees.equals(((Task) other).assignees)
                 && this.getDeadlineAsString().equals(((Task) other).getDeadlineAsString()); // state check
     }
@@ -138,6 +138,7 @@ public class Task {
 
     /**
      * Checks if task has already been assigned to the specified assignee.
+     *
      * @param assignee The specified assignee.
      * @return true if the task has been assigned to the assignee before, false otherwise.
      */

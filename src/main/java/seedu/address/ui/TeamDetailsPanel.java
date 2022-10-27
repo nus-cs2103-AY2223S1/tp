@@ -25,16 +25,16 @@ public class TeamDetailsPanel extends UiPart<Region> {
     /**
      * Creates a {@code TeamDetailsPanel} with the given {@code ObjectProperty}.
      */
-    public TeamDetailsPanel(Logic logic, ObjectProperty<Team> currentTeam) {
+    public TeamDetailsPanel(Logic logic, ObjectProperty<Team> currentTeam, ResultDisplay resultDisplay) {
         super(FXML);
         teamProperty = currentTeam;
         this.logic = logic;
-        TeamDetailsCard newCard = new TeamDetailsCard(logic, currentTeam.getValue());
+        TeamDetailsCard newCard = new TeamDetailsCard(logic, currentTeam.getValue(), resultDisplay);
         teamDetailsView.getChildren().add(newCard.getRoot());
         teamProperty.addListener(new ChangeListener<Team>() {
             @Override
             public void changed(ObservableValue<? extends Team> observable, Team oldValue, Team newValue) {
-                TeamDetailsCard newCard = new TeamDetailsCard(logic, newValue);
+                TeamDetailsCard newCard = new TeamDetailsCard(logic, newValue, resultDisplay);
                 teamDetailsView.getChildren().set(0, newCard.getRoot());
             }
         });

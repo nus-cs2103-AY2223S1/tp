@@ -14,6 +14,9 @@ import picocli.CommandLine;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.model.team.Link;
+import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
 
 /**
@@ -66,8 +69,11 @@ public class EditTeamCommand extends Command {
 
         String updatedName = editTeamDescriptor.getName().orElse(teamToEdit.getTeamName());
         String updatedDescription = editTeamDescriptor.getDescription().orElse(teamToEdit.getDescription());
+        List<Person> members = teamToEdit.getTeamMembers();
+        List<Task> tasks = teamToEdit.getTaskList();
+        List<Link> links = teamToEdit.getLinkList();
 
-        return new Team(updatedName, updatedDescription);
+        return new Team(updatedName, updatedDescription, members, tasks, links);
     }
 
     @Override
