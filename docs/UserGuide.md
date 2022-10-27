@@ -33,7 +33,7 @@ TutHub is a desktop app for NUS professors who wish to choose their next batch o
 
    * **`view`**`3` : Displays full details of the 3rd tutor shown in the current list.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior` : Adds a tutor named `John Doe` to Tuthub.
+   * **`add`**`n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior` : Adds a tutor named `John Doe` to Tuthub.
 
    * **`find`**`n/alex` : Finds all tutors with names containing alex.
 
@@ -133,8 +133,8 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0`
-* `add n/Betsy Crowe t/senior ta e/betsycrowe@example.com m/CS1101S y/3 p/1234567 s/A0123456X tn/2 r/4.5`
+* `add n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0`
+* `add n/Betsy Crowe t/senior ta e/1234567 m/CS1101S y/3 p/1234567 s/A0123456X tn/2 r/4.5`
 
 ### Listing all tutors : `list`
 
@@ -155,7 +155,10 @@ Format: `view INDEX`
 Examples:
 * `view 2` displays the full details of the 2nd person in Tuthub.
 
-:bulb: **Tip:** You may also click on a tutor list card to execute a 'view' command instead
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may also click on a tutor list card to execute a 'view' command instead
+</div>
+
 
 ### Commenting on a tutor : `comment`
 
@@ -185,7 +188,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTI
 * You can remove all the tutor’s tags by typing t/ without specifying any tags after it.
 
 Examples:
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st tutor to be 91234567 and johndoe@example.com respectively.
+* `edit 1 p/91234567 e/7654321` Edits the phone number and email address of the 1st tutor to be 91234567 and johndoe@example.com respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd tutor to be Betsy Crower and clears all existing tags.
 * `edit 3 m/CS2100 y/3 s/A0654729L` Edits the module code, year, and student id of the 3rd tutor to be CS2100, 3, and A0654729L respectively.
 * `edit 3 tn/2 r/4.58` Edits the number of teaching nominations and rating of the 3rd tutor to be 2 and 4.58 respectively.
@@ -206,7 +209,7 @@ Examples:
 * `find n/John` returns all tutors with names that contains `John`.
 * `find n/alex david` returns all tutors with names that contain `Alex` or `David`.
 * `find p/98765432 99999999` returns the tutors with phone number `98765432` or `99999999`.
-* `find e/alice@example.com ben@example.com` returns the tutors with email `alice@example.com` or `ben@example.com`.
+* `find e/e1234567 e7654321` returns the tutors with email `e1234567@u.nus.edu` or `e7654321@u.nus.edu`.
 * `find m/cs2100 cs2105` returns the tutors teaching module `cs2100` or `cs2105`.
 * `find y/4` returns all tutors who are in year `4` of their studies.
 * `find s/A0123456X A0123456Y` returns the tutors with student id `A0123456X1 or `A0123456y`.
@@ -292,7 +295,7 @@ Format: `exit`
 | **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                                                                                                       | `comment 1 c/Tasks not Finished`                                                                           |
 | **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​`                                                                                      | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                          |
 | **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                                                                                                               | `find n/Alex`                                                                                              |
-| **Mail**                   | `mail INDEX or "all"`                                                                                                                                                                                           | `mail 3`                                                                                                   |
+| **Mail** Tutor(s)          | `mail INDEX or "all"`                                                                                                                                                                                           | `mail 3`                                                                                                   |
 | **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                                                                                                             | `sort a r/`                                                                                                |
 | **Delete** a Tutor         | `delete INDEX`                                                                                                                                                                                                  | `delete 3`                                                                                                 |
 | **Clear** Tutor List       | `clear`                                                                                                                                                                                                         |                                                                                                            |

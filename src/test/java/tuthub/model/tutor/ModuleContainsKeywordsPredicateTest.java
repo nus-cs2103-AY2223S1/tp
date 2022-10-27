@@ -71,6 +71,6 @@ public class ModuleContainsKeywordsPredicateTest {
         // Keywords match phone and email, but does not match module
         predicate = new ModuleContainsKeywordsPredicate(Arrays.asList("99999999", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new TutorBuilder().withName("Alice").withPhone("99999999")
-                .withEmail("alice@email.com").withModule("cs2105").build()));
+                .withEmail("e1234567").withModule("cs2105").build()));
     }
 }

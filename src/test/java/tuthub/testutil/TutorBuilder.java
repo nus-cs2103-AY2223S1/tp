@@ -24,7 +24,7 @@ public class TutorBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_EMAIL = "E1234567";
     public static final Set<Module> DEFAULT_MODULE = SampleDataUtil.getModuleSet("cs2103");
     public static final String DEFAULT_YEAR = "3";
     public static final String DEFAULT_STUDENTID = "A1234567X";

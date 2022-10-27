@@ -24,7 +24,7 @@ import tuthub.model.tutor.Year;
 public class JsonAdaptedTutorTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_EMAIL = "a1234567";
     private static final String INVALID_MODULE = "CS100";
     private static final String INVALID_YEAR = "0";
     private static final String INVALID_STUDENTID = "C1234567L";
