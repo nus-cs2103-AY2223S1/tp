@@ -12,5 +12,5 @@ public class CsvConfig {
     public static final String CSV_LINE_BREAK = "\n";
     public static final String CSV_SEPARATOR = ", ";
     public static final String CSV_NAME_COLUMN_HEADER = "Name";
-    public static final String CSV_EMPTY_GRADE = "-";
+    public static final String CSV_EMPTY_GRADE = "";
 }

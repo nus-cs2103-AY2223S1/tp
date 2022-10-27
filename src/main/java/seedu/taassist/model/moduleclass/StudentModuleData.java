@@ -18,7 +18,6 @@ import seedu.taassist.model.uniquelist.UniqueList;
  */
 public class StudentModuleData implements Identity<StudentModuleData> {
 
-    private static final double DUMMY_GRADE = 0.0;
     private final ModuleClass moduleClass;
     private final UniqueList<SessionData> sessionDataList = new UniqueList<>();
 
