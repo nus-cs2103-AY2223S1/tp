@@ -1,17 +1,21 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: NotionUS
 ---
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-F12-3/tp/branch/master/graph/badge.svg?token=UKXALDSSYD)](https://codecov.io/gh/AY2223S1-CS2103T-F12-3/tp)
 
+**CAP 5, Not Capsize.**
+
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**NotionUS is a desktop application for managing your assignments and tasks.** 
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface). This application is aimed towards tech-savvy university students who need to track their tasks and type fast.
+
+* If you are interested in using NotionUS, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing NotionUS, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
