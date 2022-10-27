@@ -33,10 +33,19 @@ public class TaskListCard extends UiPart<Region> {
      */
     public TaskListCard(Task task, int displayedIndex) {
         super(FXML);
-        cardPane.setSpacing(1);
-        cardPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
-                + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
-                + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+        this.cardPane.setSpacing(1);
+
+        if (task.getDateTime().isPastDate()) {
+            this.cardPane.setStyle("-fx-background-color: #ffe6a1;"
+                    + "-fx-padding: 1;" + "-fx-border-style: dashed inside;"
+                    + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
+                    + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+        } else {
+            this.cardPane.setStyle("-fx-background-color: #c5e2fc;"
+                    + "-fx-padding: 1;" + "-fx-border-style: dashed inside;"
+                    + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
+                    + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+        }
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskname.setText(task.getTaskDescription());
