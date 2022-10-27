@@ -73,7 +73,7 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                        && targetUid.equals(((DeleteCommand) other).targetUid)); // state check
+                && targetUid.equals(((DeleteCommand) other).targetUid)); // state check
     }
 
     private Boolean deleteRespectiveHomeVisit(Model model, Person person, List<Person> personList)
@@ -83,7 +83,7 @@ public class DeleteCommand extends Command {
         if (dateSlotList.size() == 0) {
             return hasDeleted;
         } else {
-            for (DateSlot dateSlot:dateSlotList) {
+            for (DateSlot dateSlot : dateSlotList) {
                 if (dateSlot.getHasAssigned()) {
                     removeHomeVisit(model, dateSlot, personList);
                     hasDeleted = true;
@@ -100,7 +100,7 @@ public class DeleteCommand extends Command {
         if (homeVisitList.size() == 0) {
             return hasUnmarked;
         } else {
-            for (HomeVisit homevisit:homeVisitList) {
+            for (HomeVisit homevisit : homeVisitList) {
                 Long patientUidNo = homevisit.getHomeVisitPatientUidNo();
                 DateSlot dateSlot = homevisit.getDateSlot();
                 unmarkDateSlot(model, dateSlot, patientUidNo, personList);
@@ -164,7 +164,7 @@ public class DeleteCommand extends Command {
 
 
     private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
-                          List<Date> fullyScheduledDateList) throws CommandException {
+                           List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
         editPersonDescriptor.setHomeVisits(homeVisitList);

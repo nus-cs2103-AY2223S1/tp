@@ -38,7 +38,7 @@ public class AppParametersTest {
     }
 
     private static class ParametersStub extends Application.Parameters {
-        private Map<String, String> namedParameters = new HashMap<>();
+        private final Map<String, String> namedParameters = new HashMap<>();
 
         @Override
         public List<String> getRaw() {

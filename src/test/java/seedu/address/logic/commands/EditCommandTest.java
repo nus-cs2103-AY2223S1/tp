@@ -42,8 +42,8 @@ import seedu.address.testutil.PersonBuilder;
  * EditCommand.
  */
 public class EditCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final Uid outOfBoundsUid = new Uid(99998L);
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -131,7 +131,7 @@ public class EditCommandTest {
         //Case 2 (non-null dateSlotIndex and not empty and null dateSlot)
         editedPerson = personToBeEdited.withDatesSlots(OTHER_DATE_SLOT_FIVE).build();
         descriptor = new EditPersonDescriptorBuilder().withDateSlotIndexes(OTHER_DATE_SLOT_INDEX,
-                        OTHER_DATE_SLOT_INDEX_THREE).build();
+                OTHER_DATE_SLOT_INDEX_THREE).build();
         editCommand = new EditCommand(firstPerson.getUid(), descriptor);
 
         expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,

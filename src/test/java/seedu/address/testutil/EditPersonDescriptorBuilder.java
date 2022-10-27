@@ -26,7 +26,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private final EditPersonDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
         descriptor = new EditPersonDescriptor();
@@ -130,7 +130,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withDateSlotIndexes(String... dateSlotIndexes) {
         List<Integer> dateSlotIndexesNoList = Stream.of(dateSlotIndexes).map(Integer::new).collect(Collectors.toList());
         List<Index> dateSlotIndexesList = new ArrayList<>();
-        for (Integer integer: dateSlotIndexesNoList) {
+        for (Integer integer : dateSlotIndexesNoList) {
             dateSlotIndexesList.add(Index.fromOneBased(integer));
         }
         descriptor.setDateSlotIndexes(dateSlotIndexesList);

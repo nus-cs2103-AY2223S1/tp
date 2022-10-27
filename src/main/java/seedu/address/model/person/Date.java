@@ -45,15 +45,15 @@ public class Date {
         this.dateInString = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
-    public String getString() {
-        return this.dateInString;
-    }
-
     /**
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public String getString() {
+        return this.dateInString;
     }
 
     @Override

@@ -24,11 +24,7 @@ class JsonAdaptedDateSlot {
     public JsonAdaptedDateSlot(String dateSlot) {
         this.dateSlot = dateSlot;
         String[] s = dateSlot.split(":");
-        if (s[0].equals(DateSlot.SUCCESS_ASSIGNED_CHECK)) {
-            this.isAssigned = true;
-        } else {
-            this.isAssigned = false;
-        }
+        this.isAssigned = s[0].equals(DateSlot.SUCCESS_ASSIGNED_CHECK);
         if (s[1].equals(DateSlot.SUCCESS_VISIT_CHECK)) {
             this.isVisited = true;
             this.isSuccessVisit = true;

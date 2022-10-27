@@ -105,7 +105,7 @@ public class AddressBookParserTest {
     public void parseCommand_unrecognisedInput_throwsParseException() {
         ModelManager modelManager = new ModelManager();
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand("", modelManager));
+                -> parser.parseCommand("", modelManager));
     }
 
     @Test

@@ -22,6 +22,7 @@ public class ListCommandParser implements Parser {
 
     /**
      * Parses user input for the list command.
+     *
      * @param args user input, for filtering the list of displayed users
      * @return Filtered list, or list of all users if no filters were specified.
      */
@@ -47,7 +48,7 @@ public class ListCommandParser implements Parser {
                         category.add(Optional.empty());
                     }
                 }, () -> category.add(Optional.empty()));
-        assert(category.size() == 1);
+        assert (category.size() == 1);
 
         List<Optional<Gender>> gender = new ArrayList<>();
         argMultimap.getValue(PREFIX_GENDER).ifPresentOrElse(
@@ -58,7 +59,7 @@ public class ListCommandParser implements Parser {
                         gender.add(Optional.empty());
                     }
                 }, () -> gender.add(Optional.empty()));
-        assert(gender.size() == 1);
+        assert (gender.size() == 1);
 
         return new ListCommand(address, category.get(0), gender.get(0), tag);
     }

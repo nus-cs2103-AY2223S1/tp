@@ -45,7 +45,7 @@ public class Category {
      *
      * @param test The String to be tested
      * @return THe nurse or patient symbol if it is a misspelling and the original
-     *         text otherwise
+     * text otherwise
      */
     public static String formatMisspelling(String test) {
         if (COMMON_NURSE_MISSPELLINGS.contains(test.trim().toLowerCase())) {
@@ -68,8 +68,8 @@ public class Category {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.model.category.Category // instanceof handles nulls
-                        && categoryName.equals(((seedu.address.model.category.Category) other).categoryName)); // state
-                                                                                                               // check
+                && categoryName.equals(((seedu.address.model.category.Category) other).categoryName)); // state
+        // check
     }
 
     @Override
@@ -90,7 +90,7 @@ public class Category {
     public boolean equalsIgnoreCase(Object other) {
         return other == this
                 || (other instanceof Category)
-                        && categoryName.equalsIgnoreCase(((Category) other).categoryName);
+                && categoryName.equalsIgnoreCase(((Category) other).categoryName);
     }
 
     public boolean isNurse() {

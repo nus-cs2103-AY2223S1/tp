@@ -83,7 +83,7 @@ public class EditCommandParserTest {
     private static final String OTHER_TAG_DESC_TWO = " " + PREFIX_TAG + OTHER_TAG_TWO;
 
 
-    private EditCommandParser parser = new EditCommandParser();
+    private final EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -242,7 +242,7 @@ public class EditCommandParserTest {
                 + TAG_DESC_HUSBAND + OTHER_TAG_DESC + OTHER_TAG_DESC_TWO;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND,
-                        VALID_TAG_HUSBAND, OTHER_TAG, OTHER_TAG_TWO).build();
+                VALID_TAG_HUSBAND, OTHER_TAG, OTHER_TAG_TWO).build();
         EditCommand expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -308,7 +308,7 @@ public class EditCommandParserTest {
         // non-empty dateTimeIndexes only
         userInput = UID_DESC_AMY + OTHER_DATES_AND_SLOTS_INDEX_DESC + OTHER_DATES_AND_SLOTS_INDEX_DESC_TWO;
         descriptor = new EditPersonDescriptorBuilder().withDateSlotIndexes(OTHER_DATES_AND_SLOTS_INDEX,
-                        OTHER_DATES_AND_SLOTS_INDEX_TWO).build();
+                OTHER_DATES_AND_SLOTS_INDEX_TWO).build();
         expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

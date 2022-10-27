@@ -27,8 +27,8 @@ import seedu.address.model.person.Uid;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final Uid outOfBoundsUid = new Uid(99998L);
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validUidUnfilteredList_success() {
@@ -39,7 +39,7 @@ public class DeleteCommandTest {
         String expectedMessage = "";
         if (personToDelete instanceof Patient) {
             expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                    PersonType.PATIENT.toString(),
+                    PersonType.PATIENT,
                     personToDelete) + " ";
         } else {
             expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "person", personToDelete)
@@ -69,7 +69,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = "";
         if (personToDelete instanceof Patient) {
-            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, PersonType.PATIENT.toString(),
+            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, PersonType.PATIENT,
                     personToDelete) + " ";
         } else {
             expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "person", personToDelete)

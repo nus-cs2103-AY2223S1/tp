@@ -15,6 +15,15 @@ import seedu.address.model.person.Uid;
 public class DeleteCommandParser implements Parser<DeleteCommand> {
 
     /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values
+     * in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.
      *
@@ -31,14 +40,5 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         Uid uid = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).get());
 
         return new DeleteCommand(uid);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values
-     * in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

@@ -180,8 +180,8 @@ public class AssignCommand extends Command {
     }
 
     private void createHomeVisit(DateSlot date, Person patient, List<HomeVisit> homeVisitList,
-                                List<Date> updatedFullyScheduledDateList) {
-        HomeVisit homeVisit = new HomeVisit(date, ((Patient) patient).getUid().getUid());
+                                 List<Date> updatedFullyScheduledDateList) {
+        HomeVisit homeVisit = new HomeVisit(date, patient.getUid().getUid());
         homeVisitList.add(homeVisit);
         LocalDate localdate = date.getDate();
         int frequencyCount = 0;
@@ -210,7 +210,7 @@ public class AssignCommand extends Command {
     }
 
     private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
-                          List<Date> fullyScheduledDateList) throws CommandException {
+                           List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
         editPersonDescriptor.setHomeVisits(homeVisitList);

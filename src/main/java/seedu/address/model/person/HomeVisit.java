@@ -45,6 +45,13 @@ public class HomeVisit {
         this.homeVisitPatientUidNo = Long.parseLong(s[1]);
     }
 
+    /**
+     * Returns true if a given string is a valid home visit.
+     */
+    public static boolean isValidHomeVisit(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
     public String getString() {
         return this.homeVisitDateSlot.getDateSlotInString() + ":" + this.homeVisitPatientUidNo;
     }
@@ -52,13 +59,6 @@ public class HomeVisit {
     @Override
     public String toString() {
         return homeVisitDateSlot.getDateSlotFormatted() + " : [UID] " + this.homeVisitPatientUidNo;
-    }
-
-    /**
-     * Returns true if a given string is a valid home visit.
-     */
-    public static boolean isValidHomeVisit(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     public DateSlot getDateSlot() {

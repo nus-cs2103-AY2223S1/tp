@@ -10,6 +10,7 @@ public class HomeVisitComparator implements Comparator<HomeVisit> {
 
     /**
      * Compare the home visit time.
+     *
      * @param homeVisit1 the first object to be compared.
      * @param homeVisit2 the second object to be compared.
      */

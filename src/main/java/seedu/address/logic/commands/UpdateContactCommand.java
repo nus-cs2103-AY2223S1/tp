@@ -50,6 +50,7 @@ public class UpdateContactCommand extends Command {
 
     /**
      * Create a new UpdateContactCommand.
+     *
      * @param i patient uid
      * @param n contact name
      * @param p contact phone number

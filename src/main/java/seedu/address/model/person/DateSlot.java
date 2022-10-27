@@ -78,11 +78,6 @@ public class DateSlot {
         checkDateTime();
     }
 
-    public String getString() {
-        return getAssignCheck() + ":" + getVisitCheck() + ":"
-                + this.dateSlotInString + ":" + nurseUidNo;
-    }
-
     private static LocalDateTime parseDateSlot(String dateSlot) {
         String[] s = dateSlot.split(",");
         String date = s[0];
@@ -101,6 +96,18 @@ public class DateSlot {
 
         String dateTime = date + time;
         return LocalDateTime.parse(dateTime);
+    }
+
+    /**
+     * Returns true if a given string is a valid date and slot.
+     */
+    public static boolean isValidDateSlot(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    public String getString() {
+        return getAssignCheck() + ":" + getVisitCheck() + ":"
+                + this.dateSlotInString + ":" + nurseUidNo;
     }
 
     /**
@@ -143,13 +150,6 @@ public class DateSlot {
      */
     public void markSuccess() {
         this.isSuccessVisit = true;
-    }
-
-    /**
-     * Returns true if a given string is a valid date and slot.
-     */
-    public static boolean isValidDateSlot(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     private String getAssignCheck() {
@@ -195,9 +195,11 @@ public class DateSlot {
     public Boolean getIsSuccessVisit() {
         return this.isSuccessVisit;
     }
+
     public Long getNurseUidNo() {
         return this.nurseUidNo;
     }
+
     public LocalDateTime getDateTime() {
         return this.dateSlotTime;
     }

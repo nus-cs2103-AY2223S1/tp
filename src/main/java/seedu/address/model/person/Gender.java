@@ -15,16 +15,14 @@ public class Gender {
     public static final String MESSAGE_CONSTRAINTS = "Gender can only be F or M, F for female, M for male";
     public static final String FEMALE_SYMBOL = "F";
     public static final String MALE_SYMBOL = "M";
-    private static final ArrayList<String> COMMON_FEMALE_MISSPELLINGS = new ArrayList<>(
-            List.of("female", "females", "f"));
-    private static final ArrayList<String> COMMON_MALE_MISSPELLINGS = new ArrayList<>(
-            List.of("male", "males", "m"));
-
     /**
      * The gender can only be F or M.
      */
     public static final String VALIDATION_REGEX = "[" + FEMALE_SYMBOL + "|" + MALE_SYMBOL + "]";
-
+    private static final ArrayList<String> COMMON_FEMALE_MISSPELLINGS = new ArrayList<>(
+            List.of("female", "females", "f"));
+    private static final ArrayList<String> COMMON_MALE_MISSPELLINGS = new ArrayList<>(
+            List.of("male", "males", "m"));
     public final String gender;
 
     /**
@@ -44,7 +42,7 @@ public class Gender {
      *
      * @param test The String to be tested
      * @return The female or male symbol if it is a misspelling and the original
-     *         text otherwise
+     * text otherwise
      */
     public static String formatMisspelling(String test) {
         if (COMMON_FEMALE_MISSPELLINGS.contains(test.trim().toLowerCase())) {
@@ -72,7 +70,7 @@ public class Gender {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Gender // instanceof handles nulls
-                        && gender.equals(((Gender) other).gender)); // state check
+                && gender.equals(((Gender) other).gender)); // state check
     }
 
     @Override
@@ -89,6 +87,6 @@ public class Gender {
     public boolean equalsIgnoreCase(Object other) {
         return other == this
                 || (other instanceof Gender)
-                        && gender.equalsIgnoreCase(((Gender) other).gender);
+                && gender.equalsIgnoreCase(((Gender) other).gender);
     }
 }

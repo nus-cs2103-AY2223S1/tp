@@ -10,6 +10,7 @@ public class ReverseIndexComparator implements Comparator<Index> {
 
     /**
      * Compare the index number.
+     *
      * @param index1 the first index to be compared.
      * @param index2 the second index to be compared.
      */

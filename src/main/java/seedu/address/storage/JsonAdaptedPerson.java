@@ -52,22 +52,23 @@ class JsonAdaptedPerson {
     private final String pName;
     private final String pPhone;
     private final String pEmail;
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("uid") Long uid, @JsonProperty("name") String name,
-            @JsonProperty("category") String category,
-            @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("dateSlots") List<JsonAdaptedDateSlot> dateSlot,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("homeVisits") List<JsonAdaptedHomeVisit> homeVisit,
-            @JsonProperty("unavailableDates") List<JsonAdaptedDate> unavailableDateList,
-            @JsonProperty("fullyAssignedDates") List<JsonAdaptedDate> fullyAssignedDateList,
-            @JsonProperty("phys name") String pName,
-            @JsonProperty("phys phone") String pPhone,
-            @JsonProperty("phys email") String pEmail) {
+                             @JsonProperty("category") String category,
+                             @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("dateSlots") List<JsonAdaptedDateSlot> dateSlot,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("homeVisits") List<JsonAdaptedHomeVisit> homeVisit,
+                             @JsonProperty("unavailableDates") List<JsonAdaptedDate> unavailableDateList,
+                             @JsonProperty("fullyAssignedDates") List<JsonAdaptedDate> fullyAssignedDateList,
+                             @JsonProperty("phys name") String pName,
+                             @JsonProperty("phys phone") String pPhone,
+                             @JsonProperty("phys email") String pEmail) {
 
         this.uid = uid;
         this.name = name;

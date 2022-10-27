@@ -105,7 +105,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param targetUid Uid of the person in the filtered person list to edit
+     * @param targetUid            Uid of the person in the filtered person list to edit
      * @param editPersonDescriptor Details to edit the person with
      */
     public EditCommand(Uid targetUid, EditPersonDescriptor editPersonDescriptor) {
@@ -189,8 +189,8 @@ public class EditCommand extends Command {
                     toBeUpdateDateSlot, toBeUpdateDateSlotIndexes, model, personList);
 
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                        updatedAddress, updatedTags, updatedDateSlot,
-                        updatedPhysician, updatedNextOfKin);
+                    updatedAddress, updatedTags, updatedDateSlot,
+                    updatedPhysician, updatedNextOfKin);
 
         } else if (updatedCategory.isPatient()) {
             Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
@@ -234,9 +234,9 @@ public class EditCommand extends Command {
     }
 
     private List<DateSlot> createEditedDateSlotList(List<DateSlot> originalDateSlot,
-                                                           Optional<List<DateSlot>> toBeUpdateDateSlots,
-                                                           Optional<List<Index>> toBeUpdateDateSlotsIndexes,
-                                                           Model model, List<Person> personList)
+                                                    Optional<List<DateSlot>> toBeUpdateDateSlots,
+                                                    Optional<List<Index>> toBeUpdateDateSlotsIndexes,
+                                                    Model model, List<Person> personList)
             throws CommandException {
         List<DateSlot> updatedDateSlot = new ArrayList<>();
 
@@ -271,14 +271,14 @@ public class EditCommand extends Command {
             updatedDateSlot = new ArrayList<>();
             deleteRespectiveHomeVisit(originalDateSlot, model, personList);
 
-        // Deletes the dateTime at specific index in the existing list
+            // Deletes the dateTime at specific index in the existing list
         } else if ((isDateSlotNull || isDateSlotEmpty) && !isDateSlotIndexesEmpty) {
 
             updatedDateSlot = new ArrayList<>(originalDateSlot);
 
             ReverseIndexComparator comp = new ReverseIndexComparator();
             toBeUpdateDateSlotIndexes.sort(comp);
-            for (Index index: toBeUpdateDateSlotIndexes) {
+            for (Index index : toBeUpdateDateSlotIndexes) {
                 DateSlot dateSlotToBeDeleted = updatedDateSlot.get(index.getZeroBased());
                 if (dateSlotToBeDeleted.getHasAssigned()) {
                     removeHomeVisit(model, dateSlotToBeDeleted, personList);
@@ -286,13 +286,13 @@ public class EditCommand extends Command {
                 updatedDateSlot.remove(index.getZeroBased());
             }
 
-        // Remain as original dateTime list, no changes made
+            // Remain as original dateTime list, no changes made
         } else if (isDateSlotNull && isDateSlotIndexesNull) {
 
             updatedDateSlot = new ArrayList<>(originalDateSlot);
 
 
-        // Add the given dateTime to the existing list
+            // Add the given dateTime to the existing list
         } else if (!isDateSlotEmpty && (isDateSlotIndexesNull || isDateSlotIndexesEmpty)) {
 
             updatedDateSlot = new ArrayList<>(originalDateSlot);
@@ -300,9 +300,9 @@ public class EditCommand extends Command {
                 updatedDateSlot.add(dateTime);
             }
 
-        // Change the dateTime at the specific index in the existing list to the given dateTime
-        // If index given more than date time given  -> throws exception
-        // If date time given more than index given -> the extra date time will be added to the existing list
+            // Change the dateTime at the specific index in the existing list to the given dateTime
+            // If index given more than date time given  -> throws exception
+            // If date time given more than index given -> the extra date time will be added to the existing list
         } else if (!isDateSlotEmpty && !isDateSlotIndexesEmpty) {
 
             updatedDateSlot = new ArrayList<>(originalDateSlot);
@@ -332,8 +332,8 @@ public class EditCommand extends Command {
     }
 
     private List<Date> createEditedUnavailableDateList(List<Date> originalDate,
-                                                           Optional<List<Date>> toBeUpdateDates,
-                                                           Optional<List<Index>> toBeUpdateDateIndexes,
+                                                       Optional<List<Date>> toBeUpdateDates,
+                                                       Optional<List<Index>> toBeUpdateDateIndexes,
                                                        Model model, List<Person> personList, Person nurse)
             throws CommandException {
         List<Date> updatedDate = new ArrayList<>();
@@ -374,7 +374,7 @@ public class EditCommand extends Command {
 
             ReverseIndexComparator comp = new ReverseIndexComparator();
             toBeUpdateDateIndex.sort(comp);
-            for (Index index: toBeUpdateDateIndex) {
+            for (Index index : toBeUpdateDateIndex) {
                 updatedDate.remove(index.getZeroBased());
             }
 
@@ -428,7 +428,7 @@ public class EditCommand extends Command {
         if (dateSlotList.size() == 0) {
             return hasDeleted;
         } else {
-            for (DateSlot dateSlot:dateSlotList) {
+            for (DateSlot dateSlot : dateSlotList) {
                 if (dateSlot.getHasAssigned()) {
                     removeHomeVisit(model, dateSlot, personList);
                     hasDeleted = true;
@@ -444,7 +444,7 @@ public class EditCommand extends Command {
         if (homeVisitList.size() == 0) {
             return false;
         } else {
-            for (HomeVisit homevisit:homeVisitList) {
+            for (HomeVisit homevisit : homeVisitList) {
                 Long patientUidNo = homevisit.getHomeVisitPatientUidNo();
                 DateSlot dateSlot = homevisit.getDateSlot();
                 unmarkDateSlot(model, dateSlot, patientUidNo, personList);
@@ -454,7 +454,7 @@ public class EditCommand extends Command {
     }
 
     private void removeAndUnmarkRepectiveHomeVisitAndDateSlot(Model model, Person nurse,
-                                                                Date unavailableDate, List<Person> personList)
+                                                              Date unavailableDate, List<Person> personList)
             throws CommandException {
 
         List<HomeVisit> homeVisitList = ((Nurse) nurse).getHomeVisits();
@@ -463,20 +463,18 @@ public class EditCommand extends Command {
         List<Date> fullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
         List<Date> updatedFullyScheduledList = new ArrayList<>();
         updatedFullyScheduledList.addAll(fullyScheduledList);
-        for (HomeVisit homeVisit: homeVisitList) {
+        for (HomeVisit homeVisit : homeVisitList) {
             if (homeVisit.getDateSlot().getDate().equals(unavailableDate.getDate())) {
                 Long patientUid = homeVisit.getHomeVisitPatientUidNo();
                 unmarkDateSlot(model, homeVisit.getDateSlot(), patientUid, personList);
                 HomeVisit homeVisitToBeDeleted = updatedHomeVisitList.stream().filter(
-                        h -> h.getDateSlot().getDateTime().equals(homeVisit.getDateSlot().getDateTime()))
+                                h -> h.getDateSlot().getDateTime().equals(homeVisit.getDateSlot().getDateTime()))
                         .findFirst().get();
                 updatedHomeVisitList.remove(homeVisitToBeDeleted);
             }
         }
 
-        if (fullyScheduledList.contains(unavailableDate)) {
-            fullyScheduledList.remove(unavailableDate);
-        }
+        fullyScheduledList.remove(unavailableDate);
 
         editNurseForUnavailableDate(updatedHomeVisitList, updatedFullyScheduledList);
     }
@@ -536,7 +534,7 @@ public class EditCommand extends Command {
 
 
     private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
-                          List<Date> fullyScheduledDateList) throws CommandException {
+                           List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor1 = new EditCommand.EditPersonDescriptor();
         editPersonDescriptor1.setHomeVisits(homeVisitList);
@@ -629,19 +627,12 @@ public class EditCommand extends Command {
                     tags, datesSlots, dateSlotIndexes, unavailableDates, dateIndexes);
         }
 
-        public void setCategory(Category category) {
-            this.category = category;
-        }
-
         public Optional<Category> getCategory() {
             return Optional.ofNullable(category);
         }
 
-        /**
-         * @param uid the id to set
-         */
-        public void setUid(Uid uid) {
-            this.uid = uid;
+        public void setCategory(Category category) {
+            this.category = category;
         }
 
         /**
@@ -651,52 +642,51 @@ public class EditCommand extends Command {
             return Optional.ofNullable(uid);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        /**
+         * @param uid the id to set
+         */
+        public void setUid(Uid uid) {
+            this.uid = uid;
         }
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setGender(Gender gender) {
-            this.gender = gender;
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setGender(Gender gender) {
+            this.gender = gender;
         }
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setPhone(Phone phone) {
+            this.phone = phone;
         }
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setEmail(Email email) {
+            this.email = email;
         }
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setAddress(Address address) {
+            this.address = address;
         }
 
         /**
@@ -710,10 +700,11 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code datesSlots} to this object's {@code datesSlots}.
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
          */
-        public void setDatesSlots(List<DateSlot> datesSlots) {
-            this.datesSlots = (datesSlots != null) ? new ArrayList<DateSlot>(datesSlots) : null;
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -725,10 +716,10 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code dateSlotIndexes} to this object's {@code dateSlotIndexes}.
+         * Sets {@code datesSlots} to this object's {@code datesSlots}.
          */
-        public void setDateSlotIndexes(List<Index> dateSlotIndexes) {
-            this.dateSlotIndexes = (dateSlotIndexes != null) ? new ArrayList<Index>(dateSlotIndexes) : null;
+        public void setDatesSlots(List<DateSlot> datesSlots) {
+            this.datesSlots = (datesSlots != null) ? new ArrayList<DateSlot>(datesSlots) : null;
         }
 
         /**
@@ -739,12 +730,11 @@ public class EditCommand extends Command {
             return (dateSlotIndexes != null) ? Optional.of(new ArrayList<Index>(dateSlotIndexes)) : Optional.empty();
         }
 
-
         /**
-         * Sets {@code homeVisits} to this object's {@code homeVisits}.
+         * Sets {@code dateSlotIndexes} to this object's {@code dateSlotIndexes}.
          */
-        public void setHomeVisits(List<HomeVisit> homeVisits) {
-            this.homeVisits = (homeVisits != null) ? new ArrayList<HomeVisit>(homeVisits) : null;
+        public void setDateSlotIndexes(List<Index> dateSlotIndexes) {
+            this.dateSlotIndexes = (dateSlotIndexes != null) ? new ArrayList<Index>(dateSlotIndexes) : null;
         }
 
         /**
@@ -756,10 +746,10 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code unavailableDate} to this object's {@code unavailableDates}.
+         * Sets {@code homeVisits} to this object's {@code homeVisits}.
          */
-        public void setUnavailableDates(List<Date> unavailableDates) {
-            this.unavailableDates = (unavailableDates != null) ? new ArrayList<Date>(unavailableDates) : null;
+        public void setHomeVisits(List<HomeVisit> homeVisits) {
+            this.homeVisits = (homeVisits != null) ? new ArrayList<HomeVisit>(homeVisits) : null;
         }
 
         /**
@@ -771,10 +761,10 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code dateIndexes} to this object's {@code dateIndexes}.
+         * Sets {@code unavailableDate} to this object's {@code unavailableDates}.
          */
-        public void setDateIndexes(List<Index> dateIndexes) {
-            this.dateIndexes = (dateIndexes != null) ? new ArrayList<Index>(dateIndexes) : null;
+        public void setUnavailableDates(List<Date> unavailableDates) {
+            this.unavailableDates = (unavailableDates != null) ? new ArrayList<Date>(unavailableDates) : null;
         }
 
         /**
@@ -786,10 +776,10 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code fullyScheduledDates} to this object's {@code fullScheduledDates}.
+         * Sets {@code dateIndexes} to this object's {@code dateIndexes}.
          */
-        public void setFullyScheduledDates(List<Date> fullyScheduledDates) {
-            this.fullyScheduledDates = (fullyScheduledDates != null) ? new ArrayList<Date>(fullyScheduledDates) : null;
+        public void setDateIndexes(List<Index> dateIndexes) {
+            this.dateIndexes = (dateIndexes != null) ? new ArrayList<Index>(dateIndexes) : null;
         }
 
         /**
@@ -802,7 +792,24 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code fullyScheduledDates} to this object's {@code fullScheduledDates}.
+         */
+        public void setFullyScheduledDates(List<Date> fullyScheduledDates) {
+            this.fullyScheduledDates = (fullyScheduledDates != null) ? new ArrayList<Date>(fullyScheduledDates) : null;
+        }
+
+        /**
+         * Returns the attending physician
+         *
+         * @return {@code Optional#empty()} if {@code physician} is null.
+         */
+        public Optional<Optional<Physician>> getPhysician() {
+            return (physician != null) ? Optional.of(physician) : Optional.empty();
+        }
+
+        /**
          * Sets {@code p} to this object's {@code physician}.
+         *
          * @return
          */
         public EditPersonDescriptor setPhysician(Optional<Physician> p) {
@@ -811,28 +818,22 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns the attending physician
-         * @return {@code Optional#empty()} if {@code physician} is null.
+         * Returns the next of kin
+         *
+         * @return {@code Optioanl.empty()} if {@code nextOfKin} is null.
          */
-        public Optional<Optional<Physician>> getPhysician() {
-            return (physician != null) ? Optional.of(physician) : Optional.empty();
+        public Optional<Optional<NextOfKin>> getNextOfKin() {
+            return (nextOfKin != null) ? Optional.of(nextOfKin) : Optional.empty();
         }
 
         /**
          * Sets {@code n} to this object's {@code nextOfKin}
+         *
          * @return
          */
         public EditPersonDescriptor setNextOfKin(Optional<NextOfKin> n) {
             nextOfKin = n;
             return this;
-        }
-
-        /**
-         * Returns the next of kin
-         * @return {@code Optioanl.empty()} if {@code nextOfKin} is null.
-         */
-        public Optional<Optional<NextOfKin>> getNextOfKin() {
-            return (nextOfKin != null) ? Optional.of(nextOfKin) : Optional.empty();
         }
 
         @Override

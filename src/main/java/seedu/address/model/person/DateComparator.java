@@ -9,6 +9,7 @@ import java.util.Comparator;
 public class DateComparator implements Comparator<Date> {
     /**
      * Compare the date.
+     *
      * @param date1 the first object to be compared.
      * @param date2 the second object to be compared.
      */
