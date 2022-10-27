@@ -5,6 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_ASSIGNEES_DESCRIPTION;
@@ -32,7 +35,7 @@ import seedu.address.model.team.Task;
 /**
  * Edits the details of an existing task in TruthTable.
  */
-@CommandLine.Command(name = "task")
+@CommandLine.Command(name = "task", mixinStandardHelpOptions = true)
 public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "edit task";
 
@@ -60,6 +63,13 @@ public class EditTaskCommand extends Command {
 
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
     private Arguments arguments;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
 
     /**
      * Creates an EditTaskCommand to edit a {@code Task}.
@@ -94,6 +104,9 @@ public class EditTaskCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         if (arguments.assignees.length != 1 || !Arrays.asList(arguments.assignees).contains("")) {
             editTaskDescriptor.setAssignees(Arrays.asList(arguments.assignees));
