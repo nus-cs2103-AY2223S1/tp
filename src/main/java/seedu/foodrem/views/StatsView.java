@@ -1,12 +1,9 @@
 package seedu.foodrem.views;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -15,7 +12,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import seedu.foodrem.model.item.Item;
-import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.viewmodels.Stats;
 
 /**
@@ -47,29 +43,19 @@ public class StatsView {
 
         // Section for amount wasted due to expired food
         final Label amountWasted = new Label("Total cost due to food wastage: " + stats.getAmountWasted());
+        amountWasted.setWrapText(true);
         final HBox row2 = new HBox(amountWasted);
         new Separator();
 
         // Section for top 3 most expensive items
         final Label expensiveItems =
                 new Label("Your most expensive items are: \n" + buildTopThreeMostExpensiveItemsListFrom(stats));
+        expensiveItems.setWrapText(true);
         final HBox row3 = new HBox(expensiveItems);
         new Separator();
 
-        // Section for top 3 most commonly used tags
-        final List<Node> commonTagsList = new ArrayList<>();
-        commonTagsList.add(new Label("Your most commonly used tags are: \n"));
-        stats.getCommonTags().stream().sorted(Comparator.comparing(Tag::getName))
-                .forEach(tag -> commonTagsList.add(buildTagNodeFrom(tag.getName())));
-        if (commonTagsList.size() == 1) {
-            commonTagsList.add(new Label("-"));
-        }
-        final HBox row4 = new HBox(commonTagsList.toArray(Node[]::new));
-        row4.setAlignment(Pos.CENTER_LEFT);
-        row4.setSpacing(SPACING_UNIT);
-
         // Combine everything
-        final VBox itemView = new VBox(row1, row2, row3, row4);
+        final VBox itemView = new VBox(row1, row2, row3);
         itemView.setSpacing(SPACING_UNIT);
         return itemView;
     }
