@@ -20,7 +20,8 @@
     %}
     <div class="admonition admonition-type-{{ tag }}">
       <p class="admonition-title">{{ tag | upcase }}</p>
-      {{ contents.first | markdownify }}
+      {% capture text %}{% include capturehtml.liquid text=contents.first %}{% endcapture %}
+      {{ text | markdownify }}
     </div>
     {%- for tail in contents offset:1 -%}
       {{ tail }}</code></pre>
