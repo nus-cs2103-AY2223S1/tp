@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <HBox id="cardPane" fx:id="cardPane" prefWidth="150.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane prefHeight="70.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -32,7 +34,7 @@
                         <Insets bottom="5.0" right="10.0" />
                     </padding>
                 </Label>
-            <FlowPane fx:id="tags" alignment="TOP_RIGHT" columnHalignment="RIGHT" prefWidth="116.0" />
+            <FlowPane fx:id="tags" alignment="TOP_RIGHT" columnHalignment="RIGHT" HBox.hgrow="ALWAYS" />
             </HBox>
             <HBox prefWidth="130.0">
             <children>
@@ -44,15 +46,26 @@
                      <Insets />
                   </opaqueInsets>
                   <padding>
-                     <Insets left="23.0" />
+                     <Insets left="25.0" />
                   </padding>
+                   <graphic>
+                       <ImageView fitHeight="9.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                               <Image url="@/images/phone_icon.png" />
+                           </image>
+                       </ImageView>
+                   </graphic>
                </Label>
                <Label style="-fx-background-color: transparent;">
-                  <graphic>
-                     <Circle fill="#e0d1ff" radius="3.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-                  </graphic>
+                   <graphic>
+                       <ImageView fitHeight="9.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                               <Image url="@/images/email_icon.png" />
+                           </image>
+                       </ImageView>
+                   </graphic>
                   <padding>
-                     <Insets left="3.0" right="8.0" />
+                     <Insets left="3.0" right="3.0" />
                   </padding>
                </Label>
                <Label fx:id="email" layoutX="10.0" layoutY="10.0" styleClass="cell_small_label" text="\$email">

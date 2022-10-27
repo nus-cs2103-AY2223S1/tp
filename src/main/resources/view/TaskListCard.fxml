@@ -6,14 +6,12 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <HBox id="cardPane" fx:id="cardPane" minWidth="750.0" prefHeight="95.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <Pane prefHeight="200.0" prefWidth="1.0" />
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -31,7 +29,7 @@
                 </Label>
                 <Label fx:id="taskName" minWidth="600.0" prefHeight="18.0" styleClass="cell_big_label" text="\$first">
                     <padding>
-                        <Insets bottom="5.0" right="10.0" top="5.0" />
+                        <Insets bottom="2.0" right="10.0" top="5.0" />
                     </padding>
                     <font>
                         <Font name="Trebuchet MS Bold" size="14.0" />
@@ -52,6 +50,9 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="18.0" translateX="25.0">
                 <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
             </HBox>
             <HBox prefHeight="18.0">
                 <children>
@@ -61,6 +62,9 @@
                         </padding>
                     </FlowPane>
                 </children>
+            <VBox.margin>
+               <Insets bottom="8.0" />
+            </VBox.margin>
             </HBox>
             <GridPane.margin>
                 <Insets top="5.0" />

@@ -49,7 +49,7 @@
             </HBox>
             <HBox prefWidth="130.0">
                 <children>
-                    <FlowPane fx:id="contacts" prefWidth="200.0" styleClass="">
+                    <FlowPane fx:id="contacts" styleClass="">
                         <HBox.margin>
                             <Insets left="20.0" />
                         </HBox.margin>
