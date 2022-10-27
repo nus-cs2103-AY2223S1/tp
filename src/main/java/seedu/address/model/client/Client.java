@@ -281,9 +281,9 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
             boolean hasSameId = this.getClientId().equals(otherClient.getClientId());
             boolean hasSameName = this.getClientName().equals(otherClient.getClientName());
             boolean hasSameEmail = this.getClientEmail().equals(otherClient.getClientEmail());
-            boolean hasSamePhone = this.getClientMobile().equals(otherClient.getClientMobile());
+            boolean hasSameMobile = this.getClientMobile().equals(otherClient.getClientMobile());
             boolean hasSamePin = this.getPin().equals(otherClient.getPin());
-            return hasSameId && hasSameEmail && hasSamePhone && hasSameName && hasSamePin;
+            return hasSameId && hasSameEmail && hasSameMobile && hasSameName && hasSamePin;
         } else {
             return false;
         }

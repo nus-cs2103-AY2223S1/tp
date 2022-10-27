@@ -16,8 +16,9 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
     private final List<String> titleKeywords;
     private final List<String> statusKeywords;
     private final List<String> urgencyKeywords;
-
     private final List<String> projectNameKeywords;
+    private final List<String> projectIdKeywords;
+    private final List<String> issueIdKeywords;
 
     /**
      * Constructs an IssueContainsKeywordsPredicate object with the user inputs.
@@ -25,13 +26,18 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
      * @param statusKeywords List of Strings representing keywords to search for in status
      * @param urgencyKeywords List of Strings representing keywords to search for in urgency
      * @param projectNameKeywords List of Strings representing keywords to search for in project name
+     * @param projectIdKeywords List of Strings representing keywords to search for in project id
+     * @param issueIdKeywords List of Strings representing keywords to search for in issue id
      */
     public IssueContainsKeywordsPredicate(List<String> titleKeywords, List<String> statusKeywords,
-                                          List<String> urgencyKeywords, List<String> projectNameKeywords) {
+                                          List<String> urgencyKeywords, List<String> projectNameKeywords,
+                                          List<String> projectIdKeywords, List<String> issueIdKeywords) {
         this.titleKeywords = titleKeywords;
         this.statusKeywords = statusKeywords;
         this.urgencyKeywords = urgencyKeywords;
         this.projectNameKeywords = projectNameKeywords;
+        this.projectIdKeywords = projectIdKeywords;
+        this.issueIdKeywords = issueIdKeywords;
     }
 
     /**
@@ -111,6 +117,58 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
     }
 
     /**
+     * Checks if the issue's project's id matches the project id keyword being search for.
+     * @param issue Issue whose project id is being used to search the keyword in
+     * @return true if the project id fulfills the search criteria and false otherwise
+     */
+    public boolean testProjectId(Issue issue) {
+        if (projectIdKeywords.isEmpty()) {
+            return true;
+        } else {
+            return projectIdKeywords.stream().anyMatch(
+                    pr -> testProjectId(pr, issue.getProject().getProjectId().toString()));
+        }
+    }
+
+    /**
+     * Checks if given project id matches with any word in the project id present.
+     * @param projIdPresent String representing project id present
+     * @param projIdGiven String representing project id given (keyword to search for)
+     * @return boolean true if at least one word matches with the keyword and false otherwise
+     */
+    public boolean testProjectId(String projIdPresent, String projIdGiven) {
+        return Arrays.stream(projIdPresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(projIdGiven, words));
+    }
+
+
+    /**
+     * Checks if the issue's id matches the id keyword being search for.
+     * @param issue Issue whose id is being used to search the keyword in
+     * @return true if the id fulfills the search criteria and false otherwise
+     */
+    public boolean testIssueId(Issue issue) {
+        if (issueIdKeywords.isEmpty()) {
+            return true;
+        } else {
+            return issueIdKeywords.stream().anyMatch(
+                    i -> testIssueId(i, issue.getIssueId().toString()));
+        }
+    }
+
+    /**
+     * Checks if given id matches with any word in the id present.
+     * @param idPresent String representing id present
+     * @param idGiven String representing id given (keyword to search for)
+     * @return boolean true if at least one word matches with the keyword and false otherwise
+     */
+    public boolean testIssueId(String idPresent, String idGiven) {
+        return Arrays.stream(idPresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(idGiven, words));
+    }
+
+
+    /**
      * Checks if given project name matches with any word in the project name present.
      * @param projPresent String representing project name present
      * @param projGiven String representing project name given (keyword to search for)
@@ -137,7 +195,8 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
 
     @Override
     public boolean test(Issue issue) {
-        return testTitle(issue) && testUrgency(issue) && testStatus(issue) && testProjectName(issue);
+        return testTitle(issue) && testUrgency(issue) && testStatus(issue)
+                && testProjectName(issue) && testProjectId(issue) && testIssueId(issue);
     }
 
     @Override
@@ -147,7 +206,9 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
                 && titleKeywords.equals(((IssueContainsKeywordsPredicate) other).titleKeywords)
                 && statusKeywords.equals(((IssueContainsKeywordsPredicate) other).statusKeywords) //state checks
                 && urgencyKeywords.equals(((IssueContainsKeywordsPredicate) other).urgencyKeywords)
-                && projectNameKeywords.equals(((IssueContainsKeywordsPredicate) other).projectNameKeywords));
+                && projectNameKeywords.equals(((IssueContainsKeywordsPredicate) other).projectNameKeywords))
+                && projectIdKeywords.equals(((IssueContainsKeywordsPredicate) other).projectIdKeywords)
+                && issueIdKeywords.equals(((IssueContainsKeywordsPredicate) other).issueIdKeywords);
     }
 
 }
