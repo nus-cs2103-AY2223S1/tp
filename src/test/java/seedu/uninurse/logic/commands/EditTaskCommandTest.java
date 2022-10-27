@@ -80,7 +80,6 @@ class EditTaskCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(secondPatient, editedPatient);
-        expectedModel.updateFilteredPersonList(patient -> patient.equals(editedPatient));
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage,

@@ -86,15 +86,14 @@ public class DeleteTagCommandTest {
     @Test
     void execute_validIndicesFilteredList_success() {
         // use third person in TypicalPersons since there is one tag to delete
-        showPersonAtIndex(model, INDEX_THIRD_PERSON);
 
-        Patient patientToDeleteTag = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Patient patientToDeleteTag = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()))
                 .withTags().build();
         Tag deletedTag = patientToDeleteTag.getTags().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
         DeleteTagCommand deleteTagCommand =
-                new DeleteTagCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
+                new DeleteTagCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE);
 
         String expectedMessage = String.format(MESSAGE_DELETE_TAG_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName().toString(), deletedTag);

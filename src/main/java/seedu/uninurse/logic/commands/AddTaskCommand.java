@@ -66,7 +66,6 @@ public class AddTaskCommand extends AddGenericCommand {
         Patient editedPerson = new Patient(personToEdit, updatedTaskList);
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(patient -> patient.equals(editedPerson));
         model.setPatientOfInterest(editedPerson);
 
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, editedPerson.getName().toString(), task),

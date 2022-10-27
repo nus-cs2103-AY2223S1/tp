@@ -83,7 +83,6 @@ public class EditPatientCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Patient personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Patient editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
