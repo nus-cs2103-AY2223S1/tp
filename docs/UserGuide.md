@@ -182,8 +182,8 @@ Format: `assign task TASK_INDEX -n MEMBER_INDEX`
 
 Examples:
 
-- `assign task 1 -n "Alex"` will assign the first task on the task list to a member in the team named Alex.
-- `assign task 2 -n "Bernice"` will assign the second task on the task list to a member in the team named Bernice.
+- `assign task 1 -a 1` will assign the first task on the task list to the first member in the team.
+- `assign task 2 -a 2` will assign the second task on the task list to the second member in the team.
 
 ### Assign task to random team member: `assign random`
 
@@ -205,7 +205,7 @@ Format: `set deadline TASK_INDEX DEADLINE`
 
 Examples:
 
-- `set deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023 11.59pm.
+- `set deadline 1 "2023-12-25 23:59"` will set the deadline for the first task on the task list as 25 December 2023 11.59pm.
 
 ### Delete task from team : `delete task`
 

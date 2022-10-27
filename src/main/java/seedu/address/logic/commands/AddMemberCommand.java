@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_INDEX_DESCRIPTION;
 
 import java.util.List;
 
 import picocli.CommandLine;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -31,8 +33,8 @@ public class AddMemberCommand extends Command {
     public static final String MESSAGE_PERSON_NOT_EXISTS = "The person you are trying to add does not exist";
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
 
-    @CommandLine.Parameters(arity = "1")
-    private int targetPersonIndex;
+    @CommandLine.Parameters(arity = "1", description = FLAG_MEMBER_INDEX_DESCRIPTION)
+    private Index targetPersonIndex;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -52,10 +54,10 @@ public class AddMemberCommand extends Command {
         }
         requireNonNull(model);
         List<Person> memberList = model.getFilteredPersonList();
-        if (targetPersonIndex > memberList.size() || targetPersonIndex <= 0) {
+        if (targetPersonIndex.getOneBased() > memberList.size() || targetPersonIndex.getOneBased() <= 0) {
             throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
         }
-        Person toAdd = memberList.get(targetPersonIndex - 1);
+        Person toAdd = memberList.get(targetPersonIndex.getZeroBased());
         Team team = model.getTeam();
         if (team.hasMember(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
