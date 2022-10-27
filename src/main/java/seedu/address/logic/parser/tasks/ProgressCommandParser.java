@@ -16,8 +16,7 @@ import seedu.address.model.attribute.Progress;
 public class ProgressCommandParser implements Parser<ProgressCommand> {
     /**
      * Method to parse the arguments to set progress for tasks.
-     * @param args
-     * @return
+     *
      * @throws ParseException
      */
     @Override
