@@ -23,7 +23,7 @@ public class ListTagCommand extends ListCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        model.updateFilterStatus(predicate.toString());
+        model.updateFilterStatus(predicate.toString(), true);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
