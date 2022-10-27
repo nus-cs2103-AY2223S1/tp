@@ -29,6 +29,7 @@ ConnectNUS is a **desktop app for managing contacts, optimised for use via a Com
   - [Filtering Planned Modules](#filtering-planned-modules)
   - [Filtering Previous Modules](#filtering-previous-modules)
   - [Next Semester](#next-semester)
+  - [Undo / Redo](#undo-redo)
   - [Exiting the program](#exiting-the-program--exit)
 - [Command Summary](#command-summary)
 
@@ -406,6 +407,12 @@ Shifts the current modules in both the user and all persons in the contact list 
 
 Format: `nextsem`
 
+### Undo / Redo : `Undo` `Redo`
+
+Undo / Redo your latest action.
+
+Format: `undo` `redo`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -584,6 +591,14 @@ Format: `exit`
       </td>
       <td>
         <code>nextsem</code>
+       </td>
+  </tr>
+
+  <tr>
+      <td><strong>Undo / Redo</strong>
+      </td>
+      <td>
+        <code>undo</code> <code>redo</code>
        </td>
   </tr>
 
