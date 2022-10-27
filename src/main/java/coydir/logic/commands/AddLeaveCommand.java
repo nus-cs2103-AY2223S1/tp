@@ -29,8 +29,8 @@ public class AddLeaveCommand extends Command {
             + PREFIX_ENDDATE + "END DATE "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ID + "1 "
-            + PREFIX_STARTDATE + "01-01-22 "
-            + PREFIX_ENDDATE + "06-01-22 ";
+            + PREFIX_STARTDATE + "01-01-2022 "
+            + PREFIX_ENDDATE + "06-01-2022 ";
 
     public static final String MESSAGE_LEAVE_ADDED_SUCCESS = "Leave added successfully for %1$s";
     public static final String MESSAGE_DUPLICATE_LEAVE = "This leave period already exists";

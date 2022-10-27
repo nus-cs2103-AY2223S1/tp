@@ -206,7 +206,7 @@ class JsonAdaptedPerson {
         if (rating == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Rating.class.getSimpleName()));
-        } else if (address.equals("N/A")) {
+        } else if (rating.equals("N/A")) {
             modelRating = new Rating();
         } else if (!Rating.isValidRating(rating)) {
             throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
