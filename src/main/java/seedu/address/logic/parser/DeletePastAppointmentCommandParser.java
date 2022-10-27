@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class DeletePastAppointmentCommandParser implements Parser<DeletePastAppointmentCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeletePastAppointmentCommand
-     * and returns a DeleteCommand object for execution.
+     * and returns a DeletePastAppointmentCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
     public DeletePastAppointmentCommand parse(String args) throws ParseException {
