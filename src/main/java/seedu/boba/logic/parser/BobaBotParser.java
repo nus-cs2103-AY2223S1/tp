@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.boba.logic.commands.AddCommand;
 import seedu.boba.logic.commands.CalculateCommand;
+import seedu.boba.logic.commands.CalculatorGuiCommand;
 import seedu.boba.logic.commands.ClearCommand;
 import seedu.boba.logic.commands.Command;
 import seedu.boba.logic.commands.DecreaseCommand;
@@ -87,6 +88,9 @@ public class BobaBotParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case CalculatorGuiCommand.COMMAND_WORD:
+            return new CalculatorGuiCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -1,6 +1,5 @@
 package seedu.boba.logic;
 
-import java.io.IOException;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
@@ -38,7 +37,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the list of promotion images*/
     ObservableList<Image> getPromotionList();
 
-    void parseAllPromotion(String filePath) throws IOException;
+    void parseAllPromotion(String filePath);
 
     /**
      * Returns the user prefs' address book file path.

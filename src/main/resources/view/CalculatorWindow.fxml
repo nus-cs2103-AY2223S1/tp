@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.Scene?>
+
+<!-- Reused from https://gist.github.com/argius/08834fab73b91de8d79b with modifications -->
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <scene>
+      <Scene>
+         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="249.0" prefWidth="244.0" styleClass="background" stylesheets="@CalculatorWindow.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+               <Button layoutX="71.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="1" />
+               <Button layoutX="106.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="2" />
+               <Button layoutX="140.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="3" />
+               <Button layoutX="71.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="4" />
+               <Button layoutX="106.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="5" />
+               <Button layoutX="140.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="6" />
+               <Button layoutX="71.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="7" />
+               <Button layoutX="106.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="8" />
+               <Button layoutX="140.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="9" />
+               <TextField fx:id="display" alignment="BOTTOM_RIGHT" editable="false" layoutX="31.0" layoutY="14.0" prefHeight="35.0" prefWidth="178.0" styleClass="display" text="0">
+                  <font>
+                     <Font name="Lucida Console" size="20.0" />
+                  </font>
+               </TextField>
+               <Button layoutX="27.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="C" />
+               <Button layoutX="167.0" layoutY="208.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" prefHeight="23.0" prefWidth="47.0" text="=" />
+               <Button layoutX="187.0" layoutY="171.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="＋" />
+               <Button layoutX="71.0" layoutY="208.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="0" />
+               <Button layoutX="187.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="－" />
+               <Button layoutX="188.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" prefHeight="23.0" prefWidth="25.0" styleClass="background" text="×" />
+               <Button layoutX="188.0" layoutY="61.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" styleClass="background" text="÷" />
+               <Button layoutX="25.0" layoutY="61.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="AC" />
+               <Button layoutX="142.0" layoutY="208.0" mnemonicParsing="false" onAction="#handleOnAnyButtonClicked" text="." />
+            </children>
+         </AnchorPane>
+      </Scene>
+   </scene>
+</fx:root>

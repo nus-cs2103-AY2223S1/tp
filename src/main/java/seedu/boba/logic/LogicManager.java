@@ -74,7 +74,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void parseAllPromotion(String filePath) throws IOException {
+    public void parseAllPromotion(String filePath) {
         model.parseAllPromotion(filePath);
     }
 

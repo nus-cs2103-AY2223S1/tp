@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private PromotionListPanel promotionListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CalculatorWindow calculatorWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -71,6 +72,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        calculatorWindow = new CalculatorWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -118,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
         customerListPanel = new CustomerListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
 
-        this.logic.parseAllPromotion("src/main/resources/promotions");
+        this.logic.parseAllPromotion("promotions");
         promotionListPanel = new PromotionListPanel(this.logic.getPromotionList());
         promotionListPanelPlaceholder.getChildren().add(promotionListPanel.getRoot());
 
@@ -156,6 +158,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens
+     */
+    @FXML
+    public void handleCalculator() {
+        if (!calculatorWindow.isShowing()) {
+            calculatorWindow.show();
+        } else {
+            calculatorWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -169,6 +183,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        calculatorWindow.hide();
         primaryStage.hide();
     }
 
@@ -193,6 +208,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowCalculator()) {
+                handleCalculator();
             }
 
             return commandResult;

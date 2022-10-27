@@ -34,6 +34,6 @@ public class UndoCommand extends Command {
             throw new CommandException(e.getMessage());
         }
 
-        return new CommandResult(MESSAGE_UNDO_SUCCESS, false, false, true, false);
+        return new CommandResult(MESSAGE_UNDO_SUCCESS, false, false, true, false, false);
     }
 }
