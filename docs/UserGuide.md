@@ -95,6 +95,7 @@ Shows a list of all food items and their respective calories for the specified d
 
 Format: `list [DATE]`
 
+* Food items will be listed according to meal type, in the order: breakfast, lunch, dinner.
 * Shows the food list for the current day if no `DATE` is supplied.
 * `DATE` must be in the format **yyyy-MM-dd** if supplied.
 
@@ -122,14 +123,17 @@ Sets a target daily calorie intake.
 Format: `target CALORIE`
 
 * `CALORIE` can only take on integer values.
+* The initial target calorie intake is set at 2000 calories.
+* The percentage for the progress bar display will be based on the target calorie intake. 
 
 Example:
 
-* `target 2000` sets a target calorie intake of 2000 calories for the day.
+* `target 2500` sets a target calorie intake of 2500 calories for the day and displays the list of foods for the day.
 
 ### Viewing a summary of the daily calorie intake: `review`
 
-Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the day.
+Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the day. 
+The list of foods for the day will also be displayed.
 
 Format: `review`
 
