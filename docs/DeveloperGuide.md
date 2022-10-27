@@ -194,7 +194,6 @@ Given below is an example usage scenario of the prefix-based mode and how the fi
 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial
 address book state, and the `filteredPersons` will be initialized to show all persons.
-
 Step 2. The user executes `find n/Betsy` command to find the person named `Betsy` in the address book. The `find`
 command calls `FindCommandParser#parse()` which will parse the command.
 
@@ -220,7 +219,7 @@ The following sequence diagram shows how the find operation works:
 
 <img src="images/FindSequenceDiagram.png" width="550" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
