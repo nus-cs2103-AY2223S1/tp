@@ -73,7 +73,7 @@ Pupilist takes your current device time and sees the sessions that are upcoming 
 then shows you the name of the person and the session timing. If you don't have any sessions with anyone, <br>
 it will also tell you that there are no next session timing.
 
-![]
+![next session feature](images/next_session.png)
 
 ### Viewing help : `help`
 
