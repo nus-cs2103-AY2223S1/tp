@@ -10,6 +10,8 @@
       "address": "123, Jurong West Ave 6, #08-111",
       "leave": "14",
       "leaveLeft": "14",
+      "rating": "3",
+      "performanceHistory": [],
       "tagged": ["friends"],
       "leaveTaken": []
     },
@@ -23,6 +25,8 @@
       "address": "4th street",
       "leave": "14",
       "leaveLeft": "14",
+      "rating": "3",
+      "performanceHistory": [],
       "leaveTaken": []
     }
   ]

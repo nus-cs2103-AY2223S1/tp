@@ -2,6 +2,7 @@ package coydir.model.person;
 
 import static coydir.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -33,13 +34,15 @@ public class Person {
     private final Queue<Leave> leaves = new PriorityQueue<>(Leave.COMPARATOR);
     private final int totalNumberOfLeaves;
     private int leavesLeft = 0;
+    private ArrayList<Rating> performanceHistory = new ArrayList<>();
+    private Rating rating;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, EmployeeId employeeId, Phone phone, Email email, Position position,
-            Department department, Address address, Set<Tag> tags, int numberOfLeaves) {
-        requireAllNonNull(name, employeeId, phone, email, position, department, address, numberOfLeaves);
+            Department department, Address address, Set<Tag> tags, int numberOfLeaves, Rating rating) {
+        requireAllNonNull(name, employeeId, phone, email, position, department, address, numberOfLeaves, rating);
         this.name = name;
         this.employeeId = employeeId;
         this.phone = phone;
@@ -50,6 +53,7 @@ public class Person {
         this.tags.addAll(tags);
         this.totalNumberOfLeaves = numberOfLeaves;
         this.leavesLeft = numberOfLeaves;
+        this.rating = rating;
     }
 
     public Name getName() {
@@ -116,6 +120,21 @@ public class Person {
         this.leavesLeft = leavesLeft;
     }
 
+    public void addRating(Rating toAdd) {
+        this.performanceHistory.add(toAdd);
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public Rating getRating() {
+        return this.rating;
+    }
+
+    public ArrayList<Rating> getRatingHistory() {
+        return this.performanceHistory;
+    }
 
     /**
      * Check whether a person is currently on leave
@@ -183,14 +202,16 @@ public class Person {
                 && otherPerson.getTags().equals(getTags())
                 && this.isSameLeaves(otherPerson.getLeaves())
                 && otherPerson.getTotalNumberOfLeaves() == getTotalNumberOfLeaves()
-                && otherPerson.getLeavesLeft() == getLeavesLeft();
+                && otherPerson.getLeavesLeft() == getLeavesLeft()
+                && otherPerson.getRating().equals(getRating())
+                && otherPerson.getRatingHistory().equals(getRatingHistory());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, employeeId, phone, email, position, department, address, tags,
-                leaves, totalNumberOfLeaves, leavesLeft);
+                leaves, totalNumberOfLeaves, leavesLeft, rating);
     }
 
     @Override
@@ -212,7 +233,9 @@ public class Person {
                 .append("; Total Leaves: ")
                 .append(getTotalNumberOfLeaves())
                 .append("; Number of Leaves Left: ")
-                .append(getLeavesLeft());
+                .append(getLeavesLeft())
+                .append("; Performance: ")
+                .append(getRating());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -224,6 +247,12 @@ public class Person {
         if (!leaves.isEmpty()) {
             builder.append("; Leaves: ");
             leaves.forEach(builder::append);
+        }
+
+        ArrayList<Rating> performanceHistory = getRatingHistory();
+        if (!performanceHistory.isEmpty()) {
+            builder.append("; Performance History: ");
+            performanceHistory.forEach(builder::append);
         }
 
         return builder.toString();

@@ -18,6 +18,7 @@ import coydir.logic.commands.ExitCommand;
 import coydir.logic.commands.FindCommand;
 import coydir.logic.commands.HelpCommand;
 import coydir.logic.commands.ListCommand;
+import coydir.logic.commands.RateCommand;
 import coydir.logic.commands.ViewCommand;
 import coydir.logic.parser.exceptions.ParseException;
 
@@ -77,6 +78,9 @@ public class DatabaseParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
+        case RateCommand.COMMAND_WORD:
+            return new RateCommandParser().parse(arguments);
 
         case AddLeaveCommand.COMMAND_WORD:
             return new AddLeaveCommandParser().parse(arguments);

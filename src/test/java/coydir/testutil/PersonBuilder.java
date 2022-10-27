@@ -11,6 +11,7 @@ import coydir.model.person.Name;
 import coydir.model.person.Person;
 import coydir.model.person.Phone;
 import coydir.model.person.Position;
+import coydir.model.person.Rating;
 import coydir.model.tag.Tag;
 import coydir.model.util.SampleDataUtil;
 
@@ -33,6 +34,7 @@ public class PersonBuilder {
     private Position position;
     private Department department;
     private Address address;
+    private Rating rating;
     private Set<Tag> tags;
 
     /**
@@ -46,6 +48,7 @@ public class PersonBuilder {
         position = new Position(DEFAULT_POSITION);
         department = new Department(DEFAULT_DEPARTMENT);
         address = new Address(DEFAULT_ADDRESS);
+        rating = new Rating().getNullRating();
         tags = new HashSet<>();
     }
 
@@ -60,6 +63,7 @@ public class PersonBuilder {
         position = personToCopy.getPosition();
         department = personToCopy.getDepartment();
         address = personToCopy.getAddress();
+        rating = personToCopy.getRating();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -155,8 +159,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Department} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, employeeId, phone, email, position, department, address, tags, 14);
+        return new Person(name, employeeId, phone, email, position, department, address, tags, 14, rating);
     }
 
 }

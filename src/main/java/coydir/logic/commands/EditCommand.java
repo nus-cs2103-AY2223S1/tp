@@ -29,6 +29,7 @@ import coydir.model.person.Name;
 import coydir.model.person.Person;
 import coydir.model.person.Phone;
 import coydir.model.person.Position;
+import coydir.model.person.Rating;
 import coydir.model.tag.Tag;
 
 /**
@@ -110,10 +111,11 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         int updatedLeaves = editPersonDescriptor.getLeaves().orElse(currentLeaves);
         EmployeeId employeeId = personToEdit.getEmployeeId();
+        Rating rating = personToEdit.getRating();
 
         Person p = new Person(
                 updatedName, employeeId, updatedPhone, updatedEmail, updatedPosition,
-                updatedDepartment, updatedAddress, updatedTags, updatedLeaves);
+                updatedDepartment, updatedAddress, updatedTags, updatedLeaves, rating);
         p.setLeavesLeft(updatedLeaves - currentLeaves + currentLeaves);
         return p;
     }

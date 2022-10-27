@@ -46,6 +46,8 @@ public class PersonInfo extends UiPart<Region> {
     @FXML
     private Label leaveLeft;
     @FXML
+    private Label performance;
+    @FXML
     private FlowPane tags;
     @FXML
     private TableView<Leave> leaveTable;
@@ -92,6 +94,7 @@ public class PersonInfo extends UiPart<Region> {
         address.setText("Address:  " + person.getAddress().value);
         totalLeave.setText("Total Leaves: " + person.getTotalNumberOfLeaves());
         leaveLeft.setText("Leaves Left: " + person.getLeavesLeft());
+        performance.setText("Performance: " + person.getRating().value);
         onLeave.setText("On leave: " + person.onLeaveStatus());
         tags.getChildren().clear();
         leaveTable.setItems(person.getObservableListLeaves());

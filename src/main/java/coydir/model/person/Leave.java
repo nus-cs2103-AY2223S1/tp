@@ -27,7 +27,7 @@ public class Leave {
      * Constructs a {@code Leave}.
      *
      * @param startDate A valid start date.
-     * @param endDate A valid start date.
+     * @param endDate A valid end date.
      */
     public Leave(String startDate, String endDate) {
 
@@ -37,11 +37,9 @@ public class Leave {
         this.col2 = new SimpleStringProperty(this.endDate.format(FORMAT));
         if (getTotalDays() <= 1) {
             this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()) + " day");
-        }
-        else {
+        } else {
             this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()) + " days");
         }
-
     }
 
     public String getCol1() {
