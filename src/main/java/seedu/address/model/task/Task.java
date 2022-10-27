@@ -26,10 +26,16 @@ public class Task {
     public static final String MESSAGE_TASK_COMPLETED = "Completed";
     public static final String MESSAGE_TASK_NOT_COMPLETED = "Not Completed";
 
+    public static final String INPUT_TASK_COMPLETED = "complete";
+    public static final String INPUT_TASK_NOT_COMPLETED = "incomplete";
+
+    public static final String COMPLETION_STATUS_MESSAGE_CONSTRAINTS =
+            "Completion status should be complete or incomplete";
+
     private final Description description;
     private final Deadline deadline;
-    private Boolean isDone;
-    private Boolean isArchived;
+    private final Boolean isDone;
+    private final Boolean isArchived;
 
     private final Set<Tag> tags = new HashSet<>();
     private final Id id;
@@ -136,9 +142,12 @@ public class Task {
      * @return boolean indicating if task contains supplied keywords.
      */
     public boolean containsKeywordsCaseInsensitive(List<Description> descriptionKeywords,
-                                                   List<Deadline> deadlineKeywords, Set<Tag> tags) {
+                                                   List<Deadline> deadlineKeywords,
+                                                   List<Boolean> completionStatusKeywords,
+                                                   Set<Tag> tags) {
         return (descriptionKeywords.isEmpty() || descriptionKeywords.stream().anyMatch(description::equalsIgnoreCase))
                 && (deadlineKeywords.isEmpty() || deadlineKeywords.contains(deadline))
+                && (completionStatusKeywords.isEmpty() || completionStatusKeywords.contains(isDone))
                 && (tags.isEmpty() || !Collections.disjoint(tags, this.tags));
     }
 

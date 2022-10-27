@@ -154,8 +154,8 @@ These are the specifications for the fields of 'Person' and 'Task'.
 
 Each field is implemented by a class with the same name, except for `Id` which is implemented using Java UUID class.
 
-Id is unique and automatically generated when person is added. Persons with the same fields are allowed as the Id distinguishes between Person objects.
-This is similar to mainstream contact applications that allow contacts with same details.
+Id is unique and automatically generated when person is added. 
+Persons with the same fields are allowed but they cannot have the same id or phone or email.
 
 | Field Name | Description                                    | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |------------|------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -328,9 +328,10 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 * **Alternative 1 (current choice):** Matches individual words in the parameter to the contact fields (case insensitive)
     * Pros: Users are able to make more generic searches as only one word needs to match.
+    * Pros: This is consistent behaviours of with popular search engines who do not search for exact matches by default.
     * Cons: Results are less precise as users are unable to search multi-word strings.
 
-* **Alternative 2:** Allow users to specify which keywords are to be matched individually/multi-word strings
+* **Alternative 2:** Allow users to specify which keywords are to be matched individually or in multi-word strings
     * Pros: Allow more precise searches.
     * Cons: User needs to remember additional syntax.
     * Cons: More complex implementation.
