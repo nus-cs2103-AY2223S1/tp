@@ -339,9 +339,9 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/
 * `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` and `[ta/APPOINTMENT_TAG]` are fields to find information about appointments (appointment criteria).
   * `[ds/DATE_START]` searches for appointments occurring at or after `DATE_START`.
   * `[ds/DATE_END]` searches for appointments occurring at or before `DATE_END`.
-* Only patients and appointments that satisifies all criteria will be displayed.
-  * A patient must satisify all patient criteria and have at least 1 appointment that satisifies all the appointment criteria to be displayed.
-  * An appointment must satisify all appointment criteria and belong to a patient that satisifes all the patient criteria to be displayed.
+* Only unhidden patients and appointments that satisfies all criteria will be displayed.
+  * A patient must satisify all patient criteria and have at least 1 appointment that satisfies all the appointment criteria to be displayed.
+  * An appointment must satisify all appointment criteria and belong to a patient that satisfies all the patient criteria to be displayed.
 * All fields except `[ds/DATE_START]`, `[de/DATE_END]`, `[t/PATIENT_TAG]` and `[ta/APPOINTMENT_TAG]` supports partial match.
   * e.g When finding names, searching `John Do` will match someone named `John Doe`.
 * For `[t/PATIENT_TAG]` and `[ta/APPOINTMENT_TAG]` fields, only tags with a full match will be matched
