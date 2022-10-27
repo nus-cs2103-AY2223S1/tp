@@ -288,17 +288,17 @@ Format: `clear`
 The following commands are only available in **focus mode.**
 
 
-| Command   | Format                                   |
-| --------- | ---------------------------------------- |
-| `list`    | `list`                                   |
-| `session` | `session s/SESSION_NAME [d/DATE]`        |
-| `deletes` | `deletes s/SESSION_NAME...`              |
+| Command   | Format                                        |
+| --------- |-----------------------------------------------|
+| `list`    | `list`                                        |
+| `session` | `session s/SESSION_NAME... [d/DATE]`          |
+| `deletes` | `deletes s/SESSION_NAME...`                   |
 | `grade`   | `grade INDEX... s/SESSION_NAME g/GRADE_VALUE` |
-| `scores`  | `scores s/SESSION_NAME`                  |
-| `view`    | `view INDEX`                             |
-| `lists`   | `lists`                                  |
-| `export`  | `export`                                 |
-| `unfocus` | `unfocus`                                |
+| `scores`  | `scores s/SESSION_NAME`                       |
+| `view`    | `view INDEX`                                  |
+| `lists`   | `lists`                                       |
+| `export`  | `export`                                      |
+| `unfocus` | `unfocus`                                     |
 
 
 ### List all students in the class: `list`
@@ -318,18 +318,18 @@ Format: `list`
 
 {% include note.html content="
 
-Creates a new session in the class.
+Creates one or more sessions in the class.
 
 " %}
 
-Format: `session s/SESSION_NAME [d/DATE]`
+Format: `session s/SESSION_NAME... [d/DATE]`
 
-* Creates a new session with name `SESSION_NAME` on `DATE` in the class. If the `DATE` field is empty, the current date will be used.
-* `DATE` field should follow the format `yyyy-MM-dd`.
+- Creates sessions with the specified names sharing the same `DATE`. If the `DATE` field is empty, the current date will be used.
+- `DATE` field should follow the format `yyyy-MM-dd`
 
 Example:
 
-* `session s/Lab1 d/2022-08-11` will create a session `Lab1` on 11 August 2022.
+- `session s/Lab1 s/Tutorial1 d/2022-08-11` will create sessions `Lab1` and `Tutorial1` on 11  August 2022.
 
 ### Delete sessions: `deletes`
 

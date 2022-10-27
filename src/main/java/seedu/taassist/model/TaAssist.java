@@ -15,7 +15,7 @@ import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the TA-Assist level
  * Duplicates are not allowed (by .isSameStudent comparison)
  */
 public class TaAssist implements ReadOnlyTaAssist {
@@ -162,6 +162,19 @@ public class TaAssist implements ReadOnlyTaAssist {
         setStudents(updatedStudents);
     }
 
+
+    /**
+     * Adds the {@code sessions} to the {@code moduleClass}.
+     */
+    public ModuleClass addSessions(ModuleClass moduleClass, Set<Session> sessions) {
+        requireAllNonNull(moduleClass, sessions);
+        ModuleClass oldModuleClass = moduleClass;
+        for (Session session: sessions) {
+            moduleClass = moduleClass.addSession(session);;
+        }
+        setModuleClass(oldModuleClass, moduleClass);
+        return moduleClass;
+    }
 
     /**
      * Removes the {@code sessions} from the {@code moduleClass} as well as all students in the {@code moduleClass} and
