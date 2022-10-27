@@ -66,17 +66,12 @@ public class ViewCommandCard extends UiPart<Region> {
         position.setText("Position: " + internship.getPosition().positionName);
         date.setText("Date: " + internship.getDate().toDisplayFormat());
         website.setText(internship.getWebsite().value);
+        remark.setText(internship.getRemark().value);
 
         String stateStyleClass = "application_process-" + internship.getApplicationProcess().toString();
         applicationProcess.getStyleClass().add(stateStyleClass);
         applicationProcess.setText(internship.getApplicationProcess().toString());
 
-        // adds newline to remark
-        StringBuilder sb = new StringBuilder();
-        sb.append('\n');
-        sb.append("Remark: ");
-        sb.append(internship.getRemark().value);
-        remark.setText(sb.toString());
 
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
