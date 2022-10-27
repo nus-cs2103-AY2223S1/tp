@@ -3,8 +3,8 @@ package seedu.condonery.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_HUSBAND;
 import static seedu.condonery.testutil.Assert.assertThrows;
 import static seedu.condonery.testutil.TypicalPersons.ALICE;
 import static seedu.condonery.testutil.TypicalPersons.BOB;
@@ -42,8 +42,11 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-            .build();
+        Person editedAlice =
+                new PersonBuilder(ALICE)
+                        .withAddress(CLIENT_VALID_ADDRESS_BOB)
+                        .withTags(CLIENT_VALID_TAG_HUSBAND)
+                        .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 
@@ -85,8 +88,11 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-            .build();
+        Person editedAlice =
+                new PersonBuilder(ALICE)
+                        .withAddress(CLIENT_VALID_ADDRESS_BOB)
+                        .withTags(CLIENT_VALID_TAG_HUSBAND)
+                        .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(editedAlice);

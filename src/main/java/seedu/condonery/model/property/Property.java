@@ -2,6 +2,7 @@ package seedu.condonery.model.property;
 
 import static seedu.condonery.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,16 +24,19 @@ public class Property {
 
     // Data fields
     private final Address address;
+    private final Price price;
     private final Set<Tag> tags = new HashSet<>();
+    private Path imageDirectoryPath;
     private final Set<Client> interestedClients = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Property(Name name, Address address, Set<Tag> tags, Set<Client> interestedClients) {
-        requireAllNonNull(name, address, tags);
+    public Property(Name name, Address address, Price price, Set<Tag> tags, Set<Client> interestedClients) {
+        requireAllNonNull(name, address, price, tags, interestedClients);
         this.name = name;
         this.address = address;
+        this.price = price;
         this.tags.addAll(tags);
         this.interestedClients.addAll(interestedClients);
     }
@@ -43,6 +47,17 @@ public class Property {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Price getPrice() {
+        return price;
+    }
+
+    public Path getImagePath() {
+        if (imageDirectoryPath == null) {
+            return null;
+        }
+        return imageDirectoryPath.resolve("property-" + getCamelCaseName());
     }
 
     /**
@@ -72,13 +87,41 @@ public class Property {
     }
 
     /**
+     * Returns the name of the property in lowerCamelCase.
+     * This function is used when getting the file name for image storage.
+     * @return property name in lowerCamelCase.
+     */
+    public String getCamelCaseName() {
+        String[] words = name.toString().split("[\\W_]+");
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (i == 0) {
+                word = word.isEmpty() ? word : word.toLowerCase();
+            } else {
+                word = word.isEmpty() ? word : Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
+            }
+            builder.append(word);
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Changes the imageDirectoryPath of the Property.
+     * @param imageDirectoryPath Path to be saved.
+     */
+    public void setImageDirectoryPath(Path imageDirectoryPath) {
+        this.imageDirectoryPath = imageDirectoryPath;
+    }
+
+    /**
      * Returns an immutable set containing interested client names, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<String> getInterestedClientNames() {
         HashSet<String> stringInterestedClients = new HashSet<>(interestedClients.size());
-        interestedClients.forEach(
-                interestedClient -> stringInterestedClients.add(interestedClient.getName().toString()));
+        interestedClients.forEach(interestedClient
+                -> stringInterestedClients.add(interestedClient.getName().toString()));
         return Collections.unmodifiableSet(stringInterestedClients);
     }
 
@@ -112,6 +155,7 @@ public class Property {
         Property otherProperty = (Property) other;
         return otherProperty.getName().equals(getName())
             && otherProperty.getAddress().equals(getAddress())
+            && otherProperty.getPrice().equals(getPrice())
             && otherProperty.getTags().equals(getTags())
             && otherProperty.getInterestedClients().equals(getInterestedClients());
     }
@@ -119,7 +163,7 @@ public class Property {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, tags, interestedClients);
+        return Objects.hash(name, address, price, tags, interestedClients);
     }
 
     @Override
@@ -127,7 +171,9 @@ public class Property {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
             .append("; Address: ")
-            .append(getAddress());
+            .append(getAddress())
+            .append("; Price: ")
+            .append(getPrice());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -142,5 +188,6 @@ public class Property {
         }
         return builder.toString();
     }
+
 }
 

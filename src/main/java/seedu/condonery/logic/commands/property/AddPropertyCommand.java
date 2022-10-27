@@ -3,6 +3,7 @@ package seedu.condonery.logic.commands.property;
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -30,13 +31,16 @@ public class AddPropertyCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "PINNACLE@DUXTON "
             + PREFIX_ADDRESS + "Cantonment Rd, #1G, S085301 "
+            + PREFIX_PRICE + "1000000 "
             + PREFIX_TAG + "High-End "
             + PREFIX_TAG + "Available";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in Condonery";
+    public static final String MESSAGE_IMAGE_UPLOAD = "Opened Upload Image window";
 
     private final Property toAdd;
+    private final boolean hasImage;
     private final ArrayList<String> missingClients = new ArrayList<>();
     private final ArrayList<String> duplicateClients = new ArrayList<>();
 
@@ -45,7 +49,17 @@ public class AddPropertyCommand extends Command {
      */
     public AddPropertyCommand(Property property) {
         requireNonNull(property);
+        this.toAdd = property;
+        this.hasImage = false;
+    }
+
+    /**
+     * Creates an AddCommand to add the specified {@code Property}, with a boolean to indicate if image is uploaded.
+     */
+    public AddPropertyCommand(Property property, boolean hasImage) {
+        requireNonNull(property);
         toAdd = property;
+        this.hasImage = hasImage;
     }
 
     private String getUpdatedSuccessMessage(ArrayList<String> missingClients, ArrayList<String> duplicateClients) {
@@ -77,6 +91,7 @@ public class AddPropertyCommand extends Command {
         if (model.hasProperty(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
+        toAdd.setImageDirectoryPath(model.getUserPrefs().getUserImageDirectoryPath());
 
         ParsePropertyInterestedClients parser = new ParsePropertyInterestedClients(
                 toAdd, model);
@@ -86,6 +101,13 @@ public class AddPropertyCommand extends Command {
         String newMessageSuccess = getUpdatedSuccessMessage(parser.getMissingClients(), parser.getDuplicateClients());
 
         model.addProperty(newPropertyToAdd);
+        if (this.hasImage) {
+            return new CommandResult(
+                    String.format(newMessageSuccess, newPropertyToAdd),
+                    false,
+                    false,
+                    "property-" + newPropertyToAdd.getCamelCaseName());
+        }
         return new CommandResult(String.format(newMessageSuccess, newPropertyToAdd));
     }
 
@@ -94,5 +116,10 @@ public class AddPropertyCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddPropertyCommand // instanceof handles nulls
                 && toAdd.equals(((AddPropertyCommand) other).toAdd));
+    }
+
+    @Override
+    public String toString() {
+        return toAdd.toString();
     }
 }

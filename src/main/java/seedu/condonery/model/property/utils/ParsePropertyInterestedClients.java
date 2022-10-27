@@ -52,6 +52,7 @@ public class ParsePropertyInterestedClients {
 
     public Property getNewProperty() {
         return new Property(originalProperty.getName(), originalProperty.getAddress(),
-                originalProperty.getTags(), filteredInterestedClients);
+                originalProperty.getPrice(), originalProperty.getTags(),
+                filteredInterestedClients);
     }
 }
