@@ -253,7 +253,7 @@ Adds a task under a specific module.
   American Standard Code for Information Interchange [(ASCII)](https://en.wikipedia.org/wiki/ASCII) characters.
 - The task description must be enclosed in double-quotes (`""`) if it contains spaces.
 - The symbols `-` and `"` are special characters and must be escaped with a backslash (`\`) to
-  be used in the task description, e.g. `add task "foo\-\"bar\""` will result in the description `foo-"bar"`. 
+  be used in the task description, e.g. `add task "foo\-\"bar\""` will result in the description `foo-"bar"`.
 
 Format (if `cd`'d previously): `add task <description> [-d <deadline>]`
 
@@ -350,41 +350,46 @@ the data of your previous ModuleList home folder.
 
 ### General
 
-|       Action        | Format          | Examples        |
-|:-------------------:|-----------------|-----------------|
-|      **Help**       | `help`          | `help`          |
-|      **Exit**       | `exit`          | `exit`          |
+| Action            | Format          | Examples        |
+|-------------------|-----------------|-----------------|
+| **Help**          | `help`          | `help`          |
+| **Exit**          | `exit`          | `exit`          |
 
 ### Modules
 
-|          Action           | Format                                                                              | Examples                                                           |
-|:-------------------------:|-------------------------------------------------------------------------------------|--------------------------------------------------------------------|
-|     **Add a Module**      | `add module <module code>`<br/>`add mod <module code>`                              | `add module CS2103T`<br/>`add mod CS2103T`                         |
-|    **Remove a Module**    | `remove module <module code>`<br/>`rm mod <module code>`                            | `remove module CS2103T`<br/>`rm mod cS2103t`                       |
-|    **Go to a Module**     | `cd <mod, code>`                                                                    | `cd CS2103T`                                                       |
-|  **Marks done a Module**  | `done module <module code>` <br/> `done mod <module code>`                          | `done module CS1101S` <br/> `done mod CS1101S`                     |
-| **Marks undone a Module** | `undone module <module code>` <br/> `undone mod <module code>`                      | `undone module CS1101S` <br/> `undone mod CS1101S`                 |
-|   **List All Modules**    | `list module [-a]` <br/> `list mod [-a]` <br/> `ls module [-a]` <br/> `ls mod [-a]` | `list module`<br/> `list mod -a`<br/> `ls module`<br/> `ls mod -a` |
+| Action                      | Format                                                                                                                                                       | Examples                                                           |
+|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| **Add a module**            | `add module <mod code> [-n <mod name>] [-cr <mod credits>]` <br/>`add mod <mod code> [-c <mod code>] [-cr <mod credits>]`                                    | `add module CS2103T`<br/>`add mod CS2103T`                         |
+| **Remove a module**         | `remove module <mod code>`<br/>`remove mod <mod code>` <br/>`rm module <mod code>`<br/>`rm mod <mod code>`                                                   | `remove module CS2103T`<br/>`rm mod cS2103t`                       |
+| **Edit a module**           | `edit module <mod code> [-c <mod code>] [-n <mod name>] [-cr <mod credits>]` <br/> `edit mod <mod code> [-c <mod code>] [-n <mod name>] [-cr <mod credits>]` | `remove module CS2103T`<br/>`rm mod cS2103t`                       |
+| **Select a module**         | `cd <mod code>`                                                                                                                                              | `cd CS2103T`                                                       |
+| **Deselect modules**        | `cd ..`                                                                                                                                                      | `cd ..`                                                            |
+| **Mark a module as done**   | `done module <mod code>` <br/> `done mod <mod code>`                                                                                                         | `done module CS1101S` <br/> `done mod CS1101S`                     |
+| **Mark a module as undone** | `undone module <mod code>` <br/> `undone mod <mod code>`                                                                                                     | `undone module CS1101S` <br/> `undone mod CS1101S`                 |
+| **List modules**            | `list module [-a]` <br/> `list mod [-a]` <br/> `ls module [-a]` <br/> `ls mod [-a]`                                                                          | `list module`<br/> `list mod -a`<br/> `ls module`<br/> `ls mod -a` |
 
 ### Tasks
 
-|       Action       | Format                                                    | Examples                                              |
-|:------------------:|-----------------------------------------------------------|-------------------------------------------------------|
-|   **Add a Task**   | `add task <description> [-d <deadline>] -c <module code>` | `add task do Assignment 1 -d 15/09/2022 -c CS2100`    |
-| **Remove a Task**  | `remove task <index> `<br/>`rm -t <index>`                | `remove task 1`<br/>`rm -t 1`                         |
-| **List All Tasks** | `list tasks` <br/> `ls -t`                                | `list tasks`<br/>`ls -t`                              |
+| Action                    | Format                                                                                  | Examples                                                     |
+|---------------------------|-----------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| **Add a task**            | `add task <description> -c <module code> [-d <deadline>] [-p <priority>]`               | `add task "do Assignment 1" -d 15/09/2022 -c CS2100 -p high` |
+| **Remove a task**         | `remove task <index> `<br/>`rm task <index>`                                            | `remove task 1`<br/>`rm task 1`                              |
+| **Edit a task**           | `edit task <index> [-c <mod code>] [-d <deadline>] [-ds <description>] [-p <priority>]` | `edit task 1 -p low`                                         |
+| **Mark a task as done**   | `done task <index>`                                                                     | `done task 1`                                                |
+| **Mark a task as undone** | `undone task <index>`                                                                   | `undone task 1`                                              |
+| **List tasks**            | `list task [-a]` <br/> `ls task [-a]`                                                   | `list task`<br/>`ls task -a`                                 |
 
 
 ### Glossary
 
-|       Terms        | Description                                                                                             |
-|:------------------:|---------------------------------------------------------------------------------------------------------|
-|   **AY**           | Academic Year                                                                                           |
-| **GUI**            | Graphical User Interface                                                                                |
-| **CLI**            | Command Line Interface                                                                                  |
-| **Syntax**         | Structure of statements                                                                                 |
-| **NUSMods**        | A timetabling application created for NUS students, containing information about all modules in NUS.    |
-| **cd**             | Shorthand for `change directory`, in the context of our application, modules can be seen as directories |
-| **MCs**            | Modular credits                                                                                         |
-| **ASCII**          | American Standard Code for Information Interchange                                                      |
-| **NUS**            | National University of Singapore                                                                        |
+|             Terms | Description                                                                                             |
+|------------------:|---------------------------------------------------------------------------------------------------------|
+|            **AY** | Academic Year                                                                                           |
+|           **GUI** | Graphical User Interface                                                                                |
+|           **CLI** | Command Line Interface                                                                                  |
+|        **Syntax** | Structure of statements                                                                                 |
+|       **NUSMods** | A timetabling application created for NUS students, containing information about all modules in NUS.    |
+|            **cd** | Shorthand for `change directory`, in the context of our application, modules can be seen as directories |
+|           **MCs** | Modular credits                                                                                         |
+|         **ASCII** | American Standard Code for Information Interchange                                                      |
+|           **NUS** | National University of Singapore                                                                        |
