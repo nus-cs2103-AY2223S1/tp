@@ -302,14 +302,6 @@ public class MainWindow extends UiPart<Stage> {
                 showTaskTab();
                 showAssignedContacts();
                 break;
-            case SELECT_CONTACT:
-                showContactTab();
-                showAssignedTasks();
-                break;
-            case SELECT_TASK:
-                showTaskTab();
-                showAssignedContacts();
-                break;
             default:
                 break;
             }
