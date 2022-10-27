@@ -29,7 +29,7 @@ tasks done faster than traditional GUI apps.
 
     * **`list`** : Lists all students.
 
-    * **`add`**`n/John Doe m/CS2103T s/E1234567` : Adds a student
+    * **`add`**`n/John Doe m/CS2103T s/E1234567` : <br> Adds a student
       named `John Doe` to the StudMap.
 
     * **`delete`**`3` : Deletes the 3rd student shown in the current list.
@@ -83,7 +83,7 @@ Format: `help`
 
 Adds a student to the StudMap.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME m/MODULE s/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 A student can have any number of tags (including 0)
@@ -105,7 +105,7 @@ Format: `list`
 
 Edits an existing student in the StudMap.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITNAME] [h/TELEHANDLE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITUSER] [h/TELEHANDLE] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
   The index **must be a positive integer** 1, 2, 3, …​ or use `all` to edit all students currently displayed.
@@ -218,11 +218,11 @@ the data of your previous StudMap home folder.
 Action | Format, Examples
 --------|------------------
 **
-Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+Add** | `add n/NAME m/MODULE s/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T s/E1234567 g/user1 h/@user1 t/friends t/owesMoney`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **
-Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITUSER] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`

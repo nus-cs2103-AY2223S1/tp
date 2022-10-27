@@ -3,42 +3,42 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":StudMapParser" as StudMapParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedStudMap" as VersionedStudMap MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> StudMapParser : parseCommand(undo)
+activate StudMapParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+StudMapParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> StudMapParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+StudMapParser --> LogicManager : u
+deactivate StudMapParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undoStudMap()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedStudMap : undo()
+activate VersionedStudMap
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedStudMap -> VersionedStudMap :resetData(ReadOnlyStudMap)
+VersionedStudMap --> Model :
+deactivate VersionedStudMap
 
 Model --> UndoCommand
 deactivate Model
