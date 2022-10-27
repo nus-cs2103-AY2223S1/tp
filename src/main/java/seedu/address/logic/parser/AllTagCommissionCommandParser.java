@@ -7,23 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.logic.commands.AllTagCommissionCommand;
 import seedu.address.logic.commands.AnyTagCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.customer.CustomerContainsAnyTagPredicate;
+import seedu.address.model.commission.CommissionContainsAllTagPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AnyTagCustomerCommand object
+ * Parses input arguments and creates a new AllTagCommissionCommand object
  */
-public class AnyTagCustomerCommandParser implements Parser<AnyTagCustomerCommand> {
-
+public class AllTagCommissionCommandParser {
     /**
-     * Parses the given {@code String} of arguments in the context of the AnyTagCustomerCommand
-     * and returns a AnyTagCustomerCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AnyTagCommissionCommand
+     * and returns a AnyTagCommissionCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AnyTagCustomerCommand parse(String args) throws ParseException {
+    public AllTagCommissionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
@@ -35,7 +35,6 @@ public class AnyTagCustomerCommandParser implements Parser<AnyTagCustomerCommand
 
         List<Tag> tags = new ArrayList<>();
         tags.addAll(tagSet);
-        return new AnyTagCustomerCommand(new CustomerContainsAnyTagPredicate(tags));
+        return new AllTagCommissionCommand(new CommissionContainsAllTagPredicate(tags));
     }
-
 }

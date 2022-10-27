@@ -8,7 +8,9 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommissionCommand;
 import seedu.address.logic.commands.AddCustomerCommand;
+import seedu.address.logic.commands.AllTagCommissionCommand;
 import seedu.address.logic.commands.AllTagCustomerCommand;
+import seedu.address.logic.commands.AnyTagCommissionCommand;
 import seedu.address.logic.commands.AnyTagCustomerCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -20,6 +22,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListCommissionCommand;
 import seedu.address.logic.commands.OpenCommissionCommand;
 import seedu.address.logic.commands.OpenCustomerCommand;
 import seedu.address.logic.commands.SortCustomerCommand;
@@ -91,6 +94,9 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case ListCommissionCommand.COMMAND_WORD:
+            return new ListCommissionCommand();
+
         case AddIterationCommand.COMMAND_WORD:
             return new AddIterationCommandParser().parse(arguments);
 
@@ -111,6 +117,12 @@ public class AddressBookParser {
 
         case AllTagCustomerCommand.COMMAND_WORD:
             return new AllTagCustomerCommandParser().parse(arguments);
+
+        case AnyTagCommissionCommand.COMMAND_WORD:
+            return new AnyTagCommissionCommandParser().parse(arguments);
+
+        case AllTagCommissionCommand.COMMAND_WORD:
+            return new AllTagCommissionCommandParser().parse(arguments);
 
         case SortCustomerCommand.COMMAND_WORD:
             return new SortCustomerCommandParser().parse(arguments);

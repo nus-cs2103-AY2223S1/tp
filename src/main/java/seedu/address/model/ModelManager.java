@@ -203,7 +203,6 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Commission List Accessors =============================================================
-
     @Override
     public FilteredList<Commission> getFilteredCommissionList() {
         if (observableFilteredCommissions.getValue() == null) {
