@@ -152,9 +152,5 @@ public class PersonInfo extends UiPart<Region> {
 
         lineChart.getData().clear();
         lineChart.getData().add(series);
-
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }
