@@ -49,12 +49,12 @@ public class ItineraryCard extends UiPart<Region> {
         super(FXML);
         this.itinerary = itinerary;
         id.setText(displayedIndex + ". ");
-        name.setText(itinerary.getDescriptionString(Text.indentNone));
-        country.setText(itinerary.getCountryString(Text.indentNone));
-        time.setText(itinerary.getTimeString(Text.indentNone));
-        duration.setText(itinerary.getDurationString(Text.indentNone));
-        people.setText(itinerary.getPeopleString(Text.indentNone));
-        budget.setText(itinerary.getBudgetString(Text.indentNone));
+        name.setText(itinerary.getDescriptionString(Text.INDENT_NONE));
+        country.setText(itinerary.getCountryString(Text.INDENT_NONE));
+        time.setText(itinerary.getTimeString(Text.INDENT_NONE));
+        duration.setText(itinerary.getDurationString(Text.INDENT_NONE));
+        people.setText(itinerary.getPeopleString(Text.INDENT_NONE));
+        budget.setText(itinerary.getBudgetString(Text.INDENT_NONE));
     }
 
     @Override

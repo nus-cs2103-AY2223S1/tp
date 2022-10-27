@@ -2,9 +2,10 @@ package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.core.Messages.MESSAGE_COPY_ERROR;
-import static seedu.waddle.model.Model.PREDICATE_SHOW_ALL_ITINERARIES;
 
-import java.awt.*;
+import java.awt.AWTError;
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
@@ -26,7 +27,7 @@ public class ExportTextCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Itinerary selectedItinerary =  StageManager.getInstance().getSelectedItinerary();
+        Itinerary selectedItinerary = StageManager.getInstance().getSelectedItinerary();
         String itineraryText = selectedItinerary.getTextRepresentation();
         StringSelection stringSelection = new StringSelection(itineraryText);
         try {

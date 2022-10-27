@@ -85,7 +85,7 @@ public class Item {
             if (this.duration != null) {
                 return Text.indent("Time: " + this.startTime + " - " + getEndTime(), indents);
             } else {
-                return Text.indent("Time: " + this.startTime.toString(), indents);
+                return Text.indent("Time: " + this.startTime, indents);
             }
         }
         return Text.indent("Time: (Not planned)", indents);
@@ -111,15 +111,15 @@ public class Item {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getDescriptionString(Text.indentNone))
+        builder.append(getDescriptionString(Text.INDENT_NONE))
                 .append(System.getProperty("line.separator"))
-                .append(getPriorityString(Text.indentFour))
+                .append(getPriorityString(Text.INDENT_FOUR))
                 .append(System.getProperty("line.separator"))
-                .append(getCostString(Text.indentFour))
+                .append(getCostString(Text.INDENT_FOUR))
                 .append(System.getProperty("line.separator"))
-                .append(getDurationString(Text.indentFour))
+                .append(getDurationString(Text.INDENT_FOUR))
                 .append(System.getProperty("line.separator"))
-                .append(getTimeString(Text.indentFour));
+                .append(getTimeString(Text.INDENT_FOUR));
         return builder.toString();
     }
 }

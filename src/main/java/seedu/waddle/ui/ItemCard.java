@@ -43,11 +43,11 @@ public class ItemCard extends UiPart<Region> {
         } else {
             this.id.setText(displayedIndex + ". ");
         }
-        this.description.setText(item.getDescriptionString(Text.indentNone));
-        this.priority.setText(item.getPriorityString(Text.indentNone));
-        this.duration.setText(item.getDurationString(Text.indentNone));
-        this.time.setText(item.getTimeString(Text.indentNone));
-        this.cost.setText(item.getCostString(Text.indentNone));
+        this.description.setText(item.getDescriptionString(Text.INDENT_NONE));
+        this.priority.setText(item.getPriorityString(Text.INDENT_NONE));
+        this.duration.setText(item.getDurationString(Text.INDENT_NONE));
+        this.time.setText(item.getTimeString(Text.INDENT_NONE));
+        this.cost.setText(item.getCostString(Text.INDENT_NONE));
     }
 
     @Override

@@ -64,16 +64,8 @@ public class Itinerary {
         return description;
     }
 
-    public String getDescriptionString(int indents) {
-        return Text.indent(this.description.toString(), indents);
-    }
-
     public Country getCountry() {
         return country;
-    }
-
-    public String getCountryString(int indents) {
-        return Text.indent("Country: " + this.country, indents);
     }
 
     public Date getStartDate() {
@@ -84,41 +76,12 @@ public class Itinerary {
         return this.duration;
     }
 
-    public String getDurationString(int indents) {
-        return Text.indent("Duration: " + this.duration.getValue() + " Days", indents);
-    }
-
-    public String getTimeString(int indents) {
-        if (this.startDate != null) {
-            if (this.duration != null) {
-                return Text.indent("Dates: " + this.startDate + " - " +
-                        this.startDate.getValue().plusDays(this.duration.getValue()), indents);
-            } else {
-                return Text.indent("Dates: " + this.startDate.toString(), indents);
-            }
-        }
-        return Text.indent("Dates: (Not planned)", indents);
-    }
-
     public People getPeople() {
         return people;
     }
 
-    public String getPeopleString(int indents) {
-        return Text.indent("Waddlers: " + this.people, indents);
-    }
-
     public Budget getBudget() {
         return this.budget;
-    }
-
-    public String getBudgetString(int indents) {
-        if (this.budget.getSpending() == 0) {
-            return Text.indent("Budget: $" + this.budget.getValue(), indents);
-        } else {
-            return Text.indent("Budget: $" + this.budget.getValue() + ", $"
-                    + this.budget.calculateLeftOverBudget() + " remaining", indents);
-        }
     }
 
     public UniqueItemList getItemList() {
@@ -199,7 +162,7 @@ public class Itinerary {
         }
     }
 
-    public int getItemSize() {
+    public int getUnscheduledSize() {
         return this.unscheduledItemList.getSize();
     }
 
@@ -211,19 +174,13 @@ public class Itinerary {
         this.unscheduledItemList.sort(priorityComparator);
     }
 
-    /**
-     * Unplan an item.
-     *
-     * @param index A multiIndex to locate the day and index of task within the day
-     */
-    public Item unplanItem(MultiIndex index) {
-        Day day = this.days.get(index.getDayIndex().getZeroBased());
-        Item unplannedItem = day.removeItem(index.getTaskIndex());
-        unplannedItem.resetStartTime();
-        addItem(unplannedItem);
-        sortUnscheduledItemList();
-        this.budget.updateSpending(-unplannedItem.getCost().getValue());
-        return unplannedItem;
+    public Item getItem(MultiIndex index) {
+        if (index.getDayIndex() == null) {
+            return this.unscheduledItemList.get(index.getTaskIndex().getZeroBased());
+        } else {
+            Day day = this.days.get(index.getDayIndex().getZeroBased());
+            return day.getItem(index.getTaskIndex());
+        }
     }
 
     /**
@@ -245,13 +202,27 @@ public class Itinerary {
         return item;
     }
 
-    public Item getItem(MultiIndex index) {
-        if (index.getDayIndex() == null) {
-            return this.unscheduledItemList.get(index.getTaskIndex().getZeroBased());
-        } else {
-            Day day = this.days.get(index.getDayIndex().getZeroBased());
-            return day.getItem(index.getTaskIndex());
+    /**
+     * Unplan an item.
+     *
+     * @param index A multiIndex to locate the day and index of task within the day
+     */
+    public Item unplanItem(MultiIndex index) {
+        Day day = this.days.get(index.getDayIndex().getZeroBased());
+        Item unplannedItem = day.removeItem(index.getTaskIndex());
+        unplannedItem.resetStartTime();
+        addItem(unplannedItem);
+        sortUnscheduledItemList();
+        this.budget.updateSpending(-unplannedItem.getCost().getValue());
+        return unplannedItem;
+    }
+
+    public String getVacantSlots() {
+        StringBuilder vacantSlots = new StringBuilder();
+        for (Day day : this.days) {
+            vacantSlots.append(day.getVacantSlots()).append(System.getProperty("line.separator"));
         }
+        return vacantSlots.toString();
     }
 
     public ObservableList<ObservableList<Item>> getUnmodifiableItemGroups() {
@@ -264,23 +235,57 @@ public class Itinerary {
         return FXCollections.unmodifiableObservableList(itemGroups);
     }
 
-    public String getVacantSlots() {
-        StringBuilder vacantSlots = new StringBuilder();
-        for (Day day : this.days) {
-            vacantSlots.append(day.getVacantSlots()).append(System.getProperty("line.separator"));
-        }
-        return vacantSlots.toString();
+    public String getDescriptionString(int indents) {
+        return Text.indent(this.description.toString(), indents);
     }
 
+    public String getCountryString(int indents) {
+        return Text.indent("Country: " + this.country, indents);
+    }
+
+    public String getDurationString(int indents) {
+        return Text.indent("Duration: " + this.duration.getValue() + " Days", indents);
+    }
+
+    public String getTimeString(int indents) {
+        if (this.startDate != null) {
+            if (this.duration != null) {
+                return Text.indent("Dates: " + this.startDate + " - "
+                        + this.startDate.getValue().plusDays(this.duration.getValue()), indents);
+            } else {
+                return Text.indent("Dates: " + this.startDate, indents);
+            }
+        }
+        return Text.indent("Dates: (Not planned)", indents);
+    }
+
+    public String getPeopleString(int indents) {
+        return Text.indent("Waddlers: " + this.people, indents);
+    }
+
+    public String getBudgetString(int indents) {
+        if (this.budget.getSpending() == 0) {
+            return Text.indent("Budget: $" + this.budget.getValue(), indents);
+        } else {
+            return Text.indent("Budget: $" + this.budget.getValue() + ", $"
+                    + this.budget.calculateLeftOverBudget() + " remaining", indents);
+        }
+    }
+
+    /**
+     * Generates a text representation of the day.
+     *
+     * @return The text representation.
+     */
     public String getTextRepresentation() {
         StringBuilder itineraryText = new StringBuilder();
-        itineraryText.append(this.toString())
+        itineraryText.append(this)
                 .append(System.lineSeparator()).append(System.lineSeparator());
         StringBuilder daysText = new StringBuilder();
         for (Day day : this.days) {
             daysText.append(day.getTextRepresentation());
         }
-        itineraryText.append(daysText.toString());
+        itineraryText.append(daysText);
 
         return itineraryText.toString();
     }
@@ -317,17 +322,17 @@ public class Itinerary {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getDescriptionString(Text.indentNone))
+        builder.append(getDescriptionString(Text.INDENT_NONE))
                 .append(System.getProperty("line.separator"))
-                .append(getCountryString(Text.indentFour))
+                .append(getCountryString(Text.INDENT_FOUR))
                 .append(System.getProperty("line.separator"))
-                .append(getDurationString(Text.indentFour))
+                .append(getDurationString(Text.INDENT_FOUR))
                 .append(System.getProperty("line.separator"))
-                .append(getTimeString(Text.indentFour))
+                .append(getTimeString(Text.INDENT_FOUR))
                 .append(System.getProperty("line.separator"))
-                .append(getPeopleString(Text.indentFour))
+                .append(getPeopleString(Text.INDENT_FOUR))
                 .append(System.getProperty("line.separator"))
-                .append(getBudgetString(Text.indentFour));
+                .append(getBudgetString(Text.INDENT_FOUR));
 
         return builder.toString();
     }
@@ -335,5 +340,4 @@ public class Itinerary {
     public void setSpending(Budget budget) {
         this.budget.setSpending(budget.getSpending());
     }
-
 }
