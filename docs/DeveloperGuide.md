@@ -450,7 +450,10 @@ The `EditOrderDescriptor` contains information that a newly edited order should 
 it contains a `Name`, `Item`, and `Quantity`. The rest of the fields that are not provided are copied from the existing 
 order at target index `3` (This index is **one-based**).
 
-Step 2. The `EditOrderCommand#createEditedOrder` creates an edited order using the information in the
+Step 2. `EditOrderCommand#execute` is called, and it will check whether the `orderToEdit` is completed; if it is, it
+will throw a `CommandException` with `MESSAGE_ORDER_ALREADY_COMPLETED`. Otherwise, the method continues to run.
+
+Step 3. The `EditOrderCommand#createEditedOrder` creates an edited order using the information in the
 `EditOrderDescriptor`. When the user inputs an `Item` and `Quantity`, it checks whether:
 
 - **the `Item` exists in the `InventoryList`.**
@@ -472,9 +475,10 @@ done by `Item#isSameItem`, which returns true if both the newly inputted `Item` 
 to the newly inputted `Quantity`.
     - Otherwise, nothing happens.
 
-Step 3. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`, 
+Step 4. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`, 
 successfully executing the edit order command in the `Model`. `Model#refreshData` is called to refresh the GUI, and 
 `Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS)` is called to update the list to show all orders.
+`EditOrderCommand#execute()` returns a `CommandResult` to the `LogicManager`.
 
 The sequence diagram below illustrates this process.
 
