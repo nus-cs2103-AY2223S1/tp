@@ -84,7 +84,7 @@ A person can have any number of tags, modules, ta modules and class groups (incl
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Adam Doink e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 c/CS1101S cg/CS1101S:Tut07`
-* `add n/David Lim e/ad4md01nk@example.com a/Tembuso College p/82738419 c/CS2030S ta/CS1101S cg/CS1101S:Tut07`
+* `add n/David Lim e/ad4md01nk@example.com a/Tembusu College p/82738419 c/CS2030S ta/CS1101S cg/CS1101S:Tut07`
 
 ![addstu](images/userguide/addstu.png)
 
@@ -100,9 +100,7 @@ A person can have any number of tags or modules(including 0)
 
 Examples:
 * `madd n/Introduction to SWE c/CS2103T d/Teach students SWE principles and practices t/ModuleCoordinator`
-* `madd n/Introduction to Cybersecurity c/CS2107 d/Cryptography practices t/IMPT t/URGENT`
-
-![madd](images/userguide/madd.png)
+* `madd n/Introduction to Cybersecurity c/CS2107 d/Cryptography practices t/NEW t/URGENT`
 
 ### Listing all students : `list`
 
@@ -118,11 +116,24 @@ Examples:
 ### Viewing list of modules : `mlist`
 
 Shows a list of all modules in the ProfNUS application.
+You can click on each module to view more details about the module.
 
 ![mlist](images/userguide/mlist.png)
 
 Format: `mlist`
 
+### Viewing module details : `mview`
+
+Shows a list of students and tutors in the module.
+
+![mlist](images/userguide/mview.png)
+
+Format: `mview [c/MODULE_CODE]`
+
+* Views the list of students and tutors at the specified `MODULE_CODE`.
+
+Examples:
+*  `mview c/CS1101S` Views the list of students and tutors in CS1101S.
 
 ### Editing a student : `editstu`
 
@@ -214,8 +225,6 @@ Format: `mdel c/MODULE CODE`
 
 Examples:
 * `mdel c/CS2103T`
-
-![mdel](images/userguide/mdel.png)
 
 ### Clearing all entries : `clear`
 
