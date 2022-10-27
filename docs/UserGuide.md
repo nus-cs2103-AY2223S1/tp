@@ -78,7 +78,7 @@ Format: `help`
 
 Adds a person to PayMeLah.
 
-Format: `add n/<name> p/<phone number> e/<email> a/<address> [t/<tag>]…`
+Format: `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -153,7 +153,7 @@ Format: `listdebtors`
 
 Edits an existing person in PayMeLah.
 
-Format: `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag>]…`
+Format: `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
 * Edits the person at the specified `<index>`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -164,26 +164,25 @@ Format: `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t
 * Cannot be used to modify a person's debts
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and telegram handle of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons who match all the given conditions.
 
-Format: `find <keyword> [<more keywords>]`
+Format: `find [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag> ...]
+[d/<description> ...] [m/<money> ...] [date/<date> ...] [time/<time> ...]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Name and Address are case-insensitive partial matches. All other fields are exact matches.
+* The order of the conditions does not matter.
+  e.g. `d/burger n/hans` will match `Bo Hans` if he owes money for a burger.
+* Only persons matching all conditions will be returned (i.e. `AND` search).
+  e.g. `d/burger n/hans` will return `Hans Gruber` only if he owes money for a burger,
+  but not `Bo Yang` even if he owes money for a burger. 
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/John` returns `john` and `John Doe`
 
 ### Locating persons by debt description: `finddebt`
 
@@ -253,11 +252,11 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 
 Action | Format, Examples
 --------|------------------
-**Add person** | `add n/<name> p/<phone number> e/<email> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add person** | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Add debt** | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`
 **Clear** | `clear`
 **Delete** | `delete <index>`<br> e.g., `delete 3`
-**Edit** | `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`
 **Find** | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`
 **Find debts** | `finddebt <keyword> [<more keywords>]`<br> e.g., `finddebt burger`
 **List** | `list`

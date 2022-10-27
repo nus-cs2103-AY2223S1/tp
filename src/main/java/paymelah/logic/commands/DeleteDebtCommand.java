@@ -15,10 +15,10 @@ import paymelah.model.Model;
 import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
-import paymelah.model.person.Email;
 import paymelah.model.person.Name;
 import paymelah.model.person.Person;
 import paymelah.model.person.Phone;
+import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 
 /**
@@ -31,7 +31,7 @@ public class DeleteDebtCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a specific debt of the person identified by the index number "
-            + "used in the displayed person list. The debt is specified by the index number "
+            + "used in the displayed person list.\nThe debt is specified by the index number "
             + "of the debt displayed in the person's debt field. Multiple debts may be specified.\n"
             + "Parameters: PERSON_INDEX (must be a positive integer) "
             + PREFIX_DEBT + "DEBT_INDEX... (must be a positive integer. multiple indexes must "
@@ -80,9 +80,6 @@ public class DeleteDebtCommand extends Command {
 
         Person updatedDebtor = createReducedDebtor(debtorToUpdate, debtsToDelete);
 
-        model.setPerson(debtorToUpdate, updatedDebtor);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
         String result = String.format(MESSAGE_DELETE_DEBT_SUCCESS, updatedDebtor.getName());
         StringBuilder builder = new StringBuilder(result);
 
@@ -94,11 +91,15 @@ public class DeleteDebtCommand extends Command {
             i++;
         }
 
+        model.saveAddressBook();
+        model.saveCommandMessage(builder.toString());
+        model.setPerson(debtorToUpdate, updatedDebtor);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(builder.toString());
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code debtorToClear}
+     * Creates and returns a {@code Person} with the details of {@code debtorToReduce}
      * with no debts.
      *
      * @param debtorToReduce {@code Person} within addressbook to have the specified {@code Debt}s deleted.
@@ -111,7 +112,7 @@ public class DeleteDebtCommand extends Command {
 
         Name name = debtorToReduce.getName();
         Phone phone = debtorToReduce.getPhone();
-        Email email = debtorToReduce.getEmail();
+        Telegram telegram = debtorToReduce.getTelegram();
         Address address = debtorToReduce.getAddress();
         Set<Tag> tags = debtorToReduce.getTags();
         DebtList reducedDebts = debtorToReduce.getDebts();
@@ -122,7 +123,7 @@ public class DeleteDebtCommand extends Command {
         }
 
 
-        return new Person(name, phone, email, address, tags, reducedDebts);
+        return new Person(name, phone, telegram, address, tags, reducedDebts);
     }
 
     @Override

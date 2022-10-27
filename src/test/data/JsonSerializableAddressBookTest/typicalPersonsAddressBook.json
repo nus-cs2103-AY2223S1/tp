@@ -3,81 +3,87 @@
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
-    "email" : "alice@example.com",
+    "telegram" : "alice_handle",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
     "debts" : [ {
       "description" : "McDonald's",
       "money" : "10.80",
       "date" : "2022-10-11",
-      "time" : "12:34"
+      "time" : "12:34",
+      "isPaid": false
     } ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
-    "email" : "johnd@example.com",
+    "telegram" : "johnd_handle",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
     "debts" : [ {
       "description" : "burger king",
       "money" : "10.40",
       "date" : "2022-09-28",
-      "time" : "00:00"
+      "time" : "00:00",
+      "isPaid": false
     } ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
-    "email" : "heinz@example.com",
+    "telegram" : "heinz_handle",
     "address" : "wall street",
     "tagged" : [ ],
     "debts" : [ {
       "description" : "coop textbooks",
       "money" : "29.60",
       "date" : "2022-10-07",
-      "time" : "17:45"
+      "time" : "17:45",
+      "isPaid": false
     } ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
-    "email" : "cornelia@example.com",
+    "telegram" : "cornelia_handle",
     "address" : "10th street",
     "tagged" : [ "friends" ],
     "debts" : [ ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
-    "email" : "werner@example.com",
+    "telegram" : "werner_handle",
     "address" : "michegan ave",
     "tagged" : [ ],
     "debts" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
-    "email" : "lydia@example.com",
+    "telegram" : "lydia_handle",
     "address" : "little tokyo",
     "tagged" : [ ],
     "debts" : [ {
       "description" : "Taobao group buy",
       "money" : "34.52",
       "date" : "2022-10-12",
-      "time" : "10:00"
+      "time" : "10:00",
+      "isPaid": false
     } ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
-    "email" : "anna@example.com",
+    "telegram" : "anna_handle",
     "address" : "4th street",
     "tagged" : [ ],
     "debts" : [ {
       "description" : "kfc zinger burger",
       "money" : "4.50",
       "date" : "2022-10-11",
-      "time" : "18:23"
+      "time" : "18:23",
+      "isPaid": false
     }, {
       "description" : "supper jio",
       "money" : "4.50",
       "date" : "2022-09-12",
-      "time" : "00:00"
+      "time" : "00:00",
+      "isPaid": false
     } ]
   } ]
 }

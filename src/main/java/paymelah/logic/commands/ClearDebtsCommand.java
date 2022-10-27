@@ -12,10 +12,10 @@ import paymelah.logic.commands.exceptions.CommandException;
 import paymelah.model.Model;
 import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
-import paymelah.model.person.Email;
 import paymelah.model.person.Name;
 import paymelah.model.person.Person;
 import paymelah.model.person.Phone;
+import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 
 /**
@@ -56,6 +56,8 @@ public class ClearDebtsCommand extends Command {
         Person debtorToClear = lastShownList.get(index.getZeroBased());
         Person clearedDebtor = createClearedDebtor(debtorToClear);
 
+        model.saveAddressBook();
+        model.saveCommandMessage(String.format(MESSAGE_CLEAR_DEBTS_SUCCESS, clearedDebtor.getName()));
         model.setPerson(debtorToClear, clearedDebtor);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_CLEAR_DEBTS_SUCCESS, clearedDebtor.getName()));
@@ -73,12 +75,12 @@ public class ClearDebtsCommand extends Command {
 
         Name updatedName = debtorToClear.getName();
         Phone updatedPhone = debtorToClear.getPhone();
-        Email updatedEmail = debtorToClear.getEmail();
+        Telegram updatedHandle = debtorToClear.getTelegram();
         Address updatedAddress = debtorToClear.getAddress();
         Set<Tag> updatedTags = debtorToClear.getTags();
         DebtList updatedDebts = new DebtList();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedDebts);
+        return new Person(updatedName, updatedPhone, updatedHandle, updatedAddress, updatedTags, updatedDebts);
     }
 
     @Override

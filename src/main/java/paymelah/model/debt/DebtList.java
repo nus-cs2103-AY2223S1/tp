@@ -52,6 +52,15 @@ public class DebtList {
     }
 
     /**
+     * Compares this DebtList's earliest Debt's DateTime to that of another DebtList.
+     */
+    public int compareEarliestDebtDateTimeWith(DebtList o) {
+        assert !isEmpty() && !o.isEmpty() : "compareEarliestDebtDateTimeWith should not be called "
+                                                + "when DebtLists are empty";
+        return debts.get(0).compareDateTimeWith(o.debts.get(0));
+    }
+
+    /**
      * Adds a debt to the list.
      *
      * @param toAdd The debt to add to the list.
@@ -60,7 +69,15 @@ public class DebtList {
     public DebtList addDebt(Debt toAdd) {
         requireNonNull(toAdd);
         DebtList edited = new DebtList(this);
-        edited.debts.add(toAdd);
+
+        int index = 0;
+        for (Debt prevDebt : edited.debts) {
+            if (toAdd.compareDateTimeWith(prevDebt) < 0) {
+                break;
+            }
+            index++;
+        }
+        edited.debts.add(index, toAdd);
         edited.totalDebt = totalDebt.add(toAdd.getMoney().getValue());
         return edited;
     }
@@ -79,6 +96,52 @@ public class DebtList {
         DebtList edited = new DebtList(this);
         edited.debts.remove(toRemove);
         edited.totalDebt = totalDebt.subtract(toRemove.getMoney().getValue());
+        return edited;
+    }
+
+    /**
+     * Marks a debt from the list as paid.
+     *
+     * @param toMark The debt to mark as paid from the list.
+     * @return The modified {@code DebtList}.
+     */
+    public DebtList markDebt(Debt toMark) {
+        requireNonNull(toMark);
+        if (!contains(toMark)) {
+            throw new DebtNotFoundException();
+        }
+
+        if (toMark.isPaid()) {
+            return this;
+        }
+
+        DebtList edited = new DebtList(this);
+        edited.debts.remove(toMark);
+        edited.debts.add(toMark.setPaid(true));
+        edited.totalDebt = totalDebt.subtract(toMark.getMoney().getValue());
+        return edited;
+    }
+
+    /**
+     * Marks a debt from the list as unpaid.
+     *
+     * @param toUnmark The debt to mark as unpaid from the list.
+     * @return The modified {@code DebtList}.
+     */
+    public DebtList unmarkDebt(Debt toUnmark) {
+        requireNonNull(toUnmark);
+        if (!contains(toUnmark)) {
+            throw new DebtNotFoundException();
+        }
+
+        if (!toUnmark.isPaid()) {
+            return this;
+        }
+
+        DebtList edited = new DebtList(this);
+        edited.debts.remove(toUnmark);
+        edited.debts.add(toUnmark.setPaid(false));
+        edited.totalDebt = totalDebt.add(toUnmark.getMoney().getValue());
         return edited;
     }
 

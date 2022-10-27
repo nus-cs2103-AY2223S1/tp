@@ -20,9 +20,12 @@ import paymelah.logic.commands.FindDebtCommand;
 import paymelah.logic.commands.HelpCommand;
 import paymelah.logic.commands.ListCommand;
 import paymelah.logic.commands.ListDebtorsCommand;
+import paymelah.logic.commands.MarkCommand;
 import paymelah.logic.commands.SortCommand;
 import paymelah.logic.commands.SplitDebtCommand;
 import paymelah.logic.commands.StatementCommand;
+import paymelah.logic.commands.UndoCommand;
+import paymelah.logic.commands.UnmarkCommand;
 import paymelah.logic.parser.exceptions.ParseException;
 
 /**
@@ -70,6 +73,12 @@ public class AddressBookParser {
         case DeleteDebtCommand.COMMAND_WORD:
             return new DeleteDebtCommandParser().parse(arguments);
 
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
+
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -99,6 +108,9 @@ public class AddressBookParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
