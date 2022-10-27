@@ -239,10 +239,13 @@ Examples:
 
 Finds persons who match all the given conditions.
 
-Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…
-[d/<debt description>]… [m/<debt money>]… [date/<debt date>]… [time/<debt time>]…`
+Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>…]
+[d/<description>…] [m/<money>…] [above/<money>] [below/<money>]
+[date/<date>…] [before/<date>] [after/<date>] [time/<time>…]`
 
 * Name and Address are case-insensitive partial matches. All other fields are exact matches.
+* The above and below fields look for people with a debt that lies in the specified monetary range.
+* The before and after fields look for people with a debt that lies within the specified date range.
 * The order of the conditions does not matter.
   e.g. `d/burger n/hans` will match `Hansel` if he owes money for a burger.
 * Only persons matching all conditions will be returned (i.e. `AND` search).
@@ -333,7 +336,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Clear**         | `clear`                                                                                                                                                                                                            |
 | **Delete**        | `delete <index>`<br> e.g., `delete 3`                                                                                                                                                                              |
 | **Edit**          | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                                                               |
-| **Find**          | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]… [d/<debt description>]… [m/<debt money>]… [date/<debt date>]… [time/<debt time>]…`<br> e.g., `find d/bowling t/friends t/classmate` |
+| **Find**          | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag> ...] [d/<description> ...] [m/<money> ...] [above/<money>] [below/<money>] [date/<date> ...] [before/<date>] [after/<date>] [time/<time> ...]`<br> e.g., `find d/burger above/10.0`                                                                                                                                                                                                           |
 | **Find debts**    | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                          |
 | **List**          | `list`                                                                                                                                                                                                             |
 | **List debtors**  | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                             |
