@@ -152,6 +152,16 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public boolean hasSpecificMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeeting(Meeting target, Meeting editedMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addProduct(Product product) {
             throw new AssertionError("This method should not be called.");
         }
