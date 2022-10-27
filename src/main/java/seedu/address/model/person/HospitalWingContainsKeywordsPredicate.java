@@ -1,7 +1,9 @@
 package seedu.address.model.person;
+
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Person}'s {@code Hospital Wing} matches any of the keywords given.
@@ -14,9 +16,7 @@ public class HospitalWingContainsKeywordsPredicate implements Predicate<Person> 
      * @param keywords patients' hospital wings
      */
     public HospitalWingContainsKeywordsPredicate(List<String> keywords) {
-        this.hospitalWings = keywords.stream()
-                .map(String::toLowerCase)
-                .collect(Collectors.toList());
+        this.hospitalWings = keywords;
     }
 
     /**
@@ -26,10 +26,11 @@ public class HospitalWingContainsKeywordsPredicate implements Predicate<Person> 
      */
     @Override
     public boolean test(Person person) {
-        Boolean isInpatient = person.getPatientType().value.equals(PatientType.PatientTypes.INPATIENT);
+        boolean isInpatient = person.getPatientType().value.equals(PatientType.PatientTypes.INPATIENT);
         if (isInpatient) {
             return hospitalWings.stream()
-                    .anyMatch(hospitalWing -> person.getHospitalWing().get().value.equals(hospitalWing));
+                    .anyMatch(hospitalWing ->
+                            StringUtil.containsWordIgnoreCase(person.getHospitalWing().get().value, hospitalWing));
         }
         return false;
     }

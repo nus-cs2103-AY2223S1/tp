@@ -15,7 +15,7 @@ public class FloorNumberPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        Boolean isInpatient = person.getPatientType().value.equals(PatientType.PatientTypes.INPATIENT);
+        boolean isInpatient = person.getPatientType().value.equals(PatientType.PatientTypes.INPATIENT);
         if (isInpatient) {
             return floorNumbers.stream()
                     .anyMatch(floorNumber -> person.getFloorNumber().get().value.equals(floorNumber));

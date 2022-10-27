@@ -24,12 +24,12 @@ public class GetHospitalWingCommandParserTest {
     public void parse_validArgs_returnsGetHospitalWingCommand() {
         // no leading and trailing whitespaces
         GetHospitalWingCommand expectedGetHospitalWingCommand =
-                new GetHospitalWingCommand(new HospitalWingContainsKeywordsPredicate(Arrays.asList("south")));
-        assertParseSuccess(parser, "south", expectedGetHospitalWingCommand);
-        // mixed cases
+                new GetHospitalWingCommand(new HospitalWingContainsKeywordsPredicate(Arrays.asList("South", "East")));
+        assertParseSuccess(parser, "South East", expectedGetHospitalWingCommand);
+        // multiple whitespaces between keywords
         expectedGetHospitalWingCommand =
-                new GetHospitalWingCommand(new HospitalWingContainsKeywordsPredicate(Arrays.asList("souTh")));
-        assertParseSuccess(parser, "south", expectedGetHospitalWingCommand);
+                new GetHospitalWingCommand(new HospitalWingContainsKeywordsPredicate(Arrays.asList("South", "East")));
+        assertParseSuccess(parser, "\n South \n \t East  \t", expectedGetHospitalWingCommand);
     }
 
 }
