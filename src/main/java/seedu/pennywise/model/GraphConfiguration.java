@@ -28,8 +28,13 @@ public class GraphConfiguration {
     }
 
     /**
-     * Constructs and returns a default configuration for the graph, where the entry type is specified
-     * as "Expenditure", graph type is specified as "Category" and the graph should be updated.
+     * Constructs and returns a default configuration for the graph, where the:
+     *
+     * <ul>
+     *     <li>Entry type is specified as "Expenditure"</li>
+     *     <li>Graph type is specified as "Category"</li>
+     *     <li>Graph should not be updated</li>
+     * </ul>
      *
      * @return Default construction of graph configuration.
      */
@@ -56,6 +61,7 @@ public class GraphConfiguration {
         if (other == this) {
             return true;
         }
+        // instanceof handles nulls
         if (!(other instanceof GraphConfiguration)) {
             return false;
         }

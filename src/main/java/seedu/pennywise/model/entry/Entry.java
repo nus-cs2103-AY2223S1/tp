@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
- * Represents an Entry in the PennyWise application.
+ * Represents an {@code Entry} in the PennyWise application.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public abstract class Entry {
@@ -23,6 +23,7 @@ public abstract class Entry {
      * Every field must be present and not null.
      */
     public Entry(Description description, Date date, Amount amount, Tag tag) {
+        // Check the preconditions
         requireAllNonNull(date, amount, description, tag);
         this.date = date;
         this.amount = amount;

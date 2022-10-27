@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.pennywise.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the penny wise application.
+ * Represents a Tag in the PennyWise application.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(EntryType, String)}
  */
 public class Tag {
@@ -15,7 +15,6 @@ public class Tag {
     public static final String EXPENDITURE_CONSTRAINTS = "Expenditure tag must only be one of the following: \n"
             + ExpenditureTag.getAllTags();
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
 
     /**
      * Wrapper for tags.
@@ -134,6 +133,8 @@ public class Tag {
 
     /**
      * Returns true if a given string is a valid tag name.
+     *
+     * @return True if a given string is a valid tag name.
      */
     public static boolean isValidTagName(EntryType type, String test) {
         if (!test.matches(VALIDATION_REGEX)) {
@@ -151,14 +152,16 @@ public class Tag {
             }
             break;
         default:
-            break;
+            return false;
         }
         return true;
 
     }
 
     /**
-     * Gets tagName
+     * Returns the name of the tag.
+     *
+     * @return Name of the tag.
      */
     public String getTagName() {
         return tag.toString();
@@ -178,7 +181,9 @@ public class Tag {
     }
 
     /**
-     * Format state as text for viewing.
+     * Formats the tag as text for viewing.
+     *
+     * @return Formatted tag.
      */
     public String toString() {
         return tag.toString();

@@ -20,7 +20,7 @@ public class EntryType {
             + "' for income";
     public static final String VALIDATION_REGEX = "^\\s*([ei])\\s*$";
     /**
-     * Types that can be used
+     * Types that can be used.
      */
     public enum Type {
         EXPENDITURE() {
@@ -39,7 +39,9 @@ public class EntryType {
         };
 
         /**
-         * Factory method that creates a returns a {@code Type} with the input of {@code entryType}
+         * Creates a {@code Type} with the input of {@code entryType}
+         *
+         * @return Created entry type enumeration based on the given string.
          */
         public static Type of(String entryType) {
             boolean isExpenditureEntry = entryType.equals(ENTRY_TYPE_EXPENDITURE);

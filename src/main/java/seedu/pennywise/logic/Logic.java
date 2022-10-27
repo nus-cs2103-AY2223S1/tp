@@ -13,7 +13,7 @@ import seedu.pennywise.model.ReadOnlyPennyWise;
 import seedu.pennywise.model.entry.Entry;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface Logic {
     /**

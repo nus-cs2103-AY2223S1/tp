@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.pennywise.model.entry.Entry;
 
 /**
- * An UI component that displays information of a {@code entry}.
+ * A UI component that displays information of a {@code entry}.
  */
 public class EntryCard extends UiPart<Region> {
 

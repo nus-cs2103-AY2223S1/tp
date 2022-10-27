@@ -7,7 +7,7 @@ import static seedu.pennywise.commons.util.AppUtil.checkArgument;
 import java.text.DecimalFormat;
 
 /**
- * Represents an Entry's amount in the penny wise application.
+ * Represents an {@code Entry}'s amount in the PennyWise application.
  * Guarantees: immutable; is valid as declared in {@link #isValidAmount(String)}
  */
 public class Amount {
@@ -46,13 +46,16 @@ public class Amount {
         return new Amount(String.valueOf(amount1.getValue() + amount2.getValue()));
     }
 
+    /**
+     * Returns the representation of the amount in currency format.
+     */
+    public String toFormattedString() {
+        return "$" + df.format(this.amount);
+    }
+
     @Override
     public String toString() {
         return amountString;
-    }
-
-    public String toFormattedString() {
-        return "$" + df.format(this.amount);
     }
 
     @Override

@@ -19,13 +19,13 @@ import seedu.pennywise.model.entry.Income;
 import seedu.pennywise.model.entry.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new {@code AddCommand} object.
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code AddCommand}
+     * and returns an {@code AddCommand} object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -53,7 +53,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             Income income = new Income(description, date, amount, tag);
             return new AddCommand(income, entryType);
         default:
-            //should never reach here
+            // should never reach here
             break;
         }
         throw new ParseException(EntryType.MESSAGE_CONSTRAINTS);
