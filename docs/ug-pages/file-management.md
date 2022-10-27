@@ -45,7 +45,8 @@ Examples:
 Deletes the specified data file if it exists.
 
 Format: `file delete FILE_NAME`
-* Does not delete the file if it is the data file that is currently open. You may switch to a different file before deleting the previously open data file.
+* Does not delete the file if it is the data file that is currently open. You may switch to a different file before 
+  deleting the previously open data file.
 * The file must be a `.json` file.
 
 :information source: `FILE_NAME` must follow this [format](#file-command-format).
@@ -74,7 +75,8 @@ Examples:
 
 ### Importing from CSV file : `file import`
 
-RC4HDB provides users with the ability to import data from `.csv` files. In order for RC4HDB to find your files, place them in the data folder, `[JAR file location]/data`.
+RC4HDB provides users with the ability to import data from `.csv` files. In order for RC4HDB to find your files, place 
+them in the data folder, `[JAR file location]/data`.
 
 Format: `file import FILE_NAME`
 

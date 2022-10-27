@@ -11,13 +11,17 @@ fields from being seen, find specific residents, and search residents whose fiel
 Lists *all* the residents in the RC4HDB database. If the table view is showing a filtered portion of the residents,
 calling `list` will restore and display the full list of residents.
 
-Additionally, the `list` command allows you to specify fields (represented as columns) to **include** or **exclude** when listing! Use `list /i` or `list /e` followed by the first letter of each field to include or exclude from the table.
+Additionally, the `list` command allows you to specify fields (represented as columns) to **include** or **exclude**
+when listing! 
+Use `list /i` or `list /e` followed by the first letter of each field to include or exclude from the table.
 
 Format:
 
 - `list` to display *all* residents from the database with *all* columns included in the table
-- `list /i LETTER [MORE_LETTERS]` to display *all* residents from the database while **including** in the table view only the fields corresponding to the specified letters.
-- `list /e LETTER [MORE_LETTERS]` to display *all* residents from the database while **excluding** from the table view only the fields corresponding to the specified letters.
+- `list /i LETTER [MORE_LETTERS]` to display *all* residents from the database while **including** in
+  the table view only the fields corresponding to the specified letters.
+- `list /e LETTER [MORE_LETTERS]` to display *all* residents from the database while 
+  **excluding** from the table view only the fields corresponding to the specified letters.
 
 Examples:
 
@@ -27,13 +31,19 @@ Examples:
 
 Note:
 
-- Each field to be included or excluded from the table should be entered as a *single letter*, that is, the first letter of the corresponding field name.
-- The relative order of each letter *does not matter*, and the letters can be in either upper or lower case. Duplicate letters are ignored.
-- Only letters corresponding to the first letter of a valid field in the table can be specified, *any other letter will be considered invalid*.
+- Each field to be included or excluded from the table should be entered as a *single letter*, that is, 
+  the first letter of the corresponding field name.
+- The relative order of each letter *does not matter*, and the letters can be in either upper or lower case. 
+  Duplicate letters are ignored.
+- Only letters corresponding to the first letter of a valid field in the table can be specified, 
+  *any other letter will be considered invalid*.
 - Letters *must* be separated by a single whitespace. 
 - There needs to be at least one field (and hence column) included in the table view at all times.
   
-*(For advanced users!)* The `list` command, as well as the `list /i` and `list /e` extensions, are [*idempotent*](glossary.md#idempotent) and [*state-independent*](glossary.md#state-independent). This means that using the `list` command with a set of *(optional)* letters will return the same result regardless of what the current table looks like. Calling the same command again will not change the table view any further.
+*(For advanced users!)* The `list` command, as well as the `list /i` and `list /e` extensions, are 
+[*idempotent*](glossary.md#idempotent) and [*state-independent*](glossary.md#state-independent). This means that
+using the `list` command with a set of *(optional)* letters will return the same result regardless of what the current 
+table looks like. Calling the same command again will not change the table view any further.
 
 ---
 
@@ -41,7 +51,8 @@ Note:
 
 Shows only the specified columns in the **current** table view.
 
-If your screen is too cluttered, just use `showonly` to show only the columns you need! This command works similar to `list /i`, with two key differences:
+If your screen is too cluttered, just use `showonly` to show only the columns you need! 
+This command works similar to `list /i`, with two key differences:
 
 1. You can only use `showonly` on existing columns in the current table view, and
 2. The `showonly` command does not modify the list of residents being displayed. Filtered residents stay filtered!
@@ -51,18 +62,23 @@ Format: `showonly LETTER [MORE_LETTERS]`
 Examples **(sequential)**:
 
 - `showonly n p e` on a full table returns a table with only the *name*, *phone* and *email* columns shown.
-- Calling `showonly r g h` on the table from the previous point is **invalid** as the *room*, *gender* and *house* columns are not shown in the present table.
-- However, calling `showonly n e` on said table is **valid**, and will return a table with only the *name* and *email* columns shown.
+- Calling `showonly r g h` on the table from the previous point is **invalid** as the *room*, *gender* and 
+  *house* columns are not shown in the present table.
+- However, calling `showonly n e` on said table is **valid**, and will return a table with only the *name* and 
+  *email* columns shown.
 
 Note:
 
-- Like in `list`, each column to be shown should be entered as a single letter that corresponds to the first letter of the column to be shown.
-- The relative order of each letter does not matter, and the letters can be in either upper or lower case. Duplicate letters are ignored.
+- Like in `list`, each column to be shown should be entered as a single letter that corresponds to the first 
+  letter of the column to be shown.
+- The relative order of each letter does not matter, and the letters can be in either upper or lower case. 
+  Duplicate letters are ignored.
 - Similarly, letters *must* be separated by a single whitespace. 
 - Only valid letters can be specified, and there needs to be at least one column shown in the table at all times.
 - You can always `reset` the table to the full, default view at any time!
 
-*(For advanced users!)* Notice that `showonly`, unlike `list /i`, is dependent on the state of the current table. Hence, some calls to `showonly` may be invalid if the specified columns are not present in the current table view.
+*(For advanced users!)* Notice that `showonly`, unlike `list /i`, is dependent on the state of the current table.
+Hence, some calls to `showonly` may be invalid if the specified columns are not present in the current table view.
 
 ---
 
@@ -70,28 +86,36 @@ Note:
 
 Hides only the specified columns in the **current** table view.
 
-Use `hideonly` if there are more columns to show than hide. Like `showonly`, `hideonly` differs from `list` in the following ways:
+Use `hideonly` if there are more columns to show than hide. Like `showonly`, `hideonly` differs from `list` in the 
+following ways:
 
 1. You can only use `hideonly` on existing columns in the current table view, and
-2. The `hideonly` command does not modify the list of residents being displayed. Residents found using `find` stay displayed in the table!
+2. The `hideonly` command does not modify the list of residents being displayed. Residents found using `find` stay 
+   displayed in the table!
 
 Format: `hideonly LETTER [MORE_LETTERS]`
 
 Examples **(sequential)**:
 
-- `hideonly n p e m t` on a full table returns a table with only the *name*, *phone*, *email*, *matric* and *tags* columns hidden. In other words, we get a table showing only the *index*, *room*, *gender* and *house* columns.
-- Calling `hideonly n e` on the table from the previous point is **invalid** as the *name* and *email* columns are not currently shown in the present table.
-- However, calling `hideonly i h` on said table is **valid**, and will return a table with only the *room* and *gender* columns shown, as the *index* and *house* columns have been hidden.
+- `hideonly n p e m t` on a full table returns a table with only the *name*, *phone*, *email*, *matric* and *tags* 
+  columns hidden. In other words, we get a table showing only the *index*, *room*, *gender* and *house* columns.
+- Calling `hideonly n e` on the table from the previous point is **invalid** as the *name* and *email* columns are not 
+  currently shown in the present table.
+- However, calling `hideonly i h` on said table is **valid**, and will return a table with only the *room* and *gender*
+  columns shown, as the *index* and *house* columns have been hidden.
 
 Note:
 
-- Like in `list`, each column to be hidden should be entered as a single letter that corresponds to the first letter of the column to be shown.
-- The relative order of each letter does not matter, and the letters can be in either upper or lower case. Duplicate letters are ignored.
+- Like in `list`, each column to be hidden should be entered as a single letter that corresponds to the first letter 
+  of the column to be shown.
+- The relative order of each letter does not matter, and the letters can be in either upper or lower case. 
+  Duplicate letters are ignored.
 - Similarly, letters *must* be separated by a single whitespace.
 - Only valid letters can be specified, and there needs to be at least one column shown in the table at all times.
 - You can always `reset` the table to the full, default view at any time!
 
-*(For advanced users!)* Notice that `hideonly`, unlike `list /i`, is dependent on the state of the current table. Hence, some calls to `hideonly` may be invalid if the specified columns are not present in the current table view.
+*(For advanced users!)* Notice that `hideonly`, unlike `list /i`, is dependent on the state of the current table. 
+Hence, some calls to `hideonly` may be invalid if the specified columns are not present in the current table view.
 
 ---
 

@@ -3,8 +3,8 @@ layout: page
 title: Modifying Residents
 ---
 
-In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear` to help
-you manipulate residents within RC4HDB.
+In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear`
+to help you manipulate residents within RC4HDB.
 
 ---
 
@@ -28,8 +28,10 @@ A resident can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnDoe@gmail.com r/5-1 g/M h/D m/A9876543B` adds a resident named John Doe, with relevant personal and student information.
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/2-3 p/1234567 m/A3456789B g/F h/A` adds a resident named Betsy Crowe, with relevant personal and student information.
+* `add n/John Doe p/98765432 e/johnDoe@gmail.com r/5-1 g/M h/D m/A9876543B` adds a resident named John Doe, with 
+  relevant personal and student information.
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/2-3 p/1234567 m/A3456789B g/F h/A` adds a resident named 
+  Betsy Crowe, with relevant personal and student information.
 
 ---
 
@@ -48,7 +50,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER
 * You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 r/5-8` Edits the phone number, room number of the 1st resident to be `91234567`, and `5-8` respectively.
+*  `edit 1 p/91234567 r/5-8` Edits the phone number, room number of the 1st resident to be `91234567`, and `5-8` 
+   respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd resident to be `Betsy Crower` and clears all existing tags.
 
 ---

@@ -3,7 +3,8 @@ layout: page
 title: Quality-Of-Life
 ---
 As a CLI-optimized application, RC4HDB may not be the most intuitive for someone that is used to using the mouse. As
-such, we have provided several simple *Quality-of-life* features that we hope can improve your experience of using RC4HDB.
+such, we have provided several simple *Quality-of-life* features that we hope can improve your experience of using 
+RC4HDB.
 
 ## Keyboard shortcuts
 
