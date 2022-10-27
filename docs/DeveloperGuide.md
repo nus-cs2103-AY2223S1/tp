@@ -328,17 +328,18 @@ The `export` feature allows the user to export the displayed list in InternConne
 #### Implementation
 
 `exportCommand` class is used in the execution of `export` command. 
-`Storage#saveDisplayedList()` is called to save the JSON file in `data/export/` folder.
+`Storage#exportDisplayedList(displayedList, filePath)` is called to save the JSON file in `data/export/` folder.
 
 Given below is an example success scenario and how the `export` mechanism behaves at each step.
 
 1. The user executes `export`.
-2. `LogicManager` calls `AddressBookParser#parseCommand()`.
-3. `AddressBookParser#parseCommand()` calls `ExportCommand#execute()`.
+2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`.
+3. `LogicManager` calls `ExportCommand#execute(model, storage)`.
 4. `ExportCommand` gets current DateTime and use it for the output JSON file path.
 5. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`.
-6. `ExportCommand` calls `Storage#saveDisplayedList()`
+6. `ExportCommand` calls `Storage#exportDisplayedList()`
 7. The displayedList is stored as a JSON file in `data/export/<currentDateTime>.json`.
+8. A `CommandResult` object indicating that the `export` command is successful will be created.
 
 The following sequence diagram shows how the `export` command works:
 
