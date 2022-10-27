@@ -76,7 +76,7 @@ public class UniqueCommissionList implements Iterable<Commission> {
     }
 
     /**
-     * Returns the number of commissions that are not started.
+     * Returns the number of commissions that are in progress.
      */
     public long getInProgressSize() {
         return internalList.stream()
