@@ -6,23 +6,26 @@ start
 :User executes "assigntask" command;
 :Command is parsed;
 
-if () then ([inputs are not empty])
-    :Check validity of inputs;
-
-    if () then ([valid username and group name])
-        :Check whether user in group;
-        if () then ([user in group])
-            : Set the person with the new assigned task;
+if () then ([parameters are parsed correctly])
+    :Executes;
+    if () then ([group and person exist in TABS])
+    :Obtain group and person from Model;
+        if () then ([person is a member of group])
+        :Check person's assignment list;
+            if () then ([person does not have assignment])
+            :AssignTaskCommand performs assignment of task;
+            :Return CommandResult to LogicManager;
+            else ([else])
+            :Throw CommandException indicating person has duplicate task;
+            endif
         else ([else])
-            :Throw CommandException;
+        :Throw CommandException indicating person not a member;
         endif
     else ([else])
-        :Throw CommandException;
+    :Throw CommandException for missing group/person;
     endif
-
 else ([else])
-    :Throw ParseException;
-
+: Throw ParseException;
 endif
 
 stop
