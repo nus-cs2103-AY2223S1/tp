@@ -20,7 +20,7 @@ public class ExportPdfCommand extends Command {
             + ": export current itinerary to PDF\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_EXPORT_SUCCESS = "PDF created!";
+    public static final String MESSAGE_EXPORT_SUCCESS = "PDF created! Find your document in the data folder.";
     public static final String MESSAGE_EXPORT_FAILURE = "Failed to export!";
 
     public static final String MESSAGE_EXPORT_WRONG_STAGE = "Please select an itinerary before exporting.";
@@ -36,8 +36,8 @@ public class ExportPdfCommand extends Command {
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
         try {
-            String exportTemplate = "./src/main/resources/template/waddle_template.pdf";
-            PdfFiller pdfFiller = new PdfFiller(itinerary, exportTemplate);
+            String pdfTemplate = "/template/waddle_template.pdf";
+            PdfFiller pdfFiller = new PdfFiller(itinerary, pdfTemplate);
             pdfFiller.fillItinerary();
         } catch (IOException e) {
             return new CommandResult(MESSAGE_EXPORT_FAILURE);

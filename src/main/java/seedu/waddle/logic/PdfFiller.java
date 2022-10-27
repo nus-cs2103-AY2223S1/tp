@@ -1,7 +1,7 @@
 package seedu.waddle.logic;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +11,10 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 
 import seedu.waddle.model.item.Day;
+import seedu.waddle.model.item.Item;
+import seedu.waddle.model.item.UniqueItemList;
 import seedu.waddle.model.itinerary.Itinerary;
+import seedu.waddle.model.text.Text;
 
 /**
  * Class to fill pdf acroform with itinerary details.
@@ -19,9 +22,10 @@ import seedu.waddle.model.itinerary.Itinerary;
 public class PdfFiller {
     public static final int MAX_DISPLAY = 15;
     private Itinerary itinerary;
-    private File pdfTemplate;
+    private String pdfTemplate;
     private List<PDDocument> pdfList;
     private PDDocument finalPdf;
+
 
     /**
      * Constructor for a PdfFiller
@@ -31,8 +35,7 @@ public class PdfFiller {
      */
     public PdfFiller(Itinerary itinerary, String pdfTemplate) throws IOException {
         this.itinerary = itinerary;
-        File file = new File(pdfTemplate);
-        this.pdfTemplate = file;
+        this.pdfTemplate = pdfTemplate;
         this.pdfList = new ArrayList<>();
         this.finalPdf = new PDDocument();
     }
@@ -43,10 +46,24 @@ public class PdfFiller {
         fieldList.add(field);
     }
 
-    private void fillForm(List<PdfFieldInfo> infoList, PDAcroForm form, List<PDField> fieldList) throws IOException {
-        for (PdfFieldInfo info : infoList) {
+    private void fillForm(Day day, List<PdfFieldInfo> infoList) throws IOException {
+
+        InputStream exportTemplate = getClass().getResourceAsStream(pdfTemplate);
+        PDDocument pdf = PDDocument.load(exportTemplate);
+        PDAcroForm form = pdf.getDocumentCatalog().getAcroForm();
+        List<PDField> fieldList = new ArrayList<>();
+        ArrayList<PdfFieldInfo> infoToFill = new ArrayList<>(infoList);
+        form.setXFA(null);
+        infoToFill.add(new PdfFieldInfo("itinerary_name", this.itinerary.getDescriptionString(Text.INDENT_NONE)));
+        infoToFill.add(new PdfFieldInfo("day", "Day " + (day.getDayNumber() + 1)));
+
+        for (PdfFieldInfo info : infoToFill) {
             fillField(info, form, fieldList);
         }
+
+        form.flatten(fieldList, true);
+        pdf.getDocumentCatalog().setAcroForm(form);
+        this.pdfList.add(pdf);
     }
 
     /**
@@ -55,16 +72,39 @@ public class PdfFiller {
      * @throws IOException When export fails.
      */
     public void fillDay(Day day) throws IOException {
-        PDDocument pdf = PDDocument.load(pdfTemplate);
-        PDAcroForm form = pdf.getDocumentCatalog().getAcroForm();
-        List<PDField> fieldList = new ArrayList<>();
-        form.setXFA(null);
-        List<PdfFieldInfo> infoToFill = day.getPdfFieldInfoList();
-        infoToFill.add(new PdfFieldInfo("itinerary_name", this.itinerary.getDescription().description));
-        fillForm(infoToFill, form, fieldList);
-        form.flatten(fieldList, true);
-        pdf.getDocumentCatalog().setAcroForm(form);
-        this.pdfList.add(pdf);
+        UniqueItemList itemList = day.getItemList();
+        int itemListSize = itemList.getSize();
+        int numOfPages = (int) Math.ceil((double) itemListSize / MAX_DISPLAY);
+        if (numOfPages == 0) {
+            List<PdfFieldInfo> fieldList = new ArrayList<>();
+            for (int i = 0; i < MAX_DISPLAY; i++) {
+                PdfFieldInfo time = new PdfFieldInfo("time" + i, "");
+                PdfFieldInfo activity = new PdfFieldInfo("item" + i, "");
+                fieldList.add(time);
+                fieldList.add(activity);
+            }
+            fillForm(day, fieldList);
+        }
+        for (int i = 0; i < numOfPages; i++) {
+            List<PdfFieldInfo> fieldList = new ArrayList<>();
+            for (int j = 0; j < MAX_DISPLAY; j++) {
+                int targetIndex = i * MAX_DISPLAY + j;
+                if (targetIndex < itemListSize) {
+                    Item item = itemList.get(targetIndex);
+                    PdfFieldInfo time = new PdfFieldInfo("time" + j,
+                            item.getTimeString(Text.INDENT_NONE).replace("Time: ", ""));
+                    PdfFieldInfo activity = new PdfFieldInfo("item" + j, item.getDescription().toString());
+                    fieldList.add(time);
+                    fieldList.add(activity);
+                } else {
+                    PdfFieldInfo time = new PdfFieldInfo("time" + j, "");
+                    PdfFieldInfo activity = new PdfFieldInfo("item" + j, "");
+                    fieldList.add(time);
+                    fieldList.add(activity);
+                }
+            }
+            fillForm(day, fieldList);
+        }
     }
 
     /**
@@ -79,7 +119,7 @@ public class PdfFiller {
             PDPage page = pdf.getPage(0);
             this.finalPdf.addPage(page);
         }
-        finalPdf.save("./data/" + this.itinerary.getDescription().description + ".pdf");
+        finalPdf.save("./data/" + this.itinerary.getDescriptionString(Text.INDENT_NONE) + ".pdf");
         finalPdf.close();
         // only can close when all operations are done
         for (PDDocument pdf : this.pdfList) {
