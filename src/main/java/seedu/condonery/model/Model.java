@@ -8,7 +8,9 @@ import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.ReadOnlyClientDirectory;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 
 /**
  * The API of the Model component.
@@ -122,6 +124,36 @@ public interface Model {
      * Returns true if a client with the same identity as {@code client} exists in the client directory.
      */
     boolean hasClient(Client client);
+
+    /**
+     * Returns true if a client whos name contains the given String exists in the client directory.
+     */
+    boolean hasClientName(String substring);
+
+    /**
+     * Returns true if only one unique client whos name contains the given String exists in the client directory.
+     */
+    boolean hasUniqueClientName(String substring);
+
+    /**
+     * Returns a unique client whos name contains the given string.
+     */
+    Client getUniqueClientByName(String substring);
+
+    /**
+     * Returns true if a property whos name contains the given String exists in the property directory.
+     */
+    boolean hasPropertyName(String substring);
+
+    /**
+     * Returns true if only one unique property whos name contains the given String exists in the property directory.
+     */
+    boolean hasUniquePropertyName(String substring);
+
+    /**
+     * Returns a unique property whos name contains the given string.
+     */
+    Property getUniquePropertyByName(String substring);
 
     /**
      * Deletes the given client.

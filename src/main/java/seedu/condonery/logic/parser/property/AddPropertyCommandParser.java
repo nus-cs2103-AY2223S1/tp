@@ -3,6 +3,7 @@ package seedu.condonery.logic.parser.property;
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
@@ -20,6 +21,7 @@ import seedu.condonery.logic.parser.Parser;
 import seedu.condonery.logic.parser.ParserUtil;
 import seedu.condonery.logic.parser.Prefix;
 import seedu.condonery.logic.parser.exceptions.ParseException;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
@@ -41,7 +43,7 @@ public class AddPropertyCommandParser implements Parser<Command> {
     public Command parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG,
-                        PREFIX_IMAGE_UPLOAD, PREFIX_PROPERTY_TYPE, PREFIX_PROPERTY_STATUS);
+                        PREFIX_IMAGE_UPLOAD, PREFIX_INTERESTEDCLIENTS, PREFIX_PROPERTY_TYPE, PREFIX_PROPERTY_STATUS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE,
                 PREFIX_PROPERTY_TYPE)
@@ -53,18 +55,19 @@ public class AddPropertyCommandParser implements Parser<Command> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Client> interestedClientList = ParserUtil.parseClients(argMultimap.getAllValues(PREFIX_INTERESTEDCLIENTS));
         PropertyTypeEnum propertyTypeEnum =
                 ParserUtil.parsePropertyType(argMultimap.getValue(PREFIX_PROPERTY_TYPE).get());
         PropertyStatusEnum propertyStatusEnum =
                 ParserUtil.parsePropertyStatus(argMultimap.getValue(PREFIX_PROPERTY_STATUS).get());
 
-        Property property = new Property(name, address, price, tagList,
+        Property property = new Property(name, address, price, tagList, interestedClientList
                 propertyTypeEnum, propertyStatusEnum);
+
 
         if (argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()) {
             return new AddPropertyCommand(property, true);
         }
-
 
         return new AddPropertyCommand(property);
     }

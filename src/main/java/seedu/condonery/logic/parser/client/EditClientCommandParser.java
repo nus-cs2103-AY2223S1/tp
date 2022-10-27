@@ -2,6 +2,7 @@ package seedu.condonery.logic.parser.client;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDPROPERTIES;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -33,8 +34,9 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
     @Override
     public EditClientCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG);
-        EditClientCommand.EditClientDescriptor editPropertyDescriptor =
+                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_ADDRESS,
+                        PREFIX_TAG, PREFIX_INTERESTEDPROPERTIES);
+        EditClientCommand.EditClientDescriptor editClientDescriptor =
                 new EditClientCommand.EditClientDescriptor();
         Index index;
 
@@ -51,14 +53,19 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPropertyDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editClientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPropertyDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editClientDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPropertyDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editClientDescriptor::setTags);
 
-        return new EditClientCommand(index, editPropertyDescriptor);
+        if (argMultimap.getValue(PREFIX_INTERESTEDPROPERTIES).isPresent()) {
+            editClientDescriptor.setInterestedProperties(
+                    ParserUtil.parseProperties(argMultimap.getAllValues(PREFIX_INTERESTEDPROPERTIES)));
+        }
+
+        return new EditClientCommand(index, editClientDescriptor);
     }
 
     private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {

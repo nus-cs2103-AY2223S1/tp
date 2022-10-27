@@ -1,4 +1,4 @@
-package seedu.condonery.model;
+package seedu.condonery.model.property;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,8 +6,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.condonery.model.property.Property;
-import seedu.condonery.model.property.UniquePropertyList;
+import seedu.condonery.model.property.exceptions.UniquePropertyNotFoundException;
 
 /**
  * Wraps all data at the Condonery level
@@ -99,6 +98,29 @@ public class PropertyDirectory implements ReadOnlyPropertyDirectory {
     }
 
     //// util methods
+    /**
+     * Returns true if a property whos name contains the given String exists in the property directory.
+     */
+    public boolean hasPropertyName(String substring) {
+        return properties.hasPropertyName(substring);
+    }
+
+    /**
+     * Returns true if only one unique property whos name contains the given String exists in the property directory.
+     */
+    public boolean hasUniquePropertyName(String substring) {
+        return properties.hasUniquePropertyName(substring);
+    }
+
+    /**
+     * Returns a unique property whos name contains the given string.
+     *
+     * @throws UniquePropertyNotFoundException if the substring does not match to a unique
+     *                                 property.
+     */
+    public Property getUniquePropertyByName(String substring) throws UniquePropertyNotFoundException {
+        return properties.getUniquePropertyByName(substring);
+    }
 
     @Override
     public String toString() {

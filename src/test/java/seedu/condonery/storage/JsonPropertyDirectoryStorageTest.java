@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.condonery.commons.exceptions.DataConversionException;
-import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.ReadOnlyPropertyDirectory;
+import seedu.condonery.model.property.PropertyDirectory;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 
 public class JsonPropertyDirectoryStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonPropertyDirectoryStorageTest");

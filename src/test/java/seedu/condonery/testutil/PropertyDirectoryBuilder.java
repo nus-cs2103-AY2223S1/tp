@@ -1,7 +1,7 @@
 package seedu.condonery.testutil;
 
-import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyDirectory;
 
 /**
  * A utility class to help with building Addressbook objects.
