@@ -27,8 +27,10 @@ import seedu.address.model.module.ZoomLink;
  */
 public class AddModuleCommandParser implements Parser<AddModuleCommand> {
 
-    public AddModuleCommandParser() {
+    private final NusModulesParser nusModulesParser;
 
+    public AddModuleCommandParser(NusModulesParser nusModulesParser) {
+        this.nusModulesParser = nusModulesParser;
     }
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -48,7 +50,7 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
         }
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
-        String moduleTitle = NusModulesParser.getModuleTitle(moduleCode.moduleCode);
+        String moduleTitle = nusModulesParser.getModuleTitle(moduleCode.moduleCode);
         moduleCode.setModuleTitle(moduleTitle);
         LectureDetails lecture = ParserUtil.parseLectureDetails(argMultimap.getValue(PREFIX_LECTURE).orElse(null));
         TutorialDetails tutorial = ParserUtil.parseTutorialDetails(argMultimap.getValue(PREFIX_TUTORIAL)

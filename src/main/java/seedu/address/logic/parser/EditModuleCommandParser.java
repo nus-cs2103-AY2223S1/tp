@@ -17,6 +17,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.EditModuleCommand.EditModuleDescriptor;
+import seedu.address.logic.nusmodules.NusModulesParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignmentdetails.AssignmentDetails;
 
@@ -26,7 +27,11 @@ import seedu.address.model.assignmentdetails.AssignmentDetails;
  */
 public class EditModuleCommandParser implements Parser<EditModuleCommand> {
 
-    public EditModuleCommandParser() {}
+    private final NusModulesParser nusModulesParser;
+
+    public EditModuleCommandParser(NusModulesParser nusModulesParser) {
+        this.nusModulesParser = nusModulesParser;
+    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditModuleCommand
@@ -53,7 +58,7 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             editModuleDescriptor.setModuleCode(ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get()));
-            editModuleDescriptor.setModuleTitle();
+            editModuleDescriptor.setModuleTitle(nusModulesParser);
         }
         if (argMultimap.getValue(PREFIX_LECTURE).isPresent()) {
             editModuleDescriptor.setLecture(ParserUtil.parseLectureDetails(argMultimap.getValue(PREFIX_LECTURE).get()));
