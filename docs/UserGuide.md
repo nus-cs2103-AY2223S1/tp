@@ -137,6 +137,16 @@ Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 * The reps **must be a positive integer, up to 3 digits, with no leading zeroes**.
   * Examples: 1, 2, 3, 10, 100...
 * The date **must be a valid date**.
+  * Accepted formats: 
+    * DAY/MONTH/YEAR 
+    * YEAR/MONTH/DAY 
+    * DAY-MONTH-YEAR 
+    * YEAR-MONTH-DAY 
+    * DAY MONTH YEAR 
+    * YEAR MONTH DAY
+  * DAY: 1 or 2 valid digits allowed 
+  * MONTH: 1 or 2 valid digits allowed 
+  * YEAR: 2 or 4 valid digits allowed
   * Examples: 27/10/2022, 27-10-2022, 27/10/22... 
   * `d/DATE` field is left optional, will store exercise with current date if no date field is found
 
