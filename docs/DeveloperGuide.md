@@ -284,7 +284,7 @@ using the `AddOrderCommand#stageForValidation()` method.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format
 </div>
 
-![AddOrderState2](images/developer-guide/AddOrderState2a.png);
+![AddOrderState2a](images/developer-guide/AddOrderState2a.png);
 
 Step 2b. On the `AddOrderCommand#execute()` method call, the system searches the model's inventory for an item that has a matching name to the user's input item name. 
 In this scenario, we assume that the user has already added an `InventoryItem` with its `ItemName` value to be `Eraser`, to the model's list of tracked `InventoryItem`s.
@@ -295,17 +295,16 @@ This adds a new `ItemQuantityPair` object that references the found `InventoryIt
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the user has entered an item name that does not match any of the items in the model's inventory, the state will remain unchanged and the UI will notify the user and provide a prompt to re-enter inputs
 </div>
 
-![AddOrderState2](images/developer-guide/AddOrderState2b.png);
+![AddOrderState2b](images/developer-guide/AddOrderState2b.png);
 
 Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Order`'s list of ordered items.
 
-**_Object diagram to be added here_**
+![AddOrderState2Final](images/developer-guide/AddOrderState2Final.png);
 
-Step 4. The user then enters `done` after inputting all the required order details. The system finally executes the command, adding the
-built up `Order` to the `OrderList`. The system also no longer waits for additional input as the previously 'in progress' `AddOrderCommand`
-is now completed.
+Step 4. The user then enters `done` after inputting all the required order item details. On the following `AddOrderCommand#execute()` method call,
+the `AddOrderCommand` will no longer await input, and the `LogicManager` also removes its reference to the `AddOrderCommand`. The built up `Order` object is finally added to the model's `OrderList`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The user can also choose to abort the command at any point after instantiating the command (Step 2 to 4), by entering 'cancel'
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The user can also choose to abort the command at any point after instantiating the command (Step 2 to 4), by entering 'cancel'. The model will then be unaffected.
 </div>
 
 **_Object diagram to be added here_**
