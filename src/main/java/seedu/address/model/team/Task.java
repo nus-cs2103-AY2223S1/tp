@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -37,12 +38,12 @@ public class Task {
     /**
      * Deadline of the task.
      */
-    private LocalDateTime deadline;
+    private final LocalDateTime deadline;
 
     /**
      * Completion status of the task.
      */
-    private boolean completionStatus;
+    private final boolean completionStatus;
 
     /**
      * Constructs a {@code Task}.
@@ -146,12 +147,20 @@ public class Task {
         return this.assignees.contains(assignee);
     }
 
-    public void setDeadline(LocalDateTime date) {
-        this.deadline = date;
+    public Task setDeadline(LocalDateTime date) {
+        String name = getName();
+        List<Person> assignees = getAssigneesList();
+        boolean completionStatus = isComplete();
+        LocalDateTime newDate = date;
+        return new Task(name, assignees, completionStatus, newDate);
     }
 
-    public void mark(boolean completionStatus) {
-        this.completionStatus = completionStatus;
+    public Task mark(boolean completionStatus) {
+        String name = getName();
+        List<Person> assignees = getAssigneesList();
+        boolean newCompletionStatus = completionStatus;
+        LocalDateTime date = this.deadline;
+        return new Task(name, assignees, newCompletionStatus, date);
     }
 
     public boolean isComplete() {

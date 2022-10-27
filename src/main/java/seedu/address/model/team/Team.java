@@ -186,6 +186,10 @@ public class Team {
         taskList.add(task);
     }
 
+    public void setTask(Task oldTask, Task newTask) {
+        taskList.setTask(oldTask, newTask);
+    }
+
     public boolean hasTask(Task task) {
         return taskList.contains(task);
     }

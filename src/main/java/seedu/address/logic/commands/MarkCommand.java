@@ -43,7 +43,12 @@ public class MarkCommand extends Command {
         if (taskList.get(taskIndex.getZeroBased()).isComplete()) {
             throw new CommandException(MESSAGE_ALREADY_MARKED);
         }
-        taskList.get(taskIndex.getZeroBased()).mark(true);
+
+        Task originalTask = taskList.get(taskIndex.getZeroBased());
+        Task markedTask = originalTask.mark(true);
+
+        model.getTeam().setTask(originalTask, markedTask);
+
         return new CommandResult(String.format(MESSAGE_MARK_SUCCESS,
                 taskList.get(taskIndex.getZeroBased()).getName()));
     }
