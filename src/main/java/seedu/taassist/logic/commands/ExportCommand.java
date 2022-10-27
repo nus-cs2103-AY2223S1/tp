@@ -57,7 +57,7 @@ public class ExportCommand extends Command {
         } catch (AssertionError e) {
             throw new CommandException(String.format(MESSAGE_EXPORT_FAILED, fileName));
         }
-        
+
         String feedback;
         try {
             FileUtil.writeToFile(filePath, fileData);
