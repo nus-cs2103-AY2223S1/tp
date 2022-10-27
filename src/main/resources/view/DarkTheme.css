@@ -315,6 +315,8 @@
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: white;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
 }
 
 #commandTextField {
@@ -326,6 +328,8 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
 }
 
 #filterField, #personListPanel, #personWebpage {
