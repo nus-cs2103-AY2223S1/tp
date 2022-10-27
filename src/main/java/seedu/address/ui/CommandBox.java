@@ -50,6 +50,15 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Changes the text currently in the command to the given String.
+     * @param text the text to set the field to.
+     */
+    protected void setCommandTextField(String text) {
+        commandTextField.setText(text);
+        commandTextField.requestFocus();
+    }
+
+    /**
      * Sets the command box style to use the default style.
      */
     private void setStyleToDefault() {
