@@ -90,8 +90,6 @@ Adds a contact to the application.
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
 
 - The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
-- The parameters in [ ] are optional parameters, including tag (`t`).
-- A person in the contact list can have more than 1 tag.
 - Date format accepted is: dd/mm/yyyy.
 
 Examples:
@@ -139,11 +137,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] 
 
 - Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
   The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index.
-- At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - Date format accepted is: dd/mm/yyyy.
-- When editing tags, the existing tags of the person will be removed (i.e. adding of tags is not cumulative).
-- You can remove all the person’s tags by typing t/ without specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
@@ -280,7 +275,7 @@ Example:
 * `untagEvent 1 p/2` untags the 2nd person in the contact list from the 1st event in the event list
 * `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person in the contact list from the 2nd event in the event list
 
-### Generating piechart of statistics of the people tagged to an event in the event list : `makeStats`
+### Generating pie charts of statistics of the people tagged to an event in the event list : `makeStats`
 
 Format: `makeStats EVENT_INDEX t/STATISTIC_TYPE`
 
