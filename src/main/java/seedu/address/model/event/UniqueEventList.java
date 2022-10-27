@@ -80,6 +80,7 @@ public class UniqueEventList implements Iterable<Event> {
         if (!internalList.remove(toRemove)) {
             throw new EventNotFoundException();
         }
+        toRemove.removeFromAttendees();
     }
 
     /**
@@ -138,6 +139,10 @@ public class UniqueEventList implements Iterable<Event> {
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new EventNotFoundException();
+        }
+
+        if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
+            throw new DuplicateEventException();
         }
 
         target.removeFromAttendees();

@@ -45,7 +45,6 @@ public class DeleteEventCommand extends EventCommand {
         }
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
-        eventToDelete.removeFromAttendees();
         model.deleteEvent(eventToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));
     }

@@ -71,7 +71,7 @@ public class EventCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        List<Profile> attendeesList = event.getAttendees().getAttendeesList();
+        List<Profile> attendeesList = event.getAttendeesList();
         attendeesList.stream()
                 .forEach(attendee -> {
                     int index = attendeesList.indexOf(attendee) + 1;

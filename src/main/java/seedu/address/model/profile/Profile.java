@@ -75,6 +75,10 @@ public class Profile implements Comparable<Profile> {
         return eventsToAttend;
     }
 
+    public List<Event> getEventsAttendingList() {
+        return eventsToAttend.getEventsList();
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
