@@ -8,9 +8,8 @@
 <thead>
   <td>Quick Reference</td>
 </thead>
-<!-- TODO: We need to manually check that the links work -->
 {% tablerow entry in filtered %}
-<a href="#{{ entry.name | slugify }}">{{ entry.name }}</a>
+<a href="#glossary-{{ entry.name | slugify }}">{{ entry.name }}</a>
 {% endtablerow %}
 </table>
 {: .glossary-quick-reference }
@@ -24,7 +23,7 @@
 <div markdown="1" class="glossary">
 {% for entry in group.items %}
 #### {{ entry.name }}
-{: .no_toc}
+{: .no_toc #glossary-{{ entry.name | slugify }}}
 
 <!-- markdownlint-disable-next-line no-inline-html -->
 <div markdown="1" class="glossary-body">
