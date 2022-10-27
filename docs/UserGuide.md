@@ -91,42 +91,45 @@ HackAssist data are saved in the hard disk automatically after any command that 
 
 ### Editing the data file
 
-HackASsist data are saved as a JSON file `[JAR file location]/data/HackAssist.json`. Advanced users are welcome to update data directly by editing that data file.
+HackAssist data are saved as a JSON file `[JAR file location]/data/HackAssist.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, HackASsist will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 ### Adding a task: `addTask`
 
 Adds a task to the tasklist.
 
-Format: `add task TASK_DESCRIPTION`
+Format: `addTask  [n/NAME] [d/DESCRIPTION] [pr/PRIORITY (low/medium/high)] [c/CATEGORY (database/frontend/backend/uiux/presentation/others)] [dl/DEADLINE (YYYY-MM-DD, must be after current date)] [pe/PERSON EMAIL ADDRESS (must be a valid email)]`
 
 Examples:
 * `addTask n/Create Initial UIUX Design d/Use FIGMA to create initial UIUX Design pr/medium c/uiux dl/2023-01-01 pe/johnd@example.com ` adds Create Initial UIUX Design to the task list
 
-### Deleting a task: `Delete Task`
+### Deleting a task: `deleteTask`
 
 Deletes a task from the tasklist.
 
-Format: `delete task TASK_NUMBER`
-* Deletes the task at the specified `TASK_NUMBER`.
-* The tasknumber refers to the task number shown in the displayed task list.
-* The tasknumber **must be a positive integer** 1, 2, 3, …​
+Format: `deleteTask [INDEX (must be a positive integer)]`
+* Deletes the task at the specified `INDEX`.
+* The INDEX refers to the task number shown in the displayed task list.
+* The INDEX **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `delete task 1` deletes the first task from the tasklist
+* `deleteTask 1` deletes the first task from the tasklist
 
-### viewing all tasks: `View Tasks`
+### Editing a task: `editTask`
 
-Lists out all the tasks in the tasklist.
+Edits the details of the task identified by the index number used in the displayed task list. 
+Existing values will be overwritten by the input values.
 
-Format: `view tasks`
+Format: `editTask [INDEX (must be a positive integer)] [n/NAME] [d/DESCRIPTION] [pr/PRIORITY (low/medium/high)] [c/CATEGORY (database/frontend/backend/uiux/presentation/others)] [dl/DEADLINE (YYYY-MM-DD)] [pe/PERSON EMAIL ADDRESS (must be a valid email)] [do/ISDONE (t/f)]`
+* Edits the task at the specified `INDEX`.
+* The INDEX refers to the task number shown in the displayed task list.
+* The INDEX **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `editTask 1 n/Create Initial UIUX Design dl/2023-01-01 do/t` edits the name and deadline of the first task from the tasklist
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -139,10 +142,10 @@ Format: `view tasks`
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Clear** | `clear`
-**Help** | `help`
-**Add Task** | `addTask TASK_DESCRIPTION` <br> e.g., `add task laundry`
-**Delete Task** | `deleteTask TASK_NUMBER` <br> e.g., `delete task 1`
-**Edit Task** | `editTask TASK_NUMBER` <br> e.g., `edit task 1`
+Action          | Format            | Example
+----------------|-------------------|---------
+**Clear**       | `clear`           |
+**Help**        | `help`            |
+**Add Task**    | `addTask  [n/NAME] [d/DESCRIPTION] [pr/PRIORITY (low/medium/high)] [c/CATEGORY (database/frontend/backend/uiux/presentation/others)] [dl/DEADLINE (YYYY-MM-DD, must be after current date)] [pe/PERSON EMAIL ADDRESS (must be a valid email)]` | `addTask n/Create Initial UIUX Design d/Use FIGMA to create initial UIUX Design pr/medium c/uiux dl/2023-01-01 pe/johnd@example.com`
+**Delete Task** | `deleteTask [INDEX (must be a positive integer)]` | `deleteTask 1`
+**Edit Task**   | `editTask [INDEX (must be a positive integer)] [n/NAME] [d/DESCRIPTION] [pr/PRIORITY (low/medium/high)] [c/CATEGORY (database/frontend/backend/uiux/presentation/others)] [dl/DEADLINE (YYYY-MM-DD)] [pe/PERSON EMAIL ADDRESS (must be a valid email)] [do/ISDONE (t/f)]` | `editTask 1 n/Create Initial UIUX Design dl/2023-01-01 do/t`

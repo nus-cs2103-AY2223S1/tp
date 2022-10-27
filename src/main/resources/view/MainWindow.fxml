@@ -50,7 +50,7 @@
 
                 <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
                     <tabs>
-                        <Tab text="Contacts" fx:id="tab1">
+                        <Tab text="Members" fx:id="tab1">
                             <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                                 <padding>
                                     <Insets top="10" right="10" bottom="10" left="10" />
