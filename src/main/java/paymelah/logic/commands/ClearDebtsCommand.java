@@ -26,8 +26,9 @@ public class ClearDebtsCommand extends Command {
     public static final String COMMAND_WORD = "cleardebts";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the debts of the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes all the debts of the person identified by the index number used in the "
+            + "displayed person list.\n"
+            + "Parameters: <person index> (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_CLEAR_DEBTS_SUCCESS = "Cleared debts from Person: %1$s";
