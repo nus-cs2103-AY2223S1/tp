@@ -14,11 +14,17 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+
+Class UniqueModuleList
+Class Module
+Class ModuleCode
+Class ModuleTitle
+Class TaskList
+Class Task
+Class Link
 
 }
 
@@ -34,17 +40,32 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+ModelManager -->" ~* filtered" Person
+ModelManager -->"~* filtered" Module
+
+
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueModuleList
+UniqueModuleList --> "~* all" Module
 
+Person *--> "1" Email
+Person *--> "1" Name
+Person *--> "1" Phone
+Module -right--> "*" Person :> contains
+
+Module *--> "1" ModuleCode
+Module *--> "1" ModuleTitle
+Module *--> "1" TaskList
+TaskList --> "*" Task :> contains
+Module *--> "*" Link
+
+UniquePersonList -[hidden]up-> ModelManager
+UniquePersonList -[hidden]up-> ModelManager
+UniquePersonList -[hidden]up-> UserPrefs
+Module -[hidden]up-> UniqueModuleList
+ModuleCode -[hidden]right-> ModuleTitle
+Email -[hidden]right-> Name
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
 @enduml

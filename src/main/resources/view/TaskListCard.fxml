@@ -4,23 +4,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <!-- prefWidth of 200 is half of module list's width. -->
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
       <padding>
         <Insets bottom="15" left="15" right="15" top="15" />
       </padding>
-      <HBox minHeight="50">
-        <!-- Task number. Min width necessary to prevent truncation. -->
+        <!-- Task number and task description have a total height of 40px. -->
         <Label fx:id="id" alignment="TOP_LEFT"  contentDisplay="TOP" maxHeight="Infinity"
-               minWidth="15" styleClass="cell_small_label" HBox.hgrow="ALWAYS" />
+               styleClass="cell_small_label" HBox.hgrow="ALWAYS" minHeight="20" />
         <!-- Task Description. -->
-        <Label fx:id="taskDescription" alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="Infinity" styleClass="cell_small_label" text="\$task" textAlignment="JUSTIFY" wrapText="true" />
-      </HBox>
+        <Label fx:id="taskDescription" alignment="TOP_LEFT"
+               contentDisplay="TOP" maxHeight="Infinity"
+               styleClass="cell_small_label" text="\$task"
+               textAlignment="JUSTIFY" wrapText="true" minHeight="20" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

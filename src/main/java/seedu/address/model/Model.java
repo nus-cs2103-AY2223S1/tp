@@ -170,11 +170,18 @@ public interface Model {
     Module getModuleUsingModuleCode(ModuleCode moduleCodeOfModuleToGet,
                                     boolean isFiltered) throws ModuleNotFoundException;
 
-    //// navigation-related methods
+    //=========== Navigation-related Methods =============================================================
     /**
-     * Returns true if Plannit is at the home page, false otherwise.
+     * Returns ObservableList singleton with true if Plannit is at the home
+     * page, false otherwise.
      */
-    boolean getHomeStatus();
+    ObservableList<Boolean> getHomeStatus();
+
+    /**
+     * Returns Boolean that is true if Plannit is at the home
+     * page, false otherwise.
+     */
+    Boolean getHomeStatusAsBoolean();
 
     /**
      * Replaces home status with {@code isHome}.

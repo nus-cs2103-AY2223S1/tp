@@ -12,6 +12,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -83,15 +85,17 @@ public class DeleteModuleCommandTest {
     public void execute_nonexistentModule_throwsCommandException() {
         ModuleCode nonExistentModule = new ModuleCode(NON_EXISTENT_MODULE_CODE);
         DeleteModuleCommand deleteCommand = new DeleteModuleCommand(nonExistentModule);
+        ObservableList<Boolean> isAtHome = FXCollections.observableArrayList(true);
+        ObservableList<Boolean> isNotAtHome = FXCollections.observableArrayList(false);
 
         // At Home Page
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NO_SUCH_MODULE);
-        assertEquals(model.getHomeStatus(), true);
+        assertEquals(model.getHomeStatus(), isAtHome);
 
         // Not At Home Page
         model.setHomeStatus(false);
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NO_SUCH_MODULE);
-        assertEquals(model.getHomeStatus(), false);
+        assertEquals(model.getHomeStatus(), isNotAtHome);
     }
 
     @Test
