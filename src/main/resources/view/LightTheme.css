@@ -13,7 +13,7 @@
     -fx-font-size: 11pt;
     -fx-text-fill: black;
     -fx-opacity: 1;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Segue UI";
 }
 
 .label-bright-padding {
@@ -21,7 +21,7 @@
     -fx-text-fill: black;
     -fx-opacity: 1;
     -fx-padding: 0 0 10 0;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Segue UI";
     -fx-font-weight: bold;
 }
 
@@ -73,7 +73,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Segue UI";
     -fx-text-fill: black;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -119,7 +119,7 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Segue UI";
     -fx-font-weight: bold;
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
@@ -158,7 +158,7 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Courier New", Monospace;
+    -fx-font-family: "Segue UI", Monospace;
     -fx-text-fill: black;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -198,7 +198,7 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Courier New", Monospace;
+    -fx-font-family: "Segue UI", Monospace;
     -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
@@ -218,7 +218,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #F7ECDE;
-    -fx-font-family: "Courier New", Monospace;
+    -fx-font-family: "Segue UI", Helvetica;
 
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
@@ -361,7 +361,7 @@
 
 #linkName {
     -fx-font-size: 16px;
-    -fx-font-family: "Courier New", Monospace;
+    -fx-font-family: "Segue UI", Monospace;
 }
 .hyperlink {
     -fx-border-color: transparent;
