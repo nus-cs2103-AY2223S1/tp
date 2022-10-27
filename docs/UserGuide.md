@@ -43,7 +43,7 @@ In student and tutor lists, you could click at the student or tutor cards to sho
 
 </p>
 
-There would be three tabs, student, tutor and class indicating the current displayed list shown in the list display panel.
+There are three list tabs: Student, Tutor and Class indicating the current displayed list showing in the list display panel.
 You could click at the list tabs to switch to different lists.
 
 ### 5.Description Panel
@@ -57,7 +57,7 @@ You could click at the list tabs to switch to different lists.
 This is where the description of a specified student or tutor is shown. When there is no person on display, the line “No Person Displayed” would be shown.
 
 
-###6. Toolbar 
+### 6. Toolbar 
 
 #### File 
 The ` File`  menu contains `Export` and Exit`. 
@@ -84,7 +84,7 @@ Examples:
 * `help add`
 * `help edit`
 
-** To view all the` [commands]`, key in `help` and press `return`.**
+To view all the` [commands]`, key in `help` and press `return`.
 
 ### Exiting the software: `exit`
 
@@ -259,7 +259,7 @@ Format: Click on the "*File*" tab at the top left hand corner of `myStudents` an
 
 * The csv files will be saved in the same location as the json files specified in `preference.json`.
 
-###FAQs
+### FAQs
 **Q:** Does myStudent need an Internet connection?
 
 **A:** No, myStudent is an offline software that does not need Internet connection to use.
