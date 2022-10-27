@@ -59,7 +59,7 @@ FindMyIntern helps students who are applying for internships keep track of their
     
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
