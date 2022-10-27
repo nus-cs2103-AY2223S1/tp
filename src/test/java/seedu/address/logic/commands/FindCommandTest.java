@@ -231,7 +231,7 @@ public class FindCommandTest {
         String thirdExpectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
         ArrayList<FindPredicate> thirdPredicate = new ArrayList<>();
         thirdPredicate.add(preparePredicate("Meier"));
-        thirdPredicate.add(prepareIncomePredicate("$1500"));
+        thirdPredicate.add(prepareIncomePredicate("1500"));
         FindCommand thirdCommand = new FindCommand(thirdPredicate);
         expectedModel.updateFilteredPersonList(thirdPredicate);
         assertCommandSuccess(thirdCommand, model, thirdExpectedMessage, expectedModel);

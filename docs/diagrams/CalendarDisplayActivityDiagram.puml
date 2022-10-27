@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User starts the app;
+:User selects the Calendar Tab;
+:Shows the Calendar Display;
+stop
+
+@enduml

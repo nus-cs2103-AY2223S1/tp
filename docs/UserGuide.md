@@ -27,12 +27,12 @@ This section aims to help you navigate the user guide.
 
 #### 2.2.1 General Symbols and Syntax
 
-Symbol/Syntax        | Meaning 
+Symbol/Syntax        | Meaning
 ---------------------|------------------
 `command`            | indicates commands or keywords related to commands that can be executed by the application.
 :bulb:               | indicates that the enclosed text is a tip
 :exclamation:        | indicates that the enclosed text is a warning and usually gives details about potential errors.
-:information_source: | indicates that the enclosed text are extra notes and information regarding the topic. 
+:information_source: | indicates that the enclosed text are extra notes and information regarding the topic.
 
 #### 2.2.2 Graphical User Interface overview
 
@@ -63,7 +63,7 @@ The following figures show the overall GUI of **Financial Advisor Planner**
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/60000 r/Low s/1000` : Adds a contact named `John Doe` to the list of clients.
 
    * **`aa`** `1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks` : Adds an appointment to the client in index 1 of the contact book with the date, time and location of the appointment.
-   
+
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
    * **`clear`** : Deletes all contacts.
@@ -147,7 +147,7 @@ Format: `help`
 
 Adds a client to the list of clients.
 
-Do note that t/TAG is an optional field, the rest are compulsory. 
+Do note that t/TAG is an optional field, the rest are compulsory.
 
 Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBUTIONS r/RISK_APPETITE ip/INVESTMENT PLAN [t/TAG]…​`
 
@@ -281,10 +281,10 @@ Examples:
 Edits an appointment for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
 
 Format: `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]`
-* Edits the client's appointment using specified PERSON_INDEX and APPOINTMENT_INDEX. 
+* Edits the client's appointment using specified PERSON_INDEX and APPOINTMENT_INDEX.
 * The PERSON_INDEX refers to the index number shown in the displayed client list. The index must be a positive integer 1, 2, 3,…​
 * The APPOINTMENT_INDEX refers to the index number shown in the displayed client's appointment list. The index can only be 1, 2, or 3.
-* At least one of the optional fields must be provided. 
+* At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
@@ -302,8 +302,8 @@ Format: `da PERSON_INDEX.APPOINTMENT_INDEX`
 
 Examples:
 
-* `da 1.1` Deletes the 1st client's 1st appointment 
- 
+* `da 1.1` Deletes the 1st client's 1st appointment
+
 ### 5.3 Calendar features
 
 <div markdown="block" class="alert alert-info">
@@ -368,6 +368,7 @@ After typing in the command word, the command's parameters and their respective 
 Use the up and down keys to navigate through previously typed commands. Users can edit the command first or press enter to execute the command. 
 * Only valid commands will be saved in the command history
 * Command history will only save up to 20 previously typed valid commands
+* Consecutive duplicate commands will not be saved (e.g entering "list" 3 times in a row will only add "list" to command history once)
 
 ### 5.5 Miscellaneous commands
 

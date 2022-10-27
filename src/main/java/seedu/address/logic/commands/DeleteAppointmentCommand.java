@@ -23,7 +23,7 @@ public class DeleteAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete a person's appointment "
             + "using the index numbers from the displayed person list and the identified person's appointment list.\n"
-            + "Parameters: [PERSON_INDEX].[APPOINTMENT_INDEX] \n"
+            + "Parameters: PERSON_INDEX.APPOINTMENT_INDEX \n"
             + "Example: " + COMMAND_WORD + " 3.1 ";
 
     public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Person's Appointment: %1$s";

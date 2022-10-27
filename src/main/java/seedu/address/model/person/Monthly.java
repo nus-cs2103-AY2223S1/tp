@@ -38,11 +38,11 @@ public class Monthly {
     }
 
     /**
-     * Returns an int from the String of monthly contribution without the $.
-     * @return an int converted from the String.
+     * Returns a long from the String of monthly contribution without the $.
+     * @return a long converted from the String.
      */
-    public int convertMonthlyToInt() {
-        return Integer.parseInt(this.value.substring(1));
+    public long convertMonthlyToLong() {
+        return Long.parseLong(this.value.substring(1));
     }
 
     @Override
