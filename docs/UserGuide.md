@@ -209,7 +209,7 @@ _Details coming soon ..._
 
 |  Action      | Format, Examples                                                                                                                         |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold` |
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., `add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold` |
 | **Increase** | `incr 100 p/PHONE_NUMBER` or `incr 100 e/EMAIL` <br> e.g., `incr 100 p/87438807`, `incr 100 e/alexyeoh@example.com`                      |
 | **Decrease** | `decr 100 p/PHONE_NUMBER` or `decr 100 e/EMAIL` <br> e.g., `decr 100 p/87438807`, `decr 100 e/alexyeoh@example.com`                      |
 | **Delete**   | `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete p/87438807`, `delete e/alexyeoh@example.com`                              |
@@ -223,7 +223,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add [n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]` <br> e.g., ` add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold`
+**Add** | `add [n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]...` <br> e.g., `add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold`
 **Increase** | `clear`
 **Decrease** | `delete INDEX`<br> e.g., `delete 1`
 **Delete** | `edit [n/NAME p/PHONE_NUMBER lp/LESSON_PLAN]`<br> `edit [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g.,`edit 2 n/James Lee h/1 math`
