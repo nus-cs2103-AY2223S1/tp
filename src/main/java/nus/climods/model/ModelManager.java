@@ -6,6 +6,7 @@ import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -17,6 +18,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
+import nus.climods.model.module.LessonTypeEnum;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
@@ -85,12 +87,64 @@ public class ModelManager implements Model {
     @Override
     public boolean isModuleOfferedInSemester(String moduleCode, SemestersEnum semester) {
         Optional<Module> module = getModule(moduleCode);
+
         if (module.isEmpty()) {
             return false;
         }
 
         return module.get().availableInSemester(semester);
     }
+
+    //will keep these here first jic we plan to use the wrapper to standardize for pickcommand
+    @Override
+    public Set<LessonTypeEnum> unselectableLessonType(String moduleCode, SemestersEnum semester) {
+        Optional<Module> module = getListModule(moduleCode);
+        if (module.isEmpty()) {
+            return null;
+        }
+
+        try {
+            module.get().loadMoreData();
+        } catch (ApiException e) {
+            return null;
+        }
+
+        return module.get().getUnselectableLessonTypeEnums(semester);
+    }
+
+    @Override
+    public boolean isModuleLessonOffered(String moduleCode, SemestersEnum semester,
+                                         LessonTypeEnum lessonType) {
+        Optional<Module> module = getListModule(moduleCode);
+        if (module.isEmpty()) {
+            return false;
+        }
+
+        try {
+            module.get().loadMoreData();
+        } catch (ApiException e) {
+            return false;
+        }
+        return module.get().hasLessonTypeEnum(lessonType, semester);
+    }
+
+    @Override
+    public boolean isModuleLessonClassOffered(String moduleCode, SemestersEnum semester,
+                                         LessonTypeEnum lessonType, String classCode) {
+        Optional<Module> module = getListModule(moduleCode);
+        if (module.isEmpty()) {
+            return false;
+        }
+
+        try {
+            module.get().loadMoreData();
+        } catch (ApiException e) {
+            return false;
+        }
+
+        return module.get().hasLessonId(classCode, semester, lessonType);
+    }
+
 
     @Override
     public Optional<Module> getModule(String moduleCode) {
@@ -144,6 +198,7 @@ public class ModelManager implements Model {
         moduleInFocus = null;
     }
 
+
     //=========== UserModule ==================================================================================
 
     @Override
@@ -182,6 +237,10 @@ public class ModelManager implements Model {
     public void updateFilteredUserModuleList(Predicate<UserModule> predicate) {
         requireNonNull(predicate);
         this.filteredUserModuleList.setPredicate(predicate);
+    }
+
+    public Optional<UserModule> getUserModule(String toGet) {
+        return userModuleList.get(toGet);
     }
 
     //=========== UserPrefs ==================================================================================

@@ -9,7 +9,7 @@ import nus.climods.model.Model;
 import nus.climods.model.module.UserModule;
 
 /**
- * Adds a person to the address book.
+ * Adds a module into the UserModule List
  */
 public class AddCommand extends Command {
 
@@ -51,7 +51,7 @@ public class AddCommand extends Command {
         }
 
         model.addUserModule(moduleToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode.toUpperCase()), COMMAND_WORD, model);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode.toUpperCase()), COMMAND_WORD);
     }
 
     @Override

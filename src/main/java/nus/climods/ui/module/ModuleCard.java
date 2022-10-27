@@ -19,7 +19,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import nus.climods.model.module.LessonType;
+import nus.climods.model.module.LessonTypeEnum;
 import nus.climods.model.module.Module;
 import nus.climods.ui.UiPart;
 import nus.climods.ui.module.components.LessonPill;
@@ -116,7 +116,7 @@ public class ModuleCard extends UiPart<Region> {
     private void showLessonInformation() {
         lessonInfo.setVisible(true);
         for (SemestersEnum sem : SemestersEnum.values()) {
-            HashMap<LessonType, Module.ModuleLessonIdMap> lessons = module.getLessons(sem);
+            HashMap<LessonTypeEnum, Module.ModuleLessonIdMap> lessons = module.getLessons(sem);
             if (lessons == null) {
                 continue;
             }
@@ -124,7 +124,7 @@ public class ModuleCard extends UiPart<Region> {
         }
     }
 
-    private Accordion addSemesterLessons(HashMap<LessonType, Module.ModuleLessonIdMap> sem) {
+    private Accordion addSemesterLessons(HashMap<LessonTypeEnum, Module.ModuleLessonIdMap> sem) {
         Accordion a = new Accordion();
         a.setPadding(new Insets(10, 0, 10, 0));
         a.getPanes()
@@ -134,7 +134,7 @@ public class ModuleCard extends UiPart<Region> {
         return a;
     }
 
-    private TitledPane addLessonType(LessonType lessonType, Module.ModuleLessonIdMap slots) {
+    private TitledPane addLessonType(LessonTypeEnum lessonType, Module.ModuleLessonIdMap slots) {
         TitledPane pane = new TitledPane();
         ScrollPane sc = new ScrollPane();
         pane.setText(String.format("%s: %s", module.getCode(), lessonType));
