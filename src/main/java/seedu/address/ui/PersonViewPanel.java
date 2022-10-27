@@ -129,8 +129,10 @@ public class PersonViewPanel extends UiPart<Region> {
     }
 
     private void setAppointmentDetails() {
-        upcomingAppointment.setText(person.getUpcomingAppointment().get().toString());
-        upcomingAppointment.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_UPCOMING_APPOINTMENT));
+        person.getUpcomingAppointment().ifPresentOrElse(ua -> {
+            upcomingAppointment.setText(ua.toString());
+            upcomingAppointment.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_UPCOMING_APPOINTMENT));
+        }, () -> upcomingAppointment.setVisible(false));
         ObservableList<PastAppointment> pastAppointmentsObservableList =
                 new ObservableListWrapper<>(person.getPastAppointments());
         pastAppointments.setItems(pastAppointmentsObservableList);
