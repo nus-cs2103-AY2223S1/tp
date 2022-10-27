@@ -299,7 +299,7 @@ This adds a new `ItemQuantityPair` object that references the found `InventoryIt
 
 Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Order`'s list of ordered items.
 
-![AddOrderState2Final](images/developer-guide/AddOrderState3.png);
+![AddOrderState3](images/developer-guide/AddOrderState3.png);
 
 Step 4. The user then enters `done` after inputting all the required order item details. On the following `AddOrderCommand#execute()` method call,
 the `AddOrderCommand` will no longer await input, and the `LogicManager` also removes its reference to the `AddOrderCommand`. 
@@ -308,26 +308,29 @@ The built up `Order` object is finally added to the model's `OrderList`.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The user can also choose to abort the command at any point after instantiating the command (Step 2 to 4), by entering 'cancel'. The model will then be unaffected.
 </div>
 
-![AddOrderState2Final](images/developer-guide/AddOrderState4.png);
+![AddOrderState4](images/developer-guide/AddOrderState4.png)
 
-The following sequence diagram shows how the add order operation works:
+The following sequence diagram shows how the add order feature works for a user entering an order with only one ordered item:
+![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram.png)
 
-_**Sequence diagram to be added here**_
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for the objects with the
+<i>destroy marker</i> (X) should end at the <i>destroy marker</i> itself but due to a limitation of PlantUML, the lifeline
+reaches the end of the diagram.
+</div>
 
 The following activity diagram below illustrates the general flow of the user's experience in adding an order.
 ![AddOrderActivityDiagram](images/developer-guide/AddOrderActivityDiagram.png)
 
 ##### Design considerations
 
-Aspect: How add order command executes:
-* **Alternative 1 (current choice)**: Multi-level command, with user inputting information multiples times between customer data and then subsequently multiple item and quantity inputs.
-  * Pros: Better user experience. Users don't have to type out a very long command in one go to add an order.
-  * Cons: Harder to implement.
-* **Alternative 2**: Single level command, user inputs all required information in one long command.
-  * Pros: Easier to implement.
-  * Cons: Users have to type out a very long command, and multiple times if they were to mistype certain details and have to re-enter data.
+**Aspect: How the add order command receives input and executes**
+* **Alternative 1**: Single level command, user inputs all required information in one long command.
+    * Pros: Easier to implement as the implementation will follow the already in-place command execution structure.
+    * Cons: Users have to type out a very long command, and multiple times if they were to mistype certain details and have to re-enter data (e.g, enter multiple instances of "i/ITEM_NAME q/QUANTITY" on the same line of input).
+* **Alternative 2 (current choice)**: Multi-level command. User enters inputs in levels (customer data -> multiple iterations of item/quantity information -> "done"/"cancel" ).
+  * Pros: Better user experience. Users can be sure that any previously entered input is already validated by the application, making it less overwhelming to input large amounts of information.
+  * Cons: Harder to implement as it deviates from the original command execution structure (where one instance of user input relates to one full command execution).
 
-**_More design considerations_**
 
 ### Find Orders feature
 
