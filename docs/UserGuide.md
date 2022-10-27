@@ -117,17 +117,15 @@ Format : `tag TASK_NUMBER -t TAG_NAME`
 
 Example: `tag 2 optional`
 
-## List and Find
+### List : `ls`
 
-`list` and `find` are commands that filter the list. There are multiple ways to filter the tasklist, such as
-listing all tasks, unmarked tasks, all tasks under a module name etc. You may apply multiple list commands in one command
-to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
+`list` commands filter the tasklist. There are multiple ways to filter the tasklist, such as
+listing all tasks, unmarked tasks, all tasks under a module name etc. You may apply multiple list commands in one
+command to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
 
 Current filters applied will be shown in the UI at the top bar.
 
 **Note that `find` searches globally, across all of a task's attributes**
-
-### List : `ls`
 
 #### Listing all tasks : `ls -a`
 
@@ -174,9 +172,18 @@ Format: `ls -d DATE`
 
 Example: `ls -d 2022-11-11`
 
+#### Listing all task names with the matching keywords: `ls -n`
+
+Shows a list of all tasks with matching names.
+
+Format: `ls -n KEYWORD [MORE_KEYWORDS]`
+* `MORE_KEYWORDS`: Keywords should be separated by spaces.
+
+Example: `ls -n task1`
+
 ### Find tasks by name : `find`
 
-The `find` command finds the task names which contain the word or words given in the prefix. 
+The `find` command finds the task names or tags which contain the word or words given in the prefix. 
 `find` is not case-sensitive and the keyword being searched does not have to match a whole word
 (Example: searching `tap` in task name `tape` will be shown).
 
@@ -185,13 +192,7 @@ Format: `find WORD [MORE_WORDS]`
 Singular word search example: `find tutorial`
 
 Multiple word search example: `find Week tutorial`
-finds **any** task name with either `Week` or `tutorial`.
-
-*Note that this is **NOT** the same as:*
-
-`find Week` followed by `find tutorial`
-
-as it filters the task names with `Week` then filters task names with `tutorial`.
+finds **any** task name or tag with either `Week` or `tutorial`.
 
 #### Listing all archived tasks : `ls -archive`
 
@@ -261,6 +262,11 @@ Examples:
 * `archive 1`: archives first task in task list.
 * `archive 2022-10-17`: archives tasks with deadline on and before `DATE`.
 
+### Autocomplete
+
+When the user starts to type in the start of a command, a popup menu will appear with options to complete your input.
+Use the `up` and `down` arrow keys to navigate through the options and `Enter` to fill the command box with the command
+of your choice.
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ

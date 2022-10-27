@@ -17,6 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_LIST_MODULE = new Prefix("--module");
     public static final Prefix PREFIX_LIST_TAG = new Prefix("-t");
     public static final Prefix PREFIX_LIST_DEADLINE = new Prefix("-d");
+    public static final Prefix PREFIX_LIST_NAME = new Prefix("-n");
 
     /* String definitions */
     public static final String LIST_ALL_STRING = "-a";
