@@ -1,9 +1,14 @@
 package seedu.pennywise.ui;
 
+import javafx.scene.text.Text;
+
+/**
+ * Table cell for help window.
+ */
 public class HelpWindowCell {
-    private final javafx.beans.property.SimpleStringProperty action = new javafx.beans.property.SimpleStringProperty("");
-    private final javafx.beans.property.SimpleStringProperty format = new javafx.beans.property.SimpleStringProperty("");
-    private final javafx.beans.property.SimpleStringProperty example = new javafx.beans.property.SimpleStringProperty("");
+    private final Text action = new Text();
+    private final Text format = new Text();
+    private final Text example = new Text();
 
     public HelpWindowCell() {
         this("", "", "");
@@ -16,26 +21,26 @@ public class HelpWindowCell {
     }
 
     public String getAction() {
-        return action.get();
+        return action.getText();
     }
 
     public void setAction(String fName) {
-        action.set(fName);
+        action.setText(fName);
     }
 
     public String getFormat() {
-        return format.get();
+        return format.getText();
     }
 
     public void setFormat(String fName) {
-        format.set(fName);
+        format.setText(fName);
     }
 
     public String getExample() {
-        return example.get();
+        return example.getText();
     }
 
     public void setExample(String fName) {
-        example.set(fName);
+        example.setText(fName);
     }
 }

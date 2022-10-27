@@ -26,7 +26,7 @@
 }
 
 #table {
-    -fx-background-color: -pw-primary;
+    -fx-border-color: -pw-secondary;
     -fx-font-size: 12px;
     -fx-font-family: "Poppins Regular";
 }
