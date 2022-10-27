@@ -332,3 +332,20 @@ _Details coming soon..._
 | **Clear**               | `clear f/FIELD` <br> e.g., `clear student`                                                                                                                                                                |
 | **Exit**                | `exit`                                                                                                                                                                                                    |
 | **Help**                | `help`                                                                                                                                                                                                    |
+
+## Prefix summary
+| Prefix | Symbolise       |
+|--------|-----------------|
+| **d/** | description     |
+| **D/** | date or day     |
+| **e/** | email           |
+| **f/** | field           |
+| **h/** | Telegram handle |
+| **i/** | id              |
+| **l/** | tutorial        |
+| **m/** | module          |
+| **n/** | name            |
+| **p/** | phone           |
+| **t/** | tag             |
+| **T/** | time            |
+| **v/** | venue           |
