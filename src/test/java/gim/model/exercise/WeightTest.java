@@ -35,6 +35,8 @@ public class WeightTest {
         assertFalse(Weight.isValidWeight(":)")); // non-numeric
         assertFalse(Weight.isValidWeight("125x0")); // alphabets within digits
         assertFalse(Weight.isValidWeight("12 500")); // spaces within digits
+        assertFalse(Weight.isValidWeight("1000")); // 4 digits
+        assertFalse(Weight.isValidWeight("2372384734778931340")); // long weight numbers
 
         // valid weight numbers
         assertTrue(Weight.isValidWeight("6.25")); // 2 decimal place
@@ -46,7 +48,5 @@ public class WeightTest {
         assertTrue(Weight.isValidWeight("1")); // single digit
         assertTrue(Weight.isValidWeight("10")); // double digit
         assertTrue(Weight.isValidWeight("100")); // 3 digits
-        assertTrue(Weight.isValidWeight("1000")); // 4 digits
-        assertTrue(Weight.isValidWeight("2372384734778931340")); // long weight numbers
     }
 }

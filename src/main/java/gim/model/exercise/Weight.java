@@ -11,8 +11,9 @@ public class Weight implements Comparable<Weight> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Weight should only contain non negative numbers, up to 2 decimal places";
-    public static final String VALIDATION_REGEX = "\\d{1,}(\\.\\d{1,2})?";
+            "Weight must be a positive decimal number, up to 3 digits for the whole number "
+                    + "and up to 2 digits for the decimal place";
+    public static final String VALIDATION_REGEX = "\\d{1,3}(\\.\\d{1,2})?";
     public final String value;
 
     /**
