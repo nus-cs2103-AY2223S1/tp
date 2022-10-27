@@ -58,10 +58,12 @@ deactivate EditItemCommand
 
 EditItemCommandParser --> TrackOParser : command
 deactivate EditItemCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditItemCommandParser -[hidden]-> TrackOParser
+destroy EditItemCommandParser
 
 TrackOParser --> LogicManager : command
 deactivate TrackOParser
-destroy EditItemCommandParser
 
 LogicManager -> EditItemCommand : execute(model)
 activate EditItemCommand
@@ -100,9 +102,11 @@ deactivate CommandResult
 
 EditItemCommand --> LogicManager : result
 deactivate EditItemCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditItemCommand -[hidden]-> TrackOParser
+destroy EditItemCommand
 
 <--LogicManager
-destroy EditItemCommand
 deactivate LogicManager
 
 @enduml
