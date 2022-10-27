@@ -71,7 +71,7 @@ public class Session implements Comparable<Session> {
     }
 
     /**
-     * Returns true if a given string is a valid hour.
+     * Returns true if a given string has valid hours and minutes.
      */
     private static boolean isValidHour(String test) {
         int hour = Integer.parseInt(test.substring(0, 2));
