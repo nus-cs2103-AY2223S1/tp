@@ -55,6 +55,7 @@ public class CommandTestUtil {
     public static final String CLASS_DESC_CS1231S = " " + PREFIX_MODULE_CLASS + VALID_CLASS_CS1231S;
     public static final String CLASS_DESC_CS1101S = " " + PREFIX_MODULE_CLASS + VALID_CLASS_CS1101S;
     public static final String SESSION_DESC_LAB1 = " " + PREFIX_SESSION + VALID_SESSION_LAB1;
+    public static final String SESSION_DESC_TUT3 = " " + PREFIX_SESSION + VALID_SESSION_TUT3;
     public static final String DATE_DESC = " " + PREFIX_DATE + VALID_DATE;
     public static final String GRADE_VALUE_DESC_12345 = " " + PREFIX_GRADE + VALID_GRADE_VALUE_12345;
 

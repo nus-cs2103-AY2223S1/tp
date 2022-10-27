@@ -178,6 +178,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addSessions(ModuleClass moduleClass, Set<Session> sessions) {
+        requireAllNonNull(moduleClass, sessions);
+        ModuleClass newModuleClass = taAssist.addSessions(moduleClass, sessions);
+        if (moduleClass.isSame(focusedClass)) {
+            enterFocusMode(newModuleClass);
+        }
+    }
+
+    @Override
     public void removeSessions(ModuleClass moduleClass, Set<Session> sessions) {
         requireAllNonNull(moduleClass, sessions);
         ModuleClass newModuleClass = taAssist.removeSessions(moduleClass, sessions);

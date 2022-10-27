@@ -222,4 +222,16 @@ public class ParserUtil {
         }
         return sessionSet;
     }
+
+    /**
+     * Parses {@code Collection<String> sessions} with {@code date} into a {@code Set<Session>}.
+     */
+    public static Set<Session> parseSessions(Collection<String> sessions, Date date) throws ParseException {
+        requireNonNull(sessions);
+        final Set<Session> sessionSet = new HashSet<>();
+        for (String sessionName : sessions) {
+            sessionSet.add(parseSession(sessionName, date));
+        }
+        return sessionSet;
+    }
 }
