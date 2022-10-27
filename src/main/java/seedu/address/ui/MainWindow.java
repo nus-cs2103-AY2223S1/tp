@@ -339,7 +339,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            if (commandResult.isHelpShown()) {
                 handleHelp();
             }
 
@@ -351,7 +351,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleList(commandResult.getListType());
             }
 
-            if (commandResult.isAddByPopup()) {
+            if (commandResult.isAddedByPopup()) {
                 handleAddByPopup(commandResult.getAddType());
             }
             if (commandResult.isCheck()) {
