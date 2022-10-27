@@ -330,6 +330,8 @@ Swift+ prompts the user with command suggestions as they type, which includes th
 Note:
 - Command Suggestion will not be shown if current user input is invalid and the command text will turn red to alert the users.
 - Autocomplete does not guarantee a successful/valid command unless the given syntax is followed.
+- Autocomplete only completes up to the longest matching prefix if multiple commands are possible with the current user input.
+- However, command suggestions always shows only one of the possible commands.
 
 ---
 
