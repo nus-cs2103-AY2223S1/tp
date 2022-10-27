@@ -240,8 +240,8 @@ For simplicity, only the `deletegroup` command sequence diagram is shown below. 
 This feature allows members to be added to and deleted from a group. It is
 achieved by the following operations:
 
-- Model#addMember(Name, GroupName) - Adds the person with the input name to the group with input groupname.
-- Model#deleteMember(Name, GroupName) - Removes the person with the input name from the group with the input groupname.
+- `Model#addMember(Name, GroupName)` - Adds the person with the input name to the group with input groupname.
+- `Model#deleteMember(Name, GroupName)` - Removes the person with the input name from the group with the input groupname.
 
 Given below is an example usage scenario and how groups are added/deleted at each stage.
 
@@ -383,7 +383,7 @@ The `AddressBook` model is reflected below:
 
 <img src="images/AddDeleteMemberState2.png" width="300" />
 
-**Note:** `AssignTaskCommand` checks if both the person and group with the specified name and groupname respectively
+**Note:** `DeleteTaskCommand` checks if both the person and group with the specified name and groupname respectively
 exist in the app, that the person is a member of the group, and the person has the specified task under
 the group.
 
@@ -394,7 +394,56 @@ For simplicity, only the `deletetask` command sequence diagram is shown below. B
 ### **\[Developed\] Bulk Assignment & Deletion of Tasks**
 
 #### **Implementation** 
+This feature allows tasks to be assigned to/deleted from all members of a group simultaneously.
+It is facilitated by the following operations:
 
+- `Model#assignTaskAll(GroupName, Task, Workload, [Deadline]` - Creates an `Assignment` with `Task` (description),
+  `Workload` and optional `Deadline`. This `Assignment` will be added to all members in the group
+  with the input groupname. A member who has a duplicate assignment is skipped over.
+- `Model#deleteTask(GroupName, Name, Task)`. Deletes the `Assignment` with description `Task` from all members
+  in the group with the input groupname. A member who does not have this assignment is skipped over.
+
+Given below is an example usage scenario and how tasks are assigned/deleted in bulk.
+
+**Step 1.**
+Starting from the default persons, the user has executed `addgroup g/CS2103T` to add a group with
+`GroupName` "CS2103T", then `addmember g/CS2103T n/Alice`, `addmember g/CS2103T n/Alice` to add `Alice` and `Bob` to
+the group `CS2103T`. The `AddressBook` model is reflected below:
+
+**Step 2.**
+User executes `assigntaskall g/CS2103T task/Task w/High`. This:
+- Constructs an Assignment with `Task` "Task" and `Workload` "High".
+- For each member `Alice` and `Bob`:
+  - Constructs an `editedPerson` to replace the member with a copy which
+    includes this Assignment, and an `editedGroup` containing the edited
+    member.
+  - Calls `Model#setPerson()` and `Model#setGroup()` with the respective
+    edits to change member and `CS2103T` in the `AddressBook`.
+
+The `AddressBook` model is reflected below:
+
+**Note:** `AssignTaskAllCommandParser` will check if the assignment's parameters are parsed properly,
+such as `Task` being non-empty, `Deadline` being a valid date, etc.
+`AssignTaskAllCommand` further checks if group with the specified groupname exists in the app. Each member in the group
+is handled in a for loop. Members who already have the assignment enter a `continue` block to the next iteration
+before they are edited.
+
+**Step 3.**
+User executes `deletetaskall g/CS2103T task/Task`. Similar to above:
+- For each member `Alice` and `Bob`:
+  - Constructs an `editedPerson` to replace the member with a copy which
+    removes this Assignment, and an `editedGroup` containing the edited
+    member.
+  - Calls `Model#setPerson()` and `Model#setGroup()` with the respective
+    edits to change member and `CS2103T` in the `AddressBook`.
+
+The `AddressBook` model is reflected below:
+
+**Note:** `DeleteTaskAllCommand` checks if group with the specified groupname exists in the app. Each member in the group
+is handled in a for loop. Members who do not have the assignment enter a `continue` block to the next iteration
+before they are edited.
+
+For simplicity, only the `deletetaskall` command sequence diagram is shown below. Both commands operate via a similar sequence:
 
 ----
 
