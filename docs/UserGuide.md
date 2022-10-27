@@ -289,16 +289,21 @@ Examples:
 ### 4.3 Calendar features
 #### 4.3.1 Calendar Display
 Displays a calendar format for the current month which shows all the appointments separated into their matching dates for that month. The appointments that are displayed for each day are also sorted in ascending order, which follows the time convention.
+
 #### 4.3.2 Calendar Navigation
 There are 3 ways to ease navigation between months that are displayed.
+
 ##### 4.3.2.1 Next Button
 Clicking the Next button or pressing the keyboard "n" will display the next month.
 Examples:
+
+![next button](images/NextButton.png)
 
 ##### 4.3.2.2 Prev Button
 Clicking the Prev button or pressing the keyboard "b" will display the previous month.
 Examples:
 
+![previous button](images/PreviousButton.png)
 ##### 4.3.2.1 Jump Box
 Typing in the desired date in the provided text field will show the given calendar of the month and year.
 Format: DATE
@@ -307,6 +312,7 @@ Examples: 1-Oct-2022
 #### 4.3.3 Calendar Pop-ups
 Displays more detailed information of the selected appointment on the calendar which includes the name of the client, date, time and location of the scheduled appointment.
 ![result for 'calendar popup'](images/CalendarPopupExample.png)
+
 ### 4.4 Command Line tools
 #### 4.4.1 Parameter hints
 After typing in the command word, the command's parameters and their respective prefixes are shown. An example of a valid command will also be shown.
