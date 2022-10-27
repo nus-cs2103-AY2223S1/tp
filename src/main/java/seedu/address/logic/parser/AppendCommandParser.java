@@ -15,6 +15,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Survey;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new AppendCommand object
+ */
 public class AppendCommandParser implements Parser<AppendCommand> {
 
     @Override
