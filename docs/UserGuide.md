@@ -263,6 +263,8 @@ Sort the contact list by name in either ascending `A-Z` or descending `Z-A` orde
 
 Format: `sort A-Z n/`
 
+Example Command: `sort A-Z n/`
+
 Before executing the above command: ![before sorting](images/BeforeSort.png)
 
 After executing the command: ![after sorting](images/AfterNameAscendingSort.png)
@@ -271,6 +273,8 @@ Contacts are sorted by name in `A-Z` order.
 </div>
 
 Format: `sort Z-A n/`
+
+Example Command: `sort Z-A n/`
 
 After executing the command: ![after sorting descending](images/AfterNameDescendingSort.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
@@ -363,8 +367,8 @@ FILENAME cannot contain any of `$%&` symbols.
 </div>
 
 Examples:
-* export test
-* export myContacts
+* `export test`
+* `export myContacts`
 
 Upon successfully exporting, users will see the CSV file:
 ![after export](images/CSVfile.png)
