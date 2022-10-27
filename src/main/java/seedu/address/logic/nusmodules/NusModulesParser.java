@@ -1,5 +1,6 @@
 package seedu.address.logic.nusmodules;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -28,13 +29,19 @@ public class NusModulesParser {
      * @param moduleCode Module Code to query
      * @return NusModule Title if module is present, null if not
      */
-    public String getModuleTitle(String moduleCode) {
-        for (NusModule nusModule : nusModuleLists) {
-            if (nusModule.getModuleCode().equalsIgnoreCase(moduleCode)) {
-                return nusModule.getModuleTitle();
+    public static String getModuleTitle(String moduleCode) {
+        try {
+            List<NusModule> nusModuleLists = mapper.readValue(nusModuleJson, new TypeReference<List<NusModule>>() {});
+            for (NusModule nusModule : nusModuleLists) {
+                if (nusModule.getModuleCode().equalsIgnoreCase(moduleCode)) {
+                    return nusModule.getModuleTitle();
+                }
             }
+            return null;
+        } catch (IOException e) {
+            //TODO
         }
-        return null;
+        return "No module title";
     }
 
     /**
@@ -44,10 +51,16 @@ public class NusModulesParser {
      * @return NusModule object if module is present, null if not
      */
     public NusModule getModule(String moduleCode) {
-        for (NusModule nusModule : nusModuleLists) {
-            if (nusModule.getModuleCode().equals(moduleCode)) {
-                return nusModule;
+        try {
+            List<NusModule> nusModuleLists = mapper.readValue(nusModuleJson, new TypeReference<List<NusModule>>() {});
+            for (NusModule nusModule :nusModuleLists) {
+                if (nusModule.getModuleCode().equals(moduleCode)) {
+                    return nusModule;
+                }
             }
+            return null;
+        } catch (IOException e) {
+            //TODO
         }
         return null;
     }
@@ -59,10 +72,17 @@ public class NusModulesParser {
      * @return Array of integer of modules offered if module is present, null if not.
      */
     public int[] getSemesterOffered(String moduleCode) {
-        for (NusModule nusModule : nusModuleLists) {
-            if (nusModule.getModuleTitle().equals(moduleCode)) {
-                return nusModule.getSemesterOffered();
+        try {
+            List<NusModule> nusModuleLists = mapper.readValue(nusModuleJson, new TypeReference<List<NusModule>>() {
+            });
+            for (NusModule nusModule : nusModuleLists) {
+                if (nusModule.getModuleTitle().equals(moduleCode)) {
+                    return nusModule.getSemesterOffered();
+                }
             }
+            return null;
+        } catch (IOException e) {
+            //TODO
         }
         return null;
     }
