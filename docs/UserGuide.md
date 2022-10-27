@@ -64,12 +64,23 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 </div>
 
+### Switch to light mode : `light`
+
+Switch to light mode.
+
+Format: `light`
+
+### Switch to dark mode : `dark`
+
+Switch to dark mode.
+
+Format: `dark`
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
-
 
 ### Adding a student/teaching assistant: `add`
 
@@ -363,6 +374,8 @@ _Details coming soon ..._
 
 | Action                                | Format                                                                                                             | Example                                                                                                                                                                     |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| switch to light mode                  | `light`                                                                                                            | `light`                                                                                                                                                                     |
+| switch to dark mode                   | `dark`                                                                                                             | `dark`                                                                                                                                                                      |
 | add a student/teaching assistant      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`            | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br> `add n/Adam Doink t/TA e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 c/CS1101S` |
 | edit a student                        | `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​` | `editstu 1 p/91234567 e/johndoe@example.com` <br> `editstu 2 n/Betsy Crower c/`                                                                                             |
 | edit a teaching assistant             | `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`  | `editta 1 p/97384723 e/davidlim@example.com` <br> `editta 2 n/Beth ta/CS2030S`                                                                                              |
@@ -373,6 +386,7 @@ _Details coming soon ..._
 | list all students/teaching assistants | `list`                                                                                                             | `list`                                                                                                                                                                      |
 | list all modules                      | `mlist`                                                                                                            | `mlist`                                                                                                                                                                     |
 | view more information about a module  | `vtarget INDEX`                                                                                                    | `vtarget 3`                                                                                                                                                                 |
+| view students and tutors in module    | `mview [c/MODULE_CODE]`                                                                                            | `mview CS1101S`                                                                                                                                                             |
 | view the teaching schedule            | `view schedule [-w WEEKDAY] [-m MODULE_CODE] [-d DATE] [-h] [-v]`                                                  | `view schedule -w Monday -m CS2103T` <br>`view schedule -d 2022-09-12` <br> `view schedule -h`                                                                              |
 | find a student/teaching assistant     | `find KEYWORD [MORE_KEYWORD]`                                                                                      | `find Adam Do`                                                                                                                                                              |
 | help                                  | `help`                                                                                                             | `help`                                                                                                                                                                      |
