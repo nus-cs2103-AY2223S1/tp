@@ -22,7 +22,7 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
 
 1. Ensure you have Java 11 or above installed on your computer.
 
-1. Download the latest `ModtRekt.jar` from [here](https://github.com/AY2223S1-CS2103T-W10-4/tp/releases).
+1. Download the latest `modtrekt.jar` from [here](https://github.com/AY2223S1-CS2103T-W10-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the home folder for your module tracker.
 
@@ -32,19 +32,19 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
 
 1.  Here are some example commands you can try:
 
-    1. `list`: Lists all the active tasks.
-
     1. `add module CS2103T`: Adds a module called CS2103T to the module tracker.
 
     1. `cd CS2103T`: Sets the current module page to CS2103T.
 
-    1. `add task ip week 6 -d 16/09/2022`: Adds a task called ip week 6, with a deadline of 16/09/2022, to the module tracker.
+    1. `add task "iP Week 6" -d 16/09/2022`: Adds a task called iP week 6, with a deadline of 16/09/2022, to the module tracker.
 
-    1. `remove task 1`: Removes the first task of CS2103T.
+    1. `list`: Lists all the active tasks.
 
-    1. `exit` : Exits the app.
+   1. `remove task 1`: Removes the first task of CS2103T.
 
-    1. Refer to the Features below for details of each command.
+   1. `exit`: Exits the app.
+
+   1. Refer to the Features below for details of each command.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -193,7 +193,7 @@ Exits the current module page to revert to showing all modules.
 
 Format: `cd ..`
 
-Allows user to view all active tasks instead of tasks belonging to a specific module.
+Allows user to view all active tasks from all modules instead of only those belonging to a specific module.
 
 Examples:
 - `cd ..`
@@ -201,15 +201,15 @@ Examples:
 Sample execution of command `cd ..`:
 ![cd-default-sample](images/cd-default-sample.png)
 
-#### Marks done a module: `done`
+#### Marks a module as done: `done module`
 
 Marks a module as done. 
-- After you marked a module as done, this will increment
-the total MC you completed displayed on the left side of the application.
-- When you mark a module as done, this will mark all active tasks 
-corresponding to the module as done.
+- After you mark a module as done, your total completed module credits (MCs) will be updated.
+- Marking a module as done will mark all active tasks belonging to that module as done.
 
-Format: `done module <module code>`, `done mod <module code>`
+Format: `done module <module code>`
+
+Shorthand: `done mod <module code>`
 
 Examples:
 - `done module CS1101S`
@@ -217,25 +217,24 @@ Examples:
 Sample execution of command `done module CS2100`:
 ![done-module-sample](images/done-module-sample.png)
 
-#### Marks undone a module: `undone`
+#### Marks undone a module: `undone module`
 
 Marks a module as undone. 
-- After you unmarked a module, this will decrement
-the total MC you completed displayed on the left side of the application.
-- Unmarking a module will not affect its tasks. (It will not mark its original tasks as undone)
+- After you unmark a module as done, your total completed module credits (MCs) will be updated.
+- Unmarking a module will not affect its tasks, i.e. your original tasks will not be marked as undone)
 
 Sample execution of command `done module CS2105`, with CS2105 marked as done initially:
 ![undone-module-sample](images/undone-module-sample.png)
 
 #### Listing all modules: `list module`
 
-Lists all the modules added by the user.
-- Using the command without `-a` tag will show you all active modules.
-- Using the command with `-a` tag will show you all modules, including those marked as done.
+Shows all the modules you have added.
+- Using the command without `-a` flag will show you only undone modules.
+- Using the command with `-a` flag will show you all modules, including those marked as done.
 
-Format: `list module [-a]`, `list mod [-a]`
+Format: `list module [-a]`
 
-Shorthand: `ls module [-a]`, `ls mod [-a]`
+Shorthand: `list mod [-a]`, `ls module [-a]`, `ls mod [-a]`
 
 Examples:
 - `list module -a`
@@ -247,23 +246,22 @@ Sample execution of command `list module -a`:
 
 #### Adding a task: `add task`
 
-Adds a task under specific module.
-- User can optionally be in a module page (i.e. Executing the [`cd` command](#entering-a-module-cd) to enter a module).
-- User may optionally include a deadline for the task by specifying the -d flag along with the deadline in DD/MM/YYYY format.
-- Description of a task can **only** contain American Standard Code for Information Interchange 
-  [(ASCII)](https://en.wikipedia.org/wiki/ASCII) characters
+Adds a task under a specific module.
+- You may have selected a module (i.e. used the [`cd` command](#entering-a-module-cd) to select a module).
+- You can specify a deadline for the task with the `-d` flag along with the deadline in YYYY-MM-DD format.
+- The task description accepts only use letters, numbers, spaces, and other
+  American Standard Code for Information Interchange [(ASCII)](https://en.wikipedia.org/wiki/ASCII) characters.
+- The task description must be enclosed in double-quotes (`""`) if it contains spaces.
+- The symbols `-` and `"` are special characters and must be escaped with a backslash (`\`) to
+  be used in the task description, e.g. `add task "foo\-\"bar\""` will result in the description `foo-"bar"`. 
 
-Format(if CDed): `add task <description> [-d <deadline>]`
-Format(otherwise): `add task <description> [-d <deadline>] -c <module code>`
+Format (if `cd`'d previously): `add task <description> [-d <deadline>]`
 
+Format (if not `cd`'d`): `add task <description>  -c <module code> [-d <deadline>]`
 
-Examples (CDed into a module):
-- `add task do ip tasks -d 15/09/2022`
-- `add task -d 15/09/2022 do ip tasks`
-
-Examples (Not CDed into a module):
-- `add task -c CS2103T do ip tasks -d 15/09/2022`
-- `add task -d 15/09/2022 do ip tasks -c CS2103T`
+Example:
+`cd CS2100` followed by `add task "Assignment 1" -d 2022-10-29`, or equivalently,
+`add task "Assignment 1" -c cCS2100 -d 2022-10-29`
 
 Sample execution of command `add "Assignment 1" -c CS2100 -d 2022-10-29`:
 ![add-task-sample](images/add-task-sample.png)
@@ -271,12 +269,12 @@ Sample execution of command `add "Assignment 1" -c CS2100 -d 2022-10-29`:
 #### Removing a task: `remove task`
 
 Removes a task under a specific module.
-- User must be within a module page.
-- Index must be a valid integer. Users may use the list tasks command to find the indexes of their tasks.
+
+- The task index must be a non-zero positive integer, and have a corresponding task indicated with `#` in the task list.
 
 Format: `remove task <task index>`
 
-Shorthand: `rm -t <task index>`
+Shorthand: `rm task <task index>`
 
 Examples:
 - `remove task 1`
@@ -287,8 +285,9 @@ Sample execution of command `remove task 1` with 2 active tasks displayed:
 
 #### Marking a task as done: `done task`
 
-Marks a task as done, specified via its index on the displayed list.
-- Index must be a valid integer. Users may use the list tasks command to find the indexes of their tasks.
+Marks a task as done, specified via its index in the task list.
+
+- The task index must be a non-zero positive integer, and have a corresponding task indicated with `#` in the task list.
 
 Format: `done task <task index>`
 
@@ -300,8 +299,9 @@ Sample execution of command `done task 1` with 6 active tasks displayed:
 
 #### Marking a task as undone: `undone task`
 
-Marks a task as undone, specified via its index on the displayed list.
-- Index must be a valid integer. Users may use the list tasks command to find the indexes of their tasks.
+Marks a task as undone, specified via its index in the task list.
+
+- The task index must be a non-zero positive integer, and have a corresponding task indicated with `#` in the task list.
 
 Format: `undone task <task index>`
 
@@ -311,21 +311,21 @@ Examples:
 Sample execution of command `undone task 6` with 6 active tasks displayed:
 ![undone-task-sample](images/undone-task-sample.png)
 
-#### Listing all tasks: `list tasks`
+#### Listing all tasks: `list task`
 
-Lists all tasks under either all modules or a specific module.
-- Module code is inferred from the current module page if the user is currently within a module page.
-- The module code is case insensitive e.g. cs2103t will match CS2103T
-- Module code must match an existing module.
+Shows only the active tasks (i.e. tasks which are undone) by default.
+Include the optional `-a` flag to the command to show all tasks, including those that are done.
 
+If you have used the [`cd` command](#entering-a-module-cd) to select a module, this will
+only show the tasks under the selected module.
 
-Format: `list tasks [-m <module code>]`
+Format: `list task [-a]`
 
-Shorthand: `ls -t [-m <module code>]`
+Shorthand: `ls task [-a]`
 
 Examples:
-- `list tasks -m cs2103t`
-- `ls -t -m CS2103T`
+- `list task -a` shows all tasks, including those marked as done.
+- `ls task` hides all done tasks.
 
 --------------------------------------------------------------------------------------------------------------------
 
