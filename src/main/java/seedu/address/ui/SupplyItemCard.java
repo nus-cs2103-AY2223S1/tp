@@ -135,6 +135,9 @@ public class SupplyItemCard extends UiPart<Region> {
 
         try {
             int parsedAmount = Integer.parseInt(input);
+
+            assert parsedAmount >= 0;
+
             if (parsedAmount >= 0) {
                 amountInput.setText(String.valueOf(parsedAmount));
                 changeIncDecHandler.accept(parsedAmount);
@@ -158,6 +161,9 @@ public class SupplyItemCard extends UiPart<Region> {
 
         try {
             int parsedAmount = Integer.parseInt(input);
+
+            assert parsedAmount >= 0;
+
             if (parsedAmount >= 0) {
                 amountInput.setText(String.valueOf(parsedAmount));
                 changeIncDecHandler.accept(parsedAmount);
@@ -182,6 +188,9 @@ public class SupplyItemCard extends UiPart<Region> {
 
         try {
             int parsedAmount = Integer.parseInt(input);
+
+            assert parsedAmount >= 0;
+
             if (parsedAmount >= 0) {
                 amountInput.setText(String.valueOf(parsedAmount));
                 changeIncDecHandler.accept(parsedAmount);
