@@ -3,7 +3,6 @@ package seedu.address.model.group;
 import static seedu.address.model.AccessDisplayFlags.GROUP;
 
 import seedu.address.model.item.AbstractSingleItem;
-
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
 

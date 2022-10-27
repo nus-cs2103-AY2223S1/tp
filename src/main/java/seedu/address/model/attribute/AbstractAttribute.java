@@ -8,10 +8,6 @@ import static seedu.address.model.AccessDisplayFlags.HIDE_TYPE;
 import static seedu.address.model.AccessDisplayFlags.ITALIC;
 import static seedu.address.model.AccessDisplayFlags.MENU_OK;
 import static seedu.address.model.AccessDisplayFlags.UNDERLINE;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import static seedu.address.model.AccessDisplayFlags.STRIKETHROUGH;
 import static seedu.address.model.AccessDisplayFlags.DROPSHADOW;
 import static seedu.address.model.AccessDisplayFlags.LEFT_JUSTIFY;
@@ -20,11 +16,12 @@ import static seedu.address.model.AccessDisplayFlags.RIGHT_JUSTIFY;
 import static seedu.address.model.AccessDisplayFlags.FONT_SIZE_BIG;
 import static seedu.address.model.AccessDisplayFlags.FONT_SIZE_NORMAL;
 import static seedu.address.model.AccessDisplayFlags.FONT_SIZE_SMALL;
+import static seedu.address.model.AccessDisplayFlags.DEFAULT_STYLE;
 
+import java.util.HashMap;
+import java.util.Map;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-
-import static seedu.address.model.AccessDisplayFlags.DEFAULT_STYLE;;
 
 /**
  * Creates an Abstract class to handle repeated and overused methods when making
@@ -125,8 +122,8 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
         Label ret = new Label();
         ret.setText(txt);
         System.out.printf("%s: ", txt);
-        System.out.println(getFormatCSS());
-        ret.setStyle(getFormatCSS());
+        System.out.println(getFormatCss());
+        ret.setStyle(getFormatCss());
         return ret;
     }
 
@@ -135,22 +132,11 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
         return typeName.hashCode() ^ value.hashCode() ^ accessCtrl ^ styleFlag;
     }
 
-    protected String getFormatCSS() {
-        return getFormatCSS(true);
+    protected String getFormatCss() {
+        return getFormatCss(true);
     }
 
-    @Override
-    public Map<String, Object> toSaveableData() {
-        Map<String, Object> ret = new HashMap<>();
-        ret.put("type", typeName);
-        ret.put("content", value);
-        ret.put("display_format", accessCtrl);
-        ret.put("style_format", styleFlag);
-
-        return ret;
-    }
-
-    protected String getFormatCSS(boolean isInMenu) {
+    protected String getFormatCss(boolean isInMenu) {
         StringBuilder sb = new StringBuilder("-fx-font: normal");
         double size = 12;
 
@@ -190,7 +176,17 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
         if (isAllStyleMatch(RIGHT_JUSTIFY)) {
             sb.append(" -fx-text-alignment: right;");
         }
-
         return sb.toString();
+    }
+
+    @Override
+    public Map<String, Object> toSaveableData() {
+        Map<String, Object> ret = new HashMap<>();
+        ret.put("type", typeName);
+        ret.put("content", value);
+        ret.put("display_format", accessCtrl);
+        ret.put("style_format", styleFlag);
+
+        return ret;
     }
 }

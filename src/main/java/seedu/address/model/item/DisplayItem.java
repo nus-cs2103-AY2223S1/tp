@@ -106,5 +106,5 @@ public interface DisplayItem {
      */
     boolean isPartOfContext(DisplayItem o);
 
-    UniqueID getUUID(AbstractDisplayItem item);
+    UniqueID getUuid(AbstractDisplayItem item);
 }

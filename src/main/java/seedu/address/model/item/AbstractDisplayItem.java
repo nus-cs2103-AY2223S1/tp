@@ -22,11 +22,11 @@ import seedu.address.model.tag.UniqueID;
 public abstract class AbstractDisplayItem implements DisplayItem {
 
     protected Name name;
+    protected UniqueID uuid;
     private int typeFlag;
     private int parentTypeFlag;
     private List<Attribute<?>> attributes;
     private Set<Tag> tags;
-    protected UniqueID uuid;
 
     protected AbstractDisplayItem(String name, int typeFlag, int parentTypeFlag) {
         requireAllNonNull(name, typeFlag);
@@ -159,7 +159,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     }
 
     @Override
-    public UniqueID getUUID(AbstractDisplayItem item) {
+    public UniqueID getUuid(AbstractDisplayItem item) {
         return this.uuid;
     }
 }
