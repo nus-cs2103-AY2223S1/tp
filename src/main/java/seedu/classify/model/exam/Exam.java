@@ -1,4 +1,4 @@
-package seedu.classify.model.tag;
+package seedu.classify.model.exam;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.classify.commons.util.AppUtil.checkArgument;
@@ -65,6 +65,13 @@ public class Exam {
      */
     public int getScore() {
         return this.score;
+    }
+
+    /**
+     * Returns the name of the exam.
+     */
+    public String getExamName() {
+        return this.name;
     }
 
     @Override

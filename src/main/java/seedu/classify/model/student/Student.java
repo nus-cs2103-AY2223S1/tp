@@ -4,10 +4,12 @@ import static seedu.classify.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.classify.model.tag.Exam;
+import seedu.classify.model.exam.Exam;
+import seedu.classify.model.student.exceptions.ExamNotFoundException;
 
 
 /**
@@ -74,6 +76,34 @@ public class Student {
      */
     public Set<Exam> getExams() {
         return Collections.unmodifiableSet(exams);
+    }
+
+    public Exam getExam(String exam) throws ExamNotFoundException {
+        assert exam.equals("CA1") || exam.equals("CA2") || exam.equals("SA1") || exam.equals("SA2");
+        Iterator<Exam> examIterator = exams.iterator();
+        Exam currExam = null;
+        while (examIterator.hasNext()) {
+            Exam temp = examIterator.next();
+            if (temp.getExamName().equals(exam)) {
+                currExam = temp;
+                break;
+            }
+        }
+        if (currExam == null) {
+            throw new ExamNotFoundException();
+        }
+        return currExam;
+    }
+
+    /**
+     * Return the student's grade for the specified exam
+     */
+    public int getExamScore(String exam) {
+        try {
+            return getExam(exam).getScore();
+        } catch (ExamNotFoundException e) {
+            throw new ExamNotFoundException();
+        }
     }
 
     /**
