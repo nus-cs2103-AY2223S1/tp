@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "github" : "alice-pauline",
-    "tagged" : [ "friends" ],
+    "tagged" : [ "family" ],
     "currModules" : [ "CS2103T" ],
     "prevModules" : [ "CS2040S" ],
     "planModules" : [ "CS2109S" ]
@@ -26,35 +26,50 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "github" : "Kurz-Carl",
-    "tagged": [ ]
+    "tagged": [ ],
+    "currModules" : [ "CS2101" ],
+    "prevModules" : [ "CS2030S" ],
+    "planModules" : [ "CS2105" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "github" : "danMeier",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "currModules" : [ "CS2101" ],
+    "prevModules" : [ "CS2030S" ],
+    "planModules" : [ "CS2105" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "github" : "elleeee",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "currModules" : [ "CS2101" ],
+    "prevModules" : [ "CS2030S" ],
+    "planModules" : [ "CS2105" ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "github" : "fiona-kunz",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "currModules" : [ "CS2101" ],
+    "prevModules" : [ "CS2030S" ],
+    "planModules" : [ "CS2105" ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
     "github" : "George-the-b3st",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "currModules" : [ "CS2103T" ],
+    "prevModules" : [ "CS2040S" ],
+    "planModules" : [ "CS2109S" ]
   } ],
   "jsonAdaptedUser" : {
     "name" : "Zephyr Yosef",

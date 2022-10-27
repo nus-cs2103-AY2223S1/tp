@@ -54,62 +54,62 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-            case UserCommand.COMMAND_WORD:
-                return new UserCommandParser().parse(arguments);
+        case UserCommand.COMMAND_WORD:
+            return new UserCommandParser().parse(arguments);
 
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            case ModuleCommand.COMMAND_WORD:
-                return new ModuleCommandParser().parse(arguments);
+        case ModuleCommand.COMMAND_WORD:
+            return new ModuleCommandParser().parse(arguments);
 
-            case LessonCommand.COMMAND_WORD:
-                return new LessonCommandParser().parse(arguments);
+        case LessonCommand.COMMAND_WORD:
+            return new LessonCommandParser().parse(arguments);
 
-            case RemoveCommand.COMMAND_WORD:
-                return new RemoveCommandParser().parse(arguments);
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommandParser().parse(arguments);
 
-            case TimetableCommand.COMMAND_WORD:
-                return new TimetableCommandParser().parse(arguments);
+        case TimetableCommand.COMMAND_WORD:
+            return new TimetableCommandParser().parse(arguments);
 
-            case FilterTagCommand.COMMAND_WORD:
-                return new FilterTagCommandParser().parse(arguments);
+        case FilterTagCommand.COMMAND_WORD:
+            return new FilterTagCommandParser().parse(arguments);
 
-            case FilterCurrModCommand.COMMAND_WORD:
-                return new FilterCurrModCommandParser().parse(arguments);
+        case FilterCurrModCommand.COMMAND_WORD:
+            return new FilterCurrModCommandParser().parse(arguments);
 
-            case FilterPrevModCommand.COMMAND_WORD:
-                return new FilterPrevModCommandParser().parse(arguments);
+        case FilterPrevModCommand.COMMAND_WORD:
+            return new FilterPrevModCommandParser().parse(arguments);
 
-            case FilterPlanModCommand.COMMAND_WORD:
-                return new FilterPlanModCommandParser().parse(arguments);
+        case FilterPlanModCommand.COMMAND_WORD:
+            return new FilterPlanModCommandParser().parse(arguments);
 
-            case NextSemCommand.COMMAND_WORD:
-                return new NextSemCommand();
+        case NextSemCommand.COMMAND_WORD:
+            return new NextSemCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 

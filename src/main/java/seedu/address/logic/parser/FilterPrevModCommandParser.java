@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.FilterPrevModCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.PrevModContainsKeywordsPredicate;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new FilterPrevModCommand object
