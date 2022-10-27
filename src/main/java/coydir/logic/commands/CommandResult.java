@@ -17,8 +17,13 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    private final boolean view;
+    /** The application should display a person's profile. */
+    private final boolean viewPerson;
 
+    /** The home panel should be displayed. */
+    private final boolean goHome;
+
+    /** The displayed person should be updated. */
     private final boolean update;
 
     private int viewIndex;
@@ -27,24 +32,28 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean goHome) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.view = false;
+        this.goHome = goHome;
+        this.viewPerson = false;
         this.update = true;
+        this.viewIndex = -1;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
+     * Used only for the {@code View} command.
      */
-    public CommandResult(String feedbackToUser, boolean view, int index) {
+    public CommandResult(String feedbackToUser, int index) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
         this.exit = false;
-        this.view = view;
-        this.viewIndex = index;
+        this.goHome = false;
+        this.viewPerson = true;
         this.update = false;
+        this.viewIndex = index;
     }
 
     /**
@@ -52,7 +61,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -67,8 +76,12 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isView() {
-        return view;
+    public boolean isViewPerson() {
+        return viewPerson;
+    }
+
+    public boolean isGoHome() {
+        return goHome;
     }
 
     public boolean isUpdate() {
@@ -78,7 +91,6 @@ public class CommandResult {
     public int getViewIndex() {
         return viewIndex;
     }
-
 
     @Override
     public boolean equals(Object other) {
@@ -94,12 +106,16 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && viewPerson == otherCommandResult.viewPerson
+                && goHome == otherCommandResult.goHome
+                && update == otherCommandResult.update
+                && viewIndex == otherCommandResult.viewIndex;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, viewPerson, goHome, update, viewIndex);
     }
 
 }

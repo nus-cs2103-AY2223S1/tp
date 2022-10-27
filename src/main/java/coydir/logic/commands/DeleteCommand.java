@@ -40,7 +40,9 @@ public class DeleteCommand extends Command {
             if (person.getEmployeeId().equals(targetId)) {
                 model.deletePerson(person);
                 personToDelete = person;
-                return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+                return new CommandResult(
+                        String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete), false, false, true
+                        );
             }
         }
         throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

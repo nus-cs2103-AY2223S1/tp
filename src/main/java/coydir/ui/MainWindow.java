@@ -8,6 +8,8 @@ import coydir.logic.Logic;
 import coydir.logic.commands.CommandResult;
 import coydir.logic.commands.exceptions.CommandException;
 import coydir.logic.parser.exceptions.ParseException;
+import coydir.model.person.EmployeeId;
+import coydir.model.person.Person;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +18,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -40,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonInfo personInfo;
 
     private int currentIndex;
+    private EmployeeId currentEmployee;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -147,7 +151,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel.getPersonListView().setOnMouseClicked((new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                handleView(personListPanel.getPersonListView().getSelectionModel().getSelectedIndex());
+                handleViewPerson(personListPanel.getPersonListView().getSelectionModel().getSelectedIndex());
             }
         }));
     }
@@ -204,6 +208,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    private void setSidePanel(UiPart<Region> panel) {
+        sidePanelPlaceholder.getChildren().clear();
+        sidePanelPlaceholder.getChildren().add(panel.getRoot());
+    }
+
     /**
      * Closes the application.
      */
@@ -216,11 +225,16 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handleView(int index) {
+    private void handleViewPerson(int index) {
+        Person currentPerson = logic.getFilteredPersonList().get(index);
+        if (index == currentIndex && !currentPerson.getEmployeeId().equals(currentEmployee)) {
+            setSidePanel(homePanel);
+        } else {
+            personInfo.update(currentPerson);
+            setSidePanel(personInfo);
+        }
         currentIndex = index;
-        personInfo.update(logic.getFilteredPersonList().get(index));
-        sidePanelPlaceholder.getChildren().clear();
-        sidePanelPlaceholder.getChildren().add(personInfo.getRoot());
+        currentEmployee = currentPerson.getEmployeeId();
     }
 
     private void handleUpdate(int index) {
@@ -244,18 +258,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
-            }
-
-            if (commandResult.isExit()) {
+            } else if (commandResult.isExit()) {
                 handleExit();
-            }
-
-            if (commandResult.isView()) {
-                currentIndex = commandResult.getViewIndex();
-                handleView(currentIndex);
-            }
-
-            if (commandResult.isUpdate()) {
+            } else if (commandResult.isViewPerson()) {
+                int viewIndex = commandResult.getViewIndex();
+                handleViewPerson(viewIndex == -1 ? currentIndex : viewIndex);
+            } else if (commandResult.isUpdate()) {
                 handleUpdate(currentIndex);
             }
 
