@@ -176,6 +176,25 @@ public class Day {
         return splitPeriods;
     }
 
+    public String getTextRepresentation() {
+        StringBuilder dayText = new StringBuilder();
+        dayText.append("Day ").append((this.dayNumber + 1)).append(System.lineSeparator());
+        StringBuilder itemsText = new StringBuilder();
+        int itemCount = 1;
+        for (Item item : this.itemList) {
+            itemsText.append(itemCount).append(". ").append(item.toString())
+                    .append(System.lineSeparator());
+            if (itemCount < this.itemList.getSize()) {
+                itemsText.append(System.lineSeparator());
+            }
+            itemCount++;
+        }
+        dayText.append(Text.indent(itemsText.toString(), Text.indentFour))
+                .append(System.lineSeparator());
+
+        return dayText.toString();
+    }
+
     public List<PdfFieldInfo> getPdfFieldInfoList() {
         List<PdfFieldInfo> fieldList = new ArrayList<>();
         PdfFieldInfo day = new PdfFieldInfo("day", "Day " + Integer.toString(dayNumber + 1));

@@ -12,9 +12,9 @@ import seedu.waddle.model.itinerary.Itinerary;
 /**
  * Export an itinerary into pdf format.
  */
-public class ExportCommand extends Command {
+public class ExportPdfCommand extends Command {
 
-    public static final String COMMAND_WORD = "export";
+    public static final String COMMAND_WORD = "pdf";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": export current itinerary to PDF\n"
@@ -53,7 +53,7 @@ public class ExportCommand extends Command {
         }
 
         // instanceof handles nulls
-        return other instanceof ExportCommand;
+        return other instanceof ExportPdfCommand;
 
     }
 }

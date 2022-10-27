@@ -272,6 +272,19 @@ public class Itinerary {
         return vacantSlots.toString();
     }
 
+    public String getTextRepresentation() {
+        StringBuilder itineraryText = new StringBuilder();
+        itineraryText.append(this.toString())
+                .append(System.lineSeparator()).append(System.lineSeparator());
+        StringBuilder daysText = new StringBuilder();
+        for (Day day : this.days) {
+            daysText.append(day.getTextRepresentation());
+        }
+        itineraryText.append(daysText.toString());
+
+        return itineraryText.toString();
+    }
+
     /**
      * Returns true if both itineraries have the same identity and data fields.
      * This defines a stronger notion of equality between two itineraries.
