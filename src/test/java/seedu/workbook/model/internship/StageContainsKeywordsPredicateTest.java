@@ -52,10 +52,6 @@ public class StageContainsKeywordsPredicateTest {
         predicate = new StageContainsKeywordsPredicate(Arrays.asList("Technical", "Interview"));
         assertTrue(predicate.test(new InternshipBuilder().withStage("Technical Interview").build()));
 
-        // Only one matching keyword
-        predicate = new StageContainsKeywordsPredicate(Arrays.asList("Backend", "Interview"));
-        assertTrue(predicate.test(new InternshipBuilder().withStage("Technical Interview").build()));
-
         // Mixed-case keywords
         predicate = new StageContainsKeywordsPredicate(Arrays.asList("tEcHnicAl", "inTeRviEw"));
         assertTrue(predicate.test(new InternshipBuilder().withStage("Technical Interview").build()));
@@ -63,12 +59,9 @@ public class StageContainsKeywordsPredicateTest {
 
     @Test
     public void test_companyDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        StageContainsKeywordsPredicate predicate = new StageContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new InternshipBuilder().withStage("Online Assessment").build()));
 
         // Non-matching keyword
-        predicate = new StageContainsKeywordsPredicate(Arrays.asList("Assessment"));
+        StageContainsKeywordsPredicate predicate = new StageContainsKeywordsPredicate(Arrays.asList("Assessment"));
         assertFalse(predicate.test(new InternshipBuilder().withStage("Phone Interview").build()));
 
         // Keywords match phone, email and address, but does not match company

@@ -18,7 +18,7 @@ public class StageContainsKeywordsPredicate implements Predicate<Internship> {
     @Override
     public boolean test(Internship internship) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(internship.getStage().value, keyword));
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(internship.getStage().value, keyword));
     }
 
     @Override

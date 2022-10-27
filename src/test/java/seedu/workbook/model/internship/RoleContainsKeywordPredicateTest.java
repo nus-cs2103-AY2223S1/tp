@@ -52,10 +52,6 @@ public class RoleContainsKeywordPredicateTest {
         predicate = new RoleContainsKeywordsPredicate(Arrays.asList("Software", "Engineer"));
         assertTrue(predicate.test(new InternshipBuilder().withRole("Software Engineer").build()));
 
-        // Only one matching keyword
-        predicate = new RoleContainsKeywordsPredicate(Arrays.asList("Software", "Developer"));
-        assertTrue(predicate.test(new InternshipBuilder().withRole("Software Engineer").build()));
-
         // Mixed-case keywords
         predicate = new RoleContainsKeywordsPredicate(Arrays.asList("sOfTwaRe", "EnGineEr"));
         assertTrue(predicate.test(new InternshipBuilder().withRole("Software Engineer").build()));
@@ -63,12 +59,9 @@ public class RoleContainsKeywordPredicateTest {
 
     @Test
     public void test_companyDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        RoleContainsKeywordsPredicate predicate = new RoleContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new InternshipBuilder().withRole("Backend Developer").build()));
 
         // Non-matching keyword
-        predicate = new RoleContainsKeywordsPredicate(Arrays.asList("Backend"));
+        RoleContainsKeywordsPredicate predicate = new RoleContainsKeywordsPredicate(Arrays.asList("Backend"));
         assertFalse(predicate.test(new InternshipBuilder().withRole("Software Engineer").build()));
 
         // Keywords match phone and  email but does not match role
