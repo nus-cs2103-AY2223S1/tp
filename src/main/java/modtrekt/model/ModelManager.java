@@ -117,7 +117,6 @@ public class ModelManager implements Model {
     public void addTask(Task t) {
         taskBook.addTask(t);
         updateModuleTaskCount(t);
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
     @Override
@@ -187,7 +186,6 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         moduleList.addModule(module);
-        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
