@@ -152,6 +152,10 @@ public class AddCommandTest {
         public Predicate<Person> createPersonIsInClassPredicate(String studentClass) {
             throw new AssertionError("This method should not be called.");
         }
+
+        public void sortListByGrade(boolean isInAscending) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

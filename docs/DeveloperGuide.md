@@ -12,6 +12,15 @@ title: Developer Guide
 
 - {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
+| Code Author | Code Used    | Reason               |
+|-------------|--------------|----------------------|
+| e1010101    | [DateUtil](https://github.com/e1010101/ip/blob/master/src/main/java/util/DateUtils.java) | Ease of date parsing |
+|             |              |                      |
+|             |              |                      |
+|             |              |                      |
+|             |              |                      |
+|             |              |                      |
+
 ---
 
 ## **Setting up, getting started**
@@ -38,7 +47,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [Main](https://github.com/AY2223S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [MainApp](https://github.com/AY2223S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -71,7 +81,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [UiManager.java](https://github.com/AY2223S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/UiManager.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -172,20 +182,53 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Sort feature
+### Edit feature
 
-#### Proposed Implementation
+#### Current Implementation
 
-The proposed sort command consists of these following classes:
+The edit command consists of these following classes:
+
+- `EditCommand` which extends `Command`
+- `EditCommandParser` which extends `Parser<EditCommand>`
+  
+As with all other commands, the edit command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object.
+It allows the editing of a person's name, phone, email, address, class, remarks and tags.
+
+The command will be used as such:
+- `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CLASS] [rem/REMARK] [t/TAG]`
+- Words in `UPPER_CASE` are the inputs to be supplied by the user.
+- Words in square brackets are optional, but at least one of them must be present.
+
+### \[Implemented\] Sort feature
+
+#### current Implementation
+
+The sort command consists of these following classes:
 
 - `SortCommand` which extends `Command`
 - `SortCommandParser` which extends `Parser<SortCommand>`
 
-As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It sorts the list of students by their grades or attendance.
+As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It sorts the list of students by their grades in ascending or descending order as specified by the user.
 
-Primarily there are two proposed cases for this command,
-- sort by grade - e.g.`sort g`
-- sort by attendance - e.g. `sort a`
+The command will be used as such:
+- sort by grade in ascending order - e.g.`sort asc`
+- sort by grade in descending order - e.g. `sort desc`
+
+### \[Implemented\] Grade feature
+
+#### current Implementation
+
+The Grade command consists of these following classes:
+
+- `GradeCommand` which extends `Command`
+- `GradeCommandParser` which extends `Parser<SortCommand>`
+
+As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It opens a new GUI window to start the grading process
+
+The command will be used as such:
+- entering grades for an `Assignment` using the follow command format - grade <subject_assignment_totalScore_weightage_difficulty>
+e.g.`grade math_CA1_100_0.4_0.1`
+
 
 ### \[Proposed\] Undo/redo feature
 
