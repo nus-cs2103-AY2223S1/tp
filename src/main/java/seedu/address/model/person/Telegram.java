@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.ArgumentMultimap.DOES_NOT_EXIST;
  */
 public class Telegram {
 
-    public static final String MESSAGE_CONSTRAINTS = "Telegram usernames can take any values, `"
+    public static final String MESSAGE_CONSTRAINTS = "Telegram usernames can take any values, "
             + "and it should only be one word";
 
     /*
