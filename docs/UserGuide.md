@@ -183,9 +183,9 @@ Format: `deletedebts <person index> debt/<debt index…>`
 Example:
 * `deletedebts 2 debt/2 3`
 
-### Getting the statement
+### Getting the statement: `statement`
 
-Retrieves a statement of the total sum of debts you are owed.
+Gets a statement of the total sum of debts you are owed.
 
 Format: `statement`
 

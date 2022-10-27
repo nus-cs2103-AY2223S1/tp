@@ -154,7 +154,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add debt feature - `adddebt`
+### Add debt feature: `adddebt`
 
 #### Implementation
 
@@ -176,7 +176,7 @@ To ensure that modifying (such as marking as paid, or other future possible exte
 
 To enable the user to retroactively add a `Debt` that is backdated, the `AddDebtCommandParser` should be updated to enable detection of optional `<date>` and `<time>` parameters.
 
-### \[Proposed\] Improved find command
+### \[Proposed\] Improved find command: `find`
 
 #### Proposed Implementation
 
@@ -186,7 +186,7 @@ For each present prefix, the list of persons shall be filtered by the relevant f
 
 Finally, the user will be shown the filtered list of persons, like in the original find command.
 
-### List debtors feature
+### List debtors feature: `listdebtors`
 
 #### Implementation
 
@@ -208,7 +208,7 @@ The activity diagram below details the behaviour of PayMeLah when a user request
     * Pros: More consistent behaviour: every `ListDebtorsCommand` will have an associated `DebtGreaterEqualAmountPredicate`.
     * Cons: May not work properly with possible future extensions (e.g. Money modified to use other precisions besides 2 decimal points)
 
-### Mark debts as paid/unpaid feature
+### Mark debts as paid/unpaid feature: `mark`/`unmark`
 
 #### Implementation
 
