@@ -9,8 +9,8 @@ import bookface.model.Model;
  * List all users with overdue loans, and books that are overdue
  */
 public class ListOverdueCommand extends ListCommand {
-    public static final String COMMAND_WORD = "loans";
-    public static final String MESSAGE_USAGE = ListCommand.generateMessage(COMMAND_WORD, COMMAND_WORD, COMMAND_WORD);
+    public static final String COMMAND_WORD = "overdue";
+    public static final String MESSAGE_USAGE = ListCommand.generateMessage(COMMAND_WORD);
     public static final String MESSAGE_SUCCESS = "Listed all users with overdue loans and the overdue books";
 
     @Override
