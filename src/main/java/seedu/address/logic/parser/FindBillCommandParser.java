@@ -22,10 +22,10 @@ import seedu.address.model.patient.Name;
  * Parses input arguments and creates a new FindAppointmentCommand object
  */
 public class FindBillCommandParser implements Parser<FindBillCommand> {
-    private Predicate<Amount> amountPredicate;
-    private Predicate<BillDate> billDatePredicate;
-    private Predicate<Name> namePredicate;
-    private Predicate<PaymentStatus> paymentStatusPredicate;
+    private Predicate<Amount> amountPredicate = null;
+    private Predicate<BillDate> billDatePredicate = null;
+    private Predicate<Name> namePredicate = null;
+    private Predicate<PaymentStatus> paymentStatusPredicate = null;
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindBillCommand
@@ -43,6 +43,8 @@ public class FindBillCommandParser implements Parser<FindBillCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            checkNumberOfPrefixes(PREFIX_NAME, argMultimap);
+
             String trimmedArgs = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).toString().trim();
             if (trimmedArgs.isEmpty()) {
                 throw new ParseException(
@@ -65,6 +67,8 @@ public class FindBillCommandParser implements Parser<FindBillCommand> {
         Optional<Predicate<Name>> finalNamePredicate = Optional.ofNullable(this.namePredicate);
 
         if (argMultimap.getValue(PREFIX_PAYMENT_STATUS).isPresent()) {
+            checkNumberOfPrefixes(PREFIX_PAYMENT_STATUS, argMultimap);
+
             String trimmedArgs = ParserUtil.parsePaymentStatus(argMultimap
                     .getValue(PREFIX_PAYMENT_STATUS).get()).toString().trim();
             if (trimmedArgs.isEmpty()) {
@@ -79,6 +83,8 @@ public class FindBillCommandParser implements Parser<FindBillCommand> {
                 Optional.ofNullable(this.paymentStatusPredicate);
 
         if (argMultimap.getValue(PREFIX_BILL_DATE).isPresent()) {
+            checkNumberOfPrefixes(PREFIX_BILL_DATE, argMultimap);
+
             String trimmedArgs = argMultimap.getValue(PREFIX_BILL_DATE).get().trim();
 
             if (trimmedArgs.isEmpty()) {
@@ -96,6 +102,8 @@ public class FindBillCommandParser implements Parser<FindBillCommand> {
         Optional<Predicate<BillDate>> finalBillDatePredicate = Optional.ofNullable(this.billDatePredicate);
 
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
+            checkNumberOfPrefixes(PREFIX_AMOUNT, argMultimap);
+
             String trimmedArgs = ParserUtil.parseAmount(argMultimap
                     .getValue(PREFIX_AMOUNT).get()).toString().trim();
 
@@ -119,5 +127,19 @@ public class FindBillCommandParser implements Parser<FindBillCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Checks if the prefix for a field is present more than once in one command.
+     *
+     * @param prefix The prefix to be checked.
+     * @param argMultimap The argument multimap.
+     * @throws ParseException If the prefix is present more than once.
+     */
+    public void checkNumberOfPrefixes(Prefix prefix, ArgumentMultimap argMultimap) throws ParseException {
+        if (argMultimap.getAllValues(prefix).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindBillCommand.MESSAGE_USAGE));
+        }
     }
 }
