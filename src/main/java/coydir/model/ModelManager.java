@@ -107,7 +107,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         database.setPerson(target, editedPerson);
     }
 
