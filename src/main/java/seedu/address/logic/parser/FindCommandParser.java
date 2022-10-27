@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_PREFIX;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_KEYWORDS_WITHOUT_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_PREFIX_SPECIFIED;
@@ -17,8 +16,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
@@ -53,8 +51,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
-                        PREFIX_TAG, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION,
-                        PREFIX_SUBJECT, PREFIX_DAY, PREFIX_TIME);
+                        PREFIX_TAG, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION,
+                        PREFIX_DAY, PREFIX_TIME);
 
         validateArguments(argMultimap);
 
@@ -78,32 +76,24 @@ public class FindCommandParser implements Parser<FindCommand> {
         switch (listType) {
 
         case STUDENT_LIST:
-            if (areAnyPrefixesPresent(argMultimap, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_SUBJECT,
-                    PREFIX_DAY, PREFIX_TIME)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
 
             nameKeywords = argMultimap.getValue(PREFIX_NAME).orElse("");
             addressKeywords = argMultimap.getValue(PREFIX_ADDRESS).orElse("");
             emailKeywords = argMultimap.getValue(PREFIX_EMAIL).orElse("");
             phoneKeywords = argMultimap.getValue(PREFIX_PHONE).orElse("");
-            schoolKeywords = argMultimap.getValue(PREFIX_SCHOOL).orElse("");
+            schoolKeywords = argMultimap.getValue(PREFIX_SUBJECT_OR_SCHOOL).orElse("");
             levelKeywords = argMultimap.getValue(PREFIX_LEVEL).orElse("");
 
             keywords.put(PREFIX_NAME, nameKeywords);
             keywords.put(PREFIX_ADDRESS, addressKeywords);
             keywords.put(PREFIX_EMAIL, emailKeywords);
             keywords.put(PREFIX_PHONE, phoneKeywords);
-            keywords.put(PREFIX_SCHOOL, schoolKeywords);
+            keywords.put(PREFIX_SUBJECT_OR_SCHOOL, schoolKeywords);
             keywords.put(PREFIX_LEVEL, levelKeywords);
             break;
 
 
         case TUTOR_LIST:
-            if (areAnyPrefixesPresent(argMultimap, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_SUBJECT,
-                    PREFIX_DAY, PREFIX_TIME)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
 
             nameKeywords = argMultimap.getValue(PREFIX_NAME).orElse("");
             addressKeywords = argMultimap.getValue(PREFIX_ADDRESS).orElse("");
@@ -122,20 +112,16 @@ public class FindCommandParser implements Parser<FindCommand> {
 
 
         default:
-            if (areAnyPrefixesPresent(argMultimap, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SCHOOL,
-                    PREFIX_QUALIFICATION, PREFIX_INSTITUTION)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
 
             nameKeywords = argMultimap.getValue(PREFIX_NAME).orElse("");
             dayKeywords = argMultimap.getValue(PREFIX_DAY).orElse("");
-            subjectKeywords = argMultimap.getValue(PREFIX_SUBJECT).orElse("");
+            subjectKeywords = argMultimap.getValue(PREFIX_SUBJECT_OR_SCHOOL).orElse("");
             levelKeywords = argMultimap.getValue(PREFIX_LEVEL).orElse("");
             timeKeywords = argMultimap.getValue(PREFIX_TIME).orElse("");
 
             keywords.put(PREFIX_NAME, nameKeywords);
             keywords.put(PREFIX_DAY, dayKeywords);
-            keywords.put(PREFIX_SUBJECT, subjectKeywords);
+            keywords.put(PREFIX_SUBJECT_OR_SCHOOL, subjectKeywords);
             keywords.put(PREFIX_LEVEL, levelKeywords);
             keywords.put(PREFIX_TIME, timeKeywords);
         }
@@ -148,24 +134,25 @@ public class FindCommandParser implements Parser<FindCommand> {
 
 
     private void validateArguments(ArgumentMultimap argMultimap) throws ParseException {
+
         // Check if prefixes specified is relevant to the current list
         switch (listType) {
         case STUDENT_LIST:
-            if (areAnyPrefixesPresent(argMultimap, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_SUBJECT,
+            if (areAnyPrefixesPresent(argMultimap, PREFIX_QUALIFICATION, PREFIX_INSTITUTION,
                     PREFIX_DAY, PREFIX_TIME)) {
                 throw new ParseException(String.format(MESSAGE_PREFIX_NOT_FOR_STUDENT, FindCommand.MESSAGE_USAGE));
             }
             break;
 
         case TUTOR_LIST:
-            if (areAnyPrefixesPresent(argMultimap, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_SUBJECT,
+            if (areAnyPrefixesPresent(argMultimap, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_LEVEL,
                     PREFIX_DAY, PREFIX_TIME)) {
                 throw new ParseException(String.format(MESSAGE_PREFIX_NOT_FOR_TUTOR, FindCommand.MESSAGE_USAGE));
             }
             break;
 
         default:
-            if (areAnyPrefixesPresent(argMultimap, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SCHOOL,
+            if (areAnyPrefixesPresent(argMultimap, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
                     PREFIX_QUALIFICATION, PREFIX_INSTITUTION)) {
                 throw new ParseException(String.format(MESSAGE_PREFIX_NOT_FOR_TUITIONCLASS, FindCommand.MESSAGE_USAGE));
             }
@@ -179,21 +166,21 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         // Check that there are no invalid prefixes
         if (!areValidPrefixValues(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
-                PREFIX_TAG, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_SUBJECT,
+                PREFIX_TAG, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION,
                 PREFIX_DAY, PREFIX_TIME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, FindCommand.MESSAGE_USAGE));
         }
 
         // Check that there is at least one prefix is specified
         if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
-                PREFIX_TAG, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_SUBJECT,
+                PREFIX_TAG, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION,
                 PREFIX_DAY, PREFIX_TIME)) {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_SPECIFIED, FindCommand.MESSAGE_USAGE));
         }
 
         // Check that there are no prefixes specified without any keywords
         if (areAnyPrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
-                PREFIX_TAG, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_SUBJECT,
+                PREFIX_TAG, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION,
                 PREFIX_DAY, PREFIX_TIME)) {
             throw new ParseException(String.format(MESSAGE_EMPTY_PREFIX, FindCommand.MESSAGE_USAGE));
         }

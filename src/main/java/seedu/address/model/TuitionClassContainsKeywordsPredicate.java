@@ -3,7 +3,7 @@ package seedu.address.model;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
@@ -30,7 +30,7 @@ public class TuitionClassContainsKeywordsPredicate<T> implements Predicate<T> {
             return tuitionClass.getName().name.toLowerCase().contains(keywords.get(PREFIX_NAME).toLowerCase())
                     && tuitionClass.getDay().day.toLowerCase().contains(keywords.get(PREFIX_DAY).toLowerCase())
                     && tuitionClass.getSubject().subject.toLowerCase()
-                    .contains(keywords.get(PREFIX_SUBJECT).toLowerCase())
+                    .contains(keywords.get(PREFIX_SUBJECT_OR_SCHOOL).toLowerCase())
                     && tuitionClass.getLevel().level.toLowerCase()
                     .contains(keywords.get(PREFIX_LEVEL).toLowerCase())
                     && tuitionClass.getTime().toString().toLowerCase()
