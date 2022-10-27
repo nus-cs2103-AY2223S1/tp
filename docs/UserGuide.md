@@ -18,6 +18,7 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 * Listing all exercises **:list**
 * Sorting all exercises **:sort**
 * Viewing all exercises within a time period **:range**
+* Generating a sample workout based on Personal Records **:gen**
 * Viewing help **:help**
 * Exiting the program **:wq**
 
@@ -221,6 +222,25 @@ Extraneous parameters (before and after the `all/` flag) will be ignored. <br> e
 ##### Example:
 * `:pr all/` Lists the personal records for all uniquely registered exercises in the exercise tracker.
 
+### Generating a sample workout based on Personal Records: `:gen`
+
+Generates a sample workout suggestion based on existing personal records of the exercises, according to the difficulty level specified. Exercises are indicated by their index numbers shown in the displayed exercise list.
+
+Format: `:gen <index> [, index]... l/<difficulty level>`
+
+##### Parameter constraints:
+* The index must be a positive integer 1, 2, 3, ...
+* The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}
+
+##### Examples:
+`:gen 1,2 l/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Squat and Deadlift
+
+![GenerateCommandExample1](images/GenerateCommandExample1.png)
+
+Note that only one sample workout is generated for each unique exercise name. For example, `:gen 1,3 l/easy` will generate one sample workout for squat, as both index 1 and 3 in the displayed list are Squat exercises.
+
+![GenerateCommandExample2](images/GenerateCommandExample2.png)
+
 ### Exiting the program : `:wq`
 
 Exits the program.
@@ -259,6 +279,7 @@ To change the way it is represented, you can find the exercise with the name, de
 | **Sort exercises**  | :sort                                            | :sort                                  |
 | **View range (1)**  | :range start/<start_date> end/<end_date>         | :range start/10/10/2022 end/15/10/2022 |
 | **View range (2)**  | :range last/<number_of_days>                     | :range last/3                          |
+| **Generate workout**| :gen <index> [, index]... l/<difficulty_level>   | :gen 1,2 l/easy                        |
 | **Help menu**       | :help                                            | :help                                  |
 | **Exit program**    | :wq                                              | :wq                                    |
 
@@ -267,8 +288,9 @@ To change the way it is represented, you can find the exercise with the name, de
 ## Glossary of Terminologies
 * **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
 * **Exercise** : Physical activity done in a regular gym that is structured and repetitive, usually involving
-some weights.
+some weights
 * **Reps** : Number of times you perform a specific exercise
 * **Sets** : Number of cycles of reps that you complete
 * **Weight**: Total weight (include barbell if applicable, exclude body weight)
+* **Personal Record**: Heaviest weight recorded in the exercise tracker for a specific exercise
 
