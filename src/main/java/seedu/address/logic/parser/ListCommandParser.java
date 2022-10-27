@@ -62,6 +62,11 @@ public class ListCommandParser implements Parser<ListCommand> {
             }
         }
 
+        if (predicates.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
+
         return new ListCommand(predicates);
     }
 
