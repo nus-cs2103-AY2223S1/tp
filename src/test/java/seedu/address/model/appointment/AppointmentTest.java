@@ -1,7 +1,6 @@
 package seedu.address.model.appointment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.NURSE;
 import static seedu.address.testutil.TypicalPersons.PATIENT;
