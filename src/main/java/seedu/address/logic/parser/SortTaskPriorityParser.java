@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 
 import java.util.Comparator;
 
+import seedu.address.commons.SortInfo;
 import seedu.address.logic.commands.SortTaskPriorityCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.SortByPriority;
@@ -32,23 +33,28 @@ public class SortTaskPriorityParser implements Parser<SortTaskPriorityCommand> {
         }
 
         Comparator<Task> comparator = new SortByPriority().reversed();
+        StringBuilder sortInfo = new StringBuilder("priority ");
 
         if (argMultimap.getValue(PREFIX_ORDER).isPresent()) {
             switch (argMultimap.getValue(PREFIX_ORDER).get().toLowerCase()) {
             case "d":
             case "desc":
+                sortInfo.append("(descending)");
                 break;
             case "a":
             case "asc":
                 comparator = comparator.reversed();
+                sortInfo.append("(ascending)");
                 break;
             default:
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTaskPriorityCommand.MESSAGE_USAGE));
             }
+        } else {
+            sortInfo.append("(descending)");
         }
 
-        return new SortTaskPriorityCommand(comparator);
+        return new SortTaskPriorityCommand(comparator, new SortInfo(sortInfo.toString()));
     }
 
 }

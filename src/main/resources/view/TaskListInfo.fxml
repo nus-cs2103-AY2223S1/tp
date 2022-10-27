@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" maxHeight="40" spacing="10"
+      alignment="CENTER_LEFT">
+    <padding>
+        <Insets left="10" bottom="10"/>
+    </padding>
+    <Label fx:id="sortInfoLabel" styleClass="label"/>
+    <Label fx:id="filterInfoLabel" styleClass="label"/>
+</HBox>

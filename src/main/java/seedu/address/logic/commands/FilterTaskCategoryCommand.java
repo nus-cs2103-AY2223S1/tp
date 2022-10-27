@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 
+import seedu.address.commons.FilterInfo;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.task.TaskContainsCategoryPredicate;
@@ -20,9 +21,15 @@ public class FilterTaskCategoryCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + "backend";
 
     private final TaskContainsCategoryPredicate predicate;
+    private final FilterInfo filterInfo;
 
-    public FilterTaskCategoryCommand(TaskContainsCategoryPredicate predicate) {
+    /**
+     * @param predicate  to filter with
+     * @param filterInfo to show in the TaskListInfo
+     */
+    public FilterTaskCategoryCommand(TaskContainsCategoryPredicate predicate, FilterInfo filterInfo) {
         this.predicate = predicate;
+        this.filterInfo = filterInfo;
     }
 
     @Override
@@ -30,7 +37,7 @@ public class FilterTaskCategoryCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_TASK_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+                String.format(Messages.MESSAGE_TASK_LISTED_OVERVIEW, model.getFilteredTaskList().size()), filterInfo);
     }
 
     @Override
