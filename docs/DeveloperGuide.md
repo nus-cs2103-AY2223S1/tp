@@ -247,12 +247,14 @@ the user runs the command `additer d/2022-10-10 n/Changed the colour scheme p//U
 f/Updated colour scheme is much better`.
 
 <img src="images/AddIterationSequenceDiagram.png" width="450" />
+<br>
 <img src="images/AddIterationParseInputSequenceDiagram.png" width="450" />
+<br>
 <img src="images/AddIterationExecuteSequenceDiagram.png" width="450" />
 
 ##### Design Considerations
 <table>
-<tr><th colspan="4">Aspect: Image File Handling</th></tr>
+<tr><th colspan="4">Aspect 1: Image File Handling</th></tr>
 <tr><th></th><th>Alternative</th><th>Pros</th><th>Cons</th></tr>
 <tr><td>1</td>
 <td>Store and use the image at the file path specified in the <code>additer</code> command</td>
@@ -282,10 +284,59 @@ Furthermore, it introduces deeper coupling between the `Logic` and `Storage` com
 the `AddIterationCommand` class in `Logic` would have to depend on `Storage` to copy the image into ArtBuddy.
 </td>
 </tr>
+<tr><td colspan="4">Overall, the team felt that the tradeoffs in overhead and coupling were worth making due to the
+severity of bugs that could have been introduced in ArtBuddy otherwise.</td></tr>
 </table>
 
-Overall, the team felt that the tradeoffs in overhead and coupling were worth making due to the
-severity of bugs that could have been introduced in ArtBuddy otherwise.
+<table>
+<tr><th colspan="4">Aspect 2: Image Copy File Naming</th></tr>
+<tr><th></th><th>Alternative</th><th>Pros</th><th>Cons</th></tr>
+<tr><td>1</td><td>Naming the copy of the image file with the original filename</td>
+<td>-</td><td>There may be files with the same original file name. This could result
+in duplicate filenames in the ArtBuddy storage folder, which is not allowed.</td></tr>
+
+<tr><td>2</td><td>Creating sub-folders for each customer and commission, where the
+image copy will be stored. The image copy files will be named after their iteration
+description.</td><td>As iteration descriptions are guaranteed to be unique within each commission,
+we can guarantee that all filenames within each folder will be unique.</td>
+<td>Many nested folders would have to be created in ArtBuddy just to store iteration images.
+
+In addition, it would introduce overheads into other commands, such as <code>deliter</code>
+and <code>edititer</code> because the filenames of these files would have to be modified to
+ensure they can be referenced to the correct iteration, and also avoid the issue with duplicate filenames.
+Furthermore, iteration descriptions may contain characters that result in invalid filenames.
+</td></tr>
+
+<tr><td>3</td><td>Keeping a global count and naming the image copy file after its customer,
+commission and this global count.</td><td>Each combination of customer name and commission title
+is guaranteed to be unique.
+
+Also, since there is a restriction on customer names and commission titles, they are suitable to be used as filenames.
+
+Editing and deletion of iterations will not incur additional overheads as the unique global count
+would ensure that each iteration image remains uniquely identifiable after these commands.
+</td>
+
+<td>Even though we are getting closer to a unique hash, editing and deletion of customers and commissions would
+still be problematic. These commands still require the filenames to be renamed- else, they would risk facing the
+same issue of duplicate filenames within the image storage folder.
+
+In addition, the introduction of a global variable would introduce a high level of coupling.
+</td>
+</tr>
+
+<tr><td>4</td><td>Use a randomly generated hash as the filename <strong>(current)</strong></td>
+<td>High probability of the unique filenames.
+
+Removed dependency on the state of the `Customer`, `Commission`, or `Iteration` object it belongs to.
+Hence, no additional overhead will be incurred with delete or edit commands.
+</td>
+<td>While small, there is a non-zero probability of getting duplicate filenames</td>
+</tr>
+<tr><td colspan="4">Overall, the team agreed that using a randomly generated hash was definitely
+the most elegant way of handling file naming. Furthermore, the tradeoffs are almost negligible
+as duplicate filenames can be easily handled by generating a new hash a unique filename is obtained.</td></tr>
+</table>
 
 ### \[Proposed\] Undo/redo feature
 
