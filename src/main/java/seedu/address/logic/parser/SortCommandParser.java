@@ -19,7 +19,8 @@ public class SortCommandParser implements Parser<SortCommand> {
     public SortCommand parse(String args) throws ParseException {
         requireNonNull(args);
         Index index;
-        String[] indexAndLatest = args.trim().split(" ");
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
+        String [] indexAndLatest = argMultimap.getPreamble().split(" ", 2);
 
         if (!isValidInput(indexAndLatest)) {
             throw new ParseException(
@@ -33,14 +34,14 @@ public class SortCommandParser implements Parser<SortCommand> {
                     SortCommand.MESSAGE_USAGE), ive);
         }
 
-        return new SortCommand(index, isLatest(indexAndLatest[1]));
+        return new SortCommand(index, isLatest(indexAndLatest[1].trim()));
     }
 
     private boolean isValidInput(String[] input) {
         if (input.length != 2) {
             return false;
         }
-        String inputToLowerCase = input[1].toLowerCase();
+        String inputToLowerCase = input[1].trim().toLowerCase();
         return inputToLowerCase.equals("latest") || inputToLowerCase.equals("oldest");
     }
 
