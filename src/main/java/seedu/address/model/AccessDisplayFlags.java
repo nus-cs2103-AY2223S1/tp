@@ -34,6 +34,6 @@ public final class AccessDisplayFlags {
     public static final int FONT_SIZE_SMALL = 1 << 10;
 
     // public static final int DEFAULT_STYLE = 0b00100100000;
-    public static final int DEFAULT_STYLE = 0b00100100111;
+    public static final int DEFAULT_STYLE = 0b00100100000;
     public static final int HEADER_STYLE = 0b01001010101;
 }

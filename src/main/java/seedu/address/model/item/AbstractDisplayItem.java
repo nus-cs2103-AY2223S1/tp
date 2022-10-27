@@ -116,7 +116,9 @@ public abstract class AbstractDisplayItem implements DisplayItem {
             return false;
         }
         AbstractDisplayItem g = (AbstractDisplayItem) o;
-        return g.getParents().equals(getParents());
+        return g.getParents().equals(getParents())
+                && g.getAttributes().equals(getAttributes())
+                && g.getTags().equals(getTags());
     }
 
     @Override
@@ -156,10 +158,5 @@ public abstract class AbstractDisplayItem implements DisplayItem {
             return false;
         }
         return stronglyEqual((AbstractDisplayItem) obj);
-    }
-
-    @Override
-    public UniqueID getUuid(AbstractDisplayItem item) {
-        return this.uuid;
     }
 }

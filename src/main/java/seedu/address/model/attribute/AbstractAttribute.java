@@ -133,6 +133,17 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
         return typeName.hashCode() ^ value.hashCode() ^ accessCtrl ^ styleFlag;
     }
 
+    @Override
+    public Map<String, Object> toSaveableData() {
+        Map<String, Object> ret = new HashMap<>();
+        ret.put("type", typeName);
+        ret.put("content", value);
+        ret.put("display_format", accessCtrl);
+        ret.put("style_format", styleFlag);
+
+        return ret;
+    }
+
     protected String getFormatCss() {
         return getFormatCss(true);
     }
@@ -148,13 +159,13 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
             sb.append(" italic");
         }
         if (isAllStyleMatch(FONT_SIZE_SMALL)) {
-            size = 10;
+            size = 8;
         }
         if (isAllStyleMatch(FONT_SIZE_BIG) && !isInMenu) {
             size = 32;
         }
         if (isAllStyleMatch(FONT_SIZE_NORMAL)) {
-            size = 12;
+            size = 10;
         }
 
         sb.append(String.format(" %fpt 'Segoe UI';", size));
@@ -180,14 +191,5 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
         return sb.toString();
     }
 
-    @Override
-    public Map<String, Object> toSaveableData() {
-        Map<String, Object> ret = new HashMap<>();
-        ret.put("type", typeName);
-        ret.put("content", value);
-        ret.put("display_format", accessCtrl);
-        ret.put("style_format", styleFlag);
 
-        return ret;
-    }
 }

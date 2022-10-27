@@ -4,6 +4,7 @@ package seedu.address.model.item;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Name;
@@ -106,5 +107,8 @@ public interface DisplayItem {
      */
     boolean isPartOfContext(DisplayItem o);
 
-    UniqueID getUuid(AbstractDisplayItem item);
+    /**
+     * Returns unique uid for this displayItem.
+     */
+    UUID getUuid();
 }

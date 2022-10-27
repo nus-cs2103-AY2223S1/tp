@@ -1,10 +1,9 @@
 package seedu.address.model.tag;
 
-import static java.util.Objects.requireNonNull;
-import static java.util.UUID.randomUUID;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import seedu.address.model.item.AbstractDisplayItem;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * A class for an unique ID for each item.
@@ -49,6 +48,6 @@ public class UniqueID {
     }
 
     public void generateUniqueID(AbstractDisplayItem item) {
-        this.id = String.valueOf(randomUUID());
+        this.id = String.valueOf(item);
     }
 }
