@@ -182,10 +182,14 @@ public class CreateCommandTest {
         }
 
         @Override
-        public void addUi(Observer observer) { throw new AssertionError("This method should not be called."); }
+        public void addUi(Observer observer) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
-        public void notifyUIs(Person updatedPerson) { throw new AssertionError("This method should not be called."); }
+        public void notifyUIs(Person updatedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
