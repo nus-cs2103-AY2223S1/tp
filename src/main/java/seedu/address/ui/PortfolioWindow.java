@@ -38,6 +38,8 @@ public class PortfolioWindow extends UiPart<Region> {
     @FXML
     private VBox plans;
     @FXML
+    private VBox notes;
+    @FXML
     private ScrollPane scroller;
     @FXML
     private Label note;
@@ -57,14 +59,12 @@ public class PortfolioWindow extends UiPart<Region> {
             risk.setText(RISK_LEVEL + NO_RISK_LEVEL);
         }
         portfolio.getPlans().stream()
-                .sorted(Comparator.comparing(plan -> plan.value))
-                .forEach(plan -> plans.getChildren().add(new Label(plan.value)));
+            .sorted(Comparator.comparing(plan -> plan.value))
+            .forEach(plan -> plans.getChildren().add(new Label(plan.value)));
 
-        if (portfolio.getNote().value != null && portfolio.getNote().value != "") {
-            note.setText(portfolio.getNote().value);
-        } else {
-            note.setText(NO_NOTE);
-        }
+        portfolio.getNotes().stream()
+            .sorted(Comparator.comparing(note -> note.value))
+            .forEach(note -> notes.getChildren().add(new Label(note.value)));
     }
 
 }

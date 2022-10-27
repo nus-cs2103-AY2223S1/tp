@@ -16,6 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/leecaregene)][[portfolio](team/leecaregene.md)]
 
 Roles:
+
 * Code quality
 * Integration
 
@@ -25,7 +26,8 @@ Roles:
 
 [[github](https://github.com/jovitaanderson)][[portfolio](team/jovitaanderson.md)]
 
-Roles: 
+Roles:
+
 * Team Lead
 
 ### Shanice Ng Wen Yi
@@ -34,7 +36,8 @@ Roles:
 
 [[github](https://github.com/shaniceng)][[portfolio](team/shaniceng.md)]
 
-Roles: 
+Roles:
+
 * Deliverables and deadlines
 * Scheduling and tracking
 
@@ -44,7 +47,8 @@ Roles:
 
 [[github](https://github.com/alexandermula)][[portfolio](team/alexandermula.md)]
 
-Roles: 
+Roles:
+
 * Documentation
 
 ### Tan Yuan Zheng
@@ -53,5 +57,6 @@ Roles:
 
 [[github](https://github.com/YZTangent)][[portfolio](team/yztangent.md)]
 
-Roles: 
+Roles:
+
 * Testing

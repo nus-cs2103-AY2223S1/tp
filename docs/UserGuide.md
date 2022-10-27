@@ -42,7 +42,8 @@ title: FinBook User Guide
 ## 1.1. What is FinBook?
 
 FinBook is a desktop app for Financial Assistant (FA) to manage their client details and ensure that your data is
-secured. With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well as many
+secured. With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well
+as many
 other features to make your daily workflow much more efficient!
 
 FinBook is optimized for use via a Command Line Interface (CLI), which means most of our commands are done by typing.
@@ -55,7 +56,8 @@ So what are you waiting for? Start using FinBook today!
 
 # 2. How to Use this User Guide?
 
-1. To get familiar with this user guide you can continue reading [How to Use this User Guide](#how-to-use-this-user-guide)
+1. To get familiar with this user guide you can continue
+   reading [How to Use this User Guide](#how-to-use-this-user-guide)
 2. If you are a new user, you can get started with [Quick Start](#quick-start) to familiarise yourself with FinBook.
 3. If you are familiar with FinBook, you can refer to the [Features](#features) to see details of all available
    commands or refer at [Command Summary](#command-summary).
@@ -93,7 +95,8 @@ For example,
 
 1. **Command word**: Indicates what action you want FinBook to do. For this example, the command word `add` will add
    a client into FinBook
-2. **Prefix**: To specify the field of data added. Each prefix always ends with a `/`. For this example, `n/` indicates the
+2. **Prefix**: To specify the field of data added. Each prefix always ends with a `/`. For this example, `n/` indicates
+   the
    client's name, `p/` indicates the client's phone number, etc.
 3. **Parameter**: Provides supplementary information to the command word or prefix. For this example, `John Doe` is the
    parameter for `NAME`
@@ -118,7 +121,8 @@ For example,
   the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `delete all`) will be
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `delete all`)
+  will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -324,7 +328,8 @@ Examples:
 
 ### 4.3.1. Saving the data
 
-Financial book data are saved in the hard disk automatically after any command that changes the data. There is no need to
+Financial book data are saved in the hard disk automatically after any command that changes the data. There is no need
+to
 save manually.
 
 
@@ -356,7 +361,8 @@ Imports data from a `JSON` or `CSV` file
         * `plans`
         * The data in each corresponding column must be valid
             * `tags` must be separated by commas `,` without spaces (e.g. `colleagues,friends,neighbours`)
-            * `plans` must be separated by commas `,` without spaces (e.g. `prudential income,NTUC income,prudential health`)
+            * `plans` must be separated by commas `,` without spaces (
+              e.g. `prudential income,NTUC income,prudential health`)
 
 Format: `import PATH`
 
@@ -366,8 +372,10 @@ Format: `import PATH`
 
 Examples:
 
-* `import ./data.json` imports data from the file `data.json` which is located in the same directory as the FinBook executable
-* `import ../data.csv` imports data from the file `data.csv` which is located one level outside the directory of the FinBook executable
+* `import ./data.json` imports data from the file `data.json` which is located in the same directory as the FinBook
+  executable
+* `import ../data.csv` imports data from the file `data.csv` which is located one level outside the directory of the
+  FinBook executable
 
 
 ### 4.3.4. Exporting data : `export`
@@ -382,8 +390,10 @@ Format: `export PATH`
 
 Examples:
 
-* `export ./data.csv` exports data to the file `data.csv` which is located in the same directory as the FinBook executable
-* `export ../data.csv` exports data to the file `data.csv` which is located one level outside the directory of the FinBook executable
+* `export ./data.csv` exports data to the file `data.csv` which is located in the same directory as the FinBook
+  executable
+* `export ../data.csv` exports data to the file `data.csv` which is located one level outside the directory of the
+  FinBook executable
 
 
 ### 4.3.5. Copying a client's data : `copy`
@@ -500,4 +510,3 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                                                                                           |
 | **Sort**             | `sort PARAM`<br> e.g., `sort /n`                                                                                                                                                                                                                                                          |
 | **Exit application** | `exit`                                                                                                                                                                                                                                                                                                                                                |
-

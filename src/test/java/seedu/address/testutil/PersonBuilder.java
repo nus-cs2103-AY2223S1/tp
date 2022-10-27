@@ -29,7 +29,6 @@ public class PersonBuilder {
     public static final String DEFAULT_INCOME = "$5230";
     public static final String DEFAULT_MEETINGDATE = "20 Nov 2022";
     public static final String DEFAULT_RISK = "";
-    public static final String DEFAULT_NOTE = "";
 
     private Name name;
     private Phone phone;
@@ -40,7 +39,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Risk risk;
     private Set<Plan> plans;
-    private Note note;
+    private Set<Note> note;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -55,7 +54,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         risk = new Risk(DEFAULT_RISK);
         plans = new HashSet<>();
-        note = new Note(DEFAULT_NOTE);
+        note = new HashSet<>();
     }
 
     /**
@@ -72,7 +71,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         risk = portfolio.getRisk();
         plans = new HashSet<>(portfolio.getPlans());
-        note = portfolio.getNote();
+        note = portfolio.getNotes();
     }
 
     /**
@@ -86,7 +85,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -142,7 +141,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code plans} into a {@code Set<Plan>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withPlans(String ... plans) {
+    public PersonBuilder withPlans(String... plans) {
         this.plans = SampleDataUtil.getPlanSet(plans);
         return this;
     }
@@ -150,8 +149,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Note} of the {@code Person} that we are building.
      */
-    public PersonBuilder withNote(String note) {
-        this.note = new Note(note);
+    public PersonBuilder withNotes(String... notes) {
+        this.note = SampleDataUtil.getNoteSet(notes);
         return this;
     }
 

@@ -39,20 +39,20 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String risk;
     private final List<JsonAdaptedPlan> planned = new ArrayList<>();
-    private final String note;
+    private final List<JsonAdaptedNote> noted = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("income") String income,
                              @JsonProperty("meetingDate") String meetingDate,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("risk") String risk,
                              @JsonProperty("plan") List<JsonAdaptedPlan> planned,
-                             @JsonProperty("note") String note) {
+                             @JsonProperty("note") List<JsonAdaptedNote> noted) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -74,10 +74,8 @@ class JsonAdaptedPerson {
         if (planned != null) {
             this.planned.addAll(planned);
         }
-        if (note != null) {
-            this.note = note;
-        } else {
-            this.note = "";
+        if (noted != null) {
+            this.noted.addAll(noted);
         }
     }
 
@@ -93,13 +91,15 @@ class JsonAdaptedPerson {
         income = source.getIncome().value;
         meetingDate = source.getMeetingDate().value;
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
         risk = portfolio.getRisk().value;
         planned.addAll(portfolio.getPlans().stream()
-                .map(JsonAdaptedPlan::new)
-                .collect(Collectors.toList()));
-        note = portfolio.getNote().value;
+            .map(JsonAdaptedPlan::new)
+            .collect(Collectors.toList()));
+        noted.addAll(portfolio.getNotes().stream()
+            .map(JsonAdaptedNote::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -116,6 +116,11 @@ class JsonAdaptedPerson {
         final List<Plan> personPlans = new ArrayList<>();
         for (JsonAdaptedPlan plan : planned) {
             personPlans.add(plan.toModelType());
+        }
+
+        final List<Note> personNotes = new ArrayList<>();
+        for (JsonAdaptedNote note : noted) {
+            personNotes.add(note.toModelType());
         }
 
         if (name == null) {
@@ -180,22 +185,14 @@ class JsonAdaptedPerson {
             modelRisk = new Risk("");
         }
 
-        if (note != null && !Note.isValidNote(note)) {
-            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
-        }
-        final Note modelNote;
-
-        if (note != null) {
-            modelNote = new Note(note);
-        } else {
-            modelNote = new Note("");
-        }
 
         final Set<Plan> modelPlans = new HashSet<>(personPlans);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        final Set<Note> modelNotes = new HashSet<>(personNotes);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate, modelTags,
-                modelRisk, modelPlans, modelNote);
+            modelRisk, modelPlans, modelNotes);
     }
 
 }

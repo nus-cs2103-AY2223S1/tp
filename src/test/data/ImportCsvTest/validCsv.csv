@@ -1,4 +1,4 @@
-name,phone,email,address,income,meeting date,tags,risk,plans,note
+name,phone,email,address,income,meeting date,tags,risk,plans,notes
 Alex Yeoh,87438807,alexyeoh@example.com,"Blk 30 Geylang Street 29, #06-40",$1000,12 Nov 2022,friends,low,"Prudential retirement plan","is currently having COVID"
 Bernice Yu,99272758,berniceyu@example.com,"Blk 30 Lorong 3 Serangoon Gardens, #07-18",$5300,20 Nov 2022,"colleagues,friends",high,"NTUC Income plan",""
 Charlotte Oliveiro,93210283,charlotte@example.com,"Blk 11 Ang Mo Kio Street 74, #11-04",$3080,08 Nov 2022,neighbours,low,"Prudential retirement plan","is currently retired"
