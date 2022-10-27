@@ -6,7 +6,7 @@ title: Venue Booking
 #### [Back to Menu](../UserGuide.md)
 
 Along with the ability to manage residents, we have also provided you with the ability to manage
-the venues in RC4HDB through a booking system. This will allow you to add, remove available venues, as well as
+the venues in **RC4HDB** through a booking system. This will allow you to add, remove available venues, as well as
 add, remove bookings for those venues.
 
 ---
@@ -28,7 +28,7 @@ Alternatively, you can use the `venue view VENUE_NAME` command to switch manuall
 ---
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Before proceeding to learn more about venue commands. Have a quick read about the **venue fields**, which will
+Before proceeding to learn more about venue commands, it would be good to have a quick read about the **venue fields**, which will
 be used in the commands.
 </div>
 
@@ -86,7 +86,7 @@ Adds a booking to the specified venue, time period and day.
 
 Format: `venue book INDEX v/VENUE_NAME tp/TIME_PERIOD d/DAY`
 
-* Adds a booking under the resident specified at `INDEX`.
+* Adds a booking under the resident specified at `INDEX`, at the specified `VENUE_NAME`, `TIME_PERIOD` and `DAY`.
 * The index refers to the index number shown in the displayed residents list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
