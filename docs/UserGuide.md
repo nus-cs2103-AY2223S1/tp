@@ -77,12 +77,12 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
   - e.g. in `add d/DESCRIPTION ...`, `DESCRIPTION` is a parameter which can be used as `add d/My Japan Trip`.
 
 * Items in square brackets are optional.<br>
-  - e.g. `d/DESCRIPTION [c/COUNTRY] sd/START DATE du/DURATION` can be used as `n/My Japan Trip c/Japan sd/2023-04-01 du/14` or as `n/My Japan Trip sd/2023-04-01 du/14`.
+  - e.g. `d/DESCRIPTION [c/COUNTRY] sd/START DATE du/DURATION` can be used as `d/My Japan Trip c/Japan sd/2023-04-01 du/14` or as `d/My Japan Trip sd/2023-04-01 du/14`.
   
 * Parameters can be in any order.<br>
-  - e.g. if the command specifies `c/CATEGORY d/DESCRIPTION`, `d/DESCRIPTION c/CATEGORY` is also acceptable.
+  - e.g. if the command specifies `c/COUNTRY d/DESCRIPTION`, `d/DESCRIPTION c/COUNTRY` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
   - e.g. if you specify `d/Eat Ramen d/Aquarium`, only `d/Aquarium` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -172,7 +172,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find India` returns `My India Trip` and `India Expedition`
-* `find India Trip` returns `My Japan Trip`, `My India Trip`, `India Expedition`<br><br>
+* `find India Trip` returns `My Japan Trip`, `My India Trip`, `India Expedition`
+* `find trip` returns the following result: <br><br>
   ![result for 'find trip'](images/findTripResult.png)
 
 ### Selecting an itinerary : `select`
@@ -315,17 +316,17 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 ## Command summary
 
 ### Main page commands
-| Action                                                           | Format, Examples                                                                                                                                                 |
-|------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                           |
-| [**Add Itinerary**](#creating-a-new-itinerary--add)              | `add d/DESCRIPTION [c/COUNTRY] du/DURATION sd/START DATE [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add n/Germanyyyy c/Germany du/14 s/2022-05-10 p/4 b/7500` |
-| [**List Itineraries**](#listing-all-itineraries--list)           | `list`                                                                                                                                                           |
-| [**Edit Itinerary**](#editing-the-details-of-an-itinerary--edit) | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 d/15 s/2022-04-10`                             |
-| [**Delete Itinerary**](#deleting-an-itinerary--delete)           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                              |
-| [**Clear Itineraries**](#clearing-itineraries--clear)            | `clear`                                                                                                                                                          |
-| [**Find Itinerary**](#locating-itineraries-by-name--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                       |
-| [**Select Itinerary**](#selecting-an-itinerary--select)          | `select INDEX`<br> e.g., `select 3`                                                                                                                              |
-| [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                           |
+| Action                                                           | Format, Examples                                                                                                                                                  |
+|------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                            |
+| [**Add Itinerary**](#creating-a-new-itinerary--add)              | `add d/DESCRIPTION [c/COUNTRY] du/DURATION sd/START DATE [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add d/Germanyyyy c/Germany du/14 sd/2022-05-10 p/4 b/7500` |
+| [**List Itineraries**](#listing-all-itineraries--list)           | `list`                                                                                                                                                            |
+| [**Edit Itinerary**](#editing-the-details-of-an-itinerary--edit) | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 du/15 sd/2022-04-10`                            |
+| [**Delete Itinerary**](#deleting-an-itinerary--delete)           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               |
+| [**Clear Itineraries**](#clearing-itineraries--clear)            | `clear`                                                                                                                                                           |
+| [**Find Itinerary**](#locating-itineraries-by-name--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                        |
+| [**Select Itinerary**](#selecting-an-itinerary--select)          | `select INDEX`<br> e.g., `select 3`                                                                                                                               |
+| [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                            |
 
 ### Item planning page commands
 | Action                                                       | Format, Examples                                                                                         |
