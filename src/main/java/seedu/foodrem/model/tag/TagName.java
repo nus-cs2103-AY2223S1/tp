@@ -10,6 +10,15 @@ import seedu.foodrem.commons.util.StringUtil;
  * Guarantees: immutable; is valid as declared in {@link StringUtil#isValidString(String)}
  */
 public class TagName {
+
+    private static final String MESSAGE_FOR_NAME_IS_BLANK =
+            "The tag name should not be blank.";
+
+    // Validation for name length
+    private static final int MAX_LENGTH = 20;
+    private static final String MESSAGE_FOR_NAME_TOO_LONG =
+            String.format("The tag name should not exceed %d characters", MAX_LENGTH);
+
     private final String fullName;
 
     /**
@@ -19,6 +28,12 @@ public class TagName {
      */
     public TagName(String name) {
         requireNonNull(name);
+
+        boolean isNamePresent = !name.isBlank();
+        boolean isNameLengthLessThanEqualMaxLength = name.length() <= MAX_LENGTH;
+
+        checkArgument(isNamePresent, MESSAGE_FOR_NAME_IS_BLANK);
+        checkArgument(isNameLengthLessThanEqualMaxLength, MESSAGE_FOR_NAME_TOO_LONG);
         checkArgument(StringUtil.isValidString(name), StringUtil.getInvalidCharactersMessage("tag name"));
         fullName = name;
     }
