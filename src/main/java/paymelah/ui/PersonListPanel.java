@@ -34,31 +34,28 @@ public class PersonListPanel extends UiPart<Region> {
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
         List<TitledPane> titledPanes = new ArrayList<TitledPane>();
+        personList.addListener((ListChangeListener<Person>) c -> {
+            personListView.getPanes().clear();
+            titledPanes.clear();
+            for (Person person : c.getList()) {
+                titledPanes.add(createTitledPane(person, c.getList()));
+            }
+            personListView.getPanes().addAll(titledPanes);
+        });
         for (Person person : personList) {
             titledPanes.add(createTitledPane(person, personList));
         }
         personListView.getPanes().addAll(titledPanes);
-        personList.addListener((ListChangeListener<Person>) c -> {
-            while (c.next()) {
-                if (c.wasReplaced()) {
-                    for (int i = c.getFrom(); i < c.getTo(); ++i) {
-                        titledPanes.remove(i);
-                        titledPanes.add(i, createTitledPane(c.getAddedSubList().get(i - c.getFrom()), personList));
-                    }
-                } else if (c.wasAdded()) {
-                    for (Person person : c.getAddedSubList()) {
-                        titledPanes.add(createTitledPane(person, personList));
-                    }
-                } else if (c.wasRemoved()) {
-                    for (int i = c.getFrom(); i < c.getTo(); ++i) {
-                        titledPanes.remove(i);
-                    }
-                }
-            }
-            personListView.getPanes().clear();
-            personListView.getPanes().addAll(titledPanes);
-        });
     }
+
+    // private void resetIndices(List<TitledPane> titledPanes) {        
+    //     for (int i = 1; i <= titledPanes.size(); ++i) {
+    //         Label label = (Label) ((HBox) titledPanes.get(i - 1).getGraphic())
+    //                 .getChildren().get(0);
+    //         String labelText = label.getText();
+    //         label.setText(i + labelText.substring(labelText.indexOf('.')));
+    //     }
+    // }
 
     private TitledPane createTitledPane(Person person, ObservableList<? extends Person> observableList) {
         int oneBasedIndex = observableList.indexOf(person) + 1;
