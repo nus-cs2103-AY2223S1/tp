@@ -63,6 +63,17 @@
         <TabPane fx:id="tabPane" style="-fx-tab-max-height: -10;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
           <tabs>
 
+            <Tab text="Timetable">
+              <content>
+                <VBox fx:id="scheduleGrid" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                  <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                  </padding>
+                  <StackPane fx:id="scheduleGridPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                </VBox>
+              </content>
+            </Tab>
+
             <Tab text="Students">
               <content>
                 <HBox VBox.vgrow="ALWAYS">
@@ -138,17 +149,6 @@
                 </VBox>
             </Tab>
 
-
-            <Tab text="Timetable">
-              <content>
-                <VBox fx:id="scheduleGrid" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-                  <padding>
-                    <Insets top="10" right="10" bottom="10" left="10" />
-                  </padding>
-                  <StackPane fx:id="scheduleGridPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                </VBox>
-              </content>
-            </Tab>
           </tabs>
         </TabPane>
 
