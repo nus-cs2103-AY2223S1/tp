@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static javafx.collections.FXCollections.unmodifiableObservableList;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
@@ -26,7 +27,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     // Single observable boolean with ObservableList as wrapper.
-    private ObservableList<Boolean> isHome = FXCollections.singletonObservableList(true);
+    private ObservableList<Boolean> isHome = FXCollections.observableArrayList(true);
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -282,7 +283,8 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Boolean> getHomeStatus() {
         assert isHome.size() == 1;
-        return isHome;
+        // Return an unmodifiable copy.
+        return unmodifiableObservableList(isHome);
     }
 
     @Override
