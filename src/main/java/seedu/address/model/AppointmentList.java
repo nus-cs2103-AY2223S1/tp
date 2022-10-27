@@ -1,8 +1,6 @@
 package seedu.address.model;
 
 import static seedu.address.logic.commands.BookCommand.MESSAGE_DUPLICATE_APPOINTMENT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
