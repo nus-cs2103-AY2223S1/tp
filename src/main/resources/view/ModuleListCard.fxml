@@ -13,7 +13,6 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.AnchorPane?>
 <HBox id="moduleCardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS" style="-fx-padding: 5 0 5 0">
         <columnConstraints>
@@ -31,13 +30,13 @@
                             <Region fx:constant="USE_PREF_SIZE"/>
                         </minWidth>
                     </Label>
-                    <Label fx:id="moduleTitle" HBox.hgrow="ALWAYS" styleClass="cell_big_label"/>
-                    <FlowPane fx:id="assignmentDetails">
-                        <padding>
-                            <Insets left="15" bottom="10"/>
-                        </padding>
-                    </FlowPane>
+                    <Label fx:id="moduleTitle" styleClass="cell_big_label"/>
                 </HBox>
+                <FlowPane fx:id="assignmentDetails">
+                    <padding>
+                        <Insets bottom="10"/>
+                    </padding>
+                </FlowPane>
                 <HBox>
                     <Label id="lectureLabel" styleClass="field_label" text="Lecture: "/>
                     <Label fx:id="lectureDetails" styleClass="cell_small_label" text="\$lectureDetails"/>
@@ -74,8 +73,8 @@
                     </Button>
                 </HBox>
             </VBox>
-            <Label fx:id="moduleCode" alignment="BOTTOM_RIGHT" minWidth="300" maxWidth="300" text="\$first"
-                   styleClass="module_big_label"/>
+            <Label fx:id="moduleCode" alignment="TOP_RIGHT" minWidth="295" maxWidth="295"
+                   text="\$first" styleClass="module_big_label"/>
         </HBox>
     </GridPane>
 </HBox>

@@ -276,11 +276,10 @@
 }
 
 .module_big_label {
-    -fx-font-size: 70;
-    -fx-text-fill: rgba(10, 18, 42, 0.48) !important;
-    -fx-font-family: "Roboto Mono";
+    -fx-font-size: 60;
+    -fx-text-fill: rgba(63, 100, 17, 0.41) !important;
+    -fx-font-family: "Poppins Bold";
     -fx-translate-x: -20;
-    -fx-translate-y: 15;
 }
 
 #cardPane {
