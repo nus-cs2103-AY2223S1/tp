@@ -59,7 +59,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -94,9 +94,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -238,62 +238,64 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Proposed\] Branch feature
+### checkout feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed branching mechanism is facilitated by `BranchStorage`. It extends `Storage` with a branch history,
-stored internally as an `branchList` and `currentBranchPointer`. Additionally, it implements the following operations:
+The checkout mechanism is facilitated by `CheckoutCommand` that extends `Command`. It is supported by `CheckoutCommandParser` and `AddressBookFile`.
 
-* `BranchStorage#create()` — Creates a new branch in its branch list.
-* `BranchStorage#checkout()` — Sets a branch as the current branch.
-* `BranchStorage#reset()` — Sets the default branch as the current branch.
+It implements the following operations:
 
-These operations are exposed in the `Model` interface as `Model#createBranch()`, `Model#checkoutBranch()` and
-`Model#resetBranch()` respectively.
+* `CheckoutCommand#execute()` — Executes the command to switch to a particular list stored in the `data` folder parsed from the `userInput` using `CheckoutCommandParser#parse()`.
+* `CheckoutCommand#equals()` — Checks whether an instance of a `CheckoutCommand` is equal to another, by checking:
+    - Whether they are the same instance
+    - Whether the specified list is the same in two different instances
 
-Given below is an example usage scenario and how the branching mechanism behaves at each step.
+Given below is an example usage scenario and how the checkout mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `BranchStorage` will be initialized with the
-default branch, and the `currentBranchPointer` pointing to that single branch.
+Step 1. The user launches the application for the first time. The `Model` and `Storage` will be initialized with the
+default list.
 
-![BranchState0](images/BranchState0.png)
+![CheckoutState0](images/CheckoutState0.png)
 
 Step 2. The user executes `checkout june-2022` command to load the JSON `june-2022.json` to the storage.
-The `checkout` command calls `Model#checkoutBranch()`, which checks if the branch exists, which in turn calls
-`Model#createBranch()` if it does not exist. The non-existent branch `june-2022` will then be created.
-The call then returns to `Model#checkoutBranch()` and the `currentBranchPointer` is shifted to the newly created branch.
+The `checkout` command calls `CheckoutCommandParser#parse()`, which checks if the user input is valid, which in turn 
+calls `CheckoutCommand#execute()` if it is valid. If the list does not exist in the `data` folder, the list be created 
+and populated with sample data. `Model` and `Storage` are then loaded with the specified list and the call returns a 
+`CommandResult` to `Logic`.
 
-![BranchState1](images/BranchState1.png)
+![CheckoutState1](images/CheckoutState1.png)
 
-Step 3. The user executes `checkout master` command to load the default JSON `addressbook.json` to the storage.
-The `checkout` command calls `Model#checkoutBranch()` and the `currentBranchPointer` is shifted to the default branch.
+Step 3. The user executes `checkout addressbook` command to load the default JSON `addressbook.json` to the storage.
+The `checkout` command calls `CheckoutCommandParser#parse()`, which checks if the user input is valid, which in turn
+calls `CheckoutCommand#execute()` if it is valid. If the list does not exist in the `data` folder, the list be created
+and populated with sample data. `Model` and `Storage` are then loaded with the specified list and the call returns a
+`CommandResult` to `Logic`.
 
-![BranchState2](images/BranchState2.png)
+![CheckoutState2](images/CheckoutState2.png)
 
 The following sequence diagram shows how the branch operation works:
 
-![BranchSequenceDiagram](images/deeyonn.png)
+![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a checkout command:
 
-![BranchActivityDiagram](images/deeyonn.png)
+![CheckoutActivityDiagram](images/CheckoutActivityDiagram.png)
 
 #### Design considerations
 
 **Aspect: How checkout executes:**
 
-* **Alternative 1 (preferred choice):** Tell the Storage instance to load the specified json branch.
-    * Pros: Will use less memory (e.g. for each branch, just reuse the current instance of Storage to load the json).
-    * Cons: We must ensure that the application reloads properly after we set the designated json to be loaded.
+* **Alternative 1 (current choice):** Tell the instance of Storage and Model to load the specified AddressBook.
+    * Pros: Will use less memory (e.g. for each AddressBook, just reuse the current instance of Storage and Model).
+    * Cons: We must ensure that there are no unintended side effects to the modification of both instances. 
+      (e.g. Coupling and Dependencies)
 
-* **Alternative 2 (current choice):** Create a new Storage instance that loads the specified json branch
+* **Alternative 2 (previous choice):** Create a new instance of Storage and Model that loads the specified AddressBook
   and set it to be used by the application.
-    * Pros: Faster to switch between branches since they are already loaded into memory.
-    * Cons: May have performance issues in terms of memory usage because a new instance of Storage is created for every
-      new branch.
-
-_{more aspects and alternatives to be added}_
+    * Pros: Faster to switch between AddressBook since they are already loaded into memory.
+    * Cons: May have performance issues in terms of memory usage because a new instance is created for every
+      new AddressBook.
 
 ### View Feature
 
@@ -312,10 +314,10 @@ It implements the following operations:
 
 **Aspect: How the UI window is split to show a panel of list of all persons and another panel to view details of a person:**
 
-- **Alternative 1 (current choice):** Window is splitted into half below the ResultDisplay box.
+- **Alternative 1 (current choice):** Window is split into half below the ResultDisplay box.
     - Pros: Symmetrical and looks more regular.
     - Cons: Pane to view details of a person is smaller.
-- **Alternative 2:** Window is splitted from the top, so both CommandTextField and ResultDisplay boxes are halved.
+- **Alternative 2:** Window is split from the top, so both CommandTextField and ResultDisplay boxes are halved.
     - Pros: Can have a larger pane to view details of a person.
     - Cons: Need to scroll more to see typed command and result displayed.
 
@@ -331,12 +333,12 @@ The `export` feature allows the user to export the displayed list in InternConne
 Given below is an example success scenario and how the `export` mechanism behaves at each step.
 
 1. The user executes `export`.
-1. `LogicManager` calls `AddressBookParser#parseCommand()`.
-1. `AddressBookParser#parseCommand()` calls `ExportCommand#execute()`.
-1. `ExportCommand` gets current DateTime and use it for the output JSON file path.
-1. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`.
-1. `ExportCommand` calls `Storage#saveDisplayedList()`
-1. The displayedList is stored as a JSON file in `data/export/<currentDateTime>.json`.
+2. `LogicManager` calls `AddressBookParser#parseCommand()`.
+3. `AddressBookParser#parseCommand()` calls `ExportCommand#execute()`.
+4. `ExportCommand` gets current DateTime and use it for the output JSON file path.
+5. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`.
+6. `ExportCommand` calls `Storage#saveDisplayedList()`
+7. The displayedList is stored as a JSON file in `data/export/<currentDateTime>.json`.
 
 The following sequence diagram shows how the `export` command works:
 
@@ -387,10 +389,10 @@ The `find` feature currently allows the user to search by name among all Persons
 Given below is an example success scenario and how the `find` mechanism behaves at each step.
 
 1. The user executes `find`.
-1. `LogicManager` calls `AddressBookParser#parseCommand()`.
-1. `AddressBookParser#parseCommand()` calls `FindCommand#execute()`.
-1. `FindCommand` iterates through list, checking for entries where the filtered predicate is true.
-1. `FindCommand` updates the `displayedList` from `model` by calling `Model#updateFilteredPersonList()`.
+2. `LogicManager` calls `AddressBookParser#parseCommand()`.
+3. `AddressBookParser#parseCommand()` calls `FindCommand#execute()`.
+4. `FindCommand` iterates through list, checking for entries where the filtered predicate is true.
+5. `FindCommand` updates the `displayedList` from `model` by calling `Model#updateFilteredPersonList()`.
 
 The following sequence diagram shows how the `find` command works:
 
@@ -452,44 +454,44 @@ focus on what matters more: matching the right people for the right job.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                           | I want to …​                                                                             | So that I can…​                                                                                                                  |
-|---------|-----------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| `* * *` | potential user exploring the app  | see the sample data                                                                      | easily play around and understand how the app works                                                                              |
-| `* * *` | new user                          | see the list of available things I can do with the app                                   | learn how to use the app fully                                                                                                   |
-| `* * *` | new user                          | read the user guide                                                                      | I understand all the commands and features available in the app before using it                                                  |
-| `* * *` | user                              | delete fields and data                                                                   |                                                                                                                                  | 
-| `* * *` | user                              | add applicants                                                                           |                                                                                                                                  |
-| `* * *` | user                              | mass add applicants' data                                                                | conveniently import my data quickly and without hassle                                                                           |
-| `* * *` | user                              | view all details of my selected Applicant                                                | avoid opening and working with multiple files                                                                                    |
-| `* * *` | user                              | see the summary statistics of my data                                                    | have a higher-level view of the data                                                                                             |
-| `* * *` | user ready to start using the app | clear all current data                                                                   | get rid of sample/experimental data I used for exploring the app                                                                 |
-| `* * *` | user                              | close the app by inputing "exit" command                                                 |                                                                                                                                  |
-| `* * *` | user                              | add an additional value to the field I am inserting                                      | if my value is currently not in the list (e.g. list of Universities, list of Majors) so that I can enter my data more accurately |
-| `* * *` | user                              | delete the existing values in a field                                                    | so that I easily modify and customise my value for a field (e.g. Major, University)                                              |
-| `* *`   | user                              | add an open Role                                                                         | keep track of who applied to the role                                                                                            |
-| `* * *` | user                              | search for applicants by name                                                            | quickly find what I need                                                                                                         |
-| `* *`   | user                              | filter applicants based on certain fields/criteria/categories                            | obtain filtered data based on the criteria that I want                                                                           |
-| `* *`   | user                              | archive old data                                                                         | see the last few months/years data only                                                                                          |
-| `* * `  | user                              | auto-archive applicants data and store the updated one when they applied to another role | see only the updated data of the applicant and all the roles the applied to                                                      |
-| `* * `  | user                              | see the archived data                                                                    | see how the applicants progress over the time                                                                                    |
-| `* *`   | user                              | see the summary statistics of a particular applicant's details                           | see how they progress over the time                                                                                              |
-| `*`     | user                              | give KIV tag to applicants                                                               |                                                                                                                                  |
-| `*`     | user                              | customize my UI/UX settings e.g., Colour settings, font size                             | cater the application to my needs                                                                                                |
-| `*`     | user                              | add references to external documents to my records                                       | keep things related to each other easily accessible                                                                              |
-| `* *`   | user                              | have different key views which contain important related data                            | package and declutter unneeded data and focus on what's at hand                                                                  |
-| `* * *` | user                              | modify current fields                                                                    | keep my data up to date                                                                                                          |
-| `*`     | user                              | make and customize my own views                                                          | get to decide what groups of data matter to my, and empower myself on what I care about                                          |
-| `* * *` | user                               | edit my data manually just by inputting a command to the query                          | so that I can modify it in a shorter time in case of a typo.                                                                     |
-| `* *  ` | user                               | edit key information that I care about conveniently from my high-level view             | so that I can keep my focus to do what matters                                                                                   |
-| `* * *` | user                               | update my data for existing applicants                                                  | so that I can view their latest details in case of reapplication                                                                 |
-| `*    ` | user                               | delete applicants that I note as unqualified                                            | so that I do not waste too much space                                                                                            |
-| `* *  ` | user                               | create new applicant attributes                                                         | so that I can easily describe applicants based on my preference                                                                  |
-| `*    ` | user                               | view a data visualization/dashboard                                                     | so that I can easily and visually get the key information I need and care about                                                  |
-| `* *  ` | user                               | customize my UI/UX settings e.g., Color settings, font size                             | so that the application can cater to my needs                                                                                    |
-| `*    ` | user                               | make my own pseudo commands/macros                                                      | so that I can improve my efficiency with the app                                                                                 |
-| `* * *` | user                               | import data from others                                                                 | so that I can receive resources from other users                                                                                 |
-| `* * *` | user                               | export my data                                                                          | so that I can share resources with others                                                                                        |
-| `* *  ` | user                               | add a custom field to my data                                                           | so that I can have more flexible records                                                                                         |
-| `*    ` | user                               | add profile pictures to my records                                                      | so that I can see who I’m looking at                                                                                             |
+|----------|-----------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | potential user exploring the app  | see the sample data                                                                      | easily play around and understand how the app works                                                                              |
+| `* * *`  | new user                          | see the list of available things I can do with the app                                   | learn how to use the app fully                                                                                                   |
+| `* * *`  | new user                          | read the user guide                                                                      | I understand all the commands and features available in the app before using it                                                  |
+| `* * *`  | user                              | delete fields and data                                                                   |                                                                                                                                  | 
+| `* * *`  | user                              | add applicants                                                                           |                                                                                                                                  |
+| `* * *`  | user                              | mass add applicants' data                                                                | conveniently import my data quickly and without hassle                                                                           |
+| `* * *`  | user                              | view all details of my selected Applicant                                                | avoid opening and working with multiple files                                                                                    |
+| `* * *`  | user                              | see the summary statistics of my data                                                    | have a higher-level view of the data                                                                                             |
+| `* * *`  | user ready to start using the app | clear all current data                                                                   | get rid of sample/experimental data I used for exploring the app                                                                 |
+| `* * *`  | user                              | close the app by inputting "exit" command                                                |                                                                                                                                  |
+| `* * *`  | user                              | add an additional value to the field I am inserting                                      | if my value is currently not in the list (e.g. list of Universities, list of Majors) so that I can enter my data more accurately |
+| `* * *`  | user                              | delete the existing values in a field                                                    | so that I easily modify and customise my value for a field (e.g. Major, University)                                              |
+| `* *`    | user                              | add an open Role                                                                         | keep track of who applied to the role                                                                                            |
+| `* * *`  | user                              | search for applicants by name                                                            | quickly find what I need                                                                                                         |
+| `* *`    | user                              | filter applicants based on certain fields/criteria/categories                            | obtain filtered data based on the criteria that I want                                                                           |
+| `* *`    | user                              | archive old data                                                                         | see the last few months/years data only                                                                                          |
+| `* * `   | user                              | auto-archive applicants data and store the updated one when they applied to another role | see only the updated data of the applicant and all the roles the applied to                                                      |
+| `* * `   | user                              | see the archived data                                                                    | see how the applicants progress over the time                                                                                    |
+| `* *`    | user                              | see the summary statistics of a particular applicant's details                           | see how they progress over the time                                                                                              |
+| `*`      | user                              | give KIV tag to applicants                                                               |                                                                                                                                  |
+| `*`      | user                              | customize my UI/UX settings e.g., Colour settings, font size                             | cater the application to my needs                                                                                                |
+| `*`      | user                              | add references to external documents to my records                                       | keep things related to each other easily accessible                                                                              |
+| `* *`    | user                              | have different key views which contain important related data                            | package and de-clutter unneeded data and focus on what's at hand                                                                 |
+| `* * *`  | user                              | modify current fields                                                                    | keep my data up to date                                                                                                          |
+| `*`      | user                              | make and customize my own views                                                          | get to decide what groups of data matter to my, and empower myself on what I care about                                          |
+| `* * *`  | user                              | edit my data manually just by inputting a command to the query                           | so that I can modify it in a shorter time in case of a typo.                                                                     |
+| `* *  `  | user                              | edit key information that I care about conveniently from my high-level view              | so that I can keep my focus to do what matters                                                                                   |
+| `* * *`  | user                              | update my data for existing applicants                                                   | so that I can view their latest details in case of reapplication                                                                 |
+| `*    `  | user                              | delete applicants that I note as unqualified                                             | so that I do not waste too much space                                                                                            |
+| `* *  `  | user                              | create new applicant attributes                                                          | so that I can easily describe applicants based on my preference                                                                  |
+| `*    `  | user                              | view a data visualization/dashboard                                                      | so that I can easily and visually get the key information I need and care about                                                  |
+| `* *  `  | user                              | customize my UI/UX settings e.g., Color settings, font size                              | so that the application can cater to my needs                                                                                    |
+| `*    `  | user                              | make my own pseudo commands/macros                                                       | so that I can improve my efficiency with the app                                                                                 |
+| `* * *`  | user                              | import data from others                                                                  | so that I can receive resources from other users                                                                                 |
+| `* * *`  | user                              | export my data                                                                           | so that I can share resources with others                                                                                        |
+| `* *  `  | user                              | add a custom field to my data                                                            | so that I can have more flexible records                                                                                         |
+| `*    `  | user                              | add profile pictures to my records                                                       | so that I can see who I’m looking at                                                                                             |
 
 *{More to be added}*
 
@@ -693,16 +695,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -710,16 +712,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -727,4 +729,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
