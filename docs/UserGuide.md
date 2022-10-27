@@ -13,9 +13,9 @@ future tasks. With our app, teams management would be easier than ever.
 
 ## Index
 
-- [Quick Start](#Quick%20Start)
+- [Quick Start](<#Quick Start>)
 - [Features](#Features)
-- [Command Summary](#Command%20Summary)
+- [Command Summary](<#Command Summary>)
 
 --------------------------------------------------------------------------------------------------------------------
 
