@@ -24,7 +24,7 @@ food options in NUS and thus make an informed decision on where to eat._
 
 ## Quick start
 
-1. Install **Java 11** from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
+1. Install **Java 11** from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
 1. Download the latest `NUSEatWhere.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
 
