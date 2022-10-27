@@ -16,7 +16,7 @@ import seedu.address.model.task.TaskLinkedToExamPredicate;
  */
 public class ListExamTasksCommand extends Command {
 
-    public static final String COMMAND_WORD = "listexamtasks";
+    public static final String COMMAND_WORD = "showt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Show all tasks linked to a specific exam identified by the index number used in the exam list.\n"
