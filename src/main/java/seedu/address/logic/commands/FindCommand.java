@@ -17,7 +17,8 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names or modules "
             + "matches any of the specified keywords (case-insensitive) and displays them as a list "
             + "with index numbers. Parameters: [n/NAME] [m/MODULE_CODE] [s/SPECIALISATION] [p/PHONE] [e/EMAIL]"
-            + "[g/GENDER] [t/TAG]... [l/LOCATION] [r/RATING] [o/OFFICE_HOUR] Example: " + COMMAND_WORD
+            + "[g/GENDER] [g/GITHUB_USERNAME] [y/YEAR] [t/TAG]... [l/LOCATION] [r/RATING] [o/OFFICE_HOUR] [typ/TYPE]\n"
+            + " Example: " + COMMAND_WORD
             + " n/alice bob charlie m/cs2100 cs2103t p/1234567 t/friends";
 
     private final PersonMatchesPredicate predicate;
