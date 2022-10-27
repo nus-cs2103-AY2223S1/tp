@@ -236,6 +236,7 @@ public class ModelManager implements Model {
     public ObservableList<Food> getUnFilteredFoodList() {
         unFilteredFoods.setPredicate(PREDICATE_SHOW_ALL_FOODS);
         return unFilteredFoods;
+    }
 
     public boolean isAddedTotalCalorieTooLarge(Food toAdd) {
         return getTotalCalorie().isCalorieSumTooLarge(toAdd.getCalorie());
