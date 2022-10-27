@@ -13,12 +13,12 @@ import bookface.logic.parser.ParserUtil;
 import bookface.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates the relevant new AddCommand object for the relevant entity to be added
+ * Parses input arguments and creates the relevant new EditCommand object for the relevant entity to be added
  */
 public class EditBookArgumentsParser implements Parseable<EditBookCommand> {
     /**
-     * Parses the given arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given arguments in the context of the EditCommand
+     * and returns a EditCommand object for execution.
      */
     @Override
     public EditBookCommand parse(String args) throws ParseException {

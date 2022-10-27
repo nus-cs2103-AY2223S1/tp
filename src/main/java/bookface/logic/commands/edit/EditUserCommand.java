@@ -26,7 +26,7 @@ import bookface.model.person.Phone;
 import bookface.model.tag.Tag;
 
 /**
- * Deletes a user identified using it's displayed index from the user list.
+ * Edits the details of an existing user in the user list.
  */
 public class EditUserCommand extends EditCommand {
 
