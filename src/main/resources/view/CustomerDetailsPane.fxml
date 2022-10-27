@@ -2,21 +2,22 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ScrollPane?>
 
-<HBox id="detailsPane" fx:id="detailsPane" prefHeight="271.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/11"
+<HBox id="detailsPane" fx:id="detailsPane" xmlns="http://javafx.com/javafx/11"
       xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
-        </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" HBox.hgrow="ALWAYS">
+    <AnchorPane minHeight="0.0" minWidth="340.0" HBox.hgrow="ALWAYS">
+    <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge"
+                AnchorPane.bottomAnchor="0.0"
+                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                AnchorPane.topAnchor="0.0">
+        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0" HBox.hgrow="ALWAYS">
             <padding>
                 <Insets bottom="5" left="15" right="15" top="5"/>
             </padding>
@@ -69,9 +70,88 @@
                     <Insets bottom="4.0" />
                 </VBox.margin>
             </Label>
+
+            <Label styleClass="cell_h2_label" text="Insights">
+                <VBox.margin>
+                    <Insets top="16" bottom="16"/>
+                </VBox.margin>
+            </Label>
+
+            <GridPane vgap="16" hgap="16">
+                <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="3"
+                      minWidth="250" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" id="revenueCard">
+                    <Label fx:id="totalRevenue" id="revenueGenerated" text="\$totalrevenue">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE"/>
+                        </minHeight>
+                        <VBox.margin>
+                            <Insets bottom="4.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label text="Total revenue generated"/>
+                </VBox>
+
+                <HBox GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="3" spacing="8">
+                    <VBox spacing="12" minWidth="100" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
+                          id="commissionCountCard" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                        <Label fx:id="commissionCount" id="commissionCount" text="\$commissionCount"/>
+                        <Label fx:id="commissionLabel" text="Commissions" minHeight="26"/>
+                    </VBox>
+
+                    <HBox fx:id="pieChartPlaceholder"
+                          minWidth="150" maxWidth="150" minHeight="150" maxHeight="150" HBox.hgrow="NEVER"/>
+                </HBox>
+
+                <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="1"
+                      minWidth="83.3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
+                      styleClass="commissionBreakdownCountCard" alignment="CENTER">
+                    <Label fx:id="commissionCompletedCount" id="commissionCompletedCount" alignment="CENTER"
+                           text="\$commissionCompleteCount" HBox.hgrow="ALWAYS" minWidth="92.6">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE"/>
+                        </minHeight>
+                        <VBox.margin>
+                            <Insets bottom="4.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label text="Completed" HBox.hgrow="ALWAYS" alignment="CENTER"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="1"
+                      minWidth="83.3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
+                      styleClass="commissionBreakdownCountCard" alignment="CENTER">
+                <Label fx:id="commissionInProgressCount" id="commissionInProgressCount" alignment="CENTER"
+                       text="\$commissionInProgressCount" HBox.hgrow="ALWAYS" minWidth="92.6">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE"/>
+                        </minHeight>
+                        <VBox.margin>
+                            <Insets bottom="4.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label text="In Progress" HBox.hgrow="ALWAYS" alignment="CENTER"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.columnSpan="1"
+                      minWidth="92.6" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
+                      styleClass="commissionBreakdownCountCard" alignment="CENTER">
+                    <Label fx:id="commissionNotStartedCount" id="commissionNotStartedCount"
+                           text="\$commissionNotStartedCount" alignment="CENTER" minWidth="92.6">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE"/>
+                        </minHeight>
+                        <VBox.margin>
+                            <Insets bottom="4.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label text="Not Started" HBox.hgrow="ALWAYS" alignment="CENTER"/>
+                </VBox>
+            </GridPane>
         </VBox>
-        <rowConstraints>
-            <RowConstraints/>
-        </rowConstraints>
-    </GridPane>
+    </ScrollPane>
+    </AnchorPane>
 </HBox>

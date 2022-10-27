@@ -58,11 +58,40 @@ public class UniqueCommissionList implements Iterable<Commission> {
     }
 
     /**
-     * Returns the number of active commissions.
+     * Returns the number of active (in progress and not started) commissions.
      */
     public long getActiveSize() {
         return internalList.stream()
                 .filter(commission -> !commission.getCompletionStatus().isCompleted)
+                .count();
+    }
+
+    /**
+     * Returns the number of commissions that are completed.
+     */
+    public long getCompletedSize() {
+        return internalList.stream()
+                .filter(commission -> commission.getCompletionStatus().isCompleted)
+                .count();
+    }
+
+    /**
+     * Returns the number of commissions that are in progress.
+     */
+    public long getInProgressSize() {
+        return internalList.stream()
+                .filter(commission -> commission.getCompletionStatusString()
+                        .equals(Commission.CompletionStatusString.IN_PROGRESS))
+                .count();
+    }
+
+    /**
+     * Returns the number of commissions that are not started.
+     */
+    public long getNotStartedSize() {
+        return internalList.stream()
+                .filter(commission -> commission.getCompletionStatusString()
+                        .equals(Commission.CompletionStatusString.NOT_STARTED))
                 .count();
     }
 
