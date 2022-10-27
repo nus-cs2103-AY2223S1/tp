@@ -8,7 +8,7 @@ import tracko.commons.util.StringUtil;
 /**
  * Tests that a {@code Item}'s {@code ItemName} matches any of the keywords given.
  */
-public class ItemContainsKeywordsPredicate implements Predicate<Item> {
+public class ItemContainsKeywordsPredicate implements Predicate<InventoryItem> {
     private final List<String> keywords;
 
     public ItemContainsKeywordsPredicate(List<String> keywords) {
@@ -16,9 +16,9 @@ public class ItemContainsKeywordsPredicate implements Predicate<Item> {
     }
 
     @Override
-    public boolean test(Item item) {
+    public boolean test(InventoryItem inventoryItem) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(item.getItemName().itemName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(inventoryItem.getItemName().value, keyword));
     }
 
     @Override

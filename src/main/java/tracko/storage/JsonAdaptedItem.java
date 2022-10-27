@@ -11,14 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tracko.commons.exceptions.IllegalValueException;
 import tracko.model.item.Description;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
 import tracko.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Item}.
+ * Jackson-friendly version of {@link InventoryItem}.
  */
 public class JsonAdaptedItem {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
@@ -52,12 +52,12 @@ public class JsonAdaptedItem {
     /**
      * Converts a given {@code Item} into this class for Jackson use.
      */
-    public JsonAdaptedItem(Item source) {
-        itemName = source.getItemName().itemName;
-        quantity = source.getTotalQuantity().getQuantity();
+    public JsonAdaptedItem(InventoryItem source) {
+        itemName = source.getItemName().value;
+        quantity = source.getTotalQuantity().getValue();
         description = source.getDescription().value;
-        sellPrice = source.getSellPrice().price;
-        costPrice = source.getCostPrice().price;
+        sellPrice = source.getSellPrice().value;
+        costPrice = source.getCostPrice().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -68,7 +68,7 @@ public class JsonAdaptedItem {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted item.
      */
-    public Item toModelType() throws IllegalValueException {
+    public InventoryItem toModelType() throws IllegalValueException {
         final List<Tag> itemTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             itemTags.add(tag.toModelType());
@@ -110,7 +110,7 @@ public class JsonAdaptedItem {
                     Price.class.getSimpleName()));
         }
         if (!Price.isValidPrice(sellPrice)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
         }
         final Price modelSellPrice = new Price(sellPrice);
 
@@ -120,13 +120,13 @@ public class JsonAdaptedItem {
                     Price.class.getSimpleName()));
         }
         if (!Price.isValidPrice(costPrice)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
         }
         final Price modelCostPrice = new Price(costPrice);
 
         final Set<Tag> modelTags = new HashSet<>(itemTags);
 
-        return new Item(modelItemName, modelDescription, modelQuantity, modelTags,
+        return new InventoryItem(modelItemName, modelDescription, modelQuantity, modelTags,
                 modelSellPrice, modelCostPrice);
     }
 }
