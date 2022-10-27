@@ -6,9 +6,9 @@ title: User Guide
 User Guide
 =======
 SETA is a **desktop application for CS2103T Teaching Assistants** to track their students’ and tutorials’ details, and
-questions asked by students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a
-Graphical User Interface (GUI). If you can type fast, SETA enables you to manage your tutorials and track your students
-more effectively than traditional GUI apps.
+questions asked by students. SETA is optimized for use via a Command Line Interface (CLI) while still having the benefits of a
+Graphical User Interface (GUI). If you can type fast, SETA enables you to track your students. manage your tutorials and 
+note down questions more effectively than traditional GUI apps.
 
 * Table of Contents
     * **Student**
@@ -46,7 +46,7 @@ more effectively than traditional GUI apps.
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`liststu`** and pressing Enter will
-   go to the student page, listing all the students.<br>
+   list all the students in the 'Student' column.<br>
 
 Some example commands you can try:
 
@@ -76,7 +76,7 @@ Some example commands you can try:
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
   the parameter will be taken.<br>
   e.g. if you specify `h/@johnlim h/@johnlimjj`, only `h/@johnlimjj` will be taken.
 
@@ -108,13 +108,14 @@ Format: `edit INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
 
 * Edits the student at the specified INDEX. The index represents the index number of the student in the student list.
   The index must be a positive integer 0, 1, 2…
-* At least one of the fields (E.g. [n/NAME] or [e/EMAIL]) must be provided
+* At least one of the fields (E.g. [n/NAME] or [e/EMAIL]) must be provided.
 * Existing fields will be updated to the input values.
 
 Examples:
 
-* `editstu 1 h/@johnlim e/jljj@example.com Edits the telegram handle and email of the person at index 1 to be @johnlim and jljj@example.com respectively.`
-* `editstu 3 n/Mary Lee Jing Yi Edits the name of the person at index 3 to be Mary Lee Jing Yi.`
+* `editstu 1 h/@johnlim e/jljj@example.com` Edits the telegram handle and email of the 1st student to @johnlim and jljj@example.com respectively.
+* `editstu 3 n/Mary Lee Jing Yi` Edits the name of the 3rd student to Mary Lee Jing Yi.
+* `editstu 2 a/5` Edits the attendance number of the 2nd student to 5.
 
 
 ### Adding student's attendance : `attendance`
@@ -123,11 +124,11 @@ Increases or decreases the number of times a student attended tutorials.
 
 Format: `attendance INDEX s/SIGN v/VALUE`
 
-* Adds attendance to the student at the specified INDEX
+* Adds attendance to the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
-* The index must be a positive integer 1, 2. 3, …
-* decrease attendance value if `SIGN` is '-' and increase attendance value if `SIGN` is '+'
-* increase or decrease the specific student's attendance by `VALUE`
+* The index must be a positive integer 1, 2. 3, ….
+* decrease attendance value if `SIGN` is '-' and increase attendance value if `SIGN` is '+'.
+* increase or decrease the specific student's attendance by `VALUE`.
 
 Examples:
 
@@ -162,9 +163,9 @@ Removes a specific student.
 
 Format: `deletestu INDEX`
 
-* Deletes the student at the specified INDEX
+* Deletes the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
-* The index must be a positive integer 1, 2. 3, …
+* The index must be a positive integer 1, 2. 3, ….
 
 Example:
 
@@ -173,12 +174,12 @@ Example:
 
 ### Finding a student: `findstu`
 
-Find one or more specific students.
+Finds one or more specific students.
 
 Format: `findstu KEYWORD [MORE_KEYWORDS]`
 
-* Finds student(s) with specified KEYWORD [MORE_KEYWORDS] in their name(s)
-* The keyword is case-insensitive
+* Finds student(s) with specified KEYWORD [MORE_KEYWORDS] in their name(s).
+* The keyword is case-insensitive.
 
 Example:
 
@@ -216,7 +217,7 @@ Format: `markq INDEX`
 
 * Marks the question at the specified INDEX as important.
 * The index refers to the index number shown in the displayed question list.
-* The index must be a positive integer 1, 2. 3, …
+* The index must be a positive integer 1, 2. 3, ….
 *
 
 Examples:
@@ -232,7 +233,7 @@ Format: `unmarkq INDEX`
 
 * Marks the question at the specified INDEX as unimportant.
 * The index refers to the index number shown in the displayed question list.
-* The index must be a positive integer 1, 2. 3, …
+* The index must be a positive integer 1, 2. 3, ….
 *
 
 Examples:
@@ -268,9 +269,9 @@ Deletes a tutorial in the tutorial list.
 
 Format: `deletetut INDEX`
 
-* Deletes the tutorial at the specified INDEX
+* Deletes the tutorial at the specified INDEX.
 * The index refers to the index number shown in the displayed tutorial list.
-* The index must be a positive integer 1, 2. 3, …
+* The index must be a positive integer 1, 2. 3, … .
 *
 
 Example:
@@ -286,7 +287,7 @@ Format: `marktut INDEX`
 
 * Marks the tutorial at the specified `INDEX`.
 * The index refers to the index number shown in the displayed tutorial list.
-* The index must be a positive integer 1, 2, 3, ...
+* The index must be a positive integer 1, 2, 3, ... .
 
 Example:
 

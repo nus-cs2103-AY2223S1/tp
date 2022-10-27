@@ -59,7 +59,7 @@ The rest of the App consists of four components.
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+the command `deleteq 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -85,9 +85,9 @@ in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
-, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
-the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, 
+`QuestionListPanel`, `TutorialListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, 
+inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
@@ -100,7 +100,8 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student`, `Question` and `Tutorial` objects
+* residing in the `Model`.
 
 ### Logic component
 
@@ -150,20 +151,22 @@ API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
-  this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object), all 
+  `Question` objects (which are contained in a `UniqueQuestionList` object), all `Tutorial` objects (which are 
+  contained 
+  in a `UniqueTutorialList` object)
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list 
+  which
+  is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be 
+  bound to
+  this list so that the UI automatically updates when the data in the list change. The same applies to `Question` 
+  objects with `ObservableList<Question>`, and `Tutorial` objects with `ObservableList<Tutorial>`
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 ### Storage component
 

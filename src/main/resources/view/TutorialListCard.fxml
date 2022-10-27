@@ -31,6 +31,7 @@
             <FlowPane fx:id="tags" />
             <Label fx:id="content" styleClass="cell_small_label" text="\$content" />
             <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
+            <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
             <CheckBox fx:id="status" styleClass="cell_small_label" text="\$status" />
         </VBox>
     </GridPane>

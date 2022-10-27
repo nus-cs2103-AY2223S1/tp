@@ -13,20 +13,20 @@ import seedu.address.model.tutorial.Tutorial;
 
 
 /**
- * Marks a tutorial as complete.
+ * Marks a tutorial as incomplete.
  */
-public class MarkTutorialCommand extends Command {
+public class UnmarkTutorialCommand extends Command {
 
-    public static final String COMMAND_WORD = "marktut";
+    public static final String COMMAND_WORD = "unmarktut";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks a tutorial as complete "
+            + ": Marks a tutorial as incomplete "
             + "by the index number used in the last person listing.\n "
             + "Parameters: INDEX (must be a positive integer)\n "
             + "Example: "
             + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARKTUT_SUCCESS = "Marked:\n%1$s";
+    public static final String MESSAGE_UNMARKTUT_SUCCESS = "Unmarked:\n%1$s";
 
     private final Index index;
 
@@ -35,7 +35,7 @@ public class MarkTutorialCommand extends Command {
      *
      * @param index The position of the tutorial in the tutorial list
      */
-    public MarkTutorialCommand(Index index) {
+    public UnmarkTutorialCommand(Index index) {
         requireAllNonNull(index);
 
         this.index = index;
@@ -48,11 +48,11 @@ public class MarkTutorialCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof MarkTutorialCommand)) {
+        if (!(other instanceof UnmarkTutorialCommand)) {
             return false;
         }
 
-        MarkTutorialCommand e = (MarkTutorialCommand) other;
+        UnmarkTutorialCommand e = (UnmarkTutorialCommand) other;
         return index.equals(e.index);
     }
 
@@ -67,12 +67,13 @@ public class MarkTutorialCommand extends Command {
 
         Tutorial tutorialToEdit = lastShownList.get(index.getZeroBased());
         Tutorial editedTutorial = new Tutorial(
-                tutorialToEdit.getGroup(), tutorialToEdit.getContent(), tutorialToEdit.getTime(), true
+                tutorialToEdit.getGroup(), tutorialToEdit.getContent(), tutorialToEdit.getTime(), false
         );
 
         model.setTutorial(tutorialToEdit, editedTutorial);
         model.updateFilteredTutorialList(Model.PREDICATE_SHOW_ALL_TUTORIALS);
 
-        return new CommandResult(String.format(MESSAGE_MARKTUT_SUCCESS, editedTutorial));
+        return new CommandResult(String.format(MESSAGE_UNMARKTUT_SUCCESS, editedTutorial));
     }
 }
+
