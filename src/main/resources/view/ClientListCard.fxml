@@ -32,7 +32,7 @@
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
-      <Label fx:id="remarks" styleClass="cell_small_label" text="\$remarks" wrapText="true" />
+      <Label fx:id="remarks" styleClass="cell_small_label" text="\$remarks" />
       <Label fx:id="transactions" styleClass="cell_small_label" text="\$transactions" wrapText="true" />
     </VBox>
       <rowConstraints>
