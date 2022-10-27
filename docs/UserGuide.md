@@ -186,7 +186,23 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 
 ### Filtering the students: `filter`
 
-[Coming soon]
+Filtering students from the StudMap based on different
+categories.
+
+Format: `filter t/ friends`
+* Filter students specific to the category "tags" represented 
+with the prefix `t/`
+* There should be spaces between `filter`, `t/` and `friends`
+* Currently, filter works for three specific 
+categories - tags `t/`, module `m/` and assignments `a/`.
+
+Example:
+* `filter t/ friends` will return a filtered list of students
+that are tagged as friends
+* `filter m/ cs2103t` will return a filtered list of students
+that enrolls in the module cs2103t.
+* `filter a/ a01` will return a filtered list of students
+that are working on assignment A01. 
 
 ### Mark student as present: `mark`
 
