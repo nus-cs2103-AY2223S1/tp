@@ -18,6 +18,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_MODULE_EDIT_AS_TIED_WITH_TASK = "The module"
             + " cannot be edited as it is tied with an existing task";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
+    public static final String MESSAGE_INVALID_TASK_INDEX =
+        "Please provide a positive integer for the index of a task.";
     public static final String MESSAGE_MODULE_NOT_FOUND = "This module does not exist";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
     public static final String MESSAGE_DUPLICATE_EXAM = "This exam already exists in the exam list";
