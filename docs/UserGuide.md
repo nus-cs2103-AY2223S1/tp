@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page 
+title: User Guide
 ---
 
 `CLIMods` is a native desktop application for NUS students to explore, manage and plan academic
@@ -9,11 +10,10 @@ of the command line/terminal will be able to plan and manage their modules much 
 on [nusmods.com](https://www.nusmods.com).
 
 Developed with love by: 
-Linus, Cheng Yi, Yihong, Huzaifa, Hong Jin
+Linus, Cheng Yi, Yi Hong, Huzaifa, Hong Jin
 
-* Table of Contents {:toc}
-
-
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -81,9 +81,9 @@ Required Arguments:
 
 View full details (e.g. description, module credits and lesson slots) of a module via its module code.
 
-### Listing module prerequisite: `prereqs`
+### Listing module prerequisite: `preq`
 
-Format: `prereqs MODULE-CODE`
+Format: `preq MODULE-CODE`
 
 Required Arguments:
 
@@ -165,14 +165,14 @@ Traverse/Scroll **down**: `<Down>`
 
 ## Command summary
 
-| Action      | Format, Examples                                                       |
-|-------------|------------------------------------------------------------------------|
-| **help**    | `help`<br> e.g. `help find`                                            |
-| **ls**      | `ls [FACULTY-PREFIX]`<br> e.g. `ls`, `ls CS`, `ls MA --user`           |
-| **find**    | `find KEYWORD`<br> e.g. `find compilers`                               |
-| **view**    | `view MODULE-CODE`<br> e.g. `view CS2103`                              |
-| **prereqs** | `prereqs MODULE-CODE`<br> e.g. `prereqs CS2103`                        |
-| **add**     | `add MODULE-CODE`<br> e.g. `add CS2103`                                |
-| **rm**      | `rm MODULE-CODE`<br> e.g. `rm CS2103`                                  |
-| **pick**    | `pick MODULE-CODE LESSON-TYPE LESSON-ID`<br> e.g. `pick CS2103 TUT 06` |
-| **exit**    | `exit`                                                                 |
+| Action   | Format, Examples                                                       |
+|----------|------------------------------------------------------------------------|
+| **help** | `help`<br> e.g. `help find`                                            |
+| **ls**   | `ls [FACULTY-PREFIX]`<br> e.g. `ls`, `ls CS`, `ls MA --user`           |
+| **find** | `find KEYWORD`<br> e.g. `find compilers`                               |
+| **view** | `view MODULE-CODE`<br> e.g. `view CS2103`                              |
+| **preq** | `preq MODULE-CODE`<br> e.g. `preq CS2103`                              |
+| **add**  | `add MODULE-CODE`<br> e.g. `add CS2103`                                |
+| **rm**   | `rm MODULE-CODE`<br> e.g. `rm CS2103`                                  |
+| **pick** | `pick MODULE-CODE LESSON-TYPE LESSON-ID`<br> e.g. `pick CS2103 TUT 06` |
+| **exit** | `exit`                                                                 |
