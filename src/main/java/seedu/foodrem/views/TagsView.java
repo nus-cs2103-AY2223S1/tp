@@ -1,9 +1,10 @@
 package seedu.foodrem.views;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -23,37 +24,28 @@ public class TagsView {
 
     /**
      * Creates a new detailed view of the given tags from a list.
-     * @param itemTags the tags to be displayed.
+     * @param tags the tags to be displayed.
      * @return the node to be displayed in the UI.
      */
-    public static Node from(List<Tag> itemTags) {
+    public static Node from(Tag... tags) {
         final List<Node> tagsList = new ArrayList<>();
-        itemTags.stream().sorted(Comparator.comparing(Tag::getName))
+        Arrays.stream(tags).sorted(Comparator.comparing(Tag::getName))
                 .forEach(tag -> tagsList.add(TagView.from(tag)));
         if (tagsList.isEmpty()) {
             tagsList.add(new Label(EMPTY_TAGS));
         }
 
-        HBox tagsHBox = new HBox(tagsList.toArray(Node[]::new));
-        tagsHBox.setSpacing(SPACING_UNIT);
-        return tagsHBox;
+        final HBox view = new HBox(tagsList.toArray(Node[]::new));
+        view.setSpacing(SPACING_UNIT);
+        return view;
     }
 
     /**
      * Creates a new detailed view of the given tags from a set.
-     * @param itemTags the tags to be displayed.
+     * @param tags the tags to be displayed.
      * @return the node to be displayed in the UI.
      */
-    public static Node from(Set<Tag> itemTags) {
-        return from(new ArrayList<>(itemTags));
-    }
-
-    /**
-     * Creates a new detailed view of a given tag.
-     * @param itemTag the tag to be displayed.
-     * @return the node to be displayed in the UI.
-     */
-    public static Node from(Tag itemTag) {
-        return from(List.of(itemTag));
+    public static Node from(Collection<Tag> tags) {
+        return from(tags.toArray(Tag[]::new));
     }
 }
