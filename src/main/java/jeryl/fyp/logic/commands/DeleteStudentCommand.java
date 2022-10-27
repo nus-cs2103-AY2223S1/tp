@@ -17,12 +17,15 @@ import jeryl.fyp.model.student.StudentId;
  */
 public class DeleteStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete-s";
+    public static final String COMMAND_WORD = "delete -s";
+
+    public static final String ALTERNATIVE_COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the student identified by it's unique student id.\n"
             + "Parameters: "
-            + PREFIX_STUDENT_ID + "STUDENT_ID (must be a valid student id that is already in the FYP manager)\n"
+            + PREFIX_STUDENT_ID + "STUDENT_ID\n"
+            + "(STUDENT_ID must be a valid student id that is already in the FYP manager)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_ID + "A0123456G";
 
@@ -54,4 +57,5 @@ public class DeleteStudentCommand extends Command {
                 || (other instanceof DeleteStudentCommand // instanceof handles nulls
                 && studentId.equals(((DeleteStudentCommand) other).studentId)); // state check
     }
+
 }
