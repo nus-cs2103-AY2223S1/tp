@@ -94,6 +94,7 @@ Item List Box:
 * The order of the `KEYWORDS` do not matter (e.g "rose apple" will match "apple rose").
 * The result will be items in which `ITEM_NAME` contain any one of the `KEYWORDS` provided.
 ```
+
 ```tip
 * You can use the [List Command](#list-all-items-list) to display all items again!
 ```
