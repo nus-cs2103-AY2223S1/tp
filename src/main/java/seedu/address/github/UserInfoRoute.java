@@ -18,7 +18,7 @@ public final class UserInfoRoute {
 
     public static final String BASE_GITHUB_URL = "https://api.github.com";
 
-    private static final String GET_USER_BASE_PATH = "/users/";
+    private static final String BASE_GET_USER_PATH = "/users/";
     private final String path;
 
     private UserInfoRoute(String path) {
@@ -28,7 +28,7 @@ public final class UserInfoRoute {
 
     public static UserInfoRoute getUserInfoRoute(String username) {
         requireAllNonNull(username);
-        return new UserInfoRoute(GET_USER_BASE_PATH + username);
+        return new UserInfoRoute(BASE_GET_USER_PATH + username);
     }
 
     /**
