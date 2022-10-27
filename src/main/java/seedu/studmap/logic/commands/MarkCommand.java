@@ -39,8 +39,8 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
             + "Example: " + COMMAND_WORD + " 1 new " + PREFIX_ASSIGNMENT + "A01\n"
             + "Example: " + COMMAND_WORD + " all marked " + PREFIX_ASSIGNMENT + "A07";;
 
-    public static final String MESSAGE_MARK_SINGLE_SUCCESS_ATTENDACE = "Marked Student as %1$s: %2$s";
-    public static final String MESSAGE_MARK_MULTI_SUCCESS_ATTENDACE = "Marked %1$s students as %2$s";
+    public static final String MESSAGE_MARK_SINGLE_SUCCESS_ATTENDANCE = "Marked Student as %1$s: %2$s";
+    public static final String MESSAGE_MARK_MULTI_SUCCESS_ATTENDANCE = "Marked %1$s students as %2$s";
     public static final String MESSAGE_MARK_SINGLE_SUCCESS_ASSIGNMENT =
             "Marked assignment %1$s for student %2$s as %3$s:" + " \n%4$s";
     public static final String MESSAGE_MARK_MULTI_SUCCESS_ASSIGNMENT =
@@ -56,7 +56,7 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
     public String getSingleEditSuccessMessage(Student editedStudent) {
         if (studentEditor.getAttendance() != null) {
             assert studentEditor.getAssignment() == null : "Assignment should not be marked if attendance is marked";
-            return String.format(MESSAGE_MARK_SINGLE_SUCCESS_ATTENDACE,
+            return String.format(MESSAGE_MARK_SINGLE_SUCCESS_ATTENDANCE,
                     studentEditor.getAttendance().getAttendanceString(),
                     editedStudent);
         } else {
@@ -74,7 +74,7 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
     public String getMultiEditSuccessMessage(List<Student> editedStudents) {
         if (studentEditor.getAttendance() != null) {
             assert studentEditor.getAssignment() == null : "Assignment should not be marked if attendance is marked";
-            return String.format(MESSAGE_MARK_MULTI_SUCCESS_ATTENDACE,
+            return String.format(MESSAGE_MARK_MULTI_SUCCESS_ATTENDANCE,
                     editedStudents.size(), studentEditor.getAttendance());
         } else {
             assert studentEditor.getAssignment() == null : "Attendance should not be marked if assignment is marked";

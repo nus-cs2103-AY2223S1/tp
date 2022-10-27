@@ -11,6 +11,8 @@ public class TeleHandle {
 
     public static final String NO_TELEHANDLE_STRING = "No Telegram handle";
 
+    public static final String TELEHANDLE_DISPLAY_PREFIX = "Telegram: ";
+
     public static final String MESSAGE_CONSTRAINTS = "Telegram handle should be in the format @handle";
 
     public static final String VALIDATION_REGEX = "^[@][\\p{all}]*";
@@ -33,6 +35,17 @@ public class TeleHandle {
         requireNonNull(handle);
         checkArgument(isValidTeleHandle(handle), MESSAGE_CONSTRAINTS);
         this.value = handle;
+    }
+
+    /**
+     * Returns string used for display in UI.
+     *
+     * @return String to be displayed
+     */
+    public String getDisplayString() {
+        return this.value.isEmpty()
+                ? NO_TELEHANDLE_STRING
+                : TELEHANDLE_DISPLAY_PREFIX + value;
     }
 
     /**
