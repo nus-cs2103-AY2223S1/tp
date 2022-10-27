@@ -279,7 +279,7 @@ Returns you to the main itinerary list page.
 
 Format: `home`
 
-### Copying to clipboard: `copy`
+### Copying to clipboard : `copy`
 
 Copies the itinerary onto your device's clipboard so you can paste it anywhere.
 
