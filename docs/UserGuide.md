@@ -247,6 +247,19 @@ Examples:
 - `list_task` followed by `select_task 1` selects the 1st task in the task list and shows all contacts assigned to that task.
 - `find_task sleep` followed by `select_task 1` selects the first task named sleep in the task list if it exists and shows all contacts assigned to that task.
 
+### Assigning tasks to contacts: `assign`
+
+Assigns a task to a contact shown in the task list and contact list respectively.
+
+Format: `assign c/CONTACT_INDEX t/TASK_INDEX`
+
+- Assigns the task at the specified `TASK_INDEX` to the contact at the specified `CONTACT_INDEX`. The indices refer to the index number shown in the displayed task list and contact list respectively. The indices **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+- `assign c/1 t/1` Assigns the task at index 1 to the contact at index 1.
+- `assign c/3 t/2` Assigns the task at index 2 to the contact at index 3.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -290,3 +303,4 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 | **Edit Task**      | `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`                                   |
 | **Delete Task**    | `delete_task INDEX`                                                            |
 | **Select Task**    | `select_task INDEX`                                                            |
+| **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                          |
