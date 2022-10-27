@@ -3,7 +3,6 @@ package friday.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -82,12 +81,8 @@ public class ParserUtil {
         if (!MasteryCheck.isValidMasteryCheck(trimmedDate)) {
             throw new ParseException(MasteryCheck.MESSAGE_CONSTRAINTS);
         }
-        try {
-            LocalDate date = LocalDate.parse(trimmedDate);
-            return new MasteryCheck(date);
-        } catch (DateTimeParseException e) {
-            throw new ParseException(MasteryCheck.MESSAGE_CONSTRAINTS, e);
-        }
+        LocalDate date = LocalDate.parse(trimmedDate);
+        return new MasteryCheck(date);
     }
 
     /**
@@ -102,12 +97,8 @@ public class ParserUtil {
         if (!Consultation.isValidConsultation(trimmedDate)) {
             throw new ParseException(Consultation.MESSAGE_CONSTRAINTS);
         }
-        try {
-            LocalDate date = LocalDate.parse(trimmedDate);
-            return new Consultation(date);
-        } catch (DateTimeParseException e) {
-            throw new ParseException(Consultation.MESSAGE_CONSTRAINTS, e);
-        }
+        LocalDate date = LocalDate.parse(trimmedDate);
+        return new Consultation(date);
     }
 
     /**
