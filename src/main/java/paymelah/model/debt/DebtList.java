@@ -62,7 +62,7 @@ public class DebtList {
     }
 
     /**
-     * Adds a debt to the list.
+     * Adds a debt to the list if it is not already in the list.
      *
      * @param toAdd The debt to add to the list.
      * @return The modified debt list.
