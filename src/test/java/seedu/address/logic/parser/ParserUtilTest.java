@@ -217,7 +217,7 @@ public class ParserUtilTest {
     @Test
     public void parseTeam_validTeamName_returnsGroup() throws Exception {
         Group actualGroup = ParserUtil.parseGroup(VALID_TEAM_NAME);
-        Group expectedGroup = new Group(VALID_TEAM_NAME);
+        Group expectedGroup = new Group(new Name(VALID_TEAM_NAME));
 
         assertEquals(actualGroup, expectedGroup);
     }
