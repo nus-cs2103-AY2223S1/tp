@@ -591,7 +591,7 @@ Examples:
 
 
 
-## 1.11 Clear
+## 1.11 Clear `clear`
 
 Deletes all patients, appointments and bills from the HealthContact.
 
@@ -645,7 +645,7 @@ Opens the Help Window.
 
 * Executing `help`, the help window pops.
 
-<img src="images/othercommands/help.png" width="800px" height ="150px">
+<img src="images/othercommands/help.png" width="800px" height ="180px">
 
 
 
@@ -664,7 +664,7 @@ Opens the Help Window.
 |          | a bill to an appointment             | `deletebill`        | `db`     | **`INDEX` Index of bill                                                                                                                                                                                                                                                                                                                                                                                      |
 | Find     | a patient                            | `findpatient`       | `fp`     | `n/` Name of patient<br/>`p/` Phone number of patient <br/>`e/` Email address of patient <br/>`a/` Home address of patient <br/>`r/` Remark of patient <br/>+`t/` Tag(s) of patient                                                                                                                                                                                                                          |
 |          | an appointment of a patient          | `findappointment`   | `fa`     | `n/` Name of patient<br/>`s/` Slot of appointment<br/>`d/` Doctor name of the appointment<br/>`t/` Medical test of patient                                                                                                                                                                                                                                                                                   |
-|          | a bill to an appointment             | `findbill`          | `fb`     | `n/` Name of patient<br/>`a/` Amount of bill<br/>`d/` Bill date of bill<br/>`p/` Payment status of bill                                                                                                                                                                                                                                                                                                                                |
+|          | a bill to an appointment             | `findbill`          | `fb`     | `n/` Name of patient<br/>`a/` Amount of bill<br/>`d/` Bill date of bill<br/>`p/` Payment status of bill                                                                                                                                                                                                                                                                                                      |
 | Sort     | a patient                            | `sortpatient`       | `sop`    | `c/` Criteria (Name of patient (name), Phone number of patient (phone), Email address of patient (email), Address of patient (address)) <br/> `o/` Order (Ascending (asc), Descending (desc))                                                                                                                                                                                                                |
 |          | appointment list                     | `sortappointment`   | `soa`    | `c/` Criteria (Name of patient (name), Medical test (test), Time slot (slot), Doctor (doctor)) <br/> `o/` Order (Ascending (asc), Descending (desc))                                                                                                                                                                                                                                                         |
 |          | bill list                            | `sortbill`          | `sob     | `c/` Criteria (Name of patient (name), Amount (amount), Date (date), Payment status (status)) <br/> `o/` Order (Ascending (asc), Descending (desc))                                                                                                                                                                                                                                                          |                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                            |
