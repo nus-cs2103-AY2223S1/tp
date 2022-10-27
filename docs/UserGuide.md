@@ -23,18 +23,18 @@ For a full list of commands and detailed instructions, head to the [Features](#f
     * [Receiving money from a student: `pay`](#receiving-money-from-a-student-pay)
     * [Viewing all students: `list`](#viewing-all-students-list)
     * [Finding a student: `find`](#finding-a-student-find)
-      * [Find by name](#find-by-name)
-      * [Find by email](#)
-      * [Find by address](#)
-      * [Find by student's contact number](#)
-      * [Find by Next of Kin's contact number](#find-by-next-of-kins-contact-number)
-      * [Find by class date](#find-by-class-date)
-      * [Find by tag](#find-by-tag)
+      * [Find by Name](#find-by-name)
+      * [Find by Email](#)
+      * [Find by Address](#)
+      * [Find by Student's Contact Number](#)
+      * [Find by Next of Kin's Contact Number](#find-by-next-of-kins-contact-number)
+      * [Find by Class Date](#find-by-class-date)
+      * [Find by Tag](#find-by-tag)
     * [Next available class: `avail`](#next-available-class)
     * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
       * [Sort by Name](#sort-by-name)
       * [Sort by Class](#sort-by-class)
-      * [Sort by Money_Owed](#sort-by-money_owed)
+      * [Sort by Money Owed](#sort-by-money-owed)
     * [Deleting a student: `delete`](#deleting-students-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
     * [Undo a command: `undo`](#undo-the-last-command-undo)
@@ -95,14 +95,14 @@ Basic Instructions:
 - Items in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/python` or as `n/John Doe`.
 - Items with `…` after them can be used multiple times including zero times. e.g. `[t/TAG]…` can be used as ` ` (e.g.
   0 times), `t/python`, `t/javascript t/react` etc.
-- Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME`
+- Parameters can be in any order. e.g. if the command specifies `n/NAME p/CONTACT_NUMBER`, `p/CONTACT_NUMBER n/NAME`
   is also acceptable.
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
   of the parameter will be taken. e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
   be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-- Commands that require the use of index from the Schedule list (right side) will be represented as `INDEX-s`,
-  while index from the Student's Details list (left side) will be represented as `INDEX`.
+- Commands that require the use of index from the Schedule panel list (right side) will be represented as `INDEX-s`,
+  while index from the Student's Details panel list (left side) will be represented as `INDEX`.
 
 ### Viewing help: `help`
 
@@ -123,6 +123,7 @@ Adds a student to the Teacher’s Pet.
 1. Student’s Name:
     - Student’s Name must not be empty.
     - Student’s Name must only contain alphanumeric characters.
+
 ```yaml
 Note: Multiple students may share the same name.
 ```
@@ -131,14 +132,17 @@ Note: Multiple students may share the same name.
    - Student’s contact number must not be empty. 
    - Student’s contact number must only contain numerical digits between `0` and `9`.
    - Student's contact number must begin with `6`, `8` or `9`. 
+
 ```yaml
-Note: Contact number must contain exactly 8 digits. Contact number must be unique.
+Note: Contact number must contain exactly 8 digits.
+      Contact number must be unique.
 ```
 
 3. Next of Kin’s Contact Number:
     - Next of Kin’s contact number must not be empty.
     - Next of Kin’s contact number must only contain numerical digits between `0` and `9`.
     - Next of Kin’s contact number must begin with `6`, `8` or `9`. 
+
 ```yaml
 Note: Next of Kin’s contact number must contain exactly 8 digits.
 ```
@@ -146,6 +150,7 @@ Note: Next of Kin’s contact number must contain exactly 8 digits.
 4. Address:
     - Address must not be empty.
     - Address may contain any kinds of character.
+
 ```yaml
 Note: Address cannot be empty. It must contain at least 1 character.
 ```
@@ -164,8 +169,10 @@ Note: Address cannot be empty. It must contain at least 1 character.
     - Tags are optional.
     - A student can have any number of tags (including 0).
     - Tags must only contain alphanumeric characters.
+
 ```yaml
-Note: Tags must contain at least 1 alphanumeric character and cannot contain spacings.
+Note: Tags must contain at least 1 alphanumeric character and
+      cannot contain spacings.
 ```
 
 Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
@@ -215,7 +222,8 @@ the same convention as [adding a student](#adding-a-student-add).
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
 
 ```yaml
-❗Caution: If a chosen date is occupied by another student, a class conflict error will arise.
+❗Caution: If a chosen date is occupied by another student, a class conflict error
+          will arise.
 ```
 
 4. Amount Paid:
@@ -225,6 +233,7 @@ the same convention as [adding a student](#adding-a-student-add).
 5. Amount Owed:
     - Amount owed can be an integer or a double.
     - Amount owed must be non-negative.
+
 ```yaml
 Note: Amount Owed and Amount Paid can only be between $0 and $2147483647.
       They are modified independent of each other.
@@ -235,13 +244,15 @@ Note: Amount Owed and Amount Paid can only be between $0 and $2147483647.
     - Additional notes can take in any types of character.
     - Use `nt/` to set the additional notes.
     - Use `nt-a/` to append the additional notes.
+
 ```yaml
 Note: Using both nt/ and nt-a/ in a single command will set the content
-      of Additional Notes to the content behind both nt/ and nt-a/ parameters.
+      of Additional Notes to the content behind both nt/ and nt-a/ prefixes.
 ```
 
 ```yaml
-Important: Note **at least one** of these fields must exist in order to make the `edit` command valid.
+Important: Note at least one of these fields must exist in order to make the
+           edit command valid.
 ```
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
@@ -279,7 +290,9 @@ Example:
 ![UiMark](images/UG-screenshots/UiMark.png)
 
 ```yaml
-Tip: If you want to charge the student for missing the class, you can do so by the `mark` command. This increases the amount owed but frees up that time slot for another student.
+Tip: If you want to charge the student for missing the class, you can do so by the
+     mark command. This increases the amount owed but frees up that time slot for
+     another student.
 ```
 
 [Back to top](#table-of-contents)
@@ -305,7 +318,8 @@ Example:
 ![UiPay](images/UG-screenshots/UiPay.png)
 
 ```yaml
-Note: The student cannot pay more than what he/she owes. There is also a maximum cap of $2147483647 for every payment.
+Note: The student cannot pay more than what he/she owes. There is also a maximum cap
+      of $2147483647 for every payment.
 ```
 
 [Back to top](#table-of-contents)
@@ -336,7 +350,9 @@ Format: `list`
 
 ### Finding a student: `find`
 
-Finds an existing student in the list. You can only find by one field at a time. Fields supported in `find`:
+Finds an existing student in the list. You can only find by one field at a time.
+
+Fields supported in `find`:
 
 - Name `n/`
 - Email `e/`
@@ -371,28 +387,30 @@ Example:
 
 Finds student with the matching phone number.
 
-Format: `find p/PHONE_NUMBER`
+Format: `find p/CONTACT_NUMBER`
 
 - Only full numbers will be matched e.g. `8123` will not match `81234567`.
 
 Example:
 
-`find p/81234567` returns the student with the phone number set as `81234567`.
+`find p/81234567` returns the student with the contact number set as `81234567`.
 
-#### Find by Next of Kin's Contact number:
+#### Find by Next of Kin's Contact Number:
 
-Finds all students with a particular next of kin contact number.
+Finds all students with a particular next of kin's contact number.
 
-Formats: `find np/NOKPHONE`
+Formats: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
 
-- Only one phone number can be searched at each time.
+- Only one contact number can be searched at each time.
+
 ```yaml
-❗ Caution: Do not include more than one phone number like `find np/91232323 81231232`.
+❗ Caution: Do not include more than one contact number such as
+            find np/91232323 81231232.
 ```
 
 Examples:
 
-`find np/91232323` returns the student with the next of kin phone number of 91232323.
+`find np/91232323` returns all students with the next of kin's contact number set as `91232323`.
 
 [Back to top](#table-of-contents)
 
@@ -425,8 +443,9 @@ Finds all students with a particular tag.
 Formats: `find t/tagName`
 
 - Only one tag can be searched at each time.
+
 ```yaml
-❗ Caution: Do not include more than one tag like `find t/python java`.
+❗ Caution: Do not include more than one tag such as find t/python java.
 ```
 
 Examples:
@@ -447,9 +466,11 @@ Format: `avail TIME_RANGE DURATION`
 
 - The `TIME_RANGE` would follow a 24 hour format of 0000-2359.
 - The `DURATION` is in minutes.
+
 ```yaml
 ❗ Caution: The duration should not exceed the time range.
-        Eg: If the time range is 1000-1100 and the duration is 70, this would be invalid.
+       e.g. If the time range is 1000-1100 and the duration is 70, this would
+            be invalid.
 ```
 
 Examples:
@@ -465,7 +486,7 @@ between 1000-1030 for a 60 minutes class.
 
 ### Sort the displayed students: 'sort'
 
-Sort the displayed list of students (in the Student's Details panel) by the given `type` and `order`.
+Sorts the list of students in the Student's Details panel by the specified `TYPE` and `ORDER`.
 
 Format: `sort TYPE [ORDER]`
 
@@ -473,20 +494,20 @@ Format: `sort TYPE [ORDER]`
   - `NAME`
   - `CLASS`
   - `OWED`
-- `ORDER`, if present, must be from 
+- `ORDER`, if present, must be followed by either one of the below options:
   - `ASC`
   - `DESC`
-  - If it is left as blank, it will follow the default order for the type.
-- Default order for `NAME` and `CLASS` is `ASC` while default order for `OWED` is `DESC`.
-- The two parameters `TYPE` and `ORDER` can be non-capitalized such as `name`, `nAMe` and so on.
+  - If it is left as blank, it will follow the default order based on the specified`TYPE`.
+- The default order for `NAME` and `CLASS` is `ASC` while for `OWED`, the default order is `DESC`.
+- The parameters `TYPE` and `ORDER` are case-insensitive
 
 [Back to top](#table-of-contents)
 
-#### Sort by NAME
+#### Sort by Name
 
-Sort the displayed list of students (in the Students' Details panel) by `NAME` and given `order`.
+Sorts the list of students in the Students' Details panel by `NAME` and given `ORDER`.
 
-When `order` is left blank, it will be `ASC` by default.
+If `ORDER` is left blank, it will be `ASC` by default.
 
 Examples:
 
@@ -494,11 +515,11 @@ Examples:
 - `list` followed by `sort NAME ASC` will list all the students according to their names in ascending order.
 - `list` followed by `sort NAME DESC` will list all the students according to their names in descending order.
 
-#### Sort by CLASS
+#### Sort by Class Date
 
-Sort the displayed list of students (in the Students' Details panel) by `CLASS` and given `order`.
+Sorts the list of students in the Students' Details panel by `CLASS` and given `ORDER`.
 
-When `order` is left blank, it will be `ASC` by default.
+If `ORDER` is left blank, it will be `ASC` by default.
 
 Examples:
 
@@ -506,11 +527,11 @@ Examples:
 - `list` followed by `sort CLASS ASC` will list all the students according to their upcoming classes in ascending order.
 - `list` followed by `sort CLASS DESC` will list all the students according to their upcoming classes in descending order.
 
-#### Sort by MONEY_OWED
+#### Sort by Money Owed
 
-Sort the displayed list of students (in the Students' Details panel) by `OWED`(Amount of Money Owed) and given `order`.
+Sorts the list of students in the Students' Details panel by `OWED`(Amount of Money Owed) and given `ORDER`.
 
-When `order` is left blank, it will be `DESC` by default.
+If `ORDER` is left blank, it will be `DESC` by default.
 
 Examples:
 
@@ -535,7 +556,7 @@ Examples:
 - `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
-❗ Caution: Deleting a student by mistake can be reversed by "undo" command.
+❗ Caution: Deleting a student by mistake can be reversed by "undo" command!
 ```
 
 [Back to top](#table-of-contents)
@@ -589,7 +610,8 @@ Teacher’s Pet data are saved in the hard disk automatically after any command 
 Students' data is saved as a JSON file `[JAR file location]/data/teachersPet.json`. Advanced users are welcome to edit the data file.
 
 ```yaml
-❗ Caution: If your changes to the data file makes its format invalid, Teacher’s Pet will discard all data and start with an empty data file at the next run.
+❗ Caution: If your changes to the data file makes its format invalid, Teacher’s Pet
+            will discard all data and start with an empty data file at the next run!
 ```
 
 [Back to top](#table-of-contents)
@@ -607,11 +629,14 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 ---
 ## Glossary
 
-| Terms       | Definition                                                              |
-|-------------|-------------------------------------------------------------------------|
-| Class Date  | The 1-1 tutoring time slot of a student                                 |
-| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON                  |
-| INDEX       | The number beside the student's name inthe Student's Details panel list |
+| Terms       | Definition                                                 |
+|-------------|------------------------------------------------------------|
+| Class Date  | The 1-1 tutoring time slot of a student                    |
+| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON     |
+| INDEX       | The index number shown in the Student's Details panel list |
+| INDEX-s     | The index number shown in the Schedule panel list          |
+| Prefix      |                                                            |
+| Parameter   |                                                            |
 
 ## Command Summary
 
