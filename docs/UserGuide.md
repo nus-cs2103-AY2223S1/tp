@@ -220,6 +220,7 @@ Format: `filter TYPE`
 * The `TYPE` refers to the type of transactions to be displayed. 
 It can only be `buy` or `sell`.
 * If no clients made any transactions, the transaction section will be blank.
+* After calling the `filter` command, the client list panel will display all clients.
 
 Examples:
 * `filter buy` displays all buy transactions.
