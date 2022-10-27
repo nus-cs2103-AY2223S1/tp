@@ -543,3 +543,19 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Quick edit
+
+1. Ensuring quick edit does nothing
+   1. Prerequisites: Have at least 1 person shown in the main window, close, and restart the app.
+
+   1. Click one of the person cards shown. On some platforms, a double click may be necessary. Clicking more than twice is fine.<br>
+      Expected: an edit command shows up in the command box.
+
+   1. Run the edit command.<br>
+      Expected: the command runs without any problems.
+
+   1. Undo the last command: `undo` <br>
+      Expected: the undo command fails to undo any action because the last action does not modify the person.
+1. 
+2. _{ more test cases …​ }_
