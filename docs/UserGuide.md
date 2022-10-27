@@ -17,6 +17,7 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
   - [Finding an employee](#finding-an-employee--find)
   - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee-addleave)
   - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee-deleteleave)
+  - [View details of a department](#)
   - [Exiting the program](#exiting-the-program--exit)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
@@ -212,6 +213,18 @@ Format: `deleteleave id/ID i/INDEX`
 Example:
 
 - `deleteleave id/1 i/3` deletes the third leave period for an employee of ID 1 in the list of leaves.
+
+### View details of a department: `viewdepartment`
+
+View the summarized details of a department given the name of the department.
+
+Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department and their corresponding performance ratings.
+
+Format: `viewdepartment DEPARTMENT`
+
+Example:
+
+- `viewdepartment Finance` displays a brief summary of the Finance department's details on the right panel.
 
 ### Rating the performance of an employee: `rate`
 
