@@ -11,14 +11,22 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 - [Features](#features)
   - [Modules-Related Features](#modules-related-features)
   - [Tasks-Related Features](#tasks-related-features)
-    - [Adding task functions](#adding-task-functions-coming-soon-in-v12)
-    - [Tagging priority of task](#tagging-priority-of-task-coming-soon-in-v12)
-    - [List](#list-coming-soon-in-v12)
+    - [Adding a task](#adding-a-task)
+    - [Deleting task function](#deleting-task-function-coming-soon-in-v12)
     - [Editing a task](#editing-a-task)
     - [Marking a task](#marking-a-task)
     - [Unmarking a task](#unmarking-a-task)
-    - [Deleting task function](#deleting-task-function-coming-soon-in-v12)
+    - [List](#list-coming-soon-in-v12)
+    - [Filtering the task list](#filtering-the-task-list)
+    - [Tagging priority of task](#tagging-priority-of-task-coming-soon-in-v12)
+    - [Clearing the task list](#clearing-the-task-list)
   - [Exams-Related Features](#exams-related-features)
+    - [Deleting an exam](#deleting-an-exam)
+    - [Unlinking an exam](#unlinking-an-exam)
+    - [Showing the tasks of an exam](#showing-the-tasks-of-an-exam)
+  - [Other Features](#other-features)
+    - [Clearing all the lists](#clearing-all-the-lists)
+    - [Exiting the program](#exiting-the-program)
 - [Summary Of Commands](#summary-of-commands)
 
 
@@ -45,19 +53,19 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 
 ## Tasks-related Features
 
-### Add a task
-Adds task into task list
+### Adding a task
+Adds task into task list.
 
 Format: `t add m/MODULE d/DESCRIPTION`
 * Adds a task to the task list.
 * MODULE refers to the module which the task belongs to.
 * DESCRIPTION refers to the task description to be shown.
-* If MODULE is empty or does not exist in module list, an error message will be displayed.
+* MODULE has to exist in the module list and be a valid module with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed.
 * If DESCRIPTION is empty, an error message will be displayed.
 
-Examples:
+Example:
 
-`t add m/CS2105 d/Assignment 1` adds CS2105 Assignment 1 task into the task list.
+`t add m/CS2105 d/Assignment 1` adds a task with the module as 'CS2105' and description as 'Assignment 1' into the task list.
 
 ### Deleting task function [Coming Soon in v1.2]
 Deletes the specified task according to the index given
@@ -138,8 +146,8 @@ Examples:
 
 `list` displays tasks that are stored in the task list
 
-### Filter task list
-Filters the task list based on module, completion status, and/or link status
+### Filtering the task list
+Filters the task list based on module, completion status, and/or link status.
 
 Format: `t filter m/MODULE c/COMPLETED l/LINKED`
 * Filters the task list to show only tasks that fulfill all the stated conditions.
@@ -150,7 +158,7 @@ Format: `t filter m/MODULE c/COMPLETED l/LINKED`
 
 Examples:
 
-`t filter m/CS2100 c/y` filters out all completed tasks that are under the module CS2100.
+`t filter m/cs2030 c/y` filters out all completed tasks that are under the module cs2030.
 
 `t filter l/n` filters out all tasks that are currently not linked to any exam.
 
@@ -167,45 +175,47 @@ Examples:
 
 `tag CS2103T Quiz /p low` tags CS2103T Quiz as low priority task to complete
 
-### Clear task list
-Clears the entire task list
+### Clearing the task list
+Clears the entire task list.
 
 Format: `t clear`
 * Clears all tasks currently in the task list.
 
-Examples:
+Example:
 `t clear` clears all tasks currently in the task list.
 
 ## Exams-related Features
 
-### Delete exam
-Deletes the specified exam according to the index given
+### Deleting an exam
+Deletes the specified exam according to the index given.
 
 Format: `e del INDEX`
 * Deletes the exam at the specified index from the exam list.
-* Unlinks all tasks that are currently linked to the exam to be deleted.
 * INDEX refers to the index number shown in the exam list.
 * INDEX must be a positive integer 1, 2, 3, …​
 * If INDEX is non-positive or more than the number of exams in the exam list, an error message will be displayed.
 
-Examples:
-`e del 1` deletes the first exam in the exam list and unlinks all tasks currently linked to it.
+Example:
+`e del 1` deletes the first exam in the exam list.
+<div markdown="span" class="alert alert-info">
 
-### Unlink exam
-Unlinks the exam from the specified task according to the index given
+:information_source: **Note:** All tasks currently linked to the exam will be unlinked after the exam is deleted.
+</div>
+
+### Unlinking an exam
+Unlinks the exam from the specified task according to the index given.
 
 Format: `e unlink INDEX`
 * Unlinks the exam from the task at the specific index from the task list.
 * INDEX refers to the index number shown in the task list of the task to be unlinked.
 * INDEX must be a positive integer 1, 2, 3, …​
 * If INDEX is non-positive or more than the number of tasks in the task list, an error message will be displayed.
-* If the task at the specified index is not linked to any exam, an error message will be displayed.
 
-Examples:
+Example:
 `e unlink 1` unlinks the first task in the task list from its current exam.
 
-### Show tasks of exam
-Shows all tasks linked to the specified exam according to the index given
+### Showing the tasks of an exam
+Shows all tasks linked to the specified exam according to the index given.
 
 Format: `e showt`
 * Shows all tasks that are linked to the exam at the specified index from the exam list.
@@ -213,18 +223,18 @@ Format: `e showt`
 * INDEX must be a positive integer 1, 2, 3, …​
 * If INDEX is non-positive or more than the number of exams in the exam list, an error message will be displayed.
 
-Examples:
+Example:
 `e showt 1` shows a list of all tasks linked to the first exam in the exam list.
 
 ## Other Features
 
-### Clear all lists
-Clears the task, exam and module lists
+### Clearing all the lists
+Clears the task, exam and module lists.
 
 Format: `clearall`
 * Clears all tasks, exams and modules currently in the respective lists.
 
-Examples:
+Example:
 `clearall` clears all tasks, exams and modules currently in the respective lists.
 
 ### Exiting the program
