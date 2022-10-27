@@ -1,17 +1,21 @@
 package seedu.address.model.client;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Client's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class ClientPhone {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+    public static final String WARNING =
+            "Your phone number input does not follow the normal convention of containing only numbers, "
+            + "and being at least 3 digits long";
+
     public static final String VALIDATION_REGEX = "\\d{3,}";
+
     public final String value;
+
+    private boolean hasWarning;
 
     /**
      * Constructs a {@code ClientPhone}.
@@ -20,7 +24,6 @@ public class ClientPhone {
      */
     public ClientPhone(String phone) {
         requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
     }
 
@@ -29,6 +32,14 @@ public class ClientPhone {
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public void setWarning() {
+        this.hasWarning = true;
+    }
+
+    public boolean hasWarning() {
+        return this.hasWarning;
     }
 
     @Override

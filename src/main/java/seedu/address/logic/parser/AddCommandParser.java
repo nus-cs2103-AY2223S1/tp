@@ -44,9 +44,18 @@ public class AddCommandParser implements Parser<AddCommand> {
         ClientEmail email = ParserUtil.parseClientEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
+        StringBuilder warningMessage = new StringBuilder();
+        if (phone.hasWarning()) {
+            warningMessage.append(ClientPhone.WARNING + "\n");
+        }
+
+        if (email.hasWarning()) {
+            warningMessage.append(ClientEmail.WARNING + "\n");
+        }
+
         Client client = new Client(name, address, phone, email, tagList);
 
-        return new AddCommand(client);
+        return new AddCommand(client, warningMessage.toString());
     }
 
     /**

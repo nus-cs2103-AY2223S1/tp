@@ -15,12 +15,6 @@ class ClientPhoneTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
-        String invalidPhone = "";
-        assertThrows(IllegalArgumentException.class, () -> new ClientPhone(invalidPhone));
-    }
-
-    @Test
     public void isValidPhone() {
         // null phone number
         assertThrows(NullPointerException.class, () -> ClientPhone.isValidPhone(null));
@@ -38,6 +32,7 @@ class ClientPhoneTest {
         assertTrue(ClientPhone.isValidPhone("93121534"));
         assertTrue(ClientPhone.isValidPhone("124293842033123")); // long phone numbers
     }
+
     @Test
     public void toString_phone_returnsValueInPhone() {
         String value = "93121534";
