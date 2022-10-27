@@ -576,8 +576,8 @@ Format: `delete INDEX [MORE_INDEXES]`
 - The index(es) must be a positive integer within the size of the displayed student list. e.g., `1, 2, 3, ...`.
 
 Examples:
-- `list` followed by `delete 1 2` deletes the 1st and 2nd person in the Student's Details panel.
-- `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
+- `list` followed by `delete 1 2` deletes the 1st and 2nd student in the Student's Details panel.
+- `find Betsy` followed by `delete 1` deletes the 1st student in the Student's Details panel.
 
 ```yaml
 💡 Tip: Deleting a student by mistake can be reversed by "undo" command!
