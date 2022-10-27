@@ -71,6 +71,7 @@ public class InternshipCard extends UiPart<Region> {
         PseudoClass offered = PseudoClass.getPseudoClass("offered");
         lab.pseudoClassStateChanged(offered, (internship.getStatus().toString()).equals("Offered"));
         status.getChildren().add(lab);
+        upcomingTask.setWrapText(true);
         List<Task> taskList = internship.getTasks().stream()
                 .filter(task -> task.getTaskTime().isAfter(LocalDateTime.now()))
                 .collect(Collectors.toList());

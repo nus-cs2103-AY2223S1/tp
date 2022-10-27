@@ -90,6 +90,7 @@ public class SelectedInternshipCard extends UiPart<Region> {
                 .forEach(task -> {
                     Label temp = new Label(count.incrementAndGet() + ". " + task.taskName
                             + " at " + task.taskTime.format(Task.FORMATTER));
+                    temp.setWrapText(true);
                     tasks.getChildren().add(temp);
                 });
 

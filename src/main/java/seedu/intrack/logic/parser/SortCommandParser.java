@@ -35,7 +35,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             return new SortSalaryCommand(orderType);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    SortTimeCommand.SORT_COMMAND_CONSTRAINTS));
+                    SortCommand.MESSAGE_USAGE));
         }
     }
 }
