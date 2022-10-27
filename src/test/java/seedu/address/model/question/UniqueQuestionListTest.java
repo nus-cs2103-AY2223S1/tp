@@ -3,7 +3,6 @@ package seedu.address.model.question;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_Q2;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalQuestions.Q1;
 import static seedu.address.testutil.TypicalQuestions.Q2;
@@ -158,8 +157,8 @@ public class UniqueQuestionListTest {
     @Test
     public void setQuestions_listWithDuplicateQuestions_throwsDuplicateQuestionException() {
         List<Question> listWithDuplicateQuestions = Arrays.asList(Q1, Q1);
-        assertThrows(DuplicateQuestionException.class,
-                () -> uniqueQuestionList.setQuestions(listWithDuplicateQuestions));
+        assertThrows(DuplicateQuestionException.class, () ->
+                uniqueQuestionList.setQuestions(listWithDuplicateQuestions));
     }
 
     @Test

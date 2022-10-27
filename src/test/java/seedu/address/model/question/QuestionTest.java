@@ -2,7 +2,7 @@ package seedu.address.model.question;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_Q2;
 import static seedu.address.testutil.TypicalQuestions.Q1;
 import static seedu.address.testutil.TypicalQuestions.Q2;
 

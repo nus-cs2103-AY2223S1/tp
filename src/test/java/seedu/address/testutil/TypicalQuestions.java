@@ -1,15 +1,14 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_Q1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_Q2;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
 import seedu.address.model.question.Question;
-
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_Q1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_Q2;
 
 
 /**
@@ -18,7 +17,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_Q2;
 public class TypicalQuestions {
 
 
-//    public static final Index INDEX_FIRST_QUESTION = new Index(1);
+    // public static final Index INDEX_FIRST_QUESTION = new Index(1);
 
     // Manually added - Question's details found in {@code CommandTestUtil}
     public static final Question Q1 =

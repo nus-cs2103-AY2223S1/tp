@@ -42,7 +42,8 @@
 //
 //        CommandResult commandResult = new MarkQCommand(validIndex).execute(modelStub);
 //
-//        assertEquals(String.format(MarkQCommand.MESSAGE_MARK_QUESTION_SUCCESS, validQuestion), commandResult.getFeedbackToUser());
+//        assertEquals(String.format(MarkQCommand.MESSAGE_MARK_QUESTION_SUCCESS, validQuestion),
+//        commandResult.getFeedbackToUser());
 //        assertEquals(Arrays.asList(validQuestion), modelStub.questionsAdded);
 //    }
 //
