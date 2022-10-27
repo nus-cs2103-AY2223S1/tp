@@ -222,6 +222,105 @@ public class SampleDataUtil {
         };
     }
 
+    public static Booking[] getSampleSeminarBookings() {
+        return new Booking[]{
+            new RecurrentBooking(
+                    new VenueName("Seminar Room"), getSampleResidents()[3], new HourPeriod("9-20"),
+                    new Day("MON")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Seminar Room"), getSampleResidents()[13], new HourPeriod("8-15"),
+                    new Day("TUE")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Seminar Room"), getSampleResidents()[5], new HourPeriod("16-22"),
+                    new Day("TUE")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Seminar Room"), getSampleResidents()[8], new HourPeriod("9-16"),
+                    new Day("WED")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Seminar Room"), getSampleResidents()[11], new HourPeriod("8-12"),
+                    new Day("THU")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Seminar Room"), getSampleResidents()[11], new HourPeriod("13-17"),
+                    new Day("THU")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Seminar Room"), getSampleResidents()[11], new HourPeriod("19-22"),
+                    new Day("THU")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Seminar Room"), getSampleResidents()[0], new HourPeriod("11-20"),
+                    new Day("FRI")
+            ),
+        };
+    }
+
+    public static Booking[] getSampleLoungeBookings() {
+        return new Booking[]{
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[5], new HourPeriod("19-22"),
+                    new Day("MON")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[13], new HourPeriod("21-23"),
+                    new Day("TUE")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[8], new HourPeriod("18-21"),
+                    new Day("WED")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[11], new HourPeriod("16-19"),
+                    new Day("THU")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[0], new HourPeriod("20-23"),
+                    new Day("THU")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[12], new HourPeriod("18-19"),
+                    new Day("FRI")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[3], new HourPeriod("19-22"),
+                    new Day("FRI")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[12], new HourPeriod("8-10"),
+                    new Day("SAT")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[9], new HourPeriod("14-17"),
+                    new Day("SAT")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[1], new HourPeriod("18-19"),
+                    new Day("SAT")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[0], new HourPeriod("19-22"),
+                    new Day("SAT")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[6], new HourPeriod("9-11"),
+                    new Day("SUN")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[3], new HourPeriod("12-14"),
+                    new Day("SUN")
+            ),
+            new RecurrentBooking(
+                    new VenueName("Lounge"), getSampleResidents()[9], new HourPeriod("17-19"),
+                    new Day("SUN")
+            ),
+        };
+    }
+
+
     public static ReadOnlyResidentBook getSampleResidentBook() {
         ResidentBook sampleRb = new ResidentBook();
         for (Resident sampleResident : getSampleResidents()) {
@@ -242,13 +341,22 @@ public class SampleDataUtil {
     public static Venue[] getSampleVenues() {
         Venue hall = new Venue(new VenueName("Hall"));
         Venue meetingRoom = new Venue(new VenueName("Meeting Room"));
+        Venue seminarRoom = new Venue(new VenueName("Seminar Room"));
+        Venue lounge = new Venue(new VenueName("Lounge"));
         for (Booking sampleBooking : getSampleHallBookings()) {
             hall.addBooking(sampleBooking);
         }
         for (Booking sampleBooking : getSampleMeetingBookings()) {
             meetingRoom.addBooking(sampleBooking);
         }
-        Venue[] sampleVenue = new Venue[] {hall, meetingRoom};
+        for (Booking sampleBooking : getSampleSeminarBookings()) {
+            seminarRoom.addBooking(sampleBooking);
+        }
+        for (Booking sampleBooking : getSampleLoungeBookings()) {
+            lounge.addBooking(sampleBooking);
+        }
+
+        Venue[] sampleVenue = new Venue[] {hall, meetingRoom, seminarRoom, lounge};
         return sampleVenue;
 
     }
