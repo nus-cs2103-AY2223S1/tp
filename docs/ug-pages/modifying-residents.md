@@ -6,12 +6,12 @@ title: Modifying Residents
 #### [Back to Menu](../UserGuide.md)
 
 In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear` 
-to help you manipulate residents within RC4HDB.
+to help you manipulate residents within **RC4HDB**.
 
 ---
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Before proceeding to learn more about resident commands. Have a quick read about the **resident fields**, which will
+Before proceeding to learn more about resident commands it would be good to have a quick read about the **resident fields**, which will
 be used in the commands.
 </div>
 
@@ -23,17 +23,19 @@ The resident fields can be found [here](#format-for-resident-fields).
 
 ### Adding a resident : `add`
 
-Adds a resident to the database.
+Adds a resident into **RC4HDB**.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A resident can have any number of tags (including 0)
+A resident can have any number of tags (including 0).
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnDoe@gmail.com r/5-1 g/M h/D m/A9876543B` adds a resident named John Doe, with 
   relevant personal and student information.
+
+
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/2-3 p/1234567 m/A3456789B g/F h/A` adds a resident named 
   Betsy Crowe, with relevant personal and student information.
 
@@ -43,14 +45,14 @@ Examples:
 
 ### Editing an existing resident : `edit`
 
-Edits the data of an existing resident in the RC4HDB database.
+Edits the data of an existing resident in **RC4HDB**.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`
 
 * Edits the resident at the specified `INDEX`.
 * The index refers to the index number shown in the displayed residents list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* The index **must be a positive integer:** 1, 2, 3, …​
+* At least one of the optional parameters must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
 * You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
@@ -66,16 +68,22 @@ Examples:
 
 ### Deleting a resident : `delete`
 
-Deletes the specified resident from the RC4HDB database.
+Deletes the specified resident from **RC4HDB**.
 
 Format: `delete INDEX`
 
 * Deletes the resident at the specified `INDEX`.
 * The index refers to the index number shown in the displayed resident list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer:** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The delete command can be used in conjunction with other commands such as list and find, to delete residents in different types of filtered lists. 
+</div>
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd resident in the database.
+
+
 * `find Betsy` followed by `delete 1` deletes the 1st resident in the results of the `find` command.
 
 [Back to Top](#back-to-menu)
@@ -84,7 +92,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the database.
+Clears all entries from **RC4HDB**.
 
 Format: `clear`
 

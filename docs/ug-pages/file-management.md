@@ -5,9 +5,9 @@ title: File Management
 
 #### [Back to Menu](../UserGuide.md)
 
-Align with our goal of providing a streamline way of managing RC4 related data, RC4HDB provides users with the ability to organise their files using our file management commands.
+To provide a streamlined way of managing **RC4** related data, **RC4HDB** provides users with the ability to organise their files using our file management commands.
 
-RC4HDB currently supports the following file management functionalities:
+**RC4HDB** currently supports the following file management functionalities:
 * [**Creation**](#creating-a-new-data-file--file-create) of new data folders
 * [**Deletion**](#deleting-an-existing-data-file--file-delete) of old data folders
 * [**Switching**](#switching-to-a-different-data-file--file-switch) between different data folders
@@ -57,7 +57,7 @@ Examples:
 
 RC4HDB provides users with the ability to delete their data folders when they no longer require them.
 
-Format: `file delete FILE_NAME`
+Format: `file delete FOLDER_NAME`
 * Does not delete the file if it is the data file that is currently open. You may switch to a different file before 
   deleting the previously open data file.
 * The file must be a `.json` file.
@@ -73,7 +73,7 @@ Examples:
 
 ### Switching to a different data file : `file switch`
 
-RC4HDB provides users with the ability to switch between different data folders.
+**RC4HDB** provides users with the ability to switch between different data folders.
 
 Format: `file switch FOLDER_NAME`
 * Does not create a new file if the specified folder does not exist.
@@ -89,7 +89,7 @@ Examples:
 
 ### Importing from CSV file : `file import`
 
-RC4HDB provides users with the ability to import data from `.csv` files. In order for RC4HDB to find your files, place 
+**RC4HDB** provides users with the ability to import data from `.csv` files. In order for RC4HDB to find your files, place 
 them in the data folder, `[JAR file location]/data`.
 
 

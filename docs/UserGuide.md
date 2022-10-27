@@ -5,13 +5,13 @@ title: User Guide
 
 # Welcome to RC4HDB User Guide!
 
-If you are a Residential College 4 (RC4) Housing Management staff, or someone who wants to find out more
-about what RC4HDB can do for you, you are at the right place!
+If you are a **Residential College 4 (RC4)** Housing Management staff, or someone who wants to find out more
+about what **Residential College 4 Housing Database (RC4HDB)** can do for you, you are at the right place!
 
-In this user guide, you will find step-by-step instructions on how you can install RC4HDB, as well as how you can use
-RC4HDB to its fullest potential.
+In this user guide, you will find step-by-step instructions on how you can install **RC4HDB**, as well as how you
+can use **RC4HDB** to its fullest potential.
 
-If you are someone who is looking to expand on our project, check out our [Developer Guide](DeveloperGuide.md) too!
+If you are looking to expand on our project, check out our [Developer Guide](DeveloperGuide.md) too!
 
 ## Table of Contents
 
@@ -64,10 +64,10 @@ If you are someone who is looking to expand on our project, check out our [Devel
 
 ## Introduction to RC4HDB
 
-RC4HDB is a desktop application that helps you, as a RC4 housing management staff, to tend to the all housing
-management related work, policies, and issues.
+**RC4HDB** is a desktop application that helps you to manage data from residents, as well as resident activity in 
+**RC4**, including venue booking.
 
-RC4HDB provides these main features:
+**RC4HDB** provides these main features:
 * Add incoming residents.
 * Access, modify details of residents.
 * Filter through residents via house, gender, and more.
@@ -75,22 +75,22 @@ RC4HDB provides these main features:
 * Export a filtered list of residents.
 
 <div markdown="span" class="alert alert-info">
-RC4HDB is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User
-Interface (GUI). If you can type fast, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day
-workflow as a RC4 housing management staff.
+If you can type fast, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day
+workflow as a RC4 housing management staff member.
 </div>
 
 [Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ## Using this guide
 
-This user guide encompasses all the information that you will need to know as a user of RC4HDB. We hope that this user
-guide will serve you well in mastering RC4HDB!
+This user guide contains all the information that you will need to know as a user of **RC4HDB**. We hope that it
+will serve you well in mastering RC4HDB!
 
-If you are a **new user**, this guide provides you with the necessary knowledge for you to [get started](#quick-start).
-As you read the user guide, you will find plenty of examples to help you familiarise with the features.
+If you are a **new user**, the necessary knowledge for you to get started can be found [here](#quick-start).
+As you read on, you will find plenty of examples to help you familiarise with the features.
 
-If you are an **experienced user**, a [Command Summary](ug-pages/command-summary.md) is also provided for your reference.
+If you are an **experienced user**, a [Command Summary](ug-pages/command-summary.md) is also provided, so you don't have
+to memorise the individual `Command`s.
 
 Before exploring the user guide, you should familiarise yourself with the following symbols.
 
@@ -114,15 +114,18 @@ Ensure you have [*Java 11*](https://www.oracle.com/sg/java/technologies/javase/j
 above installed on your Computer.
 
 ### 2. Install
-Download the latest `rc4hdb.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/releases/).
-Move the `rc4hdb.jar` file to the folder you want to use as the _home folder_ for RC4HDB.
+Visit this [link](https://github.com/AY2223S1-CS2103T-W12-3/tp/releases/). Click on the underlined `rc4hdb.jar` button
+to download the latest `rc4hdb.jar`.
+Move the `rc4hdb.jar` file to the folder you want to use as the _home folder_ for RC4HDB. The home folder is the folder
+from which the application will run, as well as save data to, and retrieve data from.
 
 ### 3. Running RC4HDB
-Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+Double-click the file to start the app. The **Graphical User Interface (GUI)** similar to the one shown
+below should appear in a few seconds.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 You may have noticed that upon double-clicking `rc4hdb.jar` for the first time, several files were created. **Do not
-delete the folder called `data` as this would cause all your data to be deleted**
+delete the folder called `data` as this would cause all your data to be deleted!**
 </div>
 
 <br>
@@ -130,8 +133,8 @@ delete the folder called `data` as this would cause all your data to be deleted*
 ![Ui](images/Ui.png)
 
 ### 4. Try it out!
-Try typing `help` into the command box and pressing Enter to execute it! This command will open a help window which
-shows you a quick summary of the available commands.
+Try typing `help` into the command box where it says "Enter Command here..." and pressing the Enter/Return key on your
+keyboard to execute it! This command will open a help window which shows you a quick summary of the available commands.
 
 For more details on commands, refer to the [Command Guide](#command-guide) below.
 
@@ -141,18 +144,20 @@ For more details on commands, refer to the [Command Guide](#command-guide) below
 
 ## Command Guide
 
-Below shows a detailed breakdown of all rules that are applicable to the commands in RC4HDB. Don't be afraid that you
-may have typed a command incorrectly as RC4HDB will step in as and when needed!
+Below shows a breakdown of how the commands in **RC4HDB** are structured. Don't be afraid that you
+may have typed a command incorrectly as **RC4HDB** will warn you in the event that this happens!
 
 <div markdown="block" class="alert alert-info">
 
-* Words in `UPPER_CASE` are compulsory and must be entered by you, the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which you must enter, such as `add n/John Doe`.
+* Words in `UPPER_CASE` are compulsory parameters and must be entered by you.<br>
+  Parameters are texts you enter to tell **RC4HDB** the information necessary for the command to work.
+
+  e.g. when using the `add` command, `NAME` is a parameter which you must enter. Thus, the command format is as such:`add n/NAME`. To add a resident named "John Doe", you can then enter `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used multiple times. This also includes 0 times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
@@ -162,7 +167,7 @@ may have typed a command incorrectly as RC4HDB will step in as and when needed!
   unless otherwise specified.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Irrelevant parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>

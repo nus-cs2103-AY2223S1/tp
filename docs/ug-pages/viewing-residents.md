@@ -5,25 +5,25 @@ title: Viewing Residents
 
 #### [Back to Menu](../UserGuide.md)
 
-Often times, you may find yourself overloaded with information. These commands can help to include, and exclude
+You might find yourself overloaded with information. These commands can help to include, and exclude
 fields from being seen, find specific residents, and search residents whose fields match a specific keyword.
 
 ### Listing all residents : `list`
 
-Lists *all* the residents in the RC4HDB database. If the table view is showing a filtered portion of the residents,
+Lists *all* the residents in the **RC4HDB** database. If the table view is showing a filtered portion of the residents,
 calling `list` will restore and display the full list of residents.
 
-Additionally, the `list` command allows you to specify fields (represented as columns) to **include** or **exclude**
-when listing! 
-Use `list /i` or `list /e` followed by the first letter of each field to include or exclude from the table.
+Additionally, you can specify fields (represented as columns) to be **included** or **excluded** as well!
+
+This can be done using `list /i` or `list /e`.
 
 Format:
 
 - `list` to display *all* residents from the database with *all* columns included in the table
-- `list /i LETTER [MORE_LETTERS]` to display *all* residents from the database while **including** in
-  the table view only the fields corresponding to the specified letters.
-- `list /e LETTER [MORE_LETTERS]` to display *all* residents from the database while 
-  **excluding** from the table view only the fields corresponding to the specified letters.
+- `list /i LETTER [MORE_LETTERS]` to display *all* residents in **RC4HDB** while **including** only the fields
+   corresponding to the specified letters.
+- `list /e LETTER [MORE_LETTERS]` to display *all* residents in **RC4HDB** while **excluding** only the fields
+   corresponding to the specified letters.
 
 Examples:
 
@@ -41,13 +41,19 @@ Note:
   *any other letter will be considered invalid*.
 - Letters *must* be separated by a single whitespace. 
 - There needs to be at least one field (and hence column) included in the table view at all times.
-  
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 *(For advanced users!)* The `list` command, as well as the `list /i` and `list /e` extensions, are 
 [*idempotent*](glossary.md#idempotent) and [*state-independent*](glossary.md#state-independent). This means that
 using the `list` command with a set of *(optional)* letters will return the same result regardless of what the current 
 table looks like. Calling the same command again will not change the table view any further.
+</div>
+
+
 
 [Back to Top](#back-to-menu)
+
+<br>
 
 ---
 
@@ -55,7 +61,7 @@ table looks like. Calling the same command again will not change the table view 
 
 Shows only the specified columns in the **current** table view.
 
-If your screen is too cluttered, just use `showonly` to show only the columns you need! 
+If your screen is too cluttered, you may use `showonly` to show only the columns you need! 
 This command works similar to `list /i`, with two key differences:
 
 1. You can only use `showonly` on existing columns in the current table view, and
@@ -81,10 +87,14 @@ Note:
 - Only valid letters can be specified, and there needs to be at least one column shown in the table at all times.
 - You can always `reset` the table to the full, default view at any time!
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 *(For advanced users!)* Notice that `showonly`, unlike `list /i`, is dependent on the state of the current table.
 Hence, some calls to `showonly` may be invalid if the specified columns are not present in the current table view.
+</div>
 
 [Back to Top](#back-to-menu)
+
+<br>
 
 ---
 
@@ -120,10 +130,14 @@ Note:
 - Only valid letters can be specified, and there needs to be at least one column shown in the table at all times.
 - You can always `reset` the table to the full, default view at any time!
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 *(For advanced users!)* Notice that `hideonly`, unlike `list /i`, is dependent on the state of the current table. 
 Hence, some calls to `hideonly` may be invalid if the specified columns are not present in the current table view.
+</div>
 
 [Back to Top](#back-to-menu)
+
+<br>
 
 ---
 
@@ -140,6 +154,8 @@ Note:
 - This command is different from the `list` command in that it does not affect the list of residents being displayed.
 
 [Back to Top](#back-to-menu)
+
+<br>
 
 ---
 
@@ -163,6 +179,8 @@ Examples:
   <!--- ![result for 'find alex david'](images/findAlexDavidResult.png) --->
 
 [Back to Top](#back-to-menu)
+
+<br>
 
 ---
 
