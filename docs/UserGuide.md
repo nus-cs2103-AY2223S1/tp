@@ -49,6 +49,9 @@ show-toc: true
 
 {% include_relative _ug/commandSummary/StatisticsCommands.md %}
 
+## Storage
+
+{% include_relative _ug/Storage.md %}
 
 ## Troubleshooting
 
