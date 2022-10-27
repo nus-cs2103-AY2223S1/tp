@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandResult.CommandType.NOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -94,14 +95,16 @@ public class NextOfKinCommand extends Command {
 
         if (this.nextOfKin == null) {
             studentToEdit.removeNextOfKin();
-            return new CommandResult(String.format(MESSAGE_REMOVE_NEXTOFKIN_SUCCESS, studentToEdit));
+            return new CommandResult(String.format(MESSAGE_REMOVE_NEXTOFKIN_SUCCESS, studentToEdit),
+                    NOK, index.getZeroBased());
         } else {
             try {
                 studentToEdit.addNextOfKin(this.nextOfKin);
             } catch (CommandException e) {
                 throw new CommandException(MESSAGE_DUPLICATE_NEXTOFKIN);
             }
-            return new CommandResult(String.format(MESSAGE_ADD_NEXTOFKIN_SUCCESS, this.nextOfKin, studentToEdit));
+            return new CommandResult(String.format(MESSAGE_ADD_NEXTOFKIN_SUCCESS, this.nextOfKin, studentToEdit),
+                    NOK, index.getZeroBased());
         }
     }
 

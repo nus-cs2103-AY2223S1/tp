@@ -11,8 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -62,8 +61,8 @@ public class CommandTestUtil {
     public static final String VALID_LEVEL_AMY = "Primary1";
     public static final String VALID_LEVEL_BOB = "Primary2";
 
-    public static final String VALID_QUALIFICATION_AMY = "BAmy";
-    public static final String VALID_QUALIFICATION_BOB = "MBob";
+    public static final String VALID_QUALIFICATION_AMY = "BAmy, Amy";
+    public static final String VALID_QUALIFICATION_BOB = "MBob, Bob";
     public static final String VALID_INSTITUTION_AMY = "Amy University";
     public static final String VALID_INSTITUTION_BOB = "Bob University";
 
@@ -96,8 +95,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
 
-    public static final String SCHOOL_DESC_AMY = " " + PREFIX_SCHOOL + VALID_SCHOOL_AMY;
-    public static final String SCHOOL_DESC_BOB = " " + PREFIX_SCHOOL + VALID_SCHOOL_BOB;
+    public static final String SCHOOL_DESC_AMY = " " + PREFIX_SUBJECT_OR_SCHOOL + VALID_SCHOOL_AMY;
+    public static final String SCHOOL_DESC_BOB = " " + PREFIX_SUBJECT_OR_SCHOOL + VALID_SCHOOL_BOB;
     public static final String LEVEL_DESC_AMY = " " + PREFIX_LEVEL + VALID_LEVEL_AMY;
     public static final String LEVEL_DESC_BOB = " " + PREFIX_LEVEL + VALID_LEVEL_BOB;
 
@@ -113,8 +112,8 @@ public class CommandTestUtil {
     public static final String ENTITY_DESC_CLASS = " " + VALID_ENTITY_CLASS;
     public static final String NAME_DESC_CLASS1 = " " + PREFIX_NAME + VALID_NAME_CLASS1;
     public static final String NAME_DESC_CLASS2 = " " + PREFIX_NAME + VALID_NAME_CLASS2;
-    public static final String SUBJECT_DESC_CLASS1 = " " + PREFIX_SUBJECT + VALID_SUBJECT_CLASS1;
-    public static final String SUBJECT_DESC_CLASS2 = " " + PREFIX_SUBJECT + VALID_SUBJECT_CLASS2;
+    public static final String SUBJECT_DESC_CLASS1 = " " + PREFIX_SUBJECT_OR_SCHOOL + VALID_SUBJECT_CLASS1;
+    public static final String SUBJECT_DESC_CLASS2 = " " + PREFIX_SUBJECT_OR_SCHOOL + VALID_SUBJECT_CLASS2;
     public static final String LEVEL_DESC_CLASS1 = " " + PREFIX_LEVEL + VALID_LEVEL_CLASS1;
     public static final String LEVEL_DESC_CLASS2 = " " + PREFIX_LEVEL + VALID_LEVEL_CLASS2;
     public static final String DAY_DESC_CLASS1 = " " + PREFIX_DAY + VALID_DAY_CLASS1;
@@ -136,7 +135,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_SCHOOL_DESC =
-            " " + PREFIX_SCHOOL + "& Primary School"; // '&' not allowed in school name
+            " " + PREFIX_SUBJECT_OR_SCHOOL + "& Primary School"; // '&' not allowed in school name
     public static final String INVALID_LEVEL_DESC =
             " " + PREFIX_LEVEL + "Kindergarten1"; //outside p1-6, s1-4 not allowed
     public static final String INVALID_QUALIFICATION_DESC =
@@ -147,7 +146,7 @@ public class CommandTestUtil {
             " " + PREFIX_RELATIONSHIP + "stranger";
 
     public static final String INVALID_SUBJECT_DESC =
-            " " + PREFIX_SUBJECT + "Philosophy"; //outside set subjects not allowed
+            " " + PREFIX_SUBJECT_OR_SCHOOL + "Social Studies"; //outside set subjects not allowed
     public static final String INVALID_DAY_DESC =
             " " + PREFIX_DAY + "Newday"; // only allow 'monday' to 'sunday'
     public static final String INVALID_TIME1_DESC =
@@ -243,7 +242,10 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Model expectedModel, CommandType type, int index) {
-        assert(type == CommandType.SHOW || type == CommandType.EDIT || type == CommandType.ASSIGN);
+        assert(type == CommandType.SHOW
+                || type == CommandType.EDIT
+                || type == CommandType.ASSIGN
+                || type == CommandType.NOK);
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, type, index);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }

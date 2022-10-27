@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.ENTITY_DESC_CLASS;
+import static seedu.address.logic.commands.CommandTestUtil.ENTITY_DESC_STUDENT;
+import static seedu.address.logic.commands.CommandTestUtil.ENTITY_DESC_TUTOR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -24,11 +27,13 @@ import seedu.address.logic.commands.EditCommand.EditTutorDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.ListTuitionClassCommand;
 import seedu.address.logic.commands.ListTutorCommand;
 import seedu.address.logic.commands.NextOfKinCommand;
 import seedu.address.logic.commands.ShowCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -135,22 +140,23 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_listStudent() throws Exception {
-        assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD, listType) instanceof ListStudentCommand);
-        assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD + " 3", listType) instanceof ListStudentCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + ENTITY_DESC_STUDENT, listType)
+                instanceof ListStudentCommand);
+        //assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD + " 3", listType)
+        // instanceof ListStudentCommand);
     }
 
     @Test
     public void parseCommand_listTutor() throws Exception {
-        assertTrue(parser.parseCommand(ListTutorCommand.COMMAND_WORD, listType) instanceof ListTutorCommand);
-        assertTrue(parser.parseCommand(ListTutorCommand.COMMAND_WORD + " 3", listType) instanceof ListTutorCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + ENTITY_DESC_TUTOR, listType)
+                instanceof ListTutorCommand);
+        //assertTrue(parser.parseCommand(ListTutorCommand.COMMAND_WORD + " 3", listType) instanceof ListTutorCommand);
     }
 
     @Test
     public void parseCommand_listTuitionClass() throws Exception {
-        assertTrue(
-                parser.parseCommand(ListTuitionClassCommand.COMMAND_WORD, listType) instanceof ListTuitionClassCommand);
-        assertTrue(parser.parseCommand(ListTuitionClassCommand.COMMAND_WORD + " 3", listType)
-                instanceof ListTuitionClassCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + ENTITY_DESC_CLASS, listType)
+                        instanceof ListTuitionClassCommand);
     }
 
     @Test
@@ -165,6 +171,7 @@ public class AddressBookParserTest {
                 UnassignCommand.COMMAND_WORD + " 1" + " n/p1math", listType) instanceof UnassignCommand);
     }
 
+    @Test
     public void parseCommand_nok() throws Exception {
         //without any arguments
         assertTrue(parser.parseCommand(NextOfKinCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(), listType)
@@ -173,6 +180,12 @@ public class AddressBookParserTest {
         NextOfKin nextOfKin = new NextOfKinBuilder().build();
         assertTrue(parser.parseCommand(PersonUtil.getNokCommand(nextOfKin), listType)
                 instanceof NextOfKinCommand);
+    }
+
+    @Test
+    public void parseCommand_sortCommand() throws Exception {
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " " + SortCommand.SortBy.ALPHA, listType)
+                instanceof SortCommand);
     }
 
     @Test
