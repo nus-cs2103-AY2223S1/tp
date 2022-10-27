@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.date.Date;
+
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -16,14 +18,13 @@ public class Person {
     private final Email email;
     private final Address address;
     private final Gender gender;
-    private final DateOfBirth dob;
-
+    private final Date dob;
     private final Uid uid;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Gender gender, DateOfBirth dob, Uid uid) {
+    public Person(Name name, Phone phone, Email email, Address address, Gender gender, Date dob, Uid uid) {
         requireAllNonNull(name, phone, email, address, gender, uid);
         this.name = name;
         this.phone = phone;
@@ -53,7 +54,7 @@ public class Person {
     public Gender getGender() {
         return gender;
     }
-    public DateOfBirth getDob() {
+    public Date getDob() {
         return dob;
     }
     public Uid getUid() {

@@ -18,8 +18,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.date.Date;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -102,7 +102,7 @@ public class EditPersonCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        DateOfBirth updatedDob = editPersonDescriptor.getDob().orElse(personToEdit.getDob());
+        Date updatedDob = editPersonDescriptor.getDob().orElse(personToEdit.getDob());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Uid updatedUid = new Uid(personToEdit.getUid().getUid());
@@ -136,7 +136,7 @@ public class EditPersonCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private DateOfBirth dob;
+        private Date dob;
         private Address address;
 
         private Gender gender;
@@ -186,11 +186,11 @@ public class EditPersonCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setDob(DateOfBirth dob) {
+        public void setDob(Date dob) {
             this.dob = dob;
         }
 
-        public Optional<DateOfBirth> getDob() {
+        public Optional<Date> getDob() {
             return Optional.ofNullable(dob);
         }
 

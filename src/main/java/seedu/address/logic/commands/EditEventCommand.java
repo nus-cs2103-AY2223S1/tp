@@ -14,10 +14,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.date.Date;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventTitle;
 import seedu.address.model.event.Purpose;
-import seedu.address.model.event.StartDate;
 import seedu.address.model.event.StartTime;
 
 /**
@@ -91,9 +91,8 @@ public class EditEventCommand extends Command {
      */
     private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
-
         EventTitle updatedEventTitle = editEventDescriptor.getEventTitle().orElse(eventToEdit.getEventTitle());
-        StartDate updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getStartDate());
+        Date updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getStartDate());
         StartTime updatedTime = editEventDescriptor.getTime().orElse(eventToEdit.getStartTime());
         Purpose updatedPurpose = editEventDescriptor.getPurpose().orElse(eventToEdit.getPurpose());
         return new Event(updatedEventTitle, updatedDate, updatedTime, updatedPurpose);
@@ -120,7 +119,7 @@ public class EditEventCommand extends Command {
      */
     public static class EditEventDescriptor {
         private EventTitle eventTitle;
-        private StartDate date;
+        private Date date;
         private StartTime time;
         private Purpose purpose;
 
@@ -151,11 +150,11 @@ public class EditEventCommand extends Command {
             return Optional.ofNullable(eventTitle);
         }
 
-        public void setDate(StartDate date) {
+        public void setDate(Date date) {
             this.date = date;
         }
 
-        public Optional<StartDate> getDate() {
+        public Optional<Date> getDate() {
             return Optional.ofNullable(date);
         }
 
