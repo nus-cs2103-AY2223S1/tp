@@ -38,8 +38,8 @@ import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.SamePersonPredicate;
 import seedu.address.model.person.University;
+import seedu.address.model.person.predicates.SamePersonPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.Storage;
 
