@@ -57,7 +57,8 @@ public class CreateCommandParser implements Parser<CreateCommand> {
                 ParserUtil.parseNetWorth(argMultimap.getValue(PREFIX_NETWORTH).orElse(Person.EMPTY_FIELD_VALUE));
         Set<MeetingTime> meetingTimeList = ParserUtil.parseMeetingTimes(argMultimap.getAllValues(PREFIX_MEETING_TIME));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        FilePath filePath = new FilePath(Person.EMPTY_FIELD_VALUE); // create command does not allow adding file path straight away
+        FilePath filePath =
+                new FilePath(Person.EMPTY_FIELD_VALUE); // create command does not allow adding file path straight away
 
         Person person = new Person(name, phone, email, address, description, netWorth,
                 meetingTimeList, filePath, tagList);
