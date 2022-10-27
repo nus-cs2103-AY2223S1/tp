@@ -29,6 +29,8 @@ public class ListingCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
     private Label listingId;
     @FXML
     private Label name;
@@ -46,7 +48,8 @@ public class ListingCard extends UiPart<Region> {
     public ListingCard(Listing listing, int displayedIndex) {
         super(FXML);
         this.listing = listing;
-        listingId.setText(displayedIndex + ": ");
+        id.setText(displayedIndex + ". ");
+        listingId.setText(listing.getId().value);
         name.setText(listing.getName().fullName);
         address.setText(listing.getAddress().value);
         askingPrice.setText(listing.getAskingPrice().value);
@@ -69,7 +72,7 @@ public class ListingCard extends UiPart<Region> {
 
         // state check
         ListingCard card = (ListingCard) other;
-        return listingId.getText().equals(card.listingId.getText())
+        return id.getText().equals(card.id.getText())
                 && listing.equals(card.listing);
     }
 }

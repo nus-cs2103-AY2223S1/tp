@@ -19,16 +19,17 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="listingId" styleClass="cell_big_label">
+                <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+                <Label fx:id="listingId" styleClass="cell_big_label" text="\$first" />
             </HBox>
             <FlowPane fx:id="tags" />
-            <Label fx:id="name" styleClass="cell_big_label" text="\$name" />
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            <Label fx:id="name" styleClass="cell_small_label" text="\$name" />
             <Label fx:id="askingPrice" styleClass="cell_small_label" text="\$askingPrice" />
         </VBox>
     </GridPane>
