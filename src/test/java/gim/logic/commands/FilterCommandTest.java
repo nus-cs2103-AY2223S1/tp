@@ -1,6 +1,7 @@
 package gim.logic.commands;
 
 import static gim.commons.core.Messages.MESSAGE_EXERCISES_LISTED_OVERVIEW;
+import static gim.commons.core.Messages.MESSAGE_FIND_EMPTY_EXERCISES_LIST;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static gim.testutil.TypicalExercises.CARL;
 import static gim.testutil.TypicalExercises.ELLE;
@@ -56,7 +57,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_zeroKeywords_noExerciseFound() {
-        String expectedMessage = String.format(MESSAGE_EXERCISES_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_FIND_EMPTY_EXERCISES_LIST, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.filterFilteredExerciseList(predicate);
