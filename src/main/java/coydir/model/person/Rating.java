@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Objects;
 
 import coydir.logic.parser.exceptions.ParseException;
 
@@ -16,7 +17,7 @@ import coydir.logic.parser.exceptions.ParseException;
 public class Rating {
     public static final String MESSAGE_CONSTRAINTS =
             "Ratings can take any values from 1 - 5, and it should not be blank\n"
-          + ": 5: Outstanding | 4: Exceeds Expectations | 3: Satisfactory | 2: Needs Improvement | 1: Unsatisfactory.";
+          + "5: Outstanding | 4: Exceeds Expectations | 3: Satisfactory | 2: Needs Improvement | 1: Unsatisfactory.";
     public static final String MESSAGE_CONSTRAINTS_TIMESTAMP = "Invalid Timestamp, please follow dd-MM-yyyy";
     public static final String VALIDATION_REGEX = "[1-5]";
     private static final Rating NULL = new Rating();
@@ -89,6 +90,6 @@ public class Rating {
 
     @Override
     public int hashCode() {
-        return this.value.hashCode();
+        return Objects.hash(value, timestamp);
     }
 }

@@ -1,5 +1,7 @@
 package coydir.storage;
 
+import java.time.format.DateTimeFormatter;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,7 +17,7 @@ public class JsonAdaptedRating {
     private final String timestamp;
 
     /**
-     * Constructs a {@code JsonAdaptedLeave} with the given {@code startDate} and {@code endDate}.
+     * Constructs a {@code JsonAdaptedRating} with the given {@code rating} and {@code timestamp}.
      */
     @JsonCreator
     public JsonAdaptedRating(@JsonProperty("rating") String value, @JsonProperty("timestamp") String timestamp) {
@@ -24,18 +26,17 @@ public class JsonAdaptedRating {
     }
 
     /**
-     * Converts a given {@code Leave} into this class for Jackson use.
+     * Converts a given {@code Rating} into this class for Jackson use.
      */
     public JsonAdaptedRating(Rating source) {
         this.value = String.valueOf(source.value);
-        this.timestamp = String.valueOf(source.timestamp);
+        this.timestamp = source.timestamp.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
-
     /**
-     * Converts this Jackson-friendly adapted Leave object into the model's {@code Leave} object.
+     * Converts this Jackson-friendly adapted Rating object into the model's {@code Rating} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted Leave.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Rating.
      */
     public Rating toModelType() throws IllegalValueException {
         if (!Rating.isValidRating(value)) {

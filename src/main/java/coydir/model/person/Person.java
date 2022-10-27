@@ -252,7 +252,7 @@ public class Person {
         ArrayList<Rating> performanceHistory = getRatingHistory();
         if (!performanceHistory.isEmpty()) {
             builder.append("; Performance History: ");
-            performanceHistory.forEach((builder::append));
+            performanceHistory.forEach(builder::append);
         }
 
         return builder.toString();
