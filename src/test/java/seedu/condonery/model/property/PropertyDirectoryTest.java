@@ -1,4 +1,4 @@
-package seedu.condonery.model;
+package seedu.condonery.model.property;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -18,7 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.condonery.model.property.Property;
+import seedu.condonery.model.PropertyDirectory;
+import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.property.exceptions.DuplicatePropertyException;
 import seedu.condonery.testutil.PropertyBuilder;
 

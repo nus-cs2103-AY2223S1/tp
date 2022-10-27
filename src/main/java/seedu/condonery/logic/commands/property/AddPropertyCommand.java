@@ -69,7 +69,7 @@ public class AddPropertyCommand extends Command {
         String newSuccessMessage = MESSAGE_SUCCESS + ". ";
 
         if (missingClients.isEmpty() && duplicateClients.isEmpty()) {
-            newSuccessMessage = newSuccessMessage + " No rejected client names.";
+            newSuccessMessage = newSuccessMessage + "No rejected client names.";
         } else {
             if (!missingClients.isEmpty()) {
                 newSuccessMessage = newSuccessMessage + "Missing clients: " + missingClients
