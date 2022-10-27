@@ -2,7 +2,12 @@ package seedu.address.logic.parser.consultation;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.consultation.EditConsultationCommand;
@@ -38,7 +43,8 @@ public class EditConsultationCommandParser implements Parser<EditConsultationCom
                     EditConsultationCommand.MESSAGE_USAGE), pe);
         }
 
-        EditConsultationCommand.EditConsultDescriptor editConsultDescriptor = new EditConsultationCommand.EditConsultDescriptor();
+        EditConsultationCommand.EditConsultDescriptor editConsultDescriptor =
+                new EditConsultationCommand.EditConsultDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editConsultDescriptor.setName(
                     ConsultationParserUtil.parseConsultationName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -59,13 +65,19 @@ public class EditConsultationCommandParser implements Parser<EditConsultationCom
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editConsultDescriptor.setDescription(
-                    ConsultationParserUtil.parseConsultationDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+                    ConsultationParserUtil.parseConsultationDescription(
+                            argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+        }
+        //Only day
+        if (argMultimap.getValue(PREFIX_DAY).isPresent() && !argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
+            throw new ParseException(EditConsultationCommand.MESSAGE_DATETIME_CONSULTATION);
+        }
+        //Only timeslot
+        if (!argMultimap.getValue(PREFIX_DAY).isPresent() && argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
+            throw new ParseException(EditConsultationCommand.MESSAGE_DATETIME_CONSULTATION);
         }
         if (!editConsultDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditConsultationCommand.MESSAGE_NOT_EDITED);
-        }
-        if (argMultimap.getValue(PREFIX_DAY).isPresent() || argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
-            throw new ParseException(EditConsultationCommand.MESSAGE_DATETIME_CONSULTATION);
         }
 
         return new EditConsultationCommand(index, editConsultDescriptor);

@@ -9,9 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.consultation.exceptions.ConsultationNotFoundException;
 import seedu.address.model.consultation.exceptions.DuplicateConsultationException;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.DuplicatePersonException;
-import seedu.address.model.student.exceptions.PersonNotFoundException;
 
 /**
  * A list of consultations that enforces uniqueness between its elements and does not allow nulls.

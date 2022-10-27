@@ -1,9 +1,13 @@
 package seedu.address.logic.commands.consultation;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,24 +18,29 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.consultation.*;
+import seedu.address.model.consultation.Consultation;
+import seedu.address.model.consultation.ConsultationDescription;
+import seedu.address.model.consultation.ConsultationModule;
+import seedu.address.model.consultation.ConsultationName;
+import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.datetime.DatetimeRange;
-import seedu.address.model.student.Name;
 
+/**
+ * Edits the details of an existing consultation in the Modquik.
+ */
 public class EditConsultationCommand extends Command {
-    
     public static final String COMMAND_WORD = "edit consultation";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the consult identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the consultation identified "
             + "by the index number used in the displayed consult list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_VENUE + "VENUE] "
-            + "[" + PREFIX_DAY + "DAY] and"
-            + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_DAY + "DAY and "
+            + PREFIX_TIMESLOT + "TIMESLOT] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE + "CS2103T"
             + PREFIX_DESCRIPTION + "Review past years' papers";
@@ -68,7 +77,7 @@ public class EditConsultationCommand extends Command {
         Consultation consultToEdit = lastShownList.get(index.getZeroBased());
         Consultation editedConsult = createEditedConsult(consultToEdit, editConsultDescriptor);
 
-        if ( !consultToEdit.isSameConsultation(editedConsult) && model.hasConsultation(editedConsult)) {
+        if (!consultToEdit.isSameConsultation(editedConsult) && model.hasConsultation(editedConsult)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULTATION);
         }
 
