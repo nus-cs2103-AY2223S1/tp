@@ -115,16 +115,22 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        Index index = Index.fromZeroBased(filteredPersons.indexOf(person));
-        currentlyViewedPerson = new CurrentlyViewedPerson(person, index);
+        int intIndex = filteredPersons.indexOf(person);
+        if (intIndex > -1) {
+            Index index = Index.fromZeroBased(filteredPersons.indexOf(person));
+            currentlyViewedPerson = new CurrentlyViewedPerson(person, index);
+        }
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
-        Index index = Index.fromZeroBased(filteredPersons.indexOf(editedPerson));
-        currentlyViewedPerson = new CurrentlyViewedPerson(editedPerson, index);
+        int intIndex = filteredPersons.indexOf(editedPerson);
+        if (intIndex > -1) {
+            Index index = Index.fromZeroBased(filteredPersons.indexOf(editedPerson));
+            currentlyViewedPerson = new CurrentlyViewedPerson(editedPerson, index);
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
