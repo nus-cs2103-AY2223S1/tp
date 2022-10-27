@@ -19,7 +19,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
    5. [Editing an applicant](#35-editing-an-applicant-edit)
    6. [Deleting an applicant](#36-deleting-an-applicant-delete)
    7. [Locating applicants by field](#37-locating-applicants-by-field-find)
-   8. [Importing applicants from an external text file](#38-importing-applicants-from-an-external-text-file-import)
+   8. [Importing applicants from an external text file](#38-importing-applicants-from-an-external-json-file-import)
    9. [Exporting displayed list](#39-exporting-displayed-list-export)
    10. [Check-out a new or existing list](#310-checking-out-a-new-or-existing-list-checkout)
    11. [Clearing all entries](#311-clearing-all-entries-clear)
@@ -160,7 +160,7 @@ Format: `help`
 
 Adds an applicant to InternConnect.
 
-Format: `add {mandatory_field_parameter/IDENTITY_FIELD} [t/TAG]...`
+Format: `add {mandatory_field_parameter/MANDATORY_FIELD_DETAIL} [t/TAG]...`
 
 * For `mandatory_field_parameter` arguments, please refer to the `parameter` of each fields in the [Identity Fields](#21-identity-fields) and [Data Fields](#22-data-fields) section above.
 
@@ -223,7 +223,7 @@ Examples:
 
 ### 3.7 Locating applicants by field: `find`
 
-Finds applicants who has a field containing any of the given keywords among all specified fields.
+Finds applicants who have a field containing any of the given keywords among all specified fields.
 
 Format: `find parameter/KEYWORD [parameter/KEYWORD]...`
 
@@ -231,8 +231,8 @@ Format: `find parameter/KEYWORD [parameter/KEYWORD]...`
 * At least one of the parameter fields must be provided.
 * If a field parameter is given more than once, the command will search only for the latest specifier. E.g., `n/Bobby n/cortez` will only search and return names with `cortez` in them.
 * The search is case-insensitive. E.g., `bobby` will match `Bobby`.
-* The order of the keywords does not matter. E.g., `Bobby cortez` will match `Cortez bobby`.
 * Applicants matching at least one keyword will be returned (i.e., OR search). E.g., `n/Bobby Cortez` will return applicants with the name `Bobby Lacruz`, `Alexander Cortez`
+* The order of the keywords does not matter. E.g., `Bobby cortez` will match `Cortez bobby`.
 
 Search Types:
 1. Matching word: Keywords will only match if there is a full matching word. E.g., `Bobby` will not match `Bobbys`.
@@ -260,7 +260,7 @@ Examples:
 * `find g/Male e/gmail` returns male applicants who have a `gmail` substring in their email address
 
 
-### 3.8 Importing applicants from an external text file: `import`
+### 3.8 Importing applicants from an external JSON file: `import`
 
 Imports applicants from an external JSON file.
 
@@ -333,7 +333,7 @@ If your changes to the data file makes its format invalid, InternConnect will di
 | Action       | Format                                                                          | Examples                                                                                                                                                                                                    |
 |--------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**     | `help`                                                                          | `help`                                                                                                                                                                                                      |
-| **Add**      | `add {mandatory_field_parameter/FIELD_DETAIL} [t/TAG]...`                       | `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` | 
+| **Add**      | `add {mandatory_field_parameter/MANDATORY_FIELD_DETAIL} [t/TAG]...`             | `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` | 
 | **List**     | `list`                                                                          | `list`                                                                                                                                                                                                      |
 | **View**     | `view INDEX`                                                                    | `view 2`                                                                                                                                                                                                    |                                                                                                                                                                                                  |
 | **Edit**     | `edit INDEX parameter/NEW_PARAMETER_DETAIL [parameter/NEW_PARAMETER_DETAIL]...` | `edit 1 p/91234567 e/bob@example.com`                                                                                                                                                                       |
