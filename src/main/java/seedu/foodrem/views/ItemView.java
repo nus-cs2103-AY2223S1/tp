@@ -1,12 +1,13 @@
 package seedu.foodrem.views;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import seedu.foodrem.model.item.Item;
 
 /**
@@ -26,31 +27,37 @@ public class ItemView {
     public static Node from(Item item) {
         final Label name = new Label(item.getName().toString());
         name.getStyleClass().add("item-detail-name");
-        name.setWrapText(true);
-        name.setMaxWidth(400);
+        name.prefWidth(Double.MAX_VALUE);
 
-        // Quantity and unit at the top left and top right respectively
-        final Label quantityLabel = new Label("Quantity: " + buildItemQuantityAndUnitStringFrom(item));
-        final Label priceLabel = new Label("Price: $" + item.getPrice().toString());
-        final Region region = new Region();
-        HBox.setHgrow(region, Priority.ALWAYS);
-        final HBox quantityAndPrice = new HBox(quantityLabel, region, priceLabel);
+        // Name and tags at the top left
+        final HBox tags = new HBox(new Label("Tags: "));
+        tags.getChildren().addAll(TagsView.from(item.getTagSet()));
+        tags.setAlignment(Pos.CENTER_LEFT);
+        tags.setSpacing(SPACING_UNIT);
 
-        // Tag under quantity and price
-        final Node tags = new HBox(TagsView.from(item.getTagSet()));
+        // Quantity and unit at the top right
+        final Label quantityLabel = new Label("Quantity\nRemaining:");
+        quantityLabel.setTextAlignment(TextAlignment.RIGHT);
+        final Label quantityAndUnit = new Label(buildItemQuantityAndUnitStringFrom(item));
+        quantityAndUnit.getStyleClass().add("item-detail-quantity");
+        final VBox quantityBox = new VBox(quantityLabel, quantityAndUnit);
+        quantityBox.setAlignment(Pos.CENTER_RIGHT);
 
-        // Remarks at the bottom
+        // Set up top half
+        final VBox col1 = new VBox(name, tags);
+        col1.setSpacing(SPACING_UNIT);
+        final HBox row1 = new HBox(col1, quantityBox);
+        HBox.setHgrow(col1, Priority.ALWAYS);
+        row1.setSpacing(SPACING_UNIT);
+
         final Label remarks = new Label(
                 String.valueOf(item.getRemarks()).isBlank() ? "-" : item.getRemarks().toString());
         remarks.setWrapText(true);
-        remarks.setMaxWidth(400);
 
         // Combine everything
         final VBox itemView = new VBox(
-                name,
-                quantityAndPrice,
-                new Separator(),
-                tags,
+                row1,
+                new Label("$" + item.getPrice().toString()),
                 new Separator(),
                 new Label("Bought Date: " + buildBoughtDateStringFrom(item)),
                 new Label("Expiry Date: " + buildExpiryDateStringFrom(item)),
