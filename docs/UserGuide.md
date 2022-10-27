@@ -104,7 +104,7 @@ title: User Guide
 ### Viewing help: `help`
 Shows a message explaining how to access the help page.
 
-![HelpWindow](images/HelpWindow.png)
+![HelpWindow](images/HelpWindow.PNG)
 
 Format: `help`
 
@@ -169,7 +169,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Example:
 * `find Software` returns `Google` and `Wise` application whose position contain software keyword.
 
-![FindExample](images/FindExample.png)
+![FindExample](images/FindExample.PNG)
 
 ### Editing an internship application: `edit`
 Edits an existing application in the CinternS.
@@ -196,8 +196,8 @@ Adds an interview to an existing application or edits an existing interview in a
 Format: `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b><br>
-1. INTERVIEW_DATE must be specified in the format <em>yyyy-MM-dd</em>.<br>
-2. INTERVIEW_TIME must be specified in the format <em>HHmm</em>.<br>
+1. <code>INTERVIEW_DATE</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
+2. <code>INTERVIEW_TIME</code> must be specified in the format <em>HHmm</em>.<br>
 </div>
 <br>
 
