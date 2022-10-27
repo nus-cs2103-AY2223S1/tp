@@ -47,6 +47,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
             throw new DuplicateReminderException();
         }
         internalList.add(toAdd);
+        internalList.sort(new ReminderDeadlineComparator());
         internalList.sort(new ReminderPriorityComparator());
     }
 
