@@ -7,6 +7,8 @@ skinparam classBackgroundColor LOGIC_COLOR
 package Logic {
 
 Class AddressBookParser
+Class ABCCommandParser
+Class ABCCommand
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
@@ -28,9 +30,12 @@ HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
 LogicManager -right->"1" AddressBookParser
-AddressBookParser ..> XYZCommand : creates >
+AddressBookParser .right.> XYZCommand : directly\ncreates >
+AddressBookParser ..> ABCCommandParser : creates >
+ABCCommandParser ..> ABCCommand : creates >
 
 XYZCommand -up-|> Command
+ABCCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
 LogicManager --> Model
@@ -38,8 +43,8 @@ LogicManager --> Storage
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
-
+note bottom of XYZCommand: XYZCommand represents any\ncommand with no arguments, e.g.\nTaskListCommand and \nHelpCommand.
+note bottom of ABCCommand: ABCCommand represents any\ncommand with arguments, e.g.\nTaskDeleteCommand and\nTutorialGroupAddCommand.
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult : produces >
