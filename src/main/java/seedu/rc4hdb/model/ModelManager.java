@@ -24,6 +24,7 @@ import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
 import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
+import seedu.rc4hdb.ui.ObservableItem;
 
 /**
  * Represents the in-memory model of the resident book data.
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Resident> filteredResidents;
 
+    private final ObservableItem<VenueName> currentlyDisplayedVenueName;
     private final ObservableList<Booking> observableBookingList;
     private final ObservableList<Venue> observableVenueList;
     private final ObservableList<String> visibleFields;
@@ -55,15 +57,18 @@ public class ModelManager implements Model {
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
 
         // Set up observable instances
+        this.visibleFields = FXCollections.observableArrayList(ResidentField.LOWERCASE_FIELDS);
+        this.hiddenFields = FXCollections.observableArrayList();
         this.observableVenueList = venueBook.getVenueList();
         if (observableVenueList.isEmpty()) {
             logger.info("No venues found in venue list.");
             this.observableBookingList = FXCollections.observableArrayList();
+            this.currentlyDisplayedVenueName = new ObservableItem<>(null);
         } else {
+            // Set first venue in list to be currently displayed
             this.observableBookingList = observableVenueList.get(0).getObservableBookings();
+            this.currentlyDisplayedVenueName = new ObservableItem<>(observableVenueList.get(0).getVenueName());
         }
-        this.visibleFields = FXCollections.observableArrayList(ResidentField.LOWERCASE_FIELDS);
-        this.hiddenFields = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -255,6 +260,11 @@ public class ModelManager implements Model {
         this.observableVenueList.setAll(modifiableFields);
     }
 
+    @Override
+    public ObservableItem<VenueName> getCurrentlyDisplayedVenueName() {
+        return currentlyDisplayedVenueName;
+    }
+
     //=========== Observable Booking List Accessors =============================================================
     @Override
     public ObservableList<Booking> getObservableBookings() {
@@ -264,6 +274,7 @@ public class ModelManager implements Model {
     @Override
     public void setObservableBookings(VenueName venueName) throws VenueNotFoundException {
         this.observableBookingList.setAll(venueBook.getBookings(venueName));
+        this.currentlyDisplayedVenueName.setValue(venueName);
     }
 
 }
