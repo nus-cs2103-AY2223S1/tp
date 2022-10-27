@@ -8,19 +8,19 @@ import static tracko.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static tracko.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static tracko.testutil.TypicalItems.DEFAULT_ITEM;
+import static tracko.testutil.TypicalItems.DEFAULT_INVENTORY_ITEM;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_1;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_10;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_11;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_2;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_3;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_4;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_5;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_6;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_7;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_8;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_9;
 import static tracko.testutil.TypicalItems.INVENTORY_LIST;
-import static tracko.testutil.TypicalItems.ITEM_1;
-import static tracko.testutil.TypicalItems.ITEM_10;
-import static tracko.testutil.TypicalItems.ITEM_11;
-import static tracko.testutil.TypicalItems.ITEM_2;
-import static tracko.testutil.TypicalItems.ITEM_3;
-import static tracko.testutil.TypicalItems.ITEM_4;
-import static tracko.testutil.TypicalItems.ITEM_5;
-import static tracko.testutil.TypicalItems.ITEM_6;
-import static tracko.testutil.TypicalItems.ITEM_7;
-import static tracko.testutil.TypicalItems.ITEM_8;
-import static tracko.testutil.TypicalItems.ITEM_9;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -39,32 +39,32 @@ public class TypicalOrders {
     public static final InventoryList LOADED_INVENTORY_LIST = INVENTORY_LIST;
 
     public static final ItemQuantityPair DEFAULT_PAIR = new ItemQuantityPairBuilder()
-        .withItem(LOADED_INVENTORY_LIST.get(DEFAULT_ITEM.getItemName().toString())).withQuantity(10).build();
+        .withItem(LOADED_INVENTORY_LIST.get(DEFAULT_INVENTORY_ITEM.getItemName().toString())).withQuantity(10).build();
 
     // Items are in the typical loaded inventory list
     public static final ItemQuantityPair PAIR_1 = new ItemQuantityPairBuilder()
-        .withItem(LOADED_INVENTORY_LIST.get(ITEM_1.getItemName().toString())).withQuantity(1).build();
+        .withItem(LOADED_INVENTORY_LIST.get(INVENTORY_ITEM_1.getItemName().toString())).withQuantity(1).build();
     public static final ItemQuantityPair PAIR_2 = new ItemQuantityPairBuilder()
-        .withItem(LOADED_INVENTORY_LIST.get(ITEM_2.getItemName().toString())).withQuantity(2).build();
+        .withItem(LOADED_INVENTORY_LIST.get(INVENTORY_ITEM_2.getItemName().toString())).withQuantity(2).build();
     public static final ItemQuantityPair PAIR_3 = new ItemQuantityPairBuilder()
-        .withItem(LOADED_INVENTORY_LIST.get(ITEM_3.getItemName().toString())).withQuantity(3).build();
+        .withItem(LOADED_INVENTORY_LIST.get(INVENTORY_ITEM_3.getItemName().toString())).withQuantity(3).build();
     public static final ItemQuantityPair PAIR_4 = new ItemQuantityPairBuilder()
-        .withItem(LOADED_INVENTORY_LIST.get(ITEM_4.getItemName().toString())).withQuantity(4).build();
+        .withItem(LOADED_INVENTORY_LIST.get(INVENTORY_ITEM_4.getItemName().toString())).withQuantity(4).build();
     public static final ItemQuantityPair PAIR_5 = new ItemQuantityPairBuilder()
-        .withItem(LOADED_INVENTORY_LIST.get(ITEM_5.getItemName().toString())).withQuantity(5).build();
+        .withItem(LOADED_INVENTORY_LIST.get(INVENTORY_ITEM_5.getItemName().toString())).withQuantity(5).build();
     public static final ItemQuantityPair PAIR_6 = new ItemQuantityPairBuilder()
-        .withItem(LOADED_INVENTORY_LIST.get(ITEM_6.getItemName().toString())).withQuantity(6).build();
+        .withItem(LOADED_INVENTORY_LIST.get(INVENTORY_ITEM_6.getItemName().toString())).withQuantity(6).build();
     public static final ItemQuantityPair PAIR_7 = new ItemQuantityPairBuilder()
-        .withItem(LOADED_INVENTORY_LIST.get(ITEM_7.getItemName().toString())).withQuantity(7).build();
+        .withItem(LOADED_INVENTORY_LIST.get(INVENTORY_ITEM_7.getItemName().toString())).withQuantity(7).build();
 
     public static final ItemQuantityPair PAIR_8 = new ItemQuantityPairBuilder()
-        .withItem(ITEM_8).withQuantity(8).build();
+        .withItem(INVENTORY_ITEM_8).withQuantity(8).build();
     public static final ItemQuantityPair PAIR_9 = new ItemQuantityPairBuilder()
-        .withItem(ITEM_9).withQuantity(9).build();
+        .withItem(INVENTORY_ITEM_9).withQuantity(9).build();
     public static final ItemQuantityPair PAIR_10 = new ItemQuantityPairBuilder()
-        .withItem(ITEM_10).withQuantity(10).build();
+        .withItem(INVENTORY_ITEM_10).withQuantity(10).build();
     public static final ItemQuantityPair PAIR_11 = new ItemQuantityPairBuilder()
-        .withItem(ITEM_11).withQuantity(11).build();
+        .withItem(INVENTORY_ITEM_11).withQuantity(11).build();
 
     public static final Order ORDER_1 = new OrderBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")

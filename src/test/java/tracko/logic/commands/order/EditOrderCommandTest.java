@@ -1,4 +1,4 @@
-package tracko.logic.commands;
+package tracko.logic.commands.order;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,7 +22,6 @@ import org.junit.jupiter.api.Test;
 import javafx.util.Pair;
 import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
-import tracko.logic.commands.order.EditOrderCommand;
 import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
 import tracko.model.Model;
 import tracko.model.ModelManager;
@@ -70,10 +69,12 @@ public class EditOrderCommandTest {
         defaultItemList.add(new ItemQuantityPairBuilder().build());
 
         OrderBuilder orderInList = new OrderBuilder(lastOrder);
-        Order editedOrder = orderInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Order editedOrder = orderInList.withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
                 .withItemList(defaultItemList).build();
 
-        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder()
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withItemList(defaultItemList).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(indexLastOrder, descriptor);
 
@@ -117,7 +118,8 @@ public class EditOrderCommandTest {
     @Test
     public void execute_invalidOrderIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredOrderList().size() + 1);
-        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder()
+            .withName(VALID_NAME_BOB).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
@@ -143,7 +145,7 @@ public class EditOrderCommandTest {
     @Test
     public void execute_removeOnlyItemInOrderList_failure() {
         Model copiedModel = new ModelManager(model.getTrackO(), new UserPrefs());
-        copiedModel.addItem(TypicalItems.ITEM_1);
+        copiedModel.addItem(TypicalItems.INVENTORY_ITEM_1);
         Order initialOrder = new OrderBuilder().build();
         copiedModel.setOrder(copiedModel.getOrderList().get(INDEX_FIRST.getZeroBased()), initialOrder);
 
@@ -159,7 +161,7 @@ public class EditOrderCommandTest {
     @Test
     public void execute_removeOneItemFromList_success() {
         Model copiedModel = new ModelManager(model.getTrackO(), new UserPrefs());
-        copiedModel.addItem(TypicalItems.ITEM_1);
+        copiedModel.addItem(TypicalItems.INVENTORY_ITEM_1);
         Order editedOrder = new OrderBuilder().build();
         Order initialOrder = new OrderBuilder().withItemQuantityPair(new ItemQuantityPairBuilder().build()).build();
         copiedModel.setOrder(copiedModel.getOrderList().get(INDEX_FIRST.getZeroBased()), initialOrder);
