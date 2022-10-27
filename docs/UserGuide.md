@@ -41,7 +41,7 @@ TutHub is a desktop app for NUS professors who wish to choose their next batch o
    
    * **`clear`** : Deletes all tutors.
    
-   * **`comment`**`1 c\Always on time`: Adds a comment to the first tutor that he is always on time.
+   * **`comment`**`1 c/Always on time`: Adds a comment to the first tutor that he is always on time.
 
    * **`exit`** : Exits the TutHub app.
 
