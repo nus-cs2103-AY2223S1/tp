@@ -26,6 +26,15 @@ public class NextOfKinCommand extends Command {
 
     public static final String COMMAND_WORD = "nok";
 
+    public static final String FEEDBACK_MESSAGE = "Valid NextOfKin command format:\n"
+            + "nok INDEX "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_RELATIONSHIP + "RELATIONSHIP "
+            + "[" + PREFIX_TAG + "TAG]...\n";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds or removes next of kin particulars to student identified by the index number used in the "
             + "displayed list. "

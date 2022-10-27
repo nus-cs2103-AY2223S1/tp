@@ -53,7 +53,7 @@ public class NextOfKinCommandParser implements Parser<NextOfKinCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE, pe)
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE, pe)
             );
         }
 
@@ -69,7 +69,7 @@ public class NextOfKinCommandParser implements Parser<NextOfKinCommand> {
                 PREFIX_RELATIONSHIP))
                 || (areAnyPrefixesPresent(argMultimap, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_DAY, PREFIX_TIME,
                 PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION))) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE));
         }
 
         seedu.address.model.person.Name name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_NAME).get());
