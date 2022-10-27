@@ -35,9 +35,9 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 
     - **`delete`**`3 t/e` : Deletes the 3rd entry shown in the expenditure list.
 
-    - **`view`**`t/e g/c` : View a PieChart of all expenses.
+    - **`view`**`t/e` : View a PieChart of all expenses.
 
-    - **`view`**`t/e g/m mo/2022-08` : View a LineGraph of all expenses on August 2022.
+    - **`view`**`t/e mo/2022-08` : View a LineGraph of all expenses on August 2022.
 
     - **`clear`** : Deletes all entries.
 
@@ -229,30 +229,29 @@ The default date is the current date on your computer!
 * Provides a financial summary recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application displays the summary for all entries.
 
-### View entries by category : `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/month]`
+### View entries by category : `view t/ENTRY_TYPE`
 
 1. View a PieChart of all expenditures by categories
-    * Examples: `view t/e g/c` <br>
+    * Examples: `view t/e` <br>
    Expected: `Show graphically all expenditure by category` and a PieChart on the right of the application
    ![ViewCategory1](images/ViewCategory1.png)
 1. View a PieChart of all incomes by categories
-   * Examples: `view t/i g/c` <br>
+   * Examples: `view t/i` <br>
    Expected: `Show graphically all income by category` and a PieChart on the right of the application
    ![ViewCategory2](images/ViewCategory2.png)
 
-### View entries by month : `view t/ENTRY_TYPE g/GRAPH_TYPE mo/MONTH`
+### View entries by month : `view t/ENTRY_TYPE mo/MONTH`
 1. View a LineGraph of all expenditures in a specified month
-   * Examples: `view t/e g/m mo/2022-10` <br>
+   * Examples: `view t/e mo/2022-10` <br>
    Expected: `Show graphically all expenditure by month` and a LineGraph on the right of the application
    ![ViewMonth1](images/ViewMonth1.png)
 1. View a LineGraph of all incomes in a specified month
-   * Examples: `view t/i g/m mo/2022-10` <br>
+   * Examples: `view t/i mo/2022-10` <br>
    Expected: `Show graphically all income by month` and a LineGraph on the right of the application
    ![ViewMonth2](images/ViewMonth2.png)
 
 * View all entries recorded by the user in a month. The month refers to the month that is displayed to the user.
-* The `MONTH` field is required for the LineGraph, if no month is specified, the application displays an error.
-
+* The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown, accompanied by a LineGraph on the right of the application. If no month is specified, the application displays an error.
 
 ### Clearing all entries : `clear`
 
@@ -297,7 +296,7 @@ the data of your previous PennyWise home folder.
 | **Delete**          | `del INDEX_OF_ENTRY t/ENTRY_TYPE` <br> e.g. `del 2 t/e`                                                                                                 |
 | **Edit**            | `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`<br> e.g. `edit 2 t/i a/150.00 da/22-10-2022` |
 | **Summary**         | `summary [mo/MONTH]`<br> e.g. `summary mo/2022-09`                                                                                                      |
-| **View (Category)** | `view t/ENTRY_TYPE g/GRAPH_TYPE` <br> e.g. `view t/e g/c`                                                                                               |
-| **View (Month)**    | `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]` <br> e.g. `view t/i g/m mo/2022-10`                                                                         |
+| **View (Category)** | `view t/ENTRY_TYPE` <br> e.g. `view t/e`                                                                                                                |
+| **View (Month)**    | `view t/ENTRY_TYPE mo/MONTH` <br> e.g. `view t/i mo/2022-10`                                                                                            |
 | **Clear**           | `clear`                                                                                                                                                 |
 | **Exit**            | `exit`                                                                                                                                                  |
