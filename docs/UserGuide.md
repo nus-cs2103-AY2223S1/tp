@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-IdENTify is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, idENTify can get your contact management tasks done faster than traditional GUI apps.
+IdENTify is a **desktop app made for ENT administrative staff to manage patients' contact details and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, idENTify can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -184,9 +184,11 @@ Examples:
 
 #### Listing all patients/appointments : `list`
 
-Shows a list of all patients or appointments, depending on the parameter given. \
+Shows a list of all patients or appointments, depending on the parameter given. Previously hidden patients and appointments will be unhidden as well.
+
 If it is a patient list, then patients will be sorted by their names first; if there are people with the same name, they will be sorted by their 
-phone numbers. \
+phone numbers. 
+
 If it is an appointment list, then appointments will be sorted by their datetime first; if there are appointments 
 with the same datetime, they will be sorted by their attached patients' information.
 
