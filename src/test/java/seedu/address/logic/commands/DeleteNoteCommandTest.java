@@ -7,9 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showNoteAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_NOTE;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalNotes.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -24,7 +22,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.note.Note;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.NoteBuilder;
 import seedu.address.testutil.PersonBuilder;
 
