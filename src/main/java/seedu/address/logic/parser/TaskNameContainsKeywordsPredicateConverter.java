@@ -1,19 +1,13 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
 import picocli.CommandLine;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
 
-/**
- * Converter from {@code String} to {@code NameContainsKeywordsPredicate}.
- */
-public class NameContainsKeywordsPredicateConverter implements
+public class TaskNameContainsKeywordsPredicateConverter implements
         CommandLine.IParameterConsumer {
     @Override
     public void consumeParameters(Stack<String> args, CommandLine.Model.ArgSpec argSpec,
@@ -24,6 +18,6 @@ public class NameContainsKeywordsPredicateConverter implements
             keywords.add(keyword);
         }
 
-        argSpec.setValue(new NameContainsKeywordsPredicate(keywords));
+        argSpec.setValue(new TaskNameContainsKeywordsPredicate(keywords));
     }
 }

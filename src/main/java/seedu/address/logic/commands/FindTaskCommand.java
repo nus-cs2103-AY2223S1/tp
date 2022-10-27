@@ -2,21 +2,23 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
-import java.util.function.Predicate;
-
+import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.TaskNameContainsKeywordsPredicateConverter;
 import seedu.address.model.Model;
-import seedu.address.model.team.Task;
+import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all tasks in the current team whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
+@CommandLine.Command(name = "task")
 public class FindTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "find_task";
+    public static final String COMMAND_WORD = "find task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -24,11 +26,11 @@ public class FindTaskCommand extends Command {
             + "-" + FLAG_NAME_STR + " NAME \n"
             + "Example: " + COMMAND_WORD + " "
             + "-" + FLAG_NAME_STR + " teams feature ";
+    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true,
+            paramLabel = "keywords to find", arity = "1", parameterConsumer = TaskNameContainsKeywordsPredicateConverter.class)
+    private TaskNameContainsKeywordsPredicate predicate;
 
-    private final Predicate<Task> predicate;
-
-    public FindTaskCommand(Predicate<Task> predicate) {
-        this.predicate = predicate;
+    public FindTaskCommand() {
     }
 
     @Override

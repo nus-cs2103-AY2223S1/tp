@@ -29,7 +29,7 @@ public class ListMembersCommand extends Command {
 
         model.updateFilteredMembersList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredMemberList().size()));
     }
 
     @Override
