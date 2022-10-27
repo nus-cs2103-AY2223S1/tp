@@ -1,6 +1,7 @@
 package gim.logic.commands;
 
 import static gim.logic.parser.CliSyntax.PREFIX_ALL;
+import static gim.logic.parser.CliSyntax.PREFIX_CONFIRM;
 import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
@@ -68,6 +69,7 @@ public class CommandTestUtil {
     // date can be empty, it will default to today's date
 
     public static final String DESC_PREFIX_ALL = " " + PREFIX_ALL;
+    public static final String DESC_PREFIX_CONFIRM = " " + PREFIX_CONFIRM;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

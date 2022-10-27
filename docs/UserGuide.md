@@ -115,7 +115,7 @@ you have input. Choose wisely!
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/Squat n/Deadlift`, only `n/Deadlift` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `:list`, `:clear`, `:sort`, `:help` `:wq`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `:list`, `:sort`, `:help` `:wq`) will be ignored.<br>
   e.g. if the command specifies `:help 123`, it will be interpreted as `help`.
 
 </div>
@@ -195,7 +195,7 @@ Format: `:filter KEYWORD [KEYWORD]...`
 * Exercises matching at least one keyword will be returned e.g. `:filter Bench press` will return Bench press and Leg press.
 
 ##### Example:
-* `:filter Deadlift Squat` shows the list of Deadlift and Squat exercises.
+* `:filter Deadlift Squat` Shows the list of Deadlift and Squat exercises.
 
 ![FilterCommand](images/FilterCommand.png)
 
@@ -203,7 +203,14 @@ Format: `:filter KEYWORD [KEYWORD]...`
 
 Clears the saved exercises and resets the data in the system.
 
-Format: `:clear`
+Format: `:clear confirm/`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
+Extraneous parameters (before and after the `confirm/` flag) will be ignored. <br> e.g. if the command specifies `:clear abc confirm/ 123`, it will be interpreted as `:clear confirm/`.
+</div>
+
+##### Example:
+* `:clear confirm/` Confirms the clearing the saved exercises, resetting the data in the system.
 
 
 ### Sorting exercises : `:sort`
@@ -373,7 +380,7 @@ Format: `:wq`
 | **Delete exercise**             | :del INDEX                                     | :d 3                                    |
 | **List all exercises**          | :list                                          | :list                                   |
 | **Filter exercise(s)**          | :filter KEYWORD [KEYWORD]...                   | :filter Deadlift Squat                  |
-| **Clear all exercises**         | :clear                                         | :clear                                  |
+| **Clear all exercises**         | :clear confirm/                                | :clear confirm/                         |
 | **Sort exercises**              | :sort                                          | :sort                                   |
 | **View range (1)**              | :range start/START_DATE end/END_DATE           | :range start/25/10/2022 end/26/10/2022  |
 | **View range (2)**              | :range last/NUMBER_OF_DAYS                     | :range last/3                           |
