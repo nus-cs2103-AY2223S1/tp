@@ -3,7 +3,7 @@ package seedu.intrack.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.intrack.storage.JsonAdaptedInternship.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.intrack.testutil.Assert.assertThrows;
-import static seedu.intrack.testutil.TypicalInternships.BENSON;
+import static seedu.intrack.testutil.TypicalInternships.META;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,24 +29,24 @@ public class JsonAdaptedInternshipTest {
     private static final String INVALID_TASK = "hahahaha";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_POSITION = BENSON.getPosition().toString();
-    private static final String VALID_STATUS = BENSON.getStatus().toString();
-    private static final String VALID_SALARY = BENSON.getSalary().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_WEBSITE = BENSON.getWebsite().toString();
-    private static final List<JsonAdaptedTask> VALID_TASKS = BENSON.getTasks().stream()
+    private static final String VALID_NAME = META.getName().toString();
+    private static final String VALID_POSITION = META.getPosition().toString();
+    private static final String VALID_STATUS = META.getStatus().toString();
+    private static final String VALID_SALARY = META.getSalary().toString();
+    private static final String VALID_EMAIL = META.getEmail().toString();
+    private static final String VALID_WEBSITE = META.getWebsite().toString();
+    private static final List<JsonAdaptedTask> VALID_TASKS = META.getTasks().stream()
             .map(JsonAdaptedTask::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = META.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final String VALID_REMARK = BENSON.getRemark().toString();
+    private static final String VALID_REMARK = META.getRemark().toString();
 
     @Test
     public void toModelType_validInternshipDetails_returnsInternship() throws Exception {
-        JsonAdaptedInternship internship = new JsonAdaptedInternship(BENSON);
-        assertEquals(BENSON, internship.toModelType());
+        JsonAdaptedInternship internship = new JsonAdaptedInternship(META);
+        assertEquals(META, internship.toModelType());
     }
 
     @Test

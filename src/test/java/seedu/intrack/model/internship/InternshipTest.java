@@ -17,7 +17,7 @@ import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 import static seedu.intrack.testutil.Assert.assertThrows;
-import static seedu.intrack.testutil.TypicalInternships.ALICE;
+import static seedu.intrack.testutil.TypicalInternships.GOOG;
 import static seedu.intrack.testutil.TypicalInternships.MSFT;
 
 import java.time.LocalDateTime;
@@ -42,28 +42,28 @@ public class InternshipTest {
     @Test
     public void isSameInternship() {
         // same object -> returns true
-        assertTrue(ALICE.isSameInternship(ALICE));
+        assertTrue(GOOG.isSameInternship(GOOG));
 
         // null -> returns false
-        assertFalse(ALICE.isSameInternship(null));
+        assertFalse(GOOG.isSameInternship(null));
 
         // same name, all other attributes different -> returns true
-        Internship editedAlice = new InternshipBuilder(ALICE).withSalary(VALID_SALARY_MSFT).withEmail(VALID_EMAIL_MSFT)
+        Internship editedGoogle = new InternshipBuilder(GOOG).withSalary(VALID_SALARY_MSFT).withEmail(VALID_EMAIL_MSFT)
                 .withStatus(VALID_STATUS_MSFT).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT).build();
-        assertTrue(ALICE.isSameInternship(editedAlice));
+        assertTrue(GOOG.isSameInternship(editedGoogle));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withName(VALID_NAME_MSFT).build();
-        assertFalse(ALICE.isSameInternship(editedAlice));
+        editedGoogle = new InternshipBuilder(GOOG).withName(VALID_NAME_MSFT).build();
+        assertFalse(GOOG.isSameInternship(editedGoogle));
 
         // different position, all other attributes same -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withPosition(VALID_POSITION_MSFT).build();
-        assertFalse(ALICE.isSameInternship(editedAlice));
+        editedGoogle = new InternshipBuilder(GOOG).withPosition(VALID_POSITION_MSFT).build();
+        assertFalse(GOOG.isSameInternship(editedGoogle));
 
         // same name, same position, all other attributes different -> returns true
-        editedAlice = new InternshipBuilder(ALICE).withSalary(VALID_SALARY_MSFT).withEmail(VALID_EMAIL_MSFT)
+        editedGoogle = new InternshipBuilder(GOOG).withSalary(VALID_SALARY_MSFT).withEmail(VALID_EMAIL_MSFT)
                 .withStatus(VALID_STATUS_MSFT).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT).build();
-        assertTrue(ALICE.isSameInternship(editedAlice));
+        assertTrue(GOOG.isSameInternship(editedGoogle));
 
         // name differs in case, all other attributes same -> returns true
         Internship editedMsft = new InternshipBuilder(MSFT).withName(VALID_NAME_MSFT.toLowerCase()).build();
@@ -82,44 +82,44 @@ public class InternshipTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Internship aliceCopy = new InternshipBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Internship googleCopy = new InternshipBuilder(GOOG).build();
+        assertTrue(GOOG.equals(googleCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(GOOG.equals(GOOG));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(GOOG.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(GOOG.equals(5));
 
         // different internship -> returns false
-        assertFalse(ALICE.equals(MSFT));
+        assertFalse(GOOG.equals(MSFT));
 
         // different name -> returns false
-        Internship editedAlice = new InternshipBuilder(ALICE).withName(VALID_NAME_MSFT).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Internship editedGoogle = new InternshipBuilder(GOOG).withName(VALID_NAME_MSFT).build();
+        assertFalse(GOOG.equals(editedGoogle));
 
         // different position -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withPosition(VALID_POSITION_MSFT).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedGoogle = new InternshipBuilder(GOOG).withPosition(VALID_POSITION_MSFT).build();
+        assertFalse(GOOG.equals(editedGoogle));
 
         // different salary -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withSalary(VALID_SALARY_MSFT).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedGoogle = new InternshipBuilder(GOOG).withSalary(VALID_SALARY_MSFT).build();
+        assertFalse(GOOG.equals(editedGoogle));
 
         // different email -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withEmail(VALID_EMAIL_MSFT).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedGoogle = new InternshipBuilder(GOOG).withEmail(VALID_EMAIL_MSFT).build();
+        assertFalse(GOOG.equals(editedGoogle));
 
         // different website -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withWebsite(VALID_WEBSITE_MSFT).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedGoogle = new InternshipBuilder(GOOG).withWebsite(VALID_WEBSITE_MSFT).build();
+        assertFalse(GOOG.equals(editedGoogle));
 
         // different tags -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withTags(VALID_TAG_URGENT).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedGoogle = new InternshipBuilder(GOOG).withTags(VALID_TAG_URGENT).build();
+        assertFalse(GOOG.equals(editedGoogle));
     }
 
     @Test
