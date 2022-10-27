@@ -50,14 +50,13 @@ public class DeleteLeaveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getDatabase().getPersonList();
         if (index < 0) {
             throw new CommandException(MESSAGE_INVALID_INDEX);
         }
         for (Person person : lastShownList) {
             if (person.getEmployeeId().equals(targetId)) {
                 if (index > person.getLeaves().size()) {
-                    System.out.println("hey");
                     throw new CommandException(MESSAGE_INVALID_INDEX);
                 }
                 Leave removedLeave = null;

@@ -105,7 +105,9 @@ public class Person {
     }
 
     public ObservableList<Leave> getObservableListLeaves() {
-        return FXCollections.observableArrayList(leaves);
+        ObservableList<Leave> list = FXCollections.observableArrayList(leaves);
+        list.sort(Leave.COMPARATOR);
+        return list;
     }
 
     public int getTotalNumberOfLeaves() {
