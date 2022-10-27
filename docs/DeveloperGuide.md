@@ -523,6 +523,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ****
 
+**Use case 8: Clearing data**
+
+**Preconditions**
+- User is currently using FoodWhere.
+
+**MSS**
+
+1. User enters a command to clear data from FoodWhere.
+2. FoodWhere sends a confirmation message that all data is cleared and saves all changes to disk.
+
+   Use case ends.
+
+****
+
 ### Non-Functional Requirements
 
 #### Data Requirements
