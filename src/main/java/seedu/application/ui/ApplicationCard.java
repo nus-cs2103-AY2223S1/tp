@@ -39,6 +39,8 @@ public class ApplicationCard extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
+    private Label isArchived;
+    @FXML
     private Label status;
     @FXML
     private FlowPane tags;
@@ -51,6 +53,7 @@ public class ApplicationCard extends UiPart<Region> {
         this.application = application;
         id.setText(displayedIndex + ". ");
         company.setText(application.getCompany().company);
+        isArchived.setVisible(application.isArchived());
         status.setText(application.getStatus().getValue());
         status.setStyle("-fx-background-color: " + application.getStatus().getColor());
         contact.setText(application.getContact().value);
