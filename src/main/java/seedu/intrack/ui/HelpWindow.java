@@ -44,7 +44,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String FILTER_COMMAND = "filter STATUS";
 
     public static final String FINDNAME_COMMAND_DESC = "Search applications by company name: ";
-    public static final String FINDNAME_COMMAND = "findn KEYWORD [MORE_KEYWORDS]";
+    public static final String FINDNAME_COMMAND = "findc KEYWORD [MORE_KEYWORDS]";
 
     public static final String FINDPOSITION_COMMAND_DESC = "Search applications by position name: ";
     public static final String FINDPOSITION_COMMAND = "findp KEYWORD [MORE_KEYWORDS]";
@@ -52,9 +52,9 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String FINDTAG_COMMAND_DESC = "Search applications by tags: ";
     public static final String FINDTAG_COMMAND = "findt KEYWORD [MORE_KEYWORDS]";
 
-    public static final String SORT_COMMAND_DESC = "Sort internship applications by ORDERTYPE (time or salary) and "
-        + "ORDER (a for ascending or d for descending): ";
-    public static final String SORT_COMMAND = "sort ORDERTYPE ORDER";
+    public static final String SORT_COMMAND_DESC = "Sort internship applications by SORT_TYPE (time or salary) and "
+        + "SORT_ORDER (a for ascending or d for descending): ";
+    public static final String SORT_COMMAND = "sort SORT_TYPE SORT_ORDER";
 
     public static final String STATS_COMMAND_DESC = "View statistics of internship applications: ";
     public static final String STATS_COMMAND = "stats";
@@ -79,8 +79,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String EDIT_COMMAND = "edit [c/NEW_NAME] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] "
         + "[t/NEW_TAGS] [s/NEW_SALARY]";
 
-    public static final String MAIL_COMMAND_DESC = "Send an email to the email address of the selected internship "
-        + "application: ";
+    public static final String MAIL_COMMAND_DESC = "Opens the mail app to send an email to the email address of the "
+        + "selected internship application: ";
     public static final String MAIL_COMMAND = "mail";
 
     public static final String REMARK_COMMAND_DESC = "Add a remark or edit the remark of the selected internship "
