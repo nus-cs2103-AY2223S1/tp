@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalDateTime.DATE_TIME_ONE;
 import static seedu.uninurse.testutil.TypicalTasks.TASK_HEALTH_RECORDS;
 import static seedu.uninurse.testutil.TypicalTasks.TASK_INSULIN;
 
@@ -57,7 +58,7 @@ public class TaskTest {
 
         // same values -> returns true
         String taskInsulinDescription = "Administer 1 unit of insulin";
-        Task taskInsulinCopy = new Task(taskInsulinDescription);
+        Task taskInsulinCopy = new Task(taskInsulinDescription, DATE_TIME_ONE);
         assertEquals(TASK_INSULIN, taskInsulinCopy);
 
         // different types -> returns false
