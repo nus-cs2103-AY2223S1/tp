@@ -3,8 +3,8 @@ package tracko.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static tracko.testutil.Assert.assertThrows;
-import static tracko.testutil.TypicalItems.ITEM_8;
-import static tracko.testutil.TypicalItems.ITEM_9;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_8;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_9;
 import static tracko.testutil.TypicalOrders.ORDER_8;
 import static tracko.testutil.TypicalOrders.ORDER_9;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
@@ -74,7 +74,7 @@ public class JsonTrackOStorageTest {
         assertEquals(original, new TrackO(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addItem(ITEM_8);
+        original.addItem(INVENTORY_ITEM_8);
         original.addOrder(ORDER_8);
 
         // re-add after implementation of remove order
@@ -85,7 +85,7 @@ public class JsonTrackOStorageTest {
         assertEquals(original, new TrackO(readBack));
 
         // Save and read without specifying file path
-        original.addItem(ITEM_9);
+        original.addItem(INVENTORY_ITEM_9);
         original.addOrder(ORDER_9);
         jsonTrackOStorage.saveTrackO(original); // file path not specified
         readBack = jsonTrackOStorage.readTrackO().get(); // file path not specified

@@ -1,4 +1,4 @@
-package tracko.logic.commands;
+package tracko.logic.commands.item;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,15 +16,15 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
+import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
-import tracko.logic.commands.item.AddItemCommand;
 import tracko.model.Model;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.ReadOnlyUserPrefs;
 import tracko.model.TrackO;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.order.Order;
-import tracko.testutil.ItemBuilder;
+import tracko.testutil.InventoryItemBuilder;
 
 public class AddItemCommandTest {
     @Test
@@ -35,7 +35,7 @@ public class AddItemCommandTest {
     @Test
     public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
-        Item validItem = new ItemBuilder().build();
+        InventoryItem validItem = new InventoryItemBuilder().build();
 
         AddItemCommand command = new AddItemCommand(validItem);
 
@@ -48,7 +48,7 @@ public class AddItemCommandTest {
     @Test
     public void execute_repeatedItemRejectedByModel_throwsCommandException() throws Exception {
         ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
-        Item validItem = new ItemBuilder().build();
+        InventoryItem validItem = new InventoryItemBuilder().build();
 
         String expectedMessage = AddItemCommand.MESSAGE_ITEM_EXISTS;
 
@@ -64,8 +64,8 @@ public class AddItemCommandTest {
 
     @Test
     public void equals() {
-        Item key = new ItemBuilder().withItemName("key").build();
-        Item flour = new ItemBuilder().withItemName("flour").build();
+        InventoryItem key = new InventoryItemBuilder().withItemName("key").build();
+        InventoryItem flour = new InventoryItemBuilder().withItemName("flour").build();
         AddItemCommand addKeyCommand = new AddItemCommand(key);
         AddItemCommand addFlourCommand = new AddItemCommand(flour);
 
@@ -146,37 +146,37 @@ public class AddItemCommandTest {
         }
 
         @Override
-        public void addItem(Item item) {
+        public void addItem(InventoryItem item) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Item getItem(String itemName) {
+        public InventoryItem getItem(String itemName) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Item> getFilteredItemList() {
+        public ObservableList<InventoryItem> getFilteredItemList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteItem(Item item) {
+        public void deleteItem(InventoryItem item) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasItem(Item item) {
+        public boolean hasItem(InventoryItem item) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setItem(Item target, Item editedItem) {
+        public void setItem(InventoryItem target, InventoryItem editedItem) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredItemList(Predicate<Item> predicate) {
+        public void updateFilteredItemList(Predicate<InventoryItem> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,7 +186,7 @@ public class AddItemCommandTest {
         }
 
         @Override
-        public ObservableList<Item> getInventoryList() {
+        public ObservableList<InventoryItem> getInventoryList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -230,16 +230,16 @@ public class AddItemCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingItemAdded extends AddItemCommandTest.ModelStub {
-        final ArrayList<Item> itemsAdded = new ArrayList<>();
+        final ArrayList<InventoryItem> itemsAdded = new ArrayList<>();
 
         @Override
-        public void addItem(Item item) {
+        public void addItem(InventoryItem item) {
             requireNonNull(item);
             itemsAdded.add(item);
         }
 
         @Override
-        public boolean hasItem(Item item) {
+        public boolean hasItem(InventoryItem item) {
             requireNonNull(item);
             return itemsAdded.contains(item);
         }

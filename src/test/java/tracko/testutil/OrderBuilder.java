@@ -1,12 +1,12 @@
 package tracko.testutil;
 
-import static tracko.testutil.TypicalItems.ITEM_1;
+import static tracko.testutil.TypicalItems.INVENTORY_ITEM_1;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.Quantity;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
@@ -26,7 +26,7 @@ public class OrderBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final LocalDateTime DEFAULT_TIME_CREATED =
             LocalDateTime.of(2022, 10, 18, 23, 54, 44);
-    public static final Item DEFAULT_ITEM = ITEM_1;
+    public static final InventoryItem DEFAULT_INVENTORY_ITEM = INVENTORY_ITEM_1;
     public static final Integer DEFAULT_QUANTITY = 2;
     public static final boolean DEFAULT_PAID_STATUS = false;
     public static final boolean DEFAULT_DELIVERY_STATUS = false;
@@ -50,7 +50,7 @@ public class OrderBuilder {
         address = new Address(DEFAULT_ADDRESS);
         timeCreated = DEFAULT_TIME_CREATED;
         itemList = new ArrayList<>();
-        itemList.add(new ItemQuantityPair(DEFAULT_ITEM, new Quantity(DEFAULT_QUANTITY)));
+        itemList.add(new ItemQuantityPair(DEFAULT_INVENTORY_ITEM, new Quantity(DEFAULT_QUANTITY)));
         isPaid = DEFAULT_PAID_STATUS;
         isDelivered = DEFAULT_DELIVERY_STATUS;
     }
