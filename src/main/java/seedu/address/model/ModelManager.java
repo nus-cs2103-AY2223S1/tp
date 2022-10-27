@@ -1,12 +1,14 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static javafx.collections.FXCollections.unmodifiableObservableList;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -22,9 +24,12 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+    // Value 0 corresponding to the index of home status in observable list.
+    private static final int INDEX_OF_HOME_STATUS = 0;
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private boolean isHome = true;
+    // Single observable boolean with ObservableList as wrapper.
+    private ObservableList<Boolean> isHome = FXCollections.observableArrayList(true);
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -169,7 +174,8 @@ public class ModelManager implements Model {
     @Override
     public void deleteModule(Module target) {
         addressBook.removeModule(target);
-        this.isHome = true;
+        isHome.set(0, true);
+        assert isHome.size() == 1;
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -177,7 +183,8 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
-        this.isHome = true;
+        isHome.set(0, true);
+        assert isHome.size() == 1;
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -267,22 +274,30 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return isHome == other.isHome
+        return isHome.equals(other.isHome)
                 && addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredModules.equals(other.filteredModules);
     }
 
-    //// navigation-related methods
+    //=========== Navigation-related Methods =============================================================
+    @Override
+    public ObservableList<Boolean> getHomeStatus() {
+        assert isHome.size() == 1;
+        // Return an unmodifiable copy.
+        return unmodifiableObservableList(isHome);
+    }
 
     @Override
-    public boolean getHomeStatus() {
-        return isHome;
+    public Boolean getHomeStatusAsBoolean() {
+        assert isHome.size() == 1;
+        return isHome.get(INDEX_OF_HOME_STATUS);
     }
 
     @Override
     public void setHomeStatus(boolean isHome) {
-        this.isHome = isHome;
+        assert this.isHome.size() == 1;
+        this.isHome.set(INDEX_OF_HOME_STATUS, isHome);
     }
 }

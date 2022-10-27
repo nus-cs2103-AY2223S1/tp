@@ -12,6 +12,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ZERO_MODULE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ZERO_PERSON;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2106;
+import static seedu.address.testutil.TypicalModules.CS2106_WITH_TYPICAL_TASKS;
 import static seedu.address.testutil.TypicalModules.MA2001;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -23,6 +24,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
@@ -305,6 +308,59 @@ public class ModelManagerTest {
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ZERO_PERSON);
         assertThrows(PersonNotFoundException.class, () ->
                 modelManager.getPersonUsingName(nameToSearchFor, true));
+    }
+
+    @Test
+    public void setHomeStatus() {
+        ObservableList<Boolean> isAtHome = FXCollections.observableArrayList(true);
+        ObservableList<Boolean> isNotAtHome = FXCollections.observableArrayList(false);
+        // Model default is at home.
+        assertEquals(isAtHome, modelManager.getHomeStatus());
+
+        // Leave home.
+        modelManager.setHomeStatus(false);
+        assertEquals(isNotAtHome, modelManager.getHomeStatus());
+
+        // Return home.
+        modelManager.setHomeStatus(true);
+        assertEquals(isAtHome, modelManager.getHomeStatus());
+    }
+
+    @Test
+    public void getHomeStatus() {
+        ObservableList<Boolean> isAtHome = FXCollections.observableArrayList(true);
+        ObservableList<Boolean> isNotAtHome = FXCollections.observableArrayList(false);
+
+        // Model default is at home.
+        assertEquals(isAtHome, modelManager.getHomeStatus());
+
+        // Model stays at home when filtered list is updated.
+        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ZERO_PERSON);
+        assertEquals(isAtHome, modelManager.getHomeStatus());
+
+        // Model stays at home after adding person.
+        modelManager.addPerson(AMY);
+        assertEquals(isAtHome, modelManager.getHomeStatus());
+
+        // Model stays at home after removing person.
+        modelManager.deletePerson(AMY);
+        assertEquals(isAtHome, modelManager.getHomeStatus());
+
+        // Leave home.
+        modelManager.setHomeStatus(false);
+        assertEquals(isNotAtHome, modelManager.getHomeStatus());
+
+        // Model returns home after adding module.
+        modelManager.addModule(CS2106_WITH_TYPICAL_TASKS);
+        assertEquals(isAtHome, modelManager.getHomeStatus());
+
+        // Leave home again.
+        modelManager.setHomeStatus(false);
+        assertEquals(isNotAtHome, modelManager.getHomeStatus());
+
+        // Model returns home after removing module.
+        modelManager.deleteModule(CS2106_WITH_TYPICAL_TASKS);
+        assertEquals(isAtHome, modelManager.getHomeStatus());
     }
 
     @Test

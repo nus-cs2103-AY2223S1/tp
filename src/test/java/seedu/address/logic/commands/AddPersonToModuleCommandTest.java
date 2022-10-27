@@ -17,6 +17,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Module;
@@ -204,8 +206,8 @@ public class AddPersonToModuleCommandTest {
         }
 
         @Override
-        public boolean getHomeStatus() {
-            return true;
+        public ObservableList<Boolean> getHomeStatus() {
+            return FXCollections.singletonObservableList(true);
         }
     }
 
