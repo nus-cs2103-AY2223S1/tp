@@ -57,7 +57,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 
    * **`list`** : Lists all itineraries.
 
-   * **`add`**`n/My Japan Trip` : Adds an itinerary named "My Japan Trip".
+   * **`add`**`d/My Japan Trip du/14 sd/2023-04-01` : Adds an itinerary named "My Japan Trip".
 
    * **`delete`**`1` : Deletes the 1st itinerary shown in the current list.
 
@@ -74,14 +74,11 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  - e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/My Japan Trip`.
+  - e.g. in `add d/DESCRIPTION ...`, `DESCRIPTION` is a parameter which can be used as `add d/My Japan Trip`.
 
 * Items in square brackets are optional.<br>
-  - e.g. `n/NAME [c/COUNTRY]` can be used as `n/My Japan Trip c/Japan` or as `n/My Japan Trip`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  - e.g. `[w/WADDLERS]…​` can be used as ` ` (i.e. 0 times), `w/me`, `w/friend 1 w/friend 2` etc.
-
+  - e.g. `d/DESCRIPTION [c/COUNTRY] sd/START DATE du/DURATION` can be used as `n/My Japan Trip c/Japan sd/2023-04-01 du/14` or as `n/My Japan Trip sd/2023-04-01 du/14`.
+  
 * Parameters can be in any order.<br>
   - e.g. if the command specifies `c/CATEGORY d/DESCRIPTION`, `d/DESCRIPTION c/CATEGORY` is also acceptable.
 
@@ -107,10 +104,10 @@ Format: `help`
 
 Adds an itinerary to Waddle.
 
-Format: `add d/DESCRIPTION [c/COUNTRY] sd/START DATE du/DURATION [p/NUMBER OF PEOPLE] [b/BUDGET]`
+Format: `add d/DESCRIPTION [c/COUNTRY] sd/START DATE du/DURATION [p/NUMBER OF WADDLERS] [b/BUDGET]`
 
 * Adds a new itinerary with `DESCRIPTION` to the itinerary list.
-* `START DATE` should be given in the format `yyyy-mm-dd`, and `DURATION` is the number of nights.
+* `START DATE` should be given in the format `yyyy-mm-dd`, and `DURATION` is the number of days.
   - e.g. `sd/2022-12-10 du/10` would mean that the trip is from 10 Dec 2022 to 20 Dec 2022.
 * `BUDGET` is in dollars ($) and can include cents.
   - e.g. `b/1000.50` is $1000 and 50¢.
@@ -130,7 +127,7 @@ Format: `list`
 
 Edits an existing itinerary in Waddle.
 
-Format: `edit INDEX [d/NAME] [c/COUNTRY] [sd/START DATE] [du/DURATION] [p/NUMBER OF PEOPLE] [b/BUDGET]`
+Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START DATE] [du/DURATION] [p/NUMBER OF WADDLERS] [b/BUDGET]`
 
 * Edits the itinerary at the specified `INDEX`. The index refers to the index number shown in the displayed itinerary list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -167,7 +164,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g. `india` will match `India`
 * The order of the keywords does not matter. e.g. `Trip Japan My` will match `My Japan Trip`
-* Only the name is searched.
+* The search is based on itinerary descriptions only.
 * Only full words will be matched e.g. `Jap` will not match `Japan`
 * Itineraries matching at least one of the provided keywords will be returned (i.e. `OR` search).
   - e.g. `find Japan Trip` will return `My Germany Trip`, since there is a match for the keyword  `Trip`.
@@ -202,7 +199,7 @@ Adds an item to the list of items.
 Format: `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`
 
 * Adds a new item with `DESCRIPTION` to the unscheduled item list.
-* The default `PRIORITY` is `1`, while default `COST` and `DURATION` are both 0.
+* The default `PRIORITY` is 1, while default `COST` and `DURATION` are both 0.
 * `COST` is in dollars ($) and can include cents.
   - e.g. `b/100.20` is $100 and 20¢.
 * `DURATION` is in _minutes_.
@@ -210,8 +207,8 @@ Format: `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`
 * You cannot add items with the same description as an existing item in the item list.
 
 Examples:
-* `add d/Go to the Louvre s/2022-12-12 du/1`
-* `add d/Skiing c/Germany du/14 s/05/10/22 b/1000 p/4`
+* `add d/Go to the Louvre p/2 du/1`
+* `add d/Skiing du/14 c/100`
 
 ### Editing the details of an item : `edit`
 
@@ -219,13 +216,13 @@ Edits an existing item in the item list.
 
 Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
 
-* Edits the item at the specified `INDEX`. The index refers to the index number displayed in either the unscheduled item list, or the day list.
+* Edits the item at the specified `INDEX`. The index refers to the index number displayed in either the unscheduled item list, or the scheduled items in the day lists.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
 * `edit 1 d/Go skiing` would edit the description of the 1st item in the unscheduled item list to be `Go skiing`.
-* `edit 2.2 p/3 c/100` would edit the priority and cost of the 2nd item in the Day 2 item list to be `3` and `100` respectively.
+* `edit 2.2 p/3 c/100` would edit the priority and cost of the 2nd item in the Day 2 list to be `3` and `100` respectively.
 
 ### Deleting an item : `delete`
 
@@ -233,7 +230,7 @@ Deletes an existing item in the item list.
 
 Format: `delete INDEX`
 
-* Deletes the item at the specified `INDEX`. The index refers to the index number displayed in either the unscheduled item list, or the day list.
+* Deletes the item at the specified `INDEX`. The index refers to the index number displayed in either the unscheduled item list, or the scheduled items in the day lists.
 
 Examples:
 * `delete 1` would delete the 1st item in the unscheduled item list.
@@ -258,7 +255,7 @@ Examples:
 
 ### Unscheduling an item : `unplan`
 
-Unschedules an item in the scheduled item lists in the list of days.
+Unschedules an item in a scheduled item list.
 
 Format: `unplan INDEX`
 
@@ -296,7 +293,7 @@ Format: `exit`
 
 ### Saving the data
 
-Waddle data are saved in the hard disk automatically after any command that changes the data is used. There is no need to save manually.
+Waddle data is saved in the hard disk automatically upon any change in the data. There is no need to save manually.
 
 ### Editing the data file
 
@@ -310,25 +307,25 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Waddle home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-### Home page commands
-| Action                                                           | Format, Examples                                                                                                                                                |
-|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                          |
-| [**Add Itinerary**](#creating-a-new-itinerary--add)              | `add d/DESCRIPTION [c/COUNTRY] du/DURATION s/START DATE [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add n/Germanyyyy c/Germany du/14 s/2022-05-10 p/4 b/7500` |
-| [**List Itineraries**](#listing-all-itineraries--list)           | `list`                                                                                                                                                          |
-| [**Edit Itinerary**](#editing-the-details-of-an-itinerary--edit) | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 d/15 s/2022-04-10`                            |
-| [**Delete Itinerary**](#deleting-an-itinerary--delete)           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                             |
-| [**Clear Itineraries**](#clearing-itineraries--clear)            | `clear`                                                                                                                                                         |
-| [**Find Itinerary**](#locating-itineraries-by-name--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                      |
-| [**Select Itinerary**](#selecting-an-itinerary--select)          | `select INDEX`<br> e.g., `select 3`                                                                                                                             |
-| [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                          |
+### Main page commands
+| Action                                                           | Format, Examples                                                                                                                                                 |
+|------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                           |
+| [**Add Itinerary**](#creating-a-new-itinerary--add)              | `add d/DESCRIPTION [c/COUNTRY] du/DURATION sd/START DATE [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add n/Germanyyyy c/Germany du/14 s/2022-05-10 p/4 b/7500` |
+| [**List Itineraries**](#listing-all-itineraries--list)           | `list`                                                                                                                                                           |
+| [**Edit Itinerary**](#editing-the-details-of-an-itinerary--edit) | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 d/15 s/2022-04-10`                             |
+| [**Delete Itinerary**](#deleting-an-itinerary--delete)           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                              |
+| [**Clear Itineraries**](#clearing-itineraries--clear)            | `clear`                                                                                                                                                          |
+| [**Find Itinerary**](#locating-itineraries-by-name--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                       |
+| [**Select Itinerary**](#selecting-an-itinerary--select)          | `select INDEX`<br> e.g., `select 3`                                                                                                                              |
+| [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                           |
 
 ### Item planning page commands
 | Action                                                       | Format, Examples                                                                                         |
