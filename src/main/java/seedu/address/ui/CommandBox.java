@@ -92,22 +92,12 @@ public class CommandBox extends UiPart<Region> {
         event.consume();
 
         // Guard: Checks if command text field satisfies condition.
-        if (!isNavigable()) {
-            return;
-        }
-
-        // Guard: If there are no commands, nothing happens.
-        if (commandLog.size() == 0) {
+        if (!isNavigable(event)) {
             return;
         }
 
         if (event.getCode() == KeyCode.UP) {
-            // If the text field shows the earliest command, UP arrow does nothing
-            if (pointer == 0) {
-                return;
-            } else {
-                commandTextField.setText(commandLog.get(--pointer));
-            }
+            commandTextField.setText(commandLog.get(--pointer));
         } else if (event.getCode() == KeyCode.DOWN) {
             if (pointer == commandLog.size()) {
                 return;
@@ -151,18 +141,28 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Checks if command text field can be navigated using the UP and DOWN arrow keys.
+     */
+    private boolean isNavigable(KeyEvent event) {
+        // Guard: If there are no commands, nothing happens.
+        if (commandLog.size() == 0) {
+            return false;
+        }
+
+        // Guard: If the text field shows the earliest command, UP arrow does nothing
+        if (event.getCode() == KeyCode.UP && pointer == 0) {
+            return false;
+        }
+
+        return isCommandTextFieldEmpty()
+            || (!isCommandTextFieldEmpty() && getCommandText().equals(commandLog.get(pointer)));
+    }
+
+    /**
      * Check if command text field is empty
      */
     private boolean isCommandTextFieldEmpty() {
         return commandTextField.getText().isEmpty();
-    }
-
-    /**
-     * Checks if command text field can be navigated using the UP and DOWN arrow keys.
-     */
-    private boolean isNavigable() {
-        return isCommandTextFieldEmpty()
-            || (!isCommandTextFieldEmpty() && getCommandText().equals(commandLog.get(pointer)));
     }
 
     /**
