@@ -208,7 +208,7 @@ _Details coming soon ..._
 
 
 |  Action      | Format, Examples                                                                                                                         
-|--------------|------------------------------------------------------------------------------------------------------------------------------------------|
+-----|--------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold` |
 | **Increase** | `incr 100 p/PHONE_NUMBER` or `incr 100 e/EMAIL` <br> e.g., `incr 100 p/87438807`, `incr 100 e/alexyeoh@example.com`                      |
 | **Decrease** | `decr 100 p/PHONE_NUMBER` or `decr 100 e/EMAIL` <br> e.g., `decr 100 p/87438807`, `decr 100 e/alexyeoh@example.com`                      |
