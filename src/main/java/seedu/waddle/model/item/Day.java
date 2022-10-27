@@ -3,9 +3,12 @@ package seedu.waddle.model.item;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 import seedu.waddle.commons.core.Messages;
 import seedu.waddle.commons.core.index.Index;
+import seedu.waddle.logic.PdfFieldInfo;
+import seedu.waddle.logic.PdfFiller;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.exceptions.Period;
 
@@ -170,5 +173,26 @@ public class Day {
             splitPeriods.add(new Period(small.getEnd(), big.getEnd()));
         }
         return splitPeriods;
+    }
+
+    public List<PdfFieldInfo> getPdfFieldInfoList() {
+        List<PdfFieldInfo> fieldList = new ArrayList<>();
+        PdfFieldInfo day = new PdfFieldInfo("day", "Day " + Integer.toString(dayNumber + 1));
+        fieldList.add(day);
+        for (int i = 0; i < PdfFiller.MAX_DISPLAY; i++) {
+            if (i < this.itemList.getSize()) {
+                Item item = this.itemList.get(i);
+                PdfFieldInfo time = new PdfFieldInfo("time" + i, item.getTimeString());
+                PdfFieldInfo activity = new PdfFieldInfo("item" + i, item.getDescription().toString());
+                fieldList.add(time);
+                fieldList.add(activity);
+            } else {
+                PdfFieldInfo time = new PdfFieldInfo("time" + i, "");
+                PdfFieldInfo activity = new PdfFieldInfo("item" + i, "");
+                fieldList.add(time);
+                fieldList.add(activity);
+            }
+        }
+        return fieldList;
     }
 }
