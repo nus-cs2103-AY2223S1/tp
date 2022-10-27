@@ -51,7 +51,7 @@ public class AddLeaveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getDatabase().getPersonList();
         for (Person person : lastShownList) {
             if (person.getEmployeeId().equals(targetId)) {
                 if (person.getLeavesLeft() < leave.getTotalDays()) {
