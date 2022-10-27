@@ -22,6 +22,13 @@ public class SortInfo {
         this.info = "none";
     }
 
+    /**
+     * Returns a String of the {@code info} field.
+     */
+    public String getInfo() {
+        return info;
+    }
+
     @Override
     public String toString() {
         return SORT_INFO_PREFIX + info;
