@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -13,35 +14,36 @@
    <children>
       <GridPane hgap="5.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
-            <ColumnConstraints hgrow="SOMETIMES" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <VBox alignment="CENTER_LEFT" spacing="5.0">
-               <children>
-                  <Label fx:id="id" />
-               </children></VBox>
-            <VBox fx:id="namePane" GridPane.columnIndex="1">
+            <VBox alignment="CENTER_LEFT">
                <children>
                   <HBox alignment="CENTER_LEFT">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
+                        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
                      </children>
                   </HBox>
                   <FlowPane fx:id="tags" prefWrapLength="100.0" />
                </children>
             </VBox>
-            <VBox fx:id="taskNumberPane" alignment="CENTER" GridPane.columnIndex="2" />
+            <Separator orientation="VERTICAL" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Separator>
+            <VBox fx:id="taskPane" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="2" />
          </children>
          <padding>
-            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </GridPane>
    </children>

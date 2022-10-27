@@ -1,9 +1,12 @@
 package seedu.uninurse.ui;
 
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -28,6 +31,18 @@ public class OutputPanel extends UiPart<Region> {
     }
 
     /**
+     * Updates the outputView panel accordingly with a schedule if commandResult is schedule related.
+     */
+    public void handleSchedule(Schedule schedule) {
+        ScheduleListPanel scheduleListPanel = new ScheduleListPanel(schedule);
+        scheduleListPanel.getRoot().prefWidthProperty().bind(this.getRoot().widthProperty());
+        scheduleListPanel.getRoot().prefHeightProperty().bind(this.getRoot().heightProperty());
+
+        outputView.getChildren().clear();
+        outputView.getChildren().add(scheduleListPanel.getRoot());
+    }
+
+    /**
      * Updates the outputView panel accordingly with {@code patient} if commandResult is task related.
      */
     public void handleTask(Patient patient) {
@@ -37,6 +52,18 @@ public class OutputPanel extends UiPart<Region> {
 
         outputView.getChildren().clear();
         outputView.getChildren().add(taskListPanel.getRoot());
+    }
+
+    /**
+     * Updates the outputView panel accordingly with a list of {@code patient} if executed command is ListTask.
+     */
+    public void handleListTask(List<Patient> patients) {
+        TruncatedTaskListPanel truncatedTaskListPanel = new TruncatedTaskListPanel(patients);
+        truncatedTaskListPanel.getRoot().prefWidthProperty().bind(this.getRoot().widthProperty());
+        truncatedTaskListPanel.getRoot().prefHeightProperty().bind(this.getRoot().heightProperty());
+
+        outputView.getChildren().clear();
+        outputView.getChildren().add(truncatedTaskListPanel.getRoot());
     }
 
     /**
@@ -97,5 +124,4 @@ public class OutputPanel extends UiPart<Region> {
         RedoCard redoCard = new RedoCard(patientListTracker);
         outputView.getChildren().add(redoCard.getRoot());
     }
-
 }

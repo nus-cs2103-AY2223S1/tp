@@ -3,9 +3,13 @@ package seedu.uninurse.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.remark.Remark;
+import seedu.uninurse.model.task.Task;
+import seedu.uninurse.model.task.TaskList;
 
 /**
  * An UI component that displays information of a {@code Patient} without index.
@@ -40,15 +44,29 @@ public class UpdatedPatientCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label conditionHeader;
+    @FXML
     private Label conditions;
+    @FXML
+    private Label medicationHeader;
     @FXML
     private Label medications;
     @FXML
-    private Label taskheader;
+    private Label taskHeader;
     @FXML
-    private Label tasklist;
+    private VBox taskContainer;
     @FXML
-    private Label remarks;
+    private Label remarkHeader;
+    @FXML
+    private VBox remarkContainer;
+    @FXML
+    private VBox conditionHeaderPane;
+    @FXML
+    private VBox medicationHeaderPane;
+    @FXML
+    private VBox taskHeaderPane;
+    @FXML
+    private VBox remarkHeaderPane;
 
     /**
      * Creates a {@code UpdatedPatientCard} with the given {@code Patient}.
@@ -69,15 +87,88 @@ public class UpdatedPatientCard extends UiPart<Region> {
         email.setText(patient.getEmail().getValue());
         patient.getTags().getInternalList()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
-        conditions.setText("Conditions:" + "\n" + getListAsText(patient.getConditions().toString()));
-        medications.setText("Medications:" + "\n" + getListAsText(patient.getMedications().toString()));
-        taskheader.setText("Tasks:");
-        tasklist.setText(getListAsText(patient.getTasks().toString()));
-        remarks.setText("Remarks:" + "\n" + getListAsText(patient.getRemarks().toString()));
+
+        conditionHeader.setText("Conditions:");
+        conditions.setText(getListAsText(patient.getConditions().toString(), "conditions"));
+
+        medicationHeader.setText("Medications:");
+        medications.setText(getListAsText(patient.getMedications().toString(), "medications"));
+
+        taskHeader.setText("Tasks:");
+        if (patient.getTasks().isEmpty()) {
+            taskContainer.getChildren().add(getTaskBox(0, "No tasks", ""));
+        } else {
+            TaskList taskList = patient.getTasks();
+            for (int i = 0; i < taskList.size(); i++) {
+                Task task = taskList.get(i);
+                taskContainer.getChildren().add(
+                        getTaskBox(i + 1, task.getTaskDescription(), task.getDateTime().toString()));
+            }
+        }
+
+        remarkHeader.setText("Remarks:");
+        if (patient.getRemarks().isEmpty()) {
+            remarkContainer.getChildren().add(getRemarkBox("No remarks"));
+        } else {
+            for (Remark remark : patient.getRemarks().getInternalList()) {
+                remarkContainer.getChildren().add(getRemarkBox(remark.getValue()));
+            }
+        }
     }
 
-    private String getListAsText(String list) {
-        return list.isEmpty() ? "-" : list;
+    private String getListAsText(String list, String listType) {
+        return list.isEmpty() ? "No " + listType : list;
+    }
+
+    private HBox getTaskBox(int taskIndex, String taskName, String taskTime) {
+        HBox taskBox = new HBox();
+        taskBox.setSpacing(2.5);
+
+        Label taskNameLabel = new Label(taskName);
+        taskNameLabel.setWrapText(true);
+        taskNameLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
+                + "-fx-font-size: 13px;"
+                + "-fx-text-fill: black;");
+
+        if (taskIndex == 0) {
+            taskBox.getChildren().add(taskNameLabel);
+            return taskBox;
+        }
+        Label taskIndexLabel = new Label(String.valueOf(taskIndex));
+        taskIndexLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
+                + "-fx-font-size: 13px;"
+                + "-fx-text-fill: black;");
+
+        VBox taskTimeBox = new VBox();
+        taskTimeBox.setStyle("-fx-background-color: #95b3e8;"
+                + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+                // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
+                + "-fx-background-radius: 5;");
+        Label taskTimeLabel = new Label(taskTime);
+        taskTimeLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
+                + "-fx-font-size: 13px;"
+                + "-fx-text-fill: black;");
+        taskTimeBox.getChildren().add(taskTimeLabel);
+
+        taskBox.getChildren().addAll(taskIndexLabel, taskTimeBox, taskNameLabel);
+        return taskBox;
+    }
+
+    private VBox getRemarkBox(String remark) {
+        VBox remarkBox = new VBox();
+        remarkBox.setStyle("-fx-background-color: #95b3e8;"
+                + "-fx-padding: 5;" + "-fx-border-radius: 2;"
+                // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
+                + "-fx-background-radius: 5;");
+
+        Label remarkLabel = new Label(remark);
+        remarkLabel.setWrapText(true);
+        remarkLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
+                + "-fx-font-size: 13px;"
+                + "-fx-text-fill: black;");
+
+        remarkBox.getChildren().add(remarkLabel);
+        return remarkBox;
     }
 
     @Override

@@ -32,7 +32,6 @@ public class TaskListPanel extends UiPart<Region> {
         super(FXML);
         taskListView.setItems(FXCollections.observableList(patient.getTasks().getTasks()));
         taskListView.setCellFactory(listview -> new TaskListViewCell());
-        taskListView.prefWidthProperty().bind(this.getRoot().widthProperty());
 
         header.setText("Tasks:");
         name.setText(patient.getName().toString());
@@ -46,8 +45,8 @@ public class TaskListPanel extends UiPart<Region> {
     class TaskListViewCell extends ListCell<Task> {
         TaskListViewCell() {
             super();
-            setStyle("-fx-padding: 0px");
-            prefWidthProperty().bind(taskListView.widthProperty());
+            setStyle("-fx-padding: 0 5 0 0");
+            prefWidthProperty().bind(taskListView.widthProperty().subtract(15.0));
         }
 
         @Override
@@ -60,7 +59,6 @@ public class TaskListPanel extends UiPart<Region> {
             } else {
                 setGraphic(new TaskListCard(task, getIndex() + 1).getRoot());
             }
-
         }
     }
 }

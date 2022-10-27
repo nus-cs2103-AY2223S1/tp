@@ -20,8 +20,10 @@ import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.ReadOnlyUserPrefs;
+import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.testutil.PersonBuilder;
 
 public class AddPatientCommandTest {
@@ -161,6 +163,16 @@ public class AddPatientCommandTest {
 
         @Override
         public Patient getPatientOfInterest() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDayOfInterest(DateTime dayOfInterest) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Schedule getSchedule() {
             throw new AssertionError("This method should not be called.");
         }
 

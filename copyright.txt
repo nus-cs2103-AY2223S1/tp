@@ -7,3 +7,6 @@ Copyright by Susumu Yoshida - http://www.mcdodesign.com/
 Copyright by Jan Jan Kovařík - http://glyphicons.com/
 - calendar.png
 - edit.png
+
+<a target="_blank" href="https://icons8.com/icon/6Z5IUAh18Fuc/clock">Clock</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+<a target="_blank" href="https://icons8.com/icon/84997/calendar">Calendar</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>

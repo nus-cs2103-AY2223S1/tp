@@ -13,7 +13,7 @@ public class ListTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
-    public static final CommandType LIST_TASK_COMMAND_TYPE = CommandType.SCHEDULE;
+    public static final CommandType LIST_TASK_COMMAND_TYPE = CommandType.LIST_TASK;
 
     @Override
     public CommandResult execute(Model model) {
