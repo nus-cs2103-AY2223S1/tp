@@ -21,7 +21,7 @@ import seedu.address.model.person.Name;
  */
 public class AddListingCommand extends Command {
 
-    public static final String COMMAND_WORD = "listing";
+    public static final String COMMAND_WORD = "addL";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a listing to the address book. "
             + "Parameters: "

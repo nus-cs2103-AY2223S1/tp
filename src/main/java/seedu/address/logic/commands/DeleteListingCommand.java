@@ -13,7 +13,7 @@ import seedu.address.model.listing.ListingID;
  */
 public class DeleteListingCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete listing";
+    public static final String COMMAND_WORD = "deleteL";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the listing identified by the id used in the displayed listings list.\n"

@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ListingID {
     public static final String MESSAGE_CONSTRAINTS =
         "ListingID should not be blank";
-    public static final String VALIDATION_REGEX = "[.]*";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
     /**
