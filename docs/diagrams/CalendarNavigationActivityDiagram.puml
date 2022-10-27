@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User selects the calendar tab;
+:User selects a navigation feature;
+if () then ([feature is Button])
+  if () then([Next Button])
+    :Displays the next month;
+  else ([Previous Button])
+    :Displays the previous month;
+endif
+
+else ([feature is Jump Box])
+    :User input date;
+    if () then ([input is valid])
+      :Displays the given month;
+    else ([input is not valid])
+      :Show date format error message;
+    endif
+endif
+stop
+
+@enduml
+stop
+
+@enduml

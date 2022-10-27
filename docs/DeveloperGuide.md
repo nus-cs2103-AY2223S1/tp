@@ -340,6 +340,9 @@ The following is a more detailed explanation on how `Calendar Display` works.
 1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`. This then initialises the `CalendarLogic` and the relevant methods to build the the `Calendar Display`.
 2. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
 
+The following activity diagram summarizes what happens when a user selects the Calendar tab:
+![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
+
 **Calendar Navigation**
 The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month.
 This feature uses JavaFX's FocusModel features to obtain different behaviours when a Ui component is focused.
@@ -352,6 +355,8 @@ The following is a more detailed explanation on how `Calendar Navigation` works.
 3. Pressing the ENTER key when the Next/Prev button is focused to view the next/previous month in the calendar
 4. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
 
+The following activity diagram summarizes what happens when a user selects a navigation feature:
+![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
 #### Calendar Pop-up
 The calendar Pop-up allows user to view the details of the appointment in the calendar
 
@@ -361,6 +366,9 @@ The following is a more detailed explanation on how `Calendar Pop-Up` works.
 1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar
 2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
 3. Clicking on a desired appointment to view the appointment in the calendar
+
+The following activity diagram summarizes what happens when a user selects an appointment in the calendar tab:
+![Calendar Pop-Up Activity](images/CalendarPopUpActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
