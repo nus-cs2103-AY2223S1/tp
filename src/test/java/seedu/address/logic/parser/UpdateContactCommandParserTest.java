@@ -57,7 +57,7 @@ class UpdateContactCommandParserTest {
     void parse_assignJohnDoeNokToPatient_success() {
         Command setPhysCommand = new UpdateContactCommand(new Uid(3L), new Name(DEFAULT_CONTACT_NAME),
                 new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL),
-                new Category(Category.PHYSICIAN_SYMBOL));
+                new Category(Category.NEXTOFKIN_SYMBOL));
         String input = UpdateContactCommand.COMMAND_WORD + " id/3 n/" + DEFAULT_CONTACT_NAME
                 + " e/" + DEFAULT_CONTACT_EMAIL + " p/" + DEFAULT_CONTACT_PHONE + " c/" + Category.NEXTOFKIN_SYMBOL;
         assertParseSuccess(new UpdateContactCommandParser(), input, setPhysCommand);
