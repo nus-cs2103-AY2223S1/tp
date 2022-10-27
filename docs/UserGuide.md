@@ -132,6 +132,7 @@ Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d
 - Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
   The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index.
 - Existing values will be updated to the input values.
+- At least one of the optional fields must be provided.
 - Date format accepted is: dd/mm/yyyy.
 
 Examples:
