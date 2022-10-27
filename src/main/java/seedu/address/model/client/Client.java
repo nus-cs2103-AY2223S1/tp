@@ -28,8 +28,8 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     //Represents the Client's ClientEmail
     private ClientEmail email;
 
-    //Represents the Client's ClientPhone
-    private ClientPhone phone;
+    //Represents the Client's ClientMobile
+    private ClientMobile mobile;
 
     //Represents a Collection of projects that the client is responsible for
     private List<Project> projects;
@@ -40,13 +40,14 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     /**
      * Constructs a client with inputs given by the user.
      * @param name String representing name of the client
-     * @param phone String representing phone number of the client
+     * @param mobile String representing mobile number of the client
      * @param email String representing email address of the client
      */
-    public Client(Name name, ClientPhone phone, ClientEmail email, List<Project> projects, ClientId clientId, Pin pin) {
-        requireAllNonNull(name, phone, email, clientId, pin);
+    public Client(Name name, ClientMobile mobile, ClientEmail email, List<Project> projects,
+                  ClientId clientId, Pin pin) {
+        requireAllNonNull(name, mobile, email, clientId, pin);
         this.name = name;
-        this.phone = phone;
+        this.mobile = mobile;
         this.email = email;
         this.projects = projects;
         this.clientId = clientId;
@@ -60,7 +61,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     public Client(Name name) {
         requireAllNonNull(name);
         this.name = name;
-        this.phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
+        this.mobile = ClientMobile.EmptyClientMobile.EMPTY_MOBILE;
         this.email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
         this.projects = new ArrayList<>();
         this.clientId = ClientId.EmptyClientId.EMPTY_CLIENT_ID;
@@ -84,11 +85,11 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     }
 
     /**
-     * Sets the client phone to be as user input.
-     * @param phone ClientPhone representing the new phone of client
+     * Sets the client mobile to be as user input.
+     * @param mobile ClientMobile representing the new mobile of client
      */
-    public void setPhone(ClientPhone phone) {
-        this.phone = phone;
+    public void setMobile(ClientMobile mobile) {
+        this.mobile = mobile;
     }
 
     public ClientId getClientId() {
@@ -193,16 +194,16 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     }
 
     /**
-     * Returns the client phone as is represented in the ClientPhone object.
-     * @return String representing client's phone.
+     * Returns the client mobile as is represented in the ClientMobile object.
+     * @return String representing client's mobile.
      */
-    public ClientPhone getClientPhone() {
-        return this.phone;
+    public ClientMobile getClientMobile() {
+        return this.mobile;
     }
 
     /**
      * Returns the list of projects under the client.
-     * @return String representing client's phone.
+     * @return String representing client's mobile.
      */
     public List<Project> getProjects() {
         return this.projects;
@@ -221,7 +222,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * @return String for display in the UI
      */
     public String uiRepresentation() {
-        return this.name.toString() + " (" + this.phone.toString() + ")";
+        return this.name.toString() + " (" + this.mobile.toString() + ")";
     }
 
     public void removeProject(Project p) {
@@ -280,9 +281,9 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
             boolean hasSameId = this.getClientId().equals(otherClient.getClientId());
             boolean hasSameName = this.getClientName().equals(otherClient.getClientName());
             boolean hasSameEmail = this.getClientEmail().equals(otherClient.getClientEmail());
-            boolean hasSamePhone = this.getClientPhone().equals(otherClient.getClientPhone());
+            boolean hasSameMobile = this.getClientMobile().equals(otherClient.getClientMobile());
             boolean hasSamePin = this.getPin().equals(otherClient.getPin());
-            return hasSameId && hasSameEmail && hasSamePhone && hasSameName && hasSamePin;
+            return hasSameId && hasSameEmail && hasSameMobile && hasSameName && hasSamePin;
         } else {
             return false;
         }

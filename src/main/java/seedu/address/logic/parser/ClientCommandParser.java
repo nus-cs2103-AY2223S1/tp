@@ -10,10 +10,10 @@ import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ParserUtil.parseEmail;
 import static seedu.address.logic.parser.ParserUtil.parseEmailValidity;
 import static seedu.address.logic.parser.ParserUtil.parseIndexValidity;
+import static seedu.address.logic.parser.ParserUtil.parseMobile;
+import static seedu.address.logic.parser.ParserUtil.parseMobileValidity;
 import static seedu.address.logic.parser.ParserUtil.parseName;
 import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
-import static seedu.address.logic.parser.ParserUtil.parsePhone;
-import static seedu.address.logic.parser.ParserUtil.parsePhoneValidity;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ import seedu.address.model.Name;
 import seedu.address.model.Pin;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
-import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.ClientMobile;
 import seedu.address.model.client.ClientWithoutModel;
 import seedu.address.model.project.ProjectId;
 
@@ -116,10 +116,10 @@ public class ClientCommandParser implements Parser<ClientCommand> {
 
         Name name = parseName(argMultimap.getValue(PREFIX_NAME).get());
 
-        ClientPhone phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
 
+        ClientMobile mobile = ClientMobile.EmptyClientMobile.EMPTY_MOBILE;
         if (arePrefixesPresent(argMultimap, PREFIX_MOBILE)) {
-            phone = parsePhone(argMultimap.getValue(PREFIX_MOBILE).get());
+            mobile = ParserUtil.parseMobile(argMultimap.getValue(PREFIX_MOBILE).get());
         }
 
         ClientEmail email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
@@ -127,7 +127,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             email = parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
-        ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, phone, email,
+        ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, mobile, email,
                 new ArrayList<>(), new Pin(false));
         ProjectId projectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 
@@ -153,7 +153,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
         Name newName = null;
         ClientEmail newEmail = null;
-        ClientPhone newPhone = null;
+        ClientMobile newMobile = null;
         ClientId newClientId = ParserUtil.parseClientId(argMultimap.getValue(PREFIX_CLIENT_ID).get());
 
         if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE)) {
@@ -166,14 +166,14 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_MOBILE)) {
-            newPhone = parsePhone(argMultimap.getValue(PREFIX_MOBILE).get());
+            newMobile = parseMobile(argMultimap.getValue(PREFIX_MOBILE).get());
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_EMAIL)) {
             newEmail = parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
-        return new EditClientCommand(newClientId, newName, newEmail, newPhone);
+        return new EditClientCommand(newClientId, newName, newEmail, newMobile);
     }
 
 
@@ -222,7 +222,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_MOBILE)) {
-            parsePhoneValidity(argMultimap.getValue(PREFIX_MOBILE).get());
+            parseMobileValidity(argMultimap.getValue(PREFIX_MOBILE).get());
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_EMAIL)) {
