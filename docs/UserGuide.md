@@ -423,7 +423,7 @@ Formats: `find e/EMAIL
 
 - The search is case-insensitive. e.g., `ghost@woods.com` will match `ghOst@woOds.com`.
 - Only one email can be searched at each time.
-- Full email must be used for corresponding student to be found.
+- Full email must be used for corresponding student to be found e.g., `ghost` will not match `ghost@woods.com`.
 
 ```yaml
 ❗Caution:
@@ -441,9 +441,8 @@ Finds all students with addresses matching the keywords.
 
 Format: `find a/KEYWORD [MORE_KEYWORDS]`
 
-- The search is case-insensitive. e.g., `alex` will match `Alex`.
-- The order of the keywords does not matter. e.g. `Yeoh Alex` will match `Alex Yeoh`.
-- Only full words will be matched e.g., `Han` will not match `Hans`.
+- The search is case-insensitive. e.g., `Labrador` will match `LABRADOR`.
+- The order of the keywords does not matter. e.g. `Bukit Timah` will match `Timah Bukit`.
 - Students matching at least one keyword will be returned. e.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Example:
