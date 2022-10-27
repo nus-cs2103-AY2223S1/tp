@@ -241,8 +241,21 @@
     -fx-opacity: 0.9;
 }
 
-.menu .left-container {
-    -fx-background-color: black;
+
+.menu:showing {
+    -fx-background-color: #ffc37a;
+}
+
+.menu:hover {
+    -fx-background-color: #ffc37a;
+}
+
+.menu-item:hover {
+    -fx-background-color: #ffc37a;
+}
+
+.menu-item {
+    -fx-background-color: #fffae5;
 }
 
 /*
