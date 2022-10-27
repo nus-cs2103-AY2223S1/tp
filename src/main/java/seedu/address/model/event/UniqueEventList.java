@@ -74,6 +74,7 @@ public class UniqueEventList implements Iterable<Event> {
     /**
      * Removes the equivalent event from the list.
      * The event must exist in the list.
+     * Also removes event from all Profiles which contains event.
      */
     public void remove(Event toRemove) {
         requireNonNull(toRemove);
@@ -129,9 +130,10 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
-     * Updates the event {@code target} in each profile in {@code profilesToSet} to the new edited event
-     * {@code editedEvent}.
-     * The event {@code target} must exist in the list.
+     * Replaces the event {@code target} in the list with {@code editedEvent}.
+     * {@code target} must exist in the list.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the list.
+     * Ensures the change is updated for all event attendees.
      */
     public void setEventForAttendees(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);

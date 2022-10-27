@@ -197,10 +197,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Updates the events {@code target} in list of profiles {@code profilesToSet} to the new edited event
-     * {@code editedEvent}.
+     * Replaces the given event {@code target} in the list with {@code editedEvent}.
      * {@code target} must exist in the address book.
-     * The profiles in list of profiles {@code profilesToEdit} must also exist in the address book.
+     * The event identity of {@code editedEvent} must not be the same as an existing event in the address book.
+     * Ensures the change is updated for all event attendees.
      */
     public void setEventForAttendees(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);

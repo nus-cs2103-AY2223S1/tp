@@ -82,6 +82,7 @@ public class UniqueProfileList implements Iterable<Profile> {
      * {@code target} must exist in the list.
      * The profile email, phone and telegram of {@code editedProfile} must not be the same as another existing
      * profile in the list.
+     * Updates the changes for all events the profile is attending.
      */
     public void setProfile(Profile target, Profile editedProfile) {
         requireAllNonNull(target, editedProfile);
@@ -106,6 +107,7 @@ public class UniqueProfileList implements Iterable<Profile> {
     /**
      * Removes the equivalent profile from the list.
      * The profile must exist in the list.
+     * Also removes the profile from Events which contain the profile.
      */
     public void remove(Profile toRemove) {
         requireNonNull(toRemove);
