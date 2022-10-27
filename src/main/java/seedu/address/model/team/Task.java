@@ -103,7 +103,7 @@ public class Task {
         if (deadline == null) {
             return "";
         } else {
-            return String.format(" (By %s)", deadline.format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
+            return String.format("(By %s)", deadline.format(DateTimeFormatter.ofPattern("dd-MMM-YYYY hh:MM a")));
         }
     }
 
@@ -170,6 +170,17 @@ public class Task {
             return "[X] ";
         } else {
             return "[ ] ";
+        }
+    }
+
+    /**
+     * Removes the person from the assignee list, if exists.
+     *
+     * @param person assignee to be removed.
+     */
+    public void removeAssigneeIfExists(Person person) {
+        if (this.assignees.contains(person)) {
+            this.assignees.remove(person);
         }
     }
 }
