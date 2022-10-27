@@ -11,7 +11,7 @@
       "taskTime" : "19-10-2022 11:38"
     } ],
     "salary": "100000",
-    "tagged" : [ "friends" ],
+    "tagged" : [ "Urgent" ],
     "remark" : ""
   }, {
     "name" : "Meta",
@@ -24,7 +24,7 @@
       "taskTime" : "20-10-2022 12:00"
     } ],
     "salary": "125000",
-    "tagged" : [ "owesMoney", "friends" ],
+    "tagged" : [ "Urgent", "Remote" ],
     "remark" : ""
   }, {
     "name" : "Alibaba",
@@ -53,7 +53,7 @@
       "taskTime" : "30-10-2022 09:00"
     } ],
     "salary": "175000",
-    "tagged" : [ "friends" ],
+    "tagged" : [ "Remote" ],
     "remark" : ""
   }, {
     "name" : "Samsung Group",
@@ -69,7 +69,7 @@
       "taskTime" : "30-10-2022 09:00"
     } ],
     "salary": "200000",
-    "tagged" : [ ],
+    "tagged" : [ "Urgent" ],
     "remark" : ""
   }, {
     "name" : "Tencent Holdings Ltd",

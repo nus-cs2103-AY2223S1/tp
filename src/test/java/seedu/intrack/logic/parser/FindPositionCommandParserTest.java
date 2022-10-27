@@ -25,11 +25,12 @@ public class FindPositionCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindPositionCommand expectedFindPositionCommand =
-                new FindPositionCommand(new PositionContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindPositionCommand);
+                new FindPositionCommand(
+                new PositionContainsKeywordsPredicate(Arrays.asList("Software", "Developer")));
+        assertParseSuccess(parser, "Software Developer", expectedFindPositionCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindPositionCommand);
+        assertParseSuccess(parser, " \n Software \n \t Developer  \t", expectedFindPositionCommand);
     }
 
 }
