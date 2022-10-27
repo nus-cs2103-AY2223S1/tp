@@ -16,7 +16,7 @@ public class DeleteBuyerCommandParser implements Parser<DeleteBuyerCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteBuyerCommand
      * and returns a DeleteBuyerCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public DeleteBuyerCommand parse(String args) throws ParseException {
         try {

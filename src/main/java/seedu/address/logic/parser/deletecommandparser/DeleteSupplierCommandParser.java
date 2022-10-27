@@ -16,7 +16,7 @@ public class DeleteSupplierCommandParser implements Parser<DeleteSupplierCommand
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteSupplierCommand
      * and returns a DeleteSupplierCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public DeleteSupplierCommand parse(String args) throws ParseException {
         try {

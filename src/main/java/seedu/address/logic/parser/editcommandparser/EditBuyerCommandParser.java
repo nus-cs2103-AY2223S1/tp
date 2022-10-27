@@ -17,8 +17,17 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new EditBuyerCommand object.
+ */
 public class EditBuyerCommandParser extends EditCommandParser implements Parser<EditBuyerCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the EditBuyerCommand
+     * and returns a EditBuyerCommand object for execution.
+     *
+     * @throws ParseException If the user input does not conform the expected format.
+     */
     @Override
     public EditBuyerCommand parse(String args) throws ParseException {
         requireNonNull(args);
