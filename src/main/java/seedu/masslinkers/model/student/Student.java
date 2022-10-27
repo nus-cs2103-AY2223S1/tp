@@ -82,12 +82,7 @@ public class Student {
      * @param interestsToBeAdded The list of interests to add in.
      */
     public void addInterests(Set<Interest> interestsToBeAdded) {
-        Set<Interest> uniqueInterestsSet = interestsToBeAdded
-                .stream()
-                .filter(interest -> !this.interests.contains(interest))
-                .collect(Collectors.toSet());
-
-        this.interests.addAll(uniqueInterestsSet);
+        this.interests.addAll(interestsToBeAdded);
     }
 
     /**
