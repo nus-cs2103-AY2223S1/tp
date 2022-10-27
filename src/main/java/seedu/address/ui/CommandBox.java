@@ -1,12 +1,20 @@
 package seedu.address.ui;
 
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -17,6 +25,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final CommandHistory commandHistory;
 
     @FXML
     private TextField commandTextField;
@@ -25,10 +34,43 @@ public class CommandBox extends UiPart<Region> {
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
     public CommandBox(CommandExecutor commandExecutor) {
+        this(commandExecutor, new CommandHistory());
+    }
+
+    /**
+     * Creates a {@code CommandBox} with the given {@code CommandExecutor} and {@code CommandHistory}.
+     */
+    public CommandBox(CommandExecutor commandExecutor, CommandHistory commandHistory) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        this.commandHistory = commandHistory;
+        commandTextField.setOnKeyPressed(this::handleKeyPress);
+    }
+
+    private void handleKeyPress(KeyEvent event) {
+        KeyCode key = event.getCode();
+        boolean commandChanged = false;
+        switch(key) {
+        case DOWN:
+            commandHistory.nextCommand();
+            commandChanged = true;
+            break;
+        case UP:
+            commandHistory.previousCommand();
+            commandChanged = true;
+            break;
+        case C:
+            if(event.isShiftDown() && event.isControlDown()) {
+                setCommandTextField("");
+            }
+            break;
+        default:
+        }
+        if(commandChanged) {
+            setCommandTextField(commandHistory.getCommand().orElse(""));
+        }
     }
 
     /**
@@ -43,6 +85,7 @@ public class CommandBox extends UiPart<Region> {
 
         try {
             commandExecutor.execute(commandText);
+            commandHistory.addCommand(commandText);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
@@ -89,6 +132,50 @@ public class CommandBox extends UiPart<Region> {
          * @see seedu.address.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
+    }
+
+    public static class CommandHistory {
+        private final List<String> previousCommands;
+        private int pointer;
+
+        public CommandHistory() {
+            this(new ArrayList<>());
+        }
+
+        public CommandHistory(List<String> previousCommands) {
+            this.previousCommands = previousCommands;
+            setPointerToEnd();
+        }
+
+        public void addCommand(String command) {
+            previousCommands.add(command);
+            setPointerToEnd();
+        }
+
+        public Optional<String> getCommand() {
+            if(pointer <= -1) {
+                return Optional.empty();
+            }
+            if(pointer == previousCommands.size()) {
+                return Optional.empty();
+            }
+            return Optional.of(previousCommands.get(pointer));
+        }
+
+        public void previousCommand() {
+            pointer = (pointer - 1) < 0 ? pointer : (pointer - 1);
+            System.out.println(pointer);
+            System.out.println(previousCommands);
+        }
+
+        public void nextCommand() {
+            pointer = (pointer + 1) > previousCommands.size() ? pointer : (pointer + 1);
+            System.out.println(pointer);
+        }
+
+        private void setPointerToEnd() {
+            pointer = previousCommands.size();
+        }
     }
 
 }
