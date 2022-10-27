@@ -19,7 +19,6 @@ title: User Guide
 
 HealthContact is a software for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
 It helps to keep track of patient data, patient appointments and patient bills for the family clinic.
-
 * Table of Contents
   {:toc}
 
@@ -89,7 +88,6 @@ Notes on symbols in first column:
 * to add such patient because Bernice Yu already exists in the address book.
 
 <img src="images/addcommand/ap2.png" width="800px" height ="400px">
->>>>>>> 4f3c05de5cb1388a09ef859d54b679c4d86cad83
 
 
 ### 1.1.2 Adding an appointment of a patient `addappointment`, `aa`
@@ -187,11 +185,64 @@ Notes on symbols in first column:
 
 ## 1.2 Edit
 
-### 1.2.1 Editing a patient
+### 1.2.1 Editing a patient `editpatient` `ep`
+
+Edits a patient's information, such as name, phone number, address, email, remarks, and tags.
+
+Format: `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+         `ep INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. 
+  The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the patient’s tags by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+* `editpatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be 
+   `91234567` and `johndoe@example.com` respectively.
+<img src = "images/editpatient.png" width="800px" height ="400px">
+
+* `editpatient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+<img src = "images/editpatient2.png" width="800px" height ="400px">
 
 ### 1.2.2 Editing an appointment of a patient
 
+Edits an appointment of a patient, such as name, medical test, slot, and doctor.
+
+Format: `editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
+         `ea INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
+
+* Edits the appointment at the specified `INDEX`.
+  The index refers to the index number shown in the displayed appointment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot, 
+   and doctor of the 1st appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
+<img src = "images/editappointment.png" width="800px" height ="400px">
+
 ### 1.2.3 Editing a bill of an appointment
+
+Edits a bill of an appointment.
+
+Format: `editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill date]`
+
+* Edits the bill at the specified `INDEX`. The index refers to the index number shown in the displayed bill list. 
+  The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `editbill 1 a/100` Edits the amount of the 1st bill to be `100`.
+<img src="images/editbill.png" width="800px" height ="400px">
+
+* `editbill 1 d/2020-10-10` Edits the bill date of the 1st bill to be `2020-10-10`.
+<img src="images/editbill2.png" width="800px" height ="400px">
 
 ## 1.3 Delete
 
@@ -301,6 +352,7 @@ Examples:
 
 <img src="images/findappointmentAlex.png" width="800px" height ="400px">
 
+
 ### 1.4.3 Finding bills `findbill` `fb`
 
 Filters bills by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
@@ -320,6 +372,7 @@ Format:
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
 Examples:
+
 
 ### 1.4.3 Finding a bill of an appointment
 
@@ -447,7 +500,7 @@ Deletes all patients, appointments and bills from the HealthContact.
 
 ### Format
 
-<<<<<<< HEAD
+
 `clear`
 
 ### Example
@@ -496,9 +549,6 @@ Opens the Help Window.
 * Executing `help`, the help window pops.
 
 <img src="images/othercommands/help.png" width="800px" height ="150px">
-=======
-## 1.14 Help
->>>>>>> 3a9c8697bd1ed9e4de8817ffe3e59106bc5db9b8
 
 
 # 2. Commands Reference Sheet
