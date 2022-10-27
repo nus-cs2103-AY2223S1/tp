@@ -223,6 +223,7 @@ public class PersonProfile extends UiPart<Region> {
             tags.setId("securedTags");
         }
     }
+
     /**
      * Opens pdf file stored in person object.
      */
