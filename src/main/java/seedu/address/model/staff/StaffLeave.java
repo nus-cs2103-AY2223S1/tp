@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class StaffLeave {
     public static final String MESSAGE_CONSTRAINTS =
-            "Staff Leave should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Staff Leave should only be true or false (case-sensitive) and not blank";
 
     /*
      * The first character of the address must not be a whitespace,

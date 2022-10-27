@@ -19,7 +19,7 @@ public class FindStaffCommand extends Command {
             + "displays them as a list with index numbers.\n"
             + "A staff called Andy Lee can be found using these keywords: An, Lee, LEE\n"
             + "Parameters: "
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " "
             + "alice bob charlie ";
 
