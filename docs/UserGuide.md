@@ -254,14 +254,15 @@ Adds a task under a specific module.
 - The task description must be enclosed in double-quotes (`""`) if it contains spaces.
 - The symbols `-` and `"` are special characters and must be escaped with a backslash (`\`) to
   be used in the task description, e.g. `add task "foo\-\"bar\""` will result in the description `foo-"bar"`.
+- The priority rating can be either "high", "medium", "low", or "none".
 
-Format (if `cd`'d previously): `add task <description> [-d <deadline>]`
+Format (if `cd`'d previously): `add task <description> [-d <deadline>] [-p <priority>]`
 
-Format (if not `cd`'d`): `add task <description>  -c <module code> [-d <deadline>]`
+Format (if not `cd`'d): `add task <description> -c <module code> [-d <deadline>] [-p <priority>]`
 
 Example:
-`cd CS2100` followed by `add task "Assignment 1" -d 2022-10-29`, or equivalently,
-`add task "Assignment 1" -c cCS2100 -d 2022-10-29`
+`cd CS2100` followed by `add task "Assignment 1" -d 2022-10-29 -p high`, or equivalently,
+`add task "Assignment 1" -c cCS2100 -d 2022-10-29 -p high`
 
 Sample execution of command `add "Assignment 1" -c CS2100 -d 2022-10-29`:
 ![add-task-sample](images/add-task-sample.png)
