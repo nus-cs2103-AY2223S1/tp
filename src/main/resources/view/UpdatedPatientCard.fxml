@@ -15,8 +15,8 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" />
-      <RowConstraints minHeight="200.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="30.0" minHeight="30.0" />
+      <RowConstraints minHeight="50.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <Label fx:id="header" text="\$header" wrapText="true">
@@ -70,26 +70,26 @@
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <VBox fx:id="conditionHeaderPane" styleClass="cell_small_label_border">
+                        <VBox fx:id="conditionHeaderPane" styleClass="cell_small_label_header_border">
                            <children>
                               <Label fx:id="conditionHeader" styleClass="cell_small_label_light" text="\$conditionheader" wrapText="true" />
                            </children>
                         </VBox>
-                        <Label fx:id="conditions" layoutX="10.0" layoutY="10.0" styleClass="cell_small_label" text="\$conditions" wrapText="true">
-                           <VBox.margin>
-                              <Insets left="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <VBox fx:id="medicationHeaderPane" styleClass="cell_small_label_border">
+                        <VBox fx:id="conditionContainer" spacing="5.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                        <VBox fx:id="medicationHeaderPane" styleClass="cell_small_label_header_border">
                            <children>
                               <Label fx:id="medicationHeader" styleClass="cell_small_label_light" text="\$medicationheader" wrapText="true" />
                            </children>
                         </VBox>
-                        <Label fx:id="medications" layoutX="10.0" layoutY="27.0" styleClass="cell_small_label" text="\$medications" wrapText="true">
-                           <VBox.margin>
-                              <Insets left="5.0" />
-                           </VBox.margin>
-                        </Label>
+                        <VBox fx:id="medicationContainer" spacing="5.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -103,9 +103,6 @@
                </padding>
             </Separator>
             <GridPane>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="100.0" />
@@ -116,7 +113,7 @@
                <children>
                   <VBox spacing="5.0">
                      <children>
-                        <VBox fx:id="taskHeaderPane" styleClass="cell_small_label_border">
+                        <VBox fx:id="taskHeaderPane" styleClass="cell_small_label_header_border">
                            <children>
                               <Label fx:id="taskHeader" styleClass="cell_small_label_light" text="\$taskheader" wrapText="true" />
                            </children>
@@ -136,7 +133,7 @@
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <VBox fx:id="remarkHeaderPane" styleClass="cell_small_label_border">
+                        <VBox fx:id="remarkHeaderPane" styleClass="cell_small_label_header_border">
                            <children>
                               <Label fx:id="remarkHeader" styleClass="cell_small_label_light" text="\$remarkheader" wrapText="true" />
                            </children>

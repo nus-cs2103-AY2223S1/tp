@@ -154,6 +154,13 @@
     -fx-text-fill: white;
 }
 
+.cell_small_label_header_border {
+    -fx-background-color: #2a67d1;
+    -fx-padding: 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 5;
+}
+
 .cell_small_label_border {
     -fx-background-color: #2154ad;
     -fx-padding: 3;
