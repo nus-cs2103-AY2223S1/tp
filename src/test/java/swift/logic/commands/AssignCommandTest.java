@@ -38,7 +38,7 @@ public class AssignCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addBridge(expectedPerson, expectedTask);
 
-        assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(assignCommand, model, expectedMessage, CommandType.ASSIGN, expectedModel);
     }
 
     @Test

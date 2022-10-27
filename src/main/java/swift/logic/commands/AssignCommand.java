@@ -59,7 +59,8 @@ public class AssignCommand extends Command {
 
         model.addBridge(selectedPerson, selectedTask);
 
-        return new CommandResult(String.format(MESSAGE_ASSIGN_SUCCESS, selectedTask, selectedPerson));
+        return new CommandResult(String.format(MESSAGE_ASSIGN_SUCCESS, selectedTask, selectedPerson),
+                CommandType.ASSIGN);
     }
 
     @Override
