@@ -39,7 +39,7 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
             editMeetingDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_LISTING_ID).isPresent()) {
-            editMeetingDescriptor.setListing(ParserUtil.parseListingID(argMultimap.getValue(PREFIX_LISTING_ID).get()));
+            editMeetingDescriptor.setListing(ParserUtil.parseListingId(argMultimap.getValue(PREFIX_LISTING_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             editMeetingDescriptor.setDateTime(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get()));

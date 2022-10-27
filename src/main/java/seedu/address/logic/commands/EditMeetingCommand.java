@@ -14,7 +14,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 
@@ -81,7 +81,7 @@ public class EditMeetingCommand extends Command {
         assert toedit != null;
 
         Name updatedName = editMeetingDescriptor.getName().orElse(toedit.getClient());
-        ListingID updatedListingId = editMeetingDescriptor.getListing().orElse(toedit.getListing());
+        ListingId updatedListingId = editMeetingDescriptor.getListing().orElse(toedit.getListing());
         LocalDateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(toedit.getdateTime());
 
         return new Meeting(updatedName, updatedListingId, updatedDateTime);
@@ -111,7 +111,7 @@ public class EditMeetingCommand extends Command {
      */
     public static class EditMeetingDescriptor {
         private Name name;
-        private ListingID listing;
+        private ListingId listing;
         private LocalDateTime dateTime;
 
         public EditMeetingDescriptor() {}
@@ -140,11 +140,11 @@ public class EditMeetingCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setListing(ListingID listing) {
+        public void setListing(ListingId listing) {
             this.listing = listing;
         }
 
-        public Optional<ListingID> getListing() {
+        public Optional<ListingId> getListing() {
             return Optional.ofNullable(listing);
         }
 
