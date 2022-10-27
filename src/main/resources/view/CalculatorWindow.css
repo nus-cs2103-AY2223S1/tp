@@ -1,9 +1,9 @@
 .background {
-  -fx-background-color: #7F5539;
+  -fx-background-color: #DDB892;
 }
 .button {
-  -fx-background-color: #DDB892;;
+  -fx-background-color: derive(#AB8C6B, 10%);
 }
 .display {
-  -fx-background-color: #e6ccb2;
+  -fx-background-color: derive(#EDE0D4, 20%);
 }
