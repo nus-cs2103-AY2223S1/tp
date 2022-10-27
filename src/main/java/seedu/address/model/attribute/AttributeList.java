@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attribute.exceptions.AttributeException;
+import seedu.address.model.attribute.exceptions.AttributeNotFoundException;
 import seedu.address.model.attribute.exceptions.DuplicateAttributeException;
 
 /**
@@ -38,14 +39,17 @@ public class AttributeList {
         logger.info(String.format("Attribute added successfully: %s", attribute.getAttributeType()));
     }
 
+    /**
+     * Creates an Attribute instance from a given attributeName and value.
+     *
+     * @param attributeName the name of the attribute.
+     * @param value the value to be stored in the attribute.
+     * @param <T> the type parameter of the value stored in the attribute.
+     * @return an {@code Attribute} instance with the specified attributeName and value.
+     */
     public <T> Attribute<T> createAttributeInstance(String attributeName, T value) {
         String name = formatProperName(attributeName);
-        return new AbstractAttribute<T>(name, value) {
-            @Override
-            public Map<String, Object> toSaveableData() {
-                return null;
-            }
-        };
+        return new AbstractAttribute<T>(name, value) { };
     }
 
     /**
@@ -64,6 +68,13 @@ public class AttributeList {
         this.addAttribute(attribute);
     }
 
+    /**
+     * Adds an attribute given an attributeName.
+     *
+     * @param attributeName
+     * @param <T>
+     * @throws AttributeException
+     */
     public <T> void addAttribute(String attributeName) throws AttributeException {
         this.addAttribute(attributeName, "");
     }
@@ -97,7 +108,10 @@ public class AttributeList {
      * Deletes an attribute
      * @param type
      */
-    public void deleteAttribute(String type) {
+    public void removeAttribute(String type) throws AttributeException {
+        if (attributeList.stream().noneMatch(attr -> attr.isNameMatch(type))) {
+            throw new AttributeNotFoundException(type);
+        }
         attributeList.removeIf(attr -> attr.isNameMatch(type));
     }
 

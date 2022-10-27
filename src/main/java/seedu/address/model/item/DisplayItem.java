@@ -106,9 +106,9 @@ public interface DisplayItem {
     void editAttribute(String attributeName, String attributeContent) throws AttributeException;
 
     /**
-     * Delete an attribute to the current object.
+     * Removes an attribute to the current object.
      */
-    void deleteAttribute(String type);
+    void removeAttribute(String type) throws AttributeException;
 
     /**
      * Returns true if {@code DisplayItem o} is a parent of this item

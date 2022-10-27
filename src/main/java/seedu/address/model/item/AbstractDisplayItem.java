@@ -135,8 +135,8 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     }
 
     @Override
-    public void deleteAttribute(String type) {
-        attributes.deleteAttribute(type);
+    public void removeAttribute(String type) throws AttributeException {
+        attributes.removeAttribute(type);
     }
 
     @Override

@@ -5,6 +5,9 @@ import seedu.address.logic.commands.Command;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+/**
+ * Edits an existing attribute in the AddressBook.
+ */
 public abstract class EditAttributeCommand extends Command {
     public static final String COMMAND_WORD = "editfield";
 

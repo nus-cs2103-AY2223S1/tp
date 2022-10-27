@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Adds a person to the address book.
+ * Adds an attribute to a person.
  */
 public abstract class AddAttributeCommand extends Command {
 

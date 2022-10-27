@@ -25,17 +25,14 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final JsonAdaptedFields fields;
-
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("fields") JsonAdaptedFields fields, @JsonProperty("name") String name,
+    public JsonAdaptedPerson(@JsonProperty("name") String name,
                              @JsonProperty("uid") String uid, @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
         super(name, uid, attributes, tags);
-        this.fields = fields;
     }
 
     /**
@@ -49,7 +46,6 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
                 source.getTags().stream()
                         .map(JsonAdaptedTag::new)
                         .collect(Collectors.toList()));
-        fields = new JsonAdaptedFields((List<JsonAdaptedField>) source.getFields());
     }
 
     /**
