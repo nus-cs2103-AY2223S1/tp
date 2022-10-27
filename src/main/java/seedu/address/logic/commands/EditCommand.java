@@ -88,7 +88,6 @@ public class EditCommand extends Command {
             + PREFIX_NAME + SPACING + PREFIX_PHONE + SPACING + PREFIX_EMAIL + SPACING + PREFIX_GENDER + SPACING
             + PREFIX_MODULE_CODE + SPACING + PREFIX_TAG + SPACING + PREFIX_LOCATION + SPACING + PREFIX_GITHUBUSERNAME
             + SPACING + PREFIX_RATING;;
-
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -287,7 +286,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location, githubUsername, rating,
-                    year, specialisation, officeHour);
+                    year, specialisation, officeHour, moduleCodes);
         }
 
         public void setName(Name name) {

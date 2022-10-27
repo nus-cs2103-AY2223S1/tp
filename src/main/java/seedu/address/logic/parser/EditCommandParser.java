@@ -25,6 +25,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.GithubUsername;
+import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.Specialisation;
@@ -125,7 +126,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-
+        parseModuleCodeForEdit(argMultimap.getAllValues(PREFIX_MODULE_CODE))
+                .ifPresent(editPersonDescriptor::setModuleCodes);
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
@@ -148,4 +150,19 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Parses {@code Collection<String> moduleCodes} into a {@code Set<ModuleCode>} if {@code ModuleCode} is non-empty.
+     * If {@code ModuleCode} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<ModuleCode>} containing zero moduleCodes.
+     */
+    private Optional<Set<ModuleCode>> parseModuleCodeForEdit(Collection<String> moduleCodes) throws ParseException {
+        assert moduleCodes != null;
+
+        if (moduleCodes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> moduleCodesSet = moduleCodes.size() == 1 && moduleCodes.contains("")
+                ? Collections.emptySet() : moduleCodes;
+        return Optional.of(ParserUtil.parseModuleCodes(moduleCodesSet));
+    }
 }
