@@ -429,6 +429,8 @@ The whole list is sorted according to the score of the particular exam, before i
 The following sequence diagram depicts how different components such as `Logic` and `Model` interact.
 
 <img src="images/ViewStatsCommandSequenceDiagram.png" />
+:information_source: **Note:** The lifeline for `ViewStatsCommandParser` and `ViewClassCommand` should end at the destroy 
+marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 Design Considerations:
 1. Sorting the list of students according to grade
