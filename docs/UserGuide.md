@@ -9,14 +9,14 @@ Teacher’s Pet can get your contact and class management tasks done faster than
 **Teacher’s Pet** allows you to manage your schedule and keep track of your students.
 The app stores basic information about your students, such as `Name`, `Contact Number`, `Money Owed`, `Class Date` and more.
 
-Before you get started, you may want to read [how to get started with the User Guide](#how-to-read-the-user-guide)!
+Before you get started, you may want to read [how to get started with this User Guide](#reading-the-user-guide)!
 To get started with using our application, jump straight to the [Quick Start](#quick-start) section.
 For a full list of commands and detailed instructions, head to the [Features](#features) section.
 
 ## Table of contents
 * [Quick Start](#quick-start)
 * [UI Overview](#ui-overview)
-* [How to read the User Guide](#how-to-read-the-user-guide)
+* [Readingthe User Guide](#reading-the-user-guide)
     * [Command format](#notes-about-the-command-format)
     * [Callouts](#callouts)
 * [Features](#features)
@@ -91,7 +91,7 @@ Basic Instructions:
 
 ---
 
-## How to read the User Guide
+## Reading the User Guide
 
 ### Notes about the command format:
 
