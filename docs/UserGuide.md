@@ -47,6 +47,7 @@ For a full list of commands and detailed instructions, head to the [Features](#f
     * [Editing the data file](#editing-the-data-file)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
+* [Prefix Summary](#prefix-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -87,7 +88,7 @@ Basic Instructions:
     - `exit`: Exits the app.
 2. Refer to the Features below for details of each command.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -120,7 +121,7 @@ Do refer to the callouts icons below! They will be useful when you are reading t
 | ❗    | Indicates information that are important to know so as to minimise confusion.                                             |
 | ⚠️   | Indicates a warning to ensure you will proceed with care.                                                                 |
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -134,7 +135,7 @@ Format: `help`
 
 ![Help](images/UG-screenshots/UiHelp.png)
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -147,7 +148,8 @@ Adds a student to the Teacher’s Pet.
     - Student’s Name must only contain alphanumeric characters.
 
 ```yaml
-ℹ️ Note: Multiple students may share the same name.
+ℹ Note:
+  Multiple students may share the same name.
 ```
 
 2. Student’s Contact Number:
@@ -156,8 +158,8 @@ Adds a student to the Teacher’s Pet.
    - Student's contact number must begin with `6`, `8` or `9`. 
 
 ```yaml
-ℹ️ Note: Contact number must contain exactly 8 digits.
-      Contact number must be unique.
+ℹ Note:
+  Contact number must contain exactly 8 digits. Contact number must be unique.
 ```
 
 3. Next of Kin’s Contact Number:
@@ -166,7 +168,8 @@ Adds a student to the Teacher’s Pet.
     - Next of Kin’s contact number must begin with `6`, `8` or `9`. 
 
 ```yaml
-ℹ️ Note: Next of Kin’s contact number must contain exactly 8 digits.
+ℹ Note:
+  Next of Kin’s contact number must contain exactly 8 digits.
 ```
 
 4. Address:
@@ -174,7 +177,8 @@ Adds a student to the Teacher’s Pet.
     - Address may contain any kinds of character.
 
 ```yaml
-ℹ️ Note: Address cannot be empty. It must contain at least 1 character.
+ℹ Note:
+  Address cannot be empty. It must contain at least 1 character.
 ```
 
 5. Email:
@@ -193,8 +197,8 @@ Adds a student to the Teacher’s Pet.
     - Tags must only contain alphanumeric characters.
 
 ```yaml
-ℹ️ Note: Tags must contain at least 1 alphanumeric character and
-      cannot contain spacings.
+ℹ Note:
+  Tags must contain at least 1 alphanumeric character and cannot contain spacings.
 ```
 
 Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
@@ -206,10 +210,11 @@ Example:
 ![Add](images/UG-screenshots/UiAdd.png)
 
 ```yaml
-ℹ️ Note: Amount paid, Amount owed, Additional notes fields are to be updated via `edit` command.
+ℹ Note:
+  Amount paid, Amount owed, Additional notes fields are to be updated via `edit` command.
 ```
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -244,8 +249,8 @@ the same convention as [adding a student](#adding-a-student-add).
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
 
 ```yaml
-❗ Caution: If a chosen date is occupied by another student, a class
-            conflict error will arise.
+❗Caution: 
+  If a chosen date is occupied by another student, a class conflict error will arise.
 ```
 
 4. Amount Paid:
@@ -257,8 +262,9 @@ the same convention as [adding a student](#adding-a-student-add).
     - Amount owed must be non-negative.
 
 ```yaml
-ℹ️ Note: Amount Owed and Amount Paid must be between $0 and $2147483647.
-      They are modified independent of each other.
+ℹ Note:
+  Amount Owed and Amount Paid must be between $0 and $2147483647. They are modified
+  independent of each other.
 ```
 
 6. Additional Notes:
@@ -268,14 +274,14 @@ the same convention as [adding a student](#adding-a-student-add).
     - Use `nt-a/` to append the additional notes.
 
 ```yaml
-❗ Caution: Using both nt/ and nt-a/ in a single command will reset the
-            content of Additional Notes to the content behind both
-            nt/ and nt-a/ prefixes.
+❗Caution:
+  Using both nt/ and nt-a/ in a single command will reset the content of Additional
+  Notes to the content behind both nt/ and nt-a/ prefixes.
 ```
 
 ```yaml
-❗ Caution: At least one of these fields must exist in order to make the
-           edit command valid.
+❗Caution: 
+  At least one of these fields must exist in order to make the edit command valid.
 ```
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
@@ -289,7 +295,7 @@ Examples:
 
 - `edit 1 dt/tue 1100-1200`
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -313,13 +319,13 @@ Example:
 ![UiMark](images/UG-screenshots/UiMark.png)
 
 ```yaml
-💡 Tip: If you want to charge the student for missing the class, you can
-        do so by executing the mark command.
-        This increases the amount owed but frees up that time slot for
-        another student.
+💡 Tip:
+  If you want to charge the student for missing the class, you can do so by executing
+  the mark command. This increases the amount owed but frees up that time slot for
+  another student.
 ```
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -342,11 +348,12 @@ Example:
 ![UiPay](images/UG-screenshots/UiPay.png)
 
 ```yaml
-ℹ️ Note: The student cannot pay more than what he/she owes. There is also
-        a maximum cap of $2147483647 for every payment.
+ℹ Note:
+  The student cannot pay more than what he/she owes. There is also a maximum cap of
+  $2147483647 for every payment.
 ```
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -368,7 +375,7 @@ Format: `list`
 
 ![UiUList](images/UG-screenshots/UiList.png)
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -387,7 +394,8 @@ Fields supported in `find`:
 - Tag `t/`
 
 ```yaml
-❗ Caution: Only one field can be searched at once.
+❗ Caution:
+  Only one field can be searched at once.
 ```
 
 #### Find by Name:
@@ -428,15 +436,15 @@ Formats: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
 - Only one contact number can be searched at each time.
 
 ```yaml
-❗ Caution: Do not include more than one contact number such as
-            find np/91232323 81231232.
+❗Caution:
+  Do not include more than one contact number such as find np/91232323 81231232.
 ```
 
 Examples:
 
 `find np/91232323` returns all students with the next of kin's contact number set as `91232323`.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 
 #### Find by Class Date:
@@ -450,7 +458,8 @@ Formats:
 - Only the date is searched.
 
 ```yaml
-❗ Caution: Do not include class timing.
+❗Caution:
+  Do not include class timing.
 ```
 
 Examples:
@@ -458,7 +467,7 @@ Examples:
 `find dt/2022-10-15` returns all students with classes on 15 October 2022.
 `find dt/Mon` returns all students with classes on the coming monday.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 #### Find by Tag:
 
@@ -469,7 +478,8 @@ Formats: `find t/tagName`
 - Only one tag can be searched at each time.
 
 ```yaml
-❗ Caution: Do not include more than one tag such as find t/python java.
+❗Caution:
+  Do not include more than one tag such as find t/python java.
 ```
 
 Examples:
@@ -478,7 +488,7 @@ Examples:
 python tag.
 `find dt/javascript` returns all students with javascript as a tag and other tags besides javascript.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 ### Next available class: `avail`
@@ -492,9 +502,9 @@ Format: `avail TIME_RANGE DURATION`
 - The `DURATION` is in minutes.
 
 ```yaml
-❗ Caution: The duration should not exceed the time range.
-      e.g., If the time range is 1000-1100 and the duration is 70, this
-            would be invalid.
+❗ Caution:
+  The duration should not exceed the time range. e.g., If the time range is 1000-1100
+  and the duration is 70, this would be invalid.
 ```
 
 Examples:
@@ -504,7 +514,7 @@ Examples:
 `avail 0830-1300 60` would return `2022-10-27 1130-1230` as the next slot since there is no sufficient duration
 between 1000-1030 for a 60 minutes class.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -525,7 +535,7 @@ Format: `sort TYPE [ORDER]`
 - The default order for `NAME` and `CLASS` is `ASC` while for `OWED`, the default order is `DESC`.
 - The parameters `TYPE` and `ORDER` are case-insensitive
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 #### Sort by Name
 
@@ -580,10 +590,11 @@ Examples:
 - `find Betsy` followed by `delete 1` deletes the 1st student in the Student's Details panel.
 
 ```yaml
-💡 Tip: Deleting a student by mistake can be reversed by "undo" command!
+💡 Tip:
+  Deleting a student by mistake can be reversed by "undo" command!
 ```
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -594,10 +605,11 @@ Clears all students and their details from the list.
 Format: `clear`
 
 ```yaml
-💡 Tip: Clearing all students by mistake can be reversed by undo command!
+💡 Tip:
+  Clearing all students by mistake can be reversed by undo command!
 ```
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -607,7 +619,7 @@ Undoes the last command executed and restores the Teacher's Pet to the previous 
 
 Format: `undo`
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -617,7 +629,7 @@ Exits the program.
 
 Format: `exit`
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -625,7 +637,7 @@ Format: `exit`
 
 Teacher’s Pet data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -634,13 +646,12 @@ Teacher’s Pet data are saved in the hard disk automatically after any command 
 Students' data is saved as a JSON file `[JAR file location]/data/teachersPet.json`. Advanced users are welcome to edit the data file.
 
 ```yaml
-⚠️ Warning: Proceed with care!
-            If your changes to the data file makes its format invalid,
-            Teacher’s Pet will discard all data and start with an
-            empty data file at the next run!
+⚠️Warning: 
+  Proceed with care! If your changes to the data file makes its format invalid,
+  Teacher’s Pet will discard all data and start with an empty data file at the next run!
 ```
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
@@ -650,7 +661,7 @@ Q: How do I transfer my data to another Computer?
 
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Teacher's Pet home folder.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 ## Glossary
@@ -663,6 +674,8 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | INDEX-s     | The index number shown in the Schedule panel list          |
 | Prefix      | e.g., `n/`, `p/`, `np`                                     |
 | Parameter   | e.g., `NAME`, `EMAIL`, `ADDRESS`                           |
+
+[↑ Back to top](#table-of-contents)
 
 ## Command Summary
 
@@ -680,4 +693,22 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Undo a command               | `undo`                                                                                                                                                                                                                            |
 | Exit the application         | `exit`                                                                                                                                                                                                                            |
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
+
+## Prefix Summary
+
+| Prefix                                              | Meaning | Examples                                             |
+|-----------------------------------------------------|:--------|------------------------------------------------------|
+| Name of student                                     | n/      | `n/Alice`                                            |
+| Phone number of student                             | p/      | `p/81234567`                                         |
+| Next of Kin Phone number                            | np/     | `np/65432109`                                        |
+| Email of student                                    | e/      | `e/alice@email.com`                                  |
+| Date and time of student's class                    | dt/     | `dt/2022-10-27 1300-1400`                            |
+| Address of student                                  | a/      | `a/15 Bukit Timah Road, Singapore 155203`            |
+| Amount paid by student                              | paid/   | `paid/300`                                           |
+| Amount owed by student                              | owed/   | `owed/200`                                           |
+| Additional notes of student (create new notes)      | nt/     | `nt/I have created new notes for Alice`              |
+| Additional notes of student (append existing notes) | nt-a/   | `nt-a/I have added more notes to the existing notes` |
+| Tags of student                                     | t       | `t/python`                                           |
+
+[↑ Back to top](#table-of-contents)
