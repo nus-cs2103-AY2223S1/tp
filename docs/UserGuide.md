@@ -170,9 +170,13 @@ Format: `suggest`
 
 ### Locating the nearest gym in NUS: `locate`
 
-Locates the nearest gym in NUS based on the input location. 
+Locates and ranks the nearest gyms to user's location in NUS.
 
 Format: `locate LOCATION`
+
+Example:
+
+* `locate S17` returns a list of gyms sorted from nearest to furthest from S17.
 
 ### Clearing all entries: `clear`
 
