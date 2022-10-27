@@ -18,7 +18,6 @@ public class SortPersonCommand extends Command {
             + "or company name. "
             + "Parameters: [c/] [n/] (Only 1 criterion can be specified)\n"
             + "Example: " + COMMAND_WORD + " c/";
-    public static final String MESSAGE_TOO_MANY_ARGUMENTS = "There should only be 1 sorting criterion.";
     public static final String MESSAGE_SUCCESS = "Sorted persons by %1$s";
 
     /**
