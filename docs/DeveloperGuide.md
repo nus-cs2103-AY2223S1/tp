@@ -19,7 +19,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+# **Design**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -187,11 +187,11 @@ Classes used by multiple components are in the `seedu.studmap.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+# **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Filter feature
+## **Filter feature**
 
 #### Current Implementation
 
@@ -219,47 +219,20 @@ tags
 
 Step 4: The result list of students will then be shown back to the user via the dashboard
 
-### Addtag feature
+## **EditStudent features**
+This is a set of features with similar implementations that allows user to modify the `Student` object. Currently, the featuresEditStudent features include:
+1. `edit` :  `EditCommand`
+<br>Edit basic attributes of a student (E.g. Name, Phone, etc)
+2. `tag`:`TagCommand` and `untag` : `UntagCommand`
+<br>Add and removing tags for a student
+3. `mark` : `MarkCommand` and `unmark` : `UnmarkCommand` :
+<br> Add, modify and remove attendance status of a student
+4. `grade` : `GradeCommand` and `ungrade` : `UngradeCommand`
+<br> Add, modify and remove assignment grading status of a student.
 
-#### Current Implementation
-The `addtag` feature is implemented by the `AddTagCommand` class which extends the more general `EditStudentCommand` class.
-`AddTagCommand` extends the `EditStudentCommand` abstract class, as it is a feature that modifies students in the list.
-The execution of this command is handled by `EditStudentCommand#execute`, which calls `AddTagCommand.AddTagStudentEditor#editStudent`,
-which in turn adds the tags. `EditStudentCommand#execute` handles the re-insert of the edited `Student` back into `Model`.
+Each of these features are implemented through the corresponding commands which extends the generic `EditStudentCommand` abstract class.
 
-The flow for `AddTagCommand.AddTagStudentEditor#editStudent` is as follows
-
-1. Given the student to be edited (`studentToEdit`), we copy `studentToEdit.StudentData` as `studentData`.
-2. The current set of tags is retrieved from `studentData`.
-3. The retrieved tag set is combined with the new tags to be added.
-4. The combined tag set will then replace the existing one in `studentData`.
-5. We rebuild a new student using this edited `studentData` and return it.
-
-#### Design considerations:
-
-**Aspect: How `addtag` executes:**
-
-* **Alternative 1:** Update the students' tags set using `EditStudentCommand`.
-    * Pros: Easy to implement (after refactoring), is flexible and has minimal duplicated code.
-    * Cons: Requires refactoring of existing EditCommand code.
-
-* **Alternative 2:** Update the students' tags set using `EditCommand`.
-    * Pros: Easy to implement. Shares optimization with `EditCommand`.
-    * Cons: Increasing coupling of the code.
-
-* **Alternative 3:** Interact with the model directly to modify the tag set for the student.
-    * Pros: Remove dependency on other commands which reduces coupling.
-    * Cons: Possible duplication of the code. Changes in `setTags` of the `Student` needs to be updated in both places.
-
-### Mark feature
-
-#### Current Implementation
-
-The `mark` feature is implemented through the `MarkCommand` which extends the `Command` abstract class.
-
-`MarkCommand` extends the `EditStudentCommand` abstract class, as it is a feature that modifies students in the list.
-The implementation of the execute command is contained in the parent class `EditStudentCommand#execute`, which
-`MarkCommand` calls from. A brief summary of the class structure is illustrated in the class diagram below.
+The implementation of the `execute` method is contained in the parent class `EditStudentCommand#execute`. The `execute` method which the respective concrete implementations of `EditStudentCommand` will in turn call the `editStudent` method of the corresponding `StudentEditor` (e.g. `MarkCommand.MarkStudentEditor#editStudent`). A brief summary of the class structure is illustrated in the class diagram below, using `MarkCommand` as the example. Since all concrete implementations of the `EditStudentCommand` share the same class structure, the example of `MarkCommand` will also be used to explain the implementation details.
 
 ![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png)
 
@@ -268,29 +241,31 @@ The instance of `IndexListGenerator` can be either
 * `AllIndexGenerator`, which corresponds to all indexes of the filtered list (meaning all listed students are modified)
 * `SingleIndexGenerator`, which corresponds to a single index (meaning one selected student is modified)
 
-`StudentEditor` is an abstract class which contains all the logic for modifying the student. MarkCommand implements an
-unique subclass of `StudentEditor` called `MarkCommandStudentEditor`.
+`StudentEditor` is an abstract class which contains all the logic for modifying the student. Concrete implementations of `EditStudentCommand` such as the `MarkCommand` also contains an implementation its corresponding `StudentEditor` (E.g. `MarkCommandStudentEditor` in the case of `MarkCommand`).
 
-Both `IndexListGenerator` and `MarkCommandStudentEditor` are passed to `MarkCommand` in its constructor via the
-`MarkCommandParser`. Details of the class structure for `MarkCommandParser` are illustrated in the class diagram
+The corresponding `EditCommandParser` instantaites both its `IndexListGenerator` and the `StudentEditor` based on inputs and passed them to the constructor of the respective command (`MarkCommand` in this case). The example class structure using `MarkCommandParser` is illustrated in the class diagram
 below.
 
-![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)
+![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)]
 
-Given below is the flow for `MarkCommand#execute`.
 
-Step 1. The mark command loops through the list of indexes to be modified, as indicated in the `IndexListGenerator`.
+#### **General flow for update using EditStudentCommand**
 
-Step 2. The mark command modifies the student through `MarkCommandStudentEditor#editStudent`, marking the student as
-absent or present for the class
+Given below is the typical flow for `EditStudentCommand` such as the  `MarkCommand#execute`.
 
-Step 3. The mark command replaces the old student with the newly edited student in the `Model`.
+Step 1. The command loops through the list of indexes to be modified, as indicated in the `IndexListGenerator`.
 
-Below is a more detailed sequence diagram for the execution of the command.
+Step 3. The command replaces the old student with the newly edited student in the `Model` of the old student .
 
+Below is a more detailed sequence diagram for the execution of the command using the same example of `MarkCommand`.
 ![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
 
-#### Design considerations:
+#### Other notes or implementation
+`tag`/`untag` : This command adds/modifies/removes tags that are represented by the `Tag` class and does not include any status.
+`mark` /`unmark` : This command adds/modifies/removes a student's attendances that are represented by the `Attendance` class and include 2 status (absent/present).
+`mark` /`unmark` : This command adds/modifies/removes a student's assignment grading record that are represented by the `Assigment` class and include 3 status (new/received, marked).
+
+### Design considerations:
 
 **Aspect: How mark command executes:**
 
@@ -303,7 +278,7 @@ Below is a more detailed sequence diagram for the execution of the command.
     * Cons: Makes code harder to maintain, more code duplication.
 
 
-### Sort feature
+## **Sort feature**
 
 #### Implementation
 
