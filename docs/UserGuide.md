@@ -15,11 +15,146 @@ HealthContact is a software for **XXX**.
 
 ## 1.1 Adding
 
-### 1.1.1 Adding a patient
+### 1.1.1 Adding a patient `addpatient`, `ap`
 
-### 1.1.2 Adding an appointment of a patient
+Adds a patient to the address book with input information including name, phone number,
+email address, home address, remarks and tags. 
 
-### 1.1.3 Adding a bill of an appointment
+* Name must be different from existing patient. 
+
+* Remark and tags are optional. 
+
+* A patient can be added with multiple tags.
+
+#### Command word 
+
+`addpatient`, `ap`
+
+#### Format
+
+`Command word + <prefix><input> ...`
+
+#### Parameter List
+
+|     | Prefix  | Meaning       | Input Constraint                                                                                       |
+|-----|---------|---------------|--------------------------------------------------------------------------------------------------------|
+| `*` | `n/`    | Name          | 1. Non-empty alphanumeric characters and spaces<br/> 2. Must be different from existing patient's name |
+| `*` | `p/`    | Phone number  | Numbers with at least 3 digits                                                                         |
+| `*` | `e/`    | Email address | `local-part@domain`                                                                                    |
+| `*` | `a/`    | Home address  | Non-empty characters                                                                                   |
+|     | `r/`    | Remark        | Any characters                                                                                         |
+| `+` | `t/`    | Tag           | One alphanumeric word                                                                                  |
+
+Notes on symbols in first column:
+
+`*`  Must have(Accept last one when have multiple)
+
+`+`  Accept multiple
+
+#### Examples:
+
+* `ap n/Bernice Yu a/#11-330, blk 775, Bishan e/b.yu@nus.edu.sg p/80880011 t/NUS t/staff` adds such patient.
+
+<img src="images/addcommand/ap1.png" width="800px" height ="400px">
+
+* `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable
+* to add such patient because Bernice Yu already exists in the address book.
+
+<img src="images/addcommand/ap2.png" width="800px" height ="400px">
+
+
+### 1.1.2 Adding an appointment of a patient `addappointment`, `aa`
+
+Adds an appointment to the address book with input information including patient name, medical test,
+slot, and doctor.
+
+* Name must be the name of an existing patient.
+
+* Slot must be in the format `yyyy-MM-dd HH:mm`, eg. `2022-11-12 13:00`.
+
+* If slot is entered with time `24:00`, it will be saved as the `00:00` of the next date.
+
+* The input of four parameters must be different with the combination in other appointments.
+
+#### Command word
+
+`addpatient`, `ap`
+
+#### Format
+
+`Command word + <prefix><input> ...`
+
+#### Parameter List
+
+|     | Prefix | Meaning      | Input Constraint                                                                        |
+|-----|--------|--------------|-----------------------------------------------------------------------------------------|
+| `*` | `n/`   | Name         | 1. Non-empty alphanumeric characters and spaces<br/> 2. must be existing patient's name |
+| `*` | `s/`   | Slot         | Valid date and time in format `yyyy-MM-dd HH:mm`                                        |
+| `*` | `d/`   | Doctor name  | `local-part@domain`                                                                     |
+| `*` | `t/`   | Home address | Non-empty characters                                                                    |
+
+Notes on symbols in first column:
+
+`*`  Must have(Accept last one when have multiple)
+
+#### Examples:
+
+* `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` adds such appointment.
+
+<img src="images/addcommand/aa1.png" width="800px" height ="400px">
+
+* Executing `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` again is unable
+* to add such appointment because the appointment with the combination of the four inputs
+* parameters already exists in the address book.
+
+<img src="images/addcommand/aa2.png" width="800px" height ="400px">
+
+* `aa n/Bernice Yu s/2022-01-23 09:00 d/Dioni Yong t/CT` adds another appointment for Bernice Yu.
+
+<img src="images/addcommand/aa3.png" width="800px" height ="400px">
+
+### 1.1.3 Adding a bill of an appointment `addbill`, `ab`
+
+Adds a bill attached to an appointment with input information including amount and bill date.
+
+* Amount must be positive number with at most 2 decimal places.
+
+* One appointment can be attached to no more than one bill.
+
+* Bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
+
+#### Command word
+
+`addbill`, `ab`
+
+#### Format
+
+`Command word + <index of appointment> + <prefix><input> ...`
+
+#### Parameter List
+
+|      | Prefix  | Meaning              | Input Constraint                                                                                                 |
+|------|---------|----------------------|------------------------------------------------------------------------------------------------------------------|
+| `**` | NA      | Index of appointment | 1. Positive integer <br/> 2. Appears in the appointment list<br/>3. The indicated appointment does not have bill |
+| `*`  | `a/`    | Amount               | Positive number with at most 2 decimal place                                                                     |
+| `*`  | `d/`    | Bill Date            | Valid date in format `yyyy-MM-dd`                                                                          |
+
+Notes on symbols in first column:
+
+`**` Must be directly after command word
+
+`*`  Must have(Accept last one when have multiple)
+
+#### Examples:
+
+* `ab 1 a/1200.00 d/2021-11-11` adds such bill to the first appointment in the displayed list.
+
+<img src="images/addcommand/ab1.png" width="800px" height ="400px">
+
+* Executing `ab 1 a/1500.00 d/2021-11-13` is unable to add such bill because the first appointment
+* in the displayed list already has an attached bill.
+
+<img src="images/addcommand/ab2.png" width="800px" height ="400px">
 
 ## 1.2 Editing
 
