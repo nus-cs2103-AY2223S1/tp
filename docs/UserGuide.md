@@ -175,6 +175,7 @@ Format: `remove ACCEPTED/REJECTED`
 Examples:
 *  `remove accepted` removes all entries with ACCEPTED as an application status from TrackAScholar.
 *  `remove rejected` removes all entries with REJECTED as an application status from TrackAScholar.
+*  `ACCEPTED` and `REJECTED` is case-insensitive.
 
 ### Sorting applicants by either name, scholarship or application status : `sort`
 
@@ -195,13 +196,27 @@ An applicant will be pinned in the pinned applicant list on the right side of th
 
 Format: `pin INDEX`
 
-* Pins the scholarship application with the specified `INDEX`.
+* Pins the scholarship applicant with the specified `INDEX`.
 * The index refers to the index number shown in the displayed applicant list.
 * The index **must be a positive integer** 1, 2, 3, …​.
 
 Examples:
 * `list` followed by `pin 2` pins the 2nd applicant in TrackAScholar.
 
+### Unpins an applicant
+
+An applicant in the pinned applicant list (on the right side of the screen) will be unpinned. 
+This will result in the removal of the applicant from the pinned applicant list.
+
+Format: `unpin NAME`
+
+* Unpins the scholarship applicant with the specified `NAME`.
+* The name refers to the name of the scholarship applicant.
+* The name **must be the full name:** `Alex Yeoh` instead of just simply `Alex`.
+* The name is **case-insensitive**
+
+Examples:
+* `unpin Alex Yeoh` unpins the applicant with the name `Alex Yeoh` in TrackAScholar.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Further details
@@ -239,4 +254,6 @@ _Details coming soon ..._
 | **List**   | `list`                                                        |
 | **Remove** | `remove ACCEPTED/REJECTED`                                    |
 | **Sort**   | `sort NAME/SCHOLARSHIP/APPLICATION_STATUS`                    |
+| **Pin**    | `pin INDEX`                                                   |
+| **Unpin**  | `unpin NAME`                                                  |
 
