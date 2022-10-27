@@ -20,13 +20,15 @@ This guide contains all you need to get started on working with GithubContact.
    2. [Remove a person](#delete-a-person--delete)
    3. [Find a person](#find-a-person--find)
    4. [Sort people](#sort-the-list-of-persons--sort)
-   5. [Show a person's details](#show-a-persons-details--enter-or-double-click)
-   6. [Set a person's details](#set-a-persons-details--set)
-   7. [Delete a person's details](#delete-a-persons-details-delete)
-   8. [Return to previous page](#return-to-previous-page--back-or-esc)
-   9. [Show help page](#show-help-page--help)
+   5. [Reset the persons list](#reset-the-list-of-persons-reset)
+   6. [Show a person's details](#show-a-persons-details--enter-or-double-click)
+   7. [Set a person's details](#set-a-persons-details--set)
+   8. [Delete a person's details](#delete-a-persons-details-delete)
+   9. [Return to previous page](#return-to-previous-page--back-or-esc)
+   10. [Show help page](#show-help-page--help)
 3. [FAQ](#faq)
 4. [Command Summary](#command-summary)
+5. [Prefix Aliases](#prefix-aliases)
 
 ## Getting Started
 
@@ -75,6 +77,10 @@ This guide contains all you need to get started on working with GithubContact.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Each attribute prefix can be replaced with its **alias**.
+  e.g. instead of using `add name/John Doe address/Clementi`, `add n/John Doe a/Clementi` will fulfill the same function.
+  The full list of prefix aliases can be found [here](#prefix-aliases).
+
 </div>
 
 #### Add a person : `add`
@@ -116,11 +122,9 @@ After the command is executed:
 
 #### Find a Person : `find`
 
-Displays the persons that match a given keyword. After which, the filtered list can be reset using the `reset` command.
+Displays the persons that match a given keyword.
 
-Format: 
-- To display the matching persons: `find KEYWORD`
-- To return to the main list: `reset`
+Format: `find KEYWORD`
 
 Example:
 - Find all the people named David: `find david`
@@ -131,8 +135,6 @@ Before the command is executed:
 After the command is executed:
 ![after find](images/ug/find_after.png)
 
-After `reset` is executed:
-![reset](images/ug/reset.png)
 
 #### Sort the list of Persons : `sort`
 
@@ -150,6 +152,24 @@ Before the command is executed:
 
 After the command is executed:
 ![after sort](images/ug/sort_after.png)
+
+#### Reset the list of persons: `reset`
+
+Resets the persons list.
+
+Performs the following two functions:
+- Resets the search condition, causing the original list of persons to be displayed.
+- Resets the sorting condition, causing the list of persons to return to its default ordering.
+
+Format: `reset`
+
+Example:
+
+After executing a [`find`](#find-a-person--find) command.
+![after find](images/ug/find_after.png)
+
+After `reset` is executed:
+![reset](images/ug/reset.png)
 
 #### Show a Person's Details : `<ENTER>` or double click
 
@@ -289,3 +309,17 @@ After executing `help delete`:
 | **reset**            | `reset`                                                                                                                                                                             |
 | **back**             | `back` or `<ESC>` key                                                                                                                                                               |
 | **help**             | `help` <br> `help`, `help add`                                                                                                                                                      |
+
+## Prefix Aliases
+
+| Prefix   | Aliases              |
+|----------|----------------------|
+| Name     | `name/`, `n/`        |
+| Address  | `address/`, `a/`     |
+| Tag      | `tag/`, `t/`         |
+| Email    | `email/`, `@/`       |
+| Phone    | `phone/`, `+/`       |
+| Slack    | `slack/`, `sk/`      |
+| Telegram | `telegram/`, `tele/` |
+| Role     | `role/`, `r/`        |
+| Timezone | `timezone/`, `tz/`   |
