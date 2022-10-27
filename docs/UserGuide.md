@@ -196,7 +196,7 @@ The default date is the current date on your computer!
    * Examples: `view t/i g/c`
    * Expected: `Show graphically all income by category` and a PieChart on the right of the application
 
-### View entries by month : `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`
+### View entries by month : `view t/ENTRY_TYPE g/GRAPH_TYPE mo/MONTH`
 1. View a LineGraph of all expenditures in a specified month
    * Examples: `view t/e g/m mo/2022-10`
    * Expected: `Show graphically all expenditure by month` and a LineGraph on the right of the application
