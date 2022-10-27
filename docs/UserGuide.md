@@ -157,9 +157,12 @@ Format (1): `:pr n/NAME [n/NAME]...`
 
 Format (2): `:pr all/`
 
-##### Parameter constraints:
-* Extraneous parameters (before and after the `all/` flag) will be ignored. </br>
-  e.g. if the command specifies `:pr abc all/ 123`, it will be interpreted as `:pr all/`.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
+Extraneous parameters (before and after the `all/` flag) will be ignored. <br> e.g. if the command specifies `:pr abc all/ 123`, it will be interpreted as `:pr all/`.
+</div>
+
+##### Example:
+* `:pr all/` Lists the personal records for all uniquely registered exercises in the exercise tracker.
 
 ### Exiting the program : `:wq`
 
