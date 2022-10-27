@@ -41,18 +41,18 @@ public class EmailContainsKeywordsPredicateTest {
 
     @Test
     public void test_emailContainsKeywords_returnsTrue() {
-        // One keyword
+        // Small letter keyword
         EmailContainsKeywordsPredicate predicate =
-                new EmailContainsKeywordsPredicate(Collections.singletonList("john@example.com"));
-        assertTrue(predicate.test(new TutorBuilder().withEmail("john@example.com").build()));
+                new EmailContainsKeywordsPredicate(Collections.singletonList("e1234567"));
+        assertTrue(predicate.test(new TutorBuilder().withEmail("e1234567").build()));
 
-        // Mixed case keywords
-        predicate = new EmailContainsKeywordsPredicate(Collections.singletonList("jOhn@eXample.cOm"));
-        assertTrue(predicate.test(new TutorBuilder().withEmail("john@example.com").build()));
+        // Capital letter keyword
+        predicate = new EmailContainsKeywordsPredicate(Collections.singletonList("E1234567"));
+        assertTrue(predicate.test(new TutorBuilder().withEmail("E1234567").build()));
 
         // Partial keyword
-        predicate = new EmailContainsKeywordsPredicate(Collections.singletonList("jOhn"));
-        assertTrue(predicate.test(new TutorBuilder().withEmail("john@example.com").build()));
+        predicate = new EmailContainsKeywordsPredicate(Collections.singletonList("1234"));
+        assertTrue(predicate.test(new TutorBuilder().withEmail("e1234567").build()));
     }
 
     @Test
@@ -60,15 +60,15 @@ public class EmailContainsKeywordsPredicateTest {
         // Zero keywords
         EmailContainsKeywordsPredicate predicate =
                 new EmailContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new TutorBuilder().withEmail("john@example.com").build()));
+        assertFalse(predicate.test(new TutorBuilder().withEmail("e1234567").build()));
 
         // Non-matching keyword
-        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("tom@example.com"));
-        assertFalse(predicate.test(new TutorBuilder().withEmail("john@example.com").build()));
+        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("e7654321"));
+        assertFalse(predicate.test(new TutorBuilder().withEmail("e1234567").build()));
 
         // Keywords match phone and year, but does not match email
         predicate = new EmailContainsKeywordsPredicate(Arrays.asList("99999999", "3", "Main", "Street"));
         assertFalse(predicate.test(new TutorBuilder().withPhone("99999999")
-                .withEmail("alice@email.com").withYear("3").build()));
+                .withEmail("e0000000").withYear("3").build()));
     }
 }

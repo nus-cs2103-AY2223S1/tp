@@ -1,0 +1,98 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+participant ":TutorListPanel" as TutorListPanel LOGIC_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TuthubParser" as TuthubParser LOGIC_COLOR
+participant ":FindByPrefixCommandParser" as FindByPrefixCommandParser LOGIC_COLOR
+participant ":FindByNameCommand" as FindByNameCommand LOGIC_COLOR
+participant ":NameContainsKeywordsPredicate" as NameContainsKeywordsPredicate LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("find n/alex")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("find n/alex")
+activate LogicManager
+
+LogicManager -> TuthubParser : parseCommand("find n/alex")
+activate TuthubParser
+
+create FindByPrefixCommandParser
+TuthubParser -> FindByPrefixCommandParser
+activate FindByPrefixCommandParser
+
+FindByPrefixCommandParser --> TuthubParser
+deactivate FindByPrefixCommandParser
+
+TuthubParser -> FindByPrefixCommandParser : parse("n/alex")
+activate FindByPrefixCommandParser
+
+create NameContainsKeywordsPredicate
+FindByPrefixCommandParser -> NameContainsKeywordsPredicate
+activate NameContainsKeywordsPredicate
+
+NameContainsKeywordsPredicate --> FindByPrefixCommandParser
+deactivate NameContainsKeywordsPredicate
+
+create FindByNameCommand
+FindByPrefixCommandParser -> FindByNameCommand
+activate FindByNameCommand
+
+FindByNameCommand --> FindByPrefixCommandParser
+deactivate FindByNameCommand
+
+FindByPrefixCommandParser --> TuthubParser
+deactivate FindByPrefixCommandParser
+
+TuthubParser --> LogicManager
+deactivate TuthubParser
+
+LogicManager --> FindByNameCommand : execute()
+activate FindByNameCommand
+
+FindByNameCommand -> Model : updateFilteredTutorList(NameContainsKeywordsPredicate)
+activate Model
+
+Model --> FindByNameCommand
+deactivate Model
+
+create CommandResult
+FindByNameCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindByNameCommand
+deactivate CommandResult
+
+FindByNameCommand --> LogicManager : result
+deactivate FindByNameCommand
+
+MainWindow <-- LogicManager
+deactivate LogicManager
+
+MainWindow --> MainWindow : fillInnerParts()
+activate MainWindow
+
+create TutorListPanel
+MainWindow -> TutorListPanel
+activate TutorListPanel
+
+TutorListPanel -> MainWindow
+deactivate TutorListPanel
+
+MainWindow --> MainWindow
+deactivate MainWindow
+[<- MainWindow
+deactivate MainWindow
+
+@enduml
