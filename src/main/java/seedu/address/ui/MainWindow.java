@@ -393,15 +393,16 @@ public class MainWindow extends UiPart<Stage> {
     /** Displays the added entity in Description Panel. **/
     private void handleAdd() {
         ListType type = logic.getCurrentListType();
-        entityDescriptionPlaceholder.getChildren().clear();
         int listSize;
         switch(type) {
         case STUDENT_LIST:
+            entityDescriptionPlaceholder.getChildren().clear();
             listSize = logic.getFilteredStudentList().size();
             studentListPanel.getStudentListView().getSelectionModel().clearSelection();
             studentListPanel.getStudentListView().getSelectionModel().select(listSize - 1);
             break;
         case TUTOR_LIST:
+            entityDescriptionPlaceholder.getChildren().clear();
             listSize = logic.getFilteredTutorList().size();
             tutorListPanel.getTutorListView().getSelectionModel().clearSelection();
             tutorListPanel.getTutorListView().getSelectionModel().select(listSize - 1);
