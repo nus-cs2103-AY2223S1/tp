@@ -29,7 +29,7 @@ public class TagsView {
     public static Node from(List<Tag> itemTags) {
         final List<Node> tagsList = new ArrayList<>();
         itemTags.stream().sorted(Comparator.comparing(Tag::getName))
-                .forEach(tag -> tagsList.add(buildTagNodeFrom(tag.getName())));
+                .forEach(tag -> tagsList.add(TagView.from(tag)));
         if (tagsList.isEmpty()) {
             tagsList.add(new Label(EMPTY_TAGS));
         }
@@ -55,11 +55,5 @@ public class TagsView {
      */
     public static Node from(Tag itemTag) {
         return from(List.of(itemTag));
-    }
-
-    private static Node buildTagNodeFrom(String tagName) {
-        final Label label = new Label(tagName);
-        label.getStyleClass().add("item-detail-tag");
-        return label;
     }
 }
