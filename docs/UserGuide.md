@@ -205,7 +205,6 @@ Assigns a task to a member with the given name in a group in TABS.
 
 Format: `assigntask NAME g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]`
 * Assigns a `TASK` to a person with the specified `NAME`, `GROUP`, `WORKLOAD` and `DEADLINE`.
-* `TASK` is of type String.
 * `WORKLOAD` specified must be `low`, `medium` or `high`.
 * `DEADLINE` must be in `yyyy-MM-dd` or `yyyy-MM-dd HH:mm` format.
 
@@ -221,7 +220,6 @@ Deletes a task from a member with the given name in a group.
 
 Format: `deletetask NAME g/GROUP task/TASK`
 * Deletes a `TASK` from a person with the specified `NAME` and specified `GROUP`.
-* `TASK` is of type String.
 
 Examples:
 * `deletetask John g/CS2103T task/TeamProject` deletes task `TeamProject` from person `John`in group `CS2103T`.
@@ -231,9 +229,8 @@ Examples:
 
 Assigns a task to all members in a group. Members with the same task are ignored.
 
-Format: `assigntaskall g/GROUP task/TASKw/WORKLOAD d/DEADLINE`
+Format: `assigntaskall g/GROUP task/TASK w/WORKLOAD d/DEADLINE`
 * Assigns a `TASK` to all members with the specified `GROUP`, `WORKLOAD` and `DEADLINE`.
-* `TASK` is of type String.
 * `WORKLOAD` specified must be `low`, `medium` or `high`.
 * `DEADLINE` must be in `yyyy-MM-dd` or `yyyy-MM-dd HH:mm` format.
 
@@ -249,7 +246,6 @@ Deletes a task from all members in a group. Members without this task are ignore
 
 Format: `deletetaskall g/GROUP task/TASK`
 * Deletes a `TASK` from all members with the specified `GROUP`.
-* `TASK` is of type String.
 
 Examples:
 * `deletetaskall John g/CS2103T task/TeamProject` deletes task `TeamProject` from all members in group `CS2103T`.

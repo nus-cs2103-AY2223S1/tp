@@ -70,28 +70,38 @@ public class DeleteGroupMemberCommand extends Command {
         if (!groupToDeletePerson.contains(personToGroup)) {
             throw new CommandException(String.format(MESSAGE_PERSON_NOT_IN_GROUP, this.name, this.personGroup));
         }
+
         //change field
         ArrayList<PersonGroup> personGroupArrayList = personToGroup.getPersonGroups();
         ArrayList<PersonGroup> personGroupArrayListCopy = new ArrayList<>(personGroupArrayList);
+
         Person originalPersonBeforeEdit = new Person(
             personToGroup.getName(), personToGroup.getPhone(), personToGroup.getEmail(),
             personToGroup.getAddress(), personToGroup.getTags(), personToGroup.getAssignments(),
-            personGroupArrayListCopy);
+                personGroupArrayList);
 
-        personGroupArrayList.remove(this.personGroup);
+        personGroupArrayListCopy.remove(this.personGroup);
 
         Person editedPerson = new Person(
                 personToGroup.getName(), personToGroup.getPhone(), personToGroup.getEmail(),
                 personToGroup.getAddress(), personToGroup.getTags(), personToGroup.getAssignments(),
-                personGroupArrayList);
+                personGroupArrayListCopy);
 
+        for (PersonGroup pg : personGroupArrayListCopy) {
+            Group currGroup = model.getGroupWithName(new GroupName(pg.getGroupName())).get(0);
+
+            Set<Person> editedMembers = new HashSet<>(currGroup.getMembers());
+            editedMembers.remove(originalPersonBeforeEdit);
+            editedMembers.add(editedPerson);
+
+            Group editedExistingGroups = new Group(currGroup.getName(), editedMembers);
+            model.setGroup(currGroup, editedExistingGroups);
+        }
 
         //deletes person from the group
-        Set<Person> groupMembers = new HashSet<>();
-        groupMembers.addAll(groupToDeletePerson.getMembers());
+        Set<Person> groupMembers = new HashSet<>(groupToDeletePerson.getMembers());
         groupMembers.remove(originalPersonBeforeEdit);
         Group editedGroup = new Group(groupToDeletePerson.getName(), groupMembers);
-
 
         model.setGroup(groupToDeletePerson, editedGroup);
         model.setPerson(personToGroup, editedPerson);
