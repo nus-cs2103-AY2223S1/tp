@@ -17,11 +17,10 @@ import seedu.address.model.bill.Bill;
 public class SortBillCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("sortbill");
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Sorts the list of bills according to the specified field."
+            COMMAND_WORD + ": Sorts the list of appointments according to the specified field"
                     + "by alphabetical order.\n"
-                    + "Existing remark will be overwritten by the input.\n"
-                    + "Parameters: FIELD (must not be empty) "
-                    + "Example: " + COMMAND_WORD + "name";
+                    + "Parameters: c/CRITERIA (name, amount, date, status) o/ORDER (asc, desc) "
+                    + "Example: " + COMMAND_WORD + " " + "c/name o/asc";
 
     public static final String MESSAGE_SORT_SUCCESS = "Sorted according to %1$s";
 
@@ -40,7 +39,7 @@ public class SortBillCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (this.criteria.toLowerCase().equals("appointment")) {
+        if (this.criteria.toLowerCase().equals("name")) {
             AppointmentComparator appointmentComparator = new AppointmentComparator();
             model.sortBills(appointmentComparator, this.isAscending);
         } else if (this.criteria.toLowerCase().equals("amount")) {
