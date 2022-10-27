@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AppendCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CloneCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -17,6 +18,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.ThemeCommand;
+import seedu.address.logic.commands.ToggleListModeCommand;
+import seedu.address.logic.commands.UnappendCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.commands.ViewCommand;
@@ -169,6 +172,18 @@ public class HelpWindowForCommand extends UiPart<Stage> {
 
         case ThemeCommand.COMMAND_WORD:
             helpMessageString = ThemeCommand.MESSAGE_USAGE;
+            break;
+
+        case AppendCommand.COMMAND_WORD:
+            helpMessageString = AppendCommand.MESSAGE_USAGE;
+            break;
+
+        case UnappendCommand.COMMAND_WORD:
+            helpMessageString = UnappendCommand.MESSAGE_USAGE;
+            break;
+
+        case ToggleListModeCommand.COMMAND_WORD:
+            helpMessageString = ToggleListModeCommand.MESSAGE_USAGE;
             break;
 
         default:

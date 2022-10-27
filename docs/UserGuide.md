@@ -70,7 +70,11 @@ Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format: `help [COMMAND_NAME]`
+
+- Use `help [COMMAND_NAME]` to see more information about the command features and usages.
+- There is a help window for each command in Survin.
+- Using `help` without any parameters will prompt you to our [user guide](https://ay2223s1-cs2103-f13-2.github.io/tp/UserGuide.html).
 
 ### Adding a person: `add`
 
