@@ -70,55 +70,91 @@
                 </VBox.margin>
             </Label>
 
-            <Label fx:id="totalRevenue" styleClass="cell_small_label" text="\$totalrevenue">
-                <minHeight>
-                    <!-- Ensures that the label text is never truncated -->
-                    <Region fx:constant="USE_PREF_SIZE"/>
-                </minHeight>
+            <Label styleClass="cell_h2_label" text="Insights">
                 <VBox.margin>
-                    <Insets bottom="4.0" />
+                    <Insets top="16" bottom="16"/>
                 </VBox.margin>
             </Label>
 
-            <Label fx:id="commissionCount" styleClass="cell_small_label" text="\$commissionCount">
-                <minHeight>
-                    <!-- Ensures that the label text is never truncated -->
-                    <Region fx:constant="USE_PREF_SIZE"/>
-                </minHeight>
-                <VBox.margin>
-                    <Insets bottom="4.0" />
-                </VBox.margin>
-            </Label>
+            <GridPane vgap="16" hgap="16">
+                <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="3"
+                      minWidth="250" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" id="revenueCard">
+                    <Label fx:id="totalRevenue" id="revenueGenerated" text="\$totalrevenue">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE"/>
+                        </minHeight>
+                        <VBox.margin>
+                            <Insets bottom="4.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label text="Total revenue generated"/>
+                </VBox>
 
-            <Label fx:id="commissionCompletedCount" styleClass="cell_small_label" text="\$commissionCompleteCount">
-                <minHeight>
-                    <!-- Ensures that the label text is never truncated -->
-                    <Region fx:constant="USE_PREF_SIZE"/>
-                </minHeight>
-                <VBox.margin>
-                    <Insets bottom="4.0" />
-                </VBox.margin>
-            </Label>
+                <HBox GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="3" spacing="12"
+                      minWidth="83.3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" id="commissionCountCard"
+                      alignment="CENTER_LEFT">
+                    <Label fx:id="commissionCount" id="commissionCount" text="\$commissionCount">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE"/>
+                        </minHeight>
+                        <VBox.margin>
+                            <Insets bottom="4.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label fx:id="commissionLabel" text="Commissions" minHeight="26"
+                           style="-fx-text-alignment: bottom;"/>
+                </HBox>
 
-            <Label fx:id="commissionInProgressCount" styleClass="cell_small_label" text="\$commissionInProgressCount">
-                <minHeight>
-                    <!-- Ensures that the label text is never truncated -->
-                    <Region fx:constant="USE_PREF_SIZE"/>
-                </minHeight>
-                <VBox.margin>
-                    <Insets bottom="4.0" />
-                </VBox.margin>
-            </Label>
+                <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="1"
+                      minWidth="83.3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
+                      styleClass="commissionBreakdownCountCard" alignment="CENTER">
+                    <Label fx:id="commissionCompletedCount" id="commissionCompletedCount" alignment="CENTER"
+                           text="\$commissionCompleteCount" HBox.hgrow="ALWAYS" minWidth="92.6">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE"/>
+                        </minHeight>
+                        <VBox.margin>
+                            <Insets bottom="4.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label text="Completed" HBox.hgrow="ALWAYS" alignment="CENTER"/>
+                </VBox>
 
-            <Label fx:id="commissionNotStartedCount" styleClass="cell_small_label" text="\$commissionNotStartedCount">
-                <minHeight>
-                    <!-- Ensures that the label text is never truncated -->
-                    <Region fx:constant="USE_PREF_SIZE"/>
-                </minHeight>
-                <VBox.margin>
-                    <Insets bottom="4.0" />
-                </VBox.margin>
-            </Label>
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="1"
+                      minWidth="83.3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
+                      styleClass="commissionBreakdownCountCard" alignment="CENTER">
+                <Label fx:id="commissionInProgressCount" id="commissionInProgressCount" alignment="CENTER"
+                       text="\$commissionInProgressCount" HBox.hgrow="ALWAYS" minWidth="92.6">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE"/>
+                        </minHeight>
+                        <VBox.margin>
+                            <Insets bottom="4.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label text="In Progress" HBox.hgrow="ALWAYS" alignment="CENTER"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.columnSpan="1"
+                      minWidth="92.6" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
+                      styleClass="commissionBreakdownCountCard" alignment="CENTER">
+                    <Label fx:id="commissionNotStartedCount" id="commissionNotStartedCount"
+                           text="\$commissionNotStartedCount" alignment="CENTER" minWidth="92.6">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE"/>
+                        </minHeight>
+                        <VBox.margin>
+                            <Insets bottom="4.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label text="Not Started" HBox.hgrow="ALWAYS" alignment="CENTER"/>
+                </VBox>
+            </GridPane>
         </VBox>
         <rowConstraints>
             <RowConstraints/>

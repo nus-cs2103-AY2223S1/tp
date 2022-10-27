@@ -19,6 +19,8 @@ import seedu.address.model.customer.Customer;
 public class CustomerDetailsPane extends UiPart<Region> {
 
     private static final String FXML = "CustomerDetailsPane.fxml";
+    private static final String COMMISSION_LABEL_PLURAL = "Commissions";
+    private static final String COMMISSION_LABEL_SINGULAR = "Commission";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -51,6 +53,8 @@ public class CustomerDetailsPane extends UiPart<Region> {
     @FXML
     private Label commissionNotStartedCount;
     @FXML
+    private Label commissionLabel;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -70,6 +74,7 @@ public class CustomerDetailsPane extends UiPart<Region> {
             address.setText("");
             email.setText("");
             totalRevenue.setText("");
+            commissionLabel.setText(COMMISSION_LABEL_PLURAL); // 0 commissions
             commissionCount.setText("");
             commissionCompletedCount.setText("");
             commissionInProgressCount.setText("");
@@ -80,7 +85,9 @@ public class CustomerDetailsPane extends UiPart<Region> {
             phone.setText(customer.getPhone().value);
             address.setText(customer.getAddress().map(address -> address.value).orElse(""));
             email.setText(customer.getEmail().value);
-            totalRevenue.setText(String.format("%.2f", customer.getRevenue()));
+            totalRevenue.setText(String.format("$%.2f", customer.getRevenue()));
+            commissionLabel.setText(customer.getCommissionCount() == 1
+                    ? COMMISSION_LABEL_SINGULAR : COMMISSION_LABEL_PLURAL);
             commissionCount.setText(Long.toString(customer.getCommissionCount()));
             commissionCompletedCount.setText(Long.toString(customer.getCompletedCommissionCount()));
             commissionInProgressCount.setText(Long.toString(customer.getInProgressCommissionCount()));
