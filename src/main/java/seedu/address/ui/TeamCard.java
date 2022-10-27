@@ -30,6 +30,7 @@ public class TeamCard extends UiPart<Region> {
         this.team = team;
         id.setText(displayedIndex + ". ");
         teamName.setText(team.getTeamName());
+        teamName.setWrapText(true);
     }
 
     @Override

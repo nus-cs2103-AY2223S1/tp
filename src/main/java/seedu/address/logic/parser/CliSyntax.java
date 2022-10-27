@@ -28,5 +28,8 @@ public class CliSyntax {
     public static final String FLAG_PHONE_STR_LONG = "--phone";
     public static final String FLAG_TAG_STR = "-t";
     public static final String FLAG_TAG_STR_LONG = "--tag";
-
+    public static final String FLAG_DEADLINE_STR = "-d";
+    public static final String FLAG_DEADLINE_STR_LONG = "--deadline";
+    public static final String FLAG_ASSIGNEE_STR = "-a";
+    public static final String FLAG_ASSIGNEE_STR_LONG = "--assignee";
 }

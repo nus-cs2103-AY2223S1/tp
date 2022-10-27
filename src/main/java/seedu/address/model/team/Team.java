@@ -33,7 +33,7 @@ public class Team {
     /**
      * Constructs a {@code Team}.
      *
-     * @param teamName    A valid team name.
+     * @param teamName A valid team name.
      */
     public Team(String teamName) {
         requireNonNull(teamName);
@@ -160,6 +160,11 @@ public class Team {
      */
     public void removeTask(Task task) {
         taskList.remove(task);
+    }
+
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+        taskList.setTask(target, editedTask);
     }
 
     /**
