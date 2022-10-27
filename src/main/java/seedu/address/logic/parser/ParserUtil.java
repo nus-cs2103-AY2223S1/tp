@@ -184,11 +184,20 @@ public class ParserUtil {
     public static Quantity parseQuantity(String quantity) throws ParseException {
         requireNonNull(quantity);
         String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidQuantity_empty(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_EMPTY);
+        }
         if (!Quantity.isValidQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
         if (!Quantity.isPositiveQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_POSITIVE);
+        }
+        if (!Quantity.isValidQuantity_regex(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        if (!Quantity.isValidQuantity_nonZero(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_ZERO);
         }
         return new Quantity(quantity);
     }

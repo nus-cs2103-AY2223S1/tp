@@ -32,8 +32,60 @@ class QuantityTest {
         assertFalse(Quantity.isValidQuantity("9011p041")); // alphabets within digits
         assertFalse(Quantity.isValidQuantity("93 14")); // spaces within digits
         assertFalse(Quantity.isValidQuantity("93.55")); // decimals within digits
-        assertFalse(Quantity.isValidQuantity("0")); // 0 Quantity
         assertFalse(Quantity.isValidQuantity("12000022371")); // too large quantity
+
+
+        // valid quantity numbers
+        assertTrue(Quantity.isValidQuantity("1"));
+        assertTrue(Quantity.isValidQuantity("91"));
+        assertTrue(Quantity.isValidQuantity("93121534"));
+        assertTrue(Quantity.isValidQuantity("1200002237"));
+    }
+
+    @Test
+    public void isValidQuantityNonZerp() {
+
+        assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity_nonZero(null));
+
+        // invalid quantity numbers
+        assertFalse(Quantity.isValidQuantity_nonZero("0"));
+
+        // valid quantity numbers
+        assertTrue(Quantity.isValidQuantity_nonZero("1"));
+        assertTrue(Quantity.isValidQuantity_nonZero("91"));
+        assertTrue(Quantity.isValidQuantity_nonZero("93121534"));
+        assertTrue(Quantity.isValidQuantity_nonZero("1200002237"));
+    }
+
+    public void isValidQuantityEmpty() {
+
+        assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity_empty(null));
+
+
+        // invalid quantity numbers
+        assertFalse(Quantity.isValidQuantity_empty("")); // empty string
+        assertFalse(Quantity.isValidQuantity_empty(" ")); // spaces only
+
+        // valid quantity numbers
+        assertTrue(Quantity.isValidQuantity_empty("1"));
+        assertTrue(Quantity.isValidQuantity_empty("91"));
+        assertTrue(Quantity.isValidQuantity_empty("93121534"));
+        assertTrue(Quantity.isValidQuantity_empty("1200002237"));
+    }
+
+    public void isValidQuantityRegex() {
+
+        assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity_regex(null));
+
+
+        // invalid quantity numbers
+        assertFalse(Quantity.isValidQuantity_regex("")); // empty string
+        assertFalse(Quantity.isValidQuantity_regex(" ")); // spaces only
+        assertFalse(Quantity.isValidQuantity_regex("test")); // non-numeric
+        assertFalse(Quantity.isValidQuantity_regex("9011p041")); // alphabets within digits
+        assertFalse(Quantity.isValidQuantity_regex("93 14")); // spaces within digits
+        assertFalse(Quantity.isValidQuantity_regex("93.55")); // decimals within digits
+        assertFalse(Quantity.isValidQuantity_regex("12000022371")); // too large quantity
 
 
         // valid quantity numbers

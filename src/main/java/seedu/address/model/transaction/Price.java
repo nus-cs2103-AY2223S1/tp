@@ -9,7 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Price {
     public static final String MESSAGE_CONSTRAINTS =
-            "Price should only contain numbers, and it should be at least 1 digits long";
+            "Price should only contain numbers and at most one decimal point.";
+    public static final String MESSAGE_CONSTRAINTS_EMPTY =
+            "Price should not be left empty.";
     public static final String MESSAGE_CONSTRAINTS_POSITIVE =
             "Price should be not be negative.";
     public final String price;
@@ -33,9 +35,8 @@ public class Price {
     public static boolean isValidPrice(String test) {
         requireNonNull(test);
         boolean isDouble = true;
-        double num = 0.00;
         try {
-            num = Double.parseDouble(test);
+            Double.parseDouble(test);
         } catch (NumberFormatException e) {
             isDouble = false;
         }

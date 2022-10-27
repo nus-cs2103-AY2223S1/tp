@@ -34,6 +34,8 @@ public class ParserUtilTest {
     private static final String INVALID_QUANTITY_ZERO = "0";
     private static final String INVALID_QUANTITY_NEGATIVE_ZERO = "-0";
 
+    private static final String INVALID_QUANTITY_EMPTY = " ";
+
     private static final String INVALID_PRICE = "1213a";
     private static final String INVALID_PRICE_NEGATIVE = "-100";
 
@@ -246,6 +248,8 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_QUANTITY_NEGATIVE));
         assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_QUANTITY_ZERO));
         assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_QUANTITY_NEGATIVE_ZERO));
+        assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_QUANTITY_EMPTY));
+
     }
 
     @Test
