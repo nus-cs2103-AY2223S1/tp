@@ -24,6 +24,9 @@ public class TagCommand extends Command {
 
     /**
      * Creates a TagCommand to tag the specified {@code Item} with a specified {@code Tag}
+     *
+     * @param tagName the name of the tag
+     * @param index the index of the item to tag
      */
     public TagCommand(String tagName, Index index) {
         requireNonNull(tagName);
