@@ -38,11 +38,7 @@ public class ProjectStatus {
      * Returns true if a given status is one of our enumeration constants
      */
     public static boolean isValidProjectStatus(String test) {
-        if (test.equals("YTS") || test.equals("IP") || test.equals("DONE")) {
-            return true;
-        } else {
-            return false;
-        }
+        return (test.equals("YTS") || test.equals("IP") || test.equals("DONE"));
     }
 
     @Override

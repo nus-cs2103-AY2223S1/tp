@@ -18,12 +18,14 @@ import jeryl.fyp.model.student.StudentId;
  */
 public class DeleteDeadlineCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete-d";
+    public static final String COMMAND_WORD = "delete -d";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the deadline identified by the student ID & rank provided.\n"
             + "Parameters: "
-            + PREFIX_STUDENT_ID + "STUDENT_ID (must be a valid student ID that is already in the FYP manager)\n"
+            + PREFIX_STUDENT_ID + "STUDENT_ID"
+            + PREFIX_DEADLINE_RANK + "RANK\n"
+            + "(STUDENT_ID must be a valid student id that is already in the FYP manager)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_ID + "A0123456G "
             + PREFIX_DEADLINE_RANK + "1";
@@ -67,4 +69,5 @@ public class DeleteDeadlineCommand extends Command {
                 && studentId.equals(((DeleteDeadlineCommand) other).studentId) // state check
                 && rank.equals(((DeleteDeadlineCommand) other).rank));
     }
+
 }
