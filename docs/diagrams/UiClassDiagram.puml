@@ -10,15 +10,12 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
-Class ResultDisplay
-Class PersonListPanel
-Class ContentDisplay
+Class CommandOutput
+Class CommandInput
+Class StudentListPanel
+Class StudentListCard
 Class TaskListPanel
-Class PersonCard
-Class ViewSelector
-Class TaskCard
-Class StatusBarFooter
-Class CommandBox
+Class TaskListCard
 }
 
 package Model <<Rectangle>> {
@@ -34,40 +31,29 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" ViewSelector
-MainWindow *-down-> "1" ContentDisplay
-ContentDisplay *-down-> "1" PersonListPanel
-ContentDisplay *-down-> "1" TaskListPanel
-MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "1" CommandOutput
+MainWindow *-down-> "1" CommandInput
+MainWindow *-down-> "0..1" StudentListPanel
+StudentListPanel *-down-> "*" StudentListCard
+MainWindow *-down-> "0..1" TaskListPanel
+TaskListPanel *-down-> "*" TaskListCard
 MainWindow --> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
-
-TaskListPanel -down-> "*" TaskCard
-
-MainWindow -left-|> UiPart
-
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-TaskListPanel --|> UiPart
-PersonCard --|> UiPart
-TaskCard --|> UiPart
-ViewSelector --|> UiPart
-StatusBarFooter --|> UiPart
+MainWindow --|> UiPart
+CommandInput --|> UiPart
+CommandOutput --|> UiPart
 HelpWindow --|> UiPart
+StudentListPanel --|> UiPart
+StudentListCard --|> UiPart
+TaskListPanel --|> UiPart
+TaskListCard --|> UiPart
 
-PersonCard ..> Model
-TaskCard ..> Model
+StudentListCard .right.> Model
+TaskListCard .right.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+CommandInput -[hidden]left- CommandOutput
+HelpWindow -[hidden]left- CommandOutput
 
-MainWindow -[hidden]-|> UiPart
 @enduml
