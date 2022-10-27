@@ -9,10 +9,10 @@ import static seedu.application.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
  */
 public enum Status {
-    INTERVIEW("interview", "dodgerblue"),
+    INTERVIEW("interview", "darkblue"),
     OFFERED("offered", "green"),
-    PENDING("pending", "darkorange"),
-    REJECTED("rejected", "firebrick");
+    PENDING("pending", "orange"),
+    REJECTED("rejected", "red");
 
     public static final String MESSAGE_CONSTRAINTS =
             "Status should be one of the following: pending, interview, offered, rejected.";
