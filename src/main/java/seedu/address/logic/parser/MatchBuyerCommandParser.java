@@ -9,7 +9,7 @@ import seedu.address.logic.commands.MatchPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new MatchPropertyCommand object
+ * Parses input arguments and creates a new MatchBuyerCommand object
  */
 public class MatchBuyerCommandParser extends Parser<MatchBuyerCommand> {
 

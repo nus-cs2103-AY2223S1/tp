@@ -36,7 +36,7 @@ public class DeleteBuyerCommand extends Command {
         List<Buyer> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_BUYER_DISPLAYED_INDEX);
         }
 
         Buyer buyerToDelete = lastShownList.get(targetIndex.getZeroBased());

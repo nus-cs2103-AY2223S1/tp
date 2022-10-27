@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.FilterPropsByPricePredicate;
+import seedu.address.model.property.FilterPropsContainingAllCharacteristicsPredicate;
 import seedu.address.model.property.FilterPropsContainingAnyCharacteristicPredicate;
 import seedu.address.model.property.Property;
 
@@ -63,15 +64,20 @@ public class MatchBuyerCommand extends Command {
 
         if (buyerToMatch.getDesiredCharacteristics().isEmpty() && buyerToMatch.getPriceRange().isEmpty()) {
             throw new
-                    CommandException("Cannot match Buyer who has no desired characteristics or price range indicated!");
+                    CommandException(Messages.MESSAGE_INVALID_PROPERTY_BUYER_MATCH);
         } else {
             if (buyerToMatch.getPriceRange().isPresent()) {
                 predicatesList.add(new FilterPropsByPricePredicate(buyerToMatch.getPriceRange().get()));
             }
 
             if (buyerToMatch.getDesiredCharacteristics().isPresent()) {
-                predicatesList.add(new FilterPropsContainingAnyCharacteristicPredicate(
-                        buyerToMatch.getDesiredCharacteristics().get()));
+                if (isMatchingAll) {
+                    predicatesList.add(new FilterPropsContainingAllCharacteristicsPredicate(
+                            buyerToMatch.getDesiredCharacteristics().get()));
+                } else {
+                    predicatesList.add(new FilterPropsContainingAnyCharacteristicPredicate(
+                            buyerToMatch.getDesiredCharacteristics().get()));
+                }
             }
         }
 
@@ -94,6 +100,7 @@ public class MatchBuyerCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof MatchBuyerCommand // instanceof handles nulls
-                && targetIndex.equals(((MatchBuyerCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((MatchBuyerCommand) other).targetIndex))
+                && isMatchingAll == (((MatchBuyerCommand) other).isMatchingAll);
     }
 }
