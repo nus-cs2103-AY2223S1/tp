@@ -12,7 +12,7 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
 
 1. Download the latest `paymelah.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases).
 
@@ -44,14 +44,21 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in diamond brackets `<>` are parameters to be supplied by the user.<br>
+* The first word in the command is the command phrase that specifies which command will be carried out by PayMeLah.
+  e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
+
+* Words in diamond brackets `<>` are parameters to be supplied by you.<br>
   e.g. in `add n/<name>`, `<name>` is a parameter which can be used as `add n/John`.
 
-* Parameters with … can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
-  e.g. in `adddebt <person index>…`, `<person index>…` is a parameter which can be used as `adddebt 1` or as `adddebt 1 2`.
+* To separate parameters that represent different information, you should precede ambiguous parameters with their paired prefixes that end with `/`. <br>
+  e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the parameters `<name>` and `<tag>` respectively.
 
 * Items in square brackets `[]` are optional.<br>
-  e.g. in `add n/<name> [t/<tag>]…` can be used as `add n/Alan Poe t/shy pooper` or as `add n/Alan Poe`.
+  e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
+
+* Command fields with … can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
+  e.g. in `adddebt <person index…>`, `<person index…>` is a parameter which can be used as `adddebt 1` or as `adddebt 1 2`.
+  e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and parameter which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `d/<description> m/<money>`, `m/<money> d/<description>` is also acceptable.
@@ -92,7 +99,7 @@ Adds a person to PayMeLah.
 Format: `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -103,7 +110,7 @@ Examples:
 
 Adds a debt to a person in PayMeLah for you to track. Specifying multiple people will add a copy of this debt to each person specified.
 
-Format: `adddebt <person index>… d/<description> m/<money> [date/<date>] [time/<time>]`
+Format: `adddebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including '++' at the back of the amount. A single '+' will add only GST instead.
@@ -121,30 +128,57 @@ Example:
 
 Splits a debt among several people in PayMeLah such that each person owes the same amount (rounded up to the closest cent).
 
-Format: `splitdebt <person index>… d/<description> m/<money> [date/<date>] [time/<time>]`
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can split a debt among as many people as you want. You can even include yourself with index '0'.
+You can split a debt among as many people as you want. You can even include yourself with index '0'. But you cannot split a debt between just yourself.
 </div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Splitting a debt is just like adding a debt to multiple people; however, here we divide the money of the debt over the people who shared it. Sharing is made easy as we do the Maths for you!
+</div>
+
+* You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including '++' at the back of the amount. A single '+' will add only GST instead.
+* If you do not specify date and time, they will conveniently default to the current date and time.
+* If you specify the date but not the time, the time will default to midnight. Be careful that this default behaviour is different from the previous.
+* One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of these items being the same.
+
+Format: `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
+
 Examples:
-* `splitdebt 1 2 d/Pizza m/33.99`
-* `splitdebt 0 2 5 d/KFC Fish m/13`
+* `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`
+* `splitdebt 0 2 5 d/KFC Fish m/13+ date/2022-10-12`
 
 ### Clearing debts: `cleardebts`
 
-Clears all of a debtor's debts from PayMeLah according to his index number when listed.
+Clears all of a debtor's debts from PayMeLah such that he has no debts(paid and unpaid) left.
 
 Format: `cleardebts <person index>`
 
 Example:
 * `cleardebts 3`
 
+### Marking debts as paid: `mark`
+
+Marks the debts specified from a person in PayMeLah as paid. Multiple debts can be specified for marking as paid.
+
+Format: `mark <person index> debt/<debt index…>`
+
+Example:
+* `mark 2 debt/2 3`
+
+### Marking debts as unpaid: `unmark`
+
+Marks the debts specified from a person in PayMeLah as unpaid. Multiple debts can be specified for marking as unpaid.
+
+Format: `unmark <person index> debt/<debt index…>`
+
+Example:
+* `unmark 2 debt/2 3`
+
 ### Deleting debts: `deletedebts`
 
-Deletes the debts specified by their index numbers from a person listed in PayMeLah.
+Deletes the debts specified from a person in PayMeLah. Multiple debts can be specified for deletion.
 
-Format: `deletedebts <person index> debt/<debt index>…`
+Format: `deletedebts <person index> debt/<debt index…>`
 
 Example:
 * `deletedebts 2 debt/2 3`
@@ -165,9 +199,23 @@ Format: `list`
 
 ### Listing all debtors : `listdebtors`
 
-Shows a list of all persons that owe you money in PayMeLah.
+Shows a list of all persons that owe you more than or equal to a certain amount of money in PayMeLah. If no amount is provided, a list of persons who owe any amount of debt is displayed.
 
-Format: `listdebtors`
+Format: `listdebtors [m/<money>]`
+
+Example: `listdebtors m/10` displays the list of persons that owe more than $10.00.
+
+### Sorting list of persons : `sort`
+
+Sorts and displays the list of persons using the given criteria and order. The criteria that you can sort by are name, amount owed, and time since oldest debt. Use the `+` symbol to indicate ascending order, and the `-` symbol for descending order.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When you sort by time since oldest debt, all persons who do not owe any debt will be placed at the end of the list, regardless of whether ascending or descending order is specified.
+</div>
+
+Format: `sort [n/<order>] OR [m/<order>] OR [date/<order>]`
+
+Example: `sort n/+` sorts and displays the list of persons in ascending alphabetical order of their names.
 
 ### Editing a person : `edit`
 
@@ -187,7 +235,7 @@ Examples:
 *  `edit 1 p/91234567 tele/johndoe` Edits the phone number and telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by fields: `find`
 
 Finds persons who match all the given conditions.
 
@@ -199,19 +247,22 @@ Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<
 * The above and below fields look for people with a debt that lies in the specified monetary range.
 * The before and after fields look for people with a debt that lies within the specified date range.
 * The order of the conditions does not matter.
-  e.g. `d/burger n/hans` will match `Bo Hans` if he owes money for a burger.
+  e.g. `d/burger n/hans` will match `Hansel` if he owes money for a burger.
 * Only persons matching all conditions will be returned (i.e. `AND` search).
-  e.g. `d/burger n/hans` will return `Hans Gruber` only if he owes money for a burger,
-  but not `Bo Yang` even if he owes money for a burger. 
+  e.g. `d/burger d/fries n/hans` will return `Hans Gruber` only if he owes money for a burger and fries,
+  but not `Hansel`  if he only owes money for a burger and not for fries. 
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
+* `find d/burger n/hans` returns `Hansel` if he owes money for a burger
+* `find d/burger d/fries n/hans` returns `Hans Gruber` if he owes money for both a burger and fries,
+  but not `Hansel`  if he only owes money for a burger and not for fries.
 
 ### Locating persons by debt description: `finddebt`
 
 Finds persons who are associated with any debts that match any of the given keywords.
 
-Format: `finddebt <keyword> [<more keywords>]`
+Format: `finddebt <keyword>…`
 
 * The search is case-insensitive. e.g `burger` will match `Burger`
 * The order of the keywords does not matter. e.g. `Sharing Meal` will match `Meal Sharing`
@@ -273,16 +324,23 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add person** | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Add debt** | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`
-**Clear** | `clear`
-**Delete** | `delete <index>`<br> e.g., `delete 3`
-**Edit** | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`
-**Find** | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag> ...] [d/<description> ...] [m/<money> ...] [above/<money>] [below/<money>] [date/<date> ...] [before/<date>] [after/<date>] [time/<time> ...]`<br> e.g., `find d/burger above/10.0`
-**Find debts** | `finddebt <keyword> [<more keywords>]`<br> e.g., `finddebt burger`
-**List** | `list`
-**List debtors** | `listdebtors`
-**Get statement** | `statement`
-**Help** | `help`
+| Action            | Format, Examples                                                                                                                                                                                                   |
+|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add person**    | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`                                       |
+| **Add debt**      | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`                                                                                                                       |
+| **Split debt**    | `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]` <br> e.g., `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`                                                            |
+| **Mark debts**    | `mark <person index> debt/<debt index…>` <br> e.g., `mark 2 debt/2 3`                                                                                                                                              |
+| **Unmark debts**  | `unmark <person index> debt/<debt index…>` <br> e.g., `unmark 2 debt/2 3`                                                                                                                                          |
+| **Clear debts**   | `cleardebts <person index>` <br> e.g., `cleardebts 3`                                                                                                                                                              |
+| **Delete debts**  | `deletedebts <person index> debt/<debt index…>` <br> e.g., `deletedebts 2 debt/2 3`                                                                                                                                |
+| **Clear**         | `clear`                                                                                                                                                                                                            |
+| **Delete**        | `delete <index>`<br> e.g., `delete 3`                                                                                                                                                                              |
+| **Edit**          | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                                                               |
+| **Find**          | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag> ...] [d/<description> ...] [m/<money> ...] [above/<money>] [below/<money>] [date/<date> ...] [before/<date>] [after/<date>]           |
+|                   | [time/<time> ...]`<br> e.g., `find d/burger above/10.0`                                                                                                                                                            |
+| **Find debts**    | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                          |
+| **List**          | `list`                                                                                                                                                                                                             |
+| **List debtors**  | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                             |
+| **Sort**          | `sort [n/<order>] OR [m/<order>] OR [date/<order>]`<br> e.g., `sort n/+`                                                                                                                                           |
+| **Get statement** | `statement`                                                                                                                                                                                                        |
+| **Help**          | `help`                                                                                                                                                                                                             |

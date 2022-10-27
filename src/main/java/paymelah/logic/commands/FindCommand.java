@@ -2,11 +2,14 @@ package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -33,12 +36,15 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons containing all of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]..."
-            + "[" + PREFIX_DESCRIPTION + "DEBT DESCRIPTION]..."
+            + "[" + PREFIX_NAME + "<name>] "
+            + "[" + PREFIX_PHONE + "<phone number>] "
+            + "[" + PREFIX_TELEGRAM + "<telegram>] "
+            + "[" + PREFIX_ADDRESS + "<address>] "
+            + "[" + PREFIX_TAG + "<tag>]…"
+            + "[" + PREFIX_DESCRIPTION + "<debt description>]…"
+            + "[" + PREFIX_MONEY + "<debt money>]…"
+            + "[" + PREFIX_DATE + "<debt date>]…"
+            + "[" + PREFIX_TIME + "<debt time>]…"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "john "
             + PREFIX_TAG + "friends "

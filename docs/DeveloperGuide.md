@@ -204,9 +204,9 @@ The activity diagram below details the behaviour of PayMeLah when a user request
 
 **(Insert activity diagram here)**
 
-* **Alternative for listing all debtors:** use a `DebtGreaterEqualAmountPredicate` with $0 as the amount
+* **Alternative for listing all debtors:** use a `DebtGreaterEqualAmountPredicate` with $0.01 as the amount
     * Pros: More consistent behaviour: every `ListDebtorsCommand` will have an associated `DebtGreaterEqualAmountPredicate`.
-    * Cons: May not work properly with possible future extensions (e.g. Debts extended to be able to take negative values to indicate user owing the person money)
+    * Cons: May not work properly with possible future extensions (e.g. Money modified to use other precisions besides 2 decimal points)
 
 ### Mark debts as paid/unpaid feature
 
