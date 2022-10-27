@@ -23,34 +23,41 @@ public class CommandResult {
     /** Sort transactions. */
     private final boolean isSortTransactions;
 
+    /** No change in UI. */
+    private final boolean hasNoUIChange;
+
     /**
      * Constructs a {@code CommandResult} with all the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit, boolean isFilterTransactions,
-                         boolean isSortTransactions) {
+                         boolean isSortTransactions, boolean hasNoUIChange) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showUserGuide = showUserGuide;
         this.exit = exit;
         this.isFilterTransactions = isFilterTransactions;
         this.isSortTransactions = isSortTransactions;
+        this.hasNoUIChange = hasNoUIChange;
     }
 
     /**
-     * Constructs a {@code CommandResult} with 4 specified fields.
+     * Constructs a {@code CommandResult} with the specified 4 fields.
      */
     public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit, boolean isFilterTransactions) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showUserGuide = showUserGuide;
-        this.exit = exit;
-        this.isFilterTransactions = isFilterTransactions;
-        this.isSortTransactions = false;
+        this(feedbackToUser, showUserGuide, exit, isFilterTransactions, false, false);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified 3 fields.
      */
     public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit) {
-        this(feedbackToUser, showUserGuide, exit, false, false);
+        this(feedbackToUser, showUserGuide, exit, false, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified 2 fields.
+     */
+    public CommandResult(String feedbackToUser, boolean hasNoUIChange) {
+        this(feedbackToUser, false, false, false, false, hasNoUIChange);
     }
 
     /**
@@ -58,7 +65,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -71,6 +78,10 @@ public class CommandResult {
 
     public boolean isFilteredTransactions() {
         return isFilterTransactions;
+    }
+
+    public boolean hasNoUIChange() {
+        return hasNoUIChange;
     }
 
     public boolean isExit() {
