@@ -9,11 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.attribute.Address;
-import seedu.address.model.attribute.Email;
-import seedu.address.model.attribute.Field;
-import seedu.address.model.attribute.Name;
-import seedu.address.model.attribute.Phone;
+import seedu.address.model.attribute.*;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.Path;
 import seedu.address.model.tag.Tag;
@@ -40,6 +36,15 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static Progress parseProgress(String level) throws ParseException {
+        requireNonNull(level);
+        String trimmedProgress = level.trim();
+        if (!Progress.isValidProgress(trimmedProgress)) {
+            throw new ParseException(Progress.MESSAGE_CONSTRAINTS);
+        }
+        return new Progress(level);
     }
 
     /**
