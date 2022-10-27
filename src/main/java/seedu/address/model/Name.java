@@ -62,27 +62,7 @@ public class Name {
      * @return boolean true if a given string is a valid name
      */
     public static boolean isValidName(String test) {
-
-        String[] words = test.split(" ");
-        boolean hasCorrectWordCount = words.length > 0 && words.length <= 4;
-        boolean hasCorrectWordFormat = isValidWordArray(words);
-        return !test.isEmpty() && hasCorrectWordFormat && hasCorrectWordCount;
-    }
-
-
-    /**
-     * Returns true if a given array of strings are valid words in a name. A word is valid only if it is at most 10
-     * characters
-     * long.
-     * @param words Array of strings representing words to be tested
-     * @return boolean true if the words are valid
-     */
-    public static boolean isValidWordArray(String[] words) {
-        boolean isValid = true;
-        for (String s : words) {
-            isValid = isValid && s.length() <= 10 && s.matches(VALIDATION_REGEX);
-        }
-        return isValid;
+        return !test.isEmpty() && test.matches(VALIDATION_REGEX);
     }
 
     /**

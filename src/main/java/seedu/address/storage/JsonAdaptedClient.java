@@ -12,7 +12,7 @@ import seedu.address.model.Pin;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
-import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.ClientMobile;
 import seedu.address.model.project.Project;
 
 
@@ -24,7 +24,7 @@ class JsonAdaptedClient {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
 
     private final String name;
-    private final String phone;
+    private final String mobile;
     private final String email;
     private final String clientId;
     private final String pin;
@@ -35,13 +35,13 @@ class JsonAdaptedClient {
      * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
-    public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("mobile") String mobile,
                              @JsonProperty("email") String email,
                              @JsonProperty("clientId") String clientId,
                              @JsonProperty("projects") List<JsonAdaptedProject> projects,
                              @JsonProperty("pin") String pin) {
         this.name = name;
-        this.phone = phone;
+        this.mobile = mobile;
         this.email = email;
         this.clientId = clientId;
         this.pin = pin;
@@ -55,7 +55,7 @@ class JsonAdaptedClient {
      */
     public JsonAdaptedClient(Client source) {
         name = source.getClientName().toString();
-        phone = source.getClientPhone().toString();
+        mobile = source.getClientMobile().toString();
         email = source.getClientEmail().toString();
         clientId = source.getClientId().toString();
         pin = String.valueOf(source.isPinned());
@@ -82,20 +82,20 @@ class JsonAdaptedClient {
         }
         final Name modelName = new Name(name);
 
-        ClientPhone modelPhone;
+        ClientMobile modelMobile;
 
-        if (phone == null) {
+        if (mobile == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ClientPhone.class.getSimpleName()));
+                    ClientMobile.class.getSimpleName()));
         }
 
-        if (phone.isEmpty()) {
-            modelPhone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
+        if (mobile.isEmpty()) {
+            modelMobile = ClientMobile.EmptyClientMobile.EMPTY_MOBILE;
         } else {
-            if (!ClientPhone.isValidClientPhone(phone)) {
-                throw new IllegalValueException(ClientPhone.MESSAGE_CONSTRAINTS);
+            if (!ClientMobile.isValidClientMobile(mobile)) {
+                throw new IllegalValueException(ClientMobile.MESSAGE_CONSTRAINTS);
             }
-            modelPhone = new ClientPhone(phone);
+            modelMobile = new ClientMobile(mobile);
         }
 
         ClientEmail modelEmail;
@@ -137,7 +137,7 @@ class JsonAdaptedClient {
 
         assert modelClientId.getIdInt() >= 0 : "Client ID should be positive";
 
-        return new Client(modelName, modelPhone, modelEmail, clientProjects, modelClientId, modelPin);
+        return new Client(modelName, modelMobile, modelEmail, clientProjects, modelClientId, modelPin);
     }
 
 }

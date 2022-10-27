@@ -30,7 +30,7 @@
         </MenuBar>
 
         <!--Main Body-->
-        <HBox spacing="16" styleClass="main-body">
+        <VBox spacing="16" styleClass="main-body" VBox.vgrow="ALWAYS">
 
           <!--Left Column-->
           <VBox spacing="12">
@@ -45,7 +45,7 @@
             </VBox>
           </VBox>
 
-        </HBox>
+        </VBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

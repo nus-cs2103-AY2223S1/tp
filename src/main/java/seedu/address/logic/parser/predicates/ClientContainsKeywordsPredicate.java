@@ -14,19 +14,22 @@ public class ClientContainsKeywordsPredicate implements Predicate<Client> {
 
     private final List<String> nameKeywords;
     private final List<String> emailKeywords;
-    private final List<String> phoneKeywords;
+    private final List<String> mobileKeywords;
+    private final List<String> clientIdKeywords;
 
     /**
      * Constructs a ClientContainsKeywordsPredicate object with the user inputs.
      * @param nameKeywords List of Strings representing keywords to search for in name
      * @param emailKeywords List of Strings representing keywords to search for in email
-     * @param phoneKeywords List of Strings representing keywords to search for in phone
+     * @param mobileKeywords List of Strings representing keywords to search for in mobile
+     * @param clientIdKeywords List of Strings representing keywords to search for in client id
      */
     public ClientContainsKeywordsPredicate(List<String> nameKeywords, List<String> emailKeywords,
-                                         List<String> phoneKeywords) {
+                                         List<String> mobileKeywords, List<String> clientIdKeywords) {
         this.nameKeywords = nameKeywords;
         this.emailKeywords = emailKeywords;
-        this.phoneKeywords = phoneKeywords;
+        this.mobileKeywords = mobileKeywords;
+        this.clientIdKeywords = clientIdKeywords;
     }
 
     /**
@@ -54,26 +57,51 @@ public class ClientContainsKeywordsPredicate implements Predicate<Client> {
     }
 
     /**
-     * Checks if given phone matches with any word in the phone present.
-     * @param phonePresent String representing phone present
-     * @param phoneGiven String representing phone given (keyword to search for)
-     * @return boolean true if at least one word matches with the keyword and false otherwise
+     * Checks if the client id matches the id keyword being search for.
+     * @param client Client whose id is being used to search the keyword in
+     * @return true if the client id fulfills the search criteria and false otherwise
      */
-    public boolean testPhone(String phonePresent, String phoneGiven) {
-        return Arrays.stream(phonePresent.trim().split("\\s+"))
-                .anyMatch(words -> StringUtil.containsWordIgnoreCase(phoneGiven, words));
+    public boolean testClientId(Client client) {
+        if (clientIdKeywords.isEmpty()) {
+            return true;
+        } else {
+            return clientIdKeywords.stream().anyMatch(
+                    c -> testClientId(c, client.getClientId().toString()));
+        }
     }
 
     /**
-     * Checks if the client's phone matches the phone keyword being search for.
-     * @param client Client whose phone is being used to search the keyword in
-     * @return boolean true if the phone fulfills the search criteria and false otherwise
+     * Checks if given id matches with any word in the id present.
+     * @param idPresent String representing id present
+     * @param idGiven String representing id given (keyword to search for)
+     * @return boolean true if at least one word matches with the keyword and false otherwise
      */
-    public boolean testPhone(Client client) {
-        if (phoneKeywords.isEmpty()) {
+    public boolean testClientId(String idPresent, String idGiven) {
+        return Arrays.stream(idPresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(idGiven, words));
+    }
+
+    /**
+     * Checks if given mobile matches with any word in the mobile present.
+     * @param mobilePresent String representing mobile present
+     * @param mobileGiven String representing mobile given (keyword to search for)
+     * @return boolean true if at least one word matches with the keyword and false otherwise
+     */
+    public boolean testMobile(String mobilePresent, String mobileGiven) {
+        return Arrays.stream(mobilePresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(mobileGiven, words));
+    }
+
+    /**
+     * Checks if the client's mobile matches the mobile keyword being search for.
+     * @param client Client whose mobile is being used to search the keyword in
+     * @return boolean true if the mobile fulfills the search criteria and false otherwise
+     */
+    public boolean testMobile(Client client) {
+        if (mobileKeywords.isEmpty()) {
             return true;
         } else {
-            return phoneKeywords.stream().anyMatch(phone -> testPhone(phone, client.getClientPhone().toString()));
+            return mobileKeywords.stream().anyMatch(mobile -> testMobile(mobile, client.getClientMobile().toString()));
         }
     }
 
@@ -103,7 +131,7 @@ public class ClientContainsKeywordsPredicate implements Predicate<Client> {
 
     @Override
     public boolean test(Client client) {
-        return testName(client) && testEmail(client) && testPhone(client);
+        return testName(client) && testEmail(client) && testMobile(client) && testClientId(client);
     }
 
     @Override
@@ -111,8 +139,9 @@ public class ClientContainsKeywordsPredicate implements Predicate<Client> {
         return other == this // short circuit if same object
                 || (other instanceof ClientContainsKeywordsPredicate // instanceof handles nulls
                 && nameKeywords.equals(((ClientContainsKeywordsPredicate) other).nameKeywords) //state checks
-                && phoneKeywords.equals(((ClientContainsKeywordsPredicate) other).phoneKeywords)
-                && emailKeywords.equals(((ClientContainsKeywordsPredicate) other).emailKeywords));
+                && mobileKeywords.equals(((ClientContainsKeywordsPredicate) other).mobileKeywords)
+                && emailKeywords.equals(((ClientContainsKeywordsPredicate) other).emailKeywords)
+                && clientIdKeywords.equals(((ClientContainsKeywordsPredicate) other).clientIdKeywords));
     }
 
 }

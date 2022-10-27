@@ -210,21 +210,21 @@ on which entity is added, which retrieves the respective entity list from the sy
 
 #### Add Project Command
 Compulsory prefixes: n/<valid name>
-Optional prefixes: cid/<valid client id>, r/<valid repository>, d/<valid deadline>
-Example Use: `project -a n/John cid/1 r/JohnDoe/tp d/2022-03-05`
+Optional prefixes: c/<valid client id>, r/<valid repository>, d/<valid deadline>
+Example Use: `project -a n/John c/1 r/JohnDoe/tp d/2022-03-05`
 
 #### Add Issue Command
-Compulsory prefixes: pid/<valid project id>, desc/<valid title>
-Optional prefixes: d/<valid deadline> p/<valid priority>
-Example Use: `issue pid/1 desc/To create a person class which stores all relevant person data d/2022-12-10 p/0`
+Compulsory prefixes: p/<valid project id>, t/<valid title>
+Optional prefixes: d/<valid deadline> u/<valid urgency>
+Example Use: `issue p/1 t/To create a person class which stores all relevant person data d/2022-12-10 u/0`
 
 #### Add Client Command
-Compulsory prefixes: n/<valid name>, pid/<valid project id>
-Optional prefixes: p/<valid phone>, e/<valid email>
-Example Use: `client -a n/John Doe p/98765432 e/johnd@example.com pid/1`
+Compulsory prefixes: n/<valid name>, p/<valid project id>
+Optional prefixes: m/<valid mobile number>, e/<valid email>
+Example Use: `client -a n/John Doe m/98765432 e/johnd@example.com p/1`
 
 #### The following sequence diagram shows how the add command operation works for adding a project entity:
-Example: `project -a n/John cid/1 r/JohnDoe/tp d/2022-03-05`
+Example: `project -a n/John c/1 r/JohnDoe/tp d/2022-03-05`
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
@@ -258,22 +258,22 @@ Finally, the parsed arguments are passed into and returned in an instance of the
 which entity is edited, which retrieves the respective entity from its entity list in the system, edits the fields of the entity, updates it, and have the UI display the updated filtered entity list.
 
 #### Edit Project Command
-Compulsory prefix: pid/<valid project id>
-Optional prefixes (at least one to be included): n/<valid name>, cid/<valid client id>, r/<valid repository>, d/<valid deadline>
-Example Use: `project -e pid/1 n/Jeff cid/1 r/Jeffrey/tp d/2022-07-05`
+Compulsory prefix: p/<valid project id>
+Optional prefixes (at least one to be included): n/<valid name>, c/<valid client id>, r/<valid repository>, d/<valid deadline>
+Example Use: `project -e p/1 n/Jeff c/1 r/Jeffrey/tp d/2022-07-05`
 
 #### Edit Issue Command
-Compulsory prefix: iid/<valid issue id>
-Optional prefixes (at least one to be included): desc/<valid title>, d/<valid deadline>, p/<valid priority>
-Example Use: `issue -e iid/1 desc/To edit issue command d/2022-04-09 p/1`
+Compulsory prefix: i/<valid issue id>
+Optional prefixes (at least one to be included): t/<valid title>, d/<valid deadline>, u/<valid urgency>
+Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
 
 #### Edit Client Command
-Compulsory prefix: cid/<valid client id>
-Optional prefixes (at least one to be included): n/<valid name>, p/<valid phone number>, e/<valid email>, pid/<valid project id>
-Example Use: `client -e cid/1 n/BenTen p/12345678 e/Ben10@gmail.com pid/1`
+Compulsory prefix: c/<valid client id>
+Optional prefixes (at least one to be included): n/<valid name>, m/<valid mobile number>, e/<valid email>, p/<valid project id>
+Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:
-Example: `issue -e iid/1 desc/To edit issue command d/2022-04-09 p/1`
+Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
 ![AddSequenceDiagram](images/EditSequenceDiagram.png)
 
 #### Design considerations: 
@@ -333,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 |  `* * *` | student developer  |  track multiple projects spread across different websites in one place. | |
 | `* * *`         | forgetful developer  |  see all the tasks for my projects on one page  |  I will remember what needs to be an experienced developer,  |
-|  `* * *`        | developer  |  see the projects automatically sorted in accordance with the deadline  |  I can manage and clear those with a higher priority first |
+|  `* * *`        | developer  |  see the projects automatically sorted in accordance with the deadline  |  I can manage and clear those with a higher urgency first |
 |   `* * *`       | developer  |  have a quick overview of those collaborating on projects with me  |  I can contact collaborators or access information quickly |
 | `* * *`         | user  |  add projects to the application | |
 | `* * *`         | user  |  delete projects from the application  |  I can keep my data accurate if I make a mistake in entering data. |
