@@ -3,8 +3,6 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Locale;
-
 /**
  * Represents the title of a task.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
@@ -46,8 +44,7 @@ public class Title {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Title //instanceof handles nulls
-                && value.toLowerCase(Locale.ROOT).equals(((Title) other)
-                    .value.toLowerCase(Locale.ROOT))); // state check
+                && value.equalsIgnoreCase(((Title) other).value)); // state check
     }
 
     @Override

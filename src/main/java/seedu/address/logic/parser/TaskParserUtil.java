@@ -119,7 +119,6 @@ public class TaskParserUtil {
         requireNonNull(contacts);
         final Set<Contact> contactSet = new HashSet<>();
         for (String contactName : contacts) {
-            //TODO: Update
             contactSet.add(new Contact(contactName));
         }
         return contactSet;

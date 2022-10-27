@@ -16,16 +16,16 @@ public class TypicalTasks {
             new TaskBuilder()
                     .withTitle("Add tasks to list")
                     .withCompleted(false)
-                    .withContacts("Alice Pauline")
                     .withDeadline("?")
+                    .withContacts("Alice Pauline")
                     .build();
     public static final Task TASK_TWO =
             new TaskBuilder()
                     .withTitle("Assign contacts to task")
                     .withCompleted(false)
+                    .withProject("CS2103T")
                     .withDeadline("01 January 2023")
                     .withContacts("George Best")
-                    .withProject("CS2103T")
                     .build();
     public static final Task TASK_THREE = new TaskBuilder().withTitle("Set deadline for a task").build();
     public static final Task TASK_FOUR = new TaskBuilder().withTitle("Set tags for a task").build();

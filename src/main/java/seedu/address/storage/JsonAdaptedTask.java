@@ -52,11 +52,8 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().toString();
-
         isCompleted = String.valueOf(source.getCompleted());
-
         deadline = source.getDeadline().toString();
-
         project = source.getProject().toString();
 
         assigned.addAll(source.getAssignedContacts().stream()
@@ -84,7 +81,6 @@ class JsonAdaptedTask {
         final Title modelTitle = new Title(title);
 
         if (isCompleted == null) {
-            // TODO: Update
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Done"));
         }
 
@@ -104,8 +100,6 @@ class JsonAdaptedTask {
         final Project modelProject;
         if (project.equals(Project.UNSPECIFIED_PROJECT_IDENTIFIER)) {
             modelProject = Project.UNSPECIFIED;
-        } else if (!Project.isValidProjectName(project)) {
-            throw new IllegalValueException(Project.MESSAGE_CONSTRAINTS);
         } else {
             modelProject = new Project(project);
         }
