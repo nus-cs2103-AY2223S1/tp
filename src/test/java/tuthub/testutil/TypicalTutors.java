@@ -32,59 +32,59 @@ import tuthub.model.tutor.Tutor;
 public class TypicalTutors {
 
     public static final Tutor ALICE = new TutorBuilder().withName("Alice Pauline")
-            .withEmail("alice@example.com")
+            .withEmail("e0000000")
             .withModule("CS2100").withYear("3").withPhone("94351253").withStudentId("A1234569L")
             .withTeachingNomination("1").withRating("4.5")
             .withTags("friends").build();
     public static final Tutor BENSON = new TutorBuilder().withName("Benson Meier")
-            .withEmail("johnd@example.com").withPhone("98765432")
+            .withEmail("e0101010").withPhone("98765432")
             .withModule("CS2100").withYear("3").withStudentId("A0000009Y")
             .withTeachingNomination("1").withRating("2.5")
             .withTags("owesMoney", "friends").build();
     public static final Tutor CARL = new TutorBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withModule("CS2100").withYear("3").withStudentId("A9875647U")
+            .withEmail("e1234567").withModule("CS2100").withYear("3").withStudentId("A9875647U")
             .withTeachingNomination("1").withRating("4.9")
             .build();
     public static final Tutor DANIEL = new TutorBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withModule("CS2100").withYear("3").withStudentId("A9345647M")
+            .withEmail("e7654321").withModule("CS2100").withYear("3").withStudentId("A9345647M")
             .withTeachingNomination("1").withRating("1.5")
             .withTags("friends").build();
     public static final Tutor ELLE = new TutorBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withModule("CS2100").withYear("3").withStudentId("A8768974P")
+            .withEmail("e1212121").withModule("CS2100").withYear("3").withStudentId("A8768974P")
             .withTeachingNomination("1").withRating("3.9")
             .build();
     public static final Tutor FIONA = new TutorBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withModule("CS2100").withYear("3").withStudentId("A9870921H")
+            .withEmail("e1231231").withModule("CS2100").withYear("3").withStudentId("A9870921H")
             .withTeachingNomination("1").withRating("2.7")
             .build();
     public static final Tutor GEORGE = new TutorBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withModule("CS2100").withYear("3").withStudentId("A0673201Y")
+            .withEmail("e1321321").withModule("CS2100").withYear("3").withStudentId("A0673201Y")
             .withTeachingNomination("1").withRating("4.2")
             .build();
 
     // Manually added
     public static final Tutor HOON = new TutorBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withModule("cs2103t").withYear("3").withStudentId("A1234758N")
+            .withEmail("e2222222").withModule("cs2103t").withYear("3").withStudentId("A1234758N")
             .withTeachingNomination("1").withRating("1.1")
             .build();
     public static final Tutor IDA = new TutorBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withModule("cs2100").withYear("4").withStudentId("A0965302K")
+            .withEmail("e3333333").withModule("cs2100").withYear("4").withStudentId("A0965302K")
             .withTeachingNomination("1").withRating("4.8")
             .build();
     public static final Tutor JACKSON = new TutorBuilder().withName("Jackson Tan").withPhone("98765432")
-            .withEmail("jackson@example.com").withModule("cs2105").withYear("2").withStudentId("A2345678Y")
+            .withEmail("e4444444").withModule("cs2105").withYear("2").withStudentId("A2345678Y")
             .withTeachingNomination("1").withRating("4.6")
             .build();
     public static final Tutor KEN = new TutorBuilder().withName("Ken Tan").withPhone("99999999")
-            .withEmail("ken@example.com").withModule("cs2105").withYear("3").withStudentId("A2345678X")
+            .withEmail("e5555555").withModule("cs2105").withYear("3").withStudentId("A2345678X")
             .withTeachingNomination("2").withRating("4.9")
             .build();
     public static final Tutor LOPEZ = new TutorBuilder().withName("Lopez Tan").withPhone("99999999")
-            .withEmail("lopez@example.com").withModule("cs2105").withYear("3").withStudentId("A2345678X")
+            .withEmail("e6666666").withModule("cs2105").withYear("3").withStudentId("A2345678X")
             .withTeachingNomination("2").withRating("4.9").withTags("friends")
             .build();
     public static final Tutor MIKE = new TutorBuilder().withName("Mike Tan").withPhone("99999999")
-            .withEmail("mike@example.com").withModule("cs2105").withYear("3").withStudentId("A2345678X")
+            .withEmail("e7777777").withModule("cs2105").withYear("3").withStudentId("A2345678X")
             .withTeachingNomination("2").withRating("4.9").withTags("owesMoney")
             .build();
 
