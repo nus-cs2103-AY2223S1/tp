@@ -227,7 +227,7 @@ As with all other commands, the sort command has a `Parser` subclass that goes t
 
 The command will be used as such:
 - entering grades for an `Assignment` using the follow command format - grade <subject_assignment_totalScore_weightage_difficulty>
-e.g.`grade math_CA1_100_0.4_0.1`
+e.g.`grade MATH_CA1_100_0.4_0.1`
 
 
 ### \[Proposed\] Undo/redo feature
