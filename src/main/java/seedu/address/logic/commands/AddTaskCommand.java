@@ -17,7 +17,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 
-
 /**
  * Adds a task to the address book.
  */
