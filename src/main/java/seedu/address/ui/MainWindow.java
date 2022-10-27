@@ -134,9 +134,8 @@ public class MainWindow extends UiPart<Stage> {
         // StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         // statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand,
-                windowAnchorPane.getPersonListPanel().getListView(),
-                resultDisplayPlaceholder);
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox.bindResultsDisplay(resultDisplayPlaceholder);
 
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         resultDisplayPlaceholder.prefWidthProperty().bind(scene.widthProperty());
@@ -257,6 +256,10 @@ public class MainWindow extends UiPart<Stage> {
         return windowAnchorPane.getPersonListPanel();
     }
 
+    public NoteListPanel getNoteListPanel() {
+        return windowAnchorPane.getNoteListPanel();
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -292,6 +295,12 @@ public class MainWindow extends UiPart<Stage> {
             default:
                 break;
             }
+
+            getPersonListPanel().setFilteredBoxIcon(
+                    logic.getAddressBook().getPersonList().size() != logic.getFilteredPersonList().size());
+
+            getNoteListPanel().setFilteredBoxIcon(
+                    logic.getAddressBook().getNoteBook().size() != logic.getFilteredNoteList().size());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

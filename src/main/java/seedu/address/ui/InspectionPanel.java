@@ -27,6 +27,8 @@ public class InspectionPanel extends UiPart<Region> {
     private static final String EMAIL_IMAGE_PATH = "/images/mail.png";
     private static final String ADDRESS_IMAGE_PATH = "/images/home.png";
     private static final String BIRTHDAY_IMAGE_PATH = "/images/birthday.png";
+    private static final String LOAN_IMAGE_PATH = "/images/loan.png";
+    private static final String NO_RECORDS_IMAGE_PATH = "/images/no_records.png";
 
     private static final String FXML = "InspectionPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(InspectionPanel.class);
@@ -62,6 +64,12 @@ public class InspectionPanel extends UiPart<Region> {
     @FXML
     private VBox basicInformation;
 
+    @FXML
+    private ImageView loanIndicator;
+
+    @FXML
+    private ImageView noRecordsImage;
+
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -72,14 +80,23 @@ public class InspectionPanel extends UiPart<Region> {
         personListView.getSelectionModel().selectedItemProperty().addListener(
                 //CHECKSTYLE.OFF: SeparatorWrap
                 (obs, o, n) -> {
-                    InspectionPanel.this.name.setText(n.getName().fullName);
-                    InspectionPanel.this.email.setText(n.getEmail().value);
-                    InspectionPanel.this.phone.setText(n.getPhone().value);
-                    InspectionPanel.this.address.setText(n.getAddress().value);
-                    InspectionPanel.this.birthday.setText(n.getBirthday().value);
+                    name.setText(n.getName().fullName);
+                    email.setText(n.getEmail().value);
+                    phone.setText(n.getPhone().value);
+                    address.setText(n.getAddress().value);
+                    birthday.setText(n.getBirthday().value);
 
                     historyListView.setItems(FXCollections.observableList(n.getHistoryWithTotal()));
                     historyListView.setCellFactory(listView -> new HistoryListViewCell());
+
+                    if (historyListView.getItems().size() == 0) {
+                        noRecordsImage.setOpacity(1);
+                        loanIndicator.setOpacity(0);
+                    } else {
+                        noRecordsImage.setOpacity(0);
+                        loanIndicator.setOpacity(1);
+                    }
+
                 });
 
         basicInformation.maxWidthProperty().bind(getRoot().widthProperty().multiply(0.33));
@@ -89,11 +106,20 @@ public class InspectionPanel extends UiPart<Region> {
     }
 
     private void setImageViews() {
-        nameImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(PERSON_IMAGE_PATH))));
-        phoneImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(PHONE_IMAGE_PATH))));
-        emailImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(EMAIL_IMAGE_PATH))));
-        addressImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ADDRESS_IMAGE_PATH))));
-        birthdayImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(BIRTHDAY_IMAGE_PATH))));
+        nameImage.setImage(
+                new Image(Objects.requireNonNull(getClass().getResourceAsStream(PERSON_IMAGE_PATH))));
+        phoneImage.setImage(
+                new Image(Objects.requireNonNull(getClass().getResourceAsStream(PHONE_IMAGE_PATH))));
+        emailImage.setImage(
+                new Image(Objects.requireNonNull(getClass().getResourceAsStream(EMAIL_IMAGE_PATH))));
+        addressImage.setImage(
+                new Image(Objects.requireNonNull(getClass().getResourceAsStream(ADDRESS_IMAGE_PATH))));
+        birthdayImage.setImage(
+                new Image(Objects.requireNonNull(getClass().getResourceAsStream(BIRTHDAY_IMAGE_PATH))));
+        loanIndicator.setImage(
+                new Image(Objects.requireNonNull(getClass().getResourceAsStream(LOAN_IMAGE_PATH))));
+        noRecordsImage.setImage(
+                new Image(Objects.requireNonNull(getClass().getResourceAsStream(NO_RECORDS_IMAGE_PATH))));
     }
 
     /**

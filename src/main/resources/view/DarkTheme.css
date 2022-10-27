@@ -111,6 +111,14 @@
     -fx-background-radius: 0;
 }
 
+.filteredBox {
+    -fx-background-color: white;
+}
+
+.filteredBox .label {
+    -fx-font-family: 'Bender-Bold';
+}
+
 .label#invertedScheme {
     -fx-background-color: black;
     -fx-text-fill: white;

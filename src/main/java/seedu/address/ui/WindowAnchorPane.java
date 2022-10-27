@@ -120,6 +120,10 @@ public class WindowAnchorPane extends UiPart<Region> {
         return personListPanel;
     }
 
+    public NoteListPanel getNoteListPanel() {
+        return noteListPanel;
+    }
+
     public void setNotesPaneVisibility(boolean isVisible, double stageHeight, double stageWidth) {
         Timeline anim = new Timeline();
         anim.getKeyFrames().add(new KeyFrame(Duration.millis(300), new KeyValue(

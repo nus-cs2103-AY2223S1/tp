@@ -3,15 +3,15 @@ package seedu.address.ui;
 import javafx.animation.FadeTransition;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -22,7 +22,6 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
-    private final ListView<Person> personListView;
 
     @FXML
     private TextField commandTextField;
@@ -30,17 +29,30 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor, ListView<Person> personListView, StackPane resultDisplay) {
+    public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        this.personListView = personListView;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+    }
+
+    /**
+     * Binds a result display below this command box
+     * @param resultDisplay the result display to bind
+     */
+    public void bindResultsDisplay(StackPane resultDisplay) {
         commandTextField.focusedProperty().addListener((obs, o, n) -> {
             FadeTransition ft = new FadeTransition(Duration.millis(300), resultDisplay);
             ft.setToValue(n ? 0.9 : 0);
             ft.play();
         });
+
+        commandTextField.addEventHandler(KeyEvent.KEY_PRESSED, t -> {
+            if (t.getCode() == KeyCode.ESCAPE) {
+                resultDisplay.requestFocus();
+            }
+        });
+
         resultDisplay.requestFocus();
     }
 

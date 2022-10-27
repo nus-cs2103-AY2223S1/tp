@@ -9,20 +9,39 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="notes-VBox">
-  <Separator translateX="10" maxWidth="150">
+  <Separator maxWidth="150">
     <padding>
-      <Insets top="10" bottom="5"/>
+      <Insets top="10" bottom="5" left="10"/>
     </padding>
   </Separator>
-  <Label id="normalScheme" text="Notes" styleClass="label-header" translateX="10">
+  <HBox>
     <padding>
-      <Insets left="20" top="2" bottom="2" right="10"/>
+      <Insets left="10"/>
     </padding>
-  </Label>
-  <Separator translateX="10" maxWidth="100">
+    <Label id="normalScheme" text="Notes" styleClass="label-header">
+      <padding>
+        <Insets left="20" top="2" bottom="2" right="10"/>
+      </padding>
+    </Label>
+    <HBox alignment="BOTTOM_LEFT">
+      <padding>
+        <Insets left="10"/>
+      </padding>
+      <HBox fx:id="filteredBox" alignment="CENTER" styleClass="filteredBox" maxHeight="10">
+        <ImageView fx:id="filteredImage" fitHeight="20" fitWidth="20"/>
+        <Label text="FILTERED" styleClass="cell_small_label">
+          <padding>
+            <Insets topRightBottomLeft="5"/>
+          </padding>
+        </Label>
+      </HBox>
+    </HBox>
+  </HBox>
+  <Separator maxWidth="100">
     <padding>
-      <Insets top="5" bottom="5"/>
+      <Insets top="5" bottom="5" left="10"/>
     </padding>
   </Separator>
   <AnchorPane VBox.vgrow="ALWAYS">

@@ -2,12 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.ImageView?>
@@ -31,6 +26,6 @@
     <padding>
       <Insets left="20"/>
     </padding>
-    <Label fx:id="reason" text="\$reason" styleClass="cell_small_label" wrapText="true"/>
+    <Label fx:id="reason" text="\$reason" maxHeight="Infinity" styleClass="cell_small_label" wrapText="true"/>
   </HBox>
 </HBox>
