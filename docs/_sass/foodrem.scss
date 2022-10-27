@@ -31,16 +31,24 @@ html {
 .post-content {
   margin-bottom: 2rem;
 
-  h1,
-  h2,
+  h2 {
+    margin-right: 4rem;
+  }
+
   h3 {
-    margin-top: 3rem;
+    margin-top: 2.5rem;
   }
 
   h4,
   h5,
   h6 {
     margin-top: 2rem;
+  }
+
+  td {
+    *:last-child {
+      margin-bottom: 0;
+    }
   }
 
   p,
