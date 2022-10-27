@@ -40,6 +40,14 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
+                   <Button fx:id="btnHide" graphicTextGap="0.0" mnemonicParsing="false">
+                       <graphic>
+                           <ImageView fx:id="imageHide" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                               <image>
+                                   <Image url="@../images/open_eye.png" />
+                               </image>
+                           </ImageView>
+                       </graphic></Button>
                </children>
             </HBox>
 
