@@ -299,6 +299,12 @@ Examples:
 - `unassign c/1 t/1` Unassigns the task at index 1 to the contact at index 1.
 - `unassign c/3 t/2` Unassigns the task at index 2 to the contact at index 3.
 
+### Clearing all data: `clear`
+
+Clears all data in the application.
+
+Format: `clear`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -353,3 +359,5 @@ Note:
 | **Delete Task**    | `delete_task INDEX`                                                            |
 | **Select Task**    | `select_task INDEX`                                                            |
 | **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                          |
+| **Unassign Task**  | `unassign c/CONTACT_INDEX t/TASK_INDEX`                                        |
+| **Clear Data**     | `clear`                                                                        |
