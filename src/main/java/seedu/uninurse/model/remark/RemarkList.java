@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.uninurse.model.GenericList;
+import seedu.uninurse.model.ListModificationPair;
+import seedu.uninurse.model.ModificationType;
 import seedu.uninurse.model.remark.exceptions.DuplicateRemarkException;
 import seedu.uninurse.model.remark.exceptions.RemarkNotFoundException;
 
@@ -95,6 +97,40 @@ public class RemarkList implements GenericList<Remark> {
     @Override
     public List<Remark> getInternalList() {
         return Collections.unmodifiableList(internalRemarkList);
+    }
+
+    @Override
+    public List<ListModificationPair> getDiff(GenericList<Remark> otherRemarkList) {
+        List<ListModificationPair> listModificationPairs = new ArrayList<>();
+
+        if (equals(otherRemarkList)) {
+            return listModificationPairs;
+        }
+
+        if (size() == 0 && otherRemarkList.size() == 1) {
+            listModificationPairs.add(new ListModificationPair(ModificationType.ADD, 0));
+            return listModificationPairs;
+        }
+
+        if (size() == 1 && otherRemarkList.size() == 0) {
+            listModificationPairs.add(new ListModificationPair(ModificationType.DELETE, 0));
+            return listModificationPairs;
+        }
+
+        int pointer = 0;
+        while (get(pointer).equals(otherRemarkList.get(pointer))) {
+            pointer++;
+            if (pointer == size() || pointer == otherRemarkList.size()) {
+                if (size() < otherRemarkList.size()) {
+                    listModificationPairs.add(new ListModificationPair(ModificationType.ADD, pointer));
+                } else if (otherRemarkList.size() < size()) {
+                    listModificationPairs.add(new ListModificationPair(ModificationType.DELETE, pointer));
+                }
+                break;
+            }
+        }
+        listModificationPairs.add(new ListModificationPair(ModificationType.EDIT, pointer));
+        return listModificationPairs;
     }
 
     @Override

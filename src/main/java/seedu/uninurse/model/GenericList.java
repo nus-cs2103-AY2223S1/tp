@@ -48,4 +48,10 @@ public interface GenericList<T> {
      * if modification is attempted.
      */
     List<T> getInternalList();
+
+    /**
+     * Returns a list of {@code ListModificationPair} when compared against another {@code GenericList}
+     */
+    List<ListModificationPair> getDiff(GenericList<T> otherList);
+    // for now only supports if the difference in the list is within a single add/edit/delete of difference
 }

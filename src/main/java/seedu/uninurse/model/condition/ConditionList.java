@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.uninurse.model.GenericList;
+import seedu.uninurse.model.ListModificationPair;
+import seedu.uninurse.model.ModificationType;
 import seedu.uninurse.model.condition.exceptions.ConditionNotFoundException;
 import seedu.uninurse.model.condition.exceptions.DuplicateConditionException;
 
@@ -96,6 +98,40 @@ public class ConditionList implements GenericList<Condition> {
     public List<Condition> getInternalList() {
         // returns an immutable condition list to prevent modification to original one
         return Collections.unmodifiableList(internalConditionList);
+    }
+
+    @Override
+    public List<ListModificationPair> getDiff(GenericList<Condition> otherConditionList) {
+        List<ListModificationPair> listModificationPairs = new ArrayList<>();
+
+        if (equals(otherConditionList)) {
+            return listModificationPairs;
+        }
+
+        if (size() == 0 && otherConditionList.size() == 1) {
+            listModificationPairs.add(new ListModificationPair(ModificationType.ADD, 0));
+            return listModificationPairs;
+        }
+
+        if (size() == 1 && otherConditionList.size() == 0) {
+            listModificationPairs.add(new ListModificationPair(ModificationType.DELETE, 0));
+            return listModificationPairs;
+        }
+
+        int pointer = 0;
+        while (get(pointer).equals(otherConditionList.get(pointer))) {
+            pointer++;
+            if (pointer == size() || pointer == otherConditionList.size()) {
+                if (size() < otherConditionList.size()) {
+                    listModificationPairs.add(new ListModificationPair(ModificationType.ADD, pointer));
+                } else if (otherConditionList.size() < size()) {
+                    listModificationPairs.add(new ListModificationPair(ModificationType.DELETE, pointer));
+                }
+                break;
+            }
+        }
+        listModificationPairs.add(new ListModificationPair(ModificationType.EDIT, pointer));
+        return listModificationPairs;
     }
 
     @Override

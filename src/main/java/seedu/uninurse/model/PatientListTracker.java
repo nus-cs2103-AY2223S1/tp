@@ -53,6 +53,31 @@ public class PatientListTracker {
         return this.deletedPatients;
     }
 
+    public boolean isSinglePatient() {
+        return addedPatients.map(list -> (list.size() <= 1)).orElse(false)
+                || deletedPatients.map(list -> (list.size() <= 1)).orElse(false);
+    }
+
+    public boolean isMultiplePatients() {
+        return addedPatients.map(list -> (list.size() > 1)).orElse(false)
+                || deletedPatients.map(list -> (list.size() > 1)).orElse(false);
+    }
+
+    public boolean isAdd() {
+        return addedPatients.map(list -> (list.size() > 0)).orElse(false)
+                && deletedPatients.map(list -> (list.size() == 0)).orElse(true);
+    }
+
+    public boolean isDelete() {
+        return deletedPatients.map(list -> (list.size() > 0)).orElse(false)
+                && addedPatients.map(list -> (list.size() == 0)).orElse(true);
+    }
+
+    public boolean isEdit() {
+        return addedPatients.map(list -> (list.size() == 1)).orElse(false)
+                && deletedPatients.map(list -> (list.size() == 1)).orElse(false);
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

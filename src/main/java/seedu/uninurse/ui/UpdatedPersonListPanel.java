@@ -46,6 +46,7 @@ public class UpdatedPersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
+                // setGraphic(new TruncatedTaskListCard(person).getRoot());
                 setGraphic(new UpdatedPatientCard(person, "").getRoot());
             }
         }

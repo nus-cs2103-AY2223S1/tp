@@ -1,41 +1,49 @@
 package seedu.uninurse.ui;
 
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.uninurse.model.ListModificationPair;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.remark.Remark;
+import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
 /**
  * An UI component that displays information of a {@code Patient} without index.
- * UpdatedPersonCard to be used for output panel when adding, editing, or deleting a patient.
+ * ModifiedPatientCard to be used for output panel when undoing and redoing results
+ * in adding, editing, or deleting a patient.
  */
-public class UpdatedPatientCard extends UiPart<Region> {
+public class ModifiedPatientCard extends UiPart<Region> {
+    private static final String FXML = "ModifiedPatientCard.fxml";
 
-    private static final String FXML = "UpdatedPatientCard.fxml";
+    private static final String RED_STYLE = "-fx-background-color: #ffc0bf;"
+            + "-fx-border-radius: 2;"
+            // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
+            + "-fx-background-radius: 5;";
+    private static final String GREEN_STYLE = "-fx-background-color: #c9ffdf;"
+            + "-fx-border-radius: 2;"
+            // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
+            + "-fx-background-radius: 5;";
 
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
-     */
-
-    public final Patient patient;
+    private Patient patient;
 
     @FXML
     private VBox cardPane;
+    @FXML
+    private VBox headerPane;
     @FXML
     private Label header;
     @FXML
@@ -76,14 +84,51 @@ public class UpdatedPatientCard extends UiPart<Region> {
     /**
      * Creates a {@code UpdatedPatientCard} with the given {@code Patient}.
      */
-    public UpdatedPatientCard(Patient patient, String headerString) {
+    public ModifiedPatientCard(PatientListTracker patientListTracker, boolean isUndo, boolean isRedo) {
         super(FXML);
-        header.setText(headerString);
 
         cardPane.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
                 + "-fx-border-width: 2;" + "-fx-border-insets: 2;"
                 + "-fx-border-radius: 2;" + "-fx-border-color: black;");
-        this.patient = patient;
+
+        // Undo add or Redo delete
+        if (patientListTracker.isAdd() && isUndo || patientListTracker.isDelete() && isRedo) {
+            this.headerPane.setStyle(RED_STYLE);
+            this.header.setText("Removed previously added Patient:");
+            if (isUndo) {
+                this.patient = patientListTracker.getAddedPatients().get().get(0);
+            }
+            if (isRedo) {
+                this.patient = patientListTracker.getDeletedPatients().get().get(0);
+            }
+        }
+
+        // Undo delete or Redo add
+        if (patientListTracker.isDelete() && isUndo || patientListTracker.isAdd() && isRedo) {
+            this.headerPane.setStyle(GREEN_STYLE);
+            this.header.setText("Added previously removed Patient:");
+            if (isUndo) {
+                this.patient = patientListTracker.getDeletedPatients().get().get(0);
+            }
+            if (isRedo) {
+                this.patient = patientListTracker.getAddedPatients().get().get(0);
+            }
+        }
+
+        Patient editedPatient = this.patient;
+        if (patientListTracker.isEdit() && isUndo) {
+            this.header.setStyle("");
+            this.header.setText("Modified Patient:");
+            this.patient = patientListTracker.getDeletedPatients().get().get(0);
+            editedPatient = patientListTracker.getAddedPatients().get().get(0);
+        }
+
+        if (patientListTracker.isEdit() && isRedo) {
+            this.header.setStyle("");
+            this.header.setText("Modified Patient:");
+            this.patient = patientListTracker.getAddedPatients().get().get(0);
+            editedPatient = patientListTracker.getDeletedPatients().get().get(0);
+        }
 
         name.setText(patient.getName().getValue());
         phone.setText(patient.getPhone().getValue());
@@ -98,9 +143,35 @@ public class UpdatedPatientCard extends UiPart<Region> {
             conditionContainer.getChildren().add(getEmptyConditionBox());
         } else {
             ConditionList conditionList = patient.getConditions();
+
+            // only supports singular add/delete/edit operation checking
+            List<ListModificationPair> modifiedConditions = conditionList.getDiff(editedPatient.getConditions());
+            boolean hasModifiedConditions = !(modifiedConditions.isEmpty());
+
             for (int i = 0; i < conditionList.size(); i++) {
-                Condition condition = conditionList.get(i);
-                conditionContainer.getChildren().add(getConditionBox(i + 1, condition));
+                HBox conditionBox = getConditionBox(i + 1, conditionList.get(i));
+
+                if (hasModifiedConditions && modifiedConditions.get(0).getIndex() == i) {
+                    if (modifiedConditions.get(0).isDelete()) {
+                        conditionBox.setStyle(GREEN_STYLE);
+                    } else if (modifiedConditions.get(0).isEdit()) {
+                        conditionBox.setStyle(GREEN_STYLE);
+                        HBox previousEditedConditionBox = getConditionBox(i + 1, editedPatient.getConditions().get(i));
+                        previousEditedConditionBox.setStyle(RED_STYLE);
+
+                        conditionContainer.getChildren().add(previousEditedConditionBox);
+                    }
+                }
+                conditionContainer.getChildren().add(conditionBox);
+            }
+
+            if (hasModifiedConditions && modifiedConditions.get(0).isAdd()) {
+                HBox previousEditedConditionBox = getConditionBox(
+                        conditionList.size() + 1,
+                        editedPatient.getConditions().get(modifiedConditions.get(0).getIndex()));
+                previousEditedConditionBox.setStyle(RED_STYLE);
+
+                conditionContainer.getChildren().add(previousEditedConditionBox);
             }
         }
 
@@ -110,9 +181,36 @@ public class UpdatedPatientCard extends UiPart<Region> {
             medicationContainer.getChildren().add(getEmptyMedicationBox());
         } else {
             MedicationList medicationList = patient.getMedications();
+
+            // only supports singular add/delete/edit operation checking
+            List<ListModificationPair> modifiedMedications = medicationList.getDiff(editedPatient.getMedications());
+            boolean hasModifiedMedications = !(modifiedMedications.isEmpty());
+
             for (int i = 0; i < medicationList.size(); i++) {
-                Medication medication = medicationList.get(i);
-                medicationContainer.getChildren().add(getMedicationBox(i + 1, medication));
+                HBox medicationBox = getMedicationBox(i + 1, medicationList.get(i));
+
+                if (hasModifiedMedications && modifiedMedications.get(0).getIndex() == i) {
+                    if (modifiedMedications.get(0).isDelete()) {
+                        medicationBox.setStyle(GREEN_STYLE);
+                    } else if (modifiedMedications.get(0).isEdit()) {
+                        medicationBox.setStyle(GREEN_STYLE);
+                        HBox previousEditedMedicationBox =
+                                getMedicationBox(i + 1, editedPatient.getMedications().get(i));
+                        previousEditedMedicationBox.setStyle(RED_STYLE);
+
+                        medicationContainer.getChildren().add(previousEditedMedicationBox);
+                    }
+                }
+                medicationContainer.getChildren().add(medicationBox);
+            }
+
+            if (hasModifiedMedications && modifiedMedications.get(0).isAdd()) {
+                HBox previousEditedMedicationBox = getMedicationBox(
+                        medicationList.size() + 1,
+                        editedPatient.getMedications().get(modifiedMedications.get(0).getIndex()));
+                previousEditedMedicationBox.setStyle(RED_STYLE);
+
+                medicationContainer.getChildren().add(previousEditedMedicationBox);
             }
         }
 
@@ -122,11 +220,34 @@ public class UpdatedPatientCard extends UiPart<Region> {
             taskContainer.getChildren().add(getEmptyTaskBox());
         } else {
             TaskList taskList = patient.getTasks();
+
+            // only supports singular add/delete/edit operation checking
+            List<ListModificationPair> modifiedTasks = taskList.getDiff(editedPatient.getTasks());
+            boolean hasModifiedTasks = !(modifiedTasks.isEmpty());
+
             for (int i = 0; i < taskList.size(); i++) {
-                Task task = taskList.get(i);
-                HBox taskBox = getTaskBox(i + 1, task);
-                taskBox.prefWidthProperty().bind(taskContainer.widthProperty());
+                HBox taskBox = getTaskBox(i + 1, taskList.get(i));
+
+                if (hasModifiedTasks && modifiedTasks.get(0).getIndex() == i) {
+                    if (modifiedTasks.get(0).isDelete()) {
+                        taskBox.setStyle(GREEN_STYLE);
+                    } else if (modifiedTasks.get(0).isEdit()) {
+                        taskBox.setStyle(GREEN_STYLE);
+                        HBox previousEditedTaskBox = getTaskBox(i + 1, editedPatient.getTasks().get(i));
+                        previousEditedTaskBox.setStyle(RED_STYLE);
+
+                        taskContainer.getChildren().add(previousEditedTaskBox);
+                    }
+                }
                 taskContainer.getChildren().add(taskBox);
+            }
+
+            if (hasModifiedTasks && modifiedTasks.get(0).isAdd()) {
+                HBox previousEditedTaskBox = getTaskBox(
+                        taskList.size() + 1, editedPatient.getTasks().get(modifiedTasks.get(0).getIndex()));
+                previousEditedTaskBox.setStyle(RED_STYLE);
+
+                taskContainer.getChildren().add(previousEditedTaskBox);
             }
         }
 
@@ -135,8 +256,35 @@ public class UpdatedPatientCard extends UiPart<Region> {
         if (patient.getRemarks().isEmpty()) {
             remarkContainer.getChildren().add(getEmptyRemarkBox());
         } else {
-            for (Remark remark : patient.getRemarks().getInternalList()) {
-                remarkContainer.getChildren().add(getRemarkBox(remark));
+            RemarkList remarkList = patient.getRemarks();
+
+            // only supports singular add/delete/edit operation checking
+            List<ListModificationPair> modifiedRemarks = remarkList.getDiff(editedPatient.getRemarks());
+            boolean hasModifiedRemarks = !(modifiedRemarks.isEmpty());
+
+            for (int i = 0; i < remarkList.size(); i++) {
+                HBox remarkBox = getRemarkBox(remarkList.get(i));
+
+                if (hasModifiedRemarks && modifiedRemarks.get(0).getIndex() == i) {
+                    if (modifiedRemarks.get(0).isDelete()) {
+                        remarkBox.setStyle(GREEN_STYLE);
+                    } else if (modifiedRemarks.get(0).isEdit()) {
+                        remarkBox.setStyle(GREEN_STYLE);
+                        HBox previousEditedRemarkBox = getRemarkBox(editedPatient.getRemarks().get(i));
+                        previousEditedRemarkBox.setStyle(RED_STYLE);
+
+                        remarkContainer.getChildren().add(previousEditedRemarkBox);
+                    }
+                }
+                remarkContainer.getChildren().add(remarkBox);
+            }
+
+            if (hasModifiedRemarks && modifiedRemarks.get(0).isAdd()) {
+                HBox previousEditedRemarkBox = getRemarkBox(
+                        editedPatient.getRemarks().get(modifiedRemarks.get(0).getIndex()));
+                previousEditedRemarkBox.setStyle(RED_STYLE);
+
+                remarkContainer.getChildren().add(previousEditedRemarkBox);
             }
         }
     }
@@ -314,8 +462,8 @@ public class UpdatedPatientCard extends UiPart<Region> {
         return taskBox;
     }
 
-    private VBox getEmptyRemarkBox() {
-        VBox remarkBox = new VBox();
+    private HBox getEmptyRemarkBox() {
+        HBox remarkBox = new HBox();
         remarkBox.setStyle("-fx-background-color: #b6ecfa;"
                 + "-fx-padding: 5;" + "-fx-border-radius: 2;"
                 // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
@@ -331,8 +479,8 @@ public class UpdatedPatientCard extends UiPart<Region> {
         return remarkBox;
     }
 
-    private VBox getRemarkBox(Remark remark) {
-        VBox remarkBox = new VBox();
+    private HBox getRemarkBox(Remark remark) {
+        HBox remarkBox = new HBox();
         remarkBox.setStyle("-fx-background-color: #b6ecfa;"
                 + "-fx-padding: 5;" + "-fx-border-radius: 2;"
                 // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
