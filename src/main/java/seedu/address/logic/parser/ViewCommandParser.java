@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
@@ -22,14 +23,31 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args);
 
-        Index index;
+        String[] arguments = argMultimap.getPreamble().split(" ", 2);
+        if (!isValidInput(arguments)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        }
 
+        Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX,
+                    pe);
         }
 
         return new ViewCommand(index);
+    }
+
+    private boolean isValidInput(String[] input) {
+        if (input.length != 1) {
+            return false;
+        }
+        try {
+            int index = Integer.parseInt(input[0]);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 }
