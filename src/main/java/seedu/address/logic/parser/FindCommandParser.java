@@ -5,8 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
-import java.util.Arrays;
-
+import java.util.ArrayList;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindNameCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -32,8 +31,7 @@ public class FindCommandParser implements Parser<FindNameCommand> {
      */
     public FindNameCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        String[] findCommandKeywords = new String[3];
-
+        ArrayList<String> findCommandKeywords = new ArrayList<>();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -44,20 +42,20 @@ public class FindCommandParser implements Parser<FindNameCommand> {
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String foundName = String.join(" ", argMultimap.getAllValues(PREFIX_NAME));
-            findCommandKeywords[0] = foundName;
+            findCommandKeywords.add(foundName);
         }
 
         if (argMultimap.getValue(PREFIX_STUDENTCLASS).isPresent()) {
             String foundClass = String.join(" ", argMultimap.getAllValues(PREFIX_STUDENTCLASS));
-            findCommandKeywords[1] = foundClass;
+            findCommandKeywords.add(foundClass);
         }
 
         if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
             String foundSubjects = String.join(" ", argMultimap.getAllValues(PREFIX_SUBJECT));
-            findCommandKeywords[2] = foundSubjects;
+            findCommandKeywords.add(foundSubjects);
         }
 
-        return new FindNameCommand(new FindCommandPredicate(Arrays.asList(findCommandKeywords)));
+        return new FindNameCommand(new FindCommandPredicate(findCommandKeywords));
     }
 
 }
