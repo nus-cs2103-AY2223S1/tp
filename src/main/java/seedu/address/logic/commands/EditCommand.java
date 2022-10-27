@@ -126,10 +126,10 @@ public class EditCommand extends Command {
             .of(editPersonDescriptor.getPlans().orElse(new HashSet<>()), personToEdit.getPortfolio().getPlans())
             .flatMap(Collection::stream)
             .collect(Collectors.toSet());
-        Note updatedNote = editPersonDescriptor.getNote().orElse(portfolio.getNote());
+        Set<Note> updatedNotes = editPersonDescriptor.getNotes().orElse(portfolio.getNotes());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncome,
-            updatedMeetingDate, updatedTags, updatedRisk, updatedPlans, updatedNote);
+            updatedMeetingDate, updatedTags, updatedRisk, updatedPlans, updatedNotes);
     }
 
     @Override
@@ -164,7 +164,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Risk risk;
         private Set<Plan> plans;
-        private Note note;
+        private Set<Note> notes;
 
         public EditPersonDescriptor() {
         }
@@ -183,7 +183,7 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setRisk(toCopy.risk);
             setPlans(toCopy.plans);
-            setNote(toCopy.note);
+            setNotes(toCopy.notes);
         }
 
         /**
@@ -191,7 +191,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, income, meetingDate, tags,
-                risk, plans, note);
+                risk, plans, notes);
         }
 
         public void setName(Name name) {
@@ -275,12 +275,17 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setNote(Note note) {
-            this.note = (note != null) ? note : null;
+        public void setNotes(Set<Note> notes) {
+            this.notes = (notes != null) ? new HashSet<>(notes) : null;
         }
 
-        public Optional<Note> getNote() {
-            return (note != null) ? Optional.ofNullable(note) : Optional.empty();
+        /**
+         * Returns an unmodifiable note set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code note} is null.
+         */
+        public Optional<Set<Note>> getNotes() {
+            return (notes != null) ? Optional.ofNullable(Collections.unmodifiableSet(notes)) : Optional.empty();
         }
 
         @Override
@@ -307,7 +312,7 @@ public class EditCommand extends Command {
                 && getTags().equals(e.getTags())
                 && getRisk().equals(e.getRisk())
                 && getPlans().equals(e.getPlans())
-                && getNote().equals(e.getNote());
+                && getNotes().equals(e.getNotes());
 
         }
     }

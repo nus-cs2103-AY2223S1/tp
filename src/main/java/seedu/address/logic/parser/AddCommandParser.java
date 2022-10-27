@@ -37,15 +37,16 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_INCOME, PREFIX_MEETING_DATE, PREFIX_TAG, PREFIX_RISK, PREFIX_PLAN, PREFIX_NOTE);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                PREFIX_INCOME, PREFIX_MEETING_DATE, PREFIX_TAG, PREFIX_RISK, PREFIX_PLAN, PREFIX_NOTE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_INCOME)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -58,7 +59,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Risk risk = ParserUtil.parseRisk(argMultimap.getOptionalValue(PREFIX_RISK));
         Set<Plan> plans = ParserUtil.parsePlans(argMultimap.getAllValues(PREFIX_PLAN));
-        Note note = ParserUtil.parseNote(argMultimap.getOptionalValue(PREFIX_NOTE));
+        Set<Note> note = ParserUtil.parseNotes(argMultimap.getAllValues(PREFIX_NOTE));
 
         Person person = new Person(name, phone, email, address, income, meetingDate, tagList, risk, plans, note);
 

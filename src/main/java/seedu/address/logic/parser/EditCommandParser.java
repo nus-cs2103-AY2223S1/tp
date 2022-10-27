@@ -22,6 +22,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.tag.Tag;
 
@@ -33,14 +34,15 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(
-                        args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_INCOME,
-                        PREFIX_MEETING_DATE, PREFIX_TAG, PREFIX_RISK, PREFIX_PLAN, PREFIX_NOTE);
+            ArgumentTokenizer.tokenize(
+                args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_INCOME,
+                PREFIX_MEETING_DATE, PREFIX_TAG, PREFIX_RISK, PREFIX_PLAN, PREFIX_NOTE);
 
         Index index;
 
@@ -68,21 +70,19 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_MEETING_DATE).isPresent()) {
             editPersonDescriptor.setMeetingDate(
-                    ParserUtil.parseMeetingDate(argMultimap.getValue(PREFIX_MEETING_DATE).get()));
+                ParserUtil.parseMeetingDate(argMultimap.getValue(PREFIX_MEETING_DATE).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (argMultimap.getValue(PREFIX_RISK).isPresent()) {
             editPersonDescriptor.setRisk(
-                    ParserUtil.parseRisk(argMultimap.getValue(PREFIX_RISK).get()));
+                ParserUtil.parseRisk(argMultimap.getValue(PREFIX_RISK).get()));
         }
 
         parsePlansForEdit(argMultimap.getAllValues(PREFIX_PLAN)).ifPresent(editPersonDescriptor::setPlans);
 
-        if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
-            editPersonDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()));
-        }
+        parseNotesForEdit(argMultimap.getAllValues(PREFIX_NOTE)).ifPresent(editPersonDescriptor::setNotes);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -119,6 +119,21 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> planSet = plans.size() == 1 && plans.contains("") ? Collections.emptySet() : plans;
         return Optional.of(ParserUtil.parsePlans(planSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> notes} into a {@code Set<Note>} if {@code notes} is non-empty.
+     * If {@code notes} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<note>} containing zero note.
+     */
+    private Optional<Set<Note>> parseNotesForEdit(Collection<String> notes) throws ParseException {
+        assert notes != null;
+
+        if (notes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> notesSet = notes.size() == 1 && notes.contains("") ? Collections.emptySet() : notes;
+        return Optional.of(ParserUtil.parseNotes(notesSet));
     }
 
 }
