@@ -70,7 +70,7 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 
 Adds a student to the specified module.
 
-Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [g/GRADE] [a/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`
+Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [g/GRADE] [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
@@ -79,7 +79,7 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
-* `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 a/3 part/1 g/C t/quiet`
+* `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 att/3 part/1 g/C t/quiet`
 
 #### 3.1.2 Deleting a student: `delete student`
 
@@ -127,6 +127,7 @@ Finds students by names, student ID, module or tutorial, by checking if respecti
 
 Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`
 
+* At least one of the optional fields must be provided.
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -144,7 +145,7 @@ Copies all emails in the displayed student list onto the clipboard.
 Format: `extract emails`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Paste the link in the address bar of a browser and a pop-up will appear, prompting you to open up your email apps e.g.Outlook !
+Paste the link in the address bar of a browser and a pop-up will appear, prompting you to open up your email apps e.g. Outlook !
 </div>
 
 Examples:
@@ -284,19 +285,18 @@ Format: `unmark reminder INDEX`
 Examples:
 * `unmark reminder 3`
 
-#### 3.4.5 Sort reminders by priority : `sort reminder priority`
+#### 3.4.5 Sort reminders: `sort reminder`
 
-Sort reminders by their priority, with `HIGH` on top of the list, followed by `MEDIUM` and `LOW`.
+Sort reminders by a chosen criteria.
 
-Format: `sort reminder priority`
+Format: `sort reminder /by SORT_CRITERIA`
 
-#### 3.4.6 Sort reminders by deadline : `sort reminder deadline`
+* `SORT_CRITERIA` must either be `priority` or `deadline`.
+* Specifying `priority` will sort reminders by their priority, with `HIGH` on top of the list, followed by `MEDIUM` and `LOW`.
+* Specifying `deadline` will sort reminders by their deadline, with the earliest deadline on top of the list.
 
-Sort reminders by their deadline, with the earliest deadline on top of the list.
 
-Format: `sort reminder deadline`
-
-### 3.5 Switch tabs : `switch`
+### 3.5 Switch tabs: `switch`
 
 Switch the tabs displayed.
 
