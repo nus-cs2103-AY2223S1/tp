@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -33,11 +34,9 @@ public class StudentCard extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     @FXML
+    private TitledPane titledPane;
+    @FXML
     private HBox cardPane;
-    @FXML
-    private Label name;
-    @FXML
-    private Label id;
     @FXML
     private Label phone;
     @FXML
@@ -59,8 +58,8 @@ public class StudentCard extends UiPart<Region> {
 
         // Setting Student identity
         Student student = studentView.getStudent();
-        id.setText(displayedIndex + ". ");
-        name.setText(student.getName().fullName);
+
+        titledPane.setText(displayedIndex + ". " + student.getName().fullName);
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
@@ -94,7 +93,7 @@ public class StudentCard extends UiPart<Region> {
 
         // state check
         StudentCard card = (StudentCard) other;
-        return id.getText().equals(card.id.getText())
+        return titledPane.getText().equals(card.titledPane.getText())
                 && studentView.equals(card.studentView);
     }
 }
