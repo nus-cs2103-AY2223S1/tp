@@ -177,7 +177,7 @@ The default date is the current date on your computer!
        Total Expenditure: 154.40 <br/>
        Total Income: 150.00 <br/>
        Total Balance: -4.40 <br/>
-2. Summarise of all entries the specified month
+2. Summary of all entries the specified month
     * Examples: `summary mo/2022-09`
     * Expected: <br/>
       Financials Summarized <br/>
