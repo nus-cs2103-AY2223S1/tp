@@ -412,19 +412,19 @@ If your changes to the data file makes its format invalid, TrackAScholar will di
 
 ## Command summary
 
-| Action     | Format, Examples                                                                    |
-|------------|-------------------------------------------------------------------------------------|
-| **Help**   | `help`                                                                              |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL s/SCHOLARSHIP as/APPLICATION_STATUS [m/MAJOR]…​` |
-| **List**   | `list`                                                                              |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR]…​`                        |
-| **Delete** | `delete INDEX`                                                                      |
-| **Remove** | `remove <ACCEPTED>/<REJECTED>`                                                      |
-| **Clear**  | `clear`                                                                             |
-| **Find**   | `find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...`                                  |
-| **Filter** | `filter <PENDING>/<ACCEPTED>/<REJECTED>`                                            |
-| **Sort**   | `sort <NAME>/<SCHOLARSHIP>/<STATUS>`                                                |
-| **Import** | `import <r>/<k>`                                                                    |
-| **Pin**    | `pin INDEX`                                                                         |
-| **Unpin**  | `unpin FULL_NAME`                                                                   |
-| **Exit**   | `exit`                                                                              |
+| Action     | Format, Examples                                                                                                                                                                           |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**   | `help`                                                                                                                                                                                     |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL s/SCHOLARSHIP as/APPLICATION_STATUS [m/MAJOR]…​` <br/> e.g. `add n/Samuel Cheong m/Medicine e/samuelcheong1234@gmail.com p/65782310 s/Merit as/pending` |
+| **List**   | `list`                                                                                                                                                                                     |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR]…​` <br/> e.g. `edit 1 n/John Cena e/johnCena@yahoo.com`                                                                          |
+| **Delete** | `delete INDEX` <br/> e.g. `delete 1`                                                                                                                                                       |
+| **Remove** | `remove <ACCEPTED>/<REJECTED>` <br/> e.g. `remove rejected`                                                                                                                                |
+| **Clear**  | `clear`                                                                                                                                                                                    |
+| **Find**   | `find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...` <br/> e.g. `find n/alex m/business`                                                                                                     |
+| **Filter** | `filter <PENDING>/<ACCEPTED>/<REJECTED>` <br/> e.g. `filter pending`                                                                                                                       |
+| **Sort**   | `sort <NAME>/<SCHOLARSHIP>/<STATUS>` <br/> e.g. `sort scholarship`                                                                                                                         |
+| **Import** | `import <r>/<k>` <br/> e.g. `import r`                                                                                                                                                     |
+| **Pin**    | `pin INDEX` <br/> e.g. `pin 2`                                                                                                                                                             |
+| **Unpin**  | `unpin FULL_NAME` <br/> e.g. `unpin Alex Yeoh`                                                                                                                                             |
+| **Exit**   | `exit`                                                                                                                                                                                     |
