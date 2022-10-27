@@ -12,7 +12,7 @@ import hobbylist.logic.commands.Command;
 import hobbylist.logic.commands.DeleteCommand;
 import hobbylist.logic.commands.EditCommand;
 import hobbylist.logic.commands.ExitCommand;
-import hobbylist.logic.commands.FilterStatusCommand;
+import hobbylist.logic.commands.FindStatusCommand;
 import hobbylist.logic.commands.FindTagCommand;
 import hobbylist.logic.commands.FindCommand;
 import hobbylist.logic.commands.HelpCommand;
@@ -65,8 +65,8 @@ public class HobbyListParser {
             return new FindTagCommandParser().parse(arguments);
         } else if (commandWord.equals(ListCommand.getCommandWord())) {
             return new ListCommand();
-        } else if (commandWord.equals(FilterStatusCommand.getCommandWord())) {
-            return new FilterStatusCommandParser().parse(arguments);
+        } else if (commandWord.equals(FindStatusCommand.getCommandWord())) {
+            return new FindStatusCommandParser().parse(arguments);
         } else if (commandWord.equals(ExitCommand.getCommandWord())) {
             return new ExitCommand();
         } else if (commandWord.equals(HelpCommand.getCommandWord())) {

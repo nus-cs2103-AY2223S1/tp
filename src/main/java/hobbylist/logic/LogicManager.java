@@ -15,7 +15,7 @@ import hobbylist.logic.commands.CommandResult;
 import hobbylist.logic.commands.DeleteCommand;
 import hobbylist.logic.commands.EditCommand;
 import hobbylist.logic.commands.ExitCommand;
-import hobbylist.logic.commands.FilterStatusCommand;
+import hobbylist.logic.commands.FindStatusCommand;
 import hobbylist.logic.commands.FindTagCommand;
 import hobbylist.logic.commands.FindCommand;
 import hobbylist.logic.commands.HelpCommand;
@@ -125,7 +125,7 @@ public class LogicManager implements Logic {
         EditCommand.setCommandWord(aliasSettings.getEdit());
         ExitCommand.setCommandWord(aliasSettings.getExit());
         FindTagCommand.setCommandWord(aliasSettings.getFindTag());
-        FilterStatusCommand.setCommandWord(aliasSettings.getFilterStatus());
+        FindStatusCommand.setCommandWord(aliasSettings.getFindStatus());
         FindCommand.setCommandWord(aliasSettings.getFind());
         ListCommand.setCommandWord(aliasSettings.getList());
         HelpCommand.setCommandWord(aliasSettings.getHelp());
