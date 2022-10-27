@@ -1,10 +1,13 @@
 package seedu.address.storage;
 
 import java.time.LocalDate;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.task.Description;
@@ -21,9 +24,9 @@ import seedu.address.model.task.TaskName;
  */
 public class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     private final String name;
-    private final String categoryLevel;
     private final String categoryName;
     private final String description;
     private final String priority;
@@ -31,12 +34,12 @@ public class JsonAdaptedTask {
     private final String email;
     private final String isDone;
 
+
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name,
-                             @JsonProperty("categoryLevel") String categoryLevel,
                              @JsonProperty("categoryName") String categoryName,
                              @JsonProperty("description") String description,
                              @JsonProperty("priority") String priority,
@@ -44,7 +47,6 @@ public class JsonAdaptedTask {
                              @JsonProperty("email") String email,
                              @JsonProperty("isDone") String isDone) {
         this.name = name;
-        this.categoryLevel = categoryLevel;
         this.categoryName = categoryName;
         this.description = description;
         this.deadline = deadline;
@@ -58,10 +60,9 @@ public class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         name = source.getName().getTaskName();
-        categoryLevel = String.valueOf(source.getCategory().getLevel());
-        categoryName = source.getCategory().getCategoryName();
+        categoryName = source.getCategory().getTaskCategoryType().toString();
         description = source.getDescription().toString();
-        priority = source.getPriority().toString();
+        priority = source.getPriority().getPriority().toString();
         deadline = source.getDeadline().toString();
         email = source.getPersonEmailAddress().toString();
         isDone = Task.convertIsDoneFromBooleanToString(source.isDone());
@@ -82,13 +83,6 @@ public class JsonAdaptedTask {
         }
         final TaskName modelName = new TaskName(name);
 
-        if (categoryLevel == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TaskCategory.class.getSimpleName()));
-        }
-        if (!TaskCategory.isValidTaskCategoryLevel(categoryLevel)) {
-            throw new IllegalValueException(TaskCategory.MESSAGE_CONSTRAINTS);
-        }
         if (categoryName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskCategory.class.getSimpleName()));
@@ -96,8 +90,7 @@ public class JsonAdaptedTask {
         if (!TaskCategory.isValidTaskCategoryName(categoryName)) {
             throw new IllegalValueException(TaskCategory.MESSAGE_CONSTRAINTS);
         }
-        final TaskCategory modelCategory = new TaskCategory(Integer.parseInt(categoryLevel),
-                TaskCategoryType.getFromString(categoryName).get());
+        final TaskCategory modelCategory = new TaskCategory(TaskCategoryType.getFromString(categoryName).get());
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

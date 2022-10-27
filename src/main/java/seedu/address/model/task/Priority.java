@@ -19,6 +19,7 @@ public class Priority {
         requireNonNull(priority);
         this.priority = priority;
     }
+
     /**
      * Returns the string representation of the task priority.
      *

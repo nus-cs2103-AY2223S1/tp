@@ -41,7 +41,7 @@ public class TaskBuilder {
      */
     public TaskBuilder() {
         taskName = new TaskName(defaultName);
-        taskCategory = new TaskCategory(3, defaultCatType);
+        taskCategory = new TaskCategory(defaultCatType);
         taskDescription = new Description(defaultDescription);
         taskPriority = new Priority(defaultPriority);
         taskDeadline = new TaskDeadline(defaultLocalDate);

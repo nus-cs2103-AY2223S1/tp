@@ -8,8 +8,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
@@ -20,13 +23,11 @@ import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskName;
 
-
-
 /**
  * Parses input arguments and creates a new AddTaskCommand object
  */
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
-
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand
      * and returns an AddTaskCommand object for execution.
@@ -56,6 +57,30 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         Priority priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         TaskCategory category = ParserUtil.parseTaskCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
         TaskDeadline deadline = ParserUtil.parseTaskDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+
+        if (!TaskName.isValidTaskName(taskName.toString())) {
+            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!TaskCategory.isValidTaskCategoryName(category.getTaskCategoryType().toString())) {
+            throw new ParseException(TaskCategory.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Description.isValidTaskDescription(description.getTaskDescription())) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Priority.isValidTaskPriority(priority.getPriority().toString())) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!TaskDeadline.isValidTaskDeadline(deadline.toString())) {
+            throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Email.isValidEmail(personEmailAddress.toString())) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
 
         Task task = new Task(taskName, description, priority, category, deadline, null, false);
         return new AddTaskCommand(task, personEmailAddress);
