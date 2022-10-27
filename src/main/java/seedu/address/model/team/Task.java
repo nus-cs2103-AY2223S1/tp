@@ -74,7 +74,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return getCompletionStatus() + name + getAssigneesAsString() + getDeadlineAsString();
+        return getCompletionStatus() + name + " " + getAssigneesAsString() + " " + getDeadlineAsString();
     }
 
     public String getName() {
@@ -83,9 +83,9 @@ public class Task {
 
     public String getAssigneesAsString() {
         if (getAssigneesList().isEmpty()) {
-            return " (Not assigned to any member yet)";
+            return "(Not assigned to any member yet)";
         } else {
-            StringBuilder assigneeNames = new StringBuilder(" (Assigned to: ");
+            StringBuilder assigneeNames = new StringBuilder("(Assigned to: ");
             assigneeNames.append(getAssigneesList().get(0).getName());
             for (int i = 1; i < getAssigneesList().size(); i++) {
                 assigneeNames.append(", ").append(getAssigneesList().get(i).getName());
@@ -145,6 +145,7 @@ public class Task {
 
     /**
      * Checks if task has already been assigned to the specified assignee.
+     *
      * @param assignee The specified assignee.
      * @return true if the task has been assigned to the assignee before, false otherwise.
      */

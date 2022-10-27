@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.stage.*?>
-
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="TruthTable" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
@@ -31,9 +34,9 @@
                 </MenuBar>
                 <HBox VBox.vgrow="ALWAYS">
                     <children>
-                        <VBox HBox.hgrow="ALWAYS">
+                        <VBox HBox.hgrow="SOMETIMES">
                             <children>
-                                <VBox fx:id="teamList" minWidth="125.0" prefWidth="150" styleClass="pane-with-border"
+                                <VBox fx:id="teamList" minWidth="150.0" prefWidth="250" styleClass="pane-with-border"
                                       VBox.vgrow="ALWAYS">
                                     <padding>
                                         <Insets bottom="10" left="10" right="10" top="10"/>
@@ -69,8 +72,8 @@
                             </children>
                         </VBox>
 
-                        <VBox fx:id="personList" minWidth="145.0" prefWidth="200" styleClass="pane-with-border"
-                              VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                        <VBox fx:id="personList" minWidth="150.0" prefWidth="250" styleClass="pane-with-border"
+                              VBox.vgrow="ALWAYS" HBox.hgrow="SOMETIMES">
                             <padding>
                                 <Insets bottom="10" left="10" right="10" top="10"/>
                             </padding>
