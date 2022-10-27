@@ -29,6 +29,10 @@ public class FilterCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.filterFilteredExerciseList(predicate);
+        if (model.getFilteredExerciseList().size() == 0) {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_FIND_EMPTY_EXERCISES_LIST, model.getFilteredExerciseList().size()));
+        }
         return new CommandResult(
                 String.format(Messages.MESSAGE_EXERCISES_LISTED_OVERVIEW, model.getFilteredExerciseList().size()));
     }
