@@ -52,6 +52,15 @@ public class CommentList {
     }
 
     /**
+     * Returns the list of comments of the tutor.
+     *
+     * @return The list of comments
+     */
+    public List<Comment> getList() {
+        return comments;
+    }
+
+    /**
      * Deletes a Comment from the {@code CommentList}.
      *
      * @param index The index of the {@code Comment} in the {@code CommentList}.
