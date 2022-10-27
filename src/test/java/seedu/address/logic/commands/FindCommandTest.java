@@ -78,6 +78,6 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private PersonMatchesKeywordsPredicate preparePredicate(String userInput) {
-        return new PersonMatchesKeywordsPredicate(userInput.split("\\s+"));
+        return new PersonMatchesKeywordsPredicate(userInput);
     }
 }
