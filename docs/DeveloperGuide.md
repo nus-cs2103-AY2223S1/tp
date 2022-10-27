@@ -211,6 +211,12 @@ The sequence diagram below illustrates this process.
 
 ![ListItemsSequenceDiagram](images/ListItemsSequenceDiagram.png)
 
+#### Design Considerations
+
+- **Alternative 1 (current choice)**: The command lists all the items in the inventory list.
+  - Pros: Easier to implement.
+  - Cons: Unable to filter specific items.
+
 ### Find Item Feature
 
 The find item feature allows the user to find an `Item` by keyword/s given by the user.
@@ -231,17 +237,21 @@ The predicate is passed into a new instance of `FindItemCommand`. `FindItemComma
 `Model#updateFilteredItemList()` to filter `Model#filteredOrders` according to the previously constructed 
 `ItemContainsKeywordsPredicate`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect, 
-`FindItemCommandParser` will throw a `ParseException`.
-
-</div>
-
 The sequence diagram below illustrates this process.
 
 ![FindItemSequenceDiagram](images/FindItemSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+#### Design Considerations
+
+- **Alternative 1 (current choice)**: The command finds items based on their `ItemName`.
+    - Pros: Easier to implement, and users do not have to use prefixes to find items.
+    - Cons: Cannot search based on other item fields, e.g. searching based on the price range of the items.
+- **Alternative 2**: The command can find items based on all of their fields. 
+    - Pros: Can search based on more fields, useful if the user has large number of items to navigate through.
+    - Cons: Harder to implement.
 
 ### Edit Item Feature
 
@@ -460,6 +470,15 @@ The sequence diagram below illustrates this process.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditOrderCommandParser` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+#### Design Considerations
+
+- **Alternative 1 (current choice)**: The command edits the order based on the prefixes that is inputted by the user.
+  - Pros: The user can edit only the fields that they want to edit.
+  - Cons: The user may have to input long commands. 
+- **Alternative 2**: No edit command, users have to delete and re-add orders should there be any change.
+  - Pros: Less bug-prone, more convenient for the developers to implement.
+  - Cons: Not user-friendly and makes things more difficult for the user.
 
 ### \[Proposed\] Undo/redo feature
 
