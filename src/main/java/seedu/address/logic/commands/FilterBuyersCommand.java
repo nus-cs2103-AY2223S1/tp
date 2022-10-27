@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MATCH_ALL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FUZZY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
@@ -27,12 +27,12 @@ public class FilterBuyersCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all buyers in the database who"
             + " either has a price range that accepts the given price, contains all characteristics in the given"
             + " characteristics list, or has the given priority. You can pass in more than one criteria at a time.\n"
-            + " Pass in " + PREFIX_MATCH_ALL + " for strict filtering, i.e. filtered buyers will satisfy"
-            + " all the conditions specified. \n"
+            + " Pass in " + PREFIX_FUZZY + " for fuzzy filtering, i.e. filtered buyers will only need to satisfy"
+            + " at least one of the conditions specified. \n"
             + "Parameters: [" + PREFIX_PRICE + " PRICE] "
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
             + "[" + PREFIX_PRIORITY + " <HIGH/LOW>]"
-            + "[" + PREFIX_MATCH_ALL + "]\n"
+            + "[" + PREFIX_FUZZY + "]\n"
             + "Example: " + COMMAND_WORD + " -c bright; sunny";
 
     private final Predicate<Buyer> predicate;

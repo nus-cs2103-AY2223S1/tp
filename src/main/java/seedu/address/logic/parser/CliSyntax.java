@@ -16,7 +16,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_CHARACTERISTICS = new Prefix("-c");
     public static final Prefix PREFIX_PRICE = new Prefix("-price"); // temporary, should refactor all prefixes
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("-d");
-    public static final Prefix PREFIX_MATCH_ALL = new Prefix("-all");
+    public static final Prefix PREFIX_FUZZY = new Prefix("-fuzzy");
     public static final Prefix PREFIX_STRICT = new Prefix("-strict");
     public static final Prefix PREFIX_TIME = new Prefix("-t");
 }

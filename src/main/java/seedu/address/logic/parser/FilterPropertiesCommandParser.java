@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MATCH_ALL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FUZZY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 
@@ -37,7 +37,7 @@ public class FilterPropertiesCommandParser extends Parser<FilterPropertiesComman
         requireNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PRICE_RANGE,
-                PREFIX_CHARACTERISTICS, PREFIX_OWNER_NAME, PREFIX_MATCH_ALL);
+                PREFIX_CHARACTERISTICS, PREFIX_OWNER_NAME, PREFIX_FUZZY);
 
         if (!isAnyPrefixPresent(argMultimap, PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_OWNER_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -64,10 +64,10 @@ public class FilterPropertiesCommandParser extends Parser<FilterPropertiesComman
         }
 
         Optional<Predicate<Property>> combinedPredicate;
-        if (arePrefixesPresent(argMultimap, PREFIX_MATCH_ALL)) {
-            combinedPredicate = predicatesList.stream().reduce(Predicate::and);
-        } else {
+        if (arePrefixesPresent(argMultimap, PREFIX_FUZZY)) {
             combinedPredicate = predicatesList.stream().reduce(Predicate::or);
+        } else {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::and);
         }
 
         // combinedPredicate must exist, since predicatesList should contain at least one predicate

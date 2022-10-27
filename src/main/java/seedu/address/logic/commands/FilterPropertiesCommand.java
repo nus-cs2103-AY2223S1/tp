@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MATCH_ALL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FUZZY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 
@@ -27,13 +27,13 @@ public class FilterPropertiesCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties in the database that"
             + " either has a price that is within the given price range, contains all characteristics in the given"
             + " characteristics list, or has the given seller. You can filter by more than one criteria at a time.\n"
-            + " Pass in " + PREFIX_MATCH_ALL + " for strict filtering, i.e. filtered properties will satisfy"
-            + " all the conditions specified. \n"
+            + " Pass in " + PREFIX_FUZZY + " for fuzzy filtering, i.e. filtered properties will only need to satisfy"
+            + " at least one of the conditions specified. \n"
             + "Parameters: "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
             + "[" + PREFIX_OWNER_NAME + " OWNER NAME]\n"
-            + "[" + PREFIX_MATCH_ALL + "]\n"
+            + "[" + PREFIX_FUZZY + "]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PRICE_RANGE + " 200000 - 500000 ";
 
