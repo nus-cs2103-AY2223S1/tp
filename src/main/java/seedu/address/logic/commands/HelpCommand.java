@@ -1,8 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.contact.AddContactCommand;
-import seedu.address.logic.commands.tag.AddTagCommand;
-import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.model.Model;
 
 /**
@@ -18,15 +15,16 @@ public class HelpCommand extends Command {
     private static final String USER_GUIDE_URL =
             "https://ay2223s1-cs2103t-f11-4.github.io/tp/UserGuide.html#quick-start";
 
-    public static final String SHOWING_HELP_MESSAGE = "Sample usage:\n\n"
-            + AddContactCommand.MESSAGE_USAGE + "\n\n"
-            + AddTaskCommand.MESSAGE_USAGE + "\n\n"
-            + AddTagCommand.MESSAGE_USAGE + "\n\n"
-            + "For other commands and further help:\n"
-            + USER_GUIDE_URL;
+    private static final String GITHUB_RELEASE_URL =
+            "https://github.com/AY2223S1-CS2103T-F11-4/tp/releases";
+
+    public static final String SHOWING_HELP_MESSAGE = "For detailed guide: "
+            + USER_GUIDE_URL + "\n"
+            + "For latest YellowBook version: "
+            + GITHUB_RELEASE_URL;
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, false, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }

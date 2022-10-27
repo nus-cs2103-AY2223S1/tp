@@ -81,7 +81,7 @@ To better understand the usage of YellowBook, we have provided a usage scenario 
 
 ### Viewing help : `help`
 
-Shows a window with a link to this user guide.
+Shows a window with a link to this user guide and latest release of YellowBook.
 
 ### Exiting YellowBook : `exit`
 
