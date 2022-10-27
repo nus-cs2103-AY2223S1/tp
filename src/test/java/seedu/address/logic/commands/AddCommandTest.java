@@ -188,6 +188,9 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean isExamLinkedToTask(Exam examToEdit) {
+            throw new AssertionError("This method should not be called.");
+        }
         public void updateModuleFieldForTask(Module previousModule, Module newModule) {
             throw new AssertionError("This method should not be called.");
         }

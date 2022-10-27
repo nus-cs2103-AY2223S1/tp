@@ -14,7 +14,7 @@ import seedu.address.model.task.Task;
  * UnlinkExamCommand represents a command which unlinks the exam from the task.
  */
 public class UnlinkExamCommand extends Command {
-    public static final String COMMAND_WORD = "examunlink";
+    public static final String COMMAND_WORD = "unlink";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Unlinks the task identified by the index number used in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"

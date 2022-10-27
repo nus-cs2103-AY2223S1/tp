@@ -296,6 +296,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isExamLinkedToTask(Exam examToEdit) {
+        requireNonNull(examToEdit);
+        return addressBook.isExamLinkedToTask(examToEdit);
+    }
+
+    @Override
     public void updateModuleFieldForExam(Module previousModule, Module newModule) {
         requireAllNonNull(previousModule, newModule);
         addressBook.updateModuleFieldForExam(previousModule, newModule);

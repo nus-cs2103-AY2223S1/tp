@@ -19,7 +19,8 @@ public class ModuleCodeContainsKeywordsPredicate implements Predicate<Module> {
     @Override
     public boolean test(Module module) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsPartialWord(module.getModuleCode().moduleCode, keyword));
+                .anyMatch(keyword -> StringUtil.containsPartialWord(module.getModuleCode()
+                                .moduleCode.toLowerCase(), keyword));
     }
 
     @Override

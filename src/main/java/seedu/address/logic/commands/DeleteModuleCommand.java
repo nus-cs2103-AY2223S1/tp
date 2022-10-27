@@ -15,7 +15,7 @@ import seedu.address.model.module.Module;
  */
 public class DeleteModuleCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletemodule";
+    public static final String COMMAND_WORD = "del";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the module identified by the index number used in the displayed module list.\n"
