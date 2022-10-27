@@ -7,11 +7,11 @@ import java.util.List;
 import com.beust.jcommander.Parameter;
 
 import modtrekt.commons.core.Messages;
-import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.CliSyntax;
-import modtrekt.logic.parser.converters.IndexConverter;
+import modtrekt.logic.parser.converters.ModCodeConverter;
 import modtrekt.model.Model;
+import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
 
 /**
@@ -22,23 +22,23 @@ public class RemoveModuleCommand extends Command {
     public static final String[] COMMAND_ALIASES = {"remove mod", "rm module", "rm mod"};
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the task/module identified by the index number.\n"
+            + ": Deletes the task/module identified by the module code.\n"
             + "Prefixes: " + CliSyntax.PREFIX_MODULE + ": Modules, " + CliSyntax.PREFIX_TASK + ": Tasks\n"
-            + "Format: " + COMMAND_WORD + " " + CliSyntax.PREFIX_MODULE + " <INDEX>";
+            + "Format: " + COMMAND_WORD + " " + CliSyntax.PREFIX_MODULE + " <MODULE CODE>";
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "I successfully deleted the module: %1$s!";
 
-    @Parameter(description = "index", required = true,
-        converter = IndexConverter.class)
-    private Index targetIndex;
+    @Parameter(description = "module code", required = true,
+        converter = ModCodeConverter.class)
+    private ModCode code;
 
     /**
      *     Empty constructor that instantiates a RemoveCommand object, for use with JCommander.
      */
     public RemoveModuleCommand() {}
 
-    public RemoveModuleCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public RemoveModuleCommand(ModCode code) {
+        this.code = code;
     }
 
     @Override
@@ -46,11 +46,11 @@ public class RemoveModuleCommand extends Command {
         requireNonNull(model);
         List<Module> lastShownList = model.getFilteredModuleList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        if (!(model.hasModuleWithModCode(code))) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_CODE_TO_REMOVE);
         }
 
-        Module moduleToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Module moduleToDelete = model.parseModuleFromCode(code);
         model.deleteModule(moduleToDelete);
         model.deleteTasksOfModule(moduleToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
@@ -60,6 +60,6 @@ public class RemoveModuleCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RemoveModuleCommand // instanceof handles nulls
-                && targetIndex.equals(((RemoveModuleCommand) other).targetIndex)); // state check
+                && code.equals(((RemoveModuleCommand) other).code)); // state check
     }
 }

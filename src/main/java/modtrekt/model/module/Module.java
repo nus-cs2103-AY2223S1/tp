@@ -1,12 +1,20 @@
 package modtrekt.model.module;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
  * Represents a module in the module list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Module {
+public class Module implements Comparable<Module> {
+    public static final Comparator<Module> SELECTION_COMPARATOR =
+            Comparator.comparing(Module::getIsCurrentModule).reversed(); // selected module first
+    public static final Comparator<Module> COMPLETION_COMPARATOR =
+            Comparator.comparing(Module::isDone); // completed module first
+    public static final Comparator<Module> CODE_COMPARATOR =
+            Comparator.comparing(Module::getCode); // lexicographical sort by mod code
+
     private final ModCode code;
     private final ModName name;
     private final ModCredit credits;
@@ -170,5 +178,13 @@ public class Module {
     @Override
     public String toString() {
         return getName() + ", Code: " + getCode() + ", Credits: " + getCredits() + (isDone ? "(DONE)" : "");
+    }
+
+    @Override
+    public int compareTo(Module o) {
+        return SELECTION_COMPARATOR
+                .thenComparing(COMPLETION_COMPARATOR)
+                .thenComparing(CODE_COMPARATOR)
+                .compare(this, o);
     }
 }

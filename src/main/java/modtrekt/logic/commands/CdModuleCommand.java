@@ -44,7 +44,7 @@ public class CdModuleCommand extends Command {
             model.setCurrentModule(moduleCode);
             return new CommandResult(String.format("Changed current module to %s!", moduleCode.toString()));
         } catch (IllegalArgumentException exception) {
-            throw new CommandException(String.format("%s is not a valid module code. Usage:\n%s",
+            throw new CommandException(String.format("Invalid module code. Usage:\n%s",
                     MESSAGE_USAGE));
         }
     }
