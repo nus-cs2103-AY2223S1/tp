@@ -217,8 +217,8 @@ Edits detail of the specified client.
 Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
 * Edits the client at the specified `INDEX`.
-  *`INDEX` refers to the index number shown by executing [`listClient`](#312-listing-all-clients--listclient) command.
-* `Index` **must be a positive integer** 1, 2, 3, …​
+*`INDEX` refers to the index number shown by executing [`listClient`](#312-listing-all-clients--listclient) command.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one optional detail must be modified.
 * Maintains value of details not edited by the command.
 
@@ -290,7 +290,7 @@ Edits details of the specified meeting.
 Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`
 
 * Edits information about the meeting at the specific `INDEX`.
-* The index refers to the index number shown in the displayed meetings' list.
+* The `INDEX` refers to the index number shown in the displayed meetings' list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one optional detail must be modified.
 * Maintains values of details not edited by the command.
@@ -298,7 +298,7 @@ Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPT
 Examples:
 Suppose MyInsuRec contains only one meeting as created in the [`addMeeting`](#adding-a-meeting--addmeeting) command:
 * `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
-* `editMeeting i/1 st/1500 et/1200` will show error saying invalid time since start time is later that end time.
+* `editMeeting i/1 st/1500 et/1200` will show error saying invalid time since start time is later than end time.
 
 ### 3.3 Product commands
 
