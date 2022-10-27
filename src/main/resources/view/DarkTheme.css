@@ -1,5 +1,5 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1d1d1d, 50%);
     background-color: #383838; /* Used in the default.html file */
 }
 
@@ -96,7 +96,10 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 5 5 5 5;
+    -fx-border-radius: 18;
+    -fx-background-radius: 18;
+    -fx-border-width: 3;
 }
 
 .list-cell:filled:even {
@@ -400,5 +403,8 @@
     -fx-background-radius: 2;
     -fx-font-size: 15;
 }
+
+
+
 
 
