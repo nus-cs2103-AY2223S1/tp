@@ -13,20 +13,20 @@
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "position" : "Professor",
+    "position" : "TA",
     "address" : "311, Clementi Ave 2, #02-25",
     "remark": "He can't take beer!",
-    "details": "Unassigned",
+    "details": "Available",
     "tagged" : [ "CS2103-T69" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "position" : "TA",
+    "position" : "Professor",
     "address" : "wall street",
     "remark": "She likes aardvarks.",
-    "details": "Available",
-    "tagged" : [ ]
+    "details": "Unassigned",
+    "tagged" : [ "CS2103-T01"]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -44,16 +44,16 @@
     "address" : "michegan ave",
     "remark": "She likes aardvarks.",
     "details": "Available",
-    "tagged" : [ ]
+    "tagged" : [ "CS2103-T01" ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "position" : "Student",
+    "position" : "Professor",
     "address" : "little tokyo",
     "remark": "She likes aardvarks.",
-    "details": "attendance - 0/0, grade - 0/0 Assignments: []",
-    "tagged" : [ ]
+    "details": "Unassigned",
+    "tagged" : [ "CS2103-T01" ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -62,6 +62,6 @@
     "address" : "4th street",
     "remark": "",
     "details": "Unavailable",
-    "tagged" : [ ]
+    "tagged" : [ "CS2103-T01" ]
   } ]
 }

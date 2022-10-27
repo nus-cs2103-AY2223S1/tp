@@ -25,7 +25,7 @@
 
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="File" styleClass="pane-with-border">
             <MenuItem mnemonicParsing="false" onAction="#handleNewBook" text="New Book" />
             <MenuItem mnemonicParsing="false" onAction="#handleSwap" text="Swap Book" />
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -56,11 +56,11 @@
                     <padding>
                       <Insets top="10" right="10" bottom="10" left="10" />
                     </padding>
-                    <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" styleClass="pane-light"/>
                   </VBox>
                 </children>
               </VBox>
-              <VBox minWidth="-Infinity" prefHeight="200.0" prefWidth="340.0">
+              <VBox minWidth="-Infinity" prefHeight="200.0" prefWidth="340.0" styleClass="pane-with-border">
                 <children>
                   <StackPane VBox.vgrow="ALWAYS" fx:id="infoDisplayPlaceholder" styleClass="pane-with-border">
                     <padding>
