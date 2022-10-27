@@ -79,7 +79,7 @@ class JsonSerializableTaAssist {
                 if (!taAssist.hasModuleClass(moduleClass)) {
                     throw new IllegalValueException(MESSAGE_CLASS_NOT_FOUND);
                 }
-                ModuleClass realModuleClass = taAssist.findModuleClass(moduleClass);
+                ModuleClass realModuleClass = taAssist.findModuleClass(moduleClass).orElseThrow(AssertionError::new);
                 for (SessionData sessionData : moduleData.getSessionDataList()) {
                     if (!realModuleClass.hasSession(sessionData.getSession())) {
                         throw new IllegalValueException(MESSAGE_SESSION_NOT_FOUND);

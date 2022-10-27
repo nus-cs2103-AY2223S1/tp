@@ -20,7 +20,7 @@ public class AddcCommand extends Command {
     public static final String COMMAND_WORD = "addc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds classes to TA-Assist. "
+            + ": Adds classes to TA-Assist.\n"
             + "Parameters: "
             + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
             + "Example: " + COMMAND_WORD + " "

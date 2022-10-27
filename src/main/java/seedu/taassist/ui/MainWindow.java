@@ -6,6 +6,9 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.taassist.commons.core.GuiSettings;
@@ -34,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ModuleClassListPanel moduleClassListPanel;
+    private SessionListPanel sessionListPanel;
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
 
@@ -42,6 +46,18 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Button helpButton;
+
+    @FXML
+    private Button classTitle;
+
+    @FXML
+    private Button unfocusButton;
+
+    @FXML
+    private ButtonBar buttonBar;
+
+    @FXML
+    private TextArea sessionClassText;
 
     @FXML
     private StackPane studentListPanelPlaceholder;
@@ -69,8 +85,6 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         helpWindow = new HelpWindow();
-
-        helpButton.setId("helpBtn");
     }
 
     public Stage getPrimaryStage() {
@@ -81,11 +95,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanel = new StudentListPanel(logic.getStudentViewList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         moduleClassListPanel = new ModuleClassListPanel(logic.getModuleClassList());
         moduleClassListPanelPlaceholder.getChildren().add(moduleClassListPanel.getRoot());
+
+        sessionListPanel = new SessionListPanel(logic.getSessionList());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -113,16 +129,14 @@ public class MainWindow extends UiPart<Stage> {
      * Opens a particular webpage, if unable to do so, help window will be shown for them to copy the URL.
      */
     public static void openWebpage(String urlString) {
+        if (!Desktop.isDesktopSupported() || !Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            helpWindow.show();
+            return;
+        }
         try {
             Desktop.getDesktop().browse(new URL(urlString).toURI());
         } catch (Exception e) {
-            if (!helpWindow.isShowing()) {
-                helpWindow.show();
-            } else {
-                helpWindow.focus();
-            }
-            e.printStackTrace();
-
+            helpWindow.show();
         }
     }
 
@@ -150,8 +164,47 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleFocusMode() {
+        sessionClassText.setText("Sessions");
+        unfocusButton.setVisible(true);
+        classTitle.setVisible(true);
+        classTitle.textProperty().bind(logic.getFocusLabelProperty());
+        helpButton.setId("helpFocusButton");
+        Region content = (Region) sessionClassText.lookup(".content");
+        content.setStyle("-fx-background-color:#f5d58b");
+        buttonBar.setStyle("-fx-background-color: derive(#a5dff0, 20%);");
+        moduleClassListPanelPlaceholder.getChildren().remove(moduleClassListPanel.getRoot());
+        moduleClassListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
+    }
+
+    private void handleUnfocusMode() {
+        sessionClassText.setText("Classes");
+        unfocusButton.setVisible(false);
+        classTitle.setVisible(false);
+        Region content = (Region) sessionClassText.lookup(".content");
+        content.setStyle("-fx-background-color:#a5dff0;");
+        helpButton.setId("helpButton");
+        buttonBar.setStyle("-fx-background-color: derive(#EDA7A7, 20%);");
+        moduleClassListPanelPlaceholder.getChildren().remove(sessionListPanel.getRoot());
+        moduleClassListPanelPlaceholder.getChildren().add(moduleClassListPanel.getRoot());
+    }
+
+    @FXML
+    private void buttonHandleUnfocus() {
+        try {
+            executeCommand("unfocus");
+        } catch (Exception e) { //never encountered because button only visible in focus mode
+            assert false;
+        }
+    }
+
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
+    }
+
+    public SessionListPanel getSessionListPanel() {
+        return sessionListPanel;
     }
 
     public ModuleClassListPanel getModuleClassListPanel() {
@@ -175,6 +228,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isFocus()) {
+                handleFocusMode();
+            }
+
+            if (commandResult.isUnfocus()) {
+                handleUnfocusMode();
             }
 
             return commandResult;

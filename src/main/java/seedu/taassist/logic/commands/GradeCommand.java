@@ -1,6 +1,7 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_SESSION;
 import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_GRADE;
@@ -32,7 +33,6 @@ public class GradeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SESSION + "Tutorial1 "
             + PREFIX_GRADE + "100";
-
 
     public static final String MESSAGE_SUCCESS = "Grade [ %1$s ] for [ %2$s ] given to these student(s):\n[ %3$s ]";
     public static final String MESSAGE_INVALID_SESSION = "The session [ %1$s ] does not exist in class [ %2$s ].";
@@ -66,19 +66,17 @@ public class GradeCommand extends Command {
         }
 
         List<Student> lastShownList = model.getFilteredStudentList();
-        List<Student> oldStudents;
+        List<Student> studentsToGrade;
         try {
-            oldStudents = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
+            studentsToGrade = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
         } catch (ParseException e) {
             throw new CommandException(e.getMessage());
         }
 
-        for (Student oldStudent : oldStudents) {
-            Student newStudent = oldStudent.updateGrade(focusedClass, session, grade);
-            model.setStudent(oldStudent, newStudent);
-        }
+        studentsToGrade.forEach(s -> model.setStudent(s, s.updateGrade(focusedClass, session, grade)));
 
-        return new CommandResult(getSuccessMessage(oldStudents, session, grade));
+        String message = getSuccessMessage(studentsToGrade, session, grade);
+        return new CommandResult(message);
     }
 
     public static String getSuccessMessage(List<Student> students, Session session, Double grade) {

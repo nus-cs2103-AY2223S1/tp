@@ -146,21 +146,21 @@ class UniqueListTest {
     }
 
     @Test
-    public void findElement_itemDoesNotExist_throwsItemNotFoundException() {
-        assertThrows(ElementNotFoundException.class, () -> uniqueList.findElement(DUMMY1));
+    public void findElement_itemDoesNotExist_returnEmptyOptional() {
+        assertTrue(uniqueList.findElement(DUMMY1).isEmpty());
     }
 
     @Test
     public void findElement_existingItem_returnsItem() {
         uniqueList.add(DUMMY1);
-        assertEquals(DUMMY1, uniqueList.findElement(DUMMY1));
+        assertEquals(DUMMY1, uniqueList.findElement(DUMMY1).get());
     }
 
     @Test
     public void findElement_itemWithSameIdentityFieldsInList_returnsItem() {
         uniqueList.add(DUMMY1);
         Item editedDummyItem = new Item(DUMMY1.identity);
-        assertEquals(DUMMY1, uniqueList.findElement(editedDummyItem));
+        assertEquals(DUMMY1, uniqueList.findElement(editedDummyItem).get());
     }
 
     @Test

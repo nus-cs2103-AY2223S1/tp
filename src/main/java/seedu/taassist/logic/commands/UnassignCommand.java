@@ -18,7 +18,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 
 /**
- * Unassigns students from a class.
+ * Unassigns students from a module class.
  */
 public class UnassignCommand extends Command {
 

@@ -19,6 +19,8 @@ Given below are my contributions to the project.
         * The `grade` command to allow users to give grades to students for a session.
     * Implemented the `view` command to allow users to view session-wise grades of a student in a module.
     * Implemented feature to display current focused class (if any) in the GUI using bindings. 
+    * Added alert dialog to ask confirmation from users before starting with an empty data file if data load failed.
+        * Additionally, the data file is backed up everytime TA-Assist is opened.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=RezwanArefin01&breakdown=true).
 
@@ -32,7 +34,6 @@ Given below are my contributions to the project.
         * The generic type `T` implements the `Identity<T>` interface, which makes a way to compare two objects of type `T` with a defined identity, ignoring other data fields.    
         * This change was necessary to reduce code duplication and improve code quality.
     * Updated the `find` command to filter on the current displayed list instead of all students. 
-    * Added alert dialog to ask confirmation from users before starting with an empty data file if data load failed.
 
 * **Documentation**: 
     * Implementation details and sequence diagrams for the `grade` command.

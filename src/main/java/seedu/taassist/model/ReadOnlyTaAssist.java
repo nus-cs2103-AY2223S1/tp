@@ -20,5 +20,4 @@ public interface ReadOnlyTaAssist {
      * This list will not contain any duplicate moduleClasses.
      */
     ObservableList<ModuleClass> getModuleClassList();
-
 }

@@ -5,7 +5,6 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.taassist.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +41,7 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_STUDENT_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in TA-Assist.";
 
     private final Index index;
@@ -51,8 +50,8 @@ public class EditCommand extends Command {
     /**
      * Creates an EditCommand to edit the details of the student at the given index.
      *
-     * @param index of the student in the filtered student list to edit.
-     * @param editStudentDescriptor details to edit the student with.
+     * @param index Index of the student to edit in the filtered student list.
+     * @param editStudentDescriptor Details on what to edit for the student.
      */
     public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
@@ -79,7 +78,6 @@ public class EditCommand extends Command {
         }
 
         model.setStudent(studentToEdit, editedStudent);
-        model.setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 
@@ -94,7 +92,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        List<StudentModuleData> moduleData = studentToEdit.getModuleDataList(); // not editable
+        List<StudentModuleData> moduleData = studentToEdit.getModuleDataList(); // Not editable using 'edit' command
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, moduleData);
     }

@@ -224,31 +224,26 @@ the given grade.
 Given bellow are the steps taken when the user gives grade to a student for a session: 
 
 Step 1: The user input is parsed similar to other commands and a `GradeCommand` object is created using the given 
-student index, session name, and grade. 
+student indices, session name, and grade. 
 
-Step 2: The `GradeCommand` object is executed. The given index is used to retrieve the `Student` object from the current
-curated list of students in `Model` using the `ParserStudentIndexUtil#parseStudentFromIndex` method. 
+Step 2: The `GradeCommand` object is executed. The given indices are used to retrieve the `Student` objects from the 
+current curated list of students in `Model` using the `ParserStudentIndexUtil#parseStudentFromIndices` method. For each 
+student, steps 3 to 5 are repeated.
 
-Step 3: Then a new `Student` object is created from the old `Student` object by updating the session
-grade with help of the `Student#getUpdatedStudent` method.  
+Step 3: The old `Student` object is used to create an updated `Student` object via the `Student#updateGrade` method. 
+The method creates the new student with an updated list of `StudentModuleData` by going through the list of the 
+old `Student` object's list of `StudentModuleData` and updating the `StudentModuleData` that matches the current 
+focused `ModuleClass`.
 
-Step 4: The `Student#getUpdatedStudent` method creates a new `Student` object by copying all fields from the
-old `Student` object except the list of `StudentModuleData`. An updated list of `StudentModuleData` is created by calling the
-`StudentModuleData#getUpdatedModuleDataList` method. 
+Step 4: The `StudentModuleData#updateGrade` method is used to create a new `StudentModuleData` object with the
+updated grade for the session. The method first creates a new `StudentModuleData` object which has the same list of
+`SessionData` except the one matching with the given session (if any). The method then creates a new `SessionData` 
+object with the given grade and adds it to the list of `SessionData` in the new `StudentModuleData` object. 
 
-Step 5: The `StudentModuleData#getUpdatedModuleDataList` method goes through all the `StudentModuleData` in the old list
-and looks for a match with the current focused `ModuleClass`. It is guaranteed to exist since the program is in
-focus mode. Then it creates a new list by updating the list of `SessionData` stored inside the `StudentModuleData`.
-It is achieved using the method `SessionData#getUpdatedSessionDataList`. 
-
-Step 6: The `SessionData#getUpdatedSessionDataList` goes through the list of `SessionData` and creates a new list 
-removing any occurrence of the matching session the user is trying to grade. After that it adds a new `SessionData` to 
-the list with the given `Session` and the grade. 
-
-Step 7: After finishing steps 4-7, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method
+Step 5: After finishing steps 3-4, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method
 is used to replace the old `Student` object with the updated one in our model. 
 
-Step 8: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI
+Step 6: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI
 to the user. 
 
 ### Viewing session-wise grades of a student in a class

@@ -11,6 +11,7 @@ import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentView;
 
 /**
  * The API of the Model component.
@@ -85,6 +86,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered student list. */
     ObservableList<Student> getFilteredStudentList();
 
+    /** Returns a view of students along with its associated session data */
+    ObservableList<StudentView> getStudentViewList();
+
     /** Returns an unmodifiable view of the student list. */
     ObservableList<Student> getStudentList();
 
@@ -128,11 +132,6 @@ public interface Model {
     void removeModuleClasses(Collection<ModuleClass> moduleClasses);
 
     /**
-     * Removes the specified {@code session} from the specified {@code moduleClass}.
-     */
-    void removeSession(ModuleClass moduleClass, Session session);
-
-    /**
      * Removes the specified {@code sessions} from the specified {@code moduleClass}.
      */
     void removeSessions(ModuleClass moduleClass, Set<Session> sessions);
@@ -145,6 +144,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the module class list */
     ObservableList<ModuleClass> getModuleClassList();
+
+    /** Returns an unmodifiable view of the session list */
+    ObservableList<Session> getSessionList();
 
     /** Enters focus mode. */
     void enterFocusMode(ModuleClass classToFocus);
@@ -160,4 +162,9 @@ public interface Model {
 
     SimpleStringProperty getFocusLabelProperty();
 
+    /** Queries {@code SessionData} within studentViewList with the provided {@code Session} */
+    public void querySessionData(Session targetSession);
+
+    /** Removes queried {@code SessionData} within the studentViewList */
+    public void resetQueriedSessionData();
 }

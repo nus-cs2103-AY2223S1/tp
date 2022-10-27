@@ -5,11 +5,13 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.session.Session;
+import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.uniquelist.Identity;
 import seedu.taassist.model.uniquelist.UniqueList;
 
@@ -82,8 +84,16 @@ public class Student implements Identity<Student> {
     /**
      * Returns the {@code StudentModuleData} of the student for the given {@code ModuleClass}.
      */
-    public StudentModuleData findStudentModuleData(ModuleClass targetClass) {
+    public Optional<StudentModuleData> findStudentModuleData(ModuleClass targetClass) {
         return moduleDataList.findElement(new StudentModuleData(targetClass));
+    }
+
+    /**
+     * Returns the {@code SessionData} of a student for the given {@code ModuleClass} and {@code Session}.
+     * Returns null if ModuleClass or Session doesn't exist in Student.
+     */
+    public Optional<SessionData> findSessionData(ModuleClass targetClass, Session targetSession) {
+        return findStudentModuleData(targetClass).flatMap(x -> x.findSessionData(targetSession));
     }
 
     /**
@@ -142,12 +152,8 @@ public class Student implements Identity<Student> {
      */
     @Override
     public boolean isSame(Student otherStudent) {
-        if (otherStudent == this) {
-            return true;
-        }
-
-        return otherStudent != null
-                && otherStudent.getName().equals(getName());
+        return otherStudent == this
+                || (otherStudent != null && otherStudent.getName().equals(getName()));
     }
 
     /**

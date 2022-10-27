@@ -17,7 +17,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 
 /**
- * Assigns students to a class.
+ * Assigns students to a module class.
  */
 public class AssignCommand extends Command {
 
