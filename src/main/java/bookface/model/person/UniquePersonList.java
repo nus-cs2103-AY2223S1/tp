@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import bookface.commons.util.CollectionUtil;
 import bookface.model.book.Book;
@@ -151,13 +152,15 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Refreshes the user list after deleting book {@code book} that has been loaned to a user.
+     * Refreshes the user list after an operation on a book {@code book}, such as edit or delete.
      */
-    public void refreshUserListAfterDeletingBook(Book book) {
+    public void refreshUserListAfterOperationOnBook(Book book) {
         CollectionUtil.requireAllNonNull(book);
-        Person person = book.getLoanee();
-        int index = internalList.indexOf(person);
-        internalList.set(index, person);
+        Optional<Person> person = book.getLoanee();
+        person.ifPresent((p) -> {
+            int index = internalList.indexOf(p);
+            internalList.set(index, p);
+        });
     }
 
     /**

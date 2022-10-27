@@ -14,6 +14,7 @@ import java.util.List;
 
 import bookface.commons.core.index.Index;
 import bookface.commons.util.StringUtil;
+import bookface.logic.commands.edit.EditUserCommand;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.BookFace;
 import bookface.model.Model;
@@ -63,8 +64,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditUserCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditUserCommand.EditPersonDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

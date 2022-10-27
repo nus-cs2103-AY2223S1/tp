@@ -43,13 +43,33 @@ public class BookList implements Iterable<Book> {
     }
 
     /**
+     * Replaces the book {@code target} in the list with {@code editedBook}.
+     * {@code target} must exist in the list.
+     * The book identity of {@code editedBook} must not be the same as another existing book in the list.
+     */
+    public void setBook(Book target, Book editedBook) {
+        CollectionUtil.requireAllNonNull(target, editedBook);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new BookNotFoundException();
+        }
+
+        if (!target.isSameBook(editedBook) && contains(editedBook)) {
+            throw new DuplicateBookException();
+        }
+
+        internalList.set(index, editedBook);
+    }
+
+    /**
      * Removes the book specified from BookList.
      * The book must exist in the list.
      */
     public void delete(Book book) {
         requireNonNull(book);
         if (book.isLoaned()) {
-            book.getLoanee().returnLoanedBook(book);
+            book.getLoanee().ifPresent((p) -> p.returnLoanedBook(book));
         }
         if (!internalList.remove(book)) {
             throw new BookNotFoundException();
@@ -57,9 +77,9 @@ public class BookList implements Iterable<Book> {
     }
 
     /**
-     * Refreshes the book list after deleting user {@code person} that has loaned books.
+     * Refreshes the book list after an operation on a {@code person}, such as an edit or delete operation.
      */
-    public void refreshBookListAfterDeletingUser(Person person) {
+    public void refreshBookListAfterDeletingPerson(Person person) {
         requireNonNull(person);
         for (Book book : person.getLoanedBooksSet()) {
             book.markBookAsReturned();
@@ -68,6 +88,16 @@ public class BookList implements Iterable<Book> {
         }
     }
 
+    /**
+     * Refreshes the book list after an operation on a {@code person}, such as an edit or delete operation.
+     */
+    public void refreshBookListAfterEditingPerson(Person person) {
+        requireNonNull(person);
+        for (Book book : person.getLoanedBooksSet()) {
+            int index = internalList.indexOf(book);
+            internalList.set(index, book);
+        }
+    }
 
     public void setBooks(BookList replacement) {
         requireNonNull(replacement);

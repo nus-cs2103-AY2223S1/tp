@@ -5,14 +5,14 @@ import java.util.Arrays;
 import bookface.commons.core.Messages;
 import bookface.commons.util.StringUtil;
 import bookface.logic.commands.find.FindBookCommand;
-import bookface.logic.parser.ArgumentsParsable;
+import bookface.logic.parser.Parseable;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.ObjectContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates the relevant new AddCommand object for the relevant entity to be added
  */
-public class FindBookArgumentsParser implements ArgumentsParsable<FindBookCommand> {
+public class FindBookArgumentsParser implements Parseable<FindBookCommand> {
     /**
      * Parses the given arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.

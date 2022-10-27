@@ -13,7 +13,7 @@ import bookface.commons.core.Messages;
 import bookface.logic.commands.add.AddUserCommand;
 import bookface.logic.parser.ArgumentMultimap;
 import bookface.logic.parser.ArgumentTokenizer;
-import bookface.logic.parser.ArgumentsParsable;
+import bookface.logic.parser.Parseable;
 import bookface.logic.parser.ParserUtil;
 import bookface.logic.parser.Prefix;
 import bookface.logic.parser.exceptions.ParseException;
@@ -26,7 +26,7 @@ import bookface.model.tag.Tag;
 /**
  * Parses input arguments and creates the relevant new AddCommand object for the relevant entity to be added
  */
-public class AddUserArgumentsParser implements ArgumentsParsable<AddUserCommand> {
+public class AddUserArgumentsParser implements Parseable<AddUserCommand> {
 
     @Override
     public AddUserCommand parse(String args) throws ParseException {

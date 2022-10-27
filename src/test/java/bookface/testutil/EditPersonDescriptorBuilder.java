@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import bookface.logic.commands.EditCommand;
+import bookface.logic.commands.edit.EditUserCommand;
 import bookface.model.person.Email;
 import bookface.model.person.Name;
 import bookface.model.person.Person;
@@ -16,21 +16,21 @@ import bookface.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditCommand.EditPersonDescriptor descriptor;
+    private final EditUserCommand.EditPersonDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditCommand.EditPersonDescriptor();
+        descriptor = new EditUserCommand.EditPersonDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditCommand.EditPersonDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditUserCommand.EditPersonDescriptor descriptor) {
+        this.descriptor = new EditUserCommand.EditPersonDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditCommand.EditPersonDescriptor();
+        descriptor = new EditUserCommand.EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
@@ -72,7 +72,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditPersonDescriptor build() {
+    public EditUserCommand.EditPersonDescriptor build() {
         return descriptor;
     }
 }

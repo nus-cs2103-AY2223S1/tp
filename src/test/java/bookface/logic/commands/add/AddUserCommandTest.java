@@ -147,6 +147,11 @@ public class AddUserCommandTest {
         }
 
         @Override
+        public void setBook(Book target, Book editedBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }

@@ -13,14 +13,15 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import bookface.logic.commands.ClearCommand;
-import bookface.logic.commands.EditCommand;
-import bookface.logic.commands.EditCommand.EditPersonDescriptor;
 import bookface.logic.commands.ExitCommand;
 import bookface.logic.commands.HelpCommand;
 import bookface.logic.commands.add.AddCommand;
 import bookface.logic.commands.add.AddUserCommand;
 import bookface.logic.commands.delete.DeleteCommand;
 import bookface.logic.commands.delete.DeleteUserCommand;
+import bookface.logic.commands.edit.EditCommand;
+import bookface.logic.commands.edit.EditUserCommand;
+import bookface.logic.commands.edit.EditUserCommand.EditPersonDescriptor;
 import bookface.logic.commands.find.FindCommand;
 import bookface.logic.commands.find.FindUserCommand;
 import bookface.logic.commands.list.ListBooksCommand;
@@ -63,10 +64,11 @@ public class PrimaryParserTest {
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parse(EditCommand.COMMAND_WORD + " "
+        EditUserCommand command =
+                (EditUserCommand) parser.parse(EditCommand.COMMAND_WORD + " " + EditUserCommand.COMMAND_WORD + " "
                 + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditUserCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test

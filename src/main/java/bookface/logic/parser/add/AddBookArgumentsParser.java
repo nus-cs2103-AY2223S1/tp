@@ -9,7 +9,7 @@ import bookface.commons.core.Messages;
 import bookface.logic.commands.add.AddBookCommand;
 import bookface.logic.parser.ArgumentMultimap;
 import bookface.logic.parser.ArgumentTokenizer;
-import bookface.logic.parser.ArgumentsParsable;
+import bookface.logic.parser.Parseable;
 import bookface.logic.parser.ParserUtil;
 import bookface.logic.parser.Prefix;
 import bookface.logic.parser.exceptions.ParseException;
@@ -20,7 +20,7 @@ import bookface.model.book.Title;
 /**
  * Parses input arguments and creates the relevant new AddCommand object for the relevant entity to be added
  */
-public class AddBookArgumentsParser implements ArgumentsParsable<AddBookCommand> {
+public class AddBookArgumentsParser implements Parseable<AddBookCommand> {
     @Override
     public AddBookCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import bookface.commons.util.CollectionUtil;
 import bookface.model.book.Book;
@@ -54,8 +56,8 @@ public class BookFace implements ReadOnlyBookFace {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the person list with {@code books}.
+     * {@code books} must not contain duplicate books.
      */
     public void setBooks(List<Book> books) {
         this.books.setBooks(books);
@@ -118,7 +120,7 @@ public class BookFace implements ReadOnlyBookFace {
      */
     public void deleteBook(Book book) {
         books.delete(book);
-        persons.refreshUserListAfterDeletingBook(book);
+        persons.refreshUserListAfterOperationOnBook(book);
     }
 
     /**
@@ -130,6 +132,21 @@ public class BookFace implements ReadOnlyBookFace {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+        updateLoanAssociationForEditedPerson(target, editedPerson);
+        books.refreshBookListAfterEditingPerson(editedPerson);
+    }
+
+    /**
+     * Replaces the given book {@code target} in the list with {@code editedBook}.
+     * {@code target} must exist in BookFace.
+     * The book identity of {@code editeBook} must not be the same as another existing book in BookFace.
+     */
+    public void setBook(Book target, Book editedBook) {
+        requireNonNull(editedBook);
+
+        books.setBook(target, editedBook);
+        updateLoanAssociationForEditedBook(target, editedBook);
+        persons.refreshUserListAfterOperationOnBook(editedBook);
     }
 
     /**
@@ -164,7 +181,31 @@ public class BookFace implements ReadOnlyBookFace {
      */
     public void removePerson(Person key) {
         persons.remove(key);
-        books.refreshBookListAfterDeletingUser(key);
+        books.refreshBookListAfterDeletingPerson(key);
+    }
+
+    /**
+     * Updates the association between a {@code person} and a {@code book} if on loan and if the book was edited.
+     */
+    private void updateLoanAssociationForEditedBook(Book currentBook, Book newBook) {
+        CollectionUtil.requireAllNonNull(currentBook, newBook);
+        Optional<Person> loanee = currentBook.getLoanee();
+        loanee.ifPresent((p) -> {
+            newBook.loanTo(p, currentBook.getReturnDate());
+            p.returnLoanedBook(currentBook);
+            p.addLoanedBook(newBook, currentBook.getReturnDate());
+        });
+    }
+
+    /**
+     * Updates the association between a {@code person} and a {@code book} if on loan and if the person was edited.
+     */
+    private void updateLoanAssociationForEditedPerson(Person currentPerson, Person newPerson) {
+        CollectionUtil.requireAllNonNull(currentPerson, newPerson);
+        Set<Book> updatedLoanedBook = currentPerson.getLoanedBooksSet();
+        for (Book book : updatedLoanedBook) {
+            book.loanTo(newPerson, book.getReturnDate());
+        }
     }
 
 

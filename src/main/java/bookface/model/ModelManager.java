@@ -105,23 +105,27 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        requireNonNull(target);
         bookFace.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
+        requireNonNull(person);
         bookFace.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void addBook(Book book) {
+        requireNonNull(book);
         bookFace.addBook(book);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }
 
     @Override
     public void deleteBook(Book book) {
+        requireNonNull(book);
         bookFace.deleteBook(book);
     }
 
@@ -129,6 +133,12 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         CollectionUtil.requireAllNonNull(target, editedPerson);
         bookFace.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setBook(Book target, Book editedBook) {
+        CollectionUtil.requireAllNonNull(target, editedBook);
+        bookFace.setBook(target, editedBook);
     }
 
     @Override
@@ -176,6 +186,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredBooks.setPredicate(predicate);
     }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

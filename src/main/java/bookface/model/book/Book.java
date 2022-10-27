@@ -4,10 +4,10 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 import bookface.commons.util.CollectionUtil;
 import bookface.model.person.Person;
-
 
 /**
  * Represents a Book in the BookFace application.
@@ -64,9 +64,8 @@ public class Book {
         return null;
     }
 
-
-    public Person getLoanee() {
-        return loanee;
+    public Optional<Person> getLoanee() {
+        return Optional.ofNullable(loanee);
     }
 
     public boolean isLoaned() {
@@ -87,8 +86,10 @@ public class Book {
      * @param loanee the person borrowing this book
      */
     public void loanTo(Person loanee, Date returnDate) {
-        this.loanee = loanee;
-        this.returnDate = returnDate;
+        if (loanee != null) {
+            this.loanee = loanee;
+            this.returnDate = returnDate;
+        }
     }
 
 
