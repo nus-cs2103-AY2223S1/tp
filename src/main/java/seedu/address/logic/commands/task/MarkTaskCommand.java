@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.address.model.task.Task.PREDICATE_SHOW_NON_ARCHIVED_TASKS;
 
 import java.util.List;
 import java.util.Set;
@@ -33,6 +33,7 @@ public class MarkTaskCommand extends Command {
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
+    public static final String MESSAGE_ALREADY_MARKED = "This task is already marked as completed.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -66,8 +67,12 @@ public class MarkTaskCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
+        if (taskToMark.equals(markedTask)) {
+            throw new CommandException(MESSAGE_ALREADY_MARKED);
+        }
+
         model.setTask(taskToMark, markedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask));
     }
@@ -81,12 +86,14 @@ public class MarkTaskCommand extends Command {
 
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getStatus());
+        Boolean updatedIsDone = editTaskDescriptor.getCompletionStatus().orElse(taskToEdit.getCompletionStatus());
+        Boolean updatedIsArchived = editTaskDescriptor.getArchivalStatus().orElse(taskToEdit.getArchivalStatus());
+
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
         // Id cannot be updated
         Id id = taskToEdit.getId();
 
-        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedTags, id);
+        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedIsArchived, updatedTags, id);
     }
 
     @Override

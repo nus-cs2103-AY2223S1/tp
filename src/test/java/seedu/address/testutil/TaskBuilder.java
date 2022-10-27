@@ -16,12 +16,14 @@ import seedu.address.model.util.SampleDataUtil;
 public class TaskBuilder {
     public static final String DEFAULT_DESCRIPTION = "read book";
     public static final String DEFAULT_DEADLINE = "12-09-2022";
-    public static final Boolean DEFAULT_STATUS = false;
+    public static final Boolean DEFAULT_COMPLETION_STATUS = false;
+    public static final Boolean DEFAULT_ARCHIVAL_STATUS = false;
     public static final int DEFAULT_ID = 1;
 
     private Description description;
     private Deadline deadline;
     private Boolean isDone;
+    private Boolean isArchived;
     private Set<Tag> tags;
     private Id id;
 
@@ -31,7 +33,8 @@ public class TaskBuilder {
     public TaskBuilder() {
         description = new Description(DEFAULT_DESCRIPTION);
         deadline = new Deadline(DEFAULT_DEADLINE);
-        isDone = DEFAULT_STATUS;
+        isDone = DEFAULT_COMPLETION_STATUS;
+        isArchived = DEFAULT_ARCHIVAL_STATUS;
         tags = new HashSet<>();
         id = new Id(DEFAULT_ID);
     }
@@ -42,7 +45,9 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         description = taskToCopy.getDescription();
         deadline = taskToCopy.getDeadline();
-        isDone = taskToCopy.getStatus();
+        isDone = taskToCopy.getCompletionStatus();
+        isArchived = taskToCopy.getArchivalStatus();
+
         tags = new HashSet<>(taskToCopy.getTags());
         id = taskToCopy.getId();
     }
@@ -74,8 +79,16 @@ public class TaskBuilder {
     /**
      * Sets the completion status of the {@code Task} that we are building.
      */
-    public TaskBuilder withStatus(Boolean isDone) {
+    public TaskBuilder withCompletionStatus(Boolean isDone) {
         this.isDone = isDone;
+        return this;
+    }
+
+    /**
+     * Sets the archival status of the {@code Task} that we are building.
+     */
+    public TaskBuilder withArchivalStatus(Boolean isArchived) {
+        this.isArchived = isArchived;
         return this;
     }
 
@@ -88,6 +101,6 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(description, deadline, isDone, tags, id);
+        return new Task(description, deadline, isDone, isArchived, tags, id);
     }
 }

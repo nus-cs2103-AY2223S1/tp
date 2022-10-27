@@ -1,8 +1,6 @@
 package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.model.task.Task.PREDICATE_SHOW_NON_ARCHIVED_TASKS;
 
 import java.util.List;
@@ -22,39 +20,34 @@ import seedu.address.model.task.Id;
 import seedu.address.model.task.Task;
 
 /**
- * Edits the details of an existing task in the task list.
+ * Unarchives a task in the task list.
  */
-public class EditTaskCommand extends Command {
+public class UnarchiveTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "editT";
+    public static final String COMMAND_WORD = "unarchiveT";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-            + "by the index number used in the displayed task list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TASK_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_TASK_DEADLINE + "DEADLINE]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TASK_DESCRIPTION + "go sleep";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Unarchive the task identified by the index number used in the displayed task list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
+    public static final String MESSAGE_MARK_TASK_SUCCESS = "Archived Task: %1$s";
+    public static final String MESSAGE_ALREADY_UNARCHIVED = "This task is already unarchived.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * Creates an EditTaskCommand object.
+     * Creates an UnarchiveTaskCommand object.
      * @param index of the task in the filtered task list to edit.
      * @param editTaskDescriptor details to edit the task with.
      */
-    public EditTaskCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
+    public UnarchiveTaskCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(index);
         requireNonNull(editTaskDescriptor);
 
         this.index = index;
-        this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
+        this.editTaskDescriptor = editTaskDescriptor;
     }
 
     @Override
@@ -66,17 +59,17 @@ public class EditTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        Task taskToArchive = lastShownList.get(index.getZeroBased());
+        Task unarchivedTask = createEditedTask(taskToArchive, editTaskDescriptor);
 
-        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        if (taskToArchive.equals(unarchivedTask)) {
+            throw new CommandException(MESSAGE_ALREADY_UNARCHIVED);
         }
 
-        model.setTask(taskToEdit, editedTask);
+        model.setTask(taskToArchive, unarchivedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, unarchivedTask));
     }
 
     /**
@@ -88,17 +81,18 @@ public class EditTaskCommand extends Command {
 
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        /* Optional not needed as we edit isDone through markT/unmarkT instead
-         * and editTaskDescriptor's isDone is never set to taskToEdit's isDone.
-         */
-        Boolean updatedIsDone = taskToEdit.getCompletionStatus();
-        Boolean updatedIsArchived = taskToEdit.getArchivalStatus();
-
+        Boolean updatedIsDone = editTaskDescriptor.getCompletionStatus().orElse(taskToEdit.getCompletionStatus());
+        Boolean updatedIsArchived = editTaskDescriptor.getArchivalStatus().orElse(taskToEdit.getArchivalStatus());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
         // Id cannot be updated
         Id id = taskToEdit.getId();
 
         return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedIsArchived, updatedTags, id);
+    }
+
+    @Override
+    public int hashCode() {
+        return editTaskDescriptor.hashCode();
     }
 
     @Override
@@ -109,13 +103,13 @@ public class EditTaskCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditTaskCommand)) {
+        if (!(other instanceof UnarchiveTaskCommand)) {
             return false;
         }
 
         // state check
-        EditTaskCommand e = (EditTaskCommand) other;
-        return index.equals(e.index)
-                && editTaskDescriptor.equals(e.editTaskDescriptor);
+        UnarchiveTaskCommand m = (UnarchiveTaskCommand) other;
+        return index.equals(m.index)
+                && editTaskDescriptor.equals(m.editTaskDescriptor);
     }
 }

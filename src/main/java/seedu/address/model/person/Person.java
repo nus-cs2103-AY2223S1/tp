@@ -102,6 +102,14 @@ public class Person {
                 && otherPerson.getId().equals(getId());
     }
 
+    public boolean containTag(Tag tag) {
+        return tags.contains(tag);
+    }
+
+    public int getTagsSize() {
+        return tags.size();
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.

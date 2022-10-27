@@ -3,7 +3,6 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -17,6 +16,10 @@ import seedu.address.model.task.Task;
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
+
+    private static final String COLOR_TASK_COMPLETED = "#96D294";
+
+    private static final String COLOR_TASK_NOT_COMPLETED = "#D7504D";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -54,25 +57,12 @@ public class TaskCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        //Reused from https://stackoverflow.com/questions/56104276 with minor modifications
-        status.textProperty().addListener((ObservableValue<? extends String> st, String old, String curr) -> {
-            if (!isStatusComplete(curr)) {
-                status.setStyle("-fx-text-fill: #D7504D;");
-            } else {
-                status.setStyle("-fx-text-fill: #96D294;");
-            }
-        });
-        status.setText(task.getStatusForDisplay());
-    }
-
-    /**
-     * Checks if task status is completed.
-     * @param status task status.
-     * @return true if task is completed, false if task is incomplete.
-     */
-    public boolean isStatusComplete(String status) {
-        assert(status.equals("completed") || status.equals("incomplete"));
-        return status.equals("completed");
+        status.setText(task.getCompletionStatusForDisplay());
+        if (task.getCompletionStatus()) {
+            status.setStyle(String.format("-fx-text-fill: %s;", COLOR_TASK_COMPLETED));
+        } else {
+            status.setStyle(String.format("-fx-text-fill: %s;", COLOR_TASK_NOT_COMPLETED));
+        }
     }
 
     @Override

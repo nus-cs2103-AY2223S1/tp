@@ -45,7 +45,6 @@ public class EditTaskCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
-
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 

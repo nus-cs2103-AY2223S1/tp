@@ -25,6 +25,7 @@ public class JsonAdaptedTask {
     private final String description;
     private final String deadline;
     private final Boolean isDone;
+    private final Boolean isArchived;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String id;
 
@@ -33,11 +34,12 @@ public class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String description, @JsonProperty("deadline") String deadline,
-                            @JsonProperty("isDone") Boolean isDone,
+                            @JsonProperty("isDone") Boolean isDone, @JsonProperty("isArchived") Boolean isArchived,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("id") String id) {
         this.description = description;
         this.deadline = deadline;
         this.isDone = isDone;
+        this.isArchived = isArchived;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,7 +52,9 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         description = source.getDescription().taskDescription;
         deadline = source.getDeadline().value;
-        isDone = source.getStatus();
+        isDone = source.getCompletionStatus();
+        isArchived = source.getArchivalStatus();
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -92,6 +96,12 @@ public class JsonAdaptedTask {
         }
         final Boolean modelIsDone = isDone;
 
+        if (isArchived == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Boolean.class.getSimpleName()));
+        }
+        final Boolean modelIsArchived = isArchived;
+
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Id.class.getSimpleName()));
@@ -99,6 +109,6 @@ public class JsonAdaptedTask {
         final Id modelId = new Id(Integer.parseInt(id));
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelDescription, modelDeadline, modelIsDone, modelTags, modelId);
+        return new Task(modelDescription, modelDeadline, modelIsDone, modelIsArchived, modelTags, modelId);
     }
 }
