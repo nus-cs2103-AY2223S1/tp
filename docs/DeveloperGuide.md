@@ -238,7 +238,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Proposed\] Navigate previous commands with arrow keys
+### Navigate previous commands with arrow keys
 
 #### Motivation
 
@@ -248,38 +248,50 @@ back previous commands, as a way to quickly input multiple similar commands at o
 
 #### Implementation
 `CommandBox` in the `commandbox` package represents the GUI component where the user enters commands.
-To capture the event when the Up and Down keystrokes are depressed, we add the `onKeyReleased` parameter
-to the `TextField` in the FXML file, `CommandBox.fxml`. This fires the `CommandBox#handleKeyReleased` method in `CommandBox`
-whenever a key is released. 
+`CommandRetriever` is a static nested class within `CommandBox`, used to contain and retrieve the history of 
+successful commands. It implements the following public methods:
+- `CommandRetriever#addCommand(String command, TextField textfield)` - Adds a successful command to the command history,
+and clears the TextField
+- `CommandRetriever#getPreviousCommand(TextField textfield)` - Displays the previous command in the Textfield, if it
+exists in the history
+- `CommandRetriever#getNextCommand(TextField textfield)` - Displays the next command in the Textfield, if it
+exists in the history
 
-`CommandBox#handleKeyReleased` changes the text field in the GUI to the previous or next command on release of the Up and Down
-arrow key respectively, if the previous or next command exists. The list of commands is stored in an ArrayList of 
-strings, `previousCommands`. `previousCommandsIndex` always represents the `previousCommands` index of the command 
-currently being displayed in the GUI.
+These methods are called by `CommandBox#handleCommandEntered()` and `CommandBox#handleKeyReleased(KeyEvent e)`. 
+
+Here is the UML diagram for `CommandRetriever`.
+
+![CommandRetrieverClassDiagram](images/CommandRetrieverClassDiagram.png)
+
+`CommandRetriever` only keeps track of the commands executed successfully, as invalid commands are highlighted red
+and do not disappear from the TextField. Thus, there is no need to store these invalid commands since the user can
+already edit the invalid command in the current implementation without having to retype it. Storing invalid commands
+in `CommandRetriever` would only clutter up the history, especially if the user inputted numerous invalid commands.
 
 Given below is an example usage scenario and how the arrow key changes the `CommandBox` text field at each step.
-A sequence diagram is also provided. (to be added)
+A sequence diagram is also provided below.
 
-Step 1. The user launches the application for the first time. `previousCommands` is initialised with an empty string as
-its first element. This element will represent the command that the user executes, if it executes correctly.
+![CommandRetrieverSequenceDiagram](images/CommandRetrieverSequenceDiagram.png)
+
+Step 1. The user launches the application for the first time. `commandHistory` is initialised as an empty 
+`ArrayList<String>`, and index is initialised as 0.
 
 Step 2. The user executes a command, `listbuyers` by pressing the Enter key. `CommandBox#handleCommand` is fired,
-getting the text from the text field. Since it is a valid command, it is executed successfully. The last element 
-is set to `listbuyers` and an empty string is appended to `previousCommands`. The `previousCommandsIndex` is set to
-the last element.
+getting the text from the text field. Since it is a valid command, it is executed successfully. `listbuyers` is added
+to the `commandHistory` list, and index is set to `commandHistory.size()`.
 
 Step 3. The user types a command halfway, but does not press the Enter key. He/she now wishes to use the previous
 command to type the command.
 
 Step 4. The user presses and releases the Up arrow. `CommandBox#handleKeyReleased` is fired, which sets the text field
-to display the `(previousCommandsIndex - 1)`th element in `previousCommands`. The user's unexecuted command from Step 3 
-is also saved as the last element in `previousCommands`.
+to display the `(index - 1)`th element in `commmandHistory`. Because the current command is one that has not been
+executed, it is saved in the field `currentCommand`.
 
-Step 5. The user presses and releases the Up arrow again. `CommandBox#handleKeyReleased` is fired, but since
-`previousCommandsIndex == 0`, nothing happens, since there is no more previous command to be shown. 
+Step 5. The user presses and releases the Up arrow again. `CommandBox#handleKeyReleased` is fired, but since there are
+no more previous commands, nothing happens.
 
-Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyReleased` is fired, which sets the text field
-to display the `(previousCommandsIndex + 1)`th element in `previousCommands`. This would be the user's unexecuted
+Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyReleased` is fired. Since this is the last
+element in `commandHistory`, the text field is set to display the string `currentCommand`. This would be the user's unexecuted
 command from Step 3.
 
 ### Creating a buyer
