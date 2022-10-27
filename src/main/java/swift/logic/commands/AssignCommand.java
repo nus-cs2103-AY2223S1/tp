@@ -12,6 +12,7 @@ import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.Prefix;
 import swift.model.Model;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
 
@@ -35,6 +36,7 @@ public class AssignCommand extends Command {
             + PREFIX_TASK + "2";
 
     public static final String MESSAGE_ASSIGN_SUCCESS = "Task %1$s assigned to contact %2$s!";
+    public static final String MESSAGE_DUPLICATE_BRIDGE = "This task is already assigned to this contact";
 
     private final Index contactIndex;
     private final Index taskIndex;
@@ -66,7 +68,11 @@ public class AssignCommand extends Command {
 
         Person selectedPerson = lastShownPersonList.get(contactIndex.getZeroBased());
         Task selectedTask = lastShownTaskList.get(taskIndex.getZeroBased());
+        PersonTaskBridge bridge = new PersonTaskBridge(selectedPerson.getId(), selectedTask.getId());
 
+        if (model.hasBridge(bridge)) {
+            throw new CommandException(MESSAGE_DUPLICATE_BRIDGE);
+        }
         model.addBridge(selectedPerson, selectedTask);
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_SUCCESS, selectedTask, selectedPerson),

@@ -42,6 +42,18 @@ public class AssignCommandTest {
     }
 
     @Test
+    public void execute_duplicateBridge_throwsCommandException() {
+        AssignCommand assignCommand = new AssignCommand(INDEX_SECOND_PERSON, INDEX_SECOND_TASK);
+        Person expectedPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Task expectedTask = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.addBridge(expectedPerson, expectedTask);
+
+        assertCommandFailure(assignCommand, expectedModel, AssignCommand.MESSAGE_DUPLICATE_BRIDGE);
+    }
+
+    @Test
     public void execute_invalidPersonIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, INDEX_FIRST_TASK);
