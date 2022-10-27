@@ -195,12 +195,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Export the data.
-     */
-    @FXML
-    private void handleExport() {}
-
-    /**
      * Closes the application.
      */
     @FXML
