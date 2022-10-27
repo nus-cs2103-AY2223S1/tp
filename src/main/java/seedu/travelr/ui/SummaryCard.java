@@ -2,6 +2,7 @@ package seedu.travelr.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.travelr.model.SummaryVariables;
@@ -28,6 +29,10 @@ public class SummaryCard extends UiPart<Region> {
     private Label TripsProgress;
     @FXML
     private Label EventsProgress;
+    @FXML
+    private ProgressIndicator TripsProgressIndicator;
+    @FXML
+    private ProgressIndicator EventsProgressIndicator;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -38,5 +43,7 @@ public class SummaryCard extends UiPart<Region> {
         noEventsCompleted.textProperty().bind(summaryVariables.getTotalEventsCompleted());
         TripsProgress.textProperty().bind(summaryVariables.getTripsProgress());
         EventsProgress.textProperty().bind(summaryVariables.getEventsProgress());
+        TripsProgressIndicator.progressProperty().bind(summaryVariables.getTripProgressPercent());
+        EventsProgressIndicator.progressProperty().bind(summaryVariables.getEventProgressPercent());
     }
 }

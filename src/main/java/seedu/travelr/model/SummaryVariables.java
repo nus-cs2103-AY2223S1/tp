@@ -1,6 +1,6 @@
 package seedu.travelr.model;
 
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -15,6 +15,8 @@ public class SummaryVariables {
     private final SimpleStringProperty eventsProgress;
     private final SimpleStringProperty totalTripsCompleted;
     private final SimpleStringProperty totalEventsCompleted;
+    private final SimpleDoubleProperty tripProgressPercent;
+    private final SimpleDoubleProperty eventProgressPercent;
 
     public SummaryVariables() {
         // initialise the observable boolean properties
@@ -22,6 +24,8 @@ public class SummaryVariables {
         eventsProgress = new SimpleStringProperty();
         totalTripsCompleted = new SimpleStringProperty();
         totalEventsCompleted = new SimpleStringProperty();
+        tripProgressPercent = new SimpleDoubleProperty(0.0);
+        eventProgressPercent = new SimpleDoubleProperty(0.0);
     }
 
     public void refresh(ObservableList<Trip> allTripList, ObservableList<Event> allEventList) {
@@ -29,19 +33,21 @@ public class SummaryVariables {
         FilteredList<Event> completedEventsList =
                 allEventList.filtered(new EventCompletedPredicate(completedTripsList));
 
-        int totalTrips = allTripList.size();
-        int totalEvents = allEventList.size();
         int totalTripsCompleted = completedTripsList.size();
         int totalEventsCompleted = completedEventsList.size();
+        double tripProgressPercent = (double) totalTripsCompleted / allTripList.size();
+        double eventProgressPercent = (double) totalEventsCompleted / allEventList.size();
 
         this.totalTripsCompleted.set(String.format("%d Trips completed!", totalTripsCompleted));
         this.totalEventsCompleted.set(String.format("%d Events completed!", totalEventsCompleted));
         this.tripsProgress.set(String.format("%.1f%s of trips completed",
-                (double) totalTripsCompleted / totalTrips * 100,
+                tripProgressPercent * 100,
                 "%"));
         this.eventsProgress.set(String.format("%.1f%s of events completed",
-                (double) totalEventsCompleted / totalEvents * 100,
+                eventProgressPercent * 100,
                 "%"));
+        this.tripProgressPercent.set(tripProgressPercent);
+        this.eventProgressPercent.set(eventProgressPercent);
     }
 
     public SimpleStringProperty getTripsProgress() {
@@ -58,6 +64,14 @@ public class SummaryVariables {
 
     public SimpleStringProperty getTotalEventsCompleted() {
         return totalEventsCompleted;
+    }
+
+    public SimpleDoubleProperty getTripProgressPercent() {
+        return tripProgressPercent;
+    }
+
+    public SimpleDoubleProperty getEventProgressPercent() {
+        return eventProgressPercent;
     }
 
 }

@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <fx:root resizable="false" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
          title="Summary">
     <scene>
@@ -34,6 +36,12 @@
                     <StackPane fx:id="completedTripListPanelPlaceholder" prefWidth="340" HBox.hgrow="ALWAYS"/>
                     <StackPane fx:id="summaryCardPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
                 </HBox>
+                <GridPane styleClass="status-bar">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
+                    </columnConstraints>
+                    <Label text="Call summary again to view changes!" />
+                </GridPane>
             </VBox>
         </Scene>
     </scene>

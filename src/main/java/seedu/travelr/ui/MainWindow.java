@@ -134,6 +134,7 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        System.out.println("no problem with statusBar");
 
         TripsLabeler tripsLabel = new TripsLabeler();
         tripsTextField.getChildren().add(tripsLabel.getRoot());

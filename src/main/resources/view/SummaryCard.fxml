@@ -7,36 +7,41 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
 
+<?import javafx.scene.control.ProgressIndicator?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <VBox alignment="CENTER" minHeight="105" GridPane.columnIndex="0" HBox.hgrow="ALWAYS" spacing="5">
       <padding>
         <Insets bottom="5" left="5" right="5" top="5" />
       </padding>
-      <GridPane alignment="center" hgap="10" vgap="10" VBox.vgrow="ALWAYS">
-          <StackPane styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="150" prefHeight="150">
+      <GridPane alignment="CENTER" hgap="10" vgap="10" VBox.vgrow="ALWAYS">
+          <StackPane styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.rowIndex="0" maxWidth="350">
               <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
+                  <Insets bottom="100" left="50" right="50" top="100" />
               </padding>
-            <Label fx:id="noTripsCompleted" textAlignment="CENTER" styleClass="cell_big_label" wrapText="true" />
+            <Label fx:id="noTripsCompleted" textAlignment="CENTER" styleClass="cell_big_label" wrapText="true"/>
           </StackPane>
-          <StackPane styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="150" prefHeight="150">
+          <StackPane styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="0" maxWidth="350">
               <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
+                  <Insets bottom="100" left="50" right="50" top="100" />
               </padding>
-            <Label fx:id="noEventsCompleted" textAlignment="CENTER" styleClass="cell_big_label" wrapText="true" />
+            <Label fx:id="noEventsCompleted" textAlignment="CENTER" styleClass="cell_big_label" wrapText="true"/>
           </StackPane>
-          <StackPane styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.rowIndex="1" prefWidth="150" prefHeight="150">
+          <VBox alignment="CENTER" styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                maxWidth="350">
               <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
+                  <Insets bottom="100" left="50" right="50" top="100" />
               </padding>
-            <Label fx:id="TripsProgress" textAlignment="CENTER" styleClass="cell_big_label" wrapText="true" />
-          </StackPane>
-          <StackPane styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="150" prefHeight="150">
+              <ProgressIndicator fx:id="TripsProgressIndicator" minWidth="100" minHeight="100"/>
+              <Label fx:id="TripsProgress" textAlignment="CENTER" styleClass="cell_big_label" wrapText="true"/>
+          </VBox>
+          <VBox alignment="CENTER" styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                maxWidth="350">
               <padding>
-                  <Insets bottom="10" left="10" right="10" top="10"/>
+                  <Insets bottom="100" left="50" right="50" top="100" />
               </padding>
-            <Label fx:id="EventsProgress" textAlignment="CENTER" styleClass="cell_big_label" wrapText="true" />
-          </StackPane>
+              <ProgressIndicator fx:id="EventsProgressIndicator" minWidth="100" minHeight="100"/>
+              <Label fx:id="EventsProgress" textAlignment="CENTER" styleClass="cell_big_label" wrapText="true"/>
+          </VBox>
       </GridPane>
     </VBox>
 </HBox>
