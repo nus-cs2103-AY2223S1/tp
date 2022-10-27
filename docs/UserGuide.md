@@ -81,6 +81,8 @@ Format: `help`
 
 Shows an expanded list of all students.
 
+![liststudentCommand](images/liststudentCommand.png)
+
 Format: `liststudent`
 
 * Additional information such as grades for each student will be displayed.
@@ -89,11 +91,15 @@ Format: `liststudent`
 
 Shows an expanded list of all tasks.
 
+![listtaskCommand](images/listtaskCommand.png)
+
 Format: `listtask`
 
 ### Listing all students : `listlesson`
 
 Shows an expanded list of all lessons.
+
+![listlessonCommand](images/listlessonCommand.png)
 
 Format: `listlesson`
 
@@ -102,6 +108,8 @@ Format: `listlesson`
 ### Listing all students, tasks and lessons : `listall`
 
 Shows the truncated lists of students, tasks and lessons.
+
+![listallCommand](images/listallCommand.png)
 
 Format: `listall`
 
@@ -186,6 +194,8 @@ Adds grades to a student.
 
 Format: `grade INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`
 
+![gradeCommand](images/gradeCommand.png)
+
 * Add grades to the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `ra1/MARKS` is optional, if specified will record a grade for RA1 (Reading Assessment 1).
@@ -246,6 +256,8 @@ Examples:
 ### Marking a task as done : `marktask`
 
 Marks a task as done.
+
+![marktaskCommand](images/marktaskCommand.png)
 
 Format: `marktask INDEX`
 
@@ -356,6 +368,8 @@ Example:
 
 Marks a student as present for a lesson.
 
+![markstudentCommand](images/markstudentCommand.png)
+
 Format: `markstudent li/LESSON_INDEX si/STUDENT_INDEX`
 
 * `LESSON_INDEX` refers to the index number shown in the displayed list of lessons.
@@ -381,6 +395,8 @@ Example:
 ### Adding a note to a lesson : `addnote`
 
 Adds a note for a lesson or for a specific student in a lesson.
+
+![addnoteCommand.png](images/addnoteCommand.png)
 
 Format: `addnote n/NOTE li/LESSON_INDEX [si/STUDENT_INDEX]`
 
