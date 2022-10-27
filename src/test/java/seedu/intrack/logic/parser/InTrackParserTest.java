@@ -113,9 +113,9 @@ public class InTrackParserTest {
     @Test
     public void parseCommand_remark() throws Exception {
         final Remark remark = new Remark("New remark.");
-        RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_INTERNSHIP.getOneBased() + " " + PREFIX_REMARK + remark.value);
-        assertEquals(new RemarkCommand(INDEX_FIRST_INTERNSHIP, remark), command);
+        RemarkCommand command =
+                (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " " + remark.value);
+        assertEquals(new RemarkCommand(remark), command);
     }
 
     @Test

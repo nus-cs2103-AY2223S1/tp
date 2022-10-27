@@ -1,7 +1,6 @@
 package seedu.intrack.logic.commands;
 
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Status;
 
 /**
- * Updates the status of the internship specified by the given index.
+ * Updates the status of the internship application identified by the index number used in the displayed list.
  */
 public class StatusCommand extends Command {
 
@@ -60,7 +59,6 @@ public class StatusCommand extends Command {
                 internshipToEdit.getRemark());
 
         model.setInternship(internshipToEdit, editedInternship);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         return new CommandResult(String.format(MESSAGE_UPDATE_STATUS_SUCCESS, editedInternship));
     }

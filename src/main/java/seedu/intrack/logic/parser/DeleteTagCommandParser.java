@@ -24,6 +24,7 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
      */
     public DeleteTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         String trimArgs = args.trim();
         if (trimArgs.isEmpty()) {
             throw new ParseException(
@@ -32,15 +33,14 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
 
         String[] splitCommand = trimArgs.split("\\s+", 2);
         if (splitCommand.length != 2) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteTagCommand.DELETE_TAG_CONSTRAINTS));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
         }
-        // these are the tags to be deleted
+
         String[] tags = splitCommand[1].split("\\s+");
         List<Tag> tagList = new ArrayList<>();
-        for (int i = 0; i < tags.length; i++) {
-            Tag tagToAdd = new Tag(tags[i]);
-            tagList.add(tagToAdd);
+        for (String tag : tags) {
+            tagList.add(ParserUtil.parseTag(tag));
         }
 
         Index index;
@@ -51,7 +51,6 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
                     ive);
         }
 
-        String clearCommand = tags[0].toUpperCase();
-        return new DeleteTagCommand(index, tagList, clearCommand);
+        return new DeleteTagCommand(index, tagList);
     }
 }
