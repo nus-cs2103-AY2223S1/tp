@@ -12,6 +12,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.student.Student;
@@ -39,11 +40,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private TitledPane titledPane;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
+    private VBox dataFields;
     @FXML
     private FlowPane classes;
 
@@ -70,9 +67,10 @@ public class StudentCard extends UiPart<Region> {
         student.getModuleClasses().stream()
             .sorted(Comparator.comparing(moduleClass -> moduleClass.getClassName()))
             .forEach(moduleClass -> classes.getChildren().add(new Label(moduleClass.getClassName())));
-        phone.setText(student.getPhone().value);
-        address.setText(student.getAddress().value);
-        email.setText(student.getEmail().value);
+
+        addDataField(student.getPhone().value);
+        addDataField(student.getAddress().value);
+        addDataField(student.getEmail().value);
     }
 
     /**
@@ -117,6 +115,20 @@ public class StudentCard extends UiPart<Region> {
         HBox separator = new HBox();
         HBox.setHgrow(separator, Priority.ALWAYS);
         return separator;
+    }
+
+    /**
+     * Adds a data fields with the given {@code text} to the {@code dataFields}.
+     * If the {@code test} is empty then nothing happens.
+     */
+    private void addDataField(String text) {
+        if (text.isEmpty()) {
+            return;
+        }
+        Label label = new Label(text);
+        label.setWrapText(true);
+        label.getStyleClass().add("cell_small_label");
+        dataFields.getChildren().add(label);
     }
 
     @Override
