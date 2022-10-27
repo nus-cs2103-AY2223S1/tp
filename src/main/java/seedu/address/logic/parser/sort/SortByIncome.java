@@ -22,11 +22,24 @@ public class SortByIncome implements Comparator<Person> {
     @Override
     public int compare(Person p1, Person p2) {
 
+        //Since income is Long, have to manually check and return an int
+
         if (this.order.equals("desc")) {
-            return p2.getIncome().convertIncomeToInt() - p1.getIncome().convertIncomeToInt();
+            if (p2.getIncome().convertIncomeToLong() > p1.getIncome().convertIncomeToLong()) {
+                return 1;
+            } else if (p2.getIncome().convertIncomeToLong() < p1.getIncome().convertIncomeToLong()) {
+                return -1;
+            }
+            return 0;
         }
 
-        return p1.getIncome().convertIncomeToInt() - p2.getIncome().convertIncomeToInt();
+        if (p1.getIncome().convertIncomeToLong() > p2.getIncome().convertIncomeToLong()) {
+            return 1;
+        } else if (p1.getIncome().convertIncomeToLong() < p2.getIncome().convertIncomeToLong()) {
+            return -1;
+        }
+
+        return 0;
     }
 
     @Override

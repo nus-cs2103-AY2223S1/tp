@@ -27,6 +27,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.FindPredicate;
+import seedu.address.model.person.IncomeContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NormalTagContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -50,11 +51,14 @@ public class FindCommandTest {
 
     private static FindPredicate fifthPredicate =
             new PlanTagContainsKeywordsPredicate(Collections.singletonList("Savings Plan"));
+    private static FindPredicate sixthPredicate =
+                    new IncomeContainsKeywordsPredicate(Collections.singletonList("100"), ">");
     private static List<FindPredicate> allPredicates = new ArrayList<>();
     private static List<FindPredicate> firstAndSecondPredicates = new ArrayList<>();
     private static List<FindPredicate> secondAndThirdPredicates = new ArrayList<>();
     private static List<FindPredicate> thirdAndFourthPredicates = new ArrayList<>();
     private static List<FindPredicate> fourthAndFifthPredicates = new ArrayList<>();
+    private static List<FindPredicate> fifthAndSixthPredicates = new ArrayList<>();
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new CommandHistory());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new CommandHistory());
 
@@ -77,6 +81,9 @@ public class FindCommandTest {
 
         fourthAndFifthPredicates.add(fourthPredicate);
         fourthAndFifthPredicates.add(fifthPredicate);
+
+        fifthAndSixthPredicates.add(fifthPredicate);
+        fifthAndSixthPredicates.add(sixthPredicate);
     }
 
     @Test
@@ -86,12 +93,14 @@ public class FindCommandTest {
         FindCommand findSecondAndThirdCommand = new FindCommand(secondAndThirdPredicates);
         FindCommand findThirdAndFourthCommand = new FindCommand(thirdAndFourthPredicates);
         FindCommand findFourthAndFifthCommand = new FindCommand(fourthAndFifthPredicates);
+        FindCommand findFifthAndSixthCommand = new FindCommand(fifthAndSixthPredicates);
 
         // same object -> returns true
         assertTrue(findAllCommand.equals(findAllCommand));
         assertTrue(findFirstAndSecondCommand.equals(findFirstAndSecondCommand));
         assertTrue(findSecondAndThirdCommand.equals(findSecondAndThirdCommand));
         assertTrue(findThirdAndFourthCommand.equals(findThirdAndFourthCommand));
+        assertTrue(findFifthAndSixthCommand.equals(findFifthAndSixthCommand));
 
         // same values -> returns true
         FindCommand findAllCommandCopy = new FindCommand(allPredicates);
@@ -102,6 +111,9 @@ public class FindCommandTest {
 
         FindCommand findSecondAndThirdCommandCopy = new FindCommand(secondAndThirdPredicates);
         assertTrue(findSecondAndThirdCommand.equals(findSecondAndThirdCommandCopy));
+
+        FindCommand findFifthAndSixthCommandCopy = new FindCommand(fifthAndSixthPredicates);
+        assertTrue(findFifthAndSixthCommandCopy.equals(findFifthAndSixthCommandCopy));
 
         // different types -> returns false
         assertFalse(findAllCommand.equals(1));
@@ -115,6 +127,7 @@ public class FindCommandTest {
         assertFalse(findFirstAndSecondCommandCopy.equals(findAllCommand));
         assertFalse(findSecondAndThirdCommandCopy.equals(findFirstAndSecondCommandCopy));
         assertFalse(findFourthAndFifthCommand.equals(findThirdAndFourthCommand));
+        assertFalse(findFifthAndSixthCommand.equals(findThirdAndFourthCommand));
     }
 
     @Test
@@ -246,5 +259,10 @@ public class FindCommandTest {
     private Predicate<Person> reducePredicate(List<FindPredicate> predicates) {
         return predicates.stream().reduce((x, y) -> x.or(y)).get();
     }
-
+    /**
+     * Parses {@code userInput} into a {@code PlanTagContainsKeywordsPredicate}.
+     */
+    private IncomeContainsKeywordsPredicate prepareIncomePredicate(String userInput) {
+        return new IncomeContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")), ">");
+    }
 }

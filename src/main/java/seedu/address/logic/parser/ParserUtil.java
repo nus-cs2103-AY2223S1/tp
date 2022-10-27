@@ -332,4 +332,17 @@ public class ParserUtil {
         }
         return normalTagList;
     }
+
+    /**
+     * Parses {@code Collection<String> planTags} into a {@code List<planTags>}.
+     */
+    public static List<IncomeLevel> parseAllSpaceSeparatedIncomeLevels(Collection<String> incomeLevels)
+            throws ParseException {
+        requireNonNull(incomeLevels);
+        final List<IncomeLevel> incomeLevelList = new ArrayList<>();
+        for (String incomeLevel : incomeLevels) {
+            incomeLevelList.add(parseIncomeLevel("$" + incomeLevel.substring(1)));
+        }
+        return incomeLevelList;
+    }
 }
