@@ -214,6 +214,14 @@ assigns `John` in group `CS2103T` with a `High` workload task `TeamProject`.
 * `assigntask Alice g/Group Alpha task/Coursework 0 w/Low d/2022-01-01 23:59` 
 assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0` and the deadline of the task is `2022-01-01 23:59`.
 
+<div markdown="span" class="alert alert-primary">
+  A workload indicator is shown beside each person in TABS.
+
+  When the workload of the person increase, the workload indicator will gradually change from green to red.
+
+  
+</div>
+
 ### Deleting a task from a member: `deletetask`
 
 Deletes a task from a member with the given name in a group.
