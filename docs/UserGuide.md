@@ -36,8 +36,6 @@ title: User Guide
 
 HealthContact is a software for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
 It helps to keep track of patient data, patient appointments and patient bills for the family clinic.
-* Table of Contents
-  {:toc}
 
 ---
 # Quick Start
