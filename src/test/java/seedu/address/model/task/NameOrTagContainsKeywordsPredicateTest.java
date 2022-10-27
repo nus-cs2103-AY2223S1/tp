@@ -18,14 +18,17 @@ public class NameOrTagContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        NameOrTagContainsKeywordsPredicate firstPredicate = new NameOrTagContainsKeywordsPredicate(firstPredicateKeywordList);
-        NameOrTagContainsKeywordsPredicate secondPredicate = new NameOrTagContainsKeywordsPredicate(secondPredicateKeywordList);
+        NameOrTagContainsKeywordsPredicate firstPredicate = new NameOrTagContainsKeywordsPredicate(
+                firstPredicateKeywordList);
+        NameOrTagContainsKeywordsPredicate secondPredicate = new NameOrTagContainsKeywordsPredicate(
+                secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameOrTagContainsKeywordsPredicate firstPredicateCopy = new NameOrTagContainsKeywordsPredicate(firstPredicateKeywordList);
+        NameOrTagContainsKeywordsPredicate firstPredicateCopy = new NameOrTagContainsKeywordsPredicate(
+                firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +44,8 @@ public class NameOrTagContainsKeywordsPredicateTest {
     @Test
     public void test_nameOrTagContainsKeywords_returnsTrue() {
         // One keyword
-        NameOrTagContainsKeywordsPredicate predicate = new NameOrTagContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        NameOrTagContainsKeywordsPredicate predicate = new NameOrTagContainsKeywordsPredicate(
+                Collections.singletonList("Alice"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
