@@ -24,12 +24,12 @@ public class FindTagCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindTagCommand expectedFindPositionCommand =
+        FindTagCommand expectedFindTagsCommand =
                 new FindTagCommand(new TagsContainKeywordsPredicate(Arrays.asList("Urgent", "Remote")));
-        assertParseSuccess(parser, "Urgent Remote", expectedFindPositionCommand);
+        assertParseSuccess(parser, "Urgent Remote", expectedFindTagsCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Urgent \n \t Remote  \t", expectedFindPositionCommand);
+        assertParseSuccess(parser, " \n Urgent \n \t Remote  \t", expectedFindTagsCommand);
     }
 
 }
