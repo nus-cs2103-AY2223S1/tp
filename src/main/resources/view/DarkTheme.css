@@ -5,14 +5,14 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segue UI", Helvetica;
+    -fx-font-family: "Segoe UI", Helvetica;
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segue UI", Helvetica;
+    -fx-font-family: "Segoe UI", Helvetica;
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
@@ -22,13 +22,13 @@
     -fx-text-fill: white;
     -fx-opacity: 1;
     -fx-padding: 0 0 10 0;
-    -fx-font-family: "Segue UI", Helvetica;
+    -fx-font-family: "Segoe UI", Helvetica;
     -fx-font-weight: bold;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segue UI", Helvetica;
+    -fx-font-family: "Segoe UI", Helvetica;
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
@@ -75,7 +75,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segue UI", Helvetica;
+    -fx-font-family: "Segoe UI", Helvetica;
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -121,14 +121,14 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segue UI", Helvetica;
+    -fx-font-family: "Segoe UI", Helvetica;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segue UI", Helvetica;
+    -fx-font-family: "Segoe UI", Helvetica;
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
@@ -219,7 +219,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segue UI", Helvetica;
+    -fx-font-family: "Segoe UI", Helvetica;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -358,7 +358,7 @@
 
 #linkName {
     -fx-font-size: 16px;
-    -fx-font-family: "Segue UI", Helvetica;
+    -fx-font-family: "Segoe UI", Helvetica;
 }
 .hyperlink {
     -fx-border-color: transparent;
