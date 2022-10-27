@@ -2,21 +2,22 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ScrollPane?>
 
-<HBox id="detailsPane" fx:id="detailsPane" prefHeight="271.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/11"
+<HBox id="detailsPane" fx:id="detailsPane" xmlns="http://javafx.com/javafx/11"
       xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
-        </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" HBox.hgrow="ALWAYS">
+    <AnchorPane minHeight="0.0" minWidth="340.0" HBox.hgrow="ALWAYS">
+    <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge"
+                AnchorPane.bottomAnchor="0.0"
+                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                AnchorPane.topAnchor="0.0">
+        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0" HBox.hgrow="ALWAYS">
             <padding>
                 <Insets bottom="5" left="15" right="15" top="5"/>
             </padding>
@@ -156,8 +157,6 @@
                 </VBox>
             </GridPane>
         </VBox>
-        <rowConstraints>
-            <RowConstraints/>
-        </rowConstraints>
-    </GridPane>
+    </ScrollPane>
+    </AnchorPane>
 </HBox>
