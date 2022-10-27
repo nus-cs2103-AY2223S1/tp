@@ -14,7 +14,7 @@ import paymelah.model.debt.exceptions.DuplicateDebtException;
 
 /**
  * Represents a list of a person's {@link Debt} in the address book.
- * Guarantees: debts are null, field values are validated, immutable.
+ * Guarantees: debts are not null, field values are validated, immutable.
  */
 public class DebtList {
     private final List<Debt> debts = new ArrayList<>();
@@ -82,7 +82,9 @@ public class DebtList {
             index++;
         }
         edited.debts.add(index, toAdd);
-        edited.totalDebt = totalDebt.add(toAdd.getMoney().getValue());
+        if (!toAdd.isPaid()) {
+            edited.totalDebt = totalDebt.add(toAdd.getMoney().getValue());
+        }
         return edited;
     }
 
@@ -99,7 +101,9 @@ public class DebtList {
         }
         DebtList edited = new DebtList(this);
         edited.debts.remove(toRemove);
-        edited.totalDebt = totalDebt.subtract(toRemove.getMoney().getValue());
+        if (!toRemove.isPaid()) {
+            edited.totalDebt = totalDebt.subtract(toRemove.getMoney().getValue());
+        }
         return edited;
     }
 
@@ -120,9 +124,8 @@ public class DebtList {
         }
 
         DebtList edited = new DebtList(this);
-        edited.debts.remove(toMark);
-        edited.debts.add(toMark.setPaid(true));
-        edited.totalDebt = totalDebt.subtract(toMark.getMoney().getValue());
+        edited = edited.removeDebt(toMark);
+        edited = edited.addDebt(toMark.setPaid(true));
         return edited;
     }
 
@@ -143,9 +146,8 @@ public class DebtList {
         }
 
         DebtList edited = new DebtList(this);
-        edited.debts.remove(toUnmark);
-        edited.debts.add(toUnmark.setPaid(false));
-        edited.totalDebt = totalDebt.add(toUnmark.getMoney().getValue());
+        edited = edited.removeDebt(toUnmark);
+        edited = edited.addDebt(toUnmark.setPaid(false));
         return edited;
     }
 
@@ -169,7 +171,9 @@ public class DebtList {
         DebtList debtList = new DebtList();
         for (Debt debt : list) {
             debtList.debts.add(debt);
-            debtList.totalDebt = debtList.totalDebt.add(debt.getMoney().getValue());
+            if (!debt.isPaid()) {
+                debtList.totalDebt = debtList.totalDebt.add(debt.getMoney().getValue());
+            }
         }
         return debtList;
     }
