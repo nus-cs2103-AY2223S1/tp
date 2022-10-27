@@ -7,7 +7,7 @@ import static modtrekt.commons.util.AppUtil.checkArgument;
  * Represents a Module's code in the module list.
  * Guarantees: immutable; is valid as declared in {@link #isValidCode(String)}
  */
-public class ModCode {
+public class ModCode implements Comparable<ModCode> {
 
     public static final String MESSAGE_CONSTRAINTS = "Code should contain alphanumeric characters and no white space";
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
@@ -52,5 +52,10 @@ public class ModCode {
 
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public int compareTo(ModCode that) {
+        return this.value.compareTo(that.value);
     }
 }

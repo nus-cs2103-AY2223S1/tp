@@ -294,7 +294,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Module> getFilteredModuleList() {
-        return filteredModules;
+        return filteredModules.sorted();
     }
 
     @Override
