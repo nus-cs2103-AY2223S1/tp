@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.awt.Color;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -57,8 +58,10 @@ public class PersonCard extends UiPart<Region> {
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
+        Color color = getColourFromWorkload(person.getWorkloadScore());
+        String colorString = "rgb(" + color.getRed() + "," + color.getGreen() + "," + color.getBlue() + ");";
         this.cardPane.setStyle(String.format("-fx-border-color:%s ; -fx-border-width: 0 0 0 5;",
-            getColourFromWorkload(person.getWorkloadScore())));
+                colorString));
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
@@ -94,13 +97,17 @@ public class PersonCard extends UiPart<Region> {
                 && person.equals(card.person);
     }
 
-    private String getColourFromWorkload(int score) {
-        if (score < 5) {
-            return "green";
-        } else if (score >= 5 && score < 15) {
-            return "yellow";
+    private Color getColourFromWorkload(int score) {
+        //gradual fade for RGB
+        double Red = 255 * Math.sqrt( Math.sin ( score * Math.PI / 200 ));
+        double Green = 255 * Math.sqrt( Math.cos ( score * Math.PI / 200 ));;
+        Color myColor;
+        if (Red >= 255 || Green <= 0) {
+            myColor = new Color(255,0,0);
         } else {
-            return "red";
+            myColor = new Color((int) Red, (int) Green, 0);
         }
+        return myColor;
     }
+
 }
