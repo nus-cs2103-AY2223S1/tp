@@ -3,10 +3,10 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_UNMARKED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_MARKED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_UNMARKED;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -51,8 +51,8 @@ public class ListCommandParser implements Parser<ListCommand> {
         String[] listTypes = trimmedArgs.split(" ", 2);
 
         Prefix[] prefixes = new Prefix[]
-                {PREFIX_LIST_ALL, PREFIX_LIST_UNMARKED, PREFIX_LIST_MARKED,
-                        PREFIX_LIST_MODULE, PREFIX_LIST_TAG, PREFIX_LIST_DEADLINE};
+            {PREFIX_LIST_ALL, PREFIX_LIST_UNMARKED, PREFIX_LIST_MARKED,
+            PREFIX_LIST_MODULE, PREFIX_LIST_TAG, PREFIX_LIST_DEADLINE};
         List<Predicate<Task>> predicates = new ArrayList<>();
 
         for (int i = 0; i < prefixes.length; i++) {

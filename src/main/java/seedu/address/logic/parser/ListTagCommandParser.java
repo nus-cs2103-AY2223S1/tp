@@ -7,7 +7,6 @@ import java.util.List;
 import seedu.address.logic.commands.list.ListTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.ModuleContainsKeywordsPredicate;
 import seedu.address.model.task.TagContainsKeywordsPredicate;
 
 /**

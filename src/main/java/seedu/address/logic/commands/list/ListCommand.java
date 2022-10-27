@@ -3,14 +3,14 @@ package seedu.address.logic.commands.list;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
-
-import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * Parent class of the 3 list commands
@@ -32,9 +32,13 @@ public class ListCommand extends Command {
 
     public final List<Predicate<Task>> predicates;
 
-    public ListCommand(List<Predicate<Task>> predicates) { this.predicates = predicates; };
+    public ListCommand(List<Predicate<Task>> predicates) {
+        this.predicates = predicates;
+    };
 
-    public ListCommand() { this.predicates = List.of(PREDICATE_SHOW_ALL_PERSONS); };
+    public ListCommand() {
+        this.predicates = List.of(PREDICATE_SHOW_ALL_PERSONS);
+    };
 
     @Override
     public CommandResult execute(Model model) {
@@ -50,7 +54,8 @@ public class ListCommand extends Command {
                 model.updateFilterStatus(p.toString());
             }
         });
-        return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        return new CommandResult(
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override
