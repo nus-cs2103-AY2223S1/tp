@@ -239,7 +239,7 @@ Adds a formatted description of dates students attended class in address book.
 
 Format: `attendance INDEX h/ATTENDACE`
 
-*Adds grade progress to student with the specified `INDEX`.<br>
+*Adds attendance to student with the specified `INDEX`.<br>
 *Attendance must be in `YYYY-MM-DD` format
 
 Examples:
