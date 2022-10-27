@@ -7,21 +7,21 @@ import gim.model.Model;
 import gim.model.exercise.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all exercises in exercise tracker whose name contains any of the argument keywords.
+ * Filters and lists all exercises in exercise tracker whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class FilterCommand extends Command {
 
-    public static final String COMMAND_WORD = ":find";
+    public static final String COMMAND_WORD = ":filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " -> Finds all exercises whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " -> Filters all exercises whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]\n"
             + "Example usage:\n" + COMMAND_WORD + " Bench press Squat Deadlift";
 
     private final NameContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FilterCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,7 +36,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof FilterCommand // instanceof handles nulls
+                && predicate.equals(((FilterCommand) other).predicate)); // state check
     }
 }
