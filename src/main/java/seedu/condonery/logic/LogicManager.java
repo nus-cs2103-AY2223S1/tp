@@ -18,10 +18,10 @@ import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.parser.CondoneryParser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.Model;
-import seedu.condonery.model.ReadOnlyClientDirectory;
-import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.ReadOnlyClientDirectory;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 import seedu.condonery.storage.Storage;
 
 /**

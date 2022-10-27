@@ -2,6 +2,7 @@ package seedu.condonery.logic.parser.property;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
@@ -36,8 +37,8 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
     @Override
     public EditPropertyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG,
-                        PREFIX_PROPERTY_TYPE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE,
+                        PREFIX_TAG, PREFIX_INTERESTEDCLIENTS, PREFIX_PROPERTY_TYPE);
         EditPropertyDescriptor editPropertyDescriptor =
                 new EditPropertyDescriptor();
         Index index;
@@ -67,13 +68,17 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPropertyDescriptor::setTags);
 
+        if (argMultimap.getValue(PREFIX_INTERESTEDCLIENTS).isPresent()) {
+            editPropertyDescriptor.setInterestedClients(
+                    ParserUtil.parseClients(argMultimap.getAllValues(PREFIX_INTERESTEDCLIENTS)));
+        }
+
         if (argMultimap.getValue(PREFIX_PROPERTY_TYPE).isPresent()) {
             editPropertyDescriptor
                     .setPropertyTypeEnum(
                             ParserUtil.parsePropertyType(
                                     argMultimap.getValue(PREFIX_PROPERTY_TYPE).get()));
         }
-        System.out.println(argMultimap.getValue(PREFIX_TAG));
         return new EditPropertyCommand(index, editPropertyDescriptor);
     }
 
@@ -87,3 +92,4 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 }
+

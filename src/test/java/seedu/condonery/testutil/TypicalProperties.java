@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyDirectory;
 
 /**
  * A utility class containing a list of {@code Property} objects to be used in tests.

@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.condonery.model.property.exceptions.DuplicatePropertyException;
 import seedu.condonery.model.property.exceptions.PropertyNotFoundException;
+import seedu.condonery.model.property.exceptions.UniquePropertyNotFoundException;
 
 /**
  * A list of properties that enforces uniqueness between its elements and does not allow nulls.
@@ -96,6 +97,59 @@ public class UniquePropertyList implements Iterable<Property> {
         }
 
         internalList.setAll(properties);
+    }
+
+    /**
+     * Returns true if a property whos name contains the given String exists in the property directory.
+     */
+    public boolean hasPropertyName(String substring) {
+        for (Property property : internalList) {
+            if (property.getName().toString().contains(substring)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if only one unique property whos name contains the given String exists in the property directory.
+     */
+    public boolean hasUniquePropertyName(String substring) {
+        int containCount = 0;
+        for (Property property : internalList) {
+            if (property.getName().toString().contains(substring)) {
+                containCount += 1;
+            }
+        }
+        if (containCount == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns a unique property whos name contains the given string.
+     *
+     * @throws UniquePropertyNotFoundException if the substring does not match to a unique
+     *                                 property.
+     */
+    public Property getUniquePropertyByName(String substring) throws UniquePropertyNotFoundException {
+        Property uniqueProperty = null;
+        for (Property property : internalList) {
+            if (property.getName().containsSubstring(substring)) {
+                if (uniqueProperty == null) {
+                    uniqueProperty = property;
+                } else {
+                    throw new UniquePropertyNotFoundException();
+                }
+            }
+        }
+        if (uniqueProperty == null) {
+            throw new UniquePropertyNotFoundException();
+        } else {
+            return uniqueProperty;
+        }
     }
 
     /**

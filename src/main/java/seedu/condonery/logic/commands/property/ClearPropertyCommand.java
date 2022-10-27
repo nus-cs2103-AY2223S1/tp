@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.model.Model;
-import seedu.condonery.model.PropertyDirectory;
+import seedu.condonery.model.property.PropertyDirectory;
 
 /**
  * Clears the property directory.

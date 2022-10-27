@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.condonery.commons.exceptions.IllegalValueException;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
@@ -28,6 +29,7 @@ class JsonAdaptedProperty {
     private final String address;
     private final String price;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedClient> interestedClients = new ArrayList<>();
     private final String propertyType;
 
     /**
@@ -35,14 +37,18 @@ class JsonAdaptedProperty {
      */
     @JsonCreator
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("address") String address,
-                               @JsonProperty("price") String price,
-                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                               @JsonProperty("propertyType")String propertyType) {
+            @JsonProperty("price") String price,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("interestedClients") List<JsonAdaptedClient> interestedClients,
+            @JsonProperty("propertyType") String propertyType) {
         this.name = name;
         this.address = address;
         this.price = price;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (interestedClients != null) {
+            this.interestedClients.addAll(interestedClients);
         }
         this.propertyType = propertyType;
     }
@@ -57,8 +63,10 @@ class JsonAdaptedProperty {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        interestedClients.addAll(source.getInterestedClients().stream()
+                .map(JsonAdaptedClient::new)
+                .collect(Collectors.toList()));
         propertyType = source.getPropertyTypeEnum().toString();
-
     }
 
     /**
@@ -68,8 +76,13 @@ class JsonAdaptedProperty {
      */
     public Property toModelType() throws IllegalValueException {
         final List<Tag> propertyTags = new ArrayList<>();
+        final List<Client> interestedClients = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             propertyTags.add(tag.toModelType());
+        }
+
+        for (JsonAdaptedClient client : this.interestedClients) {
+            interestedClients.add(client.toModelType());
         }
 
         if (name == null) {
@@ -97,12 +110,16 @@ class JsonAdaptedProperty {
         final Price modelPrice = new Price(price);
 
         final Set<Tag> modelTags = new HashSet<>(propertyTags);
+
+        final Set<Client> modelInterestedClients = new HashSet<>(interestedClients);
+
         if (propertyType == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     PropertyTypeEnum.class.getSimpleName()));
         }
+
         final PropertyTypeEnum modelPropertyType = PropertyTypeEnum.valueOf(propertyType);
-        return new Property(modelName, modelAddress, modelPrice, modelTags,
+        return new Property(modelName, modelAddress, modelPrice, modelTags, modelInterestedClients,
                 modelPropertyType);
     }
 

@@ -18,10 +18,10 @@ import seedu.condonery.logic.commands.client.EditClientCommand.EditClientDescrip
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.model.Model;
-import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.client.ClientNameContainsKeywordsPredicate;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyDirectory;
 import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.condonery.testutil.EditClientDescriptorBuilder;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
