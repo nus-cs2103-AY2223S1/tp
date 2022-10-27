@@ -7,6 +7,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.travelr.model.SummaryVariables;
 
+/**
+ * Represents a Summary Card.
+ */
 public class SummaryCard extends UiPart<Region> {
 
     private static final String FXML = "SummaryCard.fxml";
@@ -26,13 +29,13 @@ public class SummaryCard extends UiPart<Region> {
     @FXML
     private Label noEventsCompleted;
     @FXML
-    private Label TripsProgress;
+    private Label tripsProgress;
     @FXML
-    private Label EventsProgress;
+    private Label eventsProgress;
     @FXML
-    private ProgressIndicator TripsProgressIndicator;
+    private ProgressIndicator tripsProgressIndicator;
     @FXML
-    private ProgressIndicator EventsProgressIndicator;
+    private ProgressIndicator eventsProgressIndicator;
     @FXML
     private Label totalUniqueLocations;
 
@@ -43,10 +46,10 @@ public class SummaryCard extends UiPart<Region> {
         super(FXML);
         noTripsCompleted.textProperty().bind(summaryVariables.getTotalTripsCompleted());
         noEventsCompleted.textProperty().bind(summaryVariables.getTotalEventsCompleted());
-        TripsProgress.textProperty().bind(summaryVariables.getTripsProgress());
-        EventsProgress.textProperty().bind(summaryVariables.getEventsProgress());
-        TripsProgressIndicator.progressProperty().bind(summaryVariables.getTripProgressPercent());
-        EventsProgressIndicator.progressProperty().bind(summaryVariables.getEventProgressPercent());
+        tripsProgress.textProperty().bind(summaryVariables.getTripsProgress());
+        eventsProgress.textProperty().bind(summaryVariables.getEventsProgress());
+        tripsProgressIndicator.progressProperty().bind(summaryVariables.getTripProgressPercent());
+        eventsProgressIndicator.progressProperty().bind(summaryVariables.getEventProgressPercent());
         totalUniqueLocations.textProperty().bind(summaryVariables.getTotalUniqueLocations().asString());
 
     }

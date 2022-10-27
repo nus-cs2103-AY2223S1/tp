@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 import seedu.travelr.model.SummaryVariables;
 import seedu.travelr.model.trip.Trip;
 
+/**
+ * Represents a Summary Window.
+ */
 public class SummaryWindow extends UiPart<Stage> {
     private static final String FXML = "summaryWindow.fxml";
 
@@ -43,6 +46,9 @@ public class SummaryWindow extends UiPart<Stage> {
 
     }
 
+    /**
+     * Shows the summary window.
+     */
     public void show() {
         getRoot().show();
         getRoot().centerOnScreen();

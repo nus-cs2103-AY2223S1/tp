@@ -47,16 +47,16 @@
               <padding>
                   <Insets bottom="50" left="50" right="50" top="50" />
               </padding>
-              <ProgressIndicator fx:id="TripsProgressIndicator" minWidth="100" minHeight="100"/>
-              <Label fx:id="TripsProgress" textAlignment="CENTER" styleClass="cell_big_label" wrapText="true"/>
+              <ProgressIndicator fx:id="tripsProgressIndicator" minWidth="100" minHeight="100"/>
+              <Label fx:id="tripsProgress" textAlignment="CENTER" styleClass="cell_big_label" wrapText="true"/>
           </VBox>
           <VBox alignment="CENTER" styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="2"
                 maxWidth="350">
               <padding>
                   <Insets bottom="50" left="50" right="50" top="50" />
               </padding>
-              <ProgressIndicator fx:id="EventsProgressIndicator" minWidth="100" minHeight="100"/>
-              <Label fx:id="EventsProgress" textAlignment="CENTER" styleClass="cell_big_label" wrapText="true"/>
+              <ProgressIndicator fx:id="eventsProgressIndicator" minWidth="100" minHeight="100"/>
+              <Label fx:id="eventsProgress" textAlignment="CENTER" styleClass="cell_big_label" wrapText="true"/>
           </VBox>
       </GridPane>
     </VBox>

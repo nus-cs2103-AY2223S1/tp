@@ -191,6 +191,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens and refreshes the summary window or focuses on it if it's already opened.
+     */
     @FXML
     public void handleAndRefreshSummary() {
         logic.refreshSummaryVariables();

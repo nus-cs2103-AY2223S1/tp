@@ -7,7 +7,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import seedu.travelr.model.trip.Trip;
-import seedu.travelr.model.trip.TripCompletedPredicate;
 
 /**
  * Panel containing the list of persons.

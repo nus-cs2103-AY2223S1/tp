@@ -1,5 +1,7 @@
 package seedu.travelr.model;
 
+import java.util.HashSet;
+
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,8 +13,9 @@ import seedu.travelr.model.event.EventCompletedPredicate;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.TripCompletedPredicate;
 
-import java.util.HashSet;
-
+/**
+ * Represents the summary variables.
+ */
 public class SummaryVariables {
 
     private final SimpleStringProperty tripsProgress;
@@ -23,6 +26,9 @@ public class SummaryVariables {
     private final SimpleDoubleProperty eventProgressPercent;
     private final SimpleIntegerProperty totalUniqueLocations;
 
+    /**
+     * Constructs a SummaryVariables.
+     */
     public SummaryVariables() {
         // initialise the observable boolean properties
         tripsProgress = new SimpleStringProperty();
@@ -34,6 +40,12 @@ public class SummaryVariables {
         totalUniqueLocations = new SimpleIntegerProperty(0);
     }
 
+    /**
+     * Refreshes the SummaryVariables.
+     *
+     * @param allTripList An observable list of all trips.
+     * @param allEventList An observable list of all events.
+     */
     public void refresh(ObservableList<Trip> allTripList, ObservableList<Event> allEventList) {
         FilteredList<Trip> completedTripsList = allTripList.filtered(new TripCompletedPredicate());
         FilteredList<Event> completedEventsList =
