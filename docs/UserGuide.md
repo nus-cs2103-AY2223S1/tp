@@ -72,6 +72,8 @@ more quickly than a traditional GUI app.
 
 Shows a message explaining how to access the user guide.
 
+- Alternatively, you can also click on the Help button in the top toolbar.
+
 Format: `help`
 
 ### Adding a contact: `add_contact`
@@ -306,6 +308,14 @@ Examples:
 - `unassign c/1 t/1` removes the contact at index 1 from the task at index 1.
 - `unassign c/3 t/2` removes the contact at index 3 from the task at index 2.
 
+### Toggling between contacts and tasks tabs: `Ctrl + Tab`
+
+Toggles the view between the contacts and tasks tabs.
+
+Format: `Ctrl + Tab`
+
+- Alternatively, you can also click on the Contacts and Tasks button in the top toolbar.
+
 ### Clearing all data: `clear`
 
 Deletes all data in the application.
@@ -318,6 +328,8 @@ Exits the program.
 
 Format: `exit`
 
+- Alternatively, you can also click on the Exit button in the top toolbar.
+ 
 ### Command Suggestion and Autocomplete
 
 To help you familiarize with the commands, Swift+ prompts you with command suggestions as you type and can autocomplete your commands until the next user-required input.
