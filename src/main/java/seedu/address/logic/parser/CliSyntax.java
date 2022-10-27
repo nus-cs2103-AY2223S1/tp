@@ -14,7 +14,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ID = new Prefix("id/");
     public static final Prefix PREFIX_CLIENT = new Prefix("cli/");
     public static final Prefix PREFIX_PERSON = new Prefix("per/");
-    public static final Prefix PREFIX_ASKING_PRICE = new Prefix("a/");
+    public static final Prefix PREFIX_ASKING_PRICE = new Prefix("ap/");
     public static final Prefix PREFIX_OFFER = new Prefix("o/");
     public static final Prefix PREFIX_LISTING_ID = new Prefix("l/");
 
