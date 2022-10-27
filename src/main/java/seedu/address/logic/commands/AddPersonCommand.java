@@ -29,7 +29,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Adds a person to the address book.
  */
-@CommandLine.Command(name = "person")
+@CommandLine.Command(name = "person", aliases = {"p"})
 public class AddPersonCommand extends Command {
     public static final String COMMAND_WORD = "add person";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "

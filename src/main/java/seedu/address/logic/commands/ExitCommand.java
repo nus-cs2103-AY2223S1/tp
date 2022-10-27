@@ -7,7 +7,7 @@ import seedu.address.ui.MainWindow;
 /**
  * Terminates the program.
  */
-@CommandLine.Command(name = "exit")
+@CommandLine.Command(name = "exit", aliases = {"ex", "bye", "quit"})
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";

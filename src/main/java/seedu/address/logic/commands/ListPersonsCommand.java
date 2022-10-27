@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 /**
  * Lists all persons in the address book to the user.
  */
-@CommandLine.Command(name = "persons")
+@CommandLine.Command(name = "persons", aliases = {"p"})
 public class ListPersonsCommand extends Command {
 
     public static final String COMMAND_WORD = "list persons";

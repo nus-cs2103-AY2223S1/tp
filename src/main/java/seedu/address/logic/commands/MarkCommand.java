@@ -13,7 +13,7 @@ import seedu.address.model.team.Task;
 /**
  * Marks a specified task as complete.
  */
-@CommandLine.Command(name = "mark")
+@CommandLine.Command(name = "mark", aliases = {"m"})
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
