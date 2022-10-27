@@ -119,6 +119,10 @@ Format:  `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]`
 
 * Remarks are limited to alphanumeric characters and spaces.
 
+* You cannot add a contact that is the same as one already in the address book. Two people are the same if they have the same email or phone number.
+
+* Contacts have no tags when first created.
+
 Examples:
 
 * `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -248,13 +252,15 @@ Adds a task to the task list.
 
 Format: `addT d/DESCRIPTION D/DEADLINE`
 
-* Tasks are unique. There cannot be more than one task with the same description in the task list.
+* Tasks are unique. There cannot be more than one task with the same description, deadline and tag list in the task list.
 
 * The description and deadline of the task are not allowed to be empty. 
 
 * Newly added tasks are marked as not done by default.
 
-Throws an exception if:
+* Tasks have no tags when first created.
+
+The following scenarios should not happen for your command to run successfully:
 - If the description of the task is empty.
 - If the deadline of the task is empty.
 - The deadline of the task is not in dd-mm-yyyy format.
@@ -378,7 +384,7 @@ List tasks in YellowBook with deadlines up to and including the specified date.
 Both completed and incomplete tasks are listed.
 Task with deadline that are already past are also listed.
 
-Throws an exception if:
+The following scenarios should not happen for your command to run successfully:
 - The deadline of the task is not in dd-mm-yyyy format.
 
 Format: `remindT DEADLINE`
@@ -401,7 +407,7 @@ Format: `progressT KEYWORD [MORE_KEYWORDS]`
 
 * Tasks with labels matching at least one keyword will be returned.
 
-Throws an exception if:
+The following scenarios should not happen for your command to run successfully:
 - The deadline of the task is not in dd-mm-yyyy format.
 
 Example:
@@ -461,7 +467,7 @@ This list is unique, meaning each label with a distinct name is only shown once,
 Multiple labels can be added in the same command. 
 However, only a maximum of one contact and one task can be labelled within the same command.
 
-Throws an exception if: 
+The following scenarios should not happen for your command to run successfully: 
 - Contact/task does not exist
 - Contact/task already has the required label
 - No label is provided
@@ -484,7 +490,7 @@ Otherwise, it is only removed from the specified contact/task label list.
 Multiple labels can be deleted in the same command. 
 However, only a maximum of one contact and one task can be edited within the same command.
 
-Throws an exception if:
+The following scenarios should not happen for your command to run successfully: 
 - Contact/task does not exist
 - Label does not exist on specified contact/task
 - No contact/task is provided
@@ -512,7 +518,7 @@ Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
 * If a contact/task has multiple labels, it will not be deleted as long as it has at least one label.
   Instead, the labels will be removed from the contact/task.
   
-Throws an exception if:
+The following scenarios should not happen for your command to run successfully:
 - Label does not exist
 - No label is provided
 

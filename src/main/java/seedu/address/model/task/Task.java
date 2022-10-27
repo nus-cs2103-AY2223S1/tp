@@ -183,7 +183,9 @@ public class Task {
         }
 
         return otherTask != null
-                && description.equalsIgnoreCase(otherTask.getDescription());
+                && description.equalsIgnoreCase(otherTask.getDescription())
+                && deadline.equals(otherTask.getDeadline())
+                && tags.equals(otherTask.getTags());
     }
 
     /**
