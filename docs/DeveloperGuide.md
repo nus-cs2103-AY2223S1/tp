@@ -421,8 +421,9 @@ Ministry of Education (MOE) Teachers who:
 * Teaches 3 to 5 classes a year
 * Manages about 60 to 100 students with varying needs
 * Finds paperwork time-consuming and messy
-* Finds it difficult to keep track of the academic progress of each individual student
-* Finds it tedious to calculate and generate exam statistics for a class
+* Manually keeps track of the academic progress of each individual student
+* Manually identifies students who are performing poorly academically and finds it tedious to calculate exam statistics
+* Finds Excel spreadsheet complex and difficult to use
 * Prefers typing to mouse interactions
 * Types fast and is reasonably comfortable using CLI apps
 
