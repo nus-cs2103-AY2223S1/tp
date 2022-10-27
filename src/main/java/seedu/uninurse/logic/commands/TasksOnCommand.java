@@ -34,7 +34,6 @@ public class TasksOnCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.getFilteredPersonList()
                 .forEach(p -> p.getTasks().filterTasks(t -> t.isTaskOnDay(dayToCheck)));
         model.updateFilteredPersonList(p -> !p.getTasks().getTasks().isEmpty());

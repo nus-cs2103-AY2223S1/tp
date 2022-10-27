@@ -25,7 +25,6 @@ public class RedoCommand extends Command {
 
         model.redo();
         model.saveCurrentPatientListTracker();
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS, REDO_COMMAND_TYPE);
     }
 }

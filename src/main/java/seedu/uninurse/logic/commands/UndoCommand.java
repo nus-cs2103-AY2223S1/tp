@@ -24,7 +24,6 @@ public class UndoCommand extends Command {
         }
         model.saveCurrentPatientListTracker();
         model.undo();
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS, UNDO_COMMAND_TYPE);
     }
 }

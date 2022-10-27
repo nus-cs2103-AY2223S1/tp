@@ -69,7 +69,6 @@ public class AddConditionCommand extends AddGenericCommand {
         Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
 
         model.setPerson(patientToEdit, editedPatient);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_ADD_CONDITION_SUCCESS, editedPatient.getName(), condition),
