@@ -13,12 +13,13 @@ import seedu.pennywise.model.entry.exceptions.EntryNotFoundException;
 
 /**
  * A list of entries that enforces uniqueness between its elements and does not allow nulls.
- * An entry is considered unique by comparing using {@code Entry#isSameEntry(Entry)}. As such, adding and updating of
- * entries uses Entry#isSameEntry(Entry) for equality so as to ensure that the entry being added or updated is
- * unique in terms of identity in the UniqueEntryList. However, the removal of an entry uses Entry#equals(Object) so
- * as to ensure that the entry with exactly the same fields will be removed.
+ * An entry is considered unique by comparing using {@link Entry#isSameEntry(Entry)}. As such, adding and updating of
+ * entries uses {@link Entry#isSameEntry(Entry)} for equality to ensure that the entry being added or updated is
+ * unique in terms of identity in the UniqueEntryList. However, the removal of an entry uses
+ * {@link Entry#equals(Object)} to ensure that the entry with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
+ * </p>
  *
  * @see Entry#isSameEntry(Entry)
  */
@@ -29,7 +30,7 @@ public class UniqueEntryList implements Iterable<Entry> {
         FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent entry as the given argument.
+     * Returns true if the list contains an equivalent {@code Entry} as the given argument.
      */
     public boolean contains(Entry toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +38,8 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
 
     /**
-     * Adds an entry to the list.
-     * The entry must not already exist in the list.
+     * Adds an {@code Entry} to the list.
+     * Precondition: The entry must not already exist in the list.
      */
     public void add(Entry toAdd) {
         requireNonNull(toAdd);
@@ -49,8 +50,8 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
 
     /**
-     * Removes the equivalent entry from the list.
-     * The entry must exist in the list.
+     * Removes the equivalent {@code Entry} from the list.
+     * Precondition: The entry must exist in the list.
      */
     public void remove(Entry toRemove) {
         requireNonNull(toRemove);
@@ -62,7 +63,8 @@ public class UniqueEntryList implements Iterable<Entry> {
     /**
      * Replaces the entry {@code target} in the list with {@code editedEntry}.
      * {@code target} must exist in the list.
-     * The entry identity of {@code editedEntry} must not be the same as another existing entry in the list.
+     * Precondition: The entry identity of {@code editedEntry} must not be the same as another existing entry in the
+     * list.
      */
     public void setEntries(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);

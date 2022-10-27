@@ -1,5 +1,7 @@
 package seedu.pennywise.logic.commands.exceptions;
 
+import seedu.pennywise.logic.commands.Command;
+
 /**
  * Represents an error which occurs during execution of a {@link Command}.
  */

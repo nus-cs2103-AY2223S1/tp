@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.pennywise.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Entry's description in the penny wise application.
+ * Represents an {@code Entry}'s description in the PennyWise application.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description {

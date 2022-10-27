@@ -12,7 +12,7 @@ import seedu.pennywise.model.entry.EntryInYearMonthPredicate;
 
 
 /**
- * Summarizes the financials of the user
+ * Summarizes the financials of the user.
  */
 public class SummaryCommand extends Command {
 
@@ -38,8 +38,6 @@ public class SummaryCommand extends Command {
     public SummaryCommand() {
         this.predicate = null;
     }
-
-
 
     /**
      * Executes the command and returns the result message.

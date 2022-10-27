@@ -31,7 +31,6 @@ public class GraphPanel extends UiPart<Region> {
     private StackPane graphPlaceholder;
 
     /**
-     * TODO: Edit image to pie chart
      * Creates a {@code GraphPanel} with a default pie chart image.
      */
     public GraphPanel(EntryType entryType, ObservableList<PieChart.Data> pieChartData) {

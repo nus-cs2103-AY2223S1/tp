@@ -14,7 +14,6 @@ import seedu.pennywise.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    //todo change file path and filename
     private Path pennyWiseFilePath = Paths.get("data", "pennywise.json");
 
     /**
@@ -63,7 +62,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof UserPrefs)) { //this handles null as well.
+        // This handles null as well.
+        if (!(other instanceof UserPrefs)) {
             return false;
         }
 

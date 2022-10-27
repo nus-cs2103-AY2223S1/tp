@@ -21,47 +21,62 @@ public class SampleDataUtil {
     public static Expenditure[] getSampleExpenditure() {
         return new Expenditure[] {
             new Expenditure(
-                    new Description("Lunch"),
+                    new Description("Chicken Rice Lunch at Deck"),
                     new Date("20-01-2022"),
-                    new Amount("20"),
+                    new Amount("20.00"),
                     new Tag(EXPENDITURE_TYPE, "Food")),
             new Expenditure(
-                    new Description("Dinner"),
-                    new Date("20-02-2022"),
-                    new Amount("30"),
-                    new Tag(EXPENDITURE_TYPE, "Food")),
+                    new Description("Kungfu Panda Movie"),
+                    new Date("18-02-2022"),
+                    new Amount("15.00"),
+                    new Tag(EXPENDITURE_TYPE, "Entertainment")),
             new Expenditure(
-                    new Description("Breakfast"),
+                    new Description("Strawberry Milk"),
                     new Date("21-01-2022"),
-                    new Amount("40"),
-                    new Tag(EXPENDITURE_TYPE, "Food")),
+                    new Amount("10.00"),
+                    new Tag(EXPENDITURE_TYPE, "Groceries")),
             new Expenditure(
-                    new Description("Paid this guy"),
-                    new Date("21-01-2022"),
-                    new Amount("0.10"),
-                    new Tag(EXPENDITURE_TYPE, "Others"))
+                    new Description("Math Assessment Book"),
+                    new Date("26-01-2022"),
+                    new Amount("20.00"),
+                    new Tag(EXPENDITURE_TYPE, "Education")),
+            new Expenditure(
+                    new Description("Card Fare Topup"),
+                    new Date("25-01-2022"),
+                    new Amount("50.00"),
+                    new Tag(EXPENDITURE_TYPE, "Transport"))
         };
     }
 
     public static Income[] getSampleIncome() {
         return new Income[] {
             new Income(
-                    new Description("Tutoring"),
+                    new Description("English Tuition for Aileen"),
+                    new Date("08-01-2022"),
+                    new Amount("100.00"),
+                    new Tag(INCOME_TYPE, "Salary")),
+            new Income(
+                    new Description("SpaceX Stocks"),
+                    new Date("05-01-2022"),
+                    new Amount("200.00"),
+                    new Tag(INCOME_TYPE, "Investment")),
+            new Income(
+                    new Description("Monthly Allowance"),
                     new Date("01-01-2022"),
-                    new Amount("100"),
-                    new Tag(INCOME_TYPE, "Salary"))
+                    new Amount("250.00"),
+                    new Tag(INCOME_TYPE, "Allowance"))
         };
     }
 
     public static ReadOnlyPennyWise getSamplePennyWise() {
-        PennyWise sampleAb = new PennyWise();
+        PennyWise samplePennyWise = new PennyWise();
         for (Entry sampleEntry : getSampleExpenditure()) {
-            sampleAb.addExpenditure(sampleEntry);
+            samplePennyWise.addExpenditure(sampleEntry);
         }
 
         for (Income sampleIncome : getSampleIncome()) {
-            sampleAb.addIncome(sampleIncome);
+            samplePennyWise.addIncome(sampleIncome);
         }
-        return sampleAb;
+        return samplePennyWise;
     }
 }

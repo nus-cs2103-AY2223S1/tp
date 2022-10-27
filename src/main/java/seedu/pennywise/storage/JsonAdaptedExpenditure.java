@@ -17,9 +17,9 @@ import seedu.pennywise.model.entry.Tag;
  */
 public class JsonAdaptedExpenditure extends JsonAdaptedEntry {
     /**
-     * Constructs a {@code JsonAdaptedEntry} with the given Entry details.
+     * Constructs a {@code JsonAdaptedExpenditure} with the given {@code Entry} details.
      */
-    protected static EntryType type = new EntryType("e");
+    protected static EntryType type = new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE);
     @JsonCreator
     public JsonAdaptedExpenditure(@JsonProperty("description") String description,
                                   @JsonProperty("amount") String amount,
@@ -33,8 +33,8 @@ public class JsonAdaptedExpenditure extends JsonAdaptedEntry {
     }
 
     /**
-     * Checks the JsonEntry for validity
-     * @throws IllegalValueException if the json entry is not valid
+     * Checks the {@code JsonEntry} for validity
+     * @throws IllegalValueException if the JSON entry is not valid
      */
     @Override
     public void checkIsValidJsonEntry() throws IllegalValueException {
