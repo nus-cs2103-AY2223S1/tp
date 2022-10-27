@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_PROGRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -62,7 +62,7 @@ public class CommandTestUtil {
 
     // used in edit, hence index is included
     public static final String HOMEWORK_DESC_AMY = " " + PREFIX_HOMEWORK + "1 " + VALID_HOMEWORK_AMY;
-    public static final String GRADE_PROGRESS_DESC_AMY = " " + PREFIX_GRADEPROGRESS
+    public static final String GRADE_PROGRESS_DESC_AMY = " " + PREFIX_GRADE_PROGRESS
             + "1 " + VALID_GRADE_PROGRESS_AMY;
     public static final String ATTENDANCE_DESC_AMY = " " + PREFIX_ATTENDANCE + "1 " + VALID_ATTENDANCE_AMY;
     public static final String SESSION_DESC_AMY = " " + PREFIX_SESSION + "1 " + VALID_SESSION_AMY;

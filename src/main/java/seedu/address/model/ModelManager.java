@@ -149,14 +149,18 @@ public class ModelManager implements Model {
         for (int i = 0; i < filteredPersons.size(); i++) {
             Person person = filteredPersons.get(i);
             SessionList sessions = person.getSessionList();
-            for (int j = 0; j < sessions.sessionList.size(); j++) {
-                Session session = sessions.sessionList.get(j);
-                if (session.day.equalsIgnoreCase(day)) {
-                    timeSlots.add(new TimeSlot(session, person));
-                }
-            }
+            addTimeSlots(person, sessions, day);
         }
         timeSlots.sort(TimeSlot::compareTo);
+    }
+
+    private void addTimeSlots(Person person, SessionList sessions, String day) {
+        for (int j = 0; j < sessions.sessionList.size(); j++) {
+            Session session = sessions.sessionList.get(j);
+            if (session.day.equalsIgnoreCase(day)) {
+                timeSlots.add(new TimeSlot(session, person));
+            }
+        }
     }
 
     @Override
