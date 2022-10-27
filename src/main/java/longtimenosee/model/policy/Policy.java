@@ -96,15 +96,15 @@ public class Policy {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append("; Company: ")
-                .append(getCompany())
-                .append("; Commission: ")
-                .append(getCommission());
+        builder.append(getTitle() + "\n")
+                .append("Company: ")
+                .append(getCompany() + "\n")
+                .append("Commission: ")
+                .append(getCommission() + "\n");
 
         Set<Coverage> coverages = getCoverages();
         if (!coverages.isEmpty()) {
-            builder.append("; Coverages: ");
+            builder.append("Coverages: ");
             coverages.forEach(builder::append);
         }
         return builder.toString();

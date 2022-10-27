@@ -13,8 +13,9 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Phone numbers should only contain numbers, and it should be at least 3 digits long"
+            + " and not more than 25 digits in length. ";
+    public static final String VALIDATION_REGEX = "\\d{3,25}";
 
     public static final Comparator<Person> PHONE_COMPARATOR = new Comparator<Person>() {
         public int compare(Person p1, Person p2) {

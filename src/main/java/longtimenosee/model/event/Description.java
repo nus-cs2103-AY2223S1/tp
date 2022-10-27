@@ -9,7 +9,7 @@ import static longtimenosee.commons.util.AppUtil.checkArgument;
  */
 public class Description {
 
-    public static final int MAXIMUM_DESCRIPTION_LENGTH = 1200;
+    public static final int MAXIMUM_DESCRIPTION_LENGTH = 175;
     public static final String MESSAGE_CONSTRAINTS = "Description should only contain "
         + "alphanumeric characters and spaces. It should not be empty";
     public static final String LENGTH_CONSTRAINTS = "Ensure description is of an appropriate length";

@@ -209,18 +209,19 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
-                .append(", Birthday: ")
-                .append(getBirthday())
-                .append(", Income: ")
-                .append(getIncome())
-                .append(", RiskLevel: ")
+        builder.append("\n" + "Name: ")
+                .append(getName() + "\n")
+                .append("Phone: ")
+                .append(getPhone() + "\n")
+                .append("Email: ")
+                .append(getEmail() + "\n")
+                .append("Address: ")
+                .append(getAddress() + "\n")
+                .append("Birthday: ")
+                .append(getBirthday() + "\n")
+                .append("Income: ")
+                .append(getIncome() + "\n")
+                .append("RiskLevel: ")
                 .append(getRiskAppetite());
 
         Set<Tag> tags = getTags();
