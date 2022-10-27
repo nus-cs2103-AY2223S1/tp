@@ -19,8 +19,6 @@ public class CommandResult {
 
     private final boolean view;
 
-    private final boolean update;
-
     private int viewIndex;
 
     private String department;
@@ -36,7 +34,6 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.view = false;
-        this.update = true;
         this.viewDepartment = false;
     }
 
@@ -49,7 +46,6 @@ public class CommandResult {
         this.exit = false;
         this.view = view;
         this.viewIndex = index;
-        this.update = false;
         this.viewDepartment = false;
     }
 
@@ -62,7 +58,6 @@ public class CommandResult {
         this.exit = false;
         this.view = false;
         this.viewIndex = 0;
-        this.update = false;
         this.viewDepartment = true;
         this.department = department;
     }
@@ -89,10 +84,6 @@ public class CommandResult {
 
     public boolean isView() {
         return view;
-    }
-
-    public boolean isUpdate() {
-        return update;
     }
 
     public boolean isViewDepartment() {
@@ -124,7 +115,6 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && view == otherCommandResult.view
-                && update == otherCommandResult.update
                 && viewDepartment == otherCommandResult.viewDepartment;
     }
 

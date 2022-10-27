@@ -43,6 +43,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private int currentIndex;
 
+    private String currentDepartment;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -219,8 +221,12 @@ public class MainWindow extends UiPart<Stage> {
         personInfoPanelPlaceholder.getChildren().add(personInfo.getRoot());
     }
 
-    private void handleUpdate(int index) {
+    private void handleViewUpdate(int index) {
         personInfo.update(logic.getFilteredPersonList().get(index));
+    }
+
+    private void handleViewDepartmentUpdate(String department) {
+        departmentInfo.update(logic.getUnfilteredPersonList(), department);
     }
 
     private void handleViewDepartment(String department) {
@@ -243,6 +249,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            handleViewUpdate(currentIndex);
+            handleViewDepartmentUpdate(currentDepartment);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -257,11 +265,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleView(currentIndex);
             }
 
-            if (commandResult.isUpdate()) {
-                handleUpdate(currentIndex);
-            }
-
             if (commandResult.isViewDepartment()) {
+                currentDepartment = commandResult.getDepartment();
                 handleViewDepartment(commandResult.getDepartment());
             }
 
