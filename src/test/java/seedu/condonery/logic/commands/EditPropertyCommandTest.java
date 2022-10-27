@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
+import seedu.condonery.logic.commands.property.ClearPropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.model.ClientDirectory;
@@ -178,7 +179,7 @@ public class EditPropertyCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearPropertyCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand

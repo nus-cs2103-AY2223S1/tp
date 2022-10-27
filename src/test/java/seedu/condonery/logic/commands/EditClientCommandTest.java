@@ -13,6 +13,7 @@ import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.client.EditClientCommand;
 import seedu.condonery.logic.commands.client.EditClientCommand.EditClientDescriptor;
+import seedu.condonery.logic.commands.property.ClearPropertyCommand;
 import seedu.condonery.model.ClientDirectory;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
@@ -172,7 +173,7 @@ public class EditClientCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearPropertyCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditClientCommand(INDEX_SECOND, CommandTestUtil.CLIENT_DESC_AMY)));
