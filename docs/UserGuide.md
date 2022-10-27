@@ -115,7 +115,7 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
   `description`, `date` `amount` and `category`. We do not want PennyWise to be managing entries which are a repeat,
   of one another, as it would be easier to simply use the [edit](#editing-entries--edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category) 
   command to alter the original entry's specifications.
-  e.g. Executing the following 2 commands one after another, PennyWise will recognise (2) as a duplicate entry. 
+  For example, when executing the following 2 commands one after another, PennyWise will recognise (2), which is the second `Teh Beng` added as a duplicate entry. 
   <pre>
     <code>
         1. add t/e d/Teh Beng a/1.50 da/22-10-2022 c/Food
@@ -136,7 +136,7 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 Adds an entry to the specified list. <br>
 1. Add expense <br>
    - Example: `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`<br>
-   - An expense of 15.60 on 10/10/2022 will be added to the Expenditure list, under the Food category.
+   - An expense of $15.60 on 10/10/2022 will be added to the Expenditure list, under the Food category.
 
 1. Add income <br>
    - Example: `add t/i d/Tuition a/40.00 da/10-10-2022 c/Salary`<br>
@@ -175,14 +175,14 @@ The default date is the current date on your computer!
 
 ### Summary of entries : `summary [mo/MONTH]`
 
-1. Summarise of all entries in the currently shown list
+1. Summary of all entries in the currently shown list
    * Examples: `summary`
      * Expected: <br/>
        Financials Summarized <br/>
        Total Expenditure: 154.40 <br/>
        Total Income: 150.00 <br/>
        Total Balance: -4.40 <br/>
-2. Summarise of all entries the specified month
+2. Summary of all entries the specified month
     * Examples: `summary mo/2022-09`
     * Expected: <br/>
       Financials Summarized <br/>
@@ -192,7 +192,7 @@ The default date is the current date on your computer!
 * Provides a financial summary recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application displays the summary for all entries.
 
-### View entries by category : `view t/ENTRY_TYPE g/GRAPH_TYPE`
+### View entries by category : `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/month]`
 
 1. View a PieChart of all expenditures by categories
     * Examples: `view t/e g/c` <br>
@@ -201,7 +201,7 @@ The default date is the current date on your computer!
    * Examples: `view t/i g/c` <br>
    Expected: `Show graphically all income by category` and a PieChart on the right of the application
 
-### View entries by month : `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`
+### View entries by month : `view t/ENTRY_TYPE g/GRAPH_TYPE mo/MONTH`
 1. View a LineGraph of all expenditures in a specified month
    * Examples: `view t/e g/m mo/2022-10` <br>
    Expected: `Show graphically all expenditure by month` and a LineGraph on the right of the application
