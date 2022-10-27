@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.AddBillCommand.MESSAGE_APPOINTMENT_NOT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BILL_DATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BILLS;
@@ -14,8 +13,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.bill.Amount;
 import seedu.address.model.bill.Bill;
 import seedu.address.model.bill.BillDate;
@@ -64,7 +61,7 @@ public class EditBillCommand extends Command {
         }
 
         Bill billToEdit = lastShownList.get(indexOfBill.getZeroBased());
-        Bill editedBill = createEditedBill(indexOfBill, model, billToEdit, editBillDescriptor);
+        Bill editedBill = createEditedBill(billToEdit, editBillDescriptor);
 
         model.setBill(billToEdit, editedBill);
         model.updateFilteredBillList(PREDICATE_SHOW_ALL_BILLS);
@@ -75,30 +72,14 @@ public class EditBillCommand extends Command {
      * Creates and returns a {@code Patient} with the details of {@code billToEdit}
      * edited with {@code editBillDescriptor}.
      */
-    private static Bill createEditedBill(Index indexOfBill, Model model, Bill billToEdit,
+    private static Bill createEditedBill(Bill billToEdit,
                                          EditBillDescriptor editBillDescriptor) throws CommandException {
         assert billToEdit != null;
-
-        requireNonNull(model);
-        List<Appointment> lastShownAppointmentList = model.getFilteredAppointmentList();
-
-        Appointment appointment;
-
-        if (indexOfBill.getZeroBased() >= lastShownAppointmentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
-        }
-
-        try {
-            appointment = model.getFilteredAppointmentList()
-                    .get(indexOfBill.getZeroBased());
-        } catch (AppointmentNotFoundException e) {
-            throw new CommandException(MESSAGE_APPOINTMENT_NOT_EXIST);
-        }
 
         Amount updatedAmount = editBillDescriptor.getAmount().orElse(billToEdit.getAmount());
         BillDate updatedBillDate = editBillDescriptor.getBillDate().orElse(billToEdit.getBillDate());
 
-        return new Bill(appointment, updatedAmount, updatedBillDate, billToEdit.getPaymentStatus());
+        return new Bill(billToEdit.getAppointment(), updatedAmount, updatedBillDate, billToEdit.getPaymentStatus());
     }
 
     @Override

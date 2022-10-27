@@ -109,7 +109,7 @@ public interface Model {
      * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPatientList(Predicate<Patient> predicate);
+    void updateFilteredPatientList(Predicate<? super Patient> predicate);
 
     /**
      * Returns true if an appointment with the same identity as {@code appointment} exists in the address book.
@@ -143,7 +143,7 @@ public interface Model {
      * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+    void updateFilteredAppointmentList(Predicate<? super Appointment> predicate);
 
     void deleteRelativeAppointments(Patient patient);
 
@@ -179,7 +179,7 @@ public interface Model {
      * Updates the filter of the filtered bill list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredBillList(Predicate<Bill> predicate);
+    void updateFilteredBillList(Predicate<? super Bill> predicate);
 
     void deleteRelativeBills(Appointment appointment);
 

@@ -44,7 +44,7 @@ public class SelectAppointmentCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAppointmentList().size() + 1);
         SelectAppointmentCommand selectAppointmentCommand = new SelectAppointmentCommand(outOfBoundIndex);
 
-        assertCommandFailure(selectAppointmentCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        assertCommandFailure(selectAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class SelectAppointmentCommandTest {
 
         SelectAppointmentCommand selectAppointmentCommand = new SelectAppointmentCommand(outOfBoundIndex);
 
-        assertCommandFailure(selectAppointmentCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        assertCommandFailure(selectAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
     @Test
