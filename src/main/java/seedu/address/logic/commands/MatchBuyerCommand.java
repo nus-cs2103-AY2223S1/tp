@@ -62,7 +62,8 @@ public class MatchBuyerCommand extends Command {
         ArrayList<Predicate<Property>> predicatesList = new ArrayList<>();
 
         if (buyerToMatch.getDesiredCharacteristics().isEmpty() && buyerToMatch.getPriceRange().isEmpty()) {
-            throw new CommandException("Cannot match Buyer who has no desired characteristics or price range indicated!");
+            throw new
+                    CommandException("Cannot match Buyer who has no desired characteristics or price range indicated!");
         } else {
             if (buyerToMatch.getPriceRange().isPresent()) {
                 predicatesList.add(new FilterPropsByPricePredicate(buyerToMatch.getPriceRange().get()));
@@ -85,7 +86,8 @@ public class MatchBuyerCommand extends Command {
 
         new FilterPropertiesCommand(combinedPredicate).execute(model);
 
-        return new CommandResult(String.format(MESSAGE_MATCHED_BUYER_SUCCESS, model.getFilteredPropertyList().size(), buyerToMatch));
+        return new CommandResult(String.format(MESSAGE_MATCHED_BUYER_SUCCESS,
+                model.getFilteredPropertyList().size(), buyerToMatch));
     }
 
     @Override
