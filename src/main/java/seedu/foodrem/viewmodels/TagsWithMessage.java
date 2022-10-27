@@ -35,7 +35,7 @@ public class TagsWithMessage {
     public boolean equals(Object other) {
         return this == other
                 || (other instanceof TagsWithMessage
-                && tags.equals(((TagsWithMessage) other).tags)
+                && Arrays.equals(tags, ((TagsWithMessage) other).tags)
                 && message.equals(((TagsWithMessage) other).message));
     }
 
