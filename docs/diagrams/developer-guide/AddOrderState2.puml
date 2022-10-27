@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor ORDER_MODEL_COLOR_T4
+skinparam classBackgroundColor ORDER_MODEL_COLOR
+skinparam objectBackgroundColor ORDER_MODEL_COLOR
+hide empty members
+
+title "TrackO Application State After Step 2a"
+
+package "Model" {
+    package Inventory {
+        Object "__:InventoryList__" as InventoryList ITEM_MODEL_COLOR_T4 {
+        }
+
+        skinparam objectBackgroundColor ITEM_MODEL_COLOR
+        Object "__:InventoryItem__" as Item1 {
+            itemName = "Pen"
+            quantity = 296
+        }
+
+        Object "__:InventoryItem__" as Item2 {
+            itemName = "Eraser"
+            quantity = 243
+        }
+
+        InventoryList --left> Item1
+        InventoryList --> Item2
+    }
+
+    package Orders {
+        Object "__:OrderList__" as OrderList ORDER_MODEL_COLOR_T4 {
+        }
+    }
+}
+
+package Logic {
+Object "__:LogicManager__" as LogicManager LOGIC_COLOR_T4 {
+
+}
+
+Object "__:AddOrderCommand__" as AddOrderCommand LOGIC_COLOR_T4 {
+    isAwaitingInput = true
+}
+
+Object "__:Pair<String, Quantity>__" as toValidate LOGIC_COLOR_T4 {
+    key = "Eraser"
+    value = 3
+}
+
+note bottom: "key": item name input by the user\n"value": quantity input by the user (in the form of a Quantity object)
+
+LogicManager -> AddOrderCommand :inProgressCommand >
+AddOrderCommand -> toValidate : to validate inputs >
+
+Object "__toAdd:Order__" as OrderToAdd ORDER_MODEL_COLOR {
+    name = "John Doe"
+    phone = 98765432
+    email = "johnd@example.com"
+    address = "311, Clementi Ave 2, #02-25"
+}
+
+AddOrderCommand --> OrderToAdd
+}
+
+
+@enduml
