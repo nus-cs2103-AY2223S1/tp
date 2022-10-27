@@ -130,6 +130,23 @@
             </Label>
           </children>
         </HBox>
+        <HBox fx:id="statusCommandContainer">
+          <padding>
+            <Insets top="5" right="5" bottom="5" left="15" />
+          </padding>
+          <children>
+            <Label fx:id="statusCommandDesc" text="Label">
+              <HBox.margin>
+                <Insets right="10.0" />
+              </HBox.margin>
+            </Label>
+            <Label fx:id="statusCommand" text="Label">
+              <HBox.margin>
+                <Insets right="10.0" />
+              </HBox.margin>
+            </Label>
+          </children>
+        </HBox>
         <HBox fx:id="addTagCommandContainer">
           <padding>
             <Insets top="5" right="5" bottom="5" left="15" />
@@ -266,23 +283,6 @@
             </Label>
           </children>
         </HBox>
-        <HBox fx:id="statusCommandContainer">
-          <padding>
-            <Insets top="5" right="5" bottom="5" left="15" />
-          </padding>
-          <children>
-            <Label fx:id="statusCommandDesc" text="Label">
-              <HBox.margin>
-                <Insets right="10.0" />
-              </HBox.margin>
-            </Label>
-            <Label fx:id="statusCommand" text="Label">
-              <HBox.margin>
-                <Insets right="10.0" />
-              </HBox.margin>
-            </Label>
-          </children>
-        </HBox>
         <HBox fx:id="selectCommandContainer">
           <padding>
             <Insets top="5" right="5" bottom="5" left="15" />
@@ -306,6 +306,23 @@
           </padding>
           <children>
             <Label fx:id="notif" text="Label" style="-fx-font-weight: bold">
+              <HBox.margin>
+                <Insets right="10.0" />
+              </HBox.margin>
+            </Label>
+          </children>
+        </HBox>
+        <HBox fx:id="editCommandContainer">
+          <padding>
+            <Insets top="5" right="5" bottom="5" left="15" />
+          </padding>
+          <children>
+            <Label fx:id="editCommandDesc" text="Label">
+              <HBox.margin>
+                <Insets right="10.0" />
+              </HBox.margin>
+            </Label>
+            <Label fx:id="editCommand" text="Label">
               <HBox.margin>
                 <Insets right="10.0" />
               </HBox.margin>
@@ -346,17 +363,17 @@
             </Label>
           </children>
         </HBox>
-        <HBox fx:id="editCommandContainer">
+        <HBox fx:id="remarkCommandContainer">
           <padding>
             <Insets top="5" right="5" bottom="5" left="15" />
           </padding>
           <children>
-            <Label fx:id="editCommandDesc" text="Label">
+            <Label fx:id="remarkCommandDesc" text="Label">
               <HBox.margin>
                 <Insets right="10.0" />
               </HBox.margin>
             </Label>
-            <Label fx:id="editCommand" text="Label">
+            <Label fx:id="remarkCommand" text="Label">
               <HBox.margin>
                 <Insets right="10.0" />
               </HBox.margin>
@@ -374,23 +391,6 @@
               </HBox.margin>
             </Label>
             <Label fx:id="mailCommand" text="Label">
-              <HBox.margin>
-                <Insets right="10.0" />
-              </HBox.margin>
-            </Label>
-          </children>
-        </HBox>
-        <HBox fx:id="remarkCommandContainer">
-          <padding>
-            <Insets top="5" right="5" bottom="5" left="15" />
-          </padding>
-          <children>
-            <Label fx:id="remarkCommandDesc" text="Label">
-              <HBox.margin>
-                <Insets right="10.0" />
-              </HBox.margin>
-            </Label>
-            <Label fx:id="remarkCommand" text="Label">
               <HBox.margin>
                 <Insets right="10.0" />
               </HBox.margin>

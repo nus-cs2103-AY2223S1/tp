@@ -28,29 +28,29 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String CLEAR_COMMAND = "clear";
 
     public static final String ADD_COMMAND_DESC = "Add new internship application information: ";
-    public static final String ADD_COMMAND = "add c/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]";
+    public static final String ADD_COMMAND = "add c/COMPANY p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]...";
 
     public static final String DELETE_COMMAND_DESC = "Delete entry: ";
     public static final String DELETE_COMMAND = "delete INDEX";
 
     public static final String ADDTAG_COMMAND_DESC = "Add tag(s) to entry: ";
-    public static final String ADDTAG_COMMAND = "addtag INDEX TAG [MORE_TAGS]";
+    public static final String ADDTAG_COMMAND = "addtag INDEX TAG [MORE_TAGS]...";
 
     public static final String DELETETAG_COMMAND_DESC = "Delete tag(s) from entry: ";
-    public static final String DELETETAG_COMMAND = "deltag INDEX TAG [MORE_TAGS]";
+    public static final String DELETETAG_COMMAND = "deltag INDEX TAG [MORE_TAGS]...";
 
     public static final String FILTER_COMMAND_DESC = "Filter applications by status (o for offered, p for progress, "
         + "r for rejected): ";
     public static final String FILTER_COMMAND = "filter STATUS";
 
-    public static final String FINDNAME_COMMAND_DESC = "Search applications by company name: ";
-    public static final String FINDNAME_COMMAND = "findc KEYWORD [MORE_KEYWORDS]";
+    public static final String FINDNAME_COMMAND_DESC = "Search applications by company: ";
+    public static final String FINDNAME_COMMAND = "findc KEYWORD [MORE_KEYWORDS]...";
 
-    public static final String FINDPOSITION_COMMAND_DESC = "Search applications by position name: ";
-    public static final String FINDPOSITION_COMMAND = "findp KEYWORD [MORE_KEYWORDS]";
+    public static final String FINDPOSITION_COMMAND_DESC = "Search applications by position: ";
+    public static final String FINDPOSITION_COMMAND = "findp KEYWORD [MORE_KEYWORDS]...";
 
     public static final String FINDTAG_COMMAND_DESC = "Search applications by tags: ";
-    public static final String FINDTAG_COMMAND = "findt KEYWORD [MORE_KEYWORDS]";
+    public static final String FINDTAG_COMMAND = "findt KEYWORD [MORE_KEYWORDS]...";
 
     public static final String SORT_COMMAND_DESC = "Sort internship applications by SORT_TYPE (time or salary) and "
         + "SORT_ORDER (a for ascending or d for descending): ";
@@ -70,22 +70,22 @@ public class HelpWindow extends UiPart<Stage> {
             + "via the select command before they can be executed.";
 
     public static final String ADDTASK_COMMAND_DESC = "Add a task to the selected internship application: ";
-    public static final String ADDTASK_COMMAND = "addtask TASKNAME /at TASKTIME (must be in dd-MM-yyyy HH:mm format)";
+    public static final String ADDTASK_COMMAND = "addtask TASK_NAME /at TASK_TIME (must be in dd-MM-yyyy HH:mm format)";
 
     public static final String DELETETASK_COMMAND_DESC = "Delete a task from the selected internship application: ";
-    public static final String DELETETASK_COMMAND = "deltask INDEX";
+    public static final String DELETETASK_COMMAND = "deltask TASK_INDEX";
 
     public static final String EDIT_COMMAND_DESC = "Edit selected internship application: ";
     public static final String EDIT_COMMAND = "edit [c/NEW_NAME] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] "
-        + "[t/NEW_TAGS] [s/NEW_SALARY]";
+        + "[s/NEW_SALARY] [t/NEW_TAG]...";
 
-    public static final String MAIL_COMMAND_DESC = "Opens the mail app to send an email to the email address of the "
+    public static final String MAIL_COMMAND_DESC = "Open the mail app to send an email to the email address of the "
         + "selected internship application: ";
     public static final String MAIL_COMMAND = "mail";
 
     public static final String REMARK_COMMAND_DESC = "Add a remark or edit the remark of the selected internship "
         + "application: ";
-    public static final String REMARK_COMMAND = "remark REMARK";
+    public static final String REMARK_COMMAND = "remark r/[REMARK]";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
