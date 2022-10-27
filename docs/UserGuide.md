@@ -2,9 +2,9 @@
 layout: page
 title: User Guide
 ---
-# Health Contact User Guide
+# HealthContact User Guide
 
-Health Contact is a software for **XXX**.
+HealthContact is a software for **XXX**.
 
 * Table of Contents
   {:toc}
