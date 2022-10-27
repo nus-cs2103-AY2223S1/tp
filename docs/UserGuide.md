@@ -179,7 +179,7 @@ Format: `contact edit i/INDEX <n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS #/TAG…>
 * Edits the contact at the specified `INDEX` with the parameters provided.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* All included fields **must** be edited.
+* Include only the fields you wish to be edited, however all included fields **must** be changed from the original.
 
 Examples:
 * `contact edit i/1 n/James Lee e/jameslee@example.com`
@@ -194,7 +194,7 @@ Format: `task edit i/INDEX <m/NAME o/NAME d/DESCRIPTION t/DATE #/TAG…>`
 * Edits the contact at the specified `INDEX` with the parameters provided.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* All included fields **must** be edited.
+* Include only the fields you wish to be edited, however all included fields **must** be changed from the original.
 * Only one of assignor `m/` or assignee `o/` can be specified.
     * A task can be **re-assigned to** "Person Y" by providing parameter `o/Person Y`.
     * A task can be **re-assigned by** "Person X" by providing parameter `m/Person X`.
