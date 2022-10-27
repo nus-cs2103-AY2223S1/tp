@@ -33,11 +33,7 @@ public class MeetingTime {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm");
         date = LocalDateTime.parse(meetingTimeString, formatter);
         value = meetingTimeString;
-        int day = date.getDayOfMonth();
-        String month = date.getMonth().toString();
-        int year = date.getYear();
-        String time = date.toLocalTime().toString();
-        displayValue = day + " " + month + " " + year + " " + time;
+        displayValue = formatMeetingTime();
     }
 
     /**
@@ -53,6 +49,18 @@ public class MeetingTime {
      */
     public LocalDateTime getDate() {
         return this.date;
+    }
+
+    /**
+     * Formats meeting time for display
+     * @return String formattedMeetingTime
+     */
+    public String formatMeetingTime() {
+        int day = date.getDayOfMonth();
+        String month = date.getMonth().toString();
+        int year = date.getYear();
+        String time = date.toLocalTime().toString();
+        return day + " " + month + " " + year + " " + time;
     }
 
     @Override
