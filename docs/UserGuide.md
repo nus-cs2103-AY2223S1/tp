@@ -329,7 +329,7 @@ Expected outcome:
 | **Find by Company**  |                                  |
 | **Find by Position** |                                  |
 | **Filter**           |                                  |
-| **Sort**             | `sort ORDER`<br> e.g.`, `sort a` |
+| **Sort**             | `sort ORDER`, e.g.`, `sort a` |
 | **Stats**            |                                  |
 | **Select**           |                                  |
 | **Add Task**         | `addtask TASKNAME /at TASKTIME`, e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                  |
