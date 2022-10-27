@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-#User Guide
+# User Guide
 
 EZLead is a **desktop app for tech leads to manage teams optimized for use via a Command Line Interface (CLI)**.
 As a tech lead, you will be able to easily keep track of all the teams under you as well as each team's current and
@@ -13,9 +13,9 @@ future tasks. With our app, teams management would be easier than ever.
 
 ## Index
 
-- [Quick Start](#Quick Start)
+- [Quick Start](#Quick%20Start)
 - [Features](#Features)
-- [Command Summary](#Command Summary)
+- [Command Summary](#Command%20Summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
