@@ -27,7 +27,7 @@
                     <VBox>
 
 
-                        <VBox fx:id="groupList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                        <VBox fx:id="groupList" styleClass="pane-with-border" minWidth="600" prefWidth="600"
                               VBox.vgrow="ALWAYS">
                             <padding>
                                 <Insets top="10" right="10" bottom="10" left="10"/>
@@ -36,7 +36,7 @@
                         </VBox>
 
                     </VBox>
-                    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Email All">
+                    <Button fx:id="emailAllButton" mnemonicParsing="false" onAction="#emailAll" text="Email All">
                         <HBox.margin>
                             <Insets left="5.0"/>
                         </HBox.margin>
