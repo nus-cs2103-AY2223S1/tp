@@ -32,27 +32,66 @@ public class SampleDataUtil {
         return new Resident[] {
             new Resident(
                     new Name("Jon Tan"), new Phone("98113234"), new Email("jontan99@gmail.com"), new Room("03-10"),
-                    new Gender("M"), new House("D"), new MatricNumber("A0000000A"), getTagSet("BlockHead")
+                    new Gender("M"), new House("D"), new MatricNumber("A0051772A"), getTagSet("BlockHead")
             ),
             new Resident(
                     new Name("Ng Kai Ling"), new Phone("98841523"), new Email("ngkailing@gmail.com"), new Room("04-05"),
-                    new Gender("F"), new House("A"), new MatricNumber("A0000000B"), getTagSet("HouseHead")
+                    new Gender("F"), new House("A"), new MatricNumber("A0003381B"), getTagSet("Scholar")
             ),
             new Resident(
                     new Name("Kate Lim"), new Phone("90184402"), new Email("katelim@gmail.com"), new Room("02-01"),
-                    new Gender("F"), new House("U"), new MatricNumber("A0000000C"), getTagSet("SportsCapt")
+                    new Gender("F"), new House("U"), new MatricNumber("A0065912C"), getTagSet("SportsCapt")
             ),
             new Resident(
                     new Name("Ong Kai Wen"), new Phone("95430211"), new Email("kaiwen@gmail.com"), new Room("03-04"),
-                    new Gender("M"), new House("U"), new MatricNumber("A0000000C"), getTagSet("Marketing")
+                    new Gender("M"), new House("U"), new MatricNumber("A0063112C"), getTagSet("ViceHead")
             ),
             new Resident(
                     new Name("Lee Wei Ling"), new Phone("98770211"), new Email("weiwen95@gmail.com"), new Room("02-04"),
-                    new Gender("F"), new House("L"), new MatricNumber("A0000000D"), getTagSet("RCFellow")
+                    new Gender("F"), new House("L"), new MatricNumber("A0071273D"), getTagSet("RCFellow")
             ),
             new Resident(
                     new Name("Joshua Li"), new Phone("91670290"), new Email("j0shli@gmail.com"), new Room("03-09"),
-                    new Gender("M"), new House("N"), new MatricNumber("A0000000E"), getTagSet("PublicityHead")
+                    new Gender("M"), new House("N"), new MatricNumber("A0088134E"), getTagSet("PublicityHead")
+            ),
+            new Resident(
+                    new Name("Melvin Chua"), new Phone("91615761"), new Email("melvchua@gmail.com"), new Room("03-09"),
+                    new Gender("M"), new House("A"), new MatricNumber("A0062330F"), getTagSet("TechLead")
+            ),
+
+            new Resident(
+                    new Name("Aaron Tong"), new Phone("91745290"), new Email("aarontng@gmail.com"), new Room("02-02"),
+                    new Gender("M"), new House("D"), new MatricNumber("A0040160G"), getTagSet("HouseHead")
+            ),
+
+            new Resident(
+                    new Name("Isabelle Hua"), new Phone("94357150"), new Email("isahua@gmail.com"), new Room("02-03"),
+                    new Gender("F"), new House("L"), new MatricNumber("A0086237H"), getTagSet("Scholar")
+            ),
+
+            new Resident(
+                    new Name("Armaan Haj"), new Phone("91674412"), new Email("armaanhaj@gmail.com"), new Room("02-07"),
+                    new Gender("M"), new House("L"), new MatricNumber("A0732156I"), getTagSet("FirstAid")
+            ),
+
+            new Resident(
+                    new Name("Ng Xin Yi"), new Phone("99494460"), new Email("ngxy@gmail.com"), new Room("04-01"),
+                    new Gender("F"), new House("A"), new MatricNumber("A0002334J"), getTagSet("ViceHead")
+            ),
+
+            new Resident(
+                    new Name("Dinesh"), new Phone("98484241"), new Email("dinesh@gmail.com"), new Room("02-05"),
+                    new Gender("M"), new House("U"), new MatricNumber("A0210521K"), getTagSet("RCFellow")
+            ),
+
+            new Resident(
+                    new Name("Nur Farah"), new Phone("91834331"), new Email("farahnur@gmail.com"), new Room("04-05"),
+                    new Gender("F"), new House("N"), new MatricNumber("A0203046L"), getTagSet("HouseHead")
+            ),
+
+            new Resident(
+                    new Name("Chen Ming Xuan"), new Phone("91526188"), new Email("chenmx@gmail.com"), new Room("02-08"),
+                    new Gender("M"), new House("U"), new MatricNumber("A0567112M"), getTagSet("TechDev")
             ),
         };
     }
