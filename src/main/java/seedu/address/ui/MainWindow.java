@@ -212,12 +212,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Export the data.
-     */
-    @FXML
-    private void handleExport() {}
-
-    /**
      * Closes the application.
      */
     @FXML
@@ -231,6 +225,14 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.hide();
         });
         pause.play();
+    }
+
+    /**
+     * Exports the address books to csv.
+     */
+    @FXML
+    private void handleExport() {
+        logic.export();
     }
 
     /** Shows the specified entity **/

@@ -19,7 +19,7 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_missingPreamble_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.FEEDBACK_MESSAGE);
         assertParseFailure(parser, "", expectedMessage);
     }
 

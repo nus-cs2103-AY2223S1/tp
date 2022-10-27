@@ -25,7 +25,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             }
         }
         if (sort == null) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.FEEDBACK_MESSAGE));
         }
         return new SortCommand(sort);
     }
