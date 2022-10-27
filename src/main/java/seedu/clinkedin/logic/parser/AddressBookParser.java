@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.clinkedin.logic.commands.AddCommand;
+import seedu.clinkedin.logic.commands.AddRateCommand;
 import seedu.clinkedin.logic.commands.AddTagCommand;
 import seedu.clinkedin.logic.commands.ClearCommand;
 import seedu.clinkedin.logic.commands.Command;
@@ -23,7 +24,6 @@ import seedu.clinkedin.logic.commands.HelpCommand;
 import seedu.clinkedin.logic.commands.ImportCommand;
 import seedu.clinkedin.logic.commands.ListCommand;
 import seedu.clinkedin.logic.commands.NoteCommand;
-import seedu.clinkedin.logic.commands.AddRateCommand;
 import seedu.clinkedin.logic.commands.RedoCommand;
 import seedu.clinkedin.logic.commands.StatsCommand;
 import seedu.clinkedin.logic.commands.UndoCommand;
