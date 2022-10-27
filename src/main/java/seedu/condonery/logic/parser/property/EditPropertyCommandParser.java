@@ -4,6 +4,7 @@ import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -37,7 +38,7 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
     public EditPropertyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG,
-                        PREFIX_PROPERTY_TYPE);
+                        PREFIX_PROPERTY_TYPE, PREFIX_PROPERTY_STATUS);
         EditPropertyDescriptor editPropertyDescriptor =
                 new EditPropertyDescriptor();
         Index index;
@@ -73,7 +74,13 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
                             ParserUtil.parsePropertyType(
                                     argMultimap.getValue(PREFIX_PROPERTY_TYPE).get()));
         }
-        System.out.println(argMultimap.getValue(PREFIX_TAG));
+
+        if (argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent()) {
+            editPropertyDescriptor
+                    .setPropertyStatusEnum(
+                            ParserUtil.parsePropertyStatus(
+                                    argMultimap.getValue(PREFIX_PROPERTY_STATUS).get()));
+        }
         return new EditPropertyCommand(index, editPropertyDescriptor);
     }
 

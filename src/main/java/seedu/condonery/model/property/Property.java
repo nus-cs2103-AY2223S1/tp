@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
@@ -28,21 +29,24 @@ public class Property {
     private final Set<Tag> tags = new HashSet<>();
     private Path imageDirectoryPath;
     private PropertyTypeEnum propertyTypeEnum;
+    private PropertyStatusEnum propertyStatusEnum;
 
     /**
      * Every field must be present and not null.
      */
     public Property(Name name,
-                                       Address address,
-                                       Price price,
-                                       Set<Tag> tags,
-                                       PropertyTypeEnum propertyTypeEnum) {
-        requireAllNonNull(name, address, price, tags, propertyTypeEnum);
+                    Address address,
+                    Price price,
+                    Set<Tag> tags,
+                    PropertyTypeEnum propertyTypeEnum,
+                    PropertyStatusEnum propertyStatusEnum) {
+        requireAllNonNull(name, address, price, tags, propertyTypeEnum, propertyStatusEnum);
         this.name = name;
         this.address = address;
         this.price = price;
         this.tags.addAll(tags);
         this.propertyTypeEnum = propertyTypeEnum;
+        this.propertyStatusEnum = propertyStatusEnum;
     }
 
     public Name getName() {
@@ -84,6 +88,10 @@ public class Property {
         HashSet<String> stringTags = new HashSet<>(tags.size());
         tags.forEach(tag -> stringTags.add(tag.tagName));
         return Collections.unmodifiableSet(stringTags);
+    }
+
+    public PropertyStatusEnum getPropertyStatusEnum() {
+        return propertyStatusEnum;
     }
 
     /**
@@ -145,13 +153,15 @@ public class Property {
         return otherProperty.getName().equals(getName())
             && otherProperty.getAddress().equals(getAddress())
             && otherProperty.getPrice().equals(getPrice())
+            && otherProperty.getPropertyStatusEnum().equals(getPropertyStatusEnum())
+            && otherProperty.getPropertyTypeEnum().equals(getPropertyTypeEnum())
             && otherProperty.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, price, tags);
+        return Objects.hash(name, address, price, tags, propertyTypeEnum, propertyStatusEnum);
     }
 
     @Override
@@ -163,7 +173,9 @@ public class Property {
             .append("; Price: ")
             .append(getPrice())
             .append("; Property Type: ")
-            .append(getPropertyTypeEnum());
+            .append(getPropertyTypeEnum())
+            .append("; Property Status: ")
+            .append(getPropertyStatusEnum());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

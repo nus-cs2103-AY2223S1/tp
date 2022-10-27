@@ -27,6 +27,7 @@ import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
@@ -113,11 +114,12 @@ public class EditPropertyCommand extends Command {
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
         PropertyTypeEnum propertyTypeEnum = editPropertyDescriptor
                 .getPropertyTypeEnum().orElse(propertyToEdit.getPropertyTypeEnum());
-
+        PropertyStatusEnum propertyStatusEnum = editPropertyDescriptor
+                .getPropertyStatusEnum().orElse(propertyToEdit.getPropertyStatusEnum());
         Property updatedProperty = new Property(updatedName, updatedAddress,
                 updatedPrice,
                 updatedTags,
-                propertyTypeEnum);
+                propertyTypeEnum, propertyStatusEnum);
         updatedProperty.setImageDirectoryPath(imageDirectoryPath);
         return updatedProperty;
     }
@@ -153,6 +155,7 @@ public class EditPropertyCommand extends Command {
         private Price price;
         private Set<Tag> tags;
         private PropertyTypeEnum propertyTypeEnum;
+        private PropertyStatusEnum propertyStatusEnum;
 
         public EditPropertyDescriptor() {}
 
@@ -166,6 +169,7 @@ public class EditPropertyCommand extends Command {
             setPrice(toCopy.price);
             setTags(toCopy.tags);
             setPropertyTypeEnum(toCopy.propertyTypeEnum);
+            setPropertyStatusEnum(toCopy.propertyStatusEnum);
         }
 
         /**
@@ -222,6 +226,15 @@ public class EditPropertyCommand extends Command {
 
         public void setPropertyTypeEnum(PropertyTypeEnum propertyTypeEnum) {
             this.propertyTypeEnum = propertyTypeEnum;
+        }
+
+        public Optional<PropertyStatusEnum> getPropertyStatusEnum() {
+            return Optional.ofNullable(propertyStatusEnum);
+
+        }
+
+        public void setPropertyStatusEnum(PropertyStatusEnum propertyStatusEnum) {
+            this.propertyStatusEnum = propertyStatusEnum;
         }
 
         @Override

@@ -12,6 +12,7 @@ import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
@@ -117,13 +118,24 @@ public class ParserUtil {
 
     /**
      * Parses a string into {@code PropertyTypeEnum} enum
-     * @param propertyType string to prase
+     * @param propertyType string to PropertyTypeEnum
      * @return a {@code PropertyStatusEnum} enum
      * @throws ParseException if the string does not match any valid enum
      */
     public static PropertyTypeEnum parsePropertyType(String propertyType) throws ParseException {
         requireNonNull(propertyType);
         return PropertyTypeEnum.valueOf(propertyType);
+    }
+
+    /**
+     * Parses a string into {@code PropertyStatusEnum} enum
+     * @param propertyStatus string to PropertyStatusEnum
+     * @return a {@code PropertyStatusEnum} enum
+     * @throws ParseException if the string does not match any valid enum
+     */
+    public static PropertyStatusEnum parsePropertyStatus(String propertyStatus) throws ParseException {
+        requireNonNull(propertyStatus);
+        return PropertyStatusEnum.valueOf(propertyStatus);
     }
 
 }
