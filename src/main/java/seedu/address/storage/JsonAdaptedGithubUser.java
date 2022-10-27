@@ -11,6 +11,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.github.User;
 import seedu.address.model.person.github.repo.RepoList;
 
+/**
+ * Jackson-friendly version of {@link User}.
+ */
 public class JsonAdaptedGithubUser {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Github user's %s field is missing!";
     public static final String INVALID_FIELD_MESSAGE_FORMAT = "Github user's %s field is invalid!";

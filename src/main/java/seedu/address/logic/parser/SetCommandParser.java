@@ -98,8 +98,7 @@ public class SetCommandParser implements Parser<SetCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
-                setPersonDescriptor.setGithubUser(
-                    ParserUtil.parseGithubUser(argMultimap.getValue(PREFIX_GITHUB).get()));
+            setPersonDescriptor.setGithubUser(ParserUtil.parseGithubUser(argMultimap.getValue(PREFIX_GITHUB).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(setPersonDescriptor::setTags);

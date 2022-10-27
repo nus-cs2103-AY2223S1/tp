@@ -51,6 +51,10 @@ public class User {
         this.repoList = getUpdatedRepoList(userReposWrapper);
     }
 
+    /**
+     * @param username Username for the GitHub User class to be initiated with
+     * @param repoList RepoList for the GitHub User class to be initiated with
+     */
     public User(String username, RepoList repoList) {
         requireAllNonNull(username, repoList);
         this.username = username;

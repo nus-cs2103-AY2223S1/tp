@@ -83,7 +83,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code githubUser} is invalid.
      */
     public static User parseGithubUser(String githubUser)
-        throws ParseException, UserInvalidException, NetworkConnectionException {
+            throws ParseException, UserInvalidException, NetworkConnectionException {
         requireNonNull(githubUser);
         String trimmedUser = githubUser.trim();
         if (!User.isValidUsername(trimmedUser)) {

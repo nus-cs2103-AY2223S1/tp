@@ -46,8 +46,8 @@ public class Person implements Comparable<Person> {
         this.timezone = timezone;
         this.tags.addAll(tags);
         this.contacts.putAll(contacts);
-        if (!this.contacts.containsKey(ContactType.EMAIL) &&
-            (githubUser != null && githubUser.getEmail().isPresent())) {
+        if (!this.contacts.containsKey(ContactType.EMAIL)
+            && (githubUser != null && githubUser.getEmail().isPresent())) {
             this.contacts.put(ContactType.EMAIL, githubUser.getEmail().get());
         }
         this.gitHubUser = githubUser;

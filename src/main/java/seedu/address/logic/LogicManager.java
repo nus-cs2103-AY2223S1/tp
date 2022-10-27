@@ -44,7 +44,7 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText,
                                  MainPanelName mainPanelName) throws CommandException, ParseException,
-        UserInvalidException, NetworkConnectionException {
+            UserInvalidException, NetworkConnectionException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
