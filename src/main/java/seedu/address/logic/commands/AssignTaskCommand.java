@@ -19,7 +19,7 @@ import seedu.address.model.team.Task;
 /**
  * Assigns a task to a specific member in the team.
  */
-@CommandLine.Command(name = "task", aliases = {"t"})
+@CommandLine.Command(name = "task", aliases = {"ta"})
 public class AssignTaskCommand extends Command {
     public static final String COMMAND_WORD = "assign task";
 
