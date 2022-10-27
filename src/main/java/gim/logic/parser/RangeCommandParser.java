@@ -26,6 +26,13 @@ public class RangeCommandParser implements Parser<RangeCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_START_DATE, PREFIX_END_DATE,
                 PREFIX_RANGE_ADVANCED);
 
+        // invalid command format if user inputs all keywords or mixes the keywords
+        if (arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_RANGE_ADVANCED)
+            || arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_RANGE_ADVANCED)
+            || arePrefixesPresent(argMultimap, PREFIX_END_DATE, PREFIX_RANGE_ADVANCED)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
+        }
+
         // advanced version: when the user does not input any of the dates, but only inputs an integer with prefix last/
         if (arePrefixesPresent(argMultimap, PREFIX_RANGE_ADVANCED)
                 && !arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE)) {
