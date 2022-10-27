@@ -239,7 +239,7 @@
     -fx-background-color: derive(#EDA7A7, 20%);
 }
 
-#helpButton, #unfocusButton {
+#helpButton, #unfocusButton, #helpFocusButton {
     -fx-font-size: 12pt;
     -fx-font-style: normal;
     -fx-font-weight: 300;
@@ -250,7 +250,7 @@
     -fx-background-color: #fe7f9c;
 }
 
-#unfocusButton:hover {
+#unfocusButton:hover, #helpFocusButton:hover {
     -fx-background-color: #55aaff;
 }
 
