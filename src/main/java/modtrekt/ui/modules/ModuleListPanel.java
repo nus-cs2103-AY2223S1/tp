@@ -2,6 +2,7 @@ package modtrekt.ui.modules;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -28,6 +29,11 @@ public class ModuleListPanel extends UiPart<Region> {
         super(FXML);
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListPanelCell());
+        moduleList.addListener((ListChangeListener<? super Module>) (e) -> {
+            if (moduleList.size() > 0) {
+                moduleListView.scrollTo(0);
+            }
+        });
     }
 
     /**
