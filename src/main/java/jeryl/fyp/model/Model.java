@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.index.Index;
+import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.model.student.Deadline;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
@@ -67,11 +68,14 @@ public interface Model {
      */
     void deleteStudent(Student target);
 
+
     /**
      * Adds the given student.
      * {@code student} must not already exist in the FYP manager.
      */
     void addStudent(Student student);
+
+    void editStudent(Student target, EditCommand.EditStudentDescriptor editStudentDescriptor);
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.

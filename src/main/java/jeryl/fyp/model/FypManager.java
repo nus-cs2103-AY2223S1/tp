@@ -4,13 +4,20 @@ import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.index.Index;
+import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.model.student.Deadline;
+import jeryl.fyp.model.student.Email;
+import jeryl.fyp.model.student.ProjectName;
+import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.student.UniqueStudentList;
+import jeryl.fyp.model.tag.Tag;
 
 /**
  * Wraps all data at the FYP-manager level
@@ -99,6 +106,26 @@ public class FypManager implements ReadOnlyFypManager {
     }
 
     /**
+     * @param target the target student that we want change fields for
+     * @param editStudentDescriptor parameters to be changed to
+     */
+    public void editStudents(Student target, EditCommand.EditStudentDescriptor editStudentDescriptor) {
+        assert target != null;
+
+        StudentName updatedStudentName = editStudentDescriptor.getName().orElse(target.getStudentName());
+        StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(target.getStudentId());
+        Email updatedEmail = editStudentDescriptor.getEmail().orElse(target.getEmail());
+        ProjectName updatedProjectName = editStudentDescriptor.getProjectName().orElse(target.getProjectName());
+        ProjectStatus updatedProjectStatus =
+                target.getProjectStatus(); //edit does not allow editing of project status
+        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(target.getTags());
+
+        Student updatedStudent = new Student(updatedStudentName, updatedStudentId, updatedEmail,
+                updatedProjectName, updatedProjectStatus, updatedTags);
+        students.setStudent(target, updatedStudent);
+    }
+
+    /**
      * Returns unique Student if {@code students} contains the student with the specified studentId.
      */
     public Student getStudentByStudentId(StudentId studentId) {
@@ -107,6 +134,10 @@ public class FypManager implements ReadOnlyFypManager {
         return students.getStudentByStudentId(studentId);
     }
 
+    /**
+     * @param studentId studentId we provide to get index in FYPManager
+     * @return index position in FYPManager
+     */
     public Index getIndexByStudentId(StudentId studentId) {
         requireNonNull(studentId);
 
@@ -128,6 +159,7 @@ public class FypManager implements ReadOnlyFypManager {
     public void removeDeadline(Student student, Deadline deadline) {
         student.getDeadlineList().remove(deadline);
     }
+
 
     /**
      * Adds a deadline to this specified {@code student}.

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.LogsCenter;
 import jeryl.fyp.commons.core.index.Index;
+import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.model.student.Deadline;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
@@ -102,11 +103,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void editStudent(Student target, EditCommand.EditStudentDescriptor editStudentDescriptor) {
+        fypManager.editStudents(target, editStudentDescriptor);
+    }
+
+    @Override
     public void addStudent(Student student) {
         requireNonNull(student);
         fypManager.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
+
 
     @Override
     public void setStudent(Student target, Student editedStudent) {
