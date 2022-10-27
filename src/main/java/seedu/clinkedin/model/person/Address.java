@@ -24,7 +24,7 @@ public class Address {
      *
      * @param address A valid clinkedin.
      */
-    public Address(String address) {
+    public Address(String address) throws IllegalArgumentException {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;

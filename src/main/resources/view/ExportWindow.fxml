@@ -45,19 +45,25 @@
                                 <Insets top="10.0" />
                             </HBox.margin>
                         </TextField>
+                        <ComboBox fx:id="fileFormat">
+                            <HBox.margin>
+                                <Insets top="10.0" />
+                            </HBox.margin>
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value=".csv" />
+                                    <String fx:value=".json" />
+                                </FXCollections>
+                            </items>
+                            <value>
+                                <String fx:value=".csv"/>
+                            </value>
+                        </ComboBox>
                         <Button fx:id="exportButton" onAction="#handleOnExport" text="Export">
                             <HBox.margin>
                                 <Insets top="10.0" />
                             </HBox.margin>
                         </Button>
-                        <ComboBox fx:id="fileFormat">
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="csv" />
-                                    <String fx:value="json" />
-                                </FXCollections>
-                            </items>
-                        </ComboBox>
                     </children>
                 </HBox>
             </VBox>

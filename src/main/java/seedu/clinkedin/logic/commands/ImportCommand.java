@@ -23,6 +23,9 @@ import seedu.clinkedin.logic.parser.exceptions.InvalidPersonException;
 import seedu.clinkedin.model.AddressBook;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.Person;
+import seedu.clinkedin.model.person.UniqueTagTypeMap;
+import seedu.clinkedin.model.person.exceptions.DuplicateTagTypeException;
+import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.storage.JsonSerializableAddressBook;
 
 
@@ -43,6 +46,8 @@ public class ImportCommand extends Command {
             "CLInkedIn already contains all the candidates you are importing from %s!";
     public static final String MESSAGE_SOME_CHANGE =
             "Some candidates were ignored as adding them would result in duplicate persons!";
+    public static final String MESSAGE_NEW_TAGTYPES =
+            "Missing tag types were created!";
     public static final String MESSAGE_WINDOW = "Opening Import Window...";
 
     private String filePath;
@@ -94,14 +99,49 @@ public class ImportCommand extends Command {
             }
         }
 
-        if (isUpdated && isSomeExisting) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS) + " " + MESSAGE_SOME_CHANGE);
+        boolean isNewCreated = false;
+        if (isUpdated && fileType == fileType.CSV) {
+            try {
+                if (isCreateNonExistingTagTypes(personList)) {
+                    isNewCreated = true;
+                }
+            } catch (DuplicateTagTypeException dte) {
+                throw new CommandException("File format invalid or not compatible!");
+            }
         }
+        StringBuilder returnMessage = new StringBuilder();
         if (isUpdated) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS));
+            returnMessage.append(MESSAGE_SUCCESS);
+            if (isSomeExisting) {
+                returnMessage.append(" " + MESSAGE_SOME_CHANGE);
+            }
+            if (isNewCreated) {
+                returnMessage.append(" " + MESSAGE_NEW_TAGTYPES);
+            }
+            return new CommandResult(returnMessage.toString());
         }
         return new CommandResult(String.format(MESSAGE_NO_CHANGE, filePath));
 
+    }
+
+    /**
+     * Creates tag types not pre-existing in the addressbook.
+     */
+    public boolean isCreateNonExistingTagTypes(List<Person> personList) throws DuplicateTagTypeException {
+        boolean result = false;
+        for (Person p : personList) {
+            for (TagType tagType: p.getTags().keySet()) {
+                if (!UniqueTagTypeMap.getPrefixMap().containsKey(tagType.getPrefix())
+                        && !UniqueTagTypeMap.getPrefixMap().containsValue(tagType)) {
+                    result = true;
+                    UniqueTagTypeMap.createTagType(tagType.getPrefix(), tagType);
+                } else if (!UniqueTagTypeMap.getPrefixMap().containsKey(tagType.getPrefix())
+                        || !UniqueTagTypeMap.getPrefixMap().containsValue(tagType)) {
+                    throw new DuplicateTagTypeException();
+                }
+            }
+        }
+        return result;
     }
 
     public List<Person> getPersonList(ArrayList<ArrayList<String[]>> stringPersonList) throws CommandException {
@@ -110,7 +150,7 @@ public class ImportCommand extends Command {
             try {
                 personList.add(ParserUtil.parsePerson(person));
             } catch (InvalidPersonException ipe) {
-                throw new CommandException(ipe.getMessage());
+                throw new CommandException("Address book couldn't be imported as the file format is incorrect!");
             }
         }
         return personList;

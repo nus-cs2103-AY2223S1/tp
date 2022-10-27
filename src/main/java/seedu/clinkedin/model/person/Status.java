@@ -25,7 +25,7 @@ public class Status {
      *
      * @param s A valid status.
      */
-    public Status(String s) {
+    public Status(String s) throws IllegalArgumentException {
         requireNonNull(s);
         checkArgument(isValidStatus(s), MESSAGE_CONSTRAINTS);
         status = s;
