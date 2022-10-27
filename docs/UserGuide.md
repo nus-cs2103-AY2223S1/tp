@@ -270,7 +270,29 @@ Get easy access to some of your favourite NUS websites, right from the menu.
 
 ### Accepted Date Time Formats
 
-Lorem ipsum
+NUScheduler accepts date-time formats both with and without a time specified. For example, date-only formats can be used to specify all day events.
+
+#### Date-only formats
+
+- dd/MM/yyyy
+- dd-MM-yyyy
+- dd MM yyyy
+- dd/MM/yy
+- dd-MM-yy
+- dd MM yy
+- dd/MM (uses current year by default)
+- dd-MM (uses current year by default)
+
+#### Date time formats
+
+The following time formats can be appended after a whitespace to the end of any ofo the above date formats.
+
+- HH:mm
+- HHmm
+- HH:mm:ss
+- HHmmss
+
+Example, `25/05/2015 10:00`
 
 --------------------------------------------------------------------------------------------------------------------
 
