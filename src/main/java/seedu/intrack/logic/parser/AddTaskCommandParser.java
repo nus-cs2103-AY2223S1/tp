@@ -24,9 +24,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     /**
      * Regex pattern for a valid datetime format, this ensures that the datetime format would be dd-MM-yyyy HH:mm
      */
-    private static final String DATETIME_FORMAT = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} "
-        + "([01]?[0-9]|2[0-3]):[0-5][0-9]$^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} "
-        + "([01]?[0-9]|2[0-3]):[0-5][0-9]$";
+    private static final String DATETIME_FORMAT = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}"
+        + " ([01]?[0-9]|2[0-3]):[0-5][0-9]";
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code AddTaskCommand}
