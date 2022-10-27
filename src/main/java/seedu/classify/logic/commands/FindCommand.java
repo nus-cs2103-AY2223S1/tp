@@ -34,8 +34,16 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.storePredicate(predicate);
         model.updateFilteredStudentList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+        int numberOfStudents = model.getFilteredStudentList().size();
+        if (numberOfStudents == 1) {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_SINGLE_PERSON_LISTED_OVERVIEW,
+                            model.getFilteredStudentList().size()));
+        } else {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+        }
+
     }
 
     @Override

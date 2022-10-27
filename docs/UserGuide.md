@@ -11,7 +11,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **1 Introduction**
+## 1. **Introduction**
 
 ### 1.1 What is Class-ify?
 
@@ -26,7 +26,7 @@ get you started in no time and be your guiding light as you navigate through Cla
 guide, head over to [Quick Start](#3-quick-start) or to learn about Class-ify's features, head over to
 [Features](#4-features) for more information.
 
-## **2 How to use this user guide**
+## 2. **How to use this user guide**
 
 Class-ify uses a Command Line Interface (CLI), which may be new to some users. If you are a new user, we strongly recommend you to look through
 the user guide from start to end to fully understand how to use Class-ify. However, you may also choose to skip to the relevant sections described below:
@@ -38,7 +38,7 @@ the user guide from start to end to fully understand how to use Class-ify. Howev
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **3 Quick start**
+## 3. **Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -66,7 +66,7 @@ Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **4 Features**
+## 4. **Features**
 Before you begin reading, here are some special notations to help you along the way!
 
 **Tips**
@@ -93,7 +93,7 @@ will delete all data stored locally and this action is irreversible. You will lo
 <div markdown="span" class="alert alert-warning">
 :exclamation: Stop and read carefully when you see this!
 </div>
-
+<br>
 <div markdown="block" class="alert alert-info">:information_source:
 **Notes on the Command Format:** <br>
 
@@ -280,7 +280,7 @@ Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **5 FAQ**
+## 5. **FAQ**
 
 **Q**: Where can I locate my data file?  
 **A**: You can locate the JSON file in the path `[JAR file location]/data/classify.json`.
@@ -294,7 +294,7 @@ Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **6 Command summary**
+## 6. **Command summary**
 
 |              Action               | Format                                                                                                        | Example                                                                          |  
 |:---------------------------------:|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
@@ -314,7 +314,7 @@ Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **7 Glossary**
+## 7. **Glossary**
 
 * **CLI**: Command Line Interface (CLI) is a text-based User Interface (UI) used to run programs. Through the CLI,
 users interact with the application by typing in text commands.
