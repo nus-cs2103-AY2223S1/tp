@@ -17,11 +17,12 @@ Given below are my contributions to the project.
   * to be added soon
 
 * **Enhancements to existing features**:
-  * to be added soon
+  * A person can be added to the address book knowing only their occupation and name.
 
 * **Documentation**:
   * User Guide:
-    * Undo command
+    * Created the undo command
+    * Removed some criteria when adding a person to the address book 
   * Developer Guide:
     * to be added soon
 
