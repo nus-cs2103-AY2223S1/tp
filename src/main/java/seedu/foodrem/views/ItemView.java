@@ -43,13 +43,15 @@ public class ItemView {
         tags.setVgap(SPACING_UNIT);
 
         // Quantity/unit and price row
-        final Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-        final HBox quantityPriceAndCost = new HBox(
-                new Label("Quantity: " + buildItemQuantityAndUnitStringFrom(item)),
-                spacer,
-                new VBox(new Label("Price: $" + item.getPrice().toString()),
-                        new Label("Total Cost: $" + item.getItemCost())));
+        final Label quantityLabel = new Label("Quantity Remaining: ");
+        final Label quantityValue = new Label(buildItemQuantityAndUnitStringFrom(item));
+        quantityValue.getStyleClass().add("bold");
+        final Label priceLabel = new Label("Price: $");
+        final Label priceValue = new Label(item.getPrice().toString());
+        priceValue.getStyleClass().add("bold");
+        final Label costLabel = new Label("Total Cost: $");
+        final Label costValue = new Label(String.valueOf(item.getItemCost()));
+        costValue.getStyleClass().add("bold");
 
         final Label remarks = new Label(item.getRemarks().toString().isBlank() ? "-" : item.getRemarks().toString());
         remarks.setWrapText(true);
@@ -59,7 +61,9 @@ public class ItemView {
         linedSeparator.getStyleClass().add("lined-separator");
         final VBox itemView = new VBox(
                 name,
-                quantityPriceAndCost,
+                new HBox(quantityLabel, quantityValue),
+                new HBox(priceLabel, priceValue),
+                new HBox(costLabel, costValue),
                 new Separator(),
                 new Label("Bought Date: " + buildBoughtDateStringFrom(item)),
                 new Label("Expiry Date: " + buildExpiryDateStringFrom(item)),
