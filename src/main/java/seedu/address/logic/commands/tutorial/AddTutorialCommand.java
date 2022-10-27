@@ -1,10 +1,10 @@
 package seedu.address.logic.commands.tutorial;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.address.logic.commands.Command;
@@ -26,14 +26,14 @@ public class AddTutorialCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_VENUE + "VENUE "
-            + PREFIX_TIMESLOT + "TIMESLOT "
-            + PREFIX_DAY + "DAY "
+            + PREFIX_TIME + "TIMESLOT "
+            + PREFIX_DATE_DAY + "DAY "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T W17 "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_VENUE + "COM1-0203 "
-            + PREFIX_TIMESLOT + "1500-1800 "
-            + PREFIX_DAY + "2 ";
+            + PREFIX_TIME + "1500-1800 "
+            + PREFIX_DATE_DAY + "2 ";
 
     public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the ModQuik";

@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.reminder.EditReminderCommand;
@@ -29,7 +29,7 @@ public class EditReminderCommandParser implements Parser<EditReminderCommand> {
     public EditReminderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIMESLOT, PREFIX_PRIORITY, PREFIX_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIME, PREFIX_PRIORITY, PREFIX_DESCRIPTION);
 
         Index index;
 
@@ -46,9 +46,9 @@ public class EditReminderCommandParser implements Parser<EditReminderCommand> {
             editReminderDescriptor.setName(ReminderParserUtil.parseReminderName(argMultimap
                     .getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
+        if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
             editReminderDescriptor.setDeadline(DatetimeCommonUtils.parseDatetime(argMultimap
-                    .getValue(PREFIX_TIMESLOT).get()));
+                    .getValue(PREFIX_TIME).get()));
         }
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
             editReminderDescriptor.setPriority(ReminderParserUtil.parseReminderPriority(argMultimap

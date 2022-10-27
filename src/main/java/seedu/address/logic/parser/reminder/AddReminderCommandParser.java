@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.logic.commands.reminder.AddReminderCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -31,9 +31,9 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
      */
     public AddReminderCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIMESLOT, PREFIX_DESCRIPTION, PREFIX_PRIORITY);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIME, PREFIX_DESCRIPTION, PREFIX_PRIORITY);
 
-        ParserUtil.assertAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TIMESLOT, PREFIX_DESCRIPTION,
+        ParserUtil.assertAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TIME, PREFIX_DESCRIPTION,
                 PREFIX_PRIORITY);
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
@@ -42,7 +42,7 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
         ReminderName name = ReminderParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
         ReminderDescription description = ReminderParserUtil.parseReminderDescription(
                 argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Datetime deadline = DatetimeCommonUtils.parseDatetime(argMultimap.getValue(PREFIX_TIMESLOT).get());
+        Datetime deadline = DatetimeCommonUtils.parseDatetime(argMultimap.getValue(PREFIX_TIME).get());
         ReminderPriority priority = ReminderParserUtil.parseReminderPriority(argMultimap.getValue(PREFIX_PRIORITY)
                 .get());
 
