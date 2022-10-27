@@ -37,6 +37,14 @@ public class Monthly {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns an int from the String of monthly contribution without the $.
+     * @return an int converted from the String.
+     */
+    public int convertMonthlyToInt() {
+        return Integer.parseInt(this.value.substring(1));
+    }
+
     @Override
     public String toString() {
         return value;
