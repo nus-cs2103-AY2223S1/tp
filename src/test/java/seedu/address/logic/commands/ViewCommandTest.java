@@ -27,7 +27,7 @@ public class ViewCommandTest {
         Person personToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ViewCommand.MESSAGE_SUCCESS, personToView.getName().fullName);
+        String expectedMessage = ViewCommand.MESSAGE_SUCCESS;
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateViewedPersonList(new SamePersonPredicate(personToView));
@@ -50,7 +50,7 @@ public class ViewCommandTest {
         Person personToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ViewCommand.MESSAGE_SUCCESS, personToView.getName().fullName);
+        String expectedMessage = ViewCommand.MESSAGE_SUCCESS;
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateViewedPersonList(new SamePersonPredicate(personToView));

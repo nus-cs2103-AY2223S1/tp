@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.predicates.ListOfContainsKeywordsPredicates;
+import seedu.address.storage.Storage;
 
 /**
  * Finds and lists all persons in address book whose field(s) contains any of the argument keywords.
@@ -35,7 +36,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, Storage storage) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicates.getChainedPredicate());
         return new CommandResult(

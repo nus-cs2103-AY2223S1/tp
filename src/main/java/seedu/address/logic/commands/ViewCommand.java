@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.SamePersonPredicate;
+import seedu.address.storage.Storage;
 
 /**
  * Views the details of an existing person in the address book.
@@ -23,7 +24,7 @@ public class ViewCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_SUCCESS = "Viewed Person: %1$s";
+    public static final String MESSAGE_SUCCESS = "Person viewed";
 
     private final Index index;
 
@@ -37,7 +38,7 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -48,7 +49,7 @@ public class ViewCommand extends Command {
         Person personToView = lastShownList.get(index.getZeroBased());
 
         model.updateViewedPersonList(new SamePersonPredicate(personToView));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToView.getName().fullName));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override

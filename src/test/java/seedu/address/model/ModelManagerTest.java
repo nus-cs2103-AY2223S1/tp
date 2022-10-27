@@ -89,6 +89,34 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasPersons_nullAddressBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasPersons(null));
+    }
+
+    @Test
+    public void hasPersons_addressBookWithSomeSamePersons_returnsTrue() {
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BENSON);
+        AddressBook ab = new AddressBookBuilder().withPerson(ALICE).build();
+        assertTrue(modelManager.hasPersons(ab));
+    }
+
+    @Test
+    public void hasPersons_addressBookWithAllSamePersons_returnsTrue() {
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BENSON);
+        AddressBook ab = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        assertTrue(modelManager.hasPersons(ab));
+    }
+
+    @Test
+    public void hasPersons_addressBookWithDifferentPersons_returnsFalse() {
+        modelManager.addPerson(ALICE);
+        AddressBook ab = new AddressBookBuilder().withPerson(BENSON).build();
+        assertFalse(modelManager.hasPersons(ab));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }

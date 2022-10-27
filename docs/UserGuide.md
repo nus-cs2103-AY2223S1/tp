@@ -26,29 +26,52 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
    * **`list`** : Lists all applicants.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` : Adds an applicant named `Alex Yeoh` to InternConnect.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` : Adds an applicant named `John Doe` to InternConnect.
+
+   * **`view`**`1` : Views the 1st applicant shown in the current list   
 
    * **`delete`**`3` : Deletes the 3rd applicant shown in the current list.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Fields
+## 2. Fields
 
-1. Name
-   
-   Constraints: 
-   
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the fields:**<br>
+
+* Identity fields and Data fields are mandatory
+
+* Tag fields are optional
+
+</div>
+
+
+### 2.1 Identity Fields
+1. Email
+   Parameter: 
+   Constraints:
    Length Limit: 
    
 1. ...
 
+
+### 2.2 Data Fields
+1. Name
+   ...
+
+
+### 2.3 Tag Fields
+1. Tags
+   ...
+
 --------------------------------------------------------------------------------------------------------------------
 
-## Specifiers:
+## 2.4 Specifiers:
 Each field of an applicant is specified by a specifier as follows:
 * `n/NAME`
 * `p/PHONE`
@@ -65,84 +88,86 @@ Each field of an applicant is specified by a specifier as follows:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 3. Features
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* An address book cannot have multiple persons with the same `NAME`, `EMAIL`, and `JOB_ID` at once.
+* An address book cannot have multiple persons with the exact same identity fields (`EMAIL`, and `JOB_ID`)
+  e.g., `n/John e/j@example.com ji/J12332` and `n/Jason e/j@example.com ji/J12332` is considered the same applicant.
 
 * Words in `UPPER_CASE` are the parameter details to be supplied by the user.  
   e.g., in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Bobby Doe`.
 
+* Items with `...` after them can be used multiple times including zero times.
+  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/KIV`, `t/KIV t/offered` etc.
+
 * Items in curly brackets are mandatory.
-  e.g., `n/NAME p/PHONE e/EMAIL {specifier/SPECIFIER_DETAIL}`, all specifiers need to be listed
+  e.g., `{mandatory_field_parameter/FIELD_DETAIL}`, all fields must be listed.
 
 * Items in square brackets are optional.
-  e.g., `n/NAME p/PHONE e/EMAIL [t/TAGS]` can be used as `n/Bobby p/91234567 e/bob@example.com t/KIV` or as `n/Bobby p/91234567 e/bob@example.com`
+  e.g., `n/NAME p/PHONE e/EMAIL [t/TAG]` can be used as `n/Bobby p/91234567 e/bob@example.com t/KIV` or as `n/Bobby p/91234567 e/bob@example.com`
 
-* Parameters can be in any order.
-  e.g., if the command specifies `n/NAME p/PHONE email/EMAIL`, `n/NAME e/EMAIL p/PHONE` is also acceptable.
+* Parameters can be in any order, and are separated by a space.
+  e.g., if the command specifies `n/NAME p/PHONE e/EMAIL`, `n/NAME e/EMAIL p/PHONE` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken. 
+  e.g. if you specify p/12341234 p/56785678, only p/56785678 will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, and `clear`) will be ignored.  
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
+* All leading and trailing whitespaces will be trimmed, while multiple whitespaces in between words will be replaced by a single whitespace.
+
+* All duplicate checks and find command keywords are case insensitive.
+  e.g., `JACOB@example.com` will be considered equal to `jacob@EXAMPLE.COM`.
+
 </div>
 
-### Viewing help: `help`
+
+### 3.1 Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
 
-### Adding an applicant: `add`
+### 3.2 Adding an applicant: `add`
 
 Adds an applicant to InternConnect.
 
-Format: `add n/NAME e/EMAIL ji/JOB_ID {specifier/SPECIFIER_DETAIL}`
+Format: `add {mandatory_field_parameter/IDENTITY_FIELD} [t/TAG]...`
 
-Specifiers:
-* `n/NAME`
-* `p/PHONE`
-* `e/EMAIL`
-* `a/ADDRESS`
-* `c/CAP`
-* `g/GENDER`
-* `u/UNIVERSITY`
-* `gd/GRADUATION_DATE`
-* `m/MAJOR`
-* `ji/JOB_ID`
-* `jt/JOB_TITLE`
-* `t/TAG`
+* For `mandatory_field_parameter` arguments, please refer to the `specifier` of each fields in the [Specifier](#2.4 Specifiers) section above.
 
 Examples:
-* `n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV`
+* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV`
 
 
-### Listing all applicants : `list`
+### 3.3 Listing all applicants: `list`
 
-Shows a list of all applicants in the address book.
+Shows a list of all applicants in InternConnect.
 
 Format: `list`
 
-### View the detail of an applicant: `view`
+
+### 3.4 Viewing the detail of an applicant: `view`
 
 Shows a detailed view of a selected applicant listed in InternConnect.
 
 Format: `view INDEX`
 
 
-### Editing an applicant : `edit`
+### 3.5 Editing an applicant: `edit`
 
 Edits an existing applicant in InternConnect.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [specifier/SPECIFIER_DETAIL]…​`
+Format: `edit [parameter/NEW_PARAMETER_DETAIL]...`
 
 * Edits the applicant at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed applicant list. 
-* The index **must be a positive integer** 1, 2, 3, …​ and not exceed the total records listed.
+* The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When modifying tags, the existing tags of the applicant will be removed i.e adding of tags is not cumulative.
@@ -153,9 +178,9 @@ Examples:
 *  `edit 2 n/Betty` Edits the name of the 2nd person to be `Betty`.
 
 
-### Locating person's fields by field: `find`
+### 3.6 Locating applicants by field: `find`
 
-Finds persons whose has a field containing any of the given keywords among all specifed fields.
+Finds applicants whose has a field containing any of the given keywords among all specifed fields.
 
 Format: `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`
 
@@ -194,10 +219,35 @@ Examples:
 * `find g/Male t/offered KIV` returns male applicants who have an offered or KIV tag attached to them
 * `find g/Male e/gmail` returns male applicants who have a `gmail` substring in their email address
 
-<br>
+
+### 3.7 Importing applicants from an external text file: `import`
+
+Imports applicants from the specified file path.
+
+Format: `import FILE_PATH`
+
+* The file has to exist in the specified file path.
+* More than 1 applicants can be listed in the file, as long as they have all the mandatory fields, satisfy the value constraints, and do not cause duplicates in the InternConnect.
+* The file must be in json format.
+* For example of valid input file, refer to this [template](templates/template.json) file.
+
+Examples:
+* `import nus_students.json` Imports NUS students listed in the `nus_students.json` file
 
 
-### Deleting an applicant: `delete`
+### 3.8 Exporting displayed list: `export`
+
+Exports the displayed list from InternConnect.
+
+Format: `export`
+
+* Exported JSON file will be stored in `data/export/` folder
+
+Examples:
+* `find university/NUS` followed by `export` exports the result of the `find` command to a JSON file.
+
+
+### 3.9 Deleting an applicant: `delete`
 
 Deletes the specified applicant from InternConnect.
 
@@ -205,31 +255,31 @@ Format: `delete INDEX`
 
 * Deletes the applicant at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​ and **not exceed the total records listed**
+* The index **must be a positive integer** 1, 2, 3, ... and **not exceed the total records listed**
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st applicant in the results of the `find` command.
 
 
-### Clearing all entries: `clear`
+### 3.10 Clearing all entries: `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
 
-### Exiting the program: `exit`
+### 3.11 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### 3.12 Saving the data
 
 InternConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### 3.13 Editing the data file
 
 InternConnect data are saved as a JSON file `[JAR file location]/data/internconnect.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -239,16 +289,18 @@ If your changes to the data file makes its format invalid, InternConnect will di
 
 -----------------------------------------------------------------------------------------------------
 
-## Command summary
+## 4. Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                        |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` |
-| **Clear**  | `clear`                                                                                                                                                                                                 |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                     |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [specifier/SPECIFIER_DETAIL]…​`<br> e.g.,`edit 1 p/91234567 e/bob@example.com`                                                                                 |
-| **Find**   | `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`<br> e.g., `find g/Male t/offered KIV`                                                                                                           |
-| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                         |
-| **List**   | `list`                                                                                                                                                                                                  | 
-| **Help**   | `help`                                                                                                                                                                                                  |
-| **Exit**   | `exit`                                                                                                                                                                                                  |
+| Action     | Format, Examples                                                                                                                                                                                                                                                                  |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add {mandatory_field_parameter/FIELD_DETAIL} [t/TAGS]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                           |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                               |
+| **Edit**   | `edit INDEX [parameter/NEW_PARAMETER_DETAIL]...`<br> e.g.,`edit 1 p/91234567 e/bob@example.com`                                                                                                                                                                                   |
+| **Find**   | `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`<br> e.g., `find g/Male t/offered KIV`                                                                                                                                                                                     |
+| **Import** | `import FILE_PATH`<br> e.g., `import nus_students.json`                                                                                                                                                                                                                           | 
+| **Export** | `export`                                                                                                                                                                                                                                                                          |
+| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                   |
+| **List**   | `list`                                                                                                                                                                                                                                                                            | 
+| **Help**   | `help`                                                                                                                                                                                                                                                                            |
+| **Exit**   | `exit`                                                                                                                                                                                                                                                                            |

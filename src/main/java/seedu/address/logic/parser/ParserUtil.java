@@ -3,13 +3,17 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.person.Cap.CAP_SEPARATOR;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBookFile;
 import seedu.address.model.job.Id;
 import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
@@ -29,11 +33,13 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_FILE_PATH = "File path is invalid.";
     public static final String CAP_PARSING_REGEX = "^[0-9]\\.?\\d{0,2}\\/[0-9]\\.?\\d{0,2}$";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -42,6 +48,20 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code filePath} into a {@code File} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the specified file path format is invalid.
+     */
+    public static Path parseFilePath(String filePath) throws ParseException {
+        String trimmedPath = filePath.trim();
+        if (!FileUtil.isValidPath(trimmedPath) || trimmedPath.equals("")) {
+            throw new ParseException(MESSAGE_INVALID_FILE_PATH);
+        }
+        return Paths.get(trimmedPath);
     }
 
     /**
@@ -186,6 +206,8 @@ public class ParserUtil {
             return new Cap(capValue, maximumCapValue);
         } catch (NumberFormatException e) {
             throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ParseException(Cap.MESSAGE_MAXIMUM_CAP_REQUIRED);
         }
     }
 
@@ -279,6 +301,25 @@ public class ParserUtil {
         }
 
         return new Title(cleanedTitle);
+    }
+
+    /**
+     * Parses a {@code String file} into an {@code AddressBookFile}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Multiple whitespaces will be replaced with a single space.
+     *
+     * @throws ParseException if the given {@code file} is invalid.
+     */
+    public static AddressBookFile parseAddressBookFile(String file) throws ParseException {
+        requireNonNull(file);
+        String trimmedFile = file.trim();
+        String cleanedFile = trimmedFile.replaceAll(" +", " ");
+
+        if (!AddressBookFile.isValidAddressBookFile(cleanedFile)) {
+            throw new ParseException(AddressBookFile.MESSAGE_CONSTRAINTS);
+        }
+
+        return new AddressBookFile(cleanedFile);
     }
 
     /**

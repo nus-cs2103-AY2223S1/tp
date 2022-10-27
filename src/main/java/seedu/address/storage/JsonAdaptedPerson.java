@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.util.StringUtil.trimAndReplaceMultipleSpaces;
 import static seedu.address.logic.parser.ParserUtil.parseCap;
 
 import java.util.ArrayList;
@@ -63,17 +64,17 @@ class JsonAdaptedPerson {
                              @JsonProperty("id") String id,
             @JsonProperty("title") String title,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.gender = gender;
-        this.cap = cap;
-        this.graduationDate = graduationDate;
-        this.university = university;
-        this.major = major;
-        this.id = id;
-        this.title = title;
+        this.name = trimAndReplaceMultipleSpaces(name);
+        this.phone = trimAndReplaceMultipleSpaces(phone);
+        this.email = trimAndReplaceMultipleSpaces(email);
+        this.address = trimAndReplaceMultipleSpaces(address);
+        this.gender = trimAndReplaceMultipleSpaces(gender);
+        this.cap = trimAndReplaceMultipleSpaces(cap);
+        this.graduationDate = trimAndReplaceMultipleSpaces(graduationDate);
+        this.university = trimAndReplaceMultipleSpaces(university);
+        this.major = trimAndReplaceMultipleSpaces(major);
+        this.id = trimAndReplaceMultipleSpaces(id);
+        this.title = trimAndReplaceMultipleSpaces(title);
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -83,17 +84,17 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        gender = source.getGender().value;
-        cap = source.getCap().toString();
-        graduationDate = source.getGraduationDate().value;
-        university = source.getUniversity().value;
-        major = source.getMajor().value;
-        id = source.getJob().getId().value;
-        title = source.getJob().getTitle().value;
+        name = trimAndReplaceMultipleSpaces(source.getName().fullName);
+        phone = trimAndReplaceMultipleSpaces(source.getPhone().value);
+        email = trimAndReplaceMultipleSpaces(source.getEmail().value);
+        address = trimAndReplaceMultipleSpaces(source.getAddress().value);
+        gender = trimAndReplaceMultipleSpaces(source.getGender().value);
+        cap = trimAndReplaceMultipleSpaces(source.getCap().toString());
+        graduationDate = trimAndReplaceMultipleSpaces(source.getGraduationDate().value);
+        university = trimAndReplaceMultipleSpaces(source.getUniversity().value);
+        major = trimAndReplaceMultipleSpaces(source.getMajor().value);
+        id = trimAndReplaceMultipleSpaces(source.getJob().getId().value);
+        title = trimAndReplaceMultipleSpaces(source.getJob().getTitle().value);
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -113,6 +114,9 @@ class JsonAdaptedPerson {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
+        if (!Name.isWithinLengthLimit(name)) {
+            throw new IllegalValueException(Name.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -120,6 +124,9 @@ class JsonAdaptedPerson {
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isWithinLengthLimit(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_LENGTH_LIMIT_EXCEEDED);
         }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
@@ -129,6 +136,9 @@ class JsonAdaptedPerson {
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
+        if (!Email.isWithinLengthLimit(email)) {
+            throw new IllegalValueException(Email.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -136,6 +146,9 @@ class JsonAdaptedPerson {
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        }
+        if (!Address.isWithinLengthLimit(address)) {
+            throw new IllegalValueException(Address.MESSAGE_LENGTH_LIMIT_EXCEEDED);
         }
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -169,6 +182,9 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, University.class.getSimpleName()));
         }
+        if (!University.isWithinLengthLimit(university)) {
+            throw new IllegalValueException(University.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
         if (!University.isValidUniversity(university)) {
             throw new IllegalValueException(University.MESSAGE_CONSTRAINTS);
         }
@@ -176,6 +192,9 @@ class JsonAdaptedPerson {
 
         if (major == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Major.class.getSimpleName()));
+        }
+        if (!Major.isWithinLengthLimit(major)) {
+            throw new IllegalValueException(Major.MESSAGE_LENGTH_LIMIT_EXCEEDED);
         }
         if (!Major.isValidMajor(major)) {
             throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
@@ -185,6 +204,9 @@ class JsonAdaptedPerson {
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }
+        if (!Id.isWithinLengthLimit(id)) {
+            throw new IllegalValueException(Id.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
         if (!Id.isValidId(id)) {
             throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
         }
@@ -192,6 +214,9 @@ class JsonAdaptedPerson {
 
         if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
+        }
+        if (!Title.isWithinLengthLimit(title)) {
+            throw new IllegalValueException(Title.MESSAGE_LENGTH_LIMIT_EXCEEDED);
         }
         if (!Title.isValidTitle(title)) {
             throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
