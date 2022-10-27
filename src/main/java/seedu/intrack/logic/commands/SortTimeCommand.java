@@ -29,8 +29,6 @@ public class SortTimeCommand extends SortCommand {
 
     public static final String MESSAGE_SUCCESS_D = "Sorted all internships in descending order";
 
-    public static final String MISSING_TASKLIST = "One or more of the internships have no tasks! Cannot be sorted.";
-
     private final String orderType; // will be either A, a, D or d
 
     public SortTimeCommand(String orderType) {
@@ -40,15 +38,6 @@ public class SortTimeCommand extends SortCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Internship> lastShownList = model.getFilteredInternshipList();
-        System.out.println(lastShownList.size());
-        for (int i = 0; i < lastShownList.size(); i++) {
-            Internship internship = lastShownList.get(i);
-            System.out.println(internship.getName().toString());
-            if (internship.isTaskListEmpty()) {
-                throw new CommandException(MISSING_TASKLIST);
-            }
-        }
         if (orderType.equals("a")) {
             model.ascendSortTime();
             model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
