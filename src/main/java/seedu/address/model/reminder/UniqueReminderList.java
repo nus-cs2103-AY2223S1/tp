@@ -38,7 +38,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
     }
 
     /**
-     * Adds a reminder to the list.
+     * Adds a reminder to the list. The reminder list will then be sorted by priority, from "HIGH" to "MEDIUM" to "LOW".
      * The reminder must not already exist in the list.
      */
     public void add(Reminder toAdd) {
@@ -47,6 +47,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
             throw new DuplicateReminderException();
         }
         internalList.add(toAdd);
+        internalList.sort(new ReminderPriorityComparator());
     }
 
     /**
@@ -89,10 +90,12 @@ public class UniqueReminderList implements Iterable<Reminder> {
     }
 
     /**
-     * Sorts reminder by deadline in the list. Reminders with the same priority will be sorted lexicographically by
-     * their names.
+     * Sorts reminder by deadline in the list. Reminders with the same deadline will be sorted by priority, from "HIGH"
+     * to "MEDIUM" to "LOW".
+     * Reminders with same deadline and priority will then be sorted lexicographically.
      */
     public void sortRemindersByDeadline() {
+        internalList.sort(new ReminderPriorityComparator());
         internalList.sort(new ReminderDeadlineComparator());
     }
 
