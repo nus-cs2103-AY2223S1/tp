@@ -38,6 +38,9 @@ public class DeleteUserCommand extends DeleteCommand {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        if (personToDelete.hasBooksOnLoan()) {
+            throw new CommandException(Messages.MESSAGE_PERSON_HAS_LOANS);
+        }
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
