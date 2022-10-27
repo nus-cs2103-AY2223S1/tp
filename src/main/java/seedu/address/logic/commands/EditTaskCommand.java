@@ -35,10 +35,14 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Edits a current task identified by the index number used in the displayed task list. \n"
                     + "Existing values will be overwritten by the input values. \n"
-                    + "Parameters: INDEX (must be a positive integer) " + "-" + FLAG_NAME_STR + " NAME " + "-"
-                    + FLAG_DEADLINE_STR + " DEADLINE \n" + "-" + FLAG_ASSIGNEE_STR + "ASSIGNEE \n"
-                    + "Example: " + COMMAND_WORD + " 1 " + "-" + FLAG_NAME_STR
-                    + " \"Review PR\" " + "-" + FLAG_DEADLINE_STR + " \"2023-12-12 23:59\" ";
+                    + "Parameters: INDEX (must be a positive integer) "
+                    + FLAG_NAME_STR + " NAME "
+                    + FLAG_DEADLINE_STR + " DEADLINE \n"
+                    + FLAG_ASSIGNEE_STR + "ASSIGNEE \n"
+                    + "Example: " + COMMAND_WORD + " 1 "
+                    + FLAG_NAME_STR + " \"Review PR\" "
+                    + FLAG_DEADLINE_STR + " \"2023-12-12 23:59\" "
+                    + FLAG_ASSIGNEE_STR + "\"Alex Yeoh\" ";
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists. ";
@@ -62,6 +66,7 @@ public class EditTaskCommand extends Command {
         private String[] assignees;
 
     }
+
     /**
      * Creates an EditTaskCommand to edit a {@code Task}.
      */

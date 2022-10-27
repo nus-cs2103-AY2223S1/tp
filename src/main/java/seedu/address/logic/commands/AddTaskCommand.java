@@ -31,14 +31,14 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the current team.\n"
             + "Parameters:"
-            + "-" + FLAG_NAME_STR + " NAME "
-            + "-" + FLAG_DEADLINE_STR + " DEADLINE "
-            + "-" + FLAG_ASSIGNEE_STR + " ASSIGNEE "
+            + FLAG_NAME_STR + " NAME "
+            + FLAG_DEADLINE_STR + " DEADLINE "
+            + FLAG_ASSIGNEE_STR + " ASSIGNEE "
             + "Example: " + COMMAND_WORD + " "
-            + "-" + FLAG_NAME_STR + " \"Review PR\" "
-            + "-" + FLAG_DEADLINE_STR + " \"2023-12-04 23:59\" "
-            + "-" + FLAG_ASSIGNEE_STR + " \"Alex Yeoh\" "
-            + "-" + FLAG_ASSIGNEE_STR + " \"Bernice Yu\" ";
+            + FLAG_NAME_STR + " \"Review PR\" "
+            + FLAG_DEADLINE_STR + " \"2023-12-04 23:59\" "
+            + FLAG_ASSIGNEE_STR + " \"Alex Yeoh\" "
+            + FLAG_ASSIGNEE_STR + " \"Bernice Yu\" ";
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Added Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the team";
