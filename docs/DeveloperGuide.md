@@ -401,27 +401,27 @@ Design considerations:
 #### 4.2.8 ViewStats command
 
 `ViewStatsCommand` is a `Command` to present summary statistics for an `Exam` taken by a particular class of students. 
-In particular, the command in implemented to generate the mean score of the `Exam`. The entire process of generating summary statistics is executed in 2 steps. 
+In particular, the command is implemented to generate the mean score of the `Exam`. The entire process of generating summary statistics is executed in 2 steps. 
 
 **Step 1: Parsing the command**
 
-The user input is first parsed, in the same way as other commands. After the command is identified to be a viewStats 
+The user input is first parsed, in the same way as other commands. After the input is identified to be a viewStats 
 command, a `ViewStatsCommandParser` instance will parse the inputs to retrieve the class and exam of interest.
 
-Furthermore, the user input will be parsed to retrieve an additional `Prefix` filter/, which will indicate if the list 
-returned should be flagged. A flagged list contains only students whose score for that particular `Exam` falls below the 
-mean.
+Furthermore, the command will also be parsed to retrieve an input for an additional `Prefix` "filter/", which will indicate 
+if the list of students returned should be flagged. A flagged list contains only students whose score for that particular 
+`Exam` falls below the mean.
 
 **Step 2: Executing the command**
 
-The `ViewStatsCommand` then interacts with `ModelManager` to execute the command, which is again done in 2 steps.
+The `ViewStatsCommand` then interacts with the `ModelManager` to execute the command, which is again done in 2 steps.
 
-Step 1: A ViewClassCommand is executed, depending mainly on `Model#updateFilteredStudentList(Predicate<Student)`, in order to
-to retrieve the class of interest.
+Step 1: A `ViewClassCommand` is executed, depending mainly on `Model#updateFilteredStudentList(Predicate<Student)`, in 
+order to retrieve the class of interest.
 
-Step 2: The mean of the class is calculated using `Model#calculateMean(String exam)`. 
+Step 2: The mean of the exam scores for that class is calculated using `Model#calculateMean(String exam)`. 
 
-Depending on the boolean value parsed using the filter prefix, the class list is further filtered using
+Depending on the boolean value returned during the parsing of the filter prefix, the class list is further filtered using
 `Model#updateFilteredStudentList(Predicate<Student)` to show a flagged list. 
 
 The whole list is sorted according to the score of the particular exam, before it is returned and displayed to the user.
@@ -442,7 +442,7 @@ Design Considerations:
     needs to be done to sort the filtered list
 - Option 2 (current choice): sort the entire student record, then filter to retrieve class
   - Pros:
-    - Can maintain sorting even beyond the command, ie. maintaining a sorted list of students, sorted by name,
+    - Can maintain sorting even beyond the `ViewStats` command, ie. maintaining a sorted list of students, sorted by name,
     each time an `addStudent` command or `edit` command is run
   - Cons:
     - Reorders the whole `StudentRecord` each time the sorting is done
