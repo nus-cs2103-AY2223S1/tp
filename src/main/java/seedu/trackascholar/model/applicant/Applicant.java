@@ -103,8 +103,8 @@ public class Applicant {
         return pin;
     }
 
-    public void setHasPinnedInPin(boolean hasPinned) {
-        this.pin.setHasPinned(hasPinned);
+    public boolean getHasPinned() {
+        return pin.getHasPinned();
     }
 
     /**
@@ -231,7 +231,7 @@ public class Applicant {
                 .append("; Application Status: ")
                 .append(getStatusOfApplication())
                 .append("; hasPinned: ")
-                .append(getPin().getHasPinned());
+                .append(getHasPinned());
 
         Set<Major> majors = getMajors();
         if (!majors.isEmpty()) {

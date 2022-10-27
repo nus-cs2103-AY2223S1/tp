@@ -46,7 +46,7 @@ public class Name implements Comparable<Name> {
     }
 
     /**
-     * Returns full name of applicant.
+     * Returns the full name of applicant.
      */
     public String getFullName() {
         return fullName;
