@@ -63,7 +63,7 @@ If you can type fast, HR Pro Max++ can get your project management tasks done fa
 
    * **`delete`**`3` : Deletes the 3rd project shown in the current list.
 
-   * **`clear`** : Deletes all projects currently saved on HR Pro Max++.
+   * **`clear`** : Deletes all data currently saved on HR Pro Max++.
 
    * **`exit`** : Exits the app.
 
@@ -112,7 +112,7 @@ Format: `help`
 
 Adds a project to Project list.
 
-Format: `add pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECt_DEADLINE [t/TAG]…​`
+Format: `add pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECT_DEADLINE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A project can have any number of tags (including 0)
@@ -188,9 +188,10 @@ Examples:
 
 Adds a staff member info to Project in project list.
 
-Format: `addstaff pn/PROJECT_NAME sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT NUMBER`
+Format: `addstaff pn/PROJECT_NAME sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER [t/TAGS]`
 
-* All fields for staff member are required
+* All fields for staff member are required, except `TAGS`
+* To see the updates to the staff list, use the `view` command.  
 
 Examples:
 * `addStaff pn/DUKE sn/John Doe sp/98765432 sl/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project DUKE.
@@ -226,15 +227,60 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### Editing a Staff member within a Project : `editstaff`
 
+Edits the staff details of a staff of a specified project in Project list.
+
+Format: `editstaff INDEX pn/PROJECT_NAME [sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER
+t\TAGS]`
+
+* All fields for staff members in the `[]` are optional. 
+* Index **must be a positive integer** 1, 2, 3, ...
+
+Examples:
+* `editstaff 1 pn/CS2103T sn/John Doe` edits the staff name of the first staff in the staff list of `CS2103T` to `John Doe`
 --------------------------------------------------------------------------------------------------------------------
 ### Finding a Staff member within a Project : `findstaff`
+
+Finds the current active staff list for a staff name
+
+Format: `findstaff NAME`
+
+* `NAME` must not be an empty string. 
+*  For `findstaff` to work as expected, the current active staff list must be non-empty.
+
+Examples:
+* `findstaff Jon` returns a filtered view of the staff list such that all staffs with name `Jon` are listed.
+* `findstaff Adrian Lam` returns a filtered view of the staff list such that all staffs with name `Adrian Lam` are listed. 
+Staffs whose name contains `Adrian` or `Lam` only aren't listed. 
+* You can always use `view INDEX` to list all the staff in the staff list after you are done with finding a particular staff.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Task Commands
 ### Adding a Task : `addtask`
 
+Adds a Task to the Task list. 
+
+Format: `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE`
+
+* Both task fields `TASK_DESCRIPTION` and `TASK_DEADLINE` must be present.
+* `TASK_DEADLINE` follows the **YYYY-MM-DD** format. 
+
+Examples:
+* `addtask tdesc/Finish Homework td/2022-10-27` creates a Task with the description `Finish Homework` and deadline set to
+`2022-10-27`
+
 --------------------------------------------------------------------------------------------------------------------
 ### Deleting a Task : `deltask`
+
+Deletes a Task at the specified index from the Task list. 
+
+Format: `deltask INDEX`
+
+* `INDEX` is a positive integer from 1, 2, ... 
+
+Examples:
+* `deltask 1` deletes the Task at index 1 of the Task list.
+* If the Task list has only 4 elements, `deltask 5` would return an error message of
+`The task index provided is invalid`.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Finding a Task : `findtask`
@@ -327,8 +373,8 @@ For example, entering an incorrect add command like shown below will cause an er
 
 ### List Panel
 Clicking on a `Task`, `Project`, or `Staff` card will cause the respective box to be highlighted in green. 
-All `Task` and `Project` cards will be displayed in the `List Panel`.  
-By default, the `Staff` members of the first project are displayed. 
+All `Task` and `Project` cards will be displayed in the `List Panel`.
+By default, the `Staff` list is empty when first starting the program.
 To see how to view the `Staff` list of other projects, you can check [this](#view-the-staff-list-within-a-project-view) segment of the user guide.
 
 ![List Panel](images/ListPanel.png)
