@@ -21,6 +21,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -55,21 +56,24 @@ public class UniquePersonListTest {
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
                 .withGraduationDate(VALID_GRADUATION_DATE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withMajor(VALID_MAJOR_BOB)
+                .withTitle(VALID_JOB_TITLE_BOB)
                 .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withTags(VALID_TAG_KIV).build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 
     @Test
-    public void contains_personWithSameNameEmailInList_returnsFalse() {
+    public void contains_personWithSameEmailInList_returnsFalse() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
@@ -84,7 +88,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void contains_personWithSameJobInList_returnsFalse() {
+    public void contains_personWithSameJobIdInList_returnsFalse() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
                 .withName(VALID_NAME_BOB)
@@ -98,6 +102,44 @@ public class UniquePersonListTest {
                 .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withTags(VALID_TAG_KIV).build();
         assertFalse(uniquePersonList.contains(editedAlice));
+    }
+
+    @Test
+    public void containsSome_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.containsSome(null));
+    }
+
+    @Test
+    public void containsSome_listWithNullElement_throwsNullPointerException() {
+        List<Person> toAdd = new ArrayList<>();
+        toAdd.add(null);
+        assertThrows(NullPointerException.class, () -> uniquePersonList.containsSome(toAdd));
+    }
+
+    @Test
+    public void containsSome_listWithDifferentPersons_returnsFalse() {
+        List<Person> toAdd = new ArrayList<>();
+        toAdd.add(ALICE);
+        assertFalse(uniquePersonList.containsSome(toAdd));
+    }
+
+    @Test
+    public void containsSome_listWithSomeSamePersons_returnsTrue() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        List<Person> toAdd = new ArrayList<>();
+        toAdd.add(ALICE);
+        assertTrue(uniquePersonList.containsSome(toAdd));
+    }
+
+    @Test
+    public void containsSome_listWithAllSamePersons_returnsTrue() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        List<Person> toAdd = new ArrayList<>();
+        toAdd.add(ALICE);
+        toAdd.add(BOB);
+        assertTrue(uniquePersonList.containsSome(toAdd));
     }
 
     @Test
@@ -115,6 +157,7 @@ public class UniquePersonListTest {
     public void add_personWithSameIdentityFields_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
@@ -127,9 +170,10 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void add_personWithSameEmailName_success() {
+    public void add_personWithSameEmail_success() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
@@ -144,7 +188,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void add_personWithSameJob_success() {
+    public void add_personWithSameJobId_success() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
                 .withName(VALID_NAME_BOB)
@@ -188,6 +232,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
@@ -269,6 +314,53 @@ public class UniquePersonListTest {
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+    }
+
+    @Test
+    public void appendList_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.appendList(null));
+    }
+
+    @Test
+    public void appendList_listWithNullElement_throwsNullPointerException() {
+        List<Person> toAdd = new ArrayList<>();
+        toAdd.add(null);
+        assertThrows(NullPointerException.class, () -> uniquePersonList.appendList(toAdd));
+    }
+
+    @Test
+    public void appendList_duplicateLists_throwsDuplicatePersonException() {
+        List<Person> toAdd = new ArrayList<>();
+        toAdd.add(ALICE);
+        uniquePersonList.appendList(toAdd);
+        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.appendList(toAdd));
+    }
+
+    @Test
+    public void appendList_listWithSomeSamePersons_throwsDuplicatePersonException() {
+        uniquePersonList.add(ALICE);
+        List<Person> toAdd = new ArrayList<>();
+        toAdd.add(ALICE);
+        toAdd.add(BOB);
+        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.appendList(toAdd));
+    }
+
+    @Test
+    public void appendList_listWithAllSamePersons_throwsDuplicatePersonException() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        List<Person> toAdd = new ArrayList<>();
+        toAdd.add(ALICE);
+        toAdd.add(BOB);
+        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.appendList(toAdd));
+    }
+
+    @Test
+    public void appendList_listWithDifferentPersons_success() {
+        uniquePersonList.add(ALICE);
+        List<Person> toAdd = new ArrayList<>();
+        toAdd.add(BOB);
+        assertDoesNotThrow(() -> uniquePersonList.appendList(toAdd));
     }
 
     @Test

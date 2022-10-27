@@ -17,6 +17,14 @@ public class FileUtil {
         return Files.exists(file) && Files.isRegularFile(file);
     }
 
+    public static boolean isDirectory(Path file) {
+        return Files.isDirectory(file);
+    }
+
+    public static boolean isReadable(Path file) {
+        return Files.isReadable(file);
+    }
+
     /**
      * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String)},
      * otherwise returns false.

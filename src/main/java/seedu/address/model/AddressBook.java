@@ -67,6 +67,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a person with the same identity as any person in {@code other} exists in the address book.
+     */
+    public boolean hasPersons(AddressBook other) {
+        requireNonNull(other);
+        return persons.containsSome(other.getPersonList());
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -91,6 +99,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Appends {@code other} to this {@code AddressBook}.
+     */
+    public void appendAddressBook(AddressBook other) {
+        persons.appendList(other.getPersonList());
     }
 
     //// util methods

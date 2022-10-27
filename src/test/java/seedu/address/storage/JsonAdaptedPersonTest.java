@@ -23,6 +23,7 @@ import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.University;
+import seedu.address.model.tag.Tag;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -76,6 +77,22 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_lengthLimitExceededName_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME.repeat(100), VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_GRADUATION_DATE,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
+                VALID_ID,
+                VALID_TITLE,
+                VALID_TAGS);
+        String expectedMessage = Name.MESSAGE_LENGTH_LIMIT_EXCEEDED;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
@@ -104,6 +121,22 @@ public class JsonAdaptedPersonTest {
                 VALID_TITLE,
                 VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_lengthLimitExceededPhone_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE.repeat(100), VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_GRADUATION_DATE,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
+                VALID_ID,
+                VALID_TITLE,
+                VALID_TAGS);
+        String expectedMessage = Phone.MESSAGE_LENGTH_LIMIT_EXCEEDED;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -140,6 +173,22 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_lengthLimitExceededEmail_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL.repeat(100),
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_GRADUATION_DATE,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
+                VALID_ID,
+                VALID_TITLE,
+                VALID_TAGS);
+        String expectedMessage = Email.MESSAGE_LENGTH_LIMIT_EXCEEDED;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null,
                 VALID_ADDRESS,
@@ -168,6 +217,22 @@ public class JsonAdaptedPersonTest {
                 VALID_TITLE,
                 VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_lengthLimitExceededAddress_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS.repeat(100),
+                VALID_GENDER,
+                VALID_GRADUATION_DATE,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
+                VALID_ID,
+                VALID_TITLE,
+                VALID_TAGS);
+        String expectedMessage = Address.MESSAGE_LENGTH_LIMIT_EXCEEDED;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -302,6 +367,22 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_lengthLimitExceededUniversity_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_GRADUATION_DATE,
+                VALID_CAP,
+                VALID_UNIVERSITY.repeat(100),
+                VALID_MAJOR,
+                VALID_ID,
+                VALID_TITLE,
+                VALID_TAGS);
+        String expectedMessage = University.MESSAGE_LENGTH_LIMIT_EXCEEDED;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
     public void toModelType_nullUniversity_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
@@ -330,6 +411,22 @@ public class JsonAdaptedPersonTest {
                 VALID_TITLE,
                 VALID_TAGS);
         String expectedMessage = Major.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_lengthLimitExceededMajor_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_GRADUATION_DATE,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR.repeat(100),
+                VALID_ID,
+                VALID_TITLE,
+                VALID_TAGS);
+        String expectedMessage = Major.MESSAGE_LENGTH_LIMIT_EXCEEDED;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -366,6 +463,22 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_lengthLimitExceededId_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_GRADUATION_DATE,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
+                VALID_ID.repeat(100),
+                VALID_TITLE,
+                VALID_TAGS);
+        String expectedMessage = Id.MESSAGE_LENGTH_LIMIT_EXCEEDED;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
     public void toModelType_nullId_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
@@ -394,6 +507,22 @@ public class JsonAdaptedPersonTest {
                 INVALID_TITLE,
                 VALID_TAGS);
         String expectedMessage = Title.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_lengthLimitExceededTitle_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_GRADUATION_DATE,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
+                VALID_ID,
+                VALID_TITLE.repeat(100),
+                VALID_TAGS);
+        String expectedMessage = Title.MESSAGE_LENGTH_LIMIT_EXCEEDED;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -427,7 +556,26 @@ public class JsonAdaptedPersonTest {
                 VALID_ID,
                 VALID_TITLE,
                 invalidTags);
-        assertThrows(IllegalValueException.class, person::toModelType);
+        String expectedMessage = Tag.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_lengthLimitExceededTags_throwsIllegalValueException() {
+        List<JsonAdaptedTag> lengthLimitExceededTags = new ArrayList<>(VALID_TAGS);
+        lengthLimitExceededTags.add(new JsonAdaptedTag(INVALID_TAG.repeat(100)));
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_GRADUATION_DATE,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
+                VALID_ID,
+                VALID_TITLE,
+                lengthLimitExceededTags);
+        String expectedMessage = Tag.MESSAGE_LENGTH_LIMIT_EXCEEDED;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
 }

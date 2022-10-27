@@ -52,20 +52,22 @@ public class SamePersonPredicateTest {
     public void test_isSamePerson_returnsTrue() {
         SamePersonPredicate firstPredicate = new SamePersonPredicate(AMY);
         SamePersonPredicate secondPredicate = new SamePersonPredicate(ALICE);
+        SamePersonPredicate thirdPredicate = new SamePersonPredicate(BOB);
 
         // same Person object
         assertTrue(firstPredicate.test(AMY));
 
-        // same name and email and all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+        // same email and job ID, all other attributes different -> returns true
+        Person editedAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
                 .withGraduationDate(VALID_GRADUATION_DATE_BOB)
                 .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
-                .withMajor(VALID_MAJOR_BOB)
-                .withId(VALID_JOB_ID_BOB)
                 .withTitle(VALID_JOB_TITLE_BOB)
+                .withMajor(VALID_MAJOR_BOB)
                 .withTags(VALID_TAG_KIV).build();
         assertTrue(secondPredicate.test(editedAlice));
     }
@@ -74,30 +76,17 @@ public class SamePersonPredicateTest {
     public void test_isSamePerson_returnsFalse() {
         SamePersonPredicate firstPredicate = new SamePersonPredicate(AMY);
         SamePersonPredicate secondPredicate = new SamePersonPredicate(ALICE);
-        SamePersonPredicate thirdPredicate = new SamePersonPredicate(BOB);
 
         // null
         assertFalse(firstPredicate.test(null));
 
-        // different name, all other attributes same
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(secondPredicate.test(editedAlice));
-
-        // name differs in case, all other attributes same
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(thirdPredicate.test(editedBob));
-
-        // name with trailing spaces, all other attributes same
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(thirdPredicate.test(editedBob));
-
         // different email, all other attributes same
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(secondPredicate.test(editedAlice));
 
-        // email differs in case, all other attributes same
-        editedBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_BOB.toUpperCase()).build();
-        assertFalse(thirdPredicate.test(editedBob));
+        // different job ID, all other attributes same
+        editedAlice = new PersonBuilder(ALICE).withId(VALID_JOB_ID_BOB).build();
+        assertFalse(secondPredicate.test(editedAlice));
+
     }
 }

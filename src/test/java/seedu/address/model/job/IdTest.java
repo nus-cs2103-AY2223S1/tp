@@ -20,6 +20,13 @@ public class IdTest {
     }
 
     @Test
+    public void isWithinLengthLimit() {
+        assertTrue(Id.isWithinLengthLimit("A".repeat(Id.LENGTH_LIMIT - 1)));
+        assertTrue(Id.isWithinLengthLimit("A".repeat(Id.LENGTH_LIMIT)));
+        assertFalse(Id.isWithinLengthLimit("A".repeat(Id.LENGTH_LIMIT + 1)));
+    }
+
+    @Test
     public void isValidId() {
         // null id
         assertThrows(NullPointerException.class, () -> Id.isValidId(null));

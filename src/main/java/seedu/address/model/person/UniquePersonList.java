@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.job.Job;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -33,10 +32,20 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
-        Job job = toCheck.getJob();
-        return internalList.stream().anyMatch(
-                person -> person.isSamePerson(toCheck) && person.getJob().isSameJob(job)
-        );
+        return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns true if the list contains any equivalent person in the given list.
+     */
+    public boolean containsSome(List<Person> toCheck) {
+        requireNonNull(toCheck);
+        for (Person personToCheck : toCheck) {
+            if (contains(personToCheck)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -98,6 +107,21 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    /**
+     * Appends the contents of {@code persons} to this list
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void appendList(List<Person> persons) {
+        requireAllNonNull(persons);
+        if (!personsAreUnique(persons)) {
+            throw new DuplicatePersonException();
+        }
+
+        for (Person person : persons) {
+            add(person);
+        }
     }
 
     /**
