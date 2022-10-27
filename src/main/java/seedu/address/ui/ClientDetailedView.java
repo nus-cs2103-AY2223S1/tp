@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
@@ -38,6 +39,9 @@ public class ClientDetailedView extends UiPart<Region> {
     @FXML
     private VBox meetings;
 
+    @FXML
+    private FlowPane products;
+
     /**
      * Creates a {@code ClientDetailedView} with the given {@code Client}.
      */
@@ -46,14 +50,15 @@ public class ClientDetailedView extends UiPart<Region> {
         this.client = client;
         clientName.setText(client.getName().toString());
         phoneNumber.setText(client.getPhone().toString());
-        email.setText(client.getEmail().toString());
+        email.setText(client.getEmail().get().toString());
         Optional<Birthday> clientBirthday = client.getBirthday();
         if (clientBirthday.isEmpty()) {
             birthday.setText("");
         } else {
             birthday.setText(clientBirthday.get().formattedDate());
         }
-
+        client.getProducts().stream()
+                .forEach(product -> products.getChildren().add(new Label(product.productName)));
         List<Meeting> clientMeetings = client.getMeetings();
         for (Meeting meeting : clientMeetings) {
             meetings.getChildren().add(new MeetingCondensedView(meeting).getRoot());

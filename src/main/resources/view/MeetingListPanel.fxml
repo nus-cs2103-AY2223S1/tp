@@ -1,16 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-   <AnchorPane>
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <AnchorPane maxHeight="25.0">
       <children>
-         <Label styleClass="label-header" text="Meetings" />
-         <Label fx:id="numMeetings" styleClass="label-bright" text="\$Num" AnchorPane.rightAnchor="10.0" />
+         <Label styleClass="label-header" text="Meetings" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" />
+         <Label fx:id="numMeetings" styleClass="label-bright" text="\$Num" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="12.0" />
       </children>
+      <padding>
+         <Insets bottom="5.0" />
+      </padding>
    </AnchorPane>
-  <ListView fx:id="meetingListView" VBox.vgrow="ALWAYS" />
+   <VBox styleClass="pane-with-header" VBox.vgrow="ALWAYS">
+      <children>
+         <GridPane maxHeight="20.0" styleClass="grid-pane">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+               <Label styleClass="table-header" text="Index" />
+               <Label styleClass="table-header" text="Description" GridPane.columnIndex="2" />
+               <Label styleClass="table-header" text="Date" GridPane.columnIndex="4" />
+               <Label styleClass="table-header" text="Time" GridPane.columnIndex="3" />
+               <Label styleClass="table-header" text="Name" GridPane.columnIndex="1" />
+            </children>
+            <padding>
+               <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            </padding>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </GridPane>
+        <ListView fx:id="meetingListView" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+               <Insets left="12.0" right="12.0" />
+            </VBox.margin></ListView>
+      </children>
+   </VBox>
 </VBox>

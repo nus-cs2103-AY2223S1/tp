@@ -107,20 +107,15 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #383838;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #383838;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-background-color: #383838;
 }
 
 .list-cell .label {
@@ -345,7 +340,7 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #383838 #383838;
+    -fx-border-color: white;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
@@ -360,6 +355,7 @@
 #resultDisplay .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
+    -fx-border-color: white;
 }
 
 #products {
@@ -373,5 +369,45 @@
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-font-size: 14;
+}
+
+.pane-with-header {
+    -fx-border-color: lightgrey;
+    -fx-border-radius: 15;
+    -fx-background-color: #383838;
+    -fx-background-radius: 15;
+}
+
+.pane-with-header .grid-pane {
+    -fx-background-color: #383838;
+    -fx-background-radius: 15;
+    -fx-border-color: lightgrey;
+    -fx-border-width: 0 0 1 0;
+}
+
+.pane-with-header .list-view {
+    -fx-background-color: #383838;
+}
+
+.table-header {
+    -fx-text-fill: white;
+}
+
+.meeting-condensed {
+    -fx-background-color: #4D4D4D;
+    -fx-border-color: white;
+}
+
+.header-box {
+    -fx-border-color: white;
+    -fx-border-width: 0 0 1 0;
+}
+
+.scrollpane-client {
+    -fx-background: #383838;
+}
+
+.scrollpane-client:selected {
+    -fx-background: #383838;
 }
