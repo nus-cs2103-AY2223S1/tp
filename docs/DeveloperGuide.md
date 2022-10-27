@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The add item command will be executed by `AddItemCommand`. Items added will be stored in `ItemsList`. 
+The add item command will be executed by `AddItemCommand`. Items added will be stored in `ItemsList`.
 
 Given below is an example usage scenario and how the add item mechanism behaves at each step.
 
@@ -196,12 +196,12 @@ The edit item feature allows the user to edit an `Item` currently being tracked 
 
 #### Implementation
 
-The edit item command `editi` is implemented through the `Logic`, `Model` and `Storage` components. The `Logic` 
-component parses the user input, the `Model` component then performs the edit on the target item, the `Storage` 
+The edit item command `editi` is implemented through the `Logic`, `Model` and `Storage` components. The `Logic`
+component parses the user input, the `Model` component then performs the edit on the target item, the `Storage`
 component then saves the edited data into `data/trackO.json`.
 
 Step 1. The user inputs the command `editi 1 i/Chair q/20`. This calls `LogicCommand#execute()` which calls
-`TrackOParser#parseCommand`. This parses the command as an `EditItemCommand` and returns an `EditItemCommandParser`. 
+`TrackOParser#parseCommand`. This parses the command as an `EditItemCommand` and returns an `EditItemCommandParser`.
 `EditItemCommandParser#parse()` parses the arguments and returns an `EditItemCommand` with the target index and the
 appropriate `EditItemDescriptor` as input. The `EditItemDescriptor` contains information which the newly edited `Item`
 should have and is used in the creation of the new `Item` object. In this case, the `EditItemDescriptor` contains a new
@@ -269,7 +269,7 @@ Given below is an example usage scenario that works with the given model state a
 
 Step 1. The user enters the following input into the UI's command box:
 `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`. This instantiates an `AddOrderCommand`, that references
-a new `Order` which encapsulates the input customer data. This then sets the `LogicManager` to reference said instantiated `AddOrderCommand` 
+a new `Order` which encapsulates the input customer data. This then sets the `LogicManager` to reference said instantiated `AddOrderCommand`
 in its `inProgressCommand` field. The UI then prompts the user for further input.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format
@@ -286,9 +286,9 @@ using the `AddOrderCommand#stageForValidation()` method.
 
 ![AddOrderState2a](images/developer-guide/AddOrderState2a.png);
 
-Step 2b. On the `AddOrderCommand#execute()` method call, the system searches the model's inventory for an item that has a matching name to the user's input item name. 
+Step 2b. On the `AddOrderCommand#execute()` method call, the system searches the model's inventory for an item that has a matching name to the user's input item name.
 In this scenario, we assume that the user has already added an `InventoryItem` with its `ItemName` value to be `Eraser`, to the model's list of tracked `InventoryItem`s.
-Hence, upon execution, a valid item will be found based on the user's input item name, and the `Order#addToItemList()` method is called on the `toAdd` object, with the found 
+Hence, upon execution, a valid item will be found based on the user's input item name, and the `Order#addToItemList()` method is called on the `toAdd` object, with the found
 `InventoryItem` in the model and `Quantity` object that was previously staged for validation as method parameters.
 This adds a new `ItemQuantityPair` object that references the found `InventoryItem` and given `Quantity` to the list of ordered items in the `toAdd` object.
 
@@ -302,7 +302,7 @@ Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Orde
 ![AddOrderState3](images/developer-guide/AddOrderState3.png);
 
 Step 4. The user then enters `done` after inputting all the required order item details. On the following `AddOrderCommand#execute()` method call,
-the `AddOrderCommand` will no longer await input, and the `LogicManager` also removes its reference to the `AddOrderCommand`. 
+the `AddOrderCommand` will no longer await input, and the `LogicManager` also removes its reference to the `AddOrderCommand`.
 The built up `Order` object is finally added to the model's `OrderList`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The user can also choose to abort the command at any point after instantiating the command (Step 2 to 4), by entering 'cancel'. The model will then be unaffected.
@@ -360,7 +360,7 @@ that will filter the items according to the keywords. The predicate is passed in
 `FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter `Model#filteredOrders`
 according to the previously constructed `OrderContainsKeywordsPredicate`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect, 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect,
 `FindOrderCommandParser` will throw a `ParseException`.
 
 </div>
