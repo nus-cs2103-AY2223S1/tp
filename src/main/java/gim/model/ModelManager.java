@@ -145,7 +145,7 @@ public class ModelManager implements Model {
     @Override
     public void filterFilteredExerciseList(Predicate<Exercise> predicate) {
         requireNonNull(predicate);
-        FilteredList<Exercise> filteredList = new FilteredList<>(this.exerciseTracker.getUnmodifiableList());
+        FilteredList<Exercise> filteredList = new FilteredList<>(this.exerciseTracker.getDuplicatedDisplayedList());
         filteredList.setPredicate(predicate);
         exerciseTracker.filterDisplayedList(filteredList);
     }
@@ -154,7 +154,9 @@ public class ModelManager implements Model {
     public void sortFilteredExerciseList(Predicate<Exercise> predicate) {
         requireNonNull(predicate);
         exerciseTracker.sortDisplayedList();
-        filteredExercises.setPredicate(predicate);
+        FilteredList<Exercise> filteredList = new FilteredList<>(this.exerciseTracker.getDuplicatedDisplayedList());
+        filteredList.setPredicate(predicate);
+        exerciseTracker.filterDisplayedList(filteredList);
     }
 
     @Override
