@@ -1,5 +1,7 @@
 package jarvis.storage;
 
+import static jarvis.commons.util.JsonUtil.checkNullArgument;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

@@ -19,7 +19,7 @@ import jarvis.model.TimePeriod;
  * Jackson-friendly version of {@link MasteryCheck}.
  */
 public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Consult's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Mastery Check's %s field is missing!";
 
     /**
      * Constructs a {@code JsonAdaptedMasteryCheck} with the given lesson details.

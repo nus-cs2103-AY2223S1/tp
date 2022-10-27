@@ -1,6 +1,6 @@
 package jarvis.storage;
 
-import static jarvis.storage.JsonAdaptedLesson.checkNullArgument;
+import static jarvis.commons.util.JsonUtil.checkNullArgument;
 
 import java.util.ArrayList;
 import java.util.List;

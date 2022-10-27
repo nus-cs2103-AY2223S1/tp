@@ -1,5 +1,7 @@
 package jarvis.storage;
 
+import static jarvis.commons.util.JsonUtil.checkNullArgument;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -148,23 +150,6 @@ public abstract class JsonAdaptedLesson {
      */
     public abstract Lesson toModelType() throws IllegalArgumentException;
 
-
-    /**
-     * Checks whether the argument provided is null.
-     *
-     * @param className The class whose constructor is intended to take in the given argument.
-     * @param missingFieldFormat The missing field message used in the error message.
-     * @param arg The argument to check.
-     * @throws IllegalArgumentException If the argument provided is null.
-     */
-    public static void checkNullArgument(Class<?> className, String missingFieldFormat, Object arg)
-            throws IllegalArgumentException {
-        if (arg == null) {
-            throw new IllegalArgumentException(String.format(missingFieldFormat,
-                        className.getSimpleName()));
-        }
-    }
-
     /**
      * Creates an {@code LessonDesc} object with the given description.
      *
@@ -188,8 +173,8 @@ public abstract class JsonAdaptedLesson {
     public static TimePeriod createModelTimePeriod(String missingFieldMsg, LocalDateTime start, LocalDateTime end) {
         checkNullArgument(TimePeriod.class, missingFieldMsg, start);
         checkNullArgument(TimePeriod.class, missingFieldMsg, end);
-        final TimePeriod modelTimePeriod = new TimePeriod(start, end);
-        return modelTimePeriod;
+
+        return new TimePeriod(start, end);
     }
 
     /**
@@ -202,8 +187,8 @@ public abstract class JsonAdaptedLesson {
     public static List<Student> createModelStudentList(String missingFieldMsg,
                                                        List<JsonAdaptedStudent> jsonAdaptedStudentList) {
         checkNullArgument(Student.class, missingFieldMsg, jsonAdaptedStudentList);
-        List<Student> modelStudentList = JsonAdaptedStudent.toModelList(jsonAdaptedStudentList);
-        return modelStudentList;
+
+        return JsonAdaptedStudent.toModelList(jsonAdaptedStudentList);
     }
 
     /**
@@ -217,8 +202,8 @@ public abstract class JsonAdaptedLesson {
     public static LessonAttendance createModelLessonAttendance(String missingFieldMsg, List<Student> studentList,
                                                                Map<Integer, Boolean> map) {
         checkNullArgument(LessonAttendance.class, missingFieldMsg, map);
-        LessonAttendance modelAttendance = new LessonAttendance(studentList, map);
-        return modelAttendance;
+
+        return new LessonAttendance(studentList, map);
     }
 
     /**
@@ -235,8 +220,8 @@ public abstract class JsonAdaptedLesson {
                                                      Map<Integer, ArrayList<String>> studentNotes) {
         checkNullArgument(LessonNotes.class, missingFieldMsg, generalNotes);
         checkNullArgument(LessonNotes.class, missingFieldMsg, studentNotes);
-        LessonNotes modelLessonNotes = new LessonNotes(studentList, generalNotes, studentNotes);
-        return modelLessonNotes;
+
+        return new LessonNotes(studentList, generalNotes, studentNotes);
     }
 }
 
