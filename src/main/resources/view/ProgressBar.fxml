@@ -22,7 +22,7 @@
         <HBox>
             <Label fx:id="progressPercentage" styleClass="progress-percentage" maxWidth="Infinity" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT">
                 <padding>
-                    <Insets topRightBottomLeft="3" />
+                    <Insets topRightBottomLeft="8" />
                 </padding>
             </Label>
         </HBox>
