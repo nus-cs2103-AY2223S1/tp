@@ -3,7 +3,7 @@ package swift.logic.commands;
 import static swift.logic.parser.CliSyntax.PREFIX_KEYWORD;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.ArgumentMultimap;
 import swift.logic.parser.ArgumentTokenizer;
@@ -128,7 +128,13 @@ public class CommandSuggestor {
         // Command suggested but not yet entered by user
         String suggestedCommand = commandSuggestion.substring(userInput.length());
         boolean isCommandComplete = userInput.contains(" ");
-        int autocompleteUptoIndex = suggestedCommand.indexOf(isCommandComplete ? "/" : " ") + 1;
+        int autocompleteUptoIndex;
+        if(isCommandComplete) {
+            autocompleteUptoIndex = suggestedCommand.indexOf(isCommandComplete ? "/" : " ") + 1;
+
+        } else {
+            return getLongestMatchingPrefixSuggestion(userInput);
+        }
 
         // If command has no prefix arguments
         if (autocompleteUptoIndex == 0) {
@@ -192,5 +198,64 @@ public class CommandSuggestor {
             }
         }
         return argumentSuggestion;
+    }
+
+    
+    /**
+     * Gets the longest matching prefix from all possible command suggestions depending on the user
+     * input.
+     *
+     * @param userInput User input.
+     * @return Longest matching prefix.
+     * @throws CommandException If the user input is invalid.
+     */
+    public String getLongestMatchingPrefixSuggestion(String userInput) {
+        assert userInput != null && !userInput.isEmpty();
+        String[] userInputArray = userInput.split(" ", 2);
+        String commandWord = userInputArray[0];
+        boolean isCommandComplete = userInput.contains(" ");
+        ArrayList<String> matchingCommands = new ArrayList<>();
+
+        for (String command : commandList) {
+            if (command.startsWith(commandWord)) {
+                if (isCommandComplete && !command.equals(commandWord)) {
+                    continue;
+                }
+                matchingCommands.add(command + " ");
+            }
+        }
+        return getLongestMatchingPrefix(matchingCommands);
+    }
+
+    /**
+     * Gets longest matching prefix from list of strings.
+     * 
+     * @param matchingCommands List of strings.
+     * @return Longest matching prefix.
+     */
+    public String getLongestMatchingPrefix(ArrayList<String> matchingCommands) {
+        Collections.sort(matchingCommands);
+        int size = matchingCommands.size();
+        if (size == 0) {
+            return "";
+        }
+
+        if (size == 1) {
+            return matchingCommands.get(0);
+        }
+
+        // find the minimum length from first and last string
+        int end =
+                Math.min(matchingCommands.get(0).length(), matchingCommands.get(size - 1).length());
+
+        // find the common prefix between the first and last string
+        int i = 0;
+        while (i < end
+                && matchingCommands.get(0).charAt(i) == matchingCommands.get(size - 1).charAt(i)) {
+            i++;
+        }
+
+        String prefix = matchingCommands.get(0).substring(0, i);
+        return prefix;
     }
 }
