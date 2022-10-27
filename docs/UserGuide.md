@@ -62,6 +62,7 @@ Format: `m find KEYWORD`
 Examples:
 
 `m find cs` finds modules whose module code contains the keyword 'cs' such as 'cs2030s', 'cs2040s'
+
 `m find 30` finds modules whose module code contains the keyword '30' such as 'cs2030s'
 
 
