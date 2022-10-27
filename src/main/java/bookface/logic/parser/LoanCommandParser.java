@@ -1,6 +1,9 @@
 package bookface.logic.parser;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +25,7 @@ public class LoanCommandParser implements Parseable<LoanCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the LoanCommand
      * and returns a LoanCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
@@ -49,30 +53,41 @@ public class LoanCommandParser implements Parseable<LoanCommand> {
         if (nameKeywords.length < 3) {
             return new LoanCommand(userIndex, bookIndex);
         } else {
-            try {
-                StringBuilder stringbuilder = new StringBuilder();
-                for (int i = 2; i < nameKeywords.length; i++) {
-                    stringbuilder.append(nameKeywords[i]);
-                    stringbuilder.append(" ");
+            StringBuilder stringbuilder = new StringBuilder();
+            for (int i = 2; i < nameKeywords.length; i++) {
+                stringbuilder.append(nameKeywords[i]);
+                stringbuilder.append(" ");
+            }
+            String parsedString = stringbuilder.toString().trim();
+            // The first two if cases are added to "override" prettytimeparser for some date formats as it is
+            // unable to parse formats such as 26/10/2022 and handle invalid date cases properly.
+            // Edited from https://stackoverflow.com/questions/62054264/check-invalid-date-by-localdate
+            if (parsedString.matches("^([0-9][0-9])/([0-9][0-9])/([0-9][0-9])?[0-9][0-9]$")) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                formatter = formatter.withResolverStyle(ResolverStyle.SMART);
+                try {
+                    LocalDate ld = LocalDate.parse(parsedString, formatter);
+                    Date date = java.sql.Date.valueOf(ld);
+                    return new LoanCommand(userIndex, bookIndex, date);
+                } catch (DateTimeParseException e) {
+                    throw new ParseException(Messages.MESSAGE_INVALID_DATE_FORMAT);
                 }
-                String parsedString = stringbuilder.toString().trim();
-                // This is added to "override" prettytimeparser for some date formats as it is unable to parse formats
-                // such as 26/10/2022 properly.
-                if (parsedString.matches("^([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9])?[0-9][0-9]$")) {
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                    Date parsedDate = formatter.parse(parsedString);
-                    return new LoanCommand(userIndex, bookIndex, parsedDate);
-                } else {
-                    List<Date> parsedReturnDate = new PrettyTimeParser().parse(parsedString);
-                    if (parsedReturnDate.isEmpty()) {
-                        throw new ParseException(Messages.MESSAGE_INVALID_DATE_PARSE);
-                    }
-                    return new LoanCommand(userIndex, bookIndex, parsedReturnDate.get(0));
+            } else if (parsedString.matches("^([0-9][0-9])?[0-9][0-9]-([0-9][0-9])-([0-9][0-9])$")) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                formatter = formatter.withResolverStyle(ResolverStyle.SMART);
+                try {
+                    LocalDate ld = LocalDate.parse(parsedString, formatter);
+                    Date date = java.sql.Date.valueOf(ld);
+                    return new LoanCommand(userIndex, bookIndex, date);
+                } catch (DateTimeParseException e) {
+                    throw new ParseException(Messages.MESSAGE_INVALID_DATE_FORMAT);
                 }
-            } catch (ParseException pe) {
-                throw new ParseException(Messages.MESSAGE_INVALID_DATE_PARSE);
-            } catch (java.text.ParseException e) {
-                throw new RuntimeException(e);
+            } else {
+                List<Date> parsedReturnDate = new PrettyTimeParser().parse(parsedString);
+                if (parsedReturnDate.isEmpty()) {
+                    throw new ParseException(Messages.MESSAGE_INVALID_DATE_PARSE);
+                }
+                return new LoanCommand(userIndex, bookIndex, parsedReturnDate.get(0));
             }
         }
     }
