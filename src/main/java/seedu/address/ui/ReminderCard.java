@@ -11,6 +11,7 @@ import seedu.address.model.reminder.Reminder;
 public class ReminderCard extends UiPart<Region> {
 
     private static final String FXML = "ReminderCard.fxml";
+    private static final String EXPIRED_STYLE_CLASS = "expired";
 
     public final Reminder reminder;
 
@@ -34,6 +35,9 @@ public class ReminderCard extends UiPart<Region> {
         dateText.setText(reminder.getDateTimeString());
         name.setText(reminder.getNameString());
         phone.setText(reminder.getPhoneString());
+        if (reminder.isExpired()) {
+            this.getRoot().getStyleClass().add(EXPIRED_STYLE_CLASS);
+        }
     }
 
     @Override
