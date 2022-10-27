@@ -52,7 +52,7 @@ public class AppendCommandParser implements Parser<AppendCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Set<Tag> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    public static Set<Tag> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {
@@ -66,7 +66,7 @@ public class AppendCommandParser implements Parser<AppendCommand> {
      * If {@code surveys} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Survey>} containing zero surveys.
      */
-    private Set<Survey> parseSurveysForEdit(Collection<String> surveys) throws ParseException {
+    public static Set<Survey> parseSurveysForEdit(Collection<String> surveys) throws ParseException {
         assert surveys != null;
 
         if (surveys.isEmpty()) {
@@ -79,7 +79,7 @@ public class AppendCommandParser implements Parser<AppendCommand> {
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
