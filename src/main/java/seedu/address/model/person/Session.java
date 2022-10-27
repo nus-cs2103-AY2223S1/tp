@@ -53,9 +53,9 @@ public class Session implements Comparable<Session> {
             return false;
         }
         String day = test.substring(0, 3);
-        String hour = test.substring(4);
-        return day.matches(VALIDATION_REGEX_DAY) && hour.matches(VALIDATION_REGEX_TIME) && isValidDay(day)
-                && isValidHour(hour);
+        String hourAndMin = test.substring(4);
+        return day.matches(VALIDATION_REGEX_DAY) && hourAndMin.matches(VALIDATION_REGEX_TIME) && isValidDay(day)
+                && isValidTime(hourAndMin);
     }
 
     /**
@@ -73,7 +73,7 @@ public class Session implements Comparable<Session> {
     /**
      * Returns true if a given string has valid hours and minutes.
      */
-    private static boolean isValidHour(String test) {
+    private static boolean isValidTime(String test) {
         int hour = Integer.parseInt(test.substring(0, 2));
         int min = Integer.parseInt(test.substring(3, 5));
         if (hour >= 0 && hour < 24) {
