@@ -29,6 +29,10 @@ public class SessionData implements Identity<SessionData> {
         return session;
     }
 
+    public String getSessionName() {
+        return session.getSessionName();
+    }
+
     public double getGrade() {
         return grade;
     }

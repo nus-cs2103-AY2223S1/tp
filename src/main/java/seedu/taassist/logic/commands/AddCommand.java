@@ -29,13 +29,13 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_EMAIL + "johnd@example.com     "
             + PREFIX_ADDRESS + "Prince George Park Residence 4 "
             + PREFIX_MODULE_CLASS + "CS1101S "
             + PREFIX_MODULE_CLASS + "CS1231S";
 
-    public static final String MESSAGE_SUCCESS = "Added new student: [%1$s]";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "[%1$s] already exists in TA-Assist";
+    public static final String MESSAGE_SUCCESS = "Added new student: [ %1$s ]";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Student [ %1$s ] already exists in TA-Assist!";
 
     private final Student student;
 

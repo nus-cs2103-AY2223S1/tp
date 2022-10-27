@@ -26,7 +26,7 @@ public class UnassignCommand extends Command {
 
     public static final String MESSAGE_USAGE = "> Unassigns students from a class.\n"
             + "Parameters: INDEX... "
-            + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
+            + PREFIX_MODULE_CLASS + "CLASS_NAME (case-insensitive)\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 2 3 "
             + PREFIX_MODULE_CLASS + "CS1231S";

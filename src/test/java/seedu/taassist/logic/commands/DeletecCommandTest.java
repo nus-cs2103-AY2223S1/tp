@@ -51,11 +51,9 @@ public class DeletecCommandTest {
 
         CommandResult commandResult = new DeletecCommand(validModuleClasses).execute(modelStub);
 
-        String validModuleClassesStr = validModuleClasses
-                .stream().map(Object::toString).collect(Collectors.joining(" "));
+        String exptectedMessage = DeletecCommand.getCommandMessage(validModuleClasses, new HashSet<>());
 
-        assertEquals(String.format(DeletecCommand.MESSAGE_SUCCESS, validModuleClassesStr),
-                commandResult.getFeedbackToUser());
+        assertEquals(exptectedMessage, commandResult.getFeedbackToUser());
 
         assertTrue(modelStub.getModuleClasses().isEmpty());
     }

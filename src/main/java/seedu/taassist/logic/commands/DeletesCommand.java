@@ -6,6 +6,7 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
@@ -19,13 +20,13 @@ public class DeletesCommand extends Command {
 
     public static final String COMMAND_WORD = "deletes";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes sessions for a class.\n"
-            + "Paramaters: "
+    public static final String MESSAGE_USAGE = "> Deletes sessions for a class.\n"
+            + "Parameters: "
             + PREFIX_SESSION + "SESSION_NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SESSION + "Lab1";
 
-    public static final String MESSAGE_SUCCESS = "Sessions deleted: %s";
+    public static final String MESSAGE_SUCCESS = "Sessions deleted: [ %s ]";
     public static final String MESSAGE_SESSION_DOES_NOT_EXIST = "Session [ %s ] does not exist!";
 
     private final Set<Session> sessions;
@@ -56,7 +57,14 @@ public class DeletesCommand extends Command {
         }
 
         model.removeSessions(focusedClass, sessions);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, sessions));
+        return new CommandResult(getCommandMessage(sessions));
+    }
+
+    public static String getCommandMessage(Set<Session> sessions) {
+        requireAllNonNull(sessions);
+        String sessionsString = sessions.stream().map(Session::getSessionName).collect(
+                Collectors.joining(", "));
+        return String.format(MESSAGE_SUCCESS, sessionsString);
     }
 
     @Override

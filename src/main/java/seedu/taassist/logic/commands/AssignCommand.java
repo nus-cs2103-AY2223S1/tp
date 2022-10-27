@@ -25,7 +25,7 @@ public class AssignCommand extends Command {
 
     public static final String MESSAGE_USAGE = "> Assigns students to a class.\n"
             + "Parameters: INDEX... "
-            + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
+            + PREFIX_MODULE_CLASS + "CLASS_NAME (case-insensitive)\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 2 3 "
             + PREFIX_MODULE_CLASS + "CS1231S";
@@ -36,7 +36,7 @@ public class AssignCommand extends Command {
     private final ModuleClass moduleClassToAssign;
 
     /**
-     * Creates an AssignCommand to assign the given {@Code ModuleClass} to students at the given {@Code Indices}.
+     * Creates an AssignCommand to assign the given {@code ModuleClass} to students at the given {@code Indices}.
      */
     public AssignCommand(List<Index> indices, ModuleClass moduleClassToAssign) {
         requireAllNonNull(indices);

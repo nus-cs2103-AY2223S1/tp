@@ -19,16 +19,15 @@ public class AddcCommand extends Command {
 
     public static final String COMMAND_WORD = "addc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds classes to TA-Assist.\n"
+    public static final String MESSAGE_USAGE = "> Adds classes to TA-Assist.\n"
             + "Parameters: "
             + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CLASS + "CS1231" + " "
             + PREFIX_MODULE_CLASS + "CS1101S";
 
-    public static final String MESSAGE_SUCCESS = "Added new class(es): [%1$s]";
-    public static final String MESSAGE_DUPLICATE_MODULE_CLASS = "These classes already exists: [%1$s]";
+    public static final String MESSAGE_SUCCESS = "Added new class(es): [ %1$s ]";
+    public static final String MESSAGE_DUPLICATE_MODULE_CLASS = "The class(es) [ %1$s ] already exists!";
 
     private final Set<ModuleClass> moduleClasses;
 

@@ -23,7 +23,6 @@ public class ListsCommand extends Command {
             + "[ " + SessionCommand.COMMAND_WORD + " ] command.";
 
     @Override
-    // TODO: Rudimentary implementation. Needs to be combined with UI.
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
