@@ -11,7 +11,7 @@ public class SubjectTest {
 
     @Test
     public void createSubject_invalidSubject_throwsInvalidSubjectException() {
-        String invalidSubject = "math";
+        String invalidSubject = "socialstudies";
         assertThrows(InvalidSubjectException.class, () -> Subject.createSubject(invalidSubject));
     }
 
