@@ -43,7 +43,7 @@ public class MainDisplay extends UiPart<Region> implements Observer {
 
     @Override
     public void updateUi(Person updatedPerson) {
-        if (displayedProfile.isSamePerson(updatedPerson)) {
+        if (displayedProfile != null && displayedProfile.isSamePerson(updatedPerson)) {
             setPersonProfile(updatedPerson);
         }
     }

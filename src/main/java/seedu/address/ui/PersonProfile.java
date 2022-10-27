@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -19,6 +20,7 @@ public class PersonProfile extends UiPart<Region> {
     private static final String FXML = "PersonProfile.fxml";
     private static final String FILE_EXISTS = "Client Information";
     private static final String NO_FILE_EXISTS = "No File Exists";
+    private static final String EMPTY_FILEPATH = "No Client Information";
     private static final String VALID_BUTTON_BGCOLOUR =
             "-fx-background-color: -fx-background-color: #1d1d1d;";
     private static final String INVALID_BUTTON_BGCOLOUR =
@@ -191,6 +193,8 @@ public class PersonProfile extends UiPart<Region> {
             tagsLabel.setManaged(false);
             return;
         }
+        Tag firstTag = person.getTags().iterator().next();
+        setTagStyle(firstTag);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -201,8 +205,21 @@ public class PersonProfile extends UiPart<Region> {
      */
     private void setPersonFileButton() {
         if (person.getFilePath().isEmpty()) {
-            personFileButton.setManaged(false);
+            personFileButton.setText(EMPTY_FILEPATH);
+            personFileButton.setDisable(true);
             return;
+        }
+    }
+
+    /**
+     * Sets style of tags based on potential or secured client.
+     * @param firstTag first tag in Tag Set
+     */
+    public void setTagStyle(Tag firstTag) {
+        if (firstTag.isPotential()) {
+            tags.setId("potentialTags");
+        } else if (firstTag.isSecured()) {
+            tags.setId("securedTags");
         }
     }
 
@@ -211,6 +228,9 @@ public class PersonProfile extends UiPart<Region> {
      */
     @FXML
     private void openPersonFile() {
+        if (person.getFilePath().isEmpty()) {
+            return;
+        }
         try {
             FileUtil.openPdfFile(person.getFilePath().toString());
             showValidFilePathButton();

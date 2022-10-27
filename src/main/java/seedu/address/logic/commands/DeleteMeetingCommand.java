@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a meeting time from a person
  */
-public class DeleteMeetingCommand extends Command {
+public class DeleteMeetingCommand extends UndoableCommand {
     public static final String COMMAND_WORD = "deletemeeting";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a meeting time from the person identified "
@@ -30,8 +30,13 @@ public class DeleteMeetingCommand extends Command {
 
     public static final String MESSAGE_DELETE_MEETING_SUCCESS = "Deleted meeting time %1$s from Person: %2$s";
     public static final String MESSAGE_DELETE_MEETING_FAILURE_NOTFOUND = "Couldn't find meeting time %1$s in %2$s";
+    public static final String MESSAGE_UNDO = "Restored meeting time %1$s to Person: %2$s";
+    public static final String MESSAGE_REDO = "Re-deleted meeting time %1$s from Person: %2$s";
     private final Index index;
     private final MeetingTime meetingTime;
+
+    private Person personToEdit;
+    private Person editedPerson;
 
     /**
      * @param index of the person in the filtered person list to delete the MeetingTime from
@@ -54,7 +59,7 @@ public class DeleteMeetingCommand extends Command {
 
         String result;
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        personToEdit = lastShownList.get(index.getZeroBased());
         Set<MeetingTime> meetingTimeToEdit = personToEdit.getMeetingTimes();
 
         Set<MeetingTime> editedTimes = new HashSet<>();
@@ -66,7 +71,7 @@ public class DeleteMeetingCommand extends Command {
             result = MESSAGE_DELETE_MEETING_FAILURE_NOTFOUND;
         }
 
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+        editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getDescription(), personToEdit.getNetWorth(), editedTimes,
                 personToEdit.getFilePath(), personToEdit.getTags());
 
@@ -74,6 +79,20 @@ public class DeleteMeetingCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(result, meetingTime, editedPerson));
+    }
+
+    @Override
+    public CommandResult undo(Model model) {
+        model.setPerson(editedPerson, personToEdit);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_UNDO, meetingTime, personToEdit));
+    }
+
+    @Override
+    public CommandResult redo(Model model) {
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_REDO, meetingTime, editedPerson));
     }
 
     @Override

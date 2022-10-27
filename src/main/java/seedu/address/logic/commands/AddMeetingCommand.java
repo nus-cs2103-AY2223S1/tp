@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 /**
  * Adds one or multiple meeting times to a person
  */
-public class AddMeetingCommand extends Command {
+public class AddMeetingCommand extends UndoableCommand {
     public static final String COMMAND_WORD = "meeting";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds one or multiple meeting times to the person "
@@ -29,9 +29,14 @@ public class AddMeetingCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MEETING_TIME + "27-10-2002-11:30";
 
-    public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting time to Person: %1$s";
+    public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting time(s) to Person: %1$s";
+    public static final String MESSAGE_UNDO = "Removed previously added meeting time(s) from Person: %1$s";
+    public static final String MESSAGE_REDO = "Re-added meeting time(s) to Person: %1$s";
     private final Index index;
     private final Set<MeetingTime> meetingTimes;
+
+    private Person personToEdit;
+    private Person editedPerson;
 
     /**
      * @param index of the person in the filtered person list to add the MeetingTime
@@ -52,14 +57,14 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        personToEdit = lastShownList.get(index.getZeroBased());
         Set<MeetingTime> meetingTimesToEdit = personToEdit.getMeetingTimes();
 
         Set<MeetingTime> editedTimes = new HashSet<>();
         editedTimes.addAll(meetingTimesToEdit);
         editedTimes.addAll(meetingTimes);
 
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+        editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getDescription(), personToEdit.getNetWorth(), editedTimes,
                 personToEdit.getFilePath(), personToEdit.getTags());
 
@@ -67,6 +72,20 @@ public class AddMeetingCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_ADD_MEETING_SUCCESS, editedPerson));
+    }
+
+    @Override
+    public CommandResult undo(Model model) {
+        model.setPerson(editedPerson, personToEdit);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_UNDO, personToEdit));
+    }
+
+    @Override
+    public CommandResult redo(Model model) {
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_REDO, editedPerson));
     }
 
     @Override
