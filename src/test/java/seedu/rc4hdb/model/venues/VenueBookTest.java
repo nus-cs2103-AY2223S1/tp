@@ -1,13 +1,14 @@
 package seedu.rc4hdb.model.venues;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_6_TO_7PM;
 import static seedu.rc4hdb.testutil.TypicalBookings.MR_BOB_TUESDAY_6_TO_7PM;
-import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM;
 import static seedu.rc4hdb.testutil.TypicalVenues.DISCUSSION_ROOM;
+import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM;
+import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM_VENUE_NAME;
 import static seedu.rc4hdb.testutil.TypicalVenues.getTypicalVenueBook;
 
 import java.util.Arrays;
@@ -48,7 +49,8 @@ public class VenueBookTest {
     @Test
     public void resetData_withDuplicateVenues_throwsDuplicateVenueException() {
         // Two venues with the same identity fields (i.e. venue name)
-        Venue editedMeetingRoom = new VenueBuilder(MEETING_ROOM)
+        Venue editedMeetingRoom = new VenueBuilder()
+                .withVenueName(MEETING_ROOM_VENUE_NAME)
                 .withBookings(MR_ALICE_MONDAY_6_TO_7PM, MR_BOB_TUESDAY_6_TO_7PM)
                 .build();
         List<Venue> newVenues = Arrays.asList(MEETING_ROOM, editedMeetingRoom);

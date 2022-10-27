@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
-import static seedu.rc4hdb.testutil.TypicalBookings.getExampleBookingDescriptor;
 import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_6PM;
-import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_6_TO_7PM;
 import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_5_TO_7PM;
+import static seedu.rc4hdb.testutil.TypicalBookings.MR_ALICE_MONDAY_6_TO_7PM;
 import static seedu.rc4hdb.testutil.TypicalBookings.MR_BOB_TUESDAY_6_TO_7PM;
+import static seedu.rc4hdb.testutil.TypicalBookings.getExampleBookingDescriptor;
 import static seedu.rc4hdb.testutil.TypicalVenues.DISCUSSION_ROOM;
 import static seedu.rc4hdb.testutil.TypicalVenues.DISCUSSION_ROOM_NAME;
 import static seedu.rc4hdb.testutil.TypicalVenues.HALL;
@@ -18,8 +18,8 @@ import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM_VENUE_NAME;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
@@ -57,7 +57,8 @@ public class UniqueVenueListTest {
     @Test
     public void contains_venueWithSameIdentityFieldsInList_returnsTrue() {
         uniqueVenueList.add(DISCUSSION_ROOM);
-        Venue editedDiscussionRoom = new VenueBuilder(DISCUSSION_ROOM)
+        Venue editedDiscussionRoom = new VenueBuilder()
+                .withVenueName(DISCUSSION_ROOM_NAME)
                 .withBookings(MR_ALICE_MONDAY_6_TO_7PM, MR_BOB_TUESDAY_6_TO_7PM)
                 .build();
         assertTrue(uniqueVenueList.contains(editedDiscussionRoom));
@@ -75,31 +76,33 @@ public class UniqueVenueListTest {
     }
 
     // Test cases that involve bookings use a copy of the default venues to avoid modifying the original venues
+    // Initially added the static method Venue.copyOf(Venue toCopy) for this but realised that VenueBuilder suffices
+    // (even though there is more overhead in using VenueBuilder...)
 
     @Test
     public void addBooking_withValidBooking_success() {
-        uniqueVenueList.add(Venue.copyOf(DISCUSSION_ROOM));
+        uniqueVenueList.add(new VenueBuilder(DISCUSSION_ROOM).build());
         uniqueVenueList.addBooking(DISCUSSION_ROOM_NAME, MR_BOB_TUESDAY_6_TO_7PM);
         assertTrue(uniqueVenueList.getBookings(DISCUSSION_ROOM_NAME).contains(MR_BOB_TUESDAY_6_TO_7PM));
     }
 
     @Test
     public void addBooking_withInvalidVenueName_throwsVenueNotFoundException() {
-        uniqueVenueList.add(Venue.copyOf(HALL));
+        uniqueVenueList.add(new VenueBuilder(HALL).build());
         assertThrows(VenueNotFoundException.class, () -> uniqueVenueList
                 .addBooking(DISCUSSION_ROOM_NAME, MR_BOB_TUESDAY_6_TO_7PM));
     }
 
     @Test
     public void addBooking_withNullVenueName_throwsNullPointerException() {
-        uniqueVenueList.add(Venue.copyOf(HALL));
+        uniqueVenueList.add(new VenueBuilder(HALL).build());
         assertThrows(NullPointerException.class, () -> uniqueVenueList
                 .addBooking(null, MR_BOB_TUESDAY_6_TO_7PM));
     }
 
     @Test
     public void addBooking_withClashingBooking_throwsBookingClashesException() {
-        uniqueVenueList.add(Venue.copyOf(DISCUSSION_ROOM));
+        uniqueVenueList.add(new VenueBuilder(DISCUSSION_ROOM).build());
         uniqueVenueList.addBooking(DISCUSSION_ROOM_NAME, MR_ALICE_MONDAY_6_TO_7PM);
         assertThrows(BookingClashesException.class, () -> uniqueVenueList
                 .addBooking(DISCUSSION_ROOM_NAME, MR_ALICE_MONDAY_5_TO_7PM));
@@ -107,14 +110,14 @@ public class UniqueVenueListTest {
 
     @Test
     public void addBooking_withNullBooking_throwsNullPointerException() {
-        uniqueVenueList.add(Venue.copyOf(DISCUSSION_ROOM));
+        uniqueVenueList.add(new VenueBuilder(DISCUSSION_ROOM).build());
         assertThrows(NullPointerException.class, () -> uniqueVenueList
                 .addBooking(DISCUSSION_ROOM_NAME, null));
     }
 
     @Test
     public void removeBooking_withValidBookingDescriptor_success() {
-        uniqueVenueList.add(Venue.copyOf(MEETING_ROOM));
+        uniqueVenueList.add(new VenueBuilder(MEETING_ROOM).build());
         System.out.println(uniqueVenueList.getBookings(MEETING_ROOM_VENUE_NAME).contains(MR_ALICE_MONDAY_5_TO_6PM));
         uniqueVenueList.addBooking(MEETING_ROOM_VENUE_NAME, MR_ALICE_MONDAY_5_TO_6PM);
         uniqueVenueList.removeBooking(getExampleBookingDescriptor());
@@ -123,7 +126,7 @@ public class UniqueVenueListTest {
 
     @Test
     public void removeBooking_withNullVenueName_throwsVenueNotFoundException() {
-        uniqueVenueList.add(Venue.copyOf(MEETING_ROOM));
+        uniqueVenueList.add(new VenueBuilder(MEETING_ROOM).build());
         uniqueVenueList.addBooking(MEETING_ROOM_VENUE_NAME, MR_ALICE_MONDAY_5_TO_6PM);
         BookingDescriptor bookingDescriptor = new BookingDescriptor(getExampleBookingDescriptor());
         bookingDescriptor.setVenueName(null);
@@ -132,7 +135,7 @@ public class UniqueVenueListTest {
 
     @Test
     public void removeBooking_withInvalidVenueName_throwsVenueNotFoundException() {
-        uniqueVenueList.add(Venue.copyOf(MEETING_ROOM));
+        uniqueVenueList.add(new VenueBuilder(MEETING_ROOM).build());
         uniqueVenueList.addBooking(MEETING_ROOM_VENUE_NAME, MR_ALICE_MONDAY_5_TO_6PM);
         BookingDescriptor bookingDescriptor = new BookingDescriptor(getExampleBookingDescriptor());
         bookingDescriptor.setVenueName(DISCUSSION_ROOM_NAME);
@@ -141,28 +144,28 @@ public class UniqueVenueListTest {
 
     @Test
     public void removeBooking_bookingNotInVenue_throwsBookingNotFoundException() {
-        uniqueVenueList.add(Venue.copyOf(MEETING_ROOM));
+        uniqueVenueList.add(new VenueBuilder(MEETING_ROOM).build());
         assertThrows(BookingNotFoundException.class, () -> uniqueVenueList
                 .removeBooking(getExampleBookingDescriptor()));
     }
 
     @Test
     public void removeBooking_nullBookingDescriptor_throwsNullPointerException() {
-        uniqueVenueList.add(Venue.copyOf(MEETING_ROOM));
+        uniqueVenueList.add(new VenueBuilder(MEETING_ROOM).build());
         uniqueVenueList.addBooking(MEETING_ROOM_VENUE_NAME, MR_ALICE_MONDAY_5_TO_6PM);
         assertThrows(NullPointerException.class, () -> uniqueVenueList.removeBooking(null));
     }
 
     @Test
     public void getBookings_withInvalidVenueName_throwsVenueNotFoundException() {
-        uniqueVenueList.add(Venue.copyOf(MEETING_ROOM));
+        uniqueVenueList.add(new VenueBuilder(MEETING_ROOM).build());
         uniqueVenueList.addBooking(MEETING_ROOM_VENUE_NAME, MR_ALICE_MONDAY_5_TO_6PM);
         assertThrows(VenueNotFoundException.class, () -> uniqueVenueList.getBookings(DISCUSSION_ROOM_NAME));
     }
 
     @Test
     public void getBookings_withNullVenueName_throwsNullPointerException() {
-        uniqueVenueList.add(Venue.copyOf(MEETING_ROOM));
+        uniqueVenueList.add(new VenueBuilder(MEETING_ROOM).build());
         uniqueVenueList.addBooking(MEETING_ROOM_VENUE_NAME, MR_ALICE_MONDAY_5_TO_6PM);
         assertThrows(NullPointerException.class, () -> uniqueVenueList.getBookings(null));
     }
