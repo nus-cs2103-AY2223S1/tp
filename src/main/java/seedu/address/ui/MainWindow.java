@@ -1,17 +1,26 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.GuiSettings.DARK_THEME_STRING;
+import static seedu.address.commons.core.GuiSettings.GREEN_THEME_STRING;
+import static seedu.address.commons.core.GuiSettings.LIGHT_THEME_STRING;
+import static seedu.address.commons.core.GuiSettings.PINK_THEME_STRING;
 import static seedu.address.logic.commands.ListStudentCommand.COMMAND_LIST_STUDENT_STRING;
 import static seedu.address.logic.commands.ListTuitionClassCommand.COMMAND_LIST_CLASS_STRING;
 import static seedu.address.logic.commands.ListTutorCommand.COMMAND_LIST_TUTOR_STRING;
 
 import java.util.logging.Logger;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -25,8 +34,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-
-
+import seedu.address.model.Model.ListType;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,12 +44,14 @@ import seedu.address.model.Model;
  */
 public class MainWindow extends UiPart<Stage> {
     private static final String SELECTED_LABEL_STYLE_CLASS = "active-label";
+
     private static final String UNSELECTED_LABEL_STYLE_CLASS = "inactive-label";
 
+    private static final Label NO_PERSON_DISPLAYED_LABEL = new Label("No Person Displayed");
+
+    private static final String WELCOME_MESSAGE = "Welcome to myStudent!\n" + "Key in command to start";
+
     private static final String FXML = "MainWindow.fxml";
-
-    private static final Label NO_ENTITY_DISPLAYED_LABEL = new Label("No Person Displayed");
-
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -54,9 +66,17 @@ public class MainWindow extends UiPart<Stage> {
     private TutorDescription tutorDescription;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ListType descriptionEntityType;
+    private String theme;
 
-    private Model.ListType descriptionEntityType;
-
+    @FXML
+    private StackPane animationPanel;
+    @FXML
+    private ImageView logo;
+    @FXML
+    private ImageView welcomeMessage;
+    @FXML
+    private ImageView exitMessage;
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -73,9 +93,6 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
-
-    @FXML
     private Pane studentLabelPanel;
 
     @FXML
@@ -83,6 +100,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Pane tuitionClassLabelPanel;
+
+    @FXML
+    private Scene mainWindowScene;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -95,7 +115,7 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
+        setWindow(logic.getGuiSettings());
 
         setAccelerators();
 
@@ -154,28 +174,100 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        // might one to change this to show all the different file paths? or just remove it entirely.
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTutorAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
+        entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
 
-        resultDisplay.setFeedbackToUser("Welcome to myStudent\n" + "Key in command to start");
+        resultDisplay.setFeedbackToUser(WELCOME_MESSAGE);
+    }
+
+    public void setUpClickableCards() {
+        studentListPanel.getStudentListView().getSelectionModel().selectedItemProperty()
+                .addListener(new ChangeListener<Student>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Student> observable,
+                                        Student oldValue, Student newValue) {
+                        descriptionEntityType = ListType.STUDENT_LIST;
+                        entityDescriptionPlaceholder.getChildren().clear();
+                        if (newValue != null) {
+                            studentDescription = new StudentDescription(newValue);
+                            entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
+                        } else {
+                            entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
+                        }
+                    }
+                });
+
+        tutorListPanel.getTutorListView().getSelectionModel().selectedItemProperty()
+                .addListener(new ChangeListener<Tutor>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Tutor> observable, Tutor oldValue, Tutor newValue) {
+                        descriptionEntityType = ListType.TUTOR_LIST;
+                        entityDescriptionPlaceholder.getChildren().clear();
+                        if (newValue != null) {
+                            tutorDescription = new TutorDescription(newValue);
+                            entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
+                        } else {
+                            entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
+                        }
+                    }
+                });
     }
 
     /**
-     * Sets the default size based on {@code guiSettings}.
+     * Sets the default size and theme based on {@code guiSettings}.
      */
-    private void setWindowDefaultSize(GuiSettings guiSettings) {
+    private void setWindow(GuiSettings guiSettings) {
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+        mainWindowScene.getStylesheets().clear();
+        mainWindowScene.getStylesheets().add(guiSettings.getTheme());
+        this.theme = guiSettings.getTheme();
+    }
+
+    /**
+     * Sets the current theme to the light theme.
+     */
+    @FXML
+    private void updateToLightTheme() {
+        mainWindowScene.getStylesheets().clear();
+        mainWindowScene.getStylesheets().add(LIGHT_THEME_STRING);
+        this.theme = LIGHT_THEME_STRING;
+    }
+
+    /**
+     * Sets the current theme to the dark theme.
+     */
+    @FXML
+    private void updateToDarkTheme() {
+        mainWindowScene.getStylesheets().clear();
+        mainWindowScene.getStylesheets().add((DARK_THEME_STRING));
+        this.theme = DARK_THEME_STRING;
+    }
+
+    /**
+     * Sets the current theme to the green theme.
+     */
+    @FXML
+    private void updateToGreenTheme() {
+        mainWindowScene.getStylesheets().clear();
+        mainWindowScene.getStylesheets().add(GREEN_THEME_STRING);
+        this.theme = GREEN_THEME_STRING;
+    }
+
+    /**
+     * Sets the current theme to the pink theme.
+     */
+    @FXML
+    private void updateToPinkTheme() {
+        mainWindowScene.getStylesheets().clear();
+        mainWindowScene.getStylesheets().add(PINK_THEME_STRING);
+        this.theme = PINK_THEME_STRING;
     }
 
     /**
@@ -192,6 +284,15 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+        PauseTransition pause = new PauseTransition(Duration.seconds(1));
+        FadeTransition transition = new FadeTransition(Duration.seconds(2));
+        transition.setNode(animationPanel);
+        transition.setFromValue(1.0f);
+        transition.setToValue(0.0f);
+        pause.setOnFinished(event -> {
+            transition.play();
+        });
+        pause.play();
     }
 
     /**
@@ -200,14 +301,23 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), this.theme);
         logic.setGuiSettings(guiSettings);
-        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+        PauseTransition pause = new PauseTransition(Duration.seconds(1));
+        FadeTransition transition = new FadeTransition(Duration.seconds(1));
+        transition.setNode(animationPanel);
+        transition.setFromValue(0.0f);
+        transition.setToValue(1.0f);
+        welcomeMessage.setVisible(false);
+        exitMessage.setVisible(true);
+        transition.setOnFinished(event -> {
+            pause.play();
+        });
+        transition.play();
         pause.setOnFinished(event -> {
             helpWindow.hide();
             primaryStage.hide();
         });
-        pause.play();
     }
 
     /**
@@ -224,16 +334,10 @@ public class MainWindow extends UiPart<Stage> {
         descriptionEntityType = type;
         switch(type) {
         case STUDENT_LIST:
-            entityDescriptionPlaceholder.getChildren().clear();
-            studentDescription = new StudentDescription(
-                    logic.getFilteredStudentList().get(index));
-            entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
+            studentListPanel.getStudentListView().getSelectionModel().select(index);
             break;
         case TUTOR_LIST:
-            entityDescriptionPlaceholder.getChildren().clear();
-            tutorDescription = new TutorDescription(
-                    logic.getFilteredTutorList().get(index));
-            entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
+            tutorListPanel.getTutorListView().getSelectionModel().select(index);
             break;
         default:
             break;
@@ -247,10 +351,12 @@ public class MainWindow extends UiPart<Stage> {
         Model.ListType type = logic.getCurrentListType();
         switch (type) {
         case STUDENT_LIST:
+            tutorListPanel.getTutorListView().getSelectionModel().clearSelection();
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             break;
         case TUTOR_LIST:
+            studentListPanel.getStudentListView().getSelectionModel().clearSelection();
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
             break;
@@ -266,7 +372,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /** Displays the added entity in Description Panel. **/
     private void handleAdd() {
-        Model.ListType type = logic.getCurrentListType();
+        ListType type = logic.getCurrentListType();
         entityDescriptionPlaceholder.getChildren().clear();
         int listSize;
         switch(type) {
@@ -298,24 +404,24 @@ public class MainWindow extends UiPart<Stage> {
 
         if (descriptionEntityType == logic.getCurrentListType()) {
             entityDescriptionPlaceholder.getChildren().clear();
-            entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
+            entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
         }
     }
 
-    /** Clears the current Description Panel if it is the deleted entity **/
+    /** Clears the current Description Panel if the displayed is the deleted entity **/
     private void handleDelete(CommandResult commandResult) {
-        Model.ListType type = logic.getCurrentListType();
+        ListType type = logic.getCurrentListType();
         switch (type) {
         case STUDENT_LIST:
             if (commandResult.getDeletedStudent().equals(studentDescription.getDisplayedStudent())) {
                 entityDescriptionPlaceholder.getChildren().clear();
-                entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
+                entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
             }
             break;
         case TUTOR_LIST:
             if (commandResult.getDeletedTutor().equals(tutorDescription.getDisplayedTutor())) {
                 entityDescriptionPlaceholder.getChildren().clear();
-                entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
+                entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
             }
             break;
         default:
