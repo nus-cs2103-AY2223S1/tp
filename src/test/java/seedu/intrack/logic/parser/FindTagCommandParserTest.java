@@ -22,7 +22,7 @@ public class FindTagCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindTagCommand() {
         // no leading and trailing whitespaces
         FindTagCommand expectedFindTagsCommand =
                 new FindTagCommand(new TagsContainKeywordsPredicate(Arrays.asList("Urgent", "Remote")));
