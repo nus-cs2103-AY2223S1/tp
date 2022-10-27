@@ -64,6 +64,8 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, t
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ## Basic features
 This section contains basic features of JARVIS.
 
@@ -79,6 +81,8 @@ Format: `help`
 
 Shows an expanded list of all students.
 
+![liststudentCommand](images/liststudentCommand.png)
+
 Format: `liststudent`
 
 * Additional information such as grades for each student will be displayed.
@@ -87,11 +91,15 @@ Format: `liststudent`
 
 Shows an expanded list of all tasks.
 
+![listtaskCommand](images/listtaskCommand.png)
+
 Format: `listtask`
 
 ### Listing all students : `listlesson`
 
 Shows an expanded list of all lessons.
+
+![listlessonCommand](images/listlessonCommand.png)
 
 Format: `listlesson`
 
@@ -100,6 +108,8 @@ Format: `listlesson`
 ### Listing all students, tasks and lessons : `listall`
 
 Shows the truncated lists of students, tasks and lessons.
+
+![listallCommand](images/listallCommand.png)
 
 Format: `listall`
 
@@ -119,6 +129,8 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+<div style="page-break-after: always;"></div>
 
 ## Student features
 This section contains features for managing students.
@@ -184,6 +196,8 @@ Adds grades to a student.
 
 Format: `grade INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`
 
+![gradeCommand](images/gradeCommand.png)
+
 * Add grades to the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `ra1/MARKS` is optional, if specified will record a grade for RA1 (Reading Assessment 1).
@@ -210,6 +224,8 @@ Format: `mc INDEX num/MC_NUM r/MC_RESULT`
 
 Examples:
 * `mc 1 num/1 r/PASS` sets the mastery check result for the 1st student to PASS.
+
+<div style="page-break-after: always;"></div>
 
 ## Task features
 This section contains features for managing tasks.
@@ -243,6 +259,8 @@ Examples:
 
 Marks a task as done.
 
+![marktaskCommand](images/marktaskCommand.png)
+
 Format: `marktask INDEX`
 
 * `INDEX` refers to the index number shown in the displayed list of tasks.
@@ -262,6 +280,8 @@ Format: `unmarktask INDEX`
 
 Example:
 * `unmarktask 2` marks the 2nd task as not done.
+
+<div style="page-break-after: always;"></div>
 
 ## Lesson features
 This section contains features for managing lessons.
@@ -350,6 +370,8 @@ Example:
 
 Marks a student as present for a lesson.
 
+![markstudentCommand](images/markstudentCommand.png)
+
 Format: `markstudent li/LESSON_INDEX si/STUDENT_INDEX`
 
 * `LESSON_INDEX` refers to the index number shown in the displayed list of lessons.
@@ -375,6 +397,8 @@ Example:
 ### Adding a note to a lesson : `addnote`
 
 Adds a note for a lesson or for a specific student in a lesson.
+
+![addnoteCommand.png](images/addnoteCommand.png)
 
 Format: `addnote n/NOTE li/LESSON_INDEX [si/STUDENT_INDEX]`
 
@@ -418,6 +442,8 @@ Format: `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`
 Example:
 * `addpart p/100 li/1 si/2` sets participation for the 2nd student from the 1st lesson to be 100.
 
+<div style="page-break-after: always;"></div>
+
 ## Saving the data
 
 JARVIS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -443,6 +469,8 @@ If your changes to the data file makes its format invalid, JARVIS will discard a
 **A**: Install the app in the other computer and overwrite the empty data files it creates with the files that contains the data of your previous JARVIS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
