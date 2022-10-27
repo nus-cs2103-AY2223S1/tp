@@ -50,9 +50,9 @@ public class TaskTest {
         editedAlice = new PersonBuilder(ALICE).withModule(VALID_MODULE_BETA).build();
         assertFalse(ALICE.isSameTask(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Task editedBob = new PersonBuilder(BETA).withName(VALID_NAME_TASK_BETA.toLowerCase()).build();
-        assertFalse(BETA.isSameTask(editedBob));
+        assertTrue(BETA.isSameTask(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_TASK_BETA + " ";
