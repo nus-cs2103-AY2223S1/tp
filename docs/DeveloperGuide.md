@@ -416,9 +416,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------------------------- | --------------------------------------------|
-| `* * *`  | property agent                             | add new buyers 
+| `* * *`  | property agent                             | add new buyers
 | `* * *`  | property agent                             | add new properties
-| `* *`    | property agent                             | edit information without needing internet access 
+| `* *`    | property agent                             | edit information without needing internet access
 | `* *`    | disorganised property agent                | categorise contacts as "buyer" or "seller         | keep track of demand and supply
 | `* *`    | property agent                             | edit contacts' details                            | easily update any changes
 | `* * *`  | property agent with a large number of contacts | sort contacts in different ways (alphabetical order, date of transaction, location)           | easily update any changes
