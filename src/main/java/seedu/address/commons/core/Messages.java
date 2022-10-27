@@ -28,4 +28,8 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_EXAM = "This exam already exists in the exam list";
     public static final String MESSAGE_INVALID_EXAM_DISPLAYED_INDEX =
             "The exam index provided is invalid";
+    public static final String MESSAGE_INVALID_EXAM_INDEX_TOO_LARGE =
+            "Please provide a exam index greater than 0 and less than %d";
+    public static final String MESSAGE_INVALID_EXAM_INDEX =
+            "Please provide a positive integer for the index of a exam.";
 }

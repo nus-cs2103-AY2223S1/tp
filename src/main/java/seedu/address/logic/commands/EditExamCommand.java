@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EXAM;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
@@ -13,6 +12,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXAMS;
 import java.util.List;
 import java.util.Optional;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -42,9 +42,11 @@ public class EditExamCommand extends Command {
             + PREFIX_EXAM_DESCRIPTION + "finals "
             + PREFIX_EXAM_DATE + "20-12-2022";
 
-    public static final String MESSAGE_EDIT_EXAM_SUCCESS = "Edited Exam: %1$s";
-    public static final String MESSAGE_EXAM_NOT_EDITED = "The provided fields are the same as the current exam";
-
+    public static final String MESSAGE_EDIT_EXAM_SUCCESS = "Successfully Edited Exam: %1$s";
+    public static final String MESSAGE_EXAM_NOT_EDITED = "Please provide a module or exam description or exam date"
+            + "different from the exam's current module and description and exam date";;
+    public static final String MESSAGE_NO_FIELDS_PROVIDED =
+            "Please provide at least one of the fields to edit: m/MODULE, ex/EXAMDESCRIPTION, ed/EXAMDATE";
     private final Index index;
     private final EditExamDescriptor editExamDescriptor;
 
@@ -64,7 +66,8 @@ public class EditExamCommand extends Command {
         List<Exam> lastShownList = model.getFilteredExamList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_EXAM_INDEX_TOO_LARGE, lastShownList.size() + 1));
         }
 
         if (editExamDescriptor.getModule().isPresent() && !model.hasModule(editExamDescriptor.module)) {
