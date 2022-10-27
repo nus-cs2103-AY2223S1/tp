@@ -397,6 +397,20 @@ Expected outcome:
 
 ### Deleting a task from a selected internship application : `deltask`
 
+Deletes a task from a selected internship application at the selected `Internship` from InTrack.
+
+Format: `deltask INDEX`
+
+* Where `INDEX` refers to the index of the list of tasks in the selected internship
+
+Examples of usage:
+
+* `deltask 1`
+
+Expected outcome:
+
+* Deletes the first task of the selected `Internship`
+
 ### Adding a tag to an internship application : `addtag`
 Adds one or more `Tag`s to the internship application at the specified `INDEX` from InTrack.
 `INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
@@ -477,7 +491,7 @@ Expected outcome:
 | **Stats**            | `stats`                                                                                                                                                                                  |
 | **Select**           | `select INDEX` <br/> e.g. `select 1`                                                                                                                                                     |
 | **Add Task**         | `addtask TASKNAME /at TASKTIME`<br/> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                             |
-| **Delete Task**      |                                                                                                                                                                                          |
+| **Delete Task**      |  `deltask INDEX` <br/> e.g. `deltask `                                                                                                                                                                                        |
 | **Add Tag**          | `addtag`<br/> e.g. `addtag 1 Urgent`                                                                                                                                                     |
 | **Delete Tag**       | `deltag`<br/> e.g. `deltag 1 Urgent`                                                                                                                                                     |
 | **Mail**             | `mail`                                                                                                                                                                                   |
