@@ -162,7 +162,7 @@ Format: `remark INDEX REMARK [t/TAG]...`
 
 Examples:
 * `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
-* `remark 5 fast and decisive t/favourite` adds the remark `fast and decisive`to the client at index 5. The remark 
+* `remark 5 fast and decisive t/favourite` adds the remark `fast and decisive` to the client at index 5. The remark 
 also has a tag `favourite`. 
 
 ### Deleting a client / transaction / remark : `delete`

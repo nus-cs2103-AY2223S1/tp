@@ -79,16 +79,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5 m/client" + NAME_DESC_AMY, MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX
-            + "\n" + EditCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "-5 m/client" + NAME_DESC_AMY, MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
 
         // negative index
-        assertParseFailure(parser, "-5 m/transaction", MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX
-                + "\n" + EditCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "-5 m/transaction", MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
 
         // negative index
-        assertParseFailure(parser, "-5 m/remark" + NAME_DESC_AMY, MESSAGE_INVALID_REMARK_DISPLAYED_INDEX
-                + "\n" + EditCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "-5 m/remark" + NAME_DESC_AMY, MESSAGE_INVALID_REMARK_DISPLAYED_INDEX);
 
         // zero index
         assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
