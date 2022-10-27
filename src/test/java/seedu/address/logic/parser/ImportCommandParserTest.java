@@ -6,15 +6,15 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.filename.FileName;
-import seedu.address.logic.commands.ExportCommand;
+import seedu.address.logic.commands.ImportCommand;
 
-class ExportCommandParserTest {
-    private ExportCommandParser parser = new ExportCommandParser();
-    private FileName validFileName = new FileName("test");
+public class ImportCommandParserTest {
+    private ImportCommandParser parser = new ImportCommandParser();
+    private FileName validFileName = new FileName("test.csv");
 
     @Test
-    void parse_validArgs_returnsExportCommand() {
-        assertParseSuccess(parser, "test", new ExportCommand(validFileName));
+    void parse_validArgs_returnsImportCommand() {
+        assertParseSuccess(parser, "test.csv", new ImportCommand(validFileName));
     }
 
     @Test

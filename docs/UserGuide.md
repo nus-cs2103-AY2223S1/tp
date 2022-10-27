@@ -60,7 +60,6 @@ This section will explain the parameters and the format of commands.
 <br><br>
 
 <div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
 # 2. Quick Start
 
