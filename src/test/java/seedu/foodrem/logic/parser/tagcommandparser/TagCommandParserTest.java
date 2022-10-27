@@ -11,9 +11,9 @@ import static seedu.foodrem.testutil.TypicalTags.FRUITS;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.commands.tagcommands.TagCommand;
 import seedu.foodrem.model.tag.Tag;
-import seedu.foodrem.model.tag.TagName;
 import seedu.foodrem.testutil.TagBuilder;
 
 public class TagCommandParserTest {
@@ -35,7 +35,7 @@ public class TagCommandParserTest {
     public void parse_invalidExtraFlagAfterTag_failure() {
         String userInput = VALID_DESC_ID_FIRST + VALID_DESC_TAG_NAME_FRUITS + VALID_DESC_ITEM_QUANTITY_CUCUMBERS;
 
-        assertParseFailure(parser, userInput, TagName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, userInput, StringUtil.getInvalidCharactersMessage("tag name"));
     }
 
     @Test
