@@ -16,6 +16,7 @@ title: User Guide
 * Delete appointments (deleteappointment/da)
 * Delete bills (deletebill/db)
 * Sort (sort)
+
 HealthContact is a software for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
 It helps to keep track of patient data, patient appointments and patient bills for the family clinic.
 * Table of Contents
@@ -245,11 +246,55 @@ Examples:
 
 ## 1.3 Delete
 
-### 1.3.1 Deleting a patient
+### 1.3.1 Deleting a patient `deletepatient` `dp`
 
-### 1.3.2 Deleting an appointment of a patient
+Deletes a patient by the index number of the patient in the list.
 
-### 1.3.3 Deleting a bill of an appointment
+Format:
+```deletepatient <targetindex>``` or ```dp <targetindex>```
+
+* The command words are `deletepatient` or `dp`.
+* The patient to be deleted is identified by using the index in the displayed list.
+* Deleting a patient deletes their related appointments and bills.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+Examples:
+
+### 1.3.2 Deleting an appointment of a patient `deleteappointment` `da`
+
+Deletes an appointment by the index number of the appointment in the list.
+
+Format:
+```deleteappointment <targetindex>``` or ```da <targetindex>```
+
+* The command words are `deleteappointment` or `da`.
+* The appointment to be deleted is identified by using the index in the displayed list.
+* Deleting an appointment deletes its related bills.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+Examples:
+
+### 1.3.3 Deleting a bill of an appointment `deletebill` `db`
+
+Deletes a bill by the index number of the bill in the list.
+
+Format:
+```deletebill <targetindex>``` or ```db <targetindex>```
+
+* The command words are `deletebill` or `db`.
+* The bill to be deleted is identified by using the index in the displayed list.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+Examples:
 
 ## 1.4 Find
 
@@ -307,7 +352,8 @@ Examples:
 
 <img src="images/findappointmentAlex.png" width="800px" height ="400px">
 
-### Finding bills `findbill` `fb`
+
+### 1.4.3 Finding bills `findbill` `fb`
 
 Filters bills by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
@@ -327,55 +373,6 @@ Format:
 
 Examples:
 
-### Deleting patients `deletepatient` `dp`
-
-Deletes a patient by the index number of the patient in the list.
-
-Format:
-```deletepatient <targetindex>``` or ```dp <targetindex>```
-
-* The command words are `deletepatient` or `dp`.
-* The patient to be deleted is identified by using the index in the displayed list.
-* Deleting a patient deletes their related appointments and bills.
-* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be 
-  shown with the correct command format.
-* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
-  saying the index is invalid.
-
-Examples:
-
-### Deleting appointments `deleteappointment` `da`
-
-Deletes an appointment by the index number of the appointment in the list.
-
-Format:
-```deleteappointment <targetindex>``` or ```da <targetindex>```
-
-* The command words are `deleteappointment` or `da`.
-* The appointment to be deleted is identified by using the index in the displayed list.
-* Deleting an appointment deletes its related bills.
-* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
-  shown with the correct command format.
-* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
-  saying the index is invalid.
-
-Examples:
-
-### Deleting bills `deletebill` `db`
-
-Deletes a bill by the index number of the bill in the list.
-
-Format:
-```deletebill <targetindex>``` or ```db <targetindex>```
-
-* The command words are `deletebill` or `db`.
-* The bill to be deleted is identified by using the index in the displayed list.
-* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
-  shown with the correct command format.
-* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
-  saying the index is invalid.
-
-Examples:
 
 ### 1.4.3 Finding a bill of an appointment
 
@@ -502,6 +499,7 @@ After:
 Deletes all patients, appointments and bills from the HealthContact.
 
 ### Format
+
 
 `clear`
 
