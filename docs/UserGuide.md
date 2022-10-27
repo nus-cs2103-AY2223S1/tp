@@ -241,9 +241,23 @@ Access the previous commands you've made within each session.
 
 </div>
 
-#### Tag Shortcuts
+#### Tag Aliases
 
-Lorem Ipsum
+Use aliases to quickly enter tags.
+
+Example: 
+
+* `events -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.  
+
+| Alias | Result       | 
+|-------|--------------|
+| assm  | assignment   |
+| lec   | lecture      |
+| pres  | presentation |
+| rec   | recitation   |
+| ta    | tutor        |
+| tut   | tutorial     |
+
 
 #### Quick Links
 
