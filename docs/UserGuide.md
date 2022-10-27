@@ -64,6 +64,17 @@ Pupilist is a **desktop app for managing students details for private tutors**. 
 
 </div>
 
+### Next session : `no command needed`
+
+Pupilist helps to organise your session timings automatically, no need for commands for this feature!<br>
+It will show you this feature on launch of the application and when you use the [`list`](#listing-all-persons--list) command.
+
+Pupilist takes your current device time and sees the sessions that are upcoming if you have any,<br>
+then shows you the name of the person and the session timing. If you don't have any sessions with anyone, <br>
+it will also tell you that there are no next session timing.
+
+![next session feature](images/next_session.png)
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page, and a list of basic commands.
@@ -83,7 +94,9 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book. Toggles the address book to list mode.
+Shows a list of all persons in the address book. Changes the address book to list mode.
+Also allows you to see the next session for you to attend along with the person you 
+are going to be teaching next.
 
 Format: `list`
 
@@ -110,18 +123,22 @@ Examples:
 
 ### Removing specific field in person: `remove`
 
-Edits a specific field of a person in the address book, accessed by View method.<br>
+Removes a specific field of a person in the address book at the specified index. Can only be used in View Mode.<br>
 It requires one field:
 - h/: To be followed by INDEX of homework to be removed
 - a/: To be followed by INDEX of attendance to be removed
 - g/: To be followed by INDEX of grade to be removed
 - s/: To be followed by INDEX of session to be removed
 
+Allows for edits of multiple fields in a single command. However, a single command should remove at most one item from each field. <br>
+
 Format: `remove [h/ a/ g/ s/]INDEX`
 
 Examples:
 * `view 1` returns person in first index <br>
   `remove h/2` removes person at first index's *homework at second index*
+* `view 1` returns person in first index <br>
+  `remove h/2 a/1` removes person at first index's *homework at second index* and *attendance at first index*
 
 ### Marking specific field in person: `mark`
 
@@ -171,6 +188,7 @@ Examples:
 ### Viewing persons details: `view`
 
 View details of a person. Required to `edit` or `remove` person's details.
+You can only view one person's details at one time.
 
 Format: `view NAME` 
 
@@ -221,7 +239,7 @@ Adds a formatted description of dates students attended class in address book.
 
 Format: `attendance INDEX h/ATTENDACE`
 
-*Adds grade progress to student with the specified `INDEX`.</br>
+*Adds attendance to student with the specified `INDEX`.<br>
 *Attendance must be in `YYYY-MM-DD` format
 
 Examples:
@@ -233,8 +251,8 @@ Adds a formatted session timing to student, expected to repeat weekly.
 
 Format: `session INDEX s/TUITION_TIME`
 
-*Adds tuition time to student with the specified `INDEX`.</br>
-*Tuition time must be in `DDD HH-MM` format
+*Adds tuition time to student with the specified `INDEX`.<br>
+*Tuition time must be in `DDD HH:MM` format
 
 Examples:
 *`session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
@@ -245,7 +263,7 @@ Updates a student's lesson plan by overwriting the current one. Can only be used
 
 Format: `lesson INDEX lp/LESSON_PLAN`
 
-*Updates lesson plan of student with the specified `INDEX`.</br>
+*Updates lesson plan of student with the specified `INDEX`.<br>
 
 Examples:
 *`lesson 1 lp/science` changes lesson plan of first student to science.
