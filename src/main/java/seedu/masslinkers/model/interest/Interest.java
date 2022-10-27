@@ -36,12 +36,12 @@ public class Interest {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Interest // instanceof handles nulls
-                && interestName.equals(((Interest) other).interestName)); // state check
+                && interestName.equalsIgnoreCase(((Interest) other).interestName)); // state check
     }
 
     @Override
     public int hashCode() {
-        return interestName.hashCode();
+        return interestName.toLowerCase().hashCode();
     }
 
     /**
