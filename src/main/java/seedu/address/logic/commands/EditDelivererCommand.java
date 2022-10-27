@@ -23,6 +23,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditDelivererCommand extends EditCommand {
 
+    public static final String COMMAND_WORD = "edit-d";
     public EditDelivererCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         super(index, editPersonDescriptor);
     }

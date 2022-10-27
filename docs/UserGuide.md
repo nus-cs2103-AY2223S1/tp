@@ -321,7 +321,7 @@ Format: `list [LIST_PARAMETER]`
 | Pet       | pets, pet, p, -p, /p             |
 
 Examples:
-* `list buyers`, lists all Buyer contacts.
+* `list buyer`, lists all Buyer contacts.
 * `list supplier`, lists all Supplier contacts.
 * `list d`, lists all Deliverer contacts.
 * `list-o`, lists all Orders.
@@ -354,6 +354,10 @@ Examples:
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
+
+### Editing attribute(s) of a contact : `edit`
+
+Edits a `Person` 
 
 ### Finding a contact using keywords : `find`
 
@@ -432,7 +436,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-### Filtering lists by tags : `filter`
+### Filtering lists by attributes : `filter`
 
 Displays contacts / items based on the specified tag(s). This command is especially useful when you want to coordinate
 sales between a Buyer and Supplier.
