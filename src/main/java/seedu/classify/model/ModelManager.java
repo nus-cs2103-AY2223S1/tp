@@ -24,7 +24,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private FilteredStudents filteredStudents;
 
-    // Store previous predicate
     private Predicate<Student> prevPredicate;
 
     /**

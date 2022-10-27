@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -118,6 +119,16 @@ public class ModelManagerTest {
         FilteredStudents filteredStudents = modelManager.getFilteredStudents();
 
         assertEquals(filteredStudents, filteredStudentsTest);
+    }
+
+    @Test void getPrevPredicate_initial() {
+        assertEquals(modelManager.getPrevPredicate(), PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+    @Test void storePrevPredicate() {
+        Predicate<Student> prevPredicate = x -> false;
+        modelManager.storePredicate(prevPredicate);
+        assertEquals(modelManager.getPrevPredicate(), prevPredicate);
     }
 
     @Test
