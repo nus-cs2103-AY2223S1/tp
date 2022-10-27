@@ -1,0 +1,45 @@
+@startuml
+start
+:User executes mark command;
+
+if () then ([valid mark command])
+
+    if () then ([index is out of range])
+        :Display invalid
+        index message;
+
+        else ([else])
+            if () then([student is already marked])
+            :Display "student has been
+           marked previously" message;
+
+            else ([else])
+               if () then ([moneyOwed + ratesPerClass > Integer.MAX_VALUE])
+               :Display owed amount
+               is too large message;
+                else ([else])
+               :Calculate the date of the
+               next class (7 days later);
+
+            if () then ([got class conflicts])
+             :Display class conflict
+                  error message;
+            else ([else])
+                :Store the next class in ClassStorage;
+
+                :Remove existing class from ClassStorage;
+
+                :Update student with new class timing,
+                      owed amount and mark status;
+
+        endif
+        endif
+        endif
+        endif
+
+else ([else])
+    :Display unknown
+    command message;
+endif
+stop
+@enduml

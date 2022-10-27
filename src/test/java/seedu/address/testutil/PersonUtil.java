@@ -69,7 +69,7 @@ public class PersonUtil {
         descriptor.getMoneyPaid().ifPresent(
                 moneyPaid -> sb.append(PREFIX_MONEY_PAID).append(moneyPaid.value.toString()).append(" "));
         descriptor.getAdditionalNotes().ifPresent(
-                additionalNotes -> sb.append(PREFIX_ADDITIONAL_NOTES).append(additionalNotes.notes).append(" "));
+                additionalNotes -> sb.append(PREFIX_ADDITIONAL_NOTES).append(additionalNotes.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

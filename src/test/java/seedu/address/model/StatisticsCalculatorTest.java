@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalPersons.BEN;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -111,6 +112,10 @@ public class StatisticsCalculatorTest {
         @Override
         public ObservableList<Person> getScheduleList() {
             return schedule;
+        }
+        @Override
+        public void sortPersons(Comparator<Person> comparator) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 }
