@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -29,6 +31,9 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
     private final String localDateTime;
     private String progress;
 
+    /**
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
+     */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String description, @JsonProperty("progress") String progress,
                            @JsonProperty("localDateTime") String localDateTime, @JsonProperty("name") String name,
@@ -40,6 +45,9 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
         this.progress = progress;
     }
 
+    /**
+     * Converts a given {@code Task} into this class for Jackson use.
+     */
     public JsonAdaptedTask(Task source) {
         super(source.getName().fullName, source.getUuid().toString(),
                 source.getAttributes().stream()
@@ -48,14 +56,24 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
                 source.getTags().stream()
                         .map(JsonAdaptedTag::new)
                         .collect(Collectors.toList()));
-        description = source.getDescription().getAttributeContent();
+        requireNonNull(source);
+        description = source.getDescriptionContent();
         LocalDateTime completedTime = source.getCompletedTime();
         localDateTime = completedTime == null ? "" : completedTime.toString();
     }
 
+    /**
+     * Converts this Jackson-friendly adapted task object into the model's
+     * {@code Task} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted task.
+     */
     public Task toModelType() throws IllegalValueException {
         final List<Tag> taskTags = new ArrayList<>();
         final List<Attribute> modelAttributes = new ArrayList<>();
+
+        // Exception handling is not supported in Java streams.
         for (JsonAdaptedTag tag : getTags()) {
             taskTags.add(tag.toModelType());
         }

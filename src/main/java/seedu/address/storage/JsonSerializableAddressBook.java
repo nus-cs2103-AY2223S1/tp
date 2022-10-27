@@ -91,6 +91,7 @@ class JsonSerializableAddressBook {
         Map<String, Person> builtPerson = new HashMap<>();
         Map<String, Task> builtTask = new HashMap<>();
 
+        // Exception handling is not supported in Java streams.
         for (JsonAdaptedGroup jsonAdaptedGroup : groups) {
             builtGroup.put(jsonAdaptedGroup.getUid(), jsonAdaptedGroup.toModelType());
         }
@@ -103,7 +104,6 @@ class JsonSerializableAddressBook {
             builtTask.put(jsonAdaptedTask.getUid(), jsonAdaptedTask.toModelType());
         }
 
-        // Build groups
         for (Map.Entry<String, Group> pair : builtGroup.entrySet()) {
             Group group = pair.getValue();
             List<String> parentUid = itemRelationship.get(pair.getKey());
