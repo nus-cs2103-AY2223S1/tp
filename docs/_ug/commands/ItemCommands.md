@@ -126,7 +126,7 @@ Item List Box:
 
 > Sorts the list of currently displayed items by the provided criteria
 
-```info
+```warning
 You should only provide one sorting criteria. 
 ```
 
