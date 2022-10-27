@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.function.Predicate;
@@ -10,6 +11,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.scene.image.Image;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.customer.Customer;
@@ -19,6 +21,7 @@ import seedu.address.model.customer.Reward;
 import seedu.address.model.customer.exceptions.PersonNotFoundException;
 import seedu.address.model.exceptions.NextStateNotFoundException;
 import seedu.address.model.exceptions.PreviousStateNotFoundException;
+import seedu.address.model.promotion.Promotion;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -30,6 +33,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Customer> filteredCustomers;
+    private final Promotion promotionManager;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -52,6 +56,7 @@ public class ModelManager implements Model {
         this.versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCustomers = new FilteredList<>(this.addressBook.getPersonList());
+        this.promotionManager = new Promotion();
     }
 
     public ModelManager() {
@@ -209,6 +214,16 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Image> getPromotionList() {
+        return promotionManager.getPromotionList();
+    }
+
+    @Override
+    public void parseAllPromotion(String filePath) throws IOException {
+        promotionManager.parseAllPromotions(filePath);
     }
 
     @Override

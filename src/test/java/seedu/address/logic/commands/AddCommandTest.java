@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +15,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -192,6 +194,16 @@ public class AddCommandTest {
 
         @Override
         public void redoAddressBook() throws NextStateNotFoundException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Image> getPromotionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void parseAllPromotion(String filePath) throws IOException {
             throw new AssertionError("This method should not be called.");
         }
     }

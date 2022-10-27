@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -65,6 +66,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Customer> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Image> getPromotionList() {
+        return model.getPromotionList();
+    }
+
+    @Override
+    public void parseAllPromotion(String filePath) throws IOException {
+        model.parseAllPromotion(filePath);
     }
 
     @Override
