@@ -131,7 +131,7 @@ public class CalculateCommand extends Command {
                 rpn.add(stack.pop());
             }
 
-            assert stack.empty(): "Stack is not empty at the end";
+            assert stack.empty() : "Stack is not empty at the end";
 
             String[] rpnStrArr = new String[rpn.size()];
             return rpn.toArray(rpnStrArr);
@@ -174,10 +174,10 @@ public class CalculateCommand extends Command {
             String regex = "((?<=[(|)|\\+|\\*|\\-|/])|(?=[(|)|\\+|\\*|\\-|/]))";
             String resultStr;
             System.out.println(userInput);
-            assert OPERATORS.containsKey("+"): "Don't have addition";
-            assert OPERATORS.containsKey("-"): "Don't have subtraction";
-            assert OPERATORS.containsKey("*"): "Don't have multiplication";
-            assert OPERATORS.containsKey("/"): "Don't have division";
+            assert OPERATORS.containsKey("+") : "Don't have addition";
+            assert OPERATORS.containsKey("-") : "Don't have subtraction";
+            assert OPERATORS.containsKey("*") : "Don't have multiplication";
+            assert OPERATORS.containsKey("/") : "Don't have division";
             try {
                 String[] input = userInput.split(regex);
                 String[] output = expressionToRpn(input);
