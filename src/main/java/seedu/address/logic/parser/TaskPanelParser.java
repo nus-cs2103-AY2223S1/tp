@@ -10,6 +10,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.AssignTaskCommand;
+import seedu.address.logic.commands.task.ClearTaskCommand;
 import seedu.address.logic.commands.task.DeadlineTaskCommand;
 import seedu.address.logic.commands.task.DeleteTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand;
@@ -53,6 +54,8 @@ public class TaskPanelParser implements Parser<TaskCommand> {
         switch (commandWord.toLowerCase()) {
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
+        case ClearTaskCommand.COMMAND_WORD:
+            return new ClearTaskCommand();
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskCommandParser().parse(arguments);
         case MarkTaskCommand.COMMAND_WORD:

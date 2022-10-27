@@ -182,6 +182,50 @@ The `delete` feature is implemented by acting on the current filtered`TaskPanel`
 5. The `Task` is deleted from the `Model`.
 6. The `GUI` is updated to show the new `TaskPanel` with the `Task` deleted.
 
+### Mark Feature
+
+#### Current Implementation
+
+The `mark` feature is implemented by acting on the current filtered`TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and marking it.
+
+#### Example Usage of `task mark`
+
+1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
+2. User types in the command `task mark 1`, where `1` is the specified index given in one-based form.
+3. The current state of the `TaskPanel` is obtained from `Model`.
+4. The `Task` to be marked is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+5. The `Task` is marked as completed.
+6. The `GUI` is updated to show the new `TaskPanel` with the `Task` marked as complete.
+
+### Unmark Feature
+
+#### Current Implementation
+
+The `unmark` feature is implemented by acting on the current filtered`TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and unmarking it.
+
+#### Example Usage of `task unmark`
+
+1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
+2. User types in the command `task unmark 1`, where `1` is the specified index given in one-based form.
+3. The current state of the `TaskPanel` is obtained from `Model`.
+4. The `Task` to be unmarked is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+5. The `Task` is marked as incompleted.
+6. The `GUI` is updated to show the new `TaskPanel` with the `Task` marked as incomplete.
+
+### Clear Feature
+
+#### Current Implementation
+
+The `clear` feature is implemented by acting on the current filtered`TaskPanel`, clearing all existing tasks in the task panel.
+
+#### Example Usage of `task clear`
+
+1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
+2. User types in the command `task clear`.
+3. The current state of the `TaskPanel` is obtained from `Model`.
+4. The `TaskPanel` is resetted to be an empty one.
+5. The `GUI` is updated to show the new `TaskPanel` with zero task.
+
 ### Assign Person(s) to Task Feature
 
 #### Current Implementation
@@ -616,6 +660,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The tasks list is empty.
 
   Use case ends.
+
+**Use case: UC12 - Clear the task panel**
+
+**MSS**
+
+1.  User requests to clear task panel.
+2.  Arrow shows a new empty task panel.
+
+    Use case ends.
 
 *{More to be added}*
 

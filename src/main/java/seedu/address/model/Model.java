@@ -104,6 +104,11 @@ public interface Model {
     ReadOnlyTaskPanel getTaskPanel();
 
     /**
+     * Replaces task panel data with the data in {@code taskPanel}.
+     */
+    void setTaskPanel(ReadOnlyTaskPanel taskPanel);
+
+    /**
      * Returns true if a task with the same identity as {@code task} exists in the task panel.
      */
     boolean hasTask(Task task);

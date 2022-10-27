@@ -217,6 +217,17 @@ Examples:
 * `task list` followed by `task unmark 1` unmarks the 1st task in the task list and sets it as incomplete.
 
 
+
+### Clearing all tasks from Task Panel: `task clear`
+
+Clears the tasks from tasks list.
+
+Format: `task clear`
+* Clear the `task list` and create a new empty one.
+
+Examples:
+* `task list` followed by `task clear` clear the entire task list.
+
 ### Deleting tasks: `task delete`
 
 Deletes the specified task from the task panel.
@@ -365,6 +376,7 @@ _Details coming soon ..._
 | **Task list**   | `tasks list [FILTER]`<br> e.g., `tasks list @1`, `task list keyword`                                                                                                  |
 | **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
 | **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
+| **Task clear**  | `task clear`<br> e.g., `task clear`                                                                                                                                   |
 | **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                    |
 | **Task assign** | `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`<br> e.g., `task assign 3 ca/1 ca/Alex Yeoh cd/2`               |
 | **Clear**       | `clear`                                                                                                                                                               |
