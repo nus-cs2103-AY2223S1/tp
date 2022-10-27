@@ -16,8 +16,8 @@ public class FindDebtCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons associated with a debt that "
             + "contains the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " burger meal";
+            + "Parameters: <keyword…>\n"
+            + "Example: " + COMMAND_WORD + " burger cycling";
 
     private final DebtContainsKeywordsPredicate predicate;
 
