@@ -158,6 +158,38 @@ An event can have 0 or more tags.<br>
 Example:
 * `event -a n/Presentation s/22/10/2022 e/23/10/2022 t/CS2103`
 
+#### Adding a profile to an event: `event -ap`
+
+Adds one or more existing profiles as attendees to an existing event in NUScheduler.
+
+Format: `event -ap EVENT_INDEX pr/PROFILE_INDEX...`
+
+* Adds profiles at the specified `PROFILE_INDEX`. This index refers to the index number shown in the displayed profile list. The index **must be a positive integer** 1, 2, 3, ...
+* Profiles are added to the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `PROFILE_INDEX`.
+* At least one `PROFILE_INDEX` must be provided.
+* Existing attendees will not be overwritten i.e. adding of profiles is cumulative.
+* If one or more or all of the specified profiles have already been added to the event, the command still executes successfully.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+* If a profile has been added to an event as an attendee, deleting the profile from NUScheduler will delete the profile from the event as well.
+</div>
+
+Example:
+* `event -ap 1 pr/1 pr/2` adds the first and second profiles listed to the first event listed.
+
+#### Deleting an attendee from an event: `event -dp`
+
+Removes one or more attendees from an existing event in NUScheduler.
+
+Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX...`
+
+* Removes attendees at the specified `ATTENDEE_INDEX`. This index refers to the index number shown in the displayed attendee list of the event. The index **must be a positive integer** 1, 2, 3, ...
+* Attendees are removed from the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `ATTENDEE_INDEX`.
+* At least one 'ATTENDEE_INDEX' must be provided.
+
+Example:
+* `event -dp 1 pr/1 pr/3` deletes the first and third attendees listed under the event from the first event listed.
+
 #### Viewing upcoming events: `event -u`
 
 Displays a list of upcoming events, ordered by the date, for the next specified number of days.
@@ -357,16 +389,18 @@ Example:
 
 ## Command summary
 
-| Action                     | Format, Examples                                                                |
-|----------------------------|---------------------------------------------------------------------------------|
-| **Add Profile**            | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`      |
-| **Delete Profile**         | `profile -d INDEX`                                                              |
-| **Edit Profile**           | `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…` |
-| **View Profiles**          | `profile -v`                                                                    |
-| **Find Profile**           | `profile -f KEYWORD [MORE_KEYWORDS]…`                                           |
-| **Add Event**              | `event -a n/TITLE s/START e/END [t/TAG]…`                                       |
-| **Delete Event**           | `event -d INDEX`                                                                |
-| **Edit Event**             | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`                           |
-| **View Events**            | `event -v`                                                                      |
-| **View Upcoming Event(s)** | `event -u DAYS`                                                                 |
-| **Find Event**             | `event -f KEYWORD_OR_DATE [MORE]…`                                              |
+| Action                             | Format, Examples                                                                |
+|------------------------------------|---------------------------------------------------------------------------------|
+| **Add Profile**                    | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`      |
+| **Delete Profile**                 | `profile -d INDEX`                                                              |
+| **Edit Profile**                   | `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…` |
+| **View Profiles**                  | `profile -v`                                                                    |
+| **Find Profile**                   | `profile -f KEYWORD [MORE_KEYWORDS]…`                                           |
+| **Add Event**                      | `event -a n/TITLE s/START e/END [t/TAG]…`                                       |
+| **Add Profiles to an Event**       | `event -ap EVENT_INDEX pr/PROFILE_INDEX...`                                     |
+| **Delete Attendees from an Event** | `event -dp EVENT_INDEX pr/ATTENDEE_INDEX...`                                    |
+| **Delete Event**                   | `event -d INDEX`                                                                |
+| **Edit Event**                     | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`                           |
+| **View Events**                    | `event -v`                                                                      |
+| **View Upcoming Event(s)**         | `event -u DAYS`                                                                 |
+| **Find Event**                     | `event -f KEYWORD_OR_DATE [MORE]…`                                              |
