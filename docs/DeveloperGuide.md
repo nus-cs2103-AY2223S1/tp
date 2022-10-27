@@ -3,10 +3,10 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents 
+* Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Acknowledgements**
 
