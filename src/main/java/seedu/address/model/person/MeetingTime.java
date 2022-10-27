@@ -71,4 +71,5 @@ public class MeetingTime {
     public int hashCode() {
         return value.hashCode();
     }
+
 }
