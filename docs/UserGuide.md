@@ -238,6 +238,21 @@ Example:
 
 This sets the status of the `Generate report` task in the `Accountants` team to Sep 13, 2022 at 10:20am UTC time.
 
+### Set progress for tasks: `task progress`
+
+Sets the progress level for each task that has been listed.
+
+Format: `task progress i/<INDEX> <LEVEL>`
+
+- Index indicates the index of the task in the list
+- Level indicates the progress level, and can only be set to 25%, 50%, 75%, 100%
+
+Example:
+- `task progress 1 25%`
+
+This sets the progress of the first task in the list as 25%
+
+
 ## FAQ
 
 > How can I install `Java 11`?
