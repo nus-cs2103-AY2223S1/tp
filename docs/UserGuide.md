@@ -72,7 +72,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 * Tag fields are optional
 
-* Length of fields are in characters, excluding the spaces
+* Length of fields are in characters, after removing leading and trailing whitespaces, and replacing multiple whitespaces in between words to 1 whitespace
 
 </div>
 
@@ -107,22 +107,6 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 |---------|-----------|--------------|-------------------------------------------------|
 | **Tag** | `t`       | 30           | Can only contain alphabet characters and spaces |
 
---------------------------------------------------------------------------------------------------------------------
-
-## 2.4 Specifiers:
-Each field of an applicant is specified by a specifier as follows:
-* `n/NAME`
-* `p/PHONE`
-* `e/EMAIL`
-* `a/ADDRESS`
-* `c/CAP`
-* `g/GENDER`
-* `u/UNIVERSITY`
-* `gd/GRADUATION_DATE`
-* `m/MAJOR`
-* `ji/JOB_ID`
-* `jt/JOB_TITLE`
-* `t/TAG`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -206,7 +190,7 @@ Format: `edit [parameter/NEW_PARAMETER_DETAIL]...`
 * Edits the applicant at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed applicant list. 
 * The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed.
-* At least one of the optional fields must be provided.
+* At least one of the parameter fields must be provided.
 * Existing values will be updated to the input values.
 * When modifying tags, the existing tags of the applicant will be removed i.e. adding of tags is not cumulative.
 * You can remove all the applicant’s tags by typing `t/` without specifying any tags after it.
@@ -237,34 +221,30 @@ Finds applicants whose has a field containing any of the given keywords among al
 
 Format: `find parameter/KEYWORD [parameter/MORE_KEYWORDS]...`
 
-* At least one of the field specifier must be provided.
+* At least one of the parameter fields must be provided.
 * The search is case-insensitive. E.g., `bobby` will match `Bobby`.
 * The order of the keywords does not matter. E.g., `Bobby cortez` will match `Cortez bobby`.
-* If a field specifier is given more than once, the command will search only for the latest specifier. E.g., `n/Bobby n/cortez` will only search and return names with `cortez` in them.
+* If a field parameter is given more than once, the command will search only for the latest specifier. E.g., `n/Bobby n/cortez` will only search and return names with `cortez` in them.
 * Applicants matching at least one keyword will be returned (i.e., OR search). E.g., `n/Bobby Cortez` will return applicants with the name `Bobby Lacruz`, `Alexander Cortez`
 
 Search Types:
-1. Matching word search: Keywords will only match if there is a full matching word. E.g., `Bobby` will not match `Bobbys`.
-2. Substring Search: Keywords will match as long as a substring match exists. E.g., `Bob` will match `Bobby` and `Robobson`
-3. Numeric Search: Search will search by its numeric value. E.g., Both `3` and `3.0` will match `3.0`
+1. Matching word: Keywords will only match if there is a full matching word. E.g., `Bobby` will not match `Bobbys`.
+2. Substring: Keywords will match as long as a substring match exists. E.g., `Bob` will match `Bobby` and `Robobson`
+3. Numeric: Search will search by its numeric value. E.g., Both `3` and `3.0` will match `3.0`
 
-Each field has its own specific search type. The search types are given below:
-
-Fields using _Matching word search_:
-* `n/NAME` searches _names_ by _Matching word search_
-* `p/PHONE` searches _phones_ by _Matching word search_
-* `a/ADDRESS` searches _addresses_ by _Matching word search_
-* `g/GENDER` searches _genders_ by _Matching word search_
-* `u/UNIVERSITY` searches _universities_ by _Matching word search_
-* `gd/GRADUATION_DATE` searches _graduation dates_ by _Matching word search_
-* `m/MAJOR` searches _majors_ by _Matching word search_
-* `ji/JOB_ID` searches _job Ids_ by _Matching word search_
-* `jt/JOB_TITLE` searches _job titles_ by _Matching word search_
-* `t/TAG` searches for all _tags_ by _Matching word search_
-
-Fields using _Other searches_:
-* `e/EMAIL` searches _emails_ by _Substring Search_
-* `c/CAP` searches _cap's values_ by _Numeric Search_
+| Field               | Search Type               | 
+|---------------------|---------------------------|
+| **Name**            | Matching word             | 
+| **Email**           | Substring                 | 
+| **Phone**           | Substring                 |
+| **Address**         | Matching word             | 
+| **CAP**             | Numeric of `CURRENT_CAP`  | 
+| **Gender**          | Matching word             |
+| **University**      | Matching word             | 
+| **Graduation Date** | Matching word             |                          
+| **Major**           | Matching word             | 
+| **Job ID**          | Substring                 | 
+| **Job Title**       | Matching word             |
 
 Examples:
 * `find n/Bobby ` Returns applicants with names matching `bobby` and `Bobby Cortez`
