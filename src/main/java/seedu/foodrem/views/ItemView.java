@@ -66,12 +66,6 @@ public class ItemView {
         return itemView;
     }
 
-    private static Node buildTagNodeFrom(String tagName) {
-        final Label label = new Label(tagName);
-        label.getStyleClass().add("item-detail-tag");
-        return label;
-    }
-
     /**
      * Builds the string representation of the item's quantity attached to its units.
      * @param item the item whose quantity is to be formatted.
