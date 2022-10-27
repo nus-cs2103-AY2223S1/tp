@@ -3,8 +3,6 @@ package seedu.condonery.model.property;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.condonery.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Property}'s {@code Tags} matches any of the keywords given.
  */

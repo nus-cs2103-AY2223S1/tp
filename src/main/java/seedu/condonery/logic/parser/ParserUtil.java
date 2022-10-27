@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.commons.util.StringUtil;
 import seedu.condonery.logic.parser.exceptions.ParseException;

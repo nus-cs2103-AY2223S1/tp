@@ -52,12 +52,12 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
                     EditPropertyCommand.MESSAGE_USAGE), pe);
         }
 
-//        if (!argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
-//                && !argMultimap.getValue(PREFIX_PRICE).isPresent()
-//                && !argMultimap.getValue(PREFIX_PROPERTY_TYPE).isPresent()
-//            && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
-//            throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);
-//        }
+        //        if (!argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
+        //                && !argMultimap.getValue(PREFIX_PRICE).isPresent()
+        //                && !argMultimap.getValue(PREFIX_PROPERTY_TYPE).isPresent()
+        //            && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
+        //            throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);
+        //        }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPropertyDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
