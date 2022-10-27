@@ -1,5 +1,6 @@
 package seedu.clinkedin.testutil;
 
+import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -140,7 +141,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code links} into a {@code Set<Link>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withLinks(String ... links) {
+    public PersonBuilder withLinks(URL... links) {
         this.links = SampleDataUtil.getLinkSet(links);
         return this;
     }

@@ -3,6 +3,8 @@ package seedu.clinkedin.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -188,10 +190,15 @@ public class ParserUtil {
     public static Link parseLink(String link) throws ParseException {
         requireNonNull(link);
         String trimmedLink = link.trim();
-        if (!Link.isValidLink(trimmedLink)) {
-            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+        try {
+            URL url = new URL(trimmedLink);
+            return new Link(url);
+        } catch (MalformedURLException m) {
+            throw new ParseException(m.getMessage());
         }
-        return new Link(trimmedLink);
+//      if (!Link.isValidLink(trimmedLink)) {
+//          throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+//      }
     }
 
     /**
@@ -433,7 +440,12 @@ public class ParserUtil {
                 break;
             case "Links":
                 for (int i = 1; i < detail.length; i++) {
-                    links.add(new Link(detail[i]));
+                    try {
+                        URL url = new URL(detail[i]);
+                        links.add(new Link(url));
+                    } catch (MalformedURLException m) {
+                        throw new InvalidPersonException(m.getMessage());
+                    }
                 }
                 break;
             default:

@@ -1,5 +1,6 @@
 package seedu.clinkedin.model.util;
 
+import java.net.URL;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -83,9 +84,9 @@ public class SampleDataUtil {
     /**
      * Returns a link set containing the list of strings given.
      */
-    public static Set<Link> getLinkSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Link::new)
-                .collect(Collectors.toSet());
+    public static Set<Link> getLinkSet(URL... urls) {
+        return Arrays.stream(urls)
+                    .map(Link::new)
+                    .collect(Collectors.toSet());
     }
 }
