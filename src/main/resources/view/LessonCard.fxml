@@ -28,9 +28,10 @@
                 </Label>
                 <Label fx:id="lessonType" styleClass="cell_big_label" text="\$lessonType" />
             </HBox>
-            <Label fx:id="lessonDesc" styleClass="cell_small_label" text="\$lessonDesc"/>
+            <Label fx:id="lessonDesc" styleClass="cell_small_label" text="\$lessonDesc" />
             <Label fx:id="timePeriod" styleClass="cell_small_label" text="\$timePeriod" />
             <Label fx:id="lessonAttendance" styleClass="cell_small_label" text="\$lessonAttendance" />
+         <Label fx:id="hasClash" text="hasClash" visible="false" />
         </VBox>
       <rowConstraints>
          <RowConstraints />

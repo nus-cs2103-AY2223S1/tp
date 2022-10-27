@@ -14,6 +14,7 @@ import javafx.scene.layout.Region;
  */
 public class LessonCard extends UiPart<Region> {
 
+    public static final String ERROR_CLASH_STYLE_CLASS = "error-clash";
     private static final String FXML = "LessonCard.fxml";
 
     /**
@@ -40,6 +41,8 @@ public class LessonCard extends UiPart<Region> {
     private Label timePeriod;
     @FXML
     private Label lessonAttendance;
+    @FXML
+    private Label hasClash;
 
     private Image tick = new Image(getClass().getResourceAsStream("/images/tick.png"));
     private Image cross = new Image(getClass().getResourceAsStream("/images/cross.png"));
@@ -50,12 +53,19 @@ public class LessonCard extends UiPart<Region> {
     public LessonCard(Lesson lesson, int displayedIndex) {
         super(FXML);
         this.lesson = lesson;
+        hasClash.textProperty().addListener((unused1, unused2, unused3) -> setStyleForClash());
+        setTextUi(displayedIndex);
+    }
+
+    private void setTextUi(int displayedIndex) {
         id.setText(displayedIndex + ". ");
+
         if (lesson.isCompleted()) {
             checkbox.setImage(tick);
         } else {
             checkbox.setImage(cross);
         }
+
         switch(lesson.getLessonType()) {
         case MASTERY_CHECK:
             lessonType.setText("Mastery Check");
@@ -72,12 +82,24 @@ public class LessonCard extends UiPart<Region> {
         default:
             assert false : "There is only 3 types of lesson";
         }
+
         if (lesson.hasDesc()) {
             lessonDesc.setText("Description: " + lesson.getDesc().lessonDesc);
         } else {
             lessonDesc.setText("{No description}");
         }
+
         timePeriod.setText(lesson.getTimePeriod().toString());
+        hasClash.setText(lesson.hasTimingConflict() ? "Clash" : "");
+    }
+
+    private void setStyleForClash() {
+        String clashText = hasClash.getText();
+        if (clashText.equals("")) {
+            cardPane.getStyleClass().remove(ERROR_CLASH_STYLE_CLASS);
+        } else if (clashText.equals("Clash")) {
+            cardPane.getStyleClass().add(ERROR_CLASH_STYLE_CLASS);
+        }
     }
 
     @Override

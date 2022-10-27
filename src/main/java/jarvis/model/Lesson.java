@@ -30,6 +30,7 @@ public abstract class Lesson {
     private final LessonAttendance attendance;
     private final LessonNotes notes;
     private boolean isCompleted = false;
+    private boolean hasClash = false;
 
     /**
      * Every field must be present and not null.
@@ -50,6 +51,10 @@ public abstract class Lesson {
 
     public LocalDateTime endDateTime() {
         return timePeriod.getEnd();
+    }
+
+    public boolean hasTimingConflict() {
+        return hasClash;
     }
 
     public boolean hasTimingConflict(Lesson other) {
@@ -149,5 +154,13 @@ public abstract class Lesson {
 
     public String deleteStudentNote(Student student, Index index) {
         return notes.deleteNote(student, index.getZeroBased());
+    }
+
+    public void markClash() {
+        hasClash = true;
+    }
+
+    public void unmarkClash() {
+        hasClash = false;
     }
 }

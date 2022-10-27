@@ -10,6 +10,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import jarvis.logic.commands.exceptions.CommandException;
+import jarvis.model.Lesson;
 import jarvis.model.LessonDesc;
 import jarvis.model.Model;
 import jarvis.model.Student;
@@ -66,9 +67,17 @@ public class AddStudioCommand extends Command {
         if (model.hasLesson(studioToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDIO);
         } else if (model.hasPeriodClash(studioToAdd)) {
+            model.updateFilteredLessonList(Model.PREDICATE_SHOW_ALL_LESSONS);
+            List<Lesson> allLessonList = model.getFilteredLessonList();
+            allLessonList.stream().filter(studioToAdd::hasTimingConflict).forEach(Lesson::markClash);
+            // Update for JavaFX
+            for (Lesson l : allLessonList) {
+                if (l.hasTimingConflict()) {
+                    model.setLesson(l, l);
+                }
+            }
             throw new CommandException(MESSAGE_TIME_PERIOD_CLASH);
         }
-
         model.addLesson(studioToAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, studioToAdd));
     }
