@@ -191,7 +191,7 @@ public class ParserUtil {
         requireNonNull(propertyType);
         return PropertyTypeEnum.valueOf(propertyType);
     }
-    
+
     /**
      * Parses a string into {@code PropertyStatusEnum} enum
      * @param propertyStatus string to PropertyStatusEnum
