@@ -8,7 +8,7 @@ import seedu.address.logic.commands.MailEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new MailEventCommand object
+ * Parses input arguments and creates a new MailEventCommand object.
  */
 public class MailEventCommandParser implements Parser<MailEventCommand> {
     /**
