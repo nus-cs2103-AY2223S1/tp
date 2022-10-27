@@ -142,12 +142,23 @@ After the command is executed:
 
 #### Find a Person : `find`
 
-Displays the persons that match a given keyword.
+Displays the persons that match a given keyword. Keyword could be any of the following
+attributes of the person :
+- `name`
+- `address`
+- `role`
+- `github user`
+- `tags`
+
+A fuzzy search is done to display the results. The keyword can have minor spelling errors
+, and still return correct results. It is also case-insensitive.
 
 Format: `find KEYWORD`
 
 Example:
 - Find all the people named David: `find david`
+- Find all the people with role SWE: `find SWE`
+- Find all the people with tag friends: `find friends`
 
 Before the command is executed:
 ![before find](images/ug/find_before.png)
