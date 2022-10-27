@@ -33,7 +33,7 @@ public class SortSalaryCommand extends SortCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        //requireNonNull(model);
+        requireNonNull(model);
         if (orderType.equals("a")) {
             model.ascendSortSalary();
             model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
