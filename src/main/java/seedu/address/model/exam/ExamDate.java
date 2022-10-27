@@ -14,7 +14,7 @@ import java.time.format.ResolverStyle;
  */
 public class ExamDate {
     public static final String DATE_CONSTRAINTS =
-            "Exam Date should be in dd-mm-yyyy format and a valid date";
+            "Exam Date should be in dd-mm-yyyy format and a valid date where dd is from 1 to 31, mm is from 1 to 12";
     public static final String DATE_FORMAT_CONSTRAINTS =
             "Exam Date should be in dd-mm-yyyy format.";
     public static final String NOT_A_PAST_DATE_CONSTRAINTS =
