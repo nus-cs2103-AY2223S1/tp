@@ -23,7 +23,7 @@ public class PinProjectCommand extends ProjectCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
             + ": Pins the project identified by the project id \n"
-            + "Parameters: PROJECT_ID (must be a positive integer) "
+            + "Parameters: PROJECT_ID (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " 1";
 
