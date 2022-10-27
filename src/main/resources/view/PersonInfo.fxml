@@ -8,6 +8,9 @@
 
 <?import javafx.geometry.Insets?>
 <VBox fx:id="personInfo" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" prefHeight="400.0" prefWidth="600.0">
+    <padding>
+      <Insets top="5" right="10" bottom="5" left="10" />
+    </padding>
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />

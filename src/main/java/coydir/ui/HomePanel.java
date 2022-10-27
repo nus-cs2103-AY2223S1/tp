@@ -17,8 +17,6 @@ import javafx.scene.layout.VBox;
  */
 public class HomePanel extends UiPart<Region> {
     private static final String FXML = "HomePanel.fxml";
-    private static final String LOGO = "COYDIR";
-    private static final String MESSAGE = "Hello.";
 
     @FXML
     private VBox homePanel;
@@ -38,6 +36,5 @@ public class HomePanel extends UiPart<Region> {
     private void initialize() {
         Image logoImage = new Image(this.getClass().getResourceAsStream("/images/logo.png"));
         logo.setImage(logoImage);
-        message.setText(MESSAGE);
     }
 }
