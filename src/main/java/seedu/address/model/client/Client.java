@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.logic.parser.DateKeyword;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.product.Product;
 
@@ -118,6 +119,16 @@ public class Client {
      */
     public Set<Product> getProducts() {
         return products;
+    }
+
+    /**
+     * Returns true if client's birthday is within the given period {@code dateKeyword}
+     */
+    public boolean isBirthdayInPeriod(DateKeyword dateKeyword) {
+        if (birthday.isEmpty()) {
+            return false;
+        }
+        return birthday.get().isBirthdayInPeriod(dateKeyword);
     }
 
     /**

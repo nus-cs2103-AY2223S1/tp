@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+import seedu.address.logic.parser.DateKeyword;
+
 /**
  * Represents a client's birthday in MyInsuRec.
  */
@@ -46,6 +48,49 @@ public class Birthday {
         // returns date as '12 Jan 1952' for example
         birthdayFormatted = birthday.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
         return birthdayFormatted;
+    }
+
+    /**
+     * Returns true if birthday fall between the given period {@code dateKeyword} else returns false.
+     */
+    public boolean isBirthdayInPeriod(DateKeyword dateKeyword) {
+        Birthday startDate;
+        Birthday endDate;
+        LocalDate today = LocalDate.now();
+
+        Birthday upcomingBirthday = new Birthday(
+                LocalDate.of(today.getYear(), birthday.getMonthValue(), birthday.getDayOfMonth()));
+
+        switch(dateKeyword) {
+        case TOMORROW:
+            startDate = new Birthday(today.plusDays(1));
+            endDate = new Birthday(today.plusDays(1));
+            break;
+        case THIS_MONTH:
+            startDate = new Birthday(today.withDayOfMonth(1));
+            endDate = new Birthday(today.withDayOfMonth(today.getMonth().length(today.isLeapYear())));
+            break;
+        case THIS_WEEK:
+            startDate = new Birthday(today);
+            endDate = new Birthday(today.plusDays(7));
+            break;
+        default:
+            startDate = null;
+            endDate = null;
+        }
+        requireNonNull(startDate);
+        requireNonNull(endDate);
+
+        return upcomingBirthday.isBeforeDate(endDate) && upcomingBirthday.isAfterDate(startDate);
+
+    }
+
+    private boolean isBeforeDate(Birthday other) {
+        return birthday.compareTo(other.birthday) <= 0;
+    }
+
+    private boolean isAfterDate(Birthday other) {
+        return birthday.compareTo(other.birthday) >= 0;
     }
 
     public static boolean isValidBirthday(String test) {
