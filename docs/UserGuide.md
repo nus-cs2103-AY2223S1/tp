@@ -17,25 +17,26 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     4. [tutorial](#d-tutorial--tuttutorial) : `tut/`
     5. [social medias](#e-social-medias--ssocial-medias) : `s/`
     6. [tags](#f-tags--ttags) : `t/`
-   * [Basic Features](#basic-features):
-     1. [Adding a person](#a-adding-a-person-add) : `add`
-     2. [Editing a person](#b-editing-a-person--edit) : `edit`
-     3. [Deleting a person](#c-deleting-a-person--delete) : `delete`
-     4. [Listing all persons](#d-listing-all-persons--list) : `list`
-     5. [Clearing all entries](#e-clearing-all-entries--clear) : `clear`
-     6. [Find a person](#f-find-entries-by-keywords-of-fields--find-keyword-eg-find-john) : `find`
-     7. [Sorting entries by field](#g-sort-entries-by-field--sort-prefix-eg-sort-n) : `sort`
-   * [Enhanced Features](#enhanced-features):
-     1. [Add a person to favorite](#a-add-a-person-to-favorite--fav) : `fav`
-     2. [Add a person to a group](#b-adding-a-person-to-a-group--addtogroup): `addtogroup`
-     3. [Remove a person from a group](#c-removing-a-person-from-a-group--ungroup) : `ungroup`
-     4. [Open a group window](#d-opening-a-group-window--group) : `group`
-     5. [Email all persons in a group](#e-email-all-persons-in-a-group--emailall) : `emailall`
-     6. [Find persons with a preferred social media](#f-find-persons-with-a-preferred-social-media--social) : `social`
-   * [General App Features](#general-app-features):
-       1. [Viewing help](#a-viewing-help--help) : `help`
-       2. [Undoing last command](#b-undo-last-modification--undo) : `undo`
-       3. [Exiting the app](#c-exiting-the-program--exit) : `exit`
+  * [Basic Features](#basic-features):
+    1. [Adding a person](#a-adding-a-person-add) : `add`
+    2. [Editing a person](#b-editing-a-person--edit) : `edit`
+    3. [Deleting a person](#c-deleting-a-person--delete) : `delete`
+    4. [Listing all persons](#d-listing-all-persons--list) : `list`
+    5. [Clearing all entries](#e-clearing-all-entries--clear) : `clear`
+    6. [Find a person](#f-find-entries-by-keywords-of-fields--find-keyword-eg-find-john) : `find`
+    7. [Sorting entries by field](#g-sort-entries-by-field--sort-prefix-eg-sort-n) : `sort`
+  * [Enhanced Features](#enhanced-features):
+    1. [Quickly edit a person](#a-quickly-edit-a-persons-features)
+    2. [Add a person to favorite](#b-add-a-person-to-favorite--fav) : `fav`
+    3. [Add a person to a group](#c-adding-a-person-to-a-group--addtogroup): `addtogroup`
+    4. [Remove a person from a group](#d-removing-a-person-from-a-group--ungroup) : `ungroup`
+    5. [Open a group window](#e-opening-a-group-window--group) : `group`
+    6. [Email all persons in a group](#f-email-all-persons-in-a-group--emailall) : `emailall`
+    7. [Find persons with a preferred social media](#g-find-persons-with-a-preferred-social-media--social) : `social`
+  * [General App Features](#general-app-features):
+    1. [Viewing help](#a-viewing-help--help) : `help`
+    2. [Undoing last command](#b-undo-last-modification--undo) : `undo`
+    3. [Exiting the app](#c-exiting-the-program--exit) : `exit`
 * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -233,7 +234,13 @@ Examples:
 
 ## Enhanced Features
 
-### a. Add a person to favorite : `fav`
+### a. Quickly edit a person's features
+
+Quickly make small changes to a person by clicking on a person card while the command box is empty.
+This creates an edit command with all the features that person currently has.
+You may then modify this command to your needs.
+
+### b. Add a person to favorite : `fav`
 
 Adds the specified person to `favorite` group.
 
@@ -244,7 +251,7 @@ Format: `fav INDEX`
 Examples:
 * `fav 1` will add 1st person in the current list to `favorite`.
 
-### b. Adding a person to a group : `addtogroup`
+### c. Adding a person to a group : `addtogroup`
 
 Adds the specified person to the specified group.
 
@@ -258,7 +265,7 @@ Examples:
 * `addtogroup 1 friends` adds the 1st person in the current list to the group `friends`.
 
 
-### c. Removing a person from a group : `ungroup`
+### d. Removing a person from a group : `ungroup`
 
 Removes the specified person from the specified group.
 
@@ -271,7 +278,7 @@ Format: `ungroup INDEX GROUP`
 Examples:
 * `ungroup 1 friends` ungroups the 1st person in the current list from the group `friends`.
 
-### d. Opening a group window : `group`
+### e. Opening a group window : `group`
 
 Open a new window containing the persons in the group.
 
@@ -283,7 +290,7 @@ Format: `group GROUPNAME`
 Examples:
 * `group friends` opens a group window containing persons in the group `friends`.
 
-### e. Email all persons in a group : `emailall`
+### f. Email all persons in a group : `emailall`
 
 Open an email link to all persons in the specified group.
 
@@ -295,7 +302,7 @@ Format: `emailall GROUPNAME`
 Examples:
 * `emailall friends` opens the email client to all persons in the group `friends`.
 
-### f. Find persons with a preferred social media : `social`
+### g. Find persons with a preferred social media : `social`
 
 Filters the current list to people who set their preferred social media to the input.
 

@@ -1,12 +1,20 @@
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCUPATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.group.Group;
 import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
@@ -180,4 +188,24 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Finds the most complete edit command that does not modify the person.
+     * @param index The index of the person on the list.
+     * @return a {@code String} edit command that does nothing.
+     */
+    public String getEditString(int index) {
+        StringBuilder ret = new StringBuilder(EditCommand.COMMAND_WORD + " " + index
+            + " " + PREFIX_OCCUPATION + occupation
+            + " " + PREFIX_NAME + name
+            + (phone.toString().isEmpty() ? "" : " " + PREFIX_PHONE + phone)
+            + (email.toString().isEmpty() ? "" : " " + PREFIX_EMAIL + email)
+            + (tutorial.toString().isEmpty() ? "" : " " + PREFIX_TUTORIAL + tutorial)
+            + (address.toString().isEmpty() ? "" : " " + PREFIX_ADDRESS + address));
+        for (Tag i : tags) {
+            ret.append(' ');
+            ret.append(PREFIX_TAG);
+            ret.append(i.tagName);
+        }
+        return ret.toString();
+    }
 }
