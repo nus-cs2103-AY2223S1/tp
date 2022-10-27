@@ -189,9 +189,20 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleView() {
-        PersonViewPanel personViewPanel = new PersonViewPanel(logic.getCurrentlyViewedPerson());
+        PersonViewPanel personViewPanel = new PersonViewPanel(logic.getCurrentlyViewedPerson(), this::setCommandBoxText);
         personViewPanelPlaceholder.getChildren().clear();
         personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
+    }
+
+    /**
+     * Sets the text in the CommandBox to the given String.
+     * @param text the text to set the field to.
+     */
+    private void setCommandBoxText(String text) {
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox.setCommandTextField(text);
+        commandBoxPlaceholder.getChildren().clear();
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**

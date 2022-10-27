@@ -3,6 +3,7 @@ package seedu.address.ui;
 import com.sun.javafx.collections.ObservableListWrapper;
 
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -19,6 +20,8 @@ public class PersonViewPanel extends UiPart<Region> {
     private static final String FXML = "PersonViewPanel.fxml";
 
     private final Person person;
+
+    private CommandTextEditor commandTextEditor;
 
     @FXML
     private Label name;
@@ -63,13 +66,14 @@ public class PersonViewPanel extends UiPart<Region> {
      * Generates a Person View Panel.
      * @param person Person to generate the panel about.
      */
-    public PersonViewPanel(Person person) {
+    public PersonViewPanel(Person person, CommandTextEditor commandTextEditor) {
         super(FXML);
         if (person == null) {
             this.person = null;
             return;
         }
         this.person = person;
+        this.commandTextEditor = commandTextEditor;
         setPersonalDetails();
         setHospitalisationDetails();
         setAppointmentDetails();
@@ -77,6 +81,8 @@ public class PersonViewPanel extends UiPart<Region> {
 
     private void setPersonalDetails() {
         name.setText(person.getName().fullName);
+        name.setOnMouseClicked(this::editField);
+
         email.setText(person.getEmail().toString());
         phone.setText(person.getPhone().toString());
         ContactCard contactCard = new ContactCard(person);
@@ -106,6 +112,10 @@ public class PersonViewPanel extends UiPart<Region> {
         pastAppointments.setCellFactory(item -> new PastAppointmentListViewCell());
     }
 
+    private void editField(Event event) {
+        System.out.println(event.getTarget());
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
@@ -121,5 +131,18 @@ public class PersonViewPanel extends UiPart<Region> {
                 setGraphic(new PastAppointmentCard(pastAppointment, getIndex() + 1).getRoot());
             }
         }
+    }
+
+    /**
+     * Represents a function to change the command box text.
+     */
+    @FunctionalInterface
+    public interface CommandTextEditor {
+        /**
+         * Sets the command box text.
+         * @param str the string to set the command box to.
+         * @see seedu.address.ui.CommandBox#setCommandTextField(String)
+         */
+        void setCommandText(String str);
     }
 }
