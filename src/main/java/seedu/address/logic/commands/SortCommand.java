@@ -14,7 +14,7 @@ import seedu.address.model.internship.SortCriteria;
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts applications based on criteria.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts applications based on criteria's date.\n"
             + "Parameters: CRITERIA\n"
             + "Valid filters: \"applied\" \"interview\"\n"
             + "Example: " + COMMAND_WORD + " applied";

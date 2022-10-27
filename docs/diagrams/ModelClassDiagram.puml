@@ -1,4 +1,5 @@
 @startuml
+scale 1.1
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
@@ -18,6 +19,7 @@ Class Description
 Class Link
 Class Company
 Class AppliedDate
+Class InterviewDateTime
 Class ApplicationStatus
 Class Tag
 
@@ -40,6 +42,7 @@ UniqueInternshipList -[hidden]right-> "~* all" Internship
 UniqueInternshipList --> "~* all" Internship
 Internship *--> Company
 Internship *--> AppliedDate
+Internship *--> InterviewDateTime
 Internship *--> Link
 Internship *--> Description
 Internship *--> ApplicationStatus
