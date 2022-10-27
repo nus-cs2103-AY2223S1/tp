@@ -434,25 +434,25 @@ Expected outcome:
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-| Action               | Format, Examples                                                                                                                                                                        |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**             | `help`                                                                                                                                                                                  |
-| **List**             | `list`                                                                                                                                                                                  |
-| **Clear**            | `clear`                                                                                                                                                                                 |
-| **Exit**             | `exit`                                                                                                                                                                                  |
-| **Add**              | `add n/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent` |
-| **Delete**           | `delete`                                                                                                                                                                                |
-| **Edit**             |                                                                                                                                                                                         |
-| **Status**           | `status`<br> e.g. `status 1 o`                                                                                                                                                          |
-| **Remark**           | `remark`<br> e.g. `remark 1 r/ hello`                                                                                                                                                   |
-| **Find by Company**  | `findn KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findn Google`                                                                                                                                |
-| **Find by Position** | `findp KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findp Frontend`                                                                                                                              |
-| **Find by Tag**      | `findt KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findt Urgent`                                                                                                                                |
-| **Filter**           | `filter STATUS` <br/> e.g. `filter o`                                                                                                                                                   |
-| **Sort**             | `sort ORDER`<br> e.g. `sort a`                                                                                                                                                          |
-| **Stats**            | `stats`                                                                                                                                                                                 |
-| **Select**           |                                                                                                                                                                                         |
-| **Add Task**         | `addtask TASKNAME /at TASKTIME`<br> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                             |
-| **Delete Task**      |                                                                                                                                                                                         |
-| **Add Tag**          | `addtag`<br/> e.g. `addtag 1 Urgent`                                                                                                                                                    |
-| **Delete Tag**       | `deltag`<br/> e.g. `deltag 1 Urgent`                                                                                                                                                    |
+| Action               | Format, Examples                                                                                                                                                                         |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**             | `help`                                                                                                                                                                                   |
+| **List**             | `list`                                                                                                                                                                                   |
+| **Clear**            | `clear`                                                                                                                                                                                  |
+| **Exit**             | `exit`                                                                                                                                                                                   |
+| **Add**              | `add n/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br/> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent` |
+| **Delete**           | `delete`                                                                                                                                                                                 |
+| **Edit**             | `edit n/NEW_NAME p/NEW_POSITION e/NEW_EMAIL w/NEW_WEBSITE t/NEW_TAGS r/NEW_REMARK s/NEW_SALARY` <br/> e.g. `edit s/1200`                                                                 |
+| **Status**           | `status`<br/> e.g. `status 1 o`                                                                                                                                                          |
+| **Remark**           | `remark`<br/> e.g. `remark 1 r/ hello`                                                                                                                                                   |
+| **Find by Company**  | `findn KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findn Google`                                                                                                                                 |
+| **Find by Position** | `findp KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findp Frontend`                                                                                                                               |
+| **Find by Tag**      | `findt KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findt Urgent`                                                                                                                                 |
+| **Filter**           | `filter STATUS` <br/> e.g. `filter o`                                                                                                                                                    |
+| **Sort**             | `sort ORDER`<br/> e.g. `sort a`                                                                                                                                                          |
+| **Stats**            | `stats`                                                                                                                                                                                  |
+| **Select**           | `select INDEX` <br/> e.g. `select 1`                                                                                                                                                     |
+| **Add Task**         | `addtask TASKNAME /at TASKTIME`<br/> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                             |
+| **Delete Task**      |                                                                                                                                                                                          |
+| **Add Tag**          | `addtag`<br/> e.g. `addtag 1 Urgent`                                                                                                                                                     |
+| **Delete Tag**       | `deltag`<br/> e.g. `deltag 1 Urgent`                                                                                                                                                     |
