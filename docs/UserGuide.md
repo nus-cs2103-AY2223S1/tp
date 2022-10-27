@@ -84,7 +84,7 @@ Format:
 
 Examples:
 * `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
-* `add finish SEP application by/2022-12-25 23:59 m/SEP`
+* `add finish SEP application by/2022-12-25 23:59`
 
 #### Editing a task: `edit`
 
