@@ -27,7 +27,7 @@ public class IncrementCommandParser implements Parser<IncrementCommand> {
     public IncrementCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_ITEM_QUANTITY);
-        Index index = StringUtil.validateAndGetIndexString(argMultimap.getPreamble(), IncrementCommand.getUsage());
+        Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble(), IncrementCommand.getUsage());
 
         // Default increment by 1 if PREFIX_ITEM_QUANTITY not provided
         ItemQuantity incrementQuantity = ParserUtil.parseQuantity("1");

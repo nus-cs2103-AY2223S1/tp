@@ -27,7 +27,7 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
     public RemarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_ITEM_REMARKS);
-        Index index = StringUtil.validateAndGetIndexString(argMultimap.getPreamble(), RemarkCommand.getUsage());
+        Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble(), RemarkCommand.getUsage());
 
         ItemRemark remark = ParserUtil.parseRemarks("");
         if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_ITEM_REMARKS)) {

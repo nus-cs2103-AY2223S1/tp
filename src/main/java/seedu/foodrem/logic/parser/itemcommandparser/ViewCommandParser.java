@@ -20,7 +20,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     public ViewCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        Index index = StringUtil.validateAndGetIndexString(args, ViewCommand.getUsage());
+        Index index = StringUtil.validateAndGetIndexFromString(args, ViewCommand.getUsage());
         return new ViewCommand(index);
     }
 }
