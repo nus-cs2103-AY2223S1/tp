@@ -118,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
         customerListPanel = new CustomerListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
 
-        this.logic.parseAllPromotion("src/main/resources/promotions");
+        this.logic.parseAllPromotion("promotions");
         promotionListPanel = new PromotionListPanel(this.logic.getPromotionList());
         promotionListPanelPlaceholder.getChildren().add(promotionListPanel.getRoot());
 

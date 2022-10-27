@@ -3,7 +3,6 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.function.Predicate;
@@ -222,7 +221,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void parseAllPromotion(String filePath) throws IOException {
+    public void parseAllPromotion(String filePath) {
         promotionManager.parseAllPromotions(filePath);
     }
 
