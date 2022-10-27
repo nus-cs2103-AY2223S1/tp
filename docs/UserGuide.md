@@ -20,7 +20,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
-<img src="images/Ui.png" width="800px" height ="400px">
+<img src="images/Ui.png" width="800px" height ="500px">
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 
@@ -70,12 +70,12 @@ Notes on symbols in first column:
 
 * `ap n/Bernice Yu a/#11-330, blk 775, Bishan e/b.yu@nus.edu.sg p/80880011 t/NUS t/staff` adds such patient.
 
-<img src="images/addcommand/ap1.png" width="800px" height ="400px">
+<img src="images/addcommand/ap1.png" width="800px" height ="500px">
 
 * `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable
 * to add such patient because Bernice Yu already exists in the address book.
 
-<img src="images/addcommand/ap2.png" width="800px" height ="400px">
+<img src="images/addcommand/ap2.png" width="800px" height ="500px">
 
 
 ### 1.1.2 Adding an appointment of a patient `addappointment`, `aa`
@@ -116,17 +116,17 @@ Notes on symbols in first column:
 
 * `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` adds such appointment.
 
-<img src="images/addcommand/aa1.png" width="800px" height ="400px">
+<img src="images/addcommand/aa1.png" width="800px" height ="500px">
 
 * Executing `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` again is unable
 * to add such appointment because the appointment with the combination of the four inputs
 * parameters already exists in the address book.
 
-<img src="images/addcommand/aa2.png" width="800px" height ="400px">
+<img src="images/addcommand/aa2.png" width="800px" height ="500px">
 
 * `aa n/Bernice Yu s/2022-01-23 09:00 d/Dioni Yong t/CT` adds another appointment for Bernice Yu.
 
-<img src="images/addcommand/aa3.png" width="800px" height ="400px">
+<img src="images/addcommand/aa3.png" width="800px" height ="500px">
 
 ### 1.1.3 Adding a bill of an appointment `addbill`, `ab`
 
@@ -164,12 +164,12 @@ Notes on symbols in first column:
 
 * `ab 1 a/1200.00 d/2021-11-11` adds such bill to the first appointment in the displayed list.
 
-<img src="images/addcommand/ab1.png" width="800px" height ="400px">
+<img src="images/addcommand/ab1.png" width="800px" height ="500px">
 
 * Executing `ab 1 a/1500.00 d/2021-11-13` is unable to add such bill because the first appointment
 * in the displayed list already has an attached bill.
 
-<img src="images/addcommand/ab2.png" width="800px" height ="400px">
+<img src="images/addcommand/ab2.png" width="800px" height ="500px">
 
 ## 1.2 Edit
 
@@ -210,11 +210,11 @@ Format:
 Examples:
 * ```findpatient n/ale``` returns ``Alex Yeoh`` and ``alex tan``.
 
-<img src="images/findpatientAlex.png" width="800px" height ="400px">
+<img src="images/findpatientAlex.png" width="800px" height ="500px">
 
 * ```fp t/friends t/colleagues n/bernice``` returns only ``Bernice Yu`` with the tags ``friends`` and ``colleagues``.
 
-<img src="images/findpatientBernice.png" width="800px" height ="400px">
+<img src="images/findpatientBernice.png" width="800px" height ="500px">
 
 ### 1.4.2 Finding appointments `findappointment` `fa`
 
@@ -237,11 +237,11 @@ Format:
 Examples:
 * ```findappointment t/x-ray``` returns ``Bernice Yu`` with "X-ray" appointment.
 
-<img src="images/findappointmentXray.png" width="800px" height ="400px">
+<img src="images/findappointmentXray.png" width="800px" height ="500px">
 
 * ```fa d/Dr Tan n/Alex``` returns only ``Alex Yeoh``'s appointment with "Dr Tan".
 
-<img src="images/findappointmentAlex.png" width="800px" height ="400px">
+<img src="images/findappointmentAlex.png" width="800px" height ="500px">
 
 ### 1.4.3 Finding a bill of an appointment
 
@@ -284,7 +284,7 @@ Notes on symbols in first column:
 
 * `slp 1` shows the appointments and bills for the first patient in the patient list.
 
-<img src="images/selectcommand/slp1.png" width="800px" height ="400px">
+<img src="images/selectcommand/slp1.png" width="800px" height ="500px">
 
 ### 1.6.2 Selecting an appointment `selectappointment`, `sla`
 
@@ -313,7 +313,7 @@ Notes on symbols in first column:
 
 * `sla 1` shows the bill for the first appointment in the appointment list.
 
-<img src="images/selectcommand/sla1.png" width="800px" height ="400px">
+<img src="images/selectcommand/sla1.png" width="800px" height ="500px">
 
 ## 1.7 Setting Bill Payment Status
 
@@ -332,10 +332,10 @@ Example:
 * ```setpaid 1``` sets the first bill in the displayed bill list as paid, in this case, `Bernice Yu`'s bill.
 
 Before:
-<img src="images/setpaidcommand.png" width="800px" height ="400px">
+<img src="images/setpaidcommand.png" width="800px" height ="500px">
 
 After:
-<img src="images/setpaidcommandafter.png" width="800px" height ="400px">
+<img src="images/setpaidcommandafter.png" width="800px" height ="500px">
 
 ### 1.7.2 Setting Bill As Unpaid `setunpaid`, `sup`
 
@@ -352,10 +352,10 @@ Example:
 * ```setunpaid 1``` sets the first bill in the displayed bill list as unpaid, in this case, `Bernice Yu`'s bill.
 
 Before:
-<img src="images/setunpaidcommand.png" width="800px" height ="400px">
+<img src="images/setunpaidcommand.png" width="800px" height ="500px">
 
 After:
-<img src="images/setunpaidcommandafter.png" width="800px" height ="400px">
+<img src="images/setunpaidcommandafter.png" width="800px" height ="500px">
 
 ## 1.8 Remark
 
@@ -375,7 +375,7 @@ Deletes all patients, appointments and bills from the HealthContact.
 
 * Executing `clear`, all data is deleted.
 
-<img src="images/othercommands/clear.png" width="800px" height ="400px">
+<img src="images/othercommands/clear.png" width="800px" height ="500px">
 
 
 ## 1.12 List `list`, `ls`
@@ -390,7 +390,7 @@ Removes all conditions previously applied to the list and shows all patients, ap
 
 * Executing `list`, the program shows all patients, appointments and bills.
 
-<img src="images/othercommands/ls1.png" width="800px" height ="400px">
+<img src="images/othercommands/ls1.png" width="800px" height ="500px">
 
 ## 1.13 Exit `exit`
 
