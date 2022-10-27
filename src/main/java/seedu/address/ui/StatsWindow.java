@@ -5,7 +5,9 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -42,8 +44,17 @@ public class StatsWindow extends UiPart<Stage> {
     /**
      * Replaces the current data used to generate the {@code PieChart} with the new data specified.
      */
+    //Solution adapted from: https://stackoverflow.com/questions/36276805/how-to-wrap-text-of-a-javafx-chart-legend
     public void setPieChart(ObservableList<PieChart.Data> newData) {
         chart.setData(newData);
+        for (Node node : chart.lookupAll(".chart-legend-item")) {
+            if (node instanceof Label) {
+                Label legendElement = (Label) node;
+                legendElement.setWrapText(true);
+                legendElement.setManaged(true);
+                legendElement.setPrefWidth(100);
+            }
+        }
     }
 
     /**

@@ -17,7 +17,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `dukethemarket.jar` from [here](https://github.com/AY2223S1-CS2103-F09-2/tp/releases).
+2. Download the latest `dukeTheMarket.jar` from [here](https://github.com/AY2223S1-CS2103-F09-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your application.
 
@@ -127,11 +127,11 @@ Examples:
 * `listPersons s/n` Lists all persons sorted by their names.
 
 
-### Editing a contact : `edit`
+### Editing a contact : `editPerson`
 
 Edits an existing contact in the application.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`
+Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`
 
 - Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
   The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index.
@@ -166,11 +166,12 @@ Format: `edit INDEX [d/DOB]`
 - `INDEX` must be **a positive integer** (i.e 1,2,3…)
 - `INDEX` must be within the range of the contact list index (i.e. from 1 to size of contact list).
 
-
 Examples:
-* `edit 1 d/20/03/2000`
-* `edit 2 d/5/4/2000`
-* `edit 3 d/23/09/2000`
+*  `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
+   `91234567` and `johndoe@example.com` respectively.
+*  `editPerson 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
+*  `editPerson 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`, 
+edits gender to be `Female` and edits date of birth to be `3.4.1998`.
 
 ### Locating persons by name: `findPersons`
 
@@ -216,6 +217,25 @@ Examples:
 * `addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`
 * `addEvent n/Banana Discount 10% d/20-04-2022 t/14:00 p/10% discount on all bananas`
 
+
+### Editing an event : `editEvent`
+
+Edits an existing event in the application.
+
+Format: `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
+
+- Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list.
+  The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index.
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+
+Examples:
+*  `editEvent 1 e/Toy Dinosaur Sale t/10/10/AM` Edits the event title and time of the 1st event to be
+   `Toy Dinosaur Sale` and `10:10 AM` respectively.
+*  `editEvent 2 e/Pillow Sale` Edits the event title of the 2nd event to be `Pillow Sale`.
+*  `editEvent 3 d/10/10/2022 p/Give 20% off bottles` Edits the 3rd event’s date and purpose to be `10 Oct 2022` and ,
+   `Give 20% off bottles` respectively.
+
 ### Locating events by event title: `findEvents`
 
 Finds events whose event titles contain any of the given keywords.
@@ -233,6 +253,7 @@ Examples:
 * `findEvents Sale` returns `sale` and `Marketing Sale`
 * `findEvents sports car` returns `Sports Festival`, `Car Sale`<br>
   ![result for 'findEvents Sports Car'](images/findEventsSportsCar.png)
+
 
 ### Deleting an event: `deleteEvent`
 
@@ -352,19 +373,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                                                      |
-|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action           | Format, Examples                                                                                                                                                                       |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] [d/DOB] [t/TAG]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20 MAR 2002` |
-| **Clear**        | `clear`                                                                                                                                                                               |
-| **DeletePerson** | `deletePerson INDEX`<br> e.g., `deletePerson 3`                                                                                                                                       |
-| **Edit**         | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                 |
-| **FindPersons**  | `findPersons KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPersons James Jake`                                                                                                                             |
-| **ListPersons**  | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                  |
-| **AddEvent**     | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                       |
-| **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                         |
-| **FindEvents**   | `findEvents KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvents Sale Discount`                                                                                                                                                                                         |
-| **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                     |
-| **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                               |
-| **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                           |
-| **Help**         | `help`                                                                                                                                                                                |
-
+| **Clear**        | `clear`                                                                                                                                                                                |
+| **DeletePerson** | `deletePerson INDEX`<br> e.g., `deletePerson 3`                                                                                                                                        |
+| **EditPerson**   | `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`                                              |
+| **FindPersons**  | `findPersons KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPersons James Jake`                                                                                                               |
+| **ListPersons**  | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                   |
+| **AddEvent**     | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
+| **EditEvent**    | `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10% off all chocolates`                                                      |
+| **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
+| **FindEvents**   | `findEvents KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvents Sale Discount`                                                                                                              |
+| **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                      |
+| **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                                |
+| **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                            |
+| **Help**         | `help`                                                                                                                                                                                 |

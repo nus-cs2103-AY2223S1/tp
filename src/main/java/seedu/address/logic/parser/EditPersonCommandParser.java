@@ -28,7 +28,7 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_GENDER, PREFIX_DOB);
+                PREFIX_DOB, PREFIX_ADDRESS, PREFIX_GENDER);
 
         Index index;
 
