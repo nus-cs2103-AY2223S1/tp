@@ -1,5 +1,5 @@
 @startuml
-scale 1.1
+scale 1.2
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
