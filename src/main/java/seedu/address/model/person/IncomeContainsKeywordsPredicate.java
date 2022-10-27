@@ -30,11 +30,11 @@ public class IncomeContainsKeywordsPredicate implements Predicate<Person> {
         IncomeLevel personIncome = person.getIncome();
         for (String predicateIncomeName : income) {
             if (greater) {
-                if (personIncome.convertIncomeToInt() > Integer.parseInt(predicateIncomeName)) {
+                if (personIncome.convertIncomeToLong() > Integer.parseInt(predicateIncomeName)) {
                     return true;
                 }
             } else {
-                if (personIncome.convertIncomeToInt() < Integer.parseInt(predicateIncomeName)) {
+                if (personIncome.convertIncomeToLong() < Integer.parseInt(predicateIncomeName)) {
                     return true;
                 }
             }
