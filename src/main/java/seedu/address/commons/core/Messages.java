@@ -41,7 +41,7 @@ public class Messages {
 
     public static final String OUT_OF_BOUNDS = "The index given to be inspected must be within "
             + "the bounds of the list!";
-    
+
     public static final String NOT_AN_INTEGER = "The index given was not an integer value";
 
     public static final String AMBIGUOUS_NAME_INSPECT_FIRST = "There was more than one person of that name found.\n"
