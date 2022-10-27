@@ -36,7 +36,6 @@
                <children>
                   <HBox>
                      <children>
-            
                     <VBox fx:id="customerList" minWidth="350.0" style="-fx-background-color: #e6ccb2;" HBox.hgrow="ALWAYS">
                       <padding>
                         <Insets bottom="5" left="10" right="10" top="10" />
