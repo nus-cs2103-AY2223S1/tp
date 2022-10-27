@@ -64,6 +64,11 @@
   -fx-padding: 0;
 }
 
+.result-box > * .bold {
+  -fx-font-weight: bold;
+  -fx-font-family: "Montserrat Bold" !important;
+}
+
 .command-box > TextField {
   -fx-font-family: "JetBrains Mono";
   -fx-prompt-text-fill: #363636;
@@ -82,7 +87,6 @@
  * Statistics                   *
  * ============================ */
  .stats-header {
-   -fx-font-weight: bold; // TODO
    -fx-font-size: 18pt;
  }
 
@@ -102,11 +106,6 @@
   -fx-font-family: "Epilogue";
 
   -fx-label-padding: 4 6 4 6;
-}
-
-.item-detail-quantity {
-  -fx-font-weight: bold;
-  -fx-font-family: "Montserrat Bold";
 }
 
 .scroll-result-box {
