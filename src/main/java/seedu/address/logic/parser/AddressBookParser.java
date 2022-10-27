@@ -75,6 +75,8 @@ public class AddressBookParser {
         case RedoCommand.COMMAND_WORD:
             return new RedoCommandParser().parse(arguments);
 
+
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
