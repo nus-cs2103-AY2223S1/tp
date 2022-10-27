@@ -14,8 +14,8 @@
     * [Deleting entries: `del INDEX_OF_ENTRY t/ENTRY_TYPE`](#deleting-entries--del-index_of_entry-tentry_type)
     * [Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`](#editing-entries--edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category)
     * [Summary of entries : `summary [mo/MONTH]`](#summary-of-entries--summary-momonth)
-    * [View entries by category: `view t/ENTRY_TYPE g/GRAPH_TYPE`](#view-entries-by-category--view-tentry_type-ggraph_type)
-    * [View entries by month: `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`](#view-entries-by-month--view-tentry_type-ggraph_type-momonth)
+    * [View entries by category: `view t/ENTRY_TYPE`](#view-entries-by-category--view-tentry_type-ggraph_type)
+    * [View entries by month: `view t/ENTRY_TYPE mo/MONTH`](#view-entries-by-month--view-tentry_type-ggraph_type-momonth)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
     * [Exiting the program : `exit`](#exiting-the-program--exit)
     * [Saving the data](#saving-the-data)
@@ -210,26 +210,25 @@ The default date is the current date on your computer!
 * Provides a financial summary recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application displays the summary for all entries.
 
-### View entries by category : `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/month]`
+### View entries by category : `view t/ENTRY_TYPE`
 
 1. View a PieChart of all expenditures by categories
-    * Examples: `view t/e g/c` <br>
+    * Examples: `view t/e` <br>
    Expected: `Show graphically all expenditure by category` and a PieChart on the right of the application
 1. View a PieChart of all incomes by categories
-   * Examples: `view t/i g/c` <br>
+   * Examples: `view t/i` <br>
    Expected: `Show graphically all income by category` and a PieChart on the right of the application
 
-### View entries by month : `view t/ENTRY_TYPE g/GRAPH_TYPE mo/MONTH`
+### View entries by month : `view t/ENTRY_TYPE mo/MONTH`
 1. View a LineGraph of all expenditures in a specified month
-   * Examples: `view t/e g/m mo/2022-10` <br>
+   * Examples: `view t/e mo/2022-10` <br>
    Expected: `Show graphically all expenditure by month` and a LineGraph on the right of the application
 1. View a LineGraph of all incomes in a specified month
-   * Examples: `view t/i g/m mo/2022-10` <br>
+   * Examples: `view t/i mo/2022-10` <br>
    Expected: `Show graphically all income by month` and a LineGraph on the right of the application
 
 * View all entries recorded by the user in a month. The month refers to the month that is displayed to the user.
-* The `MONTH` field is required for the LineGraph, if no month is specified, the application displays an error.
-
+* The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown, accompanied by a LineGraph on the right of the application. If no month is specified, the application displays an error.
 
 ### Clearing all entries : `clear`
 
