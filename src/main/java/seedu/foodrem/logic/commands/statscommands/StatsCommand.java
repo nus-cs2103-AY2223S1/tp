@@ -54,15 +54,8 @@ public class StatsCommand extends Command {
     private List<Tag> getTopThreeCommonTags(List<Item> itemList, List<Tag> tagList) {
         HashMap<Tag, Integer> tagToFrequencyMap = new HashMap<>();
 
-        // TODO: Replace with streams, this is janky and ugly
-        for (int i = 0; i < tagList.size(); i++) {
-            Tag tag = tagList.get(i);
-            for (int j = 0; j < itemList.size(); j++) {
-                if (itemList.get(j).getTagSet().contains(tag)) {
-                    tagToFrequencyMap.put(tag, tagToFrequencyMap.getOrDefault(tag, 0) + 1);
-                }
-            }
-        }
+        tagList.parallelStream().forEach(tag -> tagToFrequencyMap.put(tag,
+                ((int) itemList.parallelStream().filter(item -> item.getTagSet().contains(tag)).count())));
 
         return tagToFrequencyMap.entrySet().stream()
                 .sorted(Comparator.comparing(Map.Entry::getValue, Comparator.reverseOrder()))
