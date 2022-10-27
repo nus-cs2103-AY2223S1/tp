@@ -77,9 +77,9 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Student> getSortedCompletedStudentList() {
-            return model.getSortedCompletedStudentList();
+        return model.getSortedCompletedStudentList();
     }
-      
+
     @Override
     public ObservableList<Student> getUncompletedStudentList() {
         return model.getUncompletedStudentList();

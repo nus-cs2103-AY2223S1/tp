@@ -20,7 +20,6 @@ import jeryl.fyp.model.student.UniqueStudentList;
 public class FypManager implements ReadOnlyFypManager {
 
     private final UniqueStudentList students;
-    
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html

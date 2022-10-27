@@ -195,15 +195,19 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public SortedList<Student> getSortedByProjectStatusStudentList() {
+        public SortedList<Student> getSortedByProjectStatusUncompletedStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public SortedList<Student> getSortedBySpecialisationStudentList() {
+        public SortedList<Student> getSortedBySpecialisationUncompletedStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public SortedList<Student> getSortedCompletedStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
