@@ -20,8 +20,9 @@ public interface Logic {
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
+     * @throws RuntimeException If an error occurs during model state change.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText) throws CommandException, ParseException, RuntimeException;
 
     /**
      * Returns the FypManager.
@@ -32,6 +33,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
+
+    /** Returns an unmodifiable view of the uncompleted list of students */
+    ObservableList<Student> getUncompletedStudentList();
+
+    /** Returns an unmodifiable view of the completed list of students */
+    ObservableList<Student> getCompletedStudentList();
 
     /**
      * Returns the user prefs' FYP manager file path.
