@@ -209,7 +209,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE, PREFIX_CLIENT_ID);
 
-        if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE)
+        if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE, PREFIX_CLIENT_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));

@@ -16,6 +16,7 @@ public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
     private final List<String> repositoryKeywords;
     private final List<String> clientNameKeywords;
     private final List<String> clientIdKeywords;
+    private final List<String> projectIdKeywords;
 
     /**
      * Constructs a ProjectContainsKeywordsPredicate object with the user inputs.
@@ -23,14 +24,16 @@ public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
      * @param repositoryKeywords List of Strings representing keywords to search for in repository
      * @param clientNameKeywords List of Strings representing keywords to search for in project's client's name
      * @param clientIdKeywords List of Strings representing keywords to search for in project's client's Id
-     *
+     * @param projectIdKeywords List of Strings representing keywords to search for in project Id
      */
     public ProjectContainsKeywordsPredicate(List<String> nameKeywords, List<String> repositoryKeywords,
-                                            List<String> clientNameKeywords, List<String> clientIdKeywords) {
+                                            List<String> clientNameKeywords, List<String> clientIdKeywords,
+                                            List<String> projectIdKeywords) {
         this.nameKeywords = nameKeywords;
         this.repositoryKeywords = repositoryKeywords;
         this.clientNameKeywords = clientNameKeywords;
         this.clientIdKeywords = clientIdKeywords;
+        this.projectIdKeywords = projectIdKeywords;
     }
 
     /**
@@ -83,8 +86,8 @@ public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
     }
 
     /**
-     * Checks if given client id matches with any word in the name present.
-     * @param idPresent String representing client idpresent
+     * Checks if given client id matches with any word in the client id present.
+     * @param idPresent String representing client id present
      * @param idGiven String representing client id given (keyword to search for)
      * @return boolean true if at least one word matches with the keyword and false otherwise
      */
@@ -105,6 +108,31 @@ public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
             return clientIdKeywords.stream().anyMatch(id -> testClientId(id,
                     project.getClient().getClientId().toString()));
         }
+    }
+
+    /**
+     * Checks if the project's id matches the id keyword being search for.
+     * @param project Project whose id is being used to search the keyword in
+     * @return boolean true if the id fulfills the search criteria and false otherwise
+     */
+    public boolean testProjectId(Project project) {
+        if (projectIdKeywords.isEmpty()) {
+            return true;
+        } else {
+            return projectIdKeywords.stream().anyMatch(id -> testProjectId(id,
+                    project.getProjectId().toString()));
+        }
+    }
+
+    /**
+     * Checks if given id matches with any word in the id present.
+     * @param idPresent String representing id present
+     * @param idGiven String representing id given (keyword to search for)
+     * @return boolean true if at least one word matches with the keyword and false otherwise
+     */
+    public boolean testProjectId(String idPresent, String idGiven) {
+        return Arrays.stream(idPresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(idGiven, words));
     }
 
     /**
@@ -134,7 +162,8 @@ public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
 
     @Override
     public boolean test(Project project) {
-        return testName(project) && testRepository(project) && testClientId(project) && testClientName(project);
+        return testName(project) && testRepository(project) && testClientId(project)
+                && testClientName(project) && testProjectId(project);
     }
 
     @Override
@@ -144,6 +173,7 @@ public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
                 && nameKeywords.equals(((ProjectContainsKeywordsPredicate) other).nameKeywords) //state checks
                 && repositoryKeywords.equals(((ProjectContainsKeywordsPredicate) other).repositoryKeywords)
                 && clientNameKeywords.equals(((ProjectContainsKeywordsPredicate) other).clientNameKeywords)
-                && clientIdKeywords.equals(((ProjectContainsKeywordsPredicate) other).clientIdKeywords));
+                && clientIdKeywords.equals(((ProjectContainsKeywordsPredicate) other).clientIdKeywords)
+                && projectIdKeywords.equals(((ProjectContainsKeywordsPredicate) other).projectIdKeywords));
     }
 }
