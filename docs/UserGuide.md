@@ -195,8 +195,8 @@ Examples:<br>
 `editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -priority HIGH`: Updates buyer at index 3 to have a new name "John Doe", new email "johndoe@yahoo.com", new acceptable price range of $40000 - $500000, and a high priority.
 `editbuyer 1 -c bright; sunny`: Updates buyer at index 1 to have new desired characteristics of bright and sunny.
 
-### Find entry in database: `find`
-Syntax: `find [-k KEYWORDS]`
+### Find buyer entry in database: `findbuyer`
+Syntax: `findbuyer [-k KEYWORDS]`
 
 Searches through the database and returns all buyers whose names contain any keywords in KEYWORDS _(case-insensitive)_.
 
@@ -205,6 +205,17 @@ The `-k` flag indicates the keywords that will be searching through. Each space-
 Examples:<br>
 `find -k John`: Looks for all buyers that have “John” in their name.<br>
 `find -k John Alice Bob`: Looks for all buyers that have "John", "Alice" or "Bob" in their name.
+
+### Find property entry in database: `findprop`
+Syntax: `findprop [-k KEYWORDS]`
+
+Searches through the database and returns all properties whose names contain any keywords in KEYWORDS _(case-insensitive)_.
+
+The `-k` flag indicates the keywords that will be searching through. Each space-separated keyword will be taken as its own search term.
+
+Examples:<br>
+`findprop -k Peak`: Looks for all buyers that have “Peak” in their name.<br>
+`findprop -k Peak Residence Hut`: Looks for all buyers that have "Peak", "Residence" or "Hut" in their name.
 
 ### Filter buyers in database: `filterbuyers`
 
@@ -284,6 +295,36 @@ This command filters the buyers list to only display buyers who have criteria th
 
 Examples:<br>
 `matchprop 5`: Matches property 5 to existing buyers in the database.
+
+### Sort buyers in database: `sortbuyers`
+
+Sorts buyers in the database according to a single given conditions, and updates the visible buyer list.
+
+Syntax: `sortbuyers {-n NAME <ASC/DESC>} {-r PRICERANGE <ASC/DESC>} {-priority <ASC/DESC>} {-t ENTRYTIME}`
+
+The `-n` flag indicates that we will be sorting buyers by name in ascending or descending order.
+The `-r` flag indicates that we will be sorting buyers by either the upper price bound or lower price bound.
+The `-priority` flag indicates that we will be sorting buyers according to the specified priority level.
+The `-t` flag indicates that we will be sorting buyers according to entry time.
+
+Examples:<br>
+`sortbuyers -priority DESC`: Sort buyers from `HIGH` priority level to `LOW` priority level.
+`sortbuyers -r ASC` Sort buyers according to the upper price bound in ascending order.
+`sortbuyers -t ASC` Sort buyers according to the time of entry from oldest to most recent. 
+
+### Sort properties in database: `sortprops`
+
+Sorts properties in the database according to a single given conditions, and updates the visible property list.
+
+Syntax: `sortprops {-n PROPERTYNAME <ASC/DESC>} {-p PRICE <ASC/DESC>} {-t ENTRYTIME}`
+
+The `-n` flag indicates that we will be sorting properties by name in ascending or descending order.
+The `-p` flag indicates that we will be sorting properties by listed price in ascending or descending order.
+The `-t` flag indicates that we will be sorting buyers according to entry time.
+
+Examples:<br>
+`sortprops -p DESC`: Sort properties from highest listed price to lowest.
+`sortbuyers -t ASC` Sort properties according to the time of entry from oldest to most recent.
 
 ### List buyers in database: `listbuyers`
 
