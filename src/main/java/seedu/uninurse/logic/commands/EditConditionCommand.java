@@ -3,6 +3,8 @@ package seedu.uninurse.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_CONDITION;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_CONDITION_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 
 import java.util.List;
 
@@ -19,18 +21,11 @@ import seedu.uninurse.model.person.Patient;
  * Edits the details of an existing condition for a patient.
  */
 public class EditConditionCommand extends EditGenericCommand {
-    // tentative syntax; TODO: Integrate with EditGenericCommand
-    public static final String COMMAND_WORD = "editCondition";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the condition identified by the index number in the condition list of the patient "
-            + "identified by the index number used in the last patient listing.\n"
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: PATIENT_INDEX (must be a positive integer) "
-            + "CONDITION_INDEX (must be a positive integer) "
-            + PREFIX_CONDITION + "CONDITION\n"
-            + "Example: " + COMMAND_WORD + " 2 " + " 1 "
-            + PREFIX_CONDITION + "Hypertension";
+    public static final String MESSAGE_USAGE = "Command: Edit a medical condition of a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
+            + PREFIX_OPTION_CONDITION_INDEX + " CONDITION_INDEX " + PREFIX_CONDITION + "CONDITION\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_OPTION_CONDITION_INDEX
+            + " 2 " + PREFIX_CONDITION + "Hypertension";
 
     public static final String MESSAGE_EDIT_CONDITION_SUCCESS = "Edited condition %1$d of %2$s:\n"
             + "Before: %3$s\n"

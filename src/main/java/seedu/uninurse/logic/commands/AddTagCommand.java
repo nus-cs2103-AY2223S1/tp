@@ -1,6 +1,7 @@
 package seedu.uninurse.logic.commands;
 
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
@@ -18,16 +19,10 @@ import seedu.uninurse.model.tag.exceptions.DuplicateTagException;
  * Add a tag to an existing patient in the person list.
  */
 public class AddTagCommand extends AddGenericCommand {
-    // tentative syntax; TODO: integrate with AddGenericCommand
-    public static final String COMMAND_WORD = "addTag";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a tag to the patient identified "
-            + "by the index number used in the last patient listing.\n"
-            + "Parameters: PATIENT_INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = "Command: Add a tag to a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_TAG + "TAG\n"
-            + "Example: " + COMMAND_WORD
-            + " 2 " + PREFIX_TAG + "high-risk";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_TAG + "high-risk";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "New tag added to %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in %1$s's tag list";

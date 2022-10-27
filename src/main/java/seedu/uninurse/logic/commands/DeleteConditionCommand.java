@@ -2,6 +2,8 @@ package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_CONDITION_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 
 import java.util.List;
 
@@ -17,15 +19,11 @@ import seedu.uninurse.model.person.Patient;
  * Deletes a medical condition from a patient identified using its displayed index from the patient list.
  */
 public class DeleteConditionCommand extends DeleteGenericCommand {
-    // tentative syntax; TODO: integrate with DeleteGenericCommand
-    public static final String COMMAND_WORD = "deleteCondition";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the medical condition identified by the index number in the condition list of the patient "
-            + "identified by the index number used in the last patient listing.\n"
-            + "Parameters: PATIENT_INDEX (must be a positive integer) "
-            + "CONDITION_INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 2";
+    public static final String MESSAGE_USAGE = "Command: Delete a medical condition from a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
+            + PREFIX_OPTION_CONDITION_INDEX + " TAG_INDEX\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_OPTION_CONDITION_INDEX
+            + " 2";
 
     public static final String MESSAGE_DELETE_CONDITION_SUCCESS = "Deleted condition %1$d from %2$s: %3$s";
 

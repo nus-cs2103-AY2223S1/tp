@@ -2,6 +2,8 @@ package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TAG_INDEX;
 
 import java.util.List;
 
@@ -17,15 +19,11 @@ import seedu.uninurse.model.tag.TagList;
  * Deletes a tag from a patient identified using its displayed index from the patient list.
  */
 public class DeleteTagCommand extends DeleteGenericCommand {
-    // tentative syntax; TODO: integrate with DeleteGenericCommand
-    public static final String COMMAND_WORD = "deleteTag";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the medical tag identified by the index number in the tag list of the patient "
-            + "identified by the index number used in the last patient listing.\n"
-            + "Parameters: PATIENT_INDEX (must be a positive integer) "
-            + "TAG_INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 2";
+    public static final String MESSAGE_USAGE = "Command: Delete a tag from a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
+            + PREFIX_OPTION_TAG_INDEX + " TAG_INDEX\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_OPTION_TAG_INDEX
+            + " 2";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag %1$d from %2$s: %3$s";
 
