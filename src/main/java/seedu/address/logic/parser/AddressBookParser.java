@@ -6,6 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.github.exceptions.NetworkConnectionException;
+import seedu.address.github.exceptions.UserInvalidException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BackCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -37,7 +39,8 @@ public class AddressBookParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput, MainPanelName mainPanelName) throws ParseException {
+    public Command parseCommand(String userInput, MainPanelName mainPanelName) throws ParseException,
+        UserInvalidException, NetworkConnectionException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));

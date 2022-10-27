@@ -60,7 +60,6 @@ public class UserInfoWrapper {
     }
 
     public Optional<String> getEmail() {
-        System.out.println(userJson.optString(EMAIL_KEY, "NO EMAIL FOUND"));
         return Optional.ofNullable(userJson.optString(EMAIL_KEY, null));
     }
 

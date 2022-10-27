@@ -11,6 +11,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.github.exceptions.NetworkConnectionException;
+import seedu.address.github.exceptions.UserInvalidException;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,19 +29,19 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private DetailPanel detailPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
-    private HelpPanel helpPanel;
-    private DetailHelpPanel detailHelpPanel;
+    private final HelpWindow helpWindow;
+    private final HelpPanel helpPanel;
+    private final DetailHelpPanel detailHelpPanel;
 
     private MainPanelName currentMainPanel;
-    private Stack<MainPanelName> mainPanelHistory = new Stack<>();
+    private final Stack<MainPanelName> mainPanelHistory = new Stack<>();
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -204,7 +206,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String, MainPanelName)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException,
+        UserInvalidException, NetworkConnectionException {
         try {
             CommandResult commandResult = logic.execute(commandText, this.currentMainPanel);
             logger.info("Result: " + commandResult.getFeedbackToUser());

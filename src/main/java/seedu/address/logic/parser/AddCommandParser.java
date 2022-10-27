@@ -17,6 +17,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.github.exceptions.NetworkConnectionException;
+import seedu.address.github.exceptions.UserInvalidException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -48,7 +50,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddCommand parse(String args) throws ParseException, UserInvalidException, NetworkConnectionException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
             PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE, PREFIX_TIMEZONE,
             PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SLACK, PREFIX_TELEGRAM, PREFIX_GITHUB);
@@ -71,7 +73,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         } else {
             assert githubUser != null;
             name = githubUser.getName();
-            System.out.println(name);
         }
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

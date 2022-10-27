@@ -19,6 +19,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.github.exceptions.NetworkConnectionException;
+import seedu.address.github.exceptions.UserInvalidException;
 import seedu.address.logic.commands.SetCommand;
 import seedu.address.logic.commands.SetCommand.SetPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -45,7 +47,7 @@ public class SetCommandParser implements Parser<SetCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public SetCommand parse(String args) throws ParseException {
+    public SetCommand parse(String args) throws ParseException, UserInvalidException, NetworkConnectionException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SLACK, PREFIX_TELEGRAM,
@@ -96,7 +98,8 @@ public class SetCommandParser implements Parser<SetCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
-            setPersonDescriptor.setGithubUser(ParserUtil.parseGithubUser(argMultimap.getValue(PREFIX_GITHUB).get()));
+                setPersonDescriptor.setGithubUser(
+                    ParserUtil.parseGithubUser(argMultimap.getValue(PREFIX_GITHUB).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(setPersonDescriptor::setTags);
