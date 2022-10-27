@@ -24,12 +24,12 @@ tasks done faster than traditional GUI apps.
    open the help window.<br>
    Some example commands you can try:
 
-    * **`add`**`add nf/John nl/Doe c/12345678 m/Beclometasone nasal spray nok/Sam nokc/87654321 wn/B12 fn/12 hw/South io/Inpatient` :
-      Adds a contact named `John Doe` to the Address Book.
+    * **`add`**`add n/Amy Toh p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690 m/panadol m/ibuprofen ` :
+      Adds a contact named `Amy Toh` to the Address Book.
 
-    * **`del`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-    * **`get`** : Retrieve contact's information
+    * **`get`** : Retrieve contact's information based on the prefix you provided.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -39,7 +39,7 @@ tasks done faster than traditional GUI apps.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:notebook: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `get /n NAME`, `NAME` is a parameter which can be used as `get /n John Doe`.
@@ -48,14 +48,12 @@ tasks done faster than traditional GUI apps.
   e.g `n/NAME [m/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[m/TAG]…​` can be used as ` ` (i.e. 0 times), `m/ibuprofen`, `t/ibuprofen t/lozenges` etc.
+  e.g. `[m/TAG]…​` can be used as ` ` (i.e. 0 times), `m/ibuprofen`, `m/ibuprofen m/lozenges` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
-  the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
   ignored.<br>
@@ -67,16 +65,25 @@ tasks done faster than traditional GUI apps.
 
 Adds a patient to checkUp.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL nok/NEXT-OF-KIN NAME, RELATIONSHIP, CONTACT pt/PATIENT TYPE hw/HOSPITAL WING fn/FLOOR NUMBER wn/WARD NUMBER [m/MEDICATION]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of medication (including 0)
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If patient type is outpatient, user should not supply any values to
+hospital wing, floor number, and ward number. 
 </div>
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+    If patient type is inpatient:
+    add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690 m/panadol m/ibuprofen
+<br>
+
+    If patient type is outpatient:
+    add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/outpatient m/panadol m/ibuprofen 
 
 ### Locating patients: `get`
 
@@ -101,29 +108,33 @@ Examples:
 
 #### by next-of-kin data: `/nok`
 
-Finds next-of-kin data which contain any of the given keywords.
+Finds next-of-kin data of the inputted patient.
 
-Format: `get /nok NEXT-OF-KIN_NAME`
+Format: `get /nok PATIENT_NAME`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* The patient's contact matching the keyword will be returned. e.g. `Hans Bo` will return `12345678`
+* The patient's contact matching the keyword will be returned. e.g. `Hans Bo` will return `Sarar, 12345678, Mom`
 
 #### by hospital wing: `/hw`
 
-Finds patients in that particular hospital wing.
+Finds all the patients in that particular hospital wing.
 
 Format: `get /hw HOSPITAL_WING`
 
+* `Hospital wing` only allows the following values: South, North, West, East
 * The search is case-insensitive. e.g `souTh` will match `South`
 * All the patients in that hospital wing will be returned. e.g. `get /hw SOUTH` will return `John` `Peter` `Mary`
+* Patients matching at least one keyword will be returned (i.e. `OR` search). e.g. `South No` will match `south`
+
 
 #### by floor number: `/fn`
 
-Finds patients in that particular floor number.
+Finds all the patients in that particular floor number.
 
 Format: `get /fn FLOOR_NUMBER`
 
+* `Floor number` only allows positive and non-negative integer.
 * All the patients in that floor number will be returned.
 * The floor number refers to the floor number the patient is on. e.g. `get /fn 2` will return `John` `Peter` `Mary`
 
@@ -135,6 +146,17 @@ Format: `get /wn WARD_NUMBER`
 
 * All the patients in that ward number will be returned.
 * The ward number refers to the ward the patient is in. e.g. `get /wn D12` will return `John` `Peter` `Mary`
+
+#### by medication: `/m`
+
+Finds all the patients by medication.
+
+Format: `get /m MEDICATION`
+* 
+* All the patients being prescribed that medication will be returned.
+e.g. `get /m ibuprofen` will return `John` `Peter` `Mary`
+
+
 
 #### by patient type: `/inp`
 
@@ -154,6 +176,24 @@ Format: `get /outp`
 Example:
 * `get /outp` returns `Bernice`, `David` and `Irfan`
 
+#### by appointments: `/appt`
+
+Finds all the appointments of a certain patient.
+
+Format: `get /appt INDEX`
+
+Example: `get /appt 3` will return `12-06-2021` `12-07-2021` `12-08-2021`
+
+#### by appointment date: `/appton`
+
+Finds all the patients that has appointment in a particular date.
+
+Format: `get /appton APPOINTMENT_DATE`
+
+* `Appointment Date` must be in `dd-MM-yyyy` format.
+* All the patients having appointments on that date will be returned.
+* The appointment date refers to date the patient has an appointment with the clinic / hospital. e.g. `get /appton 12-12-2020` will return `John` `Peter` `Mary`
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -167,7 +207,7 @@ Format: `delete INDEX`
 Examples:
 
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `get /n Betsy` followed by `delete 1` deletes the 1st person in the results of the `get /n` command.
 
 ### Obtaining total patient count: `count`
 
@@ -261,18 +301,23 @@ the data of your previous checkUp home folder.
 
 ## Command summary
 
-| Action       | Format, Examples                                                                                                                                                                                                                                                                  |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME p/PHONE e/EMAIL nok/NEXT OF KIN pt/PATIENT TYPE [hw/HOSPITAL WING] [fn/FLOOR NUMBER] [wn/WARD NUMBER] [m/MEDICATION]...`<br> e.g., `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/2 m/panadol m/ibuprofen` |
-| **Clear**    | `clear`                                                                                                                                                                                                                                                                           |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                               |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT OF KIN] [pt/PATIENT TYPE] [hw/HOSPITAL WING] [fn/FLOOR NUMBER] [wn/WARD NUMBER] [upcoming/UPCOMING APPOINTMENT DATE] [m/MEDICATION]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                   |
-| **Get /n**   | `get /n NAME`<br> e.g., `get /n John`                                                                                                                                                                                                                                             |
-| **Get /nok** | `get /nok NEXT-OF-KIN_DATA`<br> e.g., `get /nok John`                                                                                                                                                                                                                             |
-| **Get /hw**  | `get /hw HOSPITAL_WING`<br> e.g., `get /hw South`                                                                                                                                                                                                                                 |
-| **Get /fn**  | `get /fn FLOOR_NUMBER` <br> e.g., `get /fn 2`                                                                                                                                                                                                                                     |
-| **Get /wn**  | `get /wn WARD_NUMBER` <br> e.g., `get /wn D12`                                                                                                                                                                                                                                    |
-| **Count**    | `count`                                                                                                                                                                                                                                                                           |
-| **Appt**     | `appt INDEX on/DATE diag/DIAGNOSIS [m/MEDICINE]...` <br> e.g., `appt 1 on/12-06-2022 diag/Common cold, viral flu m/panadol m/lozenges`                                                                                                                                            |
-| **List**     | `list`                                                                                                                                                                                                                                                                            |
-| **Help**     | `help`                                                                                                                                                                                                                                                                            |
+| Action          | Format, Examples                                                                                                                                                                                                                                                                  |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add n/NAME p/PHONE e/EMAIL nok/NEXT OF KIN pt/PATIENT TYPE [hw/HOSPITAL WING] [fn/FLOOR NUMBER] [wn/WARD NUMBER] [m/MEDICATION]...`<br> e.g., `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/2 m/panadol m/ibuprofen` |
+| **Clear**       | `clear`                                                                                                                                                                                                                                                                           |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                               |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT OF KIN] [pt/PATIENT TYPE] [hw/HOSPITAL WING] [fn/FLOOR NUMBER] [wn/WARD NUMBER] [upcoming/UPCOMING APPOINTMENT DATE] [m/MEDICATION]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                   |
+| **Get /n**      | `get /n NAME`<br> e.g., `get /n John`                                                                                                                                                                                                                                             |
+| **Get /nok**    | `get /nok NEXT-OF-KIN_DATA`<br> e.g., `get /nok John`                                                                                                                                                                                                                             |
+| **Get /hw**     | `get /hw HOSPITAL_WING`<br> e.g., `get /hw South`                                                                                                                                                                                                                                 |
+| **Get /fn**     | `get /fn FLOOR_NUMBER` <br> e.g., `get /fn 2`                                                                                                                                                                                                                                     |
+| **Get /wn**     | `get /wn WARD_NUMBER` <br> e.g., `get /wn D12`                                                                                                                                                                                                                                    |
+| **Get /inp**    | `get /inp`                                                                                                                                                                                                                                                                        |
+| **Get /outp**   | `get /outp`                                                                                                                                                                                                                                                                       |
+| **Get /m**      | `get /m MEDICATION` <br> e.g., `get /m ibuprofen`                                                                                                                                                                                                                                 |
+| **Get /appt**   | `get /appt INDEX` <br> e.g., `get /appt 3`                                                                                                                                                                                                                                        |
+| **Get /appton** | `get /appton APPOINTMENT_DATE` <br> e.g., `get /appton 21-05-2020`                                                                                                                                                                                                                |
+| **Count**       | `count`                                                                                                                                                                                                                                                                           |
+| **Appt**        | `appt INDEX on/DATE diag/DIAGNOSIS [m/MEDICINE]...` <br> e.g., `appt 1 on/12-06-2022 diag/Common cold, viral flu m/panadol m/lozenges`                                                                                                                                            |
+| **List**        | `list`                                                                                                                                                                                                                                                                            |
+| **Help**        | `help`                                                                                                                                                                                                                                                                            |

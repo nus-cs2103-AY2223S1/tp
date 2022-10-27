@@ -35,7 +35,6 @@ public class PersonBuilder {
     public static final String DEFAULT_HOSPITAL_WING = "south";
     public static final Integer DEFAULT_FLOOR_NUMBER = 3;
     public static final String DEFAULT_WARD_NUMBER = "D312";
-    public static final String DEFAULT_UPCOMING_APPOINTMENT = "12-06-2022";
 
     private Name name;
     private Phone phone;
@@ -63,8 +62,9 @@ public class PersonBuilder {
         wardNumber = new WardNumber(DEFAULT_WARD_NUMBER);
         medications = new HashSet<>();
         pastAppointments = new ArrayList<>();
-        upcomingAppointment = new UpcomingAppointment(DEFAULT_UPCOMING_APPOINTMENT);
+        upcomingAppointment = new UpcomingAppointment((LocalDate) null);
     }
+
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.

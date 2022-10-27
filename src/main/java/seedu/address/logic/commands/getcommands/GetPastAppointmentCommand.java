@@ -55,4 +55,11 @@ public class GetPastAppointmentCommand extends GetCommand {
 
         return new CommandResult(String.format(MESSAGE_OBTAIN_PAST_APPOINTMENTS_SUCCESS, output));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof GetPastAppointmentCommand // instanceof handles nulls
+                && targetIndex.equals(((GetPastAppointmentCommand) other).targetIndex)); // state check
+    }
 }
