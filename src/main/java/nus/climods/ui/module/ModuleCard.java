@@ -1,13 +1,16 @@
 package nus.climods.ui.module;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.openapitools.client.model.Lesson;
 import org.openapitools.client.model.SemestersEnum;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -123,6 +126,7 @@ public class ModuleCard extends UiPart<Region> {
 
     private Accordion addSemesterLessons(HashMap<LessonType, Module.ModuleLessonIdMap> sem) {
         Accordion a = new Accordion();
+        a.setPadding(new Insets(10, 0, 10, 0));
         a.getPanes()
                 .addAll(sem.entrySet().stream()
                         .map(entry -> addLessonType(entry.getKey(), entry.getValue()))
@@ -144,11 +148,12 @@ public class ModuleCard extends UiPart<Region> {
     private FlowPane addLessonSlot(Module.ModuleLessonIdMap slots) {
         FlowPane fc = new FlowPane();
         fc.getChildren().addAll(slots.entrySet().stream()
-                .sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
+                .sorted(Comparator.comparing(Map.Entry::getKey))
                 .map(entry -> addSlot(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList()));
         fc.setHgap(4);
         fc.setVgap(8);
+        fc.setPadding(new Insets(10));
         return fc;
     }
 
