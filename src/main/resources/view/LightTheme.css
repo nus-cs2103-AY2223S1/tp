@@ -109,7 +109,7 @@
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
-    -fx-border-color: #3e7b91;
+    -fx-border-color: white;
 }
 
 .list-cell:filled:even {
@@ -384,11 +384,16 @@
 
 .pane-with-header {
     -fx-border-color: black;
+    -fx-border-radius: 15;
     -fx-background-color: white;
+    -fx-background-radius: 15;
 }
 
 .pane-with-header .grid-pane {
     -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-color: black;
+    -fx-border-width: 0 0 1 0;
 }
 
 .pane-with-header .list-view {

@@ -12,9 +12,12 @@
 <VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <AnchorPane styleClass="label-bright">
       <children>
-         <Label styleClass="label-header" text="Clients" />
-         <Label fx:id="numClients" styleClass="label-bright" text="\$Num" AnchorPane.rightAnchor="10.0" />
+         <Label styleClass="label-header" text="Clients" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" />
+         <Label fx:id="numClients" styleClass="label-bright" text="\$Num" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="12.0" />
       </children>
+      <padding>
+         <Insets bottom="5.0" />
+      </padding>
    </AnchorPane>
    <VBox styleClass="pane-with-header">
       <children>
@@ -30,17 +33,23 @@
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
-               <Label text="Index" />
-               <Label text="Name" GridPane.columnIndex="1" />
-               <Label text="Phone" GridPane.columnIndex="2" />
-               <Label text="Email" GridPane.columnIndex="3" />
-               <Label text="Products" GridPane.columnIndex="4" />
+               <Label styleClass="table-header" text="Index" />
+               <Label styleClass="table-header" text="Name" GridPane.columnIndex="1" />
+               <Label styleClass="table-header" text="Phone" GridPane.columnIndex="2" />
+               <Label styleClass="table-header" text="Email" GridPane.columnIndex="3" />
+               <Label styleClass="table-header" text="Products" GridPane.columnIndex="4" />
             </children>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
             <padding>
-               <Insets left="10.0" right="10.0" />
+               <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
             </padding>
          </GridPane>
-        <ListView fx:id="clientListView" VBox.vgrow="ALWAYS" />
+        <ListView fx:id="clientListView" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+               <Insets left="12.0" right="12.0" />
+            </VBox.margin></ListView>
       </children>
    </VBox>
 </VBox>
