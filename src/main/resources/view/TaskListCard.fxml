@@ -31,39 +31,22 @@
                     <padding>
                         <Insets bottom="2.0" right="10.0" top="5.0" />
                     </padding>
-                    <font>
-                        <Font name="Trebuchet MS Bold" size="14.0" />
-                    </font>
                 </Label>
-                <FlowPane alignment="TOP_RIGHT" columnHalignment="RIGHT" prefWidth="60.0" HBox.hgrow="ALWAYS">
-                    <children>
-                        <Label fx:id="deadline" alignment="TOP_RIGHT" contentDisplay="RIGHT" styleClass="due_date_label" textAlignment="RIGHT" >
-                            <font>
-                                <Font name="Bodoni 72 Book" size="13.0" />
-                            </font>
-                            <padding>
-                                <Insets right="10.0" />
-                            </padding>
-                        </Label>
-                    </children>
-                </FlowPane>
+                 <FlowPane fx:id="contacts" alignment="CENTER_LEFT" prefHeight="18.0" HBox.hgrow="ALWAYS">
+                     <padding>
+                         <Insets right="10.0" />
+                     </padding>
+                 </FlowPane>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="18.0" translateX="25.0">
+                  <Label fx:id="deadline" alignment="TOP_RIGHT" contentDisplay="RIGHT" styleClass="due_date_label" textAlignment="RIGHT">
+                      <padding>
+                          <Insets right="10.0" />
+                      </padding>
+                  </Label>
                 <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
             <VBox.margin>
                <Insets />
-            </VBox.margin>
-            </HBox>
-            <HBox prefHeight="18.0">
-                <children>
-                    <FlowPane fx:id="contacts" alignment="CENTER_LEFT" prefHeight="18.0" translateX="20.0" HBox.hgrow="ALWAYS">
-                        <padding>
-                            <Insets right="10.0" />
-                        </padding>
-                    </FlowPane>
-                </children>
-            <VBox.margin>
-               <Insets bottom="8.0" />
             </VBox.margin>
             </HBox>
             <GridPane.margin>
