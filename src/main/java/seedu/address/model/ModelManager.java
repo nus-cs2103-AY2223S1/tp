@@ -22,7 +22,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final ArchivedTaskBook archivedTaskBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Task> filteredTasks;
+    private FilteredList<Task> filteredTasks;
     private String filterStatus = "";
     private final FilteredList<Task> filteredArchivedTasks;
 
@@ -193,7 +193,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilterStatus(String filter) {
         requireNonNull(filter);
-        if (this.filterStatus.equals("Showing all tasks")) {
+        if (this.filterStatus.equalsIgnoreCase("Showing all tasks") || this.filterStatus.equals("")) {
             this.filterStatus = filter;
         } else {
             this.filterStatus += ", " + filter;

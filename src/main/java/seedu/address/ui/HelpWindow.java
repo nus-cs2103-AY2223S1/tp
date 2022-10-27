@@ -23,7 +23,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "\ndelete <taskId> : Deletes the task in the task list with task id taskId.\n"
             + "edit <taskId> <module> <taskName> : Changes the module and task name of the task with taskId to module "
             + "and taskName respectively.";
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-f12-3.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "For additional help, refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);

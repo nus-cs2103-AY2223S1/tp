@@ -17,6 +17,7 @@ public class ListDeadlineCommandParser implements Parser<ListDeadlineCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ListDeadlineCommand
      * and returns a ListDeadlineCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListDeadlineCommand parse(String args) throws ParseException {
@@ -27,8 +28,12 @@ public class ListDeadlineCommandParser implements Parser<ListDeadlineCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, Deadline.MESSAGE_CONSTRAINTS));
         }
 
-        ParserUtil.parseDeadline(listTypes[1]);
+        return new ListDeadlineCommand(getPredicate(listTypes[1]));
+    }
 
-        return new ListDeadlineCommand(new TaskByDeadlinePredicate(List.of(listTypes[1])));
+    public TaskByDeadlinePredicate getPredicate(String keywords) throws ParseException {
+        ParserUtil.parseDeadline(keywords);
+
+        return new TaskByDeadlinePredicate(List.of(keywords));
     }
 }

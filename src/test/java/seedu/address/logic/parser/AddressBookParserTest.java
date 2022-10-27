@@ -7,8 +7,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -92,28 +94,32 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_listAll() throws Exception {
         String str = ListCommand.COMMAND_WORD + " " + ListAllCommand.COMMAND_WORD;
-        assertTrue(parser.parseCommand(str) instanceof ListAllCommand);
-        assertTrue(parser.parseCommand(str + " 3") instanceof ListAllCommand);
+        assertTrue(parser.parseCommand(str) instanceof ListCommand);
+        assertTrue(parser.parseCommand(str + " 3") instanceof ListCommand);
     }
 
     @Test
     public void parseCommand_listUnmarked() throws Exception {
         List<String> isDone = List.of("false");
         String str = ListCommand.COMMAND_WORD + " " + ListUnmarkedCommand.COMMAND_WORD;
-        ListUnmarkedCommand command = (ListUnmarkedCommand) parser.parseCommand(str + " " + isDone
+        ListCommand command = (ListCommand) parser.parseCommand(str + " " + isDone
                 .stream()
                 .collect(Collectors.joining(" ")));
-        assertEquals(new ListUnmarkedCommand(new TaskIsDonePredicate(isDone)), command);
+        List<Predicate<Task>> predicates = new ArrayList<>();
+        predicates.add(new TaskIsDonePredicate(isDone));
+        assertEquals(new ListCommand(predicates), command);
     }
 
     @Test
     public void parseCommand_listModule() throws Exception {
         List<String> module = List.of("CS2100");
         String str = ListCommand.COMMAND_WORD + " " + ListModuleCommand.COMMAND_WORD;
-        ListModuleCommand command = (ListModuleCommand) parser.parseCommand(str + " " + module
+        ListCommand command = (ListCommand) parser.parseCommand(str + " " + module
                 .stream()
                 .collect(Collectors.joining(" ")));
-        assertEquals(new ListModuleCommand(new ModuleContainsKeywordsPredicate(module)), command);
+        List<Predicate<Task>> predicates = new ArrayList<>();
+        predicates.add(new ModuleContainsKeywordsPredicate(module));
+        assertEquals(new ListCommand(predicates), command);
     }
 
     @Test

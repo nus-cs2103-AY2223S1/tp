@@ -79,12 +79,12 @@ public class TaskByDeadlinePredicateTest {
     }
 
     @Test
-    public void isString_validInputs_correctResult() {
+    public void toString_validInputs_correctResult() {
         // Zero keyword predicate
         TaskByDeadlinePredicate predicate = new TaskByDeadlinePredicate(Collections.emptyList());
-        assertEquals("Tasks due on ''", predicate.toString());
+        assertEquals("Tasks with no deadline", predicate.toString());
         // Regular test case
         predicate = new TaskByDeadlinePredicate(List.of("2022-10-07"));
-        assertEquals("Tasks due on '2022-10-07'", predicate.toString());
+        assertEquals("Tasks due on or after '2022-10-07'", predicate.toString());
     }
 }
