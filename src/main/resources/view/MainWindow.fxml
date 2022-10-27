@@ -20,6 +20,7 @@
       <stylesheets>
         <URL value="@Extensions.css"/>
         <URL value="@FoodRem.css"/>
+        <URL value="@Fonts.css"/>
       </stylesheets>
 
       <VBox>

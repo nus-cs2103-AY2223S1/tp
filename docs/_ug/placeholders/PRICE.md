@@ -5,6 +5,7 @@ The PRICE is the number representing the cost of one unit of an item.
 * PRICE is a number larger than 0
 * PRICE has an accuracy of 2 decimal places
 * PRICE has a limit of 1,000,000
+* PRICE allows leading zeros
 * Do not include thousands separators and currency symbols in PRICE
 ```
 
@@ -13,6 +14,7 @@ The PRICE is the number representing the cost of one unit of an item.
 * 10
 * 10.50
 * 105060
+* 001.10
 
 **Invalid Examples:**
 
