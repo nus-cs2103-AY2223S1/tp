@@ -13,5 +13,6 @@
   "tasks": [],
   "groups": [{
     "tutorialName": "T01"
-  }]
+  }],
+  "grades": []
 }

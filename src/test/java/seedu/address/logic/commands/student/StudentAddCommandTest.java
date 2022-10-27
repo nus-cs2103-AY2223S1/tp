@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -21,6 +22,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeKey;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.task.Task;
@@ -189,6 +192,21 @@ public class StudentAddCommandTest {
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasGradeKey(GradeKey gradeKey) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addGrade(GradeKey gradeKey, Grade grade) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableMap<GradeKey, Grade> getGradeMap() {
             throw new AssertionError("This method should not be called.");
         }
 

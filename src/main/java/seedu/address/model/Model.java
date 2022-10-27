@@ -4,7 +4,10 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeKey;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.task.Task;
@@ -162,4 +165,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+    boolean hasGradeKey(GradeKey gradeKey);
+    void addGrade(GradeKey gradeKey, Grade grade);
+    ObservableMap<GradeKey, Grade> getGradeMap();
 }

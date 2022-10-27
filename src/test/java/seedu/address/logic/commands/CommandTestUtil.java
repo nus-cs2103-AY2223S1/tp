@@ -16,15 +16,18 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.grade.GradeEditCommand;
 import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.logic.commands.student.StudentEnrollCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.student.TutorialNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditDescriptorBuilder;
+import seedu.address.testutil.EditGradeDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.EnrollStudentDescriptorBuilder;
 
@@ -59,6 +62,8 @@ public class CommandTestUtil {
     public static final String VALID_TASK_NAME = "Task 1";
     public static final String VALID_TASK_DESCRIPTION = "DUE TODAY";
     public static final String VALID_TASK_DEADLINE = "10/10/2020";
+    public static final Grade VALID_GRADE_STATE_AMY = Grade.UNGRADED;
+    public static final Grade VALID_GRADE_STATE_BOB = Grade.GRADED;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -92,6 +97,9 @@ public class CommandTestUtil {
     public static final StudentEditCommand.EditStudentDescriptor DESC_STUDENT_AMY;
     public static final StudentEditCommand.EditStudentDescriptor DESC_STUDENT_BOB;
 
+    public static final GradeEditCommand.EditGradeDescriptor DESC_GRADE_AMY;
+    public static final GradeEditCommand.EditGradeDescriptor DESC_GRADE_BOB;
+
     public static final StudentEnrollCommand.EditStudentDescriptor DESC_STUDENT_AMY_WITH_TUTORIAL;
     public static final StudentEnrollCommand.EditStudentDescriptor DESC_STUDENT_BOB_WITH_TUTORIAL;
 
@@ -113,6 +121,8 @@ public class CommandTestUtil {
         DESC_STUDENT_AMY_WITH_TUTORIAL = new EnrollStudentDescriptorBuilder()
                 .withTutorialGroup(VALID_TUTORIAL_GROUP_AMY)
                 .build();
+        DESC_GRADE_AMY = new EditGradeDescriptorBuilder().withGradeState(VALID_GRADE_STATE_AMY).build();
+        DESC_GRADE_BOB = new EditGradeDescriptorBuilder().withGradeState(VALID_GRADE_STATE_BOB).build();
     }
 
     /**
@@ -121,7 +131,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -136,7 +146,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }

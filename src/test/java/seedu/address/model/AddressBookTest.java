@@ -17,6 +17,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
+import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeKey;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
@@ -91,6 +94,7 @@ public class AddressBookTest {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
         private final ObservableList<TutorialGroup> tutorialGroups = FXCollections.observableArrayList();
+        private final ObservableMap<GradeKey, Grade> grades = FXCollections.observableHashMap();
 
         AddressBookStub(Collection<Student> students) {
             this.students.setAll(students);
@@ -104,6 +108,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Task> getTaskList() {
             return tasks;
+        }
+
+        @Override
+        public ObservableMap<GradeKey, Grade> getGradeMap() {
+            return grades;
         }
 
         @Override

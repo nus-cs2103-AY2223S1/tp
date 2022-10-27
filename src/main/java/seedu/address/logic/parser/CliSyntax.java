@@ -16,5 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TASK_DEADLINE = new Prefix("d/");
     public static final Prefix PREFIX_TASK_STUDENT = new Prefix("s/");
     public static final Prefix PREFIX_TUTORIAL_GROUP = new Prefix("g/");
+    public static final Prefix PREFIX_GRADE = new Prefix("gr/");
 
 }

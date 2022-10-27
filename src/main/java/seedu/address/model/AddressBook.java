@@ -5,6 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
+import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeKey;
+import seedu.address.model.student.GradeMap;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.student.UniqueStudentList;
@@ -21,6 +25,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueStudentList students;
     private final UniqueTaskList tasks;
     private final UniqueTutorialGroupList tutorialGroups;
+    private final GradeMap grades;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -33,6 +38,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         students = new UniqueStudentList();
         tutorialGroups = new UniqueTutorialGroupList();
         tasks = new UniqueTaskList();
+        grades = new GradeMap();
     }
 
     public AddressBook() {}
@@ -223,6 +229,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableMap<GradeKey, Grade> getGradeMap() {
+        return grades.asUnmodifiableObservableMap();
+    }
+
+    @Override
     public boolean equals(Object other) {
         // TODO: Add tasks to check
         return other == this // short circuit if same object
@@ -234,5 +245,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         // TODO: Add tasks to hashcode
         return students.hashCode();
+    }
+
+    public boolean hasGradeKey(GradeKey gradeKey) {
+        return grades.contains(gradeKey);
+    }
+
+    public void addGrade(GradeKey gradeKey, Grade grade) {
+        grades.add(gradeKey, grade);
     }
 }

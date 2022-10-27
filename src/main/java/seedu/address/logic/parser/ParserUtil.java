@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -204,6 +205,21 @@ public class ParserUtil {
             throw new ParseException(TaskDeadline.MESSAGE_INVALID_DATE);
         }
         return new TaskDeadline(trimmedTaskDeadline);
+    }
+
+    /**
+     * Parses a {@code String grade} into a {@code Grade}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskName} is invalid.
+     */
+    public static Grade parseGrade(String grade) throws ParseException {
+        requireNonNull(grade);
+        String trimmedGrade = grade.trim();
+        if (!Grade.isValidDescription(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        return (trimmedGrade.equals("T")) ? Grade.GRADED : Grade.UNGRADED;
     }
 
     // TODO: Add student to task parser util properly.

@@ -8,9 +8,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import javafx.collections.ObservableMap;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeKey;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.task.Task;
@@ -26,6 +29,7 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
     private final List<JsonAdaptedTutorialGroup> groups = new ArrayList<>();
+    private final List<JsonAdaptedGradeTuple> grades = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
@@ -33,10 +37,12 @@ class JsonSerializableAddressBook {
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> students,
                                        @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
-                                       @JsonProperty("groups") List<JsonAdaptedTutorialGroup> groups) {
+                                       @JsonProperty("groups") List<JsonAdaptedTutorialGroup> groups,
+                                       @JsonProperty("grades") List<JsonAdaptedGradeTuple> grades) {
         this.students.addAll(students);
         this.tasks.addAll(tasks);
         this.groups.addAll(groups);
+        this.grades.addAll(grades);
     }
 
     /**
@@ -49,6 +55,11 @@ class JsonSerializableAddressBook {
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
         groups.addAll(source.getTutorialGroupList().stream().map(JsonAdaptedTutorialGroup::new)
                 .collect(Collectors.toList()));
+        ObservableMap<GradeKey, Grade> gradeMap = source.getGradeMap();
+        for (GradeKey gradeKey : gradeMap.keySet()) {
+            Grade grade = gradeMap.get(gradeKey);
+            grades.add(new JsonAdaptedGradeTuple(gradeKey, grade));
+        }
     }
 
     /**
@@ -80,6 +91,12 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addTask(task);
+        }
+
+        for (JsonAdaptedGradeTuple jsonAdaptedGradeTuple : grades) {
+            GradeKey gradeKey = jsonAdaptedGradeTuple.getGradeKey().toModelType();
+            Grade grade = jsonAdaptedGradeTuple.getGrade().toModelType();
+            addressBook.addGrade(gradeKey, grade);
         }
         return addressBook;
     }

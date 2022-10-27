@@ -203,7 +203,7 @@ The tutorial group feature is facilitated by `TutorialGroup`. It implements the 
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. 
+Step 1. The user launches the application for the first time.
 
 Step 2. The user executes `tutorialList` command to display all the tutorial groups.
 
@@ -245,18 +245,18 @@ the `Model` to find the students that are assigned to the task.
 ### Mass Actions feature
 
 #### Description
-The idea behind Mass Actions is to be able to chain together multiple commands without having to type them out one 
+The idea behind Mass Actions is to be able to chain together multiple commands without having to type them out one
 by one. This is useful for when the user wants to perform the same action on multiple students or tutorial groups.
 
 #### Implementation
-The mass actions feature requires a rework of the parsers, particularly StudentDeleteCommandParser 
+The mass actions feature requires a rework of the parsers, particularly StudentDeleteCommandParser
 and TaskDeleteCommandParser. Instead of parsing a single index, the parsers will parse a range of indices,
 then loop through each index, getting the task before deleting it.
 
 #### Design Considerations
 The implementation is different from the original AB3 implementation, as there were some special considerations
 to keep in mind. The key issue was that we had to do two separate loops, one for getting the list of tasks/students
-to delete, before then proceeding to delete them. This is because if we attempt to do it in a single loop, we 
+to delete, before then proceeding to delete them. This is because if we attempt to do it in a single loop, we
 encounter an error where the list of tasks/students is modified while we are iterating through it.
 
 #### Alternative Considerations
