@@ -17,7 +17,7 @@ public class FilterCurrModCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose current modules contains "
             + "any of the specified keyword (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " cs2103t";
+            + "Example: " + COMMAND_WORD + " CS2103T";
 
     private final CurrModContainsKeywordsPredicate predicate;
 
