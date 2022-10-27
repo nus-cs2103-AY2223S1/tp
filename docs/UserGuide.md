@@ -194,11 +194,21 @@ Singular word search example: `find tutorial`
 Multiple word search example: `find Week tutorial`
 finds **any** task name or tag with either `Week` or `tutorial`.
 
-#### Listing all archived tasks : `ls -archive`
+### Archiving data files : `archive`
 
-Shows a list of all tasks that are archived. 
+Allows you to remove a task from task list and store in archived file.
 
-Format: `ls -archive`
+Format: `archive TASK_NUMBER | DATE`
+* `TASK_NUMBER`: This is the number of the task currently displayed.
+
+Examples:
+* `archive 1`: archives first task in task list.
+
+### View Archived Tasks : `showarchive`
+
+Displays a list of archived tasks.
+
+Format: `showArchive`
 
 ### Editing a task : `edit`
 
@@ -250,23 +260,22 @@ NotionUS data are saved as a JSON file `[JAR file location]/data/notionusdata.js
 **Caution:**
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
 
-#### Archiving data files : `archive`
+### Archiving data files : `archive`
 
 Allows you to remove a task from task list and store in archived file. 
 
-Format: `archive TASK_NUMBER | DATE`
+Format: `archive TASK_NUMBER`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
-* `DATE`: Must be in the format of YYYY-MM-DD.
 
 Examples: 
 * `archive 1`: archives first task in task list.
-* `archive 2022-10-17`: archives tasks with deadline on and before `DATE`.
 
 ### Autocomplete
 
 When the user starts to type in the start of a command, a popup menu will appear with options to complete your input.
 Use the `up` and `down` arrow keys to navigate through the options and `Enter` to fill the command box with the command
 of your choice.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -287,6 +296,7 @@ Format meanings:
 | Action                      | Format                                                                                                                                                                                                                                                                                                                                                | Examples                                     |
 |-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
 | **Add** task                | `add -n TASK_NAME -m MODULE [-d YYYY-MM-DD] [--tag TAG_NAME]...`                                                                                                                                                                                                                                                                                      | `add -n Tutorial 3 -m CS2103T -d 2022-09-16` |
+| **Archive** task            | `archive TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                 |                                              |
 | **Clear** all tasks         | `clear`                                                                                                                                                                                                                                                                                                                                               |                                              |
 | **Delete** task             | `delete TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                  | `delete 3`                                   |
 | **Edit** task               | `edit TASK_NUMBER [-n NEW_NAME] [-m NEW_MODULE] [-d NEW_DEADLINE]`                                                                                                                                                                                                                                                                                    | `edit 1 -n CS2103T ip`                       |
@@ -295,6 +305,8 @@ Format meanings:
 | **Help**                    | `help`                                                                                                                                                                                                                                                                                                                                                |                                              |
 | **List** specific tasks     | `ls [-a] [-u] [-m] [--module MODULE] [-t TAG] [-d YYYY-MM-DD]`<br/>`ls -a` View all tasks<br/>`ls -u` View all incomplete tasks<br/> `ls -m` View all marked tasks<br/> `ls --module MODULE` View tasks under the specific module<br/> `ls -t TAG_NAME` View tasks with a specific tag<br/> `ls -d YYYY-MM-DD` View tasks on or after a specific date | `ls -u --module CS2103T`                     |
 | **Mark** tasks              | `mark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                    | `mark 2`                                     |
+| **Show Archived** tasks     | `showarchive`                                                                                                                                                                                                                                                                                                                                         |                                              |
+| **Tagging** a task          | `tag TASK_NUMBER TAG_NAME`                                                                                                                                                                                                                                                                                                                            |                                              |
 | **Tagging** a task          | `tag TASK_NUMBER -t TAG_NAME`                                                                                                                                                                                                                                                                                                                         | `tag 1 -t highPriority`                       |
 | **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                  | `unmark 2`                                   |
 | Accessing previous commands | Use the up and down arrow keys                                                                                                                                                                                                                                                                                                                        |                                              |

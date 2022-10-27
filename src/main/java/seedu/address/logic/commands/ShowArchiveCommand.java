@@ -9,7 +9,7 @@ import seedu.address.model.Model;
  */
 public class ShowArchiveCommand extends Command {
 
-    public static final String COMMAND_WORD = "showArchive";
+    public static final String COMMAND_WORD = "showarchive";
     public static final String MESSAGE_SUCCESS = "Listed all archived tasks";
 
     @Override
