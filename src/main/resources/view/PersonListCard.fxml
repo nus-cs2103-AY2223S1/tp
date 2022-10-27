@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -10,7 +12,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
 
 <HBox id="cardPane" fx:id="cardPane" prefHeight="95.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -41,39 +42,63 @@
       </HBox>
          <HBox prefHeight="18.0" prefWidth="130.0">
             <children>
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
-                  <padding>
-                     <Insets right="10.0" />
-                  </padding>
-                  <graphic>
-                     <Label styleClass="circle_icon_label">
-                        <graphic>
-                           <Circle fill="#6d28d9" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
-                        </graphic>
-                     </Label>
-                  </graphic>
-               </Label>
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email">
-                  <padding>
-                     <Insets right="10.0" />
-                  </padding>
-                  <graphic>
-                     <Label styleClass="circle_icon_label">
-                        <graphic>
-                           <Circle fill="#6d28d9" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
-                        </graphic>
-                     </Label>
-                  </graphic>
-               </Label>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address">
-                  <graphic>
-                     <Label styleClass="circle_icon_label">
-                        <graphic>
-                           <Circle fill="#6d28d9" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
-                        </graphic>
-                     </Label>
-                  </graphic>
-               </Label>
+                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
+                    <padding>
+                        <Insets left="5.0" right="12.0" />
+                    </padding>
+                    <graphic>
+                        <Label styleClass="circle_icon_label">
+                            <graphic>
+                                <ImageView fitHeight="9.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@/images/phone_icon_2.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <padding>
+                               <Insets top="1.0" />
+                            </padding>
+                         </Label>
+                      </graphic>
+                   </Label>
+                <Label fx:id="email" styleClass="cell_small_label" text="\$email">
+                    <padding>
+                        <Insets right="10.0" />
+                    </padding>
+                    <graphic>
+                        <Label styleClass="circle_icon_label">
+                            <graphic>
+                                <ImageView fitHeight="9.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@/images/email_icon_2.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <padding>
+                                <Insets top="1.0" />
+                            </padding>
+                        </Label>
+                    </graphic>
+                </Label>
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address">
+                    <padding>
+                        <Insets right="10.0" />
+                    </padding>
+                    <graphic>
+                        <Label styleClass="circle_icon_label">
+                            <graphic>
+                                <ImageView fitHeight="9.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@/images/address_icon_2.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <padding>
+                                <Insets top="1.0" />
+                            </padding>
+                        </Label>
+                    </graphic>
+                </Label>
             </children>
          </HBox>
     </VBox>
