@@ -71,6 +71,7 @@ public class CommandHistoryTest {
     public void addDuplicateValidCommand() {
         CommandHistory expected = new CommandHistory();
         expected.addToCommandHistory("list");
+        expected.setCurrentZeroBasedIndex(1);
 
         CommandHistory actual = new CommandHistory();
         for (int i = 0; i < MAX_COMMAND_HISTORY_SIZE; i++) {
