@@ -37,6 +37,8 @@
       <Label fx:id="homeVisits" styleClass="cell_small_label" text="\$homeVisit" />
       <Label fx:id="dateSlots" styleClass="cell_small_label" text="\$date" />
       <Label fx:id="unavailableDates" styleClass="cell_small_label" text="\$unavailableDate" />
+      <Label fx:id="physInfo" styleClass="cell_small_label" text="\$physInfo" />
+
     </VBox>
   </GridPane>
 </HBox>

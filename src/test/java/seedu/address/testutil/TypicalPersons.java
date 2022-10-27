@@ -39,6 +39,7 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withDatesSlots("2022-11-11,2")
             .withTags("friends")
+            .withAttendingPhysician("John Doe", "81234567", "johndoe@example.com")
             .withVisitStatus("false").build();
     public static final Person BENSON = new PersonBuilder()
             .withUid("2").withCategory("P")
@@ -48,6 +49,7 @@ public class TypicalPersons {
             .withPhone("98765432")
             .withDatesSlots("2022-10-23,1")
             .withTags("owesMoney", "friends")
+            .withAttendingPhysician("John Doe", "81234567", "johndoe@example.com")
             .withVisitStatus("true").build();
     public static final Person CARL = new PersonBuilder()
             .withUid("3").withCategory("P")
@@ -64,6 +66,7 @@ public class TypicalPersons {
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withDatesSlots("2022-11-10,4", "2022-09-10,2")
+            .withAttendingPhysician("John Doe", "81234567", "johndoe@example.com")
             .withAddress("10th street")
             .withTags("friends")
             .withVisitStatus("true").build();

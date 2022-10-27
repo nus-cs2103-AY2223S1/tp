@@ -11,6 +11,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_UID = "The person uid provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_CATEGORY = "Invalid category detected!";
+     public static final String MESSAGE_UPDATECONTACT_INVALID_CATEGORY = "Contact info can only be set for patients.";
+    public static final String MESSAGE_UPDATECONTACT_INVALID_CONTACT_CATEGORY =
+            "Contact must be a physician (category D) or next of kin (category N)";
 
 
 }

@@ -6,6 +6,7 @@ import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -48,9 +49,10 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedDate> fullyAssignedDates = new ArrayList<>();
     private final List<JsonAdaptedDateSlot> dateSlots = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-
-
-
+    private final String pName;
+    private final String pPhone;
+    private final String pEmail;
+   
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -63,7 +65,11 @@ class JsonAdaptedPerson {
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("homeVisits") List<JsonAdaptedHomeVisit> homeVisit,
             @JsonProperty("unavailableDates") List<JsonAdaptedDate> unavailableDateList,
-            @JsonProperty("fullyAssignedDates") List<JsonAdaptedDate> fullyAssignedDateList) {
+            @JsonProperty("fullyAssignedDates") List<JsonAdaptedDate> fullyAssignedDateList,
+            @JsonProperty("phys name") String pName,
+            @JsonProperty("phys phone") String pPhone,
+            @JsonProperty("phys email") String pEmail) {
+
         this.uid = uid;
         this.name = name;
         this.category = category;
@@ -74,7 +80,12 @@ class JsonAdaptedPerson {
 
         if (dateSlot != null) {
             this.dateSlots.addAll(dateSlot);
-        }
+        }    
+
+        this.pName = Objects.requireNonNullElse(pName, "NA");
+        this.pPhone = Objects.requireNonNullElse(pPhone, "NA");
+        this.pEmail = Objects.requireNonNullElse(pEmail, "NA");
+
 
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -102,9 +113,20 @@ class JsonAdaptedPerson {
         boolean isPatient = category.equals(PATIENT_SYMBOL);
 
         if (isPatient) {
-            dateSlots.addAll(((Patient) source).getDatesSlots().stream()
+            Patient sourcePatient = (Patient) source; 
+            dateSlots.addAll(sourcePatient.getDatesSlots().stream()
                     .map(JsonAdaptedDateSlot::new)
                     .collect(Collectors.toList()));
+            
+            String[] physNameArr = new String[]{"NA"};
+            sourcePatient.getAttendingPhysician().ifPresent(x -> physNameArr[0] = x.getName().fullName);
+            pName = physNameArr[0];
+            String[] physEmailArr = new String[]{"NA"};
+            sourcePatient.getAttendingPhysician().ifPresent(x -> physEmailArr[0] = x.getEmail().value);
+            pEmail = physEmailArr[0];
+            String[] physPhoneArr = new String[]{"NA"};
+            sourcePatient.getAttendingPhysician().ifPresent(x -> physPhoneArr[0] = x.getPhone().value);
+            pPhone = physPhoneArr[0];
 
         } else {
             homeVisits.addAll(((Nurse) source).getHomeVisits().stream()
@@ -118,7 +140,10 @@ class JsonAdaptedPerson {
             fullyAssignedDates.addAll(((Nurse) source).getFullyScheduledDates().stream()
                     .map(JsonAdaptedDate::new)
                     .collect(Collectors.toList()));
-
+            
+            pName = "NA";
+            pPhone = "NA";
+            pEmail = "NA";
         }
 
         uid = source.getUid().uid;

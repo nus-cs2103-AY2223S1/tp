@@ -16,6 +16,7 @@ import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Physician;
 import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -34,6 +35,10 @@ public class PersonBuilder {
     public static final String DEFAULT_DATE_AND_SLOT = "2022-06-14,4";
     public static final String DEFAULT_VISIT_STATUS = "false";
     public static final String DEFAULT_HOME_VISITS = "2022-11-10,4:2";
+    public static final String DEFAULT_CONTACT_NAME = "John Doe";
+    public static final String DEFAULT_CONTACT_EMAIL = "johndoe@example.com";
+    public static final String DEFAULT_CONTACT_PHONE = "81234567";
+
 
     private Category category;
     private Uid uid;
@@ -45,6 +50,9 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private List<DateSlot> dateSlotList;
     private List<HomeVisit> homeVisitList;
+    private VisitStatus visitStatus;
+    private Physician physician;
+
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -62,6 +70,9 @@ public class PersonBuilder {
         dateSlotList.add(new DateSlot(DEFAULT_DATE_AND_SLOT));
         visitStatus = new VisitStatus(DEFAULT_VISIT_STATUS);
         homeVisitList = new ArrayList<>();
+        physician = new Physician(new Name(DEFAULT_CONTACT_NAME), new Phone(DEFAULT_CONTACT_PHONE),
+                new Email(DEFAULT_CONTACT_EMAIL));
+
     }
 
     /**
@@ -77,10 +88,16 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         if (personToCopy.getCategory().categoryName.equals("P")) {
-            dateSlotList = new ArrayList<>(((Patient) personToCopy).getDatesSlots());
-            visitStatus = ((Patient) personToCopy).getVisitStatus();
+            Patient patientToCopy = (Patient) personToCopy;
+            dateSlotList = new ArrayList<>(patientToCopy.getDatesSlots());
+            Physician[] physicianArr = new Physician[]{null};
+            patientToCopy.getAttendingPhysician().ifPresent(
+                    x -> physicianArr[0] = new Physician(x.getName(), x.getPhone(), x.getEmail()));
+            physician = physicianArr[0];
         } else {
             homeVisitList = new ArrayList<>(((Nurse) personToCopy).getHomeVisits());
+            physician = null;
+
         }
     }
 
@@ -188,13 +205,22 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Uid} of the {@code Person} that we are building to the
+     * universal Uid.
+     */
+    public PersonBuilder withAttendingPhysician(String n, String p, String e) {
+        physician = new Physician(new Name(n), new Phone(p), new Email(e));
+        return this;
+    }
+
+    /**
      * Build a person for test.
      */
     public Person build() {
         if (category.categoryName.equals("N")) {
             return new Nurse(uid, name, gender, phone, email, address, tags, homeVisitList);
         } else if (this.category.categoryName.equals("P")) {
-            return new Patient(uid, name, gender, phone, email, address, tags, dateSlotList, visitStatus);
+            return new Patient(uid, name, gender, phone, email, address, tags, dateSlotList, physician, null);
         }
         return new Person(uid, name, gender, phone, email, address, tags);
 

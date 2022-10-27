@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.category.Category;
@@ -16,20 +17,72 @@ import seedu.address.model.tag.Tag;
 public class Patient extends Person {
 
     private static final String MESSAGE_FOR_EMPTY_DATESLOT = "Home Visit date and slot has not been set yet.";
+    private static final String NO_NEXTOFKIN_SET = "No next of kin info was added for this patient.";
+    private static final String NO_PHYSICIAN_SET = "There is currently no attending physician for this patient.";
     public final List<DateSlot> dateSlots = new ArrayList<>();
+    private final Optional<Physician> attendingPhysician;
+    private final Optional<NextOfKin> nextOfKin;
 
     /**
-     * Every field must be present and not null.
+     * Initialise patient with no attending physician and no next of kin.
      */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
                    Set<Tag> tags, List<DateSlot> dateTimeSlot) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateTimeSlot);
         this.dateSlots.addAll(dateTimeSlot);
+        attendingPhysician = Optional.empty();
+        nextOfKin = Optional.empty();
+
+    }
+
+    /**
+     * Every field, except attending physician and next of kin, must be present and not null.
+     */
+    public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
+                   Set<Tag> tags, List<DateTime> dateTime, Physician p, NextOfKin n) {
+        super(uid, name, gender, phone, email, address, tags);
+        requireAllNonNull(dateTime);
+        this.dateTimes.addAll(dateTime);
+        attendingPhysician = Optional.ofNullable(p);
+        nextOfKin = Optional.ofNullable(n);
+    }
+
+    /**
+     * Initialise patient with given attending physician and next of kin.
+     */
+    public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
+                   Set<Tag> tags, List<DateTime> dateTime,
+                   Optional<Physician> p, Optional<NextOfKin> n) {
+        super(uid, name, gender, phone, email, address, tags);
+        requireAllNonNull(dateTime);
+        this.dateTimes.addAll(dateTime);
+        attendingPhysician = p;
+        nextOfKin = n;
+    }
+
+    public Optional<Physician> getAttendingPhysician() {
+        return attendingPhysician;
+    }
+
+    public Optional<NextOfKin> getNextOfKin() {
+        return nextOfKin;
+    }
+
+    public String getNextOfKinDetails() {
+        String[] output = new String[]{NO_NEXTOFKIN_SET};
+        nextOfKin.ifPresent(x -> output[0] = x.toString());
+        return output[0];
+    }
+
+    public String getPhysicianDetails() {
+        String[] output = new String[]{NO_PHYSICIAN_SET};
+        attendingPhysician.ifPresent(x -> output[0] = x.toString());
+        return output[0];
     }
 
     public Category getCategory() {
-        return new Category("P");
+        return new Category(Category.PATIENT_SYMBOL);
     }
 
     public String getCategoryIndicator() {
