@@ -24,7 +24,7 @@
       </stylesheets>
 
       <VBox prefHeight="66.0" prefWidth="1200.0">
-        <HBox style="-fx-background-color: #FAFAFA; -fx-padding: 0 0 0 20;">
+        <HBox styleClass="menu-bar">
           <Button fx:id="contactsButton" mnemonicParsing="false" onAction="#showContactTab" text="CONTACTS"/>
           <Button fx:id="tasksButton" mnemonicParsing="false" onAction="#showTaskTab" text="TASKS"/>
           <Button fx:id="helpButton" mnemonicParsing="false" onAction="#handleHelp" text="HELP"/>
