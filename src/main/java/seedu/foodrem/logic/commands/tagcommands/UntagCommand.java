@@ -33,7 +33,8 @@ public class UntagCommand extends Command {
 
     @Override
     public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
-        Item itemToUntag = TagCommand.validateAndGetTargetItem(model, tag, index);
+        Item itemToUntag = TagCommandUtil.getItemWithValidation(model, tag, index);
+
         Set<Tag> itemTags = itemToUntag.getTagSet();
         if (!itemTags.contains(tag)) {
             throw new CommandException("This item is not tagged with this tag");

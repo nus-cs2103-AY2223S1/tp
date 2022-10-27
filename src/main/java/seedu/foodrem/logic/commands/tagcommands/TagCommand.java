@@ -37,14 +37,14 @@ public class TagCommand extends Command {
 
     @Override
     public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
-        Item itemToTag = validateAndGetTargetItem(model, tag, index);
+        Item itemToTag = TagCommandUtil.getItemWithValidation(model, tag, index);
+
         Set<Tag> itemTags = itemToTag.getTagSet();
         if (itemTags.contains(tag)) {
             throw new CommandException("This item has already been tagged with this tag");
         }
         itemTags.add(tag);
         Item newTagSetItem = Item.createItemWithTags(itemToTag, itemTags);
-
         model.setItem(itemToTag, newTagSetItem);
 
         return CommandResult.from(
