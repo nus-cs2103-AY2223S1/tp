@@ -17,6 +17,7 @@ FindMyIntern helps students who are applying for internships keep track of their
     - [Filtering for internship applications of a specific status: `filter`](#filtering-for-internship-applications-of-a-specific-status-filter)
     - [Finding for an internship application: `find`](#finding-for-internship-applications-or-tags-find)
     - [Sorting the internship applications: `sort`](#sorting-the-list-of-internship-applications-sort)
+    - [Clearing all internship applications: `clear`](#clearing-all-internship-applications-clear)
     - [Exiting the program: `exit`](#exiting-the-program-exit)
   - [Saving and editing](#saving-and-editing)
     - [Saving the data](#saving-the-data)
@@ -270,11 +271,17 @@ Examples:
 
 Sorts the internship applications in a reverse chronological order by applied date or interview date.
 
-Format: `sort [CRITERIA]`
+Format: `sort CRITERIA`
 
 Examples:
 * `sort applied` will display the internship applications according to applied date
 * `sort interview` will display the internship applications according to interview date
+
+#### Clearing all internship applications: `clear`
+
+Clears all internship applications from the tracker.
+
+Format: `clear`
 
 #### Exiting the program: `exit`
 
@@ -334,10 +341,12 @@ Action | Format, Examples
 --------|------------------
 **Help** | `help`
 **Add** | `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]…` <br> e.g., `add c/Apple l/https://jobs.apple.com/en-sg d/Software engineering internship a/11/10/2022`
+**Edit** | `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INTERVIEW_DATE_TIME] [t/TAG]…` <br> e.g., `edit 1 d/Data analyst intern`
 **Mark** | `mark INDEX s/APPLICATION_STATUS` <br> e.g., `mark 3 s/interviewed`
 **List** | `list`
 **Delete** | `delete INDEX` <br> e.g., `delete 4`
 **Filter** | `filter APPLICATION_STATUS` <br> e.g., `filter accepted`
 **Find** | `find KEYWORD [MORE_KEYWORDS]…`<br> e.g., `find google`
-**Sort** | `sort [CRITERIA]`<br> e.g., `sort applied`
+**Sort** | `sort CRITERIA`<br> e.g., `sort applied`
+**Clear** | `clear`
 **Exit** | `exit`

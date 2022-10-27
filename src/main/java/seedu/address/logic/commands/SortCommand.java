@@ -15,7 +15,7 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts applications based on criteria.\n"
-            + "Parameters: [CRITERIA]\n"
+            + "Parameters: CRITERIA\n"
             + "Valid filters: \"applied\" \"interview\"\n"
             + "Example: " + COMMAND_WORD + " applied";
 
