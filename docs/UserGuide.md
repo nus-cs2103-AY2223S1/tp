@@ -332,11 +332,11 @@ Lists all buyers in the database in the visible list, that is, removes all filte
 
 Syntax: `listbuyers`
 
-### List properties in database: `listproperties`
+### List properties in database: `listprops`
 
 Lists all buyers in the database in the visible list, that is, removes all filters.
 
-Syntax: `listbuyers`
+Syntax: `listprops`
 
 ### Exiting the program : `exit`
 
@@ -385,21 +385,21 @@ If the problem persists, report the bug to us!
 
 ## Command summary
 
-| Action                                | Format, Examples                                                                                                                                                                                                                                             |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add buyer**                         | `addbuyer [-n NAME] [-ph PHONE]] [-e EMAIL] [-a address] {-r PRICE RANGE} {-c CHARACTERISTICS}}` <br> e.g., `addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234`                                                                                       |
-| **Add property**                      | `addprop [-n NAME] [-price PRICE] [-a ADDRESS] [-d DESCRIPTION] {-c CHARACTERISTICS} [-owner OWNER NAME] [-p PHONE]` <br> e.g.`addprop -n Peak Residences -a 333 Thompson Road -price 1000000 -d long long long property description -owner Bob -p 91234567` |
-| **Delete buyer**                      | `deletebuyer INDEX` <br> e.g. `deletebuyer 5`                                                                                                                                                                                                                |
-| **Delete property**                   | `deleteprop INDEX` <br> e.g. `deleteprop 5`                                                                                                                                                                                                                  | 
-| **Update property**                   | `editprop INDEX {-n NAME} {-price PRICE} {-a ADDRESS} {-d DESCRIPTION} {-c CHARACTERISTICS} {-owner OWNERNAME} {-p PHONE}`<br> e.g., `editprop 3 -n Hill Residence -a Block 225 -p 750000`                                                                   |
-| **Update buyer**                      | `editbuyer INDEX {-n NAME} {-p PHONE} {-e EMAIL} {-a ADDRESS} {-r PRICERANGE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}`<br> e.g.,`editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -priority HIGH`                            |
-| **Find entries**                      | `find [-k KEYWORDS]` <br> e.g. `find -k John Alice Bob`                                                                                                                                                                                                      |
-| **Filter buyers**                     | `filterbuyers {-p PRICE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}` <br> e.g. `filterbuyers -c bright; sunny`                                                                                                                             |
-| **Multi-Condition Filter Buyers**     | `multifilterbuyers {-p PRICE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}` <br> e.g. `multifilterbuyers -p 500000 -c bright; sunny -priority HIGH`                                                                                          |
-| **Filter properties**                 | `filterprops {-r PRICE RANGE} {-c CHARACTERISTICS} {-seller}` <br> e.g. `filterprops -r 500000-1000000`                                                                                                                                                      |
-| **Multi-Condition Filter Properties** | `multifilterprops {-r PRICE RANGE} {-c CHARACTERISTICS} {-seller}` <br> e.g. `multifilterprops -r 500000-1000000 -c bright; sunny`                                                                                                                           |
-| **Match Properties**                  | `matchprop INDEX` <br> e.g. `matchprop 5`                                                                                                                                                                                                                    |
-| **List users**                        | `listbuyers`                                                                                                                                                                                                                                                 |
-| **List Properties**                   | `listprops`                                                                                                                                                                                                                                                  |
-| **Exit cobb**                         | `exit`                                                                                                                                                                                                                                                       |
-| **Get help**                          | `help`                                                                                                                                                                                                                                                       |
+| Action                | Format, Examples                                                                                                                                                                                                                                     |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add buyer**         | `addbuyer [-n NAME] [-ph PHONE] [-e EMAIL] [-a address] {-r PRICE RANGE} {-c CHARACTERISTICS}}` <br> e.g., `addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234`                                                                                |
+| **Add property**      | `addprop [-n NAME] [-price PRICE] [-a ADDRESS] [-d DESCRIPTION] {-c CHARACTERISTICS} [-owner OWNER NAME] [-ph PHONE]` <br> e.g.`addprop -n Peak Residences -a 333 Thompson Road -price 1000000 -d long property description -owner Bob -ph 91234567` |
+| **Delete buyer**      | `deletebuyer INDEX` <br> e.g. `deletebuyer 5`                                                                                                                                                                                                        |
+| **Delete property**   | `deleteprop INDEX` <br> e.g. `deleteprop 5`                                                                                                                                                                                                          | 
+| **Update buyer**      | `editbuyer INDEX {-n NAME} {-p PHONE} {-e EMAIL} {-a ADDRESS} {-r PRICERANGE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}`<br> e.g.,`editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -priority HIGH`                    |
+| **Update property**   | `editprop INDEX {-n NAME} {-price PRICE} {-a ADDRESS} {-d DESCRIPTION} {-c CHARACTERISTICS} {-owner OWNERNAME} {-p PHONE}`<br> e.g., `editprop 3 -n Hill Residence -a Block 225 -p 750000`                                                           |
+| **Find buyer**        | `findbuyer [-k KEYWORDS]` <br> e.g. `findbuyer John`                                                                                                                                                                                                 |
+| **Find property**     | `findprop [-k KEYWORDS]` <br> e.g. `findprop Heng Mui Keng`                                                                                                                                                                                          |
+| **Filter buyers**     | `filterbuyers {-p PRICE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>} -fuzzy` <br> e.g. `filterbuyers -p 500000 -c bright; sunny -priority HIGH`                                                                                     |
+| **Filter properties** | `filterprops {-r PRICE RANGE} {-c CHARACTERISTICS} {-owner OWNER NAME} -fuzzy` <br> e.g. `filterprops -r 500000-1000000 -c bright; sunny -fuzzy`                                                                                                     |
+| **Match buyers**      | `matchbuyer INDEX -strict` <br> e.g. `matchbuyer 1 -strict`                                                                                                                                                                                          |
+| **Match properties**  | `matchprop INDEX -strict` <br> e.g. `matchprop 1`                                                                                                                                                                                                    |
+| **List buyers**       | `listbuyers`                                                                                                                                                                                                                                         |
+| **List properties**   | `listprops`                                                                                                                                                                                                                                          |
+| **Exit Cobb**         | `exit`                                                                                                                                                                                                                                               |
+| **Get help**          | `help`                                                                                                                                                                                                                                               |
