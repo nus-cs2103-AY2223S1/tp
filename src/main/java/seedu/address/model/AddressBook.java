@@ -30,7 +30,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
-     {
+
+    {
         persons = new UniquePersonList();
         teams = new UniqueTeamList();
     }
@@ -111,6 +112,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
+        requireNonNull(key);
         persons.remove(key);
         // need to delete the person from the teams as well. So, check all teams and delete if the person exists.
         teams.removePersonIfExists(key);
