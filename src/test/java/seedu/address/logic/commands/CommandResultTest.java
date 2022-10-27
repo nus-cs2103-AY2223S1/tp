@@ -93,16 +93,16 @@ public class CommandResultTest {
     }
 
     @Test
-    public void hasNoUIChange() {
+    public void hasNoUiChange() {
         CommandResult firstCommandResult = new CommandResult("feedback");
         CommandResult secondCommandResult = new CommandResult("feedback", true);
         CommandResult thirdCommandResult = new CommandResult("feedback", false, false, false, false, true);
         CommandResult fourthCommandResult = new CommandResult("feedback", false, false, true);
 
-        assertEquals(firstCommandResult.hasNoUIChange(), false);
-        assertEquals(secondCommandResult.hasNoUIChange(), true);
-        assertEquals(thirdCommandResult.hasNoUIChange(), true);
-        assertEquals(fourthCommandResult.hasNoUIChange(), false);
+        assertEquals(firstCommandResult.hasNoUiChange(), false);
+        assertEquals(secondCommandResult.hasNoUiChange(), true);
+        assertEquals(thirdCommandResult.hasNoUiChange(), true);
+        assertEquals(fourthCommandResult.hasNoUiChange(), false);
     }
 
 

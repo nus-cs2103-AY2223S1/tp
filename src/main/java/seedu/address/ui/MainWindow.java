@@ -284,7 +284,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleFilterTransaction(commandResult);
             } else if (commandResult.isSortedTransactions()) {
                 handleSortTransaction(commandResult);
-            } else if (!commandResult.hasNoUIChange()){
+            } else if (!commandResult.hasNoUiChange()) {
                 handleClientDetailsUpdate(commandResult);
             }
 

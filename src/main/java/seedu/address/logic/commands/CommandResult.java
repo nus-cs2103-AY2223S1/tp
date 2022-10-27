@@ -24,19 +24,19 @@ public class CommandResult {
     private final boolean isSortTransactions;
 
     /** No change in UI. */
-    private final boolean hasNoUIChange;
+    private final boolean hasNoUiChange;
 
     /**
      * Constructs a {@code CommandResult} with all the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit, boolean isFilterTransactions,
-                         boolean isSortTransactions, boolean hasNoUIChange) {
+                         boolean isSortTransactions, boolean hasNoUiChange) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showUserGuide = showUserGuide;
         this.exit = exit;
         this.isFilterTransactions = isFilterTransactions;
         this.isSortTransactions = isSortTransactions;
-        this.hasNoUIChange = hasNoUIChange;
+        this.hasNoUiChange = hasNoUiChange;
     }
 
     /**
@@ -56,8 +56,8 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified 2 fields.
      */
-    public CommandResult(String feedbackToUser, boolean hasNoUIChange) {
-        this(feedbackToUser, false, false, false, false, hasNoUIChange);
+    public CommandResult(String feedbackToUser, boolean hasNoUiChange) {
+        this(feedbackToUser, false, false, false, false, hasNoUiChange);
     }
 
     /**
@@ -80,8 +80,8 @@ public class CommandResult {
         return isFilterTransactions;
     }
 
-    public boolean hasNoUIChange() {
-        return hasNoUIChange;
+    public boolean hasNoUiChange() {
+        return hasNoUiChange;
     }
 
     public boolean isExit() {
