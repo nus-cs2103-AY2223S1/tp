@@ -6,8 +6,32 @@ import static seedu.clinkedin.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.clinkedin.logic.commands.*;
+import seedu.clinkedin.logic.commands.AddCommand;
+import seedu.clinkedin.logic.commands.AddLinkCommand;
 import seedu.clinkedin.logic.commands.AddNoteCommand;
+import seedu.clinkedin.logic.commands.AddTagCommand;
+import seedu.clinkedin.logic.commands.AddToCommand;
+import seedu.clinkedin.logic.commands.ClearCommand;
+import seedu.clinkedin.logic.commands.Command;
+import seedu.clinkedin.logic.commands.CreateTagTypeCommand;
+import seedu.clinkedin.logic.commands.DeleteCommand;
+import seedu.clinkedin.logic.commands.DeleteLinkCommand;
+import seedu.clinkedin.logic.commands.DeleteNoteCommand;
+import seedu.clinkedin.logic.commands.DeleteTagCommand;
+import seedu.clinkedin.logic.commands.DeleteTagTypeCommand;
+import seedu.clinkedin.logic.commands.EditCommand;
+import seedu.clinkedin.logic.commands.EditTagTypeCommand;
+import seedu.clinkedin.logic.commands.ExitCommand;
+import seedu.clinkedin.logic.commands.ExportCommand;
+import seedu.clinkedin.logic.commands.FindCommand;
+import seedu.clinkedin.logic.commands.HelpCommand;
+import seedu.clinkedin.logic.commands.ImportCommand;
+import seedu.clinkedin.logic.commands.ListCommand;
+import seedu.clinkedin.logic.commands.RateCommand;
+import seedu.clinkedin.logic.commands.RedoCommand;
+import seedu.clinkedin.logic.commands.StatsCommand;
+import seedu.clinkedin.logic.commands.UndoCommand;
+import seedu.clinkedin.logic.commands.ViewCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 
 /**
@@ -109,6 +133,9 @@ public class AddressBookParser {
 
         case RateCommand.COMMAND_WORD:
             return new RateCommandParser().parse(arguments);
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

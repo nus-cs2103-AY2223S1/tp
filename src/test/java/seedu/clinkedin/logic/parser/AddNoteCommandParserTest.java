@@ -11,7 +11,7 @@ import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.logic.commands.AddNoteCommand;
 import seedu.clinkedin.model.person.Note;
 
-public class AddAddNoteCommandParserTest {
+public class AddNoteCommandParserTest {
     private final AddNoteCommandParser parser = new AddNoteCommandParser();
 
     @Test
@@ -35,12 +35,12 @@ public class AddAddNoteCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsNoteCommand() {
         // no leading and trailing whitespaces
         AddNoteCommand expectedFindCommand = new AddNoteCommand(Index.fromOneBased(1), new Note("Test"));
         assertParseSuccess(parser, "1 note/Test", expectedFindCommand);
-
+        
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n \t1 note/Test\t", expectedFindCommand);
+        assertParseSuccess(parser, " \n \t1 note/Test\t", expectedNoteCommand);
     }
 }

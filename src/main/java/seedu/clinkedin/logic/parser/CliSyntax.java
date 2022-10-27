@@ -9,8 +9,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import seedu.clinkedin.logic.commands.*;
+import seedu.clinkedin.logic.commands.AddCommand;
 import seedu.clinkedin.logic.commands.AddNoteCommand;
+import seedu.clinkedin.logic.commands.AddTagCommand;
+import seedu.clinkedin.logic.commands.ClearCommand;
+import seedu.clinkedin.logic.commands.Command;
+import seedu.clinkedin.logic.commands.CreateTagTypeCommand;
+import seedu.clinkedin.logic.commands.DeleteCommand;
+import seedu.clinkedin.logic.commands.DeleteTagCommand;
+import seedu.clinkedin.logic.commands.EditCommand;
+import seedu.clinkedin.logic.commands.EditTagTypeCommand;
+import seedu.clinkedin.logic.commands.ExportCommand;
+import seedu.clinkedin.logic.commands.FindCommand;
+import seedu.clinkedin.logic.commands.HelpCommand;
+import seedu.clinkedin.logic.commands.ImportCommand;
+import seedu.clinkedin.logic.commands.ListCommand;
+import seedu.clinkedin.logic.commands.RateCommand;
+import seedu.clinkedin.logic.commands.StatsCommand;
+import seedu.clinkedin.logic.commands.ViewCommand;
 import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
 
@@ -65,7 +81,9 @@ public class CliSyntax {
             RateCommand.class,
             StatsCommand.class,
             ExportCommand.class,
-            ImportCommand.class);
+            ImportCommand.class,
+            ViewCommand.class
+        );
 
     /**
      * Adds a tag prefix to the list of prefixes.
