@@ -96,8 +96,9 @@ public class EditCommand extends Command {
         Set<Remark> updatedRemarks = editPersonDescriptor.getRemarks().orElse(personToEdit.getRemarks());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedIndexNumber, updatedPhone, updatedEmail, updatedAddress, updatedStudentClass,
-                         updatedAttendance, updatedRemarks, updatedSubjectHandler, updatedTags);
+        return new Person(updatedName, updatedIndexNumber, updatedPhone, updatedEmail, updatedAddress,
+                          updatedStudentClass, updatedAttendance, updatedRemarks, updatedSubjectHandler,
+                          updatedTags);
     }
 
     @Override
@@ -145,7 +146,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        public IndexNumber indexNumber;
+        private IndexNumber indexNumber;
         private Phone phone;
         private Email email;
         private Address address;
@@ -180,8 +181,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, indexNumber, phone, email, address, studentClass, tags, remarksList,
-                                               subjectHandler);
+            return CollectionUtil.isAnyNonNull(name, indexNumber, phone, email, address, studentClass,
+                                               tags, remarksList, subjectHandler);
         }
 
         public Optional<Name> getName() {

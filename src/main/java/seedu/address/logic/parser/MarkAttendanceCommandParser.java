@@ -10,8 +10,19 @@ import java.util.List;
 import seedu.address.logic.commands.MarkAttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new MarkAttendanceCommand object
+ */
 public class MarkAttendanceCommandParser implements Parser<MarkAttendanceCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the MarkAttendanceCommand
+     * and returns MarkAttendanceCommand object for execution.
+     *
+     * @param args Input arguments of the user.
+     * @return A MarkAttendanceCommand object.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public MarkAttendanceCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
 

@@ -34,8 +34,4 @@ public class DateUtil {
     private static boolean isDateValid(LocalDateTime dateTime) {
         return !dateTime.isBefore(LocalDateTime.now());
     }
-
-    public static void main (String[] args) {
-        System.out.println(DateUtil.isValidDateString("28/10/2022"));
-    }
 }

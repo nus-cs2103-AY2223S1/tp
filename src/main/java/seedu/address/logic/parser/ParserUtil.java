@@ -57,6 +57,14 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    /**
+     * Parses a {@code String indexNumber} into a {@code IndexNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param indexNumber indexNumber to be parsed.
+     * @return An IndexNumber object created using indexNumber.
+     * @throws ParseException if the given {@code indexNumber} is invalid.
+     */
     public static IndexNumber parseIndexNumber(String indexNumber) throws ParseException {
         requireNonNull(indexNumber);
         String trimmedIndexNumber = indexNumber.trim();

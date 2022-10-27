@@ -3,6 +3,9 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the index number of a student
+ */
 public class IndexNumber {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -10,12 +13,23 @@ public class IndexNumber {
 
     public final String indexNumber;
 
+    /**
+     * Constructs an {@code IndexNumber} object with the given indexNumber.
+     *
+     * @param indexNumber The indexNumber of the student.
+     */
     public IndexNumber(String indexNumber) {
         requireNonNull(indexNumber);
         checkArgument(isValidIndexNumber(indexNumber), MESSAGE_CONSTRAINTS);
         this.indexNumber = indexNumber;
     }
 
+    /**
+     * Checks if a indexNumber is in the range [1, 99].
+     *
+     * @param test The indexNumber to test.
+     * @return A boolean.
+     */
     public static boolean isValidIndexNumber(String test) {
         Integer ind = Integer.valueOf(test);
         return ind >= 1 && ind <= 99;

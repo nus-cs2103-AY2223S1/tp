@@ -3,11 +3,14 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Marks the attendance of persons in address book with studentClass and indexNumber corresponding to the
+ * user's arguments.
+ */
 public class MarkAttendanceCommand extends Command {
 
     public static final String COMMAND_WORD = "markAtt";
@@ -27,12 +30,26 @@ public class MarkAttendanceCommand extends Command {
     private String studentClass;
     private List<String> indexNumbers;
 
+    /**
+     * Creates a MarkAttendanceCommand to mark the attendance of persons with studentClass and indexNumbers
+     * maching the arguments.
+     *
+     * @param date The date to mark attendance.
+     * @param studentClass The class that the student(s) belong to.
+     * @param indexNumbers The list of index numbers of students to mark attendance for.
+     */
     public MarkAttendanceCommand(String date, String studentClass, List<String> indexNumbers) {
         this.date = date;
         this.studentClass = studentClass;
         this.indexNumbers = indexNumbers;
     }
 
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display
+     */
     public CommandResult execute(Model model) {
         boolean anyStudentsAttendanceMarked = false;
         String markedAttendance = "";

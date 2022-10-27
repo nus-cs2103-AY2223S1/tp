@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;

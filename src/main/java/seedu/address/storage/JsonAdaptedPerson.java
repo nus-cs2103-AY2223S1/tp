@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.LinkedBlockingDeque;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -120,7 +119,8 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (indexNumber == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, IndexNumber.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                                                          IndexNumber.class.getSimpleName()));
         }
         if (!IndexNumber.isValidIndexNumber(indexNumber)) {
             throw new IllegalValueException(IndexNumber.MESSAGE_CONSTRAINTS);
