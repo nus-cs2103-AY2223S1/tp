@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -57,10 +58,19 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Title("Add task functionality."), false, Deadline.UNSPECIFIED, Project.UNSPECIFIED,
-                    getContactSet("Alex Yeoh")),
-            new Task(new Title("Add task storage"), false, Deadline.UNSPECIFIED, Project.UNSPECIFIED,
-                    getContactSet("Bernice Yu"))
+            new Task(
+                new Title("Add task functionality."),
+                false,
+                Deadline.of(LocalDate.of(2023, 1 , 1)),
+                Project.UNSPECIFIED,
+                getContactSet("Alex Yeoh")
+            ),
+            new Task(
+                new Title("Add task storage"),
+                false,
+                Deadline.UNSPECIFIED,
+                new Project("CS2103T"),
+                getContactSet("Bernice Yu"))
         };
     }
 

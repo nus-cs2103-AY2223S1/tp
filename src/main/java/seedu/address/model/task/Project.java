@@ -18,7 +18,7 @@ public class Project {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9 ]+$";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+[a-zA-Z0-9 ]*$";
 
     public final String projectName;
 
@@ -63,7 +63,7 @@ public class Project {
 
     @Override
     public int hashCode() {
-        return projectName.hashCode();
+        return projectName.toLowerCase().hashCode();
     }
 
     /**
