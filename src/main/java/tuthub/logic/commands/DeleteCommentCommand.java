@@ -23,7 +23,15 @@ public class DeleteCommentCommand extends Command {
             + "Parameters: INDEX OF TUTOR, INDEX OF COMMENT (must be positive integers)\n"
             + "Example: " + COMMAND_WORD + " 1 1";
 
-    public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Deleted Comment: %1$s";
+    public static final String MESSAGE_INVALID_DELETE_COMMENT_COMMAND = "Invalid deletecomment command.";
+
+    public static final String MESSAGE_INVALID_TUTOR_NO_COMMENTS = MESSAGE_INVALID_DELETE_COMMENT_COMMAND
+            + " The tutor %1$s does not have any comments";
+
+    public static final String MESSAGE_INVALID_COMMENT_INDEX = MESSAGE_INVALID_DELETE_COMMENT_COMMAND
+            + " The comment index provided is invalid";
+
+    public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Deleted Comment of %1$s: %2$s";
 
     private final Index tutorIndex;
 
@@ -45,13 +53,24 @@ public class DeleteCommentCommand extends Command {
         requireNonNull(model);
         List<Tutor> lastShownList = model.getFilteredTutorList();
 
+        // Checks if tutor index is in range
         if (tutorIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX);
         }
 
         Tutor tutor = lastShownList.get(tutorIndex.getZeroBased());
+
+        // Checks if tutor's comments is empty
+        if (tutor.getComments().isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_INVALID_TUTOR_NO_COMMENTS, tutor.getName()));
+        }
+
+        // Checks if comment index is in range
+        if (commentIndex.getZeroBased() >= tutor.getComments().size()) {
+            throw new CommandException(MESSAGE_INVALID_COMMENT_INDEX);
+        }
         Comment commentToDelete = tutor.getComments().deleteComment(commentIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS, commentToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS, tutor, commentToDelete));
     }
 
     @Override

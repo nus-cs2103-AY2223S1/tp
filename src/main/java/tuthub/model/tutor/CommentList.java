@@ -1,6 +1,7 @@
 package tuthub.model.tutor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents the list of comments attached to each tutor.
@@ -9,10 +10,21 @@ import java.util.ArrayList;
 public class CommentList {
     private final ArrayList<Comment> comments = new ArrayList<>();
 
+    public CommentList() { }
+
+    /**
+     * Constructor for CommentList to be added with another list of comments
+     *
+     * @param comments The list of comments to copy from.
+     */
+    public CommentList(List<Comment> comments) {
+        this.comments.addAll(comments);
+    }
+
     /**
      * Adds a Comment to the CommentList.
      *
-     * @param comment Comment to be added to the CommentList.
+     * @param comment Comment to be added to the {@code CommentList}.
      * @return The CommentList itself.
      */
     public CommentList addComment(Comment comment) {
@@ -21,9 +33,36 @@ public class CommentList {
     }
 
     /**
-     * Deletes a Comment from the CommentList.
+     * Returns the number of comments in the {@code CommentList}.
      *
-     * @param index The index of the Comment in the CommentList.
+     * @return The size of the {@code CommentList}.
+     */
+    public int size() {
+        return comments.size();
+    }
+
+    /**
+     * Verifies if the {@code CommentList} is empty.
+     *
+     * @return true if empty, otherwise false.
+     */
+    public boolean isEmpty() {
+        return comments.size() == 0;
+    }
+
+    /**
+     * Returns the list of comments of the tutor.
+     *
+     * @return The list of comments
+     */
+    public List<Comment> getList() {
+        return comments;
+    }
+
+    /**
+     * Deletes a Comment from the {@code CommentList}.
+     *
+     * @param index The index of the {@code Comment} in the {@code CommentList}.
      */
     public Comment deleteComment(int index) {
         return comments.remove(index);
@@ -31,9 +70,9 @@ public class CommentList {
 
 
     /**
-     * Converts the CommentList to a string for display in the Tutor Card.
+     * Converts the {@code CommentList} to a string for display in the Tutor Card.
      *
-     * @return A string where every Comment is appended with a newline.
+     * @return A string where every {@code Comment} is appended with a newline.
      */
     public String toStringForTutorCard() {
         StringBuilder result = new StringBuilder();
@@ -48,9 +87,9 @@ public class CommentList {
     }
 
     /**
-     * Converts the CommentList into a string.
+     * Converts the {@code CommentList} into a string.
      *
-     * @return A string where every Comment is padded with their position in the CommentList.
+     * @return A string where every {@code Comment} is padded with their position in the {@code CommentList}.
      */
     @Override
     public String toString() {

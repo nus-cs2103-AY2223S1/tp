@@ -11,6 +11,8 @@ import tuthub.logic.parser.exceptions.ParseException;
  */
 public class DeleteCommentCommandParser implements Parser<DeleteCommentCommand> {
 
+    public static final int EXPECTED_LEN = 2;
+
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommendCommand
      * and returns a DeleteCommentCommand object for execution.
@@ -18,8 +20,14 @@ public class DeleteCommentCommandParser implements Parser<DeleteCommentCommand> 
      */
     public DeleteCommentCommand parse(String args) throws ParseException {
         try {
-            Index tutorIndex = ParserUtil.parseIndex(args.split(" ")[1]);
-            Index commentIndex = ParserUtil.parseIndex(args.split(" ")[2]);
+            String trimmedArgs = args.trim();
+            String[] strArr = trimmedArgs.split(" ");
+            if (!(strArr.length == EXPECTED_LEN)) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommentCommand.MESSAGE_USAGE));
+            }
+            Index tutorIndex = ParserUtil.parseIndex(strArr[0]);
+            Index commentIndex = ParserUtil.parseIndex(strArr[1]);
             return new DeleteCommentCommand(tutorIndex, commentIndex);
         } catch (ParseException pe) {
             throw new ParseException(
