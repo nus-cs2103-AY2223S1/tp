@@ -33,7 +33,7 @@ public class GroupCommand extends Command {
     private final IsPersonInGroup predicate;
 
     /**
-     * @param groupToDisplay group to remove the person from
+     * @param groupToDisplay group to display
      */
     public GroupCommand(Group groupToDisplay) {
         requireNonNull(groupToDisplay);
