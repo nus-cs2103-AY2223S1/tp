@@ -351,9 +351,11 @@ public class MainWindow extends UiPart<Stage> {
         descriptionEntityType = type;
         switch(type) {
         case STUDENT_LIST:
+            studentListPanel.getStudentListView().getSelectionModel().clearSelection();
             studentListPanel.getStudentListView().getSelectionModel().select(index);
             break;
         case TUTOR_LIST:
+            tutorListPanel.getTutorListView().getSelectionModel().clearSelection();
             tutorListPanel.getTutorListView().getSelectionModel().select(index);
             break;
         default:
@@ -368,14 +370,11 @@ public class MainWindow extends UiPart<Stage> {
         Model.ListType type = logic.getCurrentListType();
         switch (type) {
         case STUDENT_LIST:
-            //to make sure list will list the latest filterest list
-            studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
             tutorListPanel.getTutorListView().getSelectionModel().clearSelection();
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             break;
         case TUTOR_LIST:
-            tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
             studentListPanel.getStudentListView().getSelectionModel().clearSelection();
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
@@ -399,15 +398,13 @@ public class MainWindow extends UiPart<Stage> {
         switch(type) {
         case STUDENT_LIST:
             listSize = logic.getFilteredStudentList().size();
-            studentDescription = new StudentDescription(
-                    logic.getFilteredStudentList().get(listSize - 1));
-            entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
+            studentListPanel.getStudentListView().getSelectionModel().clearSelection();
+            studentListPanel.getStudentListView().getSelectionModel().select(listSize - 1);
             break;
         case TUTOR_LIST:
             listSize = logic.getFilteredTutorList().size();
-            tutorDescription = new TutorDescription(
-                    logic.getFilteredTutorList().get(listSize - 1));
-            entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
+            tutorListPanel.getTutorListView().getSelectionModel().clearSelection();
+            tutorListPanel.getTutorListView().getSelectionModel().select(listSize - 1);
             break;
         default:
             break;
@@ -526,17 +523,14 @@ public class MainWindow extends UiPart<Stage> {
         Model.ListType type = logic.getCurrentListType();
         switch(type) {
         case STUDENT_LIST:
-            studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             break;
         case TUTOR_LIST:
-            tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
             break;
         case TUITIONCLASS_LIST:
-            tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
             break;
