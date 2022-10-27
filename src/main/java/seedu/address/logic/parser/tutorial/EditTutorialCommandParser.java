@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.tutorial.EditTutorialCommand;
 import seedu.address.logic.commands.tutorial.EditTutorialCommand.EditTutorialDescriptor;
@@ -18,9 +17,6 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.datetime.DatetimeCommonUtils;
-
-import java.util.Arrays;
-import java.util.Date;
 
 /**
  * Parses input arguments and creates a new EditCommand object
