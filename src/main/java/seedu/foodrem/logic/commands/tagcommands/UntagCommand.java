@@ -22,7 +22,7 @@ public class UntagCommand extends Command {
     private final Tag tag;
 
     /**
-     * Creates an UnTagCommand to untag the specified {@code Item} with a specified {@code Tag}
+     * Creates an UntagCommand to untag the specified {@code Item} with a specified {@code Tag}
      *
      * @param tagName the name of the tag
      * @param index the index of the item to untag
