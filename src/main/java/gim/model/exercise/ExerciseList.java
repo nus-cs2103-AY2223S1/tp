@@ -87,17 +87,18 @@ public class ExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
-     */
-    public ObservableList<Exercise> asUnmodifiableList() {
-        return internalUnmodifiableList;
-    }
-
-    /**
      * Returns the displayed list {@code ObservableList}.
      */
     public ObservableList<Exercise> asDisplayedList() {
         return displayedList;
+    }
+
+    /**
+     * Returns a duplicated displayed list {@code ObservableList}.
+     */
+    public ObservableList<Exercise> asDuplicatedDisplayedList() {
+        ObservableList<Exercise> duplicatedDisplayedList = FXCollections.observableArrayList(displayedList);
+        return duplicatedDisplayedList;
     }
 
     @Override
