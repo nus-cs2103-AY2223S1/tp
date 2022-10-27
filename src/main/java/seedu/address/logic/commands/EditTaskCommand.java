@@ -39,17 +39,18 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: [INDEX (must be a positive integer)] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_PRIORITY + "PRIORITY (low/medium/high)] "
             + "[" + PREFIX_CATEGORY + "CATEGORY (database/frontend/backend/uiux/presentation/others)] "
             + "[" + PREFIX_DEADLINE + "DEADLINE (YYYY-MM-DD)] "
             + "[" + PREFIX_PERSON + "PERSON EMAIL ADDRESS (must be a valid email)] "
-            + "[" + PREFIX_DONE + "DONE (t/f)]...\n"
+            + "[" + PREFIX_DONE + "ISDONE (t/f)]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "Create Initial UIUX Design"
-            + PREFIX_DEADLINE + "2023-01-01";
+            + PREFIX_NAME + "Create Initial UIUX Design "
+            + PREFIX_DEADLINE + "2023-01-01 "
+            + PREFIX_DONE + "t";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -143,7 +144,6 @@ public class EditTaskCommand extends Command {
         private TaskName name;
         private TaskCategory category;
         private Description description;
-
         // Data fields
         private Priority priority;
         private TaskDeadline deadline;
