@@ -222,20 +222,18 @@ public class Applicant {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("\n Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\n Email: ")
                 .append(getEmail())
-                .append("; Scholarship: ")
+                .append("\n Scholarship: ")
                 .append(getScholarship())
-                .append("; Application Status: ")
-                .append(getStatusOfApplication())
-                .append("; hasPinned: ")
-                .append(getHasPinned());
+                .append("\n Application Status: ")
+                .append(getStatusOfApplication());
 
         Set<Major> majors = getMajors();
         if (!majors.isEmpty()) {
-            builder.append("; Majors: ");
+            builder.append("\n Majors: ");
             majors.forEach(builder::append);
         }
 

@@ -20,11 +20,14 @@ import seedu.trackascholar.model.major.Major;
  * Pins an applicant identified using its displayed index from TrackAScholar.
  */
 public class UnPinCommand extends Command {
+
     public static final String COMMAND_WORD = "unpin";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Unpins the applicant identified by the applicant's full name in the displayed pinned applicant list.\n"
             + "Parameters: FULL_NAME\n"
             + "Example: " + COMMAND_WORD + " John Doe";
+
     public static final String MESSAGE_UNPIN_APPLICANT_SUCCESS = "Unpinned Applicant: %1$s";
     public static final String MESSAGE_NO_SUCH_APPLICANT_FOUND = "Given applicant does not exist.";
     public static final String MESSAGE_APPLICANT_ALREADY_UNPINNED = "Applicant is already unpinned.";
