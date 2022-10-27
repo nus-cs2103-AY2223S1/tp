@@ -43,7 +43,6 @@ public class ParserUtil {
      * Types of file extensions supported for export and/or import.
      */
     public enum FileType {
-        XML,
         CSV,
         TXT,
         JSON

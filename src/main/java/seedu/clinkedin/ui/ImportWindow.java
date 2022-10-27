@@ -63,6 +63,7 @@ public class ImportWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.info("Showing Import Window.");
+        chosenFile.setText("");
         getRoot().show();
         getRoot().centerOnScreen();
     }
