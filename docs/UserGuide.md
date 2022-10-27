@@ -203,6 +203,20 @@ Format: `pin INDEX`
 Examples:
 * `list` followed by `pin 2` pins the 2nd applicant in TrackAScholar.
 
+### Importing a trackAScholar file : `import`
+
+Imports a trackAScholar file into the current trackAScholar file
+
+Format: `import r/k`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+It is necessary for a trackAScholar file in a readable format to be placed in the data directory before.
+</div>
+
+Examples:
+* `import r` applicants with the same name will be replaced with application data from imported file
+* `import k` applicants with the same name will be kept instead of being replaced with application data from imported file
+
 ### Unpins an applicant : `unpin`
 
 An applicant in the pinned applicant list (on the right side of the screen) will be unpinned. 
@@ -256,4 +270,5 @@ _Details coming soon ..._
 | **Sort**   | `sort NAME/SCHOLARSHIP/APPLICATION_STATUS`                    |
 | **Pin**    | `pin INDEX`                                                   |
 | **Unpin**  | `unpin FULL_NAME`                                             |
+| **Import** | `import r/k`                                                  |
 
