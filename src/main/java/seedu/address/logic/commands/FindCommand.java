@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
@@ -11,7 +14,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-@CommandLine.Command(name = "find")
+@CommandLine.Command(name = "find", mixinStandardHelpOptions = true)
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
@@ -24,11 +27,21 @@ public class FindCommand extends Command {
     @CommandLine.Parameters(arity = "1", paramLabel = "keywords")
     private NameContainsKeywordsPredicate predicate;
 
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
     public FindCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(

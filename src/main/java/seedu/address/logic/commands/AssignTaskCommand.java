@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INDEX_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INDEX_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
@@ -19,7 +22,7 @@ import seedu.address.model.team.Task;
 /**
  * Assigns a task to a specific member in the team.
  */
-@CommandLine.Command(name = "task")
+@CommandLine.Command(name = "task", mixinStandardHelpOptions = true)
 public class AssignTaskCommand extends Command {
     public static final String COMMAND_WORD = "assign task";
 
@@ -41,11 +44,22 @@ public class AssignTaskCommand extends Command {
     @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true)
     private Name memberName;
 
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
     public AssignTaskCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         List<Task> taskList = model.getTeam().getTaskList();
         List<Person> memberList = model.getTeam().getTeamMembers();

@@ -5,7 +5,7 @@ package seedu.address.logic.parser;
  */
 public class CliSyntax {
 
-    /* Option flag definitions */
+    /* Flag definitions for commands */
     public static final String FLAG_ADDRESS_STR = "-a";
     public static final String FLAG_ADDRESS_STR_LONG = "--address";
     public static final String FLAG_COMPLETE_TASKS_STR = "-c";
@@ -31,4 +31,6 @@ public class CliSyntax {
     public static final String FLAG_TAG_STR = "-t";
     public static final String FLAG_TAG_STR_LONG = "--tag";
 
+    /* Descriptions for flags */
+    public static final String FLAG_HELP_DESCRIPTION = "Shows this message";
 }

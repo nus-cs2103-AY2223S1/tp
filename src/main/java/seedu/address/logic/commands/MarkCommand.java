@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 
 import java.util.List;
 
@@ -13,7 +16,7 @@ import seedu.address.model.team.Task;
 /**
  * Marks a specified task as complete.
  */
-@CommandLine.Command(name = "mark")
+@CommandLine.Command(name = "mark", mixinStandardHelpOptions = true)
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
@@ -30,11 +33,21 @@ public class MarkCommand extends Command {
     @CommandLine.Parameters(arity = "1")
     private Index taskIndex;
 
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
     public MarkCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         List<Task> taskList = model.getTeam().getTaskList();
         if (taskIndex.getZeroBased() >= taskList.size()) {

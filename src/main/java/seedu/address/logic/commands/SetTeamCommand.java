@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 
 import java.util.List;
 
@@ -12,7 +15,7 @@ import seedu.address.model.team.Team;
 /**
  * Sets the current team to an existing team.
  */
-@CommandLine.Command(name = "team")
+@CommandLine.Command(name = "team", mixinStandardHelpOptions = true)
 public class SetTeamCommand extends Command {
     public static final String COMMAND_WORD = "set team";
 
@@ -30,11 +33,21 @@ public class SetTeamCommand extends Command {
     @CommandLine.Parameters(arity = "1")
     private String targetTeamName;
 
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
     public SetTeamCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         List<Team> teamList = model.getTeamList();
         Team currentTeam = model.getTeam();

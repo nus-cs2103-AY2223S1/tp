@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
@@ -16,7 +19,7 @@ import seedu.address.model.team.Team;
 /**
  * Adds a new team to the address book.
  */
-@CommandLine.Command(name = "team")
+@CommandLine.Command(name = "team", mixinStandardHelpOptions = true)
 public class AddTeamCommand extends Command {
     public static final String COMMAND_WORD = "add team";
 
@@ -42,11 +45,21 @@ public class AddTeamCommand extends Command {
     @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG}, defaultValue = Team.DEFAULT_DESCRIPTION)
     private String description;
 
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
     public AddTeamCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         Team team = new Team(teamName, description);
         List<Team> teamList = model.getTeamList();

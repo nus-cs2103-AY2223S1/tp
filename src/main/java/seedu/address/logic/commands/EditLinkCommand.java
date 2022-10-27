@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
@@ -23,7 +26,7 @@ import seedu.address.model.team.Url;
 /**
  * Edits the details of an existing link in TruthTable.
  */
-@CommandLine.Command(name = "link")
+@CommandLine.Command(name = "link", mixinStandardHelpOptions = true)
 public class EditLinkCommand extends Command {
     public static final String COMMAND_WORD = "edit link";
 
@@ -42,6 +45,13 @@ public class EditLinkCommand extends Command {
 
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
     private Arguments arguments;
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
 
     private final EditLinkDescriptor editLinkDescriptor;
 
@@ -64,6 +74,9 @@ public class EditLinkCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         List<Link> lastShownList = model.getFilteredLinkList();
 

@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 
 import java.util.List;
 
@@ -14,7 +17,7 @@ import seedu.address.model.team.Link;
 /**
  * Deletes an existing link from TruthTable.
  */
-@CommandLine.Command(name = "link")
+@CommandLine.Command(name = "link", mixinStandardHelpOptions = true)
 public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "delete link";
 
@@ -27,11 +30,21 @@ public class DeleteLinkCommand extends Command {
     @CommandLine.Parameters(arity = "1")
     private Index targetIndex;
 
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
     public DeleteLinkCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         List<Link> lastShownList = model.getFilteredLinkList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {

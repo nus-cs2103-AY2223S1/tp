@@ -5,6 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_ADDRESS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ADDRESS_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
@@ -36,7 +39,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-@CommandLine.Command(name = "person")
+@CommandLine.Command(name = "person", mixinStandardHelpOptions = true)
 public class EditPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "edit person";
@@ -64,6 +67,14 @@ public class EditPersonCommand extends Command {
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
     private Arguments arguments;
 
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
     private final EditPersonDescriptor editPersonDescriptor;
 
     public EditPersonCommand() {
@@ -88,6 +99,9 @@ public class EditPersonCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 

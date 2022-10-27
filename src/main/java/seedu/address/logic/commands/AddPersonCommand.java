@@ -5,6 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_ADDRESS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ADDRESS_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
@@ -29,7 +32,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Adds a person to the address book.
  */
-@CommandLine.Command(name = "person")
+@CommandLine.Command(name = "person", mixinStandardHelpOptions = true)
 public class AddPersonCommand extends Command {
     public static final String COMMAND_WORD = "add person";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
@@ -66,11 +69,22 @@ public class AddPersonCommand extends Command {
             parameterConsumer = TagsConverter.class, arity = "*")
     private Set<Tag> tags = new HashSet<>();
 
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
     public AddPersonCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
 
         Person toAdd = new Person(name, phone, email, address, tags);
