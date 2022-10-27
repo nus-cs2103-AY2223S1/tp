@@ -126,7 +126,7 @@ public class ApplicantTest {
         editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
+        // different majors -> returns false
         editedAlice = new ApplicantBuilder(ALICE).withMajors(VALID_MAJOR_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
