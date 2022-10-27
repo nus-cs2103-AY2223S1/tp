@@ -40,7 +40,8 @@ public class DeleteScheduleCommandTest {
 
         CommandResult expectedMessage = new CommandResult(
                 String.format(DeleteScheduleCommand.MESSAGE_DELETE_SCHEDULE_SUCCESS, scheduleToDelete), false, false,
-                false, false, false, true);
+                false, false,
+                false, true, false, false);
 
         Model expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
         expectedModel.deleteSchedule(scheduleToDelete);
@@ -55,7 +56,8 @@ public class DeleteScheduleCommandTest {
 
         CommandResult expectedMessage = new CommandResult(
                 String.format(DeleteScheduleCommand.MESSAGE_DELETE_SCHEDULE_SUCCESS, scheduleToDelete), false, false,
-                false, false, false, true);
+                false, false,
+                false, true, false, false);
 
         Model expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
         expectedModel.deleteSchedule(scheduleToDelete);
