@@ -11,7 +11,7 @@ title: Developer Guide
   * [Statistics Display Feature](#statistics-display-feature)
   * [Mark Student Feature](#mark-student-feature)
   * [Schedule List Feature](#schedule-list-feature)
-  * [[Proposed] Sort-by](#proposed-sort-by-feature)
+  * [Sort-by](#proposed-sort-by-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
   * [Value Proposition](#value-proposition)
@@ -159,8 +159,8 @@ The features covered in this guide are:
 
 * [Edit Class Feature](#edit-class-feature)
 * [Statistics Display Feature](#statistics-display-feature)
+* [Sort-by feature](#sort-by-feature)
 * [Mark Student Feature](#mark-student-feature)
-* [[Proposed] Sort-by feature](#proposed-sort-by-feature)
 * [[Proposed] Find-by feature](#proposed-find-by-feature)
 
 ### Edit Class Feature
@@ -284,6 +284,26 @@ This `UniqueScheduleList` would store the filtered version of the original `Addr
   * Pros: Achieved our purpose of a `ScheduleList`
   * Cons: Code duplication
 
+### Sort-by feature
+
+This feature allows the user (teacher) to sort the students from Teacher's Pet by specified `TYPE` and `ORDER`. `ORDER` is optional
+and will be `ASC` when `TYPE` is `NAME` or `CLASS` and `DESC` when `TYPE` is `OWED`.
+
+#### Implementation
+
+The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
+list of person as per usual. Additionally, it implements the following operation:
+- `TeachersPet#SortPersons(ComparatorM<Person>)` -- Updates the `persons` by sorting the list with the given `Comparator`
+
+The following diagram illustrates how the operation works:
+
+![SortBySequenceDiagram](images/DG-images/SortBySequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortByCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
 ---
 
 ### Mark Student Feature
@@ -311,27 +331,6 @@ This command executes 3 main actions, they are:
 The following diagram illustrates how the operation works:
 
 ![MarkActivityDiagram](images/DG-images/MarkActivityDiagram.png)
-
----
-
-### [Proposed] Sort-by Feature
-
-This feature allows the user (teacher) to sort the students from Teacher's Pet by one of the specified keywords.
-
-#### Proposed Implementation
-
-The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
-The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
-list of person as per usual. Additionally, it implements the following operation:
-- `TeachersPet#SortBy(ComparatorM<Person>)` -- Updates the `FilteredPersonList` by reordering the list with the given `Comparator`
-
-The following diagram illustrates how the operation works:
-
-![SortBySequenceDiagram](images/DG-images/SortBySequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortByCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
 
 ---
 
@@ -368,6 +367,8 @@ Below is an example of the general flow of a find by address command.
 The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
 
 ![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Requirements
 
