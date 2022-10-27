@@ -32,6 +32,7 @@ import seedu.address.model.task.TaskStatus;
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
+
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
@@ -327,8 +328,18 @@ public class ParserUtil {
     public static ExamDate parseExamDate(String examDate) throws ParseException {
         requireNonNull(examDate);
         String trimmedDate = examDate.trim();
-        if (!ExamDate.isValidDate(trimmedDate)) {
-            throw new ParseException(ExamDate.DATE_CONSTRAINTS);
+//        if (!ExamDate.isValidDate(trimmedDate)) {
+//            throw new ParseException(ExamDate.DATE_CONSTRAINTS);
+//        }
+
+        if(!ExamDate.isCorrectDateFormat(trimmedDate)) {
+            throw new ParseException("Date inputted is not in dd-mm-yyyy format");
+        }
+        if(!ExamDate.isExistingDate(trimmedDate)) {
+            throw new ParseException("Date inputted is not a valid date");
+        }
+        if(!ExamDate.isNotAPastDate(trimmedDate)) {
+            throw new ParseException("Date inputted should not be a past date");
         }
         return new ExamDate(trimmedDate);
     }

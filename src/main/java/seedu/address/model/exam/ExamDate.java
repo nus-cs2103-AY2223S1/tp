@@ -18,7 +18,6 @@ public class ExamDate {
     public static final DateTimeFormatter DATE_TIME_FORMATTER =
             DateTimeFormatter.ofPattern("dd-MM-uuuu").withResolverStyle(ResolverStyle.STRICT);
     public final String examDate;
-    public final String dateWithoutFormatting;
 
 
     /**
@@ -28,16 +27,15 @@ public class ExamDate {
      */
     public ExamDate(String date) {
         requireNonNull(date);
-        examDate = LocalDate.parse(date, DATE_TIME_FORMATTER).format(DateTimeFormatter.ofPattern("d MMM yyyy"));
-        dateWithoutFormatting = date;
+        examDate = date;
     }
 
-    /**
-     * Returns true if a given string is a valid date.
-     */
-    public static boolean isValidDate(String date) {
-        return isValidDateLength(date) && isExistingDate(date) && isNotAPastDate(date);
-    }
+//    /**
+//     * Returns true if a given string is a valid date.
+//     */
+//    public static boolean isValidDate(String date) {
+//        return isValidDateLength(date) && isExistingDate(date) && isNotAPastDate(date);
+//    }
 
     /**
      * Checks if the format given for the date is valid.
@@ -47,15 +45,39 @@ public class ExamDate {
      */
     public static boolean isValidDateFormat(String date) {
         try {
-            LocalDate.parse(date, DATE_TIME_FORMATTER);
+            LocalDate d = LocalDate.parse(date, DATE_TIME_FORMATTER);
+            System.out.println(d);
             return true;
         } catch (DateTimeParseException e) {
             return false;
         }
     }
 
+    /**
+     * Checks if format is in dd-mm-yyyy where dd is between 01 to 31, mm is between 01 to 12, yyyy is between 0000 to 9999.
+     * @param date The date provided.
+     * @return true if date is in dd-mm-yyyy format.
+     */
+    public static boolean isCorrectDateFormat(String date) {
+        try {
+            String[] a = date.split("-");
+            Integer days = Integer.parseInt(a[0]);
+            Integer month = Integer.parseInt(a[1]);
+            Integer year = Integer.parseInt(a[2]);
+            if (year >= 0000 && year <= 9999 && month >= 01 && month
+                    <= 12 && days >= 01 && days <= 31 && isValidDateLength(date)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException ex) {
+            return false;
+        }
+    }
+
+
     public static boolean isValidDateLength(String date) {
-        return date.length() >= 10;
+        return date.length() == 10;
     }
 
     /**
