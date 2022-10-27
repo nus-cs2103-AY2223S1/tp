@@ -123,7 +123,7 @@ Examples:
 
 ### Removing specific field in person: `remove`
 
-Edits a specific field of a person in the address book. Can only be used in View Mode.<br>
+Removes a specific field of a person in the address book at the specified index. Can only be used in View Mode.<br>
 It requires one field:
 - h/: To be followed by INDEX of homework to be removed
 - a/: To be followed by INDEX of attendance to be removed
