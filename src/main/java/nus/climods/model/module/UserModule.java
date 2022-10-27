@@ -1,8 +1,9 @@
 package nus.climods.model.module;
 
+import java.util.HashMap;
+
 import org.openapitools.client.model.SemestersEnum;
 
-import java.util.HashMap;
 
 /**
  * Class representing module a chosen by a user
@@ -16,13 +17,13 @@ public class UserModule {
 
     //Hashmap to store Lesson Data
     private HashMap<LessonType, String> lessons = new HashMap<>();
+
     /**
      * Creates a UserModule
      *
      * @param moduleCode module code
      * @param selectedSemester semester
      */
-
     public UserModule(String moduleCode, SemestersEnum selectedSemester) {
         this.code = moduleCode;
         this.selectedSemester = selectedSemester;
@@ -43,6 +44,12 @@ public class UserModule {
         this.lecture = lecture;
         this.tutorial = tutorial;
     }
+
+
+    /**
+     * Constructor used for UserModuleStub
+     */
+    protected UserModule() {}
 
     /**
      * Allows user to set Lessons type, storing and updating them in the HashMap.
@@ -69,11 +76,6 @@ public class UserModule {
         }
         return str;
     }
-
-    /**
-     * Constructor used for UserModuleStub
-     */
-    protected UserModule() {}
 
     /**
      * Returns the module code.

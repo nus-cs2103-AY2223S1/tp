@@ -2,13 +2,13 @@ package nus.climods.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import nus.climods.model.module.LessonType;
-import nus.climods.model.module.Module;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.SemestersEnum;
 
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
+import nus.climods.model.module.LessonType;
+import nus.climods.model.module.Module;
 import nus.climods.model.module.UserModule;
 
 /**
@@ -63,7 +63,7 @@ public class AddCommand extends Command {
 
         for (LessonType t : module.getUnselectableLessonTypes(semester)) {
             String lessonId = module.getUnselectableLessonId(t, semester);
-            moduleToAdd.setLessons(t ,lessonId);
+            moduleToAdd.setLessons(t, lessonId);
         }
 
         model.addUserModule(moduleToAdd);

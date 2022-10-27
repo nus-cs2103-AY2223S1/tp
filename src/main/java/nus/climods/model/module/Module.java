@@ -282,10 +282,18 @@ public class Module {
             .map(semesterLessonMap -> semesterLessonMap.get(lessonId)).isPresent();
     }
 
-    public String getUnselectableLessonId(LessonType lt, SemestersEnum semester) {
+    /**
+     * Returns String lessonId that is unselectable by user, such as fixed Lecture or recitation slots
+     * @param lessonType
+     * @param semester
+     * @return unselectableLessonId
+     */
+    public String getUnselectableLessonId(LessonType lessonType, SemestersEnum semester) {
         requireNonNull(lessonMap);
 
-        return Optional.of(lessonMap.get(semester)).map(semesterMap -> semesterMap.get(lt)).get();
+        //safe to assume that keySet only has one element in it because lesson is unselectable.
+        return Optional.of(lessonMap.get(semester)).map(semesterMap -> semesterMap.get(lessonType))
+                .map(lessonSet -> lessonSet.keySet().toArray()[0]).get().toString();
     }
 
     /**
