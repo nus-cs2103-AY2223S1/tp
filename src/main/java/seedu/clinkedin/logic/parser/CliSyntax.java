@@ -46,19 +46,20 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_NOTE = new Prefix("note/");
-
     public static final Prefix PREFIX_LINK = new Prefix(("l/"));
     public static final Prefix PREFIX_SKILLTAG = new Prefix(("st/"));
     public static final Prefix PREFIX_DEGREETAG = new Prefix(("dt/"));
     public static final Prefix PREFIX_JOBTYPETAG = new Prefix(("jtt/"));
+    public static final Prefix PREFIX_PATH = new Prefix("path/");
     public static final Prefix PREFIX_RATING = new Prefix("rate/");
     private static ArrayList<Prefix> prefixTags = new ArrayList<>(Arrays.asList(PREFIX_SKILLTAG, PREFIX_DEGREETAG,
             PREFIX_JOBTYPETAG));
     private static ArrayList<Prefix> prefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
             PREFIX_ADDRESS, PREFIX_SKILLTAG, PREFIX_DEGREETAG, PREFIX_JOBTYPETAG, PREFIX_STATUS, PREFIX_NOTE,
-            PREFIX_RATING, PREFIX_LINK));
+            PREFIX_PATH, PREFIX_RATING, PREFIX_LINK));
+    // Will there be PREFIX_NOTE in this?
     private static ArrayList<Prefix> uniquePrefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE,
-            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STATUS));
+            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STATUS, PREFIX_RATING, PREFIX_NOTE));
 
     /**
      * Contains all user-executable command classes that are used in Clinkedin.
@@ -80,7 +81,9 @@ public class CliSyntax {
             ListCommand.class,
             NoteCommand.class,
             RateCommand.class,
-            StatsCommand.class);
+            StatsCommand.class,
+            ExportCommand.class,
+            ImportCommand.class);
 
     /**
      * Adds a tag prefix to the list of prefixes.
