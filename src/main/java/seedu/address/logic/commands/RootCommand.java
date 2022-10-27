@@ -16,6 +16,7 @@ import picocli.CommandLine.Command;
     AssignCommand.class,
     SetCommand.class,
     TasksSummaryCommand.class,
+    TasksOfCommand.class,
     ClearCommand.class,
     ExitCommand.class,
     FindCommand.class,
