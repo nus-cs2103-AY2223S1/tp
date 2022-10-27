@@ -28,6 +28,8 @@ public class ViewCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Grades for [ %1$s ]:";
+    public static final String MESSAGE_EMPTY_GRADES_LIST = "No grades have been given to [ %1$s ]. "
+            + "Add grades with [ " + GradeCommand.COMMAND_WORD + " ] command.";
 
     private final Index index;
 
@@ -63,11 +65,13 @@ public class ViewCommand extends Command {
                 .orElseThrow(AssertionError::new)
                 .getSessionDataList();
 
-
         return new CommandResult(getCommandMessage(sessionDataList, student));
     }
 
     public static String getCommandMessage(List<SessionData> sessionDataList, Student student) {
+        if (sessionDataList.isEmpty()) {
+            return String.format(MESSAGE_EMPTY_GRADES_LIST, student.getName());
+        }
         StringJoiner sj = new StringJoiner("\n");
         sj.add(String.format(MESSAGE_SUCCESS, student.getName()));
         for (int i = 0; i < sessionDataList.size(); ++i) {
