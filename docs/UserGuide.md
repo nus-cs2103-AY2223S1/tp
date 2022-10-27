@@ -172,6 +172,19 @@ Examples:
 * `remind 2 r/update client information d/20-10-2022` adds a reminder to the 2nd person in the address book.
 * `find Betsy` followed by `remind 1 r/buy gift d/25-10-2022` adds a reminder linked to the 1st person in the result of the `find` command, which would be `Betsy`.
 
+### Deleting a reminder : `deleteR`
+
+Deletes a reminder from the list of reminders.
+
+Format: `deleteR INDEX`
+
+* Deletes the reminder at the specified `INDEX`.
+* The index refers to the index number shown in the displayed reminder list.
+* The index **must be a positive integer** 1, 2, 3, ...
+
+Examples:
+* `deleteR 2` deletes the 2nd reminder in the reminder list.
+
 ### Updating insurance information about a contact : `insurance`
 
 Edits whether a contact has the four main types of insurance, namely health, disability, critical illness and life insurance.
@@ -219,6 +232,7 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 | **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`, `delete n/paul`                                                                              |
 | **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                   |
 | **List**   | `list`                                                                                                                                              |
-| **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                     |                                                               
-| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`                                                                                                           
-| **Help**   | `help`                                     
+| **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                     |
+| **DeleteR** | `deleteR INDEX`<br> e.g., `deleteR 1`                                                                              |
+| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`|                                                                                                           
+| **Help**   | `help` |                                     
