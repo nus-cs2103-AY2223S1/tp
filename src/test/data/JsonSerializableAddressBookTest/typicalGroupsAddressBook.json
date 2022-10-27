@@ -20,7 +20,8 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "tagged" : [ ],
-    "assignments": { }
+    "assignments": { },
+    "personGroup" : [ "Team Project", "Team Coursework" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -70,5 +71,8 @@
   }, {
     "members" : ["Elle Meyer", "Fiona Kunz", "George Best"],
     "groupName" : "Oral Presentation"
+  }, {
+    "members" : ["Carl Kurz"],
+    "groupName" : "Team Coursework"
   } ]
 }

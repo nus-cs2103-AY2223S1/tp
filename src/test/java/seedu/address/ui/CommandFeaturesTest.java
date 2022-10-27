@@ -25,7 +25,7 @@ public class CommandFeaturesTest {
 
     private static final CommandFeatures ASSIGNTASK_COMMAND_FEATURES = new CommandFeatures(
             "assigntask",
-            "Assigns a task to a user with the given name in a group.",
+            "Assigns a task to a person with the given name in a group.",
             "assigntask NAME g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]",
             "assigntask Alice g/Group Alpha task/Coursework 0 w/High d/2022-01-01 23:59"
     );

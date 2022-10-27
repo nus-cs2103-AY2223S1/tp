@@ -86,33 +86,40 @@ public class CommandFeatures {
             "displaygroup CS2103T Team Project"
     );
 
+    private static final CommandFeatures LISTGROUPS_COMMAND_FEATURES = new CommandFeatures(
+            "listgroups",
+            "Lists all existing groups in TABS.",
+            "listgroups",
+            "listgroups"
+    );
+
     /**
      * TASK COMMANDS
      */
     private static final CommandFeatures ASSIGNTASK_COMMAND_FEATURES = new CommandFeatures(
             "assigntask",
-            "Assigns a task to a user with the given name in a group.",
+            "Assigns a task to a person with the given name in a group.",
             "assigntask NAME g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]",
             "assigntask Alice g/Group Alpha task/Coursework 0 w/High d/2022-01-01 23:59"
     );
 
     private static final CommandFeatures DELETETASK_COMMAND_FEATURES = new CommandFeatures(
             "deletetask",
-            "Deletes a task from a user with the given name in a group.",
+            "Deletes a task from a person with the given name in a group.",
             "deletetask NAME g/GROUP task/TASK",
             "deletetask Alice g/Group Alpha task/Coursework 0"
     );
 
     private static final CommandFeatures ASSIGNTASKALL_COMMAND_FEATURES = new CommandFeatures(
             "assigntaskall",
-            "Assigns a task to all users in a group. Members with the same task are ignored.",
+            "Assigns a task to all persons in a group. Members with the same task are ignored.",
             "assigntaskall g/GROUP task/TASKw/WORKLOAD d/DEADLINE",
             "assigntaskall g/Group Alpha task/Coursework 0 w/High d/2022-01-01 23:59"
     );
 
     private static final CommandFeatures DELETETASKALL_COMMAND_FEATURES = new CommandFeatures(
             "deletetaskall",
-            "Deletes a task from all users in a group. Members without this task are ignored.",
+            "Deletes a task from all persons in a group. Members without this task are ignored.",
             "deletetaskall g/GROUP task/TASK",
             "deletetaskall g/Group Alpha task/Coursework 0"
     );
@@ -186,7 +193,8 @@ public class CommandFeatures {
                 DELETEGROUP_COMMAND_FEATURES,
                 ADDMEMBER_COMMAND_FEATURES,
                 DELETEMEMBER_COMMAND_FEATURES,
-                DISPLAYGROUP_COMMAND_FEATURES
+                DISPLAYGROUP_COMMAND_FEATURES,
+                LISTGROUPS_COMMAND_FEATURES
         );
     }
 
