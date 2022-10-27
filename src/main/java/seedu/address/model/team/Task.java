@@ -30,7 +30,7 @@ public class Task {
     /**
      * Name of the task.
      */
-    private String name;
+    private final String name;
 
     /**
      * Team member(s) assigned to be in charge of this task.
@@ -103,20 +103,20 @@ public class Task {
         if (deadline == null) {
             return "";
         } else {
-            return String.format("(By %s)", deadline.format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
+            return String.format(" (By %s)", deadline.format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
         }
+    }
+
+    public Optional<LocalDateTime> getDeadline() {
+        return Optional.of(deadline);
     }
 
     public String getDeadlineStorage() {
         if (deadline == null) {
             return "";
         } else {
-            return deadline.format(DateTimeFormatter.ofPattern(Task.DATE_FORMAT));
+            return deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         }
-    }
-
-    public Optional<LocalDateTime> getDeadline() {
-        return Optional.of(deadline);
     }
 
     /**
@@ -145,7 +145,7 @@ public class Task {
 
     /**
      * Checks if task has already been assigned to the specified assignee.
-     * @param assignee
+     * @param assignee The specified assignee.
      * @return true if the task has been assigned to the assignee before, false otherwise.
      */
     public boolean checkAssignee(Person assignee) {

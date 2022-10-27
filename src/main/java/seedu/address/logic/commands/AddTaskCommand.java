@@ -2,24 +2,31 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
 
+
 /**
  * Adds a task to the current team.
  */
+@CommandLine.Command(name = "task")
 public class AddTaskCommand extends Command {
-    public static final String COMMAND_WORD = "add_task";
+    public static final String COMMAND_WORD = "add task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the current team.\n"
@@ -39,33 +46,46 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_PERSON_NOT_EXISTS = "The team member you are trying to assign "
             + "the task to does not exist";
 
-    private final Task task;
+    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true)
+    private String taskName;
+
+    @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "")
     private String[] assignees;
+
+    @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG}, defaultValue = "")
+    private String deadline;
 
     /**
      * Creates an AddTaskCommand to add a {@code Task} to the current {@code Team}.
-     *
-     * @param taskName the name of the task to be added.
      */
-    public AddTaskCommand(String taskName, String[] assignees, LocalDateTime deadline) {
-        this.task = new Task(taskName, List.of(), false, deadline);
-        if (!assignees.equals(null)) {
-            this.assignees = assignees;
-        }
+    public AddTaskCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<String> assigneesList;
+        if (assignees.length == 1 && Arrays.asList(assignees).contains("")) {
+            assigneesList = List.of();
+        } else {
+            assigneesList = Arrays.asList(assignees);
+        }
+        LocalDateTime date;
+        if (deadline.equals("")) {
+            date = null;
+        } else {
+            date = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern(Task.DATE_FORMAT));
+        }
+        Task task = new Task(taskName, List.of(), false, date);
         if (model.getTeam().hasTask(task)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         List<Person> memberList = model.getTeam().getTeamMembers();
         List<Person> assigneePersonList = memberList.stream()
-                .filter(member -> Arrays.asList(assignees)
+                .filter(member -> assigneesList
                         .contains(member.getName().fullName))
                 .collect(Collectors.toList());
-        if (assigneePersonList.size() < memberList.size()) {
+        if (assigneePersonList.size() < assigneesList.size()) {
             throw new CommandException(MESSAGE_PERSON_NOT_EXISTS);
         }
         for (Person assignee : assigneePersonList) {
@@ -79,6 +99,6 @@ public class AddTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddTaskCommand // instanceof handles nulls
-                && task.equals(((AddTaskCommand) other).task)); // state check
+                && taskName.equals(((AddTaskCommand) other).taskName)); // state check
     }
 }

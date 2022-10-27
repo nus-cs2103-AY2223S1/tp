@@ -1,17 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -23,8 +23,9 @@ import seedu.address.model.team.Task;
 /**
  * Edits the details of an existing task in TruthTable.
  */
+@CommandLine.Command(name = "task")
 public class EditTaskCommand extends Command {
-    public static final String COMMAND_WORD = "edit_task";
+    public static final String COMMAND_WORD = "edit task";
 
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Edits a current task identified by the index number used in the displayed task list. \n"
@@ -37,20 +38,30 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists. ";
 
-    private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
 
+    @CommandLine.Parameters(arity = "1")
+    private Index index;
+
+    @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
+    private Arguments arguments;
+
+    private static class Arguments {
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG})
+        private String name;
+
+        @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG})
+        private String deadline;
+
+        @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "")
+        private String[] assignees;
+
+    }
     /**
      * Creates an EditTaskCommand to edit a {@code Task}.
-     *
-     * @param index of the task in the task list to edit
-     * @param editTaskDescriptor details to edit the task with
      */
-    public EditTaskCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editTaskDescriptor);
-        this.index = index;
-        this.editTaskDescriptor = editTaskDescriptor;
+    public EditTaskCommand() {
+        this.editTaskDescriptor = new EditTaskDescriptor();
     }
 
     /**
@@ -80,6 +91,16 @@ public class EditTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (arguments.assignees.length != 1 || !Arrays.asList(arguments.assignees).contains("")) {
+            editTaskDescriptor.setAssignees(Arrays.asList(arguments.assignees));
+        }
+        if (arguments.deadline != null) {
+            editTaskDescriptor.setDeadline(LocalDateTime.parse(arguments.deadline,
+                    DateTimeFormatter.ofPattern(Task.DATE_FORMAT)));
+        }
+        if (arguments.name != null) {
+            editTaskDescriptor.setName(arguments.name);
+        }
         List<Task> taskList = model.getTeam().getTaskList();
 
         if (index.getZeroBased() >= taskList.size()) {
@@ -91,7 +112,7 @@ public class EditTaskCommand extends Command {
         List<Person> memberList = model.getTeam().getTeamMembers();
         if (editTaskDescriptor.getAssignees().isPresent()) {
             List<Person> assigneePersonList = memberList.stream()
-                    .filter(member -> Arrays.asList(editTaskDescriptor.getAssignees().get())
+                    .filter(member -> editTaskDescriptor.getAssignees().get()
                             .contains(member.getName().fullName))
                     .collect(Collectors.toList());
             for (Person assignee : assigneePersonList) {
@@ -134,7 +155,7 @@ public class EditTaskCommand extends Command {
 
         private LocalDateTime deadline;
 
-        private String[] assignees;
+        private List<String> assignees;
 
         public EditTaskDescriptor() {
         }
@@ -171,11 +192,11 @@ public class EditTaskCommand extends Command {
             this.deadline = date;
         }
 
-        public Optional<String[]> getAssignees() {
+        public Optional<List<String>> getAssignees() {
             return Optional.ofNullable(assignees);
         }
 
-        public void setAssignees(String[] assignees) {
+        public void setAssignees(List<String> assignees) {
             this.assignees = assignees;
         }
 

@@ -30,7 +30,7 @@ public class EditLinkDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code name} of the {@code EditLinkDescriptor} that we are building.
      */
     public EditLinkDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -38,7 +38,7 @@ public class EditLinkDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code url} of the {@code EditLinkDescriptor} that we are building.
      */
     public EditLinkDescriptorBuilder withUrl(String url) {
         descriptor.setUrl(new Url(url));
