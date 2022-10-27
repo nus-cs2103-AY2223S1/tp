@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import seedu.pennywise.logic.commands.ViewCommand.ViewEntriesDescriptor;
 import seedu.pennywise.model.entry.Date;
 import seedu.pennywise.model.entry.EntryType;
-import seedu.pennywise.model.entry.GraphType;
 
 /**
  * A utility class to help with building ViewEntriesDescriptor objects.

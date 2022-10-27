@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.pennywise.logic.commands.AddCommand;
 import seedu.pennywise.logic.commands.ClearCommand;
-import seedu.pennywise.logic.commands.CommandTestUtil;
 import seedu.pennywise.logic.commands.DeleteCommand;
 import seedu.pennywise.logic.commands.EditCommand;
 import seedu.pennywise.logic.commands.ExitCommand;
@@ -23,7 +22,6 @@ import seedu.pennywise.logic.commands.ViewCommand;
 import seedu.pennywise.logic.parser.exceptions.ParseException;
 import seedu.pennywise.model.entry.Entry;
 import seedu.pennywise.model.entry.EntryType;
-import seedu.pennywise.model.entry.GraphType;
 import seedu.pennywise.testutil.EditEntryDescriptorBuilder;
 import seedu.pennywise.testutil.EntryUtil;
 import seedu.pennywise.testutil.ExpenditureBuilder;

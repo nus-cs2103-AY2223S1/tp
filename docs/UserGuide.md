@@ -51,9 +51,9 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 
     - **`delete`**`3 t/e` : Deletes the 3rd entry shown in the expenditure list.
 
-    - **`view`**`t/e g/c` : View a PieChart of all expenses.
+    - **`view`**`t/e` : View a PieChart of all expenses.
 
-    - **`view`**`t/e g/m mo/2022-08` : View a LineGraph of all expenses on August 2022.
+    - **`view`**`t/e mo/2022-08` : View a LineGraph of all expenses on August 2022.
 
     - **`clear`** : Deletes all entries.
 
