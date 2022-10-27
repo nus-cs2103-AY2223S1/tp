@@ -207,6 +207,24 @@ Examples:
 
 * `findT milk` followed by `deleteT 1` deletes the first result of the `findT` command.
 
+### Editing a task: `editT`
+
+Edits the information fields (e.g. description, deadline) of an existing task in the address book.
+
+Format: `editT INDEX [d/DESCRIPTION] [D/DEADLINE]`
+
+* Index of a task is its index number on the task list.
+
+* INDEX must be a positive integer more than 0.
+
+* At least one of the optional fields must be provided.
+
+* Input values will replace existing values.
+
+Example:
+
+* `editT 1 d/sleep D/22-10-2022` edits the first task’s description to be sleep and deadline to be 22-10-2022.
+
 ### Marking task as done: `markT`
 
 Marks a task in the task list as done.
@@ -319,6 +337,28 @@ Example:
 
 * `progressT cs2103t` will show the percentage of tasks with label `cs2103t` that are completed, then list all tasks with labels matching at least one keyword.
 
+### Sorting all tasks by deadline: `sortD`
+
+Sorts all tasks in the task list by deadline.
+
+* Adding or editing a task will not affect the sorted order of the task list.
+
+* The list remains in this sorted order until a different sort command is used.
+
+Format: `sortD`
+
+### Sorting all tasks by id: `sortI`
+
+Sorts all tasks in the task list by id.
+
+* Id is the order in which the tasks were added.
+
+* Adding or editing a task will not affect the sorted order of the task list.
+
+* The list remains in this sorted order until a different sort command is used.
+
+Format: `sortI`
+
 ## Section 3: Labels
 
 ### Listing all labels: `listL`
@@ -370,6 +410,25 @@ Example:
 
 * `deleteL t/14 l/CS2101` will remove the label "CS2101" from the 14th task on the task list.
 
+### Delete all contacts and tasks by label: `deleteA`
+
+Delete all contacts and tasks who contain the label(s) specified.
+
+Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
+
+* The label is also deleted.
+
+* The label is case-sensitive, e.g. `cs2103t` will not delete labels named `CS2103T`.
+
+* Multiple labels can be specified. 
+
+* If a contact/task has multiple labels, it will not be deleted as long as it has at least one label.
+  Instead, the labels will be removed from the contact/task.
+  
+Throws an exception if:
+- Label does not exist
+- No label is provided
+
 ## Automatic tab switching
 
 Depending on the command you enter, you will see the open tab in the GUI switch automatically.
@@ -413,13 +472,16 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 | **listT**     | `listT`                                                                                                                                                |
 | **addT**      | `addT d/DESCRIPTION D/DEADLINE`                                                                                                                        |
 | **deleteT**   | `deleteT INDEX` <br/> e.g., `deleteT 12`                                                                                                               |
+| **editT**     | `editT INDEX [d/DESCRIPTION] [D/DEADLINE]` <br> e.g., `editT 1 d/sleep D/22-10-2022`                                                                   |
 | **markT**     | `markT INDEX` <br> e.g., `mark 1`                                                                                                                      |
 | **unmarkT**   | `unmarkT INDEX` <br> e.g., `unmark 1`                                                                                                                  |
 | **findT**     | `findT KEYWORD [MORE_KEYWORDS]` <br> e.g., `findT cs2103t`                                                                                             |
 | **filterT**   | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |
 | **remindT**   | `remindT DEADLINE` <br/> e.g., `remindT 12-09-2022`                                                                                                    |
 | **progressT** | `progressT KEYWORD [MORE_KEYWORDS]` <br/> e.g., `progressT cs2103t`                                                                                    |
+| **sortD**     | `sortD`                                                                                                                                                 |
+| **sortI**     | `sortI`                                                                                                                                                 |
 | **listL**     | `listL`                                                                                                                                                |
 | **addL**      | `addL c/INDEX n/LABEL_NAME` OR  `addL t/INDEX n/LABEL_NAME`                                                                                            |
 | **deleteL**   | `deleteL c/INDEX n/LABEL_NAME` OR `deleteL t/INDEX n/LABEL_NAME`                                                                                       |
-
+| **deleteA**   | `deleteA LABEL_NAME [MORE_LABEL_NAMES]` <br> e.g., `deleteA cs2103t`                                                                                   |
