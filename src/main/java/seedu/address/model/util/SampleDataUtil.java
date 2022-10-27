@@ -1,11 +1,9 @@
 package seedu.address.model.util;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.logic.nusmodules.NusModulesParser;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.assignmentdetails.AssignmentDetails;
