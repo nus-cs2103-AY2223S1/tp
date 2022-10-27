@@ -130,10 +130,6 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
             String trimmedArgs = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()).toString().trim();
 
-            if (trimmedArgs.isEmpty()) {
-                throw new ParseException("Input for finding by remark should not be empty");
-            }
-
             final String finalPredicateString = createPredicateString(trimmedArgs);
 
             Predicate<Remark> remarkPredicate = (remark -> remark.toString().toLowerCase()

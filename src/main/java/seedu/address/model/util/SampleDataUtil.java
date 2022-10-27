@@ -6,6 +6,10 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Doctor;
+import seedu.address.model.appointment.MedicalTest;
+import seedu.address.model.appointment.Slot;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
@@ -49,10 +53,25 @@ public class SampleDataUtil {
         };
     }
 
+    public static Appointment[] getSampleAppointments() {
+        return new Appointment[]{
+            new Appointment(new Name("Alex Yeoh"), new MedicalTest("Blood Test"),
+                    new Slot("2022-09-11 10:00"), new Doctor("Dr Tan")),
+            new Appointment(new Name("Bernice Yu"), new MedicalTest("X-Ray"),
+                    new Slot("2022-09-15 11:00"), new Doctor("Dr Lim")),
+            new Appointment(new Name("Charlotte Oliveiro"), new MedicalTest("Blood Test"),
+                    new Slot("2022-09-20 12:00"), new Doctor("Dr Tan")),
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Patient samplePatient : getSamplePatients()) {
             sampleAb.addPatient(samplePatient);
+        }
+
+        for (Appointment sampleAppointment : getSampleAppointments()) {
+            sampleAb.addAppointment(sampleAppointment);
         }
         return sampleAb;
     }
