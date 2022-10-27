@@ -174,7 +174,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_REMARK_DISPLAYED_INDEX,
                     EditClientCommand.MESSAGE_USAGE), pe);
         }
-//        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         if (arguments.length < 2 || arguments[1].isEmpty()) {
             throw new ParseException(EditRemarkCommand.MESSAGE_NOT_EDITED);
