@@ -1,4 +1,4 @@
-package seedu.address.model.person.subject;
+package seedu.address.model.person;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.util.DateUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents the attendance of the student
@@ -15,7 +16,7 @@ import seedu.address.commons.util.DateUtil;
 public class Attendance {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Attendance should only contain a date followed by a \"1\" or a \"0\", and it should not be blank";
+        "Attendance should only contain a date followed by a \"1\" or a \"0\"";
 
     private static final Pattern FORMAT = Pattern.compile("date/(?<date>.+) attendance/(?<attendance>[01])");
 
@@ -25,7 +26,14 @@ public class Attendance {
      * Constructs an {@code Attendance} object.
      */
     public Attendance() {
-        personAttendance = new HashMap<>();
+        this(new HashMap<>());
+    }
+
+    /**
+     * Constructs an {@code Attendance} object with a given date/value HashMap.
+     */
+    public Attendance(HashMap<String, Integer> hashMap) {
+        personAttendance = hashMap;
     }
 
     /**
@@ -36,6 +44,9 @@ public class Attendance {
     public static boolean isValidAttendance(String test) {
         // Input should be in the form date/DATE attendance/[1/0]
         // e.g. date/13 Jan 2022 attendance/1
+        if (test.isBlank()) {
+            return true; // a student will start with a blank attendance
+        }
         Matcher matcher = FORMAT.matcher(test.trim());
         if (!matcher.matches()) {
             return false;
@@ -43,6 +54,38 @@ public class Attendance {
         String date = matcher.group("date");
         date += " 00:00"; // scuffed implementation to avoid Temporal errors
         return DateUtil.isValidDateString(date);
+    }
+
+    /**
+     * Parses a given String into an HashMap.
+     * @param json the String (json) to be parsed
+     * @return A HashMap representing the attendance of the student
+     * @throws ParseException
+     */
+    public static HashMap<String, Integer> parseAttendanceFromJson(String json)
+            throws ParseException {
+        // For empty attendances
+        if (json.isBlank()) {
+            return new HashMap<>();
+        }
+        String trimmedInput = json.trim();
+        String[] toParse = trimmedInput.split("%%");
+        HashMap<String, Integer> tempMap = new HashMap<>();
+        for (String s : toParse) {
+            if (!Attendance.isValidAttendance(s)) {
+                throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+            } else {
+                Matcher matcher = FORMAT.matcher(s.trim());
+                if (!matcher.matches()) {
+                    System.out.println("failed valid check: " + s);
+                    throw new ParseException(Attendance.MESSAGE_CONSTRAINTS); // "initializes" matcher
+                }
+                String date = matcher.group("date");
+                int attendance = Integer.parseInt(matcher.group("attendance"));
+                tempMap.put(date, attendance);
+            }
+        }
+        return tempMap;
     }
 
     /**
@@ -80,8 +123,17 @@ public class Attendance {
 
     @Override
     public String toString() {
-        int[] attendanceArray = getAttendanceDetails();
-        return String.format("Attendance: %d/%d", attendanceArray[0], attendanceArray[1]);
+        StringBuilder sb = new StringBuilder();
+        for (String key : personAttendance.keySet()) {
+            sb.append("date/").append(key).append(" attendance/").append(personAttendance.get(key)).append("%%");
+        }
+        return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof Attendance // instanceof handles nulls
+            && personAttendance.equals(((Attendance) other).personAttendance)); // state check
+    }
 }

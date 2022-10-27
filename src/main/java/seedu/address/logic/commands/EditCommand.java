@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -20,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -44,6 +47,8 @@ public class EditCommand extends Command {
                                                + "[" + PREFIX_PHONE + "PHONE] "
                                                + "[" + PREFIX_EMAIL + "EMAIL] "
                                                + "[" + PREFIX_ADDRESS + "ADDRESS] "
+                                               + "[" + PREFIX_STUDENTCLASS + "CLASS] "
+                                               + "[" + PREFIX_REMARK + "REMARK] "
                                                + "[" + PREFIX_TAG + "TAG]...\n"
                                                + "Example: " + COMMAND_WORD + " 1 "
                                                + PREFIX_PHONE + "91234567 "
@@ -81,14 +86,14 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         StudentClass updatedStudentClass =
             editPersonDescriptor.getStudentClass().orElse(personToEdit.getStudentClass());
+        Attendance updatedAttendance = editPersonDescriptor.getAttendance().orElse(personToEdit.getAttendance());
+        SubjectHandler updatedSubjectHandler =
+                editPersonDescriptor.getSubjectHandler().orElse(personToEdit.getSubjectHandler());
         Set<Remark> updatedRemarks = editPersonDescriptor.getRemarks().orElse(personToEdit.getRemarks());
-        // SubjectHandler updatedSubjects = editPersonDescriptor.getSubject().orElse(personToEdit.getSubjectsTaken());
-        // Temporary solution to edit subjects
-        SubjectHandler updatedSubjects = new SubjectHandler();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStudentClass,
-                          updatedRemarks, updatedSubjects, updatedTags);
+                         updatedAttendance, updatedRemarks, updatedSubjectHandler, updatedTags);
     }
 
     @Override
@@ -140,6 +145,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private StudentClass studentClass;
+        private Attendance attendance;
         private Set<Remark> remarksList;
         private SubjectHandler subjectHandler;
         private Set<Tag> tags;
@@ -157,9 +163,11 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setStudentClass(toCopy.studentClass);
+            setAttendance(toCopy.attendance);
             setRemarks(toCopy.remarksList);
             setSubjectHandler(toCopy.subjectHandler);
             setTags(toCopy.tags);
+
         }
 
         /**
@@ -210,12 +218,24 @@ public class EditCommand extends Command {
             this.studentClass = studentClass;
         }
 
+        public Optional<Attendance> getAttendance() {
+            return Optional.ofNullable(attendance);
+        }
+
+        public void setAttendance(Attendance attendance) {
+            this.attendance = attendance;
+        }
+
         public Optional<Set<Remark>> getRemarks() {
             return (remarksList != null) ? Optional.of(Collections.unmodifiableSet(remarksList)) : Optional.empty();
         }
 
         public void setRemarks(Set<Remark> remarksList) {
             this.remarksList = (remarksList != null) ? new HashSet<>(remarksList) : null;
+        }
+
+        public Optional<SubjectHandler> getSubjectHandler() {
+            return Optional.ofNullable(subjectHandler);
         }
 
         /**

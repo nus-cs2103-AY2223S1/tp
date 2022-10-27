@@ -11,14 +11,16 @@ public class AssessmentTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-            new Assessment(null, 0.0, 0.0, 0.0));
+            new Assessment(null, 0.0, 0.0,
+                0.0, 0.0));
     }
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "";
         assertThrows(IllegalArgumentException.class, () ->
-            new Assessment(invalidName, 10.0, 10.0, 10.0));
+            new Assessment(invalidName, 10.0, 10.0,
+                10.0, 5.0));
     }
 
     @Test

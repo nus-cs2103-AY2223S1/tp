@@ -1,14 +1,9 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.FindCommandParser;
-import seedu.address.model.person.subject.Subject;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
@@ -22,12 +17,17 @@ public class FindCommandPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        boolean checkName =
-            keywords.get(0) != null && stringContainsWord(person.getName().fullName, keywords.get(0));
-        boolean checkClass =
-            keywords.get(1) != null && stringContainsWord(person.getStudentClass().value, keywords.get(1));
-        boolean checkSubject =
-            keywords.get(2) != null && person.getSubjectHandler().subjectsTakenContainsWord(keywords.get(2));
+        System.out.println(keywords);
+        boolean checkName = keywords.stream()
+                                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName,
+                                                                                           keyword));
+        boolean checkClass = keywords.stream()
+                                     .anyMatch(
+                                         keyword -> StringUtil.containsWordIgnoreCase(person.getStudentClass().value,
+                                                                                      keyword));
+        boolean checkSubject = keywords.stream()
+                                       .anyMatch(keyword ->
+                person.getSubjectsTaken().toString().toLowerCase().contains(keyword));
         return checkName || checkClass || checkSubject;
     }
 
@@ -41,6 +41,8 @@ public class FindCommandPredicate implements Predicate<Person> {
      * @return A boolean for if keyword(s) is contained in sentence.
      */
     private boolean stringContainsWord(String sentence, String keywords) {
+        assert sentence != null : "Sentence cannot be null";
+        assert keywords != null : "Keywords cannot be null";
         String[] keywordArr = keywords.split(" ");
         for (String keyword: keywordArr) {
             if (StringUtil.containsWordIgnoreCase(sentence, keyword)) {

@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -7,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.subject.Subject;
 import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 
@@ -14,7 +16,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
@@ -29,14 +31,15 @@ public class Person {
     private final StudentClass studentClass;
     private final Set<Remark> remarksList;
     private final SubjectHandler subjectHandler;
+    private final Attendance attendance;
 
     /**
      * Every field must be present and not null (except attendance, remark and grade).
      */
     public Person(Name name, Phone phone, Email email, Address address, StudentClass studentClass,
-                  Set<Remark> remarksList,
-                  SubjectHandler subjectsTaken, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, studentClass, remarksList, subjectsTaken, tags);
+                  Attendance attendance, Set<Remark> remarksList, SubjectHandler subjectsTaken,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, studentClass, attendance, remarksList, subjectsTaken, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -45,8 +48,10 @@ public class Person {
 
         // Added in v1.2
         this.studentClass = studentClass;
+        this.attendance = attendance;
         this.remarksList = remarksList;
         this.subjectHandler = subjectsTaken;
+
     }
 
     public Name getName() {
@@ -69,13 +74,24 @@ public class Person {
         return studentClass;
     }
 
+    public Attendance getAttendance() {
+        return attendance;
+    }
+
     public Set<Remark> getRemarks() {
-        return Collections.unmodifiableSet(remarksList);
+        return remarksList;
     }
 
     public SubjectHandler getSubjectHandler() {
         return subjectHandler;
     }
+
+
+    public Set<Subject> getSubjectsTaken() {
+        return subjectHandler.getSubjectsTaken();
+    }
+
+    // public String getGrades() {return getSubjectsTaken().getGrades();}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -83,6 +99,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setRemarks(Set<Remark> remarksList) {
+        remarksList = (remarksList != null) ? new HashSet<>(remarksList) : null;
     }
 
     /**
@@ -125,6 +145,7 @@ public class Person {
                && otherPerson.getAddress().equals(getAddress())
                && otherPerson.getTags().equals(getTags())
                && otherPerson.getStudentClass().equals(getStudentClass())
+               && otherPerson.getAttendance().equals(getAttendance())
                && otherPerson.getRemarks().equals(getRemarks());
     }
 
@@ -140,6 +161,8 @@ public class Person {
                .append(getAddress())
                .append("; Class: ")
                .append(getStudentClass())
+               .append("; Attendance: ")
+               .append(getAttendance())
                .append("; Remarks: ")
                .append(getRemarks())
                .append("; Subject: ")
@@ -153,4 +176,26 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Compares this object with the specified object for order.  Returns a
+     * negative integer, zero, or a positive integer as this object is less
+     * than, equal to, or greater than the specified object.
+     *
+     * @param p the object to be compared.
+     * @return a negative integer, zero, or a positive integer as this object
+     *     is less than, equal to, or greater than the specified object.
+     * @throws NullPointerException if the specified object is null
+     * @throws ClassCastException   if the specified object's type prevents it
+     *                              from being compared to this object.
+     */
+    public int compareTo(Person p) {
+        requireNonNull(p);
+        Double curr = this.getSubjectsTaken()
+                .stream()
+                .map(Subject::getTotalPercentage).mapToDouble(Double::doubleValue).sum();
+        Double comp = p.getSubjectsTaken()
+                .stream()
+                .map(Subject::getTotalPercentage).mapToDouble(Double::doubleValue).sum();
+        return curr.compareTo(comp);
+    }
 }

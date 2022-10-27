@@ -12,6 +12,15 @@ title: Developer Guide
 
 - {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
+| Code Author | Code Used    | Reason               |
+|-------------|--------------|----------------------|
+| e1010101    | [DateUtil](https://github.com/e1010101/ip/blob/master/src/main/java/util/DateUtils.java) | Ease of date parsing |
+|             |              |                      |
+|             |              |                      |
+|             |              |                      |
+|             |              |                      |
+|             |              |                      |
+
 ---
 
 ## **Setting up, getting started**
@@ -38,7 +47,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [Main](https://github.com/AY2223S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [MainApp](https://github.com/AY2223S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -71,7 +81,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [UiManager.java](https://github.com/AY2223S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/UiManager.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -91,7 +101,7 @@ The `LoginWindow` is a separate window that is displayed when the user first sta
 The `LoginWindow` is responsible for authenticating the user and retrieving the user's data from the `Storage` component.
 The `LoginWindow` will then pass the user's data to the `MainWindow` so that the `MainWindow` can display the user's data.
 
-`LoginWindow` inherits from the abstract `UiPart` class, just like the `MainWindow`. 
+`LoginWindow` inherits from the abstract `UiPart` class, just like the `MainWindow`.
 As of 20/10/2022, it consists of 2 `TextBox` FXML components and a "submit" `Button` FXML component.
 
 We plan to add a new UI component in our implementation: the `ImportCSVButton`.
@@ -171,6 +181,38 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Edit feature
+
+#### Current Implementation
+
+The edit command consists of these following classes:
+
+- `EditCommand` which extends `Command`
+- `EditCommandParser` which extends `Parser<EditCommand>`
+  
+As with all other commands, the edit command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object.
+It allows the editing of a person's name, phone, email, address, class, remarks and tags.
+
+The command will be used as such:
+- `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CLASS] [rem/REMARK] [t/TAG]`
+- Words in `UPPER_CASE` are the inputs to be supplied by the user.
+- Words in square brackets are optional, but at least one of them must be present.
+
+### \[Implemented\] Sort feature
+
+#### current Implementation
+
+The sort command consists of these following classes:
+
+- `SortCommand` which extends `Command`
+- `SortCommandParser` which extends `Parser<SortCommand>`
+
+As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It sorts the list of students by their grades in ascending or descending order as specified by the user.
+
+The command will be used as such:
+- sort by grade in ascending order - e.g.`sort asc`
+- sort by grade in descending order - e.g. `sort desc`
 
 ### \[Proposed\] Undo/redo feature
 
@@ -288,20 +330,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I can …​                                     | So that…​                                               |
-| -------- | -------------------------------------- | -------------------------------------------- | ------------------------------------------------------- | --- | --- | --- |
+| Priority | As a ... | I want to ... | so that I can ... |
+| -------- | -------------------------------------- | -------------------------------------------- | ------------------------------------------------------- |
 | `* * *`  | policeman                              | find a person using part of their ID or name | I can retrieve the person's details quickly             |
-| `* * *`  | backend law enforcement staff          | add people and their details into Sherlock   | these information can be quickly and easily accessible  |
+| `* * *`  | backend law enforcement staff          | add people and their details into Watson   | these information can be quickly and easily accessible  |
 | `* * *`  | policeman                              | see a person's full criminal history         |                                                         |
-| `* * *`  | detective                              | edit a person's details in Sherlock          | I can update the system with new information            |
-| `* *`    | law enforcement security officer       | allow only specific users into the system    | the information stored in Sherlock remains confidential |
-| `*`      | law enforcement administrative officer | import information from existing databases   | I can set up Sherlock quickly                           |     |     |     |
+| `* * *`  | detective                              | edit a person's details in Watson          | I can update the system with new information            |
+| `* *`    | law enforcement security officer       | allow only specific users into the system    | the information stored in Watson remains confidential |
+| `*`      | law enforcement administrative officer | import information from existing databases   | I can set up Watson quickly                           |
 
 _{User Stories to be updated according to new project direction}_
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Sherlock` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Watson` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -310,9 +352,9 @@ _{User Stories to be updated according to new project direction}_
 **MSS**
 
 1.  User requests to list persons.
-2.  Sherlock shows a list of persons.
+2.  Watson shows a list of persons.
 3.  User requests to delete a specific person in the list.
-4.  Sherlock deletes the person.
+4.  Watson deletes the person.
 
     Use case ends.
 
@@ -334,9 +376,9 @@ _{User Stories to be updated according to new project direction}_
 **MSS**
 
 1.  User enters a person's partial/full ID or name.
-2.  Sherlock shows a list of persons with names/IDs corresponding to what was entered.
+2.  Watson shows a list of persons with names/IDs corresponding to what was entered.
 3.  User selects the person that he/she is looking for.
-4.  Sherlock displays the full details of the person.
+4.  Watson displays the full details of the person.
 
     Use case ends.
 
@@ -395,14 +437,29 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `findSubject math`<br>
+    2. Test case: `findSubject math`<br>
        Expected: All persons that have the subject `math` in the list will be shown in a new list. Timestamp in the status bar is updated.
 
-    1. Test case: `findSubject engrish`<br>
+    3. Test case: `findSubject engrish`<br>
        Expected: No person will be shown in a new list. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `findSubject`, `findSubject x`, `...` (where x is a misspelled subject)<br>
+    4. Other incorrect delete commands to try: `findSubject`, `findSubject x`, `...` (where x is a misspelled subject)<br>
        Expected: Similar to previous.
+2. Finding persons that belongs in the same class.
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    2. Test case 1: `find c/1A`<br>
+        Expected: All persons that are in class 1A will be shown in a new list. Timestamp in the status bar is updated.
+
+    3. Test case 2: `find c/1a`<br>
+       Expected: Same result as Test case 1. Keywords given by user after `c/` are not case sensitive.
+
+    4. Test case 3: `find c/2b`<br>
+       Expected: No person will be shown in a new list as no one is in class 2B. Status bar remains the same.
+
+    5. Other incorrect find commands to try: `find c/`, `find c/ `, `find c/x` (where x is a non-existent class)<br>
+       Expected: Similar to Test case 3.
 
 ### Deleting a person
 

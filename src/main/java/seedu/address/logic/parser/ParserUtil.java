@@ -10,12 +10,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.Subject;
+import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,7 +102,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String clazz} into an {@code Clazz}.
+     * Parses a {@code string} into an {@code StudentClass}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code clazz} is invalid.
@@ -112,6 +114,25 @@ public class ParserUtil {
             throw new ParseException(StudentClass.MESSAGE_CONSTRAINTS);
         }
         return new StudentClass(trimmedStudentClass);
+    }
+
+    /**
+     * Parses a {@code String} into an {@code Attendance}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Attendance parseAttendance(String attendance) throws ParseException {
+        requireNonNull(attendance);
+        return new Attendance(Attendance.parseAttendanceFromJson(attendance));
+    }
+
+    /**
+     * Parses a {@code String subjectHandler} into an {@code SubjectHandler}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static SubjectHandler parseSubjectHandler(String subjectHandler) {
+        requireNonNull(subjectHandler);
+        String trimmedSubjectHandler = subjectHandler.trim();
+        return new SubjectHandler(trimmedSubjectHandler);
     }
 
     /**
@@ -139,6 +160,18 @@ public class ParserUtil {
             remarkSet.add(parseRemark(remark));
         }
         return remarkSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> remarks} into a {@code Set<Remark>}.
+     */
+    public static Set<Subject> parseSubjects(Collection<String> subjects) throws ParseException {
+        requireNonNull(subjects);
+        final Set<Subject> subjectSet = new HashSet<>();
+        for (String subject : subjects) {
+            subjectSet.add(parseSubject(subject));
+        }
+        return subjectSet;
     }
 
     /**
@@ -182,5 +215,4 @@ public class ParserUtil {
         }
         return tagSet;
     }
-
 }

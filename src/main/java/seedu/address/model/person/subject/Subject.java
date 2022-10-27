@@ -18,9 +18,6 @@ public class Subject {
     public static final String VALIDATION_REGEX = "^[a-zA-Z]*$";
 
     public final String subjectName;
-
-    private final Attendance attendance;
-
     private final Grades grades;
 
     /**
@@ -33,7 +30,6 @@ public class Subject {
         checkArgument(isValidSubject(subjectName), MESSAGE_CONSTRAINTS);
 
         this.subjectName = subjectName;
-        this.attendance = new Attendance();
         this.grades = new Grades();
     }
 
@@ -61,20 +57,16 @@ public class Subject {
      * @param assessmentName the assessment to get the grade for
      * @return the grade for the assessment specified
      */
-    public double getGradeForAssessment(String assessmentName) {
+    public double[] getGradeForAssessment(String assessmentName) {
         return grades.getGradeForAssessment(assessmentName);
     }
 
-    /**
-     * Gets the attendance for this subject object
-     * @return the Attendance object for this subject
-     */
-    public Attendance getAttendance() {
-        return attendance;
+    public Grades getGrades() {
+        return grades;
     }
 
-    public void updateAttendance(String updatedAttendance) {
-        attendance.updateAttendance(updatedAttendance);
+    public double getTotalPercentage() {
+        return grades.getCurrentPercentage();
     }
 
     @Override
@@ -87,6 +79,18 @@ public class Subject {
         return other == this // short circuit if same object
                || (other instanceof Subject // instanceof handles nulls
                    && subjectName.equals(((Subject) other).subjectName)); // state check
+    }
+
+    /**
+     * Returns the subject into a String datatype to be stored in Json.
+     *
+     * @return a String which represents the data of the subject taken by the person.
+     */
+    public String dataString() {
+        String str = "";
+        str += subjectName + ": ";
+        str += grades.dataString() + " %%";
+        return str;
     }
 
     @Override

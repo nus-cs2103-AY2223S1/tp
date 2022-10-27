@@ -2,6 +2,7 @@ package seedu.address.model.person.subject;
 
 import java.util.HashMap;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
 
@@ -18,8 +19,22 @@ public class SubjectHandler {
         subjectsTaken = new HashMap<>();
     }
 
-    public HashMap<String, Subject> getSubjectsTaken() {
-        return subjectsTaken;
+    /**
+     * Constructs a {@code SubjectHandler} with a specified Set of Subjects.
+     */
+    public SubjectHandler(Set<Subject> subjects) {
+        subjectsTaken = new HashMap<>();
+        for (Subject subject : subjects) {
+            subjectsTaken.put(subject.getSubjectName(), subject);
+        }
+    }
+
+    /**
+     * Constructs a {@code SubjectHandler} with a String data from json.
+     */
+    public SubjectHandler(String subjectData) {
+        subjectsTaken = new HashMap<>();
+        dataToSubject(subjectData);
     }
 
     /**
@@ -38,6 +53,11 @@ public class SubjectHandler {
      */
     public Subject getSubject(String subjectName) {
         return subjectsTaken.get(subjectName);
+    }
+
+    public Set<Subject> getSubjectsTaken() {
+        return subjectsTaken.keySet().stream().map(subjectsTaken::get).collect(
+            Collectors.toSet());
     }
 
     /**
@@ -60,6 +80,56 @@ public class SubjectHandler {
         return false;
     }
 
+    /**
+     * Converts the String datatype stored in json into subjects.
+     *
+     * @param subjectData String data of the subjects taken by Person.
+     */
+    public void dataToSubject(String subjectData) {
+        String dataString = subjectData;
+        //System.out.println(dataString + "start");
+        while (!dataString.isEmpty()) {
+            String subjectName;
+            if (dataString.contains(":")) {
+                subjectName = dataString.substring(0, dataString.indexOf(":"));
+                dataString = dataString.substring(dataString.indexOf(":") + 2); //dataString without the subject name
+            } else {
+                subjectName = dataString;
+                dataString = "";
+            }
+            //System.out.println(dataString + "after subjectname");
+            Subject subject = new Subject(subjectName);
+            while (!dataString.isEmpty() && dataString.length() != 1 && dataString.charAt(0) != '%') {
+                String assessmentName = dataString.substring(0, dataString.indexOf(":"));
+                dataString = dataString.substring(dataString.indexOf(":") + 2);
+                //System.out.println(dataString + "after assessName");
+                Double assessmentScore = Double.parseDouble(dataString.substring(0, dataString.indexOf(",")));
+                dataString = dataString.substring(dataString.indexOf(",") + 2);
+                //System.out.println(dataString + "after assessScore");
+                Double assessmentTotalScore = Double.parseDouble(dataString.substring(0, dataString.indexOf(",")));
+                dataString = dataString.substring(dataString.indexOf(",") + 2);
+                //System.out.println(dataString + "after assessTotalScore");
+                Double assessmentWeightage = Double.parseDouble(dataString.substring(0, dataString.indexOf(",")));
+                dataString = dataString.substring(dataString.indexOf(",") + 2);
+                //System.out.println(dataString + "after assessWeightage");
+                Double assessmentDifficulty = Double.parseDouble(dataString.substring(0, dataString.indexOf("]")));
+                if (dataString.substring(dataString.indexOf("]")).length() > 2) {
+                    dataString = dataString.substring(dataString.indexOf("]") + 3);
+                } else {
+                    dataString = "";
+                }
+                Assessment assessment = new Assessment(assessmentName, assessmentScore, assessmentTotalScore,
+                        assessmentWeightage, assessmentDifficulty);
+                subject.updateGradeAssessment(assessment);
+                //System.out.println(dataString + "after assess");
+            }
+            while (!dataString.isEmpty() && dataString.charAt(0) == '%') {
+                dataString = dataString.substring(1);
+            }
+            subjectsTaken.put(subjectName, subject);
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof SubjectHandler) {
@@ -68,8 +138,28 @@ public class SubjectHandler {
         return false;
     }
 
+    /**
+     * Returns the subjects into a String datatype to be stored in Json.
+     *
+     * @return a String which represents the data of the subjects taken by the person.
+     */
+    public String dataString() {
+        String str = "";
+        Set<String> keys = subjectsTaken.keySet();
+        if (subjectsTaken.isEmpty()) {
+            return str;
+        }
+        for (String key : keys) {
+            Subject keyValue = subjectsTaken.get(key);
+            str += keyValue.dataString();
+        }
+        str = str.substring(0, str.length() - 2);
+        return str;
+    }
+
     @Override
     public String toString() {
         return subjectsTaken.toString();
     }
+
 }

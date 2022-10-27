@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PredictionWindow predictionWindow;
+    private GradeWindow gradeWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +70,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        predictionWindow = new PredictionWindow();
+        gradeWindow = new GradeWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -148,6 +154,35 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the prediction window or focuses on it if it's already opened.
+     * Displays the predicted grade for the next assessment the student would take
+     * for the queried subject.
+     * @param predictedGrade the predicted grade to show
+     */
+    @FXML
+    public void handlePrediction(String predictedGrade) {
+        if (!predictionWindow.isShowing()) {
+            predictionWindow.show(predictedGrade);
+        } else {
+            predictionWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the prediction window or focuses on it if it's already opened.
+     * Displays the predicted grade for the next assessment the student would take
+     * for the queried subject.
+     */
+    @FXML
+    public void handleGrade(List<Person> personList, String assessmentString) {
+        if (!gradeWindow.isShowing()) {
+            gradeWindow.show(personList, assessmentString);
+        } else {
+            gradeWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -181,6 +216,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowPrediction()) {
+                handlePrediction(commandResult.getGradePredicted());
+            }
+
+            if (commandResult.isShowGradeWindow()) {
+                handleGrade(commandResult.getStudentsToGrade(), commandResult.getAssessmentString());
             }
 
             if (commandResult.isExit()) {
