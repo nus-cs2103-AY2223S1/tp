@@ -15,7 +15,7 @@ public class FindInterestCommand extends Command {
     public static final String COMMAND_WORD = "findInt";
     public static final String MESSAGE_USAGE = "Find batchmates with specified interests in this manner: "
             +
-            "findInt [list of interests]";
+            "\nfindInt INTEREST [MORE_INTERESTS]...";
 
     private final StudentContainsInterestPredicate predicate;
 

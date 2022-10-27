@@ -16,7 +16,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = "Find batchmates with a keyword in this manner: "
             +
-            "find [keyword]";
+            "\nfind KEYWORD [MORE_KEYWORDS]...";
 
     private final DetailsContainsKeywordsPredicate predicate;
 

@@ -1,6 +1,12 @@
 package seedu.masslinkers.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_INTEREST;
+import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.masslinkers.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.Collections;
@@ -34,7 +40,12 @@ public class EditCommand extends Command {
     public static final String MODS_PASSED_TO_EDIT = "Use [mod] commands to edit mods.";
     public static final String MESSAGE_USAGE = "Edit a batchmate's information in this manner: "
             +
-            "edit [index] n/[name] t/[telegram] g/[github] i/[interests] p/[hp number]";
+            "\nedit INDEX" + PREFIX_NAME + "NAME "
+            + PREFIX_TELEGRAM + "TELEGRAM "
+            + "[" + PREFIX_GITHUB + "GITHUB] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_INTEREST + "INTEREST]...";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

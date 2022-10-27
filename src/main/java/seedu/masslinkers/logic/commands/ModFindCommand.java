@@ -18,7 +18,7 @@ public class ModFindCommand extends ModCommand {
     public static final String MESSAGE_SUCCESS = "Successfully found those who are taking or have taken this mod!";
     public static final String MESSAGE_USAGE = "Find batchmates taking or have taken specified modules in this manner: "
             +
-            "mod find [list of modules]";
+            "\nmod find MOD [MORE_MODS]...";
     private final ModContainsKeywordsPredicate predicate;
 
     /**

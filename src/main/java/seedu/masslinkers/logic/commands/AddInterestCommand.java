@@ -21,7 +21,7 @@ public class AddInterestCommand extends Command {
     public static final String COMMAND_WORD = "addInt";
     public static final String MESSAGE_USAGE = "Add interests to a batchmate in this manner: "
             +
-            "addInt [index] [list of interests]";
+            "\naddInt INDEX INTEREST [MORE_INTERESTS]...";
     public static final String MESSAGE_SUCCESS = "Interest(s) added successfully!";
 
     private final Index targetIndex;
