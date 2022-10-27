@@ -71,19 +71,46 @@ Format:
 * Can filter using full words or partial words. e.g. han will match Hannah
 * Can filter using a combination of inputs for a field, according to the constraints of the field. 
   e.g. e/@gmail.com
-* Can filter using one field or multiple fields at once. e.g. n/John p/91234567
+* Can filter using one field or multiple fields at once, but only tag prefix can be used more than once in a single command. 
+  e.g. n/John p/91234567 t/friend t/colleague
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
-* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+* If the input after a prefix is empty(except for remark)/invalid, an error message with the constraint of the field will be shown.
 
 Examples:
 * ```findpatient n/ale``` returns ``Alex Yeoh`` and ``alex tan``.
   
 <img src="images/findpatientAlex.png" width="800px" height ="400px">
 
-* ```fp t/friends t/colleagues n/bernice``` returns only ``Bernice Yu`` with the tags ``friends`` and ``colleagues``.
+* ```fp t/friends t/colleagues n/bernice``` returns only `Bernice Yu` with the tags "friends" and "colleagues".
 
 <img src="images/findpatientBernice.png" width="800px" height ="400px">
 
+### Finding appointments `findappointment` `fa`
+
+Filters appointments by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
+special characters).
+
+Format:
+```findappointment <prefix><input> ...``` or ```fa <prefix><input>...```
+
+* The command words are `findappointment` or `fa`.
+* The prefixes are n/ for Name, t/ for Medical Test, s/ for Slot and d/ for Doctor.
+* The filter is case-insensitive. e.g. han will match Han
+* Can filter using full words or partial words. e.g. han will match Hannah
+* Can filter using a combination of inputs for a field, according to the constraints of the field.
+  e.g. s/x-ray
+* Can filter using one field or multiple fields at once, but each field can only be used once in a single command.
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+Examples:
+* ```findappointment t/x-ray``` returns ``Bernice Yu`` with "X-ray" appointment.
+
+<img src="images/findappointmentXray.png" width="800px" height ="400px">
+
+* ```fa d/Dr Tan n/Alex``` returns only ``Alex Yeoh``'s appointment with "Dr Tan".
+
+<img src="images/findappointmentAlex.png" width="800px" height ="400px">
 
 ### Sorting by criteria: `sort` [coming soon]
 
