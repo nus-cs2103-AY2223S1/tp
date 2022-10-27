@@ -30,6 +30,7 @@ interactions recorded faster and simpler than traditional GUI applications.
   * [Archiving data files `coming in v2.0`](#archiving-data-files-coming-in-v20)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
+* [Prefix Summary](#prefix-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -49,15 +50,17 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`list`** : Lists all clients.
 
-   * **`add`**`add n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named `Alice` into the address book.
+   * **`add`**`n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named `Alice` into the address book.
 
-   * **`delete`**`delete 1 m/client` : Deletes the client at the first index together with all their contacts and transactions in the current list.
+   * **`delete`**`1 m/client` : Deletes the client at the first index together with all their contacts and transactions in the current list.
 
    * **`find`**`James` : Finds `James` from the list of clients and display all clients with name containing `James`.
 
-  * **`clear`** : Deletes all clients with all their remarks and transactions.
+   * **`clear`** : Deletes all clients with all their remarks and transactions.
 
-  * **`exit`** : Exits the app.
+   * **`view`**`2` : Views the second client in the list and shows your transactions and remarks with him.
+
+   * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -334,7 +337,6 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-                                                                                                                                                                                                                                                        |
 | Action         | Format, Examples                                                                                                                                       |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**        | `add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`<br> e.g., `add n/Alice a/Yishun Street 81 p/9876543 e/alice@gmail.com`                             |
@@ -352,3 +354,17 @@ _Details coming soon ..._
 | **Sort**       | `sort INDEX ORDER` <br> e.g.,`sort 1 latest` or `sort 3 oldest`                                                                                        | 
 | **User Guide** | `user_guide`                                                                                                                                           |
 | **View**       | `view INDEX` <br> e.g., `view 5`                                                                                                                       |
+
+## Prefix Summary
+| Prefix     | Meaning                                        | Restrictions                                                | Example                       |
+|------------|------------------------------------------------|-------------------------------------------------------------|-------------------------------|
+| **n/**     | Name of the client                             | Alphanumeric characters and spaces, required                | `n/Alice`                     |
+| **a/**     | Address of the client                          | Required                                                    | `a/321 Clementi Road, #02-22` |
+| **p/**     | Phone number of the client                     | Should only contain numbers, required                       | `n/98765432`                  |
+| **e/**     | Email of the client                            | Should comply to the normal standards of an email, required | `e/alice@gmail.com`           |
+| **g/**     | Goods name of the transaction                  | Alphanumeric characters and spaces, required                | `g/Apples`                    |
+| **q/**     | Quantity of goods involved in the transaction  | Positive integer, required                                  | `q/10`                        |
+| **price/** | Price per quantity of goods in the transaction | Positive number, required                                   | `price/1.50`                  |
+| **m/**     | Mode of the command                            | Must be either `client`, `transaction`, or `remark`         | `m/client`                    |
+| **d/**     | Date of transaction                            | In the format `dd/mm/yyyy`                                  | `d/07/11/2022`                |
+| **t/**     | Tag applied on clients                         | Alphanumeric, single word                                   | `t/friends`                   |
