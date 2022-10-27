@@ -2,11 +2,11 @@ package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
+import static paymelah.model.debt.Money.ZERO_MONEY;
 
 import java.util.function.Predicate;
 
 import paymelah.model.Model;
-import paymelah.model.debt.Money;
 import paymelah.model.person.DebtGreaterEqualAmountPredicate;
 import paymelah.model.person.Person;
 
@@ -27,7 +27,6 @@ public class ListDebtorsCommand extends Command {
     public static final String MESSAGE_SUCCESS_SPECIFIC = "Listed all persons with debts amounting to more than $%1$s.";
     public static final String MESSAGE_SUCCESS_GENERIC = "Listed all persons with debts.";
     public static final String MESSAGE_NO_DEBTORS = "There are no persons with debts";
-    public static final Money ZERO_MONEY = new Money("0");
 
     private final Predicate<Person> predicate;
 
