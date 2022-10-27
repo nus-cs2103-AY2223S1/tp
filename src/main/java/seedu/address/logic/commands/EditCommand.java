@@ -24,7 +24,7 @@ public abstract class EditCommand extends Command {
             + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_MODE + "client/transaction/remark] "
+            + PREFIX_MODE + "client/transaction/remark "
             + "+ respective information fields in client: " + PREFIX_NAME + "NAME" + PREFIX_ADDRESS + "ADDRESS"
             + PREFIX_PHONE + "PHONE" + PREFIX_EMAIL + "EMAIL" + PREFIX_TAG + "TAG"
             + " or transaction: " + PREFIX_GOODS + "GOOD" + PREFIX_PRICE + "PRICE" + PREFIX_QUANTITY + "QUANTITY"

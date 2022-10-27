@@ -92,7 +92,7 @@ public class UniqueRemarkList implements Iterable<Remark> {
      * Retrieves a remark at specified index.
      *
      * @param index of remark to be retrieved.
-     * @return remark at the index
+     * @return remark at the index.
      */
     public Remark getRemark(int index) {
         return internalList.get(index);

@@ -15,7 +15,7 @@ import seedu.address.model.remark.UniqueRemarkList;
 
 
 /**
- * Edits the details of an existing transaction in one client in the address book.
+ * Edits the details of an existing remark in one client in the address book.
  */
 public class EditRemarkCommand extends EditCommand {
 
