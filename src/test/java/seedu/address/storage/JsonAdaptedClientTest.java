@@ -80,28 +80,10 @@ public class JsonAdaptedClientTest {
     }
 
     @Test
-    public void toModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedClient client =
-                new JsonAdaptedClient(VALID_NAME, VALID_ADDRESS,
-                        INVALID_PHONE, VALID_EMAIL, VALID_TAGS, VALID_REMARKS, VALID_TRANSACTIONS);
-        String expectedMessage = ClientPhone.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
-    }
-
-    @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_ADDRESS,
                 null, VALID_EMAIL, VALID_TAGS, VALID_REMARKS, VALID_TRANSACTIONS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientPhone.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidEmail_throwsIllegalValueException() {
-        JsonAdaptedClient client =
-                new JsonAdaptedClient(VALID_NAME, VALID_ADDRESS,
-                        VALID_PHONE, INVALID_EMAIL, VALID_TAGS, VALID_REMARKS, VALID_TRANSACTIONS);
-        String expectedMessage = ClientEmail.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
