@@ -29,11 +29,29 @@ public class ModuleListPanel extends UiPart<Region> {
         super(FXML);
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListPanelCell());
-        moduleList.addListener((ListChangeListener<? super Module>) (e) -> {
-            if (moduleList.size() > 0) {
-                moduleListView.scrollTo(0);
+        moduleList.addListener((ListChangeListener<? super Module>) this::handleChange);
+    }
+
+    /**
+     * Handles change in the list of modules by highlighting the ModuleCard addition to the list, if any.
+     */
+    private void handleChange(ListChangeListener.Change<? extends Module> change) {
+        moduleListView.getSelectionModel().clearSelection();
+        moduleListView.getFocusModel().focus(-1);
+        while (change.next()) {
+            logger.fine(change.toString());
+            if (!moduleListView.getItems().isEmpty() && change.wasAdded() && change.getAddedSize() == 1) {
+                // We only care about additions of size 1 because those are the only kinds of changes we
+                // should set selection and focus to (multi-selection doesn't make sense because filtering (e.g. ls -a)
+                // affects the entire list).
+                // We ignore removals because there's nothing to focus and select after it's removed.
+                int changeIndex = change.getFrom();
+                moduleListView.scrollTo(changeIndex);
+                moduleListView.getSelectionModel().select(changeIndex);
+                moduleListView.getFocusModel().focus(changeIndex);
+                return;
             }
-        });
+        }
     }
 
     /**
