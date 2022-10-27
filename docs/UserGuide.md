@@ -200,7 +200,7 @@ Examples:
 
 Finds applicants whose names contain any of the given keywords.
 
-Format: `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`
+Format: `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]...`
 
 * The search is case-insensitive. E.g., `bobby` will match `Bobby`.
 * The order of the keywords does not matter. E.g., `Bobby cortez` will match `Cortez bobby`.
@@ -290,7 +290,7 @@ If your changes to the data file makes its format invalid, InternConnect will di
 | **View**     | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                   |
 | **Edit**     | `edit INDEX [parameter/NEW_PARAMETER_DETAIL]...`<br> e.g.,`edit 1 p/91234567 e/bob@example.com`                                                                                                                                                                                   |
 | **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                               |
-| **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                        |
+| **Find**     | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find James Jake`                                                                                                                                                                                                                     |
 | **Import**   | `import FILE_PATH`<br> e.g., `import nus_students.json`                                                                                                                                                                                                                           | 
 | **Export**   | `export`                                                                                                                                                                                                                                                                          |
 | **Checkout** | `checkout FILE_NAME`                                                                                                                                                                                                                                                              |
