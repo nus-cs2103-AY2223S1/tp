@@ -324,7 +324,7 @@ Example:
 
 **:information_source: Notes about the date format:**<br>
 
-* Hours, minutes, seconds must be specified using two digits.
+* Hours, minutes and seconds must be specified using two digits.
 * `dd MM HHmm` is not supported, and will be recognised as `dd MM yyyy`.
 
 </div>
