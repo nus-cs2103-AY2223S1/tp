@@ -6,20 +6,22 @@ title: User Guide
 Coydir is a desktop app to manage the employee details within a company, optimized for use via a Command Line Interface (CLI). Coydir would not only allow you to quickly access the list of all employees and their details but also make necessary updates based on the changes of the company structure.
 
 **Table of Contents**
-  - [Quick Start](#quick-start)
-  - [Features](#features)
-    - [Adding an employee](#adding-an-employee-add)
-    - [Adding multiple employees at once](#adding-multiple-employees-at-once-batchadd)
-    - [Listing all employees](#listing-all-employees--list)
-    - [View details of an employee](#view-details-of-an-employee-view)
-    - [Deleting an employee](#deleting-an-employee--delete)
-    - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee-addleave)
-    - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee-deleteleave)
-    - [Exiting the program](#exiting-the-program--exit)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
-  - [FAQ](#faq)
-  - [Command summary](#command-summary)
+
+- [Quick Start](#quick-start)
+- [Features](#features)
+  - [Adding an employee](#adding-an-employee-add)
+  - [Adding multiple employees at once](#adding-multiple-employees-at-once-batchadd)
+  - [Listing all employees](#listing-all-employees--list)
+  - [View details of an employee](#view-details-of-an-employee-view)
+  - [Deleting an employee](#deleting-an-employee--delete)
+  - [Finding an employee](#finding-an-employee--find)
+  - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee-addleave)
+  - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee-deleteleave)
+  - [Exiting the program](#exiting-the-program--exit)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
+- [Command summary](#command-summary)
 
 ---
 
@@ -33,8 +35,7 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    - **`list`** : Lists all employees in the company.
@@ -45,7 +46,7 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 
    - **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 ---
 
@@ -76,7 +77,6 @@ Coydir v1.2 supports 3 user functions that allow for complete control of your co
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
 
 ### Adding an employee: `add`
 
@@ -154,6 +154,20 @@ Example:
 
 - `delete 1` deletes the employee with employee ID of 1.
 
+### Finding an employee : `find`
+
+Finds employees by searching for specified keywords. You can search for a specific name, position, or department, or with any combination of the aforementioned.
+
+The keywords for searching are case-insensitive, and need not be full words. Running the command will then display all employees whose details match the specified keywords.
+
+**Note**: There must be _at least one_ of the employees' particulars (and keywords) in the search.
+
+Format: `find [n/NAME_KEYWORD] [j/POSITION_KEYWORD] [d/DEPARTMENT_KEYWORD]`
+
+Example:
+
+- `find n/John j/engineer d/Tech` displays the employee "John Doe", who is a "Software Engineer" in the "Information Technology" department.
+
 ### Adding a leave period for an employee: `addleave`
 
 Adds a leave period to an employee given the employee ID and a start and end date.
@@ -228,13 +242,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                                      |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action           | Format, Examples                                                                                                                                                     |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Batch Add** | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                         |
-| **View Details** | `view ID` <br> e.g. `view 1`                                                                                                                                                    |
+| **Batch Add**    | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                            |
+| **View Details** | `view ID` <br> e.g. `view 1`                                                                                                                                         |
 | **Delete**       | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                   |
-| **Add leave**       | `addleave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `addleave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                   |
-| **Delete leave**       | `deleteleave id/ID i/INDEX`<br> e.g. `deleteleave id/1 i/3`                                                                                                                                 |
-| **List**         | `list`                                                                                                                                                                |
-| **Help**         | `help`                                                                                                                                                                |
+| **Find**         | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                 |
+| **Add leave**    | `addleave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `addleave id/1 sd/01-01-2022 ed/02-01-2022`                                                                      |
+| **Delete leave** | `deleteleave id/ID i/INDEX`<br> e.g. `deleteleave id/1 i/3`                                                                                                          |
+| **List**         | `list`                                                                                                                                                               |
+| **Exit**         | `exit`                                                                                                                                                               |
+| **Help**         | `help`                                                                                                                                                               |
