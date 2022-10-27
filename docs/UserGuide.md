@@ -369,9 +369,9 @@ Format: `:wq`
 ## Glossary of Terminologies
 * **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
 * **Exercise** : Physical activity done in a regular gym that is structured and repetitive, usually involving
-some weights
-* **Reps** : Number of times you perform a specific exercise
-* **Sets** : Number of cycles of reps that you complete
-* **Weight**: Total weight (include barbell if applicable, exclude body weight)
-* **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise
+some weights.
+* **Reps** : Number of times you perform a specific exercise.
+* **Sets** : Number of cycles of reps that you complete.
+* **Weight**: Total weight (include barbell if applicable, exclude body weight).
+* **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise.
 
