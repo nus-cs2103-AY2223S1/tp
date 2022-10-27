@@ -13,9 +13,9 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
-1. ### [Quick start](#Quick start)
-2. ### [Features](#Features)
-   1. #### [Commands on main page](#commands-on-main-page)
+1. [**Quick start**](#quick-start)
+2. [**Features**](#features)
+   1. [**Commands on main page**](#commands-on-main-page)
       1. [`help` Viewing help](#viewing-help--help)
       2. [`add` Creating a new itinerary](#creating-a-new-itinerary--add)
       3. [`list` Listing all itineraries](#listing-all-itineraries--list)
@@ -24,7 +24,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
       6. [`clear` Clearing itineraries](#clearing-itineraries--clear)
       7. [`find` Locating itineraries by name](#locating-itineraries-by-name--find)
       8. [`select` Selecting an itinerary](#selecting-an-itinerary--select)
-   2. #### [Commands on item planning page](#commands-on-item-planning-page)
+   2. [**Commands on item planning page**](#commands-on-item-planning-page)
       1. [`add` Adding an item](#adding-an-item--add)
       2. [`edit` Editing the details of an item](#editing-the-details-of-an-item--edit)
       3. [`delete` Deleting an item](#deleting-an-item--delete)
@@ -33,12 +33,11 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
       6. [`free` Viewing vacant timeslots](#viewing-vacant-timeslots--free)
       7. [`home` Returning to main page](#returning-to-main-page--home)
       8. [`export` Exporting to PDF file](#exporting-to-pdf-file--export)
-      <br><br>
-   3. [`exit` Exiting Waddle](#exiting-waddle--exit)
-3. ### [FAQ](#FAQ)
-4. ### [Command summary](#Command summary)
-   1. #### [Home page commands](#home-page-commands)
-   2. #### [Item planning page commands](#item-planning-page commands)
+   3. [`exit` Exiting Waddle](#exiting-waddle--exit)<br><br>
+3. [**FAQ**](#faq)
+4. [**Command summary**](#command-summary)
+   1. [**Home page commands**](#home-page-commands)
+   2. [**Item planning page commands**](#item-planning-page-commands)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -300,7 +299,7 @@ Waddle data are saved in the hard disk automatically after any command that chan
 
 Waddle data is saved as a JSON file `[JAR file location]/data/waddle.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, Waddle will discard all data and start with an empty data file at the next run. Please perform a backup before manually editing data.
 </div>
 
