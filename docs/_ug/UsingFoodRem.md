@@ -5,9 +5,9 @@ Here is an overview of what FoodRem consists of and how you can perform a comman
 
 {% include_relative _ug/Layout.md %}
 
-### Items and Tags
+### Key Definitions 
 
-{% include_relative _ug/ItemsTags.md %}
+{% include_relative _ug/KeyDefinitions.md %}
 
 ### Command Format
 
