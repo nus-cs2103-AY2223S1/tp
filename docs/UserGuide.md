@@ -40,6 +40,30 @@ Gim is a **desktop app for managing gym exercises, optimized for use via a Comma
 
 ## Features
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `n/NAME w/WEIGHT`, `NAME` and `WEIGHT` are parameters which can be used as `n/Squat w/100`.
+
+* Items in square brackets are optional.<br>
+  e.g `n/NAME [d/DATE]` can be used as `n/Deadlift d/27-10-22` or as `n/Deadlift`.
+
+* Items with `…` after them can be used multiple times including zero times.<br>
+  e.g. `[n/NAME]…` can be used as ` ` (i.e. 0 times), `n/Squat` (i.e. 1 time), `n/Squat n/Deadlift` (i.e. 2 times) etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME a/WEIGHT`, `a/WEIGHT n/NAME` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `n/Squat n/Deadlift`, only `n/Deadlift` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `:list`, `:clear`, `:sort`, `:help` `:wq`) will be ignored.<br>
+  e.g. if the command specifies `:help 123`, it will be interpreted as `help`.
+
+</div>
+
 
 ### Viewing help : `:help`
 
