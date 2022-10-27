@@ -285,6 +285,47 @@ Format for contact: `lesson INDEX l/[type] m/[module] day/[day number] start/[st
 
 Examples:
 
+`lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00`
+
+`lesson 2 l/lec m/CS2101 d/5 start/09:00 end/11:00`
+
+
+### Listing lessons / Viewing timetable
+
+Shows the list of lessons in a separate window, sorted by day and time.
+
+Format for user: `timetable user`
+
+Format for contact: `timetable INDEX`
+
+
+
+* Shows the timetable of the user or specified `INDEX`.
+  * The index refers to the index number shown in the displayed contact list.
+  * The index **must be a positive integer** 1, 2, 3, …​
+* Must have at least one lesson added for the week.
+
+
+### Deleting lessons
+
+Deletes a lesson from the user or a contact.
+
+Format for user: `remove user l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
+
+Format for contact: `remove INDEX l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
+
+
+
+* Deletes the lesson from the user or specified `INDEX`.
+  * The index refers to the index number shown in the displayed contact list.
+  * The index **must be a positive integer** 1, 2, 3, …​
+* `type` is the type of lesson
+  * `tut` for Tutorial, `lec` for Lecture, `rec` for Recitation and `lab` for Lab.
+* Day is a **positive integer between 1 to 7**, where 1 is for Monday and 7 is for Sunday.
+* Start and End time in HH:mm format.
+* All fields must match lesson previously added.
+
+Examples:
 
 `remove user l/lec m/CS2109S d/5 start/10:00 end/12:00`
 
@@ -364,60 +405,12 @@ Examples:
 Shifts the current modules in both the user and all persons in the contact list into their previous module during a new semester.
 
 Format: `nextsem`
-=======
-
-
-`lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00`
-`lesson 2 l/lec m/CS2101 d/5 start/09:00 end/11:00`
-
-
-### Listing lessons / Viewing timetable
-
-Shows the list of lessons in a separate window, sorted by day and time.
-
-Format for user: `timetable user`
-
-Format for contact: `timetable INDEX`
-
-
-
-* Shows the timetable of the user or specified `INDEX`.
-  * The index refers to the index number shown in the displayed contact list.
-  * The index **must be a positive integer** 1, 2, 3, …​
-* Must have at least one lesson added for the week.
-
-
-### Deleting lessons
-
-Deletes a lesson from the user or a contact.
-
-Format for user: `remove user l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
-
-Format for contact: `remove INDEX l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
-
-
-
-* Deletes the lesson from the user or specified `INDEX`.
-  * The index refers to the index number shown in the displayed contact list.
-  * The index **must be a positive integer** 1, 2, 3, …​
-* `type` is the type of lesson
-  * `tut` for Tutorial, `lec` for Lecture, `rec` for Recitation and `lab` for Lab.
-* Day is a **positive integer between 1 to 7**, where 1 is for Monday and 7 is for Sunday.
-* Start and End time in HH:mm format.
-* All fields must match lesson previously added.
-
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
-
----
-
-=======
-
----
 
 ## Command summary
 
@@ -476,7 +469,33 @@ Format: `exit`
    </td>
   </tr>
 <tr>
+
+
   <tr>
+   <td><strong>Editing User's Modules</strong>
+   </td>
+   <td><code>module user [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]</code>
+<p>
+<code>Eg. module user curr/CS2100 prev/CS1231S plan/CS2106 rm/ST2334</code>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Editing Contact's Modules</strong>
+   </td>
+   <td><code>module INDEX [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]</code>
+<p>
+<code>Eg. module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000</code>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Checking Modules Left</strong>
+   </td>
+   <td><code>modsleft INDEX</code>
+<p>
+<code>Eg. modsleft 3</code>
+   </td>
+  </tr>
+<tr>
     <td><strong>Add Lesson</strong>
     </td>
     <td>
@@ -515,35 +534,8 @@ Format: `exit`
       <code>Eg. remove 1 l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
      </td>
   </tr>
-
-  <tr>
+<tr>
     <td><strong>Filter Tags</strong>
-=======
-   <td><strong>Editing User's Modules</strong>
-   </td>
-   <td><code>module user [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]</code>
-<p>
-<code>Eg. module user curr/CS2100 prev/CS1231S plan/CS2106 rm/ST2334</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Editing Contact's Modules</strong>
-   </td>
-   <td><code>module INDEX [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]</code>
-<p>
-<code>Eg. module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Checking Modules Left</strong>
-   </td>
-   <td><code>modsleft INDEX</code>
-<p>
-<code>Eg. modsleft 3</code>
-   </td>
-  </tr>
-  <tr>
-    <td><strong>Add Lesson</strong>
     </td>
     <td>
       <code>filtertag [tag name] [more tag names]...</code>
@@ -551,7 +543,6 @@ Format: `exit`
       <code>Eg. filtertag friends family</code>
      </td>
   </tr>
-
   <tr>
       <td><strong>Filter Current Modules</strong>
       </td>
@@ -573,6 +564,18 @@ Format: `exit`
         <code>Eg. filterprevmod CS2103T</code>
         <p>
         <code>Eg. filterprevmod CS2103T CS2100</code>
+       </td>
+  </tr>
+
+<tr>
+      <td><strong>Filter Planned Modules</strong>
+      </td>
+      <td>
+        <code>filterplanmod [planned module names] [more planned module names]...</code>
+        <p>
+        <code>Eg. filterplanmod CS2109S</code>
+        <p>
+        <code>Eg. filterplanmod CS2109S CS3230</code>
        </td>
   </tr>
 
