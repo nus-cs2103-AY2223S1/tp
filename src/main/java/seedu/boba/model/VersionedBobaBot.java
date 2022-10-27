@@ -62,7 +62,7 @@ public class VersionedBobaBot extends BobaBot {
     public void commit(BobaBot bobaBot) {
         requireNonNull(bobaBot);
         BobaBot copiedBobaBot = new BobaBot(bobaBot);
-        if (!copiedBobaBot.equals(this.bobaBotStateList.get(this.currentStatePointer))) {
+        if (!copiedBobaBot.strictlyEquals(this.bobaBotStateList.get(this.currentStatePointer))) {
             this.bobaBotStateList.add(copiedBobaBot);
             this.currentStatePointer++;
         }

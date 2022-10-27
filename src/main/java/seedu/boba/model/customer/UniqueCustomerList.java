@@ -177,6 +177,25 @@ public class UniqueCustomerList implements Iterable<Customer> {
                         && internalList.equals(((UniqueCustomerList) other).internalList));
     }
 
+    public boolean strictlyEquals(Object other) {
+        if (other==this) {
+            return true;
+        }
+        if (!(other instanceof UniqueCustomerList)) {
+            return false;
+        }
+        UniqueCustomerList otherList=(UniqueCustomerList) other;
+        if (this.internalList.size()!=otherList.internalList.size()) {
+            return false;
+        }
+        for (int i=0; i<this.internalList.size(); i++){
+            if (!internalList.get(i).strictlyEquals(otherList.internalList.get(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public int hashCode() {
         return internalList.hashCode();
