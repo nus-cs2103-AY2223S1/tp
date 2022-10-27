@@ -322,10 +322,13 @@ Clicking the Prev button or pressing the "B" key will display the previous month
 Examples:
 
 ![previous button](images/PreviousButton.png)
+
 ##### 4.3.2.1 Jump Box
-Typing in the desired date in the provided text field will show the given calendar of the month and year.
+Typing in the desired date in the provided text field followed by pressing the "ENTER" key will show the given calendar of the month and year.
 Format: DATE
-Examples: 1-Oct-2022
+Examples: `1-Oct-2022`
+
+![jump box](images/JumpBox.png)
 
 #### 4.3.3 Calendar Pop-ups
 Displays more detailed information of the selected appointment on the calendar which includes the name of the client, date, time and location of the scheduled appointment.
