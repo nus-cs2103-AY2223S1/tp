@@ -3,7 +3,7 @@ package seedu.masslinkers.model.student;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_SWE;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
@@ -33,7 +33,7 @@ public class StudentTest {
 
         // same name, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withInterests(VALID_TELEGRAM_BOB).withInterests(VALID_INTEREST_NETFLIX).build();
+                .withInterests(VALID_TELEGRAM_BOB).withInterests(VALID_INTEREST_SWE).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -85,7 +85,7 @@ public class StudentTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different interests -> returns false
-        editedAlice = new StudentBuilder(ALICE).withInterests(VALID_INTEREST_NETFLIX).build();
+        editedAlice = new StudentBuilder(ALICE).withInterests(VALID_INTEREST_SWE).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

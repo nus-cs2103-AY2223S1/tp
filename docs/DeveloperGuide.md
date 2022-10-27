@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `ModListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/java/seedu/masslinkers/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/masslinkers-level3/tree/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -124,7 +124,7 @@ The `Model` component,
 * stores the mass linkers data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `MassLinkers`, which `Student` references. This allows `MassLinkers` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
@@ -142,7 +142,7 @@ The `Model` component,
 The `Storage` component,
 * can save both mass linkers data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `MassLinkersStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -178,8 +178,8 @@ The following activity diagram summarises what happens when a student enters a `
 **Aspect: How `findInt` executes:**
 
 * **Alternative 1 (current choice):** Finds all batchmates whose interests match all interests specified (i.e. a superset of those specified).
-    * Pros: A specific search to find batchmates who have the same interests as the student. (Specifying `tennis` and `baking` will result in a batchmate whose interests are `tennis`, `baking` and `music` to be displayed)
-    * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `tennis` and `baking` will not result in a batchmate whose only interest is `tennis` to be displayed)
+    * Pros: A specific search to find batchmates who have the same interests as the student. (Specifying `tennis` and `baking` will result in a batchmate whose interests are `tennis`, `baking` and `music` to be displayed).
+    * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `tennis` and `baking` will not result in a batchmate whose only interest is `tennis` to be displayed).
 
 * **Alternative 2:** Finds all batchmates whose interests match at least one of the interests specified.
     * Pros: A more general search might be useful for finding a greater number of batchmates who share some of the interests as the student.
@@ -252,7 +252,7 @@ The following activity diagram summarises what happens when a student enters a `
 Module categorisation is handled by `ParserUtil#parseModsToCategory(String modName)`.
 A category is assigned to every mod upon creating it through its constructor.
 This categorisation is not saved in Storage.
-The module categories can be viewed [here](UserGuide.md#module-categorisation)
+The module categories can be viewed [here](UserGuide.md#module-categorisation).
 
 Upon calling the constructor of `Mod` to create a new instance, the constructor
 will then call `ParserUtil#parseModsToCategory(String modName)` which returns a `ModCategory`
@@ -270,7 +270,7 @@ assuming no errors occur.
 
 ![ModCategorisationActivityDiagram](images/ModCategorisationActivityDiagram.png)
 
-Activity: Determines and returns a category
+Activity: Determines and returns a category.
 
 ![ModCategorisationActivityDiagramRake](images/ModCategorisationActivityDiagramRake.png)
 
@@ -283,29 +283,29 @@ Activity: Determines and returns a category
     * Cons: User is unable to edit the mod categories. Lowers performance.
 
 * **Alternative 2:** Categories of mods are saved into Storage.
-    * Pros: Users can edit mod categories with less changes to the code base. Increased performance.
+    * Pros: Users can edit mod categories with fewer changes to the code base. Increased performance.
     * Cons: Increased complexity.
     
 ### Add Interest Feature
-The ```addInt``` command allows users to add one or more interests to a student by indicating the index of the student and the list of interests to be added.
+The ```addInt``` command allows students to add one or more interests to a batchmate by indicating the index held by the batchmate and the list of interests to be added.
 
-The command takes in:
-- ```Index```
-- ```Set<Interest>```
+The command takes in two arguments:
+- ```Index``` targetIndex
+- ```Set<Interest>``` interests
 
 #### Implementation
-Each ```Person``` has a ```Set``` of ```Interest``` and adding an ```Interest``` would add the specified ```Interest``` into this set.
+Each ```Student``` has a ```Set``` of ```Interest```. Adding an ```Interest``` to a batchmate would add to the set of ```Interest``` of the ```Student``` with the ```targetIndex```.
 
 The Add Interest mechanism is facilitated by ```AddInterestCommand```, which extends from ```Command``` and ```AddInterestCommandParser```, which extends from
-```Parser```. ```AddInterestCommandParser``` serves to parse the command arguments and create a new ```AddInterestCommand``` object. ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Person```.
+```Parser```. ```AddInterestCommandParser``` serves to parse the command arguments and create a new ```AddInterestCommand``` object. ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Student```.
 
-####Steps:
-1. When the user enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```AddressBookParser``` to parse the command.
+#### Steps:
+1. When the student enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```MassLinkersParser``` to parse the command.
 2. A new ```AddInterestCommandParser``` object is constructed.
 3. ```AddInterestCommandParser#parse``` parses the command arguments and returns a set of Interests. A new ```AddInterestCommand``` is constructed.
 4. ```AddInterestCommand``` is returned to the ```LogicManager```, which invokes ```AddInterestCommand#execute```.
-5. The ```Index``` is verified to be valid and if so, the list of interests is added to the ```Person``` marked by ```Index```.
-6. ```Person``` is updated with the added interests. ```ModelManager``` will also be updated with the changes.
+5. The ```Index``` is verified to be valid and if so, the list of interests is added to the ```Student``` marked by ```Index```.
+6. ```Student``` is updated with the added interests. ```ModelManager``` will also be updated with the changes.
 
 The sequence diagram for the command ```addInt 1 anime``` is as follows.
 
@@ -315,16 +315,18 @@ In addition, the below sequence diagram illustrates how the ```AddInterestComman
 
 ![AddInterestRefSequenceDiagram](images/AddInterestRefSequenceDiagram.png)
 
-####Design considerations:
-1. Usefulness of ```AddInterestCommand```
-- The current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` is useful to provide a quick way to add new interests to a ```Person```.
-2. Managing the List of Interests
-- **Alternative 1 (current choice)**: Store the set of```Interest``` as a field in the ```Person``` class.
+#### Design considerations:
+1. Usefulness of ```AddInterestCommand```.
+- The current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` is useful to provide a quick way to add new interests to a ```Student```.
+2. Managing the List of Interests.
+- **Alternative 1 (current choice)**: Store the set of```Interest``` as a field in the ```Student``` class.
     * Pros: It is easier to implement. The use of a ```HashSet``` can handle duplicates.
-    * Cons: There is less abstraction as the logic of getting the list and adding to the list is handled by ```Person```.
-- **Alternative 2**: Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniquePersonList```)
+    * Cons: There is less abstraction as the logic of getting the list and adding to the list is handled by ```Student```.
+
+- **Alternative 2**: Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniqueStudentList```).
   * Pros: The low-level details of adding, removing and checking the interests are abstracted. There is greater adherence to the Single Responsibility Principle as the list of interests are handled by the ```UniqueInterestList``` class.
-  * Cons: The number of ```Interest``` is usually not that large so Alternative 2 could result in unnecessary implementation overhead complexity.
+  * Cons: The number of ```Interest``` is usually not that large so Alternative 2 could result in unnecessary implementation overhead.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -343,7 +345,7 @@ In addition, the below sequence diagram illustrates how the ```AddInterestComman
 
 **Target user profile**:
 
-* CS2103T students in a tutorial group <br>
+* CS2103T students in a tutorial group. <br>
 Students can search for their teammates, view their repos and view each other’s code reviews (with their information such as GitHub repos etc).
 
 
@@ -425,7 +427,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-* 1a. Mass Linkers detects an invalid input. (No interests specified by the student)
+* 1a. Mass Linkers detects an invalid input. (No interests specified by the student).
     * 1a1. Mass Linkers requests for at least one interest to be specified.
     * 1a2. Student inputs new interests.
     * Steps 1a1-1a2 are repeated until input is valid.
@@ -556,7 +558,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 batchmates without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The GUI should work well with standard screen resolutions 1920x1080 and higher. i.e. GUI does not appear to be cut or distorted.
 5.  For every action by the user, the result should be visible within 5 seconds.
@@ -565,12 +567,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8.  The packaged JAR file should not exceed 100MB.
 9.  The software should work without the need for an installer.
 
-*{More to be added}*
-
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Private contact detail**: A contact detail that is not meant to be shared with others.
 * **Command Line Interface (CLI)**: A text of lines input by the users to send instructions to the system.
 * **Graphical User Interface (GUI)**: A means, supported by visuals, for the users to send instructions to the system.
 * **Student**: The main user.
@@ -589,42 +589,116 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+1. Initial launch.
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy it into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file. <br>
+       Expected: Shows the GUI with a set of sample batchmates. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a batchmate
 
-### Deleting a student
+1. Adding a batchmate to the data.
 
-1. Deleting a student while all students are being shown
+    1. Test case: `add n/John t/john`.<br>
+       Expected: A new batchmate with the name `John` and telegram handle `john` is added at the bottom of the students pane in Mass Linkers.
+       The status message indicates that a batchmate named `John` has been successfully added.
 
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    2. Prerequisite: A batchmate with the name `Tom` is already in Mass Linkers. <br>
+       Test case: `add n/Tom t/tom`.<br>
+       Expected: No batchmate is added. The status message indicates that the batchmate already exists in Mass Linkers.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    3. Test case: `add n/John t/john i/AI g/john`.<br>
+       Expected: A new batchmate with the name `John`, telegram handle `john`, interests `AI` and GitHub `john` is added at the bottom of the students pane in Mass Linkers.
+       The status message indicates that a batchname named `John` has been successfully added.
 
-   1. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+    4. Test case: `add n/John`.<br>
+       Expected: No batchmate is added. The status message indicates that the command is of an invalid format.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    5. Other incorrect `add` commands to try: `add`, `add n/John t/john x/invalid`, `...` (where x is any invalid prefix).<br>
+       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+### Deleting a batchmate
+
+1. Deleting a batchmate while all batchmates are being shown.
+
+    1. Prerequisites: List all batchmates using the `list` command. There are multiple batchmates in the list.
+
+    2. Test case: `delete 1`.<br>
+       Expected: First batchmate is deleted from the list. Details of the deleted batchmate is shown in the status message.
+
+    3. Test case: `delete 0`.<br>
+       Expected: No batchmate is deleted. Error details are shown in the status message.
+
+    4. Other incorrect `delete` commands to try: `delete`, `delete x`, `...` (where x is larger than the list size).<br>
+       Expected: Similar to previous.
+
+### Find batchmates
+
+1. Find batchmates using keyword(s).
+
+    1. Prerequisites: List all batchmates using the `list` command. There are multiple batchmates in the list.
+
+    2. Prerequisite: There exists a batchmate with telegram handle `charlie`.
+       Test case: `find char`.<br>
+       Expected: The batchmate with telegram handle `charlie` appears in the student panel after executing the command.
+   
+    3. Prerequisite: There exists a batchmate with telegram handle `charlie` and a batchmate with name `Tom`.
+       Test case: `find char Tom`.<br>
+       Expected: The batchmate with telegram handle `charlie` and batchmate named `Tom`
+       appears in the student panel after executing the command.
+
+    4. Other incorrect `find` commands to try: `find` (no keywords provided).<br>
+       Expected: The status message will indicate that the command is invalid.
+
+### Add mods to a batchmate
+
+1. Add mods to a batchmate.
+
+    1. Prerequisites: List all batchmates using the `list` command. There are multiple batchmates in the list.
+
+    2. Test case: `mod add 1 cs2103t cs2101`.<br>
+       Expected: The mods `CS2103T` and `CS2101` will be present in the mods pane when the batchmate located at index 1 is selected.
+
+    3. Other incorrect `mod add` commands to try: `mod add cs2103t`, `mod add 1 xxx` (where xxx is any invalid mod name).<br>
+       Expected: No mods are added, and the status message will indicate that the command is invalid.
+
+### Mark mod(s) for a batchmate
+
+1. Mark mod(s) for a batchmate.
+
+    1. Prerequisites: List all batchmates using the `list` command. There are multiple batchmates in the list.
+
+    2. Prerequisites: The batchmate at index 1 must have the mods CS2103T and CS2101.<br>
+       Test case: `mod mark 1 cs2103t cs2101`.<br>
+       Expected: The mods `CS2103T` and `CS2101` will be marked as taken in the mods pane when the batchmate located at index 1 is selected.
+
+    3. Other incorrect `mod mark` commands to try: `mod mark cs2103t`, `mod mark 1 xxx`
+       (where xxx is any mod name that is not in the list of mods for that batchmate).<br>
+       Expected: No mods are added, and the status message will indicate that the command is invalid.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data files.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Go to the data file located at `data/Mass Linkers.json`. If the directory is not present,
+       run Mass Linkers, modify the data, and exit. The data file should be present in the directory.
+    2. Attempt to corrupt the data by deleting a closing brace `}` at the end of the file.
+    3. Reopen Mass Linkers. <br>
+       Expected: Mass Linkers will run and start with an empty data file. (no batchmates will be shown on the student pane)
 
-1. _{ more test cases …​ }_
+2. All data saved.
+
+    1. Add or edit batchmate(s) in Mass Linkers.
+    2. Close Mass Linkers.
+    3. Reopen Mass Linkers. <br>
+       Expected: The data is saved, and the changes you made to the data are still present.
+

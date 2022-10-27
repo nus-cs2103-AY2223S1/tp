@@ -69,7 +69,7 @@ public class FindInterestCommandTest {
     @Test
     public void execute_oneKeyword_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 3);
-        StudentContainsInterestPredicate predicate = preparePredicate("tennis");
+        StudentContainsInterestPredicate predicate = preparePredicate("AI");
         FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel,
@@ -80,7 +80,7 @@ public class FindInterestCommandTest {
     @Test
     public void execute_multipleKeywords_oneStudentFound() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 1);
-        StudentContainsInterestPredicate predicate = preparePredicate("tennis netflix");
+        StudentContainsInterestPredicate predicate = preparePredicate("AI SWE");
         FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel,
@@ -91,7 +91,7 @@ public class FindInterestCommandTest {
     @Test
     public void execute_multipleCasingKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 3);
-        StudentContainsInterestPredicate predicate = preparePredicate("tennis TENNIS TenNiS");
+        StudentContainsInterestPredicate predicate = preparePredicate("ai AI Ai");
         FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel,

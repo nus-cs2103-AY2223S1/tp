@@ -3,7 +3,7 @@ package seedu.masslinkers.model.student;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_SWE;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.masslinkers.testutil.Assert.assertThrows;
 import static seedu.masslinkers.testutil.TypicalStudents.ALICE;
@@ -43,7 +43,7 @@ public class UniqueStudentListTest {
     public void contains_studentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB)
-                .withInterests(VALID_INTEREST_NETFLIX)
+                .withInterests(VALID_INTEREST_SWE)
                 .build();
         assertTrue(uniqueStudentList.contains(editedAlice));
     }
@@ -87,7 +87,7 @@ public class UniqueStudentListTest {
     public void setStudent_editedStudentHasSameIdentity_success() {
         uniqueStudentList.add(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB)
-                .withInterests(VALID_INTEREST_NETFLIX)
+                .withInterests(VALID_INTEREST_SWE)
                 .build();
         uniqueStudentList.setStudent(ALICE, editedAlice);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();

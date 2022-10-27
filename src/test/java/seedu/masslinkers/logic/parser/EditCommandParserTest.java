@@ -3,8 +3,8 @@ package seedu.masslinkers.logic.parser;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.masslinkers.logic.commands.CommandTestUtil.INTEREST_DESC_NETFLIX;
-import static seedu.masslinkers.logic.commands.CommandTestUtil.INTEREST_DESC_TENNIS;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.INTEREST_DESC_AI;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.INTEREST_DESC_SWE;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.INVALID_INTEREST_DESC;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -17,8 +17,8 @@ import static seedu.masslinkers.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY
 import static seedu.masslinkers.logic.commands.CommandTestUtil.TELEGRAM_DESC_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
-import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_TENNIS;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_AI;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_SWE;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -98,11 +98,11 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_INTEREST} alone will reset the interests of the {@code Student} being edited,
         // parsing it together with a valid interest results in error
-        assertParseFailure(parser, "1" + INTEREST_DESC_TENNIS + INTEREST_DESC_NETFLIX + INTEREST_EMPTY,
+        assertParseFailure(parser, "1" + INTEREST_DESC_AI + INTEREST_DESC_SWE + INTEREST_EMPTY,
                 Interest.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + INTEREST_DESC_TENNIS + INTEREST_EMPTY + INTEREST_DESC_NETFLIX,
+        assertParseFailure(parser, "1" + INTEREST_DESC_AI + INTEREST_EMPTY + INTEREST_DESC_SWE,
                 Interest.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + INTEREST_EMPTY + INTEREST_DESC_TENNIS + INTEREST_DESC_NETFLIX,
+        assertParseFailure(parser, "1" + INTEREST_EMPTY + INTEREST_DESC_AI + INTEREST_DESC_SWE,
                 Interest.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
@@ -113,12 +113,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_STUDENT;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + INTEREST_DESC_NETFLIX
-                + EMAIL_DESC_AMY + TELEGRAM_DESC_AMY + NAME_DESC_AMY + INTEREST_DESC_TENNIS;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + INTEREST_DESC_SWE
+                + EMAIL_DESC_AMY + TELEGRAM_DESC_AMY + NAME_DESC_AMY + INTEREST_DESC_AI;
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withTelegram(VALID_TELEGRAM_AMY)
-                .withInterests(VALID_INTEREST_NETFLIX, VALID_INTEREST_TENNIS).build();
+                .withInterests(VALID_INTEREST_SWE, VALID_INTEREST_AI).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -164,8 +164,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // interests
-        userInput = targetIndex.getOneBased() + INTEREST_DESC_TENNIS;
-        descriptor = new EditStudentDescriptorBuilder().withInterests(VALID_INTEREST_TENNIS).build();
+        userInput = targetIndex.getOneBased() + INTEREST_DESC_AI;
+        descriptor = new EditStudentDescriptorBuilder().withInterests(VALID_INTEREST_AI).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -174,12 +174,12 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + TELEGRAM_DESC_AMY + EMAIL_DESC_AMY
-                + INTEREST_DESC_TENNIS + PHONE_DESC_AMY + TELEGRAM_DESC_AMY + EMAIL_DESC_AMY + INTEREST_DESC_TENNIS
-                + PHONE_DESC_BOB + TELEGRAM_DESC_BOB + EMAIL_DESC_BOB + INTEREST_DESC_NETFLIX;
+                + INTEREST_DESC_AI + PHONE_DESC_AMY + TELEGRAM_DESC_AMY + EMAIL_DESC_AMY + INTEREST_DESC_AI
+                + PHONE_DESC_BOB + TELEGRAM_DESC_BOB + EMAIL_DESC_BOB + INTEREST_DESC_SWE;
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB)
-                .withInterests(VALID_INTEREST_TENNIS, VALID_INTEREST_NETFLIX)
+                .withInterests(VALID_INTEREST_AI, VALID_INTEREST_SWE)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

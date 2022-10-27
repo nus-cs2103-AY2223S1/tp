@@ -30,8 +30,8 @@ Given below are my contributions to the project.
   * The ```DarkTheme.css``` file was extensively refactored to update the UI interface.
 
 #### New Feature: Add Interest
-* What it does: Gives users a hassle-free way of adding new interests to a batchmate.
-* Justification: It is crucial for users to be able to add interests without overwriting current interests.
+* What it does: Gives students a hassle-free way of adding new interests to a batchmate.
+* Justification: It is crucial for students to be able to add interests without overwriting current interests.
 * Highlights: 
   * Implemented ```AddInterestCommand``` which handles adding a set of interests to a student.
   * Implemented ```AddInterestParserCommand``` to parse ```addInt``` command arguments.
@@ -58,7 +58,7 @@ Given below are my contributions to the project.
   * Worked on project description.
   * Proofread user guide for bugs.
 * **Developer Guide**:
-    * Writeup for use cases 1 - 4
+    * Writeup for use cases 1 - 4.
     * Design diagrams and writeup for ```Add Interest``` feature.
     * Proofread developer guide for bugs.
 

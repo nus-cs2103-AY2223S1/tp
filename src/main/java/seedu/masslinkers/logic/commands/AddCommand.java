@@ -33,8 +33,8 @@ public class AddCommand extends Command {
             + PREFIX_GITHUB + "john_doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_INTEREST + "tennis "
-            + PREFIX_INTEREST + "netflix";
+            + PREFIX_INTEREST + "AI "
+            + PREFIX_INTEREST + "SWE";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the mass linkers";

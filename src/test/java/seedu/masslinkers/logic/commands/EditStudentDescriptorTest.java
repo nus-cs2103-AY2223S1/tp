@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_SWE;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
@@ -52,7 +52,7 @@ public class EditStudentDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different interests -> returns false
-        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withInterests(VALID_INTEREST_NETFLIX).build();
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withInterests(VALID_INTEREST_SWE).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

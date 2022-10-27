@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/carriezhengjr)] [[portfolio](team/carriezhengjr.md)]
 
 * Role: Developer
-* Responsibilities: to be added soon
+* Responsibilities: User Guide, Logic
 
 
 ### Elijah Seah

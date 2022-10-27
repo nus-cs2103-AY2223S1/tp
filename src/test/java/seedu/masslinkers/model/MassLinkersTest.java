@@ -3,7 +3,7 @@ package seedu.masslinkers.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_SWE;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.masslinkers.testutil.Assert.assertThrows;
 import static seedu.masslinkers.testutil.TypicalStudents.ALICE;
@@ -48,7 +48,7 @@ public class MassLinkersTest {
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two students with the same identity fields
         Student editedAlice = new StudentBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB)
-                .withInterests(VALID_INTEREST_NETFLIX)
+                .withInterests(VALID_INTEREST_SWE)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         MassLinkersStub newData = new MassLinkersStub(newStudents);
@@ -76,7 +76,7 @@ public class MassLinkersTest {
     public void hasStudent_studentWithSameIdentityFieldsInMassLinkers_returnsTrue() {
         massLinkers.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB)
-                .withInterests(VALID_INTEREST_NETFLIX)
+                .withInterests(VALID_INTEREST_SWE)
                 .build();
         assertTrue(massLinkers.hasStudent(editedAlice));
     }
