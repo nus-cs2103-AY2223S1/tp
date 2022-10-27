@@ -26,7 +26,7 @@ title: User Guide
 
    * **`list`** - lists all FYP projects the professor is supervising
 
-   * **`add id/A0123456G n/John Doe proj/Automation of Selenium e/johndoe@gmail.com`** - adds the FYP project of the student named John Doe with ID A0123456G, email `johndoe@gmail.com`, and project titled _Automation of Selenium_
+   * **`add id/A0123456G n/John Doe p/Automation of Selenium e/johndoe@gmail.com`** - adds the FYP project of the student named John Doe with ID A0123456G, email `johndoe@gmail.com`, and project titled _Automation of Selenium_
 
    * **`delete id/A0123456G`** - deletes the FYP project of the student with ID A0123456G
 
@@ -69,24 +69,24 @@ title: User Guide
 
 ### Adding students FYP: `add`
 
-There are 2 types of Add Commands. 
+There are 2 types of Add Commands.
 1. `add-s`: Adds a new FYP of a student to the FYP manager.
-Format: `add-s id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL [t/TAG]…​`
+Format: `add-s id/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​`
 2. `add-d`: Adds a new deadline task to a student specified by ID.
-Format: `add-d id/STUDENT_ID dn/DEADLINE_NAME dd/DEADLINE_DATETIME`
+Format: `add-d id/STUDENT_ID nDEADLINE_NAME d/DEADLINE_DATETIME`
 
 * `STUDENT_ID` should be in the following format: **"A" + (7 digits) + (1 letter)**, e.g. `A0123456G`
 * `FYP_NAME` and `DEADLINE_NAME` should only include alphanumeric characters and space but **cannot start with a space**, e.g. `Support vector machine: some improvements` is invalid
-* `DEADLINE_DATETIME` should be in the format of "YYYY-MM-DD HH:mm"
+* `DEADLINE_DATETIME` should be in the format of "DD-MM-YYYY HH:mm"
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add-s id/A0123456G n/Jane Doe proj/Neural Network e/e0123456@u.nus.edu t/NN`
-* `add-s id/A0987654X n/Alex Yeoh proj/Data Caching e/e09876567@u.nus.edu`
-* `add-d id/A0123456G dn/Random Task dd/2022-10-23 23:59`
+* `add-s id/A0123456G n/Jane Doe p/Neural Network e/e0123456@u.nus.edu t/NN`
+* `add-s id/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
+* `add-d id/A0123456G nRandom Task d/23-10-2022 23:59`
 
 ### Removing students FYP: `delete`
 
@@ -98,13 +98,12 @@ There are 2 types of Delete Commands.
     Format: `delete-s id/STUDENT_ID`
 * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
 2. `delete-d`: Removes a deadline assigned to a student specified by ID.
-   
-    Format: `delete-d id/STUDENT_ID num/DEADLINE_RANK`
 
+Format: `delete-d id/STUDENT_ID r/DEADLINE_RANK`
 
 Example:
 * `delete-s id/A0123456G`
-* `delete-d id/A0123456G num/1`
+* `delete-d id/A0123456G r/1`
 
 ### Marking project status: `mark`
 
@@ -141,7 +140,7 @@ Format for:
 * The keyword could contain space, e.g. `practical guide of machine learning` is allowed
 * Partial keywords will also be matched, e.g. `Ne` will match `neural network` and `Genetic Algorithm`
 * Leading and trailing spaces are ignored, e.g. ` neural network  ` will match `neural network`
-* Projects matching at least one keyword will be returned (i.e. `OR` search), 
+* Projects matching at least one keyword will be returned (i.e. `OR` search),
   e.g. `find-t neural network/tree` will match project titles with `neural network` or `decision tree`
 
 Examples:
@@ -183,7 +182,7 @@ Format: `exit`
 
 | Action     | Format, Examples                                                                                                                                    |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add id/A0987654X n/John Doe proj/Data Caching e/e09876567@u.nus.edu` |
+| **Add**    | `add id/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add id/A0987654X n/John Doe p/Data Caching e/e09876567@u.nus.edu` |
 | **Delete** | `delete id` <br> e.g., `delete id/A0987654X`                                                                                                        |
 | **Mark**   | `mark id/STUDENT_ID s/STATUS`<br> e.g.,`mark id/A0123456G s/IP`                                                                                     |
 | **Find**   | `find KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find neural network/tree`                                                                           |
