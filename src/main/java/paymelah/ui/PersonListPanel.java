@@ -42,7 +42,7 @@ public class PersonListPanel extends UiPart<Region> {
             while (c.next()) {
                 if (c.wasReplaced()) {
                     for (int i = c.getFrom(); i < c.getTo(); ++i) {
-                        titledPanes.remove(i);                        
+                        titledPanes.remove(i);
                         titledPanes.add(i, createTitledPane(c.getAddedSubList().get(i - c.getFrom()), personList));
                     }
                 } else if (c.wasAdded()) {
@@ -75,8 +75,8 @@ public class PersonListPanel extends UiPart<Region> {
         // Set padding on the left to avoid overlapping TitledPane's expand arrow
         contentPane.setPadding(new Insets(0, 10, 0, 25));
 
-        // Now, since the TitlePane's graphic node generally has a fixed size, we need to bind our
-        // content pane's width to match the width of the TitledPane. This will account for resizing as well
+        // Now, since the TitledPane's graphic node generally has a fixed size, we need to bind our
+        // contentPane's width to match the width of the TitledPane. This will account for resizing as well
         contentPane.minWidthProperty().bind(titledPane.widthProperty());
 
         // Create a Region to act as a separator for the 2 labels
