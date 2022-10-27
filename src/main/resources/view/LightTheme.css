@@ -158,7 +158,7 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segue UI", Monospace;
+    -fx-font-family: "Segue UI", Helvetica;
     -fx-text-fill: black;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -198,7 +198,7 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segue UI", Monospace;
+    -fx-font-family: "Segue UI", Helvetica;
     -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
@@ -361,7 +361,7 @@
 
 #linkName {
     -fx-font-size: 16px;
-    -fx-font-family: "Segue UI", Monospace;
+    -fx-font-family: "Segue UI", Helvetica;
 }
 .hyperlink {
     -fx-border-color: transparent;
