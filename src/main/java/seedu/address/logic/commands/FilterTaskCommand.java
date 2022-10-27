@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
+import java.util.Objects;
 import java.util.Optional;
 
+import seedu.address.commons.FilterInfo;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.Model;
@@ -33,23 +35,40 @@ public class FilterTaskCommand extends Command {
 
     private final FilterTaskDescriptor filterTaskDescriptor;
     private final TaskCategoryAndDeadlinePredicate predicate;
+    private final FilterInfo filterInfoCategory;
+    private final FilterInfo filterInfoDate;
 
     /**
      * @param filterTaskDescriptor details to filter the list of tasks with
+     * @param filterInfoCategory   details of category to be shown in the TaskListInfo
+     * @param filterInfoDate       details of date to be shown in the TaskListInfo
      */
-    public FilterTaskCommand(FilterTaskDescriptor filterTaskDescriptor) {
+    public FilterTaskCommand(FilterTaskDescriptor filterTaskDescriptor,
+                             FilterInfo filterInfoCategory, FilterInfo filterInfoDate) {
         requireNonNull(filterTaskDescriptor);
         this.filterTaskDescriptor = new FilterTaskDescriptor(filterTaskDescriptor);
         predicate = new TaskCategoryAndDeadlinePredicate(
                 filterTaskDescriptor.getCategory(), filterTaskDescriptor.getDate());
+        this.filterInfoCategory = filterInfoCategory;
+        this.filterInfoDate = filterInfoDate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_TASK_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+
+        if (Objects.equals(filterInfoDate.getInfo(), "")) {
+            return new CommandResult(String.format(
+                    Messages.MESSAGE_TASK_LISTED_OVERVIEW, model.getFilteredTaskList().size()), filterInfoCategory);
+        } else if (Objects.equals(filterInfoCategory.getInfo(), "")) {
+            return new CommandResult(String.format(
+                    Messages.MESSAGE_TASK_LISTED_OVERVIEW, model.getFilteredTaskList().size()), filterInfoDate);
+        } else {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_TASK_LISTED_OVERVIEW, model.getFilteredTaskList().size()),
+                    new FilterInfo(filterInfoCategory.getInfo() + " and " + filterInfoDate.getInfo()));
+        }
     }
 
     @Override
