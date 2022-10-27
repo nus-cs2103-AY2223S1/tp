@@ -20,9 +20,15 @@ ConnectNUS is a **desktop app for managing contacts, optimised for use via a Com
   - [Deleting contacts](#deleting-contacts)
   - [Editing user's modules](#edit-users-modules)
   - [Editing contact's modules](#edit-contacts-modules)
+  - [Checking modules left](#checking-modules-left)
   - [Adding lessons](#adding-lessons)
   - [Listing lessons / Viewing timetable](#listing-lessons--viewing-timetable)
   - [Deleting lessons](#deleting-lessons)
+  - [Filtering Tags](#filtering-tags)
+  - [Filtering Current Modules](#filtering-current-modules)
+  - [Filtering Planned Modules](#filtering-planned-modules)
+  - [Filtering Previous Modules](#filtering-previous-modules)
+  - [Next Semester](#next-semester)
   - [Exiting the program](#exiting-the-program--exit)
 - [Command Summary](#command-summary)
 
@@ -280,6 +286,86 @@ Format for contact: `lesson INDEX l/[type] m/[module] day/[day number] start/[st
 Examples:
 
 
+`remove user l/lec m/CS2109S d/5 start/10:00 end/12:00`
+
+`remove 1 l/rec m/CS2100 d/2 start/16:00 end/18:00`
+
+`remove user l/lab m/CS2040S d/3 start/12:00 end/14:00`
+
+`remove 8 l/tut m/CS2103T d/4 start/14:00 end/15:00`
+
+
+### Filtering Tags
+
+Filters the tags of contacts to return a list of persons with any of the tags specified by the user.
+
+Format: `filtertag [tag names]`
+
+* Filters the contact list for person's with any of the specified `tag names`.
+
+Examples:
+
+`filtertag family`
+
+`filtertag colleagues`
+
+`filtertag friends family`
+
+### Filtering Current Modules
+
+Filters the current modules of contacts to return a list of persons with any of the current modules specified by the user.
+
+Format: `filtercurrmod [current module names]`
+
+* Filters the contact list for person's with any of the specified `current module names`.
+
+Examples:
+
+`filtercurrmod CS2103T`
+
+`filtercurrmod CS2100`
+
+`filtercurrmod CS2103T CS2100`
+
+### Filtering Previous Modules
+
+Filters the previous modules of contacts to return a list of persons with any of the previous modules specified by the user.
+
+Format: `filterprevmod [previous module names]`
+
+* Filters the contact list for person's with any of the specified `previous module names`.
+
+Examples:
+
+`filterprevmod CS2103T`
+
+`filterprevmod CS2100`
+
+`filterprevmod CS2103T CS2100`
+
+### Filtering Planned Modules
+
+Filters the planned modules of contacts to return a list of persons with any of the planned modules specified by the user.
+
+Format: `filterplanmod [planned module names]`
+
+* Filters the contact list for person's with any of the specified `planned module names`.
+
+Examples:
+
+`filterplanmod CS2103T`
+
+`filterplanmod CS2100`
+
+`filterplanmod CS2103T CS2100`
+
+### Next Semester
+
+Shifts the current modules in both the user and all persons in the contact list into their previous module during a new semester.
+
+Format: `nextsem`
+=======
+
 
 `lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00`
 `lesson 2 l/lec m/CS2101 d/5 start/09:00 end/11:00`
@@ -327,9 +413,11 @@ Exits the program.
 
 Format: `exit`
 
-
 ---
 
+=======
+
+---
 
 ## Command summary
 
@@ -388,29 +476,6 @@ Format: `exit`
    </td>
   </tr>
 <tr>
-   <td><strong>Editing User's Modules</strong>
-   </td>
-   <td><code>module user [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]</code>
-<p>
-<code>Eg. module user curr/CS2100 prev/CS1231S plan/CS2106 rm/ST2334</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Editing Contact's Modules</strong>
-   </td>
-   <td><code>module INDEX [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]</code>
-<p>
-<code>Eg. module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Checking Modules Left</strong>
-   </td>
-   <td><code>modsleft INDEX</code>
-<p>
-<code>Eg. modsleft 3</code>
-   </td>
-  </tr>
   <tr>
     <td><strong>Add Lesson</strong>
     </td>
@@ -451,6 +516,72 @@ Format: `exit`
      </td>
   </tr>
 
+  <tr>
+    <td><strong>Filter Tags</strong>
+=======
+   <td><strong>Editing User's Modules</strong>
+   </td>
+   <td><code>module user [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]</code>
+<p>
+<code>Eg. module user curr/CS2100 prev/CS1231S plan/CS2106 rm/ST2334</code>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Editing Contact's Modules</strong>
+   </td>
+   <td><code>module INDEX [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]</code>
+<p>
+<code>Eg. module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000</code>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Checking Modules Left</strong>
+   </td>
+   <td><code>modsleft INDEX</code>
+<p>
+<code>Eg. modsleft 3</code>
+   </td>
+  </tr>
+  <tr>
+    <td><strong>Add Lesson</strong>
+    </td>
+    <td>
+      <code>filtertag [tag name] [more tag names]...</code>
+      <p>
+      <code>Eg. filtertag friends family</code>
+     </td>
+  </tr>
+
+  <tr>
+      <td><strong>Filter Current Modules</strong>
+      </td>
+      <td>
+        <code>filtercurrmod [current module name] [more current module names]...</code>
+        <p>
+        <code>Eg. filtercurrmod CS2103T</code>
+        <p>
+        <code>Eg. filtercurrmod CS2103T CS2100</code>
+       </td>
+  </tr>
+
+  <tr>
+      <td><strong>Filter Previous Modules</strong>
+      </td>
+      <td>
+        <code>filterprevmod [previous module name] [more previous module names]...</code>
+        <p>
+        <code>Eg. filterprevmod CS2103T</code>
+        <p>
+        <code>Eg. filterprevmod CS2103T CS2100</code>
+       </td>
+  </tr>
+
+  <tr>
+      <td><strong>Next Semester</strong>
+      </td>
+      <td>
+        <code>nextsem</code>
+       </td>
+  </tr>
+
 </table>
-
-
