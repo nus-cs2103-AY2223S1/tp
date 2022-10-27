@@ -215,7 +215,7 @@ Unappend surveys or tags from the person identified by the index number in the c
 Format: `INDEX [s/SURVEYS]... [t/TAGS]...`
 
 - At least one of the optional fields has to be provided.
-- Able to append multiple surveys and tags in a single command.
+- Able to unappend multiple surveys and tags in a single command.
 - Fields must be non-empty.
 
 Example: `unappend 1 s/Food Survey s/Environment Survey t/friend t/student`
