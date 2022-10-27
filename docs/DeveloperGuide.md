@@ -242,13 +242,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Motivation
 
-Currently, once a command is executed successfully, there is no way for the user to get it back easily. 
+Currently, once a command is executed successfully, there is no way for the user to get it back easily.
 However, a user who frequently uses command line interfaces (CLIs) might expect the use of arrow keys to bring
 back previous commands, as a way to quickly input multiple similar commands at once.
 
 #### Implementation
 `CommandBox` in the `commandbox` package represents the GUI component where the user enters commands.
-`CommandRetriever` is a static nested class within `CommandBox`, used to contain and retrieve the history of 
+`CommandRetriever` is a static nested class within `CommandBox`, used to contain and retrieve the history of
 successful commands. It implements the following public methods:
 - `CommandRetriever#addCommand(String command, TextField textfield)` - Adds a successful command to the command history,
 and clears the TextField
@@ -257,7 +257,7 @@ exists in the history
 - `CommandRetriever#getNextCommand(TextField textfield)` - Displays the next command in the Textfield, if it
 exists in the history
 
-These methods are called by `CommandBox#handleCommandEntered()` and `CommandBox#handleKeyReleased(KeyEvent e)`. 
+These methods are called by `CommandBox#handleCommandEntered()` and `CommandBox#handleKeyReleased(KeyEvent e)`.
 
 Here is the UML diagram for `CommandRetriever`.
 
@@ -273,7 +273,7 @@ A sequence diagram is also provided below.
 
 ![CommandRetrieverSequenceDiagram](images/CommandRetrieverSequenceDiagram.png)
 
-Step 1. The user launches the application for the first time. `commandHistory` is initialised as an empty 
+Step 1. The user launches the application for the first time. `commandHistory` is initialised as an empty
 `ArrayList<String>`, and index is initialised as 0.
 
 Step 2. The user executes a command, `listbuyers` by pressing the Enter key. `CommandBox#handleCommand` is fired,
@@ -291,8 +291,8 @@ Step 5. The user presses and releases the Up arrow again. `CommandBox#handleKeyR
 no more previous commands, nothing happens.
 
 Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyReleased` is fired. Since this is the last
-element in `commandHistory`, the text field is set to display the string `currentCommand`. This would be the user's unexecuted
-command from Step 3.
+element in `commandHistory`, the text field is set to display the string `currentCommand`. This would be the user's 
+unexecuted command from Step 3.
 
 ### Creating a buyer
 
