@@ -54,10 +54,10 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Create File** | `file create FILE_NAME` <br> e.g., `file create rc4_data_2022`
-**Delete File** | `file delete FILE_NAME` <br> e.g., `file delete rc4_data_2022`
-**Switch File** | `file switch FILE_NAME` <br> e.g., `file switch rc4_data_2022`
-**Import File** | `import FILE_NAME` <br> e.g., `import students.csv`
+**Create File** | `file create FOLDER_NAME` <br> e.g., `file create rc4_data_2022`
+**Delete File** | `file delete FOLDER_NAME` <br> e.g., `file delete rc4_data_2022`
+**Switch File** | `file switch FOLDER_NAME` <br> e.g., `file switch rc4_data_2022`
+**Import File** | `import FOLDER_NAME` <br> e.g., `import students`
 
 [Back to Top](#back-to-menuuserguidemd)
 
