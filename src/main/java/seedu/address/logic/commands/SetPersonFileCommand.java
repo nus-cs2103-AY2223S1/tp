@@ -3,12 +3,12 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.model.person.FilePath.EMPTY_FILEPATH;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.FilePath;
@@ -27,10 +27,8 @@ public class SetPersonFileCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_FILEPATH + "[FilePath]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_FILEPATH + "C:/Users/Ryzen/repos/CS2103T/tp/data/Test_PDF.pdf";
-
+            + PREFIX_FILEPATH + "C:/Users/Ryzen/repos/CS2103T/tp/data/Test_PDF.pdf\n";
     public static final String MESSAGE_CHANGE_FILEPATH_SUCCESS = "Added file path to Person: %1$s";
-    public static final String MESSAGE_DELETE_FILEPATH_SUCCESS = "File path set to placeholder pdf for Person: %1$s";
 
     private final Index index;
     private final FilePath filePath;
@@ -53,6 +51,10 @@ public class SetPersonFileCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        if (!FileUtil.checkValidPdfFilePath(filePath)) {
+            throw new CommandException(FilePath.MESSAGE_CONSTRAINTS);
+        }
+
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getDescription(),
@@ -69,9 +71,7 @@ public class SetPersonFileCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !filePath.value.equals(EMPTY_FILEPATH) ? MESSAGE_CHANGE_FILEPATH_SUCCESS
-                : MESSAGE_DELETE_FILEPATH_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(MESSAGE_CHANGE_FILEPATH_SUCCESS, personToEdit);
     }
 
     @Override

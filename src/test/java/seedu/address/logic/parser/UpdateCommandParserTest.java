@@ -26,7 +26,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NETWORTH_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NETWORTH_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -116,7 +116,7 @@ public class UpdateCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withNetWorth(VALID_NETWORTH_AMY).withTags(VALID_TAG_AMY).build();
+                .withNetWorth(VALID_NETWORTH_AMY).withTags(VALID_TAG_BOB).build();
         UpdateCommand expectedCommand = new UpdateCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -169,7 +169,7 @@ public class UpdateCommandParserTest {
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_BOB;
-        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_AMY).build();
+        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_BOB).build();
         expectedCommand = new UpdateCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -184,7 +184,7 @@ public class UpdateCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withNetWorth(VALID_NETWORTH_BOB).withTags(VALID_TAG_AMY)
+                .withNetWorth(VALID_NETWORTH_BOB).withTags(VALID_TAG_BOB)
                 .build();
         UpdateCommand expectedCommand = new UpdateCommand(targetIndex, descriptor);
 

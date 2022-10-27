@@ -36,7 +36,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_AM
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -61,7 +61,7 @@ public class CreateCommandParserTest {
     public void parse_allFieldsPresent_success() {
         Person expectedPerson = new PersonBuilder(BOB).withMeetingTimes(VALID_MEETING_TIME_BOB)
                 .withFilePath(EMPTY_FILEPATH)
-                .withTags(VALID_TAG_AMY).build();
+                .withTags(VALID_TAG_BOB).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -96,7 +96,7 @@ public class CreateCommandParserTest {
         // multiple meeting times - all accepted
         Person expectedPersonMultipleMeetingTimes = new PersonBuilder(BOB)
                 .withMeetingTimes(VALID_MEETING_TIME_BOB, VALID_MEETING_TIME_AMY)
-                .withTags(VALID_TAG_AMY)
+                .withTags(VALID_TAG_BOB)
                 .withFilePath(EMPTY_FILEPATH).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + NETWORTH_DESC_BOB + MEETING_TIME_DESC_AMY
@@ -192,7 +192,7 @@ public class CreateCommandParserTest {
         // invalid meeting time
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + INVALID_MEETING_TIME + TAG_DESC_BOB
-                + VALID_TAG_AMY, MeetingTime.MESSAGE_CONSTRAINTS);
+                + VALID_TAG_BOB, MeetingTime.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB

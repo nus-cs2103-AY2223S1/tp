@@ -20,6 +20,8 @@ public class DescriptionCommand extends Command {
 
     public static final String COMMAND_WORD = "description";
 
+    public static final String COMMAND_SHORTCUT = "desc";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the description of the person identified "
             + "by the index number used in the last person listing. "
             + "Existing description will be overwritten by the input.\n"

@@ -26,7 +26,7 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 
    * **`list`** : Lists all contacts.
 
-   * **`create`**`name:John Doe num:98765432 address:John street, block 123, #01-01` : Adds a contact named `John Doe` to the FABook.
+   * **`create`**`n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the FABook.
 
    * **`exit`** : Exits the app.
 
@@ -41,47 +41,49 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `create name:NAME`, `NAME` is a parameter which can be used as `create name:John Doe`.
+  e.g. in `create n/NAME`, `NAME` is a parameter which can be used as `create n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `name:NAME [num:HP_NUMBER]` can be used as `name:John Doe num:90338099` or as `name:John Doe`.
+  e.g `n/NAME [a/HOME_ADDRESS]` can be used as `n/John Doe a/Blk 30 Geylang Street 29` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times.<br>
   e.g. `NAME…​` can be used as `Jon`, `Jon Jack` etc.
 
+* `INDEX` represents the index of a specific person in the FABook
+  e.g. `delete INDEX` can be used as `delete 2`.
+
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `name:NAME num:HP_NUMBER`, `num:HP_NUMBER name:NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/HP_NUMBER`, `p/HP_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `num:12341234 num:56785678`, only `num:56785678` will be taken.
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`,`clear`, 'redo' and 'undo') will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 Format: `help`
-
 
 ### Creating a contact: `create`
 
 Creates a contact that is stored in the FABook and contains their contact information. Any contact information that is not available can be updated later.
 
-Format: `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
+Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
 
 :bulb: **Note:**
-Name is the only compulsory input. Parameters not provided will be left blank.
+Name and Phone number are the only compulsory inputs. Parameters not provided will be left blank.
 
 Examples:
-* `create name:John Doe num:98765432 address:John street, block 123, #01-01`
-* `create name:Betsy Crowe address:Newgate Prison num:1234567`
+* `create n/John Doe p/98765432 a/John street, block 123, #01-01`
+* `create n/Betsy Crowe a/Newgate Prison p/1234567`
+* 'create n/Benedict Lee p/91281329 e/benedict@gmail.com a/Redhill Ave 3 d/Risk averse nw/$20000 mt/10-11-2022-16:00 t/SECURED'
 
 :white_check_mark: **Tip:**
 Input shortcut: `c` can be used in place of `create`.
-Format: `c name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
-
+Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
 
 ### Listing all persons : `list`
 
@@ -91,23 +93,27 @@ Format: `list`
 
 ### Updating a person : `update`
 
-Searches for a contact that is stored in the FABook and updates its contact information.
+Updates the information of a contact stored in the FABook.
 
-Format: `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
+Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
 
 :bulb: **Note:**
-Name is the only compulsory input. Parameters not provided will be stay unchanged.
+Parameters not provided will stay unchanged.
 
-* Edits the person with the provided name.
+* Edits the person with the provided index.
+* INDEX is the index of the person in the currently displayed list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Updating description of a contact can also be done through the 'description' command. See [Description](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#Giving-a-description-to-a-person--description)
 
-Examples:
-*  `update name:John Doe number:91234567 address:21 Lower Kent Ridge Rd` Updates the phone number and address of the `John Doe` to be `91234567` and `21 Lower Kent Ridge Rd` respectively.
+Example:
+* `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed person's 
+ name, phone number and address to be `John Doe`, `91234567` and `21 Lower Kent Ridge Rd` respectively.
+
 
 :white_check_mark: **Tip:**
 Input shortcut: `u` can be used in place of `update`.
-Format: `u name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
+Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]`
 
 ### Locating persons by name: `find`
 
@@ -117,40 +123,34 @@ Format: `find n/NAME…`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched. e.g. `find Kent` won’t return contacts living on Kent Ridge Road
+* Only the name is searched. e.g. `find n/Kent` won’t return contacts living on Kent Ridge Road
 * Partial words can be matched only if the whole name is included. e.g. `Jack` will match `Jackson`, but `Jackson` won’t match `Jack`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-:heavy_exclamation_mark: **Important**
-`NAME` should be a word. Numbers will be searched as phone numbers instead. See [Locating persons by phone number](https://github.com/isanidiot/tp/edit/branch-ug-v1.1/docs/UserGuide.md#locating-persons-by-phone-number-find).
-
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   
 :white_check_mark: **Tip:**
 Input shortcut: `f` can be used in place of `find`.
-Format: `f NAME…`
+Format: `f n/NAME…`
   
 ### Locating persons by phone number: `find`
 
 Finds persons whose stored number matches the given number.
-
-Format: `find p/NUMBER`
+   
+Format: `find p/NUMBER...`
 
 * Only full numbers will be matched e.g. `7654` will not match `80765432`
 * All persons matching the number will be returned. e.g. All contacts in the same household will be returned if they share a home number.
 
-:heavy_exclamation_mark: **Caution:**
-`NUMBER` should be a string of numbers. Letters will be searched as names instead. See [Locating persons by name](https://github.com/isanidiot/tp/edit/branch-ug-v1.1/docs/UserGuide.md#locating-persons-by-name-find).
-
 Examples:
-* `find 90333333` returns the person(s) with `90333333` stored as their number
+* `find p/90333333` returns the person(s) with `90333333` stored as their number
 
 :white_check_mark: **Tip:**
 Input shortcut: `f` can be used in place of `find`.
-Format: `f NUMBER`
+Format: `f p/NUMBER...`
 
 ### Locating persons by address: `find`
 
@@ -158,7 +158,7 @@ Format: `find a/ADDRESS`
 
 * The search is case-insensitive. e.g `serangoon` will match `Serangoon`
 * The order of the keywords does not matter. e.g. `Kio Mo Ang` will match `Ang Mo Kio`
-* Only the address is searched. e.g. `find Kent` won’t return contacts with the name 'Kent'
+* Only the address is searched. e.g. `find a/Kent` won’t return contacts with the name 'Kent'
 * Words can be matched only if the whole address is included. e.g. `Tamp` won’t match `Tampines`
 * Persons with address matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Buona Clementi` will return `Buona Vista Drive`, `6 Clementi Ave`
@@ -166,28 +166,98 @@ Format: `find a/ADDRESS`
   e.g. '30' will return 'Blk 30 Geylang Street 29', 'Blk 30 Lorong 3 Serangoon Gardens'
 
 Examples:
-* `find Bedok` returns the person(s) with 'Bedok' stored as their address
+* `find a/Bedok` returns the person(s) with 'Bedok' stored as their address
 
 :white_check_mark: **Tip:**
 Input shortcut: `f` can be used in place of `find`.
 Format: `f a/ADDRESS…`
 
+### Giving a description to a person: `description`
+
+Updates the person with a description data field.
+
+Format: 'description INDEX d/DESCRIPTION'
+
+* INDEX is the index of the person in the currently displayed list.
+* Updating description of a contact can also be done through the 'update' command. See [Update](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#updating-a-person--update)
+
+:white_check_mark: **Tip:**
+Input shortcut: `desc` can be used in place of `description`.
+Format: `desc INDEX d/DESCRIPTION…`
+
+### Assigning PDF file to a person: `filepath`
+
+Assigns a PDF file to a person in the FABook.
+
+Format: `filepath INDEX f/FILEPATH`
+
+* INDEX is the index of the person in the currently displayed list.
+* The filepath is the absolute path of the PDF on the local disk of the computer. e.g. `C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
+* Only file paths that lead to a PDF is allowed. e.g. `C:/Users/Ryzen/Downloads/CS2103T-T08-3.docx` is an invalid filepath.
+* Moving or renaming the PDF file in the local disk does not change the person's assigned file path, so you would have to assign it manually.
+
+Examples:
+* `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf` assigns second person on the displayed list with the PDF file located at the absolute path `C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
+
+### Opening PDF file of a person: `file`
+
+Opens a person's assigned PDF file in user's PDF file viewer.
+
+Format: `file INDEX`
+
+* INDEX is the index of the person in the currently displayed list.
+* Moving or renaming the PDF file in the local disk will cause the command to not work, which will require you to reassign a file path to the person again.
+
+Examples:
+* `file 2` opens the PDF file assigned to the second person in the displayed list.
+
+### Remove past meetings: `sync`
+
+Removes every scheduled meeting time that has already passed.
+   
+* This uses your device's present local time as reference. All meetings scheduled to be earlier than the present time will removed.
+   
+:heavy_exclamation_mark: **Caution:**
+As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
+   
 ### Deleting a person : `delete`
 
 Deletes the specified person from the FABook.
 
-Format: `delete NAME`
+Format: `delete INDEX`
 
-* Deletes the person with the specified `NAME`.
+* INDEX is the index of the person in the currently displayed list.
+* Deletes the person with the specified index in the FABook.
 
 Examples:
-* `delete Aaron Judge` deletes `Aaron Judge` in the FABook.
+* `delete 2` deletes the second person in the currently displayed person list in the FABook.
 
 ### Clearing all entries : `clear`
 
 Clears all entries from the FABook.
 
 Format: `clear`
+
+:heavy_exclamation_mark: **Important**
+If you run this command by accident, you can undo the command to restore all previously cleared entries.
+See [Undo](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#undoing-a-previous-command--undo)
+
+### Undoing a previous command : `undo`
+
+Undos the last command from the FABook.
+
+* The command intended to be undone should be an undoable command.
+* Undoable commands are: 'clear', 'create', 'delete', 'redo' and 'update'
+* Non-undoable commands are: 'description', 'exit', 'find */', 'help', 'list', 'file' and 'filepath'
+
+:heavy_exclamation_mark: **Important**
+You can undo a `redo` command. See [Redo](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#redoing-a-previous-command--redo)
+
+### Redoing a previous command : `redo`
+
+Redos the last undone command from the FABook.
+
+Format: 'redo'
 
 ### Exiting the program : `exit`
 
@@ -205,15 +275,11 @@ FABook data are saved in the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-FABook data are saved as a text file `[JAR file location]/data/FABook.text`. Advanced users are welcome to update data directly by editing that data file.
+FABook data are saved as a text file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FABook will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -226,13 +292,20 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                         | Shortcut |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
-| **Create** | `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME] `<br> e.g., `create name:Betsy Crowe address:Newgate Prison num:1234567`      | c        |
-| **Clear**  | `clear`                                                                                                                                                  | cl       |
-| **Delete** | `delete NAME`<br> e.g., `delete Aaron Judge`                                                                                                             | d        |
-| **Update** | `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`<br> e.g.,`edit name:John Doe number:91234567 address:21 Lower Kent Ridge Rd` | u        |
-| **Find**   | `find NAME…`__or__ `find NUMBER` <br> e.g., `find James Jake` __or__ `find 09122222`                                                                     | f        |
-| **List**   | `list`                                                                                                                                                   | l        |
-| **Help**   | `help`                                                                                                                                                   |          |
-| **Exit**   | `exit`                                                                                                                                                   | e        |
+| Action          | Format, Examples                                                                                                            | Shortcut |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------|----------|
+| **Create**      | `create n/NAME p/PHONE_NUMBER [a/ADDRESS] [mt/TIME] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567`           | c        |
+| **Clear**       | `clear`                                                                                                                     | cl       |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                         | d        |
+| **Update**      | `update INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [mt/TIME]`<br> e.g.,`edit 2 p/91234567 a/21 Lower Kent Ridge Rd`        | u        |
+| **Description** | `description INDEX d/DESCRIPTION` <br> e.g., `description 3 d/Accident prone`                                               | desc     |
+| **Find**        | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`| f        |
+| **List**        | `list`                                                                                                                      | l        |
+| **Open File**   | `file INDEX`<br/> e.g. `file 2`                                                                                             |          |
+| **Assign File** | `filepath INDEX f/FILEPATH`<br/> e.g. `find 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                 |          |
+| **Remove past meetings** | `sync`                                                                                                             |          |
+| **Undo**        | `undo`                                                                                                                      |          |
+| **Redo**        | `redo`                                                                                                                      |          |
+| **Help**        | `help`                                                                                                                      |          |
+| **Exit**        | `exit`                                                                                                                      | e        |
+

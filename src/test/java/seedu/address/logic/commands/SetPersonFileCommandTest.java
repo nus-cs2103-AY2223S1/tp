@@ -44,22 +44,6 @@ class SetPersonFileCommandTest {
     }
 
     @Test
-    public void execute_setToPlaceholderFilePathUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withFilePath("").build();
-
-        SetPersonFileCommand setPersonFileCommand =
-                new SetPersonFileCommand(INDEX_FIRST_PERSON, new FilePath(editedPerson.getFilePath().value));
-
-        String expectedMessage = String.format(SetPersonFileCommand.MESSAGE_DELETE_FILEPATH_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
-
-        assertCommandSuccess(setPersonFileCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 

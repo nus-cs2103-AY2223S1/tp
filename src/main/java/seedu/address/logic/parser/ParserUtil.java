@@ -157,17 +157,11 @@ public class ParserUtil {
     /**
      * Parses a {@code String filePath} into a {@code FilePath}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code FilePath} is invalid.
      */
-    public static FilePath parseFilePath(String filePath) throws ParseException {
+    public static FilePath parseFilePath(String filePath) {
         requireNonNull(filePath);
         String trimmedFilePath = filePath.trim();
-        if (!FilePath.isValidPdfFilePath(trimmedFilePath) && !FilePath.isEmptyPdfFilePath(trimmedFilePath)) {
-            throw new ParseException(FilePath.MESSAGE_CONSTRAINTS);
-        }
         return new FilePath(trimmedFilePath);
-
     }
 
     /**

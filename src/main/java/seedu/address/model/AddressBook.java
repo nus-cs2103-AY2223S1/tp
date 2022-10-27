@@ -94,6 +94,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Deletes meetings with times that are before the local time on machine.
+     */
+    public void syncMeetingTimes() {
+        persons.syncMeetingTimes();
+    }
+
     //// util methods
 
     @Override

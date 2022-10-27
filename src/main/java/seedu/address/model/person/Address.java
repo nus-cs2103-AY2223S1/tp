@@ -53,6 +53,13 @@ public class Address {
         return value == EMPTY_ADDRESS ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
+    /**
+     * Returns true if value is empty.
+     */
+    public boolean isEmpty() {
+        return value.equals(EMPTY_ADDRESS);
+    }
+
     @Override
     public String toString() {
         return value;

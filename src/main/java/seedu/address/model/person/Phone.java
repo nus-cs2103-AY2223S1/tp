@@ -49,6 +49,13 @@ public class Phone {
         return value == EMPTY_PHONE ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
+    /**
+     * Returns true if value is empty.
+     */
+    public boolean isEmpty() {
+        return value.equals(EMPTY_PHONE);
+    }
+
     @Override
     public String toString() {
         return value;
