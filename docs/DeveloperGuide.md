@@ -19,12 +19,12 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+# **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 </div>
@@ -40,8 +40,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/Main.java)
+and [`MainApp`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -81,31 +81,31 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
 ### Logic component
 
 **
-API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -113,7 +113,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `StudMapParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
    executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
@@ -133,9 +133,9 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
+* When called upon to parse a user command, the `StudMapParser` class creates an `XYZCommandParser` (`XYZ` is a
   placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
+  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `StudMapParser` returns back as
   a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
@@ -143,23 +143,23 @@ How the parsing works:
 ### Model component
 
 **
-API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+* stores the student map data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `StudMap`, which `Student` references. This allows `StudMap` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -168,30 +168,30 @@ The `Model` component,
 ### Storage component
 
 **
-API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 
-* can save both address book data and user preference data in json format, and read them back into corresponding
+* can save both student map data and user preference data in json format, and read them back into corresponding
   objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* inherits from both `StudMapStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.studmap.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+# **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Filter feature
+## **Filter feature**
 
 #### Current Implementation
 
@@ -219,47 +219,20 @@ tags
 
 Step 4: The result list of students will then be shown back to the user via the dashboard
 
-### Addtag feature
+## **EditStudent features**
+This is a set of features with similar implementations that allows user to modify the `Student` object. Currently, the featuresEditStudent features include:
+1. `edit` :  `EditCommand`
+<br>Edit basic attributes of a student (E.g. Name, Phone, etc)
+2. `tag`:`TagCommand` and `untag` : `UntagCommand`
+<br>Add and removing tags for a student
+3. `mark` : `MarkCommand` and `unmark` : `UnmarkCommand` :
+<br> Add, modify and remove attendance status of a student
+4. `grade` : `GradeCommand` and `ungrade` : `UngradeCommand`
+<br> Add, modify and remove assignment grading status of a student.
 
-#### Current Implementation
-The `addtag` feature is implemented by the `AddTagCommand` class which extends the more general `EditStudentCommand` class.
-`AddTagCommand` extends the `EditStudentCommand` abstract class, as it is a feature that modifies students in the list.
-The execution of this command is handled by `EditStudentCommand#execute`, which calls `AddTagCommand.AddTagStudentEditor#editStudent`,
-which in turn adds the tags. `EditStudentCommand#execute` handles the re-insert of the edited `Student` back into `Model`.
+Each of these features are implemented through the corresponding commands which extends the generic `EditStudentCommand` abstract class.
 
-The flow for `AddTagCommand.AddTagStudentEditor#editStudent` is as follows
-
-1. Given the student to be edited (`studentToEdit`), we copy `studentToEdit.StudentData` as `studentData`.
-2. The current set of tags is retrieved from `studentData`.
-3. The retrieved tag set is combined with the new tags to be added.
-4. The combined tag set will then replace the existing one in `studentData`.
-5. We rebuild a new student using this edited `studentData` and return it.
-
-#### Design considerations:
-
-**Aspect: How `addtag` executes:**
-
-* **Alternative 1:** Update the students' tags set using `EditStudentCommand`.
-    * Pros: Easy to implement (after refactoring), is flexible and has minimal duplicated code.
-    * Cons: Requires refactoring of existing EditCommand code.
-
-* **Alternative 2:** Update the students' tags set using `EditCommand`.
-    * Pros: Easy to implement. Shares optimization with `EditCommand`.
-    * Cons: Increasing coupling of the code.
-
-* **Alternative 3:** Interact with the model directly to modify the tag set for the student.
-    * Pros: Remove dependency on other commands which reduces coupling.
-    * Cons: Possible duplication of the code. Changes in `setTags` of the `Student` needs to be updated in both places.
-
-### Mark feature
-
-#### Current Implementation
-
-The `mark` feature is implemented through the `MarkCommand` which extends the `Command` abstract class.
-
-`MarkCommand` extends the `EditStudentCommand` abstract class, as it is a feature that modifies students in the list.
-The implementation of the execute command is contained in the parent class `EditStudentCommand#execute`, which
-`MarkCommand` calls from. A brief summary of the class structure is illustrated in the class diagram below.
+The implementation of the `execute` method is contained in the parent class `EditStudentCommand#execute`. The `execute` method which the respective concrete implementations of `EditStudentCommand` will in turn call the `editStudent` method of the corresponding `StudentEditor` (e.g. `MarkCommand.MarkStudentEditor#editStudent`). A brief summary of the class structure is illustrated in the class diagram below, using `MarkCommand` as the example. Since all concrete implementations of the `EditStudentCommand` share the same class structure, the example of `MarkCommand` will also be used to explain the implementation details.
 
 ![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png)
 
@@ -268,29 +241,31 @@ The instance of `IndexListGenerator` can be either
 * `AllIndexGenerator`, which corresponds to all indexes of the filtered list (meaning all listed students are modified)
 * `SingleIndexGenerator`, which corresponds to a single index (meaning one selected student is modified)
 
-`StudentEditor` is an abstract class which contains all the logic for modifying the student. MarkCommand implements an
-unique subclass of `StudentEditor` called `MarkCommandStudentEditor`.
+`StudentEditor` is an abstract class which contains all the logic for modifying the student. Concrete implementations of `EditStudentCommand` such as the `MarkCommand` also contains an implementation its corresponding `StudentEditor` (E.g. `MarkCommandStudentEditor` in the case of `MarkCommand`).
 
-Both `IndexListGenerator` and `MarkCommandStudentEditor` are passed to `MarkCommand` in its constructor via the
-`MarkCommandParser`. Details of the class structure for `MarkCommandParser` are illustrated in the class diagram
+The corresponding `EditCommandParser` instantaites both its `IndexListGenerator` and the `StudentEditor` based on inputs and passed them to the constructor of the respective command (`MarkCommand` in this case). The example class structure using `MarkCommandParser` is illustrated in the class diagram
 below.
 
-![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)
+![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)]
 
-Given below is the flow for `MarkCommand#execute`.
 
-Step 1. The mark command loops through the list of indexes to be modified, as indicated in the `IndexListGenerator`.
+#### **General flow for update using EditStudentCommand**
 
-Step 2. The mark command modifies the student through `MarkCommandStudentEditor#editStudent`, marking the student as
-absent or present for the class
+Given below is the typical flow for `EditStudentCommand` such as the  `MarkCommand#execute`.
 
-Step 3. The mark command replaces the old student with the newly edited student in the `Model`.
+Step 1. The command loops through the list of indexes to be modified, as indicated in the `IndexListGenerator`.
 
-Below is a more detailed sequence diagram for the execution of the command.
+Step 3. The command replaces the old student with the newly edited student in the `Model` of the old student .
 
+Below is a more detailed sequence diagram for the execution of the command using the same example of `MarkCommand`.
 ![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
 
-#### Design considerations:
+#### Other notes or implementation
+`tag`/`untag` : This command adds/modifies/removes tags that are represented by the `Tag` class and does not include any status.
+`mark` /`unmark` : This command adds/modifies/removes a student's attendances that are represented by the `Attendance` class and include 2 status (absent/present).
+`mark` /`unmark` : This command adds/modifies/removes a student's assignment grading record that are represented by the `Assigment` class and include 3 status (new/received, marked).
+
+### Design considerations:
 
 **Aspect: How mark command executes:**
 
@@ -303,7 +278,7 @@ Below is a more detailed sequence diagram for the execution of the command.
     * Cons: Makes code harder to maintain, more code duplication.
 
 
-### Sort feature
+## **Sort feature**
 
 #### Implementation
 
@@ -320,7 +295,7 @@ The following sequence diagram shows how the sort operation works:
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
-Step 1. The user executes `sort asc a/name` to sort the students in the address book by their names in ascending order.
+Step 1. The user executes `sort asc a/name` to sort the students in the student map by their names in ascending order.
 
 Step 2. `SortCommandParser` handles the parsing of user input to ensure a valid `attributeType` and `sortingOrder` is supplied. The checks are done by `Attribute#isValidAttributeType()` and `Order#isValidOrderName()` respectively. For valid attributes and order, the `Comparator` and `Order` will be supplied by `Attribute#getAttributeComparator()` and `ParserUtil#ParseOrder()` to create a `SortCommand`.
 
@@ -350,47 +325,47 @@ Step 5. The sorted list is displayed to the user.
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
-history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
+The proposed undo/redo mechanism is facilitated by `VersionedStudMap`. It extends `StudMap` with an undo/redo
+history, stored internally as an `studMapStateList` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedStudMap#commit()` — Saves the current student map state in its history.
+* `VersionedStudMap#undo()` — Restores the previous student map state from its history.
+* `VersionedStudMap#redo()` — Restores a previously undone student map state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
-and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitStudMap()`, `Model#undoStudMap()`
+and `Model#redoStudMap()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedStudMap` will be initialized with the
+initial student map state, and the `currentStatePointer` pointing to that single student map state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
-to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
+Step 2. The user executes `delete 5` command to delete the 5th student in the student map. The `delete` command
+calls `Model#commitStudMap()`, causing the modified state of the student map after the `delete 5` command executes
+to be saved in the `studMapStateList`, and the `currentStatePointer` is shifted to the newly inserted student map
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`
-, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitStudMap()`
+, causing another modified student map state to be saved into the `studMapStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitStudMap()`, so the student map state will not be saved into the `studMapStateList`.
 
 </div>
 
 Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing
-the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
-once to the left, pointing it to the previous address book state, and restores the address book to that state.
+the `undo` command. The `undo` command will call `Model#undoStudMap()`, which will shift the `currentStatePointer`
+once to the left, pointing it to the previous student map state, and restores the student map to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial StudMap state, then there are no previous StudMap states to restore. The `undo` command uses `Model#canUndoStudMap()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -403,21 +378,21 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoStudMap()`, which shifts the `currentStatePointer` once
+to the right, pointing to the previously undone state, and restores the student map to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `studMapStateList.size() - 1`, pointing to the latest student map state, then there are no undone StudMap states to restore. The `redo` command uses `Model#canRedoStudMap()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such
-as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
-Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the student map, such
+as `list`, will usually not call `Model#commitStudMap()`, `Model#undoStudMap()` or `Model#redoStudMap()`.
+Thus, the `studMapStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
+Step 6. The user executes `clear`, which calls `Model#commitStudMap()`. Since the `currentStatePointer` is not
+pointing at the end of the `studMapStateList`, all student map states after the `currentStatePointer` will be
 purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
 desktop applications follow.
 
@@ -431,7 +406,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire student map.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
@@ -485,7 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | tutor                                       | delete a student                                     | remove entries that I no longer need                                   |
 | `* * *`  | tutor                                       | mark students who are present and absent from class  | keep track of attendance using this application                        |
 | `* * *`  | tutor                                       | find a student by name                               | locate details of students without having to go through the entire list |
-| `* *`    | tutor with many students in the address book | sort students by name                                | locate a student easily                                                |
+| `* *`    | tutor with many students in the student map | sort students by name                                | locate a student easily                                                |
 | `* *`    | tutor                                       | filter the students by attribute                     | locate a student easily                                                |
 | `* *`    | tutor                                       | create new labels to tag my students with            | better differentiate the students                                      |
 

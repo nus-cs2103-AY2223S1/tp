@@ -20,11 +20,11 @@ import seedu.studmap.model.tag.Tag;
 /**
  * Add tag for an existing student in the student map.
  */
-public class AddTagCommand extends EditStudentCommand<AddTagCommand.AddTagCommandStudentEditor> {
+public class TagCommand extends EditStudentCommand<TagCommand.TagCommandStudentEditor> {
 
-    public static final Logger LOGGER = LogsCenter.getLogger(AddTagCommand.class);
+    public static final Logger LOGGER = LogsCenter.getLogger(TagCommand.class);
 
-    public static final String COMMAND_WORD = "addtag";
+    public static final String COMMAND_WORD = "tag";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$s, new tag: %2$s";
 
@@ -45,7 +45,7 @@ public class AddTagCommand extends EditStudentCommand<AddTagCommand.AddTagComman
 
     public static final String MESSAGE_TAGS_NOT_ADDED = "At least one tag must be added";
 
-    public AddTagCommand(IndexListGenerator indexListGenerator, AddTagCommandStudentEditor editor) {
+    public TagCommand(IndexListGenerator indexListGenerator, TagCommandStudentEditor editor) {
         super(indexListGenerator, editor);
     }
 
@@ -71,14 +71,14 @@ public class AddTagCommand extends EditStudentCommand<AddTagCommand.AddTagComman
     /**
      * A static StudentEditor that adds tags to a given Student.
      */
-    public static class AddTagCommandStudentEditor implements StudentEditor {
+    public static class TagCommandStudentEditor implements StudentEditor {
 
         private Set<Tag> tags;
 
         /**
          * Parameterless constructor.
          */
-        public AddTagCommandStudentEditor() {
+        public TagCommandStudentEditor() {
         }
 
         /**
@@ -86,7 +86,7 @@ public class AddTagCommand extends EditStudentCommand<AddTagCommand.AddTagComman
          *
          * @param tags Tags that this editor will add to a given Student.
          */
-        public AddTagCommandStudentEditor(Set<Tag> tags) {
+        public TagCommandStudentEditor(Set<Tag> tags) {
             requireNonNull(tags);
             setTags(tags);
         }

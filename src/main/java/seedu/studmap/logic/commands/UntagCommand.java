@@ -21,11 +21,11 @@ import seedu.studmap.model.tag.Tag;
 /**
  * Deletes tag for an existing student in the student map.
  */
-public class DelTagCommand extends EditStudentCommand<DelTagCommand.DelTagCommandStudentEditor> {
+public class UntagCommand extends EditStudentCommand<UntagCommand.UntagCommandStudentEditor> {
 
     public static final Logger LOGGER = LogsCenter.getLogger(MainApp.class);
 
-    public static final String COMMAND_WORD = "deltag";
+    public static final String COMMAND_WORD = "untag";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$s, new tag: %2$s";
 
@@ -46,7 +46,7 @@ public class DelTagCommand extends EditStudentCommand<DelTagCommand.DelTagComman
 
     public static final String MESSAGE_TAGS_NOT_DELETED = "At least one tag must be deleted";
 
-    public DelTagCommand(IndexListGenerator indexListGenerator, DelTagCommandStudentEditor editor) {
+    public UntagCommand(IndexListGenerator indexListGenerator, UntagCommandStudentEditor editor) {
         super(indexListGenerator, editor);
     }
 
@@ -72,14 +72,14 @@ public class DelTagCommand extends EditStudentCommand<DelTagCommand.DelTagComman
     /**
      * A static StudentEditor that deletes tags to a given Student.
      */
-    public static class DelTagCommandStudentEditor implements StudentEditor {
+    public static class UntagCommandStudentEditor implements StudentEditor {
 
         private Set<Tag> tags;
 
         /**
          * Parameterless constructor.
          */
-        public DelTagCommandStudentEditor() {
+        public UntagCommandStudentEditor() {
         }
 
         /**
@@ -87,7 +87,7 @@ public class DelTagCommand extends EditStudentCommand<DelTagCommand.DelTagComman
          *
          * @param tags Tags that this editor will delete from a given Student.
          */
-        public DelTagCommandStudentEditor(Set<Tag> tags) {
+        public UntagCommandStudentEditor(Set<Tag> tags) {
             requireNonNull(tags);
             setTags(tags);
         }
