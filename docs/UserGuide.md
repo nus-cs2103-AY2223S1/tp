@@ -10,29 +10,32 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
 
 * [Quick start](#quick-start)
 * [Features](#features)
-  * [Basic Features](#basic-features):
-    1. Adding a person : [`add`](#adding-a-person-add)
-    2. Editing a person : [`edit`](#editing-a-person--edit)
-    3. Deleting a person : [`delete`](#deleting-a-person--delete)
-    4. Listing all persons : [`list`](#listing-all-persons--list)
-    5. Clearing all entries : [`clear`](#clearing-all-entries--clear)
-    6. Find a person: [`find`](#find-entries-by-keywords-of-fields--find-keyword-eg-find-john)
-    7. Sorting entries by field : [`sort`](#sort-entries-by-field--sort-prefix-eg-sort-n)
-  * Enhanced Features:
-    1. Add a person's occupation : 
-    2. Add a person's tutorial :
-    3. Add a person's social medias :
-    4. Add a person's preferred social media :
-    5. Add a person to favorite : [`fav`](#add-a-person-to-favorite--fav)
-    6. Add a person to a group: [`addtogroup`](#adding-a-person-to-a-group--addtogroup)
-    7. Remove a person from a group: [`ungroup`](#removing-a-person-from-a-group--ungroup)
-    8. Open a group window: [`group`](#opening-a-group-window--group)
-    9. Email all persons in a group: [`emailall`](#email-all-persons-in-a-group--emailall)
-    10. Find persons with a preferred social media : [`social`](#find-persons-with-a-preferred-social-media--social)
-  * General App Features:
-      1. Viewing help : [`help`](#viewing-help--help)
-      2. Undoing last command : [`undo`](#undo-last-modification--undo)
-      3. Exiting the app : [`exit`](#c-exiting-the-program--exit)
+  * [Person Fields](#person-fields):
+    1. [occupation](#a-occupation--o) : `o/`
+    2. [name](#b-name--n) : `n/`
+    3. [phone](#c-phone--pphone) : `p/`
+    4. [tutorial](#d-tutorial--tuttutorial) : `tut/`
+    5. [social medias](#e-social-medias--ssocial-medias) : `s/`
+    6. [tags](#f-tags--ttags) : `t/`
+   * [Basic Features](#basic-features):
+     1. [Adding a person](#a-adding-a-person-add) : `add`
+     2. [Editing a person](#b-editing-a-person--edit) : `edit`
+     3. [Deleting a person](#c-deleting-a-person--delete) : `delete`
+     4. [Listing all persons](#d-listing-all-persons--list) : `list`
+     5. [Clearing all entries](#e-clearing-all-entries--clear) : `clear`
+     6. [Find a person](#f-find-entries-by-keywords-of-fields--find-keyword-eg-find-john) : `find`
+     7. [Sorting entries by field](#g-sort-entries-by-field--sort-prefix-eg-sort-n) : `sort`
+   * [Enhanced Features](#enhanced-features):
+     1. [Add a person to favorite](#a-add-a-person-to-favorite--fav) : `fav`
+     2. [Add a person to a group](#b-adding-a-person-to-a-group--addtogroup): `addtogroup`
+     3. [Remove a person from a group](#c-removing-a-person-from-a-group--ungroup) : `ungroup`
+     4. [Open a group window](#d-opening-a-group-window--group) : `group`
+     5. [Email all persons in a group](#e-email-all-persons-in-a-group--emailall) : `emailall`
+     6. [Find persons with a preferred social media](#f-find-persons-with-a-preferred-social-media--social) : `social`
+   * [General App Features](#general-app-features):
+       1. [Viewing help](#a-viewing-help--help) : `help`
+       2. [Undoing last command](#b-undo-last-modification--undo) : `undo`
+       3. [Exiting the app](#c-exiting-the-program--exit) : `exit`
 * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -81,6 +84,56 @@ open the help window.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+## Person Fields
+
+### a. occupation : `o/`
+
+Sets the occupation of a person in uNivUSal.
+
+Format: `o/OCCUPATION`
+* `OCCUPATION` includes `STUDENT`, `TA`, `PROFESSOR`
+
+### b. name : `n/`
+
+Sets the name of a person in uNivUSal.
+
+Format: `n/NAME`
+* `NAME` can be more than one word long but cannot be empty.
+
+### c. phone : `p/PHONE`
+
+Sets the phone number of a person in uNivUSal.
+
+Format : `p/PHONE`
+* `PHONE` must only contain digits and not alphabets.
+
+Example : `p/97865486`
+
+### d. tutorial : `tut/TUTORIAL`
+
+Sets the tutorial group of a person in uNivUSal.
+
+Format : `tut/TUTORIAL`
+* `TUTORIAL` must contain a letter from `[W/T/F]` followed by two digits.
+
+Example : `tut/T08`
+
+### e. social medias : `s/SOCIAL MEDIAS`
+
+Sets the social medias of a person in uNivUSal.
+
+Format : `s/SOCIAL MEDIAS`
+
+Example : 
+
+### f. tags : `t/TAGS`
+
+Sets tag(s) of a person in uNivUSal.
+
+Format : `t/TAG`
+
+Example : `t/ classmate`
 
 ## Basic Features
 
@@ -176,15 +229,7 @@ Examples:
 
 ## Enhanced Features
 
-### a. Add a person's occupation
-
-### b. Add a person's tutorial
-
-### c. Add a person's social medias
-
-### d. Add a person's preferred social media
-
-### e. Add a person to favorite : `fav`
+### a. Add a person to favorite : `fav`
 
 Adds the specified person to `favorite` group.
 
@@ -195,7 +240,7 @@ Format: `fav INDEX`
 Examples:
 * `fav 1` will add 1st person in the current list to `favorite`.
 
-### f. Adding a person to a group : `addtogroup`
+### b. Adding a person to a group : `addtogroup`
 
 Adds the specified person to the specified group.
 
@@ -209,7 +254,7 @@ Examples:
 * `addtogroup 1 friends` adds the 1st person in the current list to the group `friends`.
 
 
-### g. Removing a person from a group : `ungroup`
+### c. Removing a person from a group : `ungroup`
 
 Removes the specified person from the specified group.
 
@@ -222,7 +267,7 @@ Format: `ungroup INDEX GROUP`
 Examples:
 * `ungroup 1 friends` ungroups the 1st person in the current list from the group `friends`.
 
-### h. Opening a group window : `group`
+### d. Opening a group window : `group`
 
 Open a new window containing the persons in the group.
 
@@ -234,7 +279,7 @@ Format: `group GROUPNAME`
 Examples:
 * `group friends` opens a group window containing persons in the group `friends`.
 
-### i. Email all persons in a group : `emailall`
+### e. Email all persons in a group : `emailall`
 
 Open an email link to all persons in the specified group.
 
@@ -246,7 +291,7 @@ Format: `emailall GROUPNAME`
 Examples:
 * `emailall friends` opens the email client to all persons in the group `friends`.
 
-### j. Find persons with a preferred social media : `social`
+### f. Find persons with a preferred social media : `social`
 
 Filters the current list to people who set their preferred social media to the input.
 
