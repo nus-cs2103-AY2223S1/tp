@@ -156,6 +156,24 @@ Format: `cleardebts <person index>`
 Example:
 * `cleardebts 3`
 
+### Marking debts as paid: `mark`
+
+Marks the debts specified from a person in PayMeLah as paid. Multiple debts can be specified for marking as paid.
+
+Format: `mark <person index> debt/<debt index…>`
+
+Example:
+* `mark 2 debt/2 3`
+
+### Marking debts as unpaid: `unmark`
+
+Marks the debts specified from a person in PayMeLah as unpaid. Multiple debts can be specified for marking as unpaid.
+
+Format: `unmark <person index> debt/<debt index…>`
+
+Example:
+* `unmark 2 debt/2 3`
+
 ### Deleting debts: `deletedebts`
 
 Deletes the debts specified from a person in PayMeLah. Multiple debts can be specified for deletion.
@@ -294,6 +312,8 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Add person**    | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`                                       |
 | **Add debt**      | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`                                                                                                                       |
 | **Split debt**    | `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]` <br> e.g., `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`                                                            |
+| **Mark debts**    | `mark <person index> debt/<debt index…>` <br> e.g., `mark 2 debt/2 3`                                                                                                                                              |
+| **Unmark debts**  | `unmark <person index> debt/<debt index…>` <br> e.g., `unmark 2 debt/2 3`                                                                                                                                          |
 | **Clear debts**   | `cleardebts <person index>` <br> e.g., `cleardebts 3`                                                                                                                                                              |
 | **Delete debts**  | `deletedebts <person index> debt/<debt index…>` <br> e.g., `deletedebts 2 debt/2 3`                                                                                                                                |
 | **Clear**         | `clear`                                                                                                                                                                                                            |
