@@ -168,7 +168,7 @@ Examples:
   and `johndoe@example.com` respectively.
 * `editp 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 <p float="left">
-<img src="images/editp1.png" width="700" /> 
+<img src="images/editp1.png" width="700" />
 <img src="images/editp2.png" width="700" />
 </p>
 
@@ -189,7 +189,7 @@ Examples:
 * `list` followed by `deletep 5` deletes the 5th contact in the address book.
 
 <p float="left">
-<img src="images/deletep1.png" width="700" /> 
+<img src="images/deletep1.png" width="700" />
 <img src="images/deletep2.png" width="700" />
 </p>
 
@@ -239,7 +239,7 @@ Format: `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [l
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing assignment details, the existing assignment details of the module will be removed 
+* When editing assignment details, the existing assignment details of the module will be removed
   i.e adding of assignment details are not cumulative.
 * You can remove all the module’s assignment details by typing `a/` without specifying any assignment details after it.
 

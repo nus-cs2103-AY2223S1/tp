@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ModuleBuilder;
 
-public class ModuleCodeContainsKeywordPredicateTest {
+public class ModuleDetailsContainsKeywordPredicateTest {
 
     @Test
     public void equals() {
@@ -42,7 +42,7 @@ public class ModuleCodeContainsKeywordPredicateTest {
     }
 
     @Test
-    public void test_moduleCodeContainsKeywords_returnsTrue() {
+    public void test_moduleDetailsContainsKeywords_returnsTrue() {
         // One keyword
         ModuleDetailsContainsKeywordsPredicate predicate =
                 new ModuleDetailsContainsKeywordsPredicate(Collections.singletonList("CS2100"));
@@ -62,7 +62,7 @@ public class ModuleCodeContainsKeywordPredicateTest {
     }
 
     @Test
-    public void test_moduleCodeDoesNotContainKeywords_returnsFalse() {
+    public void test_moduleDetailsDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         ModuleDetailsContainsKeywordsPredicate predicate =
                 new ModuleDetailsContainsKeywordsPredicate(Collections.emptyList());
