@@ -34,8 +34,9 @@ public class ModulesLeftCommand extends Command {
     public static final String MESSAGE_NO_USER = "No user to check modules left!";
     public static final String MESSAGE_INVALID_INDEX = "The focus area index provided is invalid.";
 
-    private static int focusAreaIndex;
     private static Set<Module> modulesChecker = new HashSet<>();
+
+    private final Index index;
     private final EmptyUser emptyUser = new EmptyUser();
 
     /**
@@ -44,14 +45,15 @@ public class ModulesLeftCommand extends Command {
     public ModulesLeftCommand(Index index) {
         requireNonNull(index);
 
-        focusAreaIndex = index.getOneBased();
+        this.index = index;
     }
 
     /**
      * Uses the {@code focusAreaIndex} given to choose the focus area (or core modules) and generate the list of
      * modules {@code modulesChecker} needed to fulfill core requirements or that focus area
      */
-    public static void chooseFocusArea() throws CommandException {
+    public void chooseFocusArea() throws CommandException {
+        int focusAreaIndex = index.getOneBased();
         switch (focusAreaIndex) {
         case 1:
             createCoreModules();
@@ -226,6 +228,13 @@ public class ModulesLeftCommand extends Command {
         modulesLeft.removeAll(userPrevMods);
         modulesLeft.removeAll(userCurrMods);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, modulesLeft.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, modulesLeft));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ModulesLeftCommand // instanceof handles nulls
+                && index.equals(((ModulesLeftCommand) other).index)); // state check
     }
 }

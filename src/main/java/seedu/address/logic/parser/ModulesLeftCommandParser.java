@@ -6,6 +6,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ModulesLeftCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ModulesLeftCommand object
+ */
 public class ModulesLeftCommandParser implements Parser<ModulesLeftCommand> {
 
     /**
