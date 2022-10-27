@@ -23,7 +23,7 @@ import tracko.logic.commands.item.EditItemCommand;
 import tracko.logic.commands.order.EditOrderCommand;
 import tracko.model.Model;
 import tracko.model.TrackO;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemContainsKeywordsPredicate;
 import tracko.model.order.Order;
 import tracko.model.order.OrderMatchesFlagsAndPrefixPredicate;
@@ -201,9 +201,9 @@ public class CommandTestUtil {
     public static void showItemAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredItemList().size());
 
-        Item item = model.getInventoryList().get(targetIndex.getZeroBased());
+        InventoryItem inventoryItem = model.getInventoryList().get(targetIndex.getZeroBased());
         // Index is at 1 because at 0, every person is initialized to have a keychain.
-        final String[] splitName = item.getItemName().toString().split("\\s+");
+        final String[] splitName = inventoryItem.getItemName().toString().split("\\s+");
         model.updateFilteredItemList(new ItemContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredItemListSize());

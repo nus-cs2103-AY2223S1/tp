@@ -31,18 +31,18 @@ import org.junit.jupiter.api.Test;
 import tracko.logic.commands.item.AddItemCommand;
 import tracko.logic.parser.item.AddItemCommandParser;
 import tracko.model.item.Description;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
-import tracko.testutil.ItemBuilder;
+import tracko.testutil.InventoryItemBuilder;
 
 public class AddItemCommandParserTest {
     private AddItemCommandParser parser = new AddItemCommandParser();
 
     @Test
     public void parseInitial_allFieldsPresent_success() {
-        Item expectedItem = new ItemBuilder().build();
+        InventoryItem expectedItem = new InventoryItemBuilder().build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + ITEM_NAME_DESC_DEFAULT + QUANTITY_DESC_DEFAULT

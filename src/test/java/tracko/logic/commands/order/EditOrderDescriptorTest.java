@@ -1,8 +1,9 @@
-package tracko.logic.commands;
+package tracko.logic.commands.order;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import tracko.logic.commands.CommandTestUtil;
 import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
 import tracko.testutil.EditOrderDescriptorBuilder;
 
