@@ -4,15 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
-import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_NAME_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_INDEX_DESCRIPTION;
 
 import java.util.List;
 
 import picocli.CommandLine;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.NamePredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Team;
 
@@ -26,15 +25,16 @@ public class AddMemberCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds the person with the specified name into the current team.\n"
-            + "Parameters: NAME\n"
-            + "Example: " + COMMAND_WORD + " \"Alice Jane\"";
+            + "Parameters: MEMBER_INDEX\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_ADD_MEMBER_SUCCESS = "Added Member: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person is already in the team";
     public static final String MESSAGE_PERSON_NOT_EXISTS = "The person you are trying to add does not exist";
+    public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_PERSON_NAME_DESCRIPTION)
-    private Name targetPersonName;
+    @CommandLine.Parameters(arity = "1", description = FLAG_MEMBER_INDEX_DESCRIPTION)
+    private Index targetPersonIndex;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -53,16 +53,11 @@ public class AddMemberCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Person> matchingPersons = model.getFilteredPersonList(new NamePredicate(targetPersonName));
-
-        if (matchingPersons.size() == 0) {
-            throw new CommandException(MESSAGE_PERSON_NOT_EXISTS);
+        List<Person> memberList = model.getFilteredPersonList();
+        if (targetPersonIndex.getOneBased() > memberList.size() || targetPersonIndex.getOneBased() <= 0) {
+            throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
         }
-
-        // Filtered persons list will always have either size 0 or 1, as names are unique
-        assert matchingPersons.size() == 1;
-
-        Person toAdd = matchingPersons.get(0);
+        Person toAdd = memberList.get(targetPersonIndex.getZeroBased());
         Team team = model.getTeam();
         if (team.hasMember(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -76,6 +71,6 @@ public class AddMemberCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddMemberCommand // instanceof handles nulls
-                && targetPersonName.equals(((AddMemberCommand) other).targetPersonName)); // state check
+                && targetPersonIndex == (((AddMemberCommand) other).targetPersonIndex)); // state check
     }
 }

@@ -113,7 +113,7 @@ Add a new team member to the user’s currently selected team. Will throw an err
 
 Format:
 
-- `add member TASK_INDEX`
+- `add member MEMBER_INDEX`
 
 Examples:
 
@@ -121,8 +121,7 @@ Examples:
 
 ### Delete a member from team `delete member`
 
-Delete a team member from the user’s team. Will throw an error if no member with that name is found. Take note that
-names are case-sensitive.
+Delete a team member from the user’s team.
 
 Format:
 
@@ -146,13 +145,13 @@ Add a new task to the current team. The task name is compulsory, while the other
 deadline are optional.
 
 Format:
-* `add task -n "TASK_NAME" -a ASSIGNEE_INDEX -d "DEADLINE"`
+* `add task -n "TASK_NAME" [-a ASSIGNEE_INDEX] [-d "DEADLINE"]`
 
 Examples:
 
 * `add task -n "Merge PR" -a 1 -d "02-Dec-2022 23:59"` will add a task with the name "Merge PR", assign the task to the
 first member in the team list and set the deadline "02-Dec-2022 23:59", to the current team's task list.
-* `add task -n "Review PR" -a 1 -a 3 -d "02-Dec-2022 23:59"` will add a task with the name "Review PR", assign the task
+* `add task -n "Review PR" -a 1 3 -d "02-Dec-2022 23:59"` will add a task with the name "Review PR", assign the task
 to the first and third member in the team list and set the deadline "02-Dec-2022 23:59", to the current team's
 task list.
 
@@ -163,7 +162,7 @@ will be overwritten accordingly.
 
 Format:
 
-- `edit task TASK_INDEX -n "TASK_NAME" -a ASSIGNEE_INDEX -d "DEADLINE"`
+- `edit task TASK_INDEX -n "TASK_NAME" [-a ASSIGNEE_INDEX] [-d "DEADLINE"]`
 
 Examples:
 
@@ -179,18 +178,18 @@ in this case.
 Assign an existing task to a team member in the user’s team. Will display an error message if either the team member or
 the task is not found in the user’s team.
 
-Format: `assign task TASK_INDEX TEAM_MEMBER_NAME`
+Format: `assign task TASK_INDEX -n MEMBER_INDEX`
 
 Examples:
 
-- `assign task 1 Alex` will assign the first task on the task list to a member in the team named Alex.
-- `assign task 2 Bernice` will assign the second task on the task list to a member in the team named Bernice.
+- `assign task 1 -a 1` will assign the first task on the task list to the first member in the team.
+- `assign task 2 -a 2` will assign the second task on the task list to the second member in the team.
 
 ### Assign task to random team member: `assign random`
 
 Assign an existing task to a random team member in the user’s team. Will display an error message if either the task is
-not found in the user’s team or if there are no team members to assign the task to (if the team is empty, or if the task
-has already been assigned to all members of the team.
+not found in the user’s team or if there are no team members to assign the task to (if the team is empty,
+or if the task has already been assigned to all members of the team.
 
 Format: `assign random TASK_INDEX`
 
@@ -206,7 +205,7 @@ Format: `set deadline TASK_INDEX DEADLINE`
 
 Examples:
 
-- `set deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023 11.59pm.
+- `set deadline 1 "2023-12-25 23:59"` will set the deadline for the first task on the task list as 25 December 2023 11.59pm.
 
 ### Delete task from team : `delete task`
 
