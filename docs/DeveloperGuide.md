@@ -225,6 +225,7 @@ in the app. Below is an activity diagram reflecting this:
 For simplicity, only the `deletegroup` command sequence diagram is shown below. Both commands operate via a similar sequence:
 
 <img src="images/DeleteGroupSequenceDiagram.png" width="800" />
+<img src="images/DeleteGroupCommandExecutesSequenceDiagram.png" width="400" />
 
 -----
 
@@ -281,6 +282,7 @@ The `AddressBook` model now looks like this:
 For simplicity, only the `deletemember` command sequence diagram is shown below. Both commands operate via a similar sequence:
 
 <img src="images/DeleteMemberSequenceDiagram.png" width="800" />
+<img src="images/DeleteGroupMemberCommandExecutesSequenceDiagram.png" width="400" />
 
 
 -----
@@ -317,6 +319,7 @@ User executes `listgroups`. The associated command `ListGroupsCommand` calls
 For simplicity, only the `displaygroup` command sequence diagram is shown below. Both commands operate via a similar sequence:
 
 <img src="images/DisplayGroupSequenceDiagram.png" width="800" />
+<img src="images/DisplayGroupCommandExecutesSequenceDiagram.png" width="400" />
 
 ----
 
