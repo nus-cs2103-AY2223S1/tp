@@ -1,7 +1,7 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2223S1-CS2103T-W10-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W10-1/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W10-1/tp/branch/master/graph/badge.svg?token=SQQ4K5J7N0)](https://codecov.io/gh/AY2223S1-CS2103T-W10-1/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/user-guide/Ui.png)
 
 # TABS
 * This is **a project for Software Engineering (SE) students**.<br>
