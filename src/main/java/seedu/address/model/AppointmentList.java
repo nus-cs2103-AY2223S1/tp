@@ -1,8 +1,6 @@
 package seedu.address.model;
 
 import static seedu.address.logic.commands.BookCommand.MESSAGE_DUPLICATE_APPOINTMENT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,6 +11,7 @@ import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,8 +34,9 @@ public class AppointmentList {
         appointmentList.add(appointment);
         appointment.setPatient(patient);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.addAppointment(appointment);
+        model.updateFilteredPersonList(HiddenPredicateSingleton.getCurrPersonPredicate());
+        model.updateFilteredAppointmentList(HiddenPredicateSingleton.getCurrApptPredicate());
     }
 
     /**
@@ -51,8 +51,8 @@ public class AppointmentList {
         appointmentList.remove(appointment);
         model.deleteAppointment(appointment);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        model.updateFilteredPersonList(HiddenPredicateSingleton.getCurrPersonPredicate());
+        model.updateFilteredAppointmentList(HiddenPredicateSingleton.getCurrApptPredicate());
     }
 
     /**

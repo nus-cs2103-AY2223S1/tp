@@ -81,9 +81,8 @@ public class FindCommand extends Command {
         and updates the model accordingly.
          */
         Predicate<Person> personFulfillingBothPredicates = !isUsingAppointmentPredicate
-                ? personPredicate.and(HiddenPredicateSingleton.getCurrPersonPredicate())
-                : personPredicate.and(person -> person.getAppointments().stream().anyMatch(
-                        appointmentPredicate)).and(HiddenPredicateSingleton.getCurrPersonPredicate());
+                ? personPredicate
+                : personPredicate.and(person -> person.getAppointments().stream().anyMatch(appointmentPredicate));
 
         /*
         Creates a Predicate<Appointment> that returns true if an appointment's patient is one who satisfies
@@ -98,14 +97,14 @@ public class FindCommand extends Command {
         and updates the model accordingly.
          */
         Predicate<Appointment> appointmentFulfillingBothPredicates = !isUsingAppointmentPredicate
-                ? appointmentOfFilteredPersonsPredicate.and(HiddenPredicateSingleton.getCurrApptPredicate())
+                ? appointmentOfFilteredPersonsPredicate
                 : appointmentOfFilteredPersonsPredicate.and(appointmentPredicate);
 
-        Predicate<Person> combinedPersonPredicate = HiddenPredicateSingleton
-                .combineWithRegularPredicate(personFulfillingBothPredicates);
-        Predicate<Appointment> combinedApptPredicate = !isUsingAppointmentPredicate
-                ? appointmentFulfillingBothPredicates.and(HiddenPredicateSingleton.getCurrApptPredicate())
-                : HiddenPredicateSingleton.combineWithRegularApptPredicate(appointmentFulfillingBothPredicates);
+        Predicate<Person> combinedPersonPredicate =
+                HiddenPredicateSingleton.combineWithRegularPredicate(personFulfillingBothPredicates);
+
+        Predicate<Appointment> combinedApptPredicate =
+                HiddenPredicateSingleton.combineWithRegularApptPredicate(appointmentFulfillingBothPredicates);
 
         model.updateFilteredPersonList(combinedPersonPredicate);
         model.updateFilteredAppointmentList(combinedApptPredicate);

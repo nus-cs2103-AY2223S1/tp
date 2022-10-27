@@ -1,5 +1,7 @@
 package seedu.address.model.person.predicates;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -59,7 +61,7 @@ public class CombinedPersonPredicate implements Predicate<Person> {
             addTagListPredicate(personPredicates);
         }
 
-        return personPredicates.stream().reduce(HiddenPredicateSingleton.getCurrPersonPredicate(), Predicate::and);
+        return personPredicates.stream().reduce(PREDICATE_SHOW_ALL_PERSONS, Predicate::and);
     }
 
     private void addNamePredicate(List<Predicate<Person>> personPredicates) {

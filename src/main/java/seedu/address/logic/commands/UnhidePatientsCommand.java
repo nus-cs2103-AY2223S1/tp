@@ -45,9 +45,11 @@ public class UnhidePatientsCommand extends Command {
         List<Person> validPersons = model.getFilteredPersonList();
         AppointmentOfFilteredPersonsPredicate appointmentPredicate =
                 new AppointmentOfFilteredPersonsPredicate(validPersons);
-        Predicate<Appointment> updatedPredicate =
-                appointmentPredicate.and(HiddenPredicateSingleton.getCurrApptPredicate());
-        model.updateFilteredAppointmentList(updatedPredicate);
+
+        Predicate<Appointment> combinedApptPredicate =
+                HiddenPredicateSingleton.combineWithRegularApptPredicate(appointmentPredicate);
+
+        model.updateFilteredAppointmentList(combinedApptPredicate);
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESULTS_LISTED_OVERVIEW,
