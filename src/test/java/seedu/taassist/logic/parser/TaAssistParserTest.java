@@ -2,7 +2,7 @@ package seedu.taassist.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taassist.commons.core.Messages.MESSAGE_EMPTY_COMMAND;
 import static seedu.taassist.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
@@ -156,7 +156,7 @@ public class TaAssistParserTest {
         String commandString = joinWithSpace(SessionCommand.COMMAND_WORD,
                 PREFIX_SESSION + session.getSessionName());
         SessionCommand command = (SessionCommand) parser.parseCommand(commandString);
-        assertEquals(new SessionCommand(session), command);
+        assertEquals(new SessionCommand(new HashSet<>(List.of(session))), command);
     }
 
     @Test
@@ -209,8 +209,7 @@ public class TaAssistParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class, MESSAGE_EMPTY_COMMAND, () -> parser.parseCommand(""));
     }
 
     @Test

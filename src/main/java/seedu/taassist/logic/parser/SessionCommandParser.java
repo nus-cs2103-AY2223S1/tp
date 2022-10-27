@@ -5,6 +5,7 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import seedu.taassist.logic.commands.SessionCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
@@ -23,7 +24,8 @@ public class SessionCommandParser implements Parser<SessionCommand> {
     public SessionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SESSION, PREFIX_DATE);
         if (!argMultimap.containsPrefixes(PREFIX_SESSION) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SessionCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SessionCommand.COMMAND_WORD,
+                    SessionCommand.MESSAGE_USAGE));
         }
 
         Date date;
@@ -33,8 +35,8 @@ public class SessionCommandParser implements Parser<SessionCommand> {
             date = new Date(LocalDate.now());
         }
 
-        Session session = ParserUtil.parseSession(argMultimap.getValue(PREFIX_SESSION).get(), date);
+        Set<Session> sessions = ParserUtil.parseSessions(argMultimap.getAllValues(PREFIX_SESSION), date);
 
-        return new SessionCommand(session);
+        return new SessionCommand(sessions);
     }
 }

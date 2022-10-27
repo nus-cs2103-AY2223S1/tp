@@ -198,17 +198,18 @@
     -fx-text-fill: black;
     -fx-font-size: 20;
     -fx-background-insets: 10;
-    -fx-text-box-border: transparent;
 }
 
 .student-title .content{
     -fx-background-color: #acedd9;
     -fx-background-radius: 30 30 0 0;
+    -fx-cursor: default;
 }
 
 .class-title .content{
     -fx-background-color: #a5dff0;
     -fx-background-radius: 30 30 0 0;
+    -fx-cursor: default;
 }
 
 .student-title .scroll-pane .viewport, .class-title .scroll-pane .viewport{
@@ -288,21 +289,27 @@
     -fx-font-size: 12pt;
     -fx-font-style: normal;
     -fx-font-weight: 300;
-    -fx-padding: 5;
+    -fx-padding: 2 10 2 10;
+    -fx-font-weight: 300;
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
 }
 
 #helpButton:hover {
     -fx-background-color: #fe7f9c;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
 }
 
 #unfocusButton:hover, #helpFocusButton:hover {
     -fx-background-color: #55aaff;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
 }
 
  #classTitle {
     -fx-font-size: 15pt;
     -fx-font-style: normal;
-
+    -fx-font-family: "Impact";
+    -fx-text-fill: #070f36;
 }
 
 /*
@@ -315,7 +322,7 @@
     -fx-border-color: white, white;
     -fx-border-width: 1, 1;
     -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 20, 20;
+    -fx-border-radius: 10, 10;
     -fx-border-insets: 1 1 1 1, 0;
     -fx-background-radius: 20;
     -fx-background-color: transparent;
@@ -407,9 +414,10 @@
 
 #classes .label {
     -fx-text-fill: white;
-    -fx-background-color: #144073;
+    -fx-font-family: 'Impact';
+    -fx-background-color: #b3446c;
     -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 13;
 }

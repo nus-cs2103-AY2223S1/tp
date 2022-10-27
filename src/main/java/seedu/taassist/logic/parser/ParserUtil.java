@@ -31,7 +31,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_DATE = "An invalid date is provided. "
             + "Dates should be given in YYYY-MM-DD format and must be an actual date.";
     public static final String MESSAGE_INVALID_GRADE = "An invalid grade value is provided. "
-            + "The grade must be a double or integer.";
+            + "The grade must be a number.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -219,6 +219,18 @@ public class ParserUtil {
         final Set<Session> sessionSet = new HashSet<>();
         for (String sessionName : sessions) {
             sessionSet.add(parseSession(sessionName));
+        }
+        return sessionSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> sessions} with {@code date} into a {@code Set<Session>}.
+     */
+    public static Set<Session> parseSessions(Collection<String> sessions, Date date) throws ParseException {
+        requireNonNull(sessions);
+        final Set<Session> sessionSet = new HashSet<>();
+        for (String sessionName : sessions) {
+            sessionSet.add(parseSession(sessionName, date));
         }
         return sessionSet;
     }

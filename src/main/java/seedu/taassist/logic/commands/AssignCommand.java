@@ -2,6 +2,7 @@ package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.List;
@@ -22,20 +23,20 @@ public class AssignCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign students to a class.\n"
-            + "Parameters: INDEX... (must be positive integers) "
-            + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
+    public static final String MESSAGE_USAGE = "> Assigns students to a class.\n"
+            + "Parameters: INDEX... "
+            + PREFIX_MODULE_CLASS + "CLASS_NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 2 3 "
             + PREFIX_MODULE_CLASS + "CS1231S";
 
-    public static final String MESSAGE_SUCCESS = "Students with %1$s %2$s are assigned to: %3$s";
+    public static final String MESSAGE_SUCCESS = "Students assigned to [ %1$s ]:\n[ %2$s ]";
 
     private final List<Index> indices;
     private final ModuleClass moduleClassToAssign;
 
     /**
-     * Creates an AssignCommand to assign the given {@Code ModuleClass} to students at the given {@Code Indices}.
+     * Creates an AssignCommand to assign the given {@code ModuleClass} to students at the given {@code Indices}.
      */
     public AssignCommand(List<Index> indices, ModuleClass moduleClassToAssign) {
         requireAllNonNull(indices);
@@ -63,8 +64,12 @@ public class AssignCommand extends Command {
 
         studentsToAssign.forEach(s -> model.setStudent(s, s.addModuleClass(moduleClassToAssign)));
 
-        String indexOrIndices = indices.size() == 1 ? "index" : "indices";
-        return new CommandResult(String.format(MESSAGE_SUCCESS, indexOrIndices, indices, moduleClassToAssign));
+        return new CommandResult(getSuccessMessage(studentsToAssign, moduleClassToAssign));
+    }
+
+    public static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {
+        String studentNames = commaSeparate(students, student -> student.getName().toString());
+        return String.format(MESSAGE_SUCCESS, moduleClass, studentNames);
     }
 
     @Override

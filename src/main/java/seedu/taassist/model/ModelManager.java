@@ -162,6 +162,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
+        requireAllNonNull(moduleClasses);
+        moduleClasses.forEach(this::removeModuleClass);
+    }
+
+    @Override
     public void setModuleClass(ModuleClass target, ModuleClass editedModuleClass) {
         requireAllNonNull(target, editedModuleClass);
         taAssist.setModuleClass(target, editedModuleClass);
@@ -172,16 +178,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
-        requireAllNonNull(moduleClasses);
-        moduleClasses.forEach(this::removeModuleClass);
+    public void addSessions(ModuleClass moduleClass, Set<Session> sessions) {
+        requireAllNonNull(moduleClass, sessions);
+        ModuleClass newModuleClass = taAssist.addSessions(moduleClass, sessions);
+        if (moduleClass.isSame(focusedClass)) {
+            enterFocusMode(newModuleClass);
+        }
     }
 
     @Override
     public void removeSessions(ModuleClass moduleClass, Set<Session> sessions) {
         requireAllNonNull(moduleClass, sessions);
         ModuleClass newModuleClass = taAssist.removeSessions(moduleClass, sessions);
-        if (moduleClass.isSame(focusedClass)) {
+        if (newModuleClass.isSame(focusedClass)) {
             enterFocusMode(newModuleClass);
         }
     }
@@ -190,6 +199,12 @@ public class ModelManager implements Model {
     public void addModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
         taAssist.addModuleClass(moduleClass);
+    }
+
+    @Override
+    public void addModuleClasses(Set<ModuleClass> moduleClasses) {
+        requireAllNonNull(moduleClasses);
+        moduleClasses.forEach(this::addModuleClass);
     }
 
     @Override

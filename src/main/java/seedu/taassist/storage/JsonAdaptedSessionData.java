@@ -31,7 +31,7 @@ class JsonAdaptedSessionData {
      * Converts a given {@code SessionData} into this class for Jackson use.
      */
     public JsonAdaptedSessionData(SessionData source) {
-        sessionName = source.getSession().getSessionName();
+        sessionName = source.getSessionName();
         grade = source.getGrade();
     }
 

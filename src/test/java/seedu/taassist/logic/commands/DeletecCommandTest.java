@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.taassist.commons.core.Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.taassist.logic.commands.DeletecCommand.MESSAGE_MODULE_CLASSES_DOES_NOT_EXIST;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
@@ -21,12 +21,11 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
-import seedu.taassist.model.ModelStub;
 import seedu.taassist.model.UserPrefs;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.stubs.ModelStub;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
 import seedu.taassist.testutil.ModuleClassBuilder;
@@ -52,19 +51,20 @@ public class DeletecCommandTest {
 
         CommandResult commandResult = new DeletecCommand(validModuleClasses).execute(modelStub);
 
-        assertEquals(String.format(DeletecCommand.MESSAGE_DELETE_MODULE_CLASS_SUCCESS, validModuleClasses),
-                commandResult.getFeedbackToUser());
+        String expectedMessage = DeletecCommand.getCommandMessage(validModuleClasses, new HashSet<>());
+
+        assertEquals(expectedMessage, commandResult.getFeedbackToUser());
 
         assertTrue(modelStub.getModuleClasses().isEmpty());
     }
 
     @Test
-    public void execute_deleteNonExistentClass_throwsCommandException() throws Exception {
+    public void execute_deleteNonExistentClass_showNonExistentClassMessage() throws Exception {
         ModuleClass moduleClass = new ModuleClassBuilder().build();
         ModelStubWithNoModuleClass modelStub = new ModelStubWithNoModuleClass();
 
-        assertThrows(CommandException.class, () ->
-                new DeletecCommand(new HashSet<>(Arrays.asList(moduleClass))).execute(modelStub));
+        assertEquals(String.format(DeletecCommand.MESSAGE_MODULE_CLASSES_DOES_NOT_EXIST, moduleClass),
+                new DeletecCommand(new HashSet<>(Arrays.asList(moduleClass))).execute(modelStub).getFeedbackToUser());
     }
 
     @Test
@@ -114,19 +114,21 @@ public class DeletecCommandTest {
         Set<ModuleClass> moduleClasses = new HashSet<>(Arrays.asList(expectedModel.getModuleClassList().get(0)));
         new DeletecCommand(moduleClasses).execute(expectedModel);
 
+        String moduleClassesStr = commaSeparate(moduleClasses, ModuleClass::toString);
+
         assertCommandSuccess(new DeletecCommand(moduleClasses), model,
-                String.format(DeletecCommand.MESSAGE_DELETE_MODULE_CLASS_SUCCESS, moduleClasses), expectedModel);
+                String.format(DeletecCommand.MESSAGE_SUCCESS, moduleClassesStr), expectedModel);
     }
 
     @Test
-    public void execute_deleteNonExistentModuleClass_failure() {
+    public void execute_deleteNonExistentModuleClass_success() {
         ModuleClass moduleClass = new ModuleClassBuilder().build();
 
         // Ensure that moduleClass does not exist
         assertFalse(model.hasModuleClass(moduleClass));
 
-        assertCommandFailure(new DeletecCommand(new HashSet<>(Arrays.asList(moduleClass))), model,
-                String.format(MESSAGE_MODULE_CLASS_DOES_NOT_EXIST, model.getModuleClassList()));
+        assertCommandSuccess(new DeletecCommand(new HashSet<>(Arrays.asList(moduleClass))), model,
+                String.format(MESSAGE_MODULE_CLASSES_DOES_NOT_EXIST, moduleClass), model);
     }
 
     //==================================== Model Stubs ===============================================================
@@ -176,8 +178,8 @@ public class DeletecCommandTest {
         }
 
         @Override
-        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
-            requireAllNonNull(moduleClasses);
+        public boolean hasModuleClass(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
             return true;
         }
 
@@ -205,6 +207,12 @@ public class DeletecCommandTest {
         public boolean hasStudent(Student student) {
             requireNonNull(student);
             return false;
+        }
+
+        @Override
+        public boolean hasModuleClass(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
+            return true;
         }
 
         @Override

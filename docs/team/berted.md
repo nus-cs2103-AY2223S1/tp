@@ -15,6 +15,10 @@ Given below are my contributions to the project.
         * a `JsonAdaptedSession` class to handle storing `Session` data.
         * Integration between the new `Session` class with the TA-Assist architecture.
         * added `session` and `lists` command, allowing users to add sessions and see a list of sessions.
+    * Implemented `scores` command that displays student's grade for a session through the UI, this includes:
+      * a `StudentView` class to encapsulate `Student` data to be displayed to `UI`.
+      * a `MappedStudentViewList` class to map an `ObservableList<Student>` to `ObservableList<StudentView>`
+      * UI modifications to display grades within the StudentCard.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=berted&breakdown=true).
 
@@ -31,6 +35,7 @@ Given below are my contributions to the project.
     * Added implementation details on immutability of certain objects
     * Added implementation details on Identity interface
     * Added implementation details on managing sessions within a class
+    * Added implementation details on querying student grades within a session
 
 * **Community**: To be added soon.
 

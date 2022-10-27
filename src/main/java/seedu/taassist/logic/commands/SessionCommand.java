@@ -2,8 +2,14 @@ package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringJoiner;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
@@ -17,7 +23,7 @@ public class SessionCommand extends Command {
 
     public static final String COMMAND_WORD = "session";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new session for a class. "
+    public static final String MESSAGE_USAGE = "> Creates a new session for a class.\n"
             + "Paramaters: "
             + PREFIX_SESSION + "SESSION_NAME "
             + "[" + PREFIX_DATE + "DATE]\n"
@@ -25,41 +31,83 @@ public class SessionCommand extends Command {
             + PREFIX_SESSION + "Lab1 "
             + PREFIX_DATE + "2022-01-01";
 
-    public static final String MESSAGE_SUCCESS = "New session added: %s";
-    public static final String MESSAGE_SESSION_EXISTS = "Session %s already exists!";
+    public static final String MESSAGE_SUCCESS = "Added new sessions:\n%1$s";
+    public static final String MESSAGE_DUPLICATE_SESSIONS = "Session(s) [ %s ] already exist(s)!";
 
-    private final Session session;
+    private final Set<Session> sessions;
 
     /**
      * Creates a SessionCommand to create the specified {@code Session}.
      */
-    public SessionCommand(Session session) {
-        requireNonNull(session);
-        this.session = session;
+    public SessionCommand(Set<Session> sessions) {
+        requireNonNull(sessions);
+        this.sessions = sessions;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        Set<Session> duplicateSessions = new HashSet<>();
+        Set<Session> newSessions = new HashSet<>();
+
         if (!model.isInFocusMode()) {
             throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
         }
 
         ModuleClass focusedClass = model.getFocusedClass();
-        if (focusedClass.hasSession(session)) {
-            throw new CommandException(String.format(MESSAGE_SESSION_EXISTS, session.getSessionName()));
+
+        for (Session session: sessions) {
+            if (focusedClass.hasSession(session)) {
+                duplicateSessions.add(session);
+            } else {
+                newSessions.add(session);
+            }
         }
 
-        model.setModuleClass(focusedClass, focusedClass.addSession(session));
+        model.addSessions(focusedClass, newSessions);
+        return new CommandResult(getCommandMessage(newSessions, duplicateSessions));
+    }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, session));
+    public static String getCommandMessage(Set<Session> newSessions, Set<Session> duplicateSessions) {
+        StringBuilder outputString = new StringBuilder();
+        if (!newSessions.isEmpty()) {
+            outputString.append(getSessionsAddedMessage(newSessions)).append("\n");
+        }
+
+        if (!duplicateSessions.isEmpty()) {
+            outputString.append(getDuplicateSessionsMessage(duplicateSessions)).append("\n");
+        }
+
+        // remove trailing newline character
+        outputString.setLength(outputString.length() - 1);
+        return outputString.toString();
+    }
+    private static String getSessionsAddedMessage(Set<Session> newSessions) {
+        requireAllNonNull(newSessions);
+        StringJoiner sessionsString = new StringJoiner("\n");
+        int i = 1;
+        for (Session session: newSessions) {
+            String sessionDescription = String.format("[ %1s ] on %2s", session.getSessionName(), session.getDate());
+            sessionsString.add((i) + ". " + sessionDescription);
+            i++;
+        }
+
+        return String.format(MESSAGE_SUCCESS, sessionsString);
+    }
+
+    private static String getDuplicateSessionsMessage(Set<Session> duplicateSessions) {
+        requireAllNonNull(duplicateSessions);
+        String duplicateClassesStr = commaSeparate(duplicateSessions, Session::getSessionName);
+        return String.format(MESSAGE_DUPLICATE_SESSIONS, duplicateClassesStr);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SessionCommand // instanceof handles nulls
-                && session.equals(((SessionCommand) other).session));
+                && sessions.equals(((SessionCommand) other).sessions));
     }
+
+
 }

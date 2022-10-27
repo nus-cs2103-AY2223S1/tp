@@ -31,12 +31,15 @@ import seedu.taassist.testutil.SessionBuilder;
 
 public class GradeCommandParserTest {
 
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.COMMAND_WORD, GradeCommand.MESSAGE_USAGE);
     private GradeCommandParser parser = new GradeCommandParser();
+
+
 
     @Test
     public void parse_emptyUserInput_failure() {
-        assertParseFailure(parser, PREAMBLE_WHITESPACE, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                GradeCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, PREAMBLE_WHITESPACE, MESSAGE_INVALID_FORMAT);
     }
 
     @Test

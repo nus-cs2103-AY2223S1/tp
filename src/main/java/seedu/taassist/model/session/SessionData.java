@@ -11,7 +11,7 @@ import seedu.taassist.model.uniquelist.Identity;
 /**
  * Represents a session data of student in a module.
  */
-public class SessionData implements Identity<SessionData> {
+public class SessionData implements Identity<SessionData>, Comparable<SessionData> {
 
     private final Session session;
     private final double grade;
@@ -27,6 +27,10 @@ public class SessionData implements Identity<SessionData> {
 
     public Session getSession() {
         return session;
+    }
+
+    public String getSessionName() {
+        return session.getSessionName();
     }
 
     public double getGrade() {
@@ -70,5 +74,10 @@ public class SessionData implements Identity<SessionData> {
     @Override
     public String toString() {
         return session.toString() + ": " + grade;
+    }
+
+    @Override
+    public int compareTo(SessionData other) {
+        return session.compareTo(other.session);
     }
 }

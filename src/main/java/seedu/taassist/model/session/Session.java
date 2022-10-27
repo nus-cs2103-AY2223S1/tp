@@ -13,14 +13,15 @@ import seedu.taassist.model.uniquelist.Identity;
  * Represents a Session for a {@code ModuleClass} in TA-Assist.
  * Guarantees: immutable; name is valid as declared in {@link #isValidSessionName(String)}
  */
-public class Session implements Identity<Session> {
-    public static final String MESSAGE_CONSTRAINTS = "Session names can take any values, but they should not be blank";
+public class Session implements Identity<Session>, Comparable<Session> {
+    public static final String MESSAGE_CONSTRAINTS = "Session names should contain only letters, digits, whitespace "
+            + "or underscores and should not be empty.";
 
     /*
      * The first character of the session must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "^[\\w\\s]+$";
 
     private final String sessionName;
     private final Date date;
@@ -96,5 +97,14 @@ public class Session implements Identity<Session> {
      */
     public String toString() {
         return String.format("[%s; Date: %s]", getSessionName(), getDate());
+    }
+
+    @Override
+    public int compareTo(Session other) {
+        if (!date.equals(other.date)) {
+            return date.compareTo(other.date);
+        } else {
+            return sessionName.compareTo(other.sessionName);
+        }
     }
 }

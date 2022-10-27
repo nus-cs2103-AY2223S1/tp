@@ -16,7 +16,7 @@ import seedu.taassist.model.uniquelist.UniqueList;
 /**
  * Represents a student's data for a module.
  */
-public class StudentModuleData implements Identity<StudentModuleData> {
+public class StudentModuleData implements Identity<StudentModuleData>, Comparable<StudentModuleData> {
 
     private final ModuleClass moduleClass;
     private final UniqueList<SessionData> sessionDataList = new UniqueList<>();
@@ -96,6 +96,11 @@ public class StudentModuleData implements Identity<StudentModuleData> {
                 || (other instanceof StudentModuleData
                 && this.moduleClass.equals(((StudentModuleData) other).moduleClass))
                 && this.sessionDataList.equals(((StudentModuleData) other).sessionDataList);
+    }
+
+    @Override
+    public int compareTo(StudentModuleData other) {
+        return moduleClass.compareTo(other.moduleClass);
     }
 
 }
