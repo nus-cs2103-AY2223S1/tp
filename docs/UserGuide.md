@@ -47,6 +47,12 @@ Note how the app contains some sample data.
 
 <div markdown="block" class="alert alert-info">
 
+**:information_source: Shortcut keys to use the application:**<br>
+
+* Use the `TAB` key to navigate between command box, person pane, and group pane in TABS.
+
+* Use arrow keys to switch between *Contact details* and *Assignments*.
+
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
