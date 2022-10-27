@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "t:AddIterationCommand" as AddIterationCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+participant "selectedCommission:Commission" as Commission MODEL_COLOR
+participant "toActuallyAdd:Iteration" as Iteration MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant "storage:Storage" as Storage STORAGE_COLOR
+participant ":ImageStorage" as ImageStorage STORAGE_COLOR
+end box
+
+mainframe **sd**  execute AddIterationCommand
+
+LogicManager -> AddIterationCommand : execute(model, storage)
+activate AddIterationCommand
+
+AddIterationCommand -> Model : getSelectedCommission()
+activate Model
+
+Model --> AddIterationCommand : selectedCommission
+deactivate Model
+
+AddIterationCommand -> Storage : saveImage(image, imageCopyPath)
+activate Storage
+
+Storage -> ImageStorage : saveImage(image, imageCopyPath)
+activate ImageStorage
+
+ImageStorage --> Storage
+deactivate ImageStorage
+
+Storage --> AddIterationCommand
+deactivate Storage
+
+create Iteration
+AddIterationCommand -> Iteration : Iteration(date, description, imageCopyPath, feedback)
+activate Iteration
+
+Iteration --> AddIterationCommand : toActuallyAdd
+deactivate Iteration
+
+AddIterationCommand --> Commission : addIteration(toActuallyAdd)
+activate Commission
+
+Commission --> AddIterationCommand
+deactivate Commission
+
+AddIterationCommand --> LogicManager
+deactivate AddIterationCommand
+@enduml

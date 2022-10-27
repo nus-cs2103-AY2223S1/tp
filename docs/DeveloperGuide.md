@@ -225,8 +225,9 @@ iterations in a `UniqueIterationList` inside the associated commission object.
 <img src="images/IterationClassDiagram.png" width="450" />
 
 #### Adding an Iteration (`additer`)
-Creates an iteration based on the user input, and adds the iteration to the active commission.
-Like all other add commands, users may either add an iteration via the command line or the GUI.
+Adding an `Iteration` creates an iteration based on the user input, and adds the iteration to the
+active commission. Like all other add commands, users may either add an iteration via the
+command line or the GUI.
 
 ##### Implementation
 Support for the add iteration command is integrated with the `AddIterationParser`,
@@ -237,11 +238,50 @@ iteration is added to the active commission's `UniqueIterationList` when the
 
 Note that if there is no presently active commission, the iteration will not be added.
 
-The sequence diagram below shows the interactions within the Logic component when
-the user inputs `additer d/2022-10-10 n/Changed the colour scheme. p//Users/john/Downloads/Draft 1.png
-f/Updated colour scheme is much better`;
+The sequence diagram below shows the interactions between the Logic, Model, and Storage components when
+the user runs the command `additer d/2022-10-10 n/Changed the colour scheme p//Users/john/Downloads/Draft 1.png
+f/Updated colour scheme is much better`.
 
-<!-- TODO insert addIteration sequence diagram here -->
+<img src="images/AddIterationSequenceDiagram.png" width="450" />
+<img src="images/AddIterationParseInputSequenceDiagram.png" width="450" />
+<img src="images/AddIterationExecuteSequenceDiagram.png" width="450" />
+
+##### Design Considerations
+<table>
+<tr><th colspan="4">Aspect: Image File Handling</th></tr>
+<tr><th></th><th>Alternative</th><th>Pros</th><th>Cons</th></tr>
+<tr><td>1</td>
+<td>Store and use the image at the file path specified in the <code>additer</code> command</td>
+<td>Easy to implement</td><td>The user might modify the image at the given file path. For instance,
+the image may be edited, renamed, moved, or entirely deleted.
+
+This imposes the constraint on the user not to modify their files if they do not wish for
+their files on ArtBuddy to be similarly modified, which is not ideal in most cases.
+
+In addition, it exposes ArtBuddy to some vulnerabilities that may lead to unexpected behaviour.
+For example, the user might change the file to an unsupported file type.
+
+All these potential failures have to be gracefully handled- which poses a big challenge because
+there are so many areas for error that some may be overlooked. Furthermore, many of these issues
+might not have ideal solutions that do not diminish the user experience and are easy to implement.
+</td>
+
+</tr>
+<tr><td>2</td>
+<td>Make a defensive copy of the uploaded image <strong>(current)</strong></td>
+<td>Making a defensive copy of the uploaded image in ArtBuddy protects the images used
+in ArtBuddy from modification and the problems associated to user modification, as explained above.</td>
+<td>Additional overhead will have to be added to the execution of <code>additer</code> commands,
+because a copy of the image has to be made each time the command is executed.
+
+Furthermore, it introduces deeper coupling between the `Logic` and `Storage` components since
+the `AddIterationCommand` class in `Logic` would have to depend on `Storage` to copy the image into ArtBuddy.
+</td>
+</tr>
+</table>
+
+Overall, the team felt that the tradeoffs in overhead and coupling were worth making due to the
+severity of bugs that could have been introduced in ArtBuddy otherwise.
 
 ### \[Proposed\] Undo/redo feature
 
