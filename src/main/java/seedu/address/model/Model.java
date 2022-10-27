@@ -160,6 +160,9 @@ public interface Model {
      */
     void deleteTutorial(Tutorial target);
 
+
+    void setTutorial(Tutorial tutorialToEdit, Tutorial editedTutorial);
+
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();
 
@@ -200,6 +203,14 @@ public interface Model {
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
 
     /**
+     * Replaces the given consultation {@code target} with {@code editedConsultation}.
+     * {@code target} must exist in the Modquik.
+     * The consultation identity of {@code editedConsultation} must not be the same as another existing consultation
+     * in Modquik.
+     */
+    void setConsultation(Consultation target, Consultation editedConsultation);
+
+    /**
      * Clears all existing consultations.
      */
     void resetStudents();
@@ -224,6 +235,5 @@ public interface Model {
     boolean reminderIsMarked(Reminder reminderToMark);
 
     void unmarkReminder(Reminder reminderToUnmark);
-
 
 }

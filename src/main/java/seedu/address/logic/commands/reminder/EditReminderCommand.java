@@ -41,10 +41,10 @@ public class EditReminderCommand extends Command {
             + "[" + PREFIX_PRIORITY + "PRIORITY] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TIME + "14:00 "
+            + PREFIX_TIME + "2022-10-10 14:00 "
             + PREFIX_PRIORITY + "HIGH";
 
-    public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited rEMINDER: %1$s";
+    public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Reminder: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in ModQuik.";
 

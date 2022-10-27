@@ -57,6 +57,27 @@ public class UniqueConsultationList implements Iterable<Consultation> {
     }
 
     /**
+     * Replaces the consultation {@code target} in the list with {@code editedConsultation}.
+     * {@code target} must exist in the list.
+     * The consultation identity of {@code editedConsultation} must not be the same as another existing consultations
+     * in the list.
+     */
+    public void setConsultation(Consultation target, Consultation editedConsultation) {
+        requireAllNonNull(target, editedConsultation);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ConsultationNotFoundException();
+        }
+
+        if (!target.isSameConsultation(editedConsultation) && contains(editedConsultation)) {
+            throw new DuplicateConsultationException();
+        }
+
+        internalList.set(index, editedConsultation);
+    }
+
+    /**
      * Replaces the contents of this list with {@code Consultations}.
      * {@code Consultations} must not contain duplicate Consultations.
      */

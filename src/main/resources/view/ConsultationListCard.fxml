@@ -8,6 +8,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -26,12 +28,24 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <HBox spacing="30" alignment="CENTER_LEFT">
-                <Label fx:id="timeslot" styleClass="cell_small_label" text="\$timeslot" />
-                <Label fx:id="venue" styleClass="cell_small_label" text="\$venue" />
-            </HBox>
             <Label fx:id="module" styleClass="cell_small_label" text="\$module" />
-            <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+            <HBox spacing="30" alignment="CENTER_LEFT">
+                <Label fx:id="timeslot" styleClass="cell_small_label" text="\$timeslot">
+                    <graphic>
+                        <ImageView fitWidth="20" fitHeight="20">
+                            <Image url="@/images/schedule.png" />
+                        </ImageView>
+                    </graphic>
+                </Label>
+                <Label fx:id="venue" styleClass="cell_small_label" text="\$venue">
+                    <graphic>
+                        <ImageView fitWidth="20" fitHeight="20">
+                            <Image url="@/images/location.png" />
+                        </ImageView>
+                    </graphic>
+                </Label>
+            </HBox>
+            <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true" />
         </VBox>
     </GridPane>
 </HBox>

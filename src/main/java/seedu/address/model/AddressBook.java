@@ -220,6 +220,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorials.add(t);
     }
 
+    public void setTutorial(Tutorial target, Tutorial editedTutorial) {
+        requireNonNull(editedTutorial);
+
+        tutorials.setTutorial(target, editedTutorial);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -258,6 +264,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeConsultation(Consultation key) {
         consultations.remove(key);
+    }
+
+    /**
+     * Replaces the given consultation {@code target} in the list with {@code editedConsultation}.
+     * {@code target} must exist in the Modquik.
+     * The consultation identity of {@code editedConsultation} must not be the same as another existing consultation
+     * in the Modquik.
+     */
+    public void setConsultation(Consultation target, Consultation editedConsultation) {
+        requireNonNull(editedConsultation);
+        consultations.setConsultation(target, editedConsultation);
     }
 
     /**
@@ -334,6 +351,4 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
-
-
 }

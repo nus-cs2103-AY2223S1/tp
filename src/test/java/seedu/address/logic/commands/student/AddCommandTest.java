@@ -224,6 +224,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setTutorial(Tutorial tutorialToEdit, Tutorial editedTutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasConsultationClashingWith(Consultation consultation) {
             throw new AssertionError("This method should not be called.");
         }
@@ -270,6 +275,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setConsultation(Consultation target, Consultation editedConsultation) {
             throw new AssertionError("This method should not be called.");
         }
 
