@@ -9,12 +9,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_STUDENT_NAME = new Prefix("n/");
     public static final Prefix PREFIX_STUDENT_ID = new Prefix("id/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
-    public static final Prefix PREFIX_PROJECT_NAME = new Prefix("proj/");
+    public static final Prefix PREFIX_PROJECT_NAME = new Prefix("p/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_PROJECT_STATUS = new Prefix("s/");
-
-    public static final Prefix PREFIX_DEADLINE_NAME = new Prefix("dn/");
-    public static final Prefix PREFIX_DEADLINE_DATETIME = new Prefix("dd/");
-    public static final Prefix PREFIX_DEADLINE_RANK = new Prefix("num/");
+    public static final Prefix PREFIX_DEADLINE_NAME = new Prefix("n");
+    public static final Prefix PREFIX_DEADLINE_DATETIME = new Prefix("d/");
+    public static final Prefix PREFIX_DEADLINE_RANK = new Prefix("r/");
 
 }

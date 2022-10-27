@@ -25,6 +25,8 @@ public class ModelManager implements Model {
     private final FypManager fypManager;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final FilteredList<Student> completedStudents;
+    private final FilteredList<Student> uncompletedStudents;
 
     /**
      * Initializes a ModelManager with the given fypManager and userPrefs.
@@ -37,6 +39,8 @@ public class ModelManager implements Model {
         this.fypManager = new FypManager(fypManager);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.fypManager.getStudentList());
+        completedStudents = new FilteredList<>(this.fypManager.getCompletedStudentList());
+        uncompletedStudents = new FilteredList<>(this.fypManager.getUncompletedStudentList());
     }
 
     public ModelManager() {
@@ -111,7 +115,6 @@ public class ModelManager implements Model {
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-
         fypManager.setStudent(target, editedStudent);
     }
 
@@ -131,6 +134,7 @@ public class ModelManager implements Model {
     public void addDeadline(Student student, Deadline deadline) {
         requireAllNonNull(student, deadline);
         fypManager.addDeadline(student, deadline);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
@@ -164,10 +168,30 @@ public class ModelManager implements Model {
         return filteredStudents;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Student} who have yet to complete
+     * their projects, backed by the internal list of {@code versionedFypManager}
+     */
+    @Override
+    public ObservableList<Student> getUncompletedStudentList() {
+        return uncompletedStudents;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Student} who have completed their projects,
+     * backed by the internal list of {@code versionedFypManager}
+     */
+    @Override
+    public ObservableList<Student> getCompletedStudentList() {
+        return completedStudents;
+    }
+
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+        completedStudents.setPredicate(predicate);
+        uncompletedStudents.setPredicate(predicate);
     }
 
     @Override
