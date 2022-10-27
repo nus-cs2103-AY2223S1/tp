@@ -79,7 +79,9 @@ public class CliSyntax {
             ListCommand.class,
             NoteCommand.class,
             RateCommand.class,
-            StatsCommand.class);
+            StatsCommand.class,
+            ExportCommand.class,
+            ImportCommand.class);
 
     /**
      * Adds a tag prefix to the list of prefixes.
