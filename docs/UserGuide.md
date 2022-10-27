@@ -71,7 +71,7 @@ of the exercises you have input.
 
 * The Recognised Exercises count provides the number of unique exercises registered with the system. 
 * The Exercise List Entries count provide the number of entries in the `Exercise List Window`. 
-<br>
+<br><br>
 #### Adding and Deleting from the Exercise Name List
 
 The `Recognised Exercise Name List Window` is generated based on the state of the Exercise List. Hence, by adding and deleting 
@@ -173,6 +173,17 @@ Format: `:wq`
 **A**: The List command is used to make the Exercise List display all exercises after a Exercise List morphing command 
 such as Find or Range has been executed. 
 
+**Q**: How do I change the way an exercise is stored and displayed?
+<br>
+**A**: The way you format the exercise name when you first add it will be the way it is displayed in the system. After that,
+all exercises added that have the [same defined name](#Adding and Deleting from the Exercise Name List) will be grouped under the same exercise and generate the same exercise card. 
+To change the way it is represented, you can find the exercise with the name, delete the entries and re-enter the exercises. 
+
+**Q**: Can I edit an exercise?
+<br>
+**A**: You can do so by deleting the entry and adding a new entry. 
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
@@ -187,6 +198,7 @@ such as Find or Range has been executed.
 | **View range (2)**  | :range last/<number_of_days>                     | :range last/3                    |
 | **Help menu**       | :help                                            | :help                            |
 | **Exit program**    | :wq                                              | :wq                              |
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary of Terminologies
