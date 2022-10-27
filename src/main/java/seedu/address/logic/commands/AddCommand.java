@@ -37,13 +37,15 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
 
     private final Client toAdd;
+    private final String warningMessage;
 
     /**
      * Creates an AddCommand to add the specified {@code Client}
      */
-    public AddCommand(Client client) {
+    public AddCommand(Client client, String warningMessage) {
         requireNonNull(client);
-        toAdd = client;
+        this.toAdd = client;
+        this.warningMessage = warningMessage;
     }
 
     @Override
@@ -55,7 +57,10 @@ public class AddCommand extends Command {
         }
 
         model.addClient(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+
+        return warningMessage.isEmpty()
+                ? new CommandResult(String.format(MESSAGE_SUCCESS, toAdd))
+                : new CommandResult(String.format("WARNING!\n" + warningMessage + "\n" + MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
