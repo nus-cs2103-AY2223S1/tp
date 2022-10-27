@@ -133,8 +133,8 @@ public class ApplicantTest {
 
     @Test
     public void toStringTest() {
-        String expectedString = "Benson Meier; Phone: 98765432; Email: johnd@example.com; "
-                + "Scholarship: Merit; Application Status: accepted; hasPinned: false; "
+        String expectedString = "Benson Meier\n Phone: 98765432\n Email: johnd@example.com\n "
+                + "Scholarship: Merit\n Application Status: accepted\n "
                 + "Majors: [Computer Science][Mathematics]";
         assertTrue(BENSON.toString().equals(expectedString));
 
