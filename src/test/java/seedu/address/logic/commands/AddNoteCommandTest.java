@@ -74,7 +74,7 @@ public class AddNoteCommandTest {
         assertAll(() -> new AddNoteCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NOTES_TITLE + NoteBuilder.DEFAULT_TITLE + " "
                         + CliSyntax.PREFIX_NOTES_CONTENT + NoteBuilder.DEFAULT_CONTENT + " "
-                        + CliSyntax.PREFIX_NOTES_TAG + tagName + " ")
+                        + CliSyntax.PREFIX_TAG + tagName + " ")
                 .execute(model));
 
         assertTrue(model.getTagMapping().containsKey(tagName));
@@ -91,7 +91,7 @@ public class AddNoteCommandTest {
         assertAll(() -> new AddNoteCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NOTES_TITLE + NoteBuilder.DEFAULT_TITLE + " "
                         + CliSyntax.PREFIX_NOTES_CONTENT + NoteBuilder.DEFAULT_CONTENT + " "
-                        + CliSyntax.PREFIX_NOTES_TAG + tagName + " ")
+                        + CliSyntax.PREFIX_TAG + tagName + " ")
                 .execute(model));
 
         List<Tag> listOfTagsFromNote = new ArrayList<>(model.getAddressBook().getNoteBook().get(0).getTags());
@@ -119,7 +119,7 @@ public class AddNoteCommandTest {
         assertAll(() -> new AddNoteCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NOTES_TITLE + NoteBuilder.DEFAULT_TITLE + " "
                         + CliSyntax.PREFIX_NOTES_CONTENT + NoteBuilder.DEFAULT_CONTENT + " "
-                        + CliSyntax.PREFIX_NOTES_TAG + tagName)
+                        + CliSyntax.PREFIX_TAG + tagName)
                 .execute(model));
 
         List<Tag> listOfTagsFromNotes = new ArrayList<>(model.getAddressBook().getNoteBook().get(0).getTags());

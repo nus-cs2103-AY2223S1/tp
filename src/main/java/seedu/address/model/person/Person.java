@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,12 +27,14 @@ public class Person implements seedu.address.model.DeepCopyable {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Loan loan;
+    private final List<LoanHistory> history;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags, Loan loan) {
-        requireAllNonNull(name, phone, email, address, tags, loan, birthday);
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags,
+                  Loan loan, List<LoanHistory> history) {
+        requireAllNonNull(name, phone, email, address, tags, loan, birthday, history);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -39,6 +42,7 @@ public class Person implements seedu.address.model.DeepCopyable {
         this.birthday = birthday;
         this.tags.addAll(tags);
         this.loan = loan;
+        this.history = history;
     }
 
     public Name getName() {
@@ -70,6 +74,10 @@ public class Person implements seedu.address.model.DeepCopyable {
 
     public Loan getLoan() {
         return loan;
+    }
+
+    public List<LoanHistory> getHistory() {
+        return history;
     }
 
     /**
@@ -154,7 +162,8 @@ public class Person implements seedu.address.model.DeepCopyable {
                 getAddress().deepCopy(),
                 getBirthday().deepCopy(),
                 getTags().stream().map(Tag::shallowCopy).collect(Collectors.toSet()),
-                getLoan().deepCopy());
+                getLoan().deepCopy(),
+                getHistory().stream().map(LoanHistory::shallowCopy).collect(Collectors.toList()));
 
         clonedPerson.getTags().forEach(tag -> {
             tag.removePerson(this);
