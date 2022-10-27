@@ -8,6 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.GetCommand;
 import seedu.address.model.Model;
+import seedu.address.model.person.HospitalWing;
 import seedu.address.model.person.HospitalWingContainsKeywordsPredicate;
 import seedu.address.model.person.PatientType;
 import seedu.address.model.person.PatientTypePredicate;
@@ -48,6 +49,7 @@ public class GetHospitalWingCommand extends GetCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
         PatientTypePredicate inPatientPredicate = new PatientTypePredicate(PatientType.PatientTypes.INPATIENT);
         Predicate<Person> hospitalWingPredicate = inPatientPredicate.and(predicate);
         model.updateFilteredPersonList(hospitalWingPredicate);
