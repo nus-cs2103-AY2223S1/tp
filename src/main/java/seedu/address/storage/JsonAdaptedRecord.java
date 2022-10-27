@@ -63,8 +63,12 @@ class JsonAdaptedRecord {
             recordMedications.add(med.toModelType());
         }
 
-        if (!Record.isValidDate(recordDate)) {
-            throw new IllegalValueException(Messages.MESSAGE_INVALID_DATE_FORMAT);
+        if (!Record.isValidDateFormat(recordDate)) {
+            throw new IllegalValueException(Record.MESSAGE_INVALID_DATE_FORMAT);
+        }
+
+        if (Record.isFutureDate(recordDate)) {
+            throw new IllegalValueException(Record.MESSAGE_FUTURE_DATE);
         }
 
         if (!Record.isValidRecordData(record)) {

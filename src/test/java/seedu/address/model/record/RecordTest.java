@@ -5,16 +5,51 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECORD_DATA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECORD_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECORD_MEDICATION;
+import static seedu.address.model.record.Record.DATE_FORMAT;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.RECORD1;
 import static seedu.address.testutil.TypicalPersons.RECORD2;
+
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.RecordBuilder;
 
-
-
 public class RecordTest {
+
+    @Test
+    public void isValidDateFormat() {
+        assertThrows(NullPointerException.class, () -> Record.isValidDateFormat(null)); // null date
+
+        // invalid dates
+        assertFalse(Record.isValidDateFormat("")); // empty string
+        assertFalse(Record.isValidDateFormat(" ")); // spaces only
+        assertFalse(Record.isValidDateFormat("02022002 2222")); // incorrect date format
+        assertFalse(Record.isValidDateFormat("11.11.2001 1100")); // incorrect date format
+        assertFalse(Record.isValidDateFormat("2009.09.21 0000")); // incorrect date format
+        assertFalse(Record.isValidDateFormat("10 Jul 2022 1000")); // incorrect date format
+        assertFalse(Record.isValidDateFormat("12 12 2007 1230")); // incorrect date format
+        assertFalse(Record.isValidDateFormat("2004-11-11 1300")); // incorrect date format
+        assertFalse(Record.isValidDateFormat("01-01-2001")); // missing time
+        assertFalse(Record.isValidDateFormat("01-01-2001 3000")); // invalid time
+
+        // valid dates
+        assertTrue(Record.isValidDateFormat("01-01-2001 1200"));
+        assertTrue(Record.isValidDateFormat("12-02-1927 1230"));
+        assertTrue(Record.isValidDateFormat("31-12-2003 1300"));
+    }
+
+    @Test
+    void isFutureDate() {
+        assertTrue(Record.isFutureDate(LocalDateTime.now().plusYears(10).format(DATE_FORMAT)));
+        assertTrue(Record.isFutureDate(LocalDateTime.now().plusDays(1).format(DATE_FORMAT)));
+        assertTrue(Record.isFutureDate(LocalDateTime.now().plusHours(1).format(DATE_FORMAT)));
+
+        assertFalse(Record.isFutureDate(LocalDateTime.now().minusYears(6).format(DATE_FORMAT)));
+        assertFalse(Record.isFutureDate(LocalDateTime.now().minusDays(1).format(DATE_FORMAT)));
+        assertFalse(Record.isFutureDate(LocalDateTime.now().minusHours(1).format(DATE_FORMAT)));
+    }
 
     @Test
     public void equals() {

@@ -109,8 +109,11 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Birthdate.class.getSimpleName()));
         }
-        if (!Birthdate.isValidBirthdate(birthdate)) {
-            throw new IllegalValueException(Birthdate.MESSAGE_CONSTRAINTS);
+        if (!Birthdate.isValidDateFormat(birthdate)) {
+            throw new IllegalValueException(Birthdate.MESSAGE_INVALID_DATE_FORMAT);
+        }
+        if (Birthdate.isFutureDate(birthdate)) {
+            throw new IllegalValueException(Birthdate.MESSAGE_FUTURE_DATE);
         }
         final Birthdate modelBirthdate = new Birthdate(birthdate);
 

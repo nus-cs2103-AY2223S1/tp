@@ -43,7 +43,7 @@ public class EditRecordCommandParser implements Parser<EditRecordCommand> {
 
         EditRecordDescriptor editRecordDescriptor = new EditRecordDescriptor();
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            editRecordDescriptor.setRecordDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
+            editRecordDescriptor.setRecordDate(ParserUtil.parseRecordDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_RECORD).isPresent()) {
             editRecordDescriptor.setRecord(ParserUtil.parseRecordData(argMultimap.getValue(PREFIX_RECORD).get()));
