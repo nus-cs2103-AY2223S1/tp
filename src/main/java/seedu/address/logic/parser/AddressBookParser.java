@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DELETE_COMMAND
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EDIT_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,7 +23,6 @@ import seedu.address.logic.commands.FindModuleCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.nusmodules.NusModulesParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

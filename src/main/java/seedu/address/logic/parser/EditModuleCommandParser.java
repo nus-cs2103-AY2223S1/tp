@@ -17,7 +17,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.EditModuleCommand.EditModuleDescriptor;
-import seedu.address.logic.nusmodules.NusModulesParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignmentdetails.AssignmentDetails;
 

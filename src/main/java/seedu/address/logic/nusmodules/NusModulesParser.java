@@ -2,7 +2,6 @@ package seedu.address.logic.nusmodules;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -13,7 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 //TODO to throw error when module not available
 public class NusModulesParser {
-    private static final File nusModuleJson = new File("file:src/main/java/seedu/address/logic/nusmodules/NUSModules.json");
+    private static final File nusModuleJson =
+            new File("file:src/main/java/seedu/address/logic/nusmodules/NUSModules.json");
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -52,7 +52,7 @@ public class NusModulesParser {
                     return nusModule;
                 }
             }
-        return null;
+            return null;
         } catch (IOException e) {
             //TODO
         }
