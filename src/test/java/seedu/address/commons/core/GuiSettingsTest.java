@@ -3,10 +3,10 @@ package seedu.address.commons.core;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.GuiSettings.DARK_THEME_NAME;
-import static seedu.address.commons.core.GuiSettings.LIGHT_THEME_NAME;
+import static seedu.address.commons.core.GuiSettings.DARK_THEME_STRING;
+import static seedu.address.commons.core.GuiSettings.LIGHT_THEME_STRING;
 
-import java.awt.Point;
+import java.awt.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,14 +19,14 @@ public class GuiSettingsTest {
     @Test
     public void constructorWithValues() {
         GuiSettings guiSettings = new GuiSettings(
-                100, 100, 0, 0, LIGHT_THEME_NAME);
+                100, 100, 0, 0, LIGHT_THEME_STRING);
     }
 
     @Test
     public void getWindowWidth_windowWidth_equals() {
         double windowWidth = 100;
         GuiSettings guiSettings = new GuiSettings(
-                windowWidth, 100, 0, 0, LIGHT_THEME_NAME);
+                windowWidth, 100, 0, 0, LIGHT_THEME_STRING);
         assertEquals(windowWidth, guiSettings.getWindowWidth());
     }
 
@@ -34,7 +34,7 @@ public class GuiSettingsTest {
     public void getWindowHeight_windowHeight_equals() {
         double windowHeight = 100;
         GuiSettings guiSettings = new GuiSettings(
-                100, windowHeight, 0, 0, LIGHT_THEME_NAME);
+                100, windowHeight, 0, 0, LIGHT_THEME_STRING);
         assertEquals(windowHeight, guiSettings.getWindowWidth());
     }
 
@@ -43,7 +43,7 @@ public class GuiSettingsTest {
         int windowCoordinateX = 0;
         int windowCoordinateY = 0;
         GuiSettings guiSettings = new GuiSettings(100, 100,
-                windowCoordinateX, windowCoordinateY, LIGHT_THEME_NAME);
+                windowCoordinateX, windowCoordinateY, LIGHT_THEME_STRING);
         assertEquals(new Point(windowCoordinateX, windowCoordinateY), guiSettings.getWindowCoordinates());
     }
 
@@ -56,26 +56,26 @@ public class GuiSettingsTest {
     @Test
     public void getTheme_lightTheme_equals() {
         GuiSettings guiSettings = new GuiSettings(
-                100, 100, 0, 0, LIGHT_THEME_NAME);
-        assertEquals(LIGHT_THEME_NAME, guiSettings.getTheme());
+                100, 100, 0, 0, LIGHT_THEME_STRING);
+        assertEquals(LIGHT_THEME_STRING, guiSettings.getTheme());
     }
 
     @Test
     public void equals() {
         GuiSettings guiSettings = new GuiSettings(
-                100, 100, 0, 0, LIGHT_THEME_NAME);
+                100, 100, 0, 0, LIGHT_THEME_STRING);
         assertTrue(guiSettings.equals(guiSettings));
 
         assertTrue(guiSettings.equals(
-                new GuiSettings(100, 100, 0, 0, LIGHT_THEME_NAME)));
+                new GuiSettings(100, 100, 0, 0, LIGHT_THEME_STRING)));
 
         assertFalse(guiSettings.equals(
-                new GuiSettings(50, 100, 0, 0, LIGHT_THEME_NAME)));
+                new GuiSettings(50, 100, 0, 0, LIGHT_THEME_STRING)));
         assertFalse(guiSettings.equals(
-                new GuiSettings(100, 50, 0, 0, LIGHT_THEME_NAME)));
+                new GuiSettings(100, 50, 0, 0, LIGHT_THEME_STRING)));
         assertFalse(guiSettings.equals(
-                new GuiSettings(100, 100, 1, 0, LIGHT_THEME_NAME)));
+                new GuiSettings(100, 100, 1, 0, LIGHT_THEME_STRING)));
         assertFalse(guiSettings.equals(
-                new GuiSettings(100, 100, 0, 0, DARK_THEME_NAME)));
+                new GuiSettings(100, 100, 0, 0, DARK_THEME_STRING)));
     }
 }

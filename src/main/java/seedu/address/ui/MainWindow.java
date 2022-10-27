@@ -1,7 +1,9 @@
 package seedu.address.ui;
 
-import static seedu.address.commons.core.GuiSettings.DARK_THEME_NAME;
-import static seedu.address.commons.core.GuiSettings.LIGHT_THEME_NAME;
+import static seedu.address.commons.core.GuiSettings.DARK_THEME_STRING;
+import static seedu.address.commons.core.GuiSettings.GREEN_THEME_STRING;
+import static seedu.address.commons.core.GuiSettings.LIGHT_THEME_STRING;
+import static seedu.address.commons.core.GuiSettings.PINK_THEME_STRING;
 import static seedu.address.logic.commands.ListStudentCommand.COMMAND_LIST_STUDENT_STRING;
 import static seedu.address.logic.commands.ListTuitionClassCommand.COMMAND_LIST_CLASS_STRING;
 import static seedu.address.logic.commands.ListTutorCommand.COMMAND_LIST_TUTOR_STRING;
@@ -79,9 +81,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane statusbarPlaceholder;
 
     @FXML
     private Pane studentLabelPanel;
@@ -165,10 +164,6 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        // might one to change this to show all the different file paths? or just remove it entirely.
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTutorAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
@@ -222,8 +217,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void updateToLightTheme() {
         mainWindowScene.getStylesheets().clear();
-        mainWindowScene.getStylesheets().add(LIGHT_THEME_NAME);
-        this.theme = LIGHT_THEME_NAME;
+        mainWindowScene.getStylesheets().add(LIGHT_THEME_STRING);
+        this.theme = LIGHT_THEME_STRING;
     }
 
     /**
@@ -232,8 +227,28 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void updateToDarkTheme() {
         mainWindowScene.getStylesheets().clear();
-        mainWindowScene.getStylesheets().add((DARK_THEME_NAME));
-        this.theme = DARK_THEME_NAME;
+        mainWindowScene.getStylesheets().add((DARK_THEME_STRING));
+        this.theme = DARK_THEME_STRING;
+    }
+
+    /**
+     * Sets the current theme to the green theme.
+     */
+    @FXML
+    private void updateToGreenTheme() {
+        mainWindowScene.getStylesheets().clear();
+        mainWindowScene.getStylesheets().add(GREEN_THEME_STRING);
+        this.theme = GREEN_THEME_STRING;
+    }
+
+    /**
+     * Sets the current theme to the pink theme.
+     */
+    @FXML
+    private void updateToPinkTheme() {
+        mainWindowScene.getStylesheets().clear();
+        mainWindowScene.getStylesheets().add(PINK_THEME_STRING);
+        this.theme = PINK_THEME_STRING;
     }
 
     /**

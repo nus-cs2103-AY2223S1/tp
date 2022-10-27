@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.commons.core.GuiSettings.LIGHT_THEME_NAME;
+import static seedu.address.commons.core.GuiSettings.LIGHT_THEME_STRING;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -48,7 +48,7 @@ public class StorageManagerTest {
          */
         UserPrefs original = new UserPrefs();
         original.setGuiSettings(new GuiSettings(
-                300, 600, 4, 6, LIGHT_THEME_NAME));
+                300, 600, 4, 6, LIGHT_THEME_STRING));
         original.setTutorAddressBookFilePath(getTempFilePath("something"));
         original.setStudentAddressBookFilePath(getTempFilePath("another thing"));
         original.setTuitionClassAddressBookFilePath(getTempFilePath("some other thing"));

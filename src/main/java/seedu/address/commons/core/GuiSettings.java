@@ -1,6 +1,6 @@
 package seedu.address.commons.core;
 
-import java.awt.Point;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -9,8 +9,10 @@ import java.util.Objects;
  * Guarantees: immutable.
  */
 public class GuiSettings implements Serializable {
-    public static final String LIGHT_THEME_NAME = "./view/LightTheme.css";
-    public static final String DARK_THEME_NAME = "./view/DarkTheme.css";
+    public static final String LIGHT_THEME_STRING = "./view/LightTheme.css";
+    public static final String DARK_THEME_STRING = "./view/DarkTheme.css";
+    public static final String GREEN_THEME_STRING = "./view/GreenTheme.css";
+    public static final String PINK_THEME_STRING = "./view/PinkTheme.css";
     private static final double DEFAULT_HEIGHT = 950;
     private static final double DEFAULT_WIDTH = 670;
     private final double windowWidth;
@@ -25,7 +27,7 @@ public class GuiSettings implements Serializable {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
         windowCoordinates = null; // null represent no coordinates
-        theme = LIGHT_THEME_NAME;
+        theme = LIGHT_THEME_STRING;
     }
 
     /**

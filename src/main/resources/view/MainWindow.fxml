@@ -37,6 +37,8 @@
                   <items>
                      <MenuItem fx:id="lightTheme" mnemonicParsing="false" onAction="#updateToLightTheme" text="Light Theme" />
                      <MenuItem fx:id="darkTheme" mnemonicParsing="false" onAction="#updateToDarkTheme" text="Dark Theme" />
+                     <MenuItem fx:id="greenTheme" mnemonicParsing="false" onAction="#updateToGreenTheme" text="Green Theme" />
+                     <MenuItem fx:id="pinkTheme" mnemonicParsing="false" onAction="#updateToPinkTheme" text="Pink Theme" />
                   </items>
                </Menu>
                <VBox.margin>
