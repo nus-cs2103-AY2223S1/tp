@@ -46,6 +46,10 @@ ul, ol, dl, figure,
   margin-bottom: $spacing-unit / 2;
 }
 
+h1 {
+  margin-bottom: 0;
+}
+
 hr {
   margin-top: $spacing-unit;
   margin-bottom: $spacing-unit;
