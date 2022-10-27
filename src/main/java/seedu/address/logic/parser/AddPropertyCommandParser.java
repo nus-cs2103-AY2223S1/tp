@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
+import java.time.LocalDateTime;
+
 import seedu.address.logic.commands.AddPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
@@ -20,8 +22,6 @@ import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
-
-import java.time.LocalDateTime;
 
 /**
  * Parses input arguments and creates a new AddPropertyCommand object

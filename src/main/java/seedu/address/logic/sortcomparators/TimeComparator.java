@@ -1,9 +1,9 @@
 package seedu.address.logic.sortcomparators;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDateTime;
 import java.util.Comparator;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * A comparator to compare two Names.

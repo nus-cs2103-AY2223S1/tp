@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,9 +14,6 @@ import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
-
-import java.time.LocalDateTime;
-
 
 /**
  * Jackson-friendly version of {@link Buyer}.

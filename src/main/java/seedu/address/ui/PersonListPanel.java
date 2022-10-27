@@ -33,17 +33,6 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
-     * Updates the current PersonListPanel with a new source list
-     */
-    public void setNewList(ObservableList<Buyer> newList) {
-        if (currentlyDisplayedBuyerList.equals(newList)) {
-            return;
-        }
-        personListView.setItems(newList);
-        currentlyDisplayedBuyerList = newList;
-    }
-
-    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Buyer} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Buyer> {

@@ -10,6 +10,8 @@ import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
 
+import java.time.LocalDateTime;
+
 /**
  * A utility class to help with building Property objects.
  */
@@ -29,6 +31,7 @@ public class PropertyBuilder {
     private Description description;
     private Owner owner;
     private Characteristics characteristics;
+    private LocalDateTime entryTime;
 
     /**
      * Creates a {@code PropertyBuilder} with the default details.
@@ -40,6 +43,7 @@ public class PropertyBuilder {
         address = new Address(DEFAULT_ADDRESS);
         characteristics = null;
         owner = new Owner(new Name(DEFAULT_OWNER_NAME), new Phone(DEFAULT_OWNER_PHONE));
+        entryTime = LocalDateTime.now();
     }
 
     /**
@@ -52,6 +56,7 @@ public class PropertyBuilder {
         address = propertyToCopy.getAddress();
         owner = propertyToCopy.getOwner();
         characteristics = propertyToCopy.getCharacteristics().orElse(null);
+        entryTime = propertyToCopy.getPropertyEntryTime();
     }
 
     /**
@@ -111,6 +116,6 @@ public class PropertyBuilder {
     }
 
     public Property build() {
-        return new Property(name, price, address, description, characteristics, owner);
+        return new Property(name, price, address, description, characteristics, owner, entryTime);
     }
 }

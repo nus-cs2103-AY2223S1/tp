@@ -33,18 +33,6 @@ public class PropertyListPanel extends UiPart<Region> {
     }
 
     /**
-     * Updates the current PropertyListPanel with a new source list
-     */
-    public void setNewList(ObservableList<Property> newList) {
-        if (currentlyDisplayedPropertyList.equals(newList)) {
-            return;
-        }
-        propertyListView.setItems(newList);
-        currentlyDisplayedPropertyList = newList;
-    }
-
-
-    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Property} using a {@code PropertyCard}.
      */
     class PropertyListViewCell extends ListCell<Property> {

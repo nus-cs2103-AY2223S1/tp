@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
+import java.time.LocalDateTime;
+
 import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
@@ -20,7 +22,6 @@ import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 
-import java.time.LocalDateTime;
 
 /**
  * Parses input arguments and creates a new AddCommand object
