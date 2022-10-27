@@ -112,6 +112,28 @@ Examples:
 
 <img src="images/findappointmentAlex.png" width="800px" height ="400px">
 
+### Finding bills `findbill` `fb`
+
+Filters bills by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
+special characters).
+
+Format:
+```findbill <prefix><input> ...``` or ```fb <prefix><input>...```
+
+* The command words are `findbill` or `fb`.
+* The prefixes are n/ for Name, p/ for Payment Status, d/ for Date and a/ for Amount.
+* The filter is case-insensitive. e.g. han will match Han
+* Can filter using full words or partial words. e.g. han will match Hannah
+* Can filter using a combination of character(s) for a field, according to the constraints of the field.
+  e.g. a/23.45
+* Can filter using one field or multiple fields at once, but each field can only be used once in a single command.
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+Examples:
+
+
+
 ### Sorting by criteria: `sort` [coming soon]
 
 Sorts the patients according to name or appointment date.
