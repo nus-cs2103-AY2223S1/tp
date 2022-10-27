@@ -1,6 +1,8 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -9,7 +11,9 @@ import static seedu.address.logic.commands.CommandTestUtil.INCOME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MEETING_DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MEETING_LOCATION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NOTE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.RISK_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -83,12 +87,24 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-            + ADDRESS_DESC_AMY + INCOME_DESC_AMY + MEETING_DATE_DESC_AMY + MEETING_LOCATION_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+            + ADDRESS_DESC_AMY + INCOME_DESC_AMY + MEETING_DATE_DESC_AMY
+            + MEETING_LOCATION_DESC_AMY + RISK_DESC_AMY + NOTE_DESC_AMY;
+        Person expectedPerson = new PersonBuilder(AMY).withTags().withPlans().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void isPasswordSet_passwordNotSet_returnsFalse() {
+        assertFalse(logic.isPasswordSet());
+    }
+
+    @Test
+    public void isPasswordCorrect_passwordNotSet() {
+        assertTrue(logic.isPasswordCorrect(""));
+        assertFalse(logic.isPasswordCorrect("foobar"));
     }
 
     @Test

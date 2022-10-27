@@ -1,14 +1,17 @@
 ---
 layout: page
-title: Shanice's Project Portfolio Page
+title: Shanice Ng Wen Yi's Project Portfolio Page
 ---
 
 ### Project: FinBook
-to be added soon
+
+FinBook is a desktop app for Financial Assistant (FA) to manage their client details and ensure that your data is
+secured. With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well
+as many other features to make your daily workflow much more efficient!
 
 ### Overview
 
-to be added soon
+FinBook is optimized for use via a Command Line Interface (CLI), which means most of our commands are done by typing.
 
 ### Summary of Contributions
 
@@ -16,13 +19,23 @@ to be added soon
   contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=shaniceng&breakdown=true)
 
 * **Enhancements implemented**:
-    * to be added soon
+    * New feature: View command
+        * What it does: allows the user to view a specific client portfolio by using `view INDEX` command
+        * Portfolio details include: Risk level, current plans purchased by client, additional notes
+        * Justification: Since Financial Advisor spents majority of time doing administrative work, this feature would
+          greatly reduce the time spent taking notes and referring to notes from other platforms (eg. Notes app) as this
+          feature provides the ability to organise these clients neatly in one application.
 
 * **Contributions to the UG**:
-    * to be added soon
+    * Update Add command to include Risk, Plans and Notes
+    * Update Edit command to include Risk, Plans and Notes
+    * Add View command feature
 
 * **Contributions to the DG**:
-    * to be added soon
+    * UI class diagram (created and updated)
+    * Model diagram (updated)
+    * Added value proposition
+    * Added test cases for saving data
 
 * **Contributions to team-based tasks**:
     * to be added soon

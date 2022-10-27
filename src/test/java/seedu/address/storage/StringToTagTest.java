@@ -16,11 +16,7 @@ class StringToTagTest {
     }
 
     @Test
-    void invalidString_throwsRuntimeException() {
-        try {
-            new StringToTag().convertToRead("");
-        } catch (Exception e) {
-            assertEquals(RuntimeException.class, e.getClass());
-        }
+    void emptyString_returnsNullTag() {
+        assertEquals(new Tag("null"), new StringToTag().convertToRead(""));
     }
 }

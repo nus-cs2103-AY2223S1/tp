@@ -11,6 +11,10 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
+import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
+import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -26,6 +30,7 @@ public class PersonBuilder {
     public static final String DEFAULT_INCOME = "$5230";
     public static final String DEFAULT_MEETINGDATE = "20 Nov 2022";
     public static final String DEFAULT_MEETINGLOCATION = "13 Computing Drive";
+    public static final String DEFAULT_RISK = "";
 
     private Name name;
     private Phone phone;
@@ -35,6 +40,9 @@ public class PersonBuilder {
     private MeetingDate meetingDate;
     private MeetingLocation meetingLocation;
     private Set<Tag> tags;
+    private Risk risk;
+    private Set<Plan> plans;
+    private Set<Note> note;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -48,12 +56,16 @@ public class PersonBuilder {
         meetingDate = new MeetingDate(DEFAULT_MEETINGDATE);
         meetingLocation = new MeetingLocation(DEFAULT_MEETINGLOCATION);
         tags = new HashSet<>();
+        risk = new Risk(DEFAULT_RISK);
+        plans = new HashSet<>();
+        note = new HashSet<>();
     }
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
+        Portfolio portfolio = personToCopy.getPortfolio();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
@@ -62,6 +74,9 @@ public class PersonBuilder {
         meetingDate = personToCopy.getMeeting().getMeetingDate();
         meetingLocation = personToCopy.getMeeting().getMeetingLocation();
         tags = new HashSet<>(personToCopy.getTags());
+        risk = portfolio.getRisk();
+        plans = new HashSet<>(portfolio.getPlans());
+        note = portfolio.getNotes();
     }
 
     /**
@@ -128,8 +143,32 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Risk} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRisk(String risk) {
+        this.risk = new Risk(risk);
+        return this;
+    }
+
+    /**
+     * Parses the {@code plans} into a {@code Set<Plan>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPlans(String... plans) {
+        this.plans = SampleDataUtil.getPlanSet(plans);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Note} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNotes(String... notes) {
+        this.note = SampleDataUtil.getNoteSet(notes);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, income, meetingDate, meetingLocation, tags);
+        return new Person(name, phone, email, address, income, meetingDate, meetingLocation, tags, risk, plans, note);
     }
 
 }

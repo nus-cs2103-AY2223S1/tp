@@ -4,46 +4,48 @@ title: Developer Guide
 ---
 
 Table of Contents
-- [Acknowledgements](#acknowledgements)
-- [Setting up, getting started](#setting-up-getting-started)
-- [Design](#design)
-    * [Architecture](#architecture)
-    * [UI component](#ui-component)
-    * [Logic component](#logic-component)
-    * [Model component](#model-component)
-    * [Storage component](#storage-component)
-    * [Common classes](#common-classes)
-- [Implementation](#implementation)
-    * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
-    * [\[Proposed\] Data archiving](#proposed-data-archiving)
-- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-- [Appendix: Requirements](#appendix-requirements)
-    * [Product scope](#product-scope)
-    * [User stories](#user-stories)
-    * [Use cases](#use-cases)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    * [Launch and shutdown](#launch-and-shutdown)
-    * [Deleting a client](#deleting-a-client)
-    * [Saving data](#saving-data)
+
+1. [Acknowledgements](#1-acknowledgements)
+2. [Setting up, getting started](#2-setting-up-getting-started)
+3. [Design](#3-design)
+   3.1. [Architecture](#31-architecture)
+   3.2. [UI component](#32-ui-component)
+   3.3. [Logic component](#33-logic-component)
+   3.4. [Model component](#34-model-component)
+   3.5. [Storage component](#35-storage-component)
+   3.6. [Common classes](#36-common-classes)
+4. [Implementation](#4-implementation)
+   4.1. [Import command](#41-import-command)
+   4.2. [\[Proposed\] Undo/redo feature](#42-proposed-undoredo-feature)
+   4.3. [\[Proposed\] Data archiving](#43-proposed-data-archiving)
+5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)
+6. [Appendix: Requirements](#6-appendix-requirements)
+   6.1. [Product scope](#61-product-scope)
+   6.2. [User stories](#62-user-stories)
+   6.3. [Use cases](#63-use-cases)
+   6.4. [Non-Functional Requirements](#64-non-functional-requirements)
+   6.5. [Glossary](#65-glossary)
+7. [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing)
+   7.1. [Launch and shutdown](#71-launch-and-shutdown)
+   7.2. [Deleting a client](#72-deleting-a-client)
+   7.3. [Saving data](#73-saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **1. Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
   original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **2. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **3. Design**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -53,7 +55,7 @@ Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.h
 diagrams.
 </div>
 
-### Architecture
+### 3.1. Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -102,12 +104,12 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2. UI component
 
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UpdatedUiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
@@ -126,7 +128,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+### 3.3. Logic component
 
 **
 API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -164,12 +166,12 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 3.4. Model component
 
 **
 API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/UpdatedModelClassDiagram.png" width="450" />
+<img src="images/UpdatedModelClassDiagramWithPortfolio.png" width="450" />
 
 
 The `Model` component,
@@ -189,7 +191,7 @@ The `Model` component,
 
 </div>
 
-### Storage component
+### 3.5. Storage component
 
 **
 API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -205,17 +207,55 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
-### Common classes
+### 3.6. Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **4. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### 4.1. Import command
+
+#### Current Implementation
+
+The import command mainly relies on the following classes:
+
+* `ImportCommand`
+* `AddressBookParser`
+* `ImportCommandParser`
+* `ParserUtil`
+* `CsvAdaptedPerson`
+* `StringToTag`
+
+`CsvToBeanBuilder` is provided by the OpenCSV library.
+
+1. The user executes the `import` command while providing a path as an argument.
+2. `AddressBookParser#parseCommand()` is called, which creates and returns a new `ImportCommandParser` that parses the
+   provided path.
+3. `ImportCommandParser#parse()` is called, which calls `ParserUtil#parseImportPath()` to parse the provided path.
+4. `ParserUtil` checks if the path is to a `JSON` or `CSV` file, and if the file is readable. If the path is valid, it
+   returns the path.
+5. `ImportCommandParser` creates and returns a new `ImportCommand` using the returned path.
+6. `ImportCommand#execute()` is called.
+    * If the path is to a `JSON` file, `ImportCommand` creates a new `JsonAddressBookStorage` using the path, then uses
+      it to read and add `Person`s to the `Model`.
+    * If the path is to a `CSV` file, `ImportCommand` creates a new `CsvToBeanBuilder` using the path, then uses it to
+      obtain a list of `CsvAdaptedPerson`s. `StringToTag#convertToRead()` is called by `CsvToBeanBuilder` to convert
+      strings from the `CSV` file to `Tag`s. `CsvAdaptedPerson#toModelType()` is called to convert
+      each `CsvAdaptedPerson` to a `Person` before adding them to the `Model`.
+
+The following sequence diagram shows how the import command works:
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+#### Design considerations:
+
+Chose to use OpenCSV to read `CSV` files to avoid reinventing the wheel.
+
+### 4.2. \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
@@ -311,14 +351,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### 4.3. \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **5. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -328,9 +368,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **6. Appendix: Requirements**
 
-### Product scope
+### 6.1. Product scope
 
 **Target user profile**:
 
@@ -349,9 +389,10 @@ _{Explain here how the data archiving feature will be implemented}_
 * should only be used to access and store sensitive information
 * targeted at FAs and does not include features that involve communication with their clients
 * manage contacts faster than a typical mouse/GUI driven app
-* FA's can shorten their time spent on doing administrative duties such as finding a client by showing all clients' details as well as portfolio in one glance
+* FA's can shorten their time spent on doing administrative duties such as finding a client by showing all clients'
+  details as well as portfolio in one glance
 
-### User stories
+### 6.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -386,7 +427,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | returning user                             | delete all data quickly and securely when facing an emergency situation          | my data is not leaked                                                               |
 | `*`      | potential user exploring the app           | be greeted with a brief overview of the privacy features available               | I am aware of them                                                                  |
 
-### Use cases
+### 6.3. Use cases
 
 (For all use cases below, the **System** is `FinBook` and the **Actor** is the `FA`, unless specified otherwise)
 
@@ -570,7 +611,7 @@ Use case ends.
 
 *{More to be added}*
 
-### Non-Functional Requirements
+### 6.4. Non-Functional Requirements
 
 * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 * Should be able to hold up to 1000 clients without a noticeable sluggishness (delay of < 0.3 seconds) in performance
@@ -584,7 +625,7 @@ Use case ends.
 Notes about project scope:
 FinBook is not required to handle interaction between client and FA.
 
-### Glossary
+### 6.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **FA**: Financial advisor
@@ -595,7 +636,7 @@ FinBook is not required to handle interaction between client and FA.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **7. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -604,7 +645,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 7.1. Launch and shutdown
 
 1. Initial launch
 
@@ -622,7 +663,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a client
+### 7.2. Deleting a client
 
 1. Deleting a client while all client are being shown
 
@@ -631,11 +672,11 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `delete 1`<br>
        Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
        Timestamp in the status bar is updated.
-   
+
     3. Test case: `delete 1,2,5`<br>
-        Expected: Client at index 1,2 and 5 is deleted form the list. Details of the deleted client shown
-        in the status message.
-   
+       Expected: Client at index 1,2 and 5 is deleted form the list. Details of the deleted client shown
+       in the status message.
+
     4. Test case: `delete 1-3`<br>
        Expected: Client at index 1,2 and 3 is deleted form the list. Details of the deleted client shown
        in the status message.
@@ -649,7 +690,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### 7.3. Saving data
 
 1. Dealing with missing/corrupted data files
 
@@ -666,6 +707,5 @@ testers are expected to do more *exploratory* testing.
        Expected: Creates a new addressbook.json file when there is a new command entered
 
     5. {explain how to simulate a missing/corrupted file, and the expected behavior}_
-
 
 1. _{ more test cases …​ }_

@@ -18,6 +18,10 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
+import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
+import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,6 +39,9 @@ class JsonAdaptedPerson {
     private final String meetingDate;
     private final String meetingLocation;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String risk;
+    private final List<JsonAdaptedPlan> planned = new ArrayList<>();
+    private final List<JsonAdaptedNote> noted = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,7 +52,10 @@ class JsonAdaptedPerson {
                              @JsonProperty("income") String income,
                              @JsonProperty("meetingDate") String meetingDate,
                              @JsonProperty("meetingLocation") String meetingLocation,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("risk") String risk,
+                             @JsonProperty("plan") List<JsonAdaptedPlan> planned,
+                             @JsonProperty("note") List<JsonAdaptedNote> noted) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -64,12 +74,24 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        if (risk != null) {
+            this.risk = risk;
+        } else {
+            this.risk = "";
+        }
+        if (planned != null) {
+            this.planned.addAll(planned);
+        }
+        if (noted != null) {
+            this.noted.addAll(noted);
+        }
     }
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        Portfolio portfolio = source.getPortfolio();
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -79,6 +101,13 @@ class JsonAdaptedPerson {
         meetingLocation = source.getMeeting().getMeetingLocation().get();
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
+        risk = portfolio.getRisk().value;
+        planned.addAll(portfolio.getPlans().stream()
+            .map(JsonAdaptedPlan::new)
+            .collect(Collectors.toList()));
+        noted.addAll(portfolio.getNotes().stream()
+            .map(JsonAdaptedNote::new)
             .collect(Collectors.toList()));
     }
 
@@ -91,6 +120,16 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Plan> personPlans = new ArrayList<>();
+        for (JsonAdaptedPlan plan : planned) {
+            personPlans.add(plan.toModelType());
+        }
+
+        final List<Note> personNotes = new ArrayList<>();
+        for (JsonAdaptedNote note : noted) {
+            personNotes.add(note.toModelType());
         }
 
         if (name == null) {
@@ -155,9 +194,27 @@ class JsonAdaptedPerson {
             modelMeetingLocation = new MeetingLocation("");
         }
 
+        if (risk != null && !Risk.isValidRisk(risk)) {
+            throw new IllegalValueException(Risk.MESSAGE_CONSTRAINTS);
+        }
+        final Risk modelRisk;
+
+        if (risk != null) {
+            modelRisk = new Risk(risk);
+        } else {
+            modelRisk = new Risk("");
+        }
+
+
+        final Set<Plan> modelPlans = new HashSet<>(personPlans);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        final Set<Note> modelNotes = new HashSet<>(personNotes);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate,
-            modelMeetingLocation, modelTags);
+            modelMeetingLocation,
+            modelTags, modelRisk, modelPlans, modelNotes);
     }
 
 }

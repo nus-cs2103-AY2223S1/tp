@@ -20,6 +20,10 @@ checkstyle {
     toolVersion = '10.2'
 }
 
+run {
+    enableAssertions = true
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
@@ -42,6 +46,7 @@ task coverage(type: JacocoReport) {
 
 dependencies {
     implementation 'com.opencsv:opencsv:5.7.0'
+    implementation 'com.password4j:password4j:1.6.1'
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 

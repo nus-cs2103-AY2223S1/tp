@@ -23,6 +23,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
+import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -236,6 +239,80 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String risk} into an {@code Risk}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Risk can be null.
+     *
+     * @throws ParseException if the given {@code risk} is invalid.
+     */
+    public static Risk parseRisk(String risk) throws ParseException {
+        if (risk != null) {
+            String trimmedRisk = risk.trim();
+            if (!Risk.isValidRisk(risk)) {
+                throw new ParseException(Risk.MESSAGE_CONSTRAINTS);
+            }
+            return new Risk(trimmedRisk);
+        } else {
+            return new Risk(null);
+        }
+    }
+
+    /**
+     * Parses a {@code String plan} into an {@code Plan}.
+     * Plan can be null.
+     *
+     * @throws ParseException if the given {@code plan} is invalid.
+     */
+    public static Plan parsePlan(String plan) throws ParseException {
+        requireNonNull(plan);
+        if (!Plan.isValidPlan(plan)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Plan(plan);
+    }
+
+    /**
+     * Parses {@code Collection<String> Plans} into a {@code Set<Plan>}.
+     */
+    public static Set<Plan> parsePlans(Collection<String> plans) throws ParseException {
+        requireNonNull(plans);
+        final Set<Plan> planSet = new HashSet<>();
+        for (String planName : plans) {
+            planSet.add(parsePlan(planName));
+        }
+        return planSet;
+    }
+
+    /**
+     * Parses a {@code String note} into an {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Note can be null.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        if (!Note.isValidNote(trimmedNote)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+        }
+        return new Note(trimmedNote);
+    }
+
+    /**
+     * Parses {@code Collection<String> Plans} into a {@code Set<Plan>}.
+     */
+    public static Set<Note> parseNotes(Collection<String> notes) throws ParseException {
+        requireNonNull(notes);
+        final Set<Note> noteSet = new HashSet<>();
+        for (String noteName : notes) {
+            noteSet.add(parseNote(noteName));
+        }
+        return noteSet;
+    }
+
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -266,13 +343,28 @@ public class ParserUtil {
      * Parses {@code filePath} into an {@code Path} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      *
-     * @throws ParseException if the specified path is invalid.
+     * @throws ParseException if the specified path is invalid (not JSON or CSV, or not readable)
      */
-    public static Path parsePath(String filePath) throws ParseException {
+    public static Path parseImportPath(String filePath) throws ParseException {
         String trimmedPath = filePath.trim();
         File file = new File(trimmedPath);
         if (!(file.getName().toLowerCase().endsWith(".json") || file.getName().toLowerCase().endsWith(".csv"))
             || !Files.isReadable(file.toPath())) {
+            throw new ParseException(MESSAGE_INVALID_PATH);
+        }
+        return file.toPath();
+    }
+
+    /**
+     * Parses {@code filePath} into an {@code Path} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the specified path is invalid (not CSV)
+     */
+    public static Path parseExportPath(String filePath) throws ParseException {
+        String trimmedPath = filePath.trim();
+        File file = new File(trimmedPath);
+        if (!file.getName().toLowerCase().endsWith(".csv")) {
             throw new ParseException(MESSAGE_INVALID_PATH);
         }
         return file.toPath();

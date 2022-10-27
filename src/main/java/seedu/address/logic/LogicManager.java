@@ -47,6 +47,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -77,5 +78,15 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public boolean isPasswordSet() {
+        return model.isPasswordSet();
+    }
+
+    @Override
+    public boolean isPasswordCorrect(String password) {
+        return model.isPasswordCorrect(password);
     }
 }

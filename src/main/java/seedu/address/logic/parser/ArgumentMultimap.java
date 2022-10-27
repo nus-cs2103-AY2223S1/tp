@@ -1,11 +1,17 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREAMBLE;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -70,7 +76,7 @@ public class ArgumentMultimap {
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */
     public String getPreamble() {
-        return getValue(new Prefix("")).orElse("");
+        return getValue(PREFIX_PREAMBLE).orElse("");
     }
 
     /**
@@ -88,5 +94,20 @@ public class ArgumentMultimap {
         } else {
             return Optional.empty();
         }
+    }
+
+    /**
+     * Returns true if and only if the argument multimap only contains the prefixes passed into the method.
+     */
+    public boolean hasOnlySpecifiedPrefixPresent(Prefix... prefixes) {
+
+        ArrayList<String> empty = new ArrayList<>(Collections.singleton(""));
+        argMultimap.values().removeAll(Collections.singleton(empty));
+
+        Set<Prefix> receivedSet = new HashSet<>(argMultimap.keySet());
+        Set<Prefix> wantedSet = Arrays.stream(prefixes).collect(Collectors.toSet());
+        receivedSet.removeAll(wantedSet);
+
+        return receivedSet.isEmpty();
     }
 }

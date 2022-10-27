@@ -11,6 +11,13 @@
       "meetingLocation": "13 Computing Drive",
       "tagged": [
         "friends"
+      ],
+      "risk": "high",
+      "planned": [
+        "prudential income"
+      ],
+      "note": [
+        "is currently having COVID"
       ]
     },
     {
@@ -24,7 +31,12 @@
       "tagged": [
         "owesMoney",
         "friends"
-      ]
+      ],
+      "risk": "high",
+      "planned": [
+        "prudential income"
+      ],
+      "note": null
     },
     {
       "name": "Carl Kurz",
@@ -34,7 +46,10 @@
       "income": "$840",
       "meetingDate": null,
       "meetingLocation": "13 Computing Drive",
-      "tagged": []
+      "tagged": [],
+      "risk": "low",
+      "planned": [],
+      "note": null
     },
     {
       "name": "Daniel Meier",
@@ -46,7 +61,12 @@
       "meetingLocation": "13 Computing Drive",
       "tagged": [
         "friends"
-      ]
+      ],
+      "risk": "high",
+      "planned": [
+        "NTUC income"
+      ],
+      "note": null
     },
     {
       "name": "Elle Meyer",
@@ -56,7 +76,10 @@
       "income": "$2500",
       "meetingDate": "16 Nov 2022",
       "meetingLocation": "13 Computing Drive",
-      "tagged": []
+      "tagged": [],
+      "risk": "medium",
+      "planned": [],
+      "note": null
     },
     {
       "name": "Fiona Kunz",
@@ -66,7 +89,10 @@
       "income": "$90",
       "meetingDate": "12 Sep 2022",
       "meetingLocation": "13 Computing Drive",
-      "tagged": []
+      "tagged": [],
+      "risk": null,
+      "planned": [],
+      "note": null
     },
     {
       "name": "George Best",
@@ -75,8 +101,11 @@
       "address": "4th street",
       "income": "$3000",
       "meetingDate": null,
-      "meetingLocation": null,
-      "tagged": []
+      "meetingLocation": "13 Computing Drive",
+      "tagged": [],
+      "risk": null,
+      "planned": [],
+      "note": null
     }
   ]
 }

@@ -137,11 +137,10 @@ public class UniquePersonList implements Iterable<Person> {
 
     @Override
     public String toString() {
-        StringBuilder res = new StringBuilder();
-        for (Person p : internalList) {
-            res.append(p).append("\n");
+        StringBuilder personList = new StringBuilder();
+        for (Person person : internalList) {
+            personList.append(person.toString()).append("\n");
         }
-        // TODO: refine later
-        return res.toString();
+        return personList.toString();
     }
 }

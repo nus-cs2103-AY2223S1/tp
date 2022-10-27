@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
@@ -27,9 +27,10 @@
                     <Insets bottom="10" left="10" right="10" top="10"/>
                 </padding>
             </FlowPane>
+
             <VBox fx:id="personDetailsBox" alignment="CENTER_LEFT" minHeight="105" minWidth="300"
                   GridPane.columnIndex="0">
-                <SplitPane dividerPositions="0.5">
+                <SplitPane fx:id="personDetailsSplitPane" dividerPositions="0.5">
                     <VBox fx:id="personDetails" alignment="CENTER_LEFT" minHeight="105" minWidth="300" prefWidth="300"
                           GridPane.columnIndex="0">
                         <padding>
@@ -68,6 +69,7 @@
                     </VBox>
                 </SplitPane>
             </VBox>
+
         </VBox>
         <rowConstraints>
             <RowConstraints/>

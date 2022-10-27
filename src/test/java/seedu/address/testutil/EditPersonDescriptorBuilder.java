@@ -13,6 +13,10 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
+import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
+import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +25,7 @@ import seedu.address.model.tag.Tag;
 public class EditPersonDescriptorBuilder {
 
     private EditPersonDescriptor descriptor;
+    private Portfolio portfolio;
 
     public EditPersonDescriptorBuilder() {
         descriptor = new EditPersonDescriptor();
@@ -34,6 +39,7 @@ public class EditPersonDescriptorBuilder {
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
+        this.portfolio = person.getPortfolio();
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
@@ -43,6 +49,9 @@ public class EditPersonDescriptorBuilder {
         descriptor.setMeetingDate(person.getMeeting().getMeetingDate());
         descriptor.setMeetingLocation(person.getMeeting().getMeetingLocation());
         descriptor.setTags(person.getTags());
+        descriptor.setRisk(portfolio.getRisk());
+        descriptor.setPlans(portfolio.getPlans());
+        descriptor.setNotes(portfolio.getNotes());
     }
 
     /**
@@ -93,6 +102,25 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+
+    /**
+     * Sets the {@code Risk} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRisk(String risk) {
+        descriptor.setRisk(new Risk(risk));
+        return this;
+    }
+
+    /**
+     * Parses the {@code plans} into a {@code Set<Plan>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withPlans(String... plans) {
+        Set<Plan> planSet = Stream.of(plans).map(Plan::new).collect(Collectors.toSet());
+        descriptor.setPlans(planSet);
+        return this;
+    }
+
     /**
      * Sets the {@code Income} of the {@code EditPersonDescriptor} that we are building.
      */
@@ -109,6 +137,15 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Note} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withNote(String... notes) {
+        Set<Note> notesSet = Stream.of(notes).map(Note::new).collect(Collectors.toSet());
+        descriptor.setNotes(notesSet);
         return this;
     }
 

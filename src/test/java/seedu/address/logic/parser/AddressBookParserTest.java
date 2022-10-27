@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEW_PASSWORD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OLD_PASSWORD;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TestUtil.getFilePathInSandboxFolder;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -21,10 +23,13 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LockCommand;
+import seedu.address.logic.commands.PasswordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -46,7 +51,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
@@ -55,7 +60,7 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -69,7 +74,7 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-            FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" n/")));
+                FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" n/")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -88,7 +93,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test
@@ -102,8 +107,29 @@ public class AddressBookParserTest {
         File dummyFile = new File(dummyPath.toUri());
         dummyFile.createNewFile();
         ImportCommand command = (ImportCommand) parser.parseCommand(
-            ImportCommand.COMMAND_WORD + " " + dummyPath.toString());
+                ImportCommand.COMMAND_WORD + " " + dummyPath.toString());
         assertEquals(new ImportCommand(dummyPath), command);
         dummyFile.delete();
+    }
+
+    @Test
+    public void parseCommand_export() throws Exception {
+        Path dummyPath = getFilePathInSandboxFolder("foobar.csv");
+        ExportCommand command = (ExportCommand) parser.parseCommand(
+                ExportCommand.COMMAND_WORD + " " + dummyPath.toString());
+        assertEquals(new ExportCommand(dummyPath), command);
+    }
+
+    @Test
+    public void parseCommand_lock() throws Exception {
+        assertTrue(parser.parseCommand(LockCommand.COMMAND_WORD) instanceof LockCommand);
+        assertTrue(parser.parseCommand(LockCommand.COMMAND_WORD + " 3") instanceof LockCommand);
+    }
+
+    @Test
+    public void parseCommand_password() throws Exception {
+        PasswordCommand command = (PasswordCommand) parser.parseCommand(PasswordCommand.COMMAND_WORD + " "
+                + PREFIX_OLD_PASSWORD + "foobar" + " " + PREFIX_NEW_PASSWORD + "barfoo");
+        assertEquals(new PasswordCommand("foobar", "barfoo"), command);
     }
 }

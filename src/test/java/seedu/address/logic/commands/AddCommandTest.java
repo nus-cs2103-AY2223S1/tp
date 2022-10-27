@@ -147,6 +147,21 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean isPasswordSet() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isPasswordCorrect(String password) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatePassword(String oldPassword, String newPassword) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

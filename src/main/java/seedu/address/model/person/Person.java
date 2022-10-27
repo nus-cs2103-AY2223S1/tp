@@ -10,6 +10,10 @@ import java.util.Set;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingLocation;
+import seedu.address.model.portfolio.Note;
+import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
+import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,14 +32,15 @@ public class Person {
     private final Income income;
     private final Meeting meeting;
     private final Set<Tag> tags = new HashSet<>();
+    private final Portfolio portfolio;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Income income,
-                  MeetingDate meetingDate, MeetingLocation meetingLocation,
-                  Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, income, meetingDate, meetingLocation, tags);
+
+    public Person(Name name, Phone phone, Email email, Address address, Income income, MeetingDate meetingDate,
+                  MeetingLocation meetingLocation, Set<Tag> tags, Risk risk, Set<Plan> plan, Set<Note> note) {
+        requireAllNonNull(name, phone, email, address, income, tags, plan, note);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -43,6 +48,7 @@ public class Person {
         this.income = income;
         this.meeting = new Meeting(meetingDate, meetingLocation);
         this.tags.addAll(tags);
+        this.portfolio = new Portfolio(risk, plan, note);
     }
 
     public Name getName() {
@@ -67,6 +73,10 @@ public class Person {
 
     public Meeting getMeeting() {
         return meeting;
+    }
+
+    public Portfolio getPortfolio() {
+        return portfolio;
     }
 
     /**
@@ -105,25 +115,30 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+        Portfolio otherPortfolio = otherPerson.getPortfolio();
         return otherPerson.getName().equals(getName())
             && otherPerson.getPhone().equals(getPhone())
             && otherPerson.getEmail().equals(getEmail())
             && otherPerson.getAddress().equals(getAddress())
             && otherPerson.getIncome().equals(getIncome())
             && otherPerson.getMeeting().equals(getMeeting())
-            && otherPerson.getTags().equals(getTags());
+            && otherPerson.getTags().equals(getTags())
+            && otherPortfolio.getRisk().equals(getPortfolio().getRisk())
+            && otherPortfolio.getPlans().equals(getPortfolio().getPlans())
+            && otherPortfolio.getNotes().equals(getPortfolio().getNotes());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, income, meeting, tags);
+        return Objects.hash(name, phone, email, address, income, meeting, tags, portfolio);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         Meeting meeting = getMeeting();
+        Portfolio portfolio = getPortfolio();
         builder.append(getName())
             .append("; Phone: ")
             .append(getPhone())
@@ -143,6 +158,76 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append("; Risk: ")
+            .append(portfolio.getRisk());
+
+        Set<Plan> plans = portfolio.getPlans();
+        if (!plans.isEmpty()) {
+            builder.append("; Plans: ");
+            plans.forEach(builder::append);
+        }
+
+        Set<Note> notes = portfolio.getNotes();
+        if (!notes.isEmpty()) {
+            builder.append("; Note: ");
+            notes.forEach(builder::append);
+        }
+
+        return builder.toString();
+    }
+
+
+    /**
+     * Returns client details that is formatted to an organized and readable string
+     *
+     * @return Readable string of client details.
+     */
+    public String toClipboardString() {
+        final StringBuilder builder = new StringBuilder();
+        Portfolio portfolio = getPortfolio();
+        builder.append("Name: ")
+            .append(getName())
+            .append("\nPhone: ")
+            .append(getPhone())
+            .append("\nEmail: ")
+            .append(getEmail())
+            .append("\nAddress: ")
+            .append(getAddress())
+            .append("\nIncome: ")
+            .append(getIncome())
+            .append("\nMeeting date: ")
+            .append(meeting.getMeetingDate())
+            .append("\nMeeting Location: ")
+            .append(meeting.getMeetingLocation());
+
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("\nTags: ");
+            String outputTag = tags.toString().replace("[", "");
+            outputTag = outputTag.replace("]", "");
+            builder.append(outputTag);
+        }
+
+        builder.append("\nRisk: ")
+            .append(portfolio.getRisk());
+
+        Set<Plan> plans = portfolio.getPlans();
+        if (!plans.isEmpty()) {
+            builder.append("\nPlans: ");
+            String outputPlans = plans.toString().replace("[", "");
+            outputPlans = outputPlans.replace("]", "");
+            builder.append(outputPlans);
+        }
+
+        Set<Note> notes = portfolio.getNotes();
+        if (!notes.isEmpty()) {
+            builder.append("\nNote: ");
+            String outputNotes = notes.toString().replace("[", "");
+            outputNotes = outputNotes.replace("]", "");
+            builder.append(outputNotes);
+        }
+
         return builder.toString();
     }
 
