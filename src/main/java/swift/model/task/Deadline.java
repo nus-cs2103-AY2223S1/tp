@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
  * Represents a Task's deadline in the address book.
  * Guarantees: immutable; valid as declared in {@link #isValidDeadline(String)}
  */
-public class Deadline {
+public class Deadline implements Comparable<Deadline> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Deadline must be in `dd-MM-yyyy HHmm` format.";
@@ -40,6 +40,11 @@ public class Deadline {
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    @Override
+    public int compareTo(Deadline other) {
+        return deadline.compareTo(other.deadline);
     }
 
     @Override

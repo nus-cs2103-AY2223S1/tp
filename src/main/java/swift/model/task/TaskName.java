@@ -7,7 +7,7 @@ import static swift.commons.util.AppUtil.checkArgument;
  * Represents a Task's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class TaskName {
+public class TaskName implements Comparable<TaskName> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -36,6 +36,11 @@ public class TaskName {
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public int compareTo(TaskName other) {
+        return fullName.compareTo(other.fullName);
     }
 
     @Override
