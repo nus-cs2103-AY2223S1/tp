@@ -180,7 +180,7 @@ public class ModelManager implements Model {
         requireAllNonNull(index);
 
         addressBook.markQuestion(index);
-        updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS);
+//        updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS);
     }
 
     @Override
@@ -188,7 +188,7 @@ public class ModelManager implements Model {
         requireAllNonNull(index);
 
         addressBook.unmarkQuestion(index);
-        updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS);
+//        updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS);
     }
 
     //=========== Tutorial ================================================================================

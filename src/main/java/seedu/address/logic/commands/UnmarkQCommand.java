@@ -29,6 +29,8 @@ public class UnmarkQCommand extends Command {
     private final Index index;
 
     public UnmarkQCommand(Index index) {
+        requireNonNull(index);
+
         this.index = index;
     }
 

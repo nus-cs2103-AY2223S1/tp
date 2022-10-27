@@ -29,6 +29,8 @@ public class MarkQCommand extends Command {
     private final Index index;
 
     public MarkQCommand(Index index) {
+        requireNonNull(index);
+
         this.index = index;
     }
 
