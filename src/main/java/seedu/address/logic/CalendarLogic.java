@@ -158,7 +158,6 @@ public class CalendarLogic {
     public void refresh() {
         resetGridPane();
         this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
-        this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         textValidation.setTextValidation(EMPTY_MESSAGE);
         drawCalendar();
     }

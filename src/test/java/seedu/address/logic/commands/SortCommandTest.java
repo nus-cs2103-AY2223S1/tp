@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
@@ -39,10 +40,13 @@ public class SortCommandTest {
     public void testCompare() {
         // this is to test the result of compare() in SortByAppointment
         SortByAppointment sortByAppointment = new SortByAppointment("asc");
+        SortByIncome sortByIncome = new SortByIncome("asc");
         int result = sortByAppointment.compare(MUSAB_WITH_NO_APPT, ELLE);
         int result2 = sortByAppointment.compare(MUSAB_WITH_NO_APPT, ALICE);
+        int result3 = sortByIncome.compare(ALICE, AMY);
         assertEquals(1, result);
         assertEquals(0, result2);
+        assertEquals(0, result3);
     }
 
     @Test

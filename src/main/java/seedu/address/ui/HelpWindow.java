@@ -9,6 +9,12 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.SortCommand;
 
 /**
  * Controller for a help page
@@ -16,7 +22,33 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-w09-2.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String LINE = "-".repeat(110);
+    public static final String HELP_MESSAGE = LINE
+            + "\nHere's a list of basic commands:"
+            + "\n1) Add a new client:\n"
+            + ">> " + AddCommand.COMMAND_WORD + " n/NAME p/PHONE e/EMAIL a/ADDRESS "
+            + "i/INCOME m/MONTHLY r/RISK ip/PLAN t/[TAG](Optional Field)"
+            + "\n2) Add appointment for a client:\n"
+            + ">> " + AddAppointmentCommand.COMMAND_WORD + " INDEX d/DATE_AND_TIME l/LOCATION"
+            + "\n3) Editing a client's information:\n"
+            + ">> " + EditCommand.COMMAND_WORD + " INDEX PREFIX/KEYWORD"
+            + "\n4) Delete an existing client:\n"
+            + ">> " + DeleteCommand.COMMAND_WORD + " INDEX"
+            + "\n5) Sorting client by keywords:\n"
+            + "Types of KEYWORDS: name, appt, risk, income, monthly"
+            + "\nThe sorting will be in ascending order by default, to make it descending add desc behind KEYWORD\n"
+            + ">> " + SortCommand.COMMAND_WORD + " KEYWORD / " + SortCommand.COMMAND_WORD + " KEYWORD desc"
+            + "\n6) Filter client by keyword:\n"
+            + ">> " + FindCommand.COMMAND_WORD + " PREFIX/KEYWORD [MORE_KEYWORDS]"
+            + "\n7) List all contacts:"
+            + ">> list"
+            + "\n8) Clear all entries from list of clients:\n"
+            + ">> clear"
+            + "\n9) Exit the program:\n"
+            + ">> exit\n"
+            + LINE
+            + "\nFor more information, please refer to our user guide:\n"
+            + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
