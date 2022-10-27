@@ -283,7 +283,7 @@ using the `AddOrderCommand#stageForValidation()` method.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format)
 </div>
 
-![AddOrderState2](images/developer-guide/AddOrderState2.png);
+![AddOrderState2](images/developer-guide/AddOrderState2a.png);
 
 Step 2b. The system searches the inventory items for an item that has a matching name. In this scenario,
 we assume that the user has already added an `Item` with its `ItemName` value to be `Pen`, to the system's list of tracked items.
