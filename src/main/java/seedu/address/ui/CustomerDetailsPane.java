@@ -2,12 +2,15 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.ObservableObject;
+import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -38,6 +41,8 @@ public class CustomerDetailsPane extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label totalRevenue;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -46,10 +51,8 @@ public class CustomerDetailsPane extends UiPart<Region> {
     public CustomerDetailsPane(ObservableObject<Customer> customer) {
         super(FXML);
         this.customer = customer.getValue();
-        this.updateUI(this.customer);
-        customer.addListener((observable, oldValue, newValue) -> {
-            this.updateUI(newValue);
-        });
+        handleCustomerCommissionChanges(this.customer);
+        customer.addListener((observable, oldValue, newValue) -> handleCustomerCommissionChanges(newValue));
     }
 
     private void updateUI(Customer customer) {
@@ -58,17 +61,29 @@ public class CustomerDetailsPane extends UiPart<Region> {
             phone.setText("");
             address.setText("");
             email.setText("");
+            totalRevenue.setText("");
             tags.getChildren().clear();
         } else {
             name.setText(customer.getName().fullName);
             phone.setText(customer.getPhone().value);
             address.setText(customer.getAddress().map(address -> address.value).orElse(""));
             email.setText(customer.getEmail().value);
+            totalRevenue.setText(String.format("%.2f", customer.getRevenue()));
             tags.getChildren().clear();
             customer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         }
+    }
+
+    private void handleCustomerCommissionChanges(Customer newValue) {
+        if (newValue != null) {
+            ObservableList<Commission> observableList = newValue.getCommissionList();
+            observableList.addListener((ListChangeListener<Commission>) c -> {
+                updateUI(newValue);
+            });
+        }
+        updateUI(newValue);
     }
 
     @Override

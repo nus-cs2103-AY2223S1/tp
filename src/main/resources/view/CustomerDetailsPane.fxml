@@ -69,6 +69,16 @@
                     <Insets bottom="4.0" />
                 </VBox.margin>
             </Label>
+
+            <Label fx:id="totalRevenue" styleClass="cell_small_label" text="\$totalrevenue">
+                <minHeight>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE"/>
+                </minHeight>
+                <VBox.margin>
+                    <Insets bottom="4.0" />
+                </VBox.margin>
+            </Label>
         </VBox>
         <rowConstraints>
             <RowConstraints/>
