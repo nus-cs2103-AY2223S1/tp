@@ -201,7 +201,8 @@ The following sequence shows how adding homework works:
 
 ![HomeworkSequenceDiagram](images/HomeworkSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `HomeworkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note** The lifeline for `HomeworkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Step 3. The user decides to edit the homework to Science instead of Maths.
@@ -381,7 +382,7 @@ The following activity diagram summarises what happens when a user executes the 
 The session feature is facilitated by `ShowCommand` and `TimeSlot` which is an association class. Each `TimeSlot` contains a `Person` and a `Session`.
 Below is a partial class diagram of the relationship:
 
-_{diagram to be added}_
+![TimeSlotClassDiagram](images/TimeSlotClassDiagram.png)
 
 Given below is an example usage scenario of how the user can view the schedule by day:
 
