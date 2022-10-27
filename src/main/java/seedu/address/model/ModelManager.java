@@ -95,6 +95,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        this.unsortedReminders.setAll(convert(addressBook.getPersonList()));
     }
 
     @Override
@@ -178,6 +179,11 @@ public class ModelManager implements Model {
     public void deleteReminder(Pair<Person, Reminder> target) {
         unsortedReminders.remove(target);
         target.getKey().deleteReminder(target.getValue());
+    }
+
+    @Override
+    public void deletePersonReminders(Person personToDelete) {
+        unsortedReminders.removeIf(pair -> pair.getKey().equals(personToDelete));
     }
 
     @Override

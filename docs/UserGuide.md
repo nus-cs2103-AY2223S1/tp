@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Friendnancial (Friend) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Friend can get your contact management tasks done faster than traditional GUI apps.
+Friendnancial (Friend) is a **desktop app for managing contacts, optimized for use by financial advisors via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Friendnancial can get your contact management tasks done faster than traditional GUI apps, and has features implemented specifically for financial advisors such as storing insurance information and reminders.
 
 * Table of Contents
 {:toc}
@@ -19,18 +19,17 @@ Friendnancial (Friend) is a **desktop app for managing contacts, optimized for u
 1. Copy the file to the folder you want to use as the _home folder_ for Friendnancial.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui_old.png)
+   ![Ui](images/Ui_new.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com c/family a/John street, block 123, #01-01 b/01-01-2001` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com c/family a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`delete`**`3` : Deletes the 3rd contact shown in the current list along with the reminders linked to the contact.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all contacts and reminders.
 
    * **`exit`** : Exits the app.
 
@@ -66,9 +65,9 @@ Friendnancial (Friend) is a **desktop app for managing contacts, optimized for u
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaning how to access the User Guide page. The link can be copied by clickiing the `Copy URL` button.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessageUpdated.png)
 
 Format: `help`
 
@@ -77,7 +76,7 @@ Format: `help`
 
 Adds a person to Friendnancial.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ a/Address b/BIRTHDAY …​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ a/Address b/BIRTHDAY`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -97,7 +96,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [b/BIRTHDAY]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -114,7 +113,7 @@ Examples:
 
 Finds persons by the given keywords.
 
-Format: `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`
+Format: `find [n/KEYWORD] [t/TAG] [b/BIRTHDAY]`
 
 * Entering `find` with no keywords after will simply return the list of all the contacts.
 * Users can filter persons by their desired fields by using `[letter]/[KEYWORD]`. e.g.
@@ -130,7 +129,7 @@ returns persons whose tag fields contain the specified tag.
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/findAlexDavidResultUpdated.png)
 
 ### Deleting a person : `delete`
 
@@ -147,16 +146,14 @@ Format: `delete INDEX` or `delete n/NAME`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-* `delete Edric` deletes the contact with the `NAME` matching `Edric` unless more than one match is found.
+* `delete n/Edric` deletes the contact with the `NAME` matching `Edric` unless more than one match is found.
 
 
 ### Clearing all entries : `clear`
 
-Clears all entries from Friendnancial.
+Clears all entries from Friendnancial, which includes the contacts and the reminders.
 
 Format: `clear`
-
-* Before clearing all entries permanently, confirms with the user with a message.
 
 
 ### Adding a reminder : `remind`
@@ -165,15 +162,15 @@ Adds a reminder to the specified contact.
 
 Format: `remind INDEX r/REMINDER d/DATE`
 
-* Adds a reminder to the person at the specified `INDEX` with the reminder `REMINDER` and date `DATE`.
+* Adds a reminder to the person at the specified `INDEX` with the `REMINDER` and `DATE`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, ...
-* The date **must be in the format of** `D-MM-YYYY`.
+* The date **must be in the format of** `DD-MM-YYYY`.
 
 
 Examples:
 * `remind 2 r/update client information d/20-10-2022` adds a reminder to the 2nd person in the address book.
-* `find Betsy` followed by `remind 1 r/buy gift d/25-10-2022` adds a reminder linked to the 1st person in the result of the `find` command.
+* `find Betsy` followed by `remind 1 r/buy gift d/25-10-2022` adds a reminder linked to the 1st person in the result of the `find` command, which would be `Betsy`.
 
 ### Deleting a reminder : `deleteR`
 
@@ -201,9 +198,11 @@ Prefixes:
 Format: `insurance INDEX [hi/] [di/] [ci/] [li/]` (Number of insurance prefixes can range from 0-4)
 
 Examples:
-* `insurance 1 hi/ ci/`
-* `insurance 2`
-* `insurance 3 hi/ ci/ di/ li/`
+* `insurance 1 hi/ ci/` sets the 1st person to have health insurance and critical illness insurance.
+* `insurance 2` sets the 2nd person to not have any of the insurances.
+* `insurance 3 hi/ ci/ di/ li/` sets the 3rd person to have all the insurances.
+
+![result for 'insurance hi/ di/ ci/ li/'](images/insuranceUpdate.png)
 
 ### Exiting the program : `exit`
 
@@ -226,16 +225,14 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 
 ## Command summary
 
-| Action        | Format, Examples                                                                                                                                    |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend b/18-08-2000` |
-| **Clear**     | `clear`                                                                                                                                             |
-| **Delete**    | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`                                                                                              |
-| **Find**      | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                   |
-| **List**      | `list`                                                                                                                                              |
-| **Remind**    | `remind`                                                                                                                                            
-|
-| **DeleteR**   | `deleteR INDEX`<br> e.g., `deleteR 1`                                                                                                               |
-| **Insurance** | `insurance INDEX [hi/] [di/] [ci/] [li/]`                                                                                                           
-|
-| **Help**      | `help`                                                                                                                                              |
+| Action     | Format, Examples                                                                                                                                    |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend b/18-08-2000` |
+| **Clear**  | `clear`                                                                                                                                             |
+| **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`, `delete n/paul`                                                                              |
+| **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                   |
+| **List**   | `list`                                                                                                                                              |
+| **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                     |
+| **DeleteR** | `deleteR INDEX`<br> e.g., `deleteR 1`                                                                              |
+| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`|                                                                                                           
+| **Help**   | `help` |                                     

@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
 
 /**
@@ -21,10 +22,11 @@ public class Reminder {
      */
     public Reminder(String reminder, String date) {
 
-        assert Birthday.isValidDate(date) : "date should be in format of '" + DATE_FORMAT_PATTERN + "'";
+        assert Birthday.isValidDate(date) : "date should be in format of 'D-MM-YYYY'";
 
         this.task = reminder;
-        this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN));
+        this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)
+                .withResolverStyle(ResolverStyle.STRICT));
 
     }
 

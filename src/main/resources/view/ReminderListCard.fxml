@@ -26,8 +26,12 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="reminderTask" styleClass="cell_small_label" text="\$reminderTask" />
-            <Label fx:id="reminderDate" styleClass="cell_small_label" text="\$reminderDate" />
+            <Label fx:id="reminderTask" styleClass="cell_small_label" text="\$reminderTask">
+                <padding>
+                    <Insets bottom="10" left="0" right="0" top="10" />
+                </padding>
+            </Label>
+            <Label fx:id="reminderDate" styleClass="cell_small_label" text="\$reminderDate"/>
         </VBox>
     </GridPane>
 </HBox>
