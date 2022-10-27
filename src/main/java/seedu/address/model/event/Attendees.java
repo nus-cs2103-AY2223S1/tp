@@ -78,6 +78,7 @@ public class Attendees {
      * Returns true if the given profile is in the list of profiles.
      */
     public boolean hasAttendee(Profile profile) {
+        requireNonNull(profile);
         return this.attendees.contains(profile);
     }
 

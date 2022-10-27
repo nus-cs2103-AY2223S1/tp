@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROFILES;
 
 import java.util.Collections;
@@ -111,7 +112,9 @@ public class EditProfileCommand extends ProfileCommand {
                     e.getTags(), e.getAttendees());
             model.setEvent(e, eventCopy);
         }
+
         model.updateFilteredProfileList(PREDICATE_SHOW_ALL_PROFILES);
+        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile));
     }
 

@@ -64,6 +64,10 @@ public class CommandParserTestUtil {
             userInput = " -" + ViewUpcomingEventsCommand.COMMAND_OPTION + " " + userInput;
         } else if (parser instanceof ViewEventsCommandParser) {
             userInput = " -" + ViewEventsCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof AddProfilesToEventCommandParser) {
+            userInput = " -" + AddProfilesToEventCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof DeleteProfilesFromEventCommandParser) {
+            userInput = " -" + DeleteProfilesFromEventCommand.COMMAND_OPTION + " " + userInput;
         }
 
         try {

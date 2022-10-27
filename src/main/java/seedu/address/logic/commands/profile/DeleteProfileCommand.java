@@ -55,6 +55,8 @@ public class DeleteProfileCommand extends ProfileCommand {
                     e.getTags(), e.getAttendees());
             model.setEvent(e, eventCopy);
         }
+
+        model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_DELETE_PROFILE_SUCCESS, profileToDelete));
     }
 

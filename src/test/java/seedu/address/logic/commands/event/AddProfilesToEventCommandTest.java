@@ -50,7 +50,7 @@ class AddProfilesToEventCommandTest {
         String expectedMessage = String.format(AddProfilesToEventCommand.MESSAGE_EDIT_ATTENDEES_SUCCESS, editedEvent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setEvent(model.getFilteredEventList().get(1), editedEvent);
+        expectedModel.setEventForAttendees(model.getFilteredEventList().get(1), editedEvent);
 
         assertCommandSuccess(addProfilesToEventCommand, model, expectedMessage, expectedModel);
     }

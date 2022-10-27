@@ -91,9 +91,8 @@ public class CommandTestUtil {
     public static final String END_DESC_PRESENTATION = " " + PREFIX_END_DATE + VALID_END_PRESENTATION;
     public static final String END_DESC_PRACTICE = " " + PREFIX_END_DATE + VALID_END_PRACTICE;
 
-    public static final String PROFILE_FIRST = " " + PREFIX_PROFILE + "1";
-    public static final String PROFILE_SECOND = " " + PREFIX_PROFILE + "2";
-
+    public static final String VALID_PROFILE_FIRST = " " + PREFIX_PROFILE + "1";
+    public static final String VALID_PROFILE_SECOND = " " + PREFIX_PROFILE + "2";
 
     public static final String TAG_DESC_SWE = " " + PREFIX_TAG + VALID_TAG_SWE;
     public static final String TAG_DESC_CCA = " " + PREFIX_TAG + VALID_TAG_CCA;
@@ -101,6 +100,7 @@ public class CommandTestUtil {
     public static final String INVALID_TITLE_DESC = " " + PREFIX_NAME + "Lunch&Dinner";
     public static final String INVALID_START_DESC = " " + PREFIX_START_DATE + "2020/02/02 abcd";
     public static final String INVALID_END_DESC = " " + PREFIX_END_DATE + "efgh 2020/15/02";
+    public static final String INVALID_PROFILE_INDEX = " " + PREFIX_PROFILE + "10";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

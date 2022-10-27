@@ -1,9 +1,16 @@
 package seedu.address.logic.parser.event;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.PROFILE_FIRST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROFILE_FIRST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROFILE_SECOND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROFILE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROFILE;
+
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +24,34 @@ public class AddProfilesToEventCommandParserTest {
     private AddProfilesToEventCommandParser parser = new AddProfilesToEventCommandParser();
 
     @Test
-    public void parse_missingParts_failure() {
+    public void parse_validArgs_returnsAddProfilesToEventCommand() {
+        assertParseSuccess(parser, "1" + VALID_PROFILE_FIRST,
+                new AddProfilesToEventCommand(INDEX_FIRST_EVENT, Set.of(INDEX_FIRST_PROFILE)));
+        assertParseSuccess(parser, "1" + VALID_PROFILE_SECOND,
+                new AddProfilesToEventCommand(INDEX_FIRST_EVENT, Set.of(INDEX_SECOND_PROFILE)));
+    }
+
+    @Test
+    public void parse_invalidProfileIndexes_throwsParseException() {
+        // empty profile index
+        assertParseFailure(parser, "1" + PROFILE_EMPTY,
+                AddProfilesToEventCommand.MESSAGE_INVALID_PROFILE_INDEX);
+
+        // invalid profile index
+        assertParseFailure(parser, "1 pr/a",
+                AddProfilesToEventCommand.MESSAGE_INVALID_PROFILE_INDEX);
+
+        // invalid profile index followed by valid profile index
+        assertParseFailure(parser, "1 pr/0" + VALID_PROFILE_FIRST,
+                AddProfilesToEventCommand.MESSAGE_INVALID_PROFILE_INDEX);
+
+        // valid profile index followed by invalid profile index
+        assertParseFailure(parser, "1" + VALID_PROFILE_SECOND + " pr/-1",
+                AddProfilesToEventCommand.MESSAGE_INVALID_PROFILE_INDEX);
+    }
+
+    @Test
+    public void parse_missingParts_throwsParseException() {
         // no index specified
         assertParseFailure(parser, "pr/1", MESSAGE_INVALID_FORMAT);
 
@@ -29,12 +63,12 @@ public class AddProfilesToEventCommandParserTest {
     }
 
     @Test
-    public void parse_invalidPreamble_failure() {
+    public void parse_invalidPreamble_throwsParseException() {
         // negative index
-        assertParseFailure(parser, "-5" + PROFILE_FIRST, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + VALID_PROFILE_FIRST, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + PROFILE_FIRST, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + VALID_PROFILE_FIRST, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -42,5 +76,4 @@ public class AddProfilesToEventCommandParserTest {
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/1", MESSAGE_INVALID_FORMAT);
     }
-
 }
