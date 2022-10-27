@@ -67,7 +67,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-<img src="images/UserGuide/help.png" width="500" />
+![help](images/UserGuide/help.png)
 
 ### Creating a contact: `create`
 
@@ -75,7 +75,7 @@ Creates a contact that is stored in the FABook and contains their contact inform
 
 Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
 
-<img src="images/UserGuide/create.png" width="500" /> 
+![create](images/UserGuide/create.png) 
                   
 * To input multiple meeting times, repeat the field `mt/TIME` as many times as you need. 
 
@@ -97,7 +97,7 @@ Shows a list of all persons in the FABook.
 
 Format: `list`
 
-<img src="images/UserGuide/list.png" width="500" /> 
+![list](images/UserGuide/list.png) 
 
 ### Updating a person : `update`
 
@@ -105,7 +105,7 @@ Updates the information of a contact stored in the FABook.
 
 Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]...`
                         
-<img src="images/UserGuide/update.png" width="500" /> 
+![update](images/UserGuide/update.png)  
 
 :bulb: **Note:**
 Parameters not provided will stay unchanged.
@@ -136,7 +136,7 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find n/NAME…`
 
-<img src="images/UserGuide/findname.png" width="300" />
+![findname](images/UserGuide/findname.png)
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -159,7 +159,7 @@ Finds persons whose stored number matches the given number.
    
 Format: `find p/NUMBER...`
 
-<img src="images/UserGuide/findphone.png" width="300" />     
+![findphone](images/UserGuide/findphone.png)     
 
 * Only full numbers will be matched e.g. `7654` will not match `80765432`
 * All persons matching the number will be returned. e.g. All contacts in the same household will be returned if they share a home number.
@@ -175,7 +175,7 @@ Format: `f p/NUMBER...`
 
 Format: `find a/ADDRESS`
 
-<img src="images/UserGuide/findaddress.png" width="300" />     
+![findaddress](images/UserGuide/findaddress.png)     
 
 * The search is case-insensitive. e.g `serangoon` will match `Serangoon`
 * The order of the keywords does not matter. e.g. `Kio Mo Ang` will match `Ang Mo Kio`
@@ -199,7 +199,7 @@ Updates the person with a description data field.
 
 Format: `description INDEX d/DESCRIPTION`
 
-<img src="images/UserGuide/description.png" width="300" />     
+![description](images/UserGuide/description.png)     
 
 * INDEX is the index of the person in the currently displayed list.
 * Updating description of a contact can also be done through the 'update' command. See [Update](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#updating-a-person--update)
@@ -214,7 +214,7 @@ Assigns a PDF file to a person in the FABook.
 
 Format: `filepath INDEX f/FILEPATH`
 
-<img src="images/UserGuide/filepath.png" width="500" /> 
+![filepath](images/UserGuide/filepath.png) 
 
 * INDEX is the index of the person in the currently displayed list.
 * The filepath is the absolute path of the PDF on the local disk of the computer. e.g. `C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
@@ -230,7 +230,7 @@ Opens a person's assigned PDF file in user's PDF file viewer.
 
 Format: `file INDEX`
 
-<img src="images/UserGuide/file.png" width="500" /> 
+![file](images/UserGuide/file.png)
 
 * INDEX is the index of the person in the currently displayed list.
 * Moving or renaming the PDF file in the local disk will cause the command to not work, which will require you to reassign a file path to the person again.
@@ -242,7 +242,7 @@ Examples:
 
 Format: `sync`
 
-<img src="images/UserGuide/sync.png" width="300" />     
+![sync](images/UserGuide/sync.png)    
 
 Removes every scheduled meeting time that has already passed.
    
@@ -257,7 +257,7 @@ Deletes the specified person from the FABook.
 
 Format: `delete INDEX`
 
-<img src="images/UserGuide/delete.png" width="500" /> 
+![delete](images/UserGuide/delete.png) 
 
 * INDEX is the index of the person in the currently displayed list.
 * Deletes the person with the specified index in the FABook.
@@ -271,7 +271,7 @@ Clears all entries from the FABook.
 
 Format: `clear`
 
-<img src="images/UserGuide/clear.png" width="500" />   
+![clear](images/UserGuide/clear.png)   
 
 :heavy_exclamation_mark: **Important**
 If you run this command by accident, you can undo the command to restore all previously cleared entries.
@@ -283,7 +283,7 @@ Undos the last command from the FABook.
 
 Format: `undo`
 
-<img src="images/UserGuide/undo.png" width="500" />  
+![undo](images/UserGuide/undo.png) 
 
 * The command intended to be undone should be an undoable command.
 * Undoable commands are: `clear`, `create`, `delete`, `deletemeeting`, `meeting`, `description`, `redo`, and `update`
@@ -298,7 +298,7 @@ Redos the last undone command from the FABook.
 
 Format: `redo`
 
-<img src="images/UserGuide/redo.png" width="500" /> 
+![redo](images/UserGuide/redo.png) 
 
 ### Exiting the program : `exit`
 
