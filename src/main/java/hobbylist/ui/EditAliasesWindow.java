@@ -17,6 +17,7 @@ public class EditAliasesWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(EditAliasesWindow.class);
     private static final String FXML = "EditAliasesWindow.fxml";
+    private static final String VALIDATION_REGEX = "[\\S]+";
 
     private final Logic logic;
 
@@ -148,7 +149,7 @@ public class EditAliasesWindow extends UiPart<Stage> {
                 exit.getText(), filterTag.getText(), find.getText(), list.getText(), help.getText(), rate.getText(),
                 filterStatus.getText(), rateAbove.getText(), select.getText()};
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i].equals("")) {
+            if (arr[i].equals("") || !isValidString(arr[i])) {
                 return false;
             }
         }
@@ -160,5 +161,9 @@ public class EditAliasesWindow extends UiPart<Stage> {
             }
         }
         return true;
+    }
+
+    private boolean isValidString(String string) {
+        return string.matches(VALIDATION_REGEX);
     }
 }
