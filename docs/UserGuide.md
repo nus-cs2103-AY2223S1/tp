@@ -646,36 +646,3 @@ Opens the Help Window.
 * Executing `help`, the help window pops.
 
 <img src="images/othercommands/help.png" width="800px" height ="180px">
-
-
-
-# 2. Commands Reference Sheet
-
-| Feature  |                                      | Command Word        | Shortcut |
-|----------|--------------------------------------|---------------------|----------|
-| Add      | a patient                            | `addpatient`        | `ap`     |
-|          | an appointment of a patient          | `addappointment`    | `aa`     |
-|          | a bill to an appointment             | `addbill`           | `ab`     |
-| Edit     | a patient                            | `editpatient`       | `ep`     |
-|          | an appointment of a patient          | `editappointment`   | `ea`     |
-|          | a bill to an appointment             | `editbill`          | `eb`     |
-| Delete   | a patient                            | `deletepatient`     | `dp`     |
-|          | an appointment of a patient          | `deleteappointment` | `da`     |
-|          | a bill to an appointment             | `deletebill`        | `db`     |
-| Find     | a patient                            | `findpatient`       | `fp`     |
-|          | an appointment of a patient          | `findappointment`   | `fa`     |
-|          | a bill to an appointment             | `findbill`          | `fb`     |
-| Sort     | a patient                            | `sortpatient`       | `sop`    |
-|          | appointment list                     | `sortappointment`   | `soa`    |
-|          | bill list                            | `sortbill`          | `sob     |                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Select   | a patient                            | `selectpatient`     | `slp`    |
-|          | an appointment                       | `selectappointment` | `sla`    |
-| Set bill | as Paid                              | `setpaid`           | `sp`     |
-|          | as Unpaid                            | `setunpaid`         | `sup`    |
-| Remark   | a patient                            | `remark`            | `r`      |
-| Undo     | the last change                      | `undo`              |          |
-| Redo     | the last undone change               | `redo`              |          |
-| Clear    | all the data saved in the software   | `clear`             |          |
-| List     | all patients, appointments and bills | `list`              | `ls`     |
-| Exit     | the program                          | `exit`              |          |
-| Help     | the user with user guide             | `help`              |          |
