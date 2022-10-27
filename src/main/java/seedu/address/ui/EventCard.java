@@ -80,7 +80,7 @@ public class EventCard extends UiPart<Region> {
                 .forEach(attendee -> {
                     int index = attendeesList.indexOf(attendee) + 1;
                     attendees.getChildren().add(new Label(index + " " + attendee.getName().toString()));
-                });                
+                });
     }
 
     @Override
