@@ -178,8 +178,7 @@ public interface Model {
     void setTutor(Student target, Student editedTutor);
 
     /**
-     * Views the module {@code targetModule} with {@code ModuleCode}.
-     * {@code targetModule} must exist in profNUS.
+     * Views the module with {@code ModuleCode}.
      */
     void viewModule(ModuleCode moduleCode);
 
