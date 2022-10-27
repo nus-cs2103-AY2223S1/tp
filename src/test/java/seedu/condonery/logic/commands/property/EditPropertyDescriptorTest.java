@@ -2,14 +2,13 @@ package seedu.condonery.logic.commands.property;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_DESC_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_DESC_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_WHISTLER;
 import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG_WHISTLER;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 
@@ -31,7 +30,7 @@ public class EditPropertyDescriptorTest {
         assertFalse(PROPERTY_DESC_SCOTTS.equals(5));
 
         // different values -> returns false
-        assertFalse(PROPERTY_DESC_SCOTTS.equals(CLIENT_DESC_BOB));
+        assertFalse(PROPERTY_DESC_SCOTTS.equals(PROPERTY_DESC_WHISTLER));
 
         // different name -> returns false
         EditPropertyDescriptor editedScottsProperty =

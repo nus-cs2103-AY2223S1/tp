@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -26,16 +27,22 @@ public class Property {
     private final Price price;
     private final Set<Tag> tags = new HashSet<>();
     private Path imageDirectoryPath;
+    private PropertyTypeEnum propertyTypeEnum;
 
     /**
      * Every field must be present and not null.
      */
-    public Property(Name name, Address address, Price price, Set<Tag> tags) {
-        requireAllNonNull(name, address, price, tags);
+    public Property(Name name,
+                                       Address address,
+                                       Price price,
+                                       Set<Tag> tags,
+                                       PropertyTypeEnum propertyTypeEnum) {
+        requireAllNonNull(name, address, price, tags, propertyTypeEnum);
         this.name = name;
         this.address = address;
         this.price = price;
         this.tags.addAll(tags);
+        this.propertyTypeEnum = propertyTypeEnum;
     }
 
     public Name getName() {
@@ -55,6 +62,10 @@ public class Property {
             return null;
         }
         return imageDirectoryPath.resolve("property-" + getCamelCaseName());
+    }
+
+    public PropertyTypeEnum getPropertyTypeEnum() {
+        return propertyTypeEnum;
     }
 
     /**
@@ -150,7 +161,9 @@ public class Property {
             .append("; Address: ")
             .append(getAddress())
             .append("; Price: ")
-            .append(getPrice());
+            .append(getPrice())
+            .append("; Property Type: ")
+            .append(getPropertyTypeEnum());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

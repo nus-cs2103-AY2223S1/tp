@@ -24,6 +24,7 @@ import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -99,8 +100,11 @@ public class EditPropertyCommand extends Command {
         Address updatedAddress = editPropertyDescriptor.getAddress().orElse(propertyToEdit.getAddress());
         Price updatedPrice = editPropertyDescriptor.getPrice().orElse(propertyToEdit.getPrice());
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
+        PropertyTypeEnum propertyTypeEnum = editPropertyDescriptor
+                .getPropertyTypeEnum().orElse(propertyToEdit.getPropertyTypeEnum());
 
-        return new Property(updatedName, updatedAddress, updatedPrice, updatedTags);
+        return new Property(updatedName, updatedAddress, updatedPrice, updatedTags,
+                propertyTypeEnum);
     }
 
     @Override
@@ -133,6 +137,7 @@ public class EditPropertyCommand extends Command {
         private Address address;
         private Price price;
         private Set<Tag> tags;
+        private PropertyTypeEnum propertyTypeEnum;
 
         public EditPropertyDescriptor() {}
 
@@ -145,6 +150,7 @@ public class EditPropertyCommand extends Command {
             setAddress(toCopy.address);
             setPrice(toCopy.price);
             setTags(toCopy.tags);
+            setPropertyTypeEnum(toCopy.propertyTypeEnum);
         }
 
         /**
@@ -195,6 +201,14 @@ public class EditPropertyCommand extends Command {
             return Optional.ofNullable(price);
         }
 
+        public Optional<PropertyTypeEnum> getPropertyTypeEnum() {
+            return Optional.ofNullable(propertyTypeEnum);
+        }
+
+        public void setPropertyTypeEnum(PropertyTypeEnum propertyTypeEnum) {
+            this.propertyTypeEnum = propertyTypeEnum;
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -212,7 +226,9 @@ public class EditPropertyCommand extends Command {
 
             return getName().equals(e.getName())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getPrice().equals(e.getPrice())
+                    && getTags().equals(e.getTags())
+                    && getPropertyTypeEnum().equals(e.getPropertyTypeEnum());
         }
 
         @Override
@@ -222,6 +238,7 @@ public class EditPropertyCommand extends Command {
                     + ", address=" + address
                     + ", price=" + price
                     + ", tags=" + tags
+                    + ", propertyType=" + propertyTypeEnum
                     + '}';
         }
 
