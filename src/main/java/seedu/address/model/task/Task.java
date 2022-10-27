@@ -16,9 +16,12 @@ import seedu.address.model.tag.Tag;
  * Guarantees: description is present and not null, field values are validated, immutable.
  */
 public class Task {
+    public static final String MESSAGE_TASK_COMPLETED = "Completed";
+    public static final String MESSAGE_TASK_NOT_COMPLETED = "Not Completed";
+
     private final Description description;
     private final Deadline deadline;
-    private Boolean isDone;
+    private final Boolean isDone;
     private final Set<Tag> tags = new HashSet<>();
     private final Id id;
 
@@ -84,7 +87,7 @@ public class Task {
      * @return String representation of a task completion.
      */
     public String getStatusForDisplay() {
-        return (isDone ? "completed" : "incomplete");
+        return (isDone ? MESSAGE_TASK_COMPLETED : MESSAGE_TASK_NOT_COMPLETED);
     }
 
     /**
@@ -188,7 +191,7 @@ public class Task {
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append("; Status: ")
-                .append(getStatus());
+                .append(getStatusForDisplay());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -1,6 +1,9 @@
 
 package seedu.address.ui;
 
+import static seedu.address.model.task.Task.MESSAGE_TASK_COMPLETED;
+import static seedu.address.model.task.Task.MESSAGE_TASK_NOT_COMPLETED;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -67,8 +70,8 @@ public class TaskCard extends UiPart<Region> {
      * @return true if task is completed, false if task is incomplete.
      */
     public boolean isStatusComplete(String status) {
-        assert(status.equals("completed") || status.equals("incomplete"));
-        return status.equals("completed");
+        assert(status.equals(MESSAGE_TASK_COMPLETED) || status.equals(MESSAGE_TASK_NOT_COMPLETED));
+        return status.equals(MESSAGE_TASK_COMPLETED);
     }
 
     @Override
