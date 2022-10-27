@@ -22,12 +22,12 @@ import seedu.address.logic.commands.SortCommand;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-w09-2.github.io/tp/UserGuide.html";
-    public static final String LINE =  "-".repeat(110);
+    public static final String LINE = "-".repeat(110);
     public static final String HELP_MESSAGE = LINE
             + "\nHere's a list of basic commands:"
             + "\n1) Add a new client:\n"
-            + ">> " + AddCommand.COMMAND_WORD + " n/NAME p/PHONE e/EMAIL a/ADDRESS " +
-            "i/INCOME m/MONTHLY r/RISK ip/PLAN t/[TAG](Optional Field)"
+            + ">> " + AddCommand.COMMAND_WORD + " n/NAME p/PHONE e/EMAIL a/ADDRESS "
+            + "i/INCOME m/MONTHLY r/RISK ip/PLAN t/[TAG](Optional Field)"
             + "\n2) Add appointment for a client:\n"
             + ">> " + AddAppointmentCommand.COMMAND_WORD + " INDEX d/DATE_AND_TIME l/LOCATION"
             + "\n3) Editing a client's information:\n"
