@@ -1,13 +1,13 @@
 {
   "eateries": [ {
     "name": "Alice Pauline",
-    "phone": "94351253",
+    "phone": "$$",
     "email": "aliceexamplecom",
     "address": "4th street",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
-    "phone": "94351253",
+    "phone": "$$",
     "email": "paulineexamplecom",
     "address": "4th street"
   } ]

@@ -4,7 +4,7 @@ import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_CUISINE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_HELP;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PRICE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
 import static eatwhere.foodguide.logic.parser.ParserUtil.arePrefixesPresent;
 import static java.util.Objects.requireNonNull;
@@ -35,7 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException, DisplayCommandHelpException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE,
                         PREFIX_CUISINE, PREFIX_LOCATION, PREFIX_TAG, PREFIX_HELP);
 
         if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
@@ -56,8 +56,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editEateryDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editEateryDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            editEateryDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PRICE).get()));
         }
         if (argMultimap.getValue(PREFIX_CUISINE).isPresent()) {
             editEateryDescriptor.setCuisine(ParserUtil.parseCuisine(argMultimap.getValue(PREFIX_CUISINE).get()));

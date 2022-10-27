@@ -15,7 +15,7 @@ import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
-import eatwhere.foodguide.model.eatery.Phone;
+import eatwhere.foodguide.model.eatery.Price;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
@@ -95,7 +95,7 @@ public class TagCommand extends Command {
         assert eateryToTag != null;
 
         Name name = eateryToTag.getName();
-        Phone phone = eateryToTag.getPhone();
+        Price price = eateryToTag.getPrice();
         Cuisine email = eateryToTag.getCuisine();
         Location location = eateryToTag.getLocation();
         Set<Tag> tags = new HashSet<>(eateryToTag.getTags()); //hashset supports addAll()
@@ -111,7 +111,7 @@ public class TagCommand extends Command {
         }
 
         tags.addAll(tagsToAdd);
-        return new Eatery(name, phone, email, location, tags);
+        return new Eatery(name, price, email, location, tags);
     }
 
     @Override
