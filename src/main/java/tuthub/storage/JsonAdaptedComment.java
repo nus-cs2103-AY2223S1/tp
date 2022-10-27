@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import tuthub.commons.exceptions.IllegalValueException;
 import tuthub.model.tutor.Comment;
-import tuthub.model.tutor.CommentList;
 
 /**
  * Jackson-friendly version of {@link Comment}.

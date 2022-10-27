@@ -11,8 +11,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tuthub.commons.exceptions.IllegalValueException;
 import tuthub.model.tag.Tag;
-import tuthub.model.tutor.*;
+import tuthub.model.tutor.Comment;
+import tuthub.model.tutor.CommentList;
+import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
+import tuthub.model.tutor.Name;
+import tuthub.model.tutor.Phone;
+import tuthub.model.tutor.Rating;
+import tuthub.model.tutor.StudentId;
+import tuthub.model.tutor.TeachingNomination;
+import tuthub.model.tutor.Tutor;
+import tuthub.model.tutor.Year;
 
 /**
  * Jackson-friendly version of {@link Tutor}.
@@ -40,7 +49,8 @@ class JsonAdaptedTutor {
                             @JsonProperty("email") String email, @JsonProperty("module") List<JsonAdaptedModule> module,
                             @JsonProperty("year") String year, @JsonProperty("studentId") String studentId,
                             @JsonProperty("teaching nominations") String teachingNomination,
-                            @JsonProperty("rating") String rating, @JsonProperty("comments") List<JsonAdaptedComment> comments,
+                            @JsonProperty("rating") String rating,
+                            @JsonProperty("comments") List<JsonAdaptedComment> comments,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
