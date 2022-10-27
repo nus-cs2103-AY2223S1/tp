@@ -3,42 +3,42 @@ layout: page
 title: FinBook User Guide
 ---
 
-## Table of Contents
-- [Introduction](#introduction)
-  * [What is FinBook?](#what-is-finbook)
-- [How to use this User Guide?](#how-to-use-this-user-guide)
-  * [Icons and symbols](#icons-and-symbols)
-  * [User Interface (UI) of FinBook](#user-interface-ui-of-finbook)
-  * [Command format](#command-format)
-- [Quick Start](#quick-start)
-- [Features](#features)
-    * [Managing a client](#managing-a-client)
-      * [Adding a client: `add`](#adding-a-client-add)
-      * [Editing a client: `edit`](#editing-a-client--edit)
-      * [Deleting a client: `delete`](#deleting-a-client--delete)
-      * [Listing all clients: `list`](#listing-all-clients--list)
-      * [Finding a client: `find`](#finding-a-client--find)
-      * [Viewing Portfolio of a specific client: `view`](#viewing-portfolio-of-a-specific-client--view)
-    * [Data privacy](#data-privacy)
-      * [Locking the application: `lock`](#locking-the-application--lock)
-      * [Setting or updating the password: `password`](#setting-or-updating-the-password--password)
-    * [General](#general)
-      * [Saving the data](#saving-the-data)
-      * [Editing the data file](#editing-the-data-file)
-      * [Importing data: `import`](#importing-data--import)
-      * [Exporting data: `export`](#exporting-data--export)
-      * [Copying a client's data: `copy`](#copying-a-clients-data--copy)
-      * [Changing Light/Dark mode](#changing-lightdark-mode)
-      * [Exiting the application: `exit`](#exiting-the-application--exit)
-- [FAQ](#faq)
-- [Glossary](#glossary)
-- [Command Summary](#command-summary)
+# Table of Contents
+1. [Introduction](#1-introduction)   
+    1.1. [What is FinBook?](#11-what-is-finbook)
+2. [How to use this User Guide?](#2-how-to-use-this-user-guide)   
+    2.1. [Icons and symbols](#21-icons-and-symbols)   
+    2.2. [User Interface (UI) of FinBook](#22-user-interface-ui-of-finbook)   
+    2.3. [Command format](#23-command-format)
+3. [Quick Start](#3-quick-start)
+4. [Features](#4-features)   
+    4.1. [Managing a client](#41-managing-a-client)      
+   &emsp; 4.1.1. [Adding a client: `add`](#411-adding-a-client-add)   
+   &emsp; 4.1.2. [Editing a client: `edit`](#412-editing-a-client--edit)   
+   &emsp; 4.1.3. [Deleting a client: `delete`](#413-deleting-a-client--delete)   
+   &emsp; 4.1.4. [Listing all clients: `list`](#414-listing-all-clients--list)   
+   &emsp; 4.1.5. [Finding a client: `find`](#415-finding-a-client--find)   
+   &emsp; 4.1.6. [Viewing Portfolio of a specific client: `view`](#416-viewing-portfolio-of-a-specific-client-view)   
+   4.2. [Data privacy](#42-data-privacy)   
+   &emsp; 4.2.1. [Locking the application: `lock`](#421-locking-the-application--lock)   
+   &emsp; 4.2.2. [Setting or updating the password: `password`](#422-setting-or-updating-the-password--password)   
+   4.3. [General](#43-general)   
+   &emsp; 4.3.1. [Saving the data](#431-saving-the-data)   
+   &emsp; 4.3.2. [Editing the data file](#432-editing-the-data-file)   
+   &emsp; 4.3.3. [Importing data: `import`](#433-importing-data--import)   
+   &emsp; 4.3.4. [Exporting data: `export`](#434-exporting-data--export)   
+   &emsp; 4.3.5. [Copying a client's data: `copy`](#435-copying-a-clients-data--copy)   
+   &emsp; 4.3.6. [Changing Light/Dark mode](#436-changing-lightdark-mode)   
+   &emsp; 4.3.7. [Exiting the application: `exit`](#437-exiting-the-application--exit)   
+5. [FAQ](#5-faq)   
+6. [Glossary](#6-glossary)   
+7. [Command Summary](#7-command-summary)   
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction
+# 1. Introduction
 
-## What is FinBook?
+## 1.1. What is FinBook?
 
 FinBook is a desktop app for Financial Assistant (FA) to manage their client details and ensure that your data is
 secured. With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well as many
@@ -50,21 +50,21 @@ User Interface (GUI) will help you slowly adjust to using our CLI.
 
 So what are you waiting for? Start using FinBook today!
 
-# How to Use this User Guide?
+# 2. How to Use this User Guide?
 1. To get familiar with this user guide you can continue reading [How to Use this User Guide](#how-to-use-this-user-guide)
 2. If you are a new user, you can get started with [Quick Start](#quick-start) to familiarise yourself with FinBook.
 3. If you are familiar with FinBook, you can refer to the [Features](#features) to see details of all available
 commands or refer at [Command Summary](#command-summary).
 
-## Icons and symbols
-| Symbol               | Meaning                                                                                       |
-|----------------------|-----------------------------------------------------------------------------------------------|
-| :information_source: | Additional information that may be useful to know when using FinBook                          |
-| :exclamation:        | Important information or warnings that you should take note of when using FinBook             | 
-| `command`            | The highlighted words indicate a command that can be typed into the Command Box of FinBook    |
+## 2.1. Icons and symbols
+| Symbol               | Meaning                                                                                    |
+|----------------------|--------------------------------------------------------------------------------------------|
+| :information_source: | Additional information that may be useful to know when using FinBook                       |
+| :exclamation:        | Important information or warnings that you should take note of when using FinBook          | 
+| `command`            | The highlighted words indicate a command that can be typed into the Command Box of FinBook |
 
 
-## User Interface (UI) of FinBook
+## 2.2. User Interface (UI) of FinBook
 ![Ui](images/Ui_annotated.png)
 
 The UI consists of:
@@ -79,7 +79,7 @@ The UI consists of:
 | Portfolio View  | Displays portfolio of selected client |
 
 
-## Command format
+## 2.3. Command format
 Commands in FinBook are constructed using a command word. Most commands consist of a command word, prefixes
 and parameters
 
@@ -120,7 +120,7 @@ parameter for `NAME`
 </div>
 
 ---
-# Quick start
+# 3. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -151,33 +151,33 @@ parameter for `NAME`
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Features
+# 4. Features
 
-## Managing a client
+## 4.1. Managing a client
 
-### Adding a client: `add`
+### 4.1.1. Adding a client: `add`
 
 Adds a client to the FinBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES
-        t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS​`
+        t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS note/ADDITIONAL_NOTES​`
 
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022 t/VIPClient 
-   r/high pl/Prudential Health` 
+   r/high pl/Prudential Health note/Client is currently having COVID` 
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23-Feb-2022 r/low 
    pl/NTUC Income Plan`  
 
 
 ---
 
-### Editing a client : `edit`
+### 4.1.2. Editing a client : `edit`
 
 Edits an existing client in the FinBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]
-        [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS]​`
+        [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
@@ -193,7 +193,7 @@ Examples:
 
 ---
 
-### Deleting a client : `delete`
+### 4.1.3. Deleting a client : `delete`
 
 Four formats of deleting a client.
 
@@ -254,7 +254,7 @@ Examples:
 
 ---
 
-### Listing all clients : `list`
+### 4.1.4. Listing all clients : `list`
 
 Shows a list of all clients in the FinBook.
 
@@ -262,12 +262,12 @@ Format: `list`
 
 ---
 
-### Finding a client : `find`
+### 4.1.5. Finding a client : `find`
 (toc)
 
 ---
 
-### Viewing Portfolio of a specific client: `view`
+### 4.1.6. Viewing Portfolio of a specific client: `view`
 
 View a specific's client portfolio
 
@@ -282,15 +282,15 @@ Examples:
 
 ---
 
-## Data privacy
+## 4.2. Data privacy
 
-### Locking the application : `lock`
+### 4.2.1. Locking the application : `lock`
 
 Locks the application. If a password has not been set, leave the password field empty to unlock the application.
 
 Format: `lock`
 
-### Setting or updating the password : `password`
+### 4.2.2. Setting or updating the password : `password`
 
 Sets or updates the FinBook password
 
@@ -307,16 +307,16 @@ Examples:
 
 ---
 
-## General
+## 4.3. General
 
-### Saving the data
+### 4.3.1. Saving the data
 
 Financial book data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 ---
 
-### Editing the data file
+### 4.3.2. Editing the data file
 
 Financial book data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
 update data directly by editing that data file.
@@ -327,7 +327,7 @@ If your changes to the data file makes its format invalid, FinBook will discard 
 
 ---
 
-### Importing data : `import`
+### 4.3.3. Importing data : `import`
 
 Imports data from a `JSON` or `CSV` file
 
@@ -359,7 +359,7 @@ Examples:
 
 ---
 
-### Exporting data : `export`
+### 4.3.4. Exporting data : `export`
 
 Exports data to a `CSV` file
 
@@ -376,7 +376,7 @@ Examples:
 
 ---
 
-### Copying a client's data : `copy`
+### 4.3.5. Copying a client's data : `copy`
 
 Copies the data of an existing client in the FinBook into your Computer's clipboard.
 
@@ -396,7 +396,7 @@ Tags: friends
 
 ---
 
-### Changing Light/Dark mode
+### 4.3.6. Changing Light/Dark mode
 
 Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
 
@@ -411,7 +411,7 @@ Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top r
 
 ---
 
-### Exiting the application : `exit`
+### 4.3.7. Exiting the application : `exit`
 
 Exits the application.
 
@@ -419,7 +419,7 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-# FAQ
+# 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -427,7 +427,7 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Glossary
+# 6. Glossary
 
 
 | Term                         | Meaning                                                                                            |
@@ -441,21 +441,21 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | CSV                          | A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values. |
 
 ---
-# Command summary
+# 7. Command summary
 
-| Action               | Format, Examples                                                                                                                                                                                                                                                                          |
-|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022 t/VIPClient r/high pl/Prudential Health` |
-| **Delete**           | `delete INDEX` `delete INDEX1, INDEX2, …` `delete STARTINDEX - ENDINDEX` `delete all` <br> e.g., `delete 3` `delete 1, 2, 5` `delete 2-5`                                                                                                                                                 |
-| **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                        |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                              |
-| **List**             | `list`                                                                                                                                                                                                                                                                                    |
-| **Find**             | (toc)                                                                                                                                                                                                                                                                                     | 
-| **View Portfolio**   | `view INDEX` <br> e.g., `view 1`                                                                                                                                                                                                                                                          |
-| **Lock application** | `lock`                                                                                                                                                                                                                                                                                    |
-| **Password**         | `password [old/OLDPASSWORD] new/NEWPASSWORD`<br> e.g.,`password old/foobar new/barfoo`                                                                                                                                                                                                    |
-| **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                        |
-| **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                              |
-| **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                               |
-| **Exit application** | `exit`                                                                                                                                                                                                                                                                                    |
+| Action               | Format, Examples                                                                                                                                                                                                                                                                                                                                      |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS note/ADDITIONAL_NOTES​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022 t/VIPClient r/high pl/Prudential Health note/Client is currently having COVID` |
+| **Delete**           | `delete INDEX` `delete INDEX1, INDEX2, …` `delete STARTINDEX - ENDINDEX` `delete all` <br> e.g., `delete 3` `delete 1, 2, 5` `delete 2-5`                                                                                                                                                                                                             |
+| **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                    |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                  |
+| **List**             | `list`                                                                                                                                                                                                                                                                                                                                                |
+| **Find**             | (toc)                                                                                                                                                                                                                                                                                                                                                 | 
+| **View Portfolio**   | `view INDEX` <br> e.g., `view 1`                                                                                                                                                                                                                                                                                                                      |
+| **Lock application** | `lock`                                                                                                                                                                                                                                                                                                                                                |
+| **Password**         | `password [old/OLDPASSWORD] new/NEWPASSWORD`<br> e.g.,`password old/foobar new/barfoo`                                                                                                                                                                                                                                                                |
+| **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                    |
+| **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                                                                                          |
+| **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                                                                                           |
+| **Exit application** | `exit`                                                                                                                                                                                                                                                                                                                                                |
 
