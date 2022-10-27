@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 public class AdditionalNotesTest {
 
     private final AdditionalNotes additionalNotes = new AdditionalNotes("HELLO");
+    private final AdditionalNotes emptyAdditionalNotes = new AdditionalNotes("");
 
     @Test
     public void equals() {
@@ -23,10 +24,18 @@ public class AdditionalNotesTest {
     }
 
     @Test
-    public void appendNotes() {
+    public void appendNotesToNonEmptyNotes() {
+        // append to a non-empty additional notes
         additionalNotes.appendNotes(new AdditionalNotes("!!"));
         String expectedNotes = "HELLO !!";
         assertTrue(additionalNotes.toString().equals(expectedNotes));
     }
 
+    @Test
+    public void appendNotesToEmptyNotes() {
+        // append to an empty additional notes
+        emptyAdditionalNotes.appendNotes(new AdditionalNotes("!!"));
+        String expectedNotes = "!!";
+        assertTrue(emptyAdditionalNotes.toString().equals(expectedNotes));
+    }
 }
