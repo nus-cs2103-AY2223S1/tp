@@ -14,7 +14,7 @@ public class AvailCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds the next available class date specified by the date range.\n"
             + "Parameters:"
-            + "CLASS_START_TIME_RANGE"
+            + "CLASS_START_TIME_RANGE-"
             + "CLASS_END_TIME_RANGE"
             + "DURATION (in minutes)\n"
             + "Example: " + COMMAND_WORD + " 1000-1500 120";
