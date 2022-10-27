@@ -64,9 +64,10 @@ public class Person {
     }
 
     public String getAgeGroup() {
-        int age = dob.toAge();
-        age = (int) (Math.ceil(age / AGE_GROUP_SIZE) * AGE_GROUP_SIZE);
-        return String.format("%d-%dyo", age - AGE_GROUP_SIZE, age);
+        int minAgeInGroup = dob.toAge();
+        minAgeInGroup = (int) (Math.floor(minAgeInGroup / AGE_GROUP_SIZE) * AGE_GROUP_SIZE);
+        int maxAgeInGroup = minAgeInGroup + AGE_GROUP_SIZE;
+        return String.format("%d-%dyo", minAgeInGroup, maxAgeInGroup);
     }
 
     /**
