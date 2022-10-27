@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Name;
+import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -90,14 +91,24 @@ public interface DisplayItem {
     Set<? extends DisplayItem> getParents();
 
     /**
-     * Add a attribute to the current object.
+     * Adds an attribute to the current object.
      */
     void addAttribute(Attribute<?> attribute);
 
     /**
-     * Delete an attribute to the current object.
+     * Adds an attribute with an attribute name and attribute content.
      */
-    void deleteAttribute(String type);
+    void addAttribute(String attributeName, String attributeContent) throws AttributeException;
+
+    /**
+     * Edits an existing attribute with an attribute name and attribute content.
+     */
+    void editAttribute(String attributeName, String attributeContent) throws AttributeException;
+
+    /**
+     * Removes an attribute to the current object.
+     */
+    void removeAttribute(String type) throws AttributeException;
 
     /**
      * Returns true if {@code DisplayItem o} is a parent of this item

@@ -6,10 +6,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.GroupOutOfBoundException;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonOutOfBoundException;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.TaskOutOfBoundException;
 
 /**
  * The API of the Model component.
@@ -133,6 +137,8 @@ public interface Model {
      */
     ObservableList<Person> getFilteredPersonList();
 
+    Person getFromFilteredPerson(Index index) throws PersonOutOfBoundException;
+
     /**
      * Updates the filter of the filtered person list to filter by the given
      * {@code predicate}.
@@ -190,7 +196,10 @@ public interface Model {
      */
     ObservableList<Group> getFilteredTeamList();
 
+    Group getFromFilteredTeams(Index index) throws GroupOutOfBoundException;
+
     void setTask(Task target, Task editedTask);
 
+    Task getFromFilteredTasks(Index index) throws TaskOutOfBoundException;
 
 }

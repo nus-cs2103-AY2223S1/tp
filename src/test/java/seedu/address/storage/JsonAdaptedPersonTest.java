@@ -31,7 +31,7 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final JsonAdaptedFields VALID_FIELDS = new JsonAdaptedFields(BENSON.getFields());
+    //    private static final JsonAdaptedFields VALID_FIELDS = new JsonAdaptedFields(BENSON.getFields());
     private static final String VALID_UID = UUID.nameUUIDFromBytes(("Person: " + VALID_NAME)
             .getBytes(StandardCharsets.UTF_8)).toString();
     private static final List<JsonAdaptedAbstractAttribute> VALID_ATTRIBUTES = BENSON.getAttributes()
@@ -48,7 +48,7 @@ public class JsonAdaptedPersonTest {
     /*@Test
     public void toModelType_invalidName_throwsIllegalValueException() {
 
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_FIELDS, INVALID_NAME, VALID_UID, VALID_TAGS,
+        JsonAdaptedPerson person = new JsonAdaptedPerson(INVALID_NAME, VALID_UID, VALID_TAGS,
                 VALID_ATTRIBUTES);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -56,7 +56,7 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_FIELDS, null, VALID_UID, VALID_TAGS,
+        JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_UID, VALID_TAGS,
                 VALID_ATTRIBUTES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
