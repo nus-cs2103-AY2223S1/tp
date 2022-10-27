@@ -1,11 +1,8 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
