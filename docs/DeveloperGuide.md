@@ -170,11 +170,23 @@ as a `TaskCard` object, presented in the form of `ListView`.
 
 #### ProfileSidePanel
 
-The `ProfileSidePanel` class contains the user's profile and (proposed) CAP. The following information is displayed in on the object:
+The `ProfileSidePanel` class contains the user's profile. The following information is displayed in on the object:
 * `Course` name
 * Inspiring quote
-* (Proposed) Modular Credit completed by user
-* (Proposed) Current Cumulative Average Point (CAP)
+* Modular Credit completed by user
+* Number of Active Tasks
+
+Here is how the `ProfileSidePanel` works:
+![Structure of ProfileSidePanel](images/ProfileSidePanel.png)
+1. Command executed on `MainWindow`.
+2. `Model` is updated.
+3. `MainWindow` calls the method `refresh`, which refreshes the `ProfileSidePanel`.
+4. `ProfileSidePanel` uses `Logic` to obtain the corresponding information:
+   1. MC Completed
+   2. Active Tasks
+5. `ProfileSidePanel` executes corresponding JavaFX methods to update displayed information.
+6. `ProfileSidePanel` shows visible change on the interface.
+7. `refresh` ends execution.
 
 #### Other Components
 In addition to the main UI components in the `MainWindow` class, these are other UI Components:
