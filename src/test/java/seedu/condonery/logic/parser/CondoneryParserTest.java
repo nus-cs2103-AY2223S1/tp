@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.condonery.logic.commands.property.ClearPropertyCommand;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.client.FindClientCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
+import seedu.condonery.logic.commands.property.ClearPropertyCommand;
 import seedu.condonery.logic.commands.property.DeletePropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;

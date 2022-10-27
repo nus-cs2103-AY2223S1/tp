@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.commons.core.LogsCenter;
-import seedu.condonery.logic.commands.property.ClearPropertyCommand;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.ExitCommand;
@@ -37,7 +36,7 @@ public class LogicManager implements Logic {
     private final CondoneryParser condoneryParser;
 
     private final Collection<Class<? extends Command>> commandsToIgnore =
-            Arrays.asList(ClearPropertyCommand.class, HelpCommand.class, ExitCommand.class, UndoCommand.class);
+            Arrays.asList(HelpCommand.class, ExitCommand.class, UndoCommand.class);
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.

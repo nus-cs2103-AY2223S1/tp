@@ -11,14 +11,15 @@ import seedu.condonery.model.ModelManager;
 import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.UserPrefs;
 
-public class ClearCommandTest {
+public class ClearPropertyCommandTest {
 
     @Test
     public void execute_emptyPropertyDirectory_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        CommandTestUtil.assertCommandSuccess(new ClearPropertyCommand(), model, ClearPropertyCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertCommandSuccess(new ClearPropertyCommand(), model,
+                ClearPropertyCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -28,7 +29,8 @@ public class ClearCommandTest {
                 getTypicalClientDirectory(), new UserPrefs());
         expectedModel.setPropertyDirectory(new PropertyDirectory());
 
-        CommandTestUtil.assertCommandSuccess(new ClearPropertyCommand(), model, ClearPropertyCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertCommandSuccess(new ClearPropertyCommand(), model,
+                ClearPropertyCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }
