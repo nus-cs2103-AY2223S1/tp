@@ -57,12 +57,6 @@ public class LogicManagerTest {
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
-    // @Test
-    // public void execute_commandExecutionError_throwsCommandException() {
-    // String deleteCommand = "delete id/9";
-    // assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_UID);
-    // }
-
     @Test
     public void execute_validCommand_success() throws Exception {
         String clearCommand = ClearCommand.COMMAND_WORD;
