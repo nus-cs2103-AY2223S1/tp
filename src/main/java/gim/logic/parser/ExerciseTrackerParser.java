@@ -10,7 +10,6 @@ import gim.logic.commands.AddCommand;
 import gim.logic.commands.ClearCommand;
 import gim.logic.commands.Command;
 import gim.logic.commands.DeleteCommand;
-import gim.logic.commands.EditCommand;
 import gim.logic.commands.ExitCommand;
 import gim.logic.commands.FilterCommand;
 import gim.logic.commands.GenerateCommand;
@@ -50,9 +49,6 @@ public class ExerciseTrackerParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);

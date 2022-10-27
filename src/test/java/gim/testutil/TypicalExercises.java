@@ -25,29 +25,29 @@ import gim.model.exercise.Exercise;
  */
 public class TypicalExercises {
 
-    public static final Exercise ALICE = new ExerciseBuilder().withName("Alice Pauline")
+    public static final Exercise ABDUCTION = new ExerciseBuilder().withName("ABDUCTION")
             .withReps("1").withSets("1")
             .withWeight("10")
             .withDate(VALID_DATE).build();
-    public static final Exercise BENSON = new ExerciseBuilder().withName("Benson Meier")
+    public static final Exercise BICEP_CURLS = new ExerciseBuilder().withName("BICEP CURLS")
             .withReps("1")
             .withSets("1").withWeight("20")
             .withDate(VALID_DATE).build();
-    public static final Exercise CARL = new ExerciseBuilder().withName("Carl Kurz").withWeight("30")
+    public static final Exercise CALF_RAISES = new ExerciseBuilder().withName("CALF RAISES").withWeight("30")
             .withSets("1").withReps("1").withDate(VALID_DATE).build();
-    public static final Exercise DANIEL = new ExerciseBuilder().withName("Daniel Meier").withWeight("40")
+    public static final Exercise DEADLIFT = new ExerciseBuilder().withName("DEADLIFT").withWeight("40")
             .withSets("1").withReps("1").withDate(VALID_DATE).build();
-    public static final Exercise ELLE = new ExerciseBuilder().withName("Elle Meyer").withWeight("50")
+    public static final Exercise ELEVATED_SQUATS = new ExerciseBuilder().withName("ELEVATED SQUATS").withWeight("50")
             .withSets("1").withReps("1").withDate(VALID_DATE).build();
-    public static final Exercise FIONA = new ExerciseBuilder().withName("Fiona Kunz").withWeight("60")
+    public static final Exercise FRONT_SQUATS = new ExerciseBuilder().withName("FRONT SQUATS").withWeight("60")
             .withSets("1").withReps("1").withDate(VALID_DATE).build();
-    public static final Exercise GEORGE = new ExerciseBuilder().withName("George Best").withWeight("70")
+    public static final Exercise GLUTE_RAISES = new ExerciseBuilder().withName("GLUTE RAISES").withWeight("70")
             .withSets("1").withReps("1").withDate(VALID_DATE).build();
 
     // Manually added
-    public static final Exercise HOON = new ExerciseBuilder().withName("Hoon Meier").withWeight("80")
+    public static final Exercise HIP_THRUSTS = new ExerciseBuilder().withName("HIP THRUSTS").withWeight("80")
             .withSets("1").withReps("1").build();
-    public static final Exercise IDA = new ExerciseBuilder().withName("Ida Mueller").withWeight("90")
+    public static final Exercise INCHWORM = new ExerciseBuilder().withName("INCHWORM").withWeight("90")
             .withSets("1").withReps("1").build();
 
     // Manually added - Exercise's details found in {@code CommandTestUtil}
@@ -84,7 +84,8 @@ public class TypicalExercises {
     }
 
     public static List<Exercise> getTypicalExercises() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ABDUCTION, BICEP_CURLS, CALF_RAISES, DEADLIFT,
+                ELEVATED_SQUATS, FRONT_SQUATS, GLUTE_RAISES));
     }
 
     /**

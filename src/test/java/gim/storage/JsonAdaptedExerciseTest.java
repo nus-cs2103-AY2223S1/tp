@@ -2,7 +2,7 @@ package gim.storage;
 
 import static gim.storage.JsonAdaptedExercise.MISSING_FIELD_MESSAGE_FORMAT;
 import static gim.testutil.Assert.assertThrows;
-import static gim.testutil.TypicalExercises.BENSON;
+import static gim.testutil.TypicalExercises.BICEP_CURLS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -22,17 +22,17 @@ public class JsonAdaptedExerciseTest {
     private static final String INVALID_SETS = " ";
     private static final String INVALID_DATE = "11/111/2020";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_WEIGHT = BENSON.getWeight().toString();
-    private static final String VALID_SETS = BENSON.getSets().toString();
+    private static final String VALID_NAME = BICEP_CURLS.getName().toString();
+    private static final String VALID_WEIGHT = BICEP_CURLS.getWeight().toString();
+    private static final String VALID_SETS = BICEP_CURLS.getSets().toString();
 
-    private static final String VALID_REP = BENSON.getReps().toString();
-    private static final JsonAdaptedDate VALID_DATE = new JsonAdaptedDate(BENSON.getDate());
+    private static final String VALID_REP = BICEP_CURLS.getReps().toString();
+    private static final JsonAdaptedDate VALID_DATE = new JsonAdaptedDate(BICEP_CURLS.getDate());
 
     @Test
     public void toModelType_validExerciseDetails_returnsExercise() throws Exception {
-        JsonAdaptedExercise exercise = new JsonAdaptedExercise(BENSON);
-        assertEquals(BENSON, exercise.toModelType());
+        JsonAdaptedExercise exercise = new JsonAdaptedExercise(BICEP_CURLS);
+        assertEquals(BICEP_CURLS, exercise.toModelType());
     }
 
     @Test
