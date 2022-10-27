@@ -26,6 +26,8 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 * Displaying the help menu **:help**
 * Exiting the application **:wq**
 
+<div style="page-break-after: always;"></div>
+
 #### [Command Summary](#summary-of-commands)
 #### [Glossary](#glossary-of-terminologies)
 
@@ -49,6 +51,8 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## GUI Orientation 
 
 ![GUI](images/GUIOrientation.png)
@@ -65,6 +69,8 @@ added will be displayed in the list. The list may change or reorder depending on
 ### Result Display 
 
 The `Result Display Window` displays feedback after executing a command. It gives feedback to the user on the command executed.
+
+<div style="page-break-after: always;"></div>
 
 ### Recognised Exercise Name List
 
@@ -94,6 +100,9 @@ you have input. Choose wisely!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## Commands
 
 <div markdown="block" class="alert alert-info">
@@ -120,6 +129,7 @@ you have input. Choose wisely!
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Adding an exercise: `:add`
 
@@ -156,6 +166,7 @@ Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 * 
 ![AddCommand](images/AddCommand.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Deleting an exercise : `:del`
 
@@ -181,6 +192,7 @@ Format: `:list`
 ##### Example:
 `:list` Shows the list of exercises user has completed
 
+<div style="page-break-after: always;"></div>
 
 ### Filtering exercises by their name(s) : `:filter`
 
@@ -198,6 +210,8 @@ Format: `:filter KEYWORD [KEYWORD]...`
 * `:filter Deadlift Squat` Shows the list of Deadlift and Squat exercises.
 
 ![FilterCommand](images/FilterCommand.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Clearing all exercises : `:clear`
 
@@ -223,6 +237,8 @@ Format: `:sort`
 * `:sort` Shows the sorted list of exercises.
 
 ![ListAfterSortCommand](images/ListAfterSortCommand.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing all exercises within a time period : `:range`
 
@@ -251,6 +267,8 @@ Format (2) : `:range last/NUMBER_OF_DAYS`
 
 ![RangeCommandTwo](images/RangeCommandTwoSample.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Listing Personal Records (PR): `:pr`
 
 Finds the Personal Record of certain exercises in the exercise tracker.
@@ -273,6 +291,8 @@ Format (1): `:pr n/NAME [n/NAME]...`
 
 ![PrCommandExample1](images/PrCommandExample1.png)
 
+<div style="page-break-after: always;"></div>
+
 Format (2): `:pr all/`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
@@ -294,6 +314,8 @@ Generates a sample workout suggestion based on existing personal records of the 
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Format (1): `:gen INDEX [INDEX]... level/DIFFICULTY_LEVEL`
 
 ##### Parameter constraints:
@@ -310,6 +332,8 @@ Note that only one sample workout is generated for each unique exercise name. Fo
 ![GenerateCommandExample2](images/GenerateCommandExample2.png)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 Format (2): `:gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL`
 
@@ -328,7 +352,7 @@ Extraneous parameters (before the first `n/` flag) will be ignored. <br> e.g. if
 
 Note that only one sample workout is generated for each unique exercise name. For example, `:gen n/Squat n/Squat level/easy` will generate one sample workout for squat.
 
-
+<div style="page-break-after: always;"></div>
 
 ### Viewing help : `:help`
 
@@ -346,6 +370,8 @@ Exits the program.
 Format: `:wq`
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -374,6 +400,8 @@ Format: `:wq`
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Summary of Commands
 
 | Action                          | Format                                         | Examples                                |
@@ -394,6 +422,8 @@ Format: `:wq`
 | **Exit program**                | :wq                                            | :wq                                     |
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Glossary of Terminologies
 * **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
