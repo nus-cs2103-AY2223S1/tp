@@ -696,6 +696,7 @@ These prefixes are for you to indicate different fields when you add a new perso
 | **Filter Pets**              | `filter-p PREFIX/KEYWORD`<br> e.g., `filter-p c/white s/capybara`                                                                                                                                          |
 | **Help**                     | `help`                                                                                                                                                                                                     |
 | **List**                     | `list all`, `list buyer`, `list supplier`, `list delivery`, `list order`, `list pet`                                                                                                                       |
-| **Sort**                     | `Sort t/TAG Asc/Desc, [t/TAG] [Asc/Desc]…​`<br> e.g., `Sort t/priority Desc, t/country Desc`                                                                                                               |
+| **Sort**                     | `sort LIST_PARAMETER, [ATTRIBUTES...]`<br> e.g., `sort pet price height weight`                                                                                                                            |
+| **Check**                    | `check LIST_TYPE INDEX` <br> e.g., `check buyer 1`                                                                                                                                                         |
 
 [Go back to [Table of Contents](#table-of-contents)]
