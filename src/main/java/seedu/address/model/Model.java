@@ -7,7 +7,9 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Person;
+import seedu.address.model.timeRange.TimeRange;
 
 /**
  * The API of the Model component.
@@ -77,6 +79,12 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Returns the first available class within the range specified by {@code TimeRange}
+     * @return the first available {@code Class}
+     */
+    Class findAvailableClass(TimeRange timeRange);
 
     /**
      * Sorts the current filtered person list with the given {@code comparator}.
