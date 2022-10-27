@@ -190,7 +190,7 @@ Format: `remove [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
   * `/all` returns a resident if it fulfills **all** of the specified keywords.
   * `/any` returns a resident if it fulfills **any** of the specified keywords.
 * Repeated keys are not permitted for both specifiers, e.g. `remove /all h/D h/A` will not work.
-* However, tags can be repeated in the command e.g. `remove /all t/exhange t/fresher`
+* However, tags can be repeated in the command e.g. `remove /all t/exchange t/fresher`
 * Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
