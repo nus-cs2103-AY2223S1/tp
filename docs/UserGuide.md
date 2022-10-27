@@ -233,6 +233,7 @@ Note:
 * The order's created time cannot be edited.
 * An order's paid status and delivery status also cannot be edited through this command. To modify those, 
   see [`marko`](#marking-an-order-as-paid-or-delivered-marko) instead.
+* A completed order (i.e. both paid and delivered) cannot be edited.
 
 Examples:
 * `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`
