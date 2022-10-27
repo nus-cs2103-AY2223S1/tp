@@ -16,7 +16,7 @@ import seedu.address.model.team.Team;
 /**
  * Deletes a team from the addressbook.
  */
-@CommandLine.Command(name = "team", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "team", aliases = {"te"}, mixinStandardHelpOptions = true)
 public class DeleteTeamCommand extends Command {
     public static final String COMMAND_WORD = "delete team";
 

@@ -11,7 +11,7 @@ import seedu.address.ui.MainWindow;
 /**
  * Terminates the program.
  */
-@CommandLine.Command(name = "exit", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "exit", aliases = {"ex", "bye", "quit"}, mixinStandardHelpOptions = true)
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";

@@ -16,7 +16,7 @@ import seedu.address.model.team.Team;
 /**
  * Sets the current team to an existing team.
  */
-@CommandLine.Command(name = "team", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "team", aliases = {"te"}, mixinStandardHelpOptions = true)
 public class SetTeamCommand extends Command {
     public static final String COMMAND_WORD = "set team";
 

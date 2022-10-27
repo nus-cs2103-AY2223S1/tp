@@ -15,7 +15,7 @@ import seedu.address.model.person.TeamPredicate;
 /**
  * Lists all members of the current team.
  */
-@CommandLine.Command(name = "members", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "members", aliases = {"m"}, mixinStandardHelpOptions = true)
 public class ListMembersCommand extends Command {
     public static final String COMMAND_WORD = "list members";
 

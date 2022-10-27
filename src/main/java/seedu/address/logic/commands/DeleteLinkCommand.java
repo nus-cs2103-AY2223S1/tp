@@ -18,7 +18,7 @@ import seedu.address.model.team.Link;
 /**
  * Deletes an existing link from TruthTable.
  */
-@CommandLine.Command(name = "link", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "link", aliases = {"l"}, mixinStandardHelpOptions = true)
 public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "delete link";
 

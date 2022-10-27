@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a member identified using it's displayed index from the member list.
  */
-@CommandLine.Command(name = "member", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "member", aliases = {"m"}, mixinStandardHelpOptions = true)
 public class DeleteMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "delete member";

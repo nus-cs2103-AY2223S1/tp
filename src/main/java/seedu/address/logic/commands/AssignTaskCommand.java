@@ -22,7 +22,7 @@ import seedu.address.model.team.Task;
 /**
  * Assigns a task to a specific member in the team.
  */
-@CommandLine.Command(name = "task", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "task", aliases = {"ta"}, mixinStandardHelpOptions = true)
 public class AssignTaskCommand extends Command {
     public static final String COMMAND_WORD = "assign task";
 
@@ -43,7 +43,6 @@ public class AssignTaskCommand extends Command {
 
     @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true)
     private Name memberName;
-
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)

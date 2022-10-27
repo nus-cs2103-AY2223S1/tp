@@ -21,7 +21,7 @@ import seedu.address.model.team.Team;
 /**
  * Adds a new team to the address book.
  */
-@CommandLine.Command(name = "team", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "team", aliases = {"te"}, mixinStandardHelpOptions = true)
 public class AddTeamCommand extends Command {
     public static final String COMMAND_WORD = "add team";
 

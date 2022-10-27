@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 /**
  * Clears the address book.
  */
-@CommandLine.Command(name = "clear", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "clear", aliases = {"c"}, mixinStandardHelpOptions = true)
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";

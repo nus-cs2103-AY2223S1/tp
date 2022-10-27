@@ -15,7 +15,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-@CommandLine.Command(name = "find", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "find", aliases = {"f"}, mixinStandardHelpOptions = true)
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";

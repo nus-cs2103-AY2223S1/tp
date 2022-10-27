@@ -20,7 +20,7 @@ import seedu.address.model.team.Task;
 /**
  * Assigns a task to a random member in the team.
  */
-@CommandLine.Command(name = "random", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "random", aliases = {"r"}, mixinStandardHelpOptions = true)
 public class AssignTaskRandomlyCommand extends Command {
     public static final String COMMAND_WORD = "assign random";
 
