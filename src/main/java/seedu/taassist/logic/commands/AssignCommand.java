@@ -25,7 +25,7 @@ public class AssignCommand extends Command {
 
     public static final String MESSAGE_USAGE = "> Assigns students to a class.\n"
             + "Parameters: INDEX... "
-            + PREFIX_MODULE_CLASS + "CLASS_NAME (case-insensitive)\n"
+            + PREFIX_MODULE_CLASS + "CLASS_NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 2 3 "
             + PREFIX_MODULE_CLASS + "CS1231S";

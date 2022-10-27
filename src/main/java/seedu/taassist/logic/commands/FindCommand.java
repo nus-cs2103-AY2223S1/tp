@@ -15,7 +15,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = "> Finds and displays all students whose names contain any of "
-            + "the specified keywords (case-insensitive).\n"
+            + "the specified keywords.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 

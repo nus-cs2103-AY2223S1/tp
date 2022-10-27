@@ -26,10 +26,10 @@ public class GradeCommand extends Command {
 
     public static final String COMMAND_WORD = "grade";
 
-    public static final String MESSAGE_USAGE = "> Gives a grade to a/multiple student(s) for a session.\n"
+    public static final String MESSAGE_USAGE = "> Gives a grade to student(s) for a session.\n"
             + "Parameters: INDEX... "
             + PREFIX_SESSION + "SESSION "
-            + PREFIX_GRADE + "GRADE (number)\n"
+            + PREFIX_GRADE + "GRADE\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SESSION + "Tutorial1 "
             + PREFIX_GRADE + "100";
