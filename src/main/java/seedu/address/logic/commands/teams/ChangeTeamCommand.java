@@ -6,7 +6,6 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -17,7 +16,7 @@ import seedu.address.model.item.AbstractSingleItem;
 /**
  * Changes a current working context of the team
  */
-public class ChangeTeamCommand extends Command {
+public class ChangeTeamCommand extends TeamInputCommand {
     public static final String COMMAND_WORD = "cg";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -38,21 +37,23 @@ public class ChangeTeamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        AbstractSingleItem toSwitch;
-        if (targetIndex == null) {
-            if (model.getContextContainer() != null) {
-                toSwitch = model.getContextContainer().getParent();
+        AbstractSingleItem toSwitch = group;
+        if (toSwitch == null) {
+            if (targetIndex == null) {
+                if (model.getContextContainer() != null) {
+                    toSwitch = model.getContextContainer().getParent();
+                } else {
+                    return new CommandResult("No more parent!");
+                }
             } else {
-                return new CommandResult("No more parent!");
+                List<Group> lastShownList = model.getFilteredTeamList();
+    
+                if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                }
+    
+                toSwitch = lastShownList.get(targetIndex.getZeroBased());
             }
-        } else {
-            List<Group> lastShownList = model.getFilteredTeamList();
-
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-
-            toSwitch = lastShownList.get(targetIndex.getZeroBased());
         }
         model.updateContextContainer(toSwitch);
         return new CommandResult(String.format(SWITCH_SUCCESS, toSwitch));

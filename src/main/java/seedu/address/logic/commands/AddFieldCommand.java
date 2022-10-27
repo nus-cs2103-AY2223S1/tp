@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 /**
  * Adds a person to the address book.
  */
-public class AddFieldCommand extends Command {
+public class AddFieldCommand extends PureCommand {
 
     public static final String COMMAND_WORD = "field";
 

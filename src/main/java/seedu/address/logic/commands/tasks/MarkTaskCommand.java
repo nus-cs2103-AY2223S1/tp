@@ -38,11 +38,14 @@ public class MarkTaskCommand extends TaskCommand {
 
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (task != null) {
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+
+            task = lastShownList.get(targetIndex.getZeroBased());
         }
 
-        Task task = lastShownList.get(targetIndex.getZeroBased());
         Task newTask = task.mark();
         if (newTask == task) {
             throw new CommandException(ALREADY_MARKED);

@@ -23,8 +23,12 @@ import seedu.address.logic.commands.teams.AddUserToTeamCommand;
 import seedu.address.logic.commands.teams.ChangeTeamCommand;
 import seedu.address.logic.commands.teams.DeleteTeamCommand;
 import seedu.address.logic.commands.teams.RemoveUserFromTeamCommand;
+import seedu.address.logic.commands.teams.TeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.tasks.TaskCommandParser;
+import seedu.address.logic.parser.teams.AddTeamCommandParser;
+import seedu.address.logic.parser.teams.RemoveUserFromTeamCommandParser;
+import seedu.address.logic.parser.teams.TeamCommandParser;
 
 /**
  * Parses user input.
@@ -82,23 +86,17 @@ public class AddressBookParser {
         case RemoveFieldCommand.COMMAND_WORD:
             return new RemoveFieldCommandParser().parse(arguments);
 
-        case AddTeamCommand.COMMAND_WORD:
-            return new AddTeamCommandParser().parse(arguments);
-
         case ChangeTeamCommand.COMMAND_WORD:
             return new ChangeTeamCommandParser().parse(arguments);
 
         case TaskCommand.COMMAND_WORD:
             return new TaskCommandParser().parse(arguments);
 
-        case DeleteTeamCommand.COMMAND_WORD:
-            return new DeleteTeamCommandParser().parse(arguments);
-
         case AddUserToTeamCommand.COMMAND_WORD:
             return new AddUserToTeamCommandParser().parse(arguments);
 
-        case RemoveUserFromTeamCommand.COMMAND_WORD:
-            return new RemoveUserFromTeamCommandParser().parse(arguments);
+        case TeamCommand.COMMAND_WORD:
+            return new TeamCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

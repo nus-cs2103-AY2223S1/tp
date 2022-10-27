@@ -38,6 +38,14 @@ public class DeleteTaskCommand extends TaskCommand {
 
         List<Task> lastShownList = model.getFilteredTaskList();
 
+        if (task != null) {
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+
+            task = lastShownList.get(targetIndex.getZeroBased());
+        }
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }

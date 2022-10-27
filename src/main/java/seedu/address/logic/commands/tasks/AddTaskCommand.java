@@ -56,4 +56,10 @@ public class AddTaskCommand extends TaskCommand {
                 || (other instanceof AddTaskCommand // instanceof handles nulls
                 && toAdd.equals(((AddTaskCommand) other).toAdd));
     }
+
+    @Override
+    public void setInput(Object additionalData) throws CommandException {
+        // creation of task do not require previous input
+        return;
+    }
 }
