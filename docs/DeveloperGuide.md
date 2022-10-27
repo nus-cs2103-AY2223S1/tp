@@ -338,7 +338,7 @@ error message will be shown.
 
 The following sequence diagram shows how the MarkCommand operation works:
 
-![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
+![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.jpg)
 
 #### Design considerations:
 

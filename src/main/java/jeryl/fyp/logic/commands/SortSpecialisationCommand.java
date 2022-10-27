@@ -1,6 +1,7 @@
 package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import jeryl.fyp.model.Model;
 
@@ -21,6 +22,7 @@ public class SortSpecialisationCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
     }
 
