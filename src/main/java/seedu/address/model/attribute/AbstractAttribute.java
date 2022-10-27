@@ -2,24 +2,25 @@ package seedu.address.model.attribute;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.AccessDisplayFlags.BOLD;
-import static seedu.address.model.AccessDisplayFlags.DEFAULT;
-import static seedu.address.model.AccessDisplayFlags.DISPLAY_OK;
-import static seedu.address.model.AccessDisplayFlags.HIDE_TYPE;
-import static seedu.address.model.AccessDisplayFlags.ITALIC;
-import static seedu.address.model.AccessDisplayFlags.MENU_OK;
-import static seedu.address.model.AccessDisplayFlags.UNDERLINE;
-import static seedu.address.model.AccessDisplayFlags.STRIKETHROUGH;
-import static seedu.address.model.AccessDisplayFlags.DROPSHADOW;
-import static seedu.address.model.AccessDisplayFlags.LEFT_JUSTIFY;
 import static seedu.address.model.AccessDisplayFlags.CENTER_JUSTIFY;
-import static seedu.address.model.AccessDisplayFlags.RIGHT_JUSTIFY;
+import static seedu.address.model.AccessDisplayFlags.DEFAULT;
+import static seedu.address.model.AccessDisplayFlags.DEFAULT_STYLE;
+import static seedu.address.model.AccessDisplayFlags.DISPLAY_OK;
+import static seedu.address.model.AccessDisplayFlags.DROPSHADOW;
 import static seedu.address.model.AccessDisplayFlags.FONT_SIZE_BIG;
 import static seedu.address.model.AccessDisplayFlags.FONT_SIZE_NORMAL;
 import static seedu.address.model.AccessDisplayFlags.FONT_SIZE_SMALL;
-import static seedu.address.model.AccessDisplayFlags.DEFAULT_STYLE;
+import static seedu.address.model.AccessDisplayFlags.HIDE_TYPE;
+import static seedu.address.model.AccessDisplayFlags.ITALIC;
+import static seedu.address.model.AccessDisplayFlags.LEFT_JUSTIFY;
+import static seedu.address.model.AccessDisplayFlags.MENU_OK;
+import static seedu.address.model.AccessDisplayFlags.RIGHT_JUSTIFY;
+import static seedu.address.model.AccessDisplayFlags.STRIKETHROUGH;
+import static seedu.address.model.AccessDisplayFlags.UNDERLINE;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 
