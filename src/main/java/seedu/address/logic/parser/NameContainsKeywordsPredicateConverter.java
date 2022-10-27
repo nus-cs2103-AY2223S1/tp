@@ -7,6 +7,7 @@ import java.util.Stack;
 import picocli.CommandLine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.tag.Tag;
 
 /**
  * Converter from {@code String} to {@code NameContainsKeywordsPredicate}.
@@ -22,7 +23,7 @@ public class NameContainsKeywordsPredicateConverter implements
         while (!args.isEmpty()) {
             String keyword = args.peek();
             if (!keyword.matches(VALIDATION_REGEX)) {
-                break;
+                throw new CommandLine.ParameterException(commandSpec.commandLine(), Name.MESSAGE_CONSTRAINTS);
             }
             args.pop();
             keywords.add(keyword);
