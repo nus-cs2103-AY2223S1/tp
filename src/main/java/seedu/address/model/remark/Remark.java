@@ -52,8 +52,15 @@ public class Remark {
             return true;
         }
 
-        return otherRemark != null
-                && otherRemark.getText().value.equals(getText().value);
+        if (otherRemark == null) {
+            return false;
+        }
+
+        // Remove all trailing white spaces, change all alphabet to lower case, and concatenate all characters.
+        String remarkText = getText().value.trim().toLowerCase().replace(" ", "");
+        String otherText = otherRemark.getText().value.trim().toLowerCase().replace(" ", "");
+
+        return remarkText.equals(otherText);
     }
 
     /**
