@@ -185,7 +185,7 @@ Examples:
 
 Displays the group members allocated to the specified `GROUP`. Instead of details, assigned tasks will be listed.
 
-![TABS example](Ui.png)
+![TABS example](displaygroup_example.png)
 
 Format: `displaygroup GROUP`
 * Displays the members associated with the `GROUP` and their tasks.
