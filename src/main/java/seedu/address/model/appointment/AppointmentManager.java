@@ -1,11 +1,13 @@
 package seedu.address.model.appointment;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.NurseIsBusyException;
@@ -22,24 +24,29 @@ public class AppointmentManager {
     private Set<Appointment> appointments;
 
     /**
+     * Appointment Manager Constructor
+     */
+    public AppointmentManager() {
+        this.appointments = new HashSet<>();
+    }
+
+    /**
      * Creates a new appointment using the given nurse, patient and
      * appointmentStartDateTime
      *
      * @param nurse                    The requested nurse
      * @param patient                  The requested patient
      * @param appointmentStartDateTime The requested appointmentStartDateTime
-     * @throws IllegalArgumentException The required arguments were not provided
-     *                                  correctly
-     * @throws NurseIsBusyException     The nurse is current busy at this point of
-     *                                  time
-     * @throws PatientIsBusyException   The patient is current busy at this point of
-     *                                  time
+     * @throws NullPointerException   Any of the required parameters are null
+     *                                correctly
+     * @throws NurseIsBusyException   The nurse is current busy at this point of
+     *                                time
+     * @throws PatientIsBusyException The patient is current busy at this point of
+     *                                time
      */
-    public void createNewAppointment(Nurse nurse, Patient patient, LocalDateTime appointmentStartDateTime)
-            throws IllegalArgumentException, NurseIsBusyException, PatientIsBusyException {
-        if (Objects.isNull(nurse) || Objects.isNull(patient) || Objects.isNull(appointmentStartDateTime)) {
-            throw new IllegalArgumentException("Patient and Nurse and appointmentStartDateTime must be given");
-        }
+    public Appointment createNewAppointment(Patient patient, Nurse nurse, LocalDateTime appointmentStartDateTime)
+            throws NurseIsBusyException, PatientIsBusyException {
+        requireAllNonNull(patient, nurse, appointmentStartDateTime);
         Optional<Appointment> appointment = findAppointment(Optional.of(nurse), Optional.of(patient),
                 appointmentStartDateTime);
         if (appointment.isPresent()) {
@@ -53,6 +60,7 @@ public class AppointmentManager {
         }
         Appointment newAppointment = new Appointment(patient, nurse, appointmentStartDateTime);
         this.appointments.add(newAppointment);
+        return newAppointment;
     }
 
     /**
@@ -67,11 +75,9 @@ public class AppointmentManager {
      *                                      not provided
      * @throws AppointmentNotFoundException When the appointment cannot be found
      */
-    public void removeAppointment(Optional<Nurse> nurse, Optional<Patient> patient,
+    public void removeAppointment(Optional<Patient> patient, Optional<Nurse> nurse,
             LocalDateTime appointmentStartDateTime) throws IllegalArgumentException, AppointmentNotFoundException {
-        if (Objects.isNull(appointmentStartDateTime)) {
-            throw new IllegalArgumentException("Appointment start datetime must be given");
-        }
+        requireAllNonNull(patient, nurse, appointmentStartDateTime);
         if (patient.isEmpty() && nurse.isEmpty()) {
             throw new IllegalArgumentException("Patient or Nurse must be given");
         }
@@ -140,16 +146,17 @@ public class AppointmentManager {
         if (patient.isEmpty() && nurse.isEmpty()) {
             throw new IllegalArgumentException("Patient or Nurse must be given");
         }
-        Stream<Appointment> filteredAppointmentsByDateTime = this.appointments.stream()
-                .filter(x -> x.getAppointmentStartDateTime().equals(appointmentStartDateTime));
-        Stream<Appointment> filteredAppointmentsByPatient = patient
-                .map(x -> filteredAppointmentsByDateTime.filter(y -> y.involvesPerson(x)))
-                .orElse(filteredAppointmentsByDateTime);
-        Stream<Appointment> filteredAppointmentsByNurse = nurse
-                .map(x -> filteredAppointmentsByDateTime.filter(y -> y.involvesPerson(x)))
-                .orElse(filteredAppointmentsByPatient);
-        assert filteredAppointmentsByNurse.count() <= 1;
-        return filteredAppointmentsByNurse.findFirst();
+        try {
+            Optional<Appointment> filteredAppointment = this.appointments.stream()
+                    .filter(x -> x.getAppointmentStartDateTime().equals(appointmentStartDateTime)
+                            && (nurse.map(n -> x.getNurse().equals(n)).orElse(false)
+                            || patient.map(p -> x.getPatient().equals(p)).orElse(false)))
+                    .findFirst();
+            return filteredAppointment;
+        } catch (NullPointerException e) {
+            return Optional.empty();
+        }
+
     }
 
     /**

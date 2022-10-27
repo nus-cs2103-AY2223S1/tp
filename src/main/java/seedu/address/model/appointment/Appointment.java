@@ -148,8 +148,8 @@ public class Appointment {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Appointment // instanceof handles nulls
-                && patient.equals(((Appointment) other).patient)
-                && nurse.equals(((Appointment) other).nurse)
-                && startDateTime.equals(((Appointment) other).startDateTime)); // state check
+                    && patient.equals(((Appointment) other).patient)
+                    && nurse.equals(((Appointment) other).nurse)
+                    && startDateTime.equals(((Appointment) other).startDateTime)); // state check
     }
 }

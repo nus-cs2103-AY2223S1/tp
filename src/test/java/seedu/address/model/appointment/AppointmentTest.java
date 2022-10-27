@@ -16,7 +16,10 @@ public class AppointmentTest {
         assertThrows(NullPointerException.class, () -> new Appointment(null, null, null));
         assertThrows(NullPointerException.class, () -> new Appointment(PATIENT, null, null));
         assertThrows(NullPointerException.class, () -> new Appointment(null, NURSE, null));
+        assertThrows(NullPointerException.class, () -> new Appointment(null, null, LocalDateTime.now()));
         assertThrows(NullPointerException.class, () -> new Appointment(PATIENT, NURSE, null));
+        assertThrows(NullPointerException.class, () -> new Appointment(null, NURSE, LocalDateTime.now()));
+        assertThrows(NullPointerException.class, () -> new Appointment(PATIENT, null, LocalDateTime.now()));
     }
 
     @Test
