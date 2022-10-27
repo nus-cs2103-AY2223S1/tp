@@ -29,6 +29,7 @@ import seedu.clinkedin.logic.commands.HelpCommand;
 import seedu.clinkedin.logic.commands.ImportCommand;
 import seedu.clinkedin.logic.commands.ListCommand;
 import seedu.clinkedin.logic.commands.RedoCommand;
+import seedu.clinkedin.logic.commands.SortCommand;
 import seedu.clinkedin.logic.commands.StatsCommand;
 import seedu.clinkedin.logic.commands.UndoCommand;
 import seedu.clinkedin.logic.commands.ViewCommand;
@@ -109,6 +110,9 @@ public class AddressBookParser {
 
         case StatsCommand.COMMAND_WORD:
             return new StatsCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
 
         case AddTagCommand.COMMAND_WORD:
             return new AddTagCommandParser().parse(arguments);
