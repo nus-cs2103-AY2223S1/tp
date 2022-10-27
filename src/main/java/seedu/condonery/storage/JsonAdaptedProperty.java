@@ -14,6 +14,7 @@ import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -27,20 +28,23 @@ class JsonAdaptedProperty {
     private final String address;
     private final String price;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String propertyType;
 
     /**
      * Constructs a {@code JsonAdaptedProperty} with the given property details.
      */
     @JsonCreator
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("address") String address,
-           @JsonProperty("price") String price,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                               @JsonProperty("price") String price,
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                               @JsonProperty("propertyType")String propertyType) {
         this.name = name;
         this.address = address;
         this.price = price;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.propertyType = propertyType;
     }
 
     /**
@@ -53,6 +57,8 @@ class JsonAdaptedProperty {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        propertyType = source.getPropertyTypeEnum().toString();
+
     }
 
     /**
@@ -91,7 +97,13 @@ class JsonAdaptedProperty {
         final Price modelPrice = new Price(price);
 
         final Set<Tag> modelTags = new HashSet<>(propertyTags);
-        return new Property(modelName, modelAddress, modelPrice, modelTags);
+        if (propertyType == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PropertyTypeEnum.class.getSimpleName()));
+        }
+        final PropertyTypeEnum modelPropertyType = PropertyTypeEnum.valueOf(propertyType);
+        return new Property(modelName, modelAddress, modelPrice, modelTags,
+                modelPropertyType);
     }
 
 }

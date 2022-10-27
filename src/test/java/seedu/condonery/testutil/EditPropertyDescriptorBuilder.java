@@ -10,6 +10,7 @@ import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -36,6 +37,7 @@ public class EditPropertyDescriptorBuilder {
         descriptor.setAddress(property.getAddress());
         descriptor.setPrice(property.getPrice());
         descriptor.setTags(property.getTags());
+        descriptor.setPropertyTypeEnum(property.getPropertyTypeEnum());
     }
 
     /**
@@ -69,6 +71,15 @@ public class EditPropertyDescriptorBuilder {
     public EditPropertyDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPropertyDescriptorBuilder withPropertyTypeEnum(String propertyTypeEnum) {
+        descriptor.setPropertyTypeEnum(PropertyTypeEnum.valueOf(propertyTypeEnum));
         return this;
     }
 
