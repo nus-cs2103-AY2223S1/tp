@@ -3,9 +3,12 @@ package tracko.logic.parser;
 import tracko.logic.commands.ClearCommand;
 import tracko.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses confirmation input from user to allow MultiLevelCommand implementation of the ClearCommand class
+ */
 public class ClearCommandParser implements Parser<ClearCommand> {
-    public static final String INCORRECT_USER_INPUT_FORMAT = "Please enter 'done' to confirm removal of all data. " +
-            "Enter 'cancel' to abort clearing data. ";
+    public static final String INCORRECT_USER_INPUT_FORMAT = "Please enter 'done' to confirm removal of all data. "
+            + "Enter 'cancel' to abort clearing data. ";
 
     @Override
     public ClearCommand parse(String userInput) throws ParseException {
