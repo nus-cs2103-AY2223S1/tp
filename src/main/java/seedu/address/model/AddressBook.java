@@ -250,13 +250,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given consultation {@code target} in the list with {@code editedConsultation}.
+     * {@code target} must exist in the Modquik.
+     * The consultation identity of {@code editedConsultation} must not be the same as another existing consultation in the Modquik.
      */
     public void setConsultation(Consultation target, Consultation editedConsultation) {
         requireNonNull(editedConsultation);
-
         consultations.setConsultation(target, editedConsultation);
     }
 

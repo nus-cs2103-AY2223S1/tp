@@ -193,9 +193,9 @@ public interface Model {
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given consultation {@code target} with {@code editedConsultation}.
+     * {@code target} must exist in the Modquik.
+     * The consultation identity of {@code editedConsultation} must not be the same as another existing consultation in Modquik.
      */
     void setConsultation(Consultation target, Consultation editedConsultation);
 
