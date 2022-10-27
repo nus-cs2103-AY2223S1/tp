@@ -185,7 +185,7 @@ Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX...`
 
 * Removes attendees at the specified `ATTENDEE_INDEX`. This index refers to the index number shown in the displayed attendee list of the event. The index **must be a positive integer** 1, 2, 3, ...
 * Attendees are removed from the event at the specified `EVENT_INDEX`. This index refers to the index number shown in the displayed event list. It follows the same constraints as `ATTENDEE_INDEX`.
-* At least one 'ATTENDEE_INDEX' must be provided.
+* At least one `ATTENDEE_INDEX` must be provided.
 
 Example:
 * `event -dp 1 pr/1 pr/3` deletes the first and third attendees listed under the event from the first event listed.
