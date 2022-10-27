@@ -15,11 +15,16 @@ import seedu.workbook.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String ADD_COMMAND = "add c/COMPANY r/ROLE s/STAGE [d/YYYY-MMM-DD] [e/EMAIL] [t/TAG]…";
-    public static final String EDIT_COMMAND = "edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/YYYY-MMM-DD] [e/EMAIL] "
-            + "[t/TAG]";
+    public static final String ADD_COMMAND = "add c/COMPANY r/ROLE s/STAGE [d/DD-MMM-YYYY] [e/EMAIL] "
+            + "[l/PROGRAMMING LANGUAGE]… [t/TAG]…";
+    public static final String EDIT_COMMAND = "edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DD-MMM-YYYY] [e/EMAIL] "
+            + "[l/PROGRAMMING LANGUAGE]… [t/TAG]…";
     public static final String DELETE_COMMAND = "delete INDEX";
     public static final String CLEAR_COMMAND = "clear";
+    public static final String LIST_COMMAND = "list";
+    public static final String FIND_COMMAND = "find  c/COMPANY | r/ROLE | s/STAGE";
+    public static final String UNDO_COMMAND = "undo";
+    public static final String REDO_COMMAND = "redo";
     public static final String EXIT_COMMAND = "exit";
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t10-3.github.io/tp/UserGuide.html";
     public static final String URL_MESSAGE = "Refer to the user guide for more information: " + USERGUIDE_URL;
@@ -38,6 +43,18 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Label editCommand;
+
+    @FXML
+    private Label listCommand;
+
+    @FXML
+    private Label redoCommand;
+
+    @FXML
+    private Label undoCommand;
+
+    @FXML
+    private Label findCommand;
 
     @FXML
     private Label exitCommand;
@@ -60,6 +77,10 @@ public class HelpWindow extends UiPart<Stage> {
         editCommand.setText(EDIT_COMMAND);
         deleteCommand.setText(DELETE_COMMAND);
         clearCommand.setText(CLEAR_COMMAND);
+        listCommand.setText(LIST_COMMAND);
+        redoCommand.setText(REDO_COMMAND);
+        undoCommand.setText(UNDO_COMMAND);
+        findCommand.setText(FIND_COMMAND);
         exitCommand.setText(EXIT_COMMAND);
         urlMessage.setText(URL_MESSAGE);
     }
