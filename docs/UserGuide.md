@@ -7,16 +7,22 @@ FindMyIntern helps students who are applying for internships keep track of their
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
+  - [Commands](#commands)
+    - [Viewing help: `help`](#viewing-help-help)
     - [Adding an internship application: `add`](#adding-an-internship-application-add)
     - [Editing an internship application: `edit`](#editing-an-internship-application-edit)
     - [Marking an internship application status: `mark`](#marking-an-internship-application-status-mark)
     - [Listing all internship applications: `list`](#listing-all-internship-applications-list)
     - [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
-    - [Filtering for internship applications of a specified status: `filter`](#filtering-for-internship-applications-of-a-specified-status-filter)
+    - [Filtering for internship applications of a specific status: `filter`](#filtering-for-internship-applications-of-a-specific-status-filter)
     - [Finding for an internship application: `find`](#finding-for-internship-applications-or-tags-find)
     - [Sorting the internship applications: `sort`](#sorting-the-list-of-internship-applications-sort)
+    - [Clearing all internship applications: `clear`](#clearing-all-internship-applications-clear)
     - [Exiting the program: `exit`](#exiting-the-program-exit)
+  - [Saving and editing](#saving-and-editing)
     - [Saving the data](#saving-the-data)
+    - [Editing the data](#editing-the-data)
+  - [UI elements](#ui-elements)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -54,7 +60,7 @@ FindMyIntern helps students who are applying for internships keep track of their
     
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -84,15 +90,17 @@ FindMyIntern helps students who are applying for internships keep track of their
 
 </div>
 
-### Viewing help: `help`
+### Commands
 
-Shows a message explaning how to access the help page.
+#### Viewing help: `help`
+
+Shows a message explaning how to access the user guide, and the data file location.
 
 <img src="images/helpMessage.png" width="500"/>
 
 Format: `help`
 
-### Adding an internship application: `add`
+#### Adding an internship application: `add`
 
 Adds an internship application to the tracker.
 
@@ -101,6 +109,13 @@ Format: `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIM
 * Default application status is "Applied".
 * `INTERVIEW_DATE_TIME` is optional, but if included, will automatically change application status to "Shortlisted".
 * `TAG` is optional, but can be used multiple times.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Changing application status**:
+To change application status, see [`mark` command](#marking-an-internship-application-status-mark)
+
+</div>
 
 <div markdown="block" class="alert alert-warning">
 
@@ -130,7 +145,7 @@ Examples:
 * `add c/Apple l/https://jobs.apple.com/en-sg d/Software engineering internship a/11/10/2022`
 * `add c/Grab l/https://grab.careers/teams/campus d/Marketing internship a/11 Oct i/23 Nov, 3:00 pm`
 
-### Editing an internship application: `edit`
+#### Editing an internship application: `edit`
 
 Edits an existing internship application in the tracker.
 
@@ -138,10 +153,21 @@ Format: `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INT
 
 * Edits the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed
   internship application list. The index **must be a positive integer** 1, 2, 3…
+
 * At least one of the optional fields must be provided.
+
 * When editing `INTERVIEW_DATE_TIME`, the application status will change to "Shortlisted".
+
 * When editing tags, the existing tags will removed and replaced with the input tags.
+
 * Tags can be removed by typing `t/` without specifying any tags after it.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Changing application status**:
+To change application status, see [`mark` command](#marking-an-internship-application-status-mark)
+
+</div>
 
 <div markdown="block" class="alert alert-warning">
 
@@ -175,7 +201,7 @@ Examples:
 * `edit 3 t/frontend t/summer` - Edits the tags of the 3rd internship application, removing existing tags and
   adding `frontend` and `summer` tags
 
-### Marking an internship application status: `mark` 
+#### Marking an internship application status: `mark` 
 
 Marks an internship application status as "applied", "shortlisted", "interviewed", "accepted", or "rejected".
 
@@ -197,13 +223,13 @@ Examples:
 * `mark 3 s/interviewed` - Marks the 3rd internship application status to be `interviewed`
 * `mark 2 s/accepted` - Marks the 2nd internship application status to be `accepted`
 
-### Listing all internship applications: `list`
+#### Listing all internship applications: `list`
 
 Shows a list of all internship applications.
 
 Format: `list`
 
-### Deleting an internship application: `delete`
+#### Deleting an internship application: `delete`
 
 Deletes an internship application.
 
@@ -216,7 +242,7 @@ Format: `delete INDEX`
 Examples:
 *  `delete 4` - Deletes the 4th internship application in the list.
 
-### Filtering for internship applications of a specified status: `filter`
+#### Filtering for internship applications of a specific status: `filter`
 
 Format: `filter APPLICATION_STATUS`
 
@@ -226,7 +252,7 @@ Examples:
 * `filter accepted` - Shows a list of internship applications marked as `accepted`
 * `filter rejected` - Shows a list of internship applications marked as `rejected`
 
-### Finding for internship applications or tags: `find`
+#### Finding for internship applications or tags: `find`
 
 Finds internship applications where the company's name and tags contain any of the given keywords.
 
@@ -241,25 +267,63 @@ Examples:
 
 <img src="images/findGoogleBackendResult.png" width="600" />
 
-### Sorting the list of internship applications: `sort`
+#### Sorting the list of internship applications: `sort`
 
 Sorts the internship applications in a reverse chronological order by applied date or interview date.
 
-Format: `sort [CRITERIA]`
+Format: `sort CRITERIA`
 
 Examples:
 * `sort applied` will display the internship applications according to applied date
 * `sort interview` will display the internship applications according to interview date
 
-### Exiting the program: `exit`
+#### Clearing all internship applications: `clear`
+
+Clears all internship applications from the tracker.
+
+Format: `clear`
+
+#### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Saving and editing
 
-FindMyIntern data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+#### Saving the data
+
+FindMyIntern's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+#### Editing the data
+
+FindMyIntern's data is saved as a JSON file `[JAR file location]/data/findmyintern.json`.
+The data file location can also be found in the help message: see [`help` command](#viewing-help-help).
+
+Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, FindMyIntern will discard all data and start with an empty data file at the next run.
+</div>
+
+### UI elements
+
+#### Links
+
+Clicking on links will copy the URL of the link to the clipboard. The URL can then be pasted into any browser. 
+
+A tooltip is shown when the link is hovered.
+
+<img src="images/linkTooltip.png" />
+
+#### Tags
+
+A tooltip containing the full tag name is shown when a tag is hovered.
+
+The maximum number of tags that will be displayed is 5. Additional tags that are not displayed will be shown as a count.
+A tooltip containing the additional tags is shown when the count is hovered.
+
+<img src="images/additionalTagsTooltip.png" />
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -277,10 +341,12 @@ Action | Format, Examples
 --------|------------------
 **Help** | `help`
 **Add** | `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]…` <br> e.g., `add c/Apple l/https://jobs.apple.com/en-sg d/Software engineering internship a/11/10/2022`
+**Edit** | `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INTERVIEW_DATE_TIME] [t/TAG]…` <br> e.g., `edit 1 d/Data analyst intern`
 **Mark** | `mark INDEX s/APPLICATION_STATUS` <br> e.g., `mark 3 s/interviewed`
 **List** | `list`
 **Delete** | `delete INDEX` <br> e.g., `delete 4`
 **Filter** | `filter APPLICATION_STATUS` <br> e.g., `filter accepted`
 **Find** | `find KEYWORD [MORE_KEYWORDS]…`<br> e.g., `find google`
-**Sort** | `sort [CRITERIA]`<br> e.g., `sort applied`
+**Sort** | `sort CRITERIA`<br> e.g., `sort applied`
+**Clear** | `clear`
 **Exit** | `exit`

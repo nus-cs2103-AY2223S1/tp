@@ -155,7 +155,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 * [Add feature](#add-internship-feature)
-* [Find feature](#find-internships-from-company)
+* [Find feature](#find-internships-from-keywords)
 * [Filter feature](#filter-by-applicationstatus-feature)
 * [Mark feature](#mark-internship-feature)
 * [Sort feature](#sort-internships-feature)
@@ -324,17 +324,20 @@ The following sequence diagram illustrates how the list is updated when the user
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​      | I want to …​                                                                   | So that I can…​                                              |
-| ------ |--------------|--------------------------------------------------------------------------------|--------------------------------------------------------------|
-| `* * *` | new user     | utilise the help function                                                      | see the instructions on how to use the app                   |
-| `* * *` | busy student | add internship applications quickly using CLI                                  | have more time for other things                              |
-| `* * *` | student      | mark the internship as rejected, interviewed, applied or rejected              | know the status of the internship application                |
-| `* * *` | user         | edit an internship application                                                 | update the details of an internship application              |
-| `* * *` | user         | automatically save any edits made                                              | save edits even if I accidentally close the app              |
-| `* *`  | lazy student | search for a specific internship using keywords                                | get matching results more quickly                            |
-| `* *`  | student      | filter the internships that I have applied to by application status            | easily view the statuses of my applications                  |
-| `* *`  | student      | sort the internships based on a sort criteria (applied date or interview date) | easily view my applications in a reverse chronological order |
-
+| Priority | As a …       | I want to …                                                                    | So that I can…                                                   |
+|----------|--------------|--------------------------------------------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | new user     | utilise the help function                                                      | see the instructions on how to use the app                       |
+| `* * *`  | busy student | add internship applications quickly using CLI                                  | have more time for other things                                  |
+| `* * *`  | student      | mark the internship as rejected, interviewed, applied or rejected              | know the status of the internship application                    |
+| `* * *`  | user         | edit an internship application                                                 | update the details of an internship application                  |
+| `* * *`  | user         | automatically save any edits made                                              | save edits even if I accidentally close the app                  |
+| `* *`    | user         | add a short description of the internship                                      | know what the role is about                                      |
+| `* *`    | busy student | view the interview date of each internship application                         | better manage my time and prepare accordingly                    |
+| `* *`    | student      | add the link of the internship posting                                         | refer to the internship posting when preparing for interview     |
+| `* *`    | lazy student | search for a specific internship using keywords                                | get matching results more quickly                                |
+| `* *`    | student      | filter the internships that I have applied to by application status            | easily view the statuses of my applications                      |
+| `* *`    | student      | sort the internships based on a sort criteria (applied date or interview date) | easily view my applications in a reverse chronological order     |
+| `* *`    | user         | clear all internship applications                                              | focus on my applications for a new internship application period |
 
 
 *{More to be added}*
@@ -462,7 +465,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -493,7 +495,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file 
+   1. Double-click the jar file<br>
       Expected: Shows the GUI with a set of sample internship applications. The window size may not be optimal.
 
 1. Saving window preferences
@@ -501,7 +503,7 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimal size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
