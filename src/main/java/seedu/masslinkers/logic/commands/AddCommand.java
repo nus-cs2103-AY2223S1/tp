@@ -1,12 +1,6 @@
 package seedu.masslinkers.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_GITHUB;
-import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_INTEREST;
-import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import seedu.masslinkers.logic.commands.exceptions.CommandException;
 import seedu.masslinkers.model.Model;
@@ -19,25 +13,12 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the mass linkers. "
-            + "\nParameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_TELEGRAM + "TELEGRAM "
-            + "[" + PREFIX_GITHUB + "GITHUB] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_INTEREST + "INTEREST]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_TELEGRAM + "johnxyz "
-            + PREFIX_GITHUB + "john_doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_INTEREST + "AI "
-            + PREFIX_INTEREST + "SWE";
+    public static final String MESSAGE_USAGE = "Add a batchmate's information in this manner: "
+            +
+        "add n/[name] t/[telegram] g/[github] e/[email] p/[hp number]";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the mass linkers";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in Mass linkers.";
 
     private final Student toAdd;
 
