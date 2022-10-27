@@ -192,6 +192,8 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting PersonBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        model.setPersonListPanel(ui.getMainWindow().getPersonListPanel());
+        model.setPropertyListPanel(ui.getMainWindow().getPropertyListPanel());
     }
 
     @Override

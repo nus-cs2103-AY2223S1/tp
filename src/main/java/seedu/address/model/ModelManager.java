@@ -12,10 +12,13 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
+import seedu.address.ui.PersonListPanel;
+import seedu.address.ui.PropertyListPanel;
 
 /**
  * Represents the in-memory model of the person book and proprty book data.
@@ -26,9 +29,15 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final PersonBook personBook;
     private final PropertyBook propertyBook;
+    private PersonListPanel personListPanel;
+    private PropertyListPanel propertyListPanel;
     private final FilteredList<Buyer> filteredBuyers;
     private final FilteredList<Property> filteredProperties;
 
+    private boolean isLastShownBuyersListSorted = false;
+    private boolean isLastShownPropertiesListSorted = false;
+    private final SortedList<Buyer> sortedBuyers;
+    private final SortedList<Property> sortedProperties;
 
     /**
      * Initializes a ModelManager with the given personBook and userPrefs.
@@ -45,12 +54,23 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredBuyers = new FilteredList<>(this.personBook.getPersonList());
         filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
+        sortedBuyers = new SortedList<>(this.personBook.getPersonList());
+        sortedProperties = new SortedList<>(this.propertyBook.getPropertyList());
     }
 
     public ModelManager() {
         this(new PersonBook(), new PropertyBook(), new UserPrefs());
     }
 
+    @Override
+    public void setPersonListPanel(PersonListPanel personListPanel) {
+        this.personListPanel = personListPanel;
+    }
+
+    @Override
+    public void setPropertyListPanel(PropertyListPanel propertyListPanel) {
+        this.propertyListPanel = propertyListPanel;
+    }
 
     //=========== UserPrefs ==================================================================================
 
@@ -150,14 +170,31 @@ public class ModelManager implements Model {
         filteredBuyers.setPredicate(predicate);
     }
 
+    //=========== Sorted Buyer List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Buyer} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
-    public void sortBuyerList(Comparator<Buyer> comparator) {
-        requireNonNull(comparator);
-        List<Buyer> sortedList = new ArrayList<>(personBook.getPersonList());
-        sortedList.sort(comparator);
-        personBook.setPersons(sortedList);
+    public ObservableList<Buyer> getSortedPersonList() {
+        return sortedBuyers;
     }
 
+    @Override
+    public void updateSortedPersonList(Comparator<Buyer> comparator) {
+        requireNonNull(comparator);
+        sortedBuyers.setComparator(comparator);
+        isLastShownBuyersListSorted = true;
+        personListPanel.setNewList(sortedBuyers);
+    }
+
+    @Override
+    public ObservableList<Buyer> getLastShownBuyersList() {
+        return isLastShownBuyersListSorted
+                ? sortedBuyers
+                : filteredBuyers;
+    }
 
     //=========== PropertyBook ================================================================================
 
@@ -211,13 +248,32 @@ public class ModelManager implements Model {
         filteredProperties.setPredicate(predicate);
     }
 
+    //=========== Sorted Buyer List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Property} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
-    public void sortPropertyList(Comparator<Property> comparator) {
-        requireNonNull(comparator);
-        List<Property> sortedList = new ArrayList<>(propertyBook.getPropertyList());
-        sortedList.sort(comparator);
-        propertyBook.setProperties(sortedList);
+    public ObservableList<Property> getSortedPropertyList() {
+        return sortedProperties;
     }
+
+    @Override
+    public void updateSortedPropertyList(Comparator<Property> comparator) {
+        requireNonNull(comparator);
+        sortedProperties.setComparator(comparator);
+        isLastShownPropertiesListSorted = true;
+        propertyListPanel.setNewList(sortedProperties);
+    }
+
+    @Override
+    public ObservableList<Property> getLastShownPropertiesList() {
+        return isLastShownPropertiesListSorted
+                ? sortedProperties
+                : filteredProperties;
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -238,6 +294,10 @@ public class ModelManager implements Model {
                 && personBook.equals(other.personBook)
                 && propertyBook.equals(other.propertyBook)
                 && filteredBuyers.equals(other.filteredBuyers)
-                && filteredProperties.equals(other.filteredProperties);
+                && filteredProperties.equals(other.filteredProperties)
+                && sortedBuyers.equals(other.sortedBuyers)
+                && sortedProperties.equals(other.sortedProperties)
+                && isLastShownBuyersListSorted == other.isLastShownBuyersListSorted
+                && isLastShownPropertiesListSorted == other.isLastShownPropertiesListSorted;
     }
 }
