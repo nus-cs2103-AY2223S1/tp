@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.STATS_COMMAND;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -39,11 +40,9 @@ public class StatsCommand extends Command {
     }
 
     private List<Item> getTopThreeExpensiveItems(List<Item> itemList) {
-        return itemList.stream()
-                .sorted(new ItemCostComparator()
-                        .reversed())
-                .limit(3)
-                .collect(Collectors.toList());
+        final List<Item> copy = new ArrayList<>(itemList);
+        copy.sort(new ItemCostComparator().reversed());
+        return copy.subList(0, 3);
     }
 
     private double getAmountWasted(List<Item> itemList) {
