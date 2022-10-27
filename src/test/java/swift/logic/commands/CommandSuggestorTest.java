@@ -125,7 +125,7 @@ public class CommandSuggestorTest {
 
     @Test
     public void autocomplete_validCommandWithNoArgs_success() {
-        String expectedSuggestion = ListTaskCommand.COMMAND_WORD;
+        String expectedSuggestion = ListTaskCommand.COMMAND_WORD + " ";
         try {
             assertEquals(expectedSuggestion, commandSuggestor.autocompleteCommand("list_t",
                     commandSuggestor.suggestCommand("list_t")));
