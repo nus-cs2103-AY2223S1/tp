@@ -3,11 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane minWidth="340" prefWidth="340.0" style="-fx-background-color: transparent;"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS">
+<ScrollPane minWidth="340" prefWidth="340.0" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <VBox minWidth="340" HBox.hgrow="ALWAYS">
       <children>
-         <Label id="name" fx:id="name" styleClass="cell_big_label" />
+         <Label fx:id="name" styleClass="cell_big_label" />
 
          <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Personal Details" textAlignment="CENTER" />
          <Label fx:id="email" styleClass="cell_small_label" />

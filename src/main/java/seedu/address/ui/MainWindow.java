@@ -2,12 +2,16 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import com.sun.javafx.scene.control.LabeledText;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -17,6 +21,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.GetCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.getcommands.GetNextOfKinCommand;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -187,11 +192,21 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Updates the detailed person view panel with the newest info.
      */
-    @FXML
     public void handleView() {
-        PersonViewPanel personViewPanel = new PersonViewPanel(logic.getCurrentlyViewedPerson(), this::setCommandBoxText);
+        PersonViewPanel personViewPanel = new PersonViewPanel(logic.getCurrentlyViewedPerson(),
+                this::handlePersonViewClick);
         personViewPanelPlaceholder.getChildren().clear();
         personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
+
+    }
+
+    /**
+     * Handles a field in the detailed person view panel being clicked, by setting the command to edit.
+     * @param prefix the click event.
+     */
+    private void handlePersonViewClick(Prefix prefix) {
+        String strPrefix = prefix.getPrefix();
+
     }
 
     /**

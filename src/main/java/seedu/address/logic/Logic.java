@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -33,8 +34,11 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns the Person currently selected */
+    /** Returns the Person currently being viewed */
     Person getCurrentlyViewedPerson();
+
+    /** Returns the index of the Person currently being viewed */
+    Index getCurrentlyViewedIndex();
 
     /**
      * Returns the user prefs' address book file path.
