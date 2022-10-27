@@ -321,19 +321,19 @@ Expected outcome:
 | **List**             | `list`                           |
 | **Clear**            | `clear`                          |
 | **Exit**             | `exit`                           |
-| **Add**              | `add n/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… `, e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent`                                 |
+| **Add**              | `add n/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent`                                 |
 | **Delete**           |                                  |
 | **Edit**             |                                  |
-| **Status**           | `status`, e.g. `status 1 o`           |
-| **Remark**           | `remark`, e.g. `remark 1 r/ hello`    |
+| **Status**           | `status`<br> e.g. `status 1 o`           |
+| **Remark**           | `remark`<br> e.g. `remark 1 r/ hello`    |
 | **Find by Company**  |                                  |
 | **Find by Position** |                                  |
 | **Filter**           |                                  |
-| **Sort**             | `sort ORDER`, e.g.`, `sort a` |
+| **Sort**             | `sort ORDER`<br> e.g. `sort a` |
 | **Stats**            |                                  |
 | **Select**           |                                  |
-| **Add Task**         | `addtask TASKNAME /at TASKTIME`, e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                  |
+| **Add Task**         | `addtask TASKNAME /at TASKTIME`<br> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                  |
 | **Delete Task**      |                                  |
-| **Add Tag**          | `addtag`, e.g. `addtag 1 Urgent`      |
-| **Delete Tag**       | `deltag`, e.g. `deltag 1 Urgent`      |
+| **Add Tag**          | `addtag`<br> e.g. `addtag 1 Urgent`      |
+| **Delete Tag**       | `deltag`<br> e.g. `deltag 1 Urgent`      |
 
