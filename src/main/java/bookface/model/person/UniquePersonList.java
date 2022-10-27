@@ -10,6 +10,7 @@ import java.util.Optional;
 import bookface.commons.util.CollectionUtil;
 import bookface.model.book.Book;
 import bookface.model.person.exceptions.DuplicatePersonException;
+import bookface.model.person.exceptions.PersonLoansExistException;
 import bookface.model.person.exceptions.PersonNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -72,13 +73,16 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Returns all books that are loaned by the user.
-     * The person must exist in the list.
+     * Removes the person from the list. The person must exist in the list.
+     * If the {@code Person} has any {@code Book} on loan, {@code Person} will
+     * not be deleted and an exception will be thrown
+     *
+     * @param toRemove Person to remove
      */
     public void remove(Person toRemove) {
         requireNonNull(toRemove);
-        for (Book book : toRemove.getLoanedBooksSet()) {
-            book.markBookAsReturned();
+        if (toRemove.hasBooksOnLoan()) {
+            throw new PersonLoansExistException();
         }
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
