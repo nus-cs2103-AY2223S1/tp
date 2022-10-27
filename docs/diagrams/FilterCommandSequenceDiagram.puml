@@ -36,7 +36,7 @@ deactivate ABParser
 LM -> FilterCommand : execute(args)
 activate FilterCommand
 
-FilterCommand -> Model : filterPersonListWithTag(predicate)
+FilterCommand -> Model : filterStudentListWithTag(predicate)
 activate Model
 
 Model -> FL : setPredicate(predicate)
