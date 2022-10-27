@@ -349,4 +349,16 @@ public class ParserUtil {
         }
         return file.toPath();
     }
+
+    /**
+     * Parses a {@code String sortParam} into a {@code sortParam}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sortParam} is invalid.
+     */
+    public static String parseSort(String sortParam) throws ParseException {
+        requireNonNull(sortParam);
+        String trimmedSortParam = sortParam.trim();
+        return trimmedSortParam;
+    }
 }

@@ -52,6 +52,8 @@ User Interface (GUI) will help you slowly adjust to using our CLI.
 
 So what are you waiting for? Start using FinBook today!
 
+---
+
 # 2. How to Use this User Guide?
 
 1. To get familiar with this user guide you can continue
@@ -173,12 +175,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022 t/VIPClient
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12 Jan 2022 16:30 t/VIPClient
   r/high pl/Prudential Health note/Client is currently having COVID`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23-Feb-2022 r/low
-  pl/NTUC Income Plan`
-
----
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan`
 
 ### 4.1.2. Editing a client : `edit`
 
@@ -199,7 +198,6 @@ Examples:
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower`.
 
----
 
 ### 4.1.3. Deleting a client : `delete`
 
@@ -260,7 +258,6 @@ Examples:
 
 * `list` followed by `delete all` deletes the all clients in the FinBook.
 
----
 
 ### 4.1.4. Listing all clients : `list`
 
@@ -268,13 +265,11 @@ Shows a list of all clients in the FinBook.
 
 Format: `list`
 
----
 
 ### 4.1.5. Finding a client : `find`
 
 (toc)
 
----
 
 ### 4.1.6. Viewing Portfolio of a specific client: `view`
 
@@ -337,7 +332,6 @@ Financial book data are saved in the hard disk automatically after any command t
 to
 save manually.
 
----
 
 ### 4.3.2. Editing the data file
 
@@ -348,7 +342,6 @@ update data directly by editing that data file.
 If your changes to the data file makes its format invalid, FinBook will discard all data and start with an empty data file at the next run.
 </div>
 
----
 
 ### 4.3.3. Importing data : `import`
 
@@ -384,7 +377,6 @@ Examples:
 * `import ../data.csv` imports data from the file `data.csv` which is located one level outside the directory of the
   FinBook executable
 
----
 
 ### 4.3.4. Exporting data : `export`
 
@@ -403,7 +395,6 @@ Examples:
 * `export ../data.csv` exports data to the file `data.csv` which is located one level outside the directory of the
   FinBook executable
 
----
 
 ### 4.3.5. Copying a client's data : `copy`
 
@@ -425,6 +416,22 @@ Tags: friends
 
 * Press `Ctrl-V` to paste the copied text.
 
+
+### Sorting clients : `sort`
+
+Sorts clients in the FinBook according to given parameter.
+
+Format: `sort n/ or i/ or m/ ​`
+
+
+* Sorts clients in ascending order according to parameter.
+* At least one of the parameters must be provided.
+
+Examples:
+
+* `sort n/` Sorts clients in ascending order according to name.
+* `sort m/` Sorts clients according to their meeting dates in chronological order.
+
 ---
 
 ### 4.3.6. Changing Light/Dark mode
@@ -442,6 +449,18 @@ Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top r
 </div>
 
 ---
+
+### Hiding sensitive data
+
+Toggle the visibility of FinBook by clicking on the `open eye` or `close eye` icon on the top right of the application.
+
+* If the icon is an `open eye` FinBook displays all client data.
+* If the icon is a `close eye` FinBook hides all sensitive client data.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Your mode preference will be automatically saved ** 
+</div>
+
 
 ### 4.3.7. Exiting the application : `exit`
 
@@ -477,7 +496,7 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 
 | Action               | Format, Examples                                                                                                                                                                                                                                                                                                                                      |
 |----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS note/ADDITIONAL_NOTES​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022 t/VIPClient r/high pl/Prudential Health note/Client is currently having COVID` |
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS note/ADDITIONAL_NOTES​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12 Jan 2022 t/VIPClient r/high pl/Prudential Health note/Client is currently having COVID` |
 | **Delete**           | `delete INDEX` `delete INDEX1, INDEX2, …` `delete STARTINDEX - ENDINDEX` `delete all` <br> e.g., `delete 3` `delete 1, 2, 5` `delete 2-5`                                                                                                                                                                                                             |
 | **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                    |
 | **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                  |
@@ -489,4 +508,5 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                    |
 | **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                                                                                          |
 | **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                                                                                           |
+| **Sort**             | `sort PARAM`<br> e.g., `sort /n`                                                                                                                                                                                                                                                          |
 | **Exit application** | `exit`                                                                                                                                                                                                                                                                                                                                                |
