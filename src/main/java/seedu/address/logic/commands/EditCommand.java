@@ -144,7 +144,7 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         if (CollectionUtil.isAnyNonNull(editPersonDescriptor.rating, editPersonDescriptor.specialisation,
-                editPersonDescriptor.moduleCode, editPersonDescriptor.officeHour)) {
+                editPersonDescriptor.officeHour)) {
             throw new CommandException(STUDENT_FIELD_CONSTRAINT_MESSAGE);
         }
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -170,7 +170,7 @@ public class EditCommand extends Command {
                                              EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
 
-        if (CollectionUtil.isAnyNonNull(editPersonDescriptor.year, editPersonDescriptor.moduleCodes)) {
+        if (CollectionUtil.isAnyNonNull(editPersonDescriptor.year)) {
             throw new CommandException(PROF_FIELD_CONSTRAINT_MESSAGE);
         }
 
@@ -188,7 +188,7 @@ public class EditCommand extends Command {
         OfficeHour updatedOfficeHour = editPersonDescriptor.getOfficeHour().orElse(personToEdit.getOfficeHour());
 
         return new Professor(updatedName, updatedModuleCode, updatedPhone, updatedEmail, updatedGender, updatedTags,
-            updatedLocation, updatedUsername, updatedRating, updatedSpecialisation, updatedOfficeHour);
+                updatedLocation, updatedUsername, updatedRating, updatedSpecialisation, updatedOfficeHour);
     }
 
     /**
@@ -200,7 +200,7 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         if (CollectionUtil.isAnyNonNull(editPersonDescriptor.year, editPersonDescriptor.specialisation,
-                editPersonDescriptor.moduleCodes, editPersonDescriptor.officeHour)) {
+                editPersonDescriptor.officeHour)) {
             throw new CommandException(TA_FIELD_CONSTRAINT_MESSAGE);
         }
 
@@ -214,7 +214,7 @@ public class EditCommand extends Command {
         GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
         Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
         return new TeachingAssistant(updatedName, updatedModuleCode, updatedPhone,
-            updatedEmail, updatedGender, updatedTags, updatedLocation, updatedUsername, updatedRating);
+                updatedEmail, updatedGender, updatedTags, updatedLocation, updatedUsername, updatedRating);
     }
 
 
@@ -233,7 +233,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-            && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
     /**
@@ -243,7 +243,6 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private ModuleCode moduleCode;
-
         private Set<ModuleCode> moduleCodes;
         private Phone phone;
         private Email email;
