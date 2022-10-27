@@ -84,6 +84,8 @@ Examples:
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book. Toggles the address book to list mode.
+Also allows you to see the next session for you to attend along with the person you 
+are going to be teaching next.
 
 Format: `list`
 
@@ -110,18 +112,22 @@ Examples:
 
 ### Removing specific field in person: `remove`
 
-Edits a specific field of a person in the address book, accessed by View method.<br>
+Edits a specific field of a person in the address book. Can only be used in View Mode.<br>
 It requires one field:
 - h/: To be followed by INDEX of homework to be removed
 - a/: To be followed by INDEX of attendance to be removed
 - g/: To be followed by INDEX of grade to be removed
 - s/: To be followed by INDEX of session to be removed
 
+Allows for edits of multiple fields in a single command. <br>
+
 Format: `remove [h/ a/ g/ s/]INDEX`
 
 Examples:
 * `view 1` returns person in first index <br>
   `remove h/2` removes person at first index's *homework at second index*
+* `view 1` returns person in first index <br>
+  `remove h/2 a/1` removes person at first index's *homework at second index* and *attendance at first index*
 
 ### Marking specific field in person: `mark`
 
