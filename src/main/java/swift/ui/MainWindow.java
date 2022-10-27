@@ -1,7 +1,6 @@
 package swift.ui;
 
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -278,9 +277,11 @@ public class MainWindow extends UiPart<Stage> {
             case SELECT_CONTACT:
                 showContactTab();
                 showAssignedTasks();
+                break;
             case SELECT_TASK:
                 showTaskTab();
                 showAssignedContacts();
+                break;
             default:
                 break;
             }
