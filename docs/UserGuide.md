@@ -105,6 +105,15 @@ Examples:
 * `opencus 2`
   Shows details about the customer, and switches tab to commissions
 
+### Editing a customer
+
+Edits the details of the customer identified by the index number used in the displayed customer list.
+
+Format: `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+
+Examples:
+* `editcus 1 p/91234567 e/johndoe@example.com` Edits the first customer's phone number and email.
+
 ### Adding a commission: `addcom`
 
 Adds a commission to the currently opened customer.
@@ -129,7 +138,7 @@ Examples:
 * `delcus 2`
   Deletes the 2nd customer in the ArtBuddy and all commissions made by the customer.
 
-### Viewing a commission: `opencom` [coming soon]
+### Viewing a commission: `opencom`
 
 Opens a commission and shows its relevant details and image.
 
@@ -140,7 +149,18 @@ Format: `opencom INDEX`
 Example:
 * `opencom 14`
 
-### Deleting a commission: `delcom` [coming soon]
+### Editing a commission: `editcom`
+
+Edits a commission.
+
+Format: `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/DESCRIPTION] [t/TAG]`
+
+Example:
+* `editcom 1 n/Tokyo Ghoul Kaneki f/50 d/2022-10-10 s/False p/Unfamiliar, I will need to do up a reference board first. t/digital t/neon`
+   Edits the first commission to have the above fields.
+* `editcom 2 s/True` Edits the second commission to be completed.
+
+### Deleting a commission: `delcom`
 
 Deletes a commission and images related to the commission.
 
@@ -200,10 +220,6 @@ If your changes to the data file makes its format invalid, ArtBuddy will discard
 </div>
 
 ### Listing all customers `[coming in v2.0]`
-
-_Details coming soon ..._
-
-### Editing a customer `[coming in v2.0]`
 
 _Details coming soon ..._
 
