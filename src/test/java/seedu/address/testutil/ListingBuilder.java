@@ -21,7 +21,6 @@ public class ListingBuilder {
     private Client owner;
     private Price askingPrice;
 
-    
     /**
      * Creates a {@code ListingBuilder} with the default details.
      */
