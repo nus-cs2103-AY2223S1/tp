@@ -78,6 +78,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Activity> getSelectedActivity() {
+        return model.getSelectedActivity();
+    }
+
+    @Override
     public Path getHobbyListFilePath() {
         return model.getHobbyListFilePath();
     }

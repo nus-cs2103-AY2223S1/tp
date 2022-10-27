@@ -19,26 +19,26 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
 3. Copy the file to the folder you want to use as the _home folder_ for your HobbyList.
 
 4. Double-click the file to start the app. The default GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/default_gui.jpg)
+   ![Ui](images/default_gui.png)
 
 5. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
     * **`list`** : Lists all hobby activities in HobbyList.
 
-    * **`add`**`n/42km run d/NUS Run event [t/sport] [date/2022-09-30]` : Adds a hobby activity named `42km run` to the list.
-
-
+    * **`add`**`n/42km run d/NUS Run event [t/sport] [date/2022-09-30]` : Adds a hobby activity named **42km run** to the list.
+    
     * **`delete`**`3` : Deletes the 3rd hobby activity shown in the current list.
 
-    * **`find`**`keyword/1973-03` : Find activities that contain the keyword or located in March of 1973.
+    * **`find`**`keyword/1973-03` : Finds activities that contain the keyword or located in March of 1973.
 
     * **`exit`** : Exits the app.
 
 6. Click the button located in the top left corner to execute certain task.<br>
    Some example buttons you can try:
     * **`File`** : To find the exit button.
-    * **`Help`** : To look at a pop up window about more helping information.
+    * **`Preference`** : To set command words according to user's preference.
+    * **`Help`** : To open a pop-up window containing more helping information.
     * **`Theme`** : To change different appearance of the app.
 
 7. Refer to the [Features](#features) below for details of each command.
@@ -55,7 +55,7 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/42km run`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG] [date/DATE] ` can be used as `n/42km run t/sport` or as `n/42km run`.
+  e.g. `n/NAME [t/TAG] [date/DATE] [s/STATUS] ` can be used as `n/42km run t/sport` or as `n/42km run`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/sport`, `t/sport t/cardio` etc.
@@ -77,17 +77,34 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
 
 Shows a message explaining how to access the help page.
 
-Format: `help`.
+Format: `help`
 
 ### Adding a hobby activity : `add`
 
 Adds a hobby activity to HobbyList.
 
-Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]`
+Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`
+
+* `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** as STATUS. e.g. `s/ongoing`(case-insensitive).
+* If `STATUS` is not specified, it will be displayed as **Status: NONE** by default.
 
 Examples:
 * `add n/42km run d/NUS Run event t/sport`
-* `add n/Badminton d/play badminton t/sport date/2022-10-19`
+* `add n/Badminton d/play badminton t/sport date/2022-10-19 s/completed`
+
+### Rating an activity: `rate`
+
+Adds rating and writes review for an activity in the HobbyList.
+
+Format: `rate INDEX r/RATING [re/REVIEW]`
+
+* The `INDEX` refers to the index number shown in the displayed activity list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `RATING` only accepts integer numbers from 0 to 5 (inclusive).
+
+Example:
+* `rate 1 r/2`
+* `rate 2 r/4 r/Interesting movie`
 
 ### Listing all hobby activities : `list`
 
@@ -95,57 +112,114 @@ Shows a list of all hobby activities in HobbyList.
 
 Format: `list`
 
-Example:
-* `list`
+Example: `list`
 
-### Finding a command with keywords: `find`
+### Selecting an activity: `select`
+
+Displays all details of the selected activity from HobbyList on the panel to the right of the list panel.
+
+Format: `select INDEX`
+
+* Displays all the details of the selected activity.
+* Constraints for `INDEX` is similar to those above in **Rating an activity**
+
+### Finding activities: `find`
+
+#### With keywords:
 
 Shows a list of all hobby activities whose names or descriptions contain any of the specified keywords.
-Show alist of all hobby activities that located on a certain date, or in a certain month of a year, or in a certain year.
 
 Format:
-    `find KEYWORD`
-    `find yyyy-mm-dd`
-    `find yyyy-mm`
-    `find yyyy`
+    `find KEYWORDS`
 
-* The keywords are case-insensitive.
+* The `KEYWORDS` are case-insensitive.
 
 Example:
 * `find run`
 * `find mystery novel`
+
+#### With time:
+
+Shows a list of all hobby activities that located on a certain date, or in a certain month of a year, or in a certain year.
+
+Format:
+* `find YYYY-MM-DD`
+* `find YYYY-MM`
+* `find YYYY`
+
+Example:
+* `find 2001-01-01`
 * `find 1974-02`
 * `find 1999`
-* `find 2001-01-01`
 
-### Finding activities by tags : `filter`
+#### With exact rating value:
+
+Shows a list of all hobby activities whose rating is exactly the required value(between 0-5, both inclusive).
+
+Format: `find rate/VALUE`
+
+* `VALUE` only accepts integer numbers from 0 to 5 (inclusive).
+
+Example: `find rate/3`
+
+### Finding activities with rating value above certain value : `r/above`
+
+Shows a list of all hobby activities whose rating value is greater or equal than the required value.
+
+Format: `r/above VALUE`
+
+* `VALUE` only accepts integer numbers from 0 to 5 (inclusive).
+
+Example: `r/above 1`
+
+### Finding activities with tags : `filterTag`
 
 Shows a list of all hobby activities whose tags match the one specified in the command.
 
-Format: `filter KEYWORD`
+Format: `filterTag KEYWORDS`
 
-* The keywords are case-insensitive.
+* The `KEYWORDS` are case-insensitive.
 
 Example:
-* `filter book`
-* `filter anime`
+* `filterTag book`
+* `filterTag ANIME`
+
+### Finding activities with status: `filterStatus`
+
+Shows a list of all hobby activities whose status match the status specified in the command.
+
+Format: `filterStatus STATUS`
+
+* The feature only works with the `STATUS` being **UPCOMING**, **ONGOING** or **COMPLETED** (case-insensitive).
+* If `STATUS` is different from the three statuses above, it is treated as **NONE**.
+
+Example: 
+* `filterStatus COMPLETED`
+* `filterStatus ongoing`
 
 ### Editing an activity : `edit`
 
 Edits a specified activity from HobbyList.
 
-Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`
+Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`
 
-* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
-* At least one of the optional fields must be provided.
+* Edits the activity at the specified `INDEX`. The index refers to the index number shown in the displayed activity list. The `INDEX` **must be a positive integer** 1, 2, 3, …
+* At least **one** of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the activity will be removed i.e. adding of tags is not cumulative.
 * You can remove all the activity's tags by typing `t/` without specifying any tags after it.
+* `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** (case-insensitive) as STATUS. e.g. `s/ongoing`.
 
 Examples:
 
-* `edit 1 n/A Clash of Kings d/Epic fantasy novel by George R. R. Martin.` Edits the name and description of the 1st activity to be `A Clash of Kings` and `Epic fantasy novel by George R. R. Martin.` respectively.
-* `edit 2 date/2022-10-21 t/` Removes the tags of the second activity and sets the date to `2022-10-21`.
+* `edit 1 n/A Clash of Kings d/Epic fantasy novel by George R. R. Martin.` 
+
+    *Edits the name and description of the 1st activity to be `A Clash of Kings` and `Epic fantasy novel by George R. R. Martin.` respectively.*
+
+
+* `edit 2 date/2022-10-21 t/` 
+  
+    *Removes the tags of the second activity and sets the date to `2022-10-21`.*
 
 ### Deleting an activity : `delete`
 
@@ -157,9 +231,7 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed activity list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Example:
-
-* `delete 1`
+Example: `delete 1`
 
 ### Deleting all activities: `clear`
 
@@ -167,9 +239,7 @@ Deletes all activities from HobbyList
 
 Format: `clear`
 
-Example:
-
-* `clear`
+Example: `clear`
 
 ### Exiting the program : `exit`
 
@@ -177,9 +247,7 @@ Exits the program.
 
 Format: `exit`
 
-Example:
-
-* `exit`
+Example: `exit`
 
 ### Renaming the commands
 
@@ -208,14 +276,18 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 
 ## Command summary
 
-| Action     | Format                                                                                                                                             |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]` <br/>e.g., `add n/poutine d/at some place t/food date/2022-09-25`                                |
-| **Clear**  | `clear`                                                                                                                                            |
-| **Delete** | `delete INDEX`                                                                                                                                     |
-| **Edit**   | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`<br/>e.g., `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17` |
-| **Exit**   | `exit`                                                                                                                                             |
-| **Find**   | `find KEYWORDS``find yyyy-mm-dd` `find yyyy-mm` `find yyyy`                                                                                        |
-| **Filter** | `filter KEYWORD`                                                                                                                                   |
-| **List**   | `list`                                                                                                                                             |
-| **Help**   | `help`                                                                                                                                             |
+| Action           | Format                                                                                                                                             |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**          | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]` <br/>e.g., `add n/poutine d/at some place t/food date/2022-09-25`                                |
+| **Clear**        | `clear`                                                                                                                                            |
+| **Delete**       | `delete INDEX`                                                                                                                                     |
+| **Edit**         | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`<br/>e.g., `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17` |
+| **Exit**         | `exit`                                                                                                                                             |
+| **FilterStatus** | `filterStatus STATUS`                                                                                                                              |
+| **FilterTag**    | `filterTag KEYWORD`                                                                                                                                |
+| **Find**         | `find KEYWORDS` <br/> `find yyyy-mm-dd` `find yyyy-mm` `find yyyy` <br/> `find rate/value`                                                         |
+| **Help**         | `help`                                                                                                                                             |
+| **List**         | `list`                                                                                                                                             |
+| **Rate above**   | `r/above VALUE`                                                                                                                                    |
+| **Rate**         | `rate INDEX r/RATING [re/REVIEW]`                                                                                                                  |
+| **Select**       | `select INDEX  `                                                                                                                                   |

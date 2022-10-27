@@ -17,7 +17,10 @@ Class Activity
 Class Date
 Class Description
 Class Name
+Class Status
 Class Tag
+Class Rating
+Class Review
 
 }
 
@@ -39,6 +42,9 @@ Activity *--> Name
 Activity *--> Description
 Activity *--> Date
 Activity *--> "*" Tag
+Activity *--> "0..1" Status
+Activity *--> "0..1" Rating
+Activity *--> "0..1" Review
 
 Name -[hidden]right-> Description
 Date -[hidden]right-> Tag

@@ -13,6 +13,7 @@ Class HelpWindow
 Class ResultDisplay
 Class ActivityListPanel
 Class ActivityCard
+Class SelectedActivityPanel
 Class StatusBarFooter
 Class CommandBox
 }
@@ -37,6 +38,7 @@ MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 ActivityListPanel -down-> "*" ActivityCard
+ActivityListPanel -down-> "1" SelectedActivityPanel
 
 MainWindow -left-|> UiPart
 
@@ -44,10 +46,12 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 ActivityListPanel --|> UiPart
 ActivityCard --|> UiPart
+SelectedActivityPanel --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 ActivityCard ..> Model
+SelectedActivityPanel ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
@@ -55,6 +59,7 @@ ActivityListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+SelectedActivityPanel -[hidden]left- ActivityCard
 
 MainWindow -[hidden]-|> UiPart
 @enduml

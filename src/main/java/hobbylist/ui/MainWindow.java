@@ -83,6 +83,9 @@ public class MainWindow extends UiPart<Stage> {
         case LIGHT:
             handleLight();
             break;
+        case TREE:
+            handleTree();
+            break;
         default:
             handleDark();
         }
@@ -138,7 +141,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        activityListPanel = new ActivityListPanel(logic.getFilteredActivityList());
+        activityListPanel = new ActivityListPanel(logic.getFilteredActivityList(), logic.getSelectedActivity());
         activityListPanelPlaceholder.getChildren().add(activityListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -230,7 +233,7 @@ public class MainWindow extends UiPart<Stage> {
                 .removeAll("view/StarTheme.css", "view/DarkTheme.css",
                         "view/SkyTheme.css", "view/LightTheme.css", "view/TreeTheme.css");
         primaryStage.getScene().getStylesheets().add("view/TreeTheme.css");
-
+        theme = ThemeSettings.Theme.TREE;
     }
 
     /**

@@ -93,7 +93,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `HobbyListParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a activity).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -321,25 +321,27 @@ Mainly CLI with many shortcuts to benefit people who type fast.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …          | I want to …                            | So that I can…                              |
-|----------|-----------------|----------------------------------------|---------------------------------------------|
-| `* * *`  | user            | add activity                           | track my activities                         |
-| `* * *`  | user            | delete activity                        | make mistakes                               |
-| `* * *`  | user            | view activities                        | look at what I have done                    |
-| `* *`    | busy CS student | quickly write commands                 | save time adding entries                    |
-| `* *`    | busy CS student | add date to an activity                | keep the timeline of events in life clear   |
-| `*`      | busy CS student | find activities in certain time period | manage different timeline of activities     |
-| `* *`    | new user        | type "help" for help                   | try the commands and use the app            |
-| `* *`    | new user        | clear all activities                   | quickly clear the sample data               |
-| `* *`    | new user        | see sample data                        | get to know how the app works               |
-| `* *`    | user            | tag an activity with a type            | know what type of activity it is            |
-| `* *`    | user            | change the appearance of the app       | have better experience when looking through |
-| `* *`    | user            | add an activity description            | know what the activity is about             |
-| `*`      | long time user  | use shortcuts for commands             | enter commands faster                       |
-| `*`      | food enthusiast | review restaurants                     | note down my opinions of the restaurant     |
-| `*`      | food enthusiast | rate restaurants                       | note down my opinions of the restaurant     |
-| `*`      | gym user        | keep track of dates of activities      | record when I did the activity              |
-| `*`      | long time user  | search activities with keywords        | quickly find certain activity               |
+| Priority | As a …          | I want to …                                          | So that I can…                                 |
+|----------|-----------------|------------------------------------------------------|------------------------------------------------|
+| `* * *`  | user            | add activity                                         | track my activities                            |
+| `* * *`  | user            | delete activity                                      | make mistakes                                  |
+| `* * *`  | user            | view activities                                      | look at what I have done                       |
+| `* *`    | busy CS student | quickly write commands                               | save time adding entries                       |
+| `* *`    | busy CS student | add date to an activity                              | keep the timeline of events in life clear      |
+| `*`      | busy CS student | find activities in certain time period               | manage different timeline of activities        |
+| `* *`    | new user        | type "help" for help                                 | try the commands and use the app               |
+| `* *`    | new user        | clear all activities                                 | quickly clear the sample data                  |
+| `* *`    | new user        | see sample data                                      | get to know how the app works                  |
+| `* *`    | user            | tag an activity with a type                          | know what type of activity it is               |
+| `* *`    | user            | change the appearance of the app                     | have better experience when looking through    |
+| `* *`    | user            | add an activity description                          | know what the activity is about                |
+| `*`      | long time user  | use shortcuts for commands                           | enter commands faster                          |
+| `*`      | food enthusiast | review restaurants                                   | note down my opinions of the restaurant        |
+| `*`      | food enthusiast | rate restaurants                                     | note down my opinions of the restaurant        |
+| `*`      | food enthusiast | find restaurants with certain rate                   | quickly choose a restaurant to go              |
+| `*`      | food enthusiast | find restaurants with rate higher than certain value | choose some restaurants to recommend to others |
+| `*`      | gym user        | keep track of dates of activities                    | record when I did the activity                 |
+| `*`      | long time user  | search activities with keywords                      | quickly find certain activity                  |
 
 
 *{More to be added}*
@@ -403,12 +405,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. HobbyList shows an error message.
 
       Use case resumes at step 2.
+
 **Use case: Find activities in a certain time period**
 
 **MSS**
 
-1.  User find activities on a certain date/in a certain month/year.
-2.  HobbyList show all the activities located in the required period.
+1. User find activities on a certain date/in a certain month/year.
+2. HobbyList shows all the activities located in the required period.
+
+    Use case ends.
+
+**Use case: Find activities above certain rate value**
+
+**MSS**
+
+1. User find activities with rates greater or equal than certain value.
+2. HobbyList shows activities with rates above certain value.
 
     Use case ends.
 
@@ -417,7 +429,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User add an activity with date
-2.  HobbyList show the date in the activity card
+2.  HobbyList shows the date in the activity card
 
     Use case ends.
 
@@ -428,6 +440,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: Select an activity to display its details**
+
+**MSS**
+
+1. User select an activity by its index
+2. HobbyList show all the details of the selected activity, including name, description, tags, date, status, rating, review
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid
+    * 1a1. HobbyList shows an error message.
+      
+         Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
