@@ -74,7 +74,7 @@ Required Arguments:
 - `MODULE-CODE`
     - e.g. `CS2103`
 
-View full details (e.g. description, module credits and timetable) of a module via its module code.
+View full details (e.g. description, module credits and lesson slots) of a module via its module code.
 
 ### Listing module prerequisite: `prereqs`
 
@@ -160,14 +160,14 @@ Traverse/Scroll **down**: `<Down>`
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**help** | `help`<br> e.g. `help find`
-**ls** | `ls [FACULTY-PREFIX]`<br> e.g. `ls`, `ls CS`, `ls MA --user`
-**find** | `find KEYWORD`<br> e.g. `find compilers`
-**view** | `view MODULE-CODE`<br> e.g. `view CS2103`
-**prereqs** | `prereqs MODULE-CODE`<br> e.g. `prereqs CS2103`
-**add** | `add MODULE-CODE`<br> e.g. `add CS2103`
-**rm** | `rm MODULE-CODE`<br> e.g. `rm CS2103`
-**pick** | `pick MODULE-CODE LESSON-TYPE LESSON-ID`<br> e.g. `pick CS2103 TUT 06`
-**exit** | `exit`
+| Action      | Format, Examples                                                       |
+|-------------|------------------------------------------------------------------------|
+| **help**    | `help`<br> e.g. `help find`                                            |
+| **ls**      | `ls [FACULTY-PREFIX]`<br> e.g. `ls`, `ls CS`, `ls MA --user`           |
+| **find**    | `find KEYWORD`<br> e.g. `find compilers`                               |
+| **view**    | `view MODULE-CODE`<br> e.g. `view CS2103`                              |
+| **prereqs** | `prereqs MODULE-CODE`<br> e.g. `prereqs CS2103`                        |
+| **add**     | `add MODULE-CODE`<br> e.g. `add CS2103`                                |
+| **rm**      | `rm MODULE-CODE`<br> e.g. `rm CS2103`                                  |
+| **pick**    | `pick MODULE-CODE LESSON-TYPE LESSON-ID`<br> e.g. `pick CS2103 TUT 06` |
+| **exit**    | `exit`                                                                 |
