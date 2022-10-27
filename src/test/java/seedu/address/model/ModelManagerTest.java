@@ -98,6 +98,31 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getSortedFilteredPersonList_listIsSorted() {
+        modelManager.updateSortedFilteredPersonList(Person::compareTo);
+        modelManager.addPerson(CARL);
+        modelManager.addPerson(BENSON);
+        modelManager.addPerson(ALICE);
+        assertSorted(modelManager.getSortedFilteredPersonList());
+    }
+
+    private void assertSorted(ObservableList<Person> list) {
+        Iterator<Person> iterator = list.iterator();
+        Person prev = null;
+        while (iterator.hasNext()) {
+            if (prev == null) {
+                prev = iterator.next();
+                continue;
+            }
+
+            Person current = iterator.next();
+            if (current.getName().compareTo(prev.getName()) < 0) {
+                fail("List is not sorted.");
+            }
+        }
+    }
+    
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
