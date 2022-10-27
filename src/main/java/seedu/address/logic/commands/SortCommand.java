@@ -21,15 +21,18 @@ public class SortCommand extends Command {
             + "ARGUMENT can be either 'NAME', 'CLASS' and 'OWED'\nORDER can be either 'ASC' OR 'DESC'\n"
             + "Example: " + COMMAND_WORD + " NAME ASC";
     public static final String MESSAGE_UNKNOWN_ORDER_KEYWORD =
-            "The order of Sort Command must be 'ASC' or 'DESC' or left empty.";
-    public static final String MESSAGE_UNKNOWN_TYPE_KEYWORD =
-            "The type of Sort Command must be from 'NAME', 'CLASS; or 'OWED'";
+            "The order of Sort Command should be 'ASC' or 'DESC' or left empty.";
+    public static final String MESSAGE_UNKNOWN_TYPE_KEYWORD = "You may sort by 'name', 'class' or 'owed' amount, "
+            + "followed by 'asc' or 'desc' order.\n"
+            + "Example: sort owed asc";
 
     /**
      * {@code TYPE} specifies what possible types {@code SortCommand} can accept.
      */
     public static enum Type {
-        NAME
+        NAME,
+        CLASS,
+        OWED
     };
 
     /**
@@ -59,6 +62,18 @@ public class SortCommand extends Command {
                 return Person::compareToByNameAsc;
             } else {
                 return Person::compareToByNameDesc;
+            }
+        case CLASS:
+            if (order.equals(Order.ASC)) {
+                return Person::compareToByClassAsc;
+            } else {
+                return Person::compareToByClassDesc;
+            }
+        case OWED:
+            if (order.equals(Order.ASC)) {
+                return Person::compareToByMoneyOwedAsc;
+            } else {
+                return Person::compareToByMoneyOwedDesc;
             }
         default:
             // default sorting is to sort by Name Asc

@@ -18,7 +18,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.ClassContainsDatePredicate;
+import seedu.address.model.person.predicate.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
 import seedu.address.model.person.predicate.TagContainsKeywordsPredicate;
@@ -36,6 +38,14 @@ public class FindCommandTest {
                 new NameContainsKeywordsPredicate(Collections.singletonList("first"));
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        AddressContainsKeywordsPredicate addressFirstPredicate =
+                new AddressContainsKeywordsPredicate(Collections.singletonList("121 Baker Street #100-@-99"));
+        AddressContainsKeywordsPredicate addressSecondPredicate =
+                new AddressContainsKeywordsPredicate(Collections.singletonList("(00 - 12379623) Prinsep :1 Lane"));
+        EmailContainsKeywordsPredicate emailFirstPredicate =
+                new EmailContainsKeywordsPredicate(Collections.singletonList("fong_teng@yahoo.com"));
+        EmailContainsKeywordsPredicate emailSecondPredicate =
+                new EmailContainsKeywordsPredicate(Collections.singletonList("wongtf@gmail.com"));
         ClassContainsDatePredicate classOnePredicate =
                 new ClassContainsDatePredicate("2022-10-10");
         ClassContainsDatePredicate classTwoPredicate =
@@ -51,8 +61,12 @@ public class FindCommandTest {
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindCommand findAddressFirstCommand = new FindCommand(addressFirstPredicate);
+        FindCommand findAddressSecondCommand = new FindCommand(addressSecondPredicate);
         FindCommand findClassOneCommand = new FindCommand(classOnePredicate);
         FindCommand findClassTwoCommand = new FindCommand(classTwoPredicate);
+        FindCommand findEmailFirstCommand = new FindCommand(emailFirstPredicate);
+        FindCommand findEmailSecondCommand = new FindCommand(emailSecondPredicate);
         FindCommand findPhoneOneCommand = new FindCommand(phoneOnePredicate);
         FindCommand findPhoneTwoCommand = new FindCommand(phoneTwoPredicate);
         FindCommand findTagOneCommand = new FindCommand(tagOnePredicate);
@@ -60,15 +74,21 @@ public class FindCommandTest {
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(findAddressFirstCommand.equals(findAddressFirstCommand));
         assertTrue(findClassOneCommand.equals(findClassOneCommand));
+        assertTrue(findEmailFirstCommand.equals(findEmailFirstCommand));
         assertTrue(findPhoneOneCommand.equals(findPhoneOneCommand));
         assertTrue(findTagOneCommand.equals(findTagOneCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        FindCommand findAddressFirstCommandCopy = new FindCommand(addressFirstPredicate);
+        assertTrue(findAddressFirstCommand.equals(findAddressFirstCommandCopy));
         FindCommand findClassOneCommandCopy = new FindCommand(classOnePredicate);
         assertTrue(findClassOneCommand.equals(findClassOneCommandCopy));
+        FindCommand findEmailFirstCommandCopy = new FindCommand(emailFirstPredicate);
+        assertTrue(findEmailFirstCommand.equals(findEmailFirstCommandCopy));
         FindCommand findPhoneOneCommandCopy = new FindCommand(phoneOnePredicate);
         assertTrue(findPhoneOneCommand.equals(findPhoneOneCommandCopy));
         FindCommand findTagOneCommandCopy = new FindCommand(tagOnePredicate);
@@ -76,21 +96,31 @@ public class FindCommandTest {
 
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));
+        assertFalse(findAddressFirstCommand.equals(2));
         assertFalse(findSecondCommand.equals(1));
         assertFalse(findTagOneCommand.equals(1));
         assertFalse(findTagTwoCommand.equals(1));
+        assertFalse(findEmailFirstCommand.equals(1));
 
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
+        assertFalse(findAddressFirstCommand.equals(null));
         assertFalse(findClassOneCommand.equals(null));
+        assertFalse(findEmailFirstCommand.equals(null));
         assertFalse(findPhoneOneCommand.equals(null));
         assertFalse(findTagOneCommand.equals(null));
 
         // different person -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
 
+        // different address -> returns false
+        assertFalse(findAddressFirstCommand.equals(findAddressSecondCommand));
+
         // different date -> returns false
         assertFalse(findClassOneCommand.equals(findClassTwoCommand));
+
+        // different address -> returns false
+        assertFalse(findEmailFirstCommand.equals(findEmailSecondCommand));
 
         // different phone -> returns false
         assertFalse(findPhoneOneCommand.equals(findPhoneTwoCommand));
@@ -110,7 +140,17 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroClassKeyword_noPersonFound() {
+    public void execute_zeroAddressKeywords_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        AddressContainsKeywordsPredicate predicate = prepareAddressPredicate(" ");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_zeroClassKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         ClassContainsDatePredicate predicate = new ClassContainsDatePredicate("2022-01-01");
         FindCommand command = new FindCommand(predicate);
@@ -133,6 +173,15 @@ public class FindCommandTest {
     public void execute_zeroTagKeyword_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         TagContainsKeywordsPredicate predicate = prepareTagPredicate("hello");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+    @Test
+    public void execute_zeroEmailKeywords_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        EmailContainsKeywordsPredicate predicate = prepareEmailPredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -161,5 +210,18 @@ public class FindCommandTest {
      */
     private TagContainsKeywordsPredicate prepareTagPredicate(String userInput) {
         return new TagContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+    /**
+     * Parses {@code userInput} into an {@code AddressContainsKeywordsPredicate}.
+     */
+    private AddressContainsKeywordsPredicate prepareAddressPredicate(String userInput) {
+        return new AddressContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into an {@code EmailContainsKeywordsPredicate}.
+     */
+    private EmailContainsKeywordsPredicate prepareEmailPredicate(String userInput) {
+        return new EmailContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
