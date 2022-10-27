@@ -15,11 +15,11 @@ import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 public class FindModulesCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all modules whose module code"
+    public static final String MESSAGE_USAGE = "m " + COMMAND_WORD + ": Finds all modules whose module code"
             + " partially or fully contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD \n"
-            + "Example: " + COMMAND_WORD + " cs2030s";
+            + "Example: m " + COMMAND_WORD + " cs2030s";
 
     private final ModuleCodeContainsKeywordsPredicate predicate;
 

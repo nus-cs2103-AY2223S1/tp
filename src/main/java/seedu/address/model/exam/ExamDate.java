@@ -14,7 +14,17 @@ import java.time.format.ResolverStyle;
  */
 public class ExamDate {
     public static final String DATE_CONSTRAINTS =
-            "Exam Date should be in dd-mm-yyyy format and must be a valid date.";
+            "Exam Date should be in the format DD-MM-YYYY and a valid date. DD should be between "
+                    + "1 and 31(both inclusive)\nand MM "
+                    + "should be between 1 and 12(both inclusive)";
+    public static final String DATE_FORMAT_CONSTRAINTS =
+            "Exam Date should be in the format DD-MM-YYYY. DD should be between "
+                    + "1 and 31(both inclusive)\nand MM "
+                    + "should be between 1 and 12(both inclusive)";
+    public static final String NOT_A_PAST_DATE_CONSTRAINTS =
+            "Exam Date should not be earlier than today's date.";
+    public static final String VALID_DATE_CONSTRAINTS =
+            "Exam Date should be a valid date";
     public static final DateTimeFormatter DATE_TIME_FORMATTER =
             DateTimeFormatter.ofPattern("dd-MM-uuuu").withResolverStyle(ResolverStyle.STRICT);
     public final String examDate;
@@ -30,12 +40,6 @@ public class ExamDate {
         examDate = date;
     }
 
-    /**
-     * Returns true if a given string is a valid date.
-     */
-    public static boolean isValidDate(String date) {
-        return isValidDateLength(date) && isExistingDate(date) && isNotAPastDate(date);
-    }
 
     /**
      * Checks if the format given for the date is valid.
@@ -52,13 +56,37 @@ public class ExamDate {
         }
     }
 
+    /**
+     * Checks if format is in DD-MM-YYYY where DD is between 1 to 31(both inclusive),
+     * MM is between 1 to 12(both inclusive), yyyy is between 0 to 9999(both inclusive).
+     * @param date The date provided.
+     * @return true if date is in DD-MM-YYYY format.
+     */
+    public static boolean isCorrectDateFormat(String date) {
+        try {
+            String[] a = date.split("-");
+            Integer days = Integer.parseInt(a[0]);
+            Integer month = Integer.parseInt(a[1]);
+            Integer year = Integer.parseInt(a[2]);
+            if (year >= 0000 && year <= 9999 && month >= 01 && month
+                    <= 12 && days >= 01 && days <= 31 && isValidDateLength(date)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException ex) {
+            return false;
+        }
+    }
+
+
     public static boolean isValidDateLength(String date) {
-        return date.length() >= 10;
+        return date.length() == 10;
     }
 
     /**
      * Returns true if date inputted exists.
-     * @param date A String that represents a date that is in the dd-mm-yyyy format.
+     * @param date A String that represents a date that is in the DD-MM-YYYY format.
      * @return true if date exist, otherwise false.
      */
     public static boolean isExistingDate(String date) {
@@ -72,7 +100,7 @@ public class ExamDate {
 
     /**
      * Returns true if date inputted is not a date before the current date.
-     * @param date A String that represents a date that is in the dd-mm-yyyy format.
+     * @param date A String that represents a date that is in the DD-MM-YYYY format.
      * @return true if date is not a past date, otherwise false.
      */
     public static boolean isNotAPastDate(String date) {
