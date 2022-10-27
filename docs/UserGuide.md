@@ -171,7 +171,7 @@ Format: `event -ap EVENT_INDEX pr/PROFILE_INDEX...`
 * If one or more or all of the specified profiles have already been added to the event, the command still executes successfully.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-* If a profile has been added to an event as an attendee, deleting the profile from NUScheduler will delete the profile from the event as well.
+If a profile has been added to an event as an attendee, deleting the profile from NUScheduler will delete the profile from the event as well.
 </div>
 
 Example:
