@@ -35,11 +35,11 @@ public class CreateCommand extends PureCommand {
             public CreateCommand parse(String userInput) throws ParseException {
                 userInput = userInput.trim();
                 String[] tokens = userInput.split("\\s+", 2);
-                String key = tokens[0].trim();
-                String value = tokens[1].trim();
                 if (tokens.length < 2 || tokens[1].trim().length() == 0) {
                     throw new ParseException(INVALID_INPUT + "\n" + USE_EXAMPLE);
                 }
+                String key = tokens[0].trim();
+                String value = tokens[1].trim();
                 if (AddressBookParser.isValidName(key) && AddressBookParser.get().isKeyAvailable(key)) {
                     return new CreateCommand(new CustomCommandBuilder(key, value));
                 }
