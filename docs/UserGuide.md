@@ -115,9 +115,11 @@ After the command is executed:
 
 #### Find a Person : `find`
 
-Find person and displays the persons that match the keyword.
+Displays the persons that match a given keyword. After which, the filtered list can be reset using the `reset` command.
 
-Format: `find KEYWORD`
+Format: 
+- To display the matching persons: `find KEYWORD`
+- To return to the main list: `reset`
 
 Example:
 - Find all the people named David: `find david`
@@ -127,6 +129,9 @@ Before the command is executed:
 
 After the command is executed:
 ![after find](images/ug/find_after.png)
+
+After `reset` is executed:
+![reset](images/ug/reset.png)
 
 #### Sort the list of Persons : `sort`
 
@@ -280,5 +285,6 @@ After executing `help delete`:
 | **set**              | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi`     |
 | **sort**             | `sort` <br> `sort name`, `sort name/desc`                                                                                                                                           |
 | **find**             | `find` <br> `find Tex`, `find Engineer`                                                                                                                                             |
+| **reset**            | `reset`                                                                                                                                                                             |
 | **back**             | `back` or `<ESC>` key                                                                                                                                                               |
-| **help**             | `help` <br> `help`, `help add`                                                                                                                                                       |
+| **help**             | `help` <br> `help`, `help add`                                                                                                                                                      |
