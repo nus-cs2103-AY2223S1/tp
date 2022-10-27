@@ -17,8 +17,8 @@ import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
- * Finds and lists all patients by name, email, address, phone number, tag or remark filter, according to the prefix
- * input by the user.
+ * Filters and lists patients by name, phone, email, address, remark, and/or tag(s) according to the prefix input(s)
+ * by the user.
  */
 public class FindPatientCommand extends Command {
 
@@ -28,7 +28,8 @@ public class FindPatientCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients whose name/phone/email/address"
             + "/tag/remark (according to prefix input) contains any of the specified keywords and displays them as "
             + "a list with index numbers.\n"
-            + "Parameters: prefix, KEYWORD [MORE_KEYWORDS]...\n"
+            + "Multiple prefixes can be used at once to filter patients.\n"
+            + "Parameters: prefix(s), KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " n/alex \n"
             + "Example: " + COMMAND_WORD + " p/91234567 \n"
             + "Example: " + COMMAND_WORD + " e/example \n"
@@ -41,6 +42,13 @@ public class FindPatientCommand extends Command {
 
     /**
      * Creates a FindPatientCommand to find patients(s) according to the prefix input(s).
+     *
+     * @param namePredicate Optional predicate to filter patients by name.
+     * @param phonePredicate Optional predicate to filter patients by phone.
+     * @param emailPredicate Optional predicate to filter patients by email.
+     * @param addressPredicate Optional predicate to filter patients by address.
+     * @param tagPredicate Optional predicate to filter patients by tag(s).
+     * @param remarkPredicate Optional predicate to filter patients by remark.
      */
     public FindPatientCommand(Optional<Predicate<Name>> namePredicate, Optional<Predicate<Phone>> phonePredicate,
                               Optional<Predicate<Email>> emailPredicate, Optional<Predicate<Address>> addressPredicate,

@@ -14,6 +14,7 @@ import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
 import seedu.address.model.bill.Amount;
 import seedu.address.model.bill.BillDate;
+import seedu.address.model.bill.PaymentStatus;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
@@ -209,10 +210,25 @@ public class ParserUtil {
      */
     public static Amount parseAmount(String amount) throws ParseException {
         requireNonNull(amount);
-        String trimmedDate = amount.trim();
-        if (!Amount.isValidAmount(trimmedDate)) {
+        String trimmedAmount = amount.trim();
+        if (!Amount.isValidAmount(trimmedAmount)) {
             throw new ParseException(Amount.MESSAGE_CONSTRAINTS);
         }
         return new Amount(amount);
+    }
+
+    /**
+     * Parses a {@code String paymentStatus} into a {@code PaymentStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code paymentStatus} is invalid.
+     */
+    public static PaymentStatus parsePaymentStatus(String paymentStatus) throws ParseException {
+        requireNonNull(paymentStatus);
+        String trimmedPaymentStatus = paymentStatus.trim();
+        if (!PaymentStatus.isValidPaymentStatus(trimmedPaymentStatus)) {
+            throw new ParseException(PaymentStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new PaymentStatus(paymentStatus);
     }
 }

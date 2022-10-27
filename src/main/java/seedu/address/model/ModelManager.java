@@ -136,14 +136,6 @@ public class ModelManager implements Model {
                 .forEach(appointment -> setAppointment(appointment,
                         new Appointment(editedPatient.getName(), appointment.getMedicalTest(),
                                 appointment.getSlot(), appointment.getDoctor())));
-        getAddressBook().getBillList().stream()
-                .filter(bill -> bill.getAppointment().getName().equals(target.getName()))
-                .forEach(bill -> setBill(bill, new Bill(
-                        new Appointment(editedPatient.getName(), bill.getAppointment().getMedicalTest(),
-                        bill.getAppointment().getSlot(), bill.getAppointment().getDoctor()),
-                        bill.getAmount(),
-                        bill.getBillDate(),
-                        bill.getPaymentStatus())));
 
         addressBook.setPatient(target, editedPatient);
     }
@@ -181,10 +173,10 @@ public class ModelManager implements Model {
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
         getAddressBook().getBillList().stream()
-                .filter(bill -> bill.getAppointment().getName().equals(target.getName()))
+                .filter(bill -> bill.getAppointment().isSameAppointment(target))
                 .forEach(bill -> setBill(bill, new Bill(
-                        new Appointment(editedAppointment.getName(), bill.getAppointment().getMedicalTest(),
-                                bill.getAppointment().getSlot(), bill.getAppointment().getDoctor()),
+                        new Appointment(editedAppointment.getName(), editedAppointment.getMedicalTest(),
+                                editedAppointment.getSlot(), editedAppointment.getDoctor()),
                         bill.getAmount(),
                         bill.getBillDate(),
                         bill.getPaymentStatus())));
