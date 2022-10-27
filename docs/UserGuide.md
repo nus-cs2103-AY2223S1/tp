@@ -201,6 +201,12 @@ _Details coming soon ..._
 
 ## Command summary
 
+  | Action    | Format, Examples                                                                                                                             
+------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | **Add** | APPEAR NICELY! :^) Customers can choose not to disclose private details such as phone number and email address.  The user just needs to `add n/Bob` without asking for phone number or email address.                           |
+  | Cons | User cannot add customers that have same names.                                               The user cannot `add n/Alex` if there already exists an `Alex` in the database, since `Alex` is a common name. |
+
+
 |  Action      | Format, Examples                                                                                                                         |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold` |
