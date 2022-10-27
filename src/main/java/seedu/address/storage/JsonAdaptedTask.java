@@ -27,15 +27,17 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
 
     private final String description;
     private final String localDateTime;
+    private String progress;
 
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("description") String description,
+    public JsonAdaptedTask(@JsonProperty("description") String description, @JsonProperty("progress") String progress,
                            @JsonProperty("localDateTime") String localDateTime, @JsonProperty("name") String name,
                            @JsonProperty("uid") String uid, @JsonProperty("tags") List<JsonAdaptedTag> tags,
                            @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
         super(name, uid, attributes, tags);
         this.description = description;
         this.localDateTime = localDateTime;
+        this.progress = progress;
     }
 
     public JsonAdaptedTask(Task source) {
@@ -83,7 +85,7 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
                     LocalDateTime.class.getSimpleName()));
         }
 
-        Task task = new Task(modelName.getAttributeContent(), description, modelLocalDateTime);
+        Task task = new Task(modelName.getAttributeContent(), description, progress, modelLocalDateTime);
         task.setTags(modelTags);
         modelAttributes.forEach(attribute -> task.addAttribute(attribute));
         return task;

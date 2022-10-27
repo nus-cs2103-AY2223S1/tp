@@ -192,6 +192,5 @@ public interface Model {
 
     void setTask(Task target, Task editedTask);
 
-    void setProgress(Task target, Task editedTask);
 
 }
