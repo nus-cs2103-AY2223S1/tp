@@ -16,13 +16,18 @@ import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 
 /**
- * An UI component that displays information of a {@code Customer}.
+ * A UI component that displays information of a {@code Customer}.
  */
 public class CustomerDetailsPane extends UiPart<Region> {
 
     private static final String FXML = "CustomerDetailsPane.fxml";
     private static final String COMMISSION_LABEL_PLURAL = "Commissions";
     private static final String COMMISSION_LABEL_SINGULAR = "Commission";
+    private static final String PIE_CHART_DATA_STYLE =
+            "-fx-background-insets: 0; -fx-border-width: 0; -fx-pie-color: ";
+    private static final String PIE_CHART_DATA_COMPLETED_BACKGROUND_COLOR = "#32AE46";
+    private static final String PIE_CHART_DATA_IN_PROGRESS_BACKGROUND_COLOR = "#548DE1";
+    private static final String PIE_CHART_DATA_NOT_STARTED_BACKGROUND_COLOR = "#9DA0A5";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -33,6 +38,7 @@ public class CustomerDetailsPane extends UiPart<Region> {
      */
 
     private final Customer customer;
+    private final PieChart pieChart;
 
     @FXML
     private HBox detailsPane;
@@ -67,64 +73,118 @@ public class CustomerDetailsPane extends UiPart<Region> {
     public CustomerDetailsPane(ObservableObject<Customer> customer) {
         super(FXML);
         this.customer = customer.getValue();
+        pieChart = instantiatePieChart();
         handleCustomerCommissionChanges(this.customer);
         customer.addListener((observable, oldValue, newValue) -> handleCustomerCommissionChanges(newValue));
     }
 
     private void updateUI(Customer customer) {
         if (customer == null) {
-            name.setText("No customer selected");
-            phone.setText("");
-            address.setText("");
-            email.setText("");
-            totalRevenue.setText("");
-            commissionLabel.setText(COMMISSION_LABEL_PLURAL); // 0 commissions
-            commissionCount.setText("");
-            commissionCompletedCount.setText("");
-            commissionInProgressCount.setText("");
-            commissionNotStartedCount.setText("");
-            tags.getChildren().clear();
-            pieChartPlaceholder.getChildren().clear();
+            clearAllUiFields();
         } else {
-            name.setText(customer.getName().fullName);
-            phone.setText(customer.getPhone().value);
-            address.setText(customer.getAddress().map(address -> address.value).orElse(""));
-            email.setText(customer.getEmail().value);
-            totalRevenue.setText(String.format("$%.2f", customer.getRevenue()));
-            commissionLabel.setText(customer.getCommissionCount() == 1
-                    ? COMMISSION_LABEL_SINGULAR : COMMISSION_LABEL_PLURAL);
-            commissionCount.setText(Long.toString(customer.getCommissionCount()));
+            setCustomerUiFields(customer);
+            setCommissionStatUi(customer);
+        }
+    }
 
-            commissionCompletedCount.setText(Long.toString(customer.getCompletedCommissionCount()));
-            commissionInProgressCount.setText(Long.toString(customer.getInProgressCommissionCount()));
-            commissionNotStartedCount.setText(Long.toString(customer.getNotStartedCommissionCount()));
+    /**
+     * Creates a pie chart with the styling.
+     */
+    private PieChart instantiatePieChart() {
+        PieChart pieChart = new PieChart();
+        pieChart.setLabelsVisible(false);
+        pieChart.getStyleClass().add("commissionPieChart");
+        pieChart.setMinWidth(150);
+        pieChart.setMaxWidth(150);
+        pieChart.setMinHeight(150);
+        pieChart.setMaxHeight(150);
+        pieChart.setAnimated(true);
+        return pieChart;
+    }
 
-            if (customer.getCommissionCount() > 0) {
-                PieChart.Data completed = new PieChart.Data("Completed", customer.getCompletedCommissionCount());
-                PieChart.Data inProgress = new PieChart.Data("In Progress", customer.getInProgressCommissionCount());
-                PieChart.Data notStarted = new PieChart.Data("Not Started", customer.getNotStartedCommissionCount());
-                ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                        completed, inProgress, notStarted);
-                PieChart pieChart = new PieChart(pieChartData);
-                pieChart.setLabelsVisible(false);
-                pieChart.setStyle("-fx-background-insets: 0; -fx-border-width: 0;");
-                pieChart.setMinWidth(150);
-                pieChart.setMaxWidth(150);
-                pieChart.setMinHeight(150);
-                pieChart.setMaxHeight(150);
-                pieChartPlaceholder.getChildren().setAll(pieChart);
-                completed.getNode().setStyle("-fx-background-insets: 0; -fx-border-width: 0; -fx-pie-color: " + "#32AE46");
-                inProgress.getNode().setStyle("-fx-background-insets: 0; -fx-border-width: 0; -fx-pie-color: " + "#548DE1");
-                notStarted.getNode().setStyle("-fx-background-insets: 0; -fx-border-width: 0; -fx-pie-color: " + "#9DA0A5");
-            } else {
-                pieChartPlaceholder.getChildren().clear();
-            }
+    /**
+     * Resets the CustomerDetailsPane UI to an 'empty state'.
+     */
+    private void clearAllUiFields() {
+        name.setText("No customer selected");
+        phone.setText("");
+        address.setText("");
+        email.setText("");
+        totalRevenue.setText("");
+        commissionLabel.setText("");
+        commissionCount.setText("");
+        commissionCompletedCount.setText("");
+        commissionInProgressCount.setText("");
+        commissionNotStartedCount.setText("");
+        tags.getChildren().clear();
+        pieChartPlaceholder.getChildren().clear();
+    }
 
-            tags.getChildren().clear();
-            customer.getTags().stream()
+    /**
+     * Sets the CustomerDetailsPane UI customer fields to the attributes
+     * of the specified customer (name, phone, address, email, tags and total revenue).
+     */
+    private void setCustomerUiFields(Customer customer) {
+        name.setText(customer.getName().fullName);
+        phone.setText(customer.getPhone().value);
+        address.setText(customer.getAddress().map(address -> address.value).orElse(""));
+        email.setText(customer.getEmail().value);
+        tags.getChildren().clear();
+        customer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        totalRevenue.setText(String.format("$%.2f", customer.getRevenue()));
+    }
+
+    /**
+     * Updates the CustomerDetailsPane UI with commission statistics.
+     */
+    private void setCommissionStatUi(Customer customer) {
+        long totalCommissionCount = customer.getCommissionCount();
+        long completedCommissionCount = customer.getCompletedCommissionCount();
+        long inProgressCommissionCount = customer.getInProgressCommissionCount();
+        long notStartedCommissionCount = customer.getNotStartedCommissionCount();
+
+        // set the field label to be grammatically correct
+        commissionLabel.setText(totalCommissionCount == 1 ? COMMISSION_LABEL_SINGULAR : COMMISSION_LABEL_PLURAL);
+
+        // sets the commission count fields
+        commissionCount.setText(Long.toString(totalCommissionCount));
+        commissionCompletedCount.setText(Long.toString(completedCommissionCount));
+        commissionInProgressCount.setText(Long.toString(inProgressCommissionCount));
+        commissionNotStartedCount.setText(Long.toString(notStartedCommissionCount));
+
+        // generates the pie chart
+        if (totalCommissionCount > 0) {
+            generateCommissionPieChart(completedCommissionCount, inProgressCommissionCount, notStartedCommissionCount);
+        } else {
+            pieChartPlaceholder.getChildren().clear();
         }
+    }
+
+    /**
+     * Handles the generation of the pie chart statistic.
+     */
+    private void generateCommissionPieChart(long completedCommissionCount,
+                                            long inProgressCommissionCount, long notStartedCommissionCount) {
+        // creates the pie chart segments and the pie chart
+        PieChart.Data completed = new PieChart.Data(Commission.CompletionStatusString.COMPLETED.toString(),
+                completedCommissionCount);
+        PieChart.Data inProgress = new PieChart.Data(Commission.CompletionStatusString.IN_PROGRESS.toString(),
+                inProgressCommissionCount);
+        PieChart.Data notStarted = new PieChart.Data(Commission.CompletionStatusString.NOT_STARTED.toString(),
+                notStartedCommissionCount);
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(completed, inProgress, notStarted);
+        pieChart.setData(pieChartData);
+
+        // styles each of the pie chart segment
+        completed.getNode().setStyle(PIE_CHART_DATA_STYLE + PIE_CHART_DATA_COMPLETED_BACKGROUND_COLOR);
+        inProgress.getNode().setStyle(PIE_CHART_DATA_STYLE + PIE_CHART_DATA_IN_PROGRESS_BACKGROUND_COLOR);
+        notStarted.getNode().setStyle(PIE_CHART_DATA_STYLE + PIE_CHART_DATA_NOT_STARTED_BACKGROUND_COLOR);
+
+        // set the placeholder to the generated pie chart
+        pieChartPlaceholder.getChildren().setAll(pieChart);
     }
 
     private void handleCustomerCommissionChanges(Customer newValue) {

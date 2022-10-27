@@ -561,6 +561,12 @@
     -fx-background-color: #3C424B;
 }
 
+.commissionPieChart {
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0, 4, 8);
+}
+
 #iterationListView.list-view {
     -fx-padding: 0px;
     -fx-background-color: #15181F;
