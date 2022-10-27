@@ -22,7 +22,7 @@ As you perform the booking commands, the table will automatically update to refl
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If you are currently viewing a certain venue, and you have added a booking to another venue, or removed a booking
 from another venue, the table will automatically switch to that venue's booking.
-Alternatively, you can use the `venue switch VENUE_NAME` command to switch manually.
+Alternatively, you can use the `venue view VENUE_NAME` command to switch manually.
 </div>
 
 ---
