@@ -263,7 +263,7 @@ Format: `unmark reminder INDEX`
 
 Examples:
 * `unmark reminder 3`
- 
+
 ### Sort reminders by priority: `sort reminder`
 
 Sort reminders by their priority.
