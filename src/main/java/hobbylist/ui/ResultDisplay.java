@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
+import java.awt.*;
+
 /**
  * A ui for the status bar that is displayed at the header of the application.
  */
@@ -17,7 +19,7 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private Label instead;
     @FXML
-    private StackPane placeHolder;
+    private ScrollPane placeHolder;
 
     public ResultDisplay() {
         super(FXML);
