@@ -73,7 +73,7 @@ public class GradeCommand extends Command {
         Student currPosition = (Student) personToEdit.getPosition();
         Student editedPosition = new Student(currPosition.getAttendance(),
                 currPosition.updateOverallGrade(indexOfAssignment, grade),
-                currPosition.getAssignmentsList());
+                currPosition.getAssignmentsList(), currPosition.getFilePath());
         Person editedPerson = new Person(personToEdit.getName(),
                 personToEdit.getPhone(),
                 personToEdit.getEmail(),

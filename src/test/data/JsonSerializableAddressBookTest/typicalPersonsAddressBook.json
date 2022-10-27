@@ -13,11 +13,11 @@
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "position" : "Student",
+    "position" : "TA",
     "address" : "311, Clementi Ave 2, #02-25",
     "remark": "",
-    "details": "attendance - 0/0, grade - 11/12 Assignments: [(t2 Score: 0/0 Weightage: 50%), (t3 Score: 0/0 Weightage: 50%)]",
-    "tagged" : [ "CS2103-T69", "CS2103-T01" ]
+    "details": "Available",
+    "tagged" : [ "CS2103-T69" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -26,7 +26,7 @@
     "address" : "wall street",
     "remark": "",
     "details": "Coordinator",
-    "tagged" : [ ]
+    "tagged" : [ "CS2103-T01" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -40,11 +40,11 @@
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "position" : "Student",
+    "position" : "TA",
     "address" : "michegan ave",
     "remark": "",
-    "details": "attendance - 0/0, grade - 11/12 Assignments: [(t2 Score: 0/0 Weightage: 50%), (t3 Score: 0/0 Weightage: 50%)]",
-    "tagged" : [ ]
+    "details": "Unavailabe",
+    "tagged" : [ "CS2103-T01" ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -52,8 +52,8 @@
     "position" : "Professor",
     "address" : "little tokyo",
     "remark": "",
-    "details": "",
-    "tagged" : [ ]
+    "details": "Coordinator",
+    "tagged" : [ "CS2103-T01" ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -62,6 +62,6 @@
     "address" : "4th street",
     "remark": "",
     "details": "Unavailable",
-    "tagged" : [ ]
+    "tagged" : [ "CS2103-T01" ]
   } ]
 }
