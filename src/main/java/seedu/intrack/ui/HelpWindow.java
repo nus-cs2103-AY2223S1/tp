@@ -9,7 +9,6 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.intrack.commons.core.LogsCenter;
-
 import seedu.intrack.logic.commands.AddCommand;
 import seedu.intrack.logic.commands.ClearCommand;
 import seedu.intrack.logic.commands.DeleteCommand;
