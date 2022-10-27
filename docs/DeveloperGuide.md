@@ -100,7 +100,7 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletep 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete -p 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -179,7 +179,7 @@ The sequence diagram is given below.
 
 1. When the user sorts the person list, the command goes through the `LogicManager`, which will then go through the `AddressBookParser`.
 2. The `AddressBookParser` will then create the corresponding parser for the command, which is `SortPersonCommandParser`.
-3. After which, it will pass the argument (the full command excluding the command word) to this parser.
+3. After which, it will pass the argument (the full command excluding the command word and flag) to this parser.
 4. The command parser will then create a `SortPersonCommand` with the corresponding internal variable (`n/` means sort by name, `c/` means sort by associated company name). This is facilitated by the `Criteria` enumeration.
 5. The method then returns all the way back to `LogicManager`, which is then stored as a variable called `command`.
 6. Then, the command is executed by calling the `execute()` method of `SortPersonCommand` (the command that was returned earlier) directly.
@@ -200,7 +200,7 @@ The sorting mechanism is designed in a way to keep all operations to the `SortPe
 
 1. When the user attempts to find a person or internship, the command goes through the `LogicManager`, which will then go through the `AddressBookParser`.
 2. The `AddressBookParser` will then create the corresponding parser for the command, `FindPersonCommandParser`.
-3. After which, it will pass the argument (the full command excluding the command word) to this parser.
+3. After which, it will pass the argument (the full command excluding the command word and flag) to this parser.
 4. The command parser will then create a `FindPersonCommand` by constructing and storing a `Predicate` that checks, 
    for each field of the `Person`, whether it contains any of the specified keywords.
    The determining of which keyword is for which field is done via parsing of prefixes in the command,
@@ -213,6 +213,24 @@ The sorting mechanism is designed in a way to keep all operations to the `SortPe
 
 The sequence diagram is given below.
 ![FindPersonSequence](images/FindPersonSequence.png)
+
+### Link Person and Internship
+
+#### Implementation
+
+1. When the user attempts to link a person amd an internship, the command goes through the `LogicManager`, which will then go through the `AddressBookParser`.
+2. The `AddressBookParser` will then create the corresponding parser for the command, `LinkCommandParser`.
+3. After which, it will pass the argument (the full command excluding the command word and flag) to this parser.
+4. The command parser will then create a `LinkCommand` with the specified person index and internship index.
+5. The method then returns all the way back to `LogicManager`, which is then stored as a variable called `command`.
+6. This `command` is executed by calling its `execute()` method.
+7. This will invoke the `getFilteredPersonList` and `getFilteredInternshipList` methods of the `model`
+8. Based on this `command` specified person index and internship index, the respective person and internship will be fetched from the internal person list and internship list in InterNUS. New `Person` and `Internship` objects will be created with the fields `internshipId` and `contactPersonId` updated respectively.
+9. `setPerson` and `setInternship` methods of the `model` will be invoked to update the person and internship in InterNUS.
+11. Afterwards, `LinkCommand` creates a `CommandResult` to denote that the operation is completed, and returns this `CommandResult` back to `LogicManager`.
+
+The sequence diagram is given below.
+![LinkSequence](images/LinkSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
