@@ -55,10 +55,8 @@ public class CalculateCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CalculateCommand
-                // instanceof handles nulls
-                && expression.equals(((CalculateCommand) other).expression));
-                // state check
+                || (other instanceof CalculateCommand // instanceof handles nulls
+                && expression.equals(((CalculateCommand) other).expression)); // state check
     }
 
     /**
@@ -94,9 +92,9 @@ public class CalculateCommand extends Command {
         }
 
         // Convert infix expression format into Reverse Polish notation
-        public static String[] expressionToRpn(String[] inputTokens) {
+        public static String[] expressionTorpn(String[] inputTokens) {
             // Reverse Polish notation
-            ArrayList<String> Rpn = new ArrayList<>();
+            ArrayList<String> rpn = new ArrayList<>();
             Stack<String> stack = new Stack<>();
 
             // For each token
@@ -108,7 +106,7 @@ public class CalculateCommand extends Command {
                     while (!stack.empty()
                             && isOperator(stack.peek())
                             && comparePrecedence(token, stack.peek()) <= 0) {
-                        Rpn.add(stack.pop());
+                        rpn.add(stack.pop());
                     }
                     // Push the new operator on the stack
                     stack.push(token);
@@ -118,19 +116,19 @@ public class CalculateCommand extends Command {
                 } else if (token.equals(")")) {
                     // If token is a right parenthesis
                     while (!stack.empty() && !stack.peek().equals("(")) {
-                        Rpn.add(stack.pop());
+                        rpn.add(stack.pop());
                     }
                     stack.pop();
                 } else {
                     // If token is a number
-                    Rpn.add(token);
+                    rpn.add(token);
                 }
             }
             while (!stack.empty()) {
-                Rpn.add(stack.pop());
+                rpn.add(stack.pop());
             }
-            String[] RpnStrArr = new String[Rpn.size()];
-            return Rpn.toArray(RpnStrArr);
+            String[] rpnStrArr = new String[rpn.size()];
+            return rpn.toArray(rpnStrArr);
         }
 
         public static double rpntoDouble(String[] tokens) {
@@ -172,9 +170,9 @@ public class CalculateCommand extends Command {
             System.out.println(userInput);
             try {
                 String[] input = userInput.split(regex);
-                String[] output = expressionToRpn(input);
+                String[] output = expressionTorpn(input);
                 System.out.println(" ");
-                // Feed the Rpn string to RpntoDouble to give result
+                // Feed the rpn string to rpntoDouble to give result
                 Double result = rpntoDouble(output);
                 resultStr = String.format("%.2f", result);
             } catch (NumberFormatException | EmptyStackException nfe) {
