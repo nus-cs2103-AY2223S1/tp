@@ -4,11 +4,12 @@ title: User Guide
 ---
 # uNivUSal
 
-uNivUSal is a **desktop app for managing contacts catered to CS2103T students, TAs, and professors**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, uNivUSal can get your contact management tasks done faster than traditional GUI apps.
+uNivUSal is a **desktop app for managing contacts catered to CS2103T students, TAs, and professors**, optimized for use 
+via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 
-* Quick start
-* Features
+* [Quick start](quick-start)
+* [Features](features)
    * Viewing help : help
    * Adding a person: add
    * Listing all persons : list
@@ -22,7 +23,7 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
    * Remove a person from a group: ungroup
    * Open a group window: group
    * Email all persons in a group: emailall
-* Command summary
+* [Command summary](command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 

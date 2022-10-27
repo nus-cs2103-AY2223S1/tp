@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAddressCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddToFavCommand;
 import seedu.address.logic.commands.AddToGroupCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -136,6 +137,10 @@ public class AddressBookParser {
         case SocialCommand.COMMAND_WORD:
             HistoryList.addToHistory(userInput);
             return new SocialCommandParser().parse(arguments);
+
+        case AddToFavCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
+            return new AddToFavCommandParser().parse(arguments);
 
         case EmailAllCommand.COMMAND_WORD:
             HistoryList.addToHistory(userInput);

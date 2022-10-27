@@ -38,6 +38,8 @@ public class AddToGroupCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book/group.";
     public static final String MESSAGE_GROUP_PERSON_SUCCESS = "Grouped Person: %1$s";
+    public static final String MESSAGE_CREATE_GROUP_FAILED = "Sorry, it seems like the group creation failed, try "
+            + "again.";
 
     private final Index index;
     private final Group groupToAdd;
@@ -103,6 +105,24 @@ public class AddToGroupCommand extends Command {
         }
 
         return new Person(occupation, name, phone, email, tutorial, address, tags, social, updatedGroups);
+    }
+
+    /**
+     * Returns a {@code Person} with the group {@code groupToAdd} added to {@code personToGroup}.
+     *
+     * @param personToGroup     person to be added
+     * @param groupToAdd        group to add the person into
+     * @return                  groupedPerson
+     * @throws CommandException if groupedPerson creation fails
+     */
+    public Person getGroupedPerson(Person personToGroup, Group groupToAdd) throws CommandException {
+        Person groupedPerson;
+        try {
+            groupedPerson = createGroupedPerson(personToGroup, groupToAdd);
+        } catch (CommandException e) {
+            throw new CommandException(MESSAGE_CREATE_GROUP_FAILED);
+        }
+        return groupedPerson;
     }
 
 }
