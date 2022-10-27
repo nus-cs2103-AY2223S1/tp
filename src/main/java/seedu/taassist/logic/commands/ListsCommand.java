@@ -8,6 +8,7 @@ import java.util.StringJoiner;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
+import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 
 /**
@@ -17,10 +18,11 @@ public class ListsCommand extends Command {
 
     public static final String COMMAND_WORD = "lists";
 
-    public static final String MESSAGE_LIST_HEADER = "Recorded sessions for class %s:";
+    public static final String MESSAGE_SUCCESS = "Recorded sessions for class [ %1s ]:\n%2s";
+    public static final String MESSAGE_EMPTY_SESSION_LIST = "No sessions have been added for this class. "
+            + "Add sessions with [ " + SessionCommand.COMMAND_WORD + " ] command.";
 
     @Override
-    // TODO: Rudimentary implementation. Needs to be combined with UI.
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
@@ -28,14 +30,23 @@ public class ListsCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
         }
 
-        String focusedClassName = model.getFocusedClass().getClassName();
         List<Session> sessions = model.getFocusedClass().getSessions();
-        StringJoiner sessionsString = new StringJoiner("\n");
-        sessionsString.add(String.format(MESSAGE_LIST_HEADER, focusedClassName));
-        for (int i = 0; i < sessions.size(); i++) {
-            sessionsString.add((i + 1) + ". " + sessions.get(i));
+        ModuleClass focusedClass = model.getFocusedClass();
+
+        return new CommandResult(getSuccessMessage(sessions, focusedClass));
+    }
+
+    public static String getSuccessMessage(List<Session> sessions, ModuleClass focusedClass) {
+        if (sessions.isEmpty()) {
+            return MESSAGE_EMPTY_SESSION_LIST;
         }
-        return new CommandResult(sessionsString.toString());
+        StringJoiner sessionsString = new StringJoiner("\n");
+        for (int i = 0; i < sessions.size(); i++) {
+            Session session = sessions.get(i);
+            String sessionDescription = String.format("[ %1s ] on %2s", session.getSessionName(), session.getDate());
+            sessionsString.add((i + 1) + ". " + sessionDescription);
+        }
+        return String.format(MESSAGE_SUCCESS, focusedClass, sessionsString);
     }
 }
 

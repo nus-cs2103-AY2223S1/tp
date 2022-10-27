@@ -170,6 +170,7 @@ public class MainWindow extends UiPart<Stage> {
         unfocusButton.setVisible(true);
         classTitle.setVisible(true);
         classTitle.textProperty().bind(logic.getFocusLabelProperty());
+        helpButton.setId("helpFocusButton");
         Region content = (Region) sessionClassText.lookup(".content");
         content.setStyle("-fx-background-color:#f5d58b");
         buttonBar.setStyle("-fx-background-color: derive(#a5dff0, 20%);");
@@ -177,16 +178,25 @@ public class MainWindow extends UiPart<Stage> {
         moduleClassListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
     }
 
-    @FXML
     private void handleUnfocusMode() {
         sessionClassText.setText("Classes");
         unfocusButton.setVisible(false);
         classTitle.setVisible(false);
         Region content = (Region) sessionClassText.lookup(".content");
         content.setStyle("-fx-background-color:#a5dff0;");
+        helpButton.setId("helpButton");
         buttonBar.setStyle("-fx-background-color: derive(#EDA7A7, 20%);");
         moduleClassListPanelPlaceholder.getChildren().remove(sessionListPanel.getRoot());
         moduleClassListPanelPlaceholder.getChildren().add(moduleClassListPanel.getRoot());
+    }
+
+    @FXML
+    private void buttonHandleUnfocus() {
+        try {
+            executeCommand("unfocus");
+        } catch (Exception e) { //never encountered because button only visible in focus mode
+            assert false;
+        }
     }
 
     public StudentListPanel getStudentListPanel() {

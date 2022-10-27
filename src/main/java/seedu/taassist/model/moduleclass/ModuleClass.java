@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
@@ -19,12 +20,11 @@ import seedu.taassist.model.uniquelist.Identity;
  */
 public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClass> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private final String className;
 
-    // TODO: Implement a more robust solution to check for session uniqueness within the list.
     private final List<Session> sessions;
 
     /**
@@ -91,8 +91,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      */
     public ModuleClass removeSession(Session session) {
         requireNonNull(session);
-        List<Session> newSessions = new ArrayList<>(sessions);
-        newSessions.remove(session);
+        List<Session> newSessions = sessions.stream().filter(s -> !s.isSame(session)).collect(Collectors.toList());
         return new ModuleClass(className, newSessions);
     }
 
@@ -137,7 +136,7 @@ public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClas
      * Formats state as text for viewing.
      */
     public String toString() {
-        return '[' + className + ']';
+        return getClassName();
     }
 
     @Override

@@ -131,7 +131,6 @@ public class ModelManager implements Model {
     public void addStudent(Student student) {
         requireNonNull(student);
         taAssist.addStudent(student);
-        setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
@@ -163,6 +162,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
+        requireAllNonNull(moduleClasses);
+        moduleClasses.forEach(this::removeModuleClass);
+    }
+
+    @Override
     public void setModuleClass(ModuleClass target, ModuleClass editedModuleClass) {
         requireAllNonNull(target, editedModuleClass);
         taAssist.setModuleClass(target, editedModuleClass);
@@ -170,12 +175,6 @@ public class ModelManager implements Model {
         if (target.isSame(focusedClass)) {
             enterFocusMode(editedModuleClass);
         }
-    }
-
-    @Override
-    public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
-        requireAllNonNull(moduleClasses);
-        moduleClasses.forEach(this::removeModuleClass);
     }
 
     @Override
@@ -191,6 +190,12 @@ public class ModelManager implements Model {
     public void addModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
         taAssist.addModuleClass(moduleClass);
+    }
+
+    @Override
+    public void addModuleClasses(Set<ModuleClass> moduleClasses) {
+        requireAllNonNull(moduleClasses);
+        moduleClasses.forEach(this::addModuleClass);
     }
 
     @Override

@@ -33,13 +33,14 @@ public class AddCommandIntegrationTest {
         expectedModel.addStudent(validStudent);
 
         assertCommandSuccess(new AddCommand(validStudent), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validStudent), expectedModel);
+                String.format(AddCommand.MESSAGE_SUCCESS, validStudent.getName()), expectedModel);
     }
 
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
         Student studentInList = model.getTaAssist().getStudentList().get(0);
-        assertCommandFailure(new AddCommand(studentInList), model, AddCommand.MESSAGE_DUPLICATE_STUDENT);
+        String expectedMessage = String.format(AddCommand.MESSAGE_DUPLICATE_STUDENT, studentInList.getName());
+        assertCommandFailure(new AddCommand(studentInList), model, expectedMessage);
     }
 
 }

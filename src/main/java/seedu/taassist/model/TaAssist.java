@@ -217,5 +217,4 @@ public class TaAssist implements ReadOnlyTaAssist {
     public int hashCode() {
         return students.hashCode();
     }
-
 }

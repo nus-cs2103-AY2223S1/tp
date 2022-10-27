@@ -29,6 +29,10 @@ public class SessionData implements Identity<SessionData>, Comparable<SessionDat
         return session;
     }
 
+    public String getSessionName() {
+        return session.getSessionName();
+    }
+
     public double getGrade() {
         return grade;
     }

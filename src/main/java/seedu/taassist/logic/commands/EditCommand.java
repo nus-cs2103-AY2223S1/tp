@@ -5,7 +5,6 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.taassist.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,10 +28,10 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
+    public static final String MESSAGE_USAGE = "> Edits the details of the student identified "
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -41,7 +40,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: [ %1$s ]";
     public static final String MESSAGE_STUDENT_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in TA-Assist.";
 
@@ -79,8 +78,7 @@ public class EditCommand extends Command {
         }
 
         model.setStudent(studentToEdit, editedStudent);
-        model.setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
+        return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent.getName()));
     }
 
     /**

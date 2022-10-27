@@ -1,4 +1,4 @@
-package seedu.taassist.model;
+package seedu.taassist.model.stubs;
 
 import java.nio.file.Path;
 import java.util.Collection;
@@ -8,6 +8,9 @@ import java.util.function.Predicate;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import seedu.taassist.commons.core.GuiSettings;
+import seedu.taassist.model.Model;
+import seedu.taassist.model.ReadOnlyTaAssist;
+import seedu.taassist.model.ReadOnlyUserPrefs;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
@@ -139,6 +142,11 @@ public class ModelStub implements Model {
 
     @Override
     public void addModuleClass(ModuleClass moduleClass) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addModuleClasses(Set<ModuleClass> moduleClasses) {
         throw new AssertionError("This method should not be called.");
     }
 

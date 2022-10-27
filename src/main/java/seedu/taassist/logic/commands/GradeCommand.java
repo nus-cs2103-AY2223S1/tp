@@ -4,11 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_SESSION;
 import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
@@ -26,16 +26,16 @@ public class GradeCommand extends Command {
 
     public static final String COMMAND_WORD = "grade";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gives a grade to a student for a session. "
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_SESSION + "SESSION (must be a valid session) "
-            + PREFIX_GRADE + "GRADE (must be a non-negative number)\n"
+    public static final String MESSAGE_USAGE = "> Gives a grade to student(s) for a session.\n"
+            + "Parameters: INDEX... "
+            + PREFIX_SESSION + "SESSION "
+            + PREFIX_GRADE + "GRADE\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SESSION + "Tutorial1 "
             + PREFIX_GRADE + "100";
 
-
-    public static final String MESSAGE_SUCCESS = "Grade(s) given to student(s):\n%1$s";
+    public static final String MESSAGE_SUCCESS = "Grade [ %1$s ] for [ %2$s ] given to these student(s):\n[ %3$s ]";
+    public static final String MESSAGE_INVALID_SESSION = "The session [ %1$s ] does not exist in class [ %2$s ]!";
 
     private final List<Index> indices;
     private final Session session;
@@ -62,7 +62,7 @@ public class GradeCommand extends Command {
 
         ModuleClass focusedClass = model.getFocusedClass();
         if (!focusedClass.hasSession(session)) {
-            throw new CommandException(String.format(MESSAGE_INVALID_SESSION, session, focusedClass));
+            throw new CommandException(String.format(MESSAGE_INVALID_SESSION, session.getSessionName(), focusedClass));
         }
 
         List<Student> lastShownList = model.getFilteredStudentList();
@@ -75,13 +75,13 @@ public class GradeCommand extends Command {
 
         studentsToGrade.forEach(s -> model.setStudent(s, s.updateGrade(focusedClass, session, grade)));
 
-        String message = getSuccessMessage(studentsToGrade);
+        String message = getSuccessMessage(studentsToGrade, session, grade);
         return new CommandResult(message);
     }
 
-    private static String getSuccessMessage(List<Student> students) {
-        return String.format(MESSAGE_SUCCESS, students.stream().map(student ->
-                student.getName().toString()).collect(Collectors.joining("\n")));
+    public static String getSuccessMessage(List<Student> students, Session session, Double grade) {
+        String studentNames = commaSeparate(students, student -> student.getName().toString());
+        return String.format(MESSAGE_SUCCESS, grade, session.getSessionName(), studentNames);
     }
 
     @Override
@@ -92,5 +92,4 @@ public class GradeCommand extends Command {
                 && grade == ((GradeCommand) other).grade
                 && session.equals(((GradeCommand) other).session));
     }
-
 }

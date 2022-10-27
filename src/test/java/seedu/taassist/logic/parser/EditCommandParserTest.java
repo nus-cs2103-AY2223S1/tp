@@ -18,7 +18,6 @@ import static seedu.taassist.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 import static seedu.taassist.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.taassist.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.taassist.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
@@ -37,11 +36,8 @@ import seedu.taassist.testutil.EditStudentDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String MODULE_CLASS_EMPTY = " " + PREFIX_MODULE_CLASS;
-
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
-
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.COMMAND_WORD, EditCommand.MESSAGE_USAGE);
     private final EditCommandParser parser = new EditCommandParser();
 
     @Test
