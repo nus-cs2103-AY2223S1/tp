@@ -12,10 +12,10 @@ import seedu.address.logic.Logic;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
+import seedu.address.ui.UiPart;
 import seedu.address.ui.displaycards.BuyerCard;
 import seedu.address.ui.displaycards.DelivererCard;
 import seedu.address.ui.displaycards.SupplierCard;
-import seedu.address.ui.UiPart;
 
 /**
  * Panel containing the list of all contacts.
