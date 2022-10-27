@@ -26,6 +26,7 @@ Class University
 CLass CAP
 Class Job
 Class JobId
+Class JobTitle
 
 }
 
@@ -56,6 +57,7 @@ Person *---> University
 Person *---> CAP
 Person *--> Job
 Job *--> JobId
+Job *--> JobTitle
 
 
 ModelManager -[hidden]down-> Person
