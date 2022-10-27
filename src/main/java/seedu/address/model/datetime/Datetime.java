@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_INPUT_FORMATTER;
 import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_READABLE_FORMATTER;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -45,6 +47,7 @@ public class Datetime {
         return true;
     }
 
+
     /**
      * Creates a Datetime from a formatted string.
      * Does not do any validation on input, may throw a DateTimeParseException
@@ -64,6 +67,24 @@ public class Datetime {
      */
     public String toFormatted() {
         return datetime.format(DATETIME_INPUT_FORMATTER);
+    }
+
+    /**
+     * Returns a new Datetime with the date changed.
+     * @return
+     */
+    public Datetime withDate(LocalDate date) {
+        LocalTime time = this.datetime.toLocalTime();
+        return new Datetime(time.atDate(date));
+    }
+
+    /**
+     * Returns a new Datetime with the time changed.
+     * @return
+     */
+    public Datetime withTime(LocalTime time) {
+        LocalDate date = this.datetime.toLocalDate();
+        return new Datetime(date.atTime(time));
     }
 
     /**
