@@ -78,12 +78,14 @@ public abstract class Lesson {
     }
 
     public void setStudent(Student targetStudent, Student editedStudent) {
-        attendance.setStudent(targetStudent, editedStudent);
-        notes.setStudent(targetStudent, editedStudent);
-        studentList.remove(targetStudent);
-        studentList.add(editedStudent);
-        studentList.sort(Comparator.comparing(s -> s.getName().toString()));
-        observableStudentList.setAll(studentList);
+        if (studentList.contains(targetStudent)) {
+            attendance.setStudent(targetStudent, editedStudent);
+            notes.setStudent(targetStudent, editedStudent);
+            studentList.remove(targetStudent);
+            studentList.add(editedStudent);
+            studentList.sort(Comparator.comparing(s -> s.getName().toString()));
+            observableStudentList.setAll(studentList);
+        }
     }
 
     public String getStudentsName() {
