@@ -108,7 +108,7 @@ public class CsvUtil {
                 Location parsedLocation = ParserUtil.parseLocation(location);
                 String username = currentPerson.get("username");
                 GithubUsername parsedUsername = ParserUtil.parseGitHubUsername(username,
-                        username != null && username.isEmpty());
+                        username != null && !username.isEmpty());
                 String currTagged = currentPerson.get("tagged").strip();
                 String[] tags = currTagged.split(";");
                 Set<Tag> tag;
@@ -122,7 +122,7 @@ public class CsvUtil {
                     String[] moduleCodes = currModuleCodes.strip().split(";");
                     Set<ModuleCode> parsedModuleCodes = ParserUtil.parseModuleCodes(Arrays.asList(moduleCodes));
                     String year = currentPerson.get("year");
-                    Year parsedYear = ParserUtil.parseYear(year, year != null && year.isEmpty());
+                    Year parsedYear = ParserUtil.parseYear(year, year != null && !year.isEmpty());
                     people.add(new Student(parsedName, parsedPhone, parsedEmail,
                             parsedGender, tag, parsedLocation, parsedUsername, parsedModuleCodes, parsedYear));
                     lineNo += 1;
