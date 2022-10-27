@@ -34,7 +34,6 @@ public class MainWindow extends UiPart<Stage> {
     private InternshipListPanel internshipListPanel;
     private SelectedInternshipPanel selectedInternshipPanel;
     private ResultDisplay resultDisplay;
-    private UpcomingTaskPanel upcomingTaskPanel;
     private HelpWindow helpWindow;
 
     @FXML
@@ -48,9 +47,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane internshipPanelPlaceholder;
-
-    @FXML
-    private StackPane upcomingTaskPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -123,9 +119,6 @@ public class MainWindow extends UiPart<Stage> {
 
         selectedInternshipPanel = new SelectedInternshipPanel(logic.getSelectedInternship());
         internshipPanelPlaceholder.getChildren().add(selectedInternshipPanel.getRoot());
-
-        upcomingTaskPanel = new UpcomingTaskPanel(logic.getSelectedInternship());
-        upcomingTaskPanelPlaceholder.getChildren().add(upcomingTaskPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
