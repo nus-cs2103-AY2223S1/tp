@@ -4,15 +4,16 @@ title: FinBook User Guide
 ---
 
 # Table of Contents
+
 1. [Introduction](#1-introduction)   
-    1.1. [What is FinBook?](#11-what-is-finbook)
+   1.1. [What is FinBook?](#11-what-is-finbook)
 2. [How to use this User Guide?](#2-how-to-use-this-user-guide)   
-    2.1. [Icons and symbols](#21-icons-and-symbols)   
-    2.2. [User Interface (UI) of FinBook](#22-user-interface-ui-of-finbook)   
-    2.3. [Command format](#23-command-format)
+   2.1. [Icons and symbols](#21-icons-and-symbols)   
+   2.2. [User Interface (UI) of FinBook](#22-user-interface-ui-of-finbook)   
+   2.3. [Command format](#23-command-format)
 3. [Quick Start](#3-quick-start)
 4. [Features](#4-features)   
-    4.1. [Managing a client](#41-managing-a-client)      
+   4.1. [Managing a client](#41-managing-a-client)      
    &emsp; 4.1.1. [Adding a client: `add`](#411-adding-a-client-add)   
    &emsp; 4.1.2. [Editing a client: `edit`](#412-editing-a-client--edit)   
    &emsp; 4.1.3. [Deleting a client: `delete`](#413-deleting-a-client--delete)   
@@ -29,10 +30,10 @@ title: FinBook User Guide
    &emsp; 4.3.4. [Exporting data: `export`](#434-exporting-data--export)   
    &emsp; 4.3.5. [Copying a client's data: `copy`](#435-copying-a-clients-data--copy)   
    &emsp; 4.3.6. [Changing Light/Dark mode](#436-changing-lightdark-mode)   
-   &emsp; 4.3.7. [Exiting the application: `exit`](#437-exiting-the-application--exit)   
-5. [FAQ](#5-faq)   
-6. [Glossary](#6-glossary)   
-7. [Command Summary](#7-command-summary)   
+   &emsp; 4.3.7. [Exiting the application: `exit`](#437-exiting-the-application--exit)
+5. [FAQ](#5-faq)
+6. [Glossary](#6-glossary)
+7. [Command Summary](#7-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -51,20 +52,22 @@ User Interface (GUI) will help you slowly adjust to using our CLI.
 So what are you waiting for? Start using FinBook today!
 
 # 2. How to Use this User Guide?
+
 1. To get familiar with this user guide you can continue reading [How to Use this User Guide](#how-to-use-this-user-guide)
 2. If you are a new user, you can get started with [Quick Start](#quick-start) to familiarise yourself with FinBook.
 3. If you are familiar with FinBook, you can refer to the [Features](#features) to see details of all available
-commands or refer at [Command Summary](#command-summary).
+   commands or refer at [Command Summary](#command-summary).
 
 ## 2.1. Icons and symbols
+
 | Symbol               | Meaning                                                                                    |
 |----------------------|--------------------------------------------------------------------------------------------|
 | :information_source: | Additional information that may be useful to know when using FinBook                       |
 | :exclamation:        | Important information or warnings that you should take note of when using FinBook          | 
 | `command`            | The highlighted words indicate a command that can be typed into the Command Box of FinBook |
 
-
 ## 2.2. User Interface (UI) of FinBook
+
 ![Ui](images/Ui_annotated.png)
 
 The UI consists of:
@@ -78,8 +81,8 @@ The UI consists of:
 | Clients Panel   | Displays clients of FinBook           |
 | Portfolio View  | Displays portfolio of selected client |
 
-
 ## 2.3. Command format
+
 Commands in FinBook are constructed using a command word. Most commands consist of a command word, prefixes
 and parameters
 
@@ -87,11 +90,11 @@ For example,
 ![Annotated command](images/command_annotated.png)
 
 1. **Command word**: Indicates what action you want FinBook to do. For this example, the command word `add` will add
-a client into FinBook
-2. **Prefix**: To specify the field of data added. Each prefix always ends with a `/`. For this example, `n/` indicates the 
-client's name, `p/` indicates the client's phone number, etc.
+   a client into FinBook
+2. **Prefix**: To specify the field of data added. Each prefix always ends with a `/`. For this example, `n/` indicates the
+   client's name, `p/` indicates the client's phone number, etc.
 3. **Parameter**: Provides supplementary information to the command word or prefix. For this example, `John Doe` is the
-parameter for `NAME`
+   parameter for `NAME`
 
 <div markdown="block" class="alert alert-info">
 
@@ -120,6 +123,7 @@ parameter for `NAME`
 </div>
 
 ---
+
 # 3. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -160,15 +164,15 @@ parameter for `NAME`
 Adds a client to the FinBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES
+
         t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS note/ADDITIONAL_NOTES​`
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022 t/VIPClient 
-   r/high pl/Prudential Health note/Client is currently having COVID` 
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23-Feb-2022 r/low 
-   pl/NTUC Income Plan`  
-
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022 t/VIPClient
+  r/high pl/Prudential Health note/Client is currently having COVID`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23-Feb-2022 r/low
+  pl/NTUC Income Plan`
 
 ---
 
@@ -177,8 +181,8 @@ Examples:
 Edits an existing client in the FinBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]
-        [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 
+        [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -263,6 +267,7 @@ Format: `list`
 ---
 
 ### 4.1.5. Finding a client : `find`
+
 (toc)
 
 ---
@@ -272,6 +277,7 @@ Format: `list`
 View a specific's client portfolio
 
 Format: `view INDEX`
+
 * Displays the portfolio of client at index `INDEX` on the Portfolio section
 * Portfolio includes risk level and current plans purchased by the client.
 
@@ -286,9 +292,16 @@ Examples:
 
 ### 4.2.1. Locking the application : `lock`
 
-Locks the application. If a password has not been set, leave the password field empty to unlock the application.
+Locks the application
 
 Format: `lock`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: If a password has not been set, leave the password field empty to unlock the application**
+</div>
+
+---
 
 ### 4.2.2. Setting or updating the password : `password`
 
@@ -304,6 +317,11 @@ Examples:
 
 * `password new/foobar` sets the password to `foobar`, given that a password has not yet been set
 * `password old/foobar new/barfoo` updates the password to `barfoo`, given that the current password is `foobar`.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: It is recommended to take note of the warnings and follow the suggestions, if there are any**
+</div>
 
 ---
 
@@ -345,6 +363,7 @@ Imports data from a `JSON` or `CSV` file
         * `plans`
         * The data in each corresponding column must be valid
             * `tags` must be separated by commas `,` without spaces (e.g. `colleagues,friends,neighbours`)
+            * `plans` must be separated by commas `,` without spaces (e.g. `prudential income,NTUC income,prudential health`)
 
 Format: `import PATH`
 
@@ -383,6 +402,7 @@ Copies the data of an existing client in the FinBook into your Computer's clipbo
 Format: `copy INDEX`
 
 Example: `copy 1` with the sample data will result a copied output of:
+
 ```
 Name: Alex Yeoh
 Phone: 87438807
@@ -392,6 +412,7 @@ Income: $1000
 Meeting date: 12 Nov 2022
 Tags: friends
 ```
+
 * Press `Ctrl-V` to paste the copied text.
 
 ---
@@ -406,7 +427,8 @@ Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top r
 * ![Light mode](images/Ui_light.png)
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Your mode preference will be automatically saved ** 
+
+**:information_source: Your mode preference will be automatically saved**
 </div>
 
 ---
@@ -429,7 +451,6 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 
 # 6. Glossary
 
-
 | Term                         | Meaning                                                                                            |
 |------------------------------|----------------------------------------------------------------------------------------------------|
 | Mainstream OS                | Common computer operating systems, Windows, Linux, Unix, OS-X.                                     |
@@ -441,6 +462,7 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | CSV                          | A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values. |
 
 ---
+
 # 7. Command summary
 
 | Action               | Format, Examples                                                                                                                                                                                                                                                                                                                                      |
