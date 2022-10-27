@@ -19,7 +19,7 @@ public class RemarkCommand extends Command {
     public static final String COMMAND_WORD = "remark";
 
     //Update here
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a remark and links to Client. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a remark and links to Client. \n"
             + "Parameters: "
             + "INDEX (must be a positive integer) "
             + "REMARK\n"

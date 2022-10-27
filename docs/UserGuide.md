@@ -12,13 +12,13 @@ interactions recorded faster and simpler than traditional GUI applications.
 * [Quick Start](#quick-start)
 * [Features](#features)
   * [Adding a client: `add`](#adding-a-client-add)
-  * [Creating a transaction: `buy` or `sell` ](#creating-a-transaction-transaction)
+  * [Creating a transaction: `buy` or `sell` ](#creating-a-transaction-buy-or-sell)
   * [Clearing all entries: `clear`](#clearing-all-entries--clear)
-  * [Creating a remark: `remark`](#creating-a-remark-create)
-  * [Deleting a client/transaction/remark: `delete`](#deleting-a-client--delete)
-  * [Editing a client/transaction/remark: `edit`](#editing-a-client--edit)
+  * [Creating a remark: `remark`](#creating-a-remark-remark)
+  * [Deleting a client/transaction/remark: `delete`](#deleting-a-client--transaction--remark--delete)
+  * [Editing a client/transaction/remark: `edit`](#editing-a-client--transaction--remark--edit)
   * [Exiting the program: `exit`](#exiting-the-program--exit)
-  * [Filtering buy or sell transactions: `filter`](#filtering-the-address-book-display--filter)
+  * [Filtering buy or sell transactions: `filter`](#filtering-the-transaction-display--filter)
   * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user_guide)
   * [Listing all clients: `list`](#listing-all-clients--list)
   * [Locating clients by name: `find`](#locating-clients-by-name-find)
@@ -30,6 +30,7 @@ interactions recorded faster and simpler than traditional GUI applications.
   * [Archiving data files `coming in v2.0`](#archiving-data-files-coming-in-v20)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
+* [Prefix Summary](#prefix-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -49,15 +50,17 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`list`** : Lists all clients.
 
-   * **`add`**`add n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named `Alice` into the address book.
+   * **`add`**`n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named `Alice` into the address book.
 
-   * **`delete`**`delete 1 m/client` : Deletes the client at the first index together with all their contacts and transactions in the current list.
+   * **`delete`**`1 m/client` : Deletes the client at the first index together with all their contacts and transactions in the current list.
 
    * **`find`**`James` : Finds `James` from the list of clients and display all clients with name containing `James`.
 
-  * **`clear`** : Deletes all clients with all their contacts and transactions.
+   * **`clear`** : Deletes all clients with all their remarks and transactions.
 
-  * **`exit`** : Exits the app.
+   * **`view`**`2` : Views the second client in the list and shows your transactions and remarks with him.
+
+   * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -334,8 +337,6 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-
-
 | Action         | Format, Examples                                                                                                                                       |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**        | `add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`<br> e.g., `add n/Alice a/Yishun Street 81 p/9876543 e/alice@gmail.com`                             |
@@ -346,10 +347,24 @@ _Details coming soon ..._
 | **Exit**       | `exit`                                                                                                                                                 |
 | **Filter**     | `filter TYPE` <br> e.g., `filter sell` or `filter buy`                                                                                                 |
 | **Find**       | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find John`                                                                                                |
-| **Help**       | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                               |
+| **Help**       | `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                         |
 | **List**       | `list`                                                                                                                                                 |
 | **Remark**     | `remark INDEX REMARK`<br> e.g., `remark 3 Punctual Buyer`                                                                                              |                                                                     |
 | **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g `sell 2 q/100 g/apples price/1.5 d/07/11/2022`                                          |
 | **Sort**       | `sort INDEX ORDER` <br> e.g.,`sort 1 latest` or `sort 3 oldest`                                                                                        | 
 | **User Guide** | `user_guide`                                                                                                                                           |
 | **View**       | `view INDEX` <br> e.g., `view 5`                                                                                                                       |
+
+## Prefix Summary
+| Prefix     | Meaning                                        | Restrictions                                                | Example                       |
+|------------|------------------------------------------------|-------------------------------------------------------------|-------------------------------|
+| **n/**     | Name of the client                             | Alphanumeric characters and spaces, required                | `n/Alice`                     |
+| **a/**     | Address of the client                          | Required                                                    | `a/321 Clementi Road, #02-22` |
+| **p/**     | Phone number of the client                     | Should only contain numbers, required                       | `n/98765432`                  |
+| **e/**     | Email of the client                            | Should comply to the normal standards of an email, required | `e/alice@gmail.com`           |
+| **g/**     | Goods name of the transaction                  | Alphanumeric characters and spaces, required                | `g/Apples`                    |
+| **q/**     | Quantity of goods involved in the transaction  | Positive integer, required                                  | `q/10`                        |
+| **price/** | Price per quantity of goods in the transaction | Positive number, required                                   | `price/1.50`                  |
+| **m/**     | Mode of the command                            | Must be either `client`, `transaction`, or `remark`         | `m/client`                    |
+| **d/**     | Date of transaction                            | In the format `dd/mm/yyyy`                                  | `d/07/11/2022`                |
+| **t/**     | Tag applied on clients                         | Alphanumeric, single word                                   | `t/friends`                   |

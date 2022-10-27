@@ -23,7 +23,7 @@ public class SortCommand extends Command {
             + "latest transaction or oldest transaction.\n"
             + "Parameters: "
             + "INDEX (must be a positive integer) "
-            + "[latest]/[oldest].\n"
+            + "ORDER (must be either 'latest' or 'oldest').\n"
             + "Example: " + COMMAND_WORD + " 1 " + "latest";
 
 
@@ -32,7 +32,6 @@ public class SortCommand extends Command {
     private final boolean isLatest;
 
     private final Index index;
-
 
     /**
      * @param index of the client in the client list to sort.
