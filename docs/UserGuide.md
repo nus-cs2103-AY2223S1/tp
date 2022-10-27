@@ -7,7 +7,7 @@ title: User Guide
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-    * [Getting help: `help`](#viewing-help-help)
+    * [Viewing help: `help`](#viewing-help-help)
     * [Adding an internship application: `add`](#adding-an-internship-application-add)
     * [Listing all internship applications: `list`](#listing-all-internship-applications-list)
     * [Listing all archived internship application: `list-archive`](#listing-all-archived-internship-applications)
@@ -19,6 +19,8 @@ title: User Guide
     * [Archiving an internship application: `archive`](#archiving-an-internship-application-archive)
     * [Retrieving an internship application from archives: `retrieve`](#retrieving-an-internship-application-from-archives-retrieve)
     * [Viewing a list of upcoming interviews: `remind`](#viewing-a-list-of-upcoming-interviews)
+    * [Undoing the previous command: `undo`](#undoing-the-previous-command-undo)
+    * [Redoing the previously undone command: `redo`](#redoing-the-previously-undone-command-redo)
     * [Clearing all entries: `clear`](#clearing-all-entries-clear)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
@@ -64,6 +66,10 @@ title: User Guide
     
     * **`remind`**: Shows a list of all upcoming interviews within the next 1 week.
 
+    * **`undo`**: Undoes the previous command.
+    
+    * **`redo`**: Redoes the previously undone command.
+
     * **`clear`**: Clears CinternS data.
 
     * **`exit`** : Exits the app.
@@ -99,8 +105,10 @@ title: User Guide
 </div>
 
 ### Viewing help: `help`
-Shows a message explaining how to access the help page
-![HelpWindow](images/HelpWindow.png)<br>
+Shows a message explaining how to access the help page.
+
+![HelpWindow](images/HelpWindow.PNG)
+
 Format: `help`
 
 * Press `Copy URL` button to have the User Guide link copied to your clipboard.
@@ -110,16 +118,18 @@ Format: `help`
 
 Adds an internship application to the list.
 
-Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION [t/TAG]...`
+Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION s/STATUS [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
-Date must be specified in the format <em>yyyy-MM-dd</em>.
+<br>
+1. Date must be specified in the format <em>yyyy-MM-dd</em>.<br>
+2. Status must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.
 </div>
 <br>
 
 Examples:
-* `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred`
-* `add c/Facebook ct/22222222 d/2022-01-02 e/facebook@example.com p/Backend Engineer`
+* `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer s/pending t/preferred`
+* `add c/Facebook ct/22222222 d/2022-01-02 e/facebook@example.com p/Backend Engineer s/interview`
 
 ### Listing all internship applications: `list`
 
@@ -135,7 +145,7 @@ Format: `list-archive`
 
 ### Deleting an internship application: `delete`
 
-Deletes the specified internship application from the list.
+Deletes the specified internship application from the list. If the application has an interview, it will also be deleted from the interview list.
 
 Format: `delete INDEX`
 
@@ -145,7 +155,7 @@ Format: `delete INDEX`
 * The index must be within the range of available internships in the application list.
 
 Example:
-* `list` followed by `delete 2` deletes the 2nd internship application in the list.
+* `list` followed by `delete 2` deletes the 2nd internship application in the list (and its interview from the interview list).
 
 ### Finding an internship application: `find`
 
@@ -161,25 +171,27 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Example:
 * `find Software` returns `Google` and `Wise` application whose position contain software keyword.
-![FindExample](images/FindExample.png)
+
+![FindExample](images/FindExample.PNG)
 
 ### Editing an internship application: `edit`
 Edits an existing application in the CinternS.
 
-Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`
+Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [s/STATUS] [t/TAG]...`
 
 * Edits the application at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed application list. 
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Changes to the company name and the position will also be reflected in the interview list.
 * When editing tags, the existing tags of the application will be removed i.e adding of tags is not cumulative.
 * You can remove all the application’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 
 * `edit 1 ct/91234567 e/grab@example.com` edits the contact and email of the 1st application to be 91234567 and grab@example.com respectively.
-* `edit 2 c/Garena t/` edits the company of the 2nd application to be `Garena` and clears all existing tags.
+* `edit 2 c/Garena t/` edits the company of the 2nd application and the corresponding interview to be `Garena` and clears all existing tags.
 
 ### Adding / Editing an interview: `interview`
 Adds an interview to an existing application or edits an existing interview in an application.
@@ -187,15 +199,15 @@ Adds an interview to an existing application or edits an existing interview in a
 Format: `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b><br>
-1. InterviewDate must be specified in the format <em>yyyy-MM-dd</em>.<br>
-2. InterviewTime must be specified in the format <em>HHmm</em>.<br>
+1. <code>INTERVIEW_DATE</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
+2. <code>INTERVIEW_TIME</code> must be specified in the format <em>HHmm</em>.<br>
 </div>
 <br>
 
 * Adds interview to the application at the specified `INDEX`.
 * The index refers to the index number shown in the displayed **application** list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* All fields must be provided
+* All fields must be provided.
 * Supports edit of the existing interview by overwriting the old interview.
 
 Examples:
@@ -227,25 +239,48 @@ Format: `archive INDEX`
 * The application specified must be unarchived.
 * The index refers to the index number shown in the displayed internship application list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The index must be within the range of available internships in the shown application list.
+* The index must be within the range of available internships in the application list shown.
 
 Example:
 * `list` followed by `archive 2` archives the 2nd internship application in the list.
 
 ### Retrieving an internship application from archives: `retrieve`
 
-Retrieves the specified internship application from the list.
+Retrieves the specified internship application from the list of archived applications.
 
 Format: `retrieve INDEX`
 
 * Retrieves the internship application at the specified `INDEX`.
-* The application specified must be archived, `list-archive` command is recommended to be used before using this command.
-* The index refers to the index number shown in the displayed internship application list.
+* The application specified must have been archived, `list-archive` command is recommended to be used before using this command.
+* The index refers to the index number shown in the displayed list of archived applications.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The index must be within the range of available internships in the shown application list.
+* The index must be within the range of available internships in the list of archived applications.
 
 Example:
-* `list-archive` followed by `retrieve 1` retrieves the 1st internship application in the list.
+* `list-archive` followed by `retrieve 1` retrieves the 1st internship application in the list of archived applications.
+
+### Undoing the previous command: `undo`
+
+Restores the state of CinternS before the change made by the previous command.
+
+Format: `undo`
+
+* There must be a previous state to restore to.
+* Commands that do not change the state, e.g. list, find, etc., will not be undone.
+
+Example:
+* `delete 1` followed by `undo` makes no change to the application list or the interview list.
+
+### Redoing the previously undone command: `redo`
+
+Restores the state of CinternS before the command `undo`.
+
+Format: `redo`
+
+* There must be a previously undone state to restore to.
+
+Example:
+* `delete 1` followed by `undo` then `redo` deletes the first application in the list (and its interview in the interview list).
 
 ### Viewing a list of upcoming interviews: `remind`
 
@@ -307,6 +342,8 @@ We will assist you as soon as possible.
 | **Archive**     | `archive INDEX`<br> e.g., `archive 2`                                                                                                                                                       |
 | **Retrieve**    | `retrieve INDEX`<br> e.g., `retrieve 2`                                                                                                                                                     |
 | **Remind**      | `remind`                                                                                                                                                                                    |
+| **Undo**        | `undo`                                                                                                                                                                                      |
+| **Redo**        | `redo`                                                                                                                                                                                      |
 | **Clear**       | `clear`                                                                                                                                                                                     |
 | **Exit**        | `exit`                                                                                                                                                                                      |
 
