@@ -54,7 +54,7 @@ Please refer to the [Command Format](#command-format) to see how Flags and Place
 
 #### Placeholders
 
-Placeholders show you what type of parameters you can supply to a command. These follow immediately after a [Flag](#flag). 
+Placeholders show you what type of parameters you can supply to a command. These follow immediately after a [Flag](#flag).
 
 Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
 

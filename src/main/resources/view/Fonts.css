@@ -1,0 +1,33 @@
+@font-face {
+  /* Montserrat */
+  src: url("fonts/Montserrat/static/MontserratRegular.ttf");
+}
+
+@font-face {
+  /* Montserrat Bold */
+  src: url("fonts/Montserrat/static/MontserratBold.otf");
+}
+
+@font-face {
+  /* Epilogue */
+  src: url("fonts/Epilogue/static/EpilogueRegular.ttf");
+}
+
+@font-face {
+  /* Epilogue Bold */
+  src: url("fonts/Epilogue/static/EpilogueBold.otf");
+}
+
+@font-face {
+  /* JetBrains Mono */
+  src: url("fonts/JetBrains_Mono/static/JetBrainsMonoRegular.ttf");
+}
+
+.root {
+  -fx-font-family: "Epilogue";
+}
+
+.bold {
+  -fx-font-family: "Epilogue Bold";
+  -fx-font-weight: bold;
+}
