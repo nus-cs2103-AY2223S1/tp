@@ -63,11 +63,38 @@ public class SampleDataUtil {
     }
 
     public static Meeting[] getSampleMeetings() throws ParseException, java.text.ParseException {
-        ArrayList<Person> p = new ArrayList<>();
-        p.add(alex);
+        ArrayList<Person> p1 = new ArrayList<>();
+        ArrayList<Person> p2 = new ArrayList<>();
+        ArrayList<Person> p3 = new ArrayList<>();
+        ArrayList<Person> p4 = new ArrayList<>();
+        ArrayList<Person> p5 = new ArrayList<>();
+
+        p1.add(alex);
+
+        p2.add(bernice);
+        p2.add(charlotte);
+
+        p3.add(david);
+        p3.add(irfan);
+        p3.add(roy);
+
+        p4.add(david);
+        p4.add(alex);
+        p4.add(charlotte);
+        p4.add(bernice);
+
+        p5.add(roy);
+        p5.add(alex);
+        p5.add(david);
+        p5.add(bernice);
+        p5.add(charlotte);
 
         return new Meeting[] {
-            new Meeting(p, "CS2103", "02-04-2022 1500", "COM3")
+            new Meeting(p1, "CS2103", "02-04-2022 1500", "COM3"),
+            new Meeting(p2, "GEA1000", "10-12-2021 0800", "UTOWN"),
+            new Meeting(p3, "Lunch", "02-02-2022 1700", "KR MRT"),
+            new Meeting(p4, "Dinner", "30-11-2022 1700", "Fine Food"),
+            new Meeting(p5, "Supper", "01-10-2022 0000", "Mcdonalds")
         };
     }
 
