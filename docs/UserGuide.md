@@ -415,6 +415,40 @@ Example:
 
 ![UiFindName](images/UG-screenshots/UiFindName.png)
 
+#### Find by Email:
+
+Finds all students with a particular email.
+
+Formats: `find e/EMAIL
+
+- Only one email can be searched at each time.
+- Full email must be used for corresponding student to be found.
+
+```yaml
+❗Caution:
+  Do not include more than one email such as
+  find e/jonsnow@winterfell.com ghost@woods.com.
+```
+
+Examples:
+
+`find e/jonsnow@winterfell.com` returns all students with email set as `jonsnow@winterfell.com`.
+
+#### Find by Name:
+
+Finds all students with names matching the keywords.
+
+Format: `find n/KEYWORD [MORE_KEYWORDS]`
+
+- The search is case-insensitive. e.g., `alex` will match `Alex`.
+- The order of the keywords does not matter. e.g. `Yeoh Alex` will match `Alex Yeoh`.
+- Only full words will be matched e.g., `Han` will not match `Hans`.
+- Students matching at least one keyword will be returned. e.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+
+Example:
+
+`find n/tan` returns `Tan Xiao Ming` and `John Tan`.
+
 #### Find by Student's Contact Number:
 
 Finds student with the matching contact number.
