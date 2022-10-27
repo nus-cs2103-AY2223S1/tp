@@ -165,4 +165,10 @@ public class Task {
             return "[ ] ";
         }
     }
+
+    public void removeAssigneeIfExists(Person person) {
+        if (this.assignees.contains(person)) {
+            this.assignees.remove(person);
+        }
+    }
 }

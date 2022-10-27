@@ -8,13 +8,14 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.team.exceptions.DuplicateTeamException;
 import seedu.address.model.team.exceptions.TeamNotFoundException;
 
 /**
  * A list of teams that enforces uniqueness between its elements and does not allow nulls.
  * A team is considered unique solely based on the name of the team.
- *
+ * <p>
  * Supports a minimal set of list operations.
  **/
 
@@ -93,5 +94,14 @@ public class UniqueTeamList implements Iterable<Team> {
             }
         }
         return true;
+    }
+
+    /**
+     * Removes a person from all teams, if the person exists.
+     */
+    public void removePersonIfExists(Person person) {
+        for (Team team : internalTeams) {
+            team.removeMember(person);
+        }
     }
 }
