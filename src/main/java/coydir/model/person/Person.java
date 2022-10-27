@@ -154,6 +154,7 @@ public class Person {
 
     public void setRating(Rating rating) {
         this.rating = rating;
+        this.col3 = new SimpleStringProperty(rating.toString());
     }
 
     public Rating getRating() {
