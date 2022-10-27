@@ -4,29 +4,29 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a ListingID of a specific listing in the address book.
+ * Represents a ListingId of a specific listing in the address book.
  */
-public class ListingID {
+public class ListingId {
     public static final String MESSAGE_CONSTRAINTS =
-        "ListingID should not be blank";
-    public static final String VALIDATION_REGEX = "[.]*";
+        "ListingId should not be blank";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
     /**
-     * Constructs a {@Code ListingID}
+     * Constructs a {@Code ListingId}
      *
      * @param id A valid listingID.
      */
-    public ListingID(String id) {
+    public ListingId(String id) {
         requireNonNull(id);
-        checkArgument(isValidListingID(id), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidListingId(id), MESSAGE_CONSTRAINTS);
         value = id;
     }
 
     /**
      * Returns true if a given string is a valid listingID.
      */
-    public static boolean isValidListingID(String test) {
+    public static boolean isValidListingId(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -38,8 +38,8 @@ public class ListingID {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof ListingID // instanceof handles nulls
-            && value.equals(((ListingID) other).value)); // state check
+            || (other instanceof ListingId // instanceof handles nulls
+            && value.equals(((ListingId) other).value)); // state check
     }
 
     @Override

@@ -13,7 +13,7 @@ import seedu.address.model.offer.Offer;
  * Adds an offer to the address book.
  */
 public class AddOfferCommand extends Command {
-    public static final String COMMAND_WORD = "addoffer";
+    public static final String COMMAND_WORD = "addO";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an offer to the address book. "
             + "Parameters: "

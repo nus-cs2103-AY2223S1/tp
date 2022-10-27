@@ -21,7 +21,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.listing.Listing;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
@@ -137,7 +138,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public Listing getListing(ListingID id) {
+        public Listing getListing(ListingId id) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -228,6 +229,31 @@ public class AddPersonCommandTest {
 
         @Override
         public void updateFilteredOfferList(Predicate<Offer> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Meeting getMeeting(Name name, Address address) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
