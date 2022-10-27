@@ -363,6 +363,7 @@ Imports data from a `JSON` or `CSV` file
         * `plans`
         * The data in each corresponding column must be valid
             * `tags` must be separated by commas `,` without spaces (e.g. `colleagues,friends,neighbours`)
+            * `plans` must be separated by commas `,` without spaces (e.g. `prudential income,NTUC income,prudential health`)
 
 Format: `import PATH`
 
