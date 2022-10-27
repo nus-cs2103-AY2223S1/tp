@@ -409,19 +409,20 @@ If your changes to the data file makes its format invalid, TrackAScholar will di
 
 ## Command summary
 
-| Action     | Format, Examples                                              |
-|------------|---------------------------------------------------------------|
-| **Add**    | `add n/NAME e/EMAIL p/PHONE_NUMBER s/SCHOLARSHIP [m/MAJOR] …` |
-| **Clear**  | `clear`                                                       |
-| **Delete** | `delete INDEX`                                                |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR]…​`  |
-| **Exit**   | `exit`                                                        |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`                                |
-| **Filter** | `filter PENDING/ACCEPTED/REJECTED`                            |
-| **Help**   | `help`                                                        |
-| **List**   | `list`                                                        |
-| **Remove** | `remove ACCEPTED/REJECTED`                                    |
-| **Sort**   | `sort NAME/SCHOLARSHIP/APPLICATION_STATUS`                    |
-| **Pin**    | `pin INDEX`                                                   |
-| **Unpin**  | `unpin FULL_NAME`                                             |
+| Action     | Format, Examples                                                                    |
+|------------|-------------------------------------------------------------------------------------|
+| **Help**   | `help`                                                                              |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL s/SCHOLARSHIP as/APPLICATION_STATUS [m/MAJOR]…​` |
+| **List**   | `list`                                                                              |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR]…​`                        |
+| **Delete** | `delete INDEX`                                                                      |
+| **Remove** | `remove ACCEPTED/REJECTED`                                                          |
+| **Clear**  | `clear`                                                                             |
+| **Find**   | `find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...`                                  |
+| **Filter** | `filter PENDING/ACCEPTED/REJECTED`                                                  |
+| **Sort**   | `sort NAME/SCHOLARSHIP/STATUS`                                                      |
+| **Import** | `import r/k`                                                                        |
+| **Pin**    | `pin INDEX`                                                                         |
+| **Unpin**  | `unpin FULL_NAME`                                                                   |
+| **Exit**   | `exit`                                                                              |
 
