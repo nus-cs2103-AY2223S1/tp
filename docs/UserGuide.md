@@ -99,6 +99,16 @@ Format: `add n/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]…`
 </div>
 
 <div markdown="block" class="alert alert-info">
+**:information_source: Regarding status:**<br>
+
+There is no option to add status when adding an internship application.
+
+By default, an added internship will have the status of in-progress. To change this, you may refer to the 
+[`status` command](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/docs/UserGuide.md#updating-status-of-an-internship-application--status).
+
+</div>
+
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Note about duplicates:**<br>
 
@@ -132,7 +142,8 @@ Expected outcome:
 ### Deleting an internship application : `delete`
 
 Deletes the internship application at the specified `INDEX` from InTrack. 
-`INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
+`INDEX` refers to the index number of the desired entry as shown in the displayed internship list, and **must be a 
+positive unsigned integer**.
 
 Format: `delete INDEX`
 
@@ -145,6 +156,43 @@ Expected outcome:
 * The first internship application in InTrack is deleted.
 
 ### Editing an internship application : `edit`
+
+Edits the details of the currently selected internship application. 
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about `edit`:**<br>
+
+Before the application can be edited, it must first be selected via the [`select` command](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/docs/UserGuide.md#selecting-an-internship-application--select).
+
+</div>
+
+Format: `edit n/NEW_NAME p/NEW_POSITION e/NEW_EMAIL w/NEW_WEBSITE t/NEW_TAGS r/NEW_REMARK s/NEW_SALARY`
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** An edit command only requires minimally 1 field to be edited.
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about editing the status field:**<br>
+
+The status of the application can only be edited via the [`status` command](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/docs/UserGuide.md#updating-status-of-an-internship-application--status).
+
+</div>
+
+Examples of usage:
+
+* `edit n/GOOGLE p/Data Analyst e/google@gmail.com w/https://google.com t/URGENT r/Gather study resources s/1000`
+* `edit p/SWE`
+
+Expected outcome:
+
+* Edits the fields of the selected entry to match that in the input, such that the name of the company changes to 
+Google, the position changes to Data Analyst, the email changes to google@gmail.com, the website changes to 
+https://google.com, the tags are changed to just URGENT, the remark becomes "Gather study resources" and the salary 
+becomes $1000.
+* Edits the position field of the selected entry to become SWE. All other details of the entry remain unchanged.
 
 ### Updating status of an internship application : `status`
 
@@ -307,6 +355,15 @@ Format: `stats`
 Selects and shows the details of the internship application at the specified `INDEX`
 `INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about `select`:**<br>
+
+An internship application entry must be selected via the `select` command before the `edit`, `addtask` and `deltask`
+commands can be used.
+
+</div>
+
 Format: `select INDEX`
 
 Example of usage:
@@ -315,7 +372,7 @@ Example of usage:
 
 Expected outcome:
 
-* The first internship application in InTrack is selected and its details are shown on the right panel. 
+* The first internship application in InTrack is selected and its details are shown on the right panel.
 
 ### Adding a task to a selected internship application : `addtask`
 
@@ -389,25 +446,25 @@ Expected outcome:
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-| Action               | Format, Examples                                                                                                                                                                        |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**             | `help`                                                                                                                                                                                  |
-| **List**             | `list`                                                                                                                                                                                  |
-| **Clear**            | `clear`                                                                                                                                                                                 |
-| **Exit**             | `exit`                                                                                                                                                                                  |
-| **Add**              | `add n/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent` |
-| **Delete**           | `delete`                                                                                                                                                                                |
-| **Edit**             |                                                                                                                                                                                         |
-| **Status**           | `status`<br> e.g. `status 1 o`                                                                                                                                                          |
-| **Remark**           | `remark`<br> e.g. `remark 1 r/ hello`                                                                                                                                                   |
-| **Find by Company**  | `findn KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findn Google`                                                                                                                                |
-| **Find by Position** | `findp KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findp Frontend`                                                                                                                              |
-| **Find by Tag**      | `findt KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findt Urgent`                                                                                                                                |
-| **Filter**           | `filter STATUS` <br/> e.g. `filter o`                                                                                                                                                   |
-| **Sort**             | `sort ORDER`<br> e.g. `sort a`                                                                                                                                                          |
-| **Stats**            | `stats`                                                                                                                                                                                 |
-| **Select**           |                                                                                                                                                                                         |
-| **Add Task**         | `addtask TASKNAME /at TASKTIME`<br> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                             |
-| **Delete Task**      |                                                                                                                                                                                         |
-| **Add Tag**          | `addtag`<br/> e.g. `addtag 1 Urgent`                                                                                                                                                    |
-| **Delete Tag**       | `deltag`<br/> e.g. `deltag 1 Urgent`                                                                                                                                                    |
+| Action               | Format, Examples                                                                                                                                                                         |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**             | `help`                                                                                                                                                                                   |
+| **List**             | `list`                                                                                                                                                                                   |
+| **Clear**            | `clear`                                                                                                                                                                                  |
+| **Exit**             | `exit`                                                                                                                                                                                   |
+| **Add**              | `add n/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br/> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent` |
+| **Delete**           | `delete`                                                                                                                                                                                 |
+| **Edit**             | `edit n/NEW_NAME p/NEW_POSITION e/NEW_EMAIL w/NEW_WEBSITE t/NEW_TAGS r/NEW_REMARK s/NEW_SALARY` <br/> e.g. `edit s/1200`                                                                 |
+| **Status**           | `status`<br/> e.g. `status 1 o`                                                                                                                                                          |
+| **Remark**           | `remark`<br/> e.g. `remark 1 r/ hello`                                                                                                                                                   |
+| **Find by Company**  | `findn KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findn Google`                                                                                                                                 |
+| **Find by Position** | `findp KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findp Frontend`                                                                                                                               |
+| **Find by Tag**      | `findt KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findt Urgent`                                                                                                                                 |
+| **Filter**           | `filter STATUS` <br/> e.g. `filter o`                                                                                                                                                    |
+| **Sort**             | `sort ORDER`<br/> e.g. `sort a`                                                                                                                                                          |
+| **Stats**            | `stats`                                                                                                                                                                                  |
+| **Select**           | `select INDEX` <br/> e.g. `select 1`                                                                                                                                                     |
+| **Add Task**         | `addtask TASKNAME /at TASKTIME`<br/> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                             |
+| **Delete Task**      |                                                                                                                                                                                          |
+| **Add Tag**          | `addtag`<br/> e.g. `addtag 1 Urgent`                                                                                                                                                     |
+| **Delete Tag**       | `deltag`<br/> e.g. `deltag 1 Urgent`                                                                                                                                                     |
