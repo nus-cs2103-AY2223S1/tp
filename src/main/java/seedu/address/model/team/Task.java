@@ -19,7 +19,7 @@ public class Task {
     public static final String MESSAGE_CONSTRAINTS =
             "Task names should not be blank and cannot begin with a whitespace";
 
-    public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
+    public static final String DATE_FORMAT = "dd-MMM-yyyy HH:mm";
 
     /*
      * The first character of the task name must not be a whitespace,
@@ -103,12 +103,16 @@ public class Task {
         if (deadline == null) {
             return "";
         } else {
-            return String.format(" (By %s)", deadline.format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
+            return String.format("(By %s)", deadline.format(DateTimeFormatter.ofPattern("dd-MMM-YYYY hh:MM a")));
         }
     }
 
     public Optional<LocalDateTime> getDeadline() {
-        return Optional.of(deadline);
+        if (deadline != null) {
+            return Optional.of(deadline);
+        } else {
+            return Optional.empty();
+        }
     }
 
     public String getDeadlineStorage() {
@@ -170,6 +174,17 @@ public class Task {
             return "[X] ";
         } else {
             return "[ ] ";
+        }
+    }
+
+    /**
+     * Removes the person from the assignee list, if exists.
+     *
+     * @param person assignee to be removed.
+     */
+    public void removeAssigneeIfExists(Person person) {
+        if (this.assignees.contains(person)) {
+            this.assignees.remove(person);
         }
     }
 }
