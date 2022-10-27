@@ -105,6 +105,10 @@
   -fx-font-weight: bold; // TODO
 }
 
+.scroll-result-box {
+  -fx-background-color: transparent;
+}
+
 /* ============================ *
  * ItemCard                     *
  * ============================ */
