@@ -7,7 +7,7 @@ Since it is designed for SOC students, it is **optimized for use via a Command L
 but it also has a Graphical User Interface for simpler and quicker task.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
