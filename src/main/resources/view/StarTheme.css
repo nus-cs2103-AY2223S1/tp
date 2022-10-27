@@ -296,3 +296,11 @@
 .text-input-label{
     -fx-text-fill: black;
 }
+.cover {
+    -fx-background-color:rgb(195,195,195,0);
+}
+.select {
+    -fx-text-filled:black;
+    -fx-text-fill:black;
+    -fx-font-size: 13px;
+}

@@ -295,3 +295,11 @@
 .text-input-label{
     -fx-text-fill: white;
 }
+.cover {
+    -fx-background-color:rgb(0,0,0,0.9);
+}
+.select {
+    -fx-text-filled:white;
+    -fx-text-fill:white;
+    -fx-font-size: 13px;
+}
