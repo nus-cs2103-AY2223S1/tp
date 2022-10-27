@@ -84,7 +84,7 @@ public class ModuleCard extends UiPart<Region> {
             module.getLinks().stream()
                     .forEach(link -> links.getChildren()
                             .add(createHyperLinkNode(link.linkAlias, link.linkUrl)));
-            links.setPadding(new Insets(10, 10, 10, 10));
+            links.setPadding(new Insets(5, 0, 5, 0));
             links.setHgap(5);
             links.setVgap(5);
         } else {
