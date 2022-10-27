@@ -24,7 +24,7 @@ activate Student
 Student --> AddInterestCommand: studentToEdit
 deactivate Student
 
-AddInterestCommand -> Student: addInterest("anime")
+AddInterestCommand -> Student: addInterest("algo")
 activate Student
 Student --> AddInterestCommand
 deactivate Student

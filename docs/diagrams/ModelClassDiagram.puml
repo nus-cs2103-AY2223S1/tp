@@ -14,12 +14,13 @@ Class UserPrefs
 
 Class UniqueStudentList
 Class Student
-Class Address
-Class Email
 Class Name
+Class Telegram
+Class GitHub
 Class Phone
+Class Email
 Class Interest
-Class Mod
+Class Module
 
 }
 
@@ -40,15 +41,19 @@ MassLinkers *--> "1" UniqueStudentList
 UniqueStudentList --> "~* all" Student
 
 Student *--> Name
+Student *--> Telegram
+Student *--> GitHub
 Student *--> Phone
 Student *--> Email
-Student *--> Address
 Student *--> "*" Interest
-Student *--> "*" Mod
+Student *--> "*" Module
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> Telegram
+Telegram -[hidden]right-> GitHub
+GitHub -[hidden]right-> Phone
+Phone -[hidden]right-> Email
+Email -[hidden]right-> Interest
+Interest -[hidden]right-> Module
 
 ModelManager --> Student: " * filtered"
 

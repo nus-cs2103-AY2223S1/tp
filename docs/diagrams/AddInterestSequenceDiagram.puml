@@ -15,10 +15,10 @@ participant "interestList:\nSet<Interest>" as Interest MODEL_COLOR
 
 end box
 
-[-> LogicManager : execute\n("addInt 1 anime")
+[-> LogicManager : execute\n("addInt 1 algo")
 activate LogicManager
 
-LogicManager -> MassLinkersParser : parseCommand\n("addInt 1 anime")
+LogicManager -> MassLinkersParser : parseCommand\n("addInt 1 algo")
 activate MassLinkersParser
 
 create AddInterestCommandParser
@@ -27,7 +27,7 @@ activate AddInterestCommandParser
 AddInterestCommandParser --> MassLinkersParser
 deactivate AddInterestCommandParser
 
-MassLinkersParser -> AddInterestCommandParser : parse\n("1 anime")
+MassLinkersParser -> AddInterestCommandParser : parse\n("1 algo")
 activate AddInterestCommandParser
 create Interest
 AddInterestCommandParser -> Interest
@@ -37,7 +37,7 @@ deactivate Interest
 
 
 create AddInterestCommand
-AddInterestCommandParser -> AddInterestCommand: new\n(1, interestList)
+AddInterestCommandParser -> AddInterestCommand: new\n(1, interestSet)
 activate AddInterestCommand
 
 AddInterestCommand --> AddInterestCommandParser
