@@ -8,7 +8,7 @@ import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 
 
 /**
- * Finds and lists all modules in the module list whose description contains any of the argument keywords.
+ * Finds and lists all modules in the module list whose module code contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 

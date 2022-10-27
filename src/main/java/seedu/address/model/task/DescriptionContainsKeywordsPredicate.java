@@ -17,7 +17,8 @@ public class DescriptionContainsKeywordsPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsPartialWord(task.getDescription().description, keyword));
+                .anyMatch(keyword -> StringUtil.containsPartialWord(task.getDescription()
+                                .description.toLowerCase(), keyword));
     }
 
     @Override

@@ -2,6 +2,7 @@ package seedu.address.model.exam;
 
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAnyNonNull;
 
 import seedu.address.logic.commands.EditExamCommand;
 import seedu.address.model.module.Module;
@@ -124,6 +125,28 @@ public class Exam {
         }
         return new Exam(updatedModule, updatedDescription, updatedExamDate, totalNumOfTasks, numOfCompletedTasks);
     }
+
+    /**
+     * Creates and returns a {@code Exam} with the details of {@code this}
+     * edited with {@code editExamDescriptor}.
+     */
+    public Exam edit(Module newModule, ExamDescription newDescription, ExamDate newExamDate) {
+        requireAnyNonNull(newModule, newDescription, newExamDate);
+        Module updatedModule = module;
+        ExamDescription updatedDescription = examDescription;
+        ExamDate updatedExamDate = examDate;
+        if (newModule != null) {
+            updatedModule = newModule;
+        }
+        if (newDescription != null) {
+            updatedDescription = newDescription;
+        }
+        if (newExamDate != null) {
+            updatedExamDate = newExamDate;
+        }
+        return new Exam(updatedModule, updatedDescription, updatedExamDate);
+    }
+
 
     @Override
     public boolean equals(Object other) {
