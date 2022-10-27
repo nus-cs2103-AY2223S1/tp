@@ -18,6 +18,7 @@ import static seedu.address.model.person.Cap.CAP_SEPARATOR;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.storage.Storage;
 
 /**
  * Adds a person to the address book.
@@ -69,7 +70,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {

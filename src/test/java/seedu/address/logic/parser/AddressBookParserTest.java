@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFilePaths.PATH_TO_JERRY_JPG;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CheckoutCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -105,6 +107,13 @@ public class AddressBookParserTest {
         ImportCommand command = (ImportCommand) parser.parseCommand(
                 ImportCommand.COMMAND_WORD + " " + VALID_PATH_JERRY);
         assertEquals(new ImportCommand(PATH_TO_JERRY_JPG), command);
+    }
+
+    @Test
+    public void parseCommand_checkout() throws Exception {
+        CheckoutCommand command = (CheckoutCommand) parser.parseCommand(
+            CheckoutCommand.COMMAND_WORD + " test");
+        assertEquals(new CheckoutCommand(Paths.get("data", "test.json")), command);
     }
 
     @Test

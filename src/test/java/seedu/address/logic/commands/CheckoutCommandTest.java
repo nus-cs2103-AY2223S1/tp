@@ -1,14 +1,12 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -19,66 +17,81 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
 
-public class AddCommandTest {
+class CheckoutCommandTest {
+
+    private final Path validPath = Paths.get("data", "test.json");
+    private final UserPrefsStorage validUserPrefsStorage = new JsonUserPrefsStorage(Paths.get("preferences.json"));
+    private final ModelStub modelStub = new ModelStub();
+    private final StorageStub storageStub = new StorageStub();
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new CheckoutCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        StorageStub storageStub = new StorageStub();
-        Person validPerson = new PersonBuilder().build();
-
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub, storageStub);
-
-        assertEquals(AddCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+    public void execute_nullModel_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                new CheckoutCommand(validPath).execute(null, storageStub));
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-        StorageStub storageStub = new StorageStub();
+    public void execute_nullStorage_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+            new CheckoutCommand(validPath).execute(modelStub, null));
+    }
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () ->
-            addCommand.execute(modelStub, storageStub));
+    @Test
+    public void execute_sameBook_throwsCommandException() {
+        Model validModel = new ModelManager();
+        validModel.setAddressBookFilePath(validPath);
+        assertThrows(CommandException.class, () ->
+            new CheckoutCommand(validPath).execute(validModel, storageStub));
+    }
+
+    @Test
+    public void execute_allValidParameters_checkoutSuccessful() throws CommandException {
+        Storage validStorage = new StorageManager(new JsonAddressBookStorage(validPath), validUserPrefsStorage);
+        Model validModel = new ModelManager();
+
+        CommandResult commandResult = new CheckoutCommand(validPath).execute(validModel, validStorage);
+
+        assertEquals(CheckoutCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(validPath, validModel.getAddressBookFilePath());
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        final CheckoutCommand checkoutJuneCommand = new CheckoutCommand(validPath);
+        final CheckoutCommand checkoutJulyCommand = new CheckoutCommand(Paths.get("data", "june-2022.json"));
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(checkoutJuneCommand.equals(checkoutJuneCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        final CheckoutCommand checkoutJuneCommandCopy = new CheckoutCommand(validPath);
+        assertTrue(checkoutJuneCommand.equals(checkoutJuneCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(checkoutJuneCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(checkoutJuneCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(checkoutJuneCommand.equals(checkoutJulyCommand));
     }
 
     /**
@@ -174,49 +187,6 @@ public class AddCommandTest {
         public void updateViewedPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-    }
-
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
-
     }
 
     /**
