@@ -19,7 +19,9 @@ public class Portfolio {
     public Portfolio(Risk risk, Set<Plan> plan, Set<Note> note) {
         this.risk = risk;
         this.plans.addAll(plan);
+        this.plans.remove(new Plan(""));
         this.note.addAll(note);
+        this.note.remove(new Note(""));
     }
 
     public Risk getRisk() {

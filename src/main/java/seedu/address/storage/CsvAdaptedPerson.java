@@ -101,6 +101,7 @@ public class CsvAdaptedPerson {
         if (noted != null) {
             this.noted.addAll(noted);
         }
+
     }
 
     /**
