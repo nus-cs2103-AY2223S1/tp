@@ -207,6 +207,7 @@ you can refer to the [Add Pet](#adding-a-pet-to-supplier--add-pt) section.
 Examples:
 
 * To add a single supplier: `add-s n/Carol Pet House p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 t/discount for more than one purchase`
+* To add a supplier with one pet for sale: `add-s n/Carol Pet House p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 t/discount for more than one purchase pt/add-pt pt_n/Page pt_d/2022-1-1 pt_c/pink pt_cp/pure pink pt_h/41 pt_s/pig pt_cert/US certified pt_v/true pt_w/102 pt_p/270 pt_t/good pt_t/young`
 * To add a supplier with two pets for sale: `add-s n/Carol Pet House p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 t/discount for more than one purchase pt/add-pt pt_n/Page pt_d/2022-1-1 pt_c/pink pt_cp/pure pink pt_h/41 pt_s/pig pt_cert/US certified pt_v/true pt_w/102 pt_p/270 pt_t/good pt_t/young pt/add-pt pt_n/Snupy pt_d/2021-05-31 pt_c/white pt_cp/dotted pt_h/89.3 pt_cert/US certified pt_s/rabbit pt_v/false pt_w/32 pt_p/330 pt_t/short-sighted`
 
 [Go back to [Table of Contents](#table-of-contents)]
@@ -300,6 +301,17 @@ The error message and the correct format of the input will be shown in the **mai
 :exclamation: This command is only available for **adding a buyer or supplier** for the current version.
 
 </div>
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
+### Matching pets to an order : `match`
+At times, you may want to find out which pet waiting for sale is the best fit when you receive a new order. Now it is the time for you to check this command out.
+
+Format: `match i/INDEX`
+
+`i/INDEX` is the one-based index of the order to which you would like to find the best fitting pet. This command will sort all pets currently being displayed on your screen (so the pets filtered out will not count) based on our score evaluation algorithm in descending order. The top few pets are probably what you want. And now, time to contact the suppliers who own these pets for further negotiation. If you are interested in the algorithm, check out our developer guide.
+At this stage, the score is calculated using a default set of weights. In the future, you may be able to define your own weights for different fields, such as price, age, species and so on.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
