@@ -278,6 +278,12 @@ Format: `unmark id/PATIENT_ID dsi/DATE_AND_SLOT_INDEX`
 Examples:
 * `unmark id/1 dsi/1` marks the dateslots of index 1 in the dateslot list of the patient with id of 1 as having been failed visited.
 
+### Check for similar persons : `checkSimilar`
+
+Checks and returns a list of similar persons so that the user can check if any errors has been made in entries
+
+Format: `checkSimilar`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -335,6 +341,7 @@ Action | Format, Examples
 **List** | `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`<br> e.g., `list c/NURSE`
 **Mark** | `mark id/ID` <br> e.g., `mark id/1`
 **Unmark** | `unmark id/PATIENT_ID dsi/DATE_SLOT_INDEX` <br> e.g., `unmark id/1 dsi/1`
+**checkSimilar** | `checkSimilar`
 
 
 
