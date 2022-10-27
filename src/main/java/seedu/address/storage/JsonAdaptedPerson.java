@@ -115,7 +115,7 @@ class JsonAdaptedPerson {
         if (!Position.isValidPosition(position)) {
             throw new IllegalValueException(Position.MESSAGE_CONSTRAINTS);
         }
-        final Position modelPosition = Position.buildPosition(position);
+        final Position modelPosition = Position.buildPosition(position, tagged.toString());
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -135,9 +135,10 @@ class JsonAdaptedPerson {
         if (details == null) {
             throw new IllegalValueException(Position.DETAILS_MESSAGE_CONSTRAINTS);
         }
-        modelPosition.setDetails(details);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+        modelPosition.setDetails(details);
+        modelPosition.setFilePath(modelTags);
         return new Person(modelName, modelPhone, modelEmail, modelPosition, modelAddress, modelRemark, modelTags);
     }
 

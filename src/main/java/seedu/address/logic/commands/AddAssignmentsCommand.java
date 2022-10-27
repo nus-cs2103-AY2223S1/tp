@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,6 +17,7 @@ import seedu.address.model.person.position.Student;
  * Adds assignments to all existing students in the address book.
  */
 public class AddAssignmentsCommand extends Command {
+
     public static final String COMMAND_WORD = "assignments";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -42,15 +46,27 @@ public class AddAssignmentsCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
         int numOfPeople = lastShownList.size();
-
+        String relativePath = "./data/";
+        String txt = ".txt";
+        String tag = "";
+        String filePath = "";
         for (int i = 0; i < numOfPeople; i++) {
 
             Person personToEdit = lastShownList.get(i);
             if ((personToEdit.getPosition() instanceof Student)) {
+                tag = personToEdit.getTags().toString();
+                String[] handleTag = tag.split("-");
+                String module = handleTag[0].replace("[", "");
+                String filePath1 = relativePath + module + txt;
+                if (filePath == "") {
+                    filePath = filePath1;
+                }
                 Student currPosition = (Student) personToEdit.getPosition();
                 Student editedPosition = new Student(currPosition.getAttendance(),
                         currPosition.getOverallGrade(),
-                        currPosition.setAssignments(assignments));
+                        currPosition.setAssignments(assignments), filePath1);
+
+
                 Person editedPerson = new Person(personToEdit.getName(),
                         personToEdit.getPhone(),
                         personToEdit.getEmail(),
@@ -65,6 +81,16 @@ public class AddAssignmentsCommand extends Command {
 
         }
 
+        File file = new File(filePath);
+
+        try {
+            FileWriter fileWriter = new FileWriter(filePath);
+            fileWriter.write(assignments);
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
         return new CommandResult(generateSuccessMessage());
     }
 

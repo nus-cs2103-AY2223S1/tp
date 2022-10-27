@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -28,6 +29,11 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <Label fx:id="position" styleClass="cell_small_label" text="\$position" />
+      <FlowPane fx:id="tags">
+        <padding>
+          <Insets bottom="0" left="10" right="10" top="5" />
+        </padding>
+      </FlowPane>
     </VBox>
       <rowConstraints>
          <RowConstraints />

@@ -2,6 +2,10 @@ package seedu.address.model.person.position;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
+
 /**
  * Represents the Professor position in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPosition(String)}
@@ -81,5 +85,10 @@ public class Professor extends Position {
     @Override
     public String getDetails() {
         return roles;
+    }
+
+    @Override
+    public void setFilePath(Set<Tag> modelTags) {
+
     }
 }
