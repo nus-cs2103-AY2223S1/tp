@@ -297,7 +297,7 @@ The command takes in two arguments:
 Each ```Student``` has a ```Set``` of ```Interest```. Adding an ```Interest``` to a batchmate would add to the set of ```Interest``` of the ```Student``` with the ```targetIndex```.
 
 The Add Interest mechanism is facilitated by ```AddInterestCommand```, which extends from ```Command``` and ```AddInterestCommandParser```, which extends from
-```Parser```. ```AddInterestCommandParser``` serves to parse the command arguments and create a new ```AddInterestCommand``` object. ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Person```.
+```Parser```. ```AddInterestCommandParser``` serves to parse the command arguments and create a new ```AddInterestCommand``` object. ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Student```.
 
 #### Steps:
 1. When the user enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```MassLinkersParser``` to parse the command.
@@ -317,7 +317,7 @@ In addition, the below sequence diagram illustrates how the ```AddInterestComman
 
 #### Design considerations:
 1. Usefulness of ```AddInterestCommand```
-- The current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` is useful to provide a quick way to add new interests to a ```Person```.
+- The current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` is useful to provide a quick way to add new interests to a ```Student```.
 2. Managing the List of Interests
 - **Alternative 1 (current choice)**: Store the set of```Interest``` as a field in the ```Student``` class.
     * Pros: It is easier to implement. The use of a ```HashSet``` can handle duplicates.
