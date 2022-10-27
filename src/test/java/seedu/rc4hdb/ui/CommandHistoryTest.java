@@ -27,6 +27,12 @@ public class CommandHistoryTest {
     }
 
     @Test
+    public void retrieveNoCommand() {
+        String commandText = commandHistoryParser.parse(KeyCode.UP).execute();
+        assertEquals(EMPTY_TEXT, commandText);
+    }
+
+    @Test
     public void addRetrieveSingleCommand() {
         this.commandHistoryParser.parse(LIST_COMMAND);
         String commandText = commandHistoryParser.parse(KeyCode.UP).execute();
