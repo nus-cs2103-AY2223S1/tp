@@ -1,10 +1,17 @@
 @font-face {
-    src: url("fonts/Lato-Regular.ttf");
+    font-weight: 700;
+    src: url("fonts/Lato-Bold.ttf");
 }
 
 @font-face {
-    src: url("fonts/Lato-Bold.ttf");
+    src: url("fonts/Lato-Semibold.ttf");
 }
+
+@font-face {
+    font-weight: 400;
+    src: url("fonts/Lato-Regular.ttf");
+}
+
 
 .background {
     -fx-background-color: derive(#070f36, 20%);
