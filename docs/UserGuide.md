@@ -264,6 +264,8 @@ Format:
   saying the index is invalid.
 
 Examples:
+`deletepatient 2` deletes patient Bernice Yu and all their related appointments and bills.
+<img src="images/dp.png" width="800px" height ="400px">
 
 ### 1.3.2 Deleting an appointment of a patient `deleteappointment` `da`
 
@@ -280,7 +282,10 @@ Format:
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
   saying the index is invalid.
 
-Examples:
+Examples: 
+* `deleteappointment 2` deletes Charlotte Oliveiro's appointment with Dr. Prabhu on 2022-10-21 08:30 for 
+knee exam.
+<img src="images/da.png" width="800px" height ="400px">
 
 ### 1.3.3 Deleting a bill of an appointment `deletebill` `db`
 
@@ -297,6 +302,8 @@ Format:
   saying the index is invalid.
 
 Examples:
+`deletebill 1` deletes Bernice's bill for her X-Ray appointment
+<img src="images/db.png" width="800px" height ="400px">
 
 ## 1.4 Find
 
@@ -374,9 +381,9 @@ Format:
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
 Examples:
+`findbill n\Ber p\unpaid` returns Bernice's unpaid bill
 
-
-### 1.4.3 Finding a bill of an appointment
+<img src="images/fb.png" width="800px" height ="400px">
 
 ## 1.5 Sort
 
