@@ -97,6 +97,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if this event exists in the bucket list.
+     */
+    public boolean bucketlistHasEvent(Event event) {
+        requireNonNull(event);
+        return bucketList.contains(event);
+    }
+
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
