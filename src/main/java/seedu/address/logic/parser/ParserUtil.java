@@ -6,6 +6,7 @@ import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -336,13 +337,13 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> planTags} into a {@code List<planTags>}.
      */
-    public static List<IncomeLevel> parseAllSpaceSeparatedIncomeLevels(Collection<String> incomeLevels)
+    public static List<String> parseAllSpaceSeparatedIncomeLevelsToString(Collection<String> incomeLevels)
             throws ParseException {
         requireNonNull(incomeLevels);
         final List<IncomeLevel> incomeLevelList = new ArrayList<>();
         for (String incomeLevel : incomeLevels) {
-            incomeLevelList.add(parseIncomeLevel("$" + incomeLevel.substring(1)));
+            parseIncomeLevel("$" + incomeLevel.substring(1));
         }
-        return incomeLevelList;
+        return new ArrayList<>(incomeLevels);
     }
 }

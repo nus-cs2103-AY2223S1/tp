@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
@@ -226,6 +227,15 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(secondPredicate);
         assertCommandSuccess(secondCommand, model, secondExpectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
+
+        String thirdExpectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
+        ArrayList<FindPredicate> thirdPredicate = new ArrayList<>();
+        thirdPredicate.add(preparePredicate("Meier"));
+        thirdPredicate.add(prepareIncomePredicate("$1500"));
+        FindCommand thirdCommand = new FindCommand(thirdPredicate);
+        expectedModel.updateFilteredPersonList(thirdPredicate);
+        assertCommandSuccess(thirdCommand, model, thirdExpectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
     }
 
     /**
