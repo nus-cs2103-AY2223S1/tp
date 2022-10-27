@@ -1,27 +1,30 @@
 package seedu.address.model.appointment;
 
-import seedu.address.model.person.DateTime;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
+import seedu.address.model.person.Person;
 
 public class Appointment {
     private Patient patient;
     private Nurse nurse;
-    private DateTime dateTime;
+    private LocalDateTime startDateTime;
     private Boolean visited;
 
-    public Appointment(Patient patient, Nurse nurse, DateTime dateTime) {
+    public Appointment(Patient patient, Nurse nurse, LocalDateTime dateTime) {
         this.patient = patient;
         this.nurse = nurse;
-        this.dateTime = dateTime;
+        this.startDateTime = dateTime;
         this.visited = false;
     }
 
     /**
      * @return the dateTime
      */
-    public DateTime getDateTime() {
-        return dateTime;
+    public LocalDateTime getAppointmentStartDateTime() {
+        return startDateTime;
     }
 
     /**
@@ -48,8 +51,8 @@ public class Appointment {
     /**
      * @param dateTime the dateTime to set
      */
-    public void setDateTime(DateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDateTime(LocalDateTime dateTime) {
+        this.startDateTime = dateTime;
     }
 
     /**
@@ -71,5 +74,60 @@ public class Appointment {
      */
     public void setVisited(Boolean visited) {
         this.visited = visited;
+    }
+
+    /**
+     * Returns if the given person is involved in this appointment
+     *
+     * @param person The person to test against
+     * @return True if the given person is involved in this appointment
+     */
+    public boolean involvesPerson(Person testPerson) {
+        return this.patient.equals(testPerson) || this.nurse.equals(testPerson);
+    }
+
+    /**
+     * Returns if the given datetime will clash will this appointment
+     *
+     * @param testDateTime The test date time
+     * @return True if the given datetime will clash will this appointment
+     */
+    public boolean isClashing(LocalDateTime testDateTime) {
+        return withinPeriod(startDateTime, testDateTime, 120L);
+    }
+
+    /**
+     * Returns true if the two date times are with the period given by the interval
+     * parameter
+     *
+     * @param dateTime1         The first date time
+     * @param dateTime2         The second date time
+     * @param intervalInMinutes The interval in minutes
+     * @return True if the two date times are with the period given by the interval
+     *         parameter
+     */
+    private boolean withinPeriod(LocalDateTime dateTime1, LocalDateTime dateTime2, long intervalInMinutes) {
+        long minutes = ChronoUnit.MINUTES.between(dateTime1, dateTime2);
+        return minutes < intervalInMinutes;
+    }
+
+    /**
+     * Returns true if the appointment involves the given patient
+     *
+     * @param patient The given patient
+     * @return True if the appointment involves the given patient
+     */
+    public boolean hasPatient(Patient patient) {
+        return this.patient.equals(patient);
+    }
+
+    /**
+     * Returns true if the appointment involves the given nurse
+     *
+     * @param nurse The given nurse
+     * @return True if the appointment involves the given nurse
+     */
+    public boolean hasNurse(Nurse nurse) {
+        return this.nurse.equals(nurse);
     }
 }
