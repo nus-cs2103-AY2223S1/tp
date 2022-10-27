@@ -58,7 +58,7 @@ For example, entering an incorrect add command like shown below will cause an er
 Clicking on a `Task`, `Project`, or `Staff` card will cause the respective box to be highlighted in green.
 All `Task` and `Project` cards will be displayed in the `List Panel`.
 By default, the `Staff` list is empty when first starting the program.
-To see how to view the `Staff` list of other projects, you can check [this](#view-the-staff-list-within-a-project) segment of the user guide.
+To see how to view the `Staff` list of other projects, you can check [this](#view-the-staff-list-within-a-project-view) segment of the user guide.
 
 ![List Panel](images/ListPanel.png)
 
