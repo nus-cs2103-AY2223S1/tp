@@ -18,6 +18,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.GetCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.getcommands.GetNextOfKinCommand;
@@ -205,7 +206,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handlePersonViewClick(Prefix prefix) {
         String strPrefix = prefix.getPrefix();
-
+        String index = String.valueOf(logic.getCurrentlyViewedIndex().getOneBased());
+        String command = EditCommand.COMMAND_WORD;
+        setCommandBoxText(command + " " + index + " " + strPrefix);
+        commandBoxPlaceholder.requestFocus();
     }
 
     /**
