@@ -7,6 +7,8 @@ import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -31,6 +33,12 @@ public class CalculateCommand extends Command {
             + "Calculate an arithmetic expression"
             + "Example: " + COMMAND_WORD + "3 * (1 + 2.4)";
 
+    /**
+     * Logger to record all the calculations performed
+     * for future checking of bugs
+     */
+    private static Logger logger = Logger.getLogger("Calculation_History");
+
     private final String expression;
 
     /**
@@ -40,7 +48,6 @@ public class CalculateCommand extends Command {
     public CalculateCommand(String exp) {
         this.expression = exp;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
 
@@ -49,6 +56,7 @@ public class CalculateCommand extends Command {
                 ArithmeticExpressionReader.parseCalculation(this.expression);
         String feedback = "Calculator:\n";
         feedback += this.expression + " = " + calcResult;
+        logger.log(Level.INFO, feedback);
         return new CommandResult(feedback);
     }
 
