@@ -15,7 +15,8 @@ This guide contains all you need to get started on working with GithubContact.
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
 1. [Getting Started](#getting-started)
-2. [Features](#features)
+2. [Command Summary](#command-summary)
+3. [Features](#features)
    1. [Add a person](#add-a-person--add)
    2. [Remove a person](#delete-a-person--delete)
    3. [Find a person](#find-a-person--find)
@@ -26,9 +27,10 @@ This guide contains all you need to get started on working with GithubContact.
    8. [Delete a person's details](#delete-a-persons-details-delete)
    9. [Return to previous page](#return-to-previous-page--back-or-esc)
    10. [Show help page](#show-help-page--help)
-3. [FAQ](#faq)
-4. [Command Summary](#command-summary)
+4. [FAQ](#faq)
 5. [Prefix Aliases](#prefix-aliases)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Getting Started
 
@@ -53,7 +55,9 @@ This guide contains all you need to get started on working with GithubContact.
 
 6. Refer to the [Features](#features) below for details of each command.
 
-## Features
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
 
 <div markdown="block" class="alert alert-info">
 
@@ -82,6 +86,22 @@ This guide contains all you need to get started on working with GithubContact.
   The full list of prefix aliases can be found [here](#prefix-aliases).
 
 </div>
+
+| Action               | Format, Examples                                                                                                                                                                      |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add**              | `add name/NAME [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `add name/John Doe address/27 Clementi` |
+| **delete person**    | `delete INDEX` <br> `delete 1`, `delete 2`                                                                                                                                            |
+| **delete attribute** | `delete ATTRIBUTE` <br> `delete name`, `delete slack`, `delete twitter`                                                                                                               |
+| **set**              | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi`       |
+| **sort**             | `sort` <br> `sort name`, `sort name/desc`                                                                                                                                             |
+| **find**             | `find KEYWORD` <br> `find Tex`, `find Engineer`                                                                                                                                       |
+| **reset**            | `reset`                                                                                                                                                                               |
+| **back**             | `back` or `<ESC>` key                                                                                                                                                                 |
+| **help**             | `help` <br> `help`, `help add`                                                                                                                                                        |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Features
 
 #### Add a person : `add`
 
@@ -297,20 +317,6 @@ After executing `help delete`:
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-| Action               | Format, Examples                                                                                                                                                                    |
-|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**              | `add name/NAME address/ADDRESS [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `add name/John Doe address/27 Clementi` |
-| **delete person**    | `delete INDEX` <br> `delete 1`, `delete 2`                                                                                                                                          |
-| **delete attribute** | `delete ATTRIBUTE` <br> `delete name`, `delete slack`, `delete twitter`                                                                                                             |
-| **set**              | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi`     |
-| **sort**             | `sort` <br> `sort name`, `sort name/desc`                                                                                                                                           |
-| **find**             | `find` <br> `find Tex`, `find Engineer`                                                                                                                                             |
-| **reset**            | `reset`                                                                                                                                                                             |
-| **back**             | `back` or `<ESC>` key                                                                                                                                                               |
-| **help**             | `help` <br> `help`, `help add`                                                                                                                                                      |
 
 ## Prefix Aliases
 
