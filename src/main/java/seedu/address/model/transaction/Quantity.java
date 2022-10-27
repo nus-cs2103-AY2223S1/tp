@@ -34,7 +34,7 @@ public class Quantity {
         checkArgument(isPositiveQuantity(quantity), MESSAGE_CONSTRAINTS_POSITIVE);
         checkArgument(isValidQuantity_regex(quantity), MESSAGE_CONSTRAINTS);
         checkArgument(isValidQuantity_nonZero(quantity), MESSAGE_CONSTRAINTS_ZERO);
-        this.quantity = quantity;
+        this.quantity = Integer.toString(Integer.parseInt(quantity));
     }
 
     /**
