@@ -496,7 +496,7 @@ The sequence diagram below illustrates this process.
 
 **Aspect: Whether to implement the edit order feature**
 - **Alternative 1 (current choice)**: The command is implemented and edits the order based on the prefixes 
-that is inputted by the user.
+inputted by the user.
   - Pros: The user can edit only the fields that they want to edit.
   - Cons: The user may have to input long commands.
 - **Alternative 2**: No edit command, users have to delete and re-add orders should there be any change.
