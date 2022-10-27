@@ -8,10 +8,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" styleClass="cover2">
+
     <content>
-        <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="290.0" prefWidth="260.0">
-            <Label id="Name" fx:id="name" minHeight="-Infinity" styleClass="cell_big_label" text="\$name" wrapText="true">
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="290.0" prefWidth="260.0" styleClass="cover">
+            <Label id="Name" fx:id="name" minHeight="-Infinity" styleClass="select" text="\$name" wrapText="true">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -24,12 +26,12 @@
             </Label>
          <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
             <children>
-                  <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="cell_small_label" text="Description: ">
+                  <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="select" text="Description: ">
                       <padding>
                           <Insets left="10.0" top="5.0" />
                       </padding>
                   </Label>
-               <Label id="Description" fx:id="description" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0">
+               <Label id="Description" fx:id="description" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="select">
                   <padding>
                      <Insets top="5.0" />
                   </padding>
@@ -38,7 +40,7 @@
          </HBox>
             <HBox layoutX="15.0" layoutY="137.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0">
                 <children>
-                    <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="cell_small_label" text="Tags:">
+                    <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" text="Tags:" styleClass="select">
                         <padding>
                             <Insets left="10.0" top="5.0" />
                         </padding>
@@ -53,12 +55,12 @@
             </HBox>
          <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0">
             <children>
-               <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="cell_small_label" text="Date:">
+               <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="select" text="Date:">
                   <padding>
                      <Insets left="10.0" top="5.0" />
                   </padding>
                </Label>
-                  <Label id="date" fx:id="date" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="cell_small_label">
+                  <Label id="date" fx:id="date" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="select">
                       <padding>
                           <Insets top="5.0" />
                       </padding>
@@ -67,12 +69,12 @@
          </HBox>
          <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0">
             <children>
-               <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="cell_small_label" text="Status:">
+               <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="select" text="Status:">
                   <padding>
                      <Insets left="10.0" top="5.0" />
                   </padding>
                </Label>
-                  <Label id="status" fx:id="status" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0">
+                  <Label id="status" fx:id="status" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="select">
                       <padding>
                          <Insets top="5.0" />
                       </padding>
@@ -81,12 +83,12 @@
          </HBox>
          <HBox layoutX="15.0" layoutY="107.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0">
             <children>
-               <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="cell_small_label" text="Rating:">
+               <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="select" text="Rating:">
                   <padding>
                      <Insets left="10.0" top="5.0" />
                   </padding>
                </Label>
-                  <Label id="rating" fx:id="rating" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0">
+                  <Label id="rating" fx:id="rating" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="select">
                       <padding>
                          <Insets top="5.0" />
                       </padding>
@@ -95,12 +97,12 @@
          </HBox>
             <HBox layoutX="15.0" layoutY="107.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="240.0">
                 <children>
-                    <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="cell_small_label" text="Review:">
+                    <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="85.0" styleClass="select" text="Review:">
                         <padding>
                             <Insets left="10.0" top="5.0" />
                         </padding>
                     </Label>
-                    <Label id="review" fx:id="review" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0">
+                    <Label id="review" fx:id="review" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="select">
                         <padding>
                             <Insets top="5.0" />
                         </padding>
