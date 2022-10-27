@@ -61,9 +61,27 @@
     -fx-background-color: #FFE3B3;
 }
 
+.list-cell .label {
+    -fx-text-fill: black;
+}
+
 #cardPane {
     -fx-border-color: #3e7b91;
     -fx-border-radius: 5pt;
+    -fx-background-radius: 5pt;
+}
+
+.list-cell:filled:even #cardPane {
+    -fx-background-color: #ffedcf;
+}
+
+.list-cell:filled:odd #cardPane {
+    -fx-background-color: #edcd98;
+}
+
+.list-cell:filled:selected #cardPane {
+    -fx-background-color: #f0b856;
+
 }
 
 .cell_big_label,
