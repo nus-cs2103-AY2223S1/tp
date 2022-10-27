@@ -16,9 +16,9 @@ import seedu.clinkedin.model.person.UniqueTagTypeMap;
 /**
  * Changes rating of an existing person in the address book.
  */
-public class RateCommand extends Command {
+public class AddRateCommand extends Command {
 
-    public static final String COMMAND_WORD = "rate";
+    public static final String COMMAND_WORD = "addRate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an optional rating to the person identified"
@@ -41,7 +41,7 @@ public class RateCommand extends Command {
      * @param index of the person in the filtered person list to edit the rating
      * @param rating rating of the person to be updated to
      */
-    public RateCommand(Index index, Rating rating) {
+    public AddRateCommand(Index index, Rating rating) {
         requireAllNonNull(index, rating);
         this.index = index;
         this.rating = rating;
@@ -88,12 +88,12 @@ public class RateCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof RateCommand)) {
+        if (!(other instanceof AddRateCommand)) {
             return false;
         }
 
         // state check
-        RateCommand e = (RateCommand) other;
+        AddRateCommand e = (AddRateCommand) other;
         return index.equals(e.index)
                 && rating.equals(e.rating);
     }

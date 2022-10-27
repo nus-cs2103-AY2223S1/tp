@@ -6,20 +6,20 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
 
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.exceptions.IllegalValueException;
-import seedu.clinkedin.logic.commands.RateCommand;
+import seedu.clinkedin.logic.commands.AddRateCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.person.Rating;
 
 /**
  * Parses input arguments and creates a new RateCommand object
  */
-public class RateCommandParser implements Parser<RateCommand> {
+public class AddRateCommandParser implements Parser<AddRateCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
      * RateCommand
      */
-    public RateCommand parse(String args) throws ParseException {
+    public AddRateCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_RATING);
@@ -29,10 +29,10 @@ public class RateCommandParser implements Parser<RateCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    RateCommand.MESSAGE_USAGE), ive);
+                    AddRateCommand.MESSAGE_USAGE), ive);
         }
         rating = new Rating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
 
-        return new RateCommand(index, rating);
+        return new AddRateCommand(index, rating);
     }
 }

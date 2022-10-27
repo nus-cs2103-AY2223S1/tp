@@ -24,7 +24,7 @@ import seedu.clinkedin.logic.commands.HelpCommand;
 import seedu.clinkedin.logic.commands.ImportCommand;
 import seedu.clinkedin.logic.commands.ListCommand;
 import seedu.clinkedin.logic.commands.NoteCommand;
-import seedu.clinkedin.logic.commands.RateCommand;
+import seedu.clinkedin.logic.commands.AddRateCommand;
 import seedu.clinkedin.logic.commands.StatsCommand;
 import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
@@ -78,7 +78,7 @@ public class CliSyntax {
             ImportCommand.class,
             ListCommand.class,
             NoteCommand.class,
-            RateCommand.class,
+            AddRateCommand.class,
             StatsCommand.class);
 
     /**
