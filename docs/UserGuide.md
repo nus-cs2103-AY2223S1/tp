@@ -17,32 +17,32 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
 3. [Quick start](#quick-start)
 4. [Features](#features)
    1. [Viewing help `help`](#viewing-help--help)
-   2. [Adding/Deleting contacts in CLInkedIn](#adding-deleting-contacts-in-clinkedin)
-      3. [Adding a person `add`](#adding-a-person-add)
-      5. [Deleting a person `delete`](#deleting-a-person--delete)
-      6. [Clearing all contacts `clear`](#clearing-all-contacts-clear)
+   2. [Adding/Deleting contacts in CLInkedIn](#addingdeleting-contacts-in-clinkedin)
+      1. [Adding a person `add`](#adding-a-person-add)
+      2. [Deleting a person `delete`](#deleting-a-person--delete)
+      3. [Clearing all contacts `clear`](#clearing-all-contacts--clear)
    3. [Modifying contacts in CLInkedIn](#modifying-contacts-in-clinkedin)
       1. [Editing a person `edit`](#editing-a-person--edit)
-      2. [Adding a tag to an existing person `addTag`](#adding-a-tag-to-an-existing-person--addTag)
+      2. [Adding a tag to an existing person `addTag`](#adding-a-tag-to-an-existing-person--addtag)
       3. [Deleting a tag of an existing person `deleteTag`]([#deleting-a-tag-of-an-existing-person--deletetag))
-      4. [Creating a custom tag type `CreateTagType`](#creating-a-custom-tag-type--createTagType)
-      5. [Editing tag type name `editTagType`](#editing-tag-type-name--editTagType)
-      6. [Deleting an existing tag type `deleteTagType`](#deleting-an-existing-tag-type--deleteTagType)
-      7. [Adding optional information `note`](#adding-optional-information--note)
-      8. [Adding optional rating `rate`](#adding-optional-rating--rate)
+      4. [Creating a custom tag type `CreateTagType`](#creating-a-custom-tag-type-createtagtype)
+      5. [Editing tag type name `editTagType`](#editing-tag-type-name-edittagtype)
+      6. [Deleting an existing tag type `deleteTagType`](#deleting-an-existing-tag-type-deletetagtype)
+      7. [Adding optional information `note`](#adding-optional-information-note)
+      8. [Adding optional rating `rate`](#adding-optional-rating-rate)
    4. [Modifying contacts view in CLInkedIn](#modifying-contacts-view-in-clinkedin)
-      1. [Listing all contacts `list`](#listing-all-contacts-list)
-      2. [Finding people `find`](#finding-people-find)
-      3. [Sorting people `sort`](#sorting-people-sort)
-   5. [Miscellaneous Commands](#miscellaneous-commands)
-      20. [Viewing statistics `stat`](#viewing-statistics-stat)
-      21. [Importing contacts `import`](#importing-contacts-import)
-      22. [Exporting contacts `export`](#exporting-contacts-export)
-      23. [Exiting Socius `exit`](#exiting-socius-exit)
-      24. [Saving the data](#saving-the-data)
-      25. [Editing the data file](#editing-the-data-file)
-6. [FAQ](#faq)
-7. [Command Summary](#command-summary)
+      1. [Listing all persons `list`](#listing-all-persons--list)
+      2. [Finding personal information and tags `find`](#finding-personal-information-and-tags-find)
+      3. [Sorting candidates based on rating `sort`](#sorting-candidates-based-on-rating-sort)
+   5. [Miscellaneous Features/Commands](#miscellaneous-featurescommands)
+      1. [Viewing statistics `stat`](#viewing-statistics-stat)
+      2. [Importing contacts `import`](#importing-contacts-import)
+      3. [Exporting contacts `export`](#exporting-contacts-export)
+      4. [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
+      5. [Saving the data](#saving-the-data)
+      6. [Editing the data file](#editing-the-data-file)
+5. [FAQ](#faq)
+6. [Command Summary](#command-summary)
 
 ## Introduction
 ![Ui](images/Ui.png)
@@ -162,7 +162,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing all contacts : `clear`
 
 Clears all entries from the address book.
 
