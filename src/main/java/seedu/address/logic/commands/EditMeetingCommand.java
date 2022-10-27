@@ -1,5 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LISTING_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -9,12 +18,6 @@ import seedu.address.model.listing.ListingID;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Edits the details of an existing meeting in the address book.
@@ -39,9 +42,11 @@ public class EditMeetingCommand extends Command {
     private final Index index;
     private final EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor;
 
+
     /**
-     *
-     * @param index
+     * Constructor
+     * @param index index of Meeting to edit
+     * @param editMeetingDescriptor descriptor
      */
     public EditMeetingCommand(Index index, EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor) {
         requireNonNull(index);
