@@ -46,7 +46,7 @@ public class ExportStudentCsv {
         SequenceWriter seqW = csvMapper.writer().writeValues(csvFilePath.toFile());
         seqW.write(Arrays.asList("name", "phone", "email", "address", "school", "level", "nok_name", "nok_phone",
                 "nok_email", "nok_address", "nok_relationship", "nok_tagged", "tagged", "tuitionClasses"));
-        if (jsonTree.isNull()) {
+        if (jsonTree.size() == 0) {
             seqW.close();
             return;
         }
