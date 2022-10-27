@@ -51,6 +51,10 @@ public class MeetingTime {
         return this.date;
     }
 
+    /**
+     * Formats meeting time for display
+     * @return String formattedMeetingTime
+     */
     public String formatMeetingTime() {
         int day = date.getDayOfMonth();
         String month = date.getMonth().toString();
