@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes the command to list modules;
+:JCommander parses the command looking for tags;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([contains all valid tags])
+    :check if user is in another module;
+    if() then ([not in another module])
+        :check if -a tag is present;
+        if () then ([-a tag is present])
+            :list all modules including the ones marked as done;
+        else ([else])
+            :list modules that are not marked as done;
+        endif
+    else ([else])
+        :display cd state error message;
+    endif
+else ([else])
+    :display invalid format message;
+endif
+stop
+@enduml

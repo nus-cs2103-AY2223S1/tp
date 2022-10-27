@@ -2,7 +2,7 @@
 layout: page
 title: Developer Guide
 ---
-# Table of Contents 
+# Table of Contents
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up, getting started](#setting-up-getting-started)
 3. [Design](#design)
@@ -170,11 +170,23 @@ as a `TaskCard` object, presented in the form of `ListView`.
 
 #### ProfileSidePanel
 
-The `ProfileSidePanel` class contains the user's profile and (proposed) CAP. The following information is displayed in on the object:
+The `ProfileSidePanel` class contains the user's profile. The following information is displayed in on the object:
 * `Course` name
 * Inspiring quote
-* (Proposed) Modular Credit completed by user
-* (Proposed) Current Cumulative Average Point (CAP)
+* Modular Credits completed by user
+* Number of Active Tasks
+
+Here is how the `ProfileSidePanel` works:
+![Structure of ProfileSidePanel](images/ProfileSidePanel.png)
+1. Command executed on `MainWindow`.
+2. `Model` is updated.
+3. `MainWindow` calls the method `refresh`, which refreshes the `ProfileSidePanel`.
+4. `ProfileSidePanel` uses `Logic` to obtain the corresponding information:
+   1. MC Completed
+   2. Active Tasks
+5. `ProfileSidePanel` executes corresponding JavaFX methods to update displayed information.
+6. `ProfileSidePanel` shows visible change on the interface.
+7. `refresh` ends execution.
 
 #### Other Components
 In addition to the main UI components in the `MainWindow` class, these are other UI Components:
@@ -326,11 +338,11 @@ In the event that the HTTP request made to NUSMods fails when fetching, a fallba
 module data. The fallback data file is a JSON file that contains the module data of all the modules in NUS as of AY22/23.
 The fallback data file is located in `src/main/modrekt/logic/parser/modules/data/modules.json`.
 
-Additionally, the endpoint used to fetch from NUSMods is currently set to only fetch the modules in the academic year 
-of 2022-2033 (AY22/23). This is an intended effect, as a collaboration with NUS is something we hope to seek in the 
-future to provide a more robust module data fetching system. As such, if utilised in years beyond AY22/23, 
-the module data obtained may be out of date. 
-To further mitigate this, we also have our verbose module adding command, where users can specify the module name, code 
+Additionally, the endpoint used to fetch from NUSMods is currently set to only fetch the modules in the academic year
+of 2022-2033 (AY22/23). This is an intended effect, as a collaboration with NUS is something we hope to seek in the
+future to provide a more robust module data fetching system. As such, if utilised in years beyond AY22/23,
+the module data obtained may be out of date.
+To further mitigate this, we also have our verbose module adding command, where users can specify the module name, code
 and credits, without any reliance on NUSMods.
 
 ### Remove Module
@@ -425,6 +437,101 @@ The sequence diagram below shows the flow of the interactions between the differ
 In the diagram, the predicates `modulePredicate` and `taskPredicate` are the custom predicates used to filter the module and task lists, respectively. They are within the `setCurrentModule` method in `Model`.
 
 <img src="images/CdSequenceDiagram.png" width="1000" />
+
+### Marking modules as done
+
+Section by : [Marciano](https://github.com/midnightfeverrr)
+
+Allows users to mark their modules as done,
+and alternate between viewing all modules and viewing undone modules via the list command.
+
+Every module in the module list will be in either the done or undone state.
+New tag will be created to mark a module as `done`.
+
+In this section, we will discuss the management of done/undone state, as well as the
+interactions between the commands and the UI.
+
+The relevant commands for this section are:
+* **`done module <module code>`**  marks the module with a done tag in the UI
+* **`undone module <module code>`** removes the done tag from a module (if present) in the UI
+
+#### Design considerations
+
+There was an alternative we considered for users to select the module to mark as done:
+
+* **Alternative 1:** Using the module name:
+    * Pro: Users do not have to search for a module code.
+    * Con: Users have to type a significant amount to disambiguate modules by their name.
+
+* **Alternative 2:** Using the module index:
+    * Pro: Users can mark modules as done without much typing.
+    * Con: Module index is not visible in UI. It is quite tedious to count the index manually if user has a lot of modules.
+
+* **Alternative 3:** Using the module code (current implementation):
+    * Pro: Users can mark modules as done by their module code easily without much typing.
+    * Con: Users still have to type more than if they were to specify via index.
+
+To optimize the amount of typing a user has to do, we decided to choose the second option.
+
+#### Current implementation
+
+The done/undone state is handled in the `Module` class via a boolean flag `isDone`.
+Because `Module` is immutable, the methods `Module::done` and `Module::undone` return a new `Module`
+with the done/undone state changed instead of mutating the `isDone` variable directly.
+
+The following diagram shows the execution and control flow of the `done` command.
+
+<img src="images/ModulePUMLs/DoneModule/ModuleDonePathExecution.png" width="1000" />
+
+The diagram below shows how the `done` command work with input `done module CS1101S`
+
+<img src="images/ModulePUMLs/DoneModule/ModuleDoneSequenceDiagram.png" width="1200" />
+
+Notice how we explicitly prevent a done module from being marked as done again. Even though marking a done module as
+done again is inconsequential from a data perspective (nothing in a `Module` changes other than the creation of a new
+instance), it is still a user error that should be handled:
+
+> Suppose that a user intended to mark a module as undone, but accidentally entered the `done` command instead.
+By displaying an error instead of silently accepting the erroneous command, the user is notified and
+can enter the correct command next—this results in better UX!
+
+The classes directly involved in setting the done/undone state from user input are:
+* `DoneModuleCommand` and `UndoneModuleCommand` which are the commands that when executed, mark tasks as done or undone respectively.
+* `ModtrektParser` which parses the command word and delegates the parsing to JCommander.
+* `LogicManager` which executes the commands.
+
+For brevity, we omit the diagrams and explanations for marking modules as undone—it is the direct inverse of marking tasks as done,
+such that the control flow is exactly the same: just replace "done" and its derivatives
+with "undone", and vice versa.
+
+### Module listing
+
+Section by : [Marciano](https://github.com/midnightfeverrr)
+
+Module listing allows users to view the modules they have added.
+
+The relevant commands for this section are:
+* **`cd`** sets path to the homepage. (Not inside of any module)
+* **`ls mod`/`ls module`** displays only the undone modules (active modules) in the UI.
+* **`ls mod -a`/`ls module -a`** displays all the modules, including the ones marked done, in the UI.
+
+#### Current implementation
+
+We check for the presence of the `-a` flag to decide whether to display done tasks.
+
+The following diagram shows the execution and control flow of the `list module` command.
+
+<img src="images/modulePUMLs/ListModule/ListingModulePathExecution.png" width="1000" />
+
+The sequence diagram below details the interactions between the command and the model
+for the `ls mod` and `ls mod -a` commands:
+
+<img src="images/modulePUMLs/ListModule/ListingModuleSequenceDiagram.png" width="1000" />
+
+The predicates defined by `Model.PREDICATE_SHOW_ALL_MODULES` and `PREDICATE_HIDE_DONE_MODULES` are used to filter
+the tasks displayed in the UI via the `updateFilteredModuleList` method in the `Model` interface.
+
+_Side note: We delegate parsing to JCommander which already has the command object registered_
 
 ### Tasks
 
@@ -758,7 +865,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The module list is empty
   * 2a1. ModtRekt shows an error message when the command is entered
-  
+
      Use case ends.
 
 * 3a. The given module code is invalid
@@ -812,7 +919,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. ModtRekt shows an error message.
 
       Use case resumes at step 2.
-    
+
 
 
 *{More to be added}*

@@ -73,11 +73,11 @@ Exits the application.
 
 Adds a module to the application.
 
-To allow our users to easily add modules via their module code, our module information is fetched from 
+To allow our users to easily add modules via their module code, our module information is fetched from
 [NUSMods](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4),
-hence the module code you specify must be a valid NUS module code. 
-If the module code is invalid, the module will not be added. Additionally, since an integration with NUSMods 
-is a collaboration we would like to seek in future revisions of our app, we have decided to use the AY2022-2023 module 
+hence the module code you specify must be a valid NUS module code.
+If the module code is invalid, the module will not be added. Additionally, since an integration with NUSMods
+is a collaboration we would like to seek in future revisions of our app, we have decided to use the AY2022-2023 module
 list, hence beyond this AY, the module information and codes may have changed.
 
 Format: `add module <module code>`
@@ -151,10 +151,10 @@ Sample execution of command `cd ..`:
 
 #### Marks done a module: `done`
 
-Marks a module as done. 
+Marks a module as done.
 - After you marked a module as done, this will increment
 the total MCs you completed displayed on the left side of the application.
-- When you mark a module as done, this will mark all active tasks 
+- When you mark a module as done, this will mark all active tasks
 corresponding to the module as done.
 
 Format: `done module <module code>`, `done mod <module code>`
@@ -167,7 +167,7 @@ Sample execution of command `done module CS2100`:
 
 #### Marks undone a module: `undone`
 
-Marks a module as undone. 
+Marks a module as undone.
 - After you unmarked a module, this will decrement
 the total MCs you completed displayed on the left side of the application.
 - Unmarking a module will not affect its tasks. (It will not mark its original tasks as undone)
@@ -198,7 +198,7 @@ Sample execution of command `list module -a`:
 Adds a task under specific module.
 - User can optionally be in a module page (i.e. Executing the [`cd` command](#entering-a-module-cd) to enter a module).
 - User may optionally include a deadline for the task by specifying the -d flag along with the deadline in DD/MM/YYYY format.
-- Description of a task can **only** contain American Standard Code for Information Interchange 
+- Description of a task can **only** contain American Standard Code for Information Interchange
   [(ASCII)](https://en.wikipedia.org/wiki/ASCII) characters
 
 Format(if CDed): `add task <description> [-d <deadline>]`
@@ -280,7 +280,7 @@ Examples:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous ModuleList home folder.
 **Q**: Is my data saved when I close the app?<br>
 **A**: Yes! We keep track of your modules and tasks, and they will automatically be shown when you re-open the application.
