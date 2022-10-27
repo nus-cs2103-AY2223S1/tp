@@ -8,6 +8,7 @@ import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.viewmodels.TagToRename;
 
 /**
  * Renames an existing tag in FoodRem.
@@ -17,7 +18,10 @@ public class RenameTagCommand extends Command {
     private final Tag renamedTag;
 
     /**
-     * Creates an AddTagCommand to add the specified {@code Tag}
+     * Creates a RenameTagCommand to rename a specified {@code Tag}
+     *
+     * @param originalTag the tag to be renamed
+     * @param renamedTag the new tag
      */
     public RenameTagCommand(Tag originalTag, Tag renamedTag) {
         requireNonNull(originalTag);
@@ -27,7 +31,7 @@ public class RenameTagCommand extends Command {
     }
 
     @Override
-    public CommandResult<String> execute(Model model) throws CommandException {
+    public CommandResult<TagToRename> execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasTag(originalTag)) {
@@ -39,7 +43,7 @@ public class RenameTagCommand extends Command {
         }
 
         model.setTag(originalTag, renamedTag);
-        return CommandResult.from(String.format("Original tag: %s\nRenamed tag: %s\n", originalTag, renamedTag));
+        return CommandResult.from(new TagToRename(originalTag, renamedTag, "Tag renamed:"));
     }
 
     public static String getUsage() {
