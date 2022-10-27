@@ -37,7 +37,8 @@ public class FindCommand extends Command {
             + "Example for Student: " + COMMAND_WORD + " n/alice e/alice@example.com s/Keming \n"
             + "Example for Tutor: " + COMMAND_WORD + " n/john a/clementi q/computing #/alwaysLate\n"
             + "Example for Tuition Class: " + COMMAND_WORD + " n/P2Math d/tuesday s/mathematics t/18:00\n"
-            + "NOTE: Must include at least one pair of prefix and keywords.";
+            + "NOTE: Must include at least one pair of prefix and keywords.\n"
+            + "NOTE: If repeated prefixes are specified, only the latest one will be taken.";
 
     private final HashMap<Prefix, String> keywords;
 
