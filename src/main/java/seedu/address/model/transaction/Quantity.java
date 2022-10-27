@@ -40,7 +40,7 @@ public class Quantity {
         checkArgument(isValidQuantityEmpty(quantity), MESSAGE_CONSTRAINTS_EMPTY);
         checkArgument(isValidDouble(quantity), MESSAGE_CONSTRAINTS);
         checkArgument(isPositiveQuantity(quantity), MESSAGE_CONSTRAINTS_POSITIVE);
-        checkArgument(isValidQuantityRegex(quantity), MESSAGE_CONSTRAINTS_REGEX);
+        checkArgument(isValidQuantityRegex(quantity), MESSAGE_CONSTRAINTS);
         checkArgument(isSmallQuantity(quantity), MESSAGE_CONSTRAINTS_LARGE);
         checkArgument(isValidQuantityNonZero(quantity), MESSAGE_CONSTRAINTS_ZERO);
         this.quantity = Integer.toString(Integer.parseInt(quantity));
@@ -139,7 +139,7 @@ public class Quantity {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_POSITIVE);
         }
         if (!Quantity.isValidQuantityRegex(trimmedQuantity)) {
-            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_REGEX);
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
         if (!Quantity.isSmallQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_LARGE);

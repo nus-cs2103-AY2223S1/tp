@@ -117,12 +117,13 @@ Formats:
 
 * The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` **must not contain any signs** e.g +1, -3, …​
 * The `QUANTITY` refers to the amount of the goods transacted.
-* The `QUANTITY` should only contain non-negative numbers and be at least 1 digit long.
+* The `QUANTITY` should only contain non-negative integers and be at least 1 digit long.
 * The `GOODS` refers to the name of the goods transacted.
 * The `GOODS` should only contain alphanumeric characters, and it should not be blank.
 * The `PRICE` refers to the price of the goods transacted.
-* The `PRICE` should only contain numbers, and it should be at least 1 digit long.
+* The `PRICE` should be a positive number, and it should be at least 1 digit long.
 * The `DATE` refers to the date of the transaction.
 * The `DATE` should only be in the format of DD/MM/YYYY. If no `DATE` is entered,
   the default date will be the current date that the user enters the transaction.
@@ -152,6 +153,7 @@ Format: `remark INDEX REMARK`
 
 * The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` **must not contain any signs** e.g +1, -3, …​
 * The parameter `REMARK` cannot be empty.
 
 Examples:
@@ -166,6 +168,7 @@ Format: `delete INDEX m/MODE`
 
 * The `INDEX` refers to the index number shown in the displayed list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` **must not contain any signs** e.g +1, -3, …​
 * The `MODE` refers to which entity is being deleted. It must be `client`, `transaction` or `remark`.
 * `view` command must be used before the deletion of `remark` or `transaction` as the deletion can only happen when they are visible in the application.
 
@@ -186,6 +189,7 @@ Format: `edit INDEX m/MODE FIELDS [MORE_FIELDS]...`
 
 * The `INDEX` refers to the index number shown in the displayed list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` **must not contain any signs** e.g +1, -3, …​
 * The `MODE` refers to which entity is being deleted. It must be `client`, `transaction` or `remark`.
 * The `FIELDS` refers to the parameters to be changed for the entity. E.g. client has `[n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [t/TAG]`, 
 transaction has `[q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]`.
@@ -274,6 +278,7 @@ Format: `sort INDEX ORDER`
 
 * The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` **must not contain any signs** e.g +1, -3, …​
 * The `ORDER` refers to how the transaction will be sorted. It can only be sorted by
   `oldest` or `latest`.
 * If no clients made any transactions, the transaction section will be blank.
@@ -307,6 +312,7 @@ Format: `view INDEX`
 * Views the client at the specified `INDEX`.
 * The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` **must not contain any signs** e.g +1, -3, …​
 
 Examples:
 * `view 5` displays the remarks and transactions of the client at the 5th index.
@@ -358,15 +364,15 @@ _Details coming soon ..._
 
 ## Prefix Summary
 
-| Prefix     | Meaning                                        | Restrictions                                                | Example                       |
-|------------|------------------------------------------------|-------------------------------------------------------------|-------------------------------|
-| **n/**     | Name of the client                             | Alphanumeric characters and spaces, required                | `n/Alice`                     |
-| **a/**     | Address of the client                          | Required                                                    | `a/321 Clementi Road, #02-22` |
-| **p/**     | Phone number of the client                     | Should only contain numbers, required                       | `n/98765432`                  |
-| **e/**     | Email of the client                            | Should comply to the normal standards of an email, required | `e/alice@gmail.com`           |
-| **g/**     | Goods name of the transaction                  | Alphanumeric characters and spaces, required                | `g/Apples`                    |
-| **q/**     | Quantity of goods involved in the transaction  | Positive integer, required                                  | `q/10`                        |
-| **price/** | Price per quantity of goods in the transaction | Positive number, required                                   | `price/1.50`                  |
-| **m/**     | Mode of the command                            | Must be either `client`, `transaction`, or `remark`         | `m/client`                    |
-| **d/**     | Date of transaction                            | In the format `dd/mm/yyyy`                                  | `d/07/11/2022`                |
-| **t/**     | Tag applied on clients                         | Alphanumeric, single word                                   | `t/friends`                   |
+| Prefix     | Meaning                                        | Restrictions                                                  | Example                       |
+|------------|------------------------------------------------|---------------------------------------------------------------|-------------------------------|
+| **n/**     | Name of the client                             | Alphanumeric characters and spaces, required                  | `n/Alice`                     |
+| **a/**     | Address of the client                          | Required                                                      | `a/321 Clementi Road, #02-22` |
+| **p/**     | Phone number of the client                     | Should only contain numbers, required                         | `n/98765432`                  |
+| **e/**     | Email of the client                            | Should comply to the normal standards of an email, required   | `e/alice@gmail.com`           |
+| **g/**     | Goods name involved in the transaction         | Alphanumeric characters and spaces, required                  | `g/Apples`                    |
+| **q/**     | Quantity of goods involved in the transaction  | Positive integer, required                                    | `q/10`                        |
+| **price/** | Price per quantity of goods in the transaction | Positive number, required                                     | `price/1.50`                  |
+| **m/**     | Mode of the command                            | Must be either `client`, `transaction`, or `remark`, optional | `m/client`                    |
+| **d/**     | Date of transaction                            | In the format `dd/mm/yyyy`, optional                          | `d/07/11/2022`                |
+| **t/**     | Tag applied on clients                         | Alphanumeric, single word, optional                           | `t/friends`                   |
