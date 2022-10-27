@@ -82,10 +82,10 @@ destroy EditOrderCommandParser
 LogicManager -> EditOrderCommand : execute(model)
 activate EditOrderCommand
 
-EditOrderCommand -> Model : getFilteredOrderList()
+EditOrderCommand -> Model : getSortedOrderList()
 activate Model
 
-Model --> EditOrderCommand : filteredOrderList
+Model --> EditOrderCommand : sortedOrderList
 deactivate Model
 
 EditOrderCommand -> EditOrderCommand: createEditedOrder(orderToEdit, descriptor)

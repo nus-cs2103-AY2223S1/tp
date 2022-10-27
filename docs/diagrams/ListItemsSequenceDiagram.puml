@@ -37,8 +37,8 @@ activate Model
 deactivate Model
 
 note right
-PREDICATE_SHOW_ALL_ORDERS:
-Predicate to show all orders
+PREDICATE_SHOW_ALL_ITEMS:
+Predicate to show all items
 end note
 
 create CommandResult

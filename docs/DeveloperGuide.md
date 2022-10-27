@@ -190,6 +190,59 @@ _{add design considerations}_
 
 _{more aspects and alternatives to be added}_
 
+### List Items Feature
+
+The list items feature allows the user to list all the existing `Item`s in the inventory.
+
+#### Implementation 
+
+The list item feature is executed by the `ListItemsCommand`. It extends `Command`.
+
+Given below is an example usage scenario and how the `ListItemsCommand` mechanism behaves at each step.
+
+Step 1. The user inputs `listi`. This calls `LogicManager#execute`, which then calls `TrackOParser#parseCommand`.
+This method will return a new instance of `ListItemsCommand`.
+
+Step 2. `ListItemsCommand#execute` is called, which then calls the method 
+`Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS)`. This will show all the `Item`s in the existing 
+inventory list.
+
+The sequence diagram below illustrates this process.
+
+![ListItemsSequenceDiagram](images/ListItemsSequenceDiagram.png)
+
+### Find Item Feature
+
+The find item feature allows the user to find an `Item` by keyword/s given by the user.
+
+#### Implementation
+
+The find item command is executed by `FindItemCommand`. It extends `Command`.
+
+Given below is an example usage scenario and how the find order mechanism behaves at each step.
+
+Step 1. The user executes `findi chair mattress` command to find the orders containing items with the keywords
+keychain or apple. The `findi` command calls `FindItemCommandParser` which checks for the correct command
+syntax and separates the keywords, utilising each space as a delimiter. 
+
+Step 2. The keywords are then passed into a constructor for `ItemContainsKeywordsPredicate`, 
+which extends `Predicate<Item>`, to construct a predicate that will filter the items according to the keywords. 
+The predicate is passed into a new instance of `FindItemCommand`. `FindItemCommand` then calls 
+`Model#updateFilteredItemList()` to filter `Model#filteredOrders` according to the previously constructed 
+`ItemContainsKeywordsPredicate`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect, 
+`FindItemCommandParser` will throw a `ParseException`.
+
+</div>
+
+The sequence diagram below illustrates this process.
+
+![FindItemSequenceDiagram](images/FindItemSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 ### Edit Item Feature
 
 The edit item feature allows the user to edit an `Item` currently being tracked by the system.
@@ -236,11 +289,12 @@ at any point in time. This `OrderList` instance represents the container that ke
 
 Currently, the application features 5 main operations that interact directly with the `OrderList`. They are represented by
 the following commands:
-* [`AddOrderCommand`](#Add-Order-Feature) - creates a new order to be added to the `OrderList`
-* `FindOrderCommand` - filters and display matching orders from the `OrderList` based on provided keywords
+* [`AddOrderCommand`](#add-order-feature) - creates a new order to be added to the `OrderList`
+* [`FindOrderCommand`](#find-order-feature) - filters and display matching orders from the `OrderList` based on provided keywords
 * `ListOrderCommand` - display all order data from the `OrderList`
-* `EditOrderCommand` - edit the data of an order from the `OrderList`
+* [`EditOrderCommand`](#edit-order-feature) - edit the data of an order from the `OrderList`
 * `DeleteOrderCommand` - deletes an existing order from the `OrderList`
+* `MarkOrderCommand` - marks an existing order from the `OrderList` as paid or delivered
 
 The order management feature is supported by the `Order` class, represented by the class diagram below.
 ![OrderClassDiagram](images/developer-guide/OrderClassDiagram.png)
@@ -325,7 +379,7 @@ Aspect: How add order command executes:
 
 **_More design considerations_**
 
-### Find Order feature
+### Find Order Feature
 
 The find order feature allows the user to find an `Order` to be tracked by the system.
 
@@ -365,7 +419,7 @@ _{add design considerations}_
 
 _{more aspects and alternatives to be added}_
 
-### Edit Order feature
+### Edit Order Feature
 
 The edit order feature allows the user to edit an `Order` to be tracked by the system.
 
@@ -381,8 +435,8 @@ by the user, and returns an `EditOrderCommand` with the target index and `EditOr
 that a newly edited order should have; in this case, it contains a `Name`, `Item`, and `Quantity`. The rest of the fields that are not provided
 are copied from the existing order at target index `3` (This index is **one-based**).
 
-Step 2. The `EditOrderCommand#createEditedOrder()` creates an edited order using the information in the `EditOrderDescriptor`. When the user inputs
-an `Item` and `Quantity`, it checks whether:
+Step 2. The `EditOrderCommand#createEditedOrder` creates an edited order using the information in the 
+`EditOrderDescriptor`. When the user inputs an `Item` and `Quantity`, it checks whether:
 
 - **the `Item` exists in the `InventoryList`.**
   - If it does not exist, the method will throw an exception. *This is because customers cannot order things that are not in stock*.
@@ -397,9 +451,8 @@ both the newly inputted `Item` and the `Item` referenced in `ItemQuantityPair` s
     - Otherwise, nothing happens.
 
 Step 3. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`, successfully 
-executing the edit order command in the `Model`.
-
-Step 4. `LogicManager#execute()` then calls `Storage#saveTrackO()` which saves the new `Model` to the data file.
+executing the edit order command in the `Model`. `Model#refreshData` is called to refresh the GUI, and `Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS)`
+is called to update the list to show all orders.
 
 The sequence diagram below illustrates this process.
 
