@@ -241,7 +241,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         //todo: add more
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE);
 
         // missing name prefix
         assertParseFailure(parser, ENTITY_DESC_STUDENT + PHONE_DESC_BOB + " " + VALID_NAME_BOB + EMAIL_DESC_BOB
@@ -265,7 +265,7 @@ public class AddCommandParserTest {
         // empty preamble
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         // all prefixes missing so invalid preamble
         assertParseFailure(parser, ENTITY_DESC_STUDENT + " " + VALID_NAME_BOB + " " + VALID_PHONE_BOB + " "
@@ -397,74 +397,74 @@ public class AddCommandParserTest {
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
                 + QUALIFICATION_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddCommand.MESSAGE_USAGE));
+                AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
                 + INSTITUTION_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddCommand.MESSAGE_USAGE));
+                AddCommand.FEEDBACK_MESSAGE));
 
         //        assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
         //                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
         //                + SUBJECT_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-        //                AddCommand.MESSAGE_USAGE));
+        //                AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
                 + DAY_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddCommand.MESSAGE_USAGE));
+                AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
                 + TIME_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddCommand.MESSAGE_USAGE));
+                AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
                 + RELATIONSHIP_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddCommand.MESSAGE_USAGE));
+                AddCommand.FEEDBACK_MESSAGE));
 
         //tutor
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
-                + SCHOOL_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                + SCHOOL_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
-                + LEVEL_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                + LEVEL_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
-                + SUBJECT_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                + SUBJECT_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
-                + LEVEL_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                + LEVEL_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
-                + DAY_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                + DAY_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
-                + TIME_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                + TIME_DESC_CLASS1, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
-                + RELATIONSHIP_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                + RELATIONSHIP_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         //class
         assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
                 + DAY_DESC_CLASS1 + TIME_DESC_CLASS1 + TAG_DESC_FRIEND + PHONE_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
                 + DAY_DESC_CLASS1 + TIME_DESC_CLASS1 + TAG_DESC_FRIEND + EMAIL_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
                 + DAY_DESC_CLASS1 + TIME_DESC_CLASS1 + TAG_DESC_FRIEND + ADDRESS_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         //        assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1
         //                + LEVEL_DESC_CLASS1
@@ -473,32 +473,32 @@ public class AddCommandParserTest {
 
         assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
                         + DAY_DESC_CLASS1 + TIME_DESC_CLASS1 + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
                         + DAY_DESC_CLASS1 + TIME_DESC_CLASS1 + TAG_DESC_FRIEND + INSTITUTION_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
                         + DAY_DESC_CLASS1 + TIME_DESC_CLASS1 + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         //more than one wrong field
         //student
         assertParseFailure(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
                 + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
 
         //tutor
         assertParseFailure(parser, ENTITY_DESC_TUTOR + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB
                 + SCHOOL_DESC_BOB + LEVEL_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddCommand.MESSAGE_USAGE));
+                AddCommand.FEEDBACK_MESSAGE));
 
         //class
         assertParseFailure(parser, ENTITY_DESC_CLASS + NAME_DESC_CLASS1 + SUBJECT_DESC_CLASS1 + LEVEL_DESC_CLASS1
                 + DAY_DESC_CLASS1 + TIME_DESC_CLASS1 + TAG_DESC_FRIEND + PHONE_DESC_BOB + EMAIL_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
     }
 }

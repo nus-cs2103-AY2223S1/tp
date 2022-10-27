@@ -114,7 +114,7 @@ public class NextOfKinCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE);
         Index targetIndex = INDEX_FIRST_PERSON;
 
         // missing name prefix
@@ -183,22 +183,22 @@ public class NextOfKinCommandParserTest {
         // negative index
         assertParseFailure(parser, "-5" + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE));
 
         // zero index
         assertParseFailure(parser, "0" + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE));
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string" + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE));
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 invalidprefix/ string" + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE));
     }
 
     @Test
@@ -207,31 +207,31 @@ public class NextOfKinCommandParserTest {
 
         assertParseFailure(parser, targetIndex.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB + SCHOOL_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, targetIndex.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB + LEVEL_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, targetIndex.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB + QUALIFICATION_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, targetIndex.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB + INSTITUTION_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, targetIndex.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB + SUBJECT_DESC_CLASS1,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, targetIndex.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB + DAY_DESC_CLASS1,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE));
 
         assertParseFailure(parser, targetIndex.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + RELATIONSHIP_DESC_BOB + TIME_DESC_CLASS1,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.FEEDBACK_MESSAGE));
     }
 
     @Test

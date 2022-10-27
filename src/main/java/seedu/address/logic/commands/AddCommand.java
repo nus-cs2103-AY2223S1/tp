@@ -70,6 +70,31 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     //improve in future
+    public static final String FEEDBACK_MESSAGE = "Valid add command format:\n"
+            + "add student "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_SUBJECT_OR_SCHOOL + "SCHOOL "
+            + PREFIX_LEVEL + "LEVEL "
+            + "[" + PREFIX_TAG + "TAG]... OR\n"
+            + "add tutor "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_QUALIFICATION + "QUALIFICATION "
+            + PREFIX_INSTITUTION + "INSTITUTION "
+            + "[" + PREFIX_TAG + "TAG]... OR\n"
+            + "add class "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_SUBJECT_OR_SCHOOL + "SUBJECT "
+            + PREFIX_LEVEL + "LEVEL "
+            + PREFIX_DAY + "DAY "
+            + PREFIX_TIME + "TIME "
+            + "[" + PREFIX_TAG + "TAG]... \n";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds either a student, a tutor or a class to the database.\n"
             + "Parameters:"
@@ -95,7 +120,7 @@ public class AddCommand extends Command {
             + PREFIX_LEVEL + "LEVEL "
             + PREFIX_DAY + "DAY "
             + PREFIX_TIME + "TIME "
-            + "[" + PREFIX_TAG + "TAG]... OR\n"
+            + "[" + PREFIX_TAG + "TAG]... \n"
             + "Example: " + COMMAND_WORD + " "
             + "student "
             + PREFIX_NAME + "John Doe "
@@ -105,7 +130,7 @@ public class AddCommand extends Command {
             + PREFIX_SUBJECT_OR_SCHOOL + "Keming Primary School "
             + PREFIX_LEVEL + "Primary3 "
             + PREFIX_TAG + "badBoy "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney";;
 
     public static final String MESSAGE_SUCCESS = "New entity added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student or tutor already exists in the database";

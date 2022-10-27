@@ -25,6 +25,9 @@ public class UnassignCommand extends Command {
 
     public static final String COMMAND_WORD = "unassign";
 
+    public static final String FEEDBACK_MESSAGE = "Valid unassign command format:\n"
+            + "unassign INDEX " + PREFIX_NAME + "CLASS NAME\n";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigned the person identified by the index "
             + "number used in the displayed person list from the specified class if it exists.\n"
             + "Parameters: unassign"

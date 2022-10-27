@@ -22,7 +22,7 @@ public class ShowCommandParser implements Parser<ShowCommand> {
             return new ShowCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowCommand.FEEDBACK_MESSAGE), pe);
         }
     }
 

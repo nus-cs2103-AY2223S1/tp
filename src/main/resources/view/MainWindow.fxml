@@ -2,152 +2,195 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
-<fx:root maxHeight="620.0" maxWidth="950.0" minHeight="620.0" minWidth="950.0" onCloseRequest="#handleExit" title="myStudent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+
+<fx:root minHeight="670.0" minWidth="950.0" onCloseRequest="#handleExit" title="myStudent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/myStudent_icon.png" />
     </icons>
     <scene>
-        <Scene>
-
-            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="950.0" styleClass="background">
-                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-                    <Menu mnemonicParsing="false" text="    File    ">
+        <Scene fx:id="mainWindowScene">
+            <StackPane>
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="950.0" styleClass="background">
+                <MenuBar fx:id="menuBar" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" VBox.vgrow="NEVER">
+                    <Menu mnemonicParsing="false" text="  File  ">
                   <MenuItem mnemonicParsing="false" onAction="#handleExport" text="Export" />
                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                     </Menu>
-                    <Menu mnemonicParsing="false" text="     Help     ">
+                    <Menu mnemonicParsing="false" text="  Help  ">
                         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                     </Menu>
+               <Menu mnemonicParsing="false" text="  Theme  ">
+                  <items>
+                     <MenuItem fx:id="lightTheme" mnemonicParsing="false" onAction="#updateToLightTheme" text="Light Theme" />
+                     <MenuItem fx:id="darkTheme" mnemonicParsing="false" onAction="#updateToDarkTheme" text="Dark Theme" />
+                     <MenuItem fx:id="greenTheme" mnemonicParsing="false" onAction="#updateToGreenTheme" text="Green Theme" />
+                     <MenuItem fx:id="pinkTheme" mnemonicParsing="false" onAction="#updateToPinkTheme" text="Pink Theme" />
+                  </items>
+               </Menu>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
                 </MenuBar>
-            <HBox minWidth="-Infinity" prefHeight="571.0" prefWidth="950.0">
+            <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <VBox minWidth="-Infinity" prefHeight="460.0" prefWidth="500.0">
+                  <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="950.0">
                      <children>
-                        <Label id="title" prefHeight="44.0" prefWidth="500.0" text="myStudent">
-                           <font>
-                              <Font name="American Typewriter" size="43.0" />
-                           </font>
-                        </Label>
-                        <VBox id="resultDisplayHolder" minHeight="-Infinity" minWidth="-Infinity" prefHeight="149.0" prefWidth="500.0">
+                        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
                            <children>
-                                                    <StackPane id="commandBox" fx:id="commandBoxPlaceholder" minWidth="-Infinity" prefWidth="450.0" VBox.vgrow="NEVER">
-                                      <padding>
-                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                      </padding>
+                              <HBox alignment="CENTER" prefHeight="22.0" prefWidth="500.0">
+                                 <children>
+                                    <ImageView fitHeight="72.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                                        <image>
+                                            <Image url="@../images/titile_logo.png" />
+                                        </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <VBox id="resultDisplayHolder" minHeight="-Infinity" minWidth="-Infinity" prefHeight="149.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                                          <StackPane id="commandBox" fx:id="commandBoxPlaceholder" minWidth="-Infinity" prefWidth="450.0" VBox.vgrow="NEVER">
+                                            <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                            </padding>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                                       </VBox.margin>
+                                        </StackPane>
+                                                          <StackPane fx:id="resultDisplayPlaceholder" minHeight="100" minWidth="-Infinity" prefHeight="149.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                            </padding>
+                                        </StackPane>
+                                 </children>
                                  <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets />
+                                 </VBox.margin>
+                              </VBox>
+                              <StackPane id="entityDescriptionPanel" fx:id="entityDescriptionPlaceholder" maxHeight="320.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="500.0" VBox.vgrow="NEVER">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </StackPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="430.0" HBox.hgrow="ALWAYS">
+                           <children>
+                                  <StackPane fx:id="entityLabel" alignment="CENTER_LEFT" maxHeight="61.0" minHeight="28.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="390.0" styleClass="background" VBox.vgrow="NEVER">
+                                      <children>
+                                          <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="390.0" spacing="10.0">
+                                              <children>
+                                          <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToStudentList" prefHeight="30.0" prefWidth="90.0">
+                                             <graphic>
+                                                        <Pane fx:id="studentLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="90.0" styleClass="active-label">
+                                                            <children>
+                                                                <Label alignment="CENTER" prefHeight="26.0" prefWidth="90.0" styleClass="label-bright" text="Student" textAlignment="CENTER" />
+                                                            </children>
+                                                        </Pane>
+                                             </graphic>
+                                          </Button>
+                                          <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToTutorList" prefHeight="30.0" prefWidth="90.0">
+                                             <graphic>
+                                                        <Pane fx:id="tutorLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="90.0" styleClass="inactive-label">
+                                                            <children>
+                                                                <Label alignment="CENTER" prefHeight="26.0" prefWidth="90.0" styleClass="label-bright" text="Tutor" textAlignment="CENTER" />
+                                                            </children>
+                                                        </Pane>
+                                             </graphic>
+                                          </Button>
+                                          <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToTuitionClassList" prefHeight="30.0" prefWidth="90.0">
+                                             <graphic>
+                                                        <Pane fx:id="tuitionClassLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="90.0" styleClass="inactive-label">
+                                                            <children>
+                                                                <Label alignment="CENTER" prefHeight="26.0" prefWidth="90.0" styleClass="label-bright" text="Class" textAlignment="CENTER" />
+                                                            </children>
+                                                        </Pane>
+                                             </graphic>
+                                          </Button>
+                                              </children>
+                                       <padding>
+                                          <Insets left="15.0" right="10.0" top="10.0" />
+                                       </padding>
+                                          </HBox>
+                                      </children>
+                                 <VBox.margin>
+                                    <Insets />
                                  </VBox.margin>
                                   </StackPane>
-                                                    <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" minWidth="-Infinity" prefHeight="100" prefWidth="500.0" VBox.vgrow="NEVER">
-                                      <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                      </padding>
-                                  </StackPane>
+                                        <VBox id="entityList" fx:id="personList" minWidth="-Infinity" prefHeight="483.0" prefWidth="390.0" VBox.vgrow="ALWAYS">
+                                      <StackPane fx:id="entityListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                  </VBox>
                            </children>
-                           <VBox.margin>
+                           <HBox.margin>
                               <Insets />
-                           </VBox.margin>
-                        </VBox>
-                        <StackPane id="entityDescriptionPanel" fx:id="entityDescriptionPlaceholder" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="500.0">
+                           </HBox.margin>
                            <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              <Insets bottom="20.0" left="20.0" right="20.0" />
                            </padding>
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </StackPane>
+                            <StackPane fx:id="statusbarPlaceholder" prefHeight="0.0" prefWidth="539.0" />
+            </VBox>
+            <StackPane fx:id="animationPanel" mouseTransparent="true" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: black;">
+               <children>
+               <VBox fx:id="startAnimationPanel" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                     <ImageView fx:id="logo" fitHeight="133.0" fitWidth="304.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/titile_big_logo.png" />
+                        </image>
+                     </ImageView>
+                        <StackPane prefHeight="68.0" prefWidth="950.0">
+                           <children>
+                              <ImageView fx:id="exitMessage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/exit_message.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="welcomeMessage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/welcome_message.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
                         </StackPane>
                      </children>
-                  </VBox>
-                  <VBox minWidth="-Infinity" prefHeight="520.0" prefWidth="430.0">
-                     <children>
-                            <StackPane fx:id="entityLabel" alignment="CENTER_LEFT" maxHeight="40.0" minHeight="30.0" minWidth="-Infinity" prefHeight="40.0" prefWidth="370.0" styleClass="background">
-                                <children>
-                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="340.0" spacing="10.0">
-                                        <children>
-                                    <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToStudentList" prefHeight="30.0" prefWidth="90.0">
-                                       <graphic>
-                                                  <Pane fx:id="studentLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="90.0" styleClass="active-label">
-                                                      <children>
-                                                          <Label alignment="CENTER" prefHeight="26.0" prefWidth="90.0" styleClass="label-bright" text="Student" textAlignment="CENTER" />
-                                                      </children>
-                                                  </Pane>
-                                       </graphic>
-                                    </Button>
-                                    <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToTutorList" prefHeight="30.0" prefWidth="90.0">
-                                       <graphic>
-                                                  <Pane fx:id="tutorLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="90.0" styleClass="inactive-label">
-                                                      <children>
-                                                          <Label alignment="CENTER" prefHeight="26.0" prefWidth="90.0" styleClass="label-bright" text="Tutor" textAlignment="CENTER" />
-                                                      </children>
-                                                  </Pane>
-                                       </graphic>
-                                    </Button>
-                                    <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToTuitionClassList" prefHeight="30.0" prefWidth="90.0">
-                                       <graphic>
-                                                  <Pane fx:id="tuitionClassLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="90.0" styleClass="inactive-label">
-                                                      <children>
-                                                          <Label alignment="CENTER" prefHeight="26.0" prefWidth="90.0" styleClass="label-bright" text="Class" textAlignment="CENTER" />
-                                                      </children>
-                                                  </Pane>
-                                       </graphic>
-                                    </Button>
-                                        </children>
-                                 <padding>
-                                    <Insets left="15.0" right="10.0" top="10.0" />
-                                 </padding>
-                                    </HBox>
-                                </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                            </StackPane>
-                                  <VBox id="entityList" fx:id="personList" minWidth="-Infinity" prefHeight="483.0" prefWidth="390.0">
-                                <padding>
-                                    <Insets bottom="10" left="10" right="10" top="10" />
-                                </padding>
-                                <StackPane fx:id="entityListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                            </VBox>
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding>
-                  </VBox>
+               </VBox>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" />
-               </padding>
-            </HBox>
-
-                            <StackPane fx:id="statusbarPlaceholder" prefHeight="0.0" prefWidth="539.0" VBox.vgrow="NEVER" />
-            </VBox>
+            </StackPane>
+            </StackPane>
          <stylesheets>
-            <URL value="@DarkTheme.css" />
-            <URL value="@Extensions.css" />
+            <URL value="@LightTheme.css" />
          </stylesheets>
         </Scene>
     </scene>
