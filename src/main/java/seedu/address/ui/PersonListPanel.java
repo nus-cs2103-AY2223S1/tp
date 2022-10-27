@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
@@ -20,12 +21,24 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<Person> personListView;
 
+    private Stage primaryStage;
+
+    /**
+     * Creates a {@code PersonListPanel} with the given {@code ObservableList} & {@code primaryStage}.
+     */
+    public PersonListPanel(ObservableList<Person> personList, Stage primaryStage) {
+        super(FXML);
+        personListView.setItems(personList);
+        personListView.setCellFactory(listView -> new PersonListViewCell());
+        this.primaryStage = primaryStage;
+    }
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> groupedPersonList) {
         super(FXML);
-        personListView.setItems(personList);
+        personListView.setItems(groupedPersonList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
@@ -41,7 +54,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1, primaryStage).getRoot());
             }
         }
     }

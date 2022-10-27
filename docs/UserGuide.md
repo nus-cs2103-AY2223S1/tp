@@ -20,6 +20,9 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
    * Undoing last command : undo
    * Sorting all entries by a specific field : sort
    * Add a person to a group: addtogroup
+   * Remove a person from a group: ungroup
+   * Open a group window: group
+   * Email all persons in a group: emailall
 * [Command summary](command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -51,9 +54,6 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
    * **`sort`** : Sorts entries.
 
    * **`find`** : Finds a contact based on partial name/phone number
-
-   * **`addtogroup 1 friends`** : Adds the 1st person in the list to group "friends"
-
 
   * **`exit`** : Exits the app.
 
@@ -199,7 +199,7 @@ Examples:
 
 ### Adding a person to a group : `addtogroup`
 
-Adds the specified person to specified group.
+Adds the specified person to the specified group.
 
 Format: `addtogroup INDEX GROUP`
 
@@ -210,6 +210,43 @@ Format: `addtogroup INDEX GROUP`
 Examples:
 * `addtogroup 1 friends` adds the 1st person in the current list to the group `friends`.
 
+
+### Removing a person from a group : `ungroup`
+
+Removes the specified person from the specified group.
+
+Format: `ungroup INDEX GROUP`
+
+* Removes the person at the specified `INDEX` from the specified `GROUP`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `ungroup 1 friends` ungroups the 1st person in the current list from the group `friends`.
+
+### Opening a group window : `group`
+
+Open a new window containing the persons in the group.
+
+Format: `group GROUPNAME`
+
+* Opens a new window containing persons from the specified `GROUPNAME`.
+* `GROUPNAME` should not contain spaces.
+
+Examples:
+* `group friends` opens a group window containing persons in the group `friends`.
+
+### Email all persons in a group : `emailall`
+
+Open an email link to all persons in the specified group.
+
+Format: `emailall GROUPNAME`
+
+* Opens the email client to all persons in `GROUPNAME`.
+* `GROUPNAME` should not contain spaces.
+
+Examples:
+* `emailall friends` opens the email client to all persons in the group `friends`.
 
 ### Exiting the program : `exit`
 
@@ -246,16 +283,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                            |
-|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**         | `help`                                                                                                                                                      |
-| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **List**         | `list`                                                                                                                                                      |
-| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                             |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
-| **Clear**        | `clear`                                                                                                                                                     |                                                                             |                                                                                                          |
-| **Undo**         | `undo`                                                                                                                                                      |
-| **Sort**         | `sort PREFIX/` <br> e.g., `sort n/`                                                                                                                         |
-| **Find**         | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                              |
-| **Add To Group** | `addtogroup INDEX GROUP`                                                                                                                                    |
-| **Exit**         | `exit`                                                                                                                                                      |
+| Action                | Format, Examples                                                                                                                                            |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**              | `help`                                                                                                                                                      |
+| **Add**               | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **List**              | `list`                                                                                                                                                      |
+| **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                             |
+| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
+| **Clear**             | `clear`                                                                                                                                                     |                                                                             |                                                                                                          |
+| **Undo**              | `undo`                                                                                                                                                      |
+| **Sort**              | `sort PREFIX/` <br> e.g., `sort n/`                                                                                                                         |
+| **Find**              | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                              |
+| **Add To Group**      | `addtogroup INDEX GROUP`                                                                                                                                    |
+| **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                       |
+| **Open Group Window** | `group GROUPNAME`                                                                                                                                           |
+| **Email All**         | `emailall GROUPNAME`                                                                                                                                        |
+| **Exit**              | `exit`                                                                                                                                                      |

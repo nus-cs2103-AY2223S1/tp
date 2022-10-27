@@ -14,6 +14,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EmailAllCommand;
 import seedu.address.logic.commands.ExcludeCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -103,12 +104,15 @@ public class AddressBookParser {
             return new SortCommandParser().parse(arguments);
 
         case AddToGroupCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new AddToGroupCommandParser().parse(arguments);
 
         case UngroupCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new UngroupCommandParser().parse(arguments);
 
         case GroupCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new GroupCommandParser().parse(arguments);
 
         case HistoryCommand.COMMAND_WORD:
@@ -137,6 +141,10 @@ public class AddressBookParser {
         case AddToFavCommand.COMMAND_WORD:
             HistoryList.addToHistory(userInput);
             return new AddToFavCommandParser().parse(arguments);
+
+        case EmailAllCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
+            return new EmailAllCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
