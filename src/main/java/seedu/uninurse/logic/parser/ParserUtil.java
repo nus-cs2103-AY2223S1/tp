@@ -2,6 +2,7 @@ package seedu.uninurse.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_PATIENT_ALL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,6 +40,8 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     public static final String MESSAGE_INVALID_OPTIONS = "Command options is invalid";
+
+    public static final String MESSAGE_INVALID_PARAMETERS = "Command parameters is invalid";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -467,6 +470,18 @@ public class ParserUtil {
         // (option in validOptions and isPresent()) || (option not in validOptions and !isPresent())
         return Arrays.stream(PREFIXES_OPTION_ALL).allMatch(option ->
                 Arrays.stream(validOptions).anyMatch(x -> x.equals(option))
+                        ^ !argumentMultimap.getValue(option).isPresent());
+    }
+
+    /**
+     * Checks if in the given argumentMultimap, *only* the given validParameters occur.
+     */
+    public static boolean parametersOnlyContains(ArgumentMultimap argumentMultimap, Prefix... validParameters) {
+        requireNonNull(argumentMultimap);
+        requireNonNull(validParameters);
+        // (option in validOptions and isPresent()) || (option not in validOptions and !isPresent())
+        return Arrays.stream(PREFIXES_PATIENT_ALL).allMatch(option ->
+                Arrays.stream(validParameters).anyMatch(x -> x.equals(option))
                         ^ !argumentMultimap.getValue(option).isPresent());
     }
 }
