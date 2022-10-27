@@ -73,22 +73,28 @@ user guide.
 Format: `:help`
 
 
-### Adding an exercise: `:a`
+### Adding an exercise: `:add`
 
-Adds an exercise that we have done for the day.
+Adds an exercise that we have done for the day. If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise. 
 
-Format: `:a n/<exercise name> w/<weight(kg)> s/<sets> r/<reps>`
+Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 
 ##### Parameter constraints:
-* The weight **must be a positive decimal number**
-  * Examples: 1, 1.5, 2, ...
-* The sets **must be a positive integer, up to 3 digits, with no leading zeros**
+* The name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**
+  * Examples: Squat, Bench press, deadlift...
+* The weight **must be a positive decimal number, up to 3 digits for the whole number and up to 2 digits for the decimal place**.
+  * Examples: 0, 0.55, 35, 100.1, 200.00...
+* The sets **must be a positive integer, up to 3 digits, with no leading zeroes**.
   * Examples: 1, 2, 3, 10, 100...
-* The reps **must be a positive integer, up to 3 digits, with no leading zeros**
+* The reps **must be a positive integer, up to 3 digits, with no leading zeroes**.
   * Examples: 1, 2, 3, 10, 100...
+* The date **must be a valid date**.
+  * Examples: 27/10/2022, 27-10-2022, 27/10/22... 
+  * `d/DATE` field is left optional, will store exercise with current date if no date field is found
 
 ##### Examples:
-* `:a n/Squat w/30 s/3 r/5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps
+* `:add n/Squat w/30 s/3 r/5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps for today's date.
+* `:add n/Deadlift w/60 s/1 r/1 d/27-10-22` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th October 2022.
 
 
 ### Deleting an exercise : `:d`
