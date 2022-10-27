@@ -11,21 +11,21 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric";
     public static final String INCOME_CONSTRAINTS = "Income tag must only be one of the following: \n"
-            + "Salary, Allowance, Profit, Investment, Gifts, Others";
+            + IncomeTag.getAllTags();
     public static final String EXPENDITURE_CONSTRAINTS = "Expenditure tag must only be one of the following: \n"
-            + "Food, Groceries, Entertainment, Transport, Education, Housing, Others";
+            + ExpenditureTag.getAllTags();
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
 
     /**
-     * Wrapper for tags
+     * Wrapper for tags.
      */
     public interface EntryTag {
 
     }
 
     /**
-     * Income tags that can be used
+     * Income tags that can be used.
      */
     public enum IncomeTag implements EntryTag {
         SALARY,
@@ -36,7 +36,7 @@ public class Tag {
         OTHERS;
 
         /**
-         * Checks that the input of {@code tag} is a valid income tag
+         * Checks that the input of {@code tag} is a valid income tag.
          */
         public static boolean isValid(String tag) {
             for (IncomeTag incomeTag: values()) {
@@ -47,9 +47,28 @@ public class Tag {
             return false;
         }
 
+        public static String getAllTags() {
+            StringBuilder sb = new StringBuilder();
+            for (IncomeTag incomeTag: values()) {
+                sb.append(incomeTag.toString());
+                if (!incomeTag.equals(IncomeTag.OTHERS)) {
+                    sb.append(", ");
+                }
+            }
+            return sb.toString();
+        }
+
+
+        @Override
+        public String toString() {
+            String name = this.name();
+            String camelCaseName = name.substring(0, 1) + name.substring(1).toLowerCase();
+            return camelCaseName;
+        }
+
     }
     /**
-     * Expenditure tags that can be used
+     * Expenditure tags that can be used.
      */
     public enum ExpenditureTag implements EntryTag {
         FOOD,
@@ -60,7 +79,7 @@ public class Tag {
         HOUSING,
         OTHERS;
         /**
-         * Checks that the input of {@code tag} is a valid expenditure tag
+         * Checks that the input of {@code tag} is a valid expenditure tag.
          */
         public static boolean isValid(String tag) {
             for (ExpenditureTag expenditureTag: values()) {
@@ -69,6 +88,24 @@ public class Tag {
                 }
             }
             return false;
+        }
+
+        public static String getAllTags() {
+            StringBuilder sb = new StringBuilder();
+            for (ExpenditureTag expenditureTag: values()) {
+                sb.append(expenditureTag.toString());
+                if (!expenditureTag.equals(ExpenditureTag.OTHERS)) {
+                    sb.append(", ");
+                }
+            }
+            return sb.toString();
+        }
+
+        @Override
+        public String toString() {
+            String name = this.name();
+            String camelCaseName = name.substring(0, 1) + name.substring(1).toLowerCase();
+            return camelCaseName;
         }
 
     }
@@ -90,6 +127,7 @@ public class Tag {
             this.tag = ExpenditureTag.valueOf(tagName.toUpperCase());
             break;
         default:
+            // Should not reach here
             this.tag = null;
         }
     }
@@ -123,9 +161,7 @@ public class Tag {
      * Gets tagName
      */
     public String getTagName() {
-        String name = tag.toString();
-        String camelCaseName = name.substring(0, 1) + name.substring(1).toLowerCase();
-        return camelCaseName;
+        return tag.toString();
     }
 
 
@@ -145,7 +181,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return getTagName();
+        return tag.toString();
     }
 
 }
