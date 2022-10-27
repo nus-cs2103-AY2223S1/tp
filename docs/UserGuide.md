@@ -10,8 +10,9 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 - [Quick Start](#quick-start)
 - [Features](#features)
   - [Modules-Related Features](#modules-related-features)
-     - [Listing modules](#listing-modules)
-     - [Finding modules](#finding-modules)
+    - [Adding modules](#adding-modules)
+    - [Listing modules](#listing-modules)
+    - [Finding modules](#finding-modules)
   - [Tasks-Related Features](#tasks-related-features)
     - [Adding a task](#adding-a-task)
     - [Deleting task function](#deleting-task-function-coming-soon-in-v12)
@@ -21,12 +22,16 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
     - [Listing tasks](#listing-tasks)
     - [Filtering the task list](#filtering-the-task-list)
     - [Finding tasks](#finding-tasks)
-    - [Tagging priority of task](#tagging-priority-of-task-coming-soon-in-v12)
+    - [Sorting the task list](#sorting-the-task-list)
+    - [Adding a tag to the task](#adding-the-tag-to-the-task)
+    - [Editing the tag of a task](#editing-the-tags-of-a-task)
+    - [Deleting the tags from a task](#deletes-the-tags-of-a-task)
     - [Clearing the task list](#clearing-the-task-list)
   - [Exams-Related Features](#exams-related-features)
     - [Adding an exam](#adding-an-exam)
     - [Editing an exam](#editing-an-exam)
     - [Deleting an exam](#deleting-an-exam)
+    - [Linking an exam](#linking-an-exam)
     - [Unlinking an exam](#unlinking-an-exam)
     - [Showing the tasks of an exam](#showing-the-tasks-of-an-exam)
   - [Other Features](#other-features)
@@ -54,7 +59,35 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 
 ## Features
 
+### Note about command format
+* All command words are not case-sensitive so `T tagadd` is the same as `t tagadd`
+* Optional parameters are marked by `[` and `]`
+* If duplicate prefixes are used, the latest prefix in the line will be selected.
+  * For example, for `t sort c/priority c/deadline`, the latest prefix `c/deadline` will be selected
+* For the group of prefixes marked by `[` and `]*`, it means that at least one of the prefixes in the
+group must be selected and the rest of the prefixes in the group are optional
+
+
 ## Modules-related Features
+
+### Adding Modules
+Adds the module stored in module list
+
+Format: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULAR_CREDIT`
+* Adds a module with a module code, module name and modular credit into
+the module list
+* `MODULE_CODE` refers to the module code of the module
+* `MODULE_NAME` refers to the name of the module
+* `MODULAR_CREDIT` refers to the number of modular credits that the module has
+* `MODULE_CODE` must be at least 6 characters long and the first two characters
+of the module code must be an alphabetical character
+* `MODULAR_CREDIT` must be at least 0 and not more than 20
+* If the module name is empty, an error message will be displayed
+
+Examples:
+
+`m add c/cs2100 m/computer organisation mc/4` adds a module with the module
+code `cs2100`, the module name `computer organisation` and the modular credit `4`
 
 ### Listing Modules
 Lists modules stored in module list
@@ -204,18 +237,108 @@ Examples:
 
 `t find do paper` finds tasks that contain the keyword 'do paper', such as 'do paper 1', 'do paper 2'
 
-### Tagging priority of task [Coming Soon in v1.2]
-Tags the priority to complete task 
+### Sorting the task list
+Sorts the tasks in the task list based on the criteria specified
 
-Format: `tag TASK /p PRIORITY_STATUS`
-* Tags one of three priorities("high", "medium", "low") to the task
-* If the priority status is not "high", "medium" or "low", an error message will appear to inform the user to key in a valid priority status
+Format: `t sort c/CRITERIA`
+* Sorts all the tasks in the task list based on the criteria specified
+* `CRITERIA` can be either `priority`, `deadline`, `module` or `description`
+* When sorting by `priority`, all tasks marked with priority status `HIGH` will appear
+at the top of the displayed task list, followed by `MEDIUM`, `LOW` and lastly all tasks
+with no priority status being at the bottom
+* When sorting by `deadline`, tasks with the earliest deadline will appear at the top of 
+the displayed list and tasks with no deadlines will appear at the bottom of the displayed task list
+* When sorting by `module`, all tasks will be sorted by module code in alphanumeric order
+* When sorting by `description`, all tasks will be sorted by the task description in alphanumeric order
+* The criteria is not case-sensitive so `PRIORITY` is the same as `priority`
 
 Examples:
 
-`tag CS2105 Quiz /p high` tags CS2105 Quiz as high priority task to complete
+`t sort c/priority` sorts all the tasks in the task list by priority status
 
-`tag CS2103T Quiz /p low` tags CS2103T Quiz as low priority task to complete
+`t sort c/deadline` sorts all the tasks in the task list by deadline
+
+`t sort c/module` sorts all the tasks in the task list by module code
+
+`t sort c/description` sorts all the tasks in the task list by task description
+
+
+### Adding the tag to the task
+Tags the priority status and the deadline to complete task 
+
+Format: `t tagadd INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`
+* A task can be tagged with either the priority status, the deadline or both 
+* The task is tagged at the specified `INDEX`. 
+* `INDEX` refers to the index number shown on the displayed task list. 
+* The index must be a positive number 1, 2, 3, …​
+* If the index is non-positive or greater than the number of tasks in the list, an error message
+will be displayed.
+* `PRIORITY STATUS` must be one of three priorities("high", "medium", "low")
+* `DEADLINE` must be in the format `DD-MM-YYYY`
+* `DEADLINE` must not be earlier than the current date
+
+Examples:
+
+`t tagadd 1 p/high` tags the first task in the displayed task list with the priority status of `HIGH`
+
+`t tagadd 1 dl/31-12-2022` tags the first task in the displayed task list with the deadline of `31-12-2022`
+
+`t tagadd 2 p/low dl/31-12-2022` tags the second task in the displayed task list with a priority status of 
+`HIGH` and a deadline of `31-12-2022`
+
+### Editing the tags of a task
+Edits the tags associated with the task
+
+Format: `t tagedit INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`
+* Edits the tags that are currently tagged to the task
+* To edit the priority status of the task, the task must already be tagged with the priority status
+* To edit the deadline of the task, the task must already be tagged with the deadline
+* The tags of the task at the specified `INDEX` is edited.
+* `INDEX` refers to the index number shown on the displayed task list.
+* The index must be a positive number 1, 2, 3, …​
+* If the index is non-positive or greater than the number of tasks in the list, an error message
+will be displayed.
+* `PRIORITY STATUS` must be one of three priorities("high", "medium", "low")
+* `DEADLINE` must be in the format `DD-MM-YYYY`
+* `DEADLINE` must not be earlier than the current date
+
+Examples:
+
+`t tagadd 1 p/high` followed by `t tagedit 1 p/low` update priority status of the task
+from `HIGH` to `LOW`
+
+`t tagadd 1 dl/31-12-2022` followed by `t tagedit 1 dl/31-11-2022` updates the deadline of the task
+from `31-12-2022` to `31-11-2022`
+
+### Deletes the tags of a task
+Deletes the tags associated with the task
+
+Format: `t tagdel INDEX t/KEYWORD [SECOND_KEYWORD]`
+* Deletes the tags that are currently tagged to the task
+* `KEYWORD` and `SECOND_KEYWORD` indicate the kind of tags to be removed from
+the task
+* The list of keywords which can be used for `KEYWORD` and `SECOND_KEYWORD` are
+priority and deadline
+* The number of keywords which can be used must be at least 1 and not more
+than 2
+* The tag of the task at the specified `INDEX` is deleted
+* `INDEX` refers to the index number shown on the displayed task list.
+* The index must be a positive number 1, 2, 3, …​
+* If the index is non-positive or greater than the number of tasks in the list, an error message 
+will be displayed.
+* If duplicate keywords are used, the duplicate keyword will be ignored
+* The keywords are not case-sensitive so `PRIORITY` would be the same `priority`
+
+Examples:
+
+`t tagadd 1 p/high` followed by `t tagdel 1 t/priority` would delete the priority status
+of the first task in the displayed task list
+
+`t tagadd 1 dl/24-11-2022` followed by `t tagdel 1 t/deadline` would delete the deadline
+of the first task in the displayed task list
+
+`t tagadd 2 p/low dl/31-12-2022` followed by `t tagdel 2 t/priority deadline` would delete 
+the priority status and deadline of the second task in the displayed task list
 
 ### Clearing the task list
 Clears the entire task list.
@@ -290,8 +413,28 @@ Example:
 `e del 1` deletes the first exam in the exam list.
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** All tasks currently linked to the exam will be unlinked after the exam is deleted.
+**Note:** All tasks currently linked to the exam will be unlinked after the exam is deleted.
 </div>
+
+### Linking an exam
+Links the task in displayed task list to the exam in the exam list based on the indexes given.
+
+Format `e link e/EXAM_INDEX t/TASK_INDEX`
+* Links the exam at the specified index in the exam list to a task at the specified index
+in the task list
+* `EXAM_INDEX` refers to the index number displayed in the exam list
+* `TASK_INDEX` refers to the index number displayed in the task list
+* `EXAM_INDEX` and `TASK_INDEX` must be a positive integer 1, 2, 3, …​
+* If `EXAM_INDEX` is a non-positive integer or is greater than the number of exams in the exam list,
+an error message will be shown
+* If `TASK_INDEX` is a non-positive integer or is greater than the number of tasks in the task list,
+an error message will be shown
+
+Examples:
+
+`e link e/1 t/1` links the first task in the displayed task list to the first exam in the exam list
+
+`e link e/2 t/3` links the third task in the displayed task list to the second exam in the exam list
 
 ### Unlinking an exam
 Unlinks the exam from the specified task according to the index given.
