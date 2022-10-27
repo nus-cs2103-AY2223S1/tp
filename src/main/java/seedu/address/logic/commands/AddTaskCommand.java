@@ -5,8 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR_LONG;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,11 +28,11 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the current team.\n"
             + "Parameters:"
-            + FLAG_NAME_STR + " NAME "
+            + " NAME "
             + FLAG_DEADLINE_STR + " DEADLINE "
             + FLAG_ASSIGNEE_STR + " ASSIGNEE "
             + "Example: " + COMMAND_WORD + " "
-            + FLAG_NAME_STR + " \"Review PR\" "
+            + " \"Review PR\" "
             + FLAG_DEADLINE_STR + " \"2023-12-04 23:59\" "
             + FLAG_ASSIGNEE_STR + " \"Alex Yeoh\" "
             + FLAG_ASSIGNEE_STR + " \"Bernice Yu\" ";
@@ -45,7 +43,7 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
 
 
-    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true)
+    @CommandLine.Parameters(arity = "1")
     private String taskName;
 
     @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "")
