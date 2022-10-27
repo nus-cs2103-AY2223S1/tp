@@ -17,6 +17,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UNIVERSITY;
 
 import java.util.Arrays;
 
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -72,6 +73,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_CAP).isPresent()) {
             String[] capKeywords = StringUtil.splitByWhitespace(argMultimap.getValue(PREFIX_CAP).get());
+            CollectionUtil.checkCapKeywords(capKeywords);
             predicateList.addPredicate(new CapContainsKeywordsPredicate(Arrays.asList(capKeywords)));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
