@@ -9,6 +9,8 @@ import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import static seedu.nutrigoals.testutil.FoodBuilder.DEFAULT_EARLIER_TIME;
 import static seedu.nutrigoals.testutil.TypicalFoods.APPLE;
 import static seedu.nutrigoals.testutil.TypicalFoods.BREAD;
+import static seedu.nutrigoals.testutil.TypicalFoods.MAX_CALORIE_FOOD;
+import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,6 +29,7 @@ import seedu.nutrigoals.testutil.UserBuilder;
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
+    private ModelManager typicalModelManager = new ModelManager(getTypicalNutriGoals(), new UserPrefs());
 
     @Test
     public void constructor() {
@@ -127,6 +130,36 @@ public class ModelManagerTest {
     @Test
     public void setUserDetails_nullUser_throwsException() {
         assertThrows(NullPointerException.class, () -> modelManager.setUserDetails(null));
+    }
+
+    @Test
+    public void getCalorieDifference() {
+        assertEquals(-12000, typicalModelManager.getCalorieDifference());
+    }
+
+    @Test
+    public void getTotalCalorie() {
+        assertEquals(new Calorie("14000"), typicalModelManager.getTotalCalorie());
+    }
+
+    @Test
+    public void isAddedTotalCalorieTooLarge_notTooLarge_returnFalse() {
+        assertFalse(typicalModelManager.isAddedTotalCalorieTooLarge(APPLE));
+    }
+
+    @Test
+    public void isAddedTotalCalorieTooLarge_tooLarge_returnTrue() {
+        assertTrue(typicalModelManager.isAddedTotalCalorieTooLarge(MAX_CALORIE_FOOD));
+    }
+
+    @Test
+    public void isEditedTotalCalorieTooLarge_notTooLarge_returnFalse() {
+        assertFalse(typicalModelManager.isEditedTotalCalorieTooLarge(APPLE, BREAD));
+    }
+
+    @Test
+    public void isEditedTotalCalorieTooLarge_tooLarge_returnTrue() {
+        assertTrue(typicalModelManager.isEditedTotalCalorieTooLarge(MAX_CALORIE_FOOD, APPLE));
     }
 
     @Test

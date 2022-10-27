@@ -236,6 +236,21 @@ public class ModelManager implements Model {
     public ObservableList<Food> getUnFilteredFoodList() {
         unFilteredFoods.setPredicate(PREDICATE_SHOW_ALL_FOODS);
         return unFilteredFoods;
+
+    public boolean isAddedTotalCalorieTooLarge(Food toAdd) {
+        return getTotalCalorie().isCalorieSumTooLarge(toAdd.getCalorie());
+    }
+
+    @Override
+    public boolean isEditedTotalCalorieTooLarge(Food toAdd, Food toDelete) {
+        Calorie calorieToAdd = toAdd.getCalorie();
+        Calorie calorieToDelete = toDelete.getCalorie();
+        int calorieDifference = calorieToAdd.calculateDifference(calorieToDelete);
+        if (calorieDifference <= 0) {
+            return false;
+        }
+        Calorie calorieDifferenceToAdd = new Calorie(Integer.toString(calorieDifference));
+        return getTotalCalorie().isCalorieSumTooLarge(calorieDifferenceToAdd);
     }
 
     @Override

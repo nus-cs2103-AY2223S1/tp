@@ -126,6 +126,10 @@ public interface Model {
 
     ObservableList<Food> getUnFilteredFoodList();
 
+    boolean isAddedTotalCalorieTooLarge(Food toAdd);
+
+    boolean isEditedTotalCalorieTooLarge(Food toAdd, Food toDelete);
+
     /** Returns the {@code Map} of food items and their calorie content */
     Map<Name, Calorie> getFoodCalorieList();
 

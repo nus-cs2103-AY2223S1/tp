@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="NutriGoals" minWidth="720" minHeight="600" onCloseRequest="#handleExit">
+         title="NutriGoals" minWidth="800" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/nutrigoals_32.png" />
   </icons>
@@ -44,14 +44,14 @@
 
         <GridPane VBox.vgrow="ALWAYS">
           <children>
-            <VBox fx:id="foodList" styleClass="white-pane" minWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <VBox fx:id="foodList" styleClass="white-pane" minWidth="380" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="0">
               <padding>
                 <Insets topRightBottomLeft="10" />
               </padding>
               <StackPane fx:id="foodListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" />
             </VBox>
 
-            <VBox minWidth="340" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <VBox minWidth="380" GridPane.columnIndex="1" GridPane.rowIndex="0">
               <StackPane fx:id="progressBarPlaceholder" styleClass="white-pane">
                 <padding>
                   <Insets topRightBottomLeft="10" />
