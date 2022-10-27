@@ -1,12 +1,12 @@
 package seedu.address.testutil;
-
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+//
+//import java.util.Set;
+//import java.util.stream.Collectors;
+//import java.util.stream.Stream;
 
 import seedu.address.logic.commands.task.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Contact;
+// import seedu.address.model.task.Contact;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -31,9 +31,8 @@ public class EditTaskDescriptorBuilder {
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();
         descriptor.setTitle(task.getTitle());
-        descriptor.setCompleted(task.getCompleted());
         descriptor.setDeadline(task.getDeadline());
-        descriptor.setAssignedContacts(task.getAssignedContacts());
+        // descriptor.setAssignedContactIndexes(task.getAssignedContacts());
     }
 
     /**
@@ -45,14 +44,6 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the status of the {@code EditTaskDescriptor} that we are building.
-     */
-    public EditTaskDescriptorBuilder withCompleted(boolean isCompleted) {
-        descriptor.setCompleted(isCompleted);
-        return this;
-    }
-
-    /**
      * Sets the {@code Deadline} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withDeadline(String deadline) throws ParseException {
@@ -60,15 +51,15 @@ public class EditTaskDescriptorBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code contacts} into a {@code Set<Contact>} and set it to the {@code EditTaskDescriptor}
-     * that we are building.
-     */
-    public EditTaskDescriptorBuilder withAssignedContacts(String... assignedContacts) {
-        Set<Contact> contactSet = Stream.of(assignedContacts).map(Contact::new).collect(Collectors.toSet());
-        descriptor.setAssignedContacts(contactSet);
-        return this;
-    }
+    //    /**
+    //     * Parses the {@code contacts} into a {@code Set<Contact>} and set it to the {@code EditTaskDescriptor}
+    //     * that we are building.
+    //     */
+    //    public EditTaskDescriptorBuilder withAssignedContacts(String... assignedContacts) {
+    //        Set<Contact> contactSet = Stream.of(assignedContacts).map(Contact::new).collect(Collectors.toSet());
+    //        descriptor.setAssignedContactIndexes(contactSet);
+    //        return this;
+    //    }
 
     public EditTaskDescriptor build() {
         return descriptor;
