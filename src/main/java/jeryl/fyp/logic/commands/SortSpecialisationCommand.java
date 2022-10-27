@@ -10,7 +10,7 @@ import jeryl.fyp.model.Model;
  */
 public class SortSpecialisationCommand extends Command {
 
-    public static final String COMMAND_WORD = "sort-sp";
+    public static final String COMMAND_WORD = "sort -p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the FYP projects "
             + "by the specialisation of the  projects followed by alphabetical order"

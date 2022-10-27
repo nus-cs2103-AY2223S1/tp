@@ -486,7 +486,7 @@ those that are DONE which are of the least urgency.
 
 We give an example usage scenario of `SortSpecialisationCommand` and `SortProjectStatusCommand`
 * `SortSpecialisationCommand`
-    1. The user enters `sort-sp` if he wishes to execute the `SortSpecialisationCommand`
+    1. The user enters `sort -p` if he wishes to execute the `SortSpecialisationCommand`
     2. FypManagerParser creates a new `SortSpecialisationCommand` after preliminary check of user input.
     3. `LogicManager` executes the `SortSpecialisationCommand` using the `LogicManager#execute()` method.
     4. `SortSpecialisationCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be
@@ -495,7 +495,7 @@ We give an example usage scenario of `SortSpecialisationCommand` and `SortProjec
 ![SortSpecialisationCommandSequenceDiagram](images/SortSpecialisationCommandSequenceDiagram.jpg)
 
 * `SortProjectStatusCommand`
-    1. The user enters `sort-s` if he wishes to execute the `SortProjectStatusCommand`
+    1. The user enters `sort -s` if he wishes to execute the `SortProjectStatusCommand`
     2. FypManagerParser creates a new `SortSpecialisationCommand` after preliminary check of user input.
     3. `LogicManager` executes the `SortProjectStatusCommand` using the `LogicManager#execute()` method.
     4. `SortProjectStatusCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be 

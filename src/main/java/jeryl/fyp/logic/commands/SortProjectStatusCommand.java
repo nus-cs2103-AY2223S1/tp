@@ -10,7 +10,7 @@ import jeryl.fyp.model.Model;
  */
 public class SortProjectStatusCommand extends Command {
 
-    public static final String COMMAND_WORD = "sort-s";
+    public static final String COMMAND_WORD = "sort -s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the FYP projects "
             + "by the current project status, in the order YTS, IP followed by DONE"
