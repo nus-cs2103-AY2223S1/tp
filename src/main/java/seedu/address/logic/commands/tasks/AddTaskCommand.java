@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.PureCommandInterface;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
@@ -14,7 +15,7 @@ import seedu.address.model.task.Task;
 /**
  * Create a task and assign it to a group
  */
-public class AddTaskCommand extends TaskCommand {
+public class AddTaskCommand extends TaskCommand implements PureCommandInterface {
     public static final String SUBCOMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE =

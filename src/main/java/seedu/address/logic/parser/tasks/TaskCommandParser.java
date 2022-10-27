@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.tasks.AddTaskCommand;
 import seedu.address.logic.commands.tasks.DeleteTaskCommand;
 import seedu.address.logic.commands.tasks.MarkTaskCommand;
+import seedu.address.logic.commands.tasks.SelectTaskCommand;
 import seedu.address.logic.commands.tasks.TaskCommand;
 import seedu.address.logic.commands.tasks.UnmarkTaskCommand;
 import seedu.address.logic.parser.Parser;
@@ -18,7 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parser for all Task commands
  */
 public class TaskCommandParser implements Parser<TaskCommand> {
-    private static final String MESSAGE_USAGE = TaskCommand.COMMAND_WORD + " [add|delete|mark|unmark|set]";
+    private static final String MESSAGE_USAGE = TaskCommand.COMMAND_WORD + " [add|delete|mark|unmark|select]";
     /**
      * Used for initial separation of command word and args.
      */
@@ -50,6 +51,8 @@ public class TaskCommandParser implements Parser<TaskCommand> {
             return new MarkTaskCommandParser().parse(arguments);
         case UnmarkTaskCommand.SUBCOMMAND_WORD:
             return new UnmarkTaskCommandParser().parse(arguments);
+        case SelectTaskCommand.SUBCOMMAND_WORD:
+            return new SelectTaskCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_USAGE);
         }
