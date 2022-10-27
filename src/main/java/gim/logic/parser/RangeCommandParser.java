@@ -80,8 +80,8 @@ public class RangeCommandParser implements Parser<RangeCommand> {
                     RangeCommand.MESSAGE_USAGE_TWO));
         }
 
-        // Only accept non-negative integers for the number of days
-        if (days < 0) {
+        // Only accept non-negative integers and up to 6 digits for the number of days
+        if (days < 0 || days > 999999) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     RangeCommand.MESSAGE_USAGE_TWO));
         }
