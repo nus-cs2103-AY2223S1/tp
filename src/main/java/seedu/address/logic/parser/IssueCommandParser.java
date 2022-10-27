@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
+import static seedu.address.logic.parser.ParserUtil.parseIndexValidity;
 import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
 import static seedu.address.logic.parser.ParserUtil.parseStatusValidity;
 import static seedu.address.logic.parser.ParserUtil.parseTitleValidity;
@@ -35,9 +36,9 @@ import seedu.address.model.Deadline;
 import seedu.address.model.Pin;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.IssueWithoutModel;
-import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Title;
+import seedu.address.model.issue.Urgency;
 import seedu.address.model.project.ProjectId;
 
 /**
@@ -100,7 +101,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
 
     /**
      * Verifies only one valid user input argument
-     * Length of a valid command for sort key for issue by deadline and priority e.g.d/1
+     * Length of a valid command for sort key for issue by deadline and urgency e.g.d/1
      *
      * @param arguments user input for key for sort
      * @return true if there is only one valid input
@@ -126,16 +127,16 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         }
 
-        Priority priority = Priority.NONE;
+        Urgency urgency = Urgency.NONE;
         if (arePrefixesPresent(argMultimap, PREFIX_URGENCY)) {
-            priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_URGENCY).get());
+            urgency = ParserUtil.parseUrgency(argMultimap.getValue(PREFIX_URGENCY).get());
         }
 
         Status status = Status.EmptyStatus.EMPTY_STATUS;
         ProjectId projectid = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 
         IssueWithoutModel issueWithoutModel = new IssueWithoutModel(title, deadline,
-                priority, status, projectid, new Pin(false));
+                urgency, status, projectid, new Pin(false));
         return new AddIssueCommand(issueWithoutModel, projectid);
     }
 
@@ -151,7 +152,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
 
         Title newTitle = null;
         Deadline newDeadline = null;
-        Priority newPriority = null;
+        Urgency newUrgency = null;
         IssueId newIssueId = ParserUtil.parseIssueId(argMultimap.getValue(PREFIX_ISSUE_ID).get());
 
         if (!anyPrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DEADLINE, PREFIX_URGENCY)) {
@@ -168,18 +169,19 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_URGENCY)) {
-            newPriority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_URGENCY).get());
+            newUrgency = ParserUtil.parseUrgency(argMultimap.getValue(PREFIX_URGENCY).get());
         }
 
-        return new EditIssueCommand(newTitle, newDeadline, newPriority, newIssueId);
+        return new EditIssueCommand(newTitle, newDeadline, newUrgency, newIssueId);
     }
 
     private FindIssueCommand parseFindIssueCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_PROJECT_NAME, PREFIX_TITLE,
-                        PREFIX_STATUS, PREFIX_URGENCY);
+                        PREFIX_STATUS, PREFIX_URGENCY, PREFIX_PROJECT_ID, PREFIX_ISSUE_ID);
 
-        if (noPrefixesPresent(argMultimap, PREFIX_PROJECT_NAME, PREFIX_URGENCY, PREFIX_STATUS, PREFIX_TITLE)
+        if (noPrefixesPresent(argMultimap, PREFIX_PROJECT_NAME, PREFIX_URGENCY, PREFIX_STATUS,
+                PREFIX_TITLE, PREFIX_PROJECT_ID, PREFIX_ISSUE_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindIssueCommand.MESSAGE_FIND_ISSUE_USAGE));
@@ -202,6 +204,14 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             parseNameValidity(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
         }
 
+        if (anyPrefixesPresent(argMultimap, PREFIX_PROJECT_ID)) {
+            parseIndexValidity(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+        }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_ISSUE_ID)) {
+            parseIndexValidity(argMultimap.getValue(PREFIX_ISSUE_ID).get());
+        }
+
         if (anyPrefixesPresent(argMultimap, PREFIX_URGENCY)) {
             parseUrgencyValidity(argMultimap.getValue(PREFIX_URGENCY).get());
         }
@@ -214,7 +224,9 @@ public class IssueCommandParser implements Parser<IssueCommand> {
                 new IssueContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_TITLE),
                         argMultimap.getAllValues(PREFIX_STATUS),
                         argMultimap.getAllValues(PREFIX_URGENCY),
-                        argMultimap.getAllValues(PREFIX_PROJECT_NAME));
+                        argMultimap.getAllValues(PREFIX_PROJECT_NAME),
+                        argMultimap.getAllValues(PREFIX_PROJECT_ID),
+                        argMultimap.getAllValues(PREFIX_ISSUE_ID));
 
 
         return new FindIssueCommand(predicate);
@@ -259,7 +271,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
 
         if (arePrefixesPresent(argMultimap, PREFIX_URGENCY)) {
             sortPrefix = PREFIX_URGENCY;
-            key = ParserUtil.parsePrioritySort(argMultimap.getValue(PREFIX_URGENCY).get());
+            key = ParserUtil.parseUrgencySort(argMultimap.getValue(PREFIX_URGENCY).get());
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_ISSUE_ID)) {

@@ -12,7 +12,8 @@ public class Title {
      * Represents an empty title.
      */
     public static class EmptyTitle extends Title {
-        public static final Title EMPTY_DESCRIPTION = new EmptyTitle();
+
+        public static final Title EMPTY_TITLE = new EmptyTitle();
 
         private EmptyTitle() {
             super("empty");
