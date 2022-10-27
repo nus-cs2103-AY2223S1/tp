@@ -172,7 +172,7 @@ Examples:
 * `edit 2 d/5/4/2000`
 * `edit 3 d/23/09/2000`
 
-### Locating persons by name: `find`
+### Locating persons by name: `findPersons`
 
 Finds persons whose names contain any of the given keywords.
 
