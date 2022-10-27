@@ -37,11 +37,9 @@ public class Leave {
         this.col2 = new SimpleStringProperty(this.endDate.format(FORMAT));
         if (getTotalDays() <= 1) {
             this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()) + " day");
-        }
-        else {
+        } else {
             this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()) + " days");
         }
-
     }
 
     public String getCol1() {

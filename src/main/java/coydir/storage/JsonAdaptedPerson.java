@@ -202,10 +202,17 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Leave> modelLeaveTaken = new HashSet<>(personLeaves);
 
+        final Rating modelRating;
         if (rating == null) {
-            throw new IllegalValueException("FAIL");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Rating.class.getSimpleName()));
+        } else if (address.equals("N/A")) {
+            modelRating = new Rating();
+        } else if (!Rating.isValidRating(rating)) {
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+        } else {
+            modelRating = new Rating(rating);
         }
-        final Rating modelRating = new Rating(rating);
 
         final ArrayList<Rating> modelPerformanceHistory = new ArrayList<>(personRatings);
 
