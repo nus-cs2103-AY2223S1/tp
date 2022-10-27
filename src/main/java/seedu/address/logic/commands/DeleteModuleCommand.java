@@ -11,11 +11,11 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a module identified using it's displayed index from the module list.
  */
 public class DeleteModuleCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletemodule";
+    public static final String COMMAND_WORD = "del";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the module identified by the index number used in the displayed module list.\n"

@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY_STATUS;
 
@@ -20,6 +21,7 @@ import seedu.address.model.tag.PriorityTag;
 public class AddTagCommandParser implements Parser<Command> {
     @Override
     public Command parse(String args) throws ParseException {
+        requireNonNull(args);
         String[] indexWithTags = args.strip().split(" ", 2);
         if (indexWithTags.length != 2) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,

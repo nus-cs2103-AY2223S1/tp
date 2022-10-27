@@ -160,6 +160,9 @@ public class ModelManager implements Model {
         addressBook.removeTask(target);
     }
 
+
+
+
     //========== Exam List ==================================================================================
     @Override
     public boolean hasExam(Exam exam) {
@@ -262,6 +265,23 @@ public class ModelManager implements Model {
         addressBook.sortTaskList(criteria);
     }
 
+    @Override
+    public void unlinkTasksFromExam(Exam exam) {
+        requireNonNull(exam);
+        addressBook.unlinkTasksFromExam(exam);
+    }
+
+    @Override
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        addressBook.updateExamFieldForTask(previousExam, newExam);
+    }
+
+    @Override
+    public void updateModuleFieldForTask(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        addressBook.updateModuleFieldForTask(previousModule, newModule);
+    }
 
     //================================Exam Commands=====================================
     @Override
@@ -273,6 +293,18 @@ public class ModelManager implements Model {
     public void updateFilteredExamList(Predicate<Exam> predicate) {
         requireNonNull(predicate);
         examFilteredList.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean isExamLinkedToTask(Exam examToEdit) {
+        requireNonNull(examToEdit);
+        return addressBook.isExamLinkedToTask(examToEdit);
+    }
+
+    @Override
+    public void updateModuleFieldForExam(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        addressBook.updateModuleFieldForExam(previousModule, newModule);
     }
 
 }

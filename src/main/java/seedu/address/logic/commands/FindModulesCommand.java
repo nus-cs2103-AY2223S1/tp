@@ -8,12 +8,12 @@ import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 
 
 /**
- * Finds and lists all modules in the module list whose description contains any of the argument keywords.
+ * Finds and lists all modules in the module list whose module code contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 
 public class FindModulesCommand extends Command {
-    public static final String COMMAND_WORD = "findmods";
+    public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all modules whose module code"
             + " partially or fully contain any of "

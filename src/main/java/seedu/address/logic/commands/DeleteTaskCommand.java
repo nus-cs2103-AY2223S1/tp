@@ -11,11 +11,11 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a task identified using it's displayed index from the task list.
  */
 public class DeleteTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletetask";
+    public static final String COMMAND_WORD = "del";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the displayed task list.\n"
