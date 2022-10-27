@@ -56,8 +56,8 @@ class JsonAdaptedAbstractAttribute {
      */
     public Attribute<?> toModelType() throws IllegalValueException {
         assert data != null;
-        if (!data.containsKey(KEY_TYPE) || !data.containsKey(KEY_CONTENT) ||
-                !data.containsKey(KEY_DISPLAY_FORMAT) || !data.containsKey(KEY_STYLE_FORMAT)) {
+        if (!data.containsKey(KEY_TYPE) || !data.containsKey(KEY_CONTENT)
+                || !data.containsKey(KEY_DISPLAY_FORMAT) || !data.containsKey(KEY_STYLE_FORMAT)) {
             throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
         }
 

@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +20,6 @@ abstract class JsonAdaptedAbstractDisplayItem {
      */
     protected JsonAdaptedAbstractDisplayItem(String name, String uid, List<JsonAdaptedAbstractAttribute> attributes,
                                              List<JsonAdaptedTag> tags) {
-        requireAllNonNull(name, uid);
         this.name = name;
         this.uid = uid;
         if (attributes != null) {
