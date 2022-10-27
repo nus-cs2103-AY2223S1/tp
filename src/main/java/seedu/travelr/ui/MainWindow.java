@@ -142,7 +142,7 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
+        
         TripsLabeler tripsLabel = new TripsLabeler(tripsIcon);
         tripsTextField.getChildren().add(tripsLabel.getRoot());
 
