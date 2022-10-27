@@ -680,7 +680,7 @@ testers are expected to do more *exploratory* testing.
     3. Prerequisite: There exists a batchmate with telegram handle `charlie` and a batchmate with name `Tom`.
        Test case: `find char Tom`.<br>
        Expected: The batchmate with telegram handle `charlie` and batchmate named `Tom`
-       appears in the student panel after executing the command.
+       appear in the student panel after executing the command.
 
     4. Other incorrect `find` commands to try: `find` (no keywords provided).<br>
        Expected: The status message will indicate that the command is invalid.

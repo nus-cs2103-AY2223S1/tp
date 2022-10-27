@@ -1,6 +1,7 @@
 package seedu.masslinkers.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INCOMPLETE_COMMAND_FORMAT;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
@@ -54,7 +55,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         // check if empty and matches format
         if (trimmedArgs.isEmpty() || !matcher.matches()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INCOMPLETE_COMMAND_FORMAT, ModCommand.MESSAGE_USAGE));
         }
 
         // parse

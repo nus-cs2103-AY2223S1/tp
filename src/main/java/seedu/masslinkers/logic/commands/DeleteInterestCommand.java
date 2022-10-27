@@ -18,11 +18,9 @@ import seedu.masslinkers.model.student.Student;
 public class DeleteInterestCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteInt";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes interest(s) specified from the batchmate as identified by the index number of the"
-            + " displayed student list.\n"
-            + "Parameters: INDEX (must be a positive integer) INTEREST [MORE_INTERESTS]...\n"
-            + "Example: " + COMMAND_WORD + " 1 AI SWE";
+    public static final String MESSAGE_USAGE = "Delete interests from a batchmate in this manner: "
+            +
+            "\ndeleteInt INDEX INTEREST [MORE_INTERESTS]...";
     public static final String MESSAGE_SUCCESS = "Interest(s) deleted successfully!";
     public static final String MESSAGE_INVALID_INTEREST = "This batchmate does not have all of the interests specified."
             + "\nPlease check the entered interests and try again.";

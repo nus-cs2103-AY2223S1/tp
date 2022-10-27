@@ -19,25 +19,17 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the mass linkers. "
-            + "\nParameters: "
-            + PREFIX_NAME + "NAME "
+    public static final String MESSAGE_USAGE = "Add a batchmate's information in this manner: "
+            +
+            "\nadd " + PREFIX_NAME + "NAME "
             + PREFIX_TELEGRAM + "TELEGRAM "
             + "[" + PREFIX_GITHUB + "GITHUB] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_INTEREST + "INTEREST]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_TELEGRAM + "johnxyz "
-            + PREFIX_GITHUB + "john_doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_INTEREST + "AI "
-            + PREFIX_INTEREST + "SWE";
+            + "[" + PREFIX_INTEREST + "INTEREST]...";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the mass linkers";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in Mass Linkers.";
 
     private final Student toAdd;
 
