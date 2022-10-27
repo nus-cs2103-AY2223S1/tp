@@ -12,6 +12,7 @@ import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Property;
 import seedu.condonery.model.property.Price;
 import seedu.condonery.model.tag.Tag;
 
@@ -128,6 +129,7 @@ public class ParserUtil {
         return new Client(
                 new Name(clientName),
                 new Address("placeholder"),
+                new HashSet<>(),
                 new HashSet<>()
                 );
     }
@@ -142,5 +144,35 @@ public class ParserUtil {
             clientSet.add(parseClientName(clientName));
         }
         return clientSet;
+    }
+
+    /**
+     * Parses a {@code String propertyName} into a {@code Property}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code propretyName} does not match to a unique
+     *     existing property's name.
+     */
+    public static Property parsePropertyName(String propertyName) throws ParseException {
+        requireNonNull(propertyName);
+        String trimmedPropertyName = propertyName.trim();
+        return new Property(
+                new Name(propertyName),
+                new Address("placeholder"),
+                new Price("1000000"),
+                new HashSet<>(),
+                new HashSet<>());
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Property>}.
+     */
+    public static Set<Property> parseProperties(Collection<String> properties) throws ParseException {
+        requireNonNull(properties);
+        final Set<Property> propertySet = new HashSet<>();
+        for (String propertyName : properties) {
+            propertySet.add(parsePropertyName(propertyName));
+        }
+        return propertySet;
     }
 }

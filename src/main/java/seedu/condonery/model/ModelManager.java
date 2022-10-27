@@ -17,6 +17,8 @@ import seedu.condonery.model.client.Client;
 import seedu.condonery.model.client.ClientDirectory;
 import seedu.condonery.model.client.ReadOnlyClientDirectory;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyDirectory;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 
 /**
  * Represents the in-memory model of the Condonery data.
@@ -162,6 +164,21 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedProperty);
 
         propertyDirectory.setProperty(target, editedProperty);
+    }
+
+    @Override
+    public boolean hasPropertyName(String substring) {
+        return propertyDirectory.hasPropertyName(substring);
+    }
+
+    @Override
+    public boolean hasUniquePropertyName(String substring) {
+        return propertyDirectory.hasUniquePropertyName(substring);
+    }
+
+    @Override
+    public Property getUniquePropertyByName(String substring) {
+        return propertyDirectory.getUniquePropertyByName(substring);
     }
 
     //=========== Filtered Property List Accessors =============================================================

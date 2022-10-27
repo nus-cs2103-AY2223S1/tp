@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.condonery.commons.exceptions.IllegalValueException;
-import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.ReadOnlyPropertyDirectory;
+import seedu.condonery.model.property.PropertyDirectory;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.property.Property;
 
 /**

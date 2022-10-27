@@ -82,7 +82,7 @@ public class EditPropertyCommand extends Command {
 
         Property propertyToEdit = lastShownList.get(targetIndex.getZeroBased());
         Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor);
-        // Parsed intersted clients
+        // Parsed interested clients
         Property newEditedProperty = new ParsePropertyInterestedClients(editedProperty, model).getNewProperty();
 
         if (!propertyToEdit.isSameProperty(newEditedProperty) && model.hasProperty(newEditedProperty)) {

@@ -145,7 +145,6 @@ public class UniqueClientList implements Iterable<Client> {
                 }
             }
         }
-        System.out.println("abcabc");
         if (uniqueClient == null) {
             throw new UniqueClientNotFoundException();
         } else {

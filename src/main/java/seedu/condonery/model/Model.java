@@ -10,6 +10,7 @@ import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.client.ReadOnlyClientDirectory;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 
 /**
  * The API of the Model component.
@@ -136,11 +137,23 @@ public interface Model {
 
     /**
      * Returns a unique client whos name contains the given string.
-     *
-     * @throws UniqueClientNotFoundException if the substring does not match to a unique
-     *                                 client.
      */
     Client getUniqueClientByName(String substring);
+
+    /**
+     * Returns true if a property whos name contains the given String exists in the property directory.
+     */
+    boolean hasPropertyName(String substring);
+
+    /**
+     * Returns true if only one unique property whos name contains the given String exists in the property directory.
+     */
+    boolean hasUniquePropertyName(String substring);
+
+    /**
+     * Returns a unique property whos name contains the given string.
+     */
+    Property getUniquePropertyByName(String substring);
 
     /**
      * Deletes the given client.

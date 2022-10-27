@@ -3,7 +3,7 @@ package seedu.condonery.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.condonery.model.Model;
-import seedu.condonery.model.PropertyDirectory;
+import seedu.condonery.model.property.PropertyDirectory;
 
 /**
  * Clears the address book.

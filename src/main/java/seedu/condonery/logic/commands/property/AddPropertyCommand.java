@@ -62,6 +62,9 @@ public class AddPropertyCommand extends Command {
         this.hasImage = hasImage;
     }
 
+    /**
+     * Gets an updated sucess message based on the presence of missing clients or duplicate clients.
+     */
     private String getUpdatedSuccessMessage(ArrayList<String> missingClients, ArrayList<String> duplicateClients) {
         String newSuccessMessage = MESSAGE_SUCCESS + ". ";
 

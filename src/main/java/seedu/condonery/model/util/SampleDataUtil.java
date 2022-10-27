@@ -1,11 +1,10 @@
 package seedu.condonery.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.client.ClientDirectory;
 import seedu.condonery.model.client.ReadOnlyClientDirectory;
@@ -13,6 +12,8 @@ import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyDirectory;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -24,36 +25,39 @@ public class SampleDataUtil {
             new Property(new Name("PINNACLE@DUXTON"), new Address("Cantonment Rd, #1G, S085301"),
                     new Price("1000000"), getTagSet("High-End", "Available"),
                     getClientSet(
-                            new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet("")),
-                            new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend")))),
+                            new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet(""), new HashSet<>()),
+                            new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"), new HashSet<>()))),
             new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
                     new Price("1000000"),
                     getTagSet("High-End", "Sold"),
-                    getClientSet(new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich")))),
+                    getClientSet(new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich"), new HashSet<>()))),
             new Property(new Name("D'LEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
                     new Price("1000000"),
                     getTagSet("High-End", "Reserved"),
                     getClientSet(
-                            new Client(new Name("Jac"), new Address("JacAddress"), getTagSet("Urgent")),
-                            new Client(new Name("Jack"), new Address("JackAddress"), getTagSet("")),
-                            new Client(new Name("Hamster"), new Address("Hamster"), getTagSet("Friend", "Rich"))))
+                            new Client(new Name("Jac"), new Address("JacAddress"), getTagSet("Urgent"), new HashSet<>()),
+                            new Client(new Name("Jack"), new Address("JackAddress"), getTagSet(""), new HashSet<>()),
+                            new Client(new Name("Hamster"), new Address("Hamster"), getTagSet("Friend", "Rich"), new HashSet<>())))
         };
     }
 
     public static Client[] getSampleClients() {
         return new Client[] {
             new Client(new Name("Dennis Tan"), new Address("Wall St, #1G, S085301"),
-                    getTagSet("High-End", "Available")),
+                    getTagSet("High-End", "Available"), new HashSet<>()),
             new Client(new Name("Jeremy Tan"), new Address("11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450"),
-                    getTagSet("High-End", "Sold")),
+                    getTagSet("High-End", "Sold"), new HashSet<>()),
             new Client(new Name("Walter Wong"), new Address("7 Leedon Heights, D'leedon, S267953"),
-                    getTagSet("High-End", "Reserved")),
-            new Client(new Name("Jac"), new Address("JacAddress"), getTagSet("Urgent")),
-            new Client(new Name("Jack"), new Address("JackAddress"), getTagSet("")),
-            new Client(new Name("Hamster"), new Address("Hamster"), getTagSet("Friend", "Rich")),
-            new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich")),
-            new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet("")),
-            new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"))
+                    getTagSet("High-End", "Reserved"), new HashSet<>()),
+            new Client(new Name("Jac"), new Address("JacAddress"), getTagSet("Urgent"), new HashSet<>()),
+            new Client(new Name("Jack"), new Address("JackAddress"), getTagSet(""), new HashSet<>()),
+            new Client(new Name("Hamster"), new Address("Hamster"), getTagSet("Friend", "Rich"), new HashSet<>()),
+            new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich"), new HashSet<>()),
+            new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet(""),
+                    getPropertySet(
+                            new Property(new Name("PINNACLE@DUXTON"), new Address("Cantonment Rd, #1G, S085301"),
+                                    new Price("1000000"), getTagSet("High-End", "Available"), new HashSet<>()))),
+            new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"), new HashSet<>())
         };
     }
 
@@ -87,6 +91,14 @@ public class SampleDataUtil {
      */
     public static Set<Client> getClientSet(Client... clients) {
         return Arrays.stream(clients)
+            .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a Property set containing the list of properties given.
+     */
+    public static Set<Property> getPropertySet(Property... properties) {
+        return Arrays.stream(properties)
             .collect(Collectors.toSet());
     }
 

@@ -1,7 +1,6 @@
-package seedu.condonery.model;
+package seedu.condonery.model.property;
 
 import javafx.collections.ObservableList;
-import seedu.condonery.model.property.Property;
 
 /**
  * Unmodifiable view of an address book
