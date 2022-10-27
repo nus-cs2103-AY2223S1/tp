@@ -84,8 +84,6 @@ Adds a contact to the application.
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
 
 - The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
-- The parameters in [ ] are optional parameters, including tag (`t`).
-- A person in the contact list can have more than 1 tag.
 - Date format accepted is: dd/mm/yyyy.
 
 Examples:
