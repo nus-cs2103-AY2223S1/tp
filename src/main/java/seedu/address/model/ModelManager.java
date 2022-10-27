@@ -298,6 +298,6 @@ public class ModelManager implements Model {
     @Override
     public void setHomeStatus(boolean isHome) {
         assert this.isHome.size() == 1;
-        this.isHome.set(0, isHome);
+        this.isHome.set(INDEX_OF_HOME_STATUS, isHome);
     }
 }

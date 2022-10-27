@@ -31,7 +31,7 @@ public class TaskListPanel extends UiPart<Region> {
         super(FXML);
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
-        // 82 = Top padding + Bottom padding + Top border + Bottom border + Label Height
+        // 72 = Top padding + Bottom padding + Top border + Bottom border + Label Height
         //    = 15 + 15 + 1 + 1 + 40.
         taskListView.prefHeightProperty().bind(
                 Bindings.size(taskList).multiply(72));

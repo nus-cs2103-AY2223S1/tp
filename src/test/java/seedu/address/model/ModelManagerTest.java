@@ -363,14 +363,6 @@ public class ModelManagerTest {
         assertEquals(isAtHome, modelManager.getHomeStatus());
     }
 
-
-    @Test
-    public void getHomeStatus_afterAddingAndDeletingModule_returnsFalseInObservableList() {
-        ObservableList<Boolean> expectedResult = FXCollections.observableArrayList(false);
-
-
-    }
-
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON)
