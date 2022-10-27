@@ -2,48 +2,18 @@
 layout: page
 title: User Guide
 ---
-#Introduction
+# Introduction
 HR Pro Max++ is a **desktop app for team leads in SMEs to manage projects and staff members under them. It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, HR Pro Max++ can get your project management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
-- [Introduction](#introduction)
-    - [Table of Contents](#table-of-contents)
-    - [Quick start](#quick-start)
-    - [Features](#features)
-        - [Help](#help--help)
-        - [Project Commands](#project-commands)
-          - [Adding a Project](#adding-a-project-add)
-          - [Deleting a Project](#deleting-a-project--delete)
-          - [Listing all Projects](#listing-all-projects--list)
-          - [Locating Project by name](#locating-project-by-name-find)
-          - [Sorting the Project List](#sorting-the-project-list--sort)
-          - [Editing a Project](#editing-a-project--edit)
-        - [Staff Commands](#staff-commands)
-          - [Adding a Staff Member to Project](#adding-a-staff-member-to-project--addstaff)
-          - [Deleting a Staff Member from Project](#deleting-a-staff-member-from-project--delstaff)
-          - [View the Staff list within a Project](#view-the-staff-list-within-a-project-view)
-          - [Editing a Staff Member within a Project](#editing-a-staff-member-within-a-project--editstaff)
-          - [Finding a Staff Member within a Project](#finding-a-staff-member-within-a-project--findstaff)
-        - [Task Commands](#task-commands)
-          - [Adding a Task](#adding-a-task--addtask)
-          - [Deleting a Task](#deleting-a-task--deltask)
-          - [Finding a Task](#finding-a-task--findtask)
-          - [Sorting the Task list](#sorting-the-task-list--sorttask)
-          - [Filtering the Task list](#filtering-the-task-list--filtertask)
-          - [Marking a Task as Done](#marking-a-task-as-done--mark)
-          - [Marking a Task as Undone](#marking-a-task-as-done--unmark)
-        - [Exiting the Program](#exiting-the-program--exit)
-        - [Clearing all data](#clearing-all-data--clear)
-        - [Saving the data](#saving-the-data)
-    - [User interface](#user-interface)
-    - [FAQ](#faq)
-    - [Command Summary](#command-summary)
-    - [Prefix Summary](#prefix-summary)
+To quickly return to the Table of Contents, you can click on any of the section headers you navigate to.
+
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Quick start
+## [**Quick start**](#table-of-contents)
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -70,8 +40,29 @@ If you can type fast, HR Pro Max++ can get your project management tasks done fa
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## [**User interface**](#table-of-contents)
+The user interface is divided into 3 main parts: the command box, the result display and the List panel.
+### [**Command Box**](#table-of-contents)
+The command box is where you can type in your commands. You can press the `Enter` key to execute the command.
 
-## Features
+![Command Box](images/CommandBox.png)
+
+### [**Result Display**](#table-of-contents)
+The result display is where the output of your commands will be shown.
+For example, entering an incorrect add command like shown below will cause an error message to be displayed in the result display.
+
+![Result Display](images/ResultDisplay.png)
+
+### [**List Panel**](#table-of-contents)
+Clicking on a `Task`, `Project`, or `Staff` card will cause the respective box to be highlighted in green.
+All `Task` and `Project` cards will be displayed in the `List Panel`.
+By default, the `Staff` list is empty when first starting the program.
+To see how to view the `Staff` list of other projects, you can check [this](#view-the-staff-list-within-a-project-view) segment of the user guide.
+
+![List Panel](images/ListPanel.png)
+
+--------------------------------------------------------------------------------------------------------------------
+## [**Features**](#table-of-contents)
 
 <div markdown="block" class="alert alert-info">
 
@@ -98,7 +89,7 @@ If you can type fast, HR Pro Max++ can get your project management tasks done fa
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-### Help : `help`
+### [**Help :** `help`](#table-of-contents)
 
 Shows a message explaining how to access the help page.
 
@@ -107,8 +98,8 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
-## Project Commands
-### Adding a Project: `add`
+## [**Project Commands**](#table-of-contents)
+### [**Adding a Project :** `add`](#table-of-contents)
 
 Adds a project to Project list.
 
@@ -123,7 +114,7 @@ Examples:
 * `add pn/CS2100 t/Tiring pb/1000 pd/2022-01-01 t/Funtime`
 
 --------------------------------------------------------------------------------------------------------------------
-### Deleting a Project : `delete`
+### [**Deleting a Project :** `delete`](#table-of-contents)
 
 Deletes the specified Project from Project list.
 
@@ -138,14 +129,15 @@ Examples:
 * `find 2103T_TP` followed by `delete 1` deletes the 1st project in the results of the `find` command.
 
 --------------------------------------------------------------------------------------------------------------------
-### Listing all projects : `list`
+### [**Listing all Projects :** `list`](#table-of-contents)
 
 Show all the Projects in the Projects list.
+After using a find command, you can use `list` to return the display to its original state.
 
 Format: `list`
 
 --------------------------------------------------------------------------------------------------------------------
-### Locating Project by Name: `find`
+### [**Finding Projects :** `find`](#table-of-contents)
 
 Finds all projects whose names contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
 
@@ -158,14 +150,14 @@ Examples:
 * `find CS2103` returns `CS2103` and `CS2103 TP`
 
 --------------------------------------------------------------------------------------------------------------------
-### Sorting the Project list : `sort`
+### [**Sorting the Project list :** `sort`](#table-of-contents)
 
 Sorts the Project list according to deadline.
 
 Format: `sort`
 
 --------------------------------------------------------------------------------------------------------------------
-### Editing a Project : `edit`
+### [**Editing a Project :** `edit`](#table-of-contents)
 
 Edits an existing Project in the Project list.
 
@@ -183,8 +175,8 @@ Examples:
 * `edit 2 pn/CS2103 t/` Edits the name of the 2nd person to be `CS2103` and clears all existing tags.
 
 --------------------------------------------------------------------------------------------------------------------
-## Staff Commands
-### Adding a Staff member to Project : `addstaff`
+## [**Staff Commands**](#table-of-contents)
+### [**Adding a Staff member to Project :** `addstaff`](#table-of-contents)
 
 Adds a staff member info to Project in project list.
 
@@ -198,7 +190,7 @@ Examples:
 * `addStaff pn/ROOFUS sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false` Adds staff member named `Betsy Crown` to the project ROOFUS.
 
 --------------------------------------------------------------------------------------------------------------------
-### Deleting a Staff member from Project : `delstaff`
+### [**Deleting a Staff member from Project :** `delstaff`](#table-of-contents)
 
 Deletes a staff member and all its info inside a project in the project list.
 
@@ -210,7 +202,7 @@ Examples:
 * `delstaff pn/DUKE sn/Betty` Delete staff member named `Betty` from project `DUKE`.
 
 --------------------------------------------------------------------------------------------------------------------
-### View the Staff list within a project: `view`
+### [**View the Staff list within a project:** `view`](#table-of-contents)
 
 Views the staff list of a specified project in Project list.
 
@@ -225,7 +217,7 @@ Examples:
 * `find 2103T_TP` followed by `view 1` display the staff list of the 1st project from the result of the `find` command.
 
 --------------------------------------------------------------------------------------------------------------------
-### Editing a Staff member within a Project : `editstaff`
+### [**Editing a Staff member within a Project :** `editstaff`](#table-of-contents)
 
 Edits the staff details of a staff of a specified project in Project list.
 
@@ -238,7 +230,7 @@ t\TAGS]`
 Examples:
 * `editstaff 1 pn/CS2103T sn/John Doe` edits the staff name of the first staff in the staff list of `CS2103T` to `John Doe`
 --------------------------------------------------------------------------------------------------------------------
-### Finding a Staff member within a Project : `findstaff`
+### [**Finding a Staff member within a Project :** `findstaff`](#table-of-contents)
 
 Finds the current active staff list for a staff name
 
@@ -254,7 +246,7 @@ Staffs whose name contains `Adrian` or `Lam` only aren't listed.
 * You can always use `view INDEX` to list all the staff in the staff list after you are done with finding a particular staff.
 
 --------------------------------------------------------------------------------------------------------------------
-## Task Commands
+## [**Task Commands**](#table-of-contents)
 ### Adding a Task : `addtask`
 
 Adds a Task to the Task list. 
@@ -269,7 +261,7 @@ Examples:
 `2022-10-27`
 
 --------------------------------------------------------------------------------------------------------------------
-### Deleting a Task : `deltask`
+### [**Deleting a Task :** `deltask`](#table-of-contents)
 
 Deletes a Task at the specified index from the Task list. 
 
@@ -283,7 +275,7 @@ Examples:
 `The task index provided is invalid`.
 
 --------------------------------------------------------------------------------------------------------------------
-### Finding a Task : `findtask`
+### [**Finding a Task :** `findtask`](#table-of-contents)
 
 Finds a specified Task in Task list.
 
@@ -297,21 +289,21 @@ Examples:
 * `findtask CS2103` returns `CS2103` and `Todo CS2103`
 
 --------------------------------------------------------------------------------------------------------------------
-### Sorting the Task list : `sorttask`
+### [**Sorting the Task list :** `sorttask`](#table-of-contents)
 
 Sort tasks in task list by deadline. Earlier deadlines will be placed first.
 
 Format: `sorttask`
 
 --------------------------------------------------------------------------------------------------------------------
-### Filtering the Task list : `filtertask`
+### [**Filtering the Task list :** `filtertask`](#table-of-contents)
 
 Show Tasks in Task List that are not done at the top of list.
 
 Format: `filtertask`
 
 --------------------------------------------------------------------------------------------------------------------
-### Marking a Task as done : `marktask`
+### [**Marking a Task as done :** `marktask`](#table-of-contents)
 
 Marks a Task in Task list as done.
 
@@ -325,7 +317,7 @@ Examples:
 * `marktask 1` Marks the first task as done.
 
 --------------------------------------------------------------------------------------------------------------------
-### Marking a Task as Undone : `unmarktask`
+### [**Marking a Task as Undone :** `unmarktask`](#table-of-contents)
 
 Marks a Task in Task list as not done.
 
@@ -339,54 +331,32 @@ Examples:
 * `unmarktask 2` Marks the second task as not done.
 
 --------------------------------------------------------------------------------------------------------------------
-### Exiting the program : `exit`
+### [**Exiting the program :** `exit`](#table-of-contents)
 
 Exits the program.
 
 Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
-### Clearing all Data : `clear`
+### [**Clearing all Data :** `clear`](#table-of-contents)
 
 Clears all data from HR Pro Max++.
 
 Format: `clear`
 
 --------------------------------------------------------------------------------------------------------------------
-### Saving the data
+### [**Saving the data**](#table-of-contents)
 Project data is saved in the hard disk automatically after any command that changes the data. 
 There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
-## User Interface
-The user interface is divided into 3 main parts: the command box, the result display and the List panel.
-### Command Box
-The command box is where you can type in your commands. You can press the `Enter` key to execute the command.
-
-![Command Box](images/CommandBox.png)
-
-### Result Display
-The result display is where the output of your commands will be shown. 
-For example, entering an incorrect add command like shown below will cause an error message to be displayed in the result display.
-
-![Result Display](images/ResultDisplay.png)
-
-### List Panel
-Clicking on a `Task`, `Project`, or `Staff` card will cause the respective box to be highlighted in green. 
-All `Task` and `Project` cards will be displayed in the `List Panel`.
-By default, the `Staff` list is empty when first starting the program.
-To see how to view the `Staff` list of other projects, you can check [this](#view-the-staff-list-within-a-project-view) segment of the user guide.
-
-![List Panel](images/ListPanel.png)
-
---------------------------------------------------------------------------------------------------------------------
-## FAQ
+## [**FAQ**](#table-of-contents)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-## Command summary
+## [**Command Summary**](#table-of-contents)
 
 
 | Action              | Format, Examples                                                                                                           |
@@ -402,7 +372,7 @@ To see how to view the `Staff` list of other projects, you can check [this](#vie
 | **View staff list** | `view INDEX` <br> e.g., `view 1`                                                                                           |
 | **Help**            | `help`                                                                                                                     |
 
-## Prefix Summary
+## [**Prefix Summary**](#table-of-contents)
 Prefixes that start with `s` are for project staff member details.
 Prefixes without the prefix `s` are meant for project details.
 
