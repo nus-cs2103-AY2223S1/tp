@@ -282,6 +282,12 @@ public class Module {
             .map(semesterLessonMap -> semesterLessonMap.get(lessonId)).isPresent();
     }
 
+    public String getUnselectableLessonId(LessonType lt, SemestersEnum semester) {
+        requireNonNull(lessonMap);
+
+        return Optional.of(lessonMap.get(semester)).map(semesterMap -> semesterMap.get(lt)).get();
+    }
+
     /**
      * Returns the description of the module's preclusion.
      *
