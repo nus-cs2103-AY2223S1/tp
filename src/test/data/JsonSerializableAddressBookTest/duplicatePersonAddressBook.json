@@ -1,4 +1,5 @@
 {
+  "prefixMap" : [ "jtt/", "Job Type", "dt/", "Degree", "st/", "Skills" ],
   "persons": [ {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -6,13 +7,15 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
     "status": "Accepted",
-    "note" : ""
+    "note" : "",
+    "rating": "5"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
     "status": "Accepted",
-    "note" : ""
+    "note" : "",
+    "rating": "5"
   } ]
 }

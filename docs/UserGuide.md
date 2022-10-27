@@ -13,10 +13,10 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
 ## Table of Contents
 {:toc}
 
-## Introduction 
+## Introduction
 ![Ui](images/Ui.png)
 
-CLInkedIn is a **desktop address book application made for Recruiting and Hiring Managers to keep track of candidates and their job applications.** The application is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). 
+CLInkedIn is a **desktop address book application made for Recruiting and Hiring Managers to keep track of candidates and their job applications.** The application is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
 
 If you can type fast, CLInkedIn can get your Recruitment tasks done faster than traditional GUI apps.
 
@@ -101,7 +101,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/STATUS [note/NOTE] [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/STATUS [note/NOTE] [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​ [rate/RATING] [l/LINK]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can have any number and any kind of tags (including 0).
@@ -112,8 +112,8 @@ You can have any number and any kind of tags (including 0).
 
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java dt/Bachelors jt/Internship`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java dt/Bachelors jt/Internship, rate/4`
+* `add n/Betsy Crowe st/java e/betsycrowe@example.com a/Newgate Prison p/1234567 s/Rejected`
 
 ### Listing all persons : `list`
 
@@ -125,18 +125,20 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/STATUS] [note/NOTE] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/STATUS] [note/NOTE] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​ [rate/RATING] [l/LINK]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * While editing **Skill** tags, the existing `OLD_SKILL` of the person will be renamed to `NEW_SKILL`(Same for **Degree**, **JobType** and **Custom** tags).
 * You can remove **all** the person’s tags by typing `t/` without specifying any tags after it.
 * You can remove **all** the person’s **Skill** tags by typing `st/` without specifying any tags after it (Same for **Degree**, **JobType** and **Custom** tags).
+* 
 
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 * `edit 2 dt/Bachelors-Masters` Edits the Degree tag `Bachelors` of the 2nd person to be `Masters`.
+* `edit 2 l/https://github.com/AY2223S1-CS2103T-T13-3/tp/pulls` Edits by replacing all existing links with the provided link.
 
 ### Adding a tag to an existing person : `addTag`
 
@@ -168,21 +170,22 @@ Examples:
 
 Finds candidates whose personal information and tags contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] 
+
+Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
 [MORE_TAGGED_KEYWORDS]...`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* The personal information and tags will be searched.  
+* The personal information and tags will be searched.
 * Partial words will be matched e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* Search can be further refined by specifying the type of tag to search for.  
+* Search can be further refined by specifying the type of tag to search for.
   e.g. `find n/John p/867` will return `John Doe` with **Phone** number `8675309`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find Java` returns list of candidates with Java skills 
+* `find Java` returns list of candidates with Java skills
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 * `find n/John` returns `John Doe`
 * `find n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
@@ -202,16 +205,16 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Creating a custom tag type: `create`
+### Creating a custom tag type: `createTagType`
 
-Creates a custom tag type apart from the existing Skill, Degree, and Job Type tag types. 
+Creates a custom tag type apart from the existing Skill, Degree, and Job Type tag types.
 
-Format: `create TAG_TYPE TAG_ALIAS` 
+Format: `createTagType TAG_TYPE TAG_ALIAS`
 
 - Creates a new `TAG_TYPE` tag type.
 - `TAG_ALIAS` can be used to add tags to this custom tag type.
 
-Examples:  
+Examples:
 
 - `create GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
 
@@ -254,6 +257,43 @@ A person can have any number of notes (including 0)
 Examples:
 * `note 4 note/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
 
+### Adding optional rating: `rate`
+
+Format: `rate INDEX rate/<RATING>`
+* The INDEX refers to the index number shown in the displayed person list. 
+* The INDEX must be a positive integer 1, 2, 3, …​
+* The RATING must be an integer between 0 and 10 inclusive. 
+
+Examples:
+* `rate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
+
+### Exporting the addressbook: `export`
+
+Format: `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>`
+* The format of the file must be JSON, CSV or TXT.
+* Any directory in the path which does not exist will automatically be created.
+* Only the displayed list of candidates will be exported
+
+Examples:
+* `export path//Desktop/sample/data.csv` exports the filtered list of candidates to `data.csv` in the `sample` directory of the `Desktop`.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Alternatively, you can go to `Export` -> `Export` to export using the GUI.
+</div>
+
+### Importing an addressbook: `import`
+
+Format: `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>`
+* The format of the file must be JSON, CSV or TXT.
+* Candidates whose name already exists in the addressbook will be ignored.
+
+Examples:
+* `import path//Desktop/sample/data.csv` imports the list of candidates from `data.csv` in the `sample` directory of the `Desktop` to the addressbook.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Alternatively, you can go to `Import` -> `Import` to import using the GUI.
+</div>
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -289,21 +329,22 @@ If your changes to the data file makes its format invalid, CLInkedIn will discar
 
 ## Command summary
 
-
-| Action            | Format, Examples                                                                                                                                                                                                                                                     |
-|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java`                                                   |
-| **Clear**         | `clear`                                                                                                                                                                                                                                                              |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                  |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters` |
-| **AddTag**        | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                         |
-| **deleteTag**     | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`<br/>                                                                                                                                         |
-| **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                             |
-| **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                     |
-| **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                              |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                           |
-| **List**          | `list`                                                                                                                                                                                                                                                               |
-| **Status**        | `status INDEX s/STATUS` <br> e.g., `status 1 s/Rejected`                                                                                                                                                                                                             |
-| **Help**          | `help`                                                                                                                                                                                                                                                               |
+| Action            | Format, Examples                                                                                                                                                                                                                                                                                                    |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/STATUS rate/RATING [note/NOTE] [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​ [l/LINK]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/rejected st/Java`                                           |
+| **Clear**         | `clear`                                                                                                                                                                                                                                                                                                             |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                 |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [note/NOTE] [s/STATUS] [rate/RATING] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​ [l/LINK]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters` |
+| **AddTag**        | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                                                                        |
+| **deleteTag**     | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`<br/>                                                                                                                                                                                        |
+| **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                                                                            |
+| **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                                                                    |
+| **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                                                                             |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                                                                         |
+| **List**          | `list`                                                                                                                                                                                                                                                                                                              |
+| **Status**        | `status INDEX s/STATUS` <br> e.g., `status 1 s/Rejected`                                                                                                                                                                                                                                                            |
+| **Export**        | `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>` <br> e.g., `export path//Desktop/sample/data.csv`                                                                                                                                                                                                          |
+| **Import**        | `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>` <br> e.g., `import path//Desktop/sample/data.csv`                                                                                                                                                                                                        |
+| **Help**          | `help`                                                                                                                                                                                                                                                                                                              |
 
 
