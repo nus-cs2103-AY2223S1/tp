@@ -13,4 +13,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_LOWER = new Prefix("l/");
     public static final Prefix PREFIX_UPPER = new Prefix("u/");
     public static final Prefix PREFIX_IMAGE_UPLOAD = new Prefix("-i");
+    public static final Prefix PREFIX_INTERESTEDCLIENTS = new Prefix("ic/");
 }

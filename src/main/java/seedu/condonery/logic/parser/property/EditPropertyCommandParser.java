@@ -5,6 +5,7 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -35,7 +36,8 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
     @Override
     public EditPropertyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE,
+                        PREFIX_TAG, PREFIX_INTERESTEDCLIENTS);
         EditPropertyDescriptor editPropertyDescriptor =
                 new EditPropertyDescriptor();
         Index index;
@@ -64,6 +66,10 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPropertyDescriptor::setTags);
 
+        if (argMultimap.getValue(PREFIX_INTERESTEDCLIENTS).isPresent()) {
+            editPropertyDescriptor.setInterestedClients(ParserUtil.parseClients(argMultimap.getAllValues(PREFIX_INTERESTEDCLIENTS)));
+        }
+
         return new EditPropertyCommand(index, editPropertyDescriptor);
     }
 
@@ -77,3 +83,4 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 }
+

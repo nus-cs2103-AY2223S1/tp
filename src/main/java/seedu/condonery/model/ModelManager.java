@@ -14,6 +14,9 @@ import seedu.condonery.commons.core.LogsCenter;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.ClientDirectory;
+import seedu.condonery.model.client.ReadOnlyClientDirectory;
+import seedu.condonery.model.client.exceptions.UniqueClientNotFoundException;
 import seedu.condonery.model.property.Property;
 
 /**
@@ -203,6 +206,22 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedClient);
         clientDirectory.setClient(target, editedClient);
     }
+
+    @Override
+    public boolean hasClientName(String substring) {
+        return clientDirectory.hasClientName(substring);
+    }
+
+    @Override
+    public boolean hasUniqueClientName(String substring) {
+        return clientDirectory.hasUniqueClientName(substring);
+    }
+
+    @Override
+    public Client getUniqueClientByName(String substring) {
+        return clientDirectory.getUniqueClientByName(substring);
+    }
+
 
     //=========== Filtered Client List Accessors =============================================================
 
