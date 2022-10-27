@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.Comparator;
-import java.util.Objects;
 
 import seedu.address.commons.SortInfo;
 import seedu.address.commons.core.Messages;
