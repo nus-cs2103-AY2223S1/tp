@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.list.ListAllCommand;
+import seedu.address.logic.commands.list.ListArchiveCommand;
 import seedu.address.logic.commands.list.ListCommand;
 import seedu.address.logic.commands.list.ListDeadlineCommand;
 import seedu.address.logic.commands.list.ListMarkedCommand;
@@ -31,7 +32,7 @@ import seedu.address.model.task.TaskIsDonePredicate;
 public class ListCommandParser implements Parser<ListCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ListCommand
+     * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a ListCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */

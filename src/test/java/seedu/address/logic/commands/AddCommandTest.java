@@ -104,12 +104,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getArchivedTaskBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addPerson(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void archivedTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,7 +134,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyAddressBook getArchivedAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTaskInArchives(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -144,6 +164,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Task> getFilteredArchivedTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getArchivedTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -151,6 +181,27 @@ public class AddCommandTest {
         public String getFilterStatus() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredArchivedTaskList(Predicate<Task> predicate) {
+
+        }
+
+        @Override
+        public void setArchivedTaskBook(ReadOnlyAddressBook addressBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setArchivedTaskBookFilePath(Path archivedTaskBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getArchivedTasks() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void updateFilterStatus(String filter) {
             throw new AssertionError("This method should not be called.");
