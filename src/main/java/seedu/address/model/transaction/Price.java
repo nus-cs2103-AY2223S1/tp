@@ -10,10 +10,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Class to store the price of the goods transacted.
  */
 public class Price {
-    public static final String MESSAGE_CONSTRAINTS_NON_NUMBERS =
-            "Price should only contain positive numbers.";
-    public static final String MESSAGE_CONSTRAINTS_DECIMAL =
-            "Price should only contain one decimal point.";
 
     public static final String MESSAGE_CONSTRAINTS_EMPTY =
             "Price should not be left empty.";
