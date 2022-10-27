@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 import paymelah.commons.util.StringUtil;
 import paymelah.logic.commands.FindCommand.DebtsDescriptor;
 import paymelah.logic.parser.ParserUtil.PersonDescriptor;
+import paymelah.model.debt.DebtDate;
+import paymelah.model.debt.Money;
 
 /**
  * Tests that a {@code Person} matches the descriptor given.
@@ -88,10 +90,42 @@ public class PersonMatchesDescriptorPredicate implements Predicate<Person> {
         return true;
     }
 
+    private boolean matchesAbove(Person person) {
+        if (debtsDescriptor.getAbove().isPresent()) {
+            Money above = debtsDescriptor.getAbove().get();
+            return person.getDebts().asList().stream().anyMatch(debt -> debt.getMoney().compareTo(above) >= 0);
+        }
+        return true;
+    }
+
+    private boolean matchesBelow(Person person) {
+        if (debtsDescriptor.getBelow().isPresent()) {
+            Money below = debtsDescriptor.getBelow().get();
+            return person.getDebts().asList().stream().anyMatch(debt -> debt.getMoney().compareTo(below) <= 0);
+        }
+        return true;
+    }
+
     private boolean matchesDates(Person person) {
         if (debtsDescriptor.getDates().isPresent()) {
             return debtsDescriptor.getDates().get().stream().allMatch(date ->
                     person.getDebts().asList().stream().anyMatch(debt -> debt.getDate().equals(date)));
+        }
+        return true;
+    }
+
+    private boolean matchesBefore(Person person) {
+        if (debtsDescriptor.getBefore().isPresent()) {
+            DebtDate before = debtsDescriptor.getBefore().get();
+            return person.getDebts().asList().stream().anyMatch(debt -> debt.getDate().compareTo(before) <= 0);
+        }
+        return true;
+    }
+
+    private boolean matchesAfter(Person person) {
+        if (debtsDescriptor.getAfter().isPresent()) {
+            DebtDate after = debtsDescriptor.getAfter().get();
+            return person.getDebts().asList().stream().anyMatch(debt -> debt.getDate().compareTo(after) >= 0);
         }
         return true;
     }
@@ -113,7 +147,11 @@ public class PersonMatchesDescriptorPredicate implements Predicate<Person> {
                 && matchesTags(person)
                 && matchesDescriptions(person)
                 && matchesMonies(person)
+                && matchesAbove(person)
+                && matchesBelow(person)
                 && matchesDates(person)
+                && matchesBefore(person)
+                && matchesAfter(person)
                 && matchesTimes(person);
     }
 
