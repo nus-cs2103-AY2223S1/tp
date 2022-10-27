@@ -94,13 +94,13 @@ Examples:
 
 ### Rating an activity: `rate`
 
-Adds rating and writes review for an activity in the HobbyList.
+Adds rating and/or writes review for an activity in the HobbyList.
 
 Format: `rate INDEX r/RATING [re/REVIEW]`
 
 * The `INDEX` refers to the index number shown in the displayed activity list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
-* `RATING` only accepts integer numbers from 0 to 5 (inclusive).
+* `RATING` only accepts integer numbers from 1 to 5 (inclusive).
 
 Example:
 * `rate 1 r/2`
