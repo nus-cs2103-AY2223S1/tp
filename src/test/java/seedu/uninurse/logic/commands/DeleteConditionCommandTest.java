@@ -86,15 +86,14 @@ public class DeleteConditionCommandTest {
     @Test
     void execute_validIndicesFilteredList_success() {
         // use third person in TypicalPersons since there is one condition to delete
-        showPersonAtIndex(model, INDEX_THIRD_PERSON);
 
-        Patient patientToDeleteCondition = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Patient patientToDeleteCondition = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()))
                 .withConditions().build();
         Condition deletedCondition = patientToDeleteCondition.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
         DeleteConditionCommand deleteConditionCommand =
-                new DeleteConditionCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
+                new DeleteConditionCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE);
 
         String expectedMessage = String.format(MESSAGE_DELETE_CONDITION_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName().toString(), deletedCondition);
