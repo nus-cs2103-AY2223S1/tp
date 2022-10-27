@@ -72,7 +72,7 @@ public class UserModule {
     public String getLessons() {
         String str = "";
         for (LessonType k : lessons.keySet()) {
-            str += k.toString() + " | " + lessons.get(k) + "\n";
+            str += k.toString() + " " + lessons.get(k) + "\n";
         }
         return str;
     }

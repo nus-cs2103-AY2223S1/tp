@@ -68,7 +68,8 @@ public class AddCommand extends Command {
 
         model.addUserModule(moduleToAdd);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toUpperCase()), COMMAND_WORD, model);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toUpperCase() + "\n" + moduleToAdd.getLessons()),
+                COMMAND_WORD, model);
     }
 
     @Override
