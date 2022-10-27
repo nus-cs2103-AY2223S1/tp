@@ -48,20 +48,14 @@ public class NewTagCommandParserTest {
                 "",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, NewTagCommand.getUsage()));
 
-        // invalid name
+        // invalid tag name
         assertParseFailure(parser,
                 CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION,
                 MESSAGE_CONSTRAINTS);
 
-        // invalid quantity
-        assertParseFailure(parser,
-                CommandTestUtil.INVALID_DESC_TAG_NAME_ILLEGAL_FIRST_CHAR,
-                MESSAGE_CONSTRAINTS);
-
-        // invalid unit
+        // invalid length
         assertParseFailure(parser,
                 CommandTestUtil.INVALID_DESC_TAG_NAME_EXCEED_CHAR_LIMIT,
                 EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS);
-
     }
 }
