@@ -419,9 +419,9 @@ Example:
 
 Finds all students with a particular email.
 
-Formats: `find e/EMAIL
+Format: `find e/EMAIL`
 
-- The search is case-insensitive. e.g., `ghost@woods.com` will match `ghOst@woOds.com`.
+- The search is case-insensitive. e.g., `ghost@woods.com` will match `ghoSt@woOds.com`.
 - Only one email can be searched at each time.
 - Full email must be used for corresponding student to be found e.g., `ghost` will not match `ghost@woods.com`.
 
@@ -431,18 +431,18 @@ Formats: `find e/EMAIL
   find e/jonsnow@winterfell.com ghost@woods.com.
 ```
 
-Examples:
+Example:
 
 `find e/jonsnow@winterfell.com` returns all students with email set as `jonsnow@winterfell.com`.
 
-#### Find by address:
+#### Find by Address:
 
 Finds all students with addresses matching the keywords.
 
 Format: `find a/KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g., `Labrador` will match `LABRADOR`.
-- The order of the keywords does not matter. e.g. `Bukit Timah` will match `Timah Bukit`.
+- The order of the keywords does not matter. e.g., `Bukit Timah` will match `Timah Bukit`.
 - Students matching at least one keyword will be returned. e.g., `Bukit Timah` will return `Bukit Batok`, `Timah Hill`.
 - Only full words will be matched e.g., `Labra` will not match `Labrador`.
 
@@ -720,8 +720,8 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Edit a student               | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [a/ADDRESS] [e/EMAIL] [dt/CLASS_DATE] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] `e.g., edit 2 p/98765431` |
 | Get help                     | `help`                                                                                                                                                                                                                            |
 | List all students            | `list`                                                                                                                                                                                                                            |
-| Find a student               | find n/NAME `e.g., find n/John Doe` or other supported fields                                                                                                                                                                     |
-| Mark a student               | mark INDEX-s `e.g., mark 2`                                                                                                                                                                                                       |
+| Find a student               | find n/NAME e.g., `find n/John Doe` or other supported fields                                                                                                                                                                     |
+| Mark a student               | mark INDEX-s e.g., `mark 2`                                                                                                                                                                                                       |
 | Receive money from a student | pay INDEX-s AMOUNT_PAID `e.g., pay 2 300`                                                                                                                                                                                         |
 | Delete a student             | delete INDEX `e.g., delete 2`                                                                                                                                                                                                     |
 | Clear all students           | `clear`                                                                                                                                                                                                                           |
