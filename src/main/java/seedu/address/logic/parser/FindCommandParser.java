@@ -132,7 +132,12 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(keywords);
     }
 
-
+    /**
+     * Validates the arguments in the input ArgumentMultiMap.
+     *
+     * @param argMultimap The input ArgumentMultiMap.
+     * @throws ParseException If there are invalid arguments given.
+     */
     public void validateArguments(ArgumentMultimap argMultimap) throws ParseException {
 
         // Check if prefixes specified is relevant to the current list
