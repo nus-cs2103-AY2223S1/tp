@@ -2,15 +2,14 @@ package eatwhere.foodguide.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import eatwhere.foodguide.commons.core.Messages;
-import eatwhere.foodguide.model.Model;
-import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.model.eatery.LocationContainsKeywordsPredicate;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
+
+import eatwhere.foodguide.commons.core.Messages;
+import eatwhere.foodguide.model.Model;
+import eatwhere.foodguide.model.eatery.Eatery;
 
 /**
  * Finds and lists all eateries in food guide whose tags contains any of the argument keywords.
@@ -32,6 +31,10 @@ public class FindLocationCommand extends Command {
         this(predicate, -1);
     }
 
+    /**
+     * @param predicate What all found eateries must satisfy
+     * @param numRandPicks The number of found eateries to randomly select
+     */
     public FindLocationCommand(Predicate<Eatery> predicate, int numRandPicks) {
         this.predicate = predicate;
         this.numRandPicks = numRandPicks;
