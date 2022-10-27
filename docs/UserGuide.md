@@ -511,13 +511,13 @@ Check out the acceptable List Parameters for different types of contacts / items
 
 | List type | Attributes                                                                                                                       |
 |-----------|----------------------------------------------------------------------------------------------------------------------------------|
-| Buyer     | <u>Number of Order</u>, Name, Phone, Email, Location, Address                                                                    |
-| Supplier  | <u>Number of Pet On sale</u>, Name, Phone, Email, Location, Address                                                              |
-| Deliverer | <u>Number of Order</u>, Name, Phone, Email, Location, Address                                                                    |
-| Order     | <u>Due Date</u>, Price Range, Price, Status                                                                                      |
-| Pet       | <u>Price</u>, Name, Color, Color Pattern, Birth Date, Species, Height, Weight, Vaccination Status, Characteristics, Certificates |
+| Buyer     | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
+| Supplier  | *Number of Pet On sale*, Name, Phone, Email, Location, Address                                                              |
+| Deliverer | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
+| Order     | *Due Date*, Price Range, Price, Status                                                                                      |
+| Pet       | *Price*, Name, Color, Color Pattern, Birth Date, Species, Height, Weight, Vaccination Status, Characteristics, Certificates |
 
-> The underlined attribute represents the default sorting attribute for each list. <br>
+> The italicised text attribute represents the default sorting attribute for each list. <br>
 > For example, `sort pet` will sort the Pets list in default by the price attribute.
 
 #### Acceptable Attribute Parameters Table
