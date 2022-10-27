@@ -2,12 +2,10 @@ package seedu.foodrem.logic.parser.itemcommandparser;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.commands.itemcommands.ViewCommand;
 import seedu.foodrem.logic.parser.Parser;
-import seedu.foodrem.logic.parser.ParserUtil;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**
@@ -22,25 +20,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     public ViewCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        Index index;
-
-        String trimmedArgument = args.trim();
-
-        if (!StringUtil.isInteger(trimmedArgument)) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.getUsage()));
-        }
-
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedArgument)) {
-            throw new ParseException("The index should be a non-negative number.");
-        }
-
-        try {
-            index = ParserUtil.parseIndex(args);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.getUsage()),
-                    pe);
-        }
-
+        Index index = StringUtil.validateAndGetIndexString(args, ViewCommand.getUsage());
         return new ViewCommand(index);
     }
 }

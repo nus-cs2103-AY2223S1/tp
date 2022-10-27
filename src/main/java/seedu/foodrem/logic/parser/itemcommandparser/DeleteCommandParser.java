@@ -1,10 +1,11 @@
 package seedu.foodrem.logic.parser.itemcommandparser;
 
-import seedu.foodrem.commons.core.Messages;
+import static java.util.Objects.requireNonNull;
+
 import seedu.foodrem.commons.core.index.Index;
+import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
 import seedu.foodrem.logic.parser.Parser;
-import seedu.foodrem.logic.parser.ParserUtil;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**
@@ -18,12 +19,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
-        try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.getUsage()), pe);
-        }
+        requireNonNull(args);
+        Index index = StringUtil.validateAndGetIndexString(args, DeleteCommand.getUsage());
+        return new DeleteCommand(index);
     }
 }

@@ -3,8 +3,8 @@ package seedu.foodrem.logic.parser.itemcommandparser;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
-import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
+import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.commands.itemcommands.RemarkCommand;
 import seedu.foodrem.logic.parser.ArgumentMultimap;
 import seedu.foodrem.logic.parser.ArgumentTokenizer;
@@ -27,20 +27,8 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
     public RemarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_ITEM_REMARKS);
-        Index index;
+        Index index = StringUtil.validateAndGetIndexString(argMultimap.getPreamble(), RemarkCommand.getUsage());
 
-        if (argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.getUsage()));
-        }
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    RemarkCommand.getUsage()), pe);
-        }
-
-        // TODO: Share behaviour about no r/ prefix means delete remark in UG.
         ItemRemark remark = ParserUtil.parseRemarks("");
         if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_ITEM_REMARKS)) {
             remark = ParserUtil.parseRemarks(argMultimap.getPresentValue(CliSyntax.PREFIX_ITEM_REMARKS));
