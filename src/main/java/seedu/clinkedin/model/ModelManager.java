@@ -5,6 +5,7 @@ import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.function.Predicate;
@@ -29,6 +30,7 @@ public class ModelManager implements Model {
     private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    // private final SortedList<Person> sortedPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,6 +43,7 @@ public class ModelManager implements Model {
         this.addressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        // sortedPersons = new SortedList<>(filteredPersons);
     }
 
     public ModelManager() {
@@ -192,6 +195,24 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    // /**
+    // * Returns an unmodifiable view of the list of {@code Person} backed by the
+    // * internal list of
+    // * {@code versionedAddressBook}
+    // */
+    // @Override
+    // public ObservableList<Person> getSortedPersonList() {
+    //    return sortedPersons;
+    //}
+
+    @Override
+    public void updateSort(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        List<Person> sortedList = new ArrayList<>(addressBook.getPersonList());
+        sortedList.sort(comparator);
+        addressBook.setPersons(sortedList);
     }
 
     @Override

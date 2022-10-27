@@ -83,7 +83,8 @@ public class MainApp extends Application {
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            // initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = SampleDataUtil.getSampleAddressBook();
             // Might want to keep.
             //            JFrame dialogFrame = new JFrame();
             //            JOptionPane.showMessageDialog(dialogFrame,
@@ -107,7 +108,6 @@ public class MainApp extends Application {
                     "Warning",
                     JOptionPane.WARNING_MESSAGE);
         }
-
         return new ModelManager(initialData, userPrefs);
     }
 

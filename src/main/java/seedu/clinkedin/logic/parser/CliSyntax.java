@@ -12,6 +12,7 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.clinkedin.logic.commands.AddCommand;
+import seedu.clinkedin.logic.commands.AddNoteCommand;
 import seedu.clinkedin.logic.commands.AddTagCommand;
 import seedu.clinkedin.logic.commands.ClearCommand;
 import seedu.clinkedin.logic.commands.Command;
@@ -25,7 +26,6 @@ import seedu.clinkedin.logic.commands.FindCommand;
 import seedu.clinkedin.logic.commands.HelpCommand;
 import seedu.clinkedin.logic.commands.ImportCommand;
 import seedu.clinkedin.logic.commands.ListCommand;
-import seedu.clinkedin.logic.commands.NoteCommand;
 import seedu.clinkedin.logic.commands.RateCommand;
 import seedu.clinkedin.logic.commands.StatsCommand;
 import seedu.clinkedin.logic.commands.ViewCommand;
@@ -80,7 +80,7 @@ public class CliSyntax {
             ListCommand.class,
             ImportCommand.class,
             ListCommand.class,
-            NoteCommand.class,
+            AddNoteCommand.class,
             RateCommand.class,
             StatsCommand.class,
             ExportCommand.class,
