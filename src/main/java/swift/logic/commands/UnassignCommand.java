@@ -27,7 +27,8 @@ public class UnassignCommand extends Command {
             List.of(PREFIX_CONTACT, PREFIX_TASK));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unassigns the task to the contact identified by the index numbers used in the displayed contact list.\n"
+            + ": Unassigns the task to the contact identified by the index numbers used in the "
+            + "displayed contact list.\n"
             + "Parameters: "
             + PREFIX_CONTACT + "CONTACT_INDEX "
             + PREFIX_TASK + "TASK_INDEX\n"
