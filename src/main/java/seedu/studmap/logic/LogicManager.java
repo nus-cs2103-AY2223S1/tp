@@ -11,7 +11,7 @@ import seedu.studmap.commons.core.LogsCenter;
 import seedu.studmap.logic.commands.Command;
 import seedu.studmap.logic.commands.CommandResult;
 import seedu.studmap.logic.commands.exceptions.CommandException;
-import seedu.studmap.logic.imports.ImportCSV;
+import seedu.studmap.logic.imports.ImportCsv;
 import seedu.studmap.logic.imports.exceptions.ImportException;
 import seedu.studmap.logic.parser.StudMapParser;
 import seedu.studmap.logic.parser.exceptions.ParseException;
@@ -30,7 +30,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final StudMapParser studMapParser;
-    private final ImportCSV importer;
+    private final ImportCsv importer;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -39,7 +39,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         studMapParser = new StudMapParser();
-        importer = new ImportCSV();
+        importer = new ImportCsv();
     }
 
     @Override

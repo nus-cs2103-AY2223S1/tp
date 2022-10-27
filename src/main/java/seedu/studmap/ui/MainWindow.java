@@ -1,6 +1,5 @@
 package seedu.studmap.ui;
 
-import java.io.File;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;

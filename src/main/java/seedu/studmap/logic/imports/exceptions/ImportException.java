@@ -1,9 +1,9 @@
 package seedu.studmap.logic.imports.exceptions;
 
-import seedu.studmap.logic.imports.ImportCSV;
+import seedu.studmap.logic.imports.ImportCsv;
 
 /**
- * Represents an error which occurs during execution of an {@link ImportCSV}.
+ * Represents an error which occurs during execution of an {@link ImportCsv}.
  */
 public class ImportException extends Exception {
 
