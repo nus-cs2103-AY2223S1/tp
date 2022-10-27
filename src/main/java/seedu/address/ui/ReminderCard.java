@@ -45,7 +45,12 @@ public class ReminderCard extends UiPart<Region> {
      */
     public ReminderCard(Person person, Reminder reminder, int displayedIndex) {
         super(FXML);
+        assert person != null : "Something went wrong in UI ReminderCard";
         this.person = person;
+
+        assert person.getName() != null : "Something went wrong in UI ReminderCard name";
+        assert reminder.task != null : "Something went wrong in UI ReminderCard task";
+        assert reminder.date != null : "Something went wrong in UI ReminderCard date";
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         reminderTask.setText("\uD83D\uDDD2\t" + reminder.task);

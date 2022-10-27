@@ -19,13 +19,12 @@ Friendnancial (Friend) is a **desktop app for managing contacts, optimized for u
 1. Copy the file to the folder you want to use as the _home folder_ for Friendnancial.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui_old.png)
+   ![Ui](images/Ui_new.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
-
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com c/family a/John street, block 123, #01-01 b/01-01-2001` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list along with the reminders linked to the contact.
@@ -68,7 +67,7 @@ Friendnancial (Friend) is a **desktop app for managing contacts, optimized for u
 
 Shows a message explaning how to access the User Guide page. The link can be copied by clickiing the `Copy URL` button.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessageUpdated.png)
 
 Format: `help`
 
@@ -97,7 +96,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [b/BIRTHDAY]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -130,7 +129,7 @@ returns persons whose tag fields contain the specified tag.
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/findAlexDavidResultUpdated.png)
 
 ### Deleting a person : `delete`
 
@@ -190,6 +189,8 @@ Examples:
 * `insurance 2` sets the 2nd person to not have any of the insurances.
 * `insurance 3 hi/ ci/ di/ li/` sets the 3rd person to have all the insurances.
 
+![result for 'insurance hi/ di/ ci/ li/'](images/insuranceUpdate.png)
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -220,4 +221,4 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 | **List**   | `list`                                                                                                                                              |
 | **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                     |                                                               
 | **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`                                                                                                           
-| **Help**   | `help`                                                                                                                                              |
+| **Help**   | `help`                                     
