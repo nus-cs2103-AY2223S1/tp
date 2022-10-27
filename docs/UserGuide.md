@@ -83,6 +83,9 @@ Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3
 * Items in square brackets are optional.<br>
   e.g `n/NAME [m/MAJOR]` can be used as `n/John Doe m/Business` or as `n/John Doe`.
 
+* Items in angle brackets are fixed, precise values.
+  e.g. `<ACCEPTED>` means the parameter must be an input of the value `ACCEPTED`.
+
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[m/MAJOR]…​` can be used as ` ` (i.e. 0 times), `m/Business`, `m/Medicine m/Dentistry` etc.
 
@@ -214,11 +217,10 @@ All applicants with the corresponding statuses stored in TrackAScholar are remov
 
 Format: 
 ```
-remove ACCEPTED/REJECTED
+remove <ACCEPTED>/<REJECTED>
 ```
 
 * The user selects the applicant(s) with application status of either `ACCEPTED` or `REJECTED` to be removed from TrackAScholar.
-* `ACCEPTED` and `REJECTED` are fixed inputs, the user can only use these 2 input for the `remove` command.
 * `remove` is case-insensitive. e.g. `Accepted` or `accepted` both matches `ACCEPTED`
 
 Examples:
@@ -272,11 +274,10 @@ Filters and list all scholarship applications matching application status specif
 
 Format: 
 ```
-filter PENDING/ACCEPTED/REJECTED
+filter <PENDING>/<ACCEPTED>/<REJECTED>
 ```
 
 * The user specifies to filter the applications with application status of either `PENDING` or `ACCEPTED` or `REJECTED`.
-* `PENIDNG`, `ACCEPTED` and `REJECTED` are fixed inputs, the user can only use these 3 input for the `remove` command.
 * `filter` is case-insensitive. e.g. `pEnDiNg` or `Pending` both matches `PENDING`.
 
 Examples:
@@ -292,11 +293,10 @@ All applicants in TrackAScholar will be sorted in the specified manner
 
 Format: 
 ```
-sort NAME/SCHOLARSHIP/STATUS
+sort <NAME>/<SCHOLARSHIP>/<STATUS>
 ```
 
 * The user can choose to sort the list according the applicant's `NAME`, `SCHOLARSHIP` or Application `STATUS`.
-* `NAME`, `SCHOLARSHIP` and `STATUS` are fixed inputs, the user can only use these 3 input for the `sort` command.
 * `sort` is case-insensitive. e.g. `NamE` or `name` both matches `NAME`.
 
 Examples:
@@ -314,11 +314,10 @@ Imports a trackAScholar file into the current trackAScholar file
 
 Format: 
 ```
-import r/k
+import <r>/<k>
 ```
 
 * The user can choose to import a data file which adds to the current list of applicants.
-* `r` and `k` are fixed inputs, the user can only use these 2 input for the `sort` command.
 * `import` is case-insensitive. e.g. `import R` is valid.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -361,13 +360,13 @@ This will result in the removal of the applicant from the pinned applicant list.
 
 Format: 
 ```
-unpin FULL_NAME
+unpin NAME
 ```
 
-* Unpins the scholarship applicant with the specified `FULL_NAME`.
-* The name refers to the name of the scholarship applicant.
-* The name **must be the full name:** `Alex Yeoh` instead of just simply `Alex`.
-* The name is **case-insensitive**.
+* Unpins the scholarship applicant with the specified `NAME`.
+* `NAME` refers to the name of the scholarship applicant.
+* `NAME` **must be a full name:** `Alex Yeoh` instead of `Alex`.
+* `NAME` is **case-insensitive**.
 
 Examples:
 * `unpin Alex Yeoh` unpins the applicant with the name `Alex Yeoh` in TrackAScholar.
@@ -416,12 +415,12 @@ If your changes to the data file makes its format invalid, TrackAScholar will di
 | **List**   | `list`                                                                              |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR]…​`                        |
 | **Delete** | `delete INDEX`                                                                      |
-| **Remove** | `remove ACCEPTED/REJECTED`                                                          |
+| **Remove** | `remove <ACCEPTED>/<REJECTED>`                                                      |
 | **Clear**  | `clear`                                                                             |
 | **Find**   | `find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...`                                  |
-| **Filter** | `filter PENDING/ACCEPTED/REJECTED`                                                  |
-| **Sort**   | `sort NAME/SCHOLARSHIP/STATUS`                                                      |
-| **Import** | `import r/k`                                                                        |
+| **Filter** | `filter <PENDING>/<ACCEPTED>/<REJECTED>`                                            |
+| **Sort**   | `sort <NAME>/<SCHOLARSHIP>/<STATUS>`                                                |
+| **Import** | `import <r>/<k>`                                                                    |
 | **Pin**    | `pin INDEX`                                                                         |
 | **Unpin**  | `unpin FULL_NAME`                                                                   |
 | **Exit**   | `exit`                                                                              |
