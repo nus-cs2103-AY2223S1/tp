@@ -66,12 +66,12 @@ Adds a module to the program.
 
 Format: `add module <module code>`
 
-Shorthand: `add -m <module code>`
-- The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
+Shorthand: `add mod <module code>`
+- The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
 
 Examples:
 - `add module CS2103T`
-- `add -m CS2103T`
+- `add mod CS2103T`
 
 ### Removing a module: `remove module`
 
@@ -80,7 +80,7 @@ Deletes a module from the program.
 Format: `remove module <module code>`
 
 Shorthand: `rm -m <module code>`
-- The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
+- The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
 - Module code must match an existing module.
 
 Examples:
@@ -95,11 +95,22 @@ Format: `cd <module code>`
 
 Allows user to view information relating to the specified module.
 - Scopes the user’s actions to the specified module.
-- The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
+- The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
 - Module code must match an existing module.
 
 Examples:
 - `cd CS2103T`
+
+### Exiting a module: `cd`
+
+Exits the current module page to revert to showing all modules.
+
+Format: `cd ..`
+
+Allows user to view all modules.
+
+Examples:
+- `cd ..`
 
 ### Listing all modules: `list modules`
 
@@ -117,17 +128,21 @@ Examples:
 ### Adding a task: `add task`
 
 Adds a task under specific module.
-- User must be within a module page.
+- User can optionally be in a module page.
 - User may optionally include a deadline for the task by specifying the -d flag along with the deadline in DD/MM/YYYY format.
 - Description of a task can **only** contain American Standard Code for Information Interchange (ASCII) characters
 
-Format: `add task <task> [-d <deadline>]`
+Format(if CDed): `add task <description> [-d <deadline>]`
+Format(otherwise): `add task <description> [-d <deadline>] -c <module code>`
 
-Shorthand: `add -t <task> [-d <deadline>]`
 
-Examples:
+Examples (CDed into a module):
 - `add task do ip tasks -d 15/09/2022`
-- `add -t do ip tasks`
+- `add task -d 15/09/2022 do ip tasks`
+
+Examples (Not CDed into a module):
+- `add task -c CS2103T do ip tasks -d 15/09/2022`
+- `add task -d 15/09/2022 do ip tasks -c CS2103T`
 
 ### Removing a task: `remove task`
 
@@ -186,15 +201,15 @@ Examples:
 
 |        Action        | Format                                              | Examples                                    |
 |:--------------------:|-----------------------------------------------------|---------------------------------------------|
-|   **Add a Module**   | `add module <mod. code>`<br/>`add -m <mod. code>`   | `add module CS2103T`<br/>`add -m CS2103T`   |
+|   **Add a Module**   | `add module <mod. code>`<br/>`add mod <mod. code>`  | `add module CS2103T`<br/>`add mod CS2103T`  |
 | **Remove a Module**  | `remove module <mod. code>`<br/>`rm -m <mod, code>` | `remove module CS2103T`<br/>`rm -m cS2103t` |
 |  **Go to a Module**  | `cd <mod, code>`                                    | `cd CS2103T`                                |
 | **List All Modules** | `list modules` <br/> `ls -m`                        | `list modules`<br/>`ls -m`                  |
 
 ### Tasks
 
-|       Action       | Format                                                                              | Examples                                                                          |
-|:------------------:|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-|   **Add a Task**   | `add task <description> [-d <deadline>]`<br/>`add -t <description> [-d <deadline>]` | `add task do ip tasks deadline 15/09/2022`<br/>`add -t do ip tasks -d 15/09/2022` |
-| **Remove a Task**  | `remove task <index> `<br/>`rm -t <index>`                                          | `remove task 1`<br/>`rm -t 1`                                                     |
-| **List All Tasks** | `list tasks` <br/> `ls -t`                                                          | `list tasks`<br/>`ls -t`                                                          |
+|       Action       | Format                                                    | Examples                                              |
+|:------------------:|-----------------------------------------------------------|-------------------------------------------------------|
+|   **Add a Task**   | `add task <description> [-d <deadline>] -c <module code>` | `add task do ip tasks deadline 15/09/2022 -c CS2103T` |
+| **Remove a Task**  | `remove task <index> `<br/>`rm -t <index>`                | `remove task 1`<br/>`rm -t 1`                         |
+| **List All Tasks** | `list tasks` <br/> `ls -t`                                | `list tasks`<br/>`ls -t`                              |
