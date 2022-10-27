@@ -18,7 +18,7 @@ public class Task {
 
     private final Optional<Deadline> deadline;
 
-    private boolean isDone = false;
+    private final boolean isDone;
 
     /**
      * Constructs a {@code Task}.
@@ -34,6 +34,26 @@ public class Task {
         this.name = name;
         this.description = description;
         this.deadline = deadline;
+        this.isDone = false;
+    }
+
+    /**
+     * Constructs a {@code Task}.
+     *
+     * @param id A unique identifier for the task.
+     * @param name A valid task name.
+     * @param description A valid and optional description.
+     * @param deadline A valid and optional deadline.
+     * @param isDone A boolean value indicating whether the task is done.
+     */
+    public Task(UUID id, TaskName name, Optional<Description> description,
+            Optional<Deadline> deadline, boolean isDone) {
+        requireAllNonNull(id, name, description, deadline);
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.deadline = deadline;
+        this.isDone = isDone;
     }
 
     public UUID getId() {
@@ -52,16 +72,8 @@ public class Task {
         return deadline;
     }
 
-    public boolean getIsDone() {
+    public boolean isDone() {
         return isDone;
-    }
-
-    public void setDone() {
-        isDone = true;
-    }
-
-    public void setNotDone() {
-        isDone = false;
     }
 
     @Override

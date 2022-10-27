@@ -20,8 +20,10 @@ import swift.logic.commands.FindTaskCommand;
 import swift.logic.commands.HelpCommand;
 import swift.logic.commands.ListContactCommand;
 import swift.logic.commands.ListTaskCommand;
+import swift.logic.commands.MarkTaskCommand;
 import swift.logic.commands.SelectContactCommand;
 import swift.logic.commands.SelectTaskCommand;
+import swift.logic.commands.UnmarkTaskCommand;
 import swift.logic.parser.exceptions.ParseException;
 
 /**
@@ -77,6 +79,10 @@ public class AddressBookParser {
             return new FindTaskCommandParser().parse(arguments);
         case SelectTaskCommand.COMMAND_WORD:
             return new SelectTaskCommandParser().parse(arguments);
+        case MarkTaskCommand.COMMAND_WORD:
+            return new MarkTaskCommandParser().parse(arguments);
+        case UnmarkTaskCommand.COMMAND_WORD:
+            return new UnmarkTaskCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
