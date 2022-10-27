@@ -2,25 +2,8 @@
 > * This guide assumes that the reader is familiar with using [Java](https://www.java.com/)
 
 # Table of Contents
-<!-- TOC -->
-* [Table of Contents](#table-of-contents)
-  * [Introduction](#introduction)
-  * [Quick start](#quick-start)
-  * [Features](#features)
-  * [Before Using](#before-using)
-    * [Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`](#adding-entries--add-tentry_type-ddescription-aamount-dadate-ccategory)
-    * [Deleting entries: `del INDEX_OF_ENTRY t/ENTRY_TYPE`](#deleting-entries--del-index_of_entry-tentry_type)
-    * [Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`](#editing-entries--edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category)
-    * [Summary of entries : `summary [mo/MONTH]`](#summary-of-entries--summary-momonth)
-    * [View entries by category: `view t/ENTRY_TYPE g/GRAPH_TYPE`](#view-entries-by-category--view-tentry_type-ggraph_type)
-    * [View entries by month: `view t/ENTRY_TYPE g/GRAPH_TYPE mo/MONTH`](#view-entries-by-month--view-tentry_type-ggraph_type-momonth)
-    * [Clearing all entries : `clear`](#clearing-all-entries--clear)
-    * [Exiting the program : `exit`](#exiting-the-program--exit)
-    * [Saving the data](#saving-the-data)
-    * [Editing the data file](#editing-the-data-file)
-  * [FAQ](#faq)
-  * [Command summary](#command-summary)
-<!-- TOC -->
+
+{:toc}
 
 ## Introduction
 
@@ -37,10 +20,11 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
     3. If Java 11 is not installed, please download Java 11 from [Oracle](https://www.oracle.com/java/technologies/downloads/#java11).
        For Mac users, you may use the [Azul build of
        OpenJDK 11 (JDK FX) version](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
-2. Download the latest pennywise.jar from here.
-3. Copy the file to the folder you want to use as the home folder for your PennyWise.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
-   contains some sample data.
+2. Download the latest [pennywise.jar](https://github.com/AY2223S1-CS2103T-W17-2/tp/releases) application file.
+3. Copy the file to the folder you want to use as the home folder for PennyWise.
+4. Double-click the file to start the app. You should see a user interface similar to what is shown below in a few seconds.
+    * The application contains some sample data to that provides some examples on how you can use the application.
+   
    ![Ui](images/Ui.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -61,7 +45,35 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 
 6. Refer to the [Features](#features) below for details of each command.
 
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+Congrats! You are now ready to get started on your first steps in supercharging your financial management flow!
+</div>
+
 ---
+
+## Navigating the User Guide
+
+### Information Box
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+This provides some additional information that may be useful for Jedi users.
+</div>
+
+### Tip Box
+
+<div markdown="block" class="alert alert-success">:bulb: **Tip:**
+This provides some quick and convenient hacks that you can use to optimize your experience with PennyWise.
+</div>
+
+### Danger Box
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
+Danger zone! Do pay attention to the information here carefully.
+</div>
+
+### Formatting
+
+- `Highlights` are used to denote commands or output from the applicatoin.
 
 ## Features
 
@@ -77,16 +89,16 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
   <pre>
     add t/e d/Lunch a/15.60 da/15-08-2022 c/Meal
   </pre>
-    - Command : add<br>
-    - Identifier : t/e<br>
-    - Input : d/Lunch a/15.60 da/15-08-2022 c/Meal<br>
+    - Command : <pre>add</pre><br>
+    - Identifier : <pre>t/e</pre><br>
+    - Input : <pre>d/Lunch a/15.60 da/15-08-2022 c/Meal</pre><br>
     - Optional input : NIL<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
 
 - Items in square brackets are optional.<br>
-  e.g `view t/ENTRY_TYPE g/GRAPH_TYPE [MONTH]` can be used as `view t/e g/c [mo/2022-05]` or as `view t/e g/c`.
+  e.g `view t/ENTRY_TYPE [MONTH]` can be used as `view t/e mo/2022-05` or as `view t/e`.
 
 - **ALL** identifiers are <ins>case sensitive</ins>. 
   e.g `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
@@ -152,11 +164,11 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 Adds an entry to the specified list. <br>
 1. Add expense <br>
    - Example: `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`<br>
-   Expected: New entry added: Lunch; Date: 10-10-2022; Amount: 15.60; Tag: Food
+   Expected: `New entry added: Lunch; Date: 10-10-2022; Amount: 15.60; Tag: Food`
    ![AddCommand1](images/AddCommand1.png)
 1. Add income <br>
    - Example: `add t/i d/Tuition a/40.00 da/10-10-2022 c/Salary`<br>
-   Expected: New entry added: Tuition; Date: 10-10-2022; Amount: 40.00; Tag: Salary
+   Expected: `New entry added: Tuition; Date: 10-10-2022; Amount: 40.00; Tag: Salary`
    ![AddCommand2](images/AddCommand2.png)
 
 ### Deleting entries : `delete INDEX_OF_ENTRY t/ENTRY_TYPE`
@@ -187,7 +199,7 @@ Edits an entry, at least **1** of the optional fields must be present.
    * The income at index 2 will have its amount and date edited <br>
    Expected: `Edited Entry: CafeSalary; Date: 22-10-2022; Amount: 150.00; Tag: Salary`
    ![EditCommand2](images/EditCommand2.png)
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 The default date is the current date on your computer!
 </div>
 
@@ -196,19 +208,24 @@ The default date is the current date on your computer!
 1. Summary of all entries in the currently shown list
    * Examples: `summary`
      * Expected: <br/>
-       Financials Summarized <br/>
-       Total Expenditure: 154.49 <br/>
-       Total Income: 250.00 <br/>
-       Total Balance: 95.51 <br/>
+       <pre>
+       Financials Summarized
+       Total Expenditure: 154.49
+       Total Income: 250.00
+       Total Balance: 95.51
+       </pre>
      ![SummaryCommand1](images/SummaryCommand1.png)
 2. Summary of all entries the specified month
     * Examples: `summary mo/2022-10`
     * Expected: <br/>
-      Financials Summarized <br/>
-      Total Expenditure: 4.20 <br/>
-      Total Income: 250.00 <br/>
-      Total Balance: 245.80 <br/>
+      <pre>
+      Financials Summarized
+      Total Expenditure: 4.20
+      Total Income: 250.00
+      Total Balance: 245.80
+      </pre>
     ![SummaryCommand2](images/SummaryCommand2.png)
+
 * Provides a financial summary recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application displays the summary for all entries.
 
@@ -221,7 +238,7 @@ The default date is the current date on your computer!
 1. View a PieChart of all incomes by categories
    * Examples: `view t/i g/c` <br>
    Expected: `Show graphically all income by category` and a PieChart on the right of the application
-   [ViewCategory2](images/ViewCategory2.png)
+   ![ViewCategory2](images/ViewCategory2.png)
 
 ### View entries by month : `view t/ENTRY_TYPE g/GRAPH_TYPE mo/MONTH`
 1. View a LineGraph of all expenditures in a specified month
@@ -255,9 +272,9 @@ PennyWise data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-PennyWise data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+PennyWise data are saved as a JSON file `[JAR file location]/data/pennywise.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, PennyWise will discard all data and start with an empty data file at the next run.
 </div>
 

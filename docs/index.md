@@ -8,11 +8,12 @@ title: PennyWise
 
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+PennyWise is a desktop application that **empowers students with the ability to make sensible financial decisions**,
+helping students to manage their budget. It is **optimised for use via Command Line Interface** (CLI) while providing a
+clean Graphical User Interface (GUI) for easy comprehension of expenditure and savings.
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
-
+* If you are interested in using PennyWise, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing PennyWise, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 **Acknowledgements**
 
