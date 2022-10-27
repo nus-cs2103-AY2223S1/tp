@@ -203,7 +203,7 @@ Format: `pin INDEX`
 Examples:
 * `list` followed by `pin 2` pins the 2nd applicant in TrackAScholar.
 
-### Importing a trackAScholar file
+### Importing a trackAScholar file : `import`
 
 Imports a trackAScholar file into the current trackAScholar file
 
