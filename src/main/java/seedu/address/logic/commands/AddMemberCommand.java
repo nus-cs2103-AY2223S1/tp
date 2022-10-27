@@ -23,8 +23,8 @@ public class AddMemberCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds the person with the specified name into the current team.\n"
-            + "Parameters: NAME\n"
-            + "Example: " + COMMAND_WORD + " \"Alice Jane\"";
+            + "Parameters: MEMBER_INDEX\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_ADD_MEMBER_SUCCESS = "Added Member: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person is already in the team";
@@ -52,7 +52,7 @@ public class AddMemberCommand extends Command {
         }
         requireNonNull(model);
         List<Person> memberList = model.getFilteredPersonList();
-        if (targetPersonIndex > memberList.size() || targetPersonIndex < 0) {
+        if (targetPersonIndex > memberList.size() || targetPersonIndex <= 0) {
             throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
         }
         Person toAdd = memberList.get(targetPersonIndex - 1);
