@@ -40,7 +40,7 @@ public class AddCommand extends Command {
             + PREFIX_POSITION + "Recruiter "
             + PREFIX_DEPARTMENT + "Human Resources "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_LEAVE + "20"
+            + PREFIX_LEAVE + "20 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
