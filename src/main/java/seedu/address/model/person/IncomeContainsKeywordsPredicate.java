@@ -1,14 +1,17 @@
 package seedu.address.model.person;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class IncomeContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> income;
-    private boolean greater;
     private String predicate;
 
     /**
@@ -21,21 +24,26 @@ public class IncomeContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        if (predicate.equals(">")) {
-            greater = true;
-        } else {
-            greater = false;
-        }
 
         IncomeLevel personIncome = person.getIncome();
         for (String predicateIncomeName : income) {
-            if (greater) {
-                if (personIncome.convertIncomeToLong() > Integer.parseInt(predicateIncomeName)) {
+            if (predicate.equals(">")) {
+                if (personIncome.convertIncomeToLong() >= Integer.parseInt(predicateIncomeName)) {
+                    return true;
+                }
+            } if (predicate.equals("<")) {
+                if (personIncome.convertIncomeToLong() <= Integer.parseInt(predicateIncomeName)) {
+                    return true;
+                }
+            } if (predicate.equals("=")) {
+                if (personIncome.convertIncomeToLong() == Integer.parseInt(predicateIncomeName)) {
                     return true;
                 }
             } else {
-                if (personIncome.convertIncomeToLong() < Integer.parseInt(predicateIncomeName)) {
-                    return true;
+                try {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Please enter >, < or = before the VALUE"));
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
                 }
             }
         }
