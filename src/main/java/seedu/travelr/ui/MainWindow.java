@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -36,6 +37,10 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private SummaryWindow summaryWindow;
+
+    private Image completed = new Image("/images/completed.png");
+    private Image tripsIcon = new Image("/images/trips.png");
+    private Image eventsIcon = new Image("/images/events.png");
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -127,8 +132,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        summaryWindow = new SummaryWindow(logic.getFilteredTripList(), logic.getSummaryVariables());
-        tripListPanel = new TripListPanel(logic.getFilteredTripList(), logic.getSelectedTrip());
+        summaryWindow = new SummaryWindow(logic.getFilteredTripList(), logic.getSummaryVariables(), completed);
+        tripListPanel = new TripListPanel(logic.getFilteredTripList(), logic.getSelectedTrip(), completed);
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         tripListPanelPlaceholder.getChildren().add(tripListPanel.getRoot());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
@@ -139,10 +144,10 @@ public class MainWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
         System.out.println("no problem with statusBar");
 
-        TripsLabeler tripsLabel = new TripsLabeler();
+        TripsLabeler tripsLabel = new TripsLabeler(tripsIcon);
         tripsTextField.getChildren().add(tripsLabel.getRoot());
 
-        EventsLabeler eventsLabel = new EventsLabeler();
+        EventsLabeler eventsLabel = new EventsLabeler(eventsIcon);
         eventsTextField.getChildren().add(eventsLabel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

@@ -1,7 +1,10 @@
 package seedu.travelr.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.travelr.model.trip.Trip;
@@ -37,24 +40,40 @@ public class TripCard extends UiPart<Region> {
     private Label tripLocation;
     @FXML
     private Label tripDate;
-
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public TripCard(Trip trip, int displayedIndex) {
+    public TripCard(Trip trip, int displayedIndex, Image completed) {
         super(FXML);
         this.trip = trip;
         id.setText(displayedIndex + ". ");
         title.setText(trip.getTitle().fullTitle);
+        if (trip.isDone()) {
+            ImageView completedIcon = new ImageView(completed);
+            setIconDimensions(completedIcon, 22);
+            title.setGraphic(completedIcon);
+            title.setContentDisplay(ContentDisplay.RIGHT);
+        }
         description.setText(trip.getDescription().value);
         eventCount.setText("Events: " + trip.getEvents().size());
         // location is a reserved keyword in FXML
         tripLocation.setText(trip.getLocation().isDefaultValue()
                 ? "No location set"
                 : trip.getLocation().locationName);
+        ImageView locationIcon = new ImageView("/images/location.png");
+        setIconDimensions(locationIcon, 15);
+        tripLocation.setGraphic(locationIcon);
         tripDate.setText(trip.getDateField().isDefaultValue()
                 ? "No date set"
                 : trip.getDateField().toString());
+        ImageView date = new ImageView(new Image("/images/calendar.png"));
+        setIconDimensions(date, 15);
+        tripDate.setGraphic(date);
+    }
+
+    private void setIconDimensions(ImageView img, int size) {
+        img.setFitWidth(size);
+        img.setFitHeight(size);
     }
 
     @Override

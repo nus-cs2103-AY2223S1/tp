@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.TripCompletedPredicate;
@@ -13,6 +14,7 @@ import seedu.travelr.model.trip.TripCompletedPredicate;
  */
 public class CompletedTripListPanel extends UiPart<Region> {
     private static final String FXML = "CompletedTripListPanel.fxml";
+    private final Image completed;
 
     @FXML
     private ListView<Trip> tripListView;
@@ -20,11 +22,12 @@ public class CompletedTripListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public CompletedTripListPanel(ObservableList<Trip> tripList) {
+    public CompletedTripListPanel(ObservableList<Trip> tripList, Image completed) {
         super(FXML);
         tripList = tripList.filtered(Trip::isDone);
         tripListView.setItems(tripList);
         tripListView.setCellFactory(listView -> new TripListViewCell());
+        this.completed = completed;
     }
 
     /**
@@ -39,7 +42,7 @@ public class CompletedTripListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TripCard(trip, getIndex() + 1).getRoot());
+                setGraphic(new TripCard(trip, getIndex() + 1, completed).getRoot());
             }
         }
     }
