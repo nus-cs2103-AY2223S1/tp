@@ -58,7 +58,7 @@ public class JsonAdaptedOffer {
             throw new IllegalValueException(
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, ListingId.class.getSimpleName()));
         }
-        if (!ListingId.isValidListingID(listing)) {
+        if (!ListingId.isValidListingId(listing)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final ListingId modelListingId = new ListingId(listing);

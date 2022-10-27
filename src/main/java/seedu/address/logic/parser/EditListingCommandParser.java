@@ -36,7 +36,7 @@ public class EditListingCommandParser implements Parser<EditListingCommand> {
 
         EditListingDescriptor editListingDescriptor = new EditListingDescriptor();
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
-            editListingDescriptor.setId(ParserUtil.parseListingID(argMultimap.getValue(PREFIX_ID).get()));
+            editListingDescriptor.setId(ParserUtil.parseListingId(argMultimap.getValue(PREFIX_ID).get()));
             id = argMultimap.getValue(PREFIX_ID).get();
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

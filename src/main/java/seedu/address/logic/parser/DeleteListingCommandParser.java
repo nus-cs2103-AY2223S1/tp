@@ -15,7 +15,7 @@ public class DeleteListingCommandParser implements Parser<DeleteListingCommand> 
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteListingCommand parse(String args) throws ParseException {
-        ListingId id = ParserUtil.parseListingID(args.trim());
+        ListingId id = ParserUtil.parseListingId(args.trim());
         return new DeleteListingCommand(id);
     }
 

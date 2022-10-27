@@ -19,14 +19,14 @@ public class ListingId {
      */
     public ListingId(String id) {
         requireNonNull(id);
-        checkArgument(isValidListingID(id), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidListingId(id), MESSAGE_CONSTRAINTS);
         value = id;
     }
 
     /**
      * Returns true if a given string is a valid listingID.
      */
-    public static boolean isValidListingID(String test) {
+    public static boolean isValidListingId(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

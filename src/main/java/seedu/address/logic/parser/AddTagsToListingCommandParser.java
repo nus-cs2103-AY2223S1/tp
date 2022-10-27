@@ -33,7 +33,7 @@ public class AddTagsToListingCommandParser implements Parser<AddTagsToListingCom
         }
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        ListingId listingId = ParserUtil.parseListingID(argMultimap.getValue(PREFIX_LISTING_ID).get());
+        ListingId listingId = ParserUtil.parseListingId(argMultimap.getValue(PREFIX_LISTING_ID).get());
 
         return new AddTagsToListingCommand(tagList, listingId);
     }

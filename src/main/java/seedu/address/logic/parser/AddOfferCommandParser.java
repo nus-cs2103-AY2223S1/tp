@@ -34,7 +34,7 @@ public class AddOfferCommandParser implements Parser<AddOfferCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOfferCommand.MESSAGE_USAGE));
         }
 
-        ListingId listing = ParserUtil.parseListingID(argMultimap.getValue(PREFIX_LISTING_ID).get());
+        ListingId listing = ParserUtil.parseListingId(argMultimap.getValue(PREFIX_LISTING_ID).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Price offerPrice = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_OFFER).get());
 

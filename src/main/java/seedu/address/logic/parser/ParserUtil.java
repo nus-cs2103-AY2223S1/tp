@@ -144,10 +144,10 @@ public class ParserUtil {
     /**
      * Parses {@code int id} into a {@code ListingId}.
      */
-    public static ListingId parseListingID(String id) throws ParseException {
+    public static ListingId parseListingId(String id) throws ParseException {
         requireNonNull(id);
         String trimmedListingID = id.trim();
-        if (!ListingId.isValidListingID(trimmedListingID)) {
+        if (!ListingId.isValidListingId(trimmedListingID)) {
             throw new ParseException(ListingId.MESSAGE_CONSTRAINTS);
         }
         return new ListingId(trimmedListingID);
