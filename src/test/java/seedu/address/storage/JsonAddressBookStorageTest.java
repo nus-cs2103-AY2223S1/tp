@@ -217,7 +217,7 @@ public class JsonAddressBookStorageTest {
         JsonAddressBookStorage storage = new JsonAddressBookStorage(
                 Paths.get(testFolder.resolve("student.json").toUri()),
                 Paths.get(testFolder.resolve("tutor.json").toUri()),
-                Paths.get(testFolder.resolve("tuitionclass.json").toUri()));
+                Paths.get(testFolder.resolve("tuitionClass.json").toUri()));
         AddressBook clean = new AddressBook();
         AddressBook studentAddressBook = TypicalStudents.getTypicalStudentsAddressBook();
         storage.loadStudentAddressBook(clean, Optional.of(studentAddressBook));
@@ -229,7 +229,7 @@ public class JsonAddressBookStorageTest {
         JsonAddressBookStorage storage = new JsonAddressBookStorage(
                 Paths.get(testFolder.resolve("student.json").toUri()),
                 Paths.get(testFolder.resolve("tutor.json").toUri()),
-                Paths.get(testFolder.resolve("tuitionclass.json").toUri()));
+                Paths.get(testFolder.resolve("tuitionClass.json").toUri()));
         AddressBook clean = new AddressBook();
         AddressBook tutorAddressBook = TypicalTutors.getTypicalTutorsAddressBook();
         storage.loadTutorAddressBook(clean, Optional.of(tutorAddressBook));
@@ -250,7 +250,7 @@ public class JsonAddressBookStorageTest {
     }
 
     @Test
-    public void readAllAddressBook_invalidJson_checkFileCreated() {
+    public void readAllAddressBook_invalidJson_checkFileCreated() throws IOException {
         JsonAddressBookStorage storage = new JsonAddressBookStorage(
                 Paths.get(testFolder.resolve("tutor.json").toUri()),
                 Paths.get(testFolder.resolve("student.json").toUri()),
@@ -258,33 +258,20 @@ public class JsonAddressBookStorageTest {
         storage.readAllAddressBook();
         Path expected = TEST_DATA_FOLDER.resolve("emptyStudentAddressBook.json");
         Path actual = testFolder.resolve("student.json");
-        try {
-            assertEquals(
-                    FileUtil.readFromFile(expected).replace(System.getProperty(System.lineSeparator()), ""),
-                    FileUtil.readFromFile(actual).replace(System.getProperty(System.lineSeparator()), ""));
-        } catch (Exception e) {
-
-        }
+        assertEquals(
+                FileUtil.readFromFile(expected).replace(System.getProperty(System.lineSeparator()), ""),
+                FileUtil.readFromFile(actual).replace(System.getProperty(System.lineSeparator()), ""));
 
         expected = TEST_DATA_FOLDER.resolve("emptyTutorAddressBook.json");
         actual = testFolder.resolve("tutor.json");
-        try {
-            assertEquals(
-                    FileUtil.readFromFile(expected).replace(System.getProperty(System.lineSeparator()), ""),
-                    FileUtil.readFromFile(actual).replace(System.getProperty(System.lineSeparator()), ""));
-        } catch (Exception e) {
-
-        }
+        assertEquals(
+                FileUtil.readFromFile(expected).replace(System.getProperty(System.lineSeparator()), ""),
+                FileUtil.readFromFile(actual).replace(System.getProperty(System.lineSeparator()), ""));
 
         expected = TEST_DATA_FOLDER.resolve("emptyTuitionClassAddressBook.json");
         actual = testFolder.resolve("tuitionClass.json");
-        try {
-            assertEquals(
-                    FileUtil.readFromFile(expected).replace(System.getProperty(System.lineSeparator()), ""),
-                    FileUtil.readFromFile(actual).replace(System.getProperty(System.lineSeparator()), ""));
-        } catch (Exception e) {
-
-        }
-
+        assertEquals(
+                FileUtil.readFromFile(expected).replace(System.getProperty(System.lineSeparator()), ""),
+                FileUtil.readFromFile(actual).replace(System.getProperty(System.lineSeparator()), ""));
     }
 }
