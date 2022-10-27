@@ -5,6 +5,8 @@ title: User Guide
 
 NUScheduler is a desktop app for **managing contacts, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
 
+With NUScheduler, you can store contact details of the NUS community around you.
+
 * Table of Contents
 {:toc}
 
@@ -23,7 +25,7 @@ NUScheduler is a desktop app for **managing contacts, optimised for use via a Co
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`profile -a`** : Adds profile.
+   * **`profile -a`** : Adds a profile.
 
    * **`profile -d `**`2` : Deletes the 2nd profile shown in the current list.
 
@@ -70,6 +72,25 @@ NUScheduler is a desktop app for **managing contacts, optimised for use via a Co
 </div>
 
 ### Profiles
+
+Each profile is a set of contact information about a person in your NUS community.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about profiles:**<br>
+
+A profile must contain the following information:
+
+* Name, limited to 24 characters including spaces
+* Phone number
+* A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email domains
+
+A profile may also contain:
+
+* Telegram username
+* Tags to categorise your profiles, limited to 24 characters
+
+</div>
 
 #### Adding a profile: `profile -a`
 
@@ -384,6 +405,16 @@ Example:
 * `dd MM HHmm` is not supported, and will be recognised as `dd MM yyyy`.
 
 </div>
+
+### Accepted Email Formats
+
+NUScheduler checks the emails of your profiles against a list of valid NUS email domains.
+
+* `@u.nus.edu`
+* `@u.duke.nus.edu`
+* `@nus.edu.sg`
+* `@comp.nus.edu.sg`
+* `@u.yale-nus.edu.sg`
 
 --------------------------------------------------------------------------------------------------------------------
 
