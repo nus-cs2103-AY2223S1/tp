@@ -56,12 +56,28 @@ Format: `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 Examples:
 * `editpatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be 
    `91234567` and `johndoe@example.com` respectively.
-<img src = images/editpatient.png width="800px" height ="400px">
+<img src = "images/editpatient.png" width="800px" height ="400px">
 
 * `editpatient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
-<img src = images/editpatient2.png width="800px" height ="400px">
+<img src = "images/editpatient2.png" width="800px" height ="400px">
 
 ### 1.2.2 Editing an appointment of a patient
+
+Edits an appointment of a patient, such as name, medical test, slot, and doctor.
+
+Format: `editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
+         `ea INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
+
+* Edits the appointment at the specified `INDEX`.
+  The index refers to the index number shown in the displayed appointment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot, 
+   and doctor of the 1st appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
+<img src = "images/editappointment.png" width="800px" height ="400px">
 
 ### 1.2.3 Editing a bill of an appointment
 
@@ -76,10 +92,10 @@ Format: `editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill d
 
 Examples:
 * `editbill 1 a/100` Edits the amount of the 1st bill to be `100`.
-<img src=images/editbill.png width="800px" height ="400px">
+<img src="images/editbill.png" width="800px" height ="400px">
 
 * `editbill 1 d/2020-10-10` Edits the bill date of the 1st bill to be `2020-10-10`.
-<img src=images/editbill2.png width="800px" height ="400px">
+<img src="images/editbill2.png" width="800px" height ="400px">
 
 ## 1.3 Delete
 
