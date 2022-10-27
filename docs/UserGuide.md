@@ -134,8 +134,8 @@ java -version
 ### Task parameters
 * A task is specified using two pieces of information: `TASK_DESCRIPTION` and `DATE TIME`.
 * `TASK_DESCRIPTION` can be any non-empty string made of alphanumeric characters.
-* `DATE TIME` must be of the form d-M-yyyy HHmm, but the time is optional. <br> 
-e.g. `2-7-2022 1345`, `28-10-2022` are valid dates.
+* `DATE TIME` must be of the form d-M-yy HHmm, but the time is optional. <br> 
+e.g. `2-7-22 1345`, `28-10-22` are valid dates.
 * Although time can be omitted, this will result in the task being created with a default time of `0000` hours.
 * `DATE TIME` itself can be omitted as well, this will result in the task being created with a task date and time of 24 hours from the moment of creation.
 * A task can be recurring, i.e if the Task date passes, it will automatically generate the next Task based on the recurrence.
@@ -161,9 +161,9 @@ Adds a patient to the patient list.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>]… [c/CONDITION]… [t/TAG]… [m/MEDICATION | DOSAGE]… [r/REMARK]…`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine | 16-10-2022 t/Severe`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine | 16-10-22 t/Severe`
 * `add n/Betsy Crowe p/87901234 e/betsy@example.com a/Jane street blk 420 #01-69 d/Change dressing on left arm t/Low Risk`
-* `add n/Tom pitt p/90904213 e/pitts@example.com a/Bourvard street blk 341 #04-17 d/Moniter blood pressure | 23-10-2022 1200 | 3 days`
+* `add n/Tom pitt p/90904213 e/pitts@example.com a/Bourvard street blk 341 #04-17 d/Moniter blood pressure | 23-10-22 1200 | 3 days`
 
 ### Editing a patient’s details : `edit -p`
 
@@ -214,10 +214,10 @@ Shows a list of all tasks on a particular day.
 
 Format: `tasksOn DATE`
 
-* The DATE **must be of the specified format** dd-MM-yyyy
+* The DATE **must be of the specified format** dd-MM-yy
 
 Examples:
-* `tasksOn 25-12-2022` lists the tasks on 25th December 2022
+* `tasksOn 25-12-22` lists the tasks on 25th December 2022
 
 ### Finding patients: `find`
 
@@ -260,8 +260,8 @@ Format: `add -p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_
 
 Examples:
 * `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st patient in the patient list.
-* `find Betsy` followed by `add -p 2 d/Change dressing on left arm | 12-7-2022` adds a task to the 2nd patient in results of the `find` command, on 12th July 2022 0000 hours.
-* `add -p 3 d/Take X-rays | 23-4-2022 1345 | 3 weeks` adds a recurring task to the 3rd patient for every 3 weeks starting from 23rd April 2022 1345 hours.
+* `find Betsy` followed by `add -p 2 d/Change dressing on left arm | 12-7-22` adds a task to the 2nd patient in results of the `find` command, on 12th July 2022 0000 hours.
+* `add -p 3 d/Take X-rays | 23-4-22 1345 | 3 weeks` adds a recurring task to the 3rd patient for every 3 weeks starting from 23rd April 2022 1345 hours.
 
 ### Editing a task: `edit -p -t`
 
@@ -278,7 +278,7 @@ Format: `edit -p PATIENT_INDEX -t TASK_INDEX d/<TASK_DESCRIPTION> | <DATE TIME> 
 
 Examples:
 * `list` followed by `edit -p 1 -t 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st patient in the patient list to `Administer 3ml of example medicine`, while retaining the original date and time for the task.
-* `find Betsy` followed by `edit -p 2 -t 3 d/Change dressing on left arm | 23-10-2022 0800` edits the description of the 3rd task of the 2nd patient in results of the `find` command to `Change dressing on left arm` and also changes the date and time for the task to 23rd October 2022 0800 hours.
+* `find Betsy` followed by `edit -p 2 -t 3 d/Change dressing on left arm | 23-10-22 0800` edits the description of the 3rd task of the 2nd patient in results of the `find` command to `Change dressing on left arm` and also changes the date and time for the task to 23rd October 2022 0800 hours.
 
 ### Deleting a task: `delete -p -t`
 
