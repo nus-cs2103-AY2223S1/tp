@@ -177,6 +177,12 @@ public interface Model {
      */
     void setTutor(Student target, Student editedTutor);
 
+    /**
+     * Views the module {@code targetModule} with {@code ModuleCode}.
+     * {@code targetModule} must exist in profNUS.
+     */
+    void viewModule(ModuleCode moduleCode);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

@@ -24,6 +24,7 @@ import seedu.address.logic.commands.module.DeleteModuleCommand;
 import seedu.address.logic.commands.module.EditModuleCommand;
 import seedu.address.logic.commands.module.ListModuleCommand;
 import seedu.address.logic.commands.module.ViewModuleCommand;
+import seedu.address.logic.commands.module.ViewTargetModuleCommand;
 import seedu.address.logic.commands.schedule.AddScheduleCommand;
 import seedu.address.logic.commands.schedule.ClearScheduleCommand;
 import seedu.address.logic.commands.schedule.DeleteScheduleCommand;
@@ -116,6 +117,9 @@ public class ProfNusParser {
 
         case ViewModuleCommand.COMMAND_WORD:
             return new ModuleViewCommandParser().parse(arguments);
+
+        case ViewTargetModuleCommand.COMMAND_WORD:
+            return new ViewTargetModuleCommandParser().parse(arguments);
 
         case ViewTimeTableCommand.COMMAND_WORD:
             return new ViewTimeTableCommandParser().parse(arguments);

@@ -60,6 +60,14 @@ public class ModuleListPanel extends UiPart<Region> {
         });
     }
 
+    public ListView<Module> getTargetModuleList() {
+        return this.targetModuleView;
+    }
+
+    public ListView<Schedule> getScheduleList() {
+        return this.scheduleListView;
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Module} using a {@code ModuleCard}.
      */
