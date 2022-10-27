@@ -26,6 +26,8 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
      * @param statusKeywords List of Strings representing keywords to search for in status
      * @param priorityKeywords List of Strings representing keywords to search for in priority
      * @param projectNameKeywords List of Strings representing keywords to search for in project name
+     * @param projectIdKeywords List of Strings representing keywords to search for in project id
+     * @param issueIdKeywords List of Strings representing keywords to search for in issue id
      */
     public IssueContainsKeywordsPredicate(List<String> descriptionKeywords, List<String> statusKeywords,
                                           List<String> priorityKeywords, List<String> projectNameKeywords,
