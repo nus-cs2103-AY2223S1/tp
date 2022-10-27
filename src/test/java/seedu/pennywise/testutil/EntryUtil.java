@@ -70,7 +70,7 @@ public class EntryUtil {
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date).append(" "));
         descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION)
                 .append(description.fullDescription).append(" "));
-        descriptor.getTag().ifPresent(tag -> sb.append(PREFIX_TAG).append(tag.tagName).append(" "));
+        descriptor.getTag().ifPresent(tag -> sb.append(PREFIX_TAG).append(tag.getTagName()).append(" "));
         return sb.toString();
     }
 

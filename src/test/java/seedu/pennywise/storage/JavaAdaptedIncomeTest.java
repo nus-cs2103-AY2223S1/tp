@@ -24,7 +24,7 @@ public class JavaAdaptedIncomeTest {
     private static final String VALID_DESCRIPTION = ALLOWANCE.getDescription().fullDescription;
     private static final String VALID_AMOUNT = ALLOWANCE.getAmount().toString();
     private static final String VALID_DATE = ALLOWANCE.getDate().toString();
-    private static final String VALID_TAG = ALLOWANCE.getTag().tagName;
+    private static final String VALID_TAG = ALLOWANCE.getTag().getTagName();
 
 
     @Test

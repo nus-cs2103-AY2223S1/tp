@@ -22,7 +22,7 @@ public class JsonAdaptedExpenditureTest {
     private static final String VALID_DESCRIPTION = LUNCH.getDescription().fullDescription;
     private static final String VALID_AMOUNT = LUNCH.getAmount().toString();
     private static final String VALID_DATE = LUNCH.getDate().toString();
-    private static final String VALID_TAG = LUNCH.getTag().tagName;
+    private static final String VALID_TAG = LUNCH.getTag().getTagName();
 
 
     @Test

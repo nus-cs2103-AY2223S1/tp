@@ -39,7 +39,7 @@ public abstract class JsonAdaptedEntry {
         description = source.getDescription().fullDescription;
         amount = source.getAmount().toString();
         date = source.getDate().toString();
-        tagged = source.getTag().tagName;
+        tagged = source.getTag().getTagName();
     }
 
     /**
