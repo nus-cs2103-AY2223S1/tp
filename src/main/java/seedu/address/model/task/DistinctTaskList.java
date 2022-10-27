@@ -120,6 +120,22 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
+     * Replaces task by changing its given module field from {@code previousModule}
+     * to {@code newModule} for tasks that have their module field as {@code previousModule}.
+     * @param previousModule The module in the task's module field.
+     * @param newModule The new module which will replace the previous module in the task's module field.
+     */
+    public void updateModuleFieldForTask(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        taskList.forEach(task-> {
+            if (task.getModule().equals(previousModule)) {
+                Task editedTask = task.edit(newModule, null);
+                replaceTask(task, editedTask, false);
+            }
+        });
+    }
+
+    /**
      * Removes the equivalent task from the tasklist.
      * The task must exist in the list.
      */

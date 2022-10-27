@@ -76,12 +76,18 @@ public class EditModuleCommand extends Command {
             throw new CommandException(MESSAGE_MODULE_NOT_EDITED);
         }
 
-        if (model.hasTaskWithModule(moduleToEdit)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_EDIT_AS_TIED_WITH_TASK);
-        }
-
         try {
             model.replaceModule(moduleToEdit, editedModule);
+
+            if (!moduleToEdit.isSameModule(editedModule)) {
+                if (model.hasTaskWithModule(moduleToEdit)) {
+                    model.updateModuleFieldForTask(moduleToEdit, editedModule);
+                }
+                if (model.hasExamWithModule(moduleToEdit)) {
+                    model.updateModuleFieldForExam(moduleToEdit, editedModule);
+                }
+            }
+
         } catch (DuplicateModuleException e) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_MODULE);
         }

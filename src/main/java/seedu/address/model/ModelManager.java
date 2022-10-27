@@ -277,6 +277,12 @@ public class ModelManager implements Model {
         addressBook.updateExamFieldForTask(previousExam, newExam);
     }
 
+    @Override
+    public void updateModuleFieldForTask(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        addressBook.updateModuleFieldForTask(previousModule, newModule);
+    }
+
     //================================Exam Commands=====================================
     @Override
     public ObservableList<Exam> getFilteredExamList() {
@@ -287,6 +293,12 @@ public class ModelManager implements Model {
     public void updateFilteredExamList(Predicate<Exam> predicate) {
         requireNonNull(predicate);
         examFilteredList.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateModuleFieldForExam(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        addressBook.updateModuleFieldForExam(previousModule, newModule);
     }
 
 }
