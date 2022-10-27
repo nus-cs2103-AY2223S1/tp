@@ -9,7 +9,7 @@ import static paymelah.commons.util.AppUtil.checkArgument;
  */
 public class Telegram {
     public static final Telegram EMPTY_TELEGRAM = new Telegram();
-    public static final String EMPTY_TELEGRAM_STRING = "Unknown";
+    public static final String EMPTY_TELEGRAM_STRING = "Telegram unknown";
     public static final String MESSAGE_CONSTRAINTS = "Telegram handles should be of the format @username "
             + "and adhere to the following constraints:\n"
             + "1. The username-part can optionally be preceded by a '@'.\n"

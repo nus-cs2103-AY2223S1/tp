@@ -9,7 +9,7 @@ import static paymelah.commons.util.AppUtil.checkArgument;
  */
 public class Address {
     public static final Address EMPTY_ADDRESS = new Address();
-    public static final String EMPTY_ADDRESS_STRING = "Unknown";
+    public static final String EMPTY_ADDRESS_STRING = "Address unknown";
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*

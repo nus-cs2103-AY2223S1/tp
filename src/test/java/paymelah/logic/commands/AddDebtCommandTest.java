@@ -2,12 +2,15 @@ package paymelah.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import static paymelah.logic.commands.AddDebtCommand.MESSAGE_DUPLICATE_DEBT;
 import static paymelah.logic.commands.CommandTestUtil.FIRST_VALID_MULTI_INDEX;
 import static paymelah.logic.commands.CommandTestUtil.MULTI_VALID_INDEX_SET;
 import static paymelah.logic.commands.CommandTestUtil.SECOND_VALID_MULTI_INDEX;
 import static paymelah.logic.commands.CommandTestUtil.SINGLE_VALID_INDEX;
 import static paymelah.logic.commands.CommandTestUtil.SINGLE_VALID_INDEX_SET;
 import static paymelah.logic.commands.CommandTestUtil.THIRD_VALID_MULTI_INDEX;
+import static paymelah.logic.commands.CommandTestUtil.THIRD_VALID_MULTI_INDEX_SET;
 import static paymelah.logic.commands.CommandTestUtil.assertCommandFailure;
 import static paymelah.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static paymelah.logic.commands.CommandTestUtil.showDebtors;
@@ -27,6 +30,7 @@ import org.junit.jupiter.api.Test;
 
 import paymelah.commons.core.Messages;
 import paymelah.commons.core.index.Index;
+import paymelah.logic.commands.exceptions.CommandException;
 import paymelah.model.AddressBook;
 import paymelah.model.Model;
 import paymelah.model.ModelManager;
@@ -197,6 +201,61 @@ public class AddDebtCommandTest {
                 editedPersonThree);
 
         assertCommandSuccess(addDebtCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_duplicateDebtUnfilteredList_throwsCommandException() {
+        Debt validDebt = new DebtBuilder().build();
+        AddDebtCommand firstAddDebtCommand = new AddDebtCommand(THIRD_VALID_MULTI_INDEX_SET, validDebt);
+
+        Person expectedPerson = model.getFilteredPersonList().get(THIRD_VALID_MULTI_INDEX.getZeroBased());
+        DebtList expectedDebtList = new DebtListBuilder(expectedPerson.getDebts()).build().addDebt(validDebt);
+        Person editedPerson = new PersonBuilder(expectedPerson).withDebts(expectedDebtList).build();
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(THIRD_VALID_MULTI_INDEX.getZeroBased()),
+                editedPerson);
+
+        // 1st insertion of debt
+        try {
+            firstAddDebtCommand.execute(model);
+        } catch (CommandException e) {
+            fail();
+        }
+
+        // 2nd insertion of debt
+        AddDebtCommand secondAddDebtCommand = new AddDebtCommand(MULTI_VALID_INDEX_SET, validDebt);
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_DEBT, validDebt, expectedPerson.getName());
+        assertCommandFailure(secondAddDebtCommand, model, expectedMessage);
+        assertEquals(expectedModel, model);
+    }
+
+    @Test
+    public void execute_duplicateDebtFilteredList_throwsCommandException() {
+        showDebtors(model);
+
+        Debt validDebt = new DebtBuilder().build();
+        AddDebtCommand firstAddDebtCommand = new AddDebtCommand(THIRD_VALID_MULTI_INDEX_SET, validDebt);
+        AddDebtCommand secondAddDebtCommand = new AddDebtCommand(MULTI_VALID_INDEX_SET, validDebt);
+
+        Person expectedPerson = model.getFilteredPersonList().get(THIRD_VALID_MULTI_INDEX.getZeroBased());
+        DebtList expectedDebtList = new DebtListBuilder(expectedPerson.getDebts()).build().addDebt(validDebt);
+        Person editedPerson = new PersonBuilder(expectedPerson).withDebts(expectedDebtList).build();
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        showDebtors(expectedModel);
+        expectedModel.setPerson(model.getFilteredPersonList().get(THIRD_VALID_MULTI_INDEX.getZeroBased()),
+                editedPerson);
+
+        // 1st insertion of debt
+        try {
+            firstAddDebtCommand.execute(model);
+        } catch (CommandException e) {
+            fail();
+        }
+
+        // 2nd insertion of debt
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_DEBT, validDebt, expectedPerson.getName());
+        assertCommandFailure(secondAddDebtCommand, model, expectedMessage);
+        assertEquals(expectedModel, model);
     }
 
     @Test

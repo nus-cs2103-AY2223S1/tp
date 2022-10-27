@@ -26,7 +26,7 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -78,15 +78,15 @@ Format: `help`
 
 Adds a person to PayMeLah.
 
-Format: `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…`
+Format: `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01`
+* `add n/Betsy Crowe t/friend a/Newgate Prison t/criminal`
 
 ### Adding a debt: `adddebt`
 
@@ -164,14 +164,14 @@ Format: `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<addres
 * Cannot be used to modify a person's debts
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and telegram handle of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567 tele/johndoe` Edits the phone number and telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
 
 Finds persons who match all the given conditions.
 
-Format: `find [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag> ...]
+Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag> ...]
 [d/<description> ...] [m/<money> ...] [date/<date> ...] [time/<time> ...]`
 
 * Name and Address are case-insensitive partial matches. All other fields are exact matches.
