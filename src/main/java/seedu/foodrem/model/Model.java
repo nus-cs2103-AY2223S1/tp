@@ -141,4 +141,14 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedItemList(Comparator<Item> comparator);
+
+    /**
+     * Returns true if the item storage is full, false otherwise.
+     */
+    boolean isItemStorageFull();
+
+    /**
+     * Returns true if the tag storage is full, false otherwise.
+     */
+    boolean isTagStorageFull();
 }

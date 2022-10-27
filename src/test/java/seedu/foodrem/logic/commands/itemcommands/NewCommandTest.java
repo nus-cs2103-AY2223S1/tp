@@ -109,6 +109,16 @@ public class NewCommandTest {
         }
 
         @Override
+        public boolean isItemStorageFull() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isTagStorageFull() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredTagList(Predicate<Tag> predicate) {
             throw new AssertionError("This method should not be called.");
         }

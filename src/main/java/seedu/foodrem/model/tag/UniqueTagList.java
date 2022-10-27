@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.foodrem.commons.exceptions.TagStorageFullException;
 import seedu.foodrem.model.tag.exceptions.DuplicateTagException;
 import seedu.foodrem.model.tag.exceptions.TagNotFoundException;
 
@@ -21,6 +22,7 @@ import seedu.foodrem.model.tag.exceptions.TagNotFoundException;
  * Supports a minimal set of list operations.
  */
 public class UniqueTagList implements Iterable<Tag> {
+    private static final int MAX_TAGS = 100;
     private final ObservableList<Tag> internalList = FXCollections.observableArrayList();
     private final ObservableList<Tag> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -34,6 +36,13 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
+     * Returns true is the storage is full, false otherwise.
+     */
+    public boolean isStorageFull() {
+        return internalList.size() == MAX_TAGS;
+    }
+
+    /**
      * Adds a tag to the list.
      * The tag must not already exist in the list.
      */
@@ -41,6 +50,9 @@ public class UniqueTagList implements Iterable<Tag> {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateTagException();
+        }
+        if (isStorageFull()) {
+            throw new TagStorageFullException(MAX_TAGS);
         }
         internalList.add(toAdd);
     }
