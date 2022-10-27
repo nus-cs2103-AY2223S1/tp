@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Version;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Lesson;
 import seedu.address.model.person.Person;
@@ -24,7 +25,7 @@ import seedu.address.model.person.user.User;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private Set<Lesson> timetable = new HashSet<>();
@@ -32,14 +33,15 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook,
+                        ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.versionedAddressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -85,55 +87,55 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        this.versionedAddressBook.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return versionedAddressBook;
     }
 
     @Override
     public boolean hasUser() {
-        return addressBook.hasUser();
+        return versionedAddressBook.hasUser();
     }
 
     @Override
     public void addUser(User user) {
-        addressBook.addUser(user);
+        versionedAddressBook.addUser(user);
     }
 
     @Override
     public User getUser() {
-        return addressBook.getUser();
+        return versionedAddressBook.getUser();
     }
 
     @Override
     public void deleteUser() {
-        addressBook.deleteUser();
+        versionedAddressBook.deleteUser();
     }
 
     @Override
     public void setUser(User editedUser) {
         requireNonNull(editedUser);
 
-        addressBook.setUser(editedUser);
+        versionedAddressBook.setUser(editedUser);
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return versionedAddressBook.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        versionedAddressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -141,17 +143,17 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        versionedAddressBook.setPerson(target, editedPerson);
     }
 
     @Override
     public void addLessonToUser(Lesson lesson) {
-        addressBook.addLessonToUser(lesson);
+        versionedAddressBook.addLessonToUser(lesson);
     }
 
     @Override
     public void removeLessonToUser(Lesson lesson) throws CommandException {
-        addressBook.removeLessonToUser(lesson);
+        versionedAddressBook.removeLessonToUser(lesson);
     }
 
     @Override
@@ -173,6 +175,33 @@ public class ModelManager implements Model {
         getFilteredPersonList().forEach(person -> person.updatePrevMods());
         getUser().updatePrevMods();
     }
+
+    @Override
+    public void commitAddressBook() {
+        this.versionedAddressBook.commit();
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return this.versionedAddressBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return this.versionedAddressBook.canRedo();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        this.versionedAddressBook.undo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        this.versionedAddressBook.redo();
+    }
+
+
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -205,7 +234,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return versionedAddressBook.equals(other.versionedAddressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

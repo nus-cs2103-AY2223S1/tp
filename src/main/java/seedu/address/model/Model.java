@@ -133,4 +133,33 @@ public interface Model {
      */
     void nextSem() throws CommandException;
 
+    /**
+     * Commits current AddressBook into VersionedAddressBook.
+     */
+    void commitAddressBook();
+
+    /**
+     * Returns if VersionedAddressBook can be undid.
+     * @return If undo is possible
+     */
+    boolean canUndoAddressBook();
+
+    /**
+     * Returns if VersionedAddressBook can be redid.
+     * @return If redo is possible
+     */
+    boolean canRedoAddressBook();
+
+    /**
+     * Reverts the AddressBook to the previous state.
+     * @return The previous AddressBook state
+     */
+    void undoAddressBook();
+
+    /**
+     * Reverts the AddressBook to the forward state.
+     * @return The forward AddressBook state
+     */
+    void redoAddressBook();
+
 }

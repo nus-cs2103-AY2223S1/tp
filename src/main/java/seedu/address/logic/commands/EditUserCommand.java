@@ -52,6 +52,7 @@ public class EditUserCommand extends EditCommand {
         ExistingUser editedUser = createEditedUser(userToEdit, editUserDescriptor);
 
         model.setUser(editedUser);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_USER_SUCCESS, editedUser));
     }
 

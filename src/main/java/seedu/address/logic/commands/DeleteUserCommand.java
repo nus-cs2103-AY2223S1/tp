@@ -28,6 +28,7 @@ public class DeleteUserCommand extends DeleteCommand {
 
         User userToDelete = model.getUser();
         model.deleteUser();
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_USER_SUCCESS, userToDelete));
     }
 

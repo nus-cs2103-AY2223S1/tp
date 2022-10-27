@@ -55,6 +55,7 @@ public class ModuleUserCommand extends ModuleCommand {
         ExistingUser editedUser = createEditedUser(userToEdit, editModuleDescriptor);
 
         model.setUser(editedUser);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedUser));
     }
 
