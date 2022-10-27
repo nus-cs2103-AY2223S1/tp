@@ -141,8 +141,7 @@ public class CommandTestUtil {
     public static final String MULTI_VALID_INDEX_STRING = String.valueOf(FIRST_VALID_MULTI_INDEX.getOneBased())
             + " " + String.valueOf(SECOND_VALID_MULTI_INDEX.getOneBased())
             + " " + String.valueOf(THIRD_VALID_MULTI_INDEX.getOneBased());
-
-
+    
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
