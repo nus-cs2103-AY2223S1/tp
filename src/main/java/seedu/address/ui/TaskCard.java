@@ -64,7 +64,7 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
-        name.setText(task.toString());
+        name.setText(task.getName().fullName);
         List<Attribute<?>> attrs = task.getAttributes();
         for (int i = 0; i < attrs.size(); i++) {
             if (attrs.get(i).isDisplayable()) {

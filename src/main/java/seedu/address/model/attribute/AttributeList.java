@@ -64,6 +64,10 @@ public class AttributeList {
         this.addAttribute(attribute);
     }
 
+    public <T> void addAttribute(String attributeName) throws AttributeException {
+        this.addAttribute(attributeName, "");
+    }
+
     /**
      * Finds an attribute that matches the attribute name.
      * @param attributeName

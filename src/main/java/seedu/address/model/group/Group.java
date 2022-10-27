@@ -2,6 +2,9 @@ package seedu.address.model.group;
 
 import static seedu.address.model.AccessDisplayFlags.GROUP;
 
+import java.nio.charset.StandardCharsets;
+import java.util.UUID;
+
 import seedu.address.model.item.AbstractSingleItem;
 
 /**
@@ -30,5 +33,10 @@ public class Group extends AbstractSingleItem {
      */
     public static boolean isValidGroupName(String groupName) {
         return groupName.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public UUID getUid() {
+        return UUID.nameUUIDFromBytes(("Group: " + getFullPath()).getBytes(StandardCharsets.UTF_8));
     }
 }

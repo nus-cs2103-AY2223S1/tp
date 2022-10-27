@@ -12,6 +12,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attribute.Address;
+import seedu.address.model.attribute.Email;
+import seedu.address.model.attribute.Name;
+import seedu.address.model.attribute.Phone;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -35,20 +39,24 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        // Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        // Phone phone =
-        // ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        // Email email =
-        // ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        // Address address =
-        // ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         // Person person = new Person(name, phone, email, address, tagList, new
         // Fields());
         Person person = new Person(argMultimap.getValue(PREFIX_NAME).get());
         person.setTags(tagList);
+        argMultimap.getValue(PREFIX_PHONE)
+                .map(str -> new Phone(str))
+                .ifPresent(phone -> person.addAttribute(phone));
 
+        argMultimap.getValue(PREFIX_EMAIL)
+                .map(str -> new Email(str))
+                .ifPresent(email -> person.addAttribute(email));
+
+        argMultimap.getValue(PREFIX_ADDRESS)
+                .map(str -> new Address(str))
+                .ifPresent(email -> person.addAttribute(email));
         return new AddCommand(person);
     }
 

@@ -3,6 +3,7 @@ package seedu.address.model.item;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Name;
@@ -113,4 +114,9 @@ public interface DisplayItem {
      * Returns true if {@code DisplayItem o} is a parent of this item
      */
     boolean isPartOfContext(DisplayItem o);
+
+    /**
+     * Returns unique uid for this displayItem.
+     */
+    UUID getUid();
 }

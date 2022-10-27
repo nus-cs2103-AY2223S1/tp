@@ -2,8 +2,6 @@ package seedu.address.model.attribute;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Map;
-
 /**
  * Represents a Attribute's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
@@ -38,11 +36,5 @@ public class Name extends AbstractAttribute<String> {
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    @Override
-    public Map<String, Object> toSaveableData() {
-        // TODO Auto-generated method stub
-        return null;
     }
 }

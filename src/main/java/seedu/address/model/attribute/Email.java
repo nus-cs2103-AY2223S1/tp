@@ -2,11 +2,6 @@ package seedu.address.model.attribute;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Map;
-
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
@@ -54,18 +49,5 @@ public class Email extends AbstractAttribute<String> {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    @Override
-    public Node getJavaFxRepresentation() {
-        Label ret = new Label();
-        ret.setText(value);
-        return ret;
-    }
-
-    @Override
-    public Map<String, Object> toSaveableData() {
-        // TODO Auto-generated method stub
-        return null;
     }
 }
