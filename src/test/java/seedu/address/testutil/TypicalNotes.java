@@ -11,7 +11,6 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.note.Note;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**

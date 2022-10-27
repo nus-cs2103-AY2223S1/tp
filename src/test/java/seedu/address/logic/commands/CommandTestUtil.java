@@ -22,6 +22,7 @@ import seedu.address.model.note.Note;
 import seedu.address.model.note.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditNoteDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -46,6 +47,7 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_CLUB = "Club";
     public static final String VALID_CONTENT_MEETING = "October 3rd";
     public static final String VALID_CONTENT_CLUB = "Birthday celebration";
+    public static final String VALID_TAG_IMPORTANT = "important";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -72,6 +74,9 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditNoteCommand.EditNoteDescriptor DESC_MEETING;
+    public static final EditNoteCommand.EditNoteDescriptor DESC_CLUB;
+
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -80,6 +85,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withBirthday(VALID_BIRTHDAY_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_MEETING = new EditNoteDescriptorBuilder().withTitle(VALID_TITLE_MEETING)
+                .withContent(VALID_CONTENT_MEETING).withTags(VALID_TAG_IMPORTANT).build();
+        DESC_CLUB = new EditNoteDescriptorBuilder().withTitle(VALID_TITLE_CLUB)
+                .withContent(VALID_CONTENT_CLUB).withTags(VALID_TAG_IMPORTANT).build();
     }
 
     /**
