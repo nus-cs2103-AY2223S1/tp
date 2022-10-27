@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.clinkedin.commons.core.GuiSettings;
+import seedu.clinkedin.logic.commands.Command;
 import seedu.clinkedin.logic.commands.CommandResult;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
@@ -22,6 +23,14 @@ public interface Logic {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
+    /**
+     * Executes the command and returns the result.
+     * @param command The command to be executed.
+     * @return the result of the command execution.
+     * @throws CommandException If an error occurs during command execution.
+     */
+    CommandResult execute(Command command) throws CommandException;
 
     /**
      * Returns the AddressBook.
