@@ -86,29 +86,6 @@ public class DatetimeRange {
     }
 
     /**
-     * Returns a new DatetimeRange with the date changed.
-     * @return
-     */
-    public DatetimeRange withDate(LocalDate date) {
-        LocalTime startTime = this.startDatetime.toLocalTime();
-        LocalTime endTime = this.endDatetime.toLocalTime();
-        return new DatetimeRange(startTime.atDate(date),
-                endTime.atDate(date));
-    }
-
-    /**
-     * Returns a new Datetime with the start and end times changed.
-     * @return
-     */
-    public DatetimeRange withStartEndTime(LocalTime startTime, LocalTime endTime) {
-        LocalDate startDate = this.startDatetime.toLocalDate();
-        LocalDate endDate = this.startDatetime.toLocalDate();
-
-        return new DatetimeRange(startTime.atDate(startDate),
-                endTime.atDate(endDate));
-    }
-
-    /**
      * Converts this DatetimeRange into a human-readable form.
      *
      * @return Human-readable representation of the DatetimeRange

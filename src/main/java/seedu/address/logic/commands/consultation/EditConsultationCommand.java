@@ -20,7 +20,7 @@ import seedu.address.model.student.Name;
 
 public class EditConsultationCommand extends Command {
     
-    public static final String COMMAND_WORD = "editConsultation";
+    public static final String COMMAND_WORD = "edit consultation";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the consult identified "
             + "by the index number used in the displayed consult list. "
@@ -39,6 +39,7 @@ public class EditConsultationCommand extends Command {
     public static final String MESSAGE_EDIT_CONSULTATION_SUCCESS = "Edited Consult: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CONSULTATION = "There is already a consultation at that timing.";
+    public static final String MESSAGE_DATETIME_CONSULTATION = "Both new day and new timeslot must be inputted.";
 
     private final Index index;
     private final EditConsultDescriptor editConsultDescriptor;
@@ -67,7 +68,7 @@ public class EditConsultationCommand extends Command {
         Consultation consultToEdit = lastShownList.get(index.getZeroBased());
         Consultation editedConsult = createEditedConsult(consultToEdit, editConsultDescriptor);
 
-        if (!consultToEdit.equals(editedConsult) && model.hasConsultation(editedConsult)) {
+        if ( !consultToEdit.isSameConsultation(editedConsult) && model.hasConsultation(editedConsult)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULTATION);
         }
 

@@ -51,16 +51,11 @@ public class EditConsultationCommandParser implements Parser<EditConsultationCom
             editConsultDescriptor.setVenue(
                     ConsultationParserUtil.parseConsultationVenue(argMultimap.getValue(PREFIX_VENUE).get()));
         }
-        if (argMultimap.getValue(PREFIX_DAY).isPresent()) {
+        if (argMultimap.getValue(PREFIX_DAY).isPresent() && argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
             String date = argMultimap.getValue(PREFIX_DAY).get();
-            String timeslotString = argMultimap.getValue(PREFIX_TIMESLOT).get();
-            DatetimeRange timeslot = DatetimeCommonUtils.parseDatetimeRange(date, timeslotString);
-            editConsultDescriptor.setName(
-                    ConsultationParserUtil.parseConsultationName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editConsultDescriptor.setName(
-                    ConsultationParserUtil.parseConsultationName(argMultimap.getValue(PREFIX_NAME).get()));
+            String timeslot = argMultimap.getValue(PREFIX_TIMESLOT).get();
+            DatetimeRange datetime = DatetimeCommonUtils.parseDatetimeRange(date, timeslot);
+            editConsultDescriptor.setTimeSlot(datetime);
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editConsultDescriptor.setDescription(
@@ -68,6 +63,9 @@ public class EditConsultationCommandParser implements Parser<EditConsultationCom
         }
         if (!editConsultDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditConsultationCommand.MESSAGE_NOT_EDITED);
+        }
+        if (argMultimap.getValue(PREFIX_DAY).isPresent() || argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
+            throw new ParseException(EditConsultationCommand.MESSAGE_DATETIME_CONSULTATION);
         }
 
         return new EditConsultationCommand(index, editConsultDescriptor);
