@@ -55,7 +55,7 @@ public class StatsCommand extends Command {
         HashMap<Tag, Integer> tagToFrequencyMap = new HashMap<>();
 
         tagList.parallelStream().forEach(tag -> tagToFrequencyMap.put(tag,
-                ((int) itemList.parallelStream().filter(item -> item.getTagSet().contains(tag)).count())));
+                (int) itemList.parallelStream().filter(item -> item.getTagSet().contains(tag)).count()));
 
         return tagToFrequencyMap.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
