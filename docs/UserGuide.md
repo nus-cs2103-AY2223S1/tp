@@ -242,7 +242,7 @@ Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
 Examples:
 * `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
 
-#### 3.2.2 List meetings
+#### 3.2.2 List meetings: `listMeeting`
 
 Shows a list of meetings in MyInsuRec.
 If used with optional parameter `[d/DATE]`, *MyInsuRec* will show a list of meetings happening in that time period.
