@@ -147,3 +147,8 @@ h6:before {
   content: counters(item, ".") ". ";
   counter-increment: item;
 }
+
+.no-num:before {
+  content : "";
+  counter-increment : none;
+}
