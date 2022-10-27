@@ -80,7 +80,7 @@ Format: `help`
 
 Adds a task to the task list.
 
-Format: `add TASK_NAME -m MODULE [-d DATE] [--tag TAG_NAME]...`
+Format: `add -n TASK_NAME -m MODULE [-d DATE] [--tag TAG_NAME]...`
 * `TASK_NAME` can contain spaces
 * `MODULE`: Should be alphanumeric, ie must not contain any spaces.
 * `DATE`: Must be in the format of YYYY-MM-DD.
@@ -280,7 +280,7 @@ Format meanings:
 
 | Action                      | Format                                                                                                                                                                                                                                                                                                                                                | Examples                                  |
 |-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|
-| **Add** task                | `add TASK_NAME -m MODULE [-d YYYY-MM-DD] [--tag TAG_NAME]...`                                                                                                                                                                                                                                                                                         | `add Tutorial 3 -m CS2103T -d 2022-09-16` |
+| **Add** task                | `add -n TASK_NAME -m MODULE [-d YYYY-MM-DD] [--tag TAG_NAME]...`                                                                                                                                                                                                                                                                                      | `add Tutorial 3 -m CS2103T -d 2022-09-16` |
 | **Clear** all tasks         | `clear`                                                                                                                                                                                                                                                                                                                                               |                                           |
 | **Delete** task             | `delete TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                  | `delete 3`                                |
 | **Edit** task               | `edit TASK_NUMBER [-n NEW_NAME] [-m NEW_MODULE] [-d NEW_DEADLINE]`                                                                                                                                                                                                                                                                                    | `edit 1 -n CS2103T ip`                    |
