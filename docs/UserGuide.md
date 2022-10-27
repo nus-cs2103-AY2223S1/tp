@@ -466,7 +466,7 @@ Format: `export`
 - An example generated csv file when opened in Microsoft Excel:
 ![Example Excel file](images/exampleExcelFile.png)
   - First column shows all the student names.
-  - Subsequent columns show the grades for a student for a session (e.g. **David Li** scores **0** for **Tutorial 1**).
+  - Subsequent columns show the grade for a student for a session (e.g. **David Li** scores **0** for **Tutorial 1**).
 
 ### Exit focus mode: `unfocus`
 
