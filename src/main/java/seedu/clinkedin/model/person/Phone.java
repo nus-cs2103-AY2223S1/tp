@@ -20,7 +20,7 @@ public class Phone {
      *
      * @param phone A valid phone number.
      */
-    public Phone(String phone) {
+    public Phone(String phone) throws IllegalArgumentException {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
