@@ -3,11 +3,8 @@
 <!-- ===== DECLARE VARIABLES ===== -->
 <!-- markdownlint-disable -->
 {% capture stats %}{% include_relative _ug/commandSummary/statisticsCommands/stats.md %}{% endcapture %}
-
 {% assign stats = stats | markdownify %}
-
 {% capture statsexample %}{% include_relative _ug/commandSummary/statisticsCommandsExamples/stats.md %}{% endcapture %}
-
 {% assign statsexample = statsexample | markdownify %}
 <!-- markdownlint-restore -->
 
