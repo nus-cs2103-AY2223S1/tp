@@ -98,8 +98,8 @@ Leaves will be default 14 while the other fields will be initialised as N/A.
 
 Examples:
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal`
+- `add n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney`
+- `add n/Peter Mars j/Chief Operating Officer d/General Management`
 
 ### Editting an employee: `edit`
 
