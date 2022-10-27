@@ -93,7 +93,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyDatabase> addressBookOptional;
         ReadOnlyDatabase initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readDatabase();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Database");
             }

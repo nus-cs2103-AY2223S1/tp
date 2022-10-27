@@ -16,7 +16,7 @@ public interface DatabaseStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getDatabaseFilePath();
 
     /**
      * Returns Database data as a {@link ReadOnlyDatabase}.
@@ -25,24 +25,24 @@ public interface DatabaseStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyDatabase> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyDatabase> readDatabase() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getDatabaseFilePath()
      */
-    Optional<ReadOnlyDatabase> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyDatabase> readDatabase(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyDatabase} to the storage.
      *
-     * @param addressBook cannot be null.
+     * @param database cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyDatabase addressBook) throws IOException;
+    void saveDatabase(ReadOnlyDatabase database) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyDatabase)
+     * @see #saveDatabase(ReadOnlyDatabase)
      */
-    void saveAddressBook(ReadOnlyDatabase addressBook, Path filePath) throws IOException;
+    void saveDatabase(ReadOnlyDatabase database, Path filePath) throws IOException;
 
 }

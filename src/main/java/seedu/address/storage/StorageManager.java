@@ -48,30 +48,30 @@ public class StorageManager implements Storage {
     // ================ Database methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return databaseStorage.getAddressBookFilePath();
+    public Path getDatabaseFilePath() {
+        return databaseStorage.getDatabaseFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyDatabase> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(databaseStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyDatabase> readDatabase() throws DataConversionException, IOException {
+        return readDatabase(databaseStorage.getDatabaseFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyDatabase> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyDatabase> readDatabase(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return databaseStorage.readAddressBook(filePath);
+        return databaseStorage.readDatabase(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyDatabase addressBook) throws IOException {
-        saveAddressBook(addressBook, databaseStorage.getAddressBookFilePath());
+    public void saveDatabase(ReadOnlyDatabase database) throws IOException {
+        saveDatabase(database, databaseStorage.getDatabaseFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyDatabase addressBook, Path filePath) throws IOException {
+    public void saveDatabase(ReadOnlyDatabase database, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        databaseStorage.saveAddressBook(addressBook, filePath);
+        databaseStorage.saveDatabase(database, filePath);
     }
 
 }

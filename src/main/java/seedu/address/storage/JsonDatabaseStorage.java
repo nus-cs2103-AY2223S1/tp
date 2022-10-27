@@ -27,22 +27,22 @@ public class JsonDatabaseStorage implements DatabaseStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getDatabaseFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyDatabase> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyDatabase> readDatabase() throws DataConversionException {
+        return readDatabase(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readDatabase()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyDatabase> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyDatabase> readDatabase(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableDatabase> jsonAddressBook = JsonUtil.readJsonFile(
@@ -60,21 +60,21 @@ public class JsonDatabaseStorage implements DatabaseStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyDatabase addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveDatabase(ReadOnlyDatabase database) throws IOException {
+        saveDatabase(database, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyDatabase)}.
+     * Similar to {@link #saveDatabase(ReadOnlyDatabase)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyDatabase addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveDatabase(ReadOnlyDatabase database, Path filePath) throws IOException {
+        requireNonNull(database);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableDatabase(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableDatabase(database), filePath);
     }
 
 }

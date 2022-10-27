@@ -31,7 +31,7 @@ public class JsonDatabaseStorageTest {
     }
 
     private java.util.Optional<ReadOnlyDatabase> readAddressBook(String filePath) throws Exception {
-        return new JsonDatabaseStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonDatabaseStorage(Paths.get(filePath)).readDatabase(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -67,21 +67,21 @@ public class JsonDatabaseStorageTest {
         JsonDatabaseStorage jsonDatabaseStorage = new JsonDatabaseStorage(filePath);
 
         // Save in new file and read back
-        jsonDatabaseStorage.saveAddressBook(original, filePath);
-        ReadOnlyDatabase readBack = jsonDatabaseStorage.readAddressBook(filePath).get();
+        jsonDatabaseStorage.saveDatabase(original, filePath);
+        ReadOnlyDatabase readBack = jsonDatabaseStorage.readDatabase(filePath).get();
         assertEquals(original, new Database(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonDatabaseStorage.saveAddressBook(original, filePath);
-        readBack = jsonDatabaseStorage.readAddressBook(filePath).get();
+        jsonDatabaseStorage.saveDatabase(original, filePath);
+        readBack = jsonDatabaseStorage.readDatabase(filePath).get();
         assertEquals(original, new Database(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonDatabaseStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonDatabaseStorage.readAddressBook().get(); // file path not specified
+        jsonDatabaseStorage.saveDatabase(original); // file path not specified
+        readBack = jsonDatabaseStorage.readDatabase().get(); // file path not specified
         assertEquals(original, new Database(readBack));
 
     }
@@ -97,7 +97,7 @@ public class JsonDatabaseStorageTest {
     private void saveAddressBook(ReadOnlyDatabase addressBook, String filePath) {
         try {
             new JsonDatabaseStorage(Paths.get(filePath))
-                .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                .saveDatabase(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
