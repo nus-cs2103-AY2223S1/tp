@@ -327,25 +327,40 @@ The feature allows a user to view the correct prefixes and arguments of a comman
 The parameter hints for the command will be shown in the ResultDisplay once the command word is typed out.
 
 ### Calendar features
+The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
+* `Calendar Display` — Can display appointments of a month in a calendar format.
+* `Calendar Navigation` — Can navigate between months with/without a mouse.
+* `Calendar Pop-Up` — Can view the details of each appointment.
 
-#### Calendar navigation
+**Calendar Display**
 
-The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month. 
+Implementation:
+
+The following is a more detailed explanation on how `Calendar Display` works.
+1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`. This then initialises the `CalendarLogic` and the relevant methods to build the the `Calendar Display`.
+2. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
+
+**Calendar Navigation**
+The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month.
 This feature uses JavaFX's FocusModel features to obtain different behaviours when a Ui component is focused.
 
-Users have 3 ways to navigate between different months when viewing the calendar:
+Implementation:
 
+The following is a more detailed explanation on how `Calendar Navigation` works.
 1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
 2. Pressing N or B key to view the next/previous month in the calendar
 3. Pressing the ENTER key when the Next/Prev button is focused to view the next/previous month in the calendar
+4. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
 
-Users have 2 ways to navigate between different appointments when viewing the calendar:
+#### Calendar Pop-up
+The calendar Pop-up allows user to view the details of the appointment in the calendar
 
-1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar 
+Implementation:
+
+The following is a more detailed explanation on how `Calendar Pop-Up` works.
+1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar
 2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
-3. Clicking on a desired appointment to view the appointment in the calendar 
-
-
+3. Clicking on a desired appointment to view the appointment in the calendar
 
 --------------------------------------------------------------------------------------------------------------------
 
