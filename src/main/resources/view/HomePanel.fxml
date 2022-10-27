@@ -10,4 +10,7 @@
 <?import javafx.geometry.Insets?>
 <VBox fx:id="homePanel" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" prefHeight="400.0" prefWidth="600.0">
     <ImageView fx:id="logo" pickOnBounds="true" preserveRatio="true" />
+    <HBox fx:id="messageBox" HBox.hgrow="ALWAYS">
+        <Label fx:id="message" text="\$message" styleClass="info_big_label" textAlignment="center" />
+    </HBox>
 </VBox>
