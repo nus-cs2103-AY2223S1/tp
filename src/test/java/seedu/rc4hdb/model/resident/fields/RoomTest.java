@@ -6,6 +6,9 @@ import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Unit tests for {@link Room}.
+ */
 public class RoomTest {
 
     @Test
@@ -17,6 +20,11 @@ public class RoomTest {
     public void constructor_invalidRoom_throwsIllegalArgumentException() {
         String invalidRoom = "01_10";
         assertThrows(IllegalArgumentException.class, () -> new Room(invalidRoom));
+    }
+
+    @Test
+    public void constructor_validRoom_constructRoom() {
+        assertTrue(new Room("1-12") instanceof Room);
     }
 
     @Test

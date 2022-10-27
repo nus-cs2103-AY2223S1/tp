@@ -2,16 +2,16 @@ package seedu.rc4hdb.model.resident;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.DESC_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.DESC_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_GENDER_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_HOUSE_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_MATRIC_NUMBER_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_NAME_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_ROOM_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.DESC_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_GENDER_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_HOUSE_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_MATRIC_NUMBER_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_NAME_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_ROOM_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 

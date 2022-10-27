@@ -5,18 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 import static seedu.rc4hdb.testutil.TypicalResidents.BENSON;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 import seedu.rc4hdb.testutil.ResidentBuilder;
 import seedu.rc4hdb.testutil.ResidentStringDescriptorBuilder;
 
-public class gitAttributesMatchAllKeywordsPredicateTest {
+
+public class AttributesMatchAllKeywordsPredicateTest {
 
     @Test
     public void equals() {
@@ -35,7 +31,8 @@ public class gitAttributesMatchAllKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        AttributesMatchAllKeywordsPredicate firstPredicateCopy = new AttributesMatchAllKeywordsPredicate(firstDescriptor);
+        AttributesMatchAllKeywordsPredicate firstPredicateCopy =
+                new AttributesMatchAllKeywordsPredicate(firstDescriptor);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -49,7 +46,7 @@ public class gitAttributesMatchAllKeywordsPredicateTest {
     }
 
     @Test
-    public void test_AttributesMatchAllKeywords_returnsTrue() {
+    public void test_attributesMatchAllKeywords_returnsTrue() {
         // No keywords
         AttributesMatchAllKeywordsPredicate predicate =
                 new AttributesMatchAllKeywordsPredicate(new ResidentStringDescriptorBuilder().build());
@@ -106,7 +103,7 @@ public class gitAttributesMatchAllKeywordsPredicateTest {
     }
 
     @Test
-    public void test_AttributesMatchAllKeywords_returnsFalse() {
+    public void test_attributesMatchAllKeywords_returnsFalse() {
         // All keywords
         AttributesMatchAllKeywordsPredicate predicate =
                 new AttributesMatchAllKeywordsPredicate(new ResidentStringDescriptorBuilder(ALICE).build());

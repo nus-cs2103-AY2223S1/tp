@@ -1,6 +1,6 @@
 package seedu.rc4hdb.logic.commands.residentcommands;
 
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.assertCommandSuccess;
 import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 import org.junit.jupiter.api.Test;

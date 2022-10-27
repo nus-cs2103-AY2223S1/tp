@@ -6,16 +6,9 @@ import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 import static seedu.rc4hdb.testutil.TypicalResidents.BENSON;
 import static seedu.rc4hdb.testutil.TypicalResidents.GEORGE;
 
-import java.lang.reflect.GenericSignatureFormatError;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
-import seedu.rc4hdb.testutil.ResidentBuilder;
 import seedu.rc4hdb.testutil.ResidentStringDescriptorBuilder;
 
 public class AttributesMatchAnyKeywordPredicateTest {
@@ -51,9 +44,10 @@ public class AttributesMatchAnyKeywordPredicateTest {
     }
 
     @Test
-    public void test_AttributesMatchAnyKeyword_returnsTrue() {
+    public void test_attributesMatchAnyKeyword_returnsTrue() {
         // All keywords
-        AttributesMatchAnyKeywordPredicate predicate = new AttributesMatchAnyKeywordPredicate(new ResidentStringDescriptorBuilder(ALICE).build());
+        AttributesMatchAnyKeywordPredicate predicate =
+                new AttributesMatchAnyKeywordPredicate(new ResidentStringDescriptorBuilder(ALICE).build());
         assertTrue(predicate.test(ALICE));
 
         // some keywords
@@ -103,7 +97,7 @@ public class AttributesMatchAnyKeywordPredicateTest {
     }
 
     @Test
-    public void test_AttributesMatchAnyKeyword_returnsFalse() {
+    public void test_attributesMatchAnyKeyword_returnsFalse() {
         // All keywords
         AttributesMatchAnyKeywordPredicate predicate =
                 new AttributesMatchAnyKeywordPredicate(new ResidentStringDescriptorBuilder(ALICE).build());
@@ -155,3 +149,4 @@ public class AttributesMatchAnyKeywordPredicateTest {
         assertFalse(predicate.test(BENSON));
     }
 }
+

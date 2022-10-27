@@ -13,6 +13,7 @@ import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
+import seedu.rc4hdb.ui.ObservableItem;
 
 /**
  * A default model stub where methods fail.
@@ -152,6 +153,11 @@ public class ModelStub implements Model {
 
     @Override
     public void setObservableVenues(List<Venue> modifiableVenues) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableItem<VenueName> getCurrentlyDisplayedVenueName() {
         throw new AssertionError("This method should not be called.");
     }
 
