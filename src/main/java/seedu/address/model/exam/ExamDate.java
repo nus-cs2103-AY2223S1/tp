@@ -57,10 +57,10 @@ public class ExamDate {
     }
 
     /**
-     * Checks if format is in dd-mm-yyyy where dd is between 01 to 31,
-     * mm is between 01 to 12, yyyy is between 0000 to 9999.
+     * Checks if format is in DD-MM-YYYY where DD is between 1 to 31(both inclusive),
+     * MM is between 1 to 12(both inclusive), yyyy is between 0 to 9999(both inclusive).
      * @param date The date provided.
-     * @return true if date is in dd-mm-yyyy format.
+     * @return true if date is in DD-MM-YYYY format.
      */
     public static boolean isCorrectDateFormat(String date) {
         try {
@@ -86,7 +86,7 @@ public class ExamDate {
 
     /**
      * Returns true if date inputted exists.
-     * @param date A String that represents a date that is in the dd-mm-yyyy format.
+     * @param date A String that represents a date that is in the DD-MM-YYYY format.
      * @return true if date exist, otherwise false.
      */
     public static boolean isExistingDate(String date) {
@@ -100,7 +100,7 @@ public class ExamDate {
 
     /**
      * Returns true if date inputted is not a date before the current date.
-     * @param date A String that represents a date that is in the dd-mm-yyyy format.
+     * @param date A String that represents a date that is in the DD-MM-YYYY format.
      * @return true if date is not a past date, otherwise false.
      */
     public static boolean isNotAPastDate(String date) {
