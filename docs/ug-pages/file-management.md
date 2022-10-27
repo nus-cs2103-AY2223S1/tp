@@ -24,7 +24,7 @@ RC4HDB currently supports the following file management functionalities:
     * `/` forward slashes
     * `\ ` backslashes
 
-### Example:
+### Examples:
 * `rc4_data_2022` is a valid `FOLDER_NAME`.
 * `rc4_data_2022.json` is an invalid `FOLDER_NAME` due to the inclusion of the file type, `.json`.
 * The following are invalid `FOLDER_NAME` due to the inclusion of restricted symbols.
@@ -32,6 +32,8 @@ RC4HDB currently supports the following file management functionalities:
   * `rc4.data.2022` has dots.
   * `rc4/data/2022` has forward slashes.
   * `rc4\data\2022` has backslashes.
+
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -47,7 +49,7 @@ Format: `file create FOLDER_NAME`
 Examples:
 * `file create rc4_data_2022` will create a new folder named `rc4_data_2022` with fresh data files.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -64,7 +66,7 @@ Format: `file delete FOLDER_NAME`
 Examples:
 * `file delete rc4_data_2022` will delete the `rc4_data_2022` folder, along with the **resident** and **venue** data files inside the folder.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -80,7 +82,7 @@ Format: `file switch FOLDER_NAME`
 Examples:
 * `file switch rc4_data_2022` will switch the current data folder to `rc4_data_2022`.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -95,7 +97,7 @@ Format: `file import FOLDER_NAME`
 Examples:
 * `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` folder in the main data folder.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -112,6 +114,6 @@ Format:
 | John Doe     | 91234567     | johnDoe@example.com     |    5-8     | M      | D      | A9876543B     | NIL                 |
 | Maggie Smith | 98765432     | maggieSmith@example.com |    4-1     | F      | A      | A3456789B     | WelfareHead Captain |
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---

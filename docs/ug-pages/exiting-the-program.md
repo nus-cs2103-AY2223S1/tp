@@ -14,6 +14,6 @@ Exits the program.
 
 Format: `exit`
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---

@@ -17,7 +17,7 @@ be used in the commands.
 
 The resident fields can be found [here](#format-for-resident-fields).
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -35,7 +35,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnDoe@gmail.com r/5-1 g/M h/D m/A9876543B` adds a resident named John Doe, with relevant personal and student information.
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/2-3 p/1234567 m/A3456789B g/F h/A` adds a resident named Betsy Crowe, with relevant personal and student information.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -57,7 +57,7 @@ Examples:
 *  `edit 1 p/91234567 r/5-8` Edits the phone number, room number of the 1st resident to be `91234567`, and `5-8` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd resident to be `Betsy Crower` and clears all existing tags.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -75,7 +75,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd resident in the database.
 * `find Betsy` followed by `delete 1` deletes the 1st resident in the results of the `find` command.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -89,7 +89,7 @@ Format: `clear`
 Deleted data can not be retrieved. Do use this command cautiously!
 </div>
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -127,7 +127,7 @@ Deleted data can not be retrieved. Do use this command cautiously!
 * When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
 * You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 

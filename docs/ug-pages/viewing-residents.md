@@ -37,7 +37,7 @@ Note:
 
 *(For advanced users!)* The `list` command, as well as the `list /i` and `list /e` extensions, are [*idempotent*](glossary.md#idempotent) and [*state-independent*](glossary.md#state-independent). This means that using the `list` command with a set of *(optional)* letters will return the same result regardless of what the current table looks like. Calling the same command again will not change the table view any further.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -68,7 +68,7 @@ Note:
 
 *(For advanced users!)* Notice that `showonly`, unlike `list /i`, is dependent on the state of the current table. Hence, some calls to `showonly` may be invalid if the specified columns are not present in the current table view.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -99,7 +99,7 @@ Note:
 
 *(For advanced users!)* Notice that `hideonly`, unlike `list /i`, is dependent on the state of the current table. Hence, some calls to `hideonly` may be invalid if the specified columns are not present in the current table view.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -115,7 +115,7 @@ Note:
 - Any input entered after the `reset` command will be ignored.
 - This command is different from the `list` command in that it does not affect the list of residents being displayed.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -138,7 +138,7 @@ Examples:
 * `find char li` returns `Charlotte Oliveiro`, `David Li`<br>
   <!--- ![result for 'find alex david'](images/findAlexDavidResult.png) --->
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -149,12 +149,12 @@ Shows a list of residents whose fields match the input keywords.
 Format: `filter KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 * The fields have to be the same (no substrings allowed) for the resident to be filtered.
 * Commands with multiple fields require the resident to match all the fields to be filtered.
-* Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
+* Valid keys are those included [here](./modifying-residents.md#format-for-resident-fields), and any additional tags.
 
 Examples:
 * `filter h/D g/M` returns residents who are in Draco house, **and** are Male.
 * `filter g/M` returns residents who are male.
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---

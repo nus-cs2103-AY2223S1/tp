@@ -23,7 +23,7 @@ To encourage keyboard usage, here are several keyboard shortcuts that you may fi
 This feature is especially useful if you want to refer to our Help Window which contains a summary of our most basic
 commands. If you want a full summary of all our commands, refer to [here](command-summary.md)
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -37,7 +37,7 @@ your previous commands.
 Only valid commands will be saved in the history!
 </div>
 
-[Back to Top](#back-to-menuuserguidemd)
+[Back to Top](#back-to-menu)
 
 ---
 
