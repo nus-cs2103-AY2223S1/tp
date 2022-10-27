@@ -211,7 +211,7 @@ Example:
 
 ```yaml
 ℹ Note:
-  Amount paid, Amount owed, Additional notes fields are to be updated via `edit` command.
+  Amount paid, Amount owed, Rates per Class, and Additional notes fields are to be updated via `edit` command.
 ```
 
 [↑ Back to top](#table-of-contents)
@@ -230,6 +230,7 @@ Edits an existing student in the list.
 - Class Date
 - Amount Paid
 - Amount Owed
+- Rates per Class
 - Additional Notes
 - Tag
 
@@ -254,20 +255,24 @@ the same convention as [adding a student](#adding-a-student-add).
 ```
 
 4. Amount Paid:
-    - Amount paid can be an integer or a double.
+    - Amount paid can only be an integer.
     - Amount paid must be non-negative.
 
 5. Amount Owed:
-    - Amount owed can be an integer or a double.
+    - Amount owed can only be an integer.
     - Amount owed must be non-negative.
+
+6. Rates per Class:
+    - Rates per Class can only be an integer.
+    - Rates per Class must be non-negative.
 
 ```yaml
 ℹ Note:
-  Amount Owed and Amount Paid must be between $0 and $2147483647. They are modified
+  Amount Owed, Amount Paid, and Rates per Class must be between $0 and $2147483647. They are modified
   independent of each other.
 ```
 
-6. Additional Notes:
+7. Additional Notes:
     - Additional notes can be left empty.
     - Additional notes can take in any types of character.
     - Use `nt/` to set the additional notes.
@@ -285,7 +290,7 @@ the same convention as [adding a student](#adding-a-student-add).
 ```
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
-[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] [t/TAG]…`
+[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [rate/RATES_PER_CLASS] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] [t/TAG]…`
 
 Examples:
 
@@ -368,6 +373,7 @@ Allows the user to view students and their information which includes:
 - Class Date
 - Amount Paid
 - Amount Owed
+- Rates Per Class
 - Additional Notes
 - Tag
 
@@ -685,19 +691,21 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command Summary
 
-| Action                       | Format, Examples                                                                                                                                                                                                                  |
-|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add a student                | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL [t/TAG]... `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com t/python t/beginner`                                         |
-| Edit a student               | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [a/ADDRESS] [e/EMAIL] [dt/CLASS_DATE] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] `e.g., edit 2 p/98765431` |
-| Get help                     | `help`                                                                                                                                                                                                                            |
-| List all students            | `list`                                                                                                                                                                                                                            |
-| Find a student               | find n/NAME `e.g., find n/John Doe` or other supported fields                                                                                                                                                                     |
-| Mark a student               | mark INDEX-s `e.g., mark 2`                                                                                                                                                                                                       |
-| Receive money from a student | pay INDEX-s AMOUNT_PAID `e.g., pay 2 300`                                                                                                                                                                                         |
-| Delete a student             | delete INDEX `e.g., delete 2`                                                                                                                                                                                                     |
-| Clear all students           | `clear`                                                                                                                                                                                                                           |
-| Undo a command               | `undo`                                                                                                                                                                                                                            |
-| Exit the application         | `exit`                                                                                                                                                                                                                            |
+| Action                            | Format, Examples                                                                                                                                                                                                                                         |
+|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Get help                          | `help`                                                                                                                                                                                                                                                   |
+| Add a student                     | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL [t/TAG]... e.g., `add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com t/python t/beginner`                                                                |
+| Edit a student                    | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [a/ADDRESS] [e/EMAIL] [dt/CLASS_DATE] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [rate/RATES_PER_CLASS] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] e.g., `edit 2 p/98765431` |
+| Mark a student                    | mark INDEX-s e.g., `mark 2`                                                                                                                                                                                                                              |
+| Receive money from a student      | pay INDEX-s AMOUNT_PAID e.g., `pay 2 300`                                                                                                                                                                                                                |
+| List all students                 | `list`                                                                                                                                                                                                                                                   |
+| Find a student                    | find n/NAME e.g., `find n/John Doe` or other supported fields                                                                                                                                                                                            |
+| find available time slots         | avail TIME_RANGE DURATION e.g., `avail 1000-1200 30`                                                                                                                                                                                                     |
+| Sort students in particular order | sort TYPE [ORDER] e.g., `sort NAME ASC`                                                                                                                                                                                                                  |
+| Delete a student                  | delete INDEX e.g., `delete 2`                                                                                                                                                                                                                            |
+| Clear all students                | `clear`                                                                                                                                                                                                                                                  |
+| Undo a command                    | `undo`                                                                                                                                                                                                                                                   |
+| Exit the application              | `exit`                                                                                                                                                                                                                                                   |
 
 [↑ Back to top](#table-of-contents)
 
@@ -713,8 +721,9 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Address of student                                  | a/      | `a/15 Bukit Timah Road, Singapore 155203`            |
 | Amount paid by student                              | paid/   | `paid/300`                                           |
 | Amount owed by student                              | owed/   | `owed/200`                                           |
+| Rates per Class                                     | rate/   | `rate/100`                                           |
 | Additional notes of student (create new notes)      | nt/     | `nt/I have created new notes for Alice`              |
 | Additional notes of student (append existing notes) | nt-a/   | `nt-a/I have added more notes to the existing notes` |
-| Tags of student                                     | t       | `t/python`                                           |
+| Tags of student                                     | t/      | `t/python`                                           |
 
 [↑ Back to top](#table-of-contents)
