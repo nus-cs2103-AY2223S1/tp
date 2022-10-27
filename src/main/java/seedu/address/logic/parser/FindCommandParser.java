@@ -15,12 +15,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
@@ -34,12 +32,13 @@ import seedu.address.model.person.RiskTagContainsKeywordsPredicate;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
+    private static final String SPACE_REGEX = " ";
+    private static final String PLAN_REGEX = "(?<=\\s\\S{1,100})\\s";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -67,23 +66,23 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            List<Name> names = ParserUtil.parseAllSpaceSeparatedNames(argMultimap.getAllValuesSeparatedBySpace(PREFIX_NAME));
+            List<Name> names = ParserUtil.parseAllSpaceSeparatedNames(argMultimap.getAllValuesSeparatedByRegex(PREFIX_NAME, SPACE_REGEX));
             predicates.add(new NameContainsKeywordsPredicate(names.stream().map(x -> x.toString()).collect(Collectors.toList())));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            List<Phone> phones = ParserUtil.parseAllSpaceSeparatedPhone(argMultimap.getAllValuesSeparatedBySpace(PREFIX_PHONE));
+            List<Phone> phones = ParserUtil.parseAllSpaceSeparatedPhone(argMultimap.getAllValuesSeparatedByRegex(PREFIX_PHONE, SPACE_REGEX));
             predicates.add(new PhoneContainsKeywordsPredicate(phones.stream().map(x -> x.toString()).collect(Collectors.toList())));
         }
         if (argMultimap.getValue(PREFIX_RISKTAG).isPresent()) {
-            List<RiskTag> riskTags = ParserUtil.parseAllSpaceSeparatedRiskTag(argMultimap.getAllValuesSeparatedBySpace(PREFIX_RISKTAG));
+            List<RiskTag> riskTags = ParserUtil.parseAllSpaceSeparatedRiskTag(argMultimap.getAllValuesSeparatedByRegex(PREFIX_RISKTAG, SPACE_REGEX));
             predicates.add(new RiskTagContainsKeywordsPredicate(riskTags.stream().map(x -> x.tagName).collect(Collectors.toList())));
         }
         if (argMultimap.getValue(PREFIX_PLANTAG).isPresent()) {
-            List<PlanTag> planTags = ParserUtil.parseAllSpaceSeparatedPlanTags(argMultimap.getAllValuesSeparatedBySpace(PREFIX_PLANTAG));
+            List<PlanTag> planTags = ParserUtil.parseAllSpaceSeparatedPlanTags(argMultimap.getAllValuesSeparatedByRegex(PREFIX_PLANTAG, SPACE_REGEX));
             predicates.add(new PlanTagContainsKeywordsPredicate(planTags.stream().map(x -> x.toString()).collect(Collectors.toList())));
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            List<NormalTag> normalTags = ParserUtil.parseAllSpaceSeparatedNormalTags(argMultimap.getAllValuesSeparatedBySpace(PREFIX_TAG));
+            List<NormalTag> normalTags = ParserUtil.parseAllSpaceSeparatedNormalTags(argMultimap.getAllValuesSeparatedByRegex(PREFIX_TAG, SPACE_REGEX));
             predicates.add(new NormalTagContainsKeywordsPredicate(normalTags.stream().map(x -> x.toString()).collect(Collectors.toList())));
         }
 

@@ -59,12 +59,12 @@ public class ArgumentMultimap {
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
      */
-    public List<String> getAllValuesSeparatedBySpace(Prefix prefix) {
+    public List<String> getAllValuesSeparatedByRegex(Prefix prefix, String regex) {
         if (!argMultimap.containsKey(prefix)) {
             return new ArrayList<>();
         }
         String value = getValue(prefix).get();
-        return Arrays.stream(value.split(" ")).collect(Collectors.toList());
+        return Arrays.stream(value.split(regex)).collect(Collectors.toList());
     }
 
     /**
