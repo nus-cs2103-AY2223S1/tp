@@ -32,15 +32,15 @@ public class Applicant {
      * Every field must be present and not null.
      */
     public Applicant(Name name, Phone phone, Email email, Scholarship scholarship,
-                     ApplicationStatus applicationStatus, Set<Major> tags, Pin pin) {
-        requireAllNonNull(name, phone, email, scholarship, applicationStatus, tags);
+                     ApplicationStatus applicationStatus, Set<Major> majors, Pin pin) {
+        requireAllNonNull(name, phone, email, scholarship, applicationStatus, majors);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.scholarship = scholarship;
         this.applicationStatus = applicationStatus;
         this.pin = pin;
-        this.majors.addAll(tags);
+        this.majors.addAll(majors);
     }
 
     /**
@@ -63,28 +63,48 @@ public class Applicant {
         return name;
     }
 
+    public String getFullName() {
+        return name.getFullName();
+    }
+
     public Phone getPhone() {
         return phone;
+    }
+
+    public String getPhoneNumber() {
+        return phone.getPhoneNumber();
     }
 
     public Email getEmail() {
         return email;
     }
 
+    public String getEmailAddress() {
+        return email.getEmailAddress();
+    }
+
     public Scholarship getScholarship() {
         return scholarship;
+    }
+
+    public String getScholarshipName() {
+        return scholarship.getScholarshipName();
     }
 
     public ApplicationStatus getApplicationStatus() {
         return applicationStatus;
     }
 
+    public String getStatusOfApplication() {
+        return applicationStatus.getStatusOfApplication();
+    }
+
     public Pin getPin() {
         return pin;
     }
 
-    public void setHasPinnedInPin(boolean hasPinned) {
-        this.pin.setHasPinned(hasPinned);
+    public boolean getHasPinned() {
+        return pin.getHasPinned();
     }
 
     /**
@@ -187,7 +207,7 @@ public class Applicant {
                 && otherApplicant.getPhone().equals(getPhone())
                 && otherApplicant.getEmail().equals(getEmail())
                 && otherApplicant.getScholarship().equals(getScholarship())
-                && otherApplicant.getApplicationStatus().equals(getApplicationStatus())
+                && otherApplicant.getStatusOfApplication().equals(getStatusOfApplication())
                 && otherApplicant.getPin().equals(getPin())
                 && otherApplicant.getMajors().equals(getMajors());
     }
@@ -209,9 +229,9 @@ public class Applicant {
                 .append("; Scholarship: ")
                 .append(getScholarship())
                 .append("; Application Status: ")
-                .append(getApplicationStatus())
+                .append(getStatusOfApplication())
                 .append("; hasPinned: ")
-                .append(getPin().getHasPinned());
+                .append(getHasPinned());
 
         Set<Major> majors = getMajors();
         if (!majors.isEmpty()) {

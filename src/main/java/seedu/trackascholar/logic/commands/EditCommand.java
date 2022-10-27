@@ -25,6 +25,7 @@ import seedu.trackascholar.model.applicant.ApplicationStatus;
 import seedu.trackascholar.model.applicant.Email;
 import seedu.trackascholar.model.applicant.Name;
 import seedu.trackascholar.model.applicant.Phone;
+import seedu.trackascholar.model.applicant.Pin;
 import seedu.trackascholar.model.applicant.Scholarship;
 import seedu.trackascholar.model.major.Major;
 
@@ -105,9 +106,10 @@ public class EditCommand extends Command {
         ApplicationStatus updatedApplicationStatus = editApplicantDescriptor.getApplicationStatus()
                 .orElse(applicantToEdit.getApplicationStatus());
         Set<Major> updatedMajors = editApplicantDescriptor.getMajors().orElse(applicantToEdit.getMajors());
+        Pin updatedPin = applicantToEdit.getPin();
 
         return new Applicant(updatedName, updatedPhone, updatedEmail, updatedScholarship,
-                updatedApplicationStatus, updatedMajors);
+                updatedApplicationStatus, updatedMajors, updatedPin);
     }
 
     @Override
