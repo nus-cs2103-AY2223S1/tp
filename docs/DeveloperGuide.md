@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The add item command will be executed by `AddItemCommand`. Items added will be stored in `ItemsList`. 
+The add item command will be executed by `AddItemCommand`. Items added will be stored in `ItemsList`.
 
 Given below is an example usage scenario and how the add item mechanism behaves at each step.
 
@@ -196,8 +196,8 @@ The edit item feature allows the user to edit an `Item` currently being tracked 
 
 #### Implementation
 
-The edit item command `editi` is implemented through the `Logic`, `Model` and `Storage` components. The `Logic` 
-component parses the user input, the `Model` component then performs the edit on the target item, the `Storage` 
+The edit item command `editi` is implemented through the `Logic`, `Model` and `Storage` components. The `Logic`
+component parses the user input, the `Model` component then performs the edit on the target item, the `Storage`
 component then saves the edited data into `data/trackO.json`.
 
 Step 1: The user inputs the command `editi 1 i/Chair q/20`. This calls:
@@ -349,7 +349,7 @@ that will filter the items according to the keywords. The predicate is passed in
 `FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter `Model#filteredOrders`
 according to the previously constructed `OrderContainsKeywordsPredicate`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect, 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect,
 `FindOrderCommandParser` will throw a `ParseException`.
 
 </div>
