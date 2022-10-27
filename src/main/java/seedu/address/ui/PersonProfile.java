@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -192,6 +193,8 @@ public class PersonProfile extends UiPart<Region> {
             tagsLabel.setManaged(false);
             return;
         }
+        Tag firstTag = person.getTags().iterator().next();
+        setTagStyle(firstTag);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -208,6 +211,18 @@ public class PersonProfile extends UiPart<Region> {
         }
     }
 
+    /**
+     * Sets style of tags based on potential or secured client.
+     * @param firstTag first tag in Tag Set
+     */
+    public void setTagStyle(Tag firstTag) {
+        if (firstTag.isPotential()) {
+            tags.setId("potentialTags");
+        }
+        else if(firstTag.isSecured()) {
+            tags.setId("securedTags");
+        }
+    }
     /**
      * Opens pdf file stored in person object.
      */
