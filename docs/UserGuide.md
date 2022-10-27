@@ -13,17 +13,25 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
      - [Listing modules](#listing-modules)
      - [Finding modules](#finding-modules)
   - [Tasks-Related Features](#tasks-related-features)
-    - [Adding task functions](#adding-task-functions-coming-soon-in-v12)
-    - [Tagging priority of task](#tagging-priority-of-task-coming-soon-in-v12)
-    - [Listing tasks](#listing-tasks)
-    - [Finding tasks](#finding-tasks)
+    - [Adding a task](#adding-a-task)
+    - [Deleting task function](#deleting-task-function-coming-soon-in-v12)
     - [Editing a task](#editing-a-task)
     - [Marking a task](#marking-a-task)
     - [Unmarking a task](#unmarking-a-task)
-    - [Deleting task function](#deleting-task-function-coming-soon-in-v12)
+    - [Listing tasks](#listing-tasks)
+    - [Filtering the task list](#filtering-the-task-list)
+    - [Finding tasks](#finding-tasks)
+    - [Tagging priority of task](#tagging-priority-of-task-coming-soon-in-v12)
+    - [Clearing the task list](#clearing-the-task-list)
   - [Exams-Related Features](#exams-related-features)
     - [Adding an exam](#adding-an-exam)
     - [Editing an exam](#editing-an-exam)
+    - [Deleting an exam](#deleting-an-exam)
+    - [Unlinking an exam](#unlinking-an-exam)
+    - [Showing the tasks of an exam](#showing-the-tasks-of-an-exam)
+  - [Other Features](#other-features)
+    - [Clearing all the lists](#clearing-all-the-lists)
+    - [Exiting the program](#exiting-the-program)
 - [Summary Of Commands](#summary-of-commands)
 
 
@@ -75,33 +83,34 @@ Examples:
 
 ## Tasks-related Features
 
-### Adding task functions [Coming Soon in v1.2]
-Adds task into task list
+### Adding a task
+Adds task into task list.
 
-Format: `add TASK`
-* Adds a task to the end of the task list
-* Task refers to the task description to be shown
-* If the task description is empty, an error message will be displayed to inform the user to enter a description
+Format: `t add m/MODULE d/DESCRIPTION`
+* Adds a task to the task list.
+* MODULE refers to the module which the task belongs to.
+* DESCRIPTION refers to the task description to be shown.
+* MODULE has to exist in the module list and be a valid module with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed.
+* If DESCRIPTION is empty, an error message will be displayed.
+
+Example:
+`t add m/CS2105 d/Assignment 1` adds a task with the module as 'CS2105' and description as 'Assignment 1' into the task list.
+
+### Deleting task function [Coming Soon in v1.2]
+Deletes the specified task according to the index given
+
+Format: `delete INDEX`
+* Deletes the task at the specified index from the storage
+* The index refers to the index number shown in the task list.
+* The index must be a positive integer 1, 2, 3, …​
+* If the task list is empty and the user inputs any number, an error message will be displayed.
+* If the index is non-positive or more than the number of tasks in the list, an error message will be displayed.
 
 Examples:
 
-`add CS2105 Assignment 1` adds CS2105 Assignment 1 task into task list
+`delete 1` deletes the first task in the task list
 
-`add CS2103T Quiz` adds CS2103T Quiz task into task list
-
-### Tagging priority of task [Coming Soon in v1.2]
-Tags the priority to complete task 
-
-Format: `tag TASK /p PRIORITY_STATUS`
-* Tags one of three priorities("high", "medium", "low") to the task
-* If the priority status is not "high", "medium" or "low", an error message will appear to inform the user to key in a valid priority status
-
-Examples:
-
-`tag CS2105 Quiz /p high` tags CS2105 Quiz as high priority task to complete
-
-`tag CS2103T Quiz /p low` tags CS2103T Quiz as low priority task to complete
-
+`delete 3` deletes the first task in the task list
 
 ### Editing a task
 Edits the specified task, by updating the existing values to the input values.
@@ -166,23 +175,21 @@ Example:
 
 `t list` displays tasks that are stored in the task list
 
+### Filtering the task list
+Filters the task list based on module, completion status, and/or link status.
 
-### Deleting task function [Coming Soon in v1.2]
-Deletes the specified task according to the index given
-
-Format: `delete INDEX`
-* Deletes the task at the specified index from the storage
-* The index refers to the index number shown in the task list.
-* The index must be a positive integer 1, 2, 3, …​
-* If the task list is empty and the user inputs any number, an error message will be displayed.
-* If the index is non-positive or more than the number of tasks in the list, an error message will be displayed.
+Format: `t filter [m/MODULE/]* [c/COMPLETED]* [l/LINKED]*`
+* Filters the task list to show only tasks that fulfill all the stated conditions.
+* MODULE refers to the module to be filtered out.
+* COMPLETED should be y to filter tasks that are complete or n to filter tasks that are incomplete.
+* LINKED should be y to filter tasks that are linked to an exam or n to filter tasks that are not linked to any exam.
+* At least one optional condition has to be specified, otherwise an error message will be displayed.
 
 Examples:
 
-`delete 1` deletes the first task in the task list
+`t filter m/cs2030 c/y` filters out all completed tasks that are under the module cs2030.
 
-`delete 3` deletes the first task in the task list
-
+`t filter l/n` filters out all tasks that are currently not linked to any exam.
 
 ### Finding task(s)
 Finds tasks stored in the task list by the task's description.
@@ -197,9 +204,32 @@ Examples:
 
 `t find do paper` finds tasks that contain the keyword 'do paper', such as 'do paper 1', 'do paper 2'
 
+### Tagging priority of task [Coming Soon in v1.2]
+Tags the priority to complete task 
+
+Format: `tag TASK /p PRIORITY_STATUS`
+* Tags one of three priorities("high", "medium", "low") to the task
+* If the priority status is not "high", "medium" or "low", an error message will appear to inform the user to key in a valid priority status
+
+Examples:
+
+`tag CS2105 Quiz /p high` tags CS2105 Quiz as high priority task to complete
+
+`tag CS2103T Quiz /p low` tags CS2103T Quiz as low priority task to complete
+
+### Clearing the task list
+Clears the entire task list.
+
+Format: `t clear`
+* Clears all tasks currently in the task list.
+
+Example:
+`t clear` clears all tasks currently in the task list.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Exams-related Features
+
 ### Adding an exam
 Adds exam into exam list. 
 
@@ -224,7 +254,7 @@ exam description as 'midterms', exam date as '20-11-2022' into the exam list.
 ### Editing an exam
 Edits the specified exam by updating the existing values to the input values.
    
-Format: `e edit INDEX (must be a positive integer) [m/MODULE] [ex/EXAM DESCRIPTION] [ed/EXAM DATE]`
+Format: `e edit INDEX (must be a positive integer) [m/MODULE]* [ex/EXAM DESCRIPTION]* [ed/EXAM DATE]*`
 * Edits the exam at the specified INDEX in the exam list.
 * MODULE refers to the module of the exam
 * EXAMDESCRIPTION refers to the description of the exam
@@ -247,7 +277,56 @@ Examples:
 `e edit 2 m/cs2030s ex/midterms ed/22-12-2022` changes the exam description of the second exam in the exam list to ‘midterms’, the exam module to ‘cs2030s’ and the exam date as ‘22-12-2022’.
 
 
+### Deleting an exam
+Deletes the specified exam according to the index given.
+
+Format: `e del INDEX`
+* Deletes the exam at the specified index from the exam list.
+* INDEX refers to the index number shown in the exam list.
+* INDEX must be a positive integer 1, 2, 3, …​
+* If INDEX is non-positive or more than the number of exams in the exam list, an error message will be displayed.
+
+Example:
+`e del 1` deletes the first exam in the exam list.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** All tasks currently linked to the exam will be unlinked after the exam is deleted.
+</div>
+
+### Unlinking an exam
+Unlinks the exam from the specified task according to the index given.
+
+Format: `e unlink INDEX`
+* Unlinks the exam from the task at the specific index from the task list.
+* INDEX refers to the index number shown in the task list of the task to be unlinked.
+* INDEX must be a positive integer 1, 2, 3, …​
+* If INDEX is non-positive or more than the number of tasks in the task list, an error message will be displayed.
+
+Example:
+`e unlink 1` unlinks the first task in the task list from its current exam.
+
+### Showing the tasks of an exam
+Shows all tasks linked to the specified exam according to the index given.
+
+Format: `e showt`
+* Shows all tasks that are linked to the exam at the specified index from the exam list.
+* INDEX refers to the index number of the exam shown in the exam list.
+* INDEX must be a positive integer 1, 2, 3, …​
+* If INDEX is non-positive or more than the number of exams in the exam list, an error message will be displayed.
+
+Example:
+`e showt 1` shows a list of all tasks linked to the first exam in the exam list.
+
 ## Other Features
+
+### Clearing all the lists
+Clears the task, exam and module lists.
+
+Format: `clearall`
+* Clears all tasks, exams and modules currently in the respective lists.
+
+Example:
+`clearall` clears all tasks, exams and modules currently in the respective lists.
 
 ### Exiting the program
 Exits the program
