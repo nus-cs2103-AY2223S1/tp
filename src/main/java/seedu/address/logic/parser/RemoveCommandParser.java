@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_PROGRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 
@@ -26,7 +26,7 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_HOMEWORK,
-                        PREFIX_GRADEPROGRESS, PREFIX_ATTENDANCE, PREFIX_SESSION);
+                        PREFIX_GRADE_PROGRESS, PREFIX_ATTENDANCE, PREFIX_SESSION);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE));
@@ -37,9 +37,9 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
             Index homeworkIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_HOMEWORK).get());
             removePersonDescriptor.setHomeworkIndex(homeworkIndex);
         }
-        if (argMultimap.getValue(PREFIX_GRADEPROGRESS).isPresent()) {
+        if (argMultimap.getValue(PREFIX_GRADE_PROGRESS).isPresent()) {
             Index gradeProgressIndex = ParserUtil
-                    .parseIndex(argMultimap.getValue(PREFIX_GRADEPROGRESS).get());
+                    .parseIndex(argMultimap.getValue(PREFIX_GRADE_PROGRESS).get());
             removePersonDescriptor.setGradeProgressIndex(gradeProgressIndex);
         }
         if (argMultimap.getValue(PREFIX_ATTENDANCE).isPresent()) {
