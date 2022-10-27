@@ -71,6 +71,12 @@ This section will explain the parameters and the format of commands.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+
 # 2. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
