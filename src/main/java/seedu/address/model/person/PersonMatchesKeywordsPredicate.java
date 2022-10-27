@@ -9,7 +9,7 @@ import seedu.address.commons.util.StringUtil;
  * Tests that a {@code Person} matches any of the keywords given.
  */
 public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
-    protected final String keywords;
+    private final String keywords;
 
     public PersonMatchesKeywordsPredicate(String keywords) {
         this.keywords = keywords;
