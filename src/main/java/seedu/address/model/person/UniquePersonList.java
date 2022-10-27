@@ -55,13 +55,13 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void sort(String sortParam) {
         switch (sortParam) {
-        case "/n":
+        case "n/":
             internalList.sort(Comparator.comparing(person -> person.getName().fullName));
             break;
-        case "/i":
+        case "i/":
             internalList.sort(Comparator.comparing(person -> person.getIncome().toInt()));
             break;
-        case "/m":
+        case "m/":
             internalList.sort(Comparator.comparing(person -> person.getMeetingDate().value));
             break;
         default:

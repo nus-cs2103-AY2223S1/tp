@@ -18,7 +18,7 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public SortCommand parse(String args) throws ParseException {
         String sortParam = ParserUtil.parseSort(args);
-        if (sortParam.contains("/n") || sortParam.contains("/i") || sortParam.contains("/m")) {
+        if (sortParam.contains("n/") || sortParam.contains("i/") || sortParam.contains("m/")) {
             return new SortCommand(sortParam);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
