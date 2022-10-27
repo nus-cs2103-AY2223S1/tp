@@ -172,6 +172,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setTuitionClass(TuitionClass target, TuitionClass editedClass) {
         requireNonNull(editedClass);
         tuitionClasses.setTuitionClass(target, editedClass);
+
+        //find and edit every person in this class
+        for (Student student : students) {
+            List<TuitionClass> classList = student.getTuitionClasses();
+            int targetIndex = classList.indexOf(target);
+            if (targetIndex < 0) {
+                continue;
+            }
+            classList.set(targetIndex, editedClass);
+        }
+
+        for (Tutor tutor : tutors) {
+            List<TuitionClass> classList = tutor.getTuitionClasses();
+            int targetIndex = classList.indexOf(target);
+            if (targetIndex < 0) {
+                continue;
+            }
+            classList.set(targetIndex, editedClass);
+        }
     }
 
     /**
@@ -181,6 +200,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeTuitionClass(TuitionClass key) {
         key.minusId();
         tuitionClasses.remove(key);
+
+        //find and edit every person in this class
+        for (Student student : students) {
+            List<TuitionClass> classList = student.getTuitionClasses();
+            int targetIndex = classList.indexOf(key);
+            if (targetIndex < 0) {
+                continue;
+            }
+            classList.remove(targetIndex);
+        }
+
+        for (Tutor tutor : tutors) {
+            List<TuitionClass> classList = tutor.getTuitionClasses();
+            int targetIndex = classList.indexOf(key);
+            if (targetIndex < 0) {
+                continue;
+            }
+            classList.remove(targetIndex);
+        }
     }
 
     /**

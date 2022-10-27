@@ -142,6 +142,7 @@ student/tutor beforehand.
 Examples:
 * `unassign 1 n/P3 maths`
 
+
 ### Add next of kin to a student: `nok`
 
 Adds a next of kin to an existing student in the current list.
@@ -159,6 +160,15 @@ Format:
 Examples:
 
 * `nok 1 n/Mama Doe p/87654321 e/mamadoe@example.com a/John street, block 123, #01-01 r/Mother #/bestMomAward`
+
+
+### Exporting address books to csv
+
+Export Students, Tutors, and TuitionClasses into their own .csv files to be used in other programs.
+
+Format: Click on the "*File*" tab at the top left hand corner of `myStudents` and click on "*Export*" in the dropdown menu.
+
+* The csv files will be saved in the same location as the json files specified in `preference.json`.
 
 ###FAQs
 **Q:** Does myStudent need an Internet connection?

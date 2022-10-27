@@ -24,9 +24,16 @@ import static seedu.address.logic.commands.CommandTestUtil.showTuitionClassAtInd
 import static seedu.address.logic.commands.CommandTestUtil.showTutorAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalNextOfKins.NEXTOFKIN1;
+import static seedu.address.testutil.TypicalNextOfKins.NEXTOFKIN2;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 import static seedu.address.testutil.TypicalTuitionClasses.getTypicalTuitionClassesAddressBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorsAddressBook;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -432,6 +439,57 @@ public class EditCommandTest {
                 new EditTuitionClassDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_existingPersonClassList_success() {
+        Model model = new ModelManager(getTypicalStudentsAddressBook(), new UserPrefs());
+        model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+        List<TuitionClass> classList = new ArrayList<>();
+        classList.add(TUITIONCLASS1);
+        classList.add(TUITIONCLASS2);
+        model.setTuitionClasses(classList);
+
+
+        AddressBook expectedAddressBook = new AddressBook();
+        TuitionClass editedClass = new TuitionClassBuilder(TUITIONCLASS1).withName("updatedName").build();
+        expectedAddressBook.addPerson(new StudentBuilder().withName("Alice Pauline")
+                .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+                .withPhone("94351253")
+                .withTags("friends")
+                .withSchool("Keming Primary School")
+                .withLevel("PRIMARY3")
+                .withNextOfKin(NEXTOFKIN1)
+                .withTuitionClasses(
+                        editedClass, TUITIONCLASS2)
+                .build());
+        expectedAddressBook.addPerson(new StudentBuilder().withName("Benson Meier")
+                .withAddress("311, Clementi Ave 2, #02-25")
+                .withEmail("johnd@example.com").withPhone("98765432")
+                .withTags("owesMoney", "friends")
+                .withSchool("Zheng Hua Secondary School")
+                .withLevel("SECONDARY2")
+                .withNextOfKin(NEXTOFKIN2)
+                .withTuitionClasses(
+                        editedClass, TUITIONCLASS2)
+                .build());
+
+        Model expectedModel = new ModelManager(expectedAddressBook, new UserPrefs());
+        expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+        List<TuitionClass> expectedClassList = new ArrayList<>();
+        expectedClassList.add(new TuitionClassBuilder(TUITIONCLASS1).withName("updatedName").build());
+        expectedClassList.add(TUITIONCLASS2);
+        expectedModel.setTuitionClasses(expectedClassList);
+
+        EditTuitionClassDescriptor editTuitionClassDescriptor = new EditTuitionClassDescriptor();
+        editTuitionClassDescriptor.setName(new seedu.address.model.tuitionclass.Name("updatedName"));
+
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, editTuitionClassDescriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLASS_SUCCESS, editedClass);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                EDIT, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test
