@@ -46,12 +46,44 @@ public class DebtsDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code above} of the {@code DebtsDescriptor} that we are building.
+     */
+    public DebtsDescriptorBuilder withAbove(String above) {
+        descriptor.setAbove(new Money(above));
+        return this;
+    }
+
+    /**
+     * Sets the {@code below} of the {@code DebtsDescriptor} that we are building.
+     */
+    public DebtsDescriptorBuilder withBelow(String below) {
+        descriptor.setBelow(new Money(below));
+        return this;
+    }
+
+    /**
      * Parses the {@code dates} into a {@code Set<DebtDate>} and set it to the {@code DebtsDescriptor}
      * that we are building.
      */
     public DebtsDescriptorBuilder withDates(String... dates) {
         Set<DebtDate> dateSet = Stream.of(dates).map(DebtDate::new).collect(Collectors.toSet());
         descriptor.setDates(dateSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code before} of the {@code DebtsDescriptor} that we are building.
+     */
+    public DebtsDescriptorBuilder withBefore(String before) {
+        descriptor.setBefore(new DebtDate(before));
+        return this;
+    }
+
+    /**
+     * Sets the {@code after} of the {@code DebtsDescriptor} that we are building.
+     */
+    public DebtsDescriptorBuilder withAfter(String after) {
+        descriptor.setAfter(new DebtDate(after));
         return this;
     }
 
