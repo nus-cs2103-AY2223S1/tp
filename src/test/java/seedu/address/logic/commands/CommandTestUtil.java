@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_URL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -46,23 +47,36 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+
+    //Module
     public static final String VALID_CS2106_MODULE_CODE = "CS2106";
     public static final String VALID_CS2106_MODULE_TITLE = "Introduction to Operating Systems";
     public static final String VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK = "CS9999";
+    public static final String VALID_GE3238_MODULE_CODE = "GE3238";
     public static final String VALID_MA2001_MODULE_CODE = "MA2001";
     public static final String VALID_MA2001_MODULE_TITLE = "Linear Algebra I";
     public static final String VALID_MODULE_CODE = CS2103T.getModuleCode().toString();
+    public static final String VALID_MODULE_CODE_WITH_PREFIX = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE;
     public static final String VALID_MODULE_TITLE = CS2103T.getModuleTitle().toString();
     public static final String VALID_TASK_A = "Complete assignment for week 8";
     public static final String VALID_TASK_B = "Submit the quiz@LumiNUS";
     public static final String VALID_TASK_C = "Pay $5 to Ann for project costs";
-
-    public static final String VALID_MODULE_LINK = "https://nus-cs2103-ay2223s1.github.io/website/";
-    public static final String VALID_MODULE_LINK_2 = "https://nusmods.com/timetable/sem-1";
-
+    public static final String VALID_MODULE_LINK_ALIAS = "2103T";
+    public static final String VALID_MODULE_LINK_ALIAS_2 = "nusmods";
+    public static final String VALID_MODULE_LINK_ALIAS_3 = "wow";
+    public static final String VALID_MODULE_LINK_ALIAS_4 = "gg";
+    public static final String VALID_MODULE_LINK_ALIAS_5 = "66666666";
+    public static final String VALID_MODULE_LINK_URL = "https://nus-cs2103-ay2223s1.github.io/website/";
+    public static final String VALID_MODULE_LINK_URL_WITHOUT_HTTPS = "nus-cs2103-ay2223s1.github.io/website/";
+    public static final String VALID_MODULE_LINK_URL_2 = "https://nusmods.com/timetable/sem-1";
+    public static final String VALID_MODULE_LINK_URL_3 = "haxball.com";
+    public static final String VALID_MODULE_LINK_URL_4 = "https://google.com";
+    public static final String VALID_MODULE_LINK_URL_4_WITHOUT_HTTPS = "google.com";
+    public static final String VALID_MODULE_LINK_URL_4_WITH_HTTP = "http://google.com";
     // Module code cannot have brackets
     public static final String INVALID_MODULE_CODE = "(CS2103T)";
-
+    public static final String VALID_MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK_ALIAS
+            + VALID_MODULE_LINK_ALIAS + " " + PREFIX_MODULE_LINK_URL + VALID_MODULE_LINK_URL;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -87,13 +101,18 @@ public class CommandTestUtil {
     public static final String MODULE_TASKLIST_DESC_SWAP_TWO_AND_THREE =
             " " + PREFIX_TASK_NUMBERS_TO_SWAP + "2 3";
 
-    public static final String MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK + VALID_MODULE_LINK;
-
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    // '$' not allowed in module code
+
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + "C$2500";
+    public static final String INVALID_MODULE_LINK_ALIAS = "().()";
+    //exceeds character limit of 15
+    public static final String INVALID_MODULE_LINK_ALIAS_2 = "This module assumes a reasonable prior knowledge of Java";
+    public static final String INVALID_MODULE_LINK_URL = "^.^";
+    public static final String INVALID_MODULE_LINK_URL_2 = "git hub.com";
+    public static final String INVALID_MODULE_LINK_URL_3 = "https://googlecom";
+    public static final String INVALID_MODULE_LINK_URL_4 = "https://¯\\_(ツ)_/¯.com";
     public static final String INVALID_TASK_DESC = " " + PREFIX_TASK_DESCRIPTION; // empty string
     public static final String INVALID_TASK_NUMBER_DESC_NON_NUMERIC =
             " " + PREFIX_TASK_NUMBER_TO_DELETE + "-99$9";

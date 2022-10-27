@@ -11,8 +11,11 @@ import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASK_DESC_A;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_WITH_PREFIX;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -41,6 +44,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HomeCommand;
 import seedu.address.logic.commands.ListModuleCommand;
 import seedu.address.logic.commands.ListPersonCommand;
+import seedu.address.logic.commands.OpenLinkCommand;
 import seedu.address.logic.commands.SwapTaskNumbersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
@@ -91,9 +95,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addLink() throws Exception {
-        assertTrue(parser.parseCommand(AddLinkCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_MODULE_LINK
-                + "https://nusmods.com") instanceof AddLinkCommand);
+        assertTrue(parser.parseCommand(AddLinkCommand.COMMAND_WORD + VALID_MODULE_CODE_WITH_PREFIX
+                + VALID_MODULE_LINK_CS2103T) instanceof AddLinkCommand);
     }
 
     @Test
@@ -124,9 +127,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deleteLink() throws Exception {
-        assertTrue(parser.parseCommand(DeleteLinkCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_MODULE_LINK
-                + "https://nusmods.com") instanceof DeleteLinkCommand);
+        assertTrue(parser.parseCommand(DeleteLinkCommand.COMMAND_WORD + VALID_MODULE_CODE_WITH_PREFIX
+                + " " + PREFIX_MODULE_LINK_ALIAS + VALID_MODULE_LINK_ALIAS) instanceof DeleteLinkCommand);
     }
 
     @Test
@@ -220,6 +222,12 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(SwapTaskNumbersCommand.COMMAND_WORD
                 + MODULE_CODE_DESC_CS2106 + MODULE_TASKLIST_DESC_SWAP_ONE_AND_TWO)
                 instanceof SwapTaskNumbersCommand);
+    }
+
+    @Test
+    public void parseCommand_openLink() throws Exception {
+        assertTrue(parser.parseCommand(OpenLinkCommand.COMMAND_WORD + VALID_MODULE_CODE_WITH_PREFIX
+                + " " + PREFIX_MODULE_LINK_ALIAS + VALID_MODULE_LINK_ALIAS) instanceof OpenLinkCommand);
     }
 
     @Test

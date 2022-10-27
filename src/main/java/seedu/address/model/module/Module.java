@@ -7,9 +7,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.link.Link;
+import seedu.address.model.module.link.Link;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.module.task.TaskList;
 import seedu.address.model.person.Person;
@@ -43,7 +44,7 @@ public class Module implements Comparable<Module> {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.tasks = new TaskList(tasks);
-        this.links = new HashSet<>(links);
+        this.links = new TreeSet<>(links);
         this.persons = new HashSet<>(persons);
     }
 
@@ -57,7 +58,7 @@ public class Module implements Comparable<Module> {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.tasks = new TaskList();
-        this.links = new HashSet<>(links);
+        this.links = new TreeSet<>(links);
         this.persons = new HashSet<>();
     }
 
@@ -66,7 +67,7 @@ public class Module implements Comparable<Module> {
      * associated tasks, links and persons.
      */
     public Module(ModuleCode moduleCode) {
-        this(moduleCode, new ModuleTitle(EMPTY_MODULE_TITLE), new HashSet<>());
+        this(moduleCode, new ModuleTitle(EMPTY_MODULE_TITLE), new TreeSet<>());
     }
 
     /**
@@ -74,7 +75,7 @@ public class Module implements Comparable<Module> {
      * associated tasks, links and persons.
      */
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle) {
-        this(moduleCode, moduleTitle, new HashSet<>());
+        this(moduleCode, moduleTitle, new TreeSet<>());
     }
     public ModuleCode getModuleCode() {
         return moduleCode;
@@ -110,7 +111,7 @@ public class Module implements Comparable<Module> {
      * Returns a copied links set
      */
     public Set<Link> copyLinks() {
-        return new HashSet<>(links);
+        return new TreeSet<>(links);
     }
 
     /**

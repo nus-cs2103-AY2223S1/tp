@@ -162,7 +162,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The 'add link' feature allows for the user to add links with corresponding aliases to a `Module` in Plannit.
 Links in Plannit are represented by the `Link` class. A `Link` object contains two required fields,
-a `String` URL and a `String` alias. For each Plannit `Module`, `Link` objects are stored in a `TreeMap`.
+a `String` URL and a `String` alias. For each Plannit `Module`, `Link` objects are stored in a `TreeSet`.
 
 The implementation of the 'delete link' feature is highly similar to this, but without a `String` URL input.
 
@@ -193,7 +193,7 @@ A new `AddLinkCommand` is created with the module code and `Link` object, which 
 
 **Step 5**: The `AddLinkCommand::execute` method is then called by the `LogicManager`.
 This method will first obtain the `Module` object with the module code indicated by the user.
-A copy of the `Module`'s fields is then created and the `Link` object is added to the copied `TreeMap` of links.
+A copy of the `Module`'s fields is then created and the `Link` object is added to the copied `TreeSet` of links.
 
 **Step 6**: A new `Module` is created with the modified and copied fields, which replaces
 the original `Module` object in Plannit using the `Model::setModule` method.
@@ -236,7 +236,7 @@ The following activity diagram shows how the 'add link' feature works:
         * Slow identification, access, and deletion of links from the user's perspective.
 
 **Aspect: Link Storage:**
-* **Alternative 1 (current choice)**: Link objects stored in a `TreeMap` object within `Module`.
+* **Alternative 1 (current choice)**: Link objects stored in a `TreeSet` object within `Module`.
     * Pros:
         * Consistent display order of links in Plannit.
     * Cons:
@@ -246,12 +246,24 @@ The following activity diagram shows how the 'add link' feature works:
         * Easy to implement.
     * Cons:
         * No standardised display order of links across `Module` objects.
-        * Slow performance when accessing and deleting links in terms of time.
 * **Alternative 3**: Link objects stored in a `HashSet` object within `Module`.
     * Pros:
         * Fast performance when accessing and deleting links in terms of time.
     * Cons:
         * Display order of links changes after each modification to the `HashSet` of links for a `Module`.
+
+Rationale behind current choice:
+
+Link Representation: Each link requires an alias and URL such that users are able to make sense of
+each URL present in Plannit. By enforcing the user to select their own alias,
+they are more likely to remember what each alias means in the long run.
+Aliases are also especially useful in differentiating between similar named
+URLs, i.e., same domain but the remainder of the url has no semantic meaning to the user (e.g. zoom links).
+
+Link Storage: 
+TreeSet was selected as to ensure a consistent sorting order across all modules such that users
+will spend the least amount of the time searching for their required alias for each module,
+thus boosting their productivity.
 
 ### Person component
 

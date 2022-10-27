@@ -10,10 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.module.link.Link;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.module.task.TaskList;
 import seedu.address.model.person.Person;
@@ -38,12 +38,12 @@ class JsonAdaptedModule {
     public JsonAdaptedModule(@JsonProperty("moduleCode") String moduleCode,
                              @JsonProperty("moduleTitle") String moduleTitle,
                              @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
-                             @JsonProperty("linked") List<JsonAdaptedLink> linked,
+                             @JsonProperty("links") List<JsonAdaptedLink> links,
                              @JsonProperty("persons") Set<JsonAdaptedPerson> persons) {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.moduleTasks = tasks;
-        this.moduleLinks = linked;
+        this.moduleLinks = links;
         this.modulePersons = persons;
     }
 

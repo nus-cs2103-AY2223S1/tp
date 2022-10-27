@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
-import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.module.link.Link;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.person.Person;
 
@@ -22,7 +23,7 @@ public class ModuleBuilder {
     public static final String DEFAULT_MODULE_CODE = "CS2109S";
     public static final String DEFAULT_MODULE_TITLE = EMPTY_STRING;
     public static final List<Task> DEFAULT_TASKS = new ArrayList<>();
-    public static final Set<Link> DEFAULT_LINKS = new HashSet<>();
+    public static final Set<Link> DEFAULT_LINKS = new TreeSet<>();
     public static final Set<Person> DEFAULT_PERSONS = new HashSet<>();
 
     private ModuleCode moduleCode;
@@ -48,7 +49,7 @@ public class ModuleBuilder {
         moduleCode = moduleToCopy.getModuleCode();
         moduleTitle = moduleToCopy.getModuleTitle();
         tasks = new ArrayList<>(moduleToCopy.getTasks());
-        links = new HashSet<>(moduleToCopy.getLinks());
+        links = new TreeSet<>(moduleToCopy.getLinks());
         persons = new HashSet<>(moduleToCopy.getPersons());
     }
 
@@ -81,7 +82,7 @@ public class ModuleBuilder {
      * Sets the set of {@code Link} objects of the {@code Module} that we are building.
      */
     public ModuleBuilder withLinks(Set<Link> links) {
-        this.links = new HashSet<>(links);
+        this.links = new TreeSet<>(links);
         return this;
     }
 
