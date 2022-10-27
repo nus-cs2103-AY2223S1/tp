@@ -12,7 +12,7 @@ title: User Guide (v1.3)
 #### What is TrackAScholar?
 
 TrackAScholar (TAS) is the **only** desktop app any university administrative staff needs for managing scholarship applications.
-TAS helps administrative staff manage applications by storing the applicant's contact details, scholarship application and majors taken all in one place.
+TAS helps administrative staff manage scholarship applications by storing the applicant's contact details, scholarship applied and majors taken all in one place.
 
 TAS  presenting the administrative staff with the option to pin important applicants, edit their details easily,
  find or filter for applicants with ease and otherwise speeds up the application process.
@@ -22,11 +22,11 @@ TAS is **optimised for use via a Command Line Interface (CLI)** while simultaneo
 
 #### Who is this User Guide for?
 
-We have created this user manual for people who want to learn how to use our application.
+We have created this user manual for people who want to learn how to use our app.
 It is best suited for administrative staff members who seek an app to streamline their scholarship management procedure.
 
 Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3.github.io/tp/DeveloperGuide.html)
- to find out more about the technical components of our application.
+ to find out more about the technical components of our app.
 
 [Return to top](#table-of-contents)
 
@@ -50,7 +50,7 @@ Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3
 
 2. Download the latest `TrackAScholar.jar` from [here](https://github.com/AY2223S1-CS2103T-W10-3/tp/releases).
 
-3. Move the jar file to an empty folder you wish to use as the **home folder** for the application.
+3. Move the jar file to an empty folder you wish to use as the **home folder** for the app.
 
 4. Double-click the jar file to open the app. If the app does not respond, open your terminal in the current folder 
    where `TrackAScholar.jar` is located and enter `java -jar TrackAScholar.jar` to open the app.
@@ -116,9 +116,9 @@ Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Adding a scholarship application: `add`
+### Adding an applicant: `add`
 
-Adds a scholarship application with the following details to the TrackAScholar:
+Adds an applicant with the following details to the TrackAScholar:
 * `NAME`: Name of applicant.
 * `PHONE_NUMBER`: Phone number of Applicant.
 * `EMAIL`: Email of Applicant.
@@ -146,9 +146,9 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Listing all scholarship application : `list`
+### Listing all applicants : `list`
 
-List out all the scholarship applications stored in TrackAScholar
+List out all the applicants stored in TrackAScholar
 
 Format: 
 ```
@@ -159,50 +159,50 @@ list
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Editing an existing scholarship application : `edit`
+### Editing an existing applicant : `edit`
 
-Edits an existing scholarship application stored in TrackAScholar
+Edits an existing applicant stored in TrackAScholar
 
 Format: 
 ```
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR]…​
 ```
 
-* Edits the scholarship application at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed scholarship application list. 
+* Edits the applicant at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed applicant list. 
 * The index **must be a positive integer** 1, 2, 3, …​
-* Index specified must not exceed the total number of applications stored in TrackAScholar. e.g. using index `7` on a list of `6` applications will cause the edit command to be rejected as `INDEX` specified is invalid.
+* Index specified must not exceed the total number of applicants stored in TrackAScholar. e.g. using index `7` on a list of `6` applicants will cause the edit command to be rejected as `INDEX` specified is invalid.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing majors, the existing majors of the scholarship application will be removed i.e adding of majors is not cumulative. 
+* When editing majors, the existing majors of the applicant will be removed i.e adding of majors is not cumulative. 
 e.g. `edit INDEX m/Business` on an applicant with Majors `Business` and `Mathematics` will remove the `Mathematics` Major.
-* You can remove all the scholarship application’s majors by typing `m/` without specifying any majors after it.
+* You can remove all the applicant's majors by typing `m/` without specifying any majors after it.
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
-Since an applicant can have at most 2 Majors, any attempts to edit an application such that it has more than two majors will be rejected
+Since an applicant can have at most 2 Majors, any attempts to edit an applicant such that he/she has more than two majors will be rejected
 </div>
 
 Examples:
-* `edit 1 n/John Cena e/johnCena@yahoo.com` Edits the name and email address of the 1st scholarship application to be John Cena and johnCena@yahoo.com respectively.
+* `edit 1 n/John Cena e/johnCena@yahoo.com` Edits the name and email address of the 1st applicant to be John Cena and johnCena@yahoo.com respectively.
 * `edit 2 n/Samuel Cheong m/` Edits the name of the 2nd applicant to be Samuel Cheong and clears all existing majors
 
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Deleting a scholarship application : `delete`
+### Deleting an applicant : `delete`
 
-Deletes the specified scholarship application from TrackAScholar
+Deletes the specified applicant from TrackAScholar
 
 Format: 
 ```
 delete INDEX
 ```
 
-* Deletes the scholarship application at the specified `INDEX`. 
+* Deletes the applicant at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed applicant list.
 * The index **must be a positive integer** 1, 2, 3, …​.
-* Index specified must not exceed the total number of applications stored in TrackAScholar. e.g. using index `7` on a list of `6` applications will cause the delete command to be rejected as `INDEX` specified is invalid.
+* Index specified must not exceed the total number of applicants stored in TrackAScholar. e.g. using index `7` on a list of `6` applicants will cause the delete command to be rejected as `INDEX` specified is invalid.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in TrackAScholar.
@@ -268,16 +268,16 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Filtering scholarship applications by status: `filter`
+### Filtering applicants by application status: `filter`
 
-Filters and list all scholarship applications matching the application status specified
+Filters and list all applicants whose application status matches the specified application status
 
 Format: 
 ```
 filter <PENDING>/<ACCEPTED>/<REJECTED>
 ```
 
-* The user specifies to filter the applications with application status of either `PENDING` or `ACCEPTED` or `REJECTED`.
+* The user specifies to filter the applicants with application status of either `PENDING` or `ACCEPTED` or `REJECTED`.
 * filter command is case-insensitive. e.g. `pEnDiNg` or `Pending` both matches `PENDING`.
 
 Examples:
@@ -336,31 +336,31 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Pinning a scholarship application : `pin`
+### Pinning an applicant : `pin`
 
-A scholarship application will be pinned in the pinned application list on the right side of the screen.
-The application will be displayed on both application lists.
+An applicant will be pinned in the pinned applicant list on the right side of the screen.
+The applicant will be displayed on both applicant lists.
 
 Format: 
 ```
 pin INDEX
 ```
 
-* Pins the scholarship application with the specified `INDEX`.
-* The index refers to the index number shown in the displayed application list.
+* Pins the applicant with the specified `INDEX`.
+* The index refers to the index number shown in the displayed applicant list.
 * The index **must be a positive integer** 1, 2, 3, …​.
 
 Examples:
-* `list` followed by `pin 2` pins the 2nd application in TrackAScholar.
+* `list` followed by `pin 2` pins the 2nd applicant in TrackAScholar.
 
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Unpins a scholarship application : `unpin`
+### Unpins an applicant : `unpin`
 
-A scholarship application in the pinned application list (on the right side of the screen) will be unpinned. 
-This will result in the removal of the application from the pinned application list.
+An applicant in the pinned applicant list (on the right side of the screen) will be unpinned. 
+This will result in the removal of the applicant from the pinned applicant list.
 
 Format: 
 ```
@@ -379,7 +379,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Exiting the application : `exit`
+### Exiting the app : `exit`
 
 Exits TrackAScholar
 
