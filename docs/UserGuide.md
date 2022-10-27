@@ -110,7 +110,7 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
   `description`, `date` `amount` and `category`. We do not want PennyWise to be managing entries which are a repeat,
   of one another, as it would be easier to simply use the [edit](#editing-entries--edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category) 
   command to alter the original entry's specifications.
-  e.g. Executing the following 2 commands one after another, PennyWise will recognise (2) as a duplicate entry. 
+  For example, when executing the following 2 commands one after another, PennyWise will recognise (2), which is the second `Teh Beng` added as a duplicate entry. 
   <pre>
     <code>
         1. add t/e d/Teh Beng a/1.50 da/22-10-2022 c/Food
