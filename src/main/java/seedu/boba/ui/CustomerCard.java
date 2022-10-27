@@ -77,7 +77,7 @@ public class CustomerCard extends UiPart<Region> {
         for (Tag tag : listOfTags) {
             String tagName = tag.tagName;
             Label label = new Label(tagName);
-            label.setStyle(colourMap.getOrDefault(tagName, "  -fx-background-color: 3e7b91; "));
+            label.setStyle(colourMap.getOrDefault(tagName, "  -fx-background-color: #3e7b91; "));
             tags.getChildren().add(label);
         }
     }
