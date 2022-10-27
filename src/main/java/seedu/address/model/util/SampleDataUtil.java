@@ -1,12 +1,10 @@
 package seedu.address.model.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.logic.commands.schedule.AddScheduleCommand;
 import seedu.address.model.ProfNus;
 import seedu.address.model.ReadOnlyProfNus;
 import seedu.address.model.module.Module;
@@ -104,9 +102,8 @@ public class SampleDataUtil {
             sampleAb.addModule(moduleArray[i]);
             moduleArray[i].addSchedule(new Schedule(moduleArray[i].getCode().fullCode,
                     new Venue("School"),
-                    weekdaysArrayList.get(i%7), "10:00", "12:00",
-                    classTypes.get(i%4), moduleArray[i].getCode().fullCode+ ":" + classTypes.get(i%4)));
-
+                    weekdaysArrayList.get(i % 7), "10:00", "12:00",
+                    classTypes.get(i % 4), moduleArray[i].getCode().fullCode + ":" + classTypes.get(i % 4)));
         }
 
 
