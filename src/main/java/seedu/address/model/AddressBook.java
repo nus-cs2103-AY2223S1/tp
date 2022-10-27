@@ -201,6 +201,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Resets number of tasks and number of completed tasks of all modules and exams to 0.
+     */
+    public void resetAllTaskCount() {
+        modules.resetAllTaskCount();
+        exams.resetAllTaskCount();
+    }
+
     //// util methods
 
     @Override
@@ -339,6 +347,28 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
         requireAllNonNull(previousExam, newExam);
         tasks.updateExamFieldForTask(previousExam, newExam);
+    }
+
+    /**
+     * Replaces task by changing its given module field from {@code previousModule}
+     * to {@code newModule} for tasks that have their module field as {@code previousModule}.
+     * @param previousModule The module in the task's module field.
+     * @param newModule The new module which will replace the previous module in the task's module field.
+     */
+    public void updateModuleFieldForTask(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        tasks.updateModuleFieldForTask(previousModule, newModule);
+    }
+
+    /**
+     * Replaces exam by changing its given module field from {@code previousModule}
+     * to {@code newModule} for exams that have their module field as {@code previousModule}.
+     * @param previousModule The module in the exam's module field.
+     * @param newModule The new module which will replace the previous module in the exam's module field.
+     */
+    public void updateModuleFieldForExam(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        exams.updateModuleFieldForExam(previousModule, newModule);
     }
 
     @Override

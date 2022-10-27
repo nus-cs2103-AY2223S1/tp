@@ -135,6 +135,34 @@ public class DistinctExamList implements Iterable<Exam> {
         examList.set(index, updatedExam);
     }
 
+    /**
+     * Resets number of tasks and number of completed tasks of all exams to 0.
+     */
+    public void resetAllTaskCount() {
+        examList.forEach(exam -> {
+            int index = examList.indexOf(exam);
+            Exam updatedExam = exam.setNumOfCompletedTasks(0);
+            updatedExam = updatedExam.setTotalNumOfTasks(0);
+            examList.set(index, updatedExam);
+        });
+    }
+
+    /**
+     * Replaces exam by changing its given module field from {@code previousModule}
+     * to {@code newModule} for exams that have their module field as {@code previousModule}.
+     * @param previousModule The module in the exam's module field.
+     * @param newModule The new module which will replace the previous module in the exams's module field.
+     */
+    public void updateModuleFieldForExam(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        examList.forEach(exam -> {
+            if (exam.getModule().equals(previousModule)) {
+                Exam editedExam = exam.edit(newModule, null, null);
+                replaceExam(exam, editedExam, false);
+            }
+        });
+    }
+
     @Override
     public Iterator<Exam> iterator() {
         return examList.iterator();
