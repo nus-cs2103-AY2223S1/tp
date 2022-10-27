@@ -1,5 +1,6 @@
 package seedu.travelr.ui;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -49,16 +50,17 @@ public class SelectedTripCard extends UiPart<Region> {
         this.selectedTrip = selectedTrip;
         title.textProperty().addListener((ob, o, n) -> setSelectedTripLabel(title.getText()));
         title.textProperty().bind(selectedTrip.getObservableTitle());
-        tripLocation.textProperty().bind(selectedTrip.getObservableLocation());
-        tripDate.textProperty().bind(selectedTrip.getObservableDate());
         description.textProperty().bind(selectedTrip.getObservableDescription());
     }
 
     private void setSelectedTripLabel(String title) {
         if (title == null) {
             selectedTripLabel.setText("No Trips Selected!");
+            reset();
         } else {
             selectedTripLabel.setText("Selected Trip");
+            tripLocation.textProperty().bind(selectedTrip.getObservableLocation());
+            tripDate.textProperty().bind(selectedTrip.getObservableDate());
             if (selectedTrip.getObservableBoolean().get()) {
                 setIcon(this.title, completed, 22);
                 this.title.setContentDisplay(ContentDisplay.RIGHT);
@@ -68,7 +70,18 @@ public class SelectedTripCard extends UiPart<Region> {
         }
     }
 
+    private void reset() {
+        tripLocation.textProperty().bind(new SimpleStringProperty(""));
+        tripDate.textProperty().bind(new SimpleStringProperty(""));
+        setIcon(tripDate, null, 0);
+        setIcon(tripLocation, null, 0);
+    }
+
     private void setIcon(Label label, Image img, int size) {
+        if (img == null) {
+            label.setGraphic(new ImageView(img));
+            return;
+        }
         ImageView icon = new ImageView(img);
         icon.setFitWidth(size);
         icon.setFitHeight(size);
