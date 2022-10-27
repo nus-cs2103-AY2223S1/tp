@@ -156,8 +156,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save task panel data, address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from all of `TaskPanelStorage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated 
-  as either one (if only the functionality of only one is needed).
+* inherits from all of `TaskPanelStorage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -174,8 +173,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Current Implementation
 
-The `delete` feature is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified 
-by the user, getting the target `Task` at the specified index, and removing it from the list.
+The `delete` feature is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and removing it from the list.
 
 #### Example Usage of `task delete`
 
