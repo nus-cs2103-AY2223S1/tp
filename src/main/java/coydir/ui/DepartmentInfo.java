@@ -51,7 +51,7 @@ public class DepartmentInfo extends UiPart<Region> {
     }
 
     /**
-     * Initializing the leave table at the start of the program.
+     * Initializes the leave table at the start of the program.
      */
     public void initializeRatingTable() {
         ratingTable.setSelectionModel(null);

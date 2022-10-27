@@ -92,7 +92,6 @@ public class DatabaseParser {
         case DeleteLeaveCommand.COMMAND_WORD:
             return new DeleteLeaveCommandParser().parse(arguments);
 
-
         default:
             throw new ParseException('"' + commandWord + '"' + MESSAGE_UNKNOWN_COMMAND);
         }

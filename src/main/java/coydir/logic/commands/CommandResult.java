@@ -25,7 +25,6 @@ public class CommandResult {
 
     private final boolean viewDepartment;
 
-
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */

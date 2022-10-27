@@ -8,7 +8,7 @@ import coydir.model.Model;
 import coydir.model.person.Department;
 
 /**
- * view a person's particular identified using it's displayed index from the database.
+ * view a person's particular identified using its displayed index from the database.
  */
 public class ViewDepartmentCommand extends Command {
     public static final String COMMAND_WORD = "viewdepartment";

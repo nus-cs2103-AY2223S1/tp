@@ -40,9 +40,9 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 
    - **`list`** : Lists all employees in the company.
 
-   - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a employee named `John Doe` to Coydir.
+   - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds an employee named `John Doe` to Coydir.
 
-   - **`delete`**` 3` : Deletes the 3rd employee shown in the current list.
+   - **`delete`**` 3` : Deletes employee with ID 3.
 
    - **`exit`** : Exits the app.
 
@@ -76,6 +76,8 @@ Coydir v1.2 supports 3 user functions that allow for complete control of your co
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+:warning: **Integer input values cannot be too large**: any values greater than $2^{32}-1$ is not supported.
+
 </div>
 
 ### Adding an employee: `add`
@@ -98,6 +100,8 @@ Examples:
 Adds multiple employees to Coydir all at once.
 
 :warning: **Make sure to have uploaded CSV file to make use of this command, and that employees' fields are compatible with Coydir**: CSV file can be uploaded under the 'data' folder of Coydir.
+
+:warning: **Fields to be added in batchadd would be name, phone, email, position, department, address, tags, and total number of leaves**
 
 :warning: **Do not have commas between each field in the CSV file.**
 
@@ -209,6 +213,30 @@ Example:
 
 - `deleteleave id/1 i/3` deletes the third leave period for an employee of ID 1 in the list of leaves.
 
+### Rating the performance of an employee: `rate`
+
+Rate the performance of an employee given the employee ID and a numeric rating.
+Ratings can take any values from 1 - 5, and it should not be blank.
+
+The numeric representation of the ratings follows as such:
+5: Outstanding | 4: Exceeds Expectations | 3: Satisfactory | 2: Needs Improvement | 1: Unsatisfactory
+
+This command results in one of two cases below:
+
+**Case 1: Valid ID and rating**
+
+If the employee exists, the rating given is valid (is a number from 1-5 inclusive), the performance rating will be added and the performance field of the employee will be updated accordingly.
+
+**Case 2: Invalid ID or rating**
+
+If any of employee ID, the rating given is invalid (is not a number from 1-5 inclusive), Coydir will prompt the users accordingly, and the command will not execute.
+
+Format: `rate id/ID r/RATING`
+
+Example:
+
+- `rate id/1 r/3` adds a performance rating to an employee of ID 1 with a rating of 3: Satisfactory.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -251,6 +279,7 @@ _Details coming soon ..._
 | **Find**         | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                 |
 | **Add leave**    | `addleave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `addleave id/1 sd/01-01-2022 ed/02-01-2022`                                                                      |
 | **Delete leave** | `deleteleave id/ID i/INDEX`<br> e.g. `deleteleave id/1 i/3`                                                                                                          |
+| **rate** | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                          |
 | **List**         | `list`                                                                                                                                                               |
 | **Exit**         | `exit`                                                                                                                                                               |
 | **Help**         | `help`                                                                                                                                                               |

@@ -25,5 +25,4 @@ public class ViewDepartmentCommandParser implements Parser<ViewDepartmentCommand
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewDepartmentCommand.MESSAGE_USAGE), pe);
         }
     }
-
 }
