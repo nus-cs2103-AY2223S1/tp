@@ -145,16 +145,19 @@ public class UniqueInternshipList implements Iterable<Internship> {
      */
     public void dateSortAscending() {
         ObservableList<Internship> noDates = FXCollections.observableArrayList();
+        ObservableList<Internship> copyInternalList = FXCollections.observableArrayList();
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getTasks().size() == 0) {
                 noDates.add(internalList.get(i));
-                internalList.remove(i);
+            } else {
+                copyInternalList.add(internalList.get(i));
             }
         }
-        internalList.sort(Comparator.comparing(o -> o.getNearestTaskDate()));
+        copyInternalList.sort(Comparator.comparing(o -> o.getNearestTaskDate()));
         for (int i = 0; i < noDates.size(); i++) {
-            internalList.add(noDates.get(i));
+            copyInternalList.add(noDates.get(i));
         }
+        FXCollections.copy(internalList, copyInternalList);
     }
 
     /**
@@ -163,17 +166,20 @@ public class UniqueInternshipList implements Iterable<Internship> {
      */
     public void dateSortDescending() {
         ObservableList<Internship> noDates = FXCollections.observableArrayList();
+        ObservableList<Internship> copyInternalList = FXCollections.observableArrayList();
         for (int i = 0; i < internalList.size(); i++) {
             if (internalList.get(i).getTasks().size() == 0) {
                 noDates.add(internalList.get(i));
-                internalList.remove(i);
+            } else {
+                copyInternalList.add(internalList.get(i));
             }
         }
-        internalList.sort(Comparator.comparing(o -> o.getNearestTaskDate()));
-        Collections.reverse(internalList);
+        copyInternalList.sort(Comparator.comparing(o -> o.getNearestTaskDate()));
+        Collections.reverse(copyInternalList);
         for (int i = 0; i < noDates.size(); i++) {
-            internalList.add(noDates.get(i));
+            copyInternalList.add(noDates.get(i));
         }
+        FXCollections.copy(internalList, copyInternalList);
     }
 
     /**
