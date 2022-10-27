@@ -209,9 +209,9 @@ Format: `assigntask NAME g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]`
 * `DEADLINE` must be in `yyyy-MM-dd` or `yyyy-MM-dd HH:mm` format.
 
 Examples:
-* `assigntask John g/CS2103T task/TeamProject w/High` 
+* `assigntask John g/CS2103T task/TeamProject w/High`
 assigns `John` in group `CS2103T` with a `High` workload task `TeamProject`.
-* `assigntask Alice g/Group Alpha task/Coursework 0 w/Low d/2022-01-01 23:59` 
+* `assigntask Alice g/Group Alpha task/Coursework 0 w/Low d/2022-01-01 23:59`
 assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0` and the deadline of the task is `2022-01-01 23:59`.
 
 <div markdown="span" class="alert alert-primary">
