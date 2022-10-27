@@ -1,12 +1,15 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Loan;
+import seedu.address.model.person.LoanHistory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -25,6 +28,7 @@ public class PersonBuilder {
     public static final String DEFAULT_BIRTHDAY = "01/01/2000";
     public static final String DEFAULT_LOAN = "0";
 
+
     private Name name;
     private Phone phone;
     private Email email;
@@ -32,6 +36,7 @@ public class PersonBuilder {
     private Birthday birthday;
     private Set<Tag> tags;
     private Loan loan;
+    private List<LoanHistory> history;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +49,7 @@ public class PersonBuilder {
         birthday = new Birthday(DEFAULT_BIRTHDAY);
         tags = new HashSet<>();
         loan = new Loan(DEFAULT_LOAN);
+        history = new ArrayList<>();
     }
 
     /**
@@ -57,6 +63,7 @@ public class PersonBuilder {
         birthday = personToCopy.getBirthday();
         tags = new HashSet<>(personToCopy.getTags());
         loan = personToCopy.getLoan();
+        history = personToCopy.getHistory();
     }
 
     /**
@@ -116,7 +123,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, birthday, tags, loan);
+        return new Person(name, phone, email, address, birthday, tags, loan, new ArrayList<LoanHistory>());
     }
 
 }

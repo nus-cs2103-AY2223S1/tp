@@ -119,7 +119,8 @@ public class PersonTest {
                 new Address(PersonBuilder.DEFAULT_ADDRESS),
                 new Birthday(PersonBuilder.DEFAULT_BIRTHDAY),
                 Set.of(tag),
-                new Loan(PersonBuilder.DEFAULT_LOAN));
+                new Loan(PersonBuilder.DEFAULT_LOAN),
+                new ArrayList<LoanHistory>());
 
         tag.addPerson(personA);
 
@@ -144,7 +145,8 @@ public class PersonTest {
                 new Address(PersonBuilder.DEFAULT_ADDRESS),
                 new Birthday(PersonBuilder.DEFAULT_BIRTHDAY),
                 tagSet,
-                new Loan(PersonBuilder.DEFAULT_LOAN));
+                new Loan(PersonBuilder.DEFAULT_LOAN),
+                new ArrayList<LoanHistory>());
 
         Person personB = new Person(
                 new Name("PersonB"),
@@ -153,7 +155,8 @@ public class PersonTest {
                 new Address(PersonBuilder.DEFAULT_ADDRESS),
                 new Birthday(PersonBuilder.DEFAULT_BIRTHDAY),
                 tagSet,
-                new Loan(PersonBuilder.DEFAULT_LOAN));
+                new Loan(PersonBuilder.DEFAULT_LOAN),
+                new ArrayList<LoanHistory>());
 
         tag.addPerson(personA);
         tag.addPerson(personB);

@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -41,7 +41,7 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
     public EditNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NOTES_TITLE, PREFIX_NOTES_CONTENT, PREFIX_NOTES_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTES_TITLE, PREFIX_NOTES_CONTENT, PREFIX_TAG);
 
         Index index;
 
@@ -59,7 +59,7 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
         if (argMultimap.getValue(PREFIX_NOTES_CONTENT).isPresent()) {
             editNoteDescriptor.setContent(ParserUtil.parseContent(argMultimap.getValue(PREFIX_NOTES_CONTENT).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_NOTES_TAG)).ifPresent(editNoteDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editNoteDescriptor::setTags);
 
         if (!editNoteDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditNoteCommand.MESSAGE_NOT_EDITED);
