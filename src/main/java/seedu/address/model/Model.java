@@ -6,7 +6,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
 
 /**
@@ -65,6 +67,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns a person in the address book with the same email as {@code email}.
+     */
+    Person getPersonByEmail(Email email) throws PersonNotFoundException;
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -108,6 +115,7 @@ public interface Model {
     void setTask(Task target, Task editedTask);
 
     void update();
+
     /**
      * Returns an unmodifiable view of the filtered person list
      */

@@ -13,7 +13,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 
-
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
@@ -44,12 +43,12 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         for (Task task : lastShownTaskList) {
-            if (task.getPerson().equals(personToDelete)) {
-                task.setPerson(new CommandUtil.DeletedPerson());
+            Person assignee = task.getPerson();
+            if (assignee != null && assignee.equals(personToDelete)) {
+                task.setPerson(null);
             }
         }
 

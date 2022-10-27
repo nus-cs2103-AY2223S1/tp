@@ -20,7 +20,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -30,30 +29,12 @@ import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.TaskBuilder;
 
 
-
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditTaskCommand.
  */
 public class EditTaskCommandTest {
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-
-    @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Task editedTask = new TaskBuilder().build();
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
-        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, descriptor);
-
-        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
-
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
-    }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
