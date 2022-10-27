@@ -15,9 +15,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Stream;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
