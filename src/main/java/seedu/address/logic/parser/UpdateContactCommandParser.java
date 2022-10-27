@@ -21,7 +21,7 @@ import seedu.address.model.person.Uid;
 /**
  * Parses user input for the set physician command.
  */
-public class SetPhysicianCommandParser implements Parser<UpdateContactCommand> {
+public class UpdateContactCommandParser implements Parser<UpdateContactCommand> {
 
     @Override
     public UpdateContactCommand parse(String args) throws ParseException {

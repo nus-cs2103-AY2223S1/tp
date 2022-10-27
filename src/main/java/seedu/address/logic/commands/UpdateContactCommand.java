@@ -19,7 +19,7 @@ import seedu.address.model.person.Physician;
 import seedu.address.model.person.Uid;
 
 /**
- * Represents the command to assign an attending physician to a patient.
+ * Represents the command to add contact details of attending physician or next of kin to a patient.
  */
 public class UpdateContactCommand extends Command {
     public static final String COMMAND_WORD = "updatecontact";
@@ -114,6 +114,7 @@ public class UpdateContactCommand extends Command {
         return uid.equals(e.uid)
                 && name.equals(e.name)
                 && phone.equals(e.phone)
-                && email.equals(e.email);
+                && email.equals(e.email)
+                && category.equals(e.category);
     }
 }
