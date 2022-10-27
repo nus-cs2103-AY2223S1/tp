@@ -123,8 +123,8 @@ Find profiles whose names contain any of the given keywords.
 
 Examples:
 * `profile -f Jane` returns `jane` and `Jane Doe`
-* `profile -f alex david john` returns `Alex Yeoh`, `David Li`, `Johnny Smith`<br>
-  ![result for 'profile -f alex david john'](images/findAlexDavidJohnResult.png)
+* `profile -f alex dav` returns `Alex Yeoh`and `David Li`<br>
+  ![result for 'profile -f alex dav'](images/findAlexDavResult.png)
 
 
 #### Deleting a profile: `profile -d`
