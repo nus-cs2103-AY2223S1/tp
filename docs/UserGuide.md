@@ -170,7 +170,7 @@ The default date is the current date on your computer!
 
 ### Summary of entries : `summary [mo/MONTH]`
 
-1. Summarise of all entries in the currently shown list
+1. Summary of all entries in the currently shown list
    * Examples: `summary`
      * Expected: <br/>
        Financials Summarized <br/>
