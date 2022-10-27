@@ -26,6 +26,7 @@ import seedu.clinkedin.logic.commands.ListCommand;
 import seedu.clinkedin.logic.commands.NoteCommand;
 import seedu.clinkedin.logic.commands.RateCommand;
 import seedu.clinkedin.logic.commands.StatsCommand;
+import seedu.clinkedin.logic.commands.ViewCommand;
 import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
 
@@ -80,7 +81,9 @@ public class CliSyntax {
             RateCommand.class,
             StatsCommand.class,
             ExportCommand.class,
-            ImportCommand.class);
+            ImportCommand.class,
+            ViewCommand.class
+        );
 
     /**
      * Adds a tag prefix to the list of prefixes.

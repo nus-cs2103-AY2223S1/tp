@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -27,7 +28,11 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.util.ImageUtil;
+import seedu.clinkedin.logic.commands.ViewCommand;
+import seedu.clinkedin.logic.commands.exceptions.CommandException;
+import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.tag.Tag;
@@ -50,6 +55,10 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
+
+    public final MainWindow mainWindow;
+
+    public final Index index;
 
     @FXML
     private HBox cardPane;
@@ -79,14 +88,14 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, MainWindow mainWindow) {
         super(FXML);
         this.person = person;
+        this.index = Index.fromOneBased(displayedIndex);
+        this.mainWindow = mainWindow;
+        cardPane.addEventHandler(MouseEvent.MOUSE_PRESSED, viewPerson());
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
         ObservableMap<TagType, UniqueTagList> tagTypeMap = person.getTags();
         List<TagType> tagTypeList = tagTypeMap.keySet().stream()
                 .sorted(Comparator.comparing(tagType -> tagType.getTagTypeName())).collect(Collectors.toList());
@@ -104,6 +113,7 @@ public class PersonCard extends UiPart<Region> {
         tagPane.setVgap(5);
 
         status.setText(person.getStatus().status);
+
         note.setText(person.getNote().value.length() > 0 ? "Notes: " + person.getNote().value : "");
 
         // pure text "Rating: " with color
@@ -198,6 +208,19 @@ public class PersonCard extends UiPart<Region> {
         return e;
     }
 
+    private EventHandler<MouseEvent> viewPerson() {
+        return new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent clickEvent) {
+                try {
+                    mainWindow.executeCommand(new ViewCommand(index));
+                } catch (ParseException | CommandException e) {
+                    e.printStackTrace();
+                }
+            };
+        };
+    };
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -212,7 +235,7 @@ public class PersonCard extends UiPart<Region> {
 
         // state check
         PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
+        return index.equals(card.index)
                 && person.equals(card.person);
     }
 }
