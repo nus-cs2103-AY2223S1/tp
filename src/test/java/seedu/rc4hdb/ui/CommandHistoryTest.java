@@ -2,6 +2,7 @@ package seedu.rc4hdb.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,12 +25,6 @@ public class CommandHistoryTest {
     @Test
     public void parserSingletonTest() {
         assertEquals(this.commandHistoryParser, CommandHistoryParser.getInstance());
-    }
-
-    @Test
-    public void retrieveNoCommand() {
-        String commandText = commandHistoryParser.parse(KeyCode.UP).execute();
-        assertEquals(EMPTY_TEXT, commandText);
     }
 
     @Test
