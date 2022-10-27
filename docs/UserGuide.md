@@ -307,8 +307,8 @@ Format: `mailEvent EVENT_INDEX`
 `Name` and `Email`, representing the name and email for a person in the event.
 
 Example:
-* `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event.
-* `mailEvent 4` creates mailing list as a CSV file, the name of the csv file is the same as the title of 4th event.
+* `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event in the events list.
+* `mailEvent 4` creates mailing list as a CSV file, the name of the csv file is the same as the title of 4th event in the events list.
 
 ### Clearing all entries : `clear`
 
@@ -352,10 +352,10 @@ _Details coming soon ..._
 | **DeletePerson** | `deletePerson INDEX`<br> e.g., `deletePerson 3`                                                                                                                                        |
 | **Edit**         | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                  |
 | **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                             |
-| **ListPersons**        | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                                |
+| **ListPersons**  | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                   |
 | **AddEvent**     | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
 | **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
-| **ListEvents**  | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                                                           |
+| **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                      |
 | **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                                |
 | **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                            |
 | **Help**         | `help`                                                                                                                                                                                 |
