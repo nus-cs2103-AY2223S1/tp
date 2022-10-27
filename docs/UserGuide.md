@@ -226,7 +226,9 @@ Examples:
 
 #### Ungrouping all patients/ appointments : `ungroup`
 
-Shows a list of all patients or appointments ungrouped 
+Shows a list of all patients or appointments ungrouped. <br>
+Patient entries will return to being sorted by name in alphabetical order. <br>
+Appointment entries will return to being sorted by date.
 
 Format:
 * `ungroup patients`
@@ -313,16 +315,16 @@ Examples:
 #### Unhiding appointments by reason, tag or status: `unhide appts`
 
 By reason:
-Shows (unhides) appointments that were previously hidden whose reason contain any of the given keywords.
+Unhides hidden appointments that contains `REASON` (and `MORE_REASONS`).
 
-Format: `unhide appts r/reason [r/MORE_REASONS]...`
+Format: `unhide appts r/REASON [r/MORE_REASONS]...`
 
 Examples:
 * `unhide appts r/pain` unhides all appointments with "pain" as part of the reason.
 
 By tag:
 
-Unhides appointments that were previously hidden which contain any of the given tags.
+Unhides hidden appointments that contains `TAG` (and `MORE_TAGS`).
 
 Format: `unhide appts t/TAG [t/MORE_TAGS]...`
 
@@ -333,7 +335,7 @@ Examples:
 * `unhide appts t/nose t/ear` unhides all appointments with a nose OR ear tag.
 
 By marked/unmarked status:
-Unhides appointments that were previously hidden which are marked/unmarked.
+Unhides hidden appointments which were marked or unmarked.
 
 Format: `unhide appts s/marked` or `unhide appts s/m` <br>
 Alternative: `unhide appts s/unmarked` or `unhide appts s/um`
