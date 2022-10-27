@@ -21,7 +21,7 @@ import seedu.taassist.model.session.Session;
  */
 public class SessionCommand extends Command {
 
-    public static final String COMMAND_WORD = "session";
+    public static final String COMMAND_WORD = "adds";
 
     public static final String MESSAGE_USAGE = "> Creates a new session for a class.\n"
             + "Paramaters: "
