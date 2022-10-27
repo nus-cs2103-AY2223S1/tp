@@ -364,7 +364,7 @@ The number of `Generator` objects created is equal to the number of unique exerc
 **Aspect: Number of `Generator` objects:**
 * **Current choice**: Pairing each unique exercise to one `Generator`.
     * Rationale: Allow generating suggestions of different difficulty level for different exercises, possibly in the future.
-
+    
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

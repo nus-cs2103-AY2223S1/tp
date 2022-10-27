@@ -4,7 +4,6 @@ import static gim.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,15 +30,12 @@ public class DateTest {
     @Test
     public void constructor_invalidDate_throwsIllegalArgumentException() {
         String invalidDateEmptyString = "";
-        String invalidDateWhitespaces = " ";
-        String invalidDateFormatOne = "5/5/2022";
-        String invalidDateFormatTwo = "05/5/2022";
-        String invalidDateFormatThree = "5/05/2022";
-        String invalidDateFormatFour = "05/05/22";
-        String invalidDateFormatFive = "31-04-2022";
-        String invalidDateFormatSix = "2022/02/02";
-        String invalidDateFormatSeven = "20 October 2022";
-        String invalidDateFormatEight = "32/01/2022";
+        String invalidDateWhitespaces = "     ";
+        String invalidDateFormatOne = "005/5/2022";
+        String invalidDateFormatTwo = "05/005/2022";
+        String invalidDateFormatThree = "5/05/20220";
+        String invalidDateFormatFour = "20 October 2022";
+        String invalidDateFormatFive = "32/01/2022";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateEmptyString));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateWhitespaces));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatOne));
@@ -47,9 +43,6 @@ public class DateTest {
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatThree));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatFour));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatFive));
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatSix));
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatSeven));
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatEight));
     }
 
     /**
@@ -57,14 +50,14 @@ public class DateTest {
      * Example: 31st February 2022 is a non-existent date.
      */
     @Test
-    public void constructor_nonExistentDate_throwsDateTimeParseException() {
+    public void constructor_nonExistentDate_throwsIllegalArgumentException() {
         String nonExistentDateOne = "31/02/2022";
         String nonExistentDateTwo = "29/02/2022"; // 2022 is a non-leap year
         String nonExistentDateThree = "31/04/2022";
 
-        assertThrows(DateTimeParseException.class, () -> new Date(nonExistentDateOne));
-        assertThrows(DateTimeParseException.class, () -> new Date(nonExistentDateTwo));
-        assertThrows(DateTimeParseException.class, () -> new Date(nonExistentDateThree));
+        assertThrows(IllegalArgumentException.class, () -> new Date(nonExistentDateOne));
+        assertThrows(IllegalArgumentException.class, () -> new Date(nonExistentDateTwo));
+        assertThrows(IllegalArgumentException.class, () -> new Date(nonExistentDateThree));
     }
 
     @Test

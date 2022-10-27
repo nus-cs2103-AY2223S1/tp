@@ -85,7 +85,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_SETS_DESC, Sets.MESSAGE_CONSTRAINTS); // invalid sets
 
         assertParseFailure(parser, "1" + INVALID_REPS_DESC, Reps.MESSAGE_CONSTRAINTS); // invalid reps
-        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS_FORMAT); // invalid date
 
         // invalid weight followed by valid sets
         assertParseFailure(parser, "1" + INVALID_WEIGHT_DESC + SETS_DESC_ARM_CURLS, Weight.MESSAGE_CONSTRAINTS);

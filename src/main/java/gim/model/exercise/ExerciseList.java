@@ -87,17 +87,18 @@ public class ExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
-     */
-    public ObservableList<Exercise> asUnmodifiableList() {
-        return internalUnmodifiableList;
-    }
-
-    /**
      * Returns the displayed list {@code ObservableList}.
      */
     public ObservableList<Exercise> asDisplayedList() {
         return displayedList;
+    }
+
+    /**
+     * Returns a duplicated displayed list {@code ObservableList}.
+     */
+    public ObservableList<Exercise> asDuplicatedDisplayedList() {
+        ObservableList<Exercise> duplicatedDisplayedList = FXCollections.observableArrayList(displayedList);
+        return duplicatedDisplayedList;
     }
 
     @Override
@@ -119,9 +120,19 @@ public class ExerciseList implements Iterable<Exercise> {
 
     /**
      * Sorts the displayedList according to the chronological order of the date field of exercise.
+     *
+     * Algorithm Description:
+     * (1) List is sorted by the comparator in increasing chronological order of date. Then, the list is sorted in
+     * decreasing alphabetical order by the comparator.
+     * (2) Then the call {@code Collections.reverse(displayedList)} will reverse the list. The resulting list
+     * will be sorted from the latest chronological date (at the top of the UI) to the oldest chronological
+     * date (at the bottom of the UI). For exercises with the same date in the resulting list, they are sorted
+     * by increasing alphabetical order.
      */
     public void sortDisplayedList() {
-        Collections.sort(displayedList, Comparator.comparing(e -> e.getDate().date));
+        Comparator<Exercise> comparator = Comparator.comparing(e -> e.getDate().date);
+        comparator = comparator.thenComparing((e1, e2) -> e2.getName().fullName.compareTo(e1.getName().fullName));
+        Collections.sort(displayedList, comparator);
         Collections.reverse(displayedList);
     }
 
