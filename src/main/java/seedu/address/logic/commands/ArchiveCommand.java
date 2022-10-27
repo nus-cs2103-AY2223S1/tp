@@ -21,10 +21,8 @@ public class ArchiveCommand extends Command {
             + ": archives the task identified by the index number used in the displayed task list.\n"
             + "parameters:\n"
             + "1. INDEX (must be a positive integer)\n"
-            + "2. DATE (format of YYYY-MM-DD)\n"
             + "EXAMPLE:\n"
-            + "1. archive 1\n"
-            + "2. archive 2022-10-22";
+            + "1. archive 1\n";
 
     public static final String MESSAGE_ARCHIVED_TASK_SUCCESS = "Task archived!\n" + "Task: %1$s";
 
