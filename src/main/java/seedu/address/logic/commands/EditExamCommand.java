@@ -7,7 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXAMS;
 
 import java.util.List;
@@ -34,11 +34,11 @@ public class EditExamCommand extends Command {
             + "by the index number used in the displayed exam list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_MOD_CODE + "MODULE CODE] "
+            + "[" + PREFIX_MOD_NAME + "MODULE] "
             + "[" + PREFIX_EXAM_DESCRIPTION + "EXAM DESCRIPTION] "
-            + "[" + PREFIX_EXAM_DATE + "EXAM DATE] "
+            + "[" + PREFIX_EXAM_DATE + "EXAM DATE] " + "\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_MOD_CODE + "cs2030s "
+            + PREFIX_MOD_NAME + "cs2030s "
             + PREFIX_EXAM_DESCRIPTION + "finals "
             + PREFIX_EXAM_DATE + "20-12-2022";
 
@@ -78,14 +78,17 @@ public class EditExamCommand extends Command {
             throw new CommandException(MESSAGE_EXAM_NOT_EDITED);
         }
 
+        boolean isEditedExamOfSameModule = examToEdit.getModule().isSameModule(editedExam.getModule());
+
         try {
-            if (!examToEdit.getModule().isSameModule(editedExam.getModule())) {
+            model.replaceExam(examToEdit, editedExam, false);
+            if (!isEditedExamOfSameModule && model.isExamLinkedToTask(examToEdit)) {
                 model.unlinkTasksFromExam(examToEdit);
+                return new CommandResult(String.format(MESSAGE_EDIT_EXAM_SUCCESS, editedExam) + "\n"
+                        + "Warning! All the tasks previously linked to this exam are now unlinked.");
             } else {
                 model.updateExamFieldForTask(examToEdit, editedExam);
             }
-            model.replaceExam(examToEdit, editedExam, false);
-
         } catch (DuplicateExamException e) {
             throw new CommandException(MESSAGE_DUPLICATE_EXAM);
         }
@@ -93,7 +96,6 @@ public class EditExamCommand extends Command {
         model.updateFilteredExamList(PREDICATE_SHOW_ALL_EXAMS);
         return new CommandResult(String.format(MESSAGE_EDIT_EXAM_SUCCESS, editedExam));
     }
-
 
     @Override
     public boolean equals(Object other) {
