@@ -30,10 +30,10 @@ public class Team {
     private final String description;
     private final UniquePersonList teamMembers = new UniquePersonList();
 
-    private final FilteredList<Person> filteredMembers;
+    private final DisplayList<Person> filteredMembers;
     private final TaskList taskList = new TaskList();
 
-    private final FilteredList<Task> filteredTasks;
+    private final DisplayList<Task> filteredTasks;
     private final UniqueLinkList links = new UniqueLinkList();
 
     /**
@@ -46,8 +46,8 @@ public class Team {
         checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
         this.description = DEFAULT_DESCRIPTION;
-        filteredMembers = new FilteredList<>(getTeamMembers());
-        filteredTasks = new FilteredList<>(getTaskList());
+        filteredMembers = new DisplayList<>(getTeamMembers());
+        filteredTasks = new DisplayList<>(getTaskList());
     }
 
     /**
@@ -62,8 +62,8 @@ public class Team {
         checkArgument(isValidTeamDescription(description), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
         this.description = description;
-        filteredMembers = new FilteredList<>(getTeamMembers());
-        filteredTasks = new FilteredList<>(getTaskList());
+        filteredMembers = new DisplayList<>(getTeamMembers());
+        filteredTasks = new DisplayList<>(getTaskList());
     }
 
     /**
@@ -130,7 +130,7 @@ public class Team {
     }
 
     public FilteredList<Person> getFilteredMemberList() {
-        return filteredMembers;
+        return filteredMembers.getFilteredDisplayList();
     }
 
     /**
@@ -142,7 +142,7 @@ public class Team {
     }
 
     public FilteredList<Task> getFilteredTaskList() {
-        return filteredTasks;
+        return filteredTasks.getFilteredDisplayList();
     }
 
     /**

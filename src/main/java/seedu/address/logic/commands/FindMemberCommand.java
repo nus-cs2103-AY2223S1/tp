@@ -6,14 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.EmailContainsKeywordsPredicateConverter;
-import seedu.address.logic.parser.NameContainsKeywordsPredicateConverter;
-import seedu.address.logic.parser.TaskNameContainsKeywordsPredicateConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -41,17 +39,18 @@ public class FindMemberCommand extends Command {
     public Exclusive predicate;
 
     static class Exclusive {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true,
-                paramLabel = "name keywords to find", arity = "1",
-                parameterConsumer = NameContainsKeywordsPredicateConverter.class)
-        NameContainsKeywordsPredicate namePredicate;
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG},
+                required = true, arity = "1..*")
+        String[] nameKeywords;
 
-        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, required = true,
-                paramLabel = "name keywords to find", arity = "1", parameterConsumer = EmailContainsKeywordsPredicateConverter.class)
-        EmailContainsKeywordsPredicate emailPredicate;
+        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG},
+                required = true, arity ="1..*")
+        String[] emailKeywords;
 
         Predicate<Person> getPredicate() {
-            return namePredicate == null? emailPredicate: namePredicate;
+            return nameKeywords == null
+                    ? new EmailContainsKeywordsPredicate(List.of(emailKeywords))
+                    : new NameContainsKeywordsPredicate(List.of(nameKeywords));
         }
     }
 

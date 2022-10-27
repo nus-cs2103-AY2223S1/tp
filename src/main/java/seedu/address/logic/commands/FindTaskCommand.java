@@ -1,15 +1,25 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
+
+import java.util.List;
+import java.util.function.Predicate;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TaskNameContainsKeywordsPredicateConverter;
 import seedu.address.model.Model;
+import seedu.address.model.person.EmailContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.team.Task;
 import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
+import seedu.address.model.team.Team;
 
 /**
  * Finds and lists all tasks in the current team whose name contains any of the argument keywords.
@@ -26,9 +36,18 @@ public class FindTaskCommand extends Command {
             + "-" + FLAG_NAME_STR + " NAME \n"
             + "Example: " + COMMAND_WORD + " "
             + "-" + FLAG_NAME_STR + " teams feature ";
-    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true,
-            paramLabel = "keywords to find", arity = "1", parameterConsumer = TaskNameContainsKeywordsPredicateConverter.class)
-    private TaskNameContainsKeywordsPredicate predicate;
+
+    @CommandLine.ArgGroup(exclusive = true, multiplicity = "1")
+    public Exclusive predicate;
+    static class Exclusive {
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG},
+                required = true, arity = "1..*")
+        String[] nameKeywords;
+        Predicate<Task> getPredicate() {
+            return new TaskNameContainsKeywordsPredicate(List.of(nameKeywords));
+        }
+    }
+
 
     public FindTaskCommand() {
     }
@@ -36,7 +55,7 @@ public class FindTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredTaskList(predicate);
+        model.updateFilteredTaskList(predicate.getPredicate());
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }
