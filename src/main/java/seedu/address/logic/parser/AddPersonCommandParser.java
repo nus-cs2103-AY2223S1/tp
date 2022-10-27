@@ -14,8 +14,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.date.Date;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -47,7 +47,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
-        DateOfBirth dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
+        Date dob = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DOB).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Uid uid = new Uid();
         Person person = new Person(name, phone, email, address, gender, dob, tagList, uid);
