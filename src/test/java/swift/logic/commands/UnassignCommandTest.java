@@ -7,7 +7,9 @@ import static swift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static swift.testutil.TypicalIntegratedAddressBook.getTypicalAddressBook;
 import static swift.testutil.TypicalPersonIndexes.INDEX_FIRST_PERSON;
 import static swift.testutil.TypicalPersonIndexes.INDEX_SECOND_PERSON;
-import static swift.testutil.TypicalTaskIndexes.*;
+import static swift.testutil.TypicalTaskIndexes.INDEX_FIRST_TASK;
+import static swift.testutil.TypicalTaskIndexes.INDEX_SECOND_TASK;
+import static swift.testutil.TypicalTaskIndexes.INDEX_THIRD_TASK;
 
 import org.junit.jupiter.api.Test;
 
