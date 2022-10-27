@@ -420,7 +420,7 @@ Format:
 
 * The command word is `sortbill`.
 * The prefixes are c/ for Criteria and o/ for Order.
-* The criteria can be Name of patient (name), Amount (amount), Date (date), Payment status (status).
+* The criteria can be Name of patient (name), Amount (amount), Bill date (date), Payment status (status).
 * The order can be Ascending (asc) or Descending (desc).
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
