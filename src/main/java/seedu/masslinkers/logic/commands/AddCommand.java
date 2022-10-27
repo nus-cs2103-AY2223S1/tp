@@ -1,8 +1,12 @@
 package seedu.masslinkers.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.masslinkers.logic.parser.CliSyntax.*;
+import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_INTEREST;
+import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import seedu.masslinkers.logic.commands.exceptions.CommandException;
 import seedu.masslinkers.model.Model;
