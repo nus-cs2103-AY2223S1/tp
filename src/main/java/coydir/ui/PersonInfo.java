@@ -54,9 +54,8 @@ public class PersonInfo extends UiPart<Region> {
     /**
      * Creates a {@code PersonInfo} to display the {@code Person} particulars.
      */
-    public PersonInfo(Person person) {
+    public PersonInfo() {
         super(FXML);
-        update(person);
     }
 
     /**

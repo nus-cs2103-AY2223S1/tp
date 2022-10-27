@@ -33,10 +33,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private HomePanel homePanel;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-
     private PersonInfo personInfo;
 
     private int currentIndex;
@@ -57,7 +57,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane personInfoPanelPlaceholder;
+    private StackPane sidePanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -124,9 +124,15 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        personInfo = new PersonInfo(logic.getFilteredPersonList().get(0));
+        // init personInfo component but do not display
+        personInfo = new PersonInfo();
         personInfo.initializeLeaveTable();
-        personInfoPanelPlaceholder.getChildren().add(personInfo.getRoot());
+
+        // init homePanel component
+        homePanel = new HomePanel();
+
+        // set side panel to home panel
+        sidePanelPlaceholder.getChildren().add(homePanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -213,8 +219,8 @@ public class MainWindow extends UiPart<Stage> {
     private void handleView(int index) {
         currentIndex = index;
         personInfo.update(logic.getFilteredPersonList().get(index));
-        personInfoPanelPlaceholder.getChildren().clear();
-        personInfoPanelPlaceholder.getChildren().add(personInfo.getRoot());
+        sidePanelPlaceholder.getChildren().clear();
+        sidePanelPlaceholder.getChildren().add(personInfo.getRoot());
     }
 
     private void handleUpdate(int index) {
