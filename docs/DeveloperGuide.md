@@ -196,9 +196,8 @@ The edit item feature allows the user to edit an `Item` currently being tracked 
 
 #### Implementation
 
-The edit item command `editi` is implemented through the `Logic`, `Model` and `Storage` components. The `Logic`
-component parses the user input, the `Model` component then performs the edit on the target item, the `Storage`
-component then saves the edited data into `data/trackO.json`.
+The edit item command `editi` is implemented through the `Logic` and `Model` components. The `Logic`
+component parses the user input, the `Model` component then performs the edit on the target `Item`.
 
 Step 1: The user inputs the command `editi 1 i/Chair q/20`. This calls:
 1. `LogicManager#execute()`
@@ -222,8 +221,6 @@ situation.
 
 Step 3. The `Item` at the target index is then replaced by the newly created `Item` using `ModelManager#setItem()`,
 successfully executing the edit item command in the `Model`.
-
-Step 4. `LogicManager#execute()` then calls `Storage#saveTrackO()` which saves the updated `Model` to the data file.
 
 The sequence diagram below illustrates this process.
 
