@@ -18,7 +18,7 @@ import seedu.clinkedin.model.person.UniqueTagTypeMap;
  */
 public class AddRateCommand extends Command {
 
-    public static final String COMMAND_WORD = "addRate";
+    public static final String COMMAND_WORD = "addrate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an optional rating to the person identified"
