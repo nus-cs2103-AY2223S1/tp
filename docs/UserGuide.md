@@ -139,9 +139,9 @@ Format: `project -l`
 
 Finds and lists all the projects matching the search criteria.
 
-Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY] [p/PROJECT_ID] [l/CLIENT_LABEL]`
+Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY] [p/PROJECT_ID] [c/CLIENT_ID] [l/CLIENT_LABEL]`
 
-* Finds all the projects with the specified `PROJECT_NAME`, `REPOSITORY`, `PROJECT_ID` and `CLIENT_LABEL`.
+* Finds all the projects with the specified `PROJECT_NAME`, `REPOSITORY`, `PROJECT_ID`, `CLIENT_ID` and `CLIENT_LABEL`.
 * Finds all the projects such that the fields under the project contain at least one word from the keywords provided
   after each search criteria.
 * The keywords provided must be valid arguments for their respective search criteria.
@@ -150,7 +150,8 @@ Examples:
 * `project -f n/DevEnable` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable.
 * `project -f n/DevEnable AB3` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable or AB3.
 * `project -f r/tp/F13` Finds and lists all the projects with `REPOSITORY` tp/F13.
-* `project -f l/Amy` Finds and lists all the projects with the client Amy labelled (tagged) to it.
+* `project -f l/Amy` Finds and lists all the projects with the client whose `CLIENT_NAME` Amy labelled (tagged) to it.
+* `project -f c/3` Finds and lists all the projects with the client whose `CLIENT_ID` is 3.
 * `project -f p/1` Finds and lists the project with `PROJECT_ID` 1.
 * `project -f n/AB4 AB3 r/tp/F13` Finds and lists all the projects whose `PROJECT_NAME` contains the word AB4 or AB3 
   and with `REPOSITORY` tp/F13.
@@ -371,9 +372,9 @@ Examples:
 
 Finds and lists all the issues matching the search criteria.
 
-Format: `issue -f [t/TITLE] [n/PROJECT_NAME] [u/URGENCY] [s/STATUS] [i/ISSUE_ID]`
+Format: `issue -f [t/TITLE] [n/PROJECT_NAME] [p/PROJECT_ID] [u/URGENCY] [s/STATUS] [i/ISSUE_ID]`
 
-* Finds all the issues with the specified `TITLE`, `PROJECT_NAME`, `URGENCY`, `STATUS` and `ISSUE_ID`.
+* Finds all the issues with the specified `TITLE`, `PROJECT_ID`, `PROJECT_NAME`, `URGENCY`, `STATUS` and `ISSUE_ID`.
 * Finds all the issues such that the fields under the issue contain at least one word from the keywords provided
   after each search criteria.
 * The keywords provided must be valid arguments for their respective search criteria.
@@ -383,6 +384,7 @@ Examples:
 * `issue -f n/DevEnable AB3` Finds and lists all the issues tied to the project with `PROJECT_NAME` containing 
   DevEnable or AB3.
 * `issue -f i/3` Finds and lists the issue with `ISSUE_ID` 3.
+* `issue -f p/3` Finds and lists the issue tied to project with `PROJECT_ID` 3.
 * `issue -f n/DevEnable AB3 u/LOW` Finds and lists all the issues with `URGENCY` as LOW and tied to the project with 
   `PROJECT_NAME` containing DevEnable or AB3.
 * `issue -f t/enhancement p/DevEnable AB3 u/HIGH LOW` Finds and lists all the issues with `TITLE` enhancement and 
