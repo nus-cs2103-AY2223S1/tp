@@ -6,30 +6,7 @@ import static seedu.travelr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-<<<<<<< HEAD
 import seedu.travelr.logic.commands.*;
-=======
-import seedu.travelr.logic.commands.AddCommand;
-import seedu.travelr.logic.commands.AddEventCommand;
-import seedu.travelr.logic.commands.AddEventToTripCommand;
-import seedu.travelr.logic.commands.ClearCommand;
-import seedu.travelr.logic.commands.Command;
-import seedu.travelr.logic.commands.DeleteCommand;
-import seedu.travelr.logic.commands.DeleteEventCommand;
-import seedu.travelr.logic.commands.DeleteEventFromTripCommand;
-import seedu.travelr.logic.commands.EventListCommand;
-import seedu.travelr.logic.commands.ExitCommand;
-import seedu.travelr.logic.commands.FindCommand;
-import seedu.travelr.logic.commands.HelpCommand;
-import seedu.travelr.logic.commands.ListCommand;
-import seedu.travelr.logic.commands.MarkTripDoneCommand;
-import seedu.travelr.logic.commands.SelectCommand;
-import seedu.travelr.logic.commands.SortEventsCommand;
-import seedu.travelr.logic.commands.SortTripsCommand;
-import seedu.travelr.logic.commands.UnmarkDoneTripCommand;
-import seedu.travelr.logic.commands.ViewAllCommand;
-import seedu.travelr.logic.commands.ViewCompletedCommand;
->>>>>>> 062adc8c330af64781fd46b4b0800c7ad8118d5a
 import seedu.travelr.logic.parser.exceptions.ParseException;
 
 /**
