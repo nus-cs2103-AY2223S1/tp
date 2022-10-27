@@ -70,10 +70,11 @@ public class AddInterviewCommand extends Command {
         }
 
         Application applicationToEdit = lastShownList.get(index.getZeroBased());
-        if (applicationToEdit.getInterview().isEmpty() && model.hasSameInterviewTime(toAdd)) {
+        boolean hasInterview = applicationToEdit.getInterview().isPresent();
+        if (!hasInterview && model.hasSameInterviewTime(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
-        } else if (applicationToEdit.getInterview().isPresent()
-                && model.hasSameInterviewTimeExcludeSelf(toAdd, applicationToEdit)) {
+        }
+        if (hasInterview && model.hasSameInterviewTimeExcludeSelf(toAdd, applicationToEdit)) {
             throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
         }
         Application editedApplication;

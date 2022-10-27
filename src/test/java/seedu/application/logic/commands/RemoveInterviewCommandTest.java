@@ -19,58 +19,58 @@ import seedu.application.model.application.Application;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteInterviewCommand}.
+ * {@code RemoveInterviewCommand}.
  */
-public class DeleteInterviewCommandTest {
+public class RemoveInterviewCommandTest {
 
     private Model model = new ModelManager(getTypicalApplicationBookWithInterview(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Application applicationWithInterviewToDelete = model.getApplicationListWithInterview()
+        Application applicationWithInterviewToRemove = model.getApplicationListWithInterview()
                 .get(INDEX_FIRST_APPLICATION.getZeroBased());
-        DeleteInterviewCommand deleteCommand = new DeleteInterviewCommand(INDEX_FIRST_APPLICATION);
+        RemoveInterviewCommand removeCommand = new RemoveInterviewCommand(INDEX_FIRST_APPLICATION);
 
-        String expectedMessage = String.format(DeleteInterviewCommand.MESSAGE_DELETE_APPLICATION_SUCCESS,
-                applicationWithInterviewToDelete.getInterview().get());
+        String expectedMessage = String.format(RemoveInterviewCommand.MESSAGE_REMOVE_INTERVIEW_SUCCESS,
+                applicationWithInterviewToRemove.getInterview().get());
 
         ModelManager expectedModel = new ModelManager(model.getApplicationBook(), new UserPrefs());
-        expectedModel.setApplication(applicationWithInterviewToDelete,
-                new Application(applicationWithInterviewToDelete));
+        expectedModel.setApplication(applicationWithInterviewToRemove,
+                new Application(applicationWithInterviewToRemove));
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
     }
 
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getApplicationListWithInterview().size() + 1);
-        DeleteInterviewCommand deleteCommand = new DeleteInterviewCommand(outOfBoundIndex);
+        RemoveInterviewCommand removeCommand = new RemoveInterviewCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INTERVIEW_DISPLAYED_INDEX);
+        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_INTERVIEW_DISPLAYED_INDEX);
     }
 
 
     @Test
     public void equals() {
-        DeleteInterviewCommand deleteFirstCommand = new DeleteInterviewCommand(INDEX_FIRST_APPLICATION);
-        DeleteInterviewCommand deleteSecondCommand = new DeleteInterviewCommand(INDEX_SECOND_APPLICATION);
+        RemoveInterviewCommand removeFirstCommand = new RemoveInterviewCommand(INDEX_FIRST_APPLICATION);
+        RemoveInterviewCommand removeSecondCommand = new RemoveInterviewCommand(INDEX_SECOND_APPLICATION);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(removeFirstCommand.equals(removeFirstCommand));
 
         // same values -> returns true
-        DeleteInterviewCommand deleteFirstCommandCopy = new DeleteInterviewCommand(INDEX_FIRST_APPLICATION);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        RemoveInterviewCommand removeFirstCommandCopy = new RemoveInterviewCommand(INDEX_FIRST_APPLICATION);
+        assertTrue(removeFirstCommand.equals(removeFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(removeFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(removeFirstCommand.equals(null));
 
         // different interview -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(removeFirstCommand.equals(removeSecondCommand));
     }
 
 }
