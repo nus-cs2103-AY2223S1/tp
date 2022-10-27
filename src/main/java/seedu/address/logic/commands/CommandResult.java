@@ -55,7 +55,7 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this(feedbackToUser, showHelp, "", exit, null, false);
     }
-    
+
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean toggleListMode) {
         this(feedbackToUser, showHelp, "", exit, null, toggleListMode);
     }
