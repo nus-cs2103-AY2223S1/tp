@@ -329,7 +329,7 @@ Examples:
 
 ---
 
-### Sort the displayed students: 'sort'
+### Sort the displayed students: `sort`
 
 Sort the displayed list of students (in the Student's Details panel) by the given `TYPE` and `ORDER`.
 
@@ -392,7 +392,7 @@ Examples:
 
 ---
 
-### Deleting student(s): 'delete'
+### Deleting student(s): `delete`
 
 Deletes the specified student(s) from the student list.
 
@@ -414,7 +414,7 @@ Examples:
 
 ---
 
-### Clearing all student: 'clear'
+### Clearing all student: `clear`
 
 Clears all students and their details from the list.
 
@@ -428,7 +428,7 @@ Format: `clear`
 
 ---
 
-### Undo the last command: 'undo'
+### Undo the last command: `undo`
 
 Undoes the last command executed and restores the Teacher's Pet to the previous state.
 
