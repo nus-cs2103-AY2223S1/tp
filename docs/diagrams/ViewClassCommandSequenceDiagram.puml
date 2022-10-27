@@ -5,7 +5,9 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":StudentRecordParser" as StudentRecordParser LOGIC_COLOR
 participant ":ViewClassCommandParser" as ViewClassCommandParser LOGIC_COLOR
-participant "d:ViewClassCommand" as ViewClassCommand LOGIC_COLOR
+participant ":ViewClassCommand" as ViewClassCommand LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":ClassPredicate" as ClassPredicate LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -33,34 +35,33 @@ create ViewClassCommand
 ViewClassCommandParser -> ViewClassCommand
 activate ViewClassCommand
 
-ViewClassCommand --> ViewClassCommandParser : d
+ViewClassCommand --> ParserUtil : parseClass(" 3A")
+activate ParserUtil
+ParserUtil --> ViewClassCommand
+deactivate ParserUtil
+
+create ClassPredicate
+ViewClassCommand --> ClassPredicate
+activate ClassPredicate
+ClassPredicate --> ViewClassCommand
+deactivate ClassPredicate
+
+ViewClassCommand --> ViewClassCommandParser
 deactivate ViewClassCommand
 
-ViewClassCommandParser --> StudentRecordParser : d
+ViewClassCommandParser --> StudentRecordParser
 deactivate ViewClassCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 ViewClassCommandParser -[hidden]-> StudentRecordParser
 destroy ViewClassCommandParser
 
-StudentRecordParser --> LogicManager : d
+StudentRecordParser --> LogicManager
 deactivate StudentRecordParser
 
 LogicManager -> ViewClassCommand : execute(Model)
 activate ViewClassCommand
 
-ViewClassCommand -> Model : updateFilteredStudentList(Predicate)
-activate Model
-
-Model --> ViewClassCommand
-deactivate Model
-
-ViewClassCommand -> Model : deleteStudent(Student)
-activate Model
-
-Model --> ViewClassCommand
-deactivate Model
-
-ViewClassCommand -> Model : updateFilteredStudentList(Predicate)
+ViewClassCommand -> Model : updateFilteredStudentList(ClassPredicate)
 activate Model
 
 Model --> ViewClassCommand

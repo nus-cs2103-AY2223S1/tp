@@ -316,43 +316,44 @@ Design considerations:
 
 <u>**Description**</u>
 The `ViewClassCommand` displays the list of students in a particular class.
+This feature relies mainly on the `ViewClassCommandParser` and `ClassPredicate`, where the `ViewClassCommandParser` uses
+`ClassPredicate` to select students in the student record with the mentioned class.
 
 <u>**Implementation**</u>
-This command can be divided into 3 main steps: 
+This command can be divided into 2 main steps: 
 1. Parsing the command
-2. Creating the Predicate
 3. Executing the command
-by updating the `FilteredStudentList` with a `ClassPredicate`.
-The ClassPredicate checks that a Student's Class matches the user input(ignoring case-sensitivity).
 
 The following Sequence diagram shows how the `ViewClassCommand` works:
-*Insert Sequence Diagram*
+
+<img src="images/ViewClassCommandSequenceDiagram.png" />
 
 **Step 1: Parsing the command**
 
-The delete command is first parsed.
+The user's input command is first parsed.
 
-1. The `execute` method of `LogicManager` is called to execute the user’s command, `delete id/123A`.
-2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a delete command and creates a new `DeleteCommandParser` instance to parse the user’s command.
-3. Once the command is successfully parsed, `DeleteCommandParser` creates a new `DeleteCommand` instance which will be executed by the `LogicManager`.
+1. `MainWindow` calls the `execute` method of `LogicManager` to execute the given user’s command.
+2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a `ViewClassCommand` and creates a new `ViewClassCommandParser` instance to parse the user’s input.
+3. `ViewClassCommandParser` checks whether the user input is valid by parsing it into the `parseClass` method in `ParserUtil`.
+4. If the input is valid, a new `ClassPredicate` instance is created. 
+6. `ViewClassCommandParser` then creates a new `ViewClassCommand` instance which will be executed by the `LogicManager`.
 
 **Step 2: Executing the command**
 
-Given below is an example usage scenario and how the ViewClass mechanism behaves at each step.
+The `ViewClassCommand` instance now interacts with the `ModelManager` to execute the command.
 
-Step 1. Assuming Class-ify has been populated with sample data, the `FilteredStudentList` currently contains all Students and user can see all the students listed in the Student List Panel.
+1. The `updateFilteredStudentList` method is called with the `ClassPredicate` to filter the list to only contain students whose `Class` matches the user input.
+:information_source: **Note:** A case-insensitive match is done, hence `viewClass 1a` and `viewClass 1A` will return the same results.
+4. A new `CommandResult` instance is created and returned to `LogicManager`.
 
-Step 2. The user executes `viewClass 1A` command.
 
-Step 3. A new ClassPredicate object is created with the user input.
-
-Step 4. The `updateFilteredStudentList` method in `model` is called with the ClassPredicate.
-
-Step 5. Class-ify displays the list of students with the class "1A" on the student card list panel according to the updated `FilteredStudentList`.
-
-Design Considerations:
-1. Predicate logic for filtering students by their class
-2. Limitations to a class name
+<u>**Design Considerations**</u>
+* **Alternative 1**: Integrate `ViewClassCommand` together with `FindCommand`, and users will find students in a specific class.
+  * Pros: Users will not need to learn a different command.
+  * Cons: There is still a need to differentiate the filter logic as class name requires an exact match, while name only requires it to contain the keywords.
+* **Alternative 2**: Separate `ViewClassCommand` and `FindCommand`. (Current Implementation)
+  * Pros: Distinguishing between a `View` and `Find` can make the filtering logic more obvious and apparent to users
+  * Cons: Users have an additional command to learn.
 
 
 #### 4.2.7 Toggle View command
