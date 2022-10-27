@@ -15,7 +15,8 @@ public class DeadlineTag implements Comparable<DeadlineTag> {
             "The deadline should be a valid date";
     public static final String DEADLINE_TAG_DATE_HAS_PASSED =
             "The deadline should not be earlier than today's date.";
-    private static final String dateFormat = "^[0-9]{2}[-][0-9]{2}[-][0-9]{4}";
+    private static final String dateFormat = "^(?:0[1-9]|[1-2][0-9]|3[0-1])[-]"
+            + "(?:0[1-9]|1[0-2])[-][0-9]{4}";
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public final LocalDate deadline;
