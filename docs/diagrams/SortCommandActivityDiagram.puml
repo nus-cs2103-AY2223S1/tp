@@ -1,0 +1,18 @@
+@startuml
+start
+:User enters Sort command;
+
+
+switch ()
+case ( [name] )
+  :TrackAScholar sorts \napplicants according \nto applicant name, \nlexicographically;
+case ( [scholarship] )
+  :TrackAScholar sorts \napplicants according \nto scholarship name, \nlexicographically;
+case ( [status])
+  :TrackAScholar sorts \napplicants according \nto application status \nin the following order: \npending, accepted \nand rejected;
+case ( [else] )
+  :TrackAScholar shows \nan error message \nindicating that input \nis invalid;
+
+endswitch
+stop
+@enduml

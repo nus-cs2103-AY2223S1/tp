@@ -266,13 +266,12 @@ Given below is an example usage scenario and how the sort operation is handled b
 5. `SortCommand#execute()` finishes with returning a `CommandResult` containing the newly sorted applicant list according to the input parameters.
 
 The following sequence diagram shows how the sort operation works:
-######(sequence diagram and activity diagram to be done replaced by jie hui)
 
-![Interactions Inside the Logic Component for the `filter` Command example](images/FilterSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `sort` Command example](images/SortSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a sort command:
 
-![Filter command activity diagram](images/FilterCommandActivityDiagram.png)
+![Filter command activity diagram](images/SortCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
