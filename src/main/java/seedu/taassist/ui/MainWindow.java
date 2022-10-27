@@ -7,9 +7,8 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.taassist.commons.core.GuiSettings;
@@ -58,7 +57,10 @@ public class MainWindow extends UiPart<Stage> {
     private HBox buttonBar;
 
     @FXML
-    private TextArea sessionClassText;
+    private Label classLabel;
+
+    @FXML
+    private GridPane classLabelContainer;
 
     @FXML
     private StackPane studentListPanelPlaceholder;
@@ -167,13 +169,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleFocusMode() {
-        sessionClassText.setText("Sessions");
+        classLabel.setText("Sessions");
         unfocusButton.setVisible(true);
         classTitle.setVisible(true);
         classTitle.textProperty().bind(logic.getFocusLabelProperty());
         helpButton.setId("helpFocusButton");
-        Region content = (Region) sessionClassText.lookup(".content");
-        content.setStyle("-fx-background-color:#f5d58b");
+        classLabelContainer.setStyle("-fx-background-color:#f5d58b");
         buttonBar.setStyle("-fx-background-color: derive(#a5dff0, 20%);");
         moduleClassListPanelPlaceholder.getChildren().remove(moduleClassListPanel.getRoot());
         moduleClassListPanelPlaceholder.getChildren().remove(sessionListPanel.getRoot());
@@ -181,11 +182,10 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void handleUnfocusMode() {
-        sessionClassText.setText("Classes");
+        classLabel.setText("Classes");
         unfocusButton.setVisible(false);
         classTitle.setVisible(false);
-        Region content = (Region) sessionClassText.lookup(".content");
-        content.setStyle("-fx-background-color:#a5dff0;");
+        classLabelContainer.setStyle("-fx-background-color:#a5dff0;");
         helpButton.setId("helpButton");
         buttonBar.setStyle("-fx-background-color: derive(#EDA7A7, 20%);");
         moduleClassListPanelPlaceholder.getChildren().remove(sessionListPanel.getRoot());
