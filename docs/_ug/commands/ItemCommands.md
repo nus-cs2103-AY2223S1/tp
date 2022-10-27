@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-Example of [Item](#item):
+Example of an [Item](#item):
 
 ![Item](images/ItemImage.png)
 
