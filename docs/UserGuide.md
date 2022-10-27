@@ -35,12 +35,14 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
       2. [Finding personal information and tags `find`](#finding-personal-information-and-tags-find)
       3. [Sorting candidates based on rating `sort`](#sorting-candidates-based-on-rating-sort)
    5. [Miscellaneous Features/Commands](#miscellaneous-featurescommands)
-      1. [Viewing statistics `stat`](#viewing-statistics-stat)
-      2. [Importing contacts `import`](#importing-contacts-import)
-      3. [Exporting contacts `export`](#exporting-contacts-export)
-      4. [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
-      5. [Saving the data](#saving-the-data)
-      6. [Editing the data file](#editing-the-data-file)
+      1. [Undoing previous command `undo`](#undoing-previous-command-undo)
+      2. [Redoing previous command `redo`](#redoing-previous-command-redo)
+      3. [Viewing statistics `stats`](#viewing-statistics-stats)
+      4. [Importing contacts `import`](#importing-contacts-import)
+      5. [Exporting contacts `export`](#exporting-contacts-export)
+      6. [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
+      7. [Saving the data](#saving-the-data)
+      8. [Editing the data file](#editing-the-data-file)
 5. [FAQ](#faq)
 6. [Command Summary](#command-summary)
 
@@ -356,14 +358,34 @@ Example:
 
 The following miscallenous features are implemented in CLInkedIn and are available to users.
 
-### Viewing Statistics: `stat`
+### Undoing previous command: `undo`
+
+Reverts the address book to the state before the previous command was executed.
+
+Format: `undo`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Undo can be used multiple times to undo multiple commands.
+</div>
+
+### Redoing previous command: `redo`
+
+Reverts the address book to the state before the previous undo command was executed.
+
+Format: `redo`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Redo can be used multiple times to redo multiple commands.
+</div>
+
+### Viewing Statistics: `stats`
 
 Views statistics of the candidates currently saved in CLInkedIn.
 
-Format: `stat`
+Format: `stats`
 
 Example:
-* `stat` displays the statistics regarding the contacts saved in CLInkedIn.
+* `stats` displays the statistics regarding the contacts saved in CLInkedIn.
 
 ### Importing contacts: `import`
 
