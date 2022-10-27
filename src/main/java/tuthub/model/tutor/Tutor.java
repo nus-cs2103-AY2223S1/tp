@@ -167,7 +167,7 @@ public class Tutor {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
-            builder.append(";")
+            builder.append(";");
         }
         return builder.toString();
     }
