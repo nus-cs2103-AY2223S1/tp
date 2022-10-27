@@ -19,8 +19,10 @@ title: Developer Guide
   * [User Stories](#user-stories)
   * [Use Cases](#use-cases)
     * [Use case: **Delete a student**](#use-case-delete-a-student)
-    * [Use case: **Edit a student contact detail**](#use-case-edit-a-student-contact-detail)
-    * [Use case: **Find student contact details**](#use-case-find-student-contact-details)
+    * [Use case: **Edit a student's contact number**](#use-case-edit-a-students-contact-number)
+    * [Use case: **Edit a student's class date**](#use-case-edit-a-students-class-date-)
+    * [Use case: **Find student by class date**](#use-case-find-student-by-class-date)
+    * [Use case: **Find student by names**](#use-case-find-student-by-name)
     * [Use case: **Find student by address**](#use-case-find-student-by-address)
     * [Use case: **Mark student as present for class**](#use-case-mark-student-as-present-for-class)
     * [Use case: **Allocate a slot for future class**](#use-case-allocate-a-slot-for-future-class)
@@ -385,10 +387,11 @@ This feature allows the user (teacher) to find a list of students from Teacher's
 
 The proposed `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 There are 4 different variations of `find`:
-1. Find by name: Find all matching student(s) using any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
-2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
-3. Find by address: Find all matching student(s) using any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
-4. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
+1. Find by name: Find all matching student(s) with any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
+3. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
+4. Find by address: Find all matching student(s) with any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
+5. Find by class date: Find all matching student(s) with classes on a particular date`find dt/[CLASS_DATE]`.
+6. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The 4 variations cannot be mixed with one another.</div>
 
@@ -511,7 +514,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
   Use case ends.
 
-#### Use case: **Edit a student's class date **
+#### Use case: **Edit a student's class date**
 
 **MSS**
 
@@ -549,24 +552,19 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
       Use case ends.
 
-#### Use case: **Find student contact details**
+#### Use case: **Find student by name**
 
 **MSS**
 
-1. Teacher requests to find the details of a specific student.
-2. Teacher’s Pet shows the student’s details.
+1. Teacher requests to find all the students with names matching the keywords.
+2. Teacher’s Pet shows a list of filtered students according to their provided query.
 
    Use case ends.
 
 **Extensions**
 
-- 1a. Student name does not exist in the system.
-    - 1a1. Teacher’s Pet shows an error message.
-
-      Use case ends.
-
 - 1b. Multiple students share the same name in the system.
-    - 1b1. Teacher’s Pet lists the details of multiple people.
+    - 1b1. Teacher’s Pet lists the details of multiple students.
 
       Use case ends.
 
@@ -574,7 +572,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to [find](#use-case-find-student-by-address) a student by address.
+1. Teacher requests to find a student by address.
 2. Teacher’s Pet shows a list of filtered students according to their provided query.
 
    Use case ends.
