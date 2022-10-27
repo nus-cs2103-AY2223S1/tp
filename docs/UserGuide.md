@@ -518,7 +518,7 @@ between 1000-1030 for a 60 minutes class.
 
 ---
 
-### Sort the displayed students: 'sort'
+### Sort the displayed students: `sort`
 
 Sorts the list of students in the Student's Details panel by the specified `TYPE` and `ORDER`.
 
@@ -539,15 +539,17 @@ Format: `sort TYPE [ORDER]`
 
 #### Sort by Name
 
-Sorts the list of students in the Students' Details panel by `NAME` and given `ORDER`.
+Sorts the list of students in the Students' Details panel by `name` and given `ORDER`.
 
-If `ORDER` is left blank, it will be `ASC` by default.
+If `ORDER` is left blank, it will be `asc` by default.
 
 Examples:
 
-- `list` followed by `sort NAME` will list all the students according to their names in ascending order.
-- `list` followed by `sort NAME ASC` will list all the students according to their names in ascending order.
-- `list` followed by `sort NAME DESC` will list all the students according to their names in descending order.
+- `list` followed by `sort name` will list all the students according to their names in ascending order.
+- `list` followed by `sort name asc` will list all the students according to their names in ascending order.
+- `list` followed by `sort name desc` will list all the students according to their names in descending order.
+
+[Back to top](#table-of-contents)
 
 #### Sort by Class Date
 
@@ -557,9 +559,11 @@ If `ORDER` is left blank, it will be `ASC` by default.
 
 Examples:
 
-- `list` followed by `sort CLASS` will list all the students according to their upcoming classes in ascending order.
-- `list` followed by `sort CLASS ASC` will list all the students according to their upcoming classes in ascending order.
-- `list` followed by `sort CLASS DESC` will list all the students according to their upcoming classes in descending order.
+- `list` followed by `sort class` will list all the students according to their upcoming classes in ascending order.
+- `list` followed by `sort class asc` will list all the students according to their upcoming classes in ascending order.
+- `list` followed by `sort class desc` will list all the students according to their upcoming classes in descending order.
+
+[Back to top](#table-of-contents)
 
 #### Sort by Money Owed
 
@@ -573,9 +577,11 @@ Examples:
 - `list` followed by `sort OWED ASC` will list all the students according to how much money they owe in ascending order.
 - `list` followed by `sort OWED DESC` will list all the students according to how much money they owe in descending order.
 
+[Back to top](#table-of-contents)
+
 ---
 
-### Deleting student(s): 'delete'
+### Deleting student(s): `delete`
 
 Deletes the specified student(s) from the student list.
 
@@ -613,7 +619,7 @@ Format: `clear`
 
 ---
 
-### Undo the last command: 'undo'
+### Undo the last command: `undo`
 
 Undoes the last command executed and restores the Teacher's Pet to the previous state.
 
