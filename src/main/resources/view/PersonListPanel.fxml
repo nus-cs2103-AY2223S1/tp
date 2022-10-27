@@ -3,6 +3,41 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="person-VBox">
+  <Separator maxWidth="100" styleClass="separator-text">
+    <padding>
+      <Insets top="10" bottom="5"/>
+    </padding>
+  </Separator>
+  <HBox>
+    <Label id="normalScheme" text="People" styleClass="label-header">
+      <padding>
+        <Insets left="20" top="5" bottom="5" right="10"/>
+      </padding>
+    </Label>
+    <HBox alignment="BOTTOM_LEFT">
+      <padding>
+        <Insets left="10"/>
+      </padding>
+      <HBox fx:id="filteredBox" alignment="CENTER" styleClass="filteredBox" maxHeight="10">
+        <ImageView fx:id="filteredImage" fitHeight="20" fitWidth="20"/>
+        <Label text="FILTERED" styleClass="cell_small_label">
+          <padding>
+            <Insets topRightBottomLeft="5"/>
+          </padding>
+        </Label>
+      </HBox>
+    </HBox>
+  </HBox>
+  <Separator maxWidth="150" styleClass="separator-text">
+    <padding>
+      <Insets top="5" bottom="10"/>
+    </padding>
+  </Separator>
+  <ListView fx:id="personListView" HBox.hgrow="ALWAYS" maxHeight="200" orientation="HORIZONTAL" styleClass="person-list"/>
 </VBox>

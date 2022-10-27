@@ -16,6 +16,9 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Displays the results of the command to the user
+     */
     public ResultDisplay() {
         super(FXML);
     }

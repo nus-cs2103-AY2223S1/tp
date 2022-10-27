@@ -2,13 +2,16 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javafx.util.Pair;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -79,6 +82,28 @@ public class Person implements seedu.address.model.DeepCopyable {
     public List<LoanHistory> getHistory() {
         return history;
     }
+
+    /**
+     * Combines the {@code LoanHistory} with {@code Loan} to produce a tracked history of loans together
+     * with the newly updated loan value at that point
+     * @return an {@code ArrayList} contains a {@code Pair} with key of type {@code Loan} and
+     *          value of type {@code LoanHistory}
+     */
+    public List<Pair<Loan, LoanHistory>> getHistoryWithTotal() {
+        Loan previousAmount = loan;
+        ArrayList<Pair<Loan, LoanHistory>> totalHistoryPair = new ArrayList<>();
+
+        ListIterator<LoanHistory> historyIterator = history.listIterator(history.size());
+
+        while (historyIterator.hasPrevious()) {
+            LoanHistory loanHistory = historyIterator.previous();
+            totalHistoryPair.add(new Pair<>(previousAmount, loanHistory));
+            previousAmount = new Loan(previousAmount.getAmount() - loanHistory.getLoanChange().getAmount());
+        }
+
+        return totalHistoryPair;
+    }
+
 
     /**
      * Returns true if both persons have the same name.

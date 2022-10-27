@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.ListView?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.image.ImageView?>
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.StackPane?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <Separator maxWidth="100" styleClass="separator-text">
+    <padding>
+      <Insets top="10" bottom="5"/>
+    </padding>
+  </Separator>
+  <Label id="normalScheme" text="Inspect" styleClass="label-header">
+    <padding>
+      <Insets left="20" top="5" bottom="5" right="10"/>
+    </padding>
+  </Label>
+  <Separator maxWidth="150" styleClass="separator-text">
+    <padding>
+      <Insets top="5" bottom="10"/>
+    </padding>
+  </Separator>
+  <HBox styleClass="inspectionPanel-VBox">
+    <padding>
+      <Insets top="10" right="10" bottom="10" left="10" />
+    </padding>
+    <VBox fx:id="basicInformation" minWidth="250" prefWidth="250" maxWidth="250">
+      <GridPane HBox.hgrow="NEVER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="250" />
+        </columnConstraints>
+        <VBox alignment="CENTER" minHeight="30" GridPane.columnIndex="0" spacing="5" styleClass="inspection-card">
+          <padding>
+            <Insets top="10" right="15" bottom="5" left="15" />
+          </padding>
+          <Label text="Basic Information" styleClass="cell_bigger_label"/>
+          <Separator/>
+          <VBox spacing="5" alignment="CENTER_LEFT" styleClass="inspection-card">
+            <padding>
+              <Insets top="5" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+              <ImageView fx:id="nameImage" fitHeight="20" fitWidth="20"/>
+              <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+              <ImageView fx:id="birthdayImage" fitHeight="20" fitWidth="20"/>
+              <Label fx:id="birthday" text="\$bday" styleClass="cell_big_label" wrapText="true"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+              <ImageView fx:id="phoneImage" fitHeight="20" fitWidth="20"/>
+              <Label fx:id="phone" styleClass="cell_big_label" text="\$phone" wrapText="true"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+              <ImageView fx:id="addressImage" fitHeight="20" fitWidth="20"/>
+              <Label fx:id="address" styleClass="cell_big_label" text="\$address" wrapText="true"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+              <ImageView fx:id="emailImage" fitHeight="20" fitWidth="20"/>
+              <Label fx:id="email" styleClass="cell_big_label" text="\$email" wrapText="true" />
+            </HBox>
+            <FlowPane fx:id="tags"/>
+          </VBox>
+        </VBox>
+      </GridPane>
+    </VBox>
+    <HBox alignment="CENTER">
+      <padding>
+        <Insets left="5" right="5"/>
+      </padding>
+      <Separator orientation="VERTICAL" styleClass="separator-inspect"/>
+    </HBox>
+    <VBox HBox.hgrow="ALWAYS">
+      <padding>
+        <Insets left="15" right="15"/>
+      </padding>
+      <HBox styleClass="history-panel">
+        <Label alignment="CENTER" minWidth="71" maxWidth="71" text="Total Loan" styleClass="cell_big_label"/>
+        <Label alignment="CENTER" minWidth="121" maxWidth="121" text="Change" styleClass="cell_big_label"/>
+        <Label alignment="CENTER" minWidth="70" maxWidth="70" text="Reason" styleClass="cell_big_label"/>
+      </HBox>
+      <HBox>
+        <HBox>
+          <padding>
+            <Insets top="5"/>
+          </padding>
+          <ImageView fx:id="loanIndicator" fitWidth="20" fitHeight="20"/>
+        </HBox>
+        <StackPane HBox.hgrow="ALWAYS">
+          <VBox styleClass="history-panel">
+            <padding>
+              <Insets top="5" bottom="5"/>
+            </padding>
+            <ListView fx:id="historyListView" HBox.hgrow="ALWAYS"/>
+            <HBox alignment="CENTER_RIGHT">
+              <Label id="normalScheme" fx:id="summaryText" text="summary" styleClass="cell_small_label">
+                <padding>
+                  <Insets topRightBottomLeft="5"/>
+                </padding>
+              </Label>
+            </HBox>
+          </VBox>
+          <ImageView fx:id="noRecordsImage" fitHeight="120" preserveRatio="true"/>
+        </StackPane>
+      </HBox>
+    </VBox>
+  </HBox>
+</VBox>

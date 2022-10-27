@@ -4,25 +4,30 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -31,7 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private WindowAnchorPane windowAnchorPane;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,19 +47,23 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private AnchorPane windowAnchorPaneHolder;
+
+    private final Scene scene;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
+
+        scene = primaryStage.getScene();
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -63,9 +72,12 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        setAccelerators();
+        // No more menu bar
+        //setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        primaryStage.getScene().setOnMouseClicked(e -> resultDisplayPlaceholder.requestFocus());
     }
 
     public Stage getPrimaryStage() {
@@ -110,17 +122,34 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        windowAnchorPane = new WindowAnchorPane(logic);
+        windowAnchorPane.fillInnerParts();
+        windowAnchorPaneHolder.getChildren().add(windowAnchorPane.getRoot());
+        windowAnchorPane.resizeElements(primaryStage.getHeight(),
+                primaryStage.getWidth());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        // we removed the status bar
+        // StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        // statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox.bindResultsDisplay(resultDisplayPlaceholder);
+
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        resultDisplayPlaceholder.prefWidthProperty().bind(scene.widthProperty());
+
+        scene.heightProperty().addListener((ob, oldVal, newVal) ->
+                windowAnchorPane.resizeElements(scene.getHeight(),
+                        scene.getWidth())
+        );
+        scene.widthProperty().addListener((ob, oldVal, newVal) ->
+                windowAnchorPane.resizeElements(scene.getHeight(), scene.getWidth())
+        );
+
+        windowAnchorPane.resizeElements(scene.getHeight(), scene.getWidth());
     }
 
     /**
@@ -163,8 +192,65 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    private void handleInspect(String[] inspectingName) {
+        if (inspectingName == null || inspectingName.length == 0) {
+            resultDisplay.setFeedbackToUser("There was nothing given to inspect");
+            return;
+        }
+
+        ListView<Person> personListView = getPersonListPanel().getListView();
+
+        try {
+            int index = Integer.parseInt(inspectingName[0]) - 1;
+            if (index < 0 || index >= personListView.getItems().size()) {
+                resultDisplay.setFeedbackToUser(Messages.OUT_OF_BOUNDS);
+                return;
+            }
+
+            personListView.getSelectionModel().clearSelection();
+            personListView.getSelectionModel().select(index);
+            return;
+        } catch (NumberFormatException e) {
+            logger.info(Messages.NOT_AN_INTEGER);
+        }
+
+        Person[] personsArray = personListView.getItems()
+                .stream().filter(x -> matches(x.getName().fullName, inspectingName))
+                .toArray(Person[]::new);
+
+        if (personsArray.length == 0) {
+            resultDisplay.setFeedbackToUser(Messages.MESSAGE_INVALID_NAME);
+            return;
+        }
+
+        if (personsArray.length > 1) {
+            resultDisplay.setFeedbackToUser(Messages.AMBIGUOUS_NAME_INSPECT_FIRST);
+        }
+
+        int index = personListView.getItems().indexOf(personsArray[0]);
+        personListView.getSelectionModel().clearSelection();
+        personListView.getSelectionModel().select(index);
+    }
+
+    private void handleShowNotePanel(boolean isVisible) {
+        windowAnchorPane.setNotesPaneVisibility(isVisible, scene.getHeight(), scene.getWidth());
+    }
+
+    private boolean matches(String currentName, String[] matching) {
+        for (String word : matching) {
+            if (StringUtil.containsWordIgnoreCase(currentName, word)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+        return windowAnchorPane.getPersonListPanel();
+    }
+
+    public NoteListPanel getNoteListPanel() {
+        return windowAnchorPane.getNoteListPanel();
     }
 
     /**
@@ -178,13 +264,36 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            switch (commandResult.getUiState()) {
+            case ShowHelp:
                 handleHelp();
+                break;
+
+            case Exit:
+                handleExit();
+                break;
+
+            case Inspect:
+                handleInspect(commandResult.getArgs());
+                break;
+
+            case HideNotes:
+                handleShowNotePanel(false);
+                break;
+
+            case ShowNotes:
+                handleShowNotePanel(true);
+                break;
+
+            default:
+                break;
             }
 
-            if (commandResult.isExit()) {
-                handleExit();
-            }
+            getPersonListPanel().setFilteredBoxIcon(
+                    logic.getAddressBook().getPersonList().size() != logic.getFilteredPersonList().size());
+
+            getNoteListPanel().setFilteredBoxIcon(
+                    logic.getAddressBook().getNoteBook().size() != logic.getFilteredNoteList().size());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
