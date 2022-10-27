@@ -1,16 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_LEAVE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STAFF;
 
 import java.util.List;
@@ -52,13 +49,14 @@ public class AddStaffCommand extends Command {
     private final Staff toAdd;
     private final Index index;
 
-    /** Creates an AddStaffCommand to add the specified {@code Staff} to the
+    /**
+     * Creates an AddStaffCommand to add the specified {@code Staff} to the
      * {@code Project} with specified {@code pname}.
      */
     public AddStaffCommand(Staff staff, Index index) {
         requireNonNull(staff);
         toAdd = staff;
-        this.index= index;
+        this.index = index;
     }
 
     @Override
