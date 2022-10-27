@@ -1,8 +1,12 @@
 package coydir.model.person;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
+
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  * Represents a Leave in the database.
@@ -15,6 +19,10 @@ public class Leave {
     public final LocalDate startDate;
     public final LocalDate endDate;
 
+    private final SimpleStringProperty col1;
+    private final SimpleStringProperty col2;
+    private final SimpleStringProperty col3;
+
     /**
      * Constructs a {@code Leave}.
      *
@@ -25,6 +33,36 @@ public class Leave {
 
         this.startDate = LocalDate.parse(startDate, FORMAT);
         this.endDate = LocalDate.parse(endDate, FORMAT);
+        this.col1 = new SimpleStringProperty(this.startDate.format(FORMAT));
+        this.col2 = new SimpleStringProperty(this.endDate.format(FORMAT));
+        if (getTotalDays() <= 1) {
+            this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()) + " day");
+        }
+        else {
+            this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()) + " days");
+        }
+
+    }
+
+    public String getCol1() {
+        return this.col1.get();
+    }
+
+    public String getCol2() {
+        return this.col2.get();
+    }
+
+    public String getCol3() {
+        return this.col3.get();
+    }
+
+    /**
+     * Check whether current date falls under this leave time frame.
+     * @return true if current date falls under this leave time frame, false otherwise.
+     */
+    public boolean isOnLeave() {
+        LocalDate currentDate = LocalDate.now();
+        return !(currentDate.isBefore(startDate) || currentDate.isAfter(endDate));
     }
 
     /**
@@ -60,7 +98,7 @@ public class Leave {
      * Returns number of days
      */
     public int getTotalDays() {
-        return this.endDate.compareTo(this.startDate) + 1;
+        return (int) DAYS.between(startDate, endDate) + 1;
     }
 
     @Override

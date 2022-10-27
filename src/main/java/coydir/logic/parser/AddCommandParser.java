@@ -31,7 +31,7 @@ import coydir.model.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-
+    private static final int DEFAULT_LEAVES = 14;
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -58,8 +58,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = new Email().getNullEmail();
         Address address = new Address().getNullAddress();
         Set<Tag> tagList = new HashSet<>();
-        int numberOfLeaves = 14;
+
         Rating rating = new Rating().getNullRating();
+
+        int numberOfLeaves = DEFAULT_LEAVES;
 
         // Set optional fields individually
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {

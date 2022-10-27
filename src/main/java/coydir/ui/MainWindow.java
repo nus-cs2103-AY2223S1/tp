@@ -121,6 +121,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         personInfo = new PersonInfo(logic.getFilteredPersonList().get(0));
+        personInfo.initializeLeaveTable();
         personInfoPanelPlaceholder.getChildren().add(personInfo.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -131,6 +132,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        //commandBox.focus();
 
         personListPanel.getPersonListView().setOnMouseClicked((new EventHandler<MouseEvent>() {
             @Override
@@ -210,6 +212,12 @@ public class MainWindow extends UiPart<Stage> {
         personInfoPanelPlaceholder.getChildren().set(0, personInfo.getRoot());
     }
 
+    private void handleUpdate() {
+        personInfo.update();
+        personInfoPanelPlaceholder.getChildren().removeAll();
+        personInfoPanelPlaceholder.getChildren().set(0, personInfo.getRoot());
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -235,6 +243,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isView()) {
                 handleView(commandResult.getViewIndex());
+            }
+
+            if (commandResult.isUpdate()) {
+                handleUpdate();
             }
 
             return commandResult;
