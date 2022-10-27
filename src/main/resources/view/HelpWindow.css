@@ -1,5 +1,6 @@
 #copyButton {
   -fx-background-color: #f1e4c2;
+  -fx-background-radius: 10px;
   -fx-border-color: black;
   -fx-border-radius: 10px;
 }
@@ -9,10 +10,8 @@
   -fx-text-fill: #ffffff;
 }
 
-/* TODO: Richard: Standardise font */
 #helpMessageContainer {
   -fx-background-color: #fdf6e3;
   -fx-padding: 16;
-  -fx-font-family: Menlo;
-  -fx-prompt-text-fill: #363636;
+  -fx-font-family: "JetBrains Mono";
 }

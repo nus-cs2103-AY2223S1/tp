@@ -16,5 +16,3 @@ The UNIT is a text indicating the unit-of-measurement of an item.
 **Invalid Examples:**
 
 * キロ
-* Kg & Grams
-* Kilogram's
