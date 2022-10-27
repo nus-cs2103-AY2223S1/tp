@@ -76,7 +76,7 @@ This guide contains all you need to get started on working with GithubContact.
 
 </div>
 
-### Add a person : `add`
+#### Add a person : `add`
 
 Adds person to list and shows contact information page, where attributes can be added and set.
 
@@ -87,7 +87,7 @@ Example:
 - `add name/Alex address/22 Clementi phone/86609830 email/alex@gmail.com`
 - `add name/Mike address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123`
 
-### Delete a Person : `delete`
+#### Delete a Person : `delete`
 
 Delete the specified person from the address book.
 
@@ -97,13 +97,13 @@ Format: `delete INDEX`
 - The index refers to the index number shown in the person list.
 - The index must be **positive integer** 1, 2, 3...
 
-### Find a Person : `find`
+#### Find a Person : `find`
 
 Find person and displays the persons that match the keyword.
 
 Format: `find KEYWORD`
 
-### Sort the list of Persons : `sort`
+#### Sort the list of Persons : `sort`
 
 Sort persons in the list.
 
@@ -114,7 +114,7 @@ Example:
 - Sort name in descending order: `sort name/desc`
 - Sort role in ascending order: `sort role`
 
-### Show a Person's Details : `<ENTER>` or double click
+#### Show a Person's Details : `<ENTER>` or double click
 
 Shows person details in another page.
 
@@ -130,7 +130,7 @@ There are two ways to show person details
 
    1. Double-click on the person card in persons' list.
 
-### Set a Person's Details : `set`
+#### Set a Person's Details : `set`
 
 Set attribute of a person.
 
@@ -140,7 +140,7 @@ Format `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone
 - At least one optional attribute must be provided.
 - Existing values will be updated to provided values.
 
-### Delete a Person's Details: `delete`
+#### Delete a Person's Details: `delete`
 
 Delete attribute of a person.
 
@@ -158,13 +158,13 @@ Attributes (`ATTRIBUTE_NAME`) that are able to delete:
 - `slack`
 - `telegram`
 
-### Return to previous page : `back` or `<ESC>`
+#### Return to previous page : `back` or `<ESC>`
 
 Back to previous page
 
 Format: `back` or `<ESC>`
 
-### Show help page : `help`
+#### Show help page : `help`
 
 Shows help page or usage instruction of specified command.
 
