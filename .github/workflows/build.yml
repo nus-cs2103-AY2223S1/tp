@@ -28,6 +28,9 @@ jobs:
       - name: Generate tag name from time
         id: tagname
         run: echo ::set-output name=TAGNAME::$(echo ${{ github.event.repository.pushed_at }} | sed -e 's/^../AR/')
+      - name: Generate release name from time
+        id: releasename
+        run: echo "::set-output name=RELEASENAME::$(date -d @${{ github.event.repository.pushed_at }})"
       - name: Create release on GitHub
         id: create_release # We need the id to refer to it in the next step
         uses: actions/create-release@v1
@@ -35,7 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.tagname.outputs.TAGNAME }}
-          release_name: Auto-release ${{ github.event.repository.pushed_at }}
+          release_name: Auto-release ${{ steps.releasename.outputs.RELEASENAME }}
           body: 'Auto-created release from branch "${{ github.ref_name }}"'
       - name: Upload JAR file to GitHub releases
         uses: actions/upload-release-asset@v1
