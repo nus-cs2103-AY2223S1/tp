@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.uninurse.model.GenericList;
+import seedu.uninurse.model.ListModificationPair;
+import seedu.uninurse.model.ModificationType;
 import seedu.uninurse.model.tag.exceptions.DuplicateTagException;
 import seedu.uninurse.model.tag.exceptions.TagNotFoundException;
 
@@ -99,6 +101,40 @@ public class TagList implements GenericList<Tag> {
     public List<Tag> getInternalList() {
         // returns an immutable tag list to prevent modification to original one
         return Collections.unmodifiableList(internalTagList);
+    }
+
+    @Override
+    public List<ListModificationPair> getDiff(GenericList<Tag> otherTagList) {
+        List<ListModificationPair> listModificationPairs = new ArrayList<>();
+
+        if (equals(otherTagList)) {
+            return listModificationPairs;
+        }
+
+        if (size() == 0 && otherTagList.size() == 1) {
+            listModificationPairs.add(new ListModificationPair(ModificationType.ADD, 0));
+            return listModificationPairs;
+        }
+
+        if (size() == 1 && otherTagList.size() == 0) {
+            listModificationPairs.add(new ListModificationPair(ModificationType.DELETE, 0));
+            return listModificationPairs;
+        }
+
+        int pointer = 0;
+        while (get(pointer).equals(otherTagList.get(pointer))) {
+            pointer++;
+            if (pointer == size() || pointer == otherTagList.size()) {
+                if (size() < otherTagList.size()) {
+                    listModificationPairs.add(new ListModificationPair(ModificationType.ADD, pointer));
+                } else if (otherTagList.size() < size()) {
+                    listModificationPairs.add(new ListModificationPair(ModificationType.DELETE, pointer));
+                }
+                break;
+            }
+        }
+        listModificationPairs.add(new ListModificationPair(ModificationType.EDIT, pointer));
+        return listModificationPairs;
     }
 
     @Override

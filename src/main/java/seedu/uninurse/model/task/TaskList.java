@@ -10,6 +10,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import seedu.uninurse.model.GenericList;
+import seedu.uninurse.model.ListModificationPair;
+import seedu.uninurse.model.ModificationType;
 
 /**
  * Represents a list of tasks for a particular person.
@@ -116,6 +118,40 @@ public class TaskList implements GenericList<Task> {
     @Override
     public List<Task> getInternalList() {
         return Collections.unmodifiableList(internalTaskList);
+    }
+
+    @Override
+    public List<ListModificationPair> getDiff(GenericList<Task> otherTaskList) {
+        List<ListModificationPair> listModificationPairs = new ArrayList<>();
+
+        if (equals(otherTaskList)) {
+            return listModificationPairs;
+        }
+
+        if (size() == 0 && otherTaskList.size() == 1) {
+            listModificationPairs.add(new ListModificationPair(ModificationType.ADD, 0));
+            return listModificationPairs;
+        }
+
+        if (size() == 1 && otherTaskList.size() == 0) {
+            listModificationPairs.add(new ListModificationPair(ModificationType.DELETE, 0));
+            return listModificationPairs;
+        }
+
+        int pointer = 0;
+        while (get(pointer).equals(otherTaskList.get(pointer))) {
+            pointer++;
+            if (pointer == size() || pointer == otherTaskList.size()) {
+                if (size() < otherTaskList.size()) {
+                    listModificationPairs.add(new ListModificationPair(ModificationType.ADD, pointer));
+                } else if (otherTaskList.size() < size()) {
+                    listModificationPairs.add(new ListModificationPair(ModificationType.DELETE, pointer));
+                }
+                break;
+            }
+        }
+        listModificationPairs.add(new ListModificationPair(ModificationType.EDIT, pointer));
+        return listModificationPairs;
     }
 
     /**

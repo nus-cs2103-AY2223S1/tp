@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.uninurse.model.GenericList;
+import seedu.uninurse.model.ListModificationPair;
+import seedu.uninurse.model.ModificationType;
 import seedu.uninurse.model.medication.exceptions.DuplicateMedicationException;
 import seedu.uninurse.model.medication.exceptions.MedicationNotFoundException;
 
@@ -95,6 +97,40 @@ public class MedicationList implements GenericList<Medication> {
     @Override
     public List<Medication> getInternalList() {
         return Collections.unmodifiableList(internalMedicationList);
+    }
+
+    @Override
+    public List<ListModificationPair> getDiff(GenericList<Medication> otherMedicationList) {
+        List<ListModificationPair> listModificationPairs = new ArrayList<>();
+
+        if (equals(otherMedicationList)) {
+            return listModificationPairs;
+        }
+
+        if (size() == 0 && otherMedicationList.size() == 1) {
+            listModificationPairs.add(new ListModificationPair(ModificationType.ADD, 0));
+            return listModificationPairs;
+        }
+
+        if (size() == 1 && otherMedicationList.size() == 0) {
+            listModificationPairs.add(new ListModificationPair(ModificationType.DELETE, 0));
+            return listModificationPairs;
+        }
+
+        int pointer = 0;
+        while (get(pointer).equals(otherMedicationList.get(pointer))) {
+            pointer++;
+            if (pointer == size() || pointer == otherMedicationList.size()) {
+                if (size() < otherMedicationList.size()) {
+                    listModificationPairs.add(new ListModificationPair(ModificationType.ADD, pointer));
+                } else if (otherMedicationList.size() < size()) {
+                    listModificationPairs.add(new ListModificationPair(ModificationType.DELETE, pointer));
+                }
+                break;
+            }
+        }
+        listModificationPairs.add(new ListModificationPair(ModificationType.EDIT, pointer));
+        return listModificationPairs;
     }
 
     @Override
