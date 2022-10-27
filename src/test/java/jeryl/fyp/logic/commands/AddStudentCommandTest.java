@@ -184,6 +184,11 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public void listDeadlineUnderStudent(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Student getStudentByStudentId(StudentId studentId) {
             throw new AssertionError("This method should not be called.");
         }
