@@ -177,6 +177,12 @@ public class UniqueCustomerList implements Iterable<Customer> {
                 && internalList.equals(((UniqueCustomerList) other).internalList));
     }
 
+    /**
+     * Compares if two Lists are strictly equals
+     * which is true only when each person in the lists are strictly equals
+     * @param other
+     * @return
+     */
     public boolean strictlyEquals(Object other) {
         if (other == this) {
             return true;

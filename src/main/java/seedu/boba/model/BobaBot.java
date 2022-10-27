@@ -26,12 +26,12 @@ public class BobaBot implements ReadOnlyBobaBot {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         persons = new UniqueCustomerList();
     }
 
-    public BobaBot() {
-    }
+    public BobaBot() {}
 
     /**
      * Creates an BobaBot using the Persons in the {@code toBeCopied}
@@ -118,6 +118,11 @@ public class BobaBot implements ReadOnlyBobaBot {
                 && persons.equals(((BobaBot) other).persons));
     }
 
+    /**
+     * Compares if two BobaBot ledgers are strictly equals
+     * @param other
+     * @return
+     */
     public boolean strictlyEquals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof BobaBot // instanceof handles nulls
