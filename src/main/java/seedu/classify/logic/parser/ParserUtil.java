@@ -9,12 +9,12 @@ import java.util.Set;
 import seedu.classify.commons.core.index.Index;
 import seedu.classify.commons.util.StringUtil;
 import seedu.classify.logic.parser.exceptions.ParseException;
+import seedu.classify.model.exam.Exam;
 import seedu.classify.model.student.Class;
 import seedu.classify.model.student.Email;
 import seedu.classify.model.student.Id;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
-import seedu.classify.model.exam.Exam;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

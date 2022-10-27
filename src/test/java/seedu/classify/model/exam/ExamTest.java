@@ -1,9 +1,8 @@
-package seedu.classify.model.tag;
+package seedu.classify.model.exam;
 
 import static seedu.classify.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.classify.model.exam.Exam;
 
 public class ExamTest {
 
