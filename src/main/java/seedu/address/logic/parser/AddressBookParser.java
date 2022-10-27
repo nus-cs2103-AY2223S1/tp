@@ -28,7 +28,8 @@ public class AddressBookParser {
             .registerConverter(Address.class, new AddressConverter())
             .registerConverter(Index.class, new IndexConverter())
             .registerConverter(Url.class, new UrlConverter())
-            .registerConverter(Task.class, new TaskConverter());
+            .registerConverter(Task.class, new TaskConverter())
+            .registerConverter(Order.class, new OrderConverter());
     /**
      * Parses user input into command for execution.
      *

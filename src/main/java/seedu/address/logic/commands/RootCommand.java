@@ -19,6 +19,7 @@ import picocli.CommandLine.Command;
     ClearCommand.class,
     ExitCommand.class,
     FindCommand.class,
+    SortCommand.class,
     MarkCommand.class,
     UnmarkCommand.class,
     HelpCommand.class,
