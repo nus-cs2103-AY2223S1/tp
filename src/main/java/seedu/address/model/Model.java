@@ -8,7 +8,6 @@ import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.ReminderPriority;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
 

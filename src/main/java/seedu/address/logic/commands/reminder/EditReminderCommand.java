@@ -1,5 +1,15 @@
 package seedu.address.logic.commands.reminder;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -14,15 +24,6 @@ import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.reminder.ReminderPriority;
 
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
 /**
  * Parses input arguments and creates a new EditReminderCommand object
@@ -87,12 +88,13 @@ public class EditReminderCommand extends Command {
      * Creates and returns a {@code Reminder} with the details of {@code reminderToEdit}
      * edited with {@code editReminderDescriptor}.
      */
-    private static Reminder createEditedReminder(Reminder reminderToEdit, EditReminderDescriptor editReminderDescriptor) {
+    private static Reminder createEditedReminder(Reminder reminderToEdit,
+                                                 EditReminderDescriptor editReminderDescriptor) {
         assert reminderToEdit != null;
 
         ReminderName updatedName = editReminderDescriptor.getName().orElse(reminderToEdit.getName());
         Datetime updatedDeadline = editReminderDescriptor.getDeadline().orElse(reminderToEdit.getDeadline());
-        ReminderPriority updatedPriority= editReminderDescriptor.getPriority().orElse(reminderToEdit.getPriority());
+        ReminderPriority updatedPriority = editReminderDescriptor.getPriority().orElse(reminderToEdit.getPriority());
         ReminderDescription updatedDescription = editReminderDescriptor.getDescription()
                 .orElse(reminderToEdit.getDescription());
 
