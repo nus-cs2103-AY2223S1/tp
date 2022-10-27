@@ -98,7 +98,7 @@ Edits an existing profile in NUScheduler.
 
 Format: `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…`
 
-* Edits the profile at the specified `INDEX`. The index refers to the index number shown in the displayed profile list. The index **must be a positive integer** 1, 2, 3, ...
+* Edits the profile at the specified `INDEX`. The index refers to the index number shown in the displayed profile list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * You can remove the profile's telegram username by typing `tg/` without specifying any username after it.
@@ -110,7 +110,7 @@ Examples:
 * `profile -e 2 n/Betsy Crower t/` Edits the name of the 2nd profile to be `Betsy Crower` and clears all existing tags.
 * `profile -e 3 tg/ t/` Clears the telegram username and tags of the 3rd profile.
 
-#### Finding profiles by name: `profile -f KEYWORD [MORE_KEYWORDS]`
+#### Finding profiles by name: `profile -f KEYWORD [MORE_KEYWORDS]…`
 
 Find profiles whose names contain any of the given keywords.
 
@@ -146,7 +146,7 @@ Example:
 
 Adds an event with a name, a start timing and end timing.
 
-Format: `event -a n/TITLE s/START e/END [t/TAG]… [p/PROFILE]…`
+Format: `event -a n/TITLE s/START e/END [t/TAG]…`
 
 * The start and end dates can be specified in [various formats](#accepted-date-time-formats).
 * The start date must occur before or on the same day and time as the end date.
@@ -162,7 +162,7 @@ Displays a list of upcoming events, ordered by the date, for the next specified 
 Format: `event -u DAYS`
 
 * The days refer to the number of days from the current date. All events within this time frame will be displayed. Events oncurring on the day the command is entered will not be displayed.
-* The days **must be a positive integer** 1, 2, 3, ...
+* The days **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `event -u 5` when used on `22-10-2022` displays all events taking place in the next 5 days from `23-10-22` to `27-10-22` with both dates included.
@@ -173,20 +173,20 @@ Shows a list of all events in the NUScheduler.
 
 Format: `event -v`
 
-#### Editing a event: `event -e`
+#### Editing an event: `event -e`
 
 Edits an existing event in NUScheduler.
 
-Format: `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]… [p/PROFILE]…`
+Format: `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`
 
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, ...
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the event will be removed i.e adding of tags is not cumulative.
 * You can remove all the event’s tags by typing `t/` without specifying any tags after it.
 * The start and end dates can be specified in [various formats](#accepted-date-time-formats).
 
-#### Finding events by date or title: `event -f KEYWORD_OR_DATE [MORE]`
+#### Finding events by date or title: `event -f KEYWORD_OR_DATE [MORE]…`
 
 Find events whose title contain any of the given keywords or start times contain any of the given start times.
 
@@ -205,7 +205,7 @@ Format: `event -d INDEX`
 
 * Deletes the events at the specified `INDEX`.
 * The index refers to the index number shown in the displayed event list.
-* The index **must be a positive integer** 1, 2, 3, ...
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `event -v` followed by `event -d 2` deletes the 2nd event displayed.
@@ -249,7 +249,7 @@ Access the previous commands you've made within each session.
 
 :information_source: **Notes about the command history**:
 
-* Only successful commands are tracked, commands that results in an error are not stored.
+* Only successful commands are tracked, commands that result in an error are not stored.
 * Every time NUScheduler is closed, the command history is reset.
 * Edits made on the command history are not tracked.
 
@@ -353,10 +353,10 @@ Example:
 | **Delete Profile**         | `profile -d INDEX`                                                              |
 | **Edit Profile**           | `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…` |
 | **View Profiles**          | `profile -v`                                                                    |
-| **Find Profile**           | `profile -f KEYWORD [MORE_KEYWORDS]`                                            |
-| **Add Event**              | `event -a n/TITLE s/START e/END [t/TAG]… [p/PROFILE]…`                          |
+| **Find Profile**           | `profile -f KEYWORD [MORE_KEYWORDS]…`                                           |
+| **Add Event**              | `event -a n/TITLE s/START e/END [t/TAG]…`                                       |
 | **Delete Event**           | `event -d INDEX`                                                                |
-| **Edit Event**             | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]… [p/PROFILE]…`              |
+| **Edit Event**             | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`                           |
 | **View Events**            | `event -v`                                                                      |
 | **View Upcoming Event(s)** | `event -u DAYS`                                                                 |
-| **Find Event**             | `event -f KEYWORD_OR_DATE [MORE]`                                               |
+| **Find Event**             | `event -f KEYWORD_OR_DATE [MORE]…`                                              |
