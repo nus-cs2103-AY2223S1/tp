@@ -191,9 +191,67 @@ Expected outcome:
 
 ### Finding internship applications by company name : `findn`
 
+Finds internship applications which has company name containing any of the given keywords.
+
+Format: findn KEYWORD [MORE_KEYWORDS]
+
+* The search is case-insensitive. E.g. `google` will match `Google`
+* The order of keywords does not matter. E.g. `Bytedance Tiktok` will match `Tiktok Bytedance`
+* Only full words will be matched. E.g. `Goog` will not match `Google`
+* Internship applications with company name matching at least one keyword will be returned.
+
+Example of usage:
+* `findn Google`
+
+Expected outcome:
+* All internships containing `Google` in the name field (case-insensitive) will be filtered and displayed.
+
 ### Finding internship applications by position : `findp`
 
+Finds internship applications which has position name containing any of the given keywords.
+
+Format: findp KEYWORD [MORE_KEYWORDS]
+
+* The search is case-insensitive. E.g. `developer` will match `Developer`
+* The order of keywords does not matter. E.g. `Developer Frontend` will match `Frontend Developer`
+* Only full words will be matched. E.g. `Develop` will not match `Developer`
+* Internship applications with position name matching at least one keyword will be returned.
+
+Example of usage:
+* `findp Frontend`
+
+Expected outcome:
+* All internships containing `Frontend` in the position field (case-insensitive) will be filtered and displayed.
+
+### Finding internship applications by tags : `findt`
+
+Finds internship applications which has tags containing any of the given keywords.
+
+Format: findt KEYWORD [MORE_KEYWORDS]
+
+* The search is case-insensitive. E.g. `urgent` will match `Urgent`
+* The order of keywords does not matter. E.g. `Urgent Remote` will match `Remote Urgent`
+* Only full words will be matched. E.g. `Remote` will not match `Remotely`
+* Internship applications with tags matching at least one keyword will be returned.
+
+Example of usage: 
+* `findt urgent`
+
+Expected outcome:
+* All internships with the `urgent` tag (case-insensitive) will be filtered and displayed.
+
 ### Filtering internship applications by status : `filter`
+
+Filters the list of internship applications based on their status, using `p` for "Progress", `r` for "Rejected" and
+`o` for "Offered". 
+
+Format: `filter STATUS`, where `STATUS` must be either `p`, `o` or `r`
+
+Example of usage:
+* `filter o`
+
+Expected outcome:
+* All internships that have status "Offered" will be filtered and displayed.
 
 ### Sorting internship applications: `sort`
 
@@ -225,7 +283,12 @@ Expected outcome:
 * The list of internships are sorted in an ascending manner,
 with the internship with the task with the earliest date and time that is after the current date and time at the top.
 
-### Viewing statistics of all internship applications : `stats`
+### Viewing statistics of internship applications : `stats`
+
+Displays statistics of the current list of internship applications based on the number of offered, in progress and 
+rejected applications.
+
+Format: `stats`
 
 ### Selecting an internship application : `select`
 
@@ -314,26 +377,25 @@ Expected outcome:
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-
-| Action               | Format, Examples                 |
-|----------------------|----------------------------------|
-| **Help**             | `help`                           |
-| **List**             | `list`                           |
-| **Clear**            | `clear`                          |
-| **Exit**             | `exit`                           |
-| **Add**              | `add n/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent`                                 |
-| **Delete**           |                                  |
-| **Edit**             |                                  |
-| **Status**           | `status`<br> e.g. `status 1 o`           |
-| **Remark**           | `remark`<br> e.g. `remark 1 r/ hello`    |
-| **Find by Company**  |                                  |
-| **Find by Position** |                                  |
-| **Filter**           |                                  |
-| **Sort**             | `sort ORDER`<br> e.g. `sort a` |
-| **Stats**            |                                  |
-| **Select**           |                                  |
-| **Add Task**         | `addtask TASKNAME /at TASKTIME`<br> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                  |
-| **Delete Task**      |                                  |
-| **Add Tag**          | `addtag`<br> e.g. `addtag 1 Urgent`      |
-| **Delete Tag**       | `deltag`<br> e.g. `deltag 1 Urgent`      |
-
+| Action               | Format, Examples                                                                                                                                                                        |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**             | `help`                                                                                                                                                                                  |
+| **List**             | `list`                                                                                                                                                                                  |
+| **Clear**            | `clear`                                                                                                                                                                                 |
+| **Exit**             | `exit`                                                                                                                                                                                  |
+| **Add**              | `add n/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent` |
+| **Delete**           | `delete`                                                                                                                                                                                |
+| **Edit**             |                                                                                                                                                                                         |
+| **Status**           | `status`<br> e.g. `status 1 o`                                                                                                                                                          |
+| **Remark**           | `remark`<br> e.g. `remark 1 r/ hello`                                                                                                                                                   |
+| **Find by Company**  | `findn KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findn Google`                                                                                                                                |
+| **Find by Position** | `findp KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findp Frontend`                                                                                                                              |
+| **Find by Tag**      | `findt KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findt Urgent`                                                                                                                                |
+| **Filter**           | `filter STATUS` <br/> e.g. `filter o`                                                                                                                                                   |
+| **Sort**             | `sort ORDER`<br> e.g. `sort a`                                                                                                                                                          |
+| **Stats**            | `stats`                                                                                                                                                                                 |
+| **Select**           |                                                                                                                                                                                         |
+| **Add Task**         | `addtask TASKNAME /at TASKTIME`<br> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                             |
+| **Delete Task**      |                                                                                                                                                                                         |
+| **Add Tag**          | `addtag`<br/> e.g. `addtag 1 Urgent`                                                                                                                                                    |
+| **Delete Tag**       | `deltag`<br/> e.g. `deltag 1 Urgent`                                                                                                                                                    |
