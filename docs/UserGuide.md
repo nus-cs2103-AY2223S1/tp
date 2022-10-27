@@ -591,8 +591,8 @@ Examples: (Assuming all are valid indexes)
 
 * `check buyer 1`
 * `check -s 3`
-* `sort o 2`
-* `sort /p 4`
+* `check o 2`
+* `check /p 4`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
