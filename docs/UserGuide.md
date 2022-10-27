@@ -34,7 +34,7 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page and information about the commands usages.
 
 ![help message](images/helpMessage.png)
 
