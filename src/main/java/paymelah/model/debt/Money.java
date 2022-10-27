@@ -19,6 +19,7 @@ public class Money implements Comparable<Money> {
     public static final int CENTS_PRECISION = 2;
     public static final BigDecimal GST_MULTIPLIER = new BigDecimal("1.07");
     public static final BigDecimal SERVICE_CHARGE_MULTIPLIER = new BigDecimal("1.10");
+    public static final Money ZERO_MONEY = new Money("0");
 
     private final BigDecimal value;
 
