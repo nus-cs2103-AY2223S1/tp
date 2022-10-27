@@ -86,7 +86,8 @@ public class UpdateContactCommand extends Command {
             NextOfKin nextOfKin = new NextOfKin(name, phone, email);
             editedPatient = new Patient(personToEdit.getUid(),
                     personToEdit.getName(), personToEdit.getGender(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), patientToEdit.getDatesSlots());
+                    personToEdit.getAddress(), personToEdit.getTags(), patientToEdit.getDatesSlots(),
+                    patientToEdit.getAttendingPhysician(), Optional.of(nextOfKin));
         } else {
             throw new CommandException(Messages.MESSAGE_UPDATECONTACT_INVALID_CONTACT_CATEGORY);
         }
