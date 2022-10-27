@@ -256,22 +256,23 @@ public class JsonAddressBookStorageTest {
                 Paths.get(testFolder.resolve("student.json").toUri()),
                 Paths.get(testFolder.resolve("tuitionClass.json").toUri()));
         storage.readAllAddressBook();
+
         Path expected = TEST_DATA_FOLDER.resolve("emptyStudentAddressBook.json");
         Path actual = testFolder.resolve("student.json");
         assertEquals(
-                FileUtil.readFromFile(expected).replace(System.getProperty(System.lineSeparator()), ""),
-                FileUtil.readFromFile(actual).replace(System.getProperty(System.lineSeparator()), ""));
+                FileUtil.readFromFile(expected),
+                FileUtil.readFromFile(actual));
 
         expected = TEST_DATA_FOLDER.resolve("emptyTutorAddressBook.json");
         actual = testFolder.resolve("tutor.json");
         assertEquals(
-                FileUtil.readFromFile(expected).replace(System.getProperty(System.lineSeparator()), ""),
-                FileUtil.readFromFile(actual).replace(System.getProperty(System.lineSeparator()), ""));
+                FileUtil.readFromFile(expected),
+                FileUtil.readFromFile(actual));
 
         expected = TEST_DATA_FOLDER.resolve("emptyTuitionClassAddressBook.json");
         actual = testFolder.resolve("tuitionClass.json");
         assertEquals(
-                FileUtil.readFromFile(expected).replace(System.getProperty(System.lineSeparator()), ""),
-                FileUtil.readFromFile(actual).replace(System.getProperty(System.lineSeparator()), ""));
+                FileUtil.readFromFile(expected),
+                FileUtil.readFromFile(actual));
     }
 }
