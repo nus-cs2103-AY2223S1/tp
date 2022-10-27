@@ -1,6 +1,8 @@
 package seedu.foodrem.ui;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -17,7 +19,8 @@ import seedu.foodrem.views.TagView;
  * A UI component that displays information of a {@code Item}.
  */
 public class ItemCard extends UiPart<Region> {
-    private static final int TAGS_LIMIT = 5;
+    private static final int CHAR_LIMIT = 45;
+    private static final int SPACING_UNIT = 3;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -52,11 +55,24 @@ public class ItemCard extends UiPart<Region> {
         quantity.setText(ItemView.buildItemQuantityAndUnitStringFrom(item));
         quantity.setTextAlignment(TextAlignment.RIGHT);
 
+        final List<Tag> tagList = new ArrayList<>(item.getTagSet());
+        tagList.sort(Comparator.comparing(Tag::getName));
+
+        int currentLength = 0;
+        int currentIndex;
+        for (currentIndex = 0; currentIndex < tagList.size(); currentIndex++) {
+            Tag tag = tagList.get(currentIndex);
+            currentLength += tag.getName().length();
+            if (currentLength > CHAR_LIMIT) {
+                break;
+            }
+            currentLength += SPACING_UNIT; // Account for padding between tags
+            tags.getChildren().add(TagView.from(tag, true));
+        }
+
         final int size = item.getTagSet().size();
-        item.getTagSet().stream().sorted(Comparator.comparing(Tag::getName)).limit(TAGS_LIMIT)
-                .forEach(tag -> tags.getChildren().add(TagView.from(tag, true)));
-        if (size > TAGS_LIMIT) {
-            final Label overflowLabel = new Label(String.format("+%d more...", size - TAGS_LIMIT));
+        if (size > currentIndex) {
+            final Label overflowLabel = new Label(String.format("+%d more...", size - currentIndex));
             overflowLabel.getStyleClass().add("tags-overflow-label");
             tags.getChildren().add(overflowLabel);
         }
