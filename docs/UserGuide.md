@@ -217,8 +217,8 @@ assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0`
 <div markdown="span" class="alert alert-primary">
   :information_source: **Extra note:** 
 
-  - A workload indicator is shown beside each person in TABS.
-  - When the workload of the person increase, the workload indicator will gradually change from green to red.
+A workload indicator is shown beside each person in TABS.
+When the workload of the person increase, the workload indicator will gradually change from green to red.
 
 ![Workload_Indicator](images/user-guide/workload_indicator.png)
 </div>
