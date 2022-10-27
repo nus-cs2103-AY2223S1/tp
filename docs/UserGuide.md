@@ -5,31 +5,31 @@ title: FinBook User Guide
 
 # Table of Contents
 
-1. [Introduction](#1-introduction)   
+1. [Introduction](#1-introduction)
    1.1. [What is FinBook?](#11-what-is-finbook)
-2. [How to use this User Guide?](#2-how-to-use-this-user-guide)   
-   2.1. [Icons and symbols](#21-icons-and-symbols)   
-   2.2. [User Interface (UI) of FinBook](#22-user-interface-ui-of-finbook)   
+2. [How to use this User Guide?](#2-how-to-use-this-user-guide)
+   2.1. [Icons and symbols](#21-icons-and-symbols)
+   2.2. [User Interface (UI) of FinBook](#22-user-interface-ui-of-finbook)  
    2.3. [Command format](#23-command-format)
 3. [Quick Start](#3-quick-start)
-4. [Features](#4-features)   
-   4.1. [Managing a client](#41-managing-a-client)      
-   &emsp; 4.1.1. [Adding a client: `add`](#411-adding-a-client-add)   
-   &emsp; 4.1.2. [Editing a client: `edit`](#412-editing-a-client--edit)   
-   &emsp; 4.1.3. [Deleting a client: `delete`](#413-deleting-a-client--delete)   
-   &emsp; 4.1.4. [Listing all clients: `list`](#414-listing-all-clients--list)   
-   &emsp; 4.1.5. [Finding a client: `find`](#415-finding-a-client--find)   
-   &emsp; 4.1.6. [Viewing Portfolio of a specific client: `view`](#416-viewing-portfolio-of-a-specific-client-view)   
-   4.2. [Data privacy](#42-data-privacy)   
-   &emsp; 4.2.1. [Locking the application: `lock`](#421-locking-the-application--lock)   
-   &emsp; 4.2.2. [Setting or updating the password: `password`](#422-setting-or-updating-the-password--password)   
-   4.3. [General](#43-general)   
-   &emsp; 4.3.1. [Saving the data](#431-saving-the-data)   
-   &emsp; 4.3.2. [Editing the data file](#432-editing-the-data-file)   
-   &emsp; 4.3.3. [Importing data: `import`](#433-importing-data--import)   
-   &emsp; 4.3.4. [Exporting data: `export`](#434-exporting-data--export)   
-   &emsp; 4.3.5. [Copying a client's data: `copy`](#435-copying-a-clients-data--copy)   
-   &emsp; 4.3.6. [Changing Light/Dark mode](#436-changing-lightdark-mode)   
+4. [Features](#4-features)
+   4.1. [Managing a client](#41-managing-a-client)
+   &emsp; 4.1.1. [Adding a client: `add`](#411-adding-a-client-add)
+   &emsp; 4.1.2. [Editing a client: `edit`](#412-editing-a-client--edit)
+   &emsp; 4.1.3. [Deleting a client: `delete`](#413-deleting-a-client--delete)
+   &emsp; 4.1.4. [Listing all clients: `list`](#414-listing-all-clients--list)
+   &emsp; 4.1.5. [Finding a client: `find`](#415-finding-a-client--find)
+   &emsp; 4.1.6. [Viewing Portfolio of a specific client: `view`](#416-viewing-portfolio-of-a-specific-client-view)
+   4.2. [Data privacy](#42-data-privacy)
+   &emsp; 4.2.1. [Locking the application: `lock`](#421-locking-the-application--lock)
+   &emsp; 4.2.2. [Setting or updating the password: `password`](#422-setting-or-updating-the-password--password)
+   4.3. [General](#43-general)
+   &emsp; 4.3.1. [Saving the data](#431-saving-the-data)
+   &emsp; 4.3.2. [Editing the data file](#432-editing-the-data-file)
+   &emsp; 4.3.3. [Importing data: `import`](#433-importing-data--import)
+   &emsp; 4.3.4. [Exporting data: `export`](#434-exporting-data--export)
+   &emsp; 4.3.5. [Copying a client's data: `copy`](#435-copying-a-clients-data--copy)
+   &emsp; 4.3.6. [Changing Light/Dark mode](#436-changing-lightdark-mode)
    &emsp; 4.3.7. [Exiting the application: `exit`](#437-exiting-the-application--exit)
 5. [FAQ](#5-faq)
 6. [Glossary](#6-glossary)
@@ -65,7 +65,7 @@ So what are you waiting for? Start using FinBook today!
 | Symbol               | Meaning                                                                                    |
 |----------------------|--------------------------------------------------------------------------------------------|
 | :information_source: | Additional information that may be useful to know when using FinBook                       |
-| :exclamation:        | Important information or warnings that you should take note of when using FinBook          | 
+| :exclamation:        | Important information or warnings that you should take note of when using FinBook          |
 | `command`            | The highlighted words indicate a command that can be typed into the Command Box of FinBook |
 
 ## 2.2. User Interface (UI) of FinBook
@@ -77,7 +77,7 @@ The UI consists of:
 | Components      | Purpose                               |
 |-----------------|---------------------------------------|
 | Menu Bar        | Consists of File and Help             |
-| Theme Button    | To toggle between Light/Dark mode     | 
+| Theme Button    | To toggle between Light/Dark mode     |
 | Command Box     | To enter commands to be executed      |
 | Message Box     | Display results of executed command   |
 | Clients Panel   | Displays clients of FinBook           |
@@ -482,7 +482,7 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                    |
 | **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                  |
 | **List**             | `list`                                                                                                                                                                                                                                                                                                                                                |
-| **Find**             | (toc)                                                                                                                                                                                                                                                                                                                                                 | 
+| **Find**             | (toc)                                                                                                                                                                                                                                                                                                                                                 |
 | **View Portfolio**   | `view INDEX` <br> e.g., `view 1`                                                                                                                                                                                                                                                                                                                      |
 | **Lock application** | `lock`                                                                                                                                                                                                                                                                                                                                                |
 | **Password**         | `password [old/OLDPASSWORD] new/NEWPASSWORD`<br> e.g.,`password old/foobar new/barfoo`                                                                                                                                                                                                                                                                |
