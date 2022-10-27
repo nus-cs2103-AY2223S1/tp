@@ -40,6 +40,8 @@ TutHub is a desktop app for NUS professors who wish to choose their next batch o
    * **`delete`**`3` : Deletes the 3rd tutor shown in the current list.
    
    * **`clear`** : Deletes all tutors.
+   
+   * **`comment`**`1 c\Always on time`: Adds a comment to the first tutor that he is always on time.
 
    * **`exit`** : Exits the TutHub app.
 
@@ -167,13 +169,21 @@ Adds a comment on the specified tutor.
 Format: `comment INDEX c/COMMENT`
 
 * Comments on the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Only 1 comment can be made on the tutor.
-* To edit an existing comment, doing the comment command on the INDEX of the specified tutor updates the comment on the tutor.
-* You can remove the tutor's comments by typing c/ without specifying any tags after it.
 
 Examples:
 * `comment 1 c/Tasks not Finished` adds a comment of "Tasks not Finished" on the 1st tutor.
-* `comment 2 c/` clears the comments of the 2nd tutor.
+
+### Deleting comments on a tutor : `deletecomment`
+
+Deletes a comment from the specified tutor.
+
+Format: `deletecomment TUTORINDEX COMMENTINDEX`
+
+* Deletes the comment at the specified index of the specified tutor. The tutor index refers to the index number shown in the displayed person list. The comment index refers to the index number of the comment shown in the comment section. Both indeces **must be positive integers** 1, 2, 3, …​
+
+Examples:
+* `deletecomment 1 1` deletes the 1st comment from the 1st tutor.
+
 
 ### Editing a tutor : `edit`
 
