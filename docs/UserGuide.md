@@ -13,7 +13,7 @@
     * [Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`](#editing-entries--edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category)
     * [Summary of entries : `summary [mo/MONTH]`](#summary-of-entries--summary-momonth)
     * [View entries by category: `view t/ENTRY_TYPE g/GRAPH_TYPE`](#view-entries-by-category--view-tentry_type-ggraph_type)
-    * [View entries by month: `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`](#view-entries-by-month--view-tentry_type-ggraph_type-momonth)
+    * [View entries by month: `view t/ENTRY_TYPE g/GRAPH_TYPE mo/MONTH`](#view-entries-by-month--view-tentry_type-ggraph_type-momonth)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
     * [Exiting the program : `exit`](#exiting-the-program--exit)
     * [Saving the data](#saving-the-data)
@@ -83,7 +83,7 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
     - Optional input : NIL<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `del INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `del 10 t/e`.
+  e.g. in `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
 
 - Items in square brackets are optional.<br>
   e.g `view t/ENTRY_TYPE g/GRAPH_TYPE [MONTH]` can be used as `view t/e g/c [mo/2022-05]` or as `view t/e g/c`.
@@ -99,12 +99,12 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 **:information_source: Notes about the application:**<br>
 - To familiarise yourself with our user interface, please refer to the following diagram and table to understand how to use our application.
 
-|      `Component`      |                                                       `Explaination`                                                       |
-|:---------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
-|   **List Display**    |            where you view your entry lists (Expenditure or Income) <br> - can be modifed by the `view` command             |
-|   **Graph Display**   | where you view your entries in a graphical overview (Pie Chart or Line Graph) <br> - can be modified by the `view` command |
-| **Command Input Box** |                                       where you enter your commands to use PennyWise                                       |
-|     **Education**     |                                  where you see the output of your commands from PennyWise                                  |
+|      `Component`       |                                                       `Explanation`                                                        |
+|:----------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
+|    **List Display**    |            where you view your entry lists (Expenditure or Income) <br> - can be modifed by the `view` command             |
+|   **Graph Display**    | where you view your entries in a graphical overview (Pie Chart or Line Graph) <br> - can be modified by the `view` command |
+| **Command Input Box**  |                                       where you enter your commands to use PennyWise                                       |
+| **Command Output Box** |                                  where you see the output of your commands from PennyWise                                  |
 
 ![UserInterfaceExplaination](images/UserInterfaceExplaination.png)
 
@@ -159,15 +159,15 @@ Adds an entry to the specified list. <br>
    Expected: New entry added: Tuition; Date: 10-10-2022; Amount: 40.00; Tag: Salary
    ![AddCommand2](images/AddCommand2.png)
 
-### Deleting entries : `del INDEX_OF_ENTRY t/ENTRY_TYPE`
+### Deleting entries : `delete INDEX_OF_ENTRY t/ENTRY_TYPE`
 Deletes an entry.
-1. Example: `del 2 t/e` deletes the 2nd item on the expenditure list 
+1. Example: `delete 2 t/e` deletes the 2nd item on the expenditure list 
    Expenditure list:
    1. Movie 15.60 12 Sep 2022 c/Entertainment
    2. Drink 1.20 12 Sep 2022 c/Food <br>
    Expected: `Deleted Entry: Drink; Date: 12-09-2022; Amount: 1.20; Tag: Food`
    ![DeleteCommand1](images/DeleteCommand1.png)
-1. Example: `del 2 t/i` deletes the 2nd item on the income list
+1. Example: `delete 2 t/i` deletes the 2nd item on the income list
    Income list:
    1. Tuition 40.00 12 Sep 2022 c/Salary
    2. Allowance 100.00 12 Sep 2022 c/Allowance <br>
