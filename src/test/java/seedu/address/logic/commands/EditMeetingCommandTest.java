@@ -75,7 +75,7 @@
 //
 //    @Test
 //    public void execute_noFieldSpecifiedUnfilteredList_success() {
-//        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, new EditMeetingDescriptor());
+//      EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, new EditMeetingDescriptor());
 //        Meeting editedMeeting = model.getFilteredMeetingList().get(INDEX_FIRST_PERSON.getZeroBased());
 //
 //        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
@@ -91,7 +91,7 @@
 //        showMeetingAtIndex(model, INDEX_FIRST_PERSON);
 //
 //        Meeting meetingInFilteredList = model.getFilteredMeetingList().get(INDEX_FIRST_PERSON.getZeroBased());
-//        Meeting editedMeeting = new MeetingBuilder(meetingInFilteredList).withDescription(VALID_NAME_MEETING_1).build();
+//      Meeting editedMeeting = new MeetingBuilder(meetingInFilteredList).withDescription(VALID_NAME_MEETING_1).build();
 //        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON,
 //                new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_MEETING_1).build());
 //
