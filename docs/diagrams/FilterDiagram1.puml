@@ -1,0 +1,11 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+Class "FilterCommand" as FilterCommand
+Class "TagContainsKeywordPredicate" as TagContainsKeywordPredicate
+FilterCommand -> "1" TagContainsKeywordPredicate
+
+@enduml

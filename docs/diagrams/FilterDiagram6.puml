@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+'autonumber
+box Logic LOGIC_COLOR_T1
+participant ":addressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":filterCommandParser" as FilterCommandParser LOGIC_COLOR
+participant ":tagContainsKeywordPredicate" as TagContainsKeywordPredicate LOGIC_COLOR
+participant ":filterCommand" as FilterCommand LOGIC_COLOR
+-> AddressBookParser ++: parseCommand()
+AddressBookParser -> FilterCommandParser **: new FilterCommandParser()
+activate FilterCommandParser
+FilterCommandParser -> FilterCommandParser ++: parse(arguments)
+FilterCommandParser -> TagContainsKeywordPredicate **: new TagContainsKeywordPredicate(trimmedArgs)
+activate TagContainsKeywordPredicate
+FilterCommandParser -> FilterCommand **: new FilterCommand(TagContainsKeywordPredicate)
+activate FilterCommand
+return
+return
+return
+return
+return
+end box
+@enduml

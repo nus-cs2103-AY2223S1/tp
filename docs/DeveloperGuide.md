@@ -173,7 +173,7 @@ Step 1. The user launches the application. The `AddressBook` will initially disp
 
 ![FilterDiagram2](images/FilterDiagram2.png)
 
-Step 2. The user executes `filter CS2103-T17` command to filter people that have the `CS2103-T17 tag`. The `filter` keyword causes `AddressBookParser#parseCommand()` to call `FilterCommandParser#parse()`. This creates a `TagContainsKeywordPredicate` with the keyword `CS2103-T17`, and returns a `FilterCommand` containing this predicate. 
+Step 2. The user executes `filter CS2103-T17` command to filter people that have the `CS2103-T17 tag`. The `filter` keyword causes `AddressBookParser#parseCommand()` to call `FilterCommandParser#parse()`. This creates a `TagContainsKeywordPredicate` with the keyword `CS2103-T17`, and returns a `FilterCommand` containing this predicate.
 
 ![FilterDiagram3](images/FilterDiagram3.png)
 
@@ -234,7 +234,7 @@ It overwrites the following operations:
 * `GradeCommand#execute()` - Executes the command, storing the given grade of an assignment of a specified student.
 * `GradeCommand#equals(Object o)` - Checks if two objects are equal.
 
-A `GradeCommandParser` facilitates the parsing of the user input. It implements `Parser<GradeCommand>.` 
+A `GradeCommandParser` facilitates the parsing of the user input. It implements `Parser<GradeCommand>.`
 
 After the command is parsed, the given grade is stored inside the `Assignment` of the specified `Student`. This is done with the help of the following methods:
 * `Student#updateOverallGrade(Index indexOfAssignment, Sting Grade)` - Calls `setAssignmentGrade()` with the given index and grade, and update the overall grade of the `Student`.
@@ -267,7 +267,7 @@ The following sequence diagram shows how the add grade operation works:
 
 #### Design considerations:
 
-* **Alternative 1 (current choice):** `Student#updateOverallGrade()` calls `Student#setAssignmentGrade()` and returns the updated overall grade of the student 
+* **Alternative 1 (current choice):** `Student#updateOverallGrade()` calls `Student#setAssignmentGrade()` and returns the updated overall grade of the student
     * Pros: The updated `overallGrade` can be easily used to create the new `Student` object.
     * Cons: Can be confusing as in whether the `assignmentsList` of the `Student` is updated as well.
 * **Alternative 2:** `Student#updateOverallGrade()` does not return a value and only handle the calculation of the overall grade with the updated `assignmentsList` provided
@@ -464,7 +464,7 @@ The following show diagram shows how the show operation works:
 **Feature Summary**
 - Users are able to create multiple TABs (currently limited to 5).
   - Through `new` command
-- Users are able to swap between the TABs 
+- Users are able to swap between the TABs
   - Through `swap` command
 
 **Implementation**
@@ -473,7 +473,7 @@ Current implementation consists of two parts. First part is creating new books, 
 
 **Creating new Books**
 
-This feature builds on `MainWindow` class to facilitate communication between the UI and backend functions. It 
+This feature builds on `MainWindow` class to facilitate communication between the UI and backend functions. It
 communicates with `Logic` to create new TABs and uses `Model` class to alter the current `UserPref` instance.
 
 **Swapping between Books**

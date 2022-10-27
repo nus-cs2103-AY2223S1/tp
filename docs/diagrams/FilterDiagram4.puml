@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object "<u> alpha:Person" as Alpha {
+    tag = "CS2103-T17"
+}
+object "<u> bravo:Person" as Bravo {
+    tag = "CS2103-T16"
+}
+object "<u> charlie:Person" as Charlie {
+    tag = "CS2103-T17"
+}
+object "<u> delta:Person" as Delta {
+    tag = "CS2103-T18"
+}
+
+map "<u> :AddressBook" as AddressBook {
+ <u>:Person1 *-> Alpha
+ <u>:Person2 *--> Bravo
+ <u>:Person3 *--> Charlie
+ <u>:Person4 *--> Delta
+}
+
+object "<u> :TagContainsKeywordPredicate" as check
+check -> Alpha
+check --> Bravo
+check ---> Charlie
+check ----> Delta
+@enduml
