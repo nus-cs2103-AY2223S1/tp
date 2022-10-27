@@ -58,30 +58,38 @@ This user guide provides in-depth descriptions of all the available features in 
    ![Ui](images/DownloadInstruction.png) <br><br>
 3. Copy the file to the folder you want to use as the _home folder_ for your GuestBook. <br> <br>
    ![Ui](images/GuestBookIcon.png) <br><br>
-4. Double-click on the file to start the app. The GUI, similar to the image below, should pop up in a few seconds. 
+4. Double-click on `guestbook.jar` to start the app. The GUI, similar to the image below, should pop up in a few seconds. 
 Note that the app contains sample data.<br><br>
    ![Ui](images/Ui.png) <br><br>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
 
+6. To kickstart your journey, you can add a guest, `John Doe`, to GuestBook using the **`add`** command.
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to GuestBook.
 
-   * **`edit`** `1` `n/Bob rc/no rq/Room Service`: Edits the first guest shown in the current list.
+7. To find `John Doe`, you can use the **`find`** command, and search any of `John Doe`'s `fields`, such has his name or room. The command below can help you find guests that match the keywords you entered.
 
-   * **`find`** `James` : Finds all the guests where at least one of the fields contains `James` (case insensitive).
+   * **`find`** `John Doe` : Finds all the guests where at least one of the fields contains `John` or `Doe` (case-insensitive).
 
-   * **`list`** : Lists all guests.
+8. To make changes to `John Doe`, you can use the **`edit`** command. This changes the guest's fields based on the values you have inputted. The other values will remain the same. <br> For example, if `John Doe` is the second guest in the list, and you want to change his room number to 05-55, you can do this.
+    * **`edit`**`2` `rm/05-55`n: Changes the `Room` of `John Doe` to `05-55` in GuestBook.
 
-   * **`bill`** `2` `b/+99.99`: Adds 99.99 to the bill of the 2nd guest.
+9. After running a **`find`** function, you might realise that some of your guests are no longer visible, as they are not in the current list. To see a list of all your guests, you can use the **`list`** command.
+    * **`list`**: List all the guests in GuestBook.
 
-   * **`delete`**`3` : Deletes the 3rd guest shown in the current list.
+10. In the situation that a guest purchases additional necessities, you can bill the guest using the **`bill`** command. For example, you can bill the third guest a service that costs 30.35 by running the command below.
+    * **`bill`** `3` `b/+30.35`: Adds 30.35 to the bill of the third guest.
 
-   * **`clear`** : Deletes all guests.
+11. When a guest checkouts, you might want to delete the guest. In that case, you can use the **`delete`** command.
+    * **`delete`**`3` : Deletes the third guest shown in the current list.
 
-   * **`exit`** : Exits the app.
+12. To clear your GuestBook of all entries, you can use the **`clear`** command. Do be warn that it is irreversible, so use with caution!
+    * **`clear`** : Deletes all guests.
 
-6. You can refer to the [Features](#features) below for details of each command.
+13. Finally, to quit GuestBook, you can run the **`exit`** command.
+    * **`exit`** : Exits the app.
+
+14. For more details, you can refer to the [Features](#features) below for the exact specifications of each command. Thank you and hope you enjoy using GuestBook!
 
 [Return to Table of Contents](#table-of-contents)
 
