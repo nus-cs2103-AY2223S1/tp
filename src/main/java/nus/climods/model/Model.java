@@ -1,6 +1,7 @@
 package nus.climods.model;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -67,6 +68,14 @@ public interface Model {
      * Sets module (currently for view) in full module list to the module specified by moduleCode
      */
     void setModuleInFocus(Module module) throws ApiException;
+
+    /**
+     * Show modules specified in moduleCodes list. If no module codes are in the current curriculum,
+     *      showModules returns false and does not show any new modules.
+     * @param moduleCodes List of module codes specifying modules to show
+     * @return true if at least one of the given module codes is a valid module in current curriculum
+     */
+    boolean showModules(List<String> moduleCodes);
 
     /**
      * Resets active module to be inactive
