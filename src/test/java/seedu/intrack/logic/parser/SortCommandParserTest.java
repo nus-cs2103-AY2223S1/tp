@@ -1,3 +1,4 @@
+//@@author kangqiao322
 package seedu.intrack.logic.parser;
 
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -7,21 +8,23 @@ import static seedu.intrack.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.intrack.logic.commands.SortCommand;
+import seedu.intrack.logic.commands.SortSalaryCommand;
+import seedu.intrack.logic.commands.SortTimeCommand;
 
 
 class SortCommandParserTest {
     private SortCommandParser parser = new SortCommandParser();
 
     @Test
-    public void parse_commandWordSpecified_success() {
+    public void parse_commandWordTimeSpecified_success() {
         // ascending command word present
-        String userInputA = " a"; //untrimmed yet
-        SortCommand expectedCommandA = new SortCommand("a");
+        String userInputA = " time a"; // untrimmed yet
+        SortTimeCommand expectedCommandA = new SortTimeCommand("a");
         assertParseSuccess(parser, userInputA, expectedCommandA);
 
         // descending command word present
-        String userInputD = " d"; //untrimmed yet
-        SortCommand expectedCommandD = new SortCommand("d");
+        String userInputD = " time d"; // untrimmed yet
+        SortTimeCommand expectedCommandD = new SortTimeCommand("d");
         assertParseSuccess(parser, userInputD, expectedCommandD);
     }
 
@@ -31,5 +34,19 @@ class SortCommandParserTest {
         // no parameters
         assertParseFailure(parser, SortCommand.COMMAND_WORD, expectedMessage);
 
+    }
+
+    //@@author johnrhimawan
+    @Test
+    public void parse_commandWordSalarySpecified_success() {
+        // ascending command word present
+        String userInputA = " salary a"; // untrimmed yet
+        SortSalaryCommand expectedCommandA = new SortSalaryCommand("a");
+        assertParseSuccess(parser, userInputA, expectedCommandA);
+
+        // descending command word present
+        String userInputD = " salary d"; // untrimmed yet
+        SortSalaryCommand expectedCommandD = new SortSalaryCommand("d");
+        assertParseSuccess(parser, userInputD, expectedCommandD);
     }
 }

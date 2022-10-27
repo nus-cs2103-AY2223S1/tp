@@ -98,13 +98,23 @@ public interface Model {
      * Sorts all internships in ascending order based on their respective tasks
      * with the nearest date and time
      */
-    void ascendSort();
+    void ascendSortTime();
 
     /**
      * Sorts all internships in descending order based on their respective tasks
      * with the furthest date and time
      */
-    void descendSort();
+    void descendSortTime();
+
+    /**
+     * Sorts all internships in ascending order based on their respective salaries
+     */
+    void ascendSortSalary();
+
+    /**
+     * Sorts all internships in descending order based on their respective salaries
+     */
+    void descendSortSalary();
 
     /** Returns an unmodifiable view of the selected internship list */
     ObservableList<Internship> getSelectedInternship();

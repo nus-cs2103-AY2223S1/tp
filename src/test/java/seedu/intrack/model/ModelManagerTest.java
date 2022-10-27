@@ -97,7 +97,7 @@ public class ModelManagerTest {
         // after sorting, elements are the same buf different order
         modelManager = new ModelManager(inTrack, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(inTrack, userPrefs);
-        modelManager.ascendSort();
+        modelManager.ascendSortTime();
         assertTrue(modelManager.equals(modelManagerCopy));
 
     }
@@ -110,7 +110,7 @@ public class ModelManagerTest {
         // after sorting, elements should not change, but reverse in collections for some reason alters it?
         modelManager = new ModelManager(inTrack, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(inTrack, userPrefs);
-        modelManager.descendSort();
+        modelManager.descendSortTime();
         assertFalse(modelManager.equals(modelManagerCopy));
 
     }

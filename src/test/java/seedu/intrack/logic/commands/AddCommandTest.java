@@ -155,12 +155,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public void ascendSort() {
+        public void ascendSortTime() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void descendSort() {
+        public void descendSortTime() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void ascendSortSalary() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void descendSortSalary() {
             throw new AssertionError("This method should not be called.");
         }
 

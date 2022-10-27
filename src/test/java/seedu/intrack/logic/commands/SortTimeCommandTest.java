@@ -1,10 +1,11 @@
+//@@author kangqiao322
 package seedu.intrack.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.intrack.logic.commands.SortCommand.MESSAGE_SUCCESS_A;
-import static seedu.intrack.logic.commands.SortCommand.MESSAGE_SUCCESS_D;
+import static seedu.intrack.logic.commands.SortTimeCommand.MESSAGE_SUCCESS_A;
+import static seedu.intrack.logic.commands.SortTimeCommand.MESSAGE_SUCCESS_D;
 import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrack;
 
 import org.junit.jupiter.api.Test;
@@ -17,14 +18,14 @@ import seedu.intrack.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for SortCommand.
  */
-class SortCommandTest {
+class SortTimeCommandTest {
     private Model model = new ModelManager(getTypicalInTrack(), new UserPrefs());
     @Test
     public void equals() {
-        final SortCommand standardCommand = new SortCommand("a");
+        final SortTimeCommand standardCommand = new SortTimeCommand("a");
 
         // same values -> returns true
-        SortCommand commandWithSameValues = new SortCommand("a");
+        SortTimeCommand commandWithSameValues = new SortTimeCommand("a");
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -37,7 +38,7 @@ class SortCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different ordertype -> returns false
-        assertFalse(standardCommand.equals(new SortCommand("d")));
+        assertFalse(standardCommand.equals(new SortTimeCommand("d")));
 
     }
 
@@ -45,11 +46,11 @@ class SortCommandTest {
     void execute_validOrderTypeCommandA_success() {
         //for ascending
         String orderType = "a";
-        SortCommand sortCommand = new SortCommand(orderType);
+        SortTimeCommand sortTimeCommand = new SortTimeCommand(orderType);
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
         String expectedMessage = String.format(MESSAGE_SUCCESS_A, model.getFilteredInternshipList().size());
-        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(sortTimeCommand, model, expectedMessage, expectedModel);
 
     }
 
@@ -57,10 +58,10 @@ class SortCommandTest {
     void execute_validOrderTypeCommandD_success() {
         //for descending
         String orderType = "d";
-        SortCommand sortCommand = new SortCommand(orderType);
+        SortTimeCommand sortTimeCommand = new SortTimeCommand(orderType);
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
         String expectedMessage = String.format(MESSAGE_SUCCESS_D, model.getFilteredInternshipList().size());
-        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(sortTimeCommand, model, expectedMessage, expectedModel);
     }
 }

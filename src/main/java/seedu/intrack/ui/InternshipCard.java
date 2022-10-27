@@ -48,6 +48,8 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private TextFlow website;
     @FXML
+    private Label salary;
+    @FXML
     private Label upcomingTask;
     @FXML
     private FlowPane tags;
@@ -69,6 +71,7 @@ public class InternshipCard extends UiPart<Region> {
         PseudoClass offered = PseudoClass.getPseudoClass("offered");
         lab.pseudoClassStateChanged(offered, (internship.getStatus().toString()).equals("Offered"));
         status.getChildren().add(lab);
+        upcomingTask.setWrapText(true);
         List<Task> taskList = internship.getTasks().stream()
                 .filter(task -> task.getTaskTime().isAfter(LocalDateTime.now()))
                 .collect(Collectors.toList());
@@ -86,6 +89,8 @@ public class InternshipCard extends UiPart<Region> {
                 System.out.println(ex.getMessage());
             }
         });
+
+        salary.setText(internship.getSalary().toString());
 
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

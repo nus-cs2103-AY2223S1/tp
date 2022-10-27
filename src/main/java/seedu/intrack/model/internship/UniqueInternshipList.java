@@ -155,4 +155,19 @@ public class UniqueInternshipList implements Iterable<Internship> {
         internalList.sort(Comparator.comparing(o -> o.getNearestTaskDate()));
         Collections.reverse(internalList);
     }
+
+    /**
+     * Sorts all the {@code Internship} in the list by their respective salaries in ascending order
+     */
+    public void salarySortAscending() {
+        internalList.sort(Comparator.comparing(o -> o.getSalary().value));
+    }
+
+    /**
+     * Sorts all the {@code Internship} in the list by their respective salaries in descending order
+     */
+    public void salarySortDescending() {
+        internalList.sort(Comparator.comparing(o -> o.getSalary().value));
+        Collections.reverse(internalList);
+    }
 }
