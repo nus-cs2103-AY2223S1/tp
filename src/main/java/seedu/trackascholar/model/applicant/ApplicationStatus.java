@@ -57,7 +57,7 @@ public class ApplicationStatus implements Comparable<ApplicationStatus> {
     }
 
     /**
-     * Returns status of applicant's scholarship application.
+     * Returns the status of applicant's scholarship application.
      */
     public String getStatusOfApplication() {
         return status;

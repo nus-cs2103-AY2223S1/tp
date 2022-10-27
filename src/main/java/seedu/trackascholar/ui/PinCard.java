@@ -53,7 +53,7 @@ public class PinCard extends UiPart<Region> {
         applicationStatus.setText(applicant.getStatusOfApplication());
         setApplicationStatusStyling(applicant.getStatusOfApplication());
         //Ensure only pinned applicants are here
-        assert applicant.getPin().getHasPinned();
+        assert applicant.getHasPinned();
         email.setText(applicant.getEmailAddress());
         applicant.getMajors().stream()
                 .sorted(Comparator.comparing(major -> major.getMajorName()))

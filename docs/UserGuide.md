@@ -57,9 +57,9 @@ TAS can get your scholarship applicant management tasks done faster than traditi
 
 </div>
 
-### Viewing help : `help`
+### Viewing help window : `help`
 
-Shows a message explaining how to access the help page.
+Pops open a help window which contains a link that directs the user to this user guide for detailed help
 
 ![help message](images/helpMessage.png)
 
@@ -108,7 +108,7 @@ Examples:
 
 *  `edit 2 n/Samuel Cheong m/` Edits the name of the 2nd applicant to be `Samuel Cheong` and clears all existing majors.
 
-### Locating applicants by name : `find`
+### Finding applicants by name : `find`
 
 Finds scholarship applicants whose names contain any of the given keywords
 
@@ -190,7 +190,7 @@ Examples:
 * `sort scholarship` All applicants in TrackAScholar will be sorted based on the type of scholarship they have applied for. 
 * `sort status` All applicants in TrackAScholar will be sorted according to their application status.
 
-### Pinning an applicant
+### Pinning an applicant : `pin`
 
 An applicant will be pinned in the pinned applicant list on the right side of the screen. The applicant will be displayed on both applicant lists.
 
@@ -203,17 +203,31 @@ Format: `pin INDEX`
 Examples:
 * `list` followed by `pin 2` pins the 2nd applicant in TrackAScholar.
 
-### Unpins an applicant
+### Importing a trackAScholar file : `import`
+
+Imports a trackAScholar file into the current trackAScholar file
+
+Format: `import r/k`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+It is necessary for a trackAScholar file in a readable format to be placed in the data directory before.
+</div>
+
+Examples:
+* `import r` applicants with the same name will be replaced with application data from imported file
+* `import k` applicants with the same name will be kept instead of being replaced with application data from imported file
+
+### Unpins an applicant : `unpin`
 
 An applicant in the pinned applicant list (on the right side of the screen) will be unpinned. 
 This will result in the removal of the applicant from the pinned applicant list.
 
-Format: `unpin NAME`
+Format: `unpin FULL_NAME`
 
-* Unpins the scholarship applicant with the specified `NAME`.
+* Unpins the scholarship applicant with the specified `FULL_NAME`.
 * The name refers to the name of the scholarship applicant.
 * The name **must be the full name:** `Alex Yeoh` instead of just simply `Alex`.
-* The name is **case-insensitive**
+* The name is **case-insensitive**.
 
 Examples:
 * `unpin Alex Yeoh` unpins the applicant with the name `Alex Yeoh` in TrackAScholar.
@@ -249,11 +263,12 @@ _Details coming soon ..._
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR]…​`  |
 | **Exit**   | `exit`                                                        |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`                                |
-| **filter** | `filter as/APPLICATIONSTATUS`                                 |
+| **Filter** | `filter PENDING/ACCEPTED/REJECTED`                            |
 | **Help**   | `help`                                                        |
 | **List**   | `list`                                                        |
 | **Remove** | `remove ACCEPTED/REJECTED`                                    |
 | **Sort**   | `sort NAME/SCHOLARSHIP/APPLICATION_STATUS`                    |
 | **Pin**    | `pin INDEX`                                                   |
-| **Unpin**  | `unpin NAME`                                                  |
+| **Unpin**  | `unpin FULL_NAME`                                             |
+| **Import** | `import r/k`                                                  |
 

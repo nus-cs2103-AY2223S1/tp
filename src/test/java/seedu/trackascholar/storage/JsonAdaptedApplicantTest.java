@@ -34,8 +34,7 @@ public class JsonAdaptedApplicantTest {
     private static final String VALID_APPLICATION_STATUS = ALICE.getStatusOfApplication();
     private static final String VALID_MAJOR_1 = "Mathematics";
     private static final String VALID_MAJOR_2 = "Computing";
-
-    private static final boolean VALID_HAS_PINNED = ALICE.getPin().getHasPinned();
+    private static final boolean VALID_HAS_PINNED = ALICE.getHasPinned();
     private static final List<JsonAdaptedMajor> VALID_MAJORS = ALICE.getMajors().stream()
             .map(JsonAdaptedMajor::new)
             .collect(Collectors.toList());

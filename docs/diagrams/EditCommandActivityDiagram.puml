@@ -1,0 +1,31 @@
+@startuml
+start
+:User enters Edit command;
+
+if () then ([Is invalid parameter])
+    : TrackAScholar displays \nerror message indicating \ninvalid user input;
+
+else ([Is valid parameters])
+
+    if () then ([Index is in TrackAScholar])
+        :Retrieve applicant \nfrom track a scholar;
+
+        :Modify applicant fields \nwith input given by the user;
+
+        if () then ([Applicant created has same name\n as applicant in TrackAScholar])
+            :TrackAScholar displays \nerror message indicating \nthat Applicant already exist;
+
+        else ([else])
+            :Add new Applicant \ninto TrackAScholar;
+
+            :TrackAScholar updates \nto display edited applicant;
+        endif
+
+    else ([else])
+        :TrackAScholar displays \nerror message indicating \nindex provided is invalid;
+
+    endif
+
+endif
+stop
+@enduml

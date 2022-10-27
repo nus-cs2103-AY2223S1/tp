@@ -34,7 +34,7 @@ public class Phone {
     }
 
     /**
-     * Return phone number of applicant.
+     * Returns the phone number of applicant.
      */
     public String getPhoneNumber() {
         return value;
