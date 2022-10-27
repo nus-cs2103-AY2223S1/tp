@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private InternshipListPanel internshipListPanel;
+    private WideInternshipListPanel wideInternshipListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -64,6 +65,8 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
+
+        setWidthEventHandlers();
 
         helpWindow = new HelpWindow();
     }
@@ -113,6 +116,8 @@ public class MainWindow extends UiPart<Stage> {
         internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList());
         internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
 
+        wideInternshipListPanel = new WideInternshipListPanel(logic.getFilteredInternshipList());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -133,6 +138,21 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    private void setWidthEventHandlers() {
+        this.primaryStage.widthProperty().addListener((observable, oldVal, newVal) -> {
+            if (newVal.doubleValue() >= 1000) {
+                // toggle to different layout
+                internshipListPanelPlaceholder.getChildren().clear();
+                internshipListPanelPlaceholder.getChildren().add(wideInternshipListPanel.getRoot());
+                logger.info("responsive ui testing:  width is: " + newVal.doubleValue());
+            } else {
+                internshipListPanelPlaceholder.getChildren().clear();
+                internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
+                logger.info("responsive ui testing:  width is: " + newVal.doubleValue());
+            }
+        });
     }
 
     /**
