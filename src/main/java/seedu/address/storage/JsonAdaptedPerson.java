@@ -96,11 +96,13 @@ class JsonAdaptedPerson {
         String email = socialArray[2];
         String instagram = socialArray[3];
         String preferred = socialArray[4];
+        String imageUrl = socialArray[5];
         modelSocial.addWhatsapp(whatsapp);
         modelSocial.addTelegram(telegram);
         modelSocial.addEmail(email);
         modelSocial.addInstagram(instagram);
         modelSocial.prefer(preferred);
+        modelSocial.addUrl(imageUrl);
 
         return modelSocial;
     }
@@ -175,7 +177,7 @@ class JsonAdaptedPerson {
 
         final Set<Group> modelGroups = new HashSet<>(personGroups);
 
-        final Social modelSocial = getModelSocial(social);
+        final Social modelSocial = getModelSocial(social + " .");
 
 
         return new Person(modelOccupation, modelName, modelPhone, modelEmail, modelTutorial, modelAddress, modelTags,

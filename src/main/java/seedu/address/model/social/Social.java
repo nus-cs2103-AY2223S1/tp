@@ -42,12 +42,19 @@ public class Social {
 
     private Socials preferred;
 
+    private String imageUrl;
+
 
     /**
      * Constructs a {@code Social}.
      */
     public Social() {
-        this.links = new String[4];
+        this.links = new String[5];
+        links[0] = "null";
+        links[1] = "null";
+        links[2] = "null";
+        links[3] = "null";
+        links[4] = "file:src/main/resources/images/profile_pic.png";
     }
 
     /**
@@ -128,6 +135,18 @@ public class Social {
      */
     public String getWhatsapp() {
         return links[0].trim();
+    }
+
+    public void addUrl(String imageUrl) {
+        links[4] = imageUrl;
+    }
+    /**
+     * Returns ImageURL of the person, defaults to default picture if there is none.
+     *
+     * @return ImageURL of the person.
+     */
+    public String getImageUrl() {
+        return links[4].trim();
     }
 
     /**
@@ -251,7 +270,7 @@ public class Social {
         } catch (IOException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (SocialException e) {
-            throw new SocialException("No Whatsapp Link");
+            throw new SocialException("No Telegram Link");
         }
     }
 
@@ -271,7 +290,7 @@ public class Social {
         } catch (IOException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (SocialException e) {
-            throw new SocialException("No Whatsapp Link");
+            throw new SocialException("No Email Link");
         }
     }
 
@@ -297,12 +316,12 @@ public class Social {
         } catch (IOException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (SocialException e) {
-            throw new SocialException("No Whatsapp Link");
+            throw new SocialException("No Instagram Link");
         }
     }
 
     /**
-     * Opens the link inside Whatsapp
+     * Opens the link inside Preferred
      */
     public void openPreferred() throws SocialException {
         try {
@@ -323,7 +342,7 @@ public class Social {
         } catch (IOException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (SocialException e) {
-            throw new SocialException("No Whatsapp Link");
+            throw new SocialException("No Preferred Link");
         }
     }
 

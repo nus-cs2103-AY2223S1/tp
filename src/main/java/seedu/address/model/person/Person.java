@@ -29,6 +29,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Group> groups = new HashSet<>();
+    private String imageUrl;
 
     /**
      * Every field must be present and not null.
@@ -45,6 +46,14 @@ public class Person {
         this.tags.addAll(tags);
         this.groups.addAll(groups);
         this.social = social;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return this.imageUrl == null ? "file:src/main/resources/images/profile_pic.png" : this.imageUrl;
     }
 
     public Occupation getOccupation() {

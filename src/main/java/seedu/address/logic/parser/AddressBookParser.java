@@ -103,12 +103,15 @@ public class AddressBookParser {
             return new SortCommandParser().parse(arguments);
 
         case AddToGroupCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new AddToGroupCommandParser().parse(arguments);
 
         case UngroupCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new UngroupCommandParser().parse(arguments);
 
         case GroupCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new GroupCommandParser().parse(arguments);
 
         case HistoryCommand.COMMAND_WORD:
