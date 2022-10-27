@@ -66,7 +66,7 @@ public class HospitalWing {
      */
     public static boolean isValidHospitalWing(String test) {
         return Arrays.stream(HospitalWingTypes.values()).anyMatch(wingType ->
-                test.toUpperCase().equals(wingType.name()));
+            test.toUpperCase().equals(wingType.name()));
     }
 
     @Override
