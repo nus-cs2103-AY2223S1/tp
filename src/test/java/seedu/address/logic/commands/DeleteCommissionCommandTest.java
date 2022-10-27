@@ -27,15 +27,14 @@ class DeleteCommissionCommandTest {
 
     @Test
     public void execute_noSelectedCustomer_throwsCommandException() {
-        // initialise an empty model manager since ModelManager#selectCustomer does not allow me to select null
-        model = new ModelManager();
+        model.selectCustomer(null);
         assertCommandFailure(new DeleteCommissionCommand(INDEX_FIRST), model, Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
     }
 
     @Test
     public void execute_validIndex_success() {
         model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
-        model.getSelectedCustomer().getValue().addCommission(
+        model.addCommission(model.getSelectedCustomer().getValue(),
                 DOG_PRODUCER.apply(model.getSelectedCustomer().getValue()));
         Commission commissionToDelete = model.getFilteredCommissionList().get(0);
         DeleteCommissionCommand deleteCommissionCommand = new DeleteCommissionCommand(INDEX_FIRST);
@@ -46,7 +45,7 @@ class DeleteCommissionCommandTest {
         CommandResult result = assertDoesNotThrow(() -> deleteCommissionCommand.execute(model));
 
         assertEquals(result.getFeedbackToUser(), expectedMessage);
-        assertFalse(model.getSelectedCustomer().getValue().getCommissions().contains(commissionToDelete));
+        assertFalse(model.getSelectedCustomer().getValue().getCommissionList().contains(commissionToDelete));
     }
 
     @Test

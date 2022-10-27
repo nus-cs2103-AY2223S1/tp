@@ -100,10 +100,6 @@ public class Customer {
         return tags.contains(tag);
     }
 
-    public UniqueCommissionList getCommissions() {
-        return commissions;
-    }
-
     public ObservableList<Commission> getCommissionList() {
         return commissions.asUnmodifiableObservableList();
     }
@@ -189,7 +185,7 @@ public class Customer {
             && otherCustomer.getEmail().equals(getEmail())
             && otherCustomer.getAddress().equals(getAddress())
             && otherCustomer.getTags().equals(getTags())
-            && otherCustomer.getCommissions().equals(getCommissions());
+            && otherCustomer.commissions.equals(commissions);
     }
 
     @Override
@@ -254,7 +250,7 @@ public class Customer {
         /**
          * Sets commissions and returns itself.
          */
-        public CustomerBuilder setCommissions(UniqueCommissionList commissions) {
+        public CustomerBuilder setCommissions(ObservableList<Commission> commissions) {
             requireNonNull(commissions);
             this.commissions.setCommissions(commissions);
             return this;

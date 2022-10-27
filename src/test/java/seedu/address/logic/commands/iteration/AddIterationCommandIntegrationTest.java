@@ -73,7 +73,7 @@ public class AddIterationCommandIntegrationTest {
         Iteration validIteration = new IterationBuilder().build();
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model = expectedModel;
-
+        model.selectCommission(null);
         assertThrows(CommandException.class, Messages.MESSAGE_NO_ACTIVE_COMMISSION, () ->
                 new AddIterationCommand(validIteration).execute(model, new StorageWithImageStub()));
         assertEquals(model, expectedModel);
