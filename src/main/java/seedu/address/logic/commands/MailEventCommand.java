@@ -27,7 +27,7 @@ public class MailEventCommand extends Command {
             + ": Creates mailing list of all persons in an event in csv format, "
             + "and stores the csv file in the /data folder. "
             + "Parameters: "
-            + "EVENT INDEX (must be a positive integer)\n"
+            + "EVENT_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 3";
     public static final String MESSAGE_MAIL_EVENT_SUCCESS = " Generated mailing list for event: %s, "
             + "stored %s.csv file in /data folder.";
