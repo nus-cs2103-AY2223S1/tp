@@ -3,9 +3,11 @@ package seedu.foodrem.logic.commands.statscommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.STATS_COMMAND;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.Model;
@@ -20,8 +22,9 @@ public class StatsCommand extends Command {
     @Override
     public CommandResult<Stats> execute(Model model) {
         requireNonNull(model);
-        List<Item> expensiveItems = getTopThreeExpensiveItems(model.getFoodRem().getItemList());
-        double amountWasted = getAmountWastedFromWastage();
+        ObservableList<Item> itemList = model.getFoodRem().getItemList();
+        List<Item> expensiveItems = getTopThreeExpensiveItems(itemList);
+        double amountWasted = getAmountWastedFromWastage(itemList);
         return CommandResult.from(new Stats(amountWasted, expensiveItems));
     }
 
@@ -30,10 +33,16 @@ public class StatsCommand extends Command {
     }
 
     private List<Item> getTopThreeExpensiveItems(List<Item> itemList) {
-        return itemList.stream().sorted(new ItemCostComparator().reversed()).limit(3).collect(Collectors.toList());
+        return itemList.stream()
+                .sorted(new ItemCostComparator()
+                        .reversed())
+                .limit(3)
+                .collect(Collectors.toList());
     }
 
-    private double getAmountWastedFromWastage() {
-        return 120;
+    private double getAmountWastedFromWastage(List<Item> itemList) {
+        return itemList.stream()
+                .filter(i -> !i.getQuantity().isZero() && i.getExpiryDate().isAfterExpiryDate(LocalDate.now()))
+                .map(i -> i.getPrice().getItemPrice()).reduce(0.0, Double::sum);
     }
 }
