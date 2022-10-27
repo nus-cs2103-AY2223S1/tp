@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.hash;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -110,7 +111,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setProfile(Profile target, Profile editedProfile) {
         requireNonNull(editedProfile);
-
         profiles.setProfile(target, editedProfile);
     }
 
@@ -120,6 +120,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeProfile(Profile key) {
         profiles.remove(key);
+    }
+
+    /**
+     * Returns true if a profile with the same identity as {@code profile} exists in the address book.
+     */
+    public boolean hasProfile(Profile profile) {
+        requireNonNull(profile);
+        return profiles.contains(profile);
     }
 
     //// event-level operations
@@ -156,6 +164,57 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeEvent(Event key) {
         events.remove(key);
+    }
+
+    /**
+     * Adds profiles in {@code profilesToAdd} to the given event.
+     * {@code event} must exist in the address book.
+     * Profiles in {@code profilesToAdd} must also exist in the address book.
+     */
+    public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
+        requireAllNonNull(event, profilesToAdd);
+        events.addEventAttendees(event, profilesToAdd);
+    }
+
+    /**
+     * Deletes profiles in {@code profilesToDelete} from the given event.
+     * {@code event} must exist in the address book.
+     * Profiles in {@code profilesToDelete} must also exist in the address book.
+     */
+    public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
+        requireAllNonNull(event, profilesToDelete);
+        events.deleteEventAttendees(event, profilesToDelete);
+    }
+
+    /**
+     * Adds event {@code event} to the profiles in list of profiles {@code profilesToAddEventTo}.
+     * {@code event} must exist in the address book.
+     * Profiles in {@code profilesToAddEventTo} must also exist in the address book.
+     */
+    public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
+        requireAllNonNull(event, profilesToAddEventTo);
+        events.addEventToAttendees(event, profilesToAddEventTo);
+    }
+
+    /**
+     * Updates the events {@code target} in list of profiles {@code profilesToSet} to the new edited event
+     * {@code editedEvent}.
+     * {@code target} must exist in the address book.
+     * The profiles in list of profiles {@code profilesToEdit} must also exist in the address book.
+     */
+    public void setEventForAttendees(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        events.setEventForAttendees(target, editedEvent);
+    }
+
+    /**
+     * Deletes the event {@code target} from given list of profiles {@code profilesToEdit}.
+     * {@code target} must exist in the address book.
+     * Profiles in {@code profilesToEdit} must also exist in the address book.
+     */
+    public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, profilesToEdit);
+        events.removeEventFromAttendees(target, profilesToEdit);
     }
 
     //// util methods

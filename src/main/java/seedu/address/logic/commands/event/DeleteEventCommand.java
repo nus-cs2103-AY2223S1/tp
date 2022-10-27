@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Deletes an event identified using it's displayed index from the address book.
+ * Deletes an event identified using its displayed index from the address book.
  */
 public class DeleteEventCommand extends EventCommand {
 
@@ -45,6 +45,7 @@ public class DeleteEventCommand extends EventCommand {
         }
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
+        eventToDelete.removeFromAttendees();
         model.deleteEvent(eventToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));
     }
