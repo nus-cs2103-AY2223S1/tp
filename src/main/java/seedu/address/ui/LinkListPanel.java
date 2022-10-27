@@ -37,10 +37,10 @@ public class LinkListPanel extends UiPart<Region> {
      */
     private static class LinkListViewCell extends ListCell<Link> {
         @Override
-        protected void updateItem(Link link, boolean empty) {
-            super.updateItem(link, empty);
+        protected void updateItem(Link link, boolean isEmpty) {
+            super.updateItem(link, isEmpty);
 
-            if (empty || link == null) {
+            if (isEmpty || link == null) {
                 setGraphic(null);
                 setText(null);
             } else {
