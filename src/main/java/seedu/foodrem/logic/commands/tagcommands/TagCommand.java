@@ -3,7 +3,6 @@ package seedu.foodrem.logic.commands.tagcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.TAG_COMMAND;
 
-import java.util.List;
 import java.util.Set;
 
 import seedu.foodrem.commons.core.index.Index;
@@ -24,6 +23,9 @@ public class TagCommand extends Command {
 
     /**
      * Creates a TagCommand to tag the specified {@code Item} with a specified {@code Tag}
+     *
+     * @param tagName the name of the tag
+     * @param index the index of the item to tag
      */
     public TagCommand(String tagName, Index index) {
         requireNonNull(tagName);
@@ -34,33 +36,18 @@ public class TagCommand extends Command {
 
     @Override
     public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
-        Item itemToTag = validateAndGetTargetItem(model, tag, index);
+        Item itemToTag = TagCommandUtil.validateAndGetItem(model, tag, index);
+
         Set<Tag> itemTags = itemToTag.getTagSet();
         if (itemTags.contains(tag)) {
             throw new CommandException("This item has already been tagged with this tag");
         }
+
         itemTags.add(tag);
         Item newTagSetItem = Item.createItemWithTags(itemToTag, itemTags);
-
         model.setItem(itemToTag, newTagSetItem);
 
-        return CommandResult.from(
-                new ItemWithMessage(newTagSetItem, "Item tagged successfully. View updated item below:"));
-    }
-
-    static Item validateAndGetTargetItem(Model model, Tag tag, Index index) throws CommandException {
-        requireNonNull(model);
-
-        if (!model.hasTag(tag)) {
-            throw new CommandException("This tag does not exist");
-        }
-
-        List<Item> lastShownList = model.getCurrentList();
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException("The item index does not exist");
-        }
-
-        return lastShownList.get(index.getZeroBased());
+        return CommandResult.from(new ItemWithMessage(newTagSetItem, "Item tagged successfully. Updated item:"));
     }
 
     public static String getUsage() {

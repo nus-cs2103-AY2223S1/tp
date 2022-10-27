@@ -20,6 +20,7 @@ public class ItemWithMessageView {
      * @return the node to be displayed in the UI.
      */
     public static Node from(ItemWithMessage itemWithMessage) {
+        // TODO: Refactor code duplication
         final VBox container = new VBox();
         container.setSpacing(SPACING_UNIT);
 
