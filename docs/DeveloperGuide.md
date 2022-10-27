@@ -514,7 +514,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
   Use case ends.
 
-#### Use case: **Edit a student's class date **
+#### Use case: **Edit a student's class date**
 
 **MSS**
 
@@ -556,7 +556,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to find all the students with names matching the keywords
+1. Teacher requests to find all the students with names matching the keywords.
 2. Teacher’s Pet shows a list of filtered students according to their provided query.
 
    Use case ends.
