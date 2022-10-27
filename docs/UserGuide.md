@@ -97,11 +97,78 @@ Examples:
 
 ## 1.5 Sorting
 
-### 1.5.1 Sorting patients
+### 1.5.1 Sorting patients `sortpatient` 
 
-### 1.5.2 Sorting appointments
+Sorts patients by a single field
 
-### 1.5.3 Sorting bills
+Format:
+```sortpatient <prefix><input> ...```
+
+* The command word is `sortpatient`.
+* The prefixes are c/ for Criteria and o/ for Order.
+* The criteria can be Name of patient (name), Phone number of patient (phone), Email address of patient (email), Address of patient (address).
+* The order can be Ascending (asc) or Descending (desc).
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+Examples:
+* ```sortpatient c/name o/asc``` returns patients sorted by name in ascending order.
+
+<img src="images/sortpatient1.png" width="800px" height ="400px">
+
+* ```sortpatient c/phone o/desc``` returns patients sorted by phone number in descending order.
+
+<img src="images/sortpatient2.png" width="800px" height ="400px">
+
+### 1.5.2 Sorting appointments `sortappointment`
+
+Sorts appointments by a single field
+
+Format:
+```sortappointment <prefix><input> ...```
+
+* The command word is `sortappointment`.
+* The prefixes are c/ for Criteria and o/ for Order.
+* The criteria can be Name of patient (name), Medical Test of appointment (test), Slot of appointment (slot) and Doctor of appointment (doctor).
+* The order can be Ascending (asc) or Descending (desc).
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+Examples:
+* ```sortappointment c/test o/asc``` returns appointments sorted by medical test in ascending order.
+
+<img src="images/sortappointment1.png" width="800px" height ="400px">
+
+* ```sortappointment c/doctor o/desc``` returns appointments sorted by doctor in descending order.
+
+<img src="images/sortappointment2.png" width="800px" height ="400px">
+
+### 1.5.3 Sorting bills `sortbill`
+
+Sorts bills by a single field
+
+Format:
+```sortbill <prefix><input> ...```
+
+* The command word is `sortbill`.
+* The prefixes are c/ for Criteria and o/ for Order.
+* The criteria can be Name of patient (name), Amount (amount), Date (date), Payment status (status).
+* The order can be Ascending (asc) or Descending (desc).
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+* If the criteria is Payment status, Ascending will show bills which are paid first and Descending will show bills which are unpaid first.
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+
+Examples:
+* ```sortbill c/amount o/asc``` returns bills sorted by amount in ascending order.
+
+<img src="images/sortbill1.png" width="800px" height ="400px">
+
+* ```sortbill c/status o/desc``` returns bills sorted by payment status in descending order.
+
+<img src="images/sortbill2.png" width="800px" height ="400px">
 
 ## 1.6 Selecting
 
@@ -117,9 +184,38 @@ Examples:
 
 ## 1.8 Remarking
 
-## 1.9 Undoing
+## 1.9 Undoing `undo`
 
-## 1.10 Redoing
+Reverses the most recent command.
+
+Format:
+```undo```
+
+* The command word is `undo`.
+* The command can be used multiple times to undo multiple commands.
+* If there are no commands to undo, an error message will be shown.
+
+Examples:
+* ```undo``` undoes the most recent command.
+
+<img src="images/undo1.png" width="800px" height ="400px">
+
+## 1.10 Redoing `redo`
+
+Reverses the most recent undo command.
+
+Format:
+```redo```
+
+* The command word is `redo`.
+* The command can be used multiple times to redo multiple commands.
+* If there are no commands to redo, an error message will be shown.
+
+Examples:
+* ```redo``` redoes the most recent undo command.
+
+<img src="images/redo1.png" width="800px" height ="400px">
+
 
 ## 1.11 Clearing
 
@@ -128,6 +224,7 @@ Examples:
 ## 1.13 Exiting
 
 ## 1.14 Helping
+
 
 
 # 2. Commands Reference Sheet
@@ -160,7 +257,11 @@ Examples:
 | Clearing     | all the data saved in the software   | `clear`             |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Listing      | all patients, appointments and bills | `list`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Exiting      | the program                          | `exit`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Helping      | the user with user guide             | `help`              |          |                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Helping      | the user with user guide             | `help`              |          |
+| Sorting      | patient list                         | `sortpatient`       |          | `c/` Criteria (Name of patient (name), Phone number of patient (phone), Email address of patient (email), Address of patient (address)) <br/> `o/` Order (Ascending (asc), Descending (desc))                                                                                                                                                                                                                           |
+|              | appointment list                     | `sortappointment`   |          | `c/` Criteria (Name of patient (name), Medical test (test), Time slot (slot), Doctor (doctor)) <br/> `o/` Order (Ascending (asc), Descending (desc))                                                                                                                                                                                                                                                                    |
+|              | bill list                            | `sortbill`          |          | `c/` Criteria (Name of patient (name), Amount (amount), Date (date), Payment status (status)) <br/> `o/` Order (Ascending (asc), Descending (desc))                                                                                                                                                                                                                                                                     |
+
 
 Notes on symbols in parameters column:
 
