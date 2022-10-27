@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -17,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.customer.Customer;
+import seedu.address.ui.GuiTab;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -31,7 +34,7 @@ public class OpenCustomerCommandTest {
         Customer customerToDelete = model.getSortedFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
         OpenCustomerCommand openCommand = new OpenCustomerCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(OpenCustomerCommand.MESSAGE_OPEN_CUSTOMER_SUCCESS, customerToDelete);
+        String expectedMessage = String.format(Messages.MESSAGE_OPEN_CUSTOMER_SUCCESS, customerToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -53,7 +56,7 @@ public class OpenCustomerCommandTest {
         Customer customerToOpen = model.getSortedFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
         OpenCustomerCommand openCommand = new OpenCustomerCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(OpenCustomerCommand.MESSAGE_OPEN_CUSTOMER_SUCCESS, customerToOpen);
+        String expectedMessage = String.format(Messages.MESSAGE_OPEN_CUSTOMER_SUCCESS, customerToOpen);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         showCustomerAtIndex(expectedModel, INDEX_FIRST);
@@ -72,6 +75,14 @@ public class OpenCustomerCommandTest {
         OpenCustomerCommand openCommand = new OpenCustomerCommand(outOfBoundIndex);
 
         assertCommandFailure(openCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_noIndex_switchesTab() {
+        model = new ModelManager();
+        CommandResult result = assertDoesNotThrow(() -> new OpenCustomerCommand().execute(model));
+        assertEquals(result.getFeedbackToUser(), Messages.MESSAGE_OPEN_CUSTOMER_TAB_SUCCESS);
+        assertEquals(model.getSelectedTab(), GuiTab.CUSTOMER);
     }
 
     @Test

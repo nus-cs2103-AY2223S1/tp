@@ -145,8 +145,12 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from `AddressBookStorage`, `UserPrefStorage` and `ImageStorage`, which means it can be treated as any one of them (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* handles the following image functionality:
+  * loading of [`BufferedImage`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/image/BufferedImage.html) from a specified path in the image directory.
+  * storing a [`BufferedImage`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/image/BufferedImage.html) within the image directory.
+  * :information_source: **Note:** the image directory (in which all images are stored) is defined by `imageBaseDirectoryPath` within [`UserPrefs.java`](https://github.com/AY2223S1-CS2103T-W11-3/tp/tree/master/src/main/java/seedu/address/model/UserPrefs.java).
 
 ### Common classes
 
@@ -188,7 +192,7 @@ Commissions are currently stored in the individual `Customer`'s `UniqueCommissio
 * **Alternative 2:** Store all commission objects in `AddressBook`.
   * Pros:
     * Commands requiring commissions from all customers can be more efficient.
-  * Cons: 
+  * Cons:
     * More difficult to implement, since a deleted customer's commissions has to be individually deleted from this master list of commissions.
     * Less efficient for commands for an individual customer's commissions.
 

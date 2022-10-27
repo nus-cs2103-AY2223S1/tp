@@ -21,18 +21,25 @@ Class JsonSerializableAddressBook
 Class JsonAdaptedCustomer
 Class JsonAdaptedTag
 }
-
+package "Image Storage" #F4F6F6{
+Class "<<interface>>\nImageStorage" as ImageStorage
+Class SimpleImageStorage
+}
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -down-> "1" UserPrefsStorage
+StorageManager -down-> "1" AddressBookStorage
+StorageManager -down-> "1" SimpleImageStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -down-|> UserPrefsStorage
+Storage -down-|> AddressBookStorage
+Storage -down-|> ImageStorage
+
+SimpleImageStorage .up.|> ImageStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
