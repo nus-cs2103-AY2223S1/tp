@@ -9,13 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Assignment {
 
-    public static final String GRADE_VALIDATION_REGEX = "\\d{1,5}" + "/" + "\\d{1,5}";
+    public static final String GRADE_VALIDATION_REGEX = "\\d{1,3}" + "/" + "\\d{1,3}";
 
     public static final String WEIGHTAGE_VALIDATION_REGEX = "^(100|[1-9]?[0-9])$";
 
     public static final String GRADE_CONSTRAINTS =
             "Grade should be in the format [number]/[number], where the first number is greater "
-                    + "or equal to the second number (max 99999).";
+                    + "or equal to the second number (max 100).";
 
     public static final String WEIGHTAGE_CONSTRAINTS =
             "Weightage should be in terms of percentages, i.e. 0 - 100";
@@ -68,7 +68,9 @@ public class Assignment {
             return false;
         } else {
             String[] split = test.split("/");
-            return Integer.parseInt(split[0]) <= Integer.parseInt(split[1]);
+            Integer firstNumber = Integer.parseInt(split[0]);
+            Integer secondNumber = Integer.parseInt(split[1]);
+            return firstNumber <= secondNumber && secondNumber <= 100;
         }
     }
 

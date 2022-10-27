@@ -26,7 +26,7 @@ public class GradeCommand extends Command {
             + "Parameters: "
             + "INDEX OF THE STUDENT (must be a positive integer) "
             + PREFIX_ASSIGNMENT + "INDEX OF THE ASSIGNMENT (must be a positive integer) "
-            + PREFIX_GRADE + "GRADE ([smaller integer]/[bigger integer up to 99999])\n"
+            + PREFIX_GRADE + "GRADE ([smaller integer]/[bigger integer up to 100])\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 " + PREFIX_ASSIGNMENT + "1 "
             + PREFIX_GRADE + "18/20.";

@@ -129,7 +129,9 @@ public class Student extends Position {
             return false;
         } else {
             String[] split = test.split("/");
-            return Integer.parseInt(split[0]) <= Integer.parseInt(split[1]);
+            Integer firstNumber = Integer.parseInt(split[0]);
+            Integer secondNumber = Integer.parseInt(split[1]);
+            return firstNumber <= secondNumber && secondNumber <= 100;
         }
     }
 
