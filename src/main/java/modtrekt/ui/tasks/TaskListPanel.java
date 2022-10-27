@@ -2,6 +2,7 @@ package modtrekt.ui.tasks;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -28,6 +29,29 @@ public class TaskListPanel extends UiPart<Region> {
         super(FXML);
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
+        taskList.addListener((ListChangeListener<? super Task>) this::handleChange);
+    }
+
+    /**
+     * Handles change in the list of modules by highlighting the TaskCard addition to the list, if any.
+     */
+    private void handleChange(ListChangeListener.Change<? extends Task> change) {
+        taskListView.getSelectionModel().clearSelection();
+        taskListView.getFocusModel().focus(-1);
+        while (change.next()) {
+            logger.fine(change.toString());
+            if (!taskListView.getItems().isEmpty() && change.wasAdded() && change.getAddedSize() == 1) {
+                // We only care about additions of size 1 because those are the only kinds of changes we
+                // should set selection and focus to (multi-selection doesn't make sense because filtering (e.g. ls -a)
+                // affects the entire list).
+                // We ignore removals because there's nothing to focus and select after it's removed.
+                int changeIndex = change.getFrom();
+                taskListView.scrollTo(changeIndex);
+                taskListView.getSelectionModel().select(changeIndex);
+                taskListView.getFocusModel().focus(changeIndex);
+                return;
+            }
+        }
     }
 
     /**
