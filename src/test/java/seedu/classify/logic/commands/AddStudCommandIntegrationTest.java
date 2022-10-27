@@ -14,7 +14,7 @@ import seedu.classify.model.student.Student;
 import seedu.classify.testutil.StudentBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddStudCommand}.
  */
 public class AddStudCommandIntegrationTest {
 

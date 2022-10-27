@@ -11,7 +11,7 @@ import seedu.classify.model.student.Student;
 
 /**
  * Finds and lists all students in the Student Record whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 

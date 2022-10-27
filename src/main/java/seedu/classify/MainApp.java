@@ -74,14 +74,14 @@ public class MainApp extends Application {
      * or an empty Student Record will be used instead if errors occur when reading {@code storage}'s Student Record.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyStudentRecord> addressBookOptional;
+        Optional<ReadOnlyStudentRecord> studentRecordOptional;
         ReadOnlyStudentRecord initialData;
         try {
-            addressBookOptional = storage.readStudentRecord();
-            if (!addressBookOptional.isPresent()) {
+            studentRecordOptional = storage.readStudentRecord();
+            if (!studentRecordOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Class-ify Record");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleStudentRecord);
+            initialData = studentRecordOptional.orElseGet(SampleDataUtil::getSampleStudentRecord);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Class-ify Record");
             initialData = new StudentRecord();

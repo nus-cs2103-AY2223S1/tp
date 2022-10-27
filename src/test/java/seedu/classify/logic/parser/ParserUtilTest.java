@@ -1,6 +1,7 @@
 package seedu.classify.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.classify.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.classify.testutil.Assert.assertThrows;
@@ -23,9 +24,9 @@ import seedu.classify.model.tag.Exam;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_CLASS = "13@2";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_CLASS_SPECIAL_CHARACTER = "13@2";
+    private static final String INVALID_EMAIL_FORMAT = "example.com";
+    private static final String INVALID_EMAIL_CHARACTER = "example@@example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -86,8 +87,13 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseClass_blank_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(" "));
+    }
+
+    @Test
     public void parseClass_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_CLASS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_CLASS_SPECIAL_CHARACTER));
     }
 
     @Test
@@ -132,8 +138,18 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseEmail_blank_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(" "));
+    }
+
+    @Test
+    public void parseEmail_invalidValueFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL_FORMAT));
+    }
+
+    @Test
+    public void parseEmail_invalidValueSpecialCharacter_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL_CHARACTER));
     }
 
     @Test
@@ -193,5 +209,20 @@ public class ParserUtilTest {
         Set<Exam> expectedTagSet = new HashSet<>(Arrays.asList(new Exam(VALID_TAG_1), new Exam(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseFilter_invalidFilter_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFilter("sdfsdf"));
+    }
+
+    @Test
+    public void parseFilter_validFilterValue_returnsTrue() throws ParseException {
+        assertTrue(ParserUtil.parseFilter("ON"));
+    }
+
+    @Test
+    public void parseFilter_validFilterValue_returnsFalse() throws ParseException {
+        assertFalse(ParserUtil.parseFilter("OFF"));
     }
 }

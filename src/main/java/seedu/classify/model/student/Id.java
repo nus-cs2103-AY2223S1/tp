@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import seedu.classify.commons.util.AppUtil;
 
 /**
- * Represents a Student's id in the record.
- * Id is the last 4 digits of the NRIC (e.g. 123A).
+ * Represents a Student Id in the record.
+ * Id is the last 4 characters of the NRIC (e.g. 123A).
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
 public class Id {

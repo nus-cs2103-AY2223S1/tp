@@ -93,7 +93,7 @@ public class JsonStudentRecordStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code studentRecord} at the specified {@code filePath}.
      */
     private void saveStudentRecord(ReadOnlyStudentRecord studentRecord, String filePath) {
         try {
@@ -105,7 +105,7 @@ public class JsonStudentRecordStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
+    public void saveStudentRecord_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveStudentRecord(new StudentRecord(), null));
     }
 }

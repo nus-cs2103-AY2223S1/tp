@@ -46,7 +46,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ StudentRecord methods ==============================
 
     @Override
     public Path getStudentRecordFilePath() {

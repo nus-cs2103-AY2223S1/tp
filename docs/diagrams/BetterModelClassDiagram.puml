@@ -9,15 +9,16 @@ StudentRecord *-right-> "1" UniqueClassList
 UniqueClassList -[hidden]down- UniqueStudentList
 UniqueClassList -[hidden]down- UniqueStudentList
 
-UniqueClassList *-right-> "*" Class
+UniqueClassList -right-> Class
 UniqueStudentList -right-> Student
+Class -down-> Student
+Class *-down-> Exam
 
-Student *--> "1..2" Name
-Student *--> "1" Id
-Student *-up-> "1" Class
-Student *--> "0..1" Phone
-Student *--> "0..1" Email
-Student *--> "0..4" Exam
+Student *--> Name
+Student *--> Id
+Student *--> Phone
+Student *--> Email
+Student --> Exam
 
 Name -[hidden]right-> Id
 Id -[hidden]right-> Phone
