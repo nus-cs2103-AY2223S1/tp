@@ -162,7 +162,6 @@ public class Student extends Position {
      * @return whether the given index is valid
      */
     public boolean isValidAssignmentIndex(Index indexOfAssignment) {
-        assert false;
         return indexOfAssignment.getZeroBased() >= 0
                 && indexOfAssignment.getZeroBased() < assignmentsList.size();
     }
@@ -298,8 +297,7 @@ public class Student extends Position {
     @Override
     public String toShow() {
         return "Attendance: " + attendance + "\n"
-                + "Grade: " + overallGrade
-                + "\nAssignments: " + assignmentsList.toString();
+                + "Grade: " + overallGrade;
     }
 
     @Override
