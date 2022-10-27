@@ -59,7 +59,7 @@ public class Student {
     }
 
     public String getIdString() {
-        return id.toString();
+        return id.toString().toLowerCase();
     }
 
     public GitName getGitName() {
@@ -67,7 +67,7 @@ public class Student {
     }
 
     public String getGitString() {
-        return gitName.toString();
+        return gitName.toString().toLowerCase();
     }
 
     public TeleHandle getTeleHandle() {
@@ -75,7 +75,7 @@ public class Student {
     }
 
     public String getHandleString() {
-        return teleHandle.toString();
+        return teleHandle.toString().toLowerCase();
     }
 
     public Module getModule() {
@@ -83,7 +83,7 @@ public class Student {
     }
 
     public String getModuleString() {
-        return module.toString();
+        return module.toString().toLowerCase();
     }
 
     public Name getName() {
@@ -91,7 +91,7 @@ public class Student {
     }
 
     public String getNameString() {
-        return name.toString();
+        return name.toString().toLowerCase();
     }
 
     public Phone getPhone() {
@@ -107,7 +107,7 @@ public class Student {
     }
 
     public String getEmailString() {
-        return email.toString();
+        return email.toString().toLowerCase();
     }
 
     /**
