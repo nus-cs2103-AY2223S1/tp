@@ -39,6 +39,9 @@ public class FilePath {
         this.value = filePath;
     }
 
+    /**
+     * Returns true if value is empty.
+     */
     public boolean isEmpty() {
         return value.isEmpty();
     }
