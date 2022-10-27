@@ -76,8 +76,9 @@ public class AddLinkCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Module} with the details of {@code moduleToEdit}
-     * appended with {@code links}.
+     * Creates and returns a {@code Module} with the details of {@code moduleToEdit} appended with {@code linksToAdd}.
+     * Partial addition of links is not allowed, which means that none of the links wil be added if there exists
+     * a link that contains either a pre-existing link alias or URL in {@code moduleToEdit}.
      */
     private static Module createEditedModule(Module moduleToEdit, Set<Link> linksToAdd) throws CommandException {
         assert moduleToEdit != null;

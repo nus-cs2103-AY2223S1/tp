@@ -79,11 +79,10 @@ public class OpenLinkCommand extends Command {
     }
 
     /**
-     * Iterates through the links from {@code moduleToOpenLinks} and opens it in the user's default browser
-     * if its link alias is found in {@code linksToOpen}.
-     * Partial opening of links is supported, whereby links will be sequentially opened till the end of
-     * the collection {@code linksToOpen} or till a non-matching link alias between the collection and
-     * the links from the specified module is encountered.
+     * Iterates through the link aliases from {@code linkAliasesToOpen} and opens the corresponding link url
+     * in the user's default browser for each link alias is found in {@code moduleToOpenLinks}.
+     * Partial opening of links is supported, whereby links will be sequentially opened from Plannit till the end of
+     * {@code linkAliasesToOpen} or till a non-matching link alias is detected from {@code linkAliasesToOpen}.
      */
     private static void openLinksFromModule(Module moduleToOpenLinks, List<String> linkAliasesToOpen)
             throws CommandException {

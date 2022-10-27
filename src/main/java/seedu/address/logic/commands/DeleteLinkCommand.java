@@ -72,7 +72,9 @@ public class DeleteLinkCommand extends Command {
 
     /**
      * Creates and returns a {@code Module} with the details of {@code moduleToEdit}
-     * without the links specified in {@code links}.
+     * without the links specified in {@code linksToRemove}.
+     * Partial deletion of links is not allowed, which means that none of the links wil be deleted if there exists
+     * a link alias from {@code linksToRemove} that does not exist in {@code moduleToEdit}.
      */
     private static Module createEditedModule(Module moduleToEdit, List<String> linksToRemove)
             throws CommandException {
@@ -88,8 +90,6 @@ public class DeleteLinkCommand extends Command {
         return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks, modulePersons);
     }
 
-    //Partial deletion of links is not supported
-    //(where only some links identified by link aliases from linksToRemove are found in originalLinksCopy)
     private static Set<Link> removeLinksFromSet(
             Set<Link> originalLinksCopy, List<String> linkAliasesToRemove, ModuleCode moduleCode)
             throws CommandException {
