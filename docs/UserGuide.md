@@ -11,7 +11,38 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
 💻 Are you a Developer? Do check out the [CLInkedIn Developer Guide](https://ay2223s1-cs2103t-t13-3.github.io/tp/DeveloperGuide.html) for more technical information!
 
 ## Table of Contents
-{:toc}
+
+1. [Introduction to CLInkedIn](#introduction)
+2. [Useful Notation](#useful-notations)
+3. [Quick start](#quick-start)
+4. [Features](#features)
+   1. [Viewing help `help`](#viewing-help--help)
+   2. [Adding/Deleting contacts in CLInkedIn](#adding-deleting-contacts-in-clinkedin)
+      3. [Adding a person `add`](#adding-a-person-add)
+      5. [Deleting a person `delete`](#deleting-a-person--delete)
+      6. [Clearing all contacts `clear`](#clearing-all-contacts-clear)
+   3. [Modifying contacts in CLInkedIn](#modifying-contacts-in-clinkedin)
+      1. [Editing a person `edit`](#editing-a-person--edit)
+      2. [Adding a tag to an existing person `addTag`](#adding-a-tag-to-an-existing-person--addTag)
+      3. [Deleting a tag of an existing person `deleteTag`]([#deleting-a-tag-of-an-existing-person--deletetag))
+      4. [Creating a custom tag type `CreateTagType`](#creating-a-custom-tag-type--createTagType)
+      5. [Editing tag type name `editTagType`](#editing-tag-type-name--editTagType)
+      6. [Deleting an existing tag type `deleteTagType`](#deleting-an-existing-tag-type--deleteTagType)
+      7. [Adding optional information `note`](#adding-optional-information--note)
+      8. [Adding optional rating `rate`](#adding-optional-rating--rate)
+   4. [Modifying contacts views in CLInkedIn](#modifying-contacts-views-in-clinkedin)
+      1. [Listing all contacts `list`](#listing-all-contacts-list)
+      2. [Finding people `find`](#finding-people-find)
+      3. [Sorting people `sort`](#sorting-people-sort)
+   5. [Miscellaneous Commands](#miscellaneous-commands)
+      20. [Viewing statistics `stat`](#viewing-statistics-stat)
+      21. [Importing contacts `import`](#importing-contacts-import)
+      22. [Exporting contacts `export`](#exporting-contacts-export)
+      23. [Exiting Socius `exit`](#exiting-socius-exit)
+      24. [Saving the data](#saving-the-data)
+      25. [Editing the data file](#editing-the-data-file)
+6. [FAQ](#faq)
+7. [Command Summary](#command-summary)
 
 ## Introduction
 ![Ui](images/Ui.png)
