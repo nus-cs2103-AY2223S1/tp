@@ -3,13 +3,13 @@ package seedu.foodrem.logic.commands.itemcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.FILTER_TAG_COMMAND;
 
-import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.TagSetContainsTagPredicate;
 import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.viewmodels.FilterByTag;
 
 /**
  * Filters all items in FoodRem for items that contain the specified tag
@@ -17,16 +17,19 @@ import seedu.foodrem.model.tag.Tag;
 public class FilterTagCommand extends Command {
     private final TagSetContainsTagPredicate pred;
 
+    private final Tag tag;
+
     /**
      * @param tag to filter the Item list for Items tagged with it
      */
     public FilterTagCommand(Tag tag) {
         requireNonNull(tag);
         this.pred = new TagSetContainsTagPredicate(tag);
+        this.tag = tag;
     }
 
     @Override
-    public CommandResult<String> execute(Model model) throws CommandException {
+    public CommandResult<FilterByTag> execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasTag(pred.getTag())) {
@@ -34,18 +37,13 @@ public class FilterTagCommand extends Command {
         }
 
         model.updateFilteredItemList(pred);
-        return CommandResult.from(String.format(this.getSuccessMessage(),
-                model.getCurrentList().size()));
+        String primaryMessage = "Filtered by tag:";
+        String secondaryMessage = String.format("%s items filtered", model.getCurrentList().size());
+        return CommandResult.from(new FilterByTag(tag, primaryMessage, secondaryMessage));
     }
 
     public static String getUsage() {
         return FILTER_TAG_COMMAND.getUsage();
-    }
-
-    protected String getSuccessMessage() {
-        return String.format("Filtered by tag: %s\n%s",
-                this.pred.getTag().getName(),
-                Messages.MESSAGE_ITEMS_FILTERED_OVERVIEW);
     }
 
     @Override
