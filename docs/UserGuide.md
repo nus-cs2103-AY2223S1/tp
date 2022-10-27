@@ -4,7 +4,7 @@ title: User Guide
 ---
 <p align="center">
 
-<img src="images/title_big_logo.png"/>
+<img src="images/titile_big_logo.png"/>
 
 </p>
 
