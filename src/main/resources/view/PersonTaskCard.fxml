@@ -10,30 +10,30 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" prefHeight="90.0" prefWidth="313.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" prefWidth="313.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="90.0" prefHeight="90.0" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="69.0" prefHeight="69.0" prefWidth="313.0" GridPane.columnIndex="0">
             <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
+                <Insets left="15.0" right="5.0" />
             </padding>
-            <HBox alignment="CENTER_LEFT" prefHeight="18.0" spacing="5.0">
-                <Label fx:id="id" styleClass="cell_big_label">
+            <HBox alignment="CENTER_LEFT" spacing="5.0">
+                <Label fx:id="id" styleClass="side-panel-cell-big-label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" prefHeight="17.0" prefWidth="280.0" styleClass="cell_big_label" text="\$first">
+                <Label fx:id="name" prefWidth="280.0" styleClass="side-panel-cell-big-label" text="\$first">
                     <padding>
                         <Insets right="10.0" />
                     </padding>
                 </Label>
-            <FlowPane alignment="TOP_RIGHT" columnHalignment="RIGHT" prefHeight="18.0" prefWidth="60.0" HBox.hgrow="ALWAYS">
+            <FlowPane alignment="TOP_RIGHT" columnHalignment="RIGHT" prefWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="deadline" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" styleClass="due_date_label" textAlignment="RIGHT">
+                  <Label fx:id="deadline" alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="due_date_label" textAlignment="RIGHT">
                      <padding>
                         <Insets bottom="10.0" right="10.0" />
                      </padding>
@@ -43,15 +43,21 @@
                   </Label>
                </children>
             </FlowPane>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
             </HBox>
-            <HBox prefHeight="15.0" prefWidth="130.0">
+            <HBox prefWidth="130.0">
             <children>
-               <FlowPane fx:id="contacts" styleClass="" prefWidth="200.0">
+               <FlowPane fx:id="contacts" prefWidth="200.0" styleClass="">
                   <HBox.margin>
                      <Insets left="20.0" />
                   </HBox.margin>
                </FlowPane>
             </children>
+            <VBox.margin>
+               <Insets bottom="5.0" />
+            </VBox.margin>
             </HBox>
         </VBox>
         <rowConstraints>

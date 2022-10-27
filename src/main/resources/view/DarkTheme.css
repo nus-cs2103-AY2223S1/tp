@@ -102,11 +102,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #F7F7F8;
+    -fx-background-color: #EFEFF1;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #FEFEFE;
+    -fx-background-color: #FBFBFB;
 }
 
 .list-cell:filled:selected {
@@ -124,12 +124,12 @@
 }
 
 .task-side-panel .list-cell:filled:odd {
-    -fx-background-color: #FEFEFE;
+    -fx-background-color: #FAFAFA;
     -fx-padding: 5;
 }
 
 .task-side-panel .list-cell:filled:even {
-    -fx-background-color: #F7F7F8;
+    -fx-background-color: #FAFAFA;
     -fx-padding: 5;
 }
 
@@ -140,6 +140,12 @@
 
 .task-side-panel .list-cell:filled:selected #cardPane {
     -fx-border-color: #6D28D9;
+}
+
+.side-panel-cell-big-label {
+    -fx-font-size: 15px;
+    -fx-font-family: "Georgia";
+    -fx-background-color: transparent;
 }
 
 .cell_big_label {
@@ -193,7 +199,7 @@
     -fx-font-family: 'Arial';
     -fx-font-weight: bold;
     -fx-background-color: transparent;
-    -fx-font-size: 13;
+    -fx-font-size: 10;
     -fx-text-fill: #A1A1AA;
 }
 
