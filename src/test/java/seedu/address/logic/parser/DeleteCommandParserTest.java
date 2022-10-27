@@ -59,4 +59,9 @@ public class DeleteCommandParserTest {
     public void parse_validIndexWithoutMode_throwsParseException() {
         assertParseFailure(parser, "1", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_invalidIndexWithMode_throwsParseException() {
+        assertParseFailure(parser, "-1 m/transaction", ParserUtil.MESSAGE_INVALID_INDEX);
+    }
 }

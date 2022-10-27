@@ -23,13 +23,16 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODE);
 
+        String[] arguments = argMultimap.getPreamble().split(" ", 2);
+        if (!isValidInput(arguments)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(ParserUtil.MESSAGE_INVALID_INDEX, pe);
         }
 
         String mode = argMultimap.getValue(PREFIX_MODE).orElse("");
@@ -44,6 +47,18 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
+    }
+
+    private boolean isValidInput(String[] input) {
+        if (input.length != 1) {
+            return false;
+        }
+        try {
+            int index = Integer.parseInt(input[0]);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 
 }

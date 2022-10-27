@@ -25,8 +25,7 @@ public class ViewCommandParserTest {
     }
     @Test
     public void parse_invalidIndex_throwsParseException() {
-        assertParseFailure(parser, "-2", MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX + "\n"
-                + ViewCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "-2", MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
     @Test
     public void parse_multipleArgs_throwsParseException() {
