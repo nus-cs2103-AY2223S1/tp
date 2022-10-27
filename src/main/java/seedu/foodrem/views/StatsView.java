@@ -5,7 +5,6 @@ import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.viewmodels.Stats;
@@ -29,26 +28,27 @@ public class StatsView {
 
         // Statistics header on top left
         final Label statsHeader = new Label("FoodRem Statistics");
-        statsHeader.getStyleClass().add("item-detail-name");
+        statsHeader.getStyleClass().add("stats-header");
 
         // Section for amount wasted due to expired food
-        final Label amountWasted = new Label("Total cost due to food wastage: " + stats.getAmountWasted());
+        final Label amountWasted = new Label("Total cost incurred due to food wastage: $" + stats.getAmountWasted());
         amountWasted.setWrapText(true);
-        new Separator();
 
         // Section for top 3 most expensive items
         final Label expensiveItemsLabel =
-                new Label("Your most expensive items are: \n");
+                new Label("Your top 3 most expensive items are: \n");
+        final Separator linedSeparator = new Separator();
+        linedSeparator.getStyleClass().add("lined-separator");
         expensiveItemsLabel.setLineSpacing(SPACING_UNIT);
-        final Region spacer = new Region();
-        final VBox row3 = new VBox(expensiveItemsLabel,
-                spacer,
+        final VBox expensiveItems = new VBox(expensiveItemsLabel,
+                linedSeparator,
                 new VBox(buildTopThreeMostExpensiveItemsListFrom(stats)));
         new Separator();
 
         // Combine everything
-        final VBox itemView = new VBox(statsHeader, amountWasted, row3);
-        return itemView;
+        final VBox statsView = new VBox(statsHeader, new Separator(), amountWasted, expensiveItems);
+
+        return statsView;
     }
 
     private static Node[] buildTopThreeMostExpensiveItemsListFrom(Stats stats) {
