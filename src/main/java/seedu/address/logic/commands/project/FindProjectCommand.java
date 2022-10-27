@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_LABEL;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
 
 import seedu.address.commons.core.Messages;
@@ -25,12 +26,14 @@ public class FindProjectCommand extends ProjectCommand {
             + ": Finds projects by keyword.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
+            + PREFIX_PROJECT_ID + "PROJECT ID "
             + PREFIX_REPOSITORY + "REPOSITORY "
             + PREFIX_CLIENT_LABEL + "CLIENT LABEL "
             + PREFIX_CLIENT_ID + "CLIENT ID \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "DevEnable "
+            + PREFIX_PROJECT_ID + "2 "
             + PREFIX_REPOSITORY + "tp/devenable "
             + PREFIX_CLIENT_LABEL + "Amy "
             + PREFIX_CLIENT_ID + "1 ";

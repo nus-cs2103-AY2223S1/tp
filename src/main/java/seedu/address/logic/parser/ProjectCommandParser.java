@@ -252,9 +252,10 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
     private FindProjectCommand parseFindProjectCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_REPOSITORY, PREFIX_CLIENT_ID,
-                        PREFIX_CLIENT_LABEL);
+                        PREFIX_CLIENT_LABEL, PREFIX_PROJECT_ID);
 
-        if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_REPOSITORY, PREFIX_CLIENT_ID, PREFIX_CLIENT_LABEL)
+        if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_REPOSITORY, PREFIX_CLIENT_ID,
+                PREFIX_CLIENT_LABEL, PREFIX_PROJECT_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindProjectCommand.MESSAGE_FIND_PROJECT_USAGE));
@@ -278,10 +279,14 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             parseIndexValidity(argMultimap.getValue(PREFIX_CLIENT_ID).get());
         }
 
+        if (anyPrefixesPresent(argMultimap, PREFIX_PROJECT_ID)) {
+            parseIndexValidity(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+        }
+
         ProjectContainsKeywordsPredicate predicate =
                 new ProjectContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_NAME),
                         argMultimap.getAllValues(PREFIX_REPOSITORY), argMultimap.getAllValues(PREFIX_CLIENT_LABEL),
-                        argMultimap.getAllValues(PREFIX_CLIENT_ID));
+                        argMultimap.getAllValues(PREFIX_CLIENT_ID), argMultimap.getAllValues(PREFIX_PROJECT_ID));
 
 
         return new FindProjectCommand(predicate);
