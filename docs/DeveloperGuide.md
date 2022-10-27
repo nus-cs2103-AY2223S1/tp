@@ -296,7 +296,7 @@ unexecuted command from Step 3.
 
 ### Creating a buyer
 
-The `Person` class represents a buyer with buyer-specific fields. `Price Range`, `Characteristics`, and `Priority` 
+The `Person` class represents a buyer with buyer-specific fields. `Price Range`, `Characteristics`, and `Priority`
 denote his budget, requirements for the property, and buyer priority respectively.
 
 These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
@@ -360,19 +360,19 @@ The tradeoffs for this approach is examined below:
 * **Alternative 2:** Users will have to create an `Owner` object separately, and link it to the property manually.
     * Pros:
       * This allows for a many-to-many relationship between the owners and properties.
-      * This allows for better OOP design, as owners will be treated as a separate, first-class entity, similar to 
+      * This allows for better OOP design, as owners will be treated as a separate, first-class entity, similar to
       `Buyer`.
     * Cons:
       * Increases complexity for a possibly limited use case of linking an owner to multiple properties.
-      * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when 
+      * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when
       the owner is deleted.
 
 ### Filtering properties by price range
 
-The `Properties` list is filtered using a predicate, `filterPropsByPricePredicate`. This predicate checks if the 
+The `Properties` list is filtered using a predicate, `filterPropsByPricePredicate`. This predicate checks if the
 property's price falls within a specified price range.
 
-The structure for executing a `filterprops` command follows the flow as mentioned in the “Logic component” section of 
+The structure for executing a `filterprops` command follows the flow as mentioned in the “Logic component” section of
 this guide.
 
 Design considerations:
@@ -416,12 +416,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------------------------- | --------------------------------------------|
-| `* * *`  | property agent                             | add new buyers             
-| `* * *`  | property agent                             | add new properties     
-| `* *`    | property agent                             | edit information without needing internet access                                         
+| `* * *`  | property agent                             | add new buyers 
+| `* * *`  | property agent                             | add new properties
+| `* *`    | property agent                             | edit information without needing internet access 
 | `* *`    | disorganised property agent                | categorise contacts as "buyer" or "seller         | keep track of demand and supply
 | `* *`    | property agent                             | edit contacts' details                            | easily update any changes
-| `* * *`  | property agent with a large number of contacts | sort contacts in different ways (alphabetical order, date of transaction, location)           | easily update any changes                                         
+| `* * *`  | property agent with a large number of contacts | sort contacts in different ways (alphabetical order, date of transaction, location)           | easily update any changes
 | `* *`    | property agent                             | search and filter for certain characteristics     | easily find matches
 | `*`      | property agent                             | link a buyer to a property
 | `*`      | non tech-savvy user                        | be able to make use of the command-line interface without too much difficulty
