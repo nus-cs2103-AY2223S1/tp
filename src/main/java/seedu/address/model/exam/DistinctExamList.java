@@ -13,7 +13,6 @@ import seedu.address.model.exam.exceptions.ExamIdentityModifiedException;
 import seedu.address.model.exam.exceptions.ExamNotFoundException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.DistinctTaskList;
-import seedu.address.model.task.Task;
 
 /**
  * This class represents a list which contains Exam objects which are distinct from
