@@ -5,20 +5,19 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 MassLinkers *-right-> "1" UniqueStudentList
-MassLinkers *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniqueStudentList
-UniqueTagList -[hidden]down- UniqueStudentList
+MassLinkers *-right-> "1" UniqueInterestList
+UniqueInterestList -[hidden]down- UniqueStudentList
+UniqueInterestList -[hidden]down- UniqueStudentList
 
-UniqueTagList *-right-> "*" Tag
+UniqueInterestList *-right-> "*" Interest
 UniqueStudentList -right-> Student
 
-Student -up-> "*" Tag
+Student -up-> "*" Interest
 
 Student *--> Name
 Student *--> Telegram
 Student *--> GitHub
 Student *--> Phone
 Student *--> Email
-Student *--> Interest
-Student *--> Module
+Student *--> "*" Module
 @enduml
