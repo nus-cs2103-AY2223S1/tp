@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 
 <HBox id="cardPane" fx:id="cardPane" prefHeight="95.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -22,29 +21,38 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" prefHeight="18.0" spacing="5">
+      <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="540.0" spacing="5">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
+               <padding>
+                  <Insets top="11.0" />
+               </padding>
         </Label>
         <Label fx:id="name" prefHeight="17.0" prefWidth="500.0" styleClass="cell_big_label" text="\$first">
                <padding>
-                  <Insets right="10.0" />
+                  <Insets top="10.0" />
                </padding>
         </Label>
-         <FlowPane fx:id="tags" alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="18.0" prefWidth="345.0" HBox.hgrow="ALWAYS">
+         <FlowPane fx:id="tags" alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="18.0" prefWidth="380.0" HBox.hgrow="ALWAYS">
                <padding>
-                  <Insets right="10.0" />
+                  <Insets bottom="5.0" right="10.0" />
                </padding>
+               <HBox.margin>
+                  <Insets bottom="15.0" />
+               </HBox.margin>
             </FlowPane>
+            <VBox.margin>
+               <Insets top="5.0" />
+            </VBox.margin>
       </HBox>
          <HBox prefHeight="18.0" prefWidth="130.0">
             <children>
                 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
                     <padding>
-                        <Insets left="5.0" right="12.0" />
+                        <Insets left="24.0" right="12.0" />
                     </padding>
                     <graphic>
                         <Label styleClass="circle_icon_label">
@@ -94,12 +102,18 @@
                                 </ImageView>
                             </graphic>
                             <padding>
-                                <Insets top="1.0" />
+                                <Insets bottom="0.0" />
                             </padding>
                         </Label>
                     </graphic>
                 </Label>
             </children>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <padding>
+               <Insets bottom="5.0" />
+            </padding>
          </HBox>
     </VBox>
       <rowConstraints>

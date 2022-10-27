@@ -79,9 +79,9 @@ public class PersonTaskCard extends UiPart<Region> {
     private void setStyle(Label... labels) {
         for (Label label: labels) {
             label.setStyle("-fx-background-color:derive(#6D28D9, 50%); -fx-text-fill: #FFFFFF;"
-                    + "-fx-font-family: Inter; -fx-font-size: 10; -fx-font-weight: bold;"
+                    + "-fx-font-family: 'Space Grotesk Regular'; -fx-font-size: 10; -fx-font-weight: bold;"
                     + "-fx-border-insets: 3; -fx-border-radius: 4px; -fx-border-width: 2px;"
-                    + "-fx-border-color: derive(#6D28D9, 50%); -fx-background-insets: 4; -fx-label-padding: 3;");
+                    + "-fx-border-color: derive(#6D28D9, 50%); -fx-background-insets: 4; -fx-label-padding: 2;");
         }
     }
 

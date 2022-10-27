@@ -32,7 +32,7 @@
                         <Insets bottom="5.0" right="10.0" />
                     </padding>
                 </Label>
-            <FlowPane fx:id="tags" alignment="TOP_RIGHT" columnHalignment="RIGHT" prefWidth="116.0" />
+            <FlowPane fx:id="tags" alignment="TOP_RIGHT" columnHalignment="RIGHT" HBox.hgrow="ALWAYS" />
             </HBox>
             <HBox prefWidth="130.0">
             <children>

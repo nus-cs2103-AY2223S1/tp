@@ -54,7 +54,19 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label label = new Label(tag.tagName.toUpperCase());
+                    setStyle(label);
+                    tags.getChildren().add(label);
+                });
+    }
+
+    private void setStyle(Label... labels) {
+        for (Label label: labels) {
+            label.setStyle("-fx-background-color:transparent; -fx-text-fill: #AFB4FF;"
+                    + "-fx-font-family: Arial; -fx-font-size: 12; -fx-font-weight: bold;"
+                    + "-fx-background-insets: 1;");
+        }
     }
 
     @Override
