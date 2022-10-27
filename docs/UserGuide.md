@@ -80,7 +80,7 @@ Format: `help`
 Adds a task to the task list.
 
 Format:
-`add {task_name} by/{deadline} m/{module_code}`
+`add {task_name} by/{deadline} [m/{module_code}]`
 
 Examples:
 * `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
