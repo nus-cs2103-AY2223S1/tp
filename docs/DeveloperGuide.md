@@ -2,7 +2,7 @@
 layout: page
 title: Developer Guide
 ---
-# Table of Contents 
+# Table of Contents
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up, getting started](#setting-up-getting-started)
 3. [Design](#design)
@@ -338,11 +338,11 @@ In the event that the HTTP request made to NUSMods fails when fetching, a fallba
 module data. The fallback data file is a JSON file that contains the module data of all the modules in NUS as of AY22/23.
 The fallback data file is located in `src/main/modrekt/logic/parser/modules/data/modules.json`.
 
-Additionally, the endpoint used to fetch from NUSMods is currently set to only fetch the modules in the academic year 
-of 2022-2033 (AY22/23). This is an intended effect, as a collaboration with NUS is something we hope to seek in the 
-future to provide a more robust module data fetching system. As such, if utilised in years beyond AY22/23, 
-the module data obtained may be out of date. 
-To further mitigate this, we also have our verbose module adding command, where users can specify the module name, code 
+Additionally, the endpoint used to fetch from NUSMods is currently set to only fetch the modules in the academic year
+of 2022-2033 (AY22/23). This is an intended effect, as a collaboration with NUS is something we hope to seek in the
+future to provide a more robust module data fetching system. As such, if utilised in years beyond AY22/23,
+the module data obtained may be out of date.
+To further mitigate this, we also have our verbose module adding command, where users can specify the module name, code
 and credits, without any reliance on NUSMods.
 
 ### Remove Module
@@ -481,7 +481,7 @@ The diagram below shows how the `done` command work with input `done module CS11
 
 <img src="images/ModulePUMLs/DoneModule/ModuleDoneSequenceDiagram.png" width="1200" />
 
-Notice how we explicitly prevent a done module from being marked as done again. Even though marking a done module as 
+Notice how we explicitly prevent a done module from being marked as done again. Even though marking a done module as
 done again is inconsequential from a data perspective (nothing in a `Module` changes other than the creation of a new
 instance), it is still a user error that should be handled:
 
@@ -859,7 +859,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The module list is empty
   * 2a1. ModtRekt shows an error message when the command is entered
-  
+
      Use case ends.
 
 * 3a. The given module code is invalid
@@ -913,7 +913,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. ModtRekt shows an error message.
 
       Use case resumes at step 2.
-    
+
 
 
 *{More to be added}*
