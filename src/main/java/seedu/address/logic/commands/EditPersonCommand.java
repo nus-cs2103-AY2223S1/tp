@@ -36,7 +36,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-@CommandLine.Command(name = "person")
+@CommandLine.Command(name = "person", aliases = {"p"})
 public class EditPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "edit person";

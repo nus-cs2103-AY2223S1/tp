@@ -16,7 +16,7 @@ import seedu.address.model.team.Url;
 /**
  * Adds a new link to TruthTable.
  */
-@CommandLine.Command(name = "link")
+@CommandLine.Command(name = "link", aliases = {"l"})
 public class AddLinkCommand extends Command {
     public static final String COMMAND_WORD = "add link";
 

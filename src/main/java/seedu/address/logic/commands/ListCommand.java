@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 /**
  * Command that contains all subcommands starting with {@code list}.
  */
-@CommandLine.Command(name = "list", subcommands = {
+@CommandLine.Command(name = "list", aliases = {"l"}, subcommands = {
     ListPersonsCommand.class,
     ListMembersCommand.class,
     ListTasksCommand.class

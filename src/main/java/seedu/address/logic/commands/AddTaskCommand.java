@@ -5,14 +5,11 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR_LONG;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,29 +21,29 @@ import seedu.address.model.team.Task;
 /**
  * Adds a task to the current team.
  */
-@CommandLine.Command(name = "task")
+@CommandLine.Command(name = "task", aliases = {"ta"})
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "add task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the current team.\n"
             + "Parameters:"
-            + FLAG_NAME_STR + " NAME "
+            + " NAME "
             + FLAG_DEADLINE_STR + " DEADLINE "
             + FLAG_ASSIGNEE_STR + " ASSIGNEE "
             + "Example: " + COMMAND_WORD + " "
-            + FLAG_NAME_STR + " \"Review PR\" "
-            + FLAG_DEADLINE_STR + " \"2023-12-04 23:59\" "
-            + FLAG_ASSIGNEE_STR + " \"Alex Yeoh\" "
-            + FLAG_ASSIGNEE_STR + " \"Bernice Yu\" ";
+            + " \"Review PR\" "
+            + FLAG_DEADLINE_STR + " \"02-Dec-2022 23:59\" "
+            + FLAG_ASSIGNEE_STR + " 1 "
+            + FLAG_ASSIGNEE_STR + " 2 ";
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Added Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the team";
     public static final String MESSAGE_TASK_NAME_FORMAT_ERROR = "Task name cannot be empty";
-    public static final String MESSAGE_PERSON_NOT_EXISTS = "The team member you are trying to assign "
-            + "the task to does not exist";
+    public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
 
-    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true)
+
+    @CommandLine.Parameters(arity = "1")
     private String taskName;
 
     @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "")
@@ -81,12 +78,16 @@ public class AddTaskCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         List<Person> memberList = model.getTeam().getTeamMembers();
-        List<Person> assigneePersonList = memberList.stream()
-                .filter(member -> assigneesList
-                        .contains(member.getName().fullName))
-                .collect(Collectors.toList());
-        if (assigneePersonList.size() < assigneesList.size()) {
-            throw new CommandException(MESSAGE_PERSON_NOT_EXISTS);
+        for (int i = 0; i < assigneesList.size(); i++) {
+            if (Integer.parseInt(assigneesList.get(i)) < 1
+                    || Integer.parseInt(assigneesList.get(i)) > memberList.size()) {
+                throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
+            }
+        }
+        List<Person> assigneePersonList = new java.util.ArrayList<>(List.of());
+        for (String index : assigneesList) {
+            int assigneeIndex = Integer.parseInt(index);
+            assigneePersonList.add(memberList.get(assigneeIndex - 1));
         }
         for (Person assignee : assigneePersonList) {
             task.assignTo(assignee);

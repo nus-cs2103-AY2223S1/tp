@@ -15,7 +15,7 @@ import seedu.address.model.team.Team;
 /**
  * Adds the person with the specified name to the current team.
  */
-@CommandLine.Command(name = "member")
+@CommandLine.Command(name = "member", aliases = {"m"})
 public class AddMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "add member";
