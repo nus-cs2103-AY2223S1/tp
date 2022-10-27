@@ -4,6 +4,7 @@ import static seedu.address.commons.util.StockUtil.determineStockHealthColor;
 
 import java.util.Comparator;
 import java.util.function.Consumer;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.RefreshStatsCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -21,12 +23,10 @@ import seedu.address.model.item.SupplyItem;
  * An UI component that displays information of a {@code SupplyItem}.
  */
 public class SupplyItemCard extends UiPart<Region> {
-    /**
-     * These colors are made public for possible accessibility in other Ui components.
-     */
     private static final String FXML = "SupplyItemCard.fxml";
     private static final int MAX_LENGTH = 5;
-    private static final String DEFAULT_TEXT_FIELD_VALUE = "1";
+    private static final String EMPTY_INPUT_MESSAGE = "Empty input detected. Updating terminated.";
+    private final Logger logger = LogsCenter.getLogger(getClass());
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -35,7 +35,7 @@ public class SupplyItemCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final SupplyItem supplyItem;
+    private final SupplyItem supplyItem;
     private final Consumer<Integer> increaseHandler;
     private final Consumer<Integer> decreaseHandler;
     private final Consumer<Integer> changeIncDecHandler;
@@ -133,14 +133,19 @@ public class SupplyItemCard extends UiPart<Region> {
 
         assert input.length() <= MAX_LENGTH;
 
-        int parsedAmount = Integer.parseInt(input);
-        if (parsedAmount >= 0) {
-            amountInput.setText(String.valueOf(parsedAmount));
-            changeIncDecHandler.accept(parsedAmount);
-        }
+        int parsedAmount;
+        try {
+            parsedAmount = Integer.parseInt(input);
+            if (parsedAmount >= 0) {
+                amountInput.setText(String.valueOf(parsedAmount));
+                changeIncDecHandler.accept(parsedAmount);
+            }
 
-        increaseHandler.accept(parsedAmount);
-        executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
+            increaseHandler.accept(parsedAmount);
+            executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
+        } catch (NumberFormatException nfe) {
+            logger.info(EMPTY_INPUT_MESSAGE);
+        }
     }
 
     /**
@@ -152,14 +157,19 @@ public class SupplyItemCard extends UiPart<Region> {
 
         assert input.length() <= MAX_LENGTH;
 
-        int parsedAmount = Integer.parseInt(input);
-        if (parsedAmount >= 0) {
-            amountInput.setText(String.valueOf(parsedAmount));
-            changeIncDecHandler.accept(parsedAmount);
-        }
+        int parsedAmount;
+        try {
+            parsedAmount = Integer.parseInt(input);
+            if (parsedAmount >= 0) {
+                amountInput.setText(String.valueOf(parsedAmount));
+                changeIncDecHandler.accept(parsedAmount);
+            }
 
-        decreaseHandler.accept(parsedAmount);
-        executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
+            decreaseHandler.accept(parsedAmount);
+            executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
+        } catch (NumberFormatException nfe) {
+            logger.info(EMPTY_INPUT_MESSAGE);
+        }
     }
 
     /**
