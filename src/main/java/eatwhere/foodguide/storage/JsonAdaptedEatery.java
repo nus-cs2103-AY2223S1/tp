@@ -14,7 +14,7 @@ import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
-import eatwhere.foodguide.model.eatery.Phone;
+import eatwhere.foodguide.model.eatery.Price;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
@@ -51,7 +51,7 @@ class JsonAdaptedEatery {
      */
     public JsonAdaptedEatery(Eatery source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        phone = source.getPrice().value;
         cuisine = source.getCuisine().value;
         address = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
@@ -79,12 +79,12 @@ class JsonAdaptedEatery {
         final Name modelName = new Name(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Price.isValidPrice(phone)) {
+            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Price modelPrice = new Price(phone);
 
         if (cuisine == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Cuisine.class.getSimpleName()));
@@ -104,7 +104,7 @@ class JsonAdaptedEatery {
         final Location modelLocation = new Location(address);
 
         final Set<Tag> modelTags = new HashSet<>(eateryTags);
-        return new Eatery(modelName, modelPhone, modelCuisine, modelLocation, modelTags);
+        return new Eatery(modelName, modelPrice, modelCuisine, modelLocation, modelTags);
     }
 
 }

@@ -15,7 +15,7 @@ import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
-import eatwhere.foodguide.model.eatery.Phone;
+import eatwhere.foodguide.model.eatery.Price;
 import eatwhere.foodguide.model.tag.Tag;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.TypicalIndexes;
@@ -29,7 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "friènd";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PRICE = "$";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_CUISINE = "rachelexamplecom";
     private static final String VALID_TAG_1 = "friend";
@@ -92,15 +92,15 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePhone(VALID_PRICE));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+        String phoneWithWhitespace = WHITESPACE + VALID_PRICE + WHITESPACE;
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
     @Test

@@ -13,7 +13,7 @@ import eatwhere.foodguide.commons.exceptions.IllegalValueException;
 import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
-import eatwhere.foodguide.model.eatery.Phone;
+import eatwhere.foodguide.model.eatery.Price;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.TypicalEateries;
 
@@ -26,7 +26,7 @@ public class JsonAdaptedEateryTest {
     private static final String INVALID_TAG = "friènd";
 
     private static final String VALID_NAME = TypicalEateries.BENSON.getName().toString();
-    private static final String VALID_PHONE = TypicalEateries.BENSON.getPhone().toString();
+    private static final String VALID_PHONE = TypicalEateries.BENSON.getPrice().toString();
     private static final String VALID_EMAIL = TypicalEateries.BENSON.getCuisine().toString();
     private static final String VALID_ADDRESS = TypicalEateries.BENSON.getLocation().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = TypicalEateries.BENSON.getTags().stream()
@@ -59,7 +59,7 @@ public class JsonAdaptedEateryTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedEatery eatery =
                 new JsonAdaptedEatery(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Price.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, eatery::toModelType);
     }
 
@@ -67,7 +67,7 @@ public class JsonAdaptedEateryTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedEatery eatery =
                 new JsonAdaptedEatery(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, eatery::toModelType);
     }
 

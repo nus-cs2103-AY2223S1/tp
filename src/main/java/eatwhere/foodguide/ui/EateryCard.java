@@ -33,7 +33,7 @@ public class EateryCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label price;
     @FXML
     private Label address;
     @FXML
@@ -49,7 +49,7 @@ public class EateryCard extends UiPart<Region> {
         this.eatery = eatery;
         id.setText(displayedIndex + ". ");
         name.setText(eatery.getName().fullName);
-        phone.setText(eatery.getPhone().value);
+        price.setText(eatery.getPrice().toString());
         address.setText(eatery.getLocation().value);
         cuisine.setText(eatery.getCuisine().value);
         eatery.getTags().stream()
