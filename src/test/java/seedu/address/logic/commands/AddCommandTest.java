@@ -27,7 +27,6 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalTasks;
 
-
 public class AddCommandTest {
 
     @Test
@@ -174,6 +173,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void update() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -248,6 +252,15 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        /**
+         * The update method is used to update the UI, and hence does not need to have any functionality
+         * for testing purposes.
+         */
+        @Override
+        public void update() {
+
         }
 
         @Override

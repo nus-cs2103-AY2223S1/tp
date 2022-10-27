@@ -9,7 +9,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -49,15 +48,13 @@ public class DeleteCommand extends Command {
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         for (Task task : lastShownTaskList) {
-            if (task.getPersonEmailAddress().equals(personToDelete.getEmail())) {
-                Task editedTask = task.copy();
-                editedTask.setPersonName(new Name("No person assigned"));
-                model.deleteTask(task);
-                model.addTask(editedTask);
+            if (task.getPerson().equals(personToDelete)) {
+                task.setPerson(new CommandUtil.DeletedPerson());
             }
         }
 
         model.deletePerson(personToDelete);
+        model.update();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
@@ -67,4 +64,5 @@ public class DeleteCommand extends Command {
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
+
 }

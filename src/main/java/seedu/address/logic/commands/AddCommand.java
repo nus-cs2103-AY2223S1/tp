@@ -58,16 +58,14 @@ public class AddCommand extends Command {
         }
 
         for (Task task : model.getFilteredTaskList()) {
-            if (task.getPersonEmailAddress().equals(toAdd.getEmail())) {
-                Task editedTask = task.copy();
-                editedTask.setPersonEmailAddress(toAdd.getEmail());
-                editedTask.setPersonName(toAdd.getName());
-                model.deleteTask(task);
-                model.addTask(editedTask);
+            if (task.getEmail().equals(toAdd.getEmail())) {
+                task.setPerson(toAdd);
+                toAdd.addTask(task);
             }
         }
 
         model.addPerson(toAdd);
+        model.update();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
