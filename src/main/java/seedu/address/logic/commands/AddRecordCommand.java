@@ -24,8 +24,8 @@ public class AddRecordCommand extends Command {
             + "[" + PREFIX_MEDICATION + "Medication]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DATE + "31-10-2022 1430 (must be formatted in dd-MM-yyyy HHmm) "
-            + PREFIX_RECORD + "suffers from common cold"
-            + PREFIX_MEDICATION + "Paracetamol 500mg"
+            + PREFIX_RECORD + "suffers from common cold "
+            + PREFIX_MEDICATION + "Paracetamol 500mg "
             + PREFIX_MEDICATION + "Phenylephrine oral 10mg";
 
     public static final String MESSAGE_SUCCESS = "New record added: %1$s";

@@ -24,8 +24,8 @@ public class FindRecordCommand extends Command {
     public static final DateTimeFormatter FIND_RECORD_DATE_FORMAT = DateTimeFormatter.ofPattern("MM-yyyy");
     public static final String MESSAGE_EMPTY_PREFIX = "Specified field must not be empty. eg. rfind m/";
     public static final String MESSAGE_NOTHING_TO_FIND = "At least one field must be specified.";
-    public static final String MESSAGE_INVALID_FIND_DATE_FORMAT =
-            "Invalid find date format! \n Please use the format MM-yyyy!";
+    public static final String MESSAGE_INVALID_FIND_DATE_FORMAT = "Invalid find date format! "
+            + "\n Please use the format MM-yyyy and input MonthYear must not be after current month!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all records whose content contains any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
