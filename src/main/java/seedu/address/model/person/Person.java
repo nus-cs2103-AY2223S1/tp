@@ -104,6 +104,16 @@ public class Person {
     }
 
     /**
+     * Shifts all Current Modules {@code Set<CurrentModules>} into {@code Set<PreviousModules>}.
+     */
+    public void updatePrevMods() {
+        Set<PreviousModule> temporary = new HashSet<>();
+        currModules.stream().forEach(currMod -> temporary.add(new PreviousModule(currMod.moduleName)));
+        prevModules.addAll(temporary);
+        currModules.clear();
+    }
+
+    /**
      * Returns an immutable lesson set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */

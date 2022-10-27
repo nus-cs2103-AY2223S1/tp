@@ -23,6 +23,7 @@ checkstyle {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+    forkEvery = 1
 }
 
 task coverage(type: JacocoReport) {

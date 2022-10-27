@@ -7,10 +7,10 @@ Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
-user -[USER_COLOR]> ui : "lesson user l/tut m/CS2103T d/4 start/12:00 end/13:00"
+user -[USER_COLOR]> ui : "lesson user l/tut m/CS2103T \n d/4 start/12:00 end/13:00"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("lesson user l/tut m/CS2103T d/4 start/12:00 end/13:00")
+ui -[UI_COLOR]> logic : execute("lesson user l/tut m/CS2103T \n d/4 start/12:00 end/13:00")
 activate logic LOGIC_COLOR
 
 logic -[LOGIC_COLOR]> model : addLesson(lesson)

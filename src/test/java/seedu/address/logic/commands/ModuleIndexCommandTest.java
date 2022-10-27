@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_11;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_12;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_3;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_4;
@@ -90,11 +89,13 @@ public class ModuleIndexCommandTest {
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withCurrentModules(VALID_MODULE_2)
-                .withPlannedModules(VALID_MODULE_11, VALID_MODULE_12).build();
+        Person editedPerson = personInList.withCurrentModules(VALID_MODULE_1, VALID_MODULE_2)
+                .withPreviousModules(VALID_MODULE_3)
+                .withPlannedModules(VALID_MODULE_5, VALID_MODULE_6).build();
 
         ModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
-                .withCurrentModules(VALID_MODULE_2).withPlannedModules(VALID_MODULE_11, VALID_MODULE_12).build();
+                .withCurrentModules(VALID_MODULE_1, VALID_MODULE_2)
+                .withPlannedModules(VALID_MODULE_5, VALID_MODULE_6).build();
         ModuleIndexCommand moduleCommand = new ModuleIndexCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedPerson);

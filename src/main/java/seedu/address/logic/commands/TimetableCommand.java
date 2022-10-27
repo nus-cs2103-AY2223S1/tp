@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 public class TimetableCommand extends Command {
     public static final String COMMAND_WORD = "timetable";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": shows timetbale "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": shows timetable "
             + "identified by the index number used in the displayed person list or user. "
             + "Parameters: user / INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " user ";
