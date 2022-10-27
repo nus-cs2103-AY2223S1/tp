@@ -11,7 +11,6 @@ import seedu.address.ui.PersonProfile;
  */
 public class Email {
 
-    private static final String EMPTY_EMAIL = "";
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -51,7 +50,7 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.equals(EMPTY_EMAIL) || test.matches(VALIDATION_REGEX);
+        return test.equals(Person.EMPTY_FIELD_VALUE) || test.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -65,14 +64,14 @@ public class Email {
      * Returns value of Email if not null else, EMPTY_VALUE.
      */
     public String getDisplayValue() {
-        return value == EMPTY_EMAIL ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
+        return value.equals(Person.EMPTY_FIELD_VALUE) ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
     /**
      * Returns true if value is empty.
      */
     public boolean isEmpty() {
-        return value.equals(EMPTY_EMAIL);
+        return value.equals(Person.EMPTY_FIELD_VALUE);
     }
 
     @Override

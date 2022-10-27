@@ -11,6 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.SetPersonFileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FilePath;
+import seedu.address.model.person.Person;
 
 /**
  * Parses input arguments and creates a new {@code SetPersonFileCommand} object
@@ -39,7 +40,7 @@ public class SetPersonFileCommandParser implements Parser<SetPersonFileCommand> 
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetPersonFileCommand.MESSAGE_USAGE), ive);
         }
 
-        filePath = ParserUtil.parseFilePath(argMultimap.getValue(PREFIX_FILEPATH).orElse(""));
+        filePath = ParserUtil.parseFilePath(argMultimap.getValue(PREFIX_FILEPATH).orElse(Person.EMPTY_FIELD_VALUE));
         return new SetPersonFileCommand(index, filePath);
     }
 
