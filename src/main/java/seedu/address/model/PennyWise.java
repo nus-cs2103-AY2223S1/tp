@@ -41,7 +41,7 @@ public class PennyWise implements ReadOnlyPennyWise {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    //=========== List Overwrite Operations =============================================================
 
     /**
      * Replaces the contents of the expenditure list with {@code entries}.
@@ -92,7 +92,7 @@ public class PennyWise implements ReadOnlyPennyWise {
         setIncome(newData.getIncomeList());
     }
 
-    //// entry-level operations
+    //=========== Entry Level Operations =============================================================
 
     /**
      * Returns true if an expenditure with the same identity as {@code entry} exists in the expenditure list.
@@ -106,8 +106,8 @@ public class PennyWise implements ReadOnlyPennyWise {
      * Adds an expenditure to the expenditure list.
      * The expenditure must not already exist in the expenditure list.
      */
-    public void addExpenditure(Entry e) {
-        expenditure.add(e);
+    public void addExpenditure(Entry entry) {
+        expenditure.add(entry);
     }
 
     /**
@@ -142,13 +142,7 @@ public class PennyWise implements ReadOnlyPennyWise {
         income.remove(key);
     }
 
-    //// util methods
-
-    @Override
-    public String toString() {
-        return expenditure.asUnmodifiableObservableList().size() + " entries";
-        // TODO: refine later
-    }
+    //=========== Utility Methods =============================================================
 
     @Override
     public ObservableList<Entry> getExpenditureList() {
