@@ -48,14 +48,14 @@ public class CreateCommandParser implements Parser<CreateCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(Person.EMPTY_FIELD_VALUE));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(Person.EMPTY_FIELD_VALUE));
         Description description =
-                ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
-        NetWorth netWorth = ParserUtil.parseNetWorth(argMultimap.getValue(PREFIX_NETWORTH).orElse(""));
+                ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(Person.EMPTY_FIELD_VALUE));
+        NetWorth netWorth = ParserUtil.parseNetWorth(argMultimap.getValue(PREFIX_NETWORTH).orElse(Person.EMPTY_FIELD_VALUE));
         Set<MeetingTime> meetingTimeList = ParserUtil.parseMeetingTimes(argMultimap.getAllValues(PREFIX_MEETING_TIME));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        FilePath filePath = new FilePath(""); // create command does not allow adding file path straight away
+        FilePath filePath = new FilePath(Person.EMPTY_FIELD_VALUE); // create command does not allow adding file path straight away
 
         Person person = new Person(name, phone, email, address, description, netWorth,
                 meetingTimeList, filePath, tagList);
