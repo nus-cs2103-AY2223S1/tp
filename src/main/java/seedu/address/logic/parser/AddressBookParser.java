@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EDIT_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,7 +59,7 @@ public class AddressBookParser {
 
         try {
             nusModulesParser = new NusModulesParser();
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException e) {
             throw new ParseException("NUS Modules not found!");
         }
 
