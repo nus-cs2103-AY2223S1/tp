@@ -37,11 +37,11 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-        <VBox fx:id="clientList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <VBox fx:id="clientList" maxHeight="1.7976931348623157E308" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-          <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          <StackPane fx:id="clientListPanelPlaceholder" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
         </VBox>
 
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
@@ -56,7 +56,7 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusbarPlaceholder" maxHeight="20.0" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

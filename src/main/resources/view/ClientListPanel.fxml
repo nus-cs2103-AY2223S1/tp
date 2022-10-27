@@ -9,8 +9,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <AnchorPane styleClass="label-bright">
+<VBox maxHeight="1.7976931348623157E308" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <AnchorPane maxHeight="25.0" styleClass="label-bright">
       <children>
          <Label styleClass="label-header" text="Clients" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" />
          <Label fx:id="numClients" styleClass="label-bright" text="\$Num" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="12.0" />
@@ -19,9 +19,9 @@
          <Insets bottom="5.0" />
       </padding>
    </AnchorPane>
-   <VBox styleClass="pane-with-header">
+   <VBox maxHeight="1.7976931348623157E308" styleClass="pane-with-header" VBox.vgrow="ALWAYS">
       <children>
-         <GridPane styleClass="grid-pane">
+         <GridPane maxHeight="20.0" styleClass="grid-pane">
            <columnConstraints>
              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
@@ -46,7 +46,7 @@
                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
             </padding>
          </GridPane>
-        <ListView fx:id="clientListView" VBox.vgrow="ALWAYS">
+        <ListView fx:id="clientListView" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
             <VBox.margin>
                <Insets left="12.0" right="12.0" />
             </VBox.margin></ListView>

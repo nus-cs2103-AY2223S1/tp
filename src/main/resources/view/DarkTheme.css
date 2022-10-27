@@ -115,12 +115,7 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-background-color: #383838;
 }
 
 .list-cell .label {
@@ -410,5 +405,9 @@
 }
 
 .scrollpane-client {
+    -fx-background: #232323;
+}
+
+.scrollpane-client:selected {
     -fx-background: #232323;
 }
