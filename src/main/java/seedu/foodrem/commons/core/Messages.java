@@ -12,4 +12,6 @@ public class Messages {
     // TODO: Fix "1 items sorted" grammar bug instead of "1 item sorted"
     public static final String MESSAGE_ITEMS_SORTED_OVERVIEW = "%1$d items sorted!";
     public static final String MESSAGE_ITEMS_FILTERED_OVERVIEW = "%1$d items after filtering!";
+    public static final String MESSAGE_NON_POSITIVE_INDEX =
+            "The index should be a non-negative number.";
 }
