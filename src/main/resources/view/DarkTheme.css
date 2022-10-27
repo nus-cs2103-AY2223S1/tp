@@ -405,9 +405,9 @@
 }
 
 .scrollpane-client {
-    -fx-background: #232323;
+    -fx-background: #383838;
 }
 
 .scrollpane-client:selected {
-    -fx-background: #232323;
+    -fx-background: #383838;
 }

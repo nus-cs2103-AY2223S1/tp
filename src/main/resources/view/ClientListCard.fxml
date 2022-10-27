@@ -22,6 +22,9 @@
       <!-- Ensures that the label text is never truncated -->
       <Region fx:constant="USE_PREF_SIZE" />
     </minWidth>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
   </Label>
   <Label fx:id="name" styleClass="cell_big_label" text="\$name" GridPane.columnIndex="1" />
    <Label fx:id="phone" styleClass="cell_big_label" text="\$phone" GridPane.columnIndex="2" />
