@@ -143,12 +143,18 @@ public class Person {
         this.leavesLeft = leavesLeft;
     }
 
+    /**
+     * Add a rating to the person.
+     * @param toAdd the rating to be added.
+     */
     public void addRating(Rating toAdd) {
         this.performanceHistory.add(toAdd);
+        this.col3 = new SimpleStringProperty(toAdd.toString());
     }
 
     public void setRating(Rating rating) {
         this.rating = rating;
+        this.col3 = new SimpleStringProperty(rating.toString());
     }
 
     public Rating getRating() {
