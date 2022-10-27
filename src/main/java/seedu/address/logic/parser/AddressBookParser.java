@@ -18,16 +18,11 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemoveFieldCommand;
 import seedu.address.logic.commands.tasks.TaskCommand;
-import seedu.address.logic.commands.teams.AddTeamCommand;
 import seedu.address.logic.commands.teams.AddUserToTeamCommand;
 import seedu.address.logic.commands.teams.ChangeTeamCommand;
-import seedu.address.logic.commands.teams.DeleteTeamCommand;
-import seedu.address.logic.commands.teams.RemoveUserFromTeamCommand;
 import seedu.address.logic.commands.teams.TeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.tasks.TaskCommandParser;
-import seedu.address.logic.parser.teams.AddTeamCommandParser;
-import seedu.address.logic.parser.teams.RemoveUserFromTeamCommandParser;
 import seedu.address.logic.parser.teams.TeamCommandParser;
 
 /**

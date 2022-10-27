@@ -3,6 +3,7 @@ package seedu.address.logic.commands.teams;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.PureCommandInterface;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
@@ -11,7 +12,7 @@ import seedu.address.model.group.Group;
 /**
  * Add a team to the address book.
  */
-public class AddTeamCommand extends TeamCommand {
+public class AddTeamCommand extends TeamCommand implements PureCommandInterface {
     public static final String SUBCOMMAND_WORD = "new";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUBCOMMAND_WORD + ": Add a new group in the current "

@@ -1,6 +1,5 @@
-package seedu.address.logic.commands.teams;
+package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.group.Group;
 
