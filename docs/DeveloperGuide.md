@@ -5,47 +5,47 @@ title: Developer Guide
 
 Table of Contents
 
-- [Acknowledgements](#acknowledgements)
-- [Setting up, getting started](#setting-up-getting-started)
-- [Design](#design)
-    * [Architecture](#architecture)
-    * [UI component](#ui-component)
-    * [Logic component](#logic-component)
-    * [Model component](#model-component)
-    * [Storage component](#storage-component)
-    * [Common classes](#common-classes)
-- [Implementation](#implementation)
-    * [Import command](#import-command)
-    * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
-    * [\[Proposed\] Data archiving](#proposed-data-archiving)
-- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-- [Appendix: Requirements](#appendix-requirements)
-    * [Product scope](#product-scope)
-    * [User stories](#user-stories)
-    * [Use cases](#use-cases)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    * [Launch and shutdown](#launch-and-shutdown)
-    * [Deleting a client](#deleting-a-client)
-    * [Saving data](#saving-data)
+1. [Acknowledgements](#1-acknowledgements)
+2. [Setting up, getting started](#2-setting-up-getting-started)
+3. [Design](#3-design)  
+   3.1. [Architecture](#31-architecture)  
+   3.2. [UI component](#32-ui-component)   
+   3.3. [Logic component](#33-logic-component)  
+   3.4. [Model component](#34-model-component)   
+   3.5. [Storage component](#35-storage-component)   
+   3.6. [Common classes](#36-common-classes)   
+4. [Implementation](#4-implementation)   
+   4.1. [Import command](#41-import-command)   
+   4.2. [\[Proposed\] Undo/redo feature](#42-proposed-undoredo-feature)   
+   4.3. [\[Proposed\] Data archiving](#43-proposed-data-archiving)   
+5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)   
+6. [Appendix: Requirements](#6-appendix-requirements)   
+   6.1. [Product scope](#61-product-scope)  
+   6.2. [User stories](#62-user-stories)   
+   6.3. [Use cases](#63-use-cases)   
+   6.4. [Non-Functional Requirements](#64-non-functional-requirements)   
+   6.5. [Glossary](#65-glossary)   
+7. [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing)   
+   7.1. [Launch and shutdown](#71-launch-and-shutdown)   
+   7.2. [Deleting a client](#72-deleting-a-client)   
+   7.3. [Saving data](#73-saving-data)   
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **1. Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
   original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **2. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **3. Design**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -55,7 +55,7 @@ Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.h
 diagrams.
 </div>
 
-### Architecture
+### 3.1. Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -104,7 +104,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2. UI component
 
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -128,7 +128,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+### 3.3. Logic component
 
 **
 API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -166,7 +166,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 3.4. Model component
 
 **
 API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -191,7 +191,7 @@ The `Model` component,
 
 </div>
 
-### Storage component
+### 3.5. Storage component
 
 **
 API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -207,17 +207,17 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
-### Common classes
+### 3.6. Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **4. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Import command
+### 4.1. Import command
 
 #### Current Implementation
 
@@ -249,7 +249,7 @@ The following sequence diagram shows how the import command works:
 
 Chose to use OpenCSV to read `CSV` files to avoid reinventing the wheel.
 
-### \[Proposed\] Undo/redo feature
+### 4.2. \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
@@ -345,14 +345,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### 4.3. \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **5. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -362,9 +362,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **6. Appendix: Requirements**
 
-### Product scope
+### 6.1. Product scope
 
 **Target user profile**:
 
@@ -385,7 +385,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * manage contacts faster than a typical mouse/GUI driven app
 * FA's can shorten their time spent on doing administrative duties such as finding a client by showing all clients' details as well as portfolio in one glance
 
-### User stories
+### 6.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -420,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | returning user                             | delete all data quickly and securely when facing an emergency situation          | my data is not leaked                                                               |
 | `*`      | potential user exploring the app           | be greeted with a brief overview of the privacy features available               | I am aware of them                                                                  |
 
-### Use cases
+### 6.3. Use cases
 
 (For all use cases below, the **System** is `FinBook` and the **Actor** is the `FA`, unless specified otherwise)
 
@@ -604,7 +604,7 @@ Use case ends.
 
 *{More to be added}*
 
-### Non-Functional Requirements
+### 6.4. Non-Functional Requirements
 
 * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 * Should be able to hold up to 1000 clients without a noticeable sluggishness (delay of < 0.3 seconds) in performance
@@ -618,7 +618,7 @@ Use case ends.
 Notes about project scope:
 FinBook is not required to handle interaction between client and FA.
 
-### Glossary
+### 6.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **FA**: Financial advisor
@@ -629,7 +629,7 @@ FinBook is not required to handle interaction between client and FA.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **7. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -638,7 +638,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 7.1. Launch and shutdown
 
 1. Initial launch
 
@@ -656,7 +656,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a client
+### 7.2. Deleting a client
 
 1. Deleting a client while all client are being shown
 
@@ -683,7 +683,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### 7.3. Saving data
 
 1. Dealing with missing/corrupted data files
 
