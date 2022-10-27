@@ -8,38 +8,39 @@ while still having the benefits of a Graphical User Interface (GUI). If you can 
 management tasks done faster than traditional GUI apps.
 
 ## Table of Contents
+
 - [Quick Start](#quick-start)
 - [Commands](#commands)
-  * [Viewing help](#viewing-help--help)
-  * [Adding a contact or item](#adding-a-contact-or-item-add)
-    + [Adding a buyer](#adding-a-buyer-add-b)
-    + [Adding a deliverer](#adding-a-deliverer-add-d)
-    + [Adding a supplier](#adding-a-supplier-add-s)
-    + [Adding an order to a buyer](#adding-an-order-to-a-buyer-add-o)
-    + [Adding a pet to a supplier](#adding-a-pet-to-a-supplier--add-pt)
-    + [Adding a person with a popup window](#adding-a-person-with-a-popup-window--add) [RECOMMENDED FOR BEGINNERS]
-  * [Listing contacts or items](#listing-contacts-or-items--list)
-  * [Deleting a contact or item](#deleting-a-contact-or-item--delete)
-  * [Finding a contact using keywords](#finding-a-contact-using-keywords--find)
-    + [Finding a buyer](#finding-a-buyer--find-b)
-    + [Finding a supplier](#finding-a-supplier--find-s)
-    + [Finding a deliverer](#finding-a-supplier--find-s)
-  * [Filtering lists by tags](#filtering-lists-by-tags--filter)
-    + [Filtering contacts](#filtering-contacts--filter)
-    + [Filtering orders](#filtering-orders--filter-o)
-    + [Filtering pets](#filtering-pets--filter-p)
-  * [Sorting contacts](#sorting-contacts--sort)
-  * [Checking which item belongs to which contact](#checking-which-item-belongs-to-which-contact--check)
-  * [Clearing all contacts](#clearing-all-entries--clear)
-  * [Exiting the program](#exiting-the-program--exit)
+    * [Viewing help](#viewing-help--help)
+    * [Adding a contact or item](#adding-a-contact-or-item-add)
+        + [Adding a buyer](#adding-a-buyer-add-b)
+        + [Adding a deliverer](#adding-a-deliverer-add-d)
+        + [Adding a supplier](#adding-a-supplier-add-s)
+        + [Adding an order to a buyer](#adding-an-order-to-a-buyer-add-o)
+        + [Adding a pet to a supplier](#adding-a-pet-to-a-supplier--add-pt)
+        + [Adding a person with a popup window](#adding-a-person-with-a-popup-window--add) [RECOMMENDED FOR BEGINNERS]
+    * [Listing contacts or items](#listing-contacts-or-items--list)
+    * [Deleting a contact or item](#deleting-a-contact-or-item--delete)
+    * [Finding a contact using keywords](#finding-a-contact-using-keywords--find)
+        + [Finding a buyer](#finding-a-buyer--find-b)
+        + [Finding a supplier](#finding-a-supplier--find-s)
+        + [Finding a deliverer](#finding-a-supplier--find-s)
+    * [Filtering lists by tags](#filtering-lists-by-tags--filter)
+        + [Filtering contacts](#filtering-contacts--filter)
+        + [Filtering orders](#filtering-orders--filter-o)
+        + [Filtering pets](#filtering-pets--filter-p)
+    * [Sorting contacts](#sorting-contacts--sort)
+    * [Checking which item belongs to which contact](#checking-which-item-belongs-to-which-contact--check)
+    * [Clearing all contacts](#clearing-all-entries--clear)
+    * [Exiting the program](#exiting-the-program--exit)
 - [How data is stored](#how-data-is-stored)
-  * [Saving contacts and items](#saving-the-data)
-  * [Editing the data file](#editing-the-data-file)
-  * [Archiving data files](#archiving-data-files-coming-in-v20)
+    * [Saving contacts and items](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+    * [Archiving data files](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
 - [Summaries](#summaries)
-  * [List of prefixes](#list-of-prefixes)
-  * [Command summary](#command-summary)
+    * [List of prefixes](#list-of-prefixes)
+    * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -105,9 +106,12 @@ management tasks done faster than traditional GUI apps.
 </div>
 
 **Additional Information:**
+
 * Unless otherwise specified, the order of prefixes does not matter.
-* Contact refers to a person added to the address book. It can be of the following three categories: Buyer, Supplier, and Deliverer.
-* Item refers to an Order or Pet. An Order refers to the order placed by Buyer. A Pet refers to the pet sold by a Supplier.
+* Contact refers to a person added to the address book. It can be of the following three categories: Buyer, Supplier,
+  and Deliverer.
+* Item refers to an Order or Pet. An Order refers to the order placed by Buyer. A Pet refers to the pet sold by a
+  Supplier.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -130,13 +134,15 @@ Adds a contact or item to the address book.
 * An item can be either an Order or Pet.
 
 General Format for add command: `add-KEY prefix/PARAMETERS...`, where:
+
 * `KEY` specifies what type of contact or item you want to add.
 * `prefix` indicates the kind of information you are adding.
 * `PARAMETER` is the information you are adding.
 
 Kindly refer to the [Summaries](#summaries) section for more information.
 
-:exclamation:If you are a beginner, we highly recommend you to use the [Add Command using the popup window](#adding-a-person-with-a-popup-window--add)
+:exclamation:If you are a beginner, we highly recommend you to use
+the [Add Command using the popup window](#adding-a-person-with-a-popup-window--add)
 instead of the usual CLI interface.
 
 [Go back to [Table of Contents](#table-of-contents)]
@@ -158,7 +164,8 @@ nice feature for you to add a buyer and his/her orders in one shot! Check it out
 
 Format: `add-b n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ o/add-o(order1 prefixes and fields) o/add-o(order2 prefixes and fields)…​`
 
-:exclamation: Note that you can input as many `o/add-o` prefixes as you need. After each `add-o`, simply enter the details for
+:exclamation: Note that you can input as many `o/add-o` prefixes as you need. After each `add-o`, simply enter the
+details for
 the order, and you don't have to specify the index of the associated buyer this time. For more
 information, you can refer to the [Add Order](#adding-an-order-to-a-buyer-add-o) section.
 
@@ -200,21 +207,27 @@ supplier in one shot! Check it out below :point_down:
 
 Format: `add-s n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ pt/add-pt(pet1 prefixeds and fields) pt/add-pt(pet2 prefixeds and fields)…​`
 
-:exclamation: Note that you can input as many `pt/add-pt` prefixes as you need. After each `add-pt`, simply enter the details
+:exclamation: Note that you can input as many `pt/add-pt` prefixes as you need. After each `add-pt`, simply enter the
+details
 for the pet, and you don't have to specify the index of the associated supplier this time. For more information,
 you can refer to the [Add Pet](#adding-a-pet-to-supplier--add-pt) section.
 
 Examples:
 
-* To add a single supplier: `add-s n/Carol Pet House p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 t/discount for more than one purchase`
-* To add a supplier with two pets for sale: `add-s n/Carol Pet House p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 t/discount for more than one purchase pt/add-pt pt_n/Page pt_d/2022-1-1 pt_c/pink pt_cp/pure pink pt_h/41 pt_s/pig pt_cert/US certified pt_v/true pt_w/102 pt_p/270 pt_t/good pt_t/young pt/add-pt pt_n/Snupy pt_d/2021-05-31 pt_c/white pt_cp/dotted pt_h/89.3 pt_cert/US certified pt_s/rabbit pt_v/false pt_w/32 pt_p/330 pt_t/short-sighted`
+* To add a single
+  supplier: `add-s n/Carol Pet House p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 t/discount for more than one purchase`
+* To add a supplier with one pet for
+  sale: `add-s n/Carol Pet House p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 t/discount for more than one purchase pt/add-pt pt_n/Page pt_d/2022-1-1 pt_c/pink pt_cp/pure pink pt_h/41 pt_s/pig pt_cert/US certified pt_v/true pt_w/102 pt_p/270 pt_t/good pt_t/young`
+* To add a supplier with two pets for
+  sale: `add-s n/Carol Pet House p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 t/discount for more than one purchase pt/add-pt pt_n/Page pt_d/2022-1-1 pt_c/pink pt_cp/pure pink pt_h/41 pt_s/pig pt_cert/US certified pt_v/true pt_w/102 pt_p/270 pt_t/good pt_t/young pt/add-pt pt_n/Snupy pt_d/2021-05-31 pt_c/white pt_cp/dotted pt_h/89.3 pt_cert/US certified pt_s/rabbit pt_v/false pt_w/32 pt_p/330 pt_t/short-sighted`
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
 #### Adding an ORDER TO A BUYER: `add-o`
 
-Every time a new order is placed, you need to add it to the customer placed it, don't you? Hence, you can use the following format to
+Every time a new order is placed, you need to add it to the customer placed it, don't you? Hence, you can use the
+following format to
 add a new order :point_down:
 
 Format: `add-o i/INDEX_OF_BUYER o_s/STATUS o_r/add-r o_a/AGE o_s/SPECIES o_c/COLOR o_cp/COLOR_PATTERN o_p/PRICE o_pr/PRICE_RANGE o_d/DATE [o_ar/ADDITIONAL_REQUEST]…​`
@@ -224,7 +237,8 @@ in the displayed buyer list. You may want to use the [List Command](#listing-con
 if you have filtered the list.
 
 :exclamation: Please ensure that `o_r/` is followed by `add-r` immediately and that there are no other prefixes
-between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_s/`. This is because they as a whole specify how the requested pet should be
+between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_s/`. This is because they as a whole specify how the requested pet
+should be
 like. In the future, you may be able to define your own requests as templates for generating orders.
 
 For more information about the prefixes, kindly navigate to the summary table [here](#list-of-prefixes).
@@ -244,7 +258,8 @@ When a new pet comes up to stock, you may want to add it to its supplier. Now is
 Format: `add-pt i/INDEX_OF_SUPPLIER pt_n/PET_NAME pt_d/DATE_OF_BIRTH pt_c/COLOR pt_cp/COLOR_PATTERN pt_h/HEIGHT pt_w/WEIGHT pt_s/SPECIES pt_v/VACCINATION_STATUS pt_p/PRICE [pt_cert/CERTIFICATE]…​ [pt_t/TAG]…​`
 
 `i/INDEX_OF_SUPPLIER` is the one-based index of the supplier you would like to add this pet to. You can find out the
-index just in the display list. You may want to use the [List Command](#listing-contacts-or-items--list) to find the supplier,
+index just in the display list. You may want to use the [List Command](#listing-contacts-or-items--list) to find the
+supplier,
 if you have filtered the list.
 
 For more information about the prefixes, kindly navigate to the summary table [here](#list-of-prefixes).
@@ -304,28 +319,47 @@ The error message and the correct format of the input will be shown in the **mai
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
+### Matching pets to an order : `match`
+
+At times, you may want to find out which pet waiting for sale is the best fit when you receive a new order. Now it is
+the time for you to check this command out.
+
+Format: `match i/INDEX`
+
+`i/INDEX` is the one-based index of the order to which you would like to find the best fitting pet. This command will
+sort all pets currently being displayed on your screen (so the pets filtered out will not count) based on our score
+evaluation algorithm in descending order. The top few pets are probably what you want. And now, time to contact the
+suppliers who own these pets for further negotiation. If you are interested in the algorithm, check out our developer
+guide.
+At this stage, the score is calculated using a default set of weights. In the future, you may be able to define your own
+weights for different fields, such as price, age, species and so on.
+
+[Go back to [Table of Contents](#table-of-contents)]
+[Go back to [Commands](#commands)]
+
 ### Listing contacts or items : `list`
 
-Displays the specified type of contacts or items. This command is especially useful when you want to find the index of a contact / item.
+Displays the specified type of contacts or items. This command is especially useful when you want to find the index of a
+contact / item.
 
-Format: `list [LIST_PARAMETER]`
+Format: `list TYPE`
 
 #### Acceptable List Parameters For Contacts / Items Table
 
-| List type | Acceptable Parameters            |
-|-----------|----------------------------------|
-| Buyer     | buyers, buyer, b, -b, /b         |
-| Supplier  | suppliers, supplier, s, -s, /s   |
-| Deliverer | deliverers, deliverer, d, -d, /d |
-| Order     | orders, order, o, -o, /o         |
-| Pet       | pets, pet, p, -p, /p             |
+| List Type | Acceptable Parameter |
+|:---------:|----------------------|
+|   Buyer   | buyer                |
+| Supplier  | supplier             |
+| Deliverer | deliverer            |
+|   Order   | order                |
+|    Pet    | pet                  |
 
 Examples:
 * `list buyer`, lists all Buyer contacts.
+* `list deliverer`, lists all Deliverer contacts.
 * `list supplier`, lists all Supplier contacts.
-* `list d`, lists all Deliverer contacts.
-* `list-o`, lists all Orders.
-* `list/p`, lists all Pets.
+* `list order`, lists all Orders.
+* `list pet`, lists all Pets.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -337,6 +371,7 @@ Deletes a contact / item at the specified index of the respective contact / item
 Format: `delete-KEY INDEX`
 
 #### KEY Types Table
+
 | Contact / Item to Delete | KEY |
 |:------------------------:|:---:|
 |          Buyer           |  b  |
@@ -393,6 +428,7 @@ Address, Email, Location, Name, Phone.
 Format: `find [PREFIX]/INPUT`
 
 #### Attributes and Their Corresponding Prefixes Table
+
 | Attribute | Prefix | Format    | Example                |
 |-----------|--------|-----------|------------------------|
 | Address   | a      | a/KEYWORD | a/Wall Street          |
@@ -412,7 +448,8 @@ Examples:
 
 #### Finding a BUYER : `find-b`
 
-Displays all buyers who match ONE specific attribute. Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
+Displays all buyers who match ONE specific attribute. Check out
+the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information.
 
 Format: `find-b [PREFIX]/INPUT`
@@ -428,7 +465,8 @@ Examples:
 
 #### Finding a DELIVERER : `find-d`
 
-Displays all deliverers who match ONE specific attribute. Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
+Displays all deliverers who match ONE specific attribute. Check out
+the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information.
 
 Format: `find-d [PREFIX]/INPUT`
@@ -444,7 +482,8 @@ Examples:
 
 #### Finding a SUPPLIER : `find-s`
 
-Displays all suppliers who match ONE specific attribute. Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
+Displays all suppliers who match ONE specific attribute. Check out
+the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information.
 
 Format: `find-s [PREFIX]/INPUT`
@@ -515,18 +554,18 @@ Format: `sort LIST_PARAMETER [ATTRIBUTES...]`
 
 :exclamation:**Note that different lists could have different supported sort attributes.**
 
-Check out the acceptable List Parameters for different types of contacts / items [here](#acceptable-list-parameters-for-contacts--items-table).
+Check out the acceptable List Parameters for different types of contacts /
+items [here](#acceptable-list-parameters-for-contacts--items-table).
 
 #### List Attribute Table
 
-| List type | Attributes                                                                                                                       |
-|-----------|----------------------------------------------------------------------------------------------------------------------------------|
+| List type | Attributes                                                                                                                  |
+|-----------|-----------------------------------------------------------------------------------------------------------------------------|
 | Buyer     | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
 | Supplier  | *Number of Pet On sale*, Name, Phone, Email, Location, Address                                                              |
 | Deliverer | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
 | Order     | *Due Date*, Price Range, Price, Status                                                                                      |
 | Pet       | *Price*, Name, Color, Color Pattern, Birth Date, Species, Height, Weight, Vaccination Status, Characteristics, Certificates |
-
 > The italicised text attribute represents the default sorting attribute for each list. <br>
 > For example, `sort pet` will sort the Pets list in default by the price attribute.
 
@@ -568,15 +607,18 @@ Examples:
 ### Checking which item belongs to which contact : `check`
 
 Checks a contact at specified index, the application will display different windows for each list input.
-This command is especially useful for checking which Order belongs to which Buyer, and which Pet belongs to which Supplier.
+This command is especially useful for checking which Order belongs to which Buyer, and which Pet belongs to which
+Supplier.
 
 Format: `check LIST_PARAMETER INDEX`
 
 :exclamation: **Please take note of the following:**
+
 * This command does not support the Deliverers list.
 * The input index has to be a valid index.
 
-Check out the acceptable List Parameters for different types of contacts / items [here](#acceptable-list-parameters-for-contacts--items-table).
+Check out the acceptable List Parameters for different types of contacts /
+items [here](#acceptable-list-parameters-for-contacts--items-table).
 
 #### Application Behaviour for the Check command
 
@@ -616,6 +658,7 @@ Format: `exit`
 [Go back to [Commands](#commands)]
 
 ## How data is stored
+
 ### Saving the data
 
 PetCode data is saved into your computer's hard disk automatically after any command that changes the data.
@@ -691,22 +734,22 @@ These prefixes are for you to indicate different fields when you add a new perso
 
 ### Command Summary
 
-| Action                       | Format, Examples                                                                                                                                                                                           |
-|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                      | `add ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​` <br> e.g., `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
-| **Add** (using popup window) | `add buyer`, `add supplier`                                                                                                                                                                                |
-| **Clear**                    | `clear`                                                                                                                                                                                                    |
-| **Delete**                   | `delete-KEY INDEX` e.g., `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`                                                                                                              |
-| **Find**                     | `find PREFIX/KEYWORD` <br> e.g., `find n/James Jake`                                                                                                                                                       |
-| **Find Buyer**               | `find-b PREFIX/KEYWORD` <br> e.g., `find-b n/James Jake`                                                                                                                                                   |
-| **Find Deliverer**           | `find-d PREFIX/KEYWORD` <br> e.g., `find-d n/James Jake`                                                                                                                                                   |
-| **Find Supplier**            | `find-s PREFIX/KEYWORD` <br> e.g., `find-s n/James Jake`                                                                                                                                                   |
-| **Filter**                   | `filter t/INPUT`<br> e.g., `filter t/dog t/second-hand`                                                                                                                                                    |
-| **Filter Orders**            | `filter-o PREFIX/KEYWORD`<br> e.g., `filter-o ar/good with children pr/10-100`                                                                                                                             |
-| **Filter Pets**              | `filter-p PREFIX/KEYWORD`<br> e.g., `filter-p c/white s/capybara`                                                                                                                                          |
-| **Help**                     | `help`                                                                                                                                                                                                     |
-| **List**                     | `list all`, `list buyer`, `list supplier`, `list delivery`, `list order`, `list pet`                                                                                                                       |
-| **Sort**                     | `sort LIST_PARAMETER [ATTRIBUTES...]`<br> e.g., `sort pet price height weight`                                                                                                                            |
-| **Check**                    | `check LIST_TYPE INDEX` <br> e.g., `check buyer 1`                                                                                                                                                         |
 
+| Action                       | Format, Examples                                                                                                                                                                                       |
+|------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                      | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​` <br> e.g., `add-b n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
+| **Add** (using popup window) | `add buyer`, `add supplier`                                                                                                                                                                            |
+| **Clear**                    | `clear`                                                                                                                                                                                                |
+| **Delete**                   | `delete-KEY INDEX` e.g., `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`                                                                                                          |
+| **Find**                     | `find PREFIX/KEYWORD` <br> e.g., `find n/James Jake`                                                                                                                                                   |
+| **Find Buyer**               | `find-b PREFIX/KEYWORD` <br> e.g., `find-b n/James Jake`                                                                                                                                               |
+| **Find Deliverer**           | `find-d PREFIX/KEYWORD` <br> e.g., `find-d n/James Jake`                                                                                                                                               |
+| **Find Supplier**            | `find-s PREFIX/KEYWORD` <br> e.g., `find-s n/James Jake`                                                                                                                                               |
+| **Filter**                   | `filter t/INPUT`<br> e.g., `filter t/dog t/second-hand`                                                                                                                                                |
+| **Filter Orders**            | `filter-o PREFIX/KEYWORD`<br> e.g., `filter-o ar/good with children pr/10-100`                                                                                                                         |
+| **Filter Pets**              | `filter-p PREFIX/KEYWORD`<br> e.g., `filter-p c/white s/capybara`                                                                                                                                      |
+| **Help**                     | `help`                                                                                                                                                                                                 |
+| **List**                     | `list all`, `list buyer`, `list supplier`, `list delivery`, `list order`, `list pet`                                                                                                                   |
+| **Sort**                     | `sort LIST_PARAMETER [ATTRIBUTES...]`<br> e.g., `sort pet price height weight`                                                                                                                         |
+| **Check**                    | `check LIST_TYPE INDEX` <br> e.g., `check buyer 1`                                                                                                                                                     |
 [Go back to [Table of Contents](#table-of-contents)]
