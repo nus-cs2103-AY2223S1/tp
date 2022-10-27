@@ -13,7 +13,6 @@ import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.CommandTestUtil;
-import seedu.condonery.logic.commands.property.EditPropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.model.ClientDirectory;
 import seedu.condonery.model.Model;

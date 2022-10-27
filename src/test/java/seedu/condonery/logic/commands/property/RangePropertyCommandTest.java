@@ -6,10 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.commons.core.Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW;
 import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
 import static seedu.condonery.testutil.TypicalProperties.CARL;
-import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 import static seedu.condonery.testutil.TypicalProperties.OASIS;
 import static seedu.condonery.testutil.TypicalProperties.PINNACLE;
-
+import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 
 import java.util.Arrays;
 

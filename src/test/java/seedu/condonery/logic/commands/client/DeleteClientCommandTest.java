@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.CommandTestUtil;
-import seedu.condonery.logic.commands.client.DeleteClientCommand;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
 import seedu.condonery.model.UserPrefs;
