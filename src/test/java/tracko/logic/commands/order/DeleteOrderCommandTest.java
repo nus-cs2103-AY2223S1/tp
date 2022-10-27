@@ -1,4 +1,4 @@
-package tracko.logic.commands;
+package tracko.logic.commands.order;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
-import tracko.logic.commands.order.DeleteOrderCommand;
+import tracko.logic.commands.CommandTestUtil;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
@@ -73,6 +73,22 @@ public class DeleteOrderCommandTest {
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
 
         CommandTestUtil.assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_validIndexSortedList_success() {
+        CommandTestUtil.showOrderAtIndex(model, INDEX_FIRST);
+
+        Order orderToDelete = model.getSortedOrderList().get(INDEX_FIRST.getZeroBased());
+        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
+
+        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
+
+        Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
+        expectedModel.deleteOrder(orderToDelete);
+        showNoOrder(expectedModel);
+
+        CommandTestUtil.assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

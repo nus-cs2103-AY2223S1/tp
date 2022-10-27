@@ -9,9 +9,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import tracko.testutil.ItemBuilder;
+import tracko.testutil.InventoryItemBuilder;
 
-public class ItemContainsKeywordsPredicateTest {
+public class InventoryItemContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
@@ -44,33 +44,33 @@ public class ItemContainsKeywordsPredicateTest {
         // One keyword
         ItemContainsKeywordsPredicate predicate =
                 new ItemContainsKeywordsPredicate(Collections.singletonList("Chair"));
-        assertTrue(predicate.test(new ItemBuilder().withItemName("Wooden Dining Chair").build()));
+        assertTrue(predicate.test(new InventoryItemBuilder().withItemName("Wooden Dining Chair").build()));
 
         // Multiple keywords
         predicate = new ItemContainsKeywordsPredicate(Arrays.asList("Wooden", "Dining"));
-        assertTrue(predicate.test(new ItemBuilder().withItemName("Wooden Dining Chair").build()));
+        assertTrue(predicate.test(new InventoryItemBuilder().withItemName("Wooden Dining Chair").build()));
 
         // Only one matching keyword
         predicate = new ItemContainsKeywordsPredicate(Arrays.asList("Chair", "Wooden"));
-        assertTrue(predicate.test(new ItemBuilder().withItemName("Wooden Dining Chair").build()));
+        assertTrue(predicate.test(new InventoryItemBuilder().withItemName("Wooden Dining Chair").build()));
 
         // Mixed-case keywords
         predicate = new ItemContainsKeywordsPredicate(Arrays.asList("cHaIR", "wOoDeN"));
-        assertTrue(predicate.test(new ItemBuilder().withItemName("Wooden Dining Chair").build()));
+        assertTrue(predicate.test(new InventoryItemBuilder().withItemName("Wooden Dining Chair").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         ItemContainsKeywordsPredicate predicate = new ItemContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new ItemBuilder().withItemName("Wooden Dining Chair").build()));
+        assertFalse(predicate.test(new InventoryItemBuilder().withItemName("Wooden Dining Chair").build()));
 
         // Non-matching keyword
         predicate = new ItemContainsKeywordsPredicate(Arrays.asList("Banana"));
-        assertFalse(predicate.test(new ItemBuilder().withItemName("Wooden Dining Chair").build()));
+        assertFalse(predicate.test(new InventoryItemBuilder().withItemName("Wooden Dining Chair").build()));
 
         // Keywords match phone, email and address, but does not match order name
         predicate = new ItemContainsKeywordsPredicate(Arrays.asList("Gold", "Silver", "pLaTeS", "spOoN"));
-        assertFalse(predicate.test(new ItemBuilder().withItemName("Wooden Dining Chair").build()));
+        assertFalse(predicate.test(new InventoryItemBuilder().withItemName("Wooden Dining Chair").build()));
     }
 }

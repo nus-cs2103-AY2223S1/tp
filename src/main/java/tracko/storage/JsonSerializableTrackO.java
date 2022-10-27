@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import tracko.commons.exceptions.IllegalValueException;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.TrackO;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.order.Order;
 
 
@@ -54,8 +54,8 @@ public class JsonSerializableTrackO {
         // TODO: add items here (before orders)
         TrackO trackO = new TrackO();
         for (JsonAdaptedItem jsonAdaptedItem : items) {
-            Item item = jsonAdaptedItem.toModelType();
-            trackO.addItem(item);
+            InventoryItem inventoryItem = jsonAdaptedItem.toModelType();
+            trackO.addItem(inventoryItem);
         }
         for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
             Order order = jsonAdaptedOrder.toModelType(trackO.getInventoryReference());

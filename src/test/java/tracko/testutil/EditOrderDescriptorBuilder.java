@@ -77,7 +77,8 @@ public class EditOrderDescriptorBuilder {
     public EditOrderDescriptorBuilder withItemList() {
         List<ItemQuantityPair> defaultPairList = new ArrayList<>();
         defaultPairList.add(new ItemQuantityPairBuilder().build());
-        defaultPairList.add(new ItemQuantityPairBuilder().withItem(TypicalItems.ITEM_2).withQuantity(10).build());
+        defaultPairList.add(
+            new ItemQuantityPairBuilder().withItem(TypicalItems.INVENTORY_ITEM_2).withQuantity(10).build());
         descriptor.setItemList(defaultPairList);
         return this;
     }
@@ -95,8 +96,10 @@ public class EditOrderDescriptorBuilder {
      */
     public EditOrderDescriptorBuilder withSecondItemList() {
         List<ItemQuantityPair> defaultPairList = new ArrayList<>();
-        defaultPairList.add(new ItemQuantityPairBuilder().withItem(TypicalItems.ITEM_5).withQuantity(25).build());
-        defaultPairList.add(new ItemQuantityPairBuilder().withItem(TypicalItems.ITEM_4).withQuantity(20).build());
+        defaultPairList.add(new ItemQuantityPairBuilder()
+                .withItem(TypicalItems.INVENTORY_ITEM_5).withQuantity(25).build());
+        defaultPairList.add(new ItemQuantityPairBuilder()
+                .withItem(TypicalItems.INVENTORY_ITEM_4).withQuantity(20).build());
         descriptor.setItemList(defaultPairList);
         return this;
     }

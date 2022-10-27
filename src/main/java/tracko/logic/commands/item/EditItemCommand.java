@@ -17,7 +17,7 @@ import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
 import tracko.model.item.Description;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
@@ -72,40 +72,43 @@ public class EditItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Item> lastShownList = model.getFilteredItemList();
+        ObservableList<InventoryItem> lastShownList = model.getFilteredItemList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
         }
 
-        Item itemToEdit = lastShownList.get(index.getZeroBased());
-        Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
+        InventoryItem inventoryItemToEdit = lastShownList.get(index.getZeroBased());
+        InventoryItem editedInventoryItem = createEditedItem(inventoryItemToEdit, editItemDescriptor);
 
-        if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem)) {
+        if (!inventoryItemToEdit.isSameItem(editedInventoryItem) && model.hasItem(editedInventoryItem)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
 
-        model.setItem(itemToEdit, editedItem);
+        model.setItem(inventoryItemToEdit, editedInventoryItem);
         model.refreshData();
         model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
-        return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
+        return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedInventoryItem));
     }
 
     /**
      * Creates and returns a {@code Item} with the details of {@code itemToEdit}
      * edited with {@code editItemDescriptor}.
      */
-    private static Item createEditedItem(Item itemToEdit, EditItemDescriptor editItemDescriptor) {
-        assert itemToEdit != null;
+    private static InventoryItem createEditedItem(InventoryItem inventoryItemToEdit,
+                                                  EditItemDescriptor editItemDescriptor) {
+        assert inventoryItemToEdit != null;
 
-        ItemName updatedItemName = editItemDescriptor.getItemName().orElse(itemToEdit.getItemName());
-        Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getTotalQuantity());
-        Description updatedDescription = editItemDescriptor.getDescription().orElse(itemToEdit.getDescription());
-        Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
-        Price sellPrice = editItemDescriptor.getSellPrice().orElse(itemToEdit.getSellPrice());
-        Price costPrice = editItemDescriptor.getCostPrice().orElse(itemToEdit.getCostPrice());
+        ItemName updatedItemName = editItemDescriptor.getItemName().orElse(inventoryItemToEdit.getItemName());
+        Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(inventoryItemToEdit.getTotalQuantity());
+        Description updatedDescription = editItemDescriptor.getDescription()
+            .orElse(inventoryItemToEdit.getDescription());
+        Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(inventoryItemToEdit.getTags());
+        Price sellPrice = editItemDescriptor.getSellPrice().orElse(inventoryItemToEdit.getSellPrice());
+        Price costPrice = editItemDescriptor.getCostPrice().orElse(inventoryItemToEdit.getCostPrice());
 
-        return new Item(updatedItemName, updatedDescription, updatedQuantity, updatedTags, sellPrice, costPrice);
+        return new InventoryItem(updatedItemName, updatedDescription, updatedQuantity,
+            updatedTags, sellPrice, costPrice);
     }
 
     @Override

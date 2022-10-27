@@ -58,16 +58,32 @@ TrackO is a **desktop app built for small business owners to help them manage or
 
 ### Adding an order: `addo`
 
-Adds an order to the list of tracked orders.
+Creates an order to be added to the list of orders tracked by TrackO.
 
-Format: `addo i/ITEM_NAME q/ORDER_QUANTITY cn/CUSTOMER_NAME ca/CUSTOMER_ADDRESS ce/CUSTOMER_EMAIL cc/CUSTOMER_CONTACT`
-
-* Adds an order to be tracked in the application.
 * The added orders will track the time that it was created.
 
+The first step is to initiate the command with the customer's data.
+
+Format: `addo n/NAME p/PHONE e/EMAIL a/ADDRESS`
+
 Examples:
-* `addo i/Fountain Pen q/3 cn/John Doe ca/48 Westwood Terrace ce/johndoe@example.com cc/91234567`
-* `addo i/White Socks q/2 cn/Betty White ca/39 Ocean Drive ce/bettywhite@example.com cc/92345678`
+* `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` creates an order for customer `John Doe`, who is contactable at `91234567` and `johndoe@example.com` and wants the order delivered to `48 Westwood Terrace`
+* `addo n/Betty White p/92345678 e/bettywhite@example.com a/39 Ocean Drive` creates an order for customer `Betty White`, who is contactable at `92345678` and `bettywhite@example.com` and wants the order delivered to `39 Ocean Drive`
+
+The next step is to add the order items and their order quantities to the created order.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can repeat this step until all desired item data has been added to the created order.
+</div>
+
+Format: `i/ITEM_NAME q/QUANTITY`
+
+* You must input an item name that matches an existing item in your inventory list.
+* The name matching is case-insensitive, e.g. `i/pEn q/3` and `i/pen q/3` will both add `3` quantities (or units) of the inventory item `Pen` to the created order.
+* You must input a quantity of integer value more than 0, e.g. `q/1` or `q/3` but NOT `q/0` or `q/-1`.
+* If you input an item name that matches previously entered item, the quantity of the added item will be updated instead, e.g., `i/Box q/3` followed by `i/Box q/4` will only add a total of `4` quantities (or units) of `Box` to the created order
+
+Lastly, to end the command, you can enter `done` to tell TrackO to track the order or `cancel` to completely abort the command.
 
 ### Listing all orders : `listo`
 
@@ -127,21 +143,22 @@ Examples:
 
 Edits an existing order in the order list.
 
-Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME] [q/QUANTITY]`
+Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]`
 
 * Edits the order at the specified `INDEX`.
 * This feature is case-insensitive.
 * The index refers to the index number shown in the displayed order list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Every field is optional, but if you were to include `i/ITEM_NAME`, you must also include 
-  `q/QUANTITY`. Both fields need to be present to update the customer's ordered items.
-* You can only edit the customer's ordered items list to consist of items that exists in your inventory. <br> 
-  e.g. If your inventory does not have `Apples`, then you cannot edit your customer's order list to have `Apples`.
-* Editing an item that does not exist in your customer's order list, but exists in your inventory 
-  will add the item to the order list. <br> e.g. Your inventory has `Apples` and `Bananas`. <br>
-  Right now, the third customer's ordered item list only has `Apples`.
-  `edito 3 i/Bananas q/3` will add `3` `Bananas` to the customer's ordered item list.
-* Setting `q/0` to a customer's ordered item list will remove the item from the list.
+  `q/QUANTITY`. Both fields need to be present to update an order's list of ordered items.
+* You can only edit an order's list of ordered items to consist of items that exists in your inventory. <br> 
+  e.g. If your inventory does not have `Apples`, then you cannot edit any of your order's list of ordered items to `Apples`.
+* Editing an item that does not exist in your order's list of ordered items, but exists in your inventory 
+  will add the item to the order's list of ordered items. <br> e.g. Your inventory has `Apples` and `Bananas`. Right now, the third order's list of ordered items only has `Apples`.
+  `edito 3 i/Bananas q/3` will add `3` `Bananas` to the third order's list of ordered items.
+* Setting `q/0` to any item in the order's list of ordered items will remove the item from the list. <br> e.g. The fourth order's list of ordered items has
+`2` `Apples` and `3` `Bananas`. Inputting `edito 4 i/Bananas q/0` will remove the `Bananas` from the fourth order's list of ordered items, leaving only
+the `2` `Apples`.
 
 Note:
 * The order's created time cannot be edited.
@@ -240,7 +257,7 @@ Format: `exit`
 
 | Action                       | Format, Examples                                                                                                                                                                                                          |
 |------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add An Order**             | `addo i/ITEM_NAME q/ORDER_QUANTITY cn/CUSTOMER_NAME ca/CUSTOMER_ADDRESS ce/CUSTOMER_EMAIL cc/CUSTOMER_CONTACT` <br> e.g., `addo i/Fountain Pen q/3 cn/John Doe ca/48 Westwood Terrace ce/johndoe@example.com cc/91234567` |
+| **Add An Order**             | `addo n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g., `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` <br> then, `i/ITEM_NAME q/QUANTITY` as many times as required <br>e.g. `i/Pillow q/2` <br>followed by `done` or `cancel` |
 | **List All Orders**          | `listo`                                                                                                                                                                                                                   |
 | **Find Order(s)**            | `findo KEYWORD [MORE_KEYWORDS]`                                                                                                                                                                                           |
 | **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                    |

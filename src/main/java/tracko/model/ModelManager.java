@@ -13,7 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import tracko.commons.core.GuiSettings;
 import tracko.commons.core.LogsCenter;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.order.Order;
 
 /**
@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private final TrackO trackO;
     private final UserPrefs userPrefs;
     private final FilteredList<Order> filteredOrders;
-    private final FilteredList<Item> filteredItems;
+    private final FilteredList<InventoryItem> filteredInventoryItems;
     private final SortedList<Order> sortedOrders;
 
     /**
@@ -41,7 +41,7 @@ public class ModelManager implements Model {
         this.trackO = new TrackO(trackO);
         this.filteredOrders = new FilteredList<>(this.trackO.getOrderList());
         this.sortedOrders = new SortedList<>(filteredOrders);
-        this.filteredItems = new FilteredList<>(this.trackO.getInventoryList());
+        this.filteredInventoryItems = new FilteredList<>(this.trackO.getInventoryList());
     }
 
     public ModelManager() {
@@ -115,14 +115,12 @@ public class ModelManager implements Model {
     @Override
     public void setOrder(Order orderToEdit, Order editedOrder) {
         requireAllNonNull(orderToEdit, editedOrder);
-
         trackO.setOrder(orderToEdit, editedOrder);
     }
 
     @Override
     public void markOrder(Order orderToMark, boolean isPaid, boolean isDelivered) {
         requireNonNull(orderToMark);
-
         trackO.markOrder(orderToMark, isPaid, isDelivered);
     }
 
@@ -160,52 +158,52 @@ public class ModelManager implements Model {
     // ITEM METHODS ==========================================================================================
 
     @Override
-    public void addItem(Item item) {
-        trackO.addItem(item);
+    public void addItem(InventoryItem inventoryItem) {
+        trackO.addItem(inventoryItem);
     }
 
     @Override
-    public Item getItem(String itemName) {
+    public InventoryItem getItem(String itemName) {
         return trackO.getItem(itemName);
     }
 
     @Override
-    public void deleteItem(Item item) {
-        trackO.deleteItem(item);
+    public void deleteItem(InventoryItem inventoryItem) {
+        trackO.deleteItem(inventoryItem);
     }
 
     @Override
-    public boolean hasItem(Item item) {
-        requireNonNull(item);
-        return trackO.hasItem(item);
+    public boolean hasItem(InventoryItem inventoryItem) {
+        requireNonNull(inventoryItem);
+        return trackO.hasItem(inventoryItem);
     }
 
     @Override
-    public void setItem(Item target, Item editedItem) {
-        requireAllNonNull(target, editedItem);
-        trackO.setItem(target, editedItem);
+    public void setItem(InventoryItem target, InventoryItem editedInventoryItem) {
+        requireAllNonNull(target, editedInventoryItem);
+        trackO.setItem(target, editedInventoryItem);
     }
 
     // FILTERED ITEM LIST ACCESSORS ======================================================================
 
     @Override
-    public ObservableList<Item> getFilteredItemList() {
-        return filteredItems;
+    public ObservableList<InventoryItem> getFilteredItemList() {
+        return filteredInventoryItems;
     }
 
     @Override
-    public void updateFilteredItemList(Predicate<Item> predicate) {
+    public void updateFilteredItemList(Predicate<InventoryItem> predicate) {
         requireNonNull(predicate);
-        filteredItems.setPredicate(predicate);
+        filteredInventoryItems.setPredicate(predicate);
     }
 
     @Override
     public int getFilteredItemListSize() {
-        return filteredItems.size();
+        return filteredInventoryItems.size();
     }
 
     @Override
-    public ObservableList<Item> getInventoryList() {
+    public ObservableList<InventoryItem> getInventoryList() {
         return trackO.getInventoryList();
     }
 
