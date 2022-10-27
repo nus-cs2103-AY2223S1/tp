@@ -19,7 +19,7 @@
         </VBox>
       </VBox>
     </VBox>
-    <Separator styleClass="separator-card" maxWidth="80">
+    <Separator styleClass="separator-card" maxWidth="80" mouseTransparent="true">
       <padding>
         <Insets top="5" bottom="10"/>
       </padding>
