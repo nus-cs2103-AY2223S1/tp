@@ -43,10 +43,8 @@ public class DoneModuleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ModCode previousCode = model.getCurrentModule();
-
-        if (previousCode != null) {
-            throw new CommandException("Please exit current module first!");
+        if (model.getCurrentModule() != null) {
+            throw new CommandException("Please exit the current module using 'cd ..' command!");
         }
 
         if (!model.hasModuleWithModCode(moduleCode)) {

@@ -30,10 +30,8 @@ public class ListModulesCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        ModCode previousCode = model.getCurrentModule();
-
-        if (previousCode != null) {
-            throw new CommandException("Please exit current module first!");
+        if (model.getCurrentModule() != null) {
+            throw new CommandException("Please exit the current module using 'cd ..' command!");
         }
 
         if (areDoneModulesShown) {
