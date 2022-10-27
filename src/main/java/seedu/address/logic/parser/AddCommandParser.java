@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -18,6 +19,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingLocation;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
@@ -42,8 +44,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_INCOME, PREFIX_MEETING_DATE, PREFIX_TAG, PREFIX_RISK, PREFIX_PLAN, PREFIX_NOTE);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_INCOME,
+                PREFIX_MEETING_DATE, PREFIX_MEETING_LOCATION, PREFIX_TAG, PREFIX_RISK, PREFIX_PLAN, PREFIX_NOTE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_INCOME)
             || !argMultimap.getPreamble().isEmpty()) {
@@ -56,12 +58,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Income income = ParserUtil.parseIncome(argMultimap.getValue(PREFIX_INCOME).get());
         MeetingDate meetingDate = ParserUtil.parseMeetingDate(argMultimap.getOptionalValue(PREFIX_MEETING_DATE));
+        MeetingLocation meetingLocation =
+            ParserUtil.parseMeetingLocation(argMultimap.getOptionalValue(PREFIX_MEETING_LOCATION));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Risk risk = ParserUtil.parseRisk(argMultimap.getOptionalValue(PREFIX_RISK));
         Set<Plan> plans = ParserUtil.parsePlans(argMultimap.getAllValues(PREFIX_PLAN));
         Set<Note> note = ParserUtil.parseNotes(argMultimap.getAllValues(PREFIX_NOTE));
 
-        Person person = new Person(name, phone, email, address, income, meetingDate, tagList, risk, plans, note);
+        Person person = new Person(name, phone, email, address, income, meetingDate, meetingLocation, tagList,
+            risk, plans, note);
 
         return new AddCommand(person);
     }

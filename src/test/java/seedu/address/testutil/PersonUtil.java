@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -44,7 +45,8 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_INCOME + person.getIncome().value + " ");
-        sb.append(PREFIX_MEETING_DATE + person.getMeetingDate().value + " ");
+        sb.append(PREFIX_MEETING_DATE + person.getMeeting().getMeetingDate().value + " ");
+        sb.append(PREFIX_MEETING_LOCATION + person.getMeeting().getMeetingLocation().get() + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -70,6 +72,8 @@ public class PersonUtil {
         descriptor.getIncome().ifPresent(income -> sb.append(PREFIX_INCOME).append(income.value).append(" "));
         descriptor.getMeetingDate().ifPresent(meetingDate -> sb.append(PREFIX_MEETING_DATE)
             .append(meetingDate.value).append(" "));
+        descriptor.getMeetingLocation().ifPresent(meetingLocation -> sb.append(PREFIX_MEETING_LOCATION)
+            .append(meetingLocation.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

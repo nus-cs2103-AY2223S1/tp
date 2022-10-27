@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingLocation;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
@@ -36,6 +37,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String income;
     private final String meetingDate;
+    private final String meetingLocation;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String risk;
     private final List<JsonAdaptedPlan> planned = new ArrayList<>();
@@ -49,6 +51,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("income") String income,
                              @JsonProperty("meetingDate") String meetingDate,
+                             @JsonProperty("meetingLocation") String meetingLocation,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("risk") String risk,
                              @JsonProperty("plan") List<JsonAdaptedPlan> planned,
@@ -62,6 +65,11 @@ class JsonAdaptedPerson {
             this.meetingDate = meetingDate;
         } else {
             this.meetingDate = "";
+        }
+        if (meetingLocation != null) {
+            this.meetingLocation = meetingLocation;
+        } else {
+            this.meetingLocation = "";
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -89,7 +97,8 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         income = source.getIncome().value;
-        meetingDate = source.getMeetingDate().value;
+        meetingDate = source.getMeeting().getMeetingDate().value;
+        meetingLocation = source.getMeeting().getMeetingLocation().get();
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
@@ -174,6 +183,17 @@ class JsonAdaptedPerson {
             modelMeetingDate = new MeetingDate("");
         }
 
+        if (meetingLocation != null && !MeetingLocation.isValidMeetingLocation(meetingLocation)) {
+            throw new IllegalValueException(MeetingLocation.MESSAGE_CONSTRAINTS);
+        }
+        final MeetingLocation modelMeetingLocation;
+
+        if (meetingLocation != null) {
+            modelMeetingLocation = new MeetingLocation(meetingLocation);
+        } else {
+            modelMeetingLocation = new MeetingLocation("");
+        }
+
         if (risk != null && !Risk.isValidRisk(risk)) {
             throw new IllegalValueException(Risk.MESSAGE_CONSTRAINTS);
         }
@@ -191,8 +211,10 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Set<Note> modelNotes = new HashSet<>(personNotes);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate, modelTags,
-            modelRisk, modelPlans, modelNotes);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate,
+            modelMeetingLocation,
+            modelTags, modelRisk, modelPlans, modelNotes);
     }
 
 }

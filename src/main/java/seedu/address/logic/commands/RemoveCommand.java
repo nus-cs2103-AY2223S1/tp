@@ -15,7 +15,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingLocation;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
@@ -94,12 +96,15 @@ public class RemoveCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
         Portfolio portfolio = personToEdit.getPortfolio();
+        Meeting meeting = personToEdit.getMeeting();
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Income updatedIncome = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
-        MeetingDate updatedMeetingDate = editPersonDescriptor.getMeetingDate().orElse(personToEdit.getMeetingDate());
+        MeetingDate updatedMeetingDate = editPersonDescriptor.getMeetingDate().orElse(meeting.getMeetingDate());
+        MeetingLocation updatedMeetingLocation =
+            editPersonDescriptor.getMeetingLocation().orElse(meeting.getMeetingLocation());
         Set<Tag> updatedTags = new HashSet<>() {
             {
                 addAll(personToEdit.getTags());
@@ -121,7 +126,7 @@ public class RemoveCommand extends Command {
         };
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncome,
-            updatedMeetingDate, updatedTags, updatedRisk, updatedPlans, updatedNotes);
+            updatedMeetingDate, updatedMeetingLocation, updatedTags, updatedRisk, updatedPlans, updatedNotes);
     }
 
     @Override

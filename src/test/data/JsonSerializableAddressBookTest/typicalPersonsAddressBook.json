@@ -8,6 +8,7 @@
       "address": "123, Jurong West Ave 6, #08-111",
       "income": "$5000",
       "meetingDate": "23 Nov 2022",
+      "meetingLocation": "13 Computing Drive",
       "tagged": [
         "friends"
       ],
@@ -26,6 +27,7 @@
       "address": "311, Clementi Ave 2, #02-25",
       "income": "$300",
       "meetingDate": "10 Dec 2022",
+      "meetingLocation": "13 Computing Drive",
       "tagged": [
         "owesMoney",
         "friends"
@@ -43,6 +45,7 @@
       "address": "wall street",
       "income": "$840",
       "meetingDate": null,
+      "meetingLocation": "13 Computing Drive",
       "tagged": [],
       "risk": "low",
       "planned": [],
@@ -55,6 +58,7 @@
       "address": "10th street",
       "income": "$7000",
       "meetingDate": "28 Nov 2022",
+      "meetingLocation": "13 Computing Drive",
       "tagged": [
         "friends"
       ],
@@ -71,6 +75,7 @@
       "address": "michegan ave",
       "income": "$2500",
       "meetingDate": "16 Nov 2022",
+      "meetingLocation": "13 Computing Drive",
       "tagged": [],
       "risk": "medium",
       "planned": [],
@@ -83,6 +88,7 @@
       "address": "little tokyo",
       "income": "$90",
       "meetingDate": "12 Sep 2022",
+      "meetingLocation": "13 Computing Drive",
       "tagged": [],
       "risk": null,
       "planned": [],
@@ -95,6 +101,7 @@
       "address": "4th street",
       "income": "$3000",
       "meetingDate": null,
+      "meetingLocation": "13 Computing Drive",
       "tagged": [],
       "risk": null,
       "planned": [],

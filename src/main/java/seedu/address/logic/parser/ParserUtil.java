@@ -17,6 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingLocation;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
@@ -215,6 +216,25 @@ public class ParserUtil {
             return new MeetingDate(trimmedMeetingDate);
         } else {
             return new MeetingDate(null);
+        }
+    }
+
+    /**
+     * Parses a {@code String meetingLocation} into an {@code MeetingLocation}.
+     * Leading and trailing whitespaces will be trimmed.
+     * MeetingLocation can be null.
+     *
+     * @throws ParseException if the given {@code meetingLocation} is invalid.
+     */
+    public static MeetingLocation parseMeetingLocation(String meetingLocation) throws ParseException {
+        if (meetingLocation != null) {
+            String trimmedMeetingLocation = meetingLocation.trim();
+            if (!MeetingLocation.isValidMeetingLocation(trimmedMeetingLocation)) {
+                throw new ParseException(MeetingLocation.MESSAGE_CONSTRAINTS);
+            }
+            return new MeetingLocation(trimmedMeetingLocation);
+        } else {
+            return new MeetingLocation(null);
         }
     }
 

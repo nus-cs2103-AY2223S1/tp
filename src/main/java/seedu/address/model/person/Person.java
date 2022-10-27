@@ -7,7 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingLocation;
 import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Portfolio;
@@ -28,22 +30,23 @@ public class Person {
     // Data fields
     private final Address address;
     private final Income income;
-    private final MeetingDate meetingDate;
+    private final Meeting meeting;
     private final Set<Tag> tags = new HashSet<>();
     private final Portfolio portfolio;
 
     /**
      * Every field must be present and not null.
      */
+
     public Person(Name name, Phone phone, Email email, Address address, Income income, MeetingDate meetingDate,
-                  Set<Tag> tags, Risk risk, Set<Plan> plan, Set<Note> note) {
-        requireAllNonNull(name, phone, email, address, income, meetingDate, tags);
+                  MeetingLocation meetingLocation, Set<Tag> tags, Risk risk, Set<Plan> plan, Set<Note> note) {
+        requireAllNonNull(name, phone, email, address, income, tags, plan, note);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.income = income;
-        this.meetingDate = meetingDate;
+        this.meeting = new Meeting(meetingDate, meetingLocation);
         this.tags.addAll(tags);
         this.portfolio = new Portfolio(risk, plan, note);
     }
@@ -68,8 +71,8 @@ public class Person {
         return income;
     }
 
-    public MeetingDate getMeetingDate() {
-        return meetingDate;
+    public Meeting getMeeting() {
+        return meeting;
     }
 
     public Portfolio getPortfolio() {
@@ -118,7 +121,7 @@ public class Person {
             && otherPerson.getEmail().equals(getEmail())
             && otherPerson.getAddress().equals(getAddress())
             && otherPerson.getIncome().equals(getIncome())
-            && otherPerson.getMeetingDate().equals(getMeetingDate())
+            && otherPerson.getMeeting().equals(getMeeting())
             && otherPerson.getTags().equals(getTags())
             && otherPortfolio.getRisk().equals(getPortfolio().getRisk())
             && otherPortfolio.getPlans().equals(getPortfolio().getPlans())
@@ -128,12 +131,13 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, income, meetingDate, tags, portfolio);
+        return Objects.hash(name, phone, email, address, income, meeting, tags, portfolio);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        Meeting meeting = getMeeting();
         Portfolio portfolio = getPortfolio();
         builder.append(getName())
             .append("; Phone: ")
@@ -144,8 +148,10 @@ public class Person {
             .append(getAddress())
             .append("; Income: ")
             .append(getIncome())
-            .append("; MeetingDate: ")
-            .append(getMeetingDate());
+            .append("; Meeting Date: ")
+            .append(meeting.getMeetingDate())
+            .append("; Meeting Location: ")
+            .append(meeting.getMeetingLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -190,7 +196,9 @@ public class Person {
             .append("\nIncome: ")
             .append(getIncome())
             .append("\nMeeting date: ")
-            .append(getMeetingDate());
+            .append(meeting.getMeetingDate())
+            .append("\nMeeting Location: ")
+            .append(meeting.getMeetingLocation());
 
 
         Set<Tag> tags = getTags();

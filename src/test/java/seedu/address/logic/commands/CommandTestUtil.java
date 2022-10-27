@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -42,7 +43,9 @@ public class CommandTestUtil {
     public static final String VALID_INCOME_AMY = "$6320";
     public static final String VALID_INCOME_BOB = "$5990";
     public static final String VALID_MEETING_DATE_AMY = "20 Nov 2022";
+    public static final String VALID_MEETING_LOCATION_AMY = "13 Computing Drive";
     public static final String VALID_MEETING_DATE_BOB = "13 Dec 2022";
+    public static final String VALID_MEETING_LOCATION_BOB = "https://meet.google.com/vim-ejvu-sdh";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_RISK_AMY = "high";
@@ -64,6 +67,8 @@ public class CommandTestUtil {
     public static final String INCOME_DESC_BOB = " " + PREFIX_INCOME + VALID_INCOME_BOB;
     public static final String MEETING_DATE_DESC_AMY = " " + PREFIX_MEETING_DATE + VALID_MEETING_DATE_AMY;
     public static final String MEETING_DATE_DESC_BOB = " " + PREFIX_MEETING_DATE + VALID_MEETING_DATE_BOB;
+    public static final String MEETING_LOCATION_DESC_AMY = " " + PREFIX_MEETING_LOCATION + VALID_MEETING_LOCATION_AMY;
+    public static final String MEETING_LOCATION_DESC_BOB = " " + PREFIX_MEETING_LOCATION + VALID_MEETING_LOCATION_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String RISK_DESC_AMY = " " + PREFIX_RISK + VALID_RISK_AMY;
@@ -79,7 +84,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_INCOME_DESC = " " + PREFIX_INCOME; // empty string not allowed for income
     public static final String INVALID_MEETING_DATE_DESC = " " + PREFIX_MEETING_DATE
-            + "@2 Dec 2022"; // empty string not allowed for income
+        + "@2 Dec 2022"; // empty string not allowed for income
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -90,15 +95,15 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withIncome(VALID_INCOME_AMY).withMeetingDate(VALID_MEETING_DATE_AMY)
-                .withTags(VALID_TAG_FRIEND).withRisk(VALID_RISK_AMY).withPlans(VALID_PLANS_AMY)
-                .withNote(VALID_NOTE_AMY).build();
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withIncome(VALID_INCOME_AMY).withMeetingDate(VALID_MEETING_DATE_AMY)
+            .withTags(VALID_TAG_FRIEND).withRisk(VALID_RISK_AMY).withPlans(VALID_PLANS_AMY)
+            .withNote(VALID_NOTE_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withIncome(VALID_INCOME_BOB).withMeetingDate(VALID_MEETING_DATE_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withRisk(VALID_RISK_BOB)
-                .withPlans(VALID_PLANS_BOB).withNote(VALID_NOTE_BOB).build();
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withIncome(VALID_INCOME_BOB).withMeetingDate(VALID_MEETING_DATE_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withRisk(VALID_RISK_BOB)
+            .withPlans(VALID_PLANS_BOB).withNote(VALID_NOTE_BOB).build();
     }
 
     /**
@@ -107,7 +112,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -122,7 +127,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -143,6 +148,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s FinBook.
