@@ -24,7 +24,7 @@ public class GithubApi {
     }
 
     public static UnirestInstance getDefaultUnirestInstance() {
-        Config config = new Config().connectTimeout(200)
+        Config config = new Config().connectTimeout(2000)
             .interceptor(new Interceptor() {
                 @Override
                 public void onResponse(HttpResponse<?> response, HttpRequestSummary request, Config config) {
