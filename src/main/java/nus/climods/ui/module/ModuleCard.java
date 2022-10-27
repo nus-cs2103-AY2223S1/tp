@@ -2,7 +2,9 @@ package nus.climods.ui.module;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import org.openapitools.client.ApiException;
 import org.openapitools.client.model.Lesson;
 import org.openapitools.client.model.SemestersEnum;
 
@@ -67,8 +69,6 @@ public class ModuleCard extends UiPart<Region> {
 
     @FXML
     private VBox lessonInfo;
-    @FXML
-    private Accordion allLessons;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -94,9 +94,20 @@ public class ModuleCard extends UiPart<Region> {
         // add lesson info in a similar way as expanded module info
         lessonInfo.managedProperty().bind(lessonInfo.visibleProperty());
         lessonInfo.setVisible(false);
-        if (module.isFocused()) {
-            showDetailedModuleInformation();
+
+         //for testing of view lesson type of a module
+         //TODO: Remove in production
+        try {
+            module.requestFocus();
+            showLessonInformation();
+        } catch (ApiException e) {
+            System.out.println("cry");
         }
+
+        // comment this out before testing the view lesson type part
+//        if (module.isFocused()) {
+//            showDetailedModuleInformation();
+//        }
     }
 
     private void showDetailedModuleInformation() {
@@ -109,12 +120,19 @@ public class ModuleCard extends UiPart<Region> {
         preclusion.setText(module.getPreclusion());
     }
 
-    private void showLessonInformation(SemestersEnum sem) {
+    private void showLessonInformation() {
         lessonInfo.setVisible(true);
-        allLessons.getPanes()
+        lessonInfo.getChildren().addAll(Stream.of(SemestersEnum.values())
+                .map(sem -> addSemesterLessons(sem)).collect(Collectors.toList()));
+    }
+
+    private Accordion addSemesterLessons(SemestersEnum sem) {
+        Accordion a = new Accordion();
+        a.getPanes()
                 .addAll(module.getLessons(sem).entrySet().stream()
                         .map(entry -> addLessonType(entry.getKey(), entry.getValue()))
                         .collect(Collectors.toList()));
+        return a;
     }
 
     private TitledPane addLessonType(LessonType lessonType, Module.ModuleLessonIdMap slots) {

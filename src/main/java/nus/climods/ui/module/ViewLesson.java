@@ -1,5 +1,6 @@
 package nus.climods.ui.module;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import nus.climods.model.module.LessonType;
 import nus.climods.model.module.Module;
 import nus.climods.ui.UiPart;
@@ -25,19 +27,9 @@ import nus.climods.ui.module.components.LessonPill;
 public class ViewLesson extends UiPart<Node> {
     private static final String FXML = "ViewLesson.fxml";
 
-    private static final String TITLED_PANE_ID = "lessonPane";
-
-    private static final String LESSON_SLOTS_ID = "lessonSlots";
-
-    private static final String PANE_HEADER = "%s : %s";
-
-    private static final int VGAP = 8;
-
-    private static final int HGAP = 4;
     private final Module module;
     @FXML
-    private Accordion allLessons;
-
+    private VBox lessonInfo;
     /**
      * Inialise Lesson View of the corresponding module
      * @param module
@@ -46,10 +38,22 @@ public class ViewLesson extends UiPart<Node> {
         super(FXML);
         this.module = module;
         // Add timeslots for each lesson type
-        allLessons.getPanes()
-                .addAll(module.getLessons(SemestersEnum.S1).entrySet().stream()
+        for (SemestersEnum sem : SemestersEnum.values()) {
+            HashMap<LessonType, Module.ModuleLessonIdMap> lessons = module.getLessons(sem);
+            if (lessons == null) {
+                continue;
+            }
+            lessonInfo.getChildren().add(addSemesterLessons(lessons));
+        }
+    }
+
+    private Accordion addSemesterLessons(HashMap<LessonType, Module.ModuleLessonIdMap> sem) {
+        Accordion a = new Accordion();
+        a.getPanes()
+                .addAll(sem.entrySet().stream()
                         .map(entry -> addLessonType(entry.getKey(), entry.getValue()))
                         .collect(Collectors.toList()));
+        return a;
     }
 
     private TitledPane addLessonType(LessonType lessonType, Module.ModuleLessonIdMap slots) {

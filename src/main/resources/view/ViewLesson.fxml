@@ -3,9 +3,7 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox>
-    <Accordion fx:id="allLessons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@OneDarkTheme.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
-        <panes/>
-    </Accordion>
+<VBox fx:id="lessonInfo" prefHeight="600" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+
 </VBox>
 

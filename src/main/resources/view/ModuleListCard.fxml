@@ -40,7 +40,6 @@
             </Text>
             <Label fx:id="preclusion" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-size: 15;" text="\$preclusion" />
 
-
           <padding>
           <Insets right="10.0">
             <top>10.0</top>
@@ -49,10 +48,8 @@
         </padding>
       </VBox>
         <!-- Lesson Info -->
-        <VBox fx:id="lessonInfo">
-            <Accordion fx:id="allLessons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@OneDarkTheme.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
-                <panes/>
-            </Accordion>
+        <VBox fx:id="lessonInfo" maxHeight="600">
+
         </VBox>
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
