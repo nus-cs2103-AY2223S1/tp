@@ -36,7 +36,7 @@ public class NusModulesParser {
                 return nusModule.getModuleTitle();
             }
         }
-        throw new ParseException("ModuleCode does not match NUS Module!");
+        throw new ParseException("Module Code entered does not match any valid NUS Module!");
     }
 
     /**
