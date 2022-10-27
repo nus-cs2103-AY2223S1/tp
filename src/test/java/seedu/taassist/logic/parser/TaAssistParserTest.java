@@ -156,7 +156,7 @@ public class TaAssistParserTest {
         String commandString = joinWithSpace(SessionCommand.COMMAND_WORD,
                 PREFIX_SESSION + session.getSessionName());
         SessionCommand command = (SessionCommand) parser.parseCommand(commandString);
-        assertEquals(new SessionCommand(session), command);
+        assertEquals(new SessionCommand(new HashSet<>(List.of(session))), command);
     }
 
     @Test

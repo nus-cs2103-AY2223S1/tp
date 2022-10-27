@@ -164,6 +164,19 @@ public class TaAssist implements ReadOnlyTaAssist {
 
 
     /**
+     * Adds the {@code sessions} to the {@code moduleClass}.
+     */
+    public ModuleClass addSessions(ModuleClass moduleClass, Set<Session> sessions) {
+        requireAllNonNull(moduleClass, sessions);
+        ModuleClass oldModuleClass = moduleClass;
+        for (Session session: sessions) {
+            moduleClass = moduleClass.addSession(session);;
+        }
+        setModuleClass(oldModuleClass, moduleClass);
+        return moduleClass;
+    }
+
+    /**
      * Removes the {@code sessions} from the {@code moduleClass} as well as all students in the {@code moduleClass} and
      * returns the new module class with the sessions removed.
      */

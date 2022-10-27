@@ -290,7 +290,7 @@ The following commands are only available in **focus mode.**
 | Command   | Format                                        |
 | --------- |-----------------------------------------------|
 | `list`    | `list`                                        |
-| `session` | `session s/SESSION_NAME [d/DATE]`             |
+| `session` | `session s/SESSION_NAME... [d/DATE]`          |
 | `deletes` | `deletes s/SESSION_NAME...`                   |
 | `grade`   | `grade INDEX... s/SESSION_NAME g/GRADE_VALUE` |
 | `scores`  | `scores s/SESSION_NAME`                       |
@@ -317,18 +317,18 @@ Format: `list`
 
 {% include note.html content="
 
-Creates a new session.
+Creates one or more sessions.
 
 " %}
 
-Format: `session s/SESSION_NAME [d/DATE]`
+Format: `session s/SESSION_NAME... [d/DATE]`
 
-- Creates a new session with name `SESSION_NAME` on `DATE`. If the `DATE` field is empty, the current date will be used.
+- Creates sessions with the specified names sharing the same `DATE`. If the `DATE` field is empty, the current date will be used.
 - `DATE` field should follow the format `dd-MM-yyyy`
 
 Example:
 
-- `session s/Lab1 d/11-08-2022` will create a session `Lab1` on 11  August 2022.
+- `session s/Lab1 s/Tutorial1 d/11-08-2022` will create sessions `Lab1` and `Tutorial1` on 11  August 2022.
 
 ### Delete sessions: `deletes`
 
