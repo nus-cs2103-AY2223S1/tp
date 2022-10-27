@@ -149,12 +149,12 @@ Examples:
 ### Filtering the task list
 Filters the task list based on module, completion status, and/or link status.
 
-Format: `t filter m/MODULE c/COMPLETED l/LINKED`
+Format: `t filter [m/MODULE/]* [c/COMPLETED]* [l/LINKED]*`
 * Filters the task list to show only tasks that fulfill all the stated conditions.
 * MODULE refers to the module to be filtered out.
 * COMPLETED should be y to filter tasks that are complete or n to filter tasks that are incomplete.
 * LINKED should be y to filter tasks that are linked to an exam or n to filter tasks that are not linked to any exam.
-* At least one condition has to be specified, otherwise an error message will be displayed.
+* At least one optional condition has to be specified, otherwise an error message will be displayed.
 
 Examples:
 
