@@ -51,4 +51,10 @@ public class Rating {
         return Integer.toString(value).hashCode();
     }
 
+    public int compare(Rating other) {
+        Integer rating1 = this.value;
+        Integer rating2 = other.value;
+        return rating1.compareTo(rating2);
+    }
+
 }

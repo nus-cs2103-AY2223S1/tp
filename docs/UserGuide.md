@@ -257,13 +257,21 @@ Examples:
 
 ### Adding optional rating: `rate`
 
+Adds a numerical representation of candidates to make quick comparisons between candidates. 
+
 Format: `rate INDEX rate/<RATING>`
 * The INDEX refers to the index number shown in the displayed person list. 
 * The INDEX must be a positive integer 1, 2, 3, …​
-* The RATING must be an integer between 0 to 10 inclusive. 
+* The RATING must be an integer between 1 and 10 inclusive. 
 
 Examples:
 * `rate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
+
+### Sorting all entries: `sort`
+
+Sort all entries based on rating attribute of candidate. 
+
+Format: `sort`
 
 
 ### Clearing all entries : `clear`
@@ -313,9 +321,11 @@ If your changes to the data file makes its format invalid, CLInkedIn will discar
 | **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                             |
 | **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                     |
 | **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                              |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                           |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                          |
 | **List**          | `list`                                                                                                                                                                                                                                                               |
 | **Status**        | `status INDEX s/STATUS` <br> e.g., `status 1 s/Rejected`                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                                               |
+| **Sort**          | `sort`                                                                                                                                                                                                                                                               |
+| **Rate**          | `rate INDEX r/RATING` <br> e.g., `rate 3 rate/5`                                                                                                                                                                                                                     |
 
 

@@ -39,7 +39,12 @@ public interface Logic {
     int getFilteredPersonListSize();
 
     /**
-     * Returns the user prefs' clinkedin book file path.
+     * Returns an unmodifiable view of the sorted list of persons based on rating.
+     */
+    ObservableList<Person> getSortedPersonList();
+
+    /**
+     * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
 

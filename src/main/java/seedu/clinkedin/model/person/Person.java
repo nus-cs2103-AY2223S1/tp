@@ -258,4 +258,13 @@ public class Person {
     public void setTagTypeMap(UniqueTagTypeMap tagTypeMap) throws TagTypeNotFoundException {
         this.tagTypeMap.setTagTypeMap(tagTypeMap);
     }
+
+    /**
+     * Compares the person and the input person to decide rating order.
+     * @param other input Person
+     * @return 1 if this person has a higher rating than other, -1 otherwise.
+     */
+    public int compareByRating(Person other) {
+        return this.rating.compare(other.rating);
+    }
 }

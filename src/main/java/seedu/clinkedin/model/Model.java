@@ -1,6 +1,7 @@
 package seedu.clinkedin.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.function.Predicate;
 
@@ -119,6 +120,18 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns an unmodifiable view of the sorted persons list.
+     */
+    ObservableList<Person> getSortedPersonList();
+
+    /**
+     * Updates the comparator of the sorted person list to sort by the given
+     * {@code comparator}
+     * @param comparator comparator to update sorted persons list with.
+     */
+    void updateSort(Comparator<Person> comparator);
 
     void deleteTagTypeForAllPerson(TagType toDelete);
 
