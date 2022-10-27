@@ -292,6 +292,7 @@ public class MainWindow extends UiPart<Stage> {
                 isContactTabShown = false;
                 break;
             case ASSIGN:
+            case UNASSIGN:
                 refreshTab();
                 break;
             case SELECT_CONTACT:
