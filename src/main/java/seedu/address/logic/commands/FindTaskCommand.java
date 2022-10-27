@@ -30,6 +30,8 @@ public class FindTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "-" + FLAG_NAME_STR + " teams feature ";
 
+    public static final String MESSAGE_SUCCESS = "Showing all %1$d task(s) containing search string(s)%2$s. \n"
+            + "Type `list tasks` to show all tasks again.";
     @CommandLine.ArgGroup(exclusive = true, multiplicity = "1")
     private Exclusive predicate;
     static class Exclusive {
@@ -38,6 +40,9 @@ public class FindTaskCommand extends Command {
         private String[] nameKeywords;
         Predicate<Task> getPredicate() {
             return new TaskNameContainsKeywordsPredicate(List.of(nameKeywords));
+        }
+        String keywordsToString() {
+            return List.of(nameKeywords).stream().reduce("", (a,b) -> a + " " + b);
         }
     }
 
@@ -50,7 +55,7 @@ public class FindTaskCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate.getPredicate());
         return new CommandResult(
-                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+                String.format(MESSAGE_SUCCESS, model.getFilteredTaskList().size(), predicate.keywordsToString()));
     }
 
     @Override

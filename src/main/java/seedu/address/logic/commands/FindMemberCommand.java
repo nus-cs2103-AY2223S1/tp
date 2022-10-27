@@ -35,8 +35,8 @@ public class FindMemberCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "-" + FLAG_NAME_STR + " Alex ";
 
-    public static final String MESSAGE_SUCCESS = "Showing all %1$d members containing search string(s)%2$s. \n"
-            + "Type `list members` to show all tasks again.";
+    public static final String MESSAGE_SUCCESS = "Showing all %1$d member(s) containing search string(s)%2$s. \n"
+            + "Type `list members` to show all members again.";
 
     public static final String MESSAGE_ONE_FLAG = "Please supply only 1 flag by selecting name or email only.";
 
