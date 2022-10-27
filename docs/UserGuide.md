@@ -145,9 +145,19 @@ Format: `list`
 
 ### Listing all debtors : `listdebtors`
 
-Shows a list of all persons that owe you money in PayMeLah.
+Shows a list of all persons that owe you more than or equal to a certain amount of money in PayMeLah. If no amount is provided, a list of persons who owe any amount of debt is displayed.
 
-Format: `listdebtors`
+Format: `listdebtors [m/<money>]`
+
+Example: `listdebtors m/10` displays the list of persons that owe more than $10.00.
+
+### Sorting list of persons : `sort`
+
+Sorts and displays the list of persons using the given criteria and order. The criteria that you can sort by are name, amount owed, and time since oldest debt. Use the `+` symbol to indicate ascending order, and the `-` symbol for descending order.
+
+Format: `sort [n/<order>] OR [m/<order>] OR [date/<order>]`
+
+Example: `sort n/+` sorts and displays the list of persons in ascending alphabetical order of their names.
 
 ### Editing a person : `edit`
 
@@ -250,16 +260,17 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add person** | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Add debt** | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`
-**Clear** | `clear`
-**Delete** | `delete <index>`<br> e.g., `delete 3`
-**Edit** | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`
-**Find** | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`
-**Find debts** | `finddebt <keyword> [<more keywords>]`<br> e.g., `finddebt burger`
-**List** | `list`
-**List debtors** | `listdebtors`
-**Get statement** | `statement`
-**Help** | `help`
+| Action            | Format, Examples                                                                                                                                                             |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add person**    | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add debt**      | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`                                                                                 |
+| **Clear**         | `clear`                                                                                                                                                                      |
+| **Delete**        | `delete <index>`<br> e.g., `delete 3`                                                                                                                                        |
+| **Edit**          | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                         |
+| **Find**          | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`                                                                                                               |
+| **Find debts**    | `finddebt <keyword> [<more keywords>]`<br> e.g., `finddebt burger`                                                                                                           |
+| **List**          | `list`                                                                                                                                                                       |
+| **List debtors**  | `listdebtors [m/<money>]` <br> e.g., `listdebtors m/10`                                                                                                                      |
+| **Sort**          | `sort [n/<order>] OR [m/<order>] OR [date/<order>]` <br> e.g., `sort m/+`                                                                                                    |
+| **Get statement** | `statement`                                                                                                                                                                  |
+| **Help**          | `help`                                                                                                                                                                       |
