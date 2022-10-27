@@ -52,6 +52,9 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
         //Check for name prefix
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+
+            checkNumberOfPrefixes(PREFIX_NAME, argMultimap);
+
             String trimmedArgs = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).toString().trim();
 
             final String finalPredicateString = createPredicateString(trimmedArgs);
@@ -66,6 +69,9 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
         //Check for phone prefix
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+
+            checkNumberOfPrefixes(PREFIX_PHONE, argMultimap);
+
             String trimmedArgs = argMultimap.getValue(PREFIX_PHONE).get().trim();
 
             if (!trimmedArgs.matches("\\d")) {
@@ -81,6 +87,9 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
         //Check for email prefix
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+
+            checkNumberOfPrefixes(PREFIX_EMAIL, argMultimap);
+
             String trimmedArgs = argMultimap.getValue(PREFIX_EMAIL).get().trim();
 
             if (trimmedArgs.isEmpty()) {
@@ -99,6 +108,9 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
         //Check for address prefix
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+
+            checkNumberOfPrefixes(PREFIX_ADDRESS, argMultimap);
+
             String trimmedArgs = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()).toString().trim();
 
             final String finalPredicateString = createPredicateString(trimmedArgs);
@@ -113,11 +125,10 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
         //Check for remark prefix
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
-            String trimmedArgs = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()).toString().trim();
 
-            if (trimmedArgs.isEmpty()) {
-                throw new ParseException("Input for finding by remark should not be empty");
-            }
+            checkNumberOfPrefixes(PREFIX_REMARK, argMultimap);
+
+            String trimmedArgs = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()).toString().trim();
 
             final String finalPredicateString = createPredicateString(trimmedArgs);
 
@@ -170,5 +181,19 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
         }
 
         return predicateString;
+    }
+
+    /**
+     * Checks if the prefix for a field is present more than once in one command.
+     *
+     * @param prefix The prefix to be checked.
+     * @param argMultimap The argument multimap.
+     * @throws ParseException If the prefix is present more than once.
+     */
+    public void checkNumberOfPrefixes(Prefix prefix, ArgumentMultimap argMultimap) throws ParseException {
+        if (argMultimap.getAllValues(prefix).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindPatientCommand.MESSAGE_USAGE));
+        }
     }
 }

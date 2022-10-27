@@ -16,11 +16,10 @@ import seedu.address.model.patient.Patient;
 public class SortPatientCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("sortpatient");
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Sorts the list of patients according to the specified field."
-            + "by alphabetical order.\n"
-            + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: FIELD (must not be empty) "
-            + "Example: " + COMMAND_WORD + "name";
+            COMMAND_WORD + ": Sorts the list of appointments according to the specified field"
+                    + "by alphabetical order.\n"
+                    + "Parameters: c/CRITERIA (name, phone, email, address) o/ORDER (asc, desc) "
+                    + "Example: " + COMMAND_WORD + " " + "c/name o/asc";
 
     public static final String MESSAGE_SORT_SUCCESS = "Sorted according to %1$s";
 
