@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -19,9 +21,11 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Loan;
+import seedu.address.model.person.LoanHistory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reason;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -61,8 +65,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG), model);
         Loan loan = ParserUtil.parseLoan(argMultimap.getValue(PREFIX_LOAN).orElse("0"));
+        List<LoanHistory> history = new ArrayList<>();
+        LoanHistory init = new LoanHistory(loan, new Reason("initial"));
+        history.add(init);
 
-        Person person = new Person(name, phone, email, address, birthday, tagList, loan);
+        Person person = new Person(name, phone, email, address, birthday, tagList, loan, history);
 
         return new AddCommand(person);
     }
