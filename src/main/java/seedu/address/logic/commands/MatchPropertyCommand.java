@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STRICT;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
