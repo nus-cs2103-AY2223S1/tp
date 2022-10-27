@@ -18,7 +18,16 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
+    /**
+     * Name representing tasks with no person assigned.
+     */
+    private static final Name noName = new Name();
+
     public final String fullName;
+
+    private Name() {
+        fullName = "NONE";
+    }
 
     /**
      * Constructs a {@code Name}.
@@ -56,4 +65,7 @@ public class Name {
         return fullName.hashCode();
     }
 
+    public static Name getNoNameInstance() {
+        return noName;
+    }
 }

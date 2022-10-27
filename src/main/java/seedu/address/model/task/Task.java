@@ -15,7 +15,6 @@ import seedu.address.model.person.Person;
  */
 public class Task {
     public static final String IS_DONE_MESSAGE_CONSTRAINT = "IsDone can only be true or false in String form";
-    private static final String NO_PERSON_ASSIGNED = "NONE";
     private static final String IS_DONE_TRUE_STRING = "true";
     private static final String IS_DONE_FALSE_STRING = "false";
 
@@ -34,13 +33,13 @@ public class Task {
     /**
      * Constructor method to instantiate a Task object. Every field must be present and not null.
      *
-     * @param name               Name of task
-     * @param category           Category of task
-     * @param desc               Description of task
-     * @param priority           Priority of task
-     * @param deadline           Deadline of task
-     * @param person             Person assigned to this task
-     * @param status             status of task
+     * @param name     Name of task
+     * @param category Category of task
+     * @param desc     Description of task
+     * @param priority Priority of task
+     * @param deadline Deadline of task
+     * @param person   Person assigned to this task
+     * @param status   status of task
      */
     public Task(TaskName name, Description desc, Priority priority, TaskCategory category,
                 TaskDeadline deadline, Person person, boolean status) {
@@ -55,18 +54,18 @@ public class Task {
     }
 
     /**
-    * A method used to update the value of the task/
+     * A method used to update the value of the task/
      *
-     * @param name               Name of task
-     * @param category           Category of task
-     * @param desc               Description of task
-     * @param priority           Priority of task
-     * @param deadline           Deadline of task
-     * @param person             Person assigned to this task
-     * @param status             status of task
+     * @param name     Name of task
+     * @param category Category of task
+     * @param desc     Description of task
+     * @param priority Priority of task
+     * @param deadline Deadline of task
+     * @param person   Person assigned to this task
+     * @param status   status of task
      */
     public void editTask(TaskName name, Description desc, Priority priority, TaskCategory category,
-                TaskDeadline deadline, Person person, boolean status) {
+                         TaskDeadline deadline, Person person, boolean status) {
         requireAllNonNull(name, category, desc, priority, deadline, status);
         this.name = name;
         this.category = category;
@@ -218,12 +217,22 @@ public class Task {
      *
      * @return the name of the person assigned to this task
      */
-
     public Name getPersonName() {
+        if (person == null) {
+            return Name.getNoNameInstance();
+        }
         return this.person.getName();
     }
 
+    /**
+     * Returns the email of the person assigned to this task
+     *
+     * @return the email of the person assigned to this task
+     */
     public Email getEmail() {
+        if (person == null) {
+            return Email.getNoEmailInstance();
+        }
         return this.person.getEmail();
     }
 

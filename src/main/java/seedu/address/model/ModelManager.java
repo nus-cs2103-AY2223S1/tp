@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -16,6 +17,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -106,6 +108,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Optional<Person> getPersonByEmail(Email email) {
+        requireNonNull(email);
+        return addressBook.getPersonByEmail(email);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -188,7 +196,6 @@ public class ModelManager implements Model {
     }
 
 
-
     @Override
     public void updateSortingCriteria(Comparator<Task> comparator) {
         requireNonNull(comparator);
@@ -209,9 +216,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && filteredTasks.equals(other.filteredTasks);
+        return addressBook.equals(other.addressBook) && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons) && filteredTasks.equals(other.filteredTasks);
     }
 }

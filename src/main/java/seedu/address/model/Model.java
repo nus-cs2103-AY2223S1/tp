@@ -2,10 +2,12 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -63,6 +65,11 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns a person in the address book with the same email as {@code email}.
+     */
+    Optional<Person> getPersonByEmail(Email email);
 
     /**
      * Deletes the given person.

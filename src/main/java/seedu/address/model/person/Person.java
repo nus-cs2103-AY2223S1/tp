@@ -83,6 +83,7 @@ public class Person {
 
     /**
      * Returns the list of Tasks that have been assigned to this person
+     *
      * @return list of Tasks
      */
     public List<Task> getTasks() {
@@ -91,6 +92,7 @@ public class Person {
 
     /**
      * Assigns a new task to the person
+     *
      * @param task task to be added
      */
     public void addTask(Task task) {
@@ -99,6 +101,7 @@ public class Person {
 
     /**
      * Removes a new task to the person
+     *
      * @param taskToDelete task to be deleted
      */
     public void removeTask(Task taskToDelete) {
@@ -118,6 +121,9 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    public boolean emailMatches(Email email) {
+        return email.equals(this.email);
+    }
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -166,7 +172,6 @@ public class Person {
         }
         return builder.toString();
     }
-
 
 
 }
