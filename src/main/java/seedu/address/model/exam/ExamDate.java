@@ -14,7 +14,13 @@ import java.time.format.ResolverStyle;
  */
 public class ExamDate {
     public static final String DATE_CONSTRAINTS =
-            "Exam Date should be in dd-mm-yyyy format and must be a valid date.";
+            "Exam Date should be in dd-mm-yyyy format and a valid date";
+    public static final String DATE_FORMAT_CONSTRAINTS =
+            "Exam Date should be in dd-mm-yyyy format.";
+    public static final String NOT_A_PAST_DATE_CONSTRAINTS =
+            "Exam Date inputted should not be a past date";
+    public static final String VALID_DATE_CONSTRAINTS =
+            "Exam Date should be a valid date";
     public static final DateTimeFormatter DATE_TIME_FORMATTER =
             DateTimeFormatter.ofPattern("dd-MM-uuuu").withResolverStyle(ResolverStyle.STRICT);
     public final String examDate;
@@ -30,12 +36,6 @@ public class ExamDate {
         examDate = date;
     }
 
-//    /**
-//     * Returns true if a given string is a valid date.
-//     */
-//    public static boolean isValidDate(String date) {
-//        return isValidDateLength(date) && isExistingDate(date) && isNotAPastDate(date);
-//    }
 
     /**
      * Checks if the format given for the date is valid.
@@ -45,8 +45,7 @@ public class ExamDate {
      */
     public static boolean isValidDateFormat(String date) {
         try {
-            LocalDate d = LocalDate.parse(date, DATE_TIME_FORMATTER);
-            System.out.println(d);
+            LocalDate.parse(date, DATE_TIME_FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -54,7 +53,8 @@ public class ExamDate {
     }
 
     /**
-     * Checks if format is in dd-mm-yyyy where dd is between 01 to 31, mm is between 01 to 12, yyyy is between 0000 to 9999.
+     * Checks if format is in dd-mm-yyyy where dd is between 01 to 31,
+     * mm is between 01 to 12, yyyy is between 0000 to 9999.
      * @param date The date provided.
      * @return true if date is in dd-mm-yyyy format.
      */
