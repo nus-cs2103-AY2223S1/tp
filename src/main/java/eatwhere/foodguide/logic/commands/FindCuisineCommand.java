@@ -30,7 +30,7 @@ public class FindCuisineCommand extends Command {
     public FindCuisineCommand(Predicate<Eatery> predicate) {
         this(predicate, -1);
     }
-    
+
     /**
      * @param predicate What all found eateries must satisfy
      * @param numRandPicks The number of found eateries to randomly select
