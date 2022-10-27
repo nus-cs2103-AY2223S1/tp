@@ -20,3 +20,13 @@ If you are an experienced user, you can refer to the [Command Summary](#command-
 If you are stuck, refer to the section on [Troubleshooting](#troubleshooting) or [FAQ](#faq).
 
 You can also refer to the [Glossary](#glossary) for definitions of commonly used terms in FoodRem.
+
+Here are some common icons used in this User Guide.
+
+| Icon                                             | Meaning                                                     |
+|--------------------------------------------------|-------------------------------------------------------------|
+| ![Note](images/admonishmentIcons/Note.png)       | Something you should keep in mind.                          |
+| ![Tip](images/admonishmentIcons/Tip.png)         | Something you might find useful.                            |
+| ![Info](images/admonishmentIcons/Info.png)       | Something that provides information useful in that context. |
+| ![Warning](images/admonishmentIcons/Warning.png) | Something you should be cautious about.                     |
+| ![Danger](images/admonishmentIcons/Danger.png)   | Something you should pay a lot of attention to.             | 
