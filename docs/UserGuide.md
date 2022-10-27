@@ -23,20 +23,7 @@ Health Contact is a software for **XXX**.
 
 ## 1.2 Editing
 
-### 1.2.1 Editing a patient: `editpatient`, `ep`
-
-Edit a patient’s information, such as age, contact number, appointment date and doctor’s notes.
-
-Format: `edit Patient Title: content`
-
-* If there is no such patient or task to edit, it will show an error.
-* Existing values will be updated to the input values.
-
-Examples:
-* `edit John name: Jack` John’s name has been changed to Jack!
-* `edit John number: 12345678` John’s number has been changed to 12345678.
-* `edit John date: 2019-12-25` John’s appointment date has been changed to Dec 25th, 2019.
-* `edit John note: use medicine` Doctor’s notes for John has been changed to use medicine.
+### 1.2.1 Editing a patient
 
 ### 1.2.2 Editing an appointment of a patient
 
@@ -191,8 +178,20 @@ Contact number: 91234567
 Appointment Date: 5/10/22
 ````
 
+### Editing a patient: `editpatient`, `ep`
 
+Edit a patient’s information, such as age, contact number, appointment date and doctor’s notes.
 
+Format: `edit Patient Title: content`
+
+* If there is no such patient or task to edit, it will show an error.
+* Existing values will be updated to the input values.
+
+Examples:
+* `edit John name: Jack` John’s name has been changed to Jack!
+* `edit John number: 12345678` John’s number has been changed to 12345678.
+* `edit John date: 2019-12-25` John’s appointment date has been changed to Dec 25th, 2019.
+* `edit John note: use medicine` Doctor’s notes for John has been changed to use medicine.
 
 
 
