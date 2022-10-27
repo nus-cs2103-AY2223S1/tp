@@ -25,7 +25,10 @@ public class Messages {
     public static final String MESSAGE_KEYWORDS_WITHOUT_PREFIX = "You have specified some "
             + "keywords without any prefixes.\n%1$s";
 
-    public static final String MESSAGE_INVALID_PREFIX = "You have specified an invalid prefix.\n%1$s";
+    public static final String MESSAGE_INVALID_PREFIX = "Invalid prefix/keyword format!\n"
+            + "One of 2 things could have happened:\n"
+            + "1. You have specified an invalid prefix.\n"
+            + "2. A specified keyword contains the character '/'.\n\n%1$s";
 
     public static final String MESSAGE_EMPTY_PREFIX = "You have specified a prefix without any keywords.\n%1$s";
 

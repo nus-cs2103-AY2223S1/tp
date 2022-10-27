@@ -158,16 +158,16 @@ public class FindCommandParser implements Parser<FindCommand> {
             break;
         }
 
-        // Check that there are no keywords without prefixes
-        if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_KEYWORDS_WITHOUT_PREFIX, FindCommand.MESSAGE_USAGE));
-        }
-
         // Check that there are no invalid prefixes
         if (!areValidPrefixValues(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
                 PREFIX_TAG, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION,
                 PREFIX_DAY, PREFIX_TIME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, FindCommand.MESSAGE_USAGE));
+        }
+
+        // Check that there are no keywords without prefixes
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_KEYWORDS_WITHOUT_PREFIX, FindCommand.MESSAGE_USAGE));
         }
 
         // Check that there is at least one prefix is specified
