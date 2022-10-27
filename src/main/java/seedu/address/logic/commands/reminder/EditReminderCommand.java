@@ -41,7 +41,7 @@ public class EditReminderCommand extends Command {
             + "[" + PREFIX_PRIORITY + "PRIORITY] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TIMESLOT + "14:00 "
+            + PREFIX_TIMESLOT + "2022-10-10 14:00 "
             + PREFIX_PRIORITY + "HIGH";
 
     public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Reminder: %1$s";
