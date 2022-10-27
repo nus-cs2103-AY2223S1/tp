@@ -40,7 +40,7 @@ public class SortPropertiesCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateSortedPropertyList(comparator);
+        model.sortPropertyList(comparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS, comparator.toString()));
     }
 

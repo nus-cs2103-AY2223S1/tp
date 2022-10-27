@@ -32,22 +32,15 @@ public interface Logic {
      */
     ReadOnlyPersonBook getPersonBook();
 
-    /** Returns an unmodifiable view of the sorted list of persons */
-    ObservableList<Buyer> getSortedPersonList();
-
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Buyer> getFilteredPersonList();
 
-    /**
     /**
      * Returns the PropertyBook.
      *
      * @see seedu.address.model.Model#getPropertyBook()
      */
     ReadOnlyPropertyBook getPropertyBook();
-
-    /** Returns an unmodifiable view of the sorted list of properties */
-    ObservableList<Property> getSortedPropertyList();
 
     /** Returns an unmodifiable view of the filtered list of properties */
     ObservableList<Property> getFilteredPropertyList();

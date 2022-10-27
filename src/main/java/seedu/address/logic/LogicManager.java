@@ -63,11 +63,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Buyer> getSortedPersonList() {
-        return model.getSortedPersonList();
-    }
-
-    @Override
     public ObservableList<Buyer> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
@@ -75,11 +70,6 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyPropertyBook getPropertyBook() {
         return model.getPropertyBook();
-    }
-
-    @Override
-    public ObservableList<Property> getSortedPropertyList() {
-        return model.getSortedPropertyList();
     }
 
     @Override
