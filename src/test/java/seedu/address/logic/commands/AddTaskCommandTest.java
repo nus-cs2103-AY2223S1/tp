@@ -5,6 +5,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.function.Predicate;
@@ -44,9 +45,9 @@ public class AddTaskCommandTest {
     private final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
     private final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
     private final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
-            new Email("test@gmail.com"), new Address("test"), new HashSet());
+            new Email("test@gmail.com"), new Address("test"), new HashSet(), new ArrayList<>());
     private final Task testTask = new Task(testName, testDisc, testPriority, testCat,
-            testDeadline, testPerson.getEmail(), true);
+            testDeadline, testPerson, true);
 
     private final Email test = new Email("test@gmail.com");
 
@@ -157,6 +158,11 @@ public class AddTaskCommandTest {
 
         @Override
         public void setTask(Task target, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void update() {
             throw new AssertionError("This method should not be called.");
         }
 

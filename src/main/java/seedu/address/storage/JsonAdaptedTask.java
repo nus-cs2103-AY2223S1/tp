@@ -6,10 +6,12 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javafx.collections.ObservableList;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.PriorityEnum;
@@ -64,8 +66,8 @@ public class JsonAdaptedTask {
         description = source.getDescription().toString();
         priority = source.getPriority().getPriority().toString();
         deadline = source.getDeadline().toString();
-        email = source.getPersonEmailAddress().toString();
-        isDone = Task.convertIsDoneFromBooleanToString(source.isDone());
+        email = source.getPerson().getEmail().toString();
+        isDone = Task.covertIsDoneFromBooleanToString(source.isDone());
     }
 
     /**
@@ -73,7 +75,7 @@ public class JsonAdaptedTask {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
-    public Task toModelType() throws IllegalValueException {
+    public Task toModelType(ObservableList<Person> personList) throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskName.class.getSimpleName()));
@@ -137,7 +139,13 @@ public class JsonAdaptedTask {
         }
         final Boolean modelIsDone = Task.covertIsDoneFromStringToBoolean(isDone);
 
+        Person modelPerson = null;
+        for (Person person : personList) {
+            if (person.getEmail().equals(modelEmail)) {
+                modelPerson = person;
+            }
+        }
         return new Task(modelName, modelDescription, modelPriority, modelCategory,
-                modelDeadline, modelEmail, modelIsDone);
+                modelDeadline, modelPerson, modelIsDone);
     }
 }

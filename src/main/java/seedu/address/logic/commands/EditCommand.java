@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -77,14 +78,15 @@ public class EditCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
-
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        List<Task> updatedTask = personToEdit.getTasks();
+        personToEdit.editPerson(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedTask);
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return personToEdit;
     }
 
     @Override
@@ -103,33 +105,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        if (!personToEdit.getEmail().equals(editedPerson.getEmail())) {
-            for (Task task : model.getFilteredTaskList()) {
-                if (task.getPersonEmailAddress().equals(personToEdit.getEmail())) {
-                    Task editedTask = task.copy();
-                    editedTask.setPersonEmailAddress(editedPerson.getEmail());
-                    editedTask.setPersonName(editedPerson.getName());
-                    model.deleteTask(task);
-                    model.addTask(editedTask);
-                }
-            }
-        }
-
-        if (!personToEdit.getName().equals(editedPerson.getName())) {
-            for (Task task : model.getFilteredTaskList()) {
-                if (task.getPersonName().equals(personToEdit.getName())) {
-                    Task editedTask = task.copy();
-                    editedTask.setPersonEmailAddress(editedPerson.getEmail());
-                    editedTask.setPersonName(editedPerson.getName());
-                    model.deleteTask(task);
-                    model.addTask(editedTask);
-                }
-            }
-        }
-
-        model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.update();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -161,6 +139,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+
+        private List<Task> tasks;
 
         public EditPersonDescriptor() {
         }
@@ -232,6 +212,23 @@ public class EditCommand extends Command {
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable task list, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tasks} is null.
+         */
+        public Optional<List<Task>> getTasks() {
+            return (tasks != null) ? Optional.of(Collections.unmodifiableList(tasks)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code tasks} to this object's {@code tasks}.
+         * A defensive copy of {@code tasks} is used internally.
+         */
+        public void setTasks(List<Task> tasks) {
+            this.tasks = (tasks != null) ? new ArrayList<>(tasks) : null;
         }
 
         @Override

@@ -33,35 +33,35 @@ public class TypicalTasks {
     private static final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
     private static final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
     private static final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
-            new Email("test@gmail.com"), new Address("test"), new HashSet());
+            new Email("test@gmail.com"), new Address("test"), new HashSet(), new ArrayList<>());
 
 
     public static final Task ALICE = new Task(new TaskName("A"),
-            testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), false);
+            testDisc, testPriority, testCat, testDeadline, testPerson, false);
     public static final Task BENSON = new Task(new TaskName("B"),
-            testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), false);
+            testDisc, testPriority, testCat, testDeadline, testPerson, false);
     public static final Task CARL = new Task(new TaskName("C"),
-            testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), false);
+            testDisc, testPriority, testCat, testDeadline, testPerson, false);
     public static final Task DANIEL = new Task(new TaskName("D"),
-            testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), false);
+            testDisc, testPriority, testCat, testDeadline, testPerson, false);
     public static final Task ELLE = new Task(new TaskName("E"),
-            testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), false);
+            testDisc, testPriority, testCat, testDeadline, testPerson, false);
     public static final Task FIONA = new Task(new TaskName("F"),
-            testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), false);
+            testDisc, testPriority, testCat, testDeadline, testPerson, false);
     public static final Task GEORGE = new Task(new TaskName("G"),
-            testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), false);
+            testDisc, testPriority, testCat, testDeadline, testPerson, false);
 
     // Manually added
     public static final Task HOON = new Task(new TaskName("H"),
-            testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), false);
+            testDisc, testPriority, testCat, testDeadline, testPerson, false);
     public static final Task IDA = new Task(new TaskName("I"),
-            testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), false);
+            testDisc, testPriority, testCat, testDeadline, testPerson, false);
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task AMY = new Task(new TaskName("Amy"),
-            testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), false);
+            testDisc, testPriority, testCat, testDeadline, testPerson, false);
     public static final Task BOB = new Task(new TaskName("Bob"),
-            testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), false);
+            testDisc, testPriority, testCat, testDeadline, testPerson, false);
     private final TaskList testList = new TaskList();
 
     private TypicalTasks() {
