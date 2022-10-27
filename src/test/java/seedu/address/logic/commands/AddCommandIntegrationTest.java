@@ -26,20 +26,20 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newClient_success() {
+    public void execute_newClientWithoutWarning_success() {
         Client validClient = new ClientBuilder().build();
 
         Model expectedModel = new ModelManager(model.getJeeqTracker(), new UserPrefs());
         expectedModel.addClient(validClient);
 
-        assertCommandSuccess(new AddCommand(validClient), model,
+        assertCommandSuccess(new AddCommand(validClient, ""), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validClient), expectedModel);
     }
 
     @Test
     public void execute_duplicateClient_throwsCommandException() {
         Client clientInList = model.getJeeqTracker().getClientList().get(0);
-        assertCommandFailure(new AddCommand(clientInList), model, AddCommand.MESSAGE_DUPLICATE_CLIENT);
+        assertCommandFailure(new AddCommand(clientInList, ""), model, AddCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
 }

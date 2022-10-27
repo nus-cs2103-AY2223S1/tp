@@ -46,27 +46,27 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
                 + ADDRESS_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedClient));
+                + TAG_DESC_FRIEND, new AddCommand(expectedClient, ""));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB
                 + ADDRESS_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedClient));
+                + TAG_DESC_FRIEND, new AddCommand(expectedClient, ""));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB
                 + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB, new AddCommand(expectedClient));
+                + PHONE_DESC_BOB, new AddCommand(expectedClient, ""));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB
                 + ADDRESS_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedClient));
+                + TAG_DESC_FRIEND, new AddCommand(expectedClient, ""));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedClient));
+                + TAG_DESC_FRIEND, new AddCommand(expectedClient, ""));
 
         // multiple tags - all accepted
         Client expectedClientMultipleTags = new ClientBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
@@ -74,7 +74,7 @@ public class AddCommandParserTest {
 
         assertParseSuccess(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedClientMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedClientMultipleTags, ""));
     }
 
     @Test
@@ -83,7 +83,7 @@ public class AddCommandParserTest {
         Client expectedClient = new ClientBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + ADDRESS_DESC_AMY
                 + PHONE_DESC_AMY + EMAIL_DESC_AMY,
-                new AddCommand(expectedClient));
+                new AddCommand(expectedClient, ""));
     }
 
     @Test

@@ -45,6 +45,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_GOODS_BUY_ORANGE = "orange";
     public static final String VALID_GOODS = " " + PREFIX_GOODS + VALID_GOODS_BUY_ORANGE;
+    public static final String INVALID_PHONE = "+65 8877 6644";
+    public static final String INVALID_EMAIL = "bob@gmail.com (HOME)";
 
     public static final String VALID_GOODS_SELL_PAPAYA = "papaya";
     public static final String VALID_PRICE_BUY_ORANGE = "1";
@@ -73,6 +75,8 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + INVALID_PHONE;
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + INVALID_EMAIL;
 
     public static final String INVALID_QUANTITY = " " + PREFIX_QUANTITY + "J100"; // Characters not allowed in quantity
 

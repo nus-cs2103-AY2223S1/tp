@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -54,7 +55,6 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
-    private static final String VALID_TEXT = "Good buyer";
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -119,21 +119,21 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseClientPhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseClientPhone(INVALID_PHONE));
+    public void parseClientPhone_validValue_returnsPhoneWithoutWarning() {
+        ClientPhone phone = ParserUtil.parseClientPhone(VALID_PHONE);
+        assertFalse(phone.hasWarning());
+    }
+
+    @Test
+    public void parseClientPhone_invalidValue_returnsPhoneWithWarning() {
+        ClientPhone phone = ParserUtil.parseClientPhone(INVALID_PHONE);
+        assertTrue(phone.hasWarning());
     }
 
     @Test
     public void parseClientPhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
         ClientPhone expectedPhone = new ClientPhone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parseClientPhone(VALID_PHONE));
-    }
-
-    @Test
-    public void parseClientPhone_withWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        ClientPhone expectedPhone = new ClientPhone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parseClientPhone(phoneWithWhitespace));
     }
 
     @Test
@@ -172,8 +172,15 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseClientEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseClientEmail(INVALID_EMAIL));
+    public void parseClientEmail_invalidValue_returnsEmailWithWarning() {
+        ClientEmail email = ParserUtil.parseClientEmail(INVALID_EMAIL);
+        assertTrue(email.hasWarning());
+    }
+
+    @Test
+    public void parseClientEmail_validValue_returnsEmailWithoutWarning() {
+        ClientEmail email = ParserUtil.parseClientEmail(VALID_EMAIL);
+        assertFalse(email.hasWarning());
     }
 
     @Test
