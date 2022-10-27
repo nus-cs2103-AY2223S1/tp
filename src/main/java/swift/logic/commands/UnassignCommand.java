@@ -3,7 +3,6 @@ package swift.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_TASK;
-import static swift.model.Model.PREDICATE_SHOW_ALL_BRIDGE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +75,6 @@ public class UnassignCommand extends Command {
         }
         model.deleteBridge(bridge);
 
-        model.updateFilteredBridgeList(PREDICATE_SHOW_ALL_BRIDGE);
         model.updateFilteredBridgeList(filteredBridge -> model.getFilteredPersonList().stream()
                 .anyMatch(person -> person.getId().equals(filteredBridge.getPersonId())));
 
