@@ -44,6 +44,9 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+
+            checkNumberOfPrefixes(PREFIX_NAME, argMultimap);
+
             String trimmedArgs = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).toString().trim();
 
             final String finalPredicateString = createPredicateString(trimmedArgs);
@@ -57,6 +60,9 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         Optional<Predicate<Name>> finalNamePredicate = Optional.ofNullable(this.namePredicate);
 
         if (argMultimap.getValue(PREFIX_MEDICAL_TEST).isPresent()) {
+
+            checkNumberOfPrefixes(PREFIX_MEDICAL_TEST, argMultimap);
+
             String trimmedArgs = ParserUtil.parseMedicalTest(argMultimap.getValue(PREFIX_MEDICAL_TEST).get())
                     .toString().trim();
 
@@ -71,6 +77,9 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         Optional<Predicate<MedicalTest>> finalTestPredicate = Optional.ofNullable(this.testPredicate);
 
         if (argMultimap.getValue(PREFIX_SLOT).isPresent()) {
+
+            checkNumberOfPrefixes(PREFIX_SLOT, argMultimap);
+
             String trimmedArgs = argMultimap.getValue(PREFIX_SLOT).get().trim();
 
             if (!trimmedArgs.matches("^[0-9:-]+$")) {
@@ -85,6 +94,9 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         Optional<Predicate<Slot>> finalSlotPredicate = Optional.ofNullable(this.slotPredicate);
 
         if (argMultimap.getValue(PREFIX_DOCTOR).isPresent()) {
+
+            checkNumberOfPrefixes(PREFIX_DOCTOR, argMultimap);
+
             String trimmedArgs = ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get()).toString().trim();
 
             final String finalPredicateString = createPredicateString(trimmedArgs);
@@ -125,5 +137,19 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         }
 
         return predicateString;
+    }
+
+    /**
+     * Checks if the prefix for a field is present more than once in one command.
+     *
+     * @param prefix The prefix to be checked.
+     * @param argMultimap The argument multimap.
+     * @throws ParseException If the prefix is present more than once.
+     */
+    public void checkNumberOfPrefixes(Prefix prefix, ArgumentMultimap argMultimap) throws ParseException {
+        if (argMultimap.getAllValues(prefix).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindAppointmentCommand.MESSAGE_USAGE));
+        }
     }
 }
