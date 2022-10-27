@@ -82,7 +82,6 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        // replace or throw exception
         model.setStudent(studentToEdit, editedStudent);
 
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
