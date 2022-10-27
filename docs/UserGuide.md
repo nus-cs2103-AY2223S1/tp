@@ -125,6 +125,8 @@ Ta-da! *MyInsuRec* is now installed on your system.
 
 ## 4. Quick start
 
+### 4.1 Basic features
+
 Are you new to *MyInsuRec*? This section is the place to start! 
 
 Here, we will be guiding you on the basic features of *MyInsuRec* and help you get familiarized with it.
@@ -183,7 +185,7 @@ Welcome to your new and organized life, and happy (financial) advising!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Features
+## 5. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -214,9 +216,9 @@ Welcome to your new and organized life, and happy (financial) advising!
 
 </div>
 
-### 3.1 Client commands
+### 5.1 Client commands
 
-#### 3.1.1 Adding a client: `addClient`
+#### 5.1.1 Adding a client: `addClient`
 
 Adds a new client to MyInsuRec.
 
@@ -234,7 +236,7 @@ Examples:
 * `addClient n/John Tan p/12345678 b/12122000`
 * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
 
-#### 3.1.2 Listing all clients : `listClient`
+#### 5.1.2 Listing all clients : `listClient`
 
 * List clients in MyInsuRec with a valid filter.
 * A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
@@ -253,7 +255,7 @@ Examples:
 <div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. A user can only apply one filter at each time. For example, `listClient pd/Product1 bd/week` is strictly not allowed.
 </div>
 
-#### 3.1.3 Viewing a client: `viewClient`
+#### 5.1.3 Viewing a client: `viewClient`
 
 View details associated with a client, such as the client's name and phone number.
 
@@ -266,7 +268,7 @@ Format: `viewClient i/INDEX`
 Examples:
 * `viewClient i/1`
 
-#### 3.1.4 Deleting a client : `delClient`
+#### 5.1.4 Deleting a client : `delClient`
 
 Deletes the specified client from MyInsuRec.
 
@@ -279,7 +281,7 @@ Format: `delClient i/INDEX`
 Examples:
 * `delClient i/2`
 
-#### 3.1.5 Editing a client: `editClient`
+#### 5.1.5 Editing a client: `editClient`
 
 Edits detail of the specified client.
 
@@ -296,9 +298,9 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
 * `editClient i/1 n/John Smith` changes the name of this client to 'John Smith'.
 * `editClient i/1 e/johntan@insurec.com`adds the email 'johntan@insurec.com' to the client.
 
-### 3.2 Meeting commands
+### 5.2 Meeting commands
 
-#### 3.2.1 Adding a meeting : `addMeeting`
+#### 5.2.1 Adding a meeting : `addMeeting`
 
 Adds a new meeting to MyInsuRec.
 DATE should be in DD-MM-YYYY format and TIME should be in 24-hour format.
@@ -311,7 +313,7 @@ Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
 Examples:
 * `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
 
-#### 3.2.2 List meetings: `listMeeting`
+#### 5.2.2 List meetings: `listMeeting`
 
 Shows a list of meetings in MyInsuRec.
 If used with optional parameter `[d/DATE]`, *MyInsuRec* will show a list of meetings happening in that time period.
@@ -327,7 +329,7 @@ Examples:
 * `listMeeting d/tomorrow`
 * `listMeeting d/month`
 
-#### 3.2.3 Viewing a meeting: `viewMeeting`
+#### 5.2.3 Viewing a meeting: `viewMeeting`
 
 View details associated with a meeting, such as meeting's date and time.
 
@@ -340,7 +342,7 @@ Format: `viewMeeting i/INDEX`
 Examples:
 * `viewMeeting i/1`
 
-#### 3.2.4 Deleting a meeting : `delMeeting`
+#### 5.2.4 Deleting a meeting : `delMeeting`
 
 Deletes a meeting from MyInsuRec.
 
@@ -353,7 +355,7 @@ Format: `delMeeting i/INDEX`
 Examples:
 * `delMeeting i/2`
 
-#### 3.2.5 Editing a meeting: `editMeeting`
+#### 5.2.5 Editing a meeting: `editMeeting`
 
 Edits details of the specified meeting.
 
@@ -370,9 +372,9 @@ Suppose MyInsuRec contains only one meeting as created in the [`addMeeting`](#ad
 * `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
 * `editMeeting i/1 st/1500 et/1200` will show error saying invalid time since start time is later than end time.
 
-### 3.3 Product commands
+### 5.3 Product commands
 
-#### 3.3.1 Adding a product: `addProduct`
+#### 5.3.1 Adding a product: `addProduct`
 
 Adds a new product to MyInsuRec.
 
@@ -384,13 +386,13 @@ Format: `addProduct pd/PRODUCT`
 Examples:
 * `addProduct pd/Product1`
 
-#### 3.3.2 Listing products: `listProduct`
+#### 5.3.2 Listing products: `listProduct`
 
 Shows a list of all products in MyInsuRec.
 
 Format: `listProduct`
 
-#### 3.3.3 Deleting a product : `delProduct`
+#### 5.3.3 Deleting a product : `delProduct`
 
 Deletes a product from MyInsuRec.  
 This feature will remove the product from association with any client.
@@ -402,15 +404,15 @@ Format: `delProduct i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-This feature should only be used if there is a need to delete a product, which is unlikely in most conceivable scenario! Use with caution as this not only removes the product from MyInsuRec's product list, it also removes the product from any association with your clients.
+This feature should only be used if there is a need to delete a product, which is unlikely in most scenarios! Use with caution as this not only removes the product from MyInsuRec's product list, it also removes the product from any association with your clients.
 </div>
 
 Examples:
 * `delProduct i/2`
 
-### 3.4 General commands
+### 5.4 General commands
 
-#### 3.4.1 Viewing help : `help`
+#### 5.4.1 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -418,19 +420,19 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-#### 3.4.2 Exiting MyInsuRec : `exit`
+#### 5.4.2 Exiting MyInsuRec : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 3.5 Others
+### 5.5 Others
 
-#### 3.5.1 Saving the data
+#### 5.5.1 Saving the data
 
 MyInsuRec data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### 3.5.2 Editing the data file
+#### 5.5.2 Editing the data file
 
 MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -438,13 +440,13 @@ MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
 </div>
 
-#### 3.5.3 Archiving data files `[coming in v2.0]`
+#### 5.5.3 Archiving data files `[coming in v2.0]`
 
 *Details coming soon ...*
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app, then overwrite the `myinsurec.json` file created by the app with the version of the file from the previous computer.
@@ -457,7 +459,7 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Command summary
+## 7. Command summary
 
 | Action                | Format, Examples                                                                                                                                                                                                                                   |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -476,6 +478,6 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Glossary
+## 8. Glossary
 
 { glossary placeholder }
