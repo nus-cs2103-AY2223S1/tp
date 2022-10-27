@@ -7,8 +7,6 @@ import java.util.Map;
 import java.util.Set;
 
 import javafx.scene.Node;
-<<<<<<< HEAD
-//import seedu.address.model.attribute.Field;
 import seedu.address.model.attribute.Address;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.AttributeList;
@@ -16,16 +14,6 @@ import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
 import seedu.address.model.attribute.exceptions.AttributeException;
-//import seedu.address.model.person.Fields;
-=======
-import seedu.address.model.attribute.Address;
-import seedu.address.model.attribute.Attribute;
-import seedu.address.model.attribute.Email;
-import seedu.address.model.attribute.Field;
-import seedu.address.model.attribute.Name;
-import seedu.address.model.attribute.Phone;
-import seedu.address.model.person.Fields;
->>>>>>> master
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -41,13 +29,9 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-<<<<<<< HEAD
-=======
     private List<Attribute<?>> attrs;
->>>>>>> master
     private Set<Tag> tags;
     private AttributeList fields;
-    private List<Attribute<?>> attrs;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -87,11 +71,7 @@ public class PersonBuilder {
     }
 
     /**
-<<<<<<< HEAD
      * Adds custom attribute to the person
-=======
-     * Adds a custom attribute.
->>>>>>> master
      * @param name
      * @param data
      * @param <U>
@@ -186,11 +166,7 @@ public class PersonBuilder {
     }
 
     /**
-<<<<<<< HEAD
-     * Builds a Person instance
-=======
      * Returns a person with specified attributes in builder.
->>>>>>> master
      * @return
      */
     public Person build() {
@@ -201,13 +177,8 @@ public class PersonBuilder {
     }
 
     /**
-<<<<<<< HEAD
-     * Adds an Address attribute to the PersonBuilder instance
-     * @param string
-=======
      * Adds address attribute to person
      * @param string address
->>>>>>> master
      * @return
      */
     public PersonBuilder withAddress(String string) {
@@ -216,13 +187,8 @@ public class PersonBuilder {
     }
 
     /**
-<<<<<<< HEAD
-     * Adds an Email attribute to the PersonBuilder instance
-     * @param string
-=======
      * Adds email attribute to person
      * @param string email
->>>>>>> master
      * @return
      */
     public PersonBuilder withEmail(String string) {
@@ -231,13 +197,8 @@ public class PersonBuilder {
     }
 
     /**
-<<<<<<< HEAD
      * Adds a Phone attribute to the PersonBuilder instance
      * @param string
-=======
-     * Adds phone attribute to person
-     * @param string phone number
->>>>>>> master
      * @return
      */
     public PersonBuilder withPhone(String string) {

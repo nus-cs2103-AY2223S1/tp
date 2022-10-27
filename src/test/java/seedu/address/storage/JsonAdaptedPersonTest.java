@@ -32,7 +32,7 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-//    private static final JsonAdaptedFields VALID_FIELDS = new JsonAdaptedFields(BENSON.getFields());
+    //    private static final JsonAdaptedFields VALID_FIELDS = new JsonAdaptedFields(BENSON.getFields());
     private static final String VALID_UID = UUID.nameUUIDFromBytes(("Person: " + VALID_NAME)
             .getBytes(StandardCharsets.UTF_8)).toString();
     private static final List<JsonAdaptedAbstractAttribute> VALID_ATTRIBUTES = BENSON.getAttributes()

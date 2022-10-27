@@ -18,7 +18,6 @@ import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.GroupOutOfBoundException;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.exceptions.PersonOutOfBoundException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.TaskOutOfBoundException;

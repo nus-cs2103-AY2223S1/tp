@@ -1,9 +1,8 @@
 package seedu.address.logic.commands.attributes;
 
-import seedu.address.logic.commands.Command;
-
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import seedu.address.logic.commands.Command;
 
 /**
  * Edits an existing attribute in the AddressBook.

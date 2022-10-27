@@ -1,5 +1,8 @@
 package seedu.address.model.person.exceptions;
 
+/**
+ * Encapsulates an OutOfBoundException for Person
+ */
 public class PersonOutOfBoundException extends Exception {
 
     public PersonOutOfBoundException(int length, int index) {

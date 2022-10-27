@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.attribute.AbstractAttribute;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Name;

@@ -1,5 +1,8 @@
 package seedu.address.model.task.exceptions;
 
+/**
+ * Encapsulates an OutOfBoundException for Task
+ */
 public class TaskOutOfBoundException extends Exception {
 
     public TaskOutOfBoundException(int length, int index) {

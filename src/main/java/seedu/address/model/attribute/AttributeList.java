@@ -2,7 +2,6 @@ package seedu.address.model.attribute;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -16,27 +15,17 @@ import seedu.address.model.attribute.exceptions.DuplicateAttributeException;
  */
 public class AttributeList {
 
-    // A list of fields
-    private final List<Attribute<?>> attributeList;
-
     // For logging purposes before updating UI
     private static final Logger logger = LogsCenter.getLogger(AttributeList.class);
+
+    // A list of fields
+    private final List<Attribute<?>> attributeList;
 
     /**
      * Constructs a new Fields instance.
      */
     public AttributeList() {
         attributeList = new ArrayList<>();
-    }
-
-    /**
-     * Adds a field to the list of fields.
-     *
-     * @param attribute A Field instance to be added to the list.
-     */
-    public void addAttribute(Attribute<?> attribute) {
-        attributeList.add(attribute);
-        logger.info(String.format("Attribute added successfully: %s", attribute.getAttributeType()));
     }
 
     /**
@@ -50,6 +39,16 @@ public class AttributeList {
     public <T> Attribute<T> createAttributeInstance(String attributeName, T value) {
         String name = formatProperName(attributeName);
         return new AbstractAttribute<T>(name, value) { };
+    }
+
+    /**
+     * Adds a field to the list of fields.
+     *
+     * @param attribute A Field instance to be added to the list.
+     */
+    public void addAttribute(Attribute<?> attribute) {
+        attributeList.add(attribute);
+        logger.info(String.format("Attribute added successfully: %s", attribute.getAttributeType()));
     }
 
     /**
@@ -94,12 +93,17 @@ public class AttributeList {
         return lst.get(0);
     }
 
-    public void editAttribute(String attributeName, String attributeType) {
+    /**
+     * Edits the attribute associated with the attributeName to the attributeValue.
+     * @param attributeName the name of the attribute to be edited.
+     * @param attributeValue the new value of the attribute to be edited.
+     */
+    public void editAttribute(String attributeName, String attributeValue) {
         Attribute<?> oldAttribute = findAttribute(attributeName);
         if (oldAttribute == null) {
             // throw something here later
         }
-        Attribute<?> newAttribute = createAttributeInstance(attributeName, attributeType);
+        Attribute<?> newAttribute = createAttributeInstance(attributeName, attributeValue);
         updateAttribute(oldAttribute, newAttribute);
         logger.info("Attribute edited successfully");
     }
