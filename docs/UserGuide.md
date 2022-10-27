@@ -338,12 +338,12 @@ Format: `delete-KEY INDEX`
 
 #### KEY Types Table
 | Contact / Item to Delete | KEY |
-|--------------------------|-----|
-| Buyer                    | b   |
-| Supplier                 | s   |
-| Deliverer                | d   |
-| Order                    | o   |
-| Pet                      | p   |
+|:------------------------:|:---:|
+|          Buyer           |  b  |
+|         Supplier         |  s  |
+|        Deliverer         |  d  |
+|          Order           |  o  |
+|           Pet            |  p  |
 
 Examples:
 * `delete-b 1`, deletes Buyer contact at index 1 of Buyer Contacts List, if index is found.

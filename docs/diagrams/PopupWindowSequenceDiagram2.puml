@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":AddCommandPopupWindow" as AddCommandPopupWindow UI_COLOR
+participant ":PopupPanelForSupplier" as PopupPanelForSupplier UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "a:AddSupplierCommand" as AddSupplierCommand LOGIC_COLOR
+end box
+
+[-> AddCommandPopupWindow : saving action is detected
+activate AddCommandPopupWindow
+
+AddCommandPopupWindow -> PopupPanelForSupplier : checkAllPartsFilled()
+activate PopupPanelForSupplier
+
+PopupPanelForSupplier --> AddCommandPopupWindow
+deactivate PopupPanelForSupplier
+
+alt all required text fields filled
+
+    AddCommandPopupWindow -> PopupPanelForSupplier : generateCommand()
+    activate PopupPanelForSupplier
+
+    PopupPanelForSupplier -> PopupPanelForSupplier : generateSupplier()
+    activate PopupPanelForSupplier
+
+    loop until all inputs are parsed
+        PopupPanelForSupplier -> ParserUtil : parse attribute
+        activate ParserUtil
+        ParserUtil --> PopupPanelForSupplier : parse result
+        deactivate ParserUtil
+    end
+
+    PopupPanelForSupplier --> PopupPanelForSupplier : supplier
+    deactivate PopupPanelForSupplier
+
+    create AddSupplierCommand
+    PopupPanelForSupplier -> AddSupplierCommand
+    activate AddSupplierCommand
+
+    AddSupplierCommand --> PopupPanelForSupplier
+    deactivate AddSupplierCommand
+
+    PopupPanelForSupplier --> AddCommandPopupWindow : a
+    deactivate PopupPanelForSupplier
+
+    AddCommandPopupWindow -> LogicManager : executeGivenCommand(a)
+    activate LogicManager
+
+    LogicManager -> AddSupplierCommand : execute()
+    activate AddSupplierCommand
+
+    AddSupplierCommand --> LogicManager : command result
+    deactivate AddSupplierCommand
+
+    LogicManager --> AddCommandPopupWindow : command result
+    deactivate LogicManager
+
+else at least one compulsory text field not filled
+
+    [<-- AddCommandPopupWindow
+    deactivate AddCommandPopupWindow
+
+end
+
+@enduml
