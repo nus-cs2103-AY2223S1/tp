@@ -177,8 +177,7 @@ public class MainWindow extends UiPart<Stage> {
         moduleClassListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
     }
 
-    @FXML
-    private void handleUnfocusMode() throws CommandException, ParseException {
+    private void handleUnfocusMode() {
         sessionClassText.setText("Classes");
         unfocusButton.setVisible(false);
         classTitle.setVisible(false);
@@ -191,7 +190,11 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void buttonHandleUnfocus() throws CommandException, ParseException {
-        executeCommand("unfocus");
+        try {
+            executeCommand("unfocus");
+        } catch (Exception e) {
+            assert false;
+        }
     }
 
     public StudentListPanel getStudentListPanel() {
