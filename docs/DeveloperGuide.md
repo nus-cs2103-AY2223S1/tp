@@ -238,7 +238,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Check-out feature
+### checkout feature
 
 #### Implementation
 
