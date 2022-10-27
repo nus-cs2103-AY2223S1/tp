@@ -53,7 +53,7 @@ AddTaskCommandParser --> AddressBookParser : a
 destroy AddTaskCommandParser
 
 AddressBookParser --> LogicManager : a
-destroy AddressBookParser
+deactivate AddressBookParser
 
 LogicManager -> AddTaskCommand : execute()
 activate AddTaskCommand
