@@ -439,19 +439,22 @@ The edit order feature is executed by `EditOrderCommand`. It extends `Command`.
 
 Given below is an example usage scenario and how the `EditOrderCommand` mechanism behaves at each step.
 
-Step 1. The user inputs `edito 3 n/John Doe i/Banana q/5`. This calls `LogicManager#execute`, which then calls
-`TrackOParser#parseCommand`. As the method is still running, it will call the constructor of `EditOrderCommandParser`.
-`EditOrderCommandParser#parse` will parse the user command based on the prefixes given by the user, and returns an
-`EditOrderCommand` with the target index and `EditOrderDescriptor` as input. The `EditOrderDescriptor` contains
-information that a newly edited order should have; in this case, it contains a `Name`, `Item`, and `Quantity`.
-The rest of the fields that are not provided are copied from the existing order at target index `3` (This index is
-**one-based**).
+Step 1. The user inputs `edito 3 n/John Doe i/Banana q/5`. The following methods are called, in the given order:
+1. `LogicManager#execute`, which then calls
+2. `TrackOParser#parseCommand`. It will parse the input as an `EditOrderCommand` and call the constructor of 
+`EditOrderCommandParser`.
+3. `EditOrderCommandParser#parse` will parse the user command based on the prefixes given by the user, and returns an
+`EditOrderCommand` with the target index and `EditOrderDescriptor` as input. 
+
+The `EditOrderDescriptor` contains information that a newly edited order should have; in this case, 
+it contains a `Name`, `Item`, and `Quantity`. The rest of the fields that are not provided are copied from the existing 
+order at target index `3` (This index is **one-based**).
 
 Step 2. The `EditOrderCommand#createEditedOrder` creates an edited order using the information in the
 `EditOrderDescriptor`. When the user inputs an `Item` and `Quantity`, it checks whether:
 
 - **the `Item` exists in the `InventoryList`.**
-  - If it does not exist, the method will throw an exception.
+  - If it does not exist, the method will throw a `CommandException` with `MESSAGE_NONEXISTENT_ITEM`.
   *This is because customers cannot order things that are not in stock*.
   - If it exists, the method will keep running.
 - **the `Item` exists in the `Order`'s list of ordered items, which is stored as a `List<ItemQuantityPair>`.** This is
@@ -460,14 +463,18 @@ done by `Item#isSameItem`, which returns true if both the newly inputted `Item` 
   - If it does not exist, then the `Item` and `Quantity` will form a
     new instance of `ItemQuantityPair` which will be added to the `List<ItemQuantityPair>`.
   - If it exists, it will check whether:
-    - The `Quantity` is `0`. If it is, then the `ItemQuantityPair` will be removed from the `List<ItemQuantityPair>`.
+    - The `Quantity` is `0`. If it is, then:
+      - If the order's list of ordered items has more than one `ItemQuantityPair` will be removed from the 
+      `List<ItemQuantityPair>`.
+      - If the order's list of ordered items has only one `ItemQuantityPair`, then a `CommandException` with
+      `MESSAGE_ONE_ORDERED_ITEM` will be thrown. This is because **an order cannot have zero ordered items**.
     - The newly inputted`Quantity` is different from the existing `Quantity`. If it is, then it will update 
 to the newly inputted `Quantity`.
     - Otherwise, nothing happens.
 
-Step 3. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`, successfully
-executing the edit order command in the `Model`. `Model#refreshData` is called to refresh the GUI, and `Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS)`
-is called to update the list to show all orders.
+Step 3. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`, 
+successfully executing the edit order command in the `Model`. `Model#refreshData` is called to refresh the GUI, and 
+`Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS)` is called to update the list to show all orders.
 
 The sequence diagram below illustrates this process.
 
