@@ -162,6 +162,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleStats() {
+        statsWindow.setPieChart(logic.getPieChartData());
         if (!statsWindow.isShowing()) {
             statsWindow.show();
         } else {
