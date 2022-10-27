@@ -132,6 +132,21 @@
     -fx-background-color: #515658;
 }
 
+.list-cell:filled:selected {
+    -fx-background-insets: 5;
+    -fx-background-color: derive(#1d1d1d, 60%);
+}
+
+#tuitionClassListView .list-cell:filled:odd:selected {
+    -fx-background-insets: 5;
+    -fx-background-color: #515658;
+}
+
+#tuitionClassListView .list-cell:filled:even:selected {
+    -fx-background-insets: 5;
+    -fx-background-color: #3c3e3f;
+}
+
 .list-cell .label {
     -fx-text-fill: white;
 }

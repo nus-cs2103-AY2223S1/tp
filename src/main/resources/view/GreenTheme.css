@@ -132,6 +132,16 @@
     -fx-background-color: #d4cca4;
 }
 
+.list-cell:filled:selected {
+    -fx-background-insets: 5;
+    -fx-background-color: #eef2e6;
+}
+
+#tuitionClassListView .list-cell:filled:selected {
+    -fx-background-insets: 5;
+    -fx-background-color: #d4cca4;
+}
+
 .list-cell .label {
     -fx-text-fill: #22534A;
 }

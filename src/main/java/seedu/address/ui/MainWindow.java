@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.ListTutorCommand.COMMAND_LIST_TUTOR_S
 
 import java.util.logging.Logger;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -19,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -45,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String UNSELECTED_LABEL_STYLE_CLASS = "inactive-label";
 
-    private static final Label NO_ENTITY_DISPLAYED_LABEL = new Label("No Person Displayed");
+    private static final Label NO_PERSON_DISPLAYED_LABEL = new Label("No Person Displayed");
 
     private static final String WELCOME_MESSAGE = "Welcome to myStudent!\n" + "Key in command to start";
 
@@ -67,6 +69,14 @@ public class MainWindow extends UiPart<Stage> {
     private ListType descriptionEntityType;
     private String theme;
 
+    @FXML
+    private StackPane animationPanel;
+    @FXML
+    private ImageView logo;
+    @FXML
+    private ImageView welcomeMessage;
+    @FXML
+    private ImageView exitMessage;
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -167,31 +177,40 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
+        entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
 
         resultDisplay.setFeedbackToUser(WELCOME_MESSAGE);
     }
 
     public void setUpClickableCards() {
-        studentListPanel.studentListView.
-                getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Student>() {
-            @Override
-            public void changed(ObservableValue<? extends Student> observable, Student oldValue, Student newValue) {
-                descriptionEntityType = ListType.STUDENT_LIST;
-                entityDescriptionPlaceholder.getChildren().clear();
-                studentDescription = new StudentDescription(newValue);
-                entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
-            }
-        });
+        studentListPanel.getStudentListView().getSelectionModel().selectedItemProperty()
+                .addListener(new ChangeListener<Student>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Student> observable,
+                                        Student oldValue, Student newValue) {
+                        descriptionEntityType = ListType.STUDENT_LIST;
+                        entityDescriptionPlaceholder.getChildren().clear();
+                        if (newValue != null) {
+                            studentDescription = new StudentDescription(newValue);
+                            entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
+                        } else {
+                            entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
+                        }
+                    }
+                });
 
-        tutorListPanel.tutorListView.
-                getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tutor>() {
+        tutorListPanel.getTutorListView().getSelectionModel().selectedItemProperty()
+                .addListener(new ChangeListener<Tutor>() {
                     @Override
                     public void changed(ObservableValue<? extends Tutor> observable, Tutor oldValue, Tutor newValue) {
                         descriptionEntityType = ListType.TUTOR_LIST;
                         entityDescriptionPlaceholder.getChildren().clear();
-                        tutorDescription = new TutorDescription(newValue);
-                        entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
+                        if (newValue != null) {
+                            tutorDescription = new TutorDescription(newValue);
+                            entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
+                        } else {
+                            entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
+                        }
                     }
                 });
     }
@@ -265,6 +284,15 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+        PauseTransition pause = new PauseTransition(Duration.seconds(1));
+        FadeTransition transition = new FadeTransition(Duration.seconds(2));
+        transition.setNode(animationPanel);
+        transition.setFromValue(1.0f);
+        transition.setToValue(0.0f);
+        pause.setOnFinished(event -> {
+            transition.play();
+        });
+        pause.play();
     }
 
     /**
@@ -281,12 +309,21 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY(), this.theme);
         logic.setGuiSettings(guiSettings);
-        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+        PauseTransition pause = new PauseTransition(Duration.seconds(1));
+        FadeTransition transition = new FadeTransition(Duration.seconds(1));
+        transition.setNode(animationPanel);
+        transition.setFromValue(0.0f);
+        transition.setToValue(1.0f);
+        welcomeMessage.setVisible(false);
+        exitMessage.setVisible(true);
+        transition.setOnFinished(event -> {
+            pause.play();
+        });
+        transition.play();
         pause.setOnFinished(event -> {
             helpWindow.hide();
             primaryStage.hide();
         });
-        pause.play();
     }
 
     /** Shows the specified entity **/
@@ -295,10 +332,10 @@ public class MainWindow extends UiPart<Stage> {
         descriptionEntityType = type;
         switch(type) {
         case STUDENT_LIST:
-            studentListPanel.studentListView.getSelectionModel().select(index);
+            studentListPanel.getStudentListView().getSelectionModel().select(index);
             break;
         case TUTOR_LIST:
-            tutorListPanel.tutorListView.getSelectionModel().select(index);
+            tutorListPanel.getTutorListView().getSelectionModel().select(index);
             break;
         default:
             break;
@@ -312,10 +349,12 @@ public class MainWindow extends UiPart<Stage> {
         Model.ListType type = logic.getCurrentListType();
         switch (type) {
         case STUDENT_LIST:
+            tutorListPanel.getTutorListView().getSelectionModel().clearSelection();
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             break;
         case TUTOR_LIST:
+            studentListPanel.getStudentListView().getSelectionModel().clearSelection();
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
             break;
@@ -363,7 +402,7 @@ public class MainWindow extends UiPart<Stage> {
 
         if (descriptionEntityType == logic.getCurrentListType()) {
             entityDescriptionPlaceholder.getChildren().clear();
-            entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
+            entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
         }
     }
 
@@ -374,13 +413,13 @@ public class MainWindow extends UiPart<Stage> {
         case STUDENT_LIST:
             if (commandResult.getDeletedStudent().equals(studentDescription.getDisplayedStudent())) {
                 entityDescriptionPlaceholder.getChildren().clear();
-                entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
+                entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
             }
             break;
         case TUTOR_LIST:
             if (commandResult.getDeletedTutor().equals(tutorDescription.getDisplayedTutor())) {
                 entityDescriptionPlaceholder.getChildren().clear();
-                entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
+                entityDescriptionPlaceholder.getChildren().add(NO_PERSON_DISPLAYED_LABEL);
             }
             break;
         default:

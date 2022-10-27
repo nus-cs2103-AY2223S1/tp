@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.GuiSettings.DARK_THEME_STRING;
 import static seedu.address.commons.core.GuiSettings.LIGHT_THEME_STRING;
 
-import java.awt.*;
+import java.awt.Point;
 
 import org.junit.jupiter.api.Test;
 
