@@ -1,6 +1,8 @@
 package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static swift.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.List;
 
@@ -21,8 +23,12 @@ public class AssignCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns the task to the contact identified by the index numbers used in the displayed contact list.\n"
-            + "Parameters: CONTACT_INDEX (must be a positive integer) TASK_INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 2";
+            + "Parameters: "
+            + PREFIX_CONTACT + "CONTACT_INDEX "
+            + PREFIX_TASK + "TASK_INDEX\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_CONTACT + "1 "
+            + PREFIX_TASK + "2";
 
     public static final String MESSAGE_ASSIGN_SUCCESS = "Task %1$s assigned to contact %2$s!";
 

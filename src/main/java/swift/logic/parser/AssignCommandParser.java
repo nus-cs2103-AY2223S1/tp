@@ -1,6 +1,11 @@
 package swift.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static swift.logic.parser.CliSyntax.PREFIX_TASK;
+
+import java.util.stream.Stream;
 
 import swift.commons.core.index.Index;
 import swift.logic.commands.AssignCommand;
@@ -19,14 +24,19 @@ public class AssignCommandParser implements Parser<AssignCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AssignCommand parse(String args) throws ParseException {
-        try {
-            String[] indices = args.trim().split("\\s+");
-            if (indices.length != 2) {
-                throw new ParseException("");
-            }
+        requireNonNull(args);
+        System.out.println(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+                args, PREFIX_CONTACT, PREFIX_TASK);
 
-            Index contactIndex = ParserUtil.parseIndex(indices[0]);
-            Index taskIndex = ParserUtil.parseIndex(indices[1]);
+        if (!arePrefixesPresent(argMultimap, PREFIX_CONTACT) || !arePrefixesPresent(argMultimap, PREFIX_TASK)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+        }
+
+        try {
+            Index contactIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONTACT).get());
+            Index taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK).get());
 
             return new AssignCommand(contactIndex, taskIndex);
         } catch (Exception e) {
@@ -35,4 +45,12 @@ public class AssignCommandParser implements Parser<AssignCommand> {
         }
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values
+     * in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
 }
