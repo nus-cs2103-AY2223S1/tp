@@ -24,7 +24,7 @@ public class DeleteEventFromTripCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an event from specified trip. "
             + "Parameters: "
-            + PREFIX_TITLE + "Event TITLE "
+            + PREFIX_TITLE + "EVENTTITLE "
             + PREFIX_TRIP + "TRIP "
             + "\n"
             + "Example: " + COMMAND_WORD + " "
