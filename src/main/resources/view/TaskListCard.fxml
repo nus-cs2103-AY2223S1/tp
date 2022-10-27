@@ -36,7 +36,7 @@
                <font>
                   <Font name="Trebuchet MS Bold" size="14.0" />
                </font></Label>
-            <Label fx:id="dueDate" alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="160.0" prefHeight="17.0" styleClass="due_date_label" textAlignment="RIGHT" translateY="-5.0" HBox.hgrow="ALWAYS">
+            <Label fx:id="deadline" alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="160.0" prefHeight="17.0" styleClass="due_date_label" textAlignment="RIGHT" translateY="-5.0" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="Bodoni 72 Book" size="13.0" />
                </font>
