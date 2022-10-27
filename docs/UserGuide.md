@@ -69,9 +69,8 @@ contains some sample data.<br>
   e.g `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
 
 * A round bracket surrounding multiple square brackets indicate a need for at least one of the items in square brackets
-to be present.
-
-e.g `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
+to be present.  
+  e.g `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
 to be present.
 
 * Parameters can be in any order.<br>
@@ -227,6 +226,26 @@ add-person-to-module m/CS2103T n/Dinosaur Lim
 ```
 In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T`.
 
+#### 2.1.7. Delete person from module
+You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
+command.  
+
+This command will require two flags:
+* `m/`: To be followed by the module code of the module, which the person will be removed from.
+* `n/`: To be followed by the name of the person, whom will be removed from the module.
+
+Format: `delete-person-from-module m/MODULE_CODE n/NAME`
+* You can only delete the specified person from the specified module if the person was originally associated to the
+module.
+* You can only delete a person from a module when both the specified module and person are currently being displayed.
+
+Example:
+
+```
+delete-person-from-module m/CS2103T n/Dinosaur Lim
+```
+In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
+
 <br>
 
 ### 2.2. Tasks
@@ -350,15 +369,16 @@ from the module with the displayed index of `2`.
 #### 2.4.1. Add person
 You may add a contact using the `add-person` command.
 
-This command will require two flags, and one optional flag:
+This command will require three flags:
 * `n/`: To be followed by the to-be-added contact name.
 * `e/`: To be followed by the email of the new contact.
 * `p/`: To be followed by the phone number of the new contact.
 
 Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 * You cannot add a duplicate name into Plannit.
+* You should specify the email in proper email format, e.g. `xyz@gmail.com`.
 * You cannot specify any country code for phone number.
-* You cannot specify a non-8-digit phone number.
+* You must specify an 8-digit phone number.
 
 Example:
 ```
@@ -375,6 +395,7 @@ This command will require one flag:
 
 Format: `delete-person n/NAME`
 * You cannot delete a non-existent contact.
+* You can only delete a person from Plannit when the person is currently being displayed.
 
 Example:
 ```
@@ -392,8 +413,9 @@ This command will require an index and minimally any of the three flags:
 
 Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
 * `INDEX` is the currently displayed index number of the contact you are editing for on the screen.
+* You should specify the email in proper email format, e.g. `xyz@gmail.com`.
 * You cannot specify any country code for phone number.
-* You cannot specify a non-8-digit phone number.
+* You must specify an 8-digit phone number.
 
 Examples:
 ```
