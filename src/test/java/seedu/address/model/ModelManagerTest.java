@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.FindCommandPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.DatabaseBuilder;
 
 public class ModelManagerTest {
 
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Database database = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        Database database = new DatabaseBuilder().withPerson(ALICE).withPerson(BENSON).build();
         Database differentDatabase = new Database();
         UserPrefs userPrefs = new UserPrefs();
 
