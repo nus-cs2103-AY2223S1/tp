@@ -73,7 +73,7 @@ Any warnings or errors will be printed out to the console.
 
 Here are the steps to create a new release.
 
-1. Update the version number in [`MainApp.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java).
+1. Update the version number in [`MainApp.java`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/MainApp.java).
 2. Generate a fat JAR file using Gradle (i.e., `gradlew shadowJar`).
 3. Tag the repo with the version number. e.g. `v0.1`
 4. [Create a new release using GitHub](https://help.github.com/articles/creating-releases/). Upload the JAR file you created.
