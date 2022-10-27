@@ -29,9 +29,9 @@ To quickly return to the Table of Contents, you can click on any of the section 
 
    * **`list`** : Lists all projects.
 
-   * **`add`**`pn/Duke pb/ 20 pd/ 2022-09-27` : Adds a project named Duke` to HR Pro Max++.
+   * **`add pn/Duke pb/ 20 pd/ 2022-09-27`** : Adds a project named Duke` to HR Pro Max++.
 
-   * **`delete`**`3` : Deletes the 3rd project shown in the current list.
+   * **`delete 3`** : Deletes the 3rd project shown in the current list.
 
    * **`clear`** : Deletes all data currently saved on HR Pro Max++.
 
@@ -57,7 +57,7 @@ For example, entering an incorrect add command like shown below will cause an er
 Clicking on a `Task`, `Project`, or `Staff` card will cause the respective box to be highlighted in green.
 All `Task` and `Project` cards will be displayed in the `List Panel`.
 By default, the `Staff` list is empty when first starting the program.
-To see how to view the `Staff` list of other projects, you can check [this](#view-the-staff-list-within-a-project-view) segment of the user guide.
+To see how to view the `Staff` list of other projects, you can check [this](#view-the-staff-list-within-a-project) segment of the user guide.
 
 ![List Panel](images/ListPanel.png)
 
@@ -122,7 +122,11 @@ Format: `delete INDEX`
 
 * Deletes the project at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Project list.
-* The index **must be a positive integer** 1, 2, 3, …​
+
+```yaml
+Note: 
+* The index must be a positive integer 1, 2, 3, …​
+```
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd project in Project list.
@@ -132,7 +136,7 @@ Examples:
 ### [**Listing all Projects :** `list`](#table-of-contents)
 
 Show all the Projects in the Projects list.
-After using a find command, you can use `list` to return the display to its original state.
+:bulb: **Tip:** After using a find command, you can use `list` to return the display to its original state.
 
 Format: `list`
 
@@ -143,8 +147,11 @@ Finds all projects whose names contain any of the specified keywords (case-insen
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
+```yaml
+Note: 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
+```
 
 Examples:
 * `find CS2103` returns `CS2103` and `CS2103 TP`
@@ -163,12 +170,17 @@ Edits an existing Project in the Project list.
 
 Format: `edit INDEX [pn/PROJECT_NAME] [pb/PROJECT_BUDGET] [pd/PROJECT_DEADLINES] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the Project at the specified `INDEX` in the currently displayed Project list. 
+
+```yaml
+Note:
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
+```
 
 Examples:
 * `edit 1 pb/5000` Edits the project budget of the 1st project to be `5000`.
@@ -182,12 +194,15 @@ Adds a staff member info to Project in project list.
 
 Format: `addstaff pn/PROJECT_NAME sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER [t/TAGS]`
 
+```yaml
+Note:
 * All fields for staff member are required, except `TAGS`
 * To see the updates to the staff list, use the `view` command.  
+```
 
 Examples:
-* `addStaff pn/DUKE sn/John Doe sp/98765432 sl/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project DUKE.
-* `addStaff pn/ROOFUS sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false` Adds staff member named `Betsy Crown` to the project ROOFUS.
+* `addstaff pn/Duke sn/John Doe sp/98765432 sl/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project Duke.
+* `addstaff pn/CS2103 sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false` Adds staff member named `Betsy Crown` to the project Roofus.
 
 --------------------------------------------------------------------------------------------------------------------
 ### [**Deleting a Staff member from Project :** `delstaff`](#table-of-contents)
@@ -199,7 +214,7 @@ Format: `delstaff pn/PROJECT_NAME sn/STAFF_NAME`
 Examples:
 
 * `delstaff pn/2103 sn/John` Delete staff member named `John` from project `2103`.
-* `delstaff pn/DUKE sn/Betty` Delete staff member named `Betty` from project `DUKE`.
+* `delstaff pn/Duke sn/Betty` Delete staff member named `Betty` from project `Duke`.
 
 --------------------------------------------------------------------------------------------------------------------
 ### [**View the Staff list within a project:** `view`](#table-of-contents)
@@ -209,9 +224,12 @@ Views the staff list of a specified project in Project list.
 Format: `view INDEX`
 
 * View the staff list of the project at the specified `INDEX`.
+
+```yaml
+Note:
 * The index refers to the index number shown in the displayed Project list.
 * The index **must be a positive integer** 1, 2, 3, …​
-
+```
 Examples:
 * `list` followed by `view 2` displays the staff list of the 2nd project in Project list on the bottom right.
 * `find 2103T_TP` followed by `view 1` display the staff list of the 1st project from the result of the `find` command.
@@ -224,8 +242,11 @@ Edits the staff details of a staff of a specified project in Project list.
 Format: `editstaff INDEX pn/PROJECT_NAME [sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER
 t\TAGS]`
 
-* All fields for staff members in the `[]` are optional. 
-* Index **must be a positive integer** 1, 2, 3, ...
+```yaml
+Note:
+* All fields in the `[]` are optional. 
+* Index must be a positive integer 1, 2, 3, ...
+```
 
 Examples:
 * `editstaff 1 pn/CS2103T sn/John Doe` edits the staff name of the first staff in the staff list of `CS2103T` to `John Doe`
@@ -236,8 +257,11 @@ Finds the current active staff list for a staff name
 
 Format: `findstaff NAME`
 
+```yaml
+Note:
 * `NAME` must not be an empty string. 
 *  For `findstaff` to work as expected, the current active staff list must be non-empty.
+```
 
 Examples:
 * `findstaff Jon` returns a filtered view of the staff list such that all staffs with name `Jon` are listed.
@@ -253,8 +277,11 @@ Adds a Task to the Task list.
 
 Format: `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE`
 
+```yaml
+Note:
 * Both task fields `TASK_DESCRIPTION` and `TASK_DEADLINE` must be present.
-* `TASK_DEADLINE` follows the **YYYY-MM-DD** format. 
+* `TASK_DEADLINE` follows the YYYY-MM-DD format. 
+```
 
 Examples:
 * `addtask tdesc/Finish Homework td/2022-10-27` creates a Task with the description `Finish Homework` and deadline set to
@@ -267,7 +294,10 @@ Deletes a Task at the specified index from the Task list.
 
 Format: `deltask INDEX`
 
-* `INDEX` is a positive integer from 1, 2, ... 
+```yaml
+Note:
+* `INDEX` must be a positive integer from 1, 2, 3, ... 
+```
 
 Examples:
 * `deltask 1` deletes the Task at index 1 of the Task list.
@@ -281,9 +311,12 @@ Finds a specified Task in Task list.
 
 Format: `findtask TASK_DESCRIPTION`
 
+```yaml
+Note:
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * The search returns the task if word in task description matches search term e.g. `CS2103T` matches `CS2103T Project`
+```
 
 Examples:
 * `findtask CS2103` returns `CS2103` and `Todo CS2103`
@@ -309,9 +342,12 @@ Marks a Task in Task list as done.
 
 Format: `marktask INDEX`
 
-* Marks the task at the specified `INDEX`.
-* The index refers to the index number shown in the displayed Task list.
-* The index **must be a positive integer** 1, 2, 3, …
+* Marks the task at the specified `INDEX` in the displayed Task list as done.
+
+```yaml
+Note:
+* The index must be a positive integer 1, 2, 3, …
+```
 
 Examples:
 * `marktask 1` Marks the first task as done.
@@ -323,10 +359,12 @@ Marks a Task in Task list as not done.
 
 Format: `unmarktask INDEX`
 
-* Marks the task at the specified `INDEX` as not done.
-* The index refers to the index number shown in the displayed Task list.
-* The index **must be a positive integer** 1, 2, 3, …
+* Marks the task at the specified `INDEX` in the displayed Task list as not done.
 
+```yaml
+Note:
+* The index **must be a positive integer** 1, 2, 3, …
+```
 Examples:
 * `unmarktask 2` Marks the second task as not done.
 
@@ -340,7 +378,7 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 ### [**Clearing all Data :** `clear`](#table-of-contents)
 
-Clears all data from HR Pro Max++.
+Clears **all data** from HR Pro Max++.
 
 Format: `clear`
 
@@ -361,13 +399,13 @@ There is no need to save manually.
 
 | Action              | Format, Examples                                                                                                           |
 |---------------------|----------------------------------------------------------------------------------------------------------------------------|
-| **Add project**     | `add pn/PROJECT_NAME  [t/TAG]…​` <br> e.g., `add pn/DUKE pd/2022-10-25 pb/10000 t/funz`                                    |
-| **Add staff**       | `addstaff pn/PROJECT_NAME sn/STAFF_NAME…​` <br> e.g., `addstaff pn/DUKE sn/DEXTER sl/true sd/HR st/HR manager sp/98019345` |
-| **Delete staff**    | `delstaff pn/PROJECT_NAME sn/STAFF_NAME` <br> e.g., `delstaff pn/DUKE sn/DEXTER`                                           |
+| **Add project**     | `add pn/PROJECT_NAME  [t/TAG]…​` <br> e.g., `add pn/Duke pd/2022-10-25 pb/10000 t/funz`                                    |
+| **Add staff**       | `addstaff pn/PROJECT_NAME sn/STAFF_NAME…​` <br> e.g., `addstaff pn/Duke sn/DEXTER sl/true sd/HR st/HR manager sp/98019345` |
+| **Delete staff**    | `delstaff pn/PROJECT_NAME sn/STAFF_NAME` <br> e.g., `delstaff pn/Duke sn/DEXTER`                                           |
 | **Clear**           | `clear`                                                                                                                    |
 | **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                        |
-| **Edit**            | `edit INDEX [pn/PROJECT_NAME] [pd/PROJECT_DEADLINE]…​`<br> e.g.,`edit 2 pn/ROOFUS pb/1350000`                              |
-| **Find**            | `find pn/PROJECT_NAME`<br> e.g., `find DUKE`                                                                               |
+| **Edit**            | `edit INDEX [pn/PROJECT_NAME] [pd/PROJECT_DEADLINE]…​`<br> e.g.,`edit 2 pn/Roofus pb/1350000`                              |
+| **Find**            | `find pn/PROJECT_NAME`<br> e.g., `find Duke`                                                                               |
 | **List**            | `list`                                                                                                                     |
 | **View staff list** | `view INDEX` <br> e.g., `view 1`                                                                                           |
 | **Help**            | `help`                                                                                                                     |
