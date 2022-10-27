@@ -44,7 +44,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private TextFlow website;
     @FXML
-    private Label salary;
+    private Label upcomingTask;
     @FXML
     private FlowPane tags;
 
@@ -65,7 +65,7 @@ public class InternshipCard extends UiPart<Region> {
         PseudoClass offered = PseudoClass.getPseudoClass("offered");
         lab.pseudoClassStateChanged(offered, (internship.getStatus().toString()).equals("Offered"));
         status.getChildren().add(lab);
-        salary.setText("$" + internship.getSalary().value);
+        upcomingTask.setText("Upcoming Task: " + internship.getTasks().get(0).toString());
         Hyperlink hyperlink = new Hyperlink(internship.getWebsite().value);
         website.getChildren().add(hyperlink);
         hyperlink.setOnAction(e -> {
