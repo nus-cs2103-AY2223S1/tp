@@ -7,48 +7,55 @@
       "price": "1,000,000",
       "tagged": [
         "friends"
-      ]
+      ],
+      "propertyType" : "CONDO"
     },
     {
       "name": "Oasis",
       "address": "311, Clementi Ave 2, #02-25",
-      "price": "1,000,000",
+      "price": "2,000,000",
       "tagged": [
         "owesMoney",
         "friends"
-      ]
+      ],
+      "propertyType" : "CONDO"
     },
     {
       "name": "Carl Kurz",
       "address": "wall street",
-      "price": "1,000,000",
-      "tagged": []
+      "price": "3,000,000",
+      "tagged": [],
+      "propertyType" : "CONDO"
     },
     {
       "name": "Daniel Meier",
       "address": "10th street",
-      "price": "1,000,000",
+      "price": "4,000,000",
       "tagged": [
         "friends"
-      ]
+      ],
+      "propertyType" : "CONDO"
     },
     {
       "name": "Elle Meyer",
       "address": "michegan ave",
-      "price": "1,000,000",
-      "tagged": []
+      "price": "5,000,000",
+      "tagged": [],
+      "propertyType" : "CONDO"
     },
     {
       "name": "Fiona Kunz",
       "address": "little tokyo",
-      "price": "1,000,000",
-      "tagged": []
+      "price": "6,000,000",
+      "tagged": [],
+      "propertyType" : "CONDO"
     },
     {
       "name": "George Best",
       "address": "4th street",
-      "price": "1,000,000",
-      "tagged": []
+      "price": "7,000,000",
+      "tagged": [],
+      "propertyType" : "CONDO"
     }
   ]
 }

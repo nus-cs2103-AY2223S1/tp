@@ -14,6 +14,7 @@ import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -174,5 +175,16 @@ public class ParserUtil {
             propertySet.add(parsePropertyName(propertyName));
         }
         return propertySet;
+    }
+
+    /**
+     * Parses a string into {@code PropertyTypeEnum} enum
+     * @param propertyType string to prase
+     * @return a {@code PropertyStatusEnum} enum
+     * @throws ParseException if the string does not match any valid enum
+     */
+    public static PropertyTypeEnum parsePropertyType(String propertyType) throws ParseException {
+        requireNonNull(propertyType);
+        return PropertyTypeEnum.valueOf(propertyType);
     }
 }

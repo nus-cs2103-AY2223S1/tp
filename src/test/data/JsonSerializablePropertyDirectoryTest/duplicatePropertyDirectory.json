@@ -6,12 +6,14 @@
       "price": "100000",
       "tagged": [
         "friends"
-      ]
+      ],
+      "propertyType" : "CONDO"
     },
     {
       "name": "Alice Pauline",
       "address": "4th street",
-      "price": "100000"
+      "price": "100000",
+      "propertyType" : "CONDO"
     }
   ]
 }
