@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import seedu.address.commons.core.index.Index;
@@ -136,7 +137,7 @@ public class Student extends Position {
     }
 
     public Map<String, Number> getAssignmentsAndGrade() {
-        Map<String, Number> map = new HashMap<>();
+        Map<String, Number> map = new LinkedHashMap<>();
         for (Assignment a: assignmentsList) {
             map.put(a.getAssignmentName() + " (" + a.getWeightage() + "%)", a.getScore());
         }
@@ -144,7 +145,7 @@ public class Student extends Position {
     }
 
     public Map<String, Number> getAssignmentsAndMaximumGrade() {
-        Map<String, Number> map = new HashMap<>();
+        Map<String, Number> map = new LinkedHashMap<>();
         for (Assignment a: assignmentsList) {
             map.put(a.getAssignmentName() + " (" + a.getWeightage() + "%)", a.getMaximumScore());
         }
