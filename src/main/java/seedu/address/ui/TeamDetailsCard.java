@@ -23,6 +23,8 @@ public class TeamDetailsCard extends UiPart<Region> {
     @FXML
     private Label teamNameDisplay;
     @FXML
+    private Label teamDescription;
+    @FXML
     private StackPane memberListPanel;
     @FXML
     private StackPane taskListPanel;
@@ -38,7 +40,7 @@ public class TeamDetailsCard extends UiPart<Region> {
         super(FXML);
         this.logic = logic;
         teamNameDisplay.setText(team.getTeamName());
-
+        teamDescription.setText(team.getDescription());
         MemberListPanel members = new MemberListPanel(logic.getFilteredMemberList());
 
         memberListPanel.getChildren().add(members.getRoot());
@@ -50,5 +52,6 @@ public class TeamDetailsCard extends UiPart<Region> {
         linkListPanel.getChildren().add(links.getRoot());
 
         teamNameDisplay.setWrapText(true);
+        teamDescription.setWrapText(true);
     }
 }
