@@ -3,6 +3,7 @@ package coydir.logic.commands;
 import static coydir.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static coydir.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static coydir.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static coydir.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static coydir.logic.parser.CliSyntax.PREFIX_NAME;
 import static coydir.logic.parser.CliSyntax.PREFIX_PHONE;
 import static coydir.logic.parser.CliSyntax.PREFIX_POSITION;
@@ -49,7 +50,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_POSITION + "POSITION] "
             + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_LEAVE + "LEAVE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";

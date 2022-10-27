@@ -16,8 +16,10 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class Leave {
     public static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    public static final String MESSAGE_CONSTRAINTS = "Invalid Date, Start Date should be earlier than End Date "
-            + "and both Dates should be in dd-MM-YYYY \n";
+    public static final String MESSAGE_CONSTRAINTS = "Invalid Date Parameters. Please check for the following : \n"
+            + "1. Date should be valid \n"
+            + "2. Start Date should be earlier than End Date \n "
+            + "2. both Dates should be in dd-MM-YYYY ";
     public static final CustomLeaveComparator COMPARATOR = new CustomLeaveComparator();
 
     private static final Pattern DATE_PATTERN = Pattern.compile(
