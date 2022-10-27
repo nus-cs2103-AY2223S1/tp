@@ -65,7 +65,7 @@ public class SortCommand extends Command {
         model.updateFilteredClientList(predicate);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, isLatest ? "latest" : "oldest", index.getOneBased()),
-                false, false, false, true);
+                false, false, false, true, false);
     }
 
     @Override
