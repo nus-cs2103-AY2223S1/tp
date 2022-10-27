@@ -27,14 +27,14 @@ public class TypicalNotes {
     public static final Note CHARITY = new NoteBuilder().withTitle("Charity Event")
             .withContent("Charity event").withTags("c").build();
 
-    public static final Note DONATE = new NoteBuilder().withTitle("Donate")
+    public static final Note DONATE = new NoteBuilder().withTitle("Donate Event")
             .withContent("Donate food").withTags("d").build();
 
-    public static final Note ELECTION = new NoteBuilder().withTitle("Election")
+    public static final Note ELECTION = new NoteBuilder().withTitle("Election Event")
             .withContent("Elect new club president").withTags("e").build();
 
     // Manually added
-    public static final Note FOOTBALL = new NoteBuilder().withTitle("Football Event")
+    public static final Note FOOTBALL = new NoteBuilder().withTitle("Football")
             .withContent("Football practice").build();
 
     // Manually added - Note's details found in {@code CommandTestUtil}
