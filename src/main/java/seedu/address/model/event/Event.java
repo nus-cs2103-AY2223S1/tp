@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import seedu.address.model.date.Date;
 import seedu.address.model.person.Person;
 
 /**
@@ -7,7 +8,7 @@ import seedu.address.model.person.Person;
  */
 public class Event {
     private final EventTitle eventTitle;
-    private final StartDate startDate;
+    private final Date startDate;
     private final StartTime startTime;
     private final Purpose purpose;
 
@@ -21,7 +22,7 @@ public class Event {
      * @param startTime time when marketing event begins
      * @param purpose summary of what the marketing is about
      */
-    public Event(EventTitle eventTitle, StartDate startDate, StartTime startTime, Purpose purpose) {
+    public Event(EventTitle eventTitle, Date startDate, StartTime startTime, Purpose purpose) {
         this.eventTitle = eventTitle;
         this.startDate = startDate;
         this.startTime = startTime;
@@ -44,7 +45,7 @@ public class Event {
     /**
      * Overloaded constructor to create new Event object
      */
-    public Event(EventTitle eventTitle, StartDate startDate, StartTime startTime, Purpose purpose, UidList uids) {
+    public Event(EventTitle eventTitle, Date startDate, StartTime startTime, Purpose purpose, UidList uids) {
         this.eventTitle = eventTitle;
         this.startDate = startDate;
         this.startTime = startTime;
@@ -56,7 +57,7 @@ public class Event {
         return this.eventTitle;
     }
 
-    public StartDate getStartDate() {
+    public Date getStartDate() {
         return this.startDate;
     }
 

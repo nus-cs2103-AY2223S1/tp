@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.date.Date;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,7 +24,7 @@ public class Person {
     private final Email email;
     private final Address address;
     private final Gender gender;
-    private final DateOfBirth dob;
+    private final Date dob;
     private final Set<Tag> tags = new HashSet<>();
 
     private final Uid uid;
@@ -31,7 +32,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Gender gender, DateOfBirth dob,
+    public Person(Name name, Phone phone, Email email, Address address, Gender gender, Date dob,
                   Set<Tag> tags, Uid uid) {
         requireAllNonNull(name, phone, email, address, tags, gender, uid);
         this.name = name;
@@ -63,7 +64,7 @@ public class Person {
     public Gender getGender() {
         return gender;
     }
-    public DateOfBirth getDob() {
+    public Date getDob() {
         return dob;
     }
     public Uid getUid() {

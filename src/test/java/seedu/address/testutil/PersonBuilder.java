@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.date.Date;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -31,7 +31,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Gender gender;
-    private DateOfBirth dob;
+    private Date dob;
     private Set<Tag> tags;
 
     /**
@@ -42,7 +42,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        dob = new DateOfBirth(DEFAULT_DOB);
+        dob = new Date(DEFAULT_DOB);
         gender = new Gender(DEFAULT_GENDER);
         tags = new HashSet<>();
     }
@@ -100,10 +100,10 @@ public class PersonBuilder {
         return this;
     }
     /**
-     * Sets the {@code DateOfBirth} of the {@code Person} that we are building.
+     * Sets the {@code Date} of the {@code Person} that we are building.
      */
     public PersonBuilder withDob(String dob) {
-        this.dob = new DateOfBirth(dob);
+        this.dob = new Date(dob);
         return this;
     }
     /**

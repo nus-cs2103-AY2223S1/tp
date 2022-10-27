@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.date;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -9,12 +9,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a Person's date of birth in the address book.
+ * Represents a date in the application.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class DateOfBirth implements Comparable<DateOfBirth> {
-
-    public static final String MESSAGE_CONSTRAINTS = "Date of birth must be in format: dd/mm/yyyy";
+public class Date implements Comparable<Date> {
+    public static final String MESSAGE_CONSTRAINTS = "Dates must be in format: DD/MM/YYYY";
 
     //for checking if valid input date format
     private static final DateTimeFormatter checkFormatter = DateTimeFormatter
@@ -26,27 +25,26 @@ public class DateOfBirth implements Comparable<DateOfBirth> {
     //for changing to user-readable format
     private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
 
-
     public final LocalDate date;
 
+
     /**
-     * Constructs an {@code DateOfBirth}.
+     * Constructs a {@code Date}.
      *
-     * @param date A valid date.
+     * @param date a valid date.
      */
-    public DateOfBirth(String date) {
+    public Date(String date) {
         requireNonNull(date);
-        checkArgument(isValidDateOfBirth(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date, logFormatter);
     }
 
     /**
-     * Returns true if a given string is a valid DOB input.
+     * Returns true if a given string is a valid Date input.
      * @return boolean
      */
-
-    //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
-    public static boolean isValidDateOfBirth(String test) {
+    //Solution below adapted from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
+    public static boolean isValidDate(String test) {
         try {
             LocalDate.parse(test, checkFormatter);
         } catch (DateTimeParseException e) {
@@ -56,13 +54,13 @@ public class DateOfBirth implements Comparable<DateOfBirth> {
     }
 
     @Override
-    public int compareTo(DateOfBirth d) {
+    public int compareTo(Date d) {
         return this.date.compareTo(d.date);
     }
 
     /**
-     * Returns the the String representation of the DateOfBirth in format suitable for storage logging.
-     * @return String
+     * Returns the String representation of the Date in a format suitable for storage logging.
+     * @return String the string that is in the correct format for logging.
      */
     public String toLogFormat() {
         return this.date.format(logFormatter);
@@ -83,20 +81,21 @@ public class DateOfBirth implements Comparable<DateOfBirth> {
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
         if (other == this) {
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof DateOfBirth)) {
+        if (!(other instanceof Date)) {
             return false;
         }
 
-        // state check
-        DateOfBirth d = (DateOfBirth) other;
+        Date sd = (Date) other;
+        return this.date.equals(sd.date);
+    }
 
-        return this.date.equals(d.date);
+    @Override
+    public String toString() {
+        return this.date.format(outputFormatter);
     }
 
     @Override
