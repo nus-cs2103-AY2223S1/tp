@@ -9,6 +9,12 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.intrack.commons.core.LogsCenter;
+import seedu.intrack.logic.commands.AddCommand;
+import seedu.intrack.logic.commands.ClearCommand;
+import seedu.intrack.logic.commands.DeleteCommand;
+import seedu.intrack.logic.commands.EditCommand;
+import seedu.intrack.logic.commands.ListCommand;
+import seedu.intrack.logic.commands.SelectCommand;
 
 /**
  * Controller for a help page
@@ -16,7 +22,14 @@ import seedu.intrack.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t11-2.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "Refer to the user guide: ";
+    public static final String HELP_COMMANDS = "Stuck? Here are a few commands that might help you out!\n"
+            + "1. List out all your added internships: " + ListCommand.COMMAND_WORD
+            + "\n\n2. Clear the default list of applications: " + ClearCommand.COMMAND_WORD
+            + "\n\n3. Add a new application: " + AddCommand.COMMAND_WORD + "\n\n4. To edit an application: "
+            + "\n4a. Select the desired entry: " + SelectCommand.COMMAND_WORD + "\n4b. Then edit said entry: "
+            + EditCommand.COMMAND_WORD + "\n\n5. Delete an entry: " + DeleteCommand.COMMAND_WORD
+            + "\n\nFor more commands, check out our user guide!";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -27,6 +40,12 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private Label helpCommands;
+
+    @FXML
+    private Label helpLink;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -35,6 +54,8 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        helpLink.setText(USERGUIDE_URL);
+        helpCommands.setText(HELP_COMMANDS);
     }
 
     /**
