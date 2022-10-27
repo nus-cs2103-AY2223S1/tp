@@ -121,7 +121,6 @@ public class ModelManagerTest {
             }
         }
     }
-    
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
