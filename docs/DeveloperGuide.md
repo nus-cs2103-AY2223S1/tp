@@ -37,18 +37,18 @@ Choose a section from the table of contents below to learn more about how RC4HDB
     * [Launch and shutdown](#launch-and-shutdown)
     * [Deleting a person](#deleting-a-person)
     * [Saving data](#saving-data)
-    
+
 ---
-## **Acknowledgements** 
+## **Acknowledgements**
 
 [comment]: <> (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
 
-RC4HDB is built-upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that provides 
-a starting point for Software Engineering (SE) students enrolled in CS2103T. 
+RC4HDB is built-upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that provides
+a starting point for Software Engineering (SE) students enrolled in CS2103T.
 
 ### Credits for code adapted from external sources
 
-1. `populateTagColumn` in `ResidentTableView` was adapted from [this thread](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items) on StackOverflow. 
+1. `populateTagColumn` in `ResidentTableView` was adapted from [this thread](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items) on StackOverflow.
 2. `populateIndexColumn` in `ResidentTableView`, and `populateDayColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx) on StackOverflow.
 
 
@@ -250,16 +250,16 @@ by a `ResidentTableView` component.
 `ResidentTableView` is implemented via the `TableView` class of `JavaFX`. Graphically, `ResidentTableView` is presented
 as a table. Each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
 
-From the users' viewpoint, the data generated in `ResidentTableView` is a single unit, but it is logically separated 
-into two distinct parts. The first part being the first column which is the `IndexColumn` and the second being all other 
+From the users' viewpoint, the data generated in `ResidentTableView` is a single unit, but it is logically separated
+into two distinct parts. The first part being the first column which is the `IndexColumn` and the second being all other
 columns, also known as `FieldColumns`.
 
 The main reason for this distinction is *method to generate the cell values*.
 - The indices in the `IndexColumn` are generated independently to the `FieldColumns`. This is because fields within
-  `Resident` do not affect its index within the table. In two different commands, the same `Resident` could 
+  `Resident` do not affect its index within the table. In two different commands, the same `Resident` could
   have different indices in the results.
 - In contrast, in the generation of values for each cell in `FieldColumn`, values are obtained by iterating
-through a list of `Residents` and setting each cell to it. As the iterator does not modify the ordering of `Residents`, 
+through a list of `Residents` and setting each cell to it. As the iterator does not modify the ordering of `Residents`,
   the same technique is applied to obtain the values for other `FieldColumns`.
 
 As a consequence, fields of a `Resident` will always collectively be together in the same row, though it may appear in
@@ -334,11 +334,11 @@ used to describe the resident.
 
 <br>
 
-#### Structure of the Command 
+#### Structure of the Command
 A ```FilterCommand``` class and a ```FilterCommandParser``` class was implemented to follow the structure of the
-```Logic``` component of the application. ```FilterCommand``` implements ```ModelCommand``` and the 
-```FilterCommandParser``` implements ```FilterCommandParser```. This structure allows the new filter feature to be 
-added without changing any of the Logic class components other than adding the cases to create a ```FilterCommand``` 
+```Logic``` component of the application. ```FilterCommand``` implements ```ModelCommand``` and the
+```FilterCommandParser``` implements ```FilterCommandParser```. This structure allows the new filter feature to be
+added without changing any of the Logic class components other than adding the cases to create a ```FilterCommand```
 object
 
 <br>
@@ -346,7 +346,7 @@ object
 #### Creating a new ```ResidentDescriptor``` class
 
 Previously, the edit feature utilized an ```EditDescriptor``` class to create an object that will store the parsed
-information of the command to edit the specific Resident. Since the handler for the information was similar for the 
+information of the command to edit the specific Resident. Since the handler for the information was similar for the
 filter feature, a new general ```ResidentDescriptor``` class was created which is used for both the edit and filter
 features.
 
@@ -359,7 +359,7 @@ is a new field added for the ```Resident```.
 
 There is a specifier after the filter keyword in the command that is used to select whether all or any of
 the fields should match the residents' information in the database. A ```FilterSpecifier``` class is  used to
-represent the specifier as a wrapper to make the transferring of the specifier across classes easier and less 
+represent the specifier as a wrapper to make the transferring of the specifier across classes easier and less
 prone to errors.
 
 <br>
@@ -367,7 +367,7 @@ prone to errors.
 #### Creating new predicate classes for filter
 
 In order to check if the ```Resident``` objects passes matching the filter instructed by the user, a class
-implementing the ```Predicate``` class needs to be created to handle this. Thus, two new classes 
+implementing the ```Predicate``` class needs to be created to handle this. Thus, two new classes
 ```AttributesMatchAllKeywords``` and ```AttributesMatchAnyKeyword``` hae been implemented to handle the logic of the
 filtering for each type of specifier. Through this implementation, even more specifiers can be added during later cycles
 of this project if required without any major restructuring of the initial classes created in this cycle.
@@ -379,14 +379,14 @@ of this project if required without any major restructuring of the initial class
 #### Considerations
 
 There was a choice to make the filter feature accept either only the exact string entered by the user or also
-accept a field that contains the filter attribute given by the user. It is clear that the filter command would be more 
+accept a field that contains the filter attribute given by the user. It is clear that the filter command would be more
 flexible id the contains option is implemented as the user can use a prefix or a suffix of the actual field to filter
 out residents. Thus, while keeping this advantage in mind, we have decided to make the filter feature accept fields
-that contain the attributes instead of having it exactly equal. 
+that contain the attributes instead of having it exactly equal.
 
 However, implementing contains for the tags feature may make the application a lot slower. It is not worth the cost
-considering that this additional benefit does not give our application a boost in usability. Thus, the substring 
-filtering has been omitted for the tags to accommodate for a faster filtering process. 
+considering that this additional benefit does not give our application a boost in usability. Thus, the substring
+filtering has been omitted for the tags to accommodate for a faster filtering process.
 
 <br>
 
@@ -729,16 +729,13 @@ Extensions:
 &ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
 &ensp; &emsp; &nbsp; Use case resumes at step 2.
 
-
 &ensp; 2b. User enters multiple specifiers i.e. both `/all` and `/any`. <br>
 &ensp; &emsp; &nbsp; 2b1. RC4HDB shows an error message. <br>
 &ensp; &emsp; &nbsp; Use case resumes at step 2.
 
-
 &ensp; 2c. User enters a category that does not exist. <br>
 &ensp; &emsp; &nbsp; 2c1. RC4HDB shows an error message. <br>
 &ensp; &emsp; &nbsp; Use case resumes at step 2.
-
 
 &ensp; 2d. User enters a value that does not exist in the category. <br>
 &ensp; &emsp; &nbsp; 2d1. RC4HDB shows an error message. <br>
@@ -836,7 +833,7 @@ MSS:
 
     Use case ends.
 
-<br> 
+<br>
 
 [comment]: <> (*{More to be added}*)
 
