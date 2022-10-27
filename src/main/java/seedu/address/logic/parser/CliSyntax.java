@@ -18,4 +18,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_LIST_TAG = new Prefix("-t");
     public static final Prefix PREFIX_LIST_DEADLINE = new Prefix("-d");
 
+    /* String definitions */
+    public static final String LIST_ALL_STRING = "-a";
+    public static final String LIST_UNMARKED_STRING = "-u";
+    public static final String LIST_MARKED_STRING = "-m";
+    public static final String LIST_MODULE_STRING = "--module";
+    public static final String LIST_TAG_STRING = "-t";
+    public static final String LIST_DEADLINE_STRING = "-d";
 }

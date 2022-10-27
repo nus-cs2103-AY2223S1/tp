@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST_MARKED;
@@ -79,7 +80,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         case ListTagCommand.COMMAND_WORD:
             return new ListTagCommandParser().getPredicate(keyword);
         default:
-            return PREDICATE_SHOW_ALL_PERSONS;
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }
