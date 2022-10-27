@@ -51,6 +51,19 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_clientWithWarning_correctCommandResultAndAddsToModel() throws CommandException {
+        ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
+        Client validClient = new ClientBuilder().build();
+
+        String warningMessage = "THIS IS A WARNING!";
+        CommandResult commandResult = new AddCommand(validClient, warningMessage).execute(modelStub);
+
+        assertEquals(String.format("WARNING!\n" + warningMessage + "\n" + AddCommand.MESSAGE_SUCCESS, validClient),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validClient), modelStub.clientsAdded);
+    }
+
+    @Test
     public void equals() {
         Client alice = new ClientBuilder().withName("Alice").build();
         Client bob = new ClientBuilder().withName("Bob").build();
@@ -72,6 +85,10 @@ public class AddCommandTest {
 
         // different client -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
+
+        // different warning message -> returns false
+        AddCommand addBobCommandCopy = new AddCommand(bob, "Different warning message!");
+        assertFalse(addBobCommandCopy.equals(addBobCommand));
     }
 
     /**
