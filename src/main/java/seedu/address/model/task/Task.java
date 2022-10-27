@@ -195,10 +195,8 @@ public class Task {
         return otherTask.getDescription().equals(getDescription())
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getCompletionStatus().equals(getCompletionStatus())
-<<<<<<< HEAD
                 && otherTask.getArchivalStatus().equals(getArchivalStatus())
-=======
->>>>>>> master
+
                 && otherTask.getTags().equals(getTags())
                 && otherTask.getId().equals(getId());
     }
@@ -214,13 +212,8 @@ public class Task {
         builder.append(getDescription())
                 .append("; Deadline: ")
                 .append(getDeadline())
-<<<<<<< HEAD
                 .append("; Completion Status: ")
-                .append(getCompletionStatus());
-=======
-                .append("; Status: ")
                 .append(getCompletionStatusForDisplay());
->>>>>>> master
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
