@@ -131,6 +131,8 @@ public class PersonCard extends UiPart<Region> {
                 File file = f.showOpenDialog(primaryStage);
                 if (file != null) { // only proceed, if file was chosen
                     String newImageUrl = file.toURI().toString();
+                    social.addUrl(newImageUrl);
+                    System.out.println(social.toString());
                     Image im = new Image(newImageUrl, false);
                     cir2.setFill(new ImagePattern(im));
                     try (Reader reader = new FileReader("data/addressbook.json")) {

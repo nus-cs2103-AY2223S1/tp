@@ -361,6 +361,8 @@ public class Social {
             builder.append(" ");
         }
         builder.append(preferred);
+        builder.append(" ");
+        builder.append(links[4]);
         return builder.toString();
     }
 }
