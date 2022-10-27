@@ -131,7 +131,6 @@ public class ModelManager implements Model {
     public void addStudent(Student student) {
         requireNonNull(student);
         taAssist.addStudent(student);
-        setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override

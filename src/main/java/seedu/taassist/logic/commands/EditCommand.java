@@ -5,7 +5,6 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.taassist.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -79,7 +78,6 @@ public class EditCommand extends Command {
         }
 
         model.setStudent(studentToEdit, editedStudent);
-        model.setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 
