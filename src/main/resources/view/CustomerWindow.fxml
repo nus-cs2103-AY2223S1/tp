@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.Region?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" resizable="false"
          xmlns:fx="http://javafx.com/fxml/1" width="720" height="450"
@@ -27,7 +28,7 @@
             </stylesheets>
 
             <ScrollPane maxWidth="720" maxHeight="450" fitToWidth="true" fitToHeight="true"
-                        styleClass="edge-to-edge">
+                        styleClass="edge-to-edge, addWindows">
             <BorderPane fx:id="customerContainer" style="-fx-background-color: #3C424B;">
                 <top>
                     <HBox style="-fx-background-color: #1E2229;">
@@ -44,22 +45,24 @@
                 </top>
                 <center>
                     <VBox spacing="12">
-                        <HBox fx:id="errorMessagePlaceholder" alignment="CENTER"/>
+                        <HBox fx:id="errorMessagePlaceholder" alignment="CENTER_LEFT">
+                            <minHeight>
+                                <!-- Ensures that the label text is never truncated -->
+                                <Region fx:constant="USE_PREF_SIZE" />
+                            </minHeight>
+                        </HBox>
                         <HBox>
-                            <Label text="Name" styleClass="addCommissionWindowLabel">
+                            <Label text="Name" styleClass="addCommissionWindowLabel" minWidth="118" maxWidth="118">
                                 <HBox.margin>
-                                    <Insets top ="10" right="68.0"/>
+                                    <Insets top="10"/>
                                 </HBox.margin>
                             </Label>
-                            <TextField fx:id="name" styleClass="addCommissionTextField" minWidth="500"/>
+                            <TextField fx:id="name" styleClass="addCommissionTextField"
+                                       minWidth="500" maxWidth="500"/>
                         </HBox>
 
                         <HBox>
-                            <Label text="Tags" styleClass="addCommissionWindowLabel">
-                                <HBox.margin>
-                                    <Insets right="78.0"/>
-                                </HBox.margin>
-                            </Label>
+                            <Label text="Tags" styleClass="addCommissionWindowLabel" minWidth="118" maxWidth="118"/>
                             <VBox minWidth="500" maxWidth="500">
                                 <ScrollPane maxWidth="500" maxHeight="200" fitToWidth="true" fitToHeight="true">
                                     <FlowPane fx:id="tags" styleClass="customerTags"/>
@@ -76,31 +79,25 @@
 
                         <HBox spacing="36">
                             <HBox>
-                                <Label text="Address" styleClass="addCommissionWindowLabel">
-                                    <HBox.margin>
-                                        <Insets right="50.0"/>
-                                    </HBox.margin>
-                                </Label>
-                                <TextField fx:id="address" styleClass="addCommissionTextField"/>
+                                <Label text="Email" styleClass="addCommissionWindowLabel"
+                                       minWidth="118" maxWidth="118"/>
+                                <TextField fx:id="email" styleClass="addCommissionTextField"
+                                           minWidth="200" maxWidth="200"/>
                             </HBox>
 
                             <HBox>
-                                <Label text="Phone" styleClass="addCommissionWindowLabel">
-                                    <HBox.margin>
-                                        <Insets right="20.0"/>
-                                    </HBox.margin>
-                                </Label>
-                                <TextField fx:id="phone" styleClass="addCommissionTextField"/>
+                                <Label text="Phone" styleClass="addCommissionWindowLabel"
+                                       minWidth="65" maxWidth="65"/>
+                                <TextField fx:id="phone" styleClass="addCommissionTextField"
+                                           minWidth="200" maxWidth="200"/>
                             </HBox>
                         </HBox>
 
                         <HBox>
-                            <Label text="Email" styleClass="addCommissionWindowLabel">
-                                <HBox.margin>
-                                    <Insets right="70.0"/>
-                                </HBox.margin>
-                            </Label>
-                            <TextField fx:id="email" styleClass="addCommissionTextField"/>
+                            <Label text="Address" styleClass="addCommissionWindowLabel"
+                                   minWidth="118" maxWidth="118"/>
+                            <TextField fx:id="address" styleClass="addCommissionTextField"
+                                       minWidth="500" maxWidth="500"/>
                         </HBox>
 
                         <BorderPane.margin>

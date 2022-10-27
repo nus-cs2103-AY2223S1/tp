@@ -13,10 +13,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.image.Image?>
-
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Region?>
+
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" resizable="false"
-         xmlns:fx="http://javafx.com/fxml/1" width="720" height="580"
+         xmlns:fx="http://javafx.com/fxml/1" width="740" height="600"
          onCloseRequest="#handleCloseIterationWindow">
     <icons>
         <Image url="@/images/art.png"/>
@@ -28,7 +29,7 @@
             </stylesheets>
 
             <ScrollPane maxWidth="720" maxHeight="580" fitToWidth="true" fitToHeight="true"
-                        styleClass="edge-to-edge">
+                        styleClass="edge-to-edge, addWindows">
             <BorderPane fx:id="iterationContainer" style="-fx-background-color: #3C424B;">
                 <top>
                     <HBox style="-fx-background-color: #1E2229;">
@@ -45,32 +46,34 @@
                 </top>
                 <center>
                     <VBox spacing="12">
-                        <HBox fx:id="errorMessagePlaceholder" alignment="CENTER"/>
+                        <HBox fx:id="errorMessagePlaceholder" alignment="CENTER_LEFT">
+                            <minHeight>
+                                <!-- Ensures that the label text is never truncated -->
+                                <Region fx:constant="USE_PREF_SIZE" />
+                            </minHeight>
+                        </HBox>
                         <HBox>
-                            <Label text="Date" styleClass="addCommissionWindowLabel">
+                            <Label text="Date" styleClass="addCommissionWindowLabel" minWidth="118" maxWidth="118">
                                 <HBox.margin>
-                                    <Insets top ="10" right="85.0"/>
+                                    <Insets top ="10"/>
                                 </HBox.margin>
                             </Label>
-                            <TextField fx:id="date" styleClass="addCommissionTextField" minWidth="500"/>
+                            <TextField fx:id="date" styleClass="addCommissionTextField"
+                                       minWidth="500" maxWidth="500"/>
                         </HBox>
 
                         <HBox>
-                            <Label text="Description" styleClass="addCommissionWindowLabel">
-                                <HBox.margin>
-                                    <Insets right="32.0"/>
-                                </HBox.margin>
-                            </Label>
-                            <TextField fx:id="description" styleClass="addCommissionTextField" minWidth="500"/>
+                            <Label text="Description" styleClass="addCommissionWindowLabel"
+                                   minWidth="118" maxWidth="118"/>
+                            <TextField fx:id="description" styleClass="addCommissionTextField"
+                                       maxWidth="500" minWidth="500"/>
                         </HBox>
 
                         <HBox>
-                            <Label text="Feedback" styleClass="addCommissionWindowLabel">
-                                <HBox.margin>
-                                    <Insets right="48.0"/>
-                                </HBox.margin>
-                            </Label>
-                            <TextField fx:id="feedback" styleClass="addCommissionTextField" minWidth="500"/>
+                            <Label text="Feedback" styleClass="addCommissionWindowLabel"
+                                   minWidth="118" maxWidth="118"/>
+                            <TextField fx:id="feedback" styleClass="addCommissionTextField"
+                                       maxWidth="500" minWidth="500"/>
                         </HBox>
 
                         <HBox spacing="56">

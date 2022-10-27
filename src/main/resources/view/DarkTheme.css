@@ -449,7 +449,6 @@
 .commandWindowErrorMessage {
     -fx-font-size: 16px;
     -fx-text-fill: #A7BAFF;
-    -fx-text-alignment: center;
     -fx-border-width: 2px;
     -fx-border-radius: 4px;
     -fx-border-color: #A7BAFF;
@@ -555,6 +554,10 @@
 }
 
 .windowScrollPane .viewport {
+    -fx-background-color: #3C424B;
+}
+
+.addWindows {
     -fx-background-color: #3C424B;
 }
 
