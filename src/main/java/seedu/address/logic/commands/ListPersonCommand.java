@@ -8,7 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Lists all existing people in Plannit to the user.
+ * Lists all existing person in Plannit to the user.
  */
 public class ListPersonCommand extends Command {
 
@@ -21,7 +21,7 @@ public class ListPersonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        boolean isNotAtHome = !model.getHomeStatus();
+        boolean isNotAtHome = !model.getHomeStatusAsBoolean();
 
         if (isNotAtHome) {
             throw new CommandException(Messages.MESSAGE_NOT_AT_HOMEPAGE);

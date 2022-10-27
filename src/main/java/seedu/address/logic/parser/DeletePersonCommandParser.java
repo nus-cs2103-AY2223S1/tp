@@ -20,21 +20,15 @@ public class DeletePersonCommandParser implements Parser<DeletePersonCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeletePersonCommand parse(String args) throws ParseException {
-        try {
-            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
-            boolean isPrefixNameAbsent = !arePrefixesPresent(argMultimap, PREFIX_NAME);
-            boolean isPreamblePresent = !argMultimap.getPreamble().isEmpty();
-            if (isPrefixNameAbsent || isPreamblePresent) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        DeletePersonCommand.MESSAGE_USAGE));
-            }
-
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            return new DeletePersonCommand(name);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeletePersonCommand.MESSAGE_USAGE), pe);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+        boolean isPrefixNameAbsent = !arePrefixesPresent(argMultimap, PREFIX_NAME);
+        boolean isPreamblePresent = !argMultimap.getPreamble().isEmpty();
+        if (isPrefixNameAbsent || isPreamblePresent) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeletePersonCommand.MESSAGE_USAGE));
         }
+
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        return new DeletePersonCommand(name);
     }
 }

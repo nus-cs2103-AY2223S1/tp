@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalModules.getTypicalModules;
+import static seedu.address.testutil.TypicalModules.getTypicalModulesWithAssociations;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 
 import seedu.address.model.AddressBook;
@@ -17,6 +18,21 @@ public class TypicalAddressBook {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Module module : getTypicalModules()) {
+            ab.addModule(module);
+        }
+        for (Person person : getTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical modules and person details, including
+     * the person-to-module associations.
+     */
+    public static AddressBook getTypicalAddressBookWithAssociations() {
+        AddressBook ab = new AddressBook();
+        for (Module module : getTypicalModulesWithAssociations()) {
             ab.addModule(module);
         }
         for (Person person : getTypicalPersons()) {

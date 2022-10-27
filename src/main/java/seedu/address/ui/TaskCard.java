@@ -33,12 +33,13 @@ public class TaskCard extends UiPart<Region> {
     private Label id;
 
     /**
-     * Creates a {@code TaskCode} with the given {@code Task} and index to display.
+     * Creates a {@code TaskCard} with the given {@code Task} and index to
+     * display.
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
-        id.setText(displayedIndex + ". ");
+        id.setText("Task " + displayedIndex + ": ");
         taskDescription.setText(task.getTaskDescription());
     }
 

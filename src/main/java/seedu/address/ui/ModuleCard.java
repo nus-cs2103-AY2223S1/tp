@@ -28,7 +28,6 @@ public class ModuleCard extends UiPart<Region> {
     private static final String LINK_HEADER_TEXT_WITH_SLASH = "https://";
     private static final String LINK_TEXT_COLOR = "-fx-text-fill: #FFCC66"; //Light Yellow
 
-
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved
      * keywords in JavaFX. As a consequence, UI elements' variable names
@@ -39,6 +38,9 @@ public class ModuleCard extends UiPart<Region> {
      */
 
     public final Module module;
+    public final ObservableList<Boolean> isOnHome;
+    private final NoLinksCard noLinksCard = new NoLinksCard();
+    private final NoTasksCard noTasksCard = new NoTasksCard();
 
     @FXML
     private HBox cardPane;
@@ -48,31 +50,41 @@ public class ModuleCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label moduleTitle;
-    @FXML
-    private FlowPane tasks;
-    @FXML
-    private FlowPane links;
-    // Independent UI parts
     private TaskListPanel taskListPanel;
     @FXML
     private StackPane taskListPanelPlaceholder;
+    @FXML
+    private FlowPane links;
 
     /**
      * Creates a {@code ModuleCode} with the given {@code Module} and index to
      * display.
      */
-    public ModuleCard(Module module, int displayedIndex) {
+    public ModuleCard(Module module, int displayedIndex,
+                      ObservableList<Boolean> isHomeStatus) {
         super(FXML);
         this.module = module;
         id.setText(displayedIndex + ". ");
         moduleCode.setText(module.getModuleCodeAsUpperCaseString());
         moduleTitle.setText(module.getModuleTitleAsUpperCaseString());
-        module.getLinks().stream()
-                .forEach(link -> links.getChildren()
-                        .add(createHyperLinkNode(link.linkName)));
-        ObservableList<Task> taskList = module.getTasks();
-        taskListPanel = new TaskListPanel(taskList);
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        Boolean hasLinksAdded = module.getLinks().size() > 0;
+        if (hasLinksAdded) {
+            module.getLinks().stream()
+                    .forEach(link -> links.getChildren()
+                            .add(createHyperLinkNode(link.linkName)));
+        } else {
+            links.getChildren().add(noLinksCard.getRoot());
+        }
+        isOnHome = isHomeStatus;
+        Boolean isNotOnHome = !isOnHome.get(0);
+        Boolean hasTasksAdded = module.getTasks().size() > 0;
+        if (isNotOnHome && hasTasksAdded) {
+            ObservableList<Task> taskList = module.getTasks();
+            taskListPanel = new TaskListPanel(taskList);
+            taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        } else if (isNotOnHome && !hasTasksAdded) {
+            taskListPanelPlaceholder.getChildren().add(noTasksCard.getRoot());
+        }
     }
 
     private static Hyperlink createHyperLinkNode(String linkUrl) {
@@ -109,6 +121,27 @@ public class ModuleCard extends UiPart<Region> {
         // state check
         ModuleCard card = (ModuleCard) other;
         return id.getText().equals(card.id.getText())
-                && module.equals(card.module);
+                && module.equals(card.module)
+                && isOnHome.equals(card.isOnHome);
+    }
+
+    /**
+     * Handles onClick event of a task list panel's card.
+     */
+    @FXML
+    public void handleClick() {
+        boolean isTaskListPanelChildless =
+                taskListPanelPlaceholder.getChildren().size() == 0;
+        boolean isTaskListEmpty = module.getTasks().size() == 0;
+
+        if (isTaskListPanelChildless && isTaskListEmpty) {
+            taskListPanelPlaceholder.getChildren().add(noTasksCard.getRoot());
+        } else if (isTaskListPanelChildless && !isTaskListEmpty) {
+            ObservableList<Task> taskList = module.getTasks();
+            taskListPanel = new TaskListPanel(taskList);
+            taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        } else if (!isTaskListPanelChildless) {
+            taskListPanelPlaceholder.getChildren().clear();
+        }
     }
 }
