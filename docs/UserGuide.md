@@ -116,7 +116,7 @@ Notes:
 
 ### Add new tutorial group : 
 
-- Command `tutorialAdd g/<tutorialGroup>`
+- Command `tutorial add g/<tutorialGroup>`
 - Adds the tutorial group with the name `tutorialGroup`
 
 
@@ -139,6 +139,16 @@ Notes:
 
 - Command `group roster n/<groupName>`
 - Displays a list of students enrolled in `groupName`.
+
+### Display user guide url :
+
+- Command `help me`
+- Shows a popup with the user guide url in it
+
+### Exit the app :
+
+- Command `Bye bye`
+- Exit and close the app
 
 _Details coming soon..._
 
@@ -171,22 +181,23 @@ _Details coming soon..._
 
 ## Command summary
 
-| Action                            | Format, Examples                                                                                     |
-|-----------------------------------|------------------------------------------------------------------------------------------------------|
-| **Add student**                   | `student add n/STUDENT_NAME` e.g. `student add n/James Ho`                                           |
-| **Remove student**                | `student remove n/STUDENT_NAME` e.g. `student remove n/James Ho`                                     |
-| **Rename student**                | `student rename n/OLD_STUDENT_NAME n/NEW_STUDENT_NAME` e.g. `student rename n/Janes Ho n/James Ho`   |
-| **List students**                 | `student list`                                                                                       |
-| **Add task**                      | `task add n/TASK_NAME` e.g. `task add n/Grade Mission 1`                                             |
-| **Remove task**                   | `task remove n/TASK_NAME` e.g. `task remove n/Grade Mission 1`                                       |
-| **Rename task**                   | `task rename n/OLD_TASK_NAME n/NEW_TASK_NAME` e.g. `task rename n/Grade Mission 1 n/Grade Mission 2` |
-| **Add deadline**                  | `task deadline n/TASK_NAME d/DEADLINE` e.g. `task deadline n/Grade Mission 2 d/2020-10-10`           |
-| **List tasks**                    | `task list`                                                                                          |
-| **Mark task**                     | `task mark i/TASK_NUMBER` e.g. `task mark i/1`                                                       |
-| **Unmark task**                   | `task unmark i/TASK_NUMBER` e.g. `task unmark i/1`                                                   |
-| **Assign task**                   | `task assign n/TASK_NAME n/STUDENT_NAME` e.g. `task assign n/Grade Mission 2 n/James Ho`             |
-| **Add tutorial group**            | `group add g/GROUP_NAME` e.g. `group add g/T01`                                                      |
-| **Remove tutorial group**         | `group remove g/GROUP_NAME` e.g. `group remove g/T01`                                                |
-| **Enrol student**                 | `group enrol n/GROUP_NAME n/STUDENT_NAME` e.g. `group enrol n/CS2103T n/James Ho`                    |
-| **Expel student**                 | `group expel n/GROUP_NAME n/STUDENT_NAME` e.g. `group expel n/CS2103T n/James Ho`                    |
-| **View student roster for group** | `group roster n/GROUP_NAME` e.g. `group roster n/CS2103T`                                            |
+| Action                            | Format, Examples                                                                                                                                                                 |
+|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add student**                   | `student add n/studentName p/phoneNumber e/email g/tutorialGroup(optional) t/tags(optional)` e.g. `student add n/James Ho p/98765432 e/a@gmail.com g/T03 t/yearTwo`              |
+| **Remove student**                | `student delete <index>` e.g. `student delete 1`                                                                                                                                 |
+| **Edit student**                  | `student edit <index> n/<studentName>(optional) p/<studentPhone>(optional) e/<studentEmail>(optional) g/<tutorialGroup>(optional) t/<tag>(optional)` e.g. `student edit 1 g/T05` |
+| **List students**                 | `student list`                                                                                                                                                                   |
+| **Add task**                      | `task add tn/<taskName> i/<taskDescription> d/<taskDeadline> s/<student(s)>(optional)` e.g. `task add tn/Grade Mission 1 i/Due Tomorrow d/10/12/2022 s/James Ho`                 |
+| **Remove task**                   | `task delete <index>` e.g. `task delete 1`                                                                                                                                       |
+| **Rename task**                   | `task edit <index> tn/<taskName>(optional) i/<taskDescription>(optional) d/<taskDeadline>(optional) s/<student(s)>(optional)` `e.g. task edit 1 d/11/12/2020`                    |
+| **List tasks**                    | `task list`                                                                                                                                                                      |
+| **Mark task**                     | `task mark i/TASK_NUMBER` e.g. `task mark i/1`                                                                                                                                   |
+| **Unmark task**                   | `task unmark i/TASK_NUMBER` e.g. `task unmark i/1`                                                                                                                               |
+| **Assign task**                   | `task assign n/TASK_NAME n/STUDENT_NAME` e.g. `task assign n/Grade Mission 2 n/James Ho`                                                                                         |
+| **Add tutorial group**            | `tutorial add g/<tutorialGroup>` e.g. `tutorial add g/T01`                                                                                                                       |
+| **Remove tutorial group**         | `tutorial delete g/<tutorialGroup>` e.g. `tutorial delete g/T01`                                                                                                                 |
+| **Enrol student**                 | `group enrol n/GROUP_NAME n/STUDENT_NAME` e.g. `group enrol n/CS2103T n/James Ho`                                                                                                |
+| **Expel student**                 | `group expel n/GROUP_NAME n/STUDENT_NAME` e.g. `group expel n/CS2103T n/James Ho`                                                                                                |
+| **View student roster for group** | `group roster n/GROUP_NAME` e.g. `group roster n/CS2103T`                                                                                                                        |
+| **Display the user guide url**    | `help me`                                                                                                                                                                        |
+| **Exit the app**                  | `bye bye`                                                                                                                                                                        |
