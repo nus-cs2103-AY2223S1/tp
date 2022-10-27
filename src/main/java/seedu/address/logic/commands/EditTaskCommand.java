@@ -185,7 +185,7 @@ public class EditTaskCommand extends Command {
         private String deadline;
 
         @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "", description =
-                FLAG_TASK_ASSIGNEES_DESCRIPTION)
+                FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
         private String[] assignees;
     }
 

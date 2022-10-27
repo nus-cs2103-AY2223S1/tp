@@ -13,7 +13,8 @@
   } ],
   "teams" : [
     {
-      "teamName" : "default"
+      "teamName" : "default",
+      "description" : "default group"
     }
   ]
 }

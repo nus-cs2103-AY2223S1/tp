@@ -220,6 +220,28 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Person> getFilteredMemberList() {
+        return addressBook.getTeam().getFilteredMemberList();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return addressBook.getTeam().getFilteredTaskList();
+    }
+
+    @Override
+    public void updateFilteredMembersList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        addressBook.getTeam().updateFilteredMembersList(predicate);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        addressBook.getTeam().updateFilteredTaskList(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

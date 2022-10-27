@@ -40,12 +40,12 @@ public class Task {
     /**
      * Deadline of the task.
      */
-    private LocalDateTime deadline;
+    private final LocalDateTime deadline;
 
     /**
      * Completion status of the task.
      */
-    private boolean completionStatus;
+    private final boolean completionStatus;
 
     /**
      * Constructs a {@code Task}.
@@ -143,8 +143,16 @@ public class Task {
         return name.hashCode();
     }
 
-    public void assignTo(Person assignee) {
+    /**
+     * Assigns a Task to a person and returns a new Task
+     */
+    public Task assignTo(Person assignee) {
+        String name = getName();
         assignees.add(assignee);
+        List<Person> newAssignees = getAssigneesList();
+        boolean completionStatus = isComplete();
+        LocalDateTime date = this.deadline;
+        return new Task(name, newAssignees, completionStatus, date);
     }
 
     /**
@@ -157,12 +165,26 @@ public class Task {
         return this.assignees.contains(assignee);
     }
 
-    public void setDeadline(LocalDateTime date) {
-        this.deadline = date;
+    /**
+     * Set a new deadline and returns a new Task with that deadline
+     */
+    public Task setDeadline(LocalDateTime date) {
+        String name = getName();
+        List<Person> assignees = getAssigneesList();
+        boolean completionStatus = isComplete();
+        LocalDateTime newDate = date;
+        return new Task(name, assignees, completionStatus, newDate);
     }
 
-    public void mark(boolean completionStatus) {
-        this.completionStatus = completionStatus;
+    /**
+     * Marks a Task and returns a new Task
+     */
+    public Task mark(boolean completionStatus) {
+        String name = getName();
+        List<Person> assignees = getAssigneesList();
+        boolean newCompletionStatus = completionStatus;
+        LocalDateTime date = this.deadline;
+        return new Task(name, assignees, newCompletionStatus, date);
     }
 
     public boolean isComplete() {

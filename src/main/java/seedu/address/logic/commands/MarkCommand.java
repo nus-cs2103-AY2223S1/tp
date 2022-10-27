@@ -50,14 +50,19 @@ public class MarkCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Task> taskList = model.getTeam().getTaskList();
+        List<Task> taskList = model.getFilteredTaskList();
         if (taskIndex.getZeroBased() >= taskList.size()) {
             throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex.getOneBased()));
         }
         if (taskList.get(taskIndex.getZeroBased()).isComplete()) {
             throw new CommandException(MESSAGE_ALREADY_MARKED);
         }
-        taskList.get(taskIndex.getZeroBased()).mark(true);
+
+        Task originalTask = taskList.get(taskIndex.getZeroBased());
+        Task markedTask = originalTask.mark(true);
+
+        model.getTeam().setTask(originalTask, markedTask);
+
         return new CommandResult(String.format(MESSAGE_MARK_SUCCESS,
                 taskList.get(taskIndex.getZeroBased()).getName()));
     }

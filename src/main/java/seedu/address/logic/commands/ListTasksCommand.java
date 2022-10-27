@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_FILTER_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INCOMPLETE_TASKS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INCOMPLETE_TASKS_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INCOMPLETE_TASK_DESCRIPTION;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.model.team.TaskList.NO_TASKS;
 
 import picocli.CommandLine;
@@ -52,6 +53,7 @@ public class ListTasksCommand extends Command {
         }
 
         if ((isComplete == isIncomplete)) {
+            model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
             return new CommandResult(String.format(MESSAGE_LIST_TASK_SUCCESS, tasks));
         } else if (isComplete) {
             return new CommandResult(String.format(MESSAGE_LIST_TASK_SUCCESS, completedTasks));

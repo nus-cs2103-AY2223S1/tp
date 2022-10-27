@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.TeamPredicate;
 
 
 /**
@@ -40,11 +40,9 @@ public class ListMembersCommand extends Command {
         }
         requireNonNull(model);
 
-        TeamPredicate predicate = new TeamPredicate(model.getTeam());
-
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredMembersList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredMemberList().size()));
     }
 
     @Override

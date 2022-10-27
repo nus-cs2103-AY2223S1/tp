@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_INDEX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_NAME_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +42,7 @@ public class AssignTaskCommand extends Command {
     @CommandLine.Parameters(arity = "1", description = FLAG_MEMBER_INDEX_DESCRIPTION)
     private Index taskIndex;
 
-    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true,
+    @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, required = true,
             description = FLAG_MEMBER_NAME_DESCRIPTION)
     private String[] assignees;
 
@@ -62,7 +62,7 @@ public class AssignTaskCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Task> taskList = model.getTeam().getTaskList();
+        List<Task> taskList = model.getFilteredTaskList();
         if (taskIndex.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
@@ -90,7 +90,10 @@ public class AssignTaskCommand extends Command {
             }
         }
         for (Person assignee : assigneePersonList) {
-            taskList.get(taskIndex.getZeroBased()).assignTo(assignee);
+            Task originalTask = taskList.get(taskIndex.getZeroBased());
+            Task newTask = originalTask.assignTo(assignee);
+
+            model.getTeam().setTask(originalTask, newTask);
         }
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,
                 taskList.get(taskIndex.getZeroBased())));

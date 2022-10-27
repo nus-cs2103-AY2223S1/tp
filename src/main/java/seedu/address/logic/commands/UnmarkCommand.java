@@ -47,14 +47,18 @@ public class UnmarkCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Task> taskList = model.getTeam().getTaskList();
+        List<Task> taskList = model.getFilteredTaskList();
         if (taskIndex.getZeroBased() >= taskList.size()) {
             throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex.getOneBased()));
         }
         if (!taskList.get(taskIndex.getZeroBased()).isComplete()) {
             throw new CommandException(MESSAGE_ALREADY_UNMARKED);
         }
-        taskList.get(taskIndex.getZeroBased()).mark(false);
+        Task originalTask = taskList.get(taskIndex.getZeroBased());
+        Task unmarkedTask = originalTask.mark(false);
+
+        model.getTeam().setTask(originalTask, unmarkedTask);
+
         return new CommandResult(String.format(MESSAGE_MARK_SUCCESS,
                 taskList.get(taskIndex.getZeroBased()).getName()));
     }

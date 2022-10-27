@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_DESCRIPTION_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
 
@@ -28,11 +27,11 @@ public class AddTeamCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a new team \n"
             + "Parameters: "
-            + FLAG_NAME_STR + " TEAM_NAME "
+            + " TEAM_NAME "
             + "[" + FLAG_DESCRIPTION_STR + " TEAM_DESCRIPTION] \n"
             + "Example:\n"
             + "1. " + COMMAND_WORD + " "
-            + FLAG_NAME_STR + " CS2103T "
+            + "CS2103T "
             + FLAG_DESCRIPTION_STR + " \"A team to manage CS2103T\"\n"
             + "2. " + COMMAND_WORD + " "
             + FLAG_NAME_STR + " CS2102 ";
@@ -41,8 +40,7 @@ public class AddTeamCommand extends Command {
 
     public static final String MESSAGE_TEAM_EXISTS = "There is already an existing team with the same name!";
 
-    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true,
-            description = FLAG_TEAM_NAME_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)
     private String teamName;
 
     @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG}, defaultValue =

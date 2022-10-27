@@ -286,6 +286,25 @@ Examples:
 
 - `delete link 1`
 
+### Find members : `find member`
+Finds all members in the current team by name or by email and displays them in the member list.
+
+Format:
+* `find member [-n MEMBER_NAME] [-e MEMBER_EMAIL]`
+
+Examples
+* `find member -n Alex`
+* `find member -e alexyeoh`
+
+### Find tasks : `find task`
+Find all tasks in the current team by name and displays them in the task list.
+
+Format:
+* `find task -n TASK_NAME`
+
+Examples
+* `find task -n User Guide`
+
 ### Clearing all entries : `clear`
 
 Deletes all the people from the application.

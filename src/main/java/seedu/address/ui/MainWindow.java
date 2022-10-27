@@ -142,7 +142,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        teamDetailsPanel = new TeamDetailsPanel(logic.getTeamAsProperty(), resultDisplay);
+        teamDetailsPanel = new TeamDetailsPanel(logic, logic.getTeamAsProperty(), resultDisplay);
         teamDetailsCardPlaceHolder.getChildren().add(teamDetailsPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());

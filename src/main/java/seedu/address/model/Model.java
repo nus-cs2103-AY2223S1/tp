@@ -18,7 +18,7 @@ import seedu.address.model.team.Team;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     Predicate<Link> PREDICATE_SHOW_ALL_LINKS = unused -> true;
 
     /** Replaces user prefs data with the data in {@code userPrefs}. */
@@ -96,6 +96,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+    ObservableList<Person> getFilteredMemberList();
+
+    ObservableList<Task> getFilteredTaskList();
+    void updateFilteredMembersList(Predicate<Person> predicate);
+
+    void updateFilteredTaskList(Predicate<Task> predicate);
 
     ObjectProperty<Team> getTeamAsProperty();
 

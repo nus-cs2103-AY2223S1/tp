@@ -53,7 +53,7 @@ public class AssignTaskRandomlyCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Task> tasks = model.getTeam().getTaskList();
+        List<Task> tasks = model.getFilteredTaskList();
         List<Person> members = model.getTeam().getTeamMembers();
 
         if (taskIndex.getZeroBased() >= tasks.size()) {
@@ -73,7 +73,11 @@ public class AssignTaskRandomlyCommand extends Command {
         Random random = new Random();
         Person assignee = unassignedMembers.get(random.nextInt(unassignedMembers.size()));
 
-        model.getTeam().assignTask(tasks.get(taskIndex.getZeroBased()), assignee);
+        Task originalTask = tasks.get(taskIndex.getZeroBased());
+        Task newTask = originalTask.assignTo(assignee);
+
+        model.getTeam().setTask(originalTask, newTask);
+
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,
                 tasks.get(taskIndex.getZeroBased()).getName(), assignee.getName()));
     }

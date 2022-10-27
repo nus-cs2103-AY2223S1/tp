@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -64,7 +66,9 @@ public class SetTeamCommand extends Command {
         }
         Team existingTeam = teamList.get(teamIndex);
         model.setTeam(existingTeam);
-        return new CommandResult(String.format(MESSAGE_SET_TEAM_SUCCESS, existingTeam));
+        model.updateFilteredMembersList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        return new CommandResult(String.format(MESSAGE_SET_TEAM_SUCCESS, targetTeam));
     }
 
     @Override
