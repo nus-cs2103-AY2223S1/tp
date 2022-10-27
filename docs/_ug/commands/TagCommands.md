@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-Example of [Tag](#tag):
+Example of a [Tag](#tag):
 
 ![Tags](images/TagImage.png)
 

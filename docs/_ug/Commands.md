@@ -14,7 +14,7 @@ What you should expect to find:
 
 * For each command, "Format" indicates the syntax of the command.
 * Square brackets indicates an optional parameter.
-* In most commands, if more parameters are provided, we take the last value provided.
+* In most commands, if the same parameter is repeated and only one is required, we take the last value provided.
 
 ### General Commands
 

@@ -1,23 +1,21 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-Thank you for choosing FoodRem! We are delighted to have you as a user and aim to serve you well.
+Thank you for choosing FoodRem! We are delighted to have you as a user and we aim to serve you and your business well!
 
-We **highly recommend** that you read through the User Guide in a **sequential order** up until the section [Features](#features), where you can find all the information you need before using any commands.
+```tip
+We **highly recommend** that you read through the User Guide in a **sequential order**. Please note the importance of the [Using FoodRem](#using-foodrem) section, which covers how to use FoodRem!
+```
 
 If you have not installed FoodRem head over to the [Installation](#installation) section.
 
-Once FoodRem is installed, you can head over to the section [Using FoodRem](#using-foodrem) which will share with you the basics of FoodRem. This includes:
+Once FoodRem is installed, you can head over to the section [Using FoodRem](#using-foodrem) which covers the basics of using FoodRem. This includes:
 
-* FoodRem [Layout](#layout)
-* [Items and Tags](#items-and-tags) in FoodRem
-* FoodRem [Command Format](#command-format).
-* [Flags](#flags) and [Placeholders](#placeholders):
-  * Important syntax you will come across while reading the User Guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
-  * The description of all syntax and how to use them
-* [Trying out](#trying-your-first-command) your first command.
+* FoodRem's [Layout](#layout)
+* What [Items and Tags](#items-and-tags) are in FoodRem
+* Using FoodRem's [Commands](#command-format)
+* What [Flags](#flags) and [Placeholders](#placeholders) are
+* [Trying out](#trying-your-first-command) your first command
 
-If you are an experienced user, you can refer to the [Command Summary](#command-summary) to get an overview of all currently supported FoodRem commands.
-
-Here are some icons you may encounter in FoodRem and what they mean:
+If you are an experienced user, you can refer to the [Command Summary](#command-summary) for a quick overview of all of FoodRem's commands.
 
 If you are stuck, refer to the section on [Troubleshooting](#troubleshooting) or [FAQ](#faq).
 

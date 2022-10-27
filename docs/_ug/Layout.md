@@ -1,15 +1,15 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
 <!-- TODO: Update UI Images after UI updates are implemented -->
-Let us look at the layout of the different components of FoodRem.
+When you launch FoodRem, FoodRem appears on your screen as a [Graphical User Interface](#glossary-{{ 'Graphical User Interface' | slugify }}), or GUI. Let's look at the layout of the different components of FoodRem.
 
-FoodRem application:
+**FoodRem's GUI:**
 
 ![FullUiImage](images/FoodRemFullUi.png)
 
-This table breaks down the different components of the FoodRem.
+This table breaks down the different components of FoodRem's GUI.
 
-| Name               | Description                                      |
+| Name               | Image                                            |
 |--------------------|--------------------------------------------------|
 | Command Input Box  | ![CommandInputBox](images/CommandInputBox.png)   |
 | Command Output Box | ![CommandOutputBox](images/CommandOutputBox.png) |
