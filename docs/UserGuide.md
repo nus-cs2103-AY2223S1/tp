@@ -196,6 +196,30 @@ view g/female ra/chinese re/christian
 > Jenette Doe 81234567 jenette_doe@example.com, …
 ```
 
+### Append to a person: `append`
+
+Append surveys or tags to the person identified by the index number in the command.
+
+Format: `INDEX [s/SURVEYS]... [t/TAGS]...`
+
+- At least one of the optional fields has to be provided.
+- Able to append multiple surveys and tags in a single command.
+- Fields must be non-empty.
+
+Example: `append 1 s/Food Survey s/Environment Survey t/friend t/student`
+
+### Unappend from a person: `unappend`
+
+Unappend surveys or tags from the person identified by the index number in the command.
+
+Format: `INDEX [s/SURVEYS]... [t/TAGS]...`
+
+- At least one of the optional fields has to be provided.
+- Able to unappend multiple surveys and tags in a single command.
+- Fields must be non-empty.
+
+Example: `unappend 1 s/Food Survey s/Environment Survey t/friend t/student`
+
 ### Change theme : `theme`
 
 Changes the theme of the app. Only "light" or "dark".
