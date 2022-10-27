@@ -10,7 +10,7 @@ import paymelah.model.Model;
 import paymelah.model.ModelManager;
 import paymelah.model.UserPrefs;
 import paymelah.model.person.PersonMatchesDescriptorPredicate;
-import paymelah.testutil.PersonDescriptorBuilder;
+import paymelah.testutil.DebtsDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -37,7 +37,7 @@ class StatementCommandTest {
     public void execute_statementOnFilteredList_success() {
         String expectedMessage = String.format(StatementCommand.MESSAGE_SUCCESS, "9.00");
         PersonMatchesDescriptorPredicate predicate = new PersonMatchesDescriptorPredicate(
-                new PersonDescriptorBuilder().withDescriptions("supper jio").build());
+                new DebtsDescriptorBuilder().withDescriptions("supper jio").build());
         model.updateFilteredPersonList(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(new StatementCommand(), model, expectedMessage, expectedModel);

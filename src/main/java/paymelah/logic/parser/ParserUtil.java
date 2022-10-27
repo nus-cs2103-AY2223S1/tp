@@ -1,7 +1,11 @@
 package paymelah.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static paymelah.logic.parser.CliSyntax.PREFIX_ABOVE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static paymelah.logic.parser.CliSyntax.PREFIX_AFTER;
+import static paymelah.logic.parser.CliSyntax.PREFIX_BEFORE;
+import static paymelah.logic.parser.CliSyntax.PREFIX_BELOW;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
@@ -24,6 +28,7 @@ import java.util.stream.Stream;
 import paymelah.commons.core.index.Index;
 import paymelah.commons.util.CollectionUtil;
 import paymelah.commons.util.StringUtil;
+import paymelah.logic.commands.FindCommand.DebtsDescriptor;
 import paymelah.logic.parser.exceptions.ParseException;
 import paymelah.model.debt.DebtDate;
 import paymelah.model.debt.DebtTime;
@@ -353,26 +358,55 @@ public class ParserUtil {
         PersonDescriptor personDescriptor = new PersonDescriptor();
 
         if (argumentMultimap.getValue(PREFIX_NAME).isPresent()) {
-            personDescriptor.setName(ParserUtil.parseName(argumentMultimap.getValue(PREFIX_NAME).get()));
+            personDescriptor.setName(parseName(argumentMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argumentMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            personDescriptor.setPhone(ParserUtil.parsePhone(argumentMultimap.getValue(PREFIX_PHONE).get()));
+            personDescriptor.setPhone(parsePhone(argumentMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argumentMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
-            personDescriptor.setTelegram(ParserUtil.parseTelegram(argumentMultimap.getValue(PREFIX_TELEGRAM).get()));
+            personDescriptor.setTelegram(parseTelegram(argumentMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
         if (argumentMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            personDescriptor.setAddress(ParserUtil.parseAddress(argumentMultimap.getValue(PREFIX_ADDRESS).get()));
+            personDescriptor.setAddress(parseAddress(argumentMultimap.getValue(PREFIX_ADDRESS).get()));
         }
 
         parseTagsForDescriptor(argumentMultimap.getAllValues(PREFIX_TAG)).ifPresent(personDescriptor::setTags);
-        parseDescriptionsForDescriptor(argumentMultimap.getAllValues(PREFIX_DESCRIPTION))
-                .ifPresent(personDescriptor::setDescriptions);
-        parseMoniesForDescriptor(argumentMultimap.getAllValues(PREFIX_MONEY)).ifPresent(personDescriptor::setMonies);
-        parseDatesForDescriptor(argumentMultimap.getAllValues(PREFIX_DATE)).ifPresent(personDescriptor::setDates);
-        parseTimesForDescriptor(argumentMultimap.getAllValues(PREFIX_TIME)).ifPresent(personDescriptor::setTimes);
 
         return personDescriptor;
+    }
+
+    /**
+     * Reads the given {@code ArgumentMultimap} to create a {@code DebtsDescriptor}.
+     * @param argumentMultimap the {@code ArgumentMultimap} to read values from
+     * @return the created {@code DebtsDescriptor}
+     * @throws ParseException if a prefix cannot be parsed
+     */
+    public static DebtsDescriptor argumentMultimapToDebtsDescriptor(ArgumentMultimap argumentMultimap)
+            throws ParseException {
+        DebtsDescriptor debtsDescriptor = new DebtsDescriptor();
+
+        parseDescriptionsForDescriptor(argumentMultimap.getAllValues(PREFIX_DESCRIPTION))
+                .ifPresent(debtsDescriptor::setDescriptions);
+
+        parseMoniesForDescriptor(argumentMultimap.getAllValues(PREFIX_MONEY)).ifPresent(debtsDescriptor::setMonies);
+        if (argumentMultimap.getValue(PREFIX_ABOVE).isPresent()) {
+            debtsDescriptor.setAbove(parseMoney(argumentMultimap.getValue(PREFIX_ABOVE).get()));
+        }
+        if (argumentMultimap.getValue(PREFIX_BELOW).isPresent()) {
+            debtsDescriptor.setBelow(parseMoney(argumentMultimap.getValue(PREFIX_BELOW).get()));
+        }
+
+        parseDatesForDescriptor(argumentMultimap.getAllValues(PREFIX_DATE)).ifPresent(debtsDescriptor::setDates);
+        if (argumentMultimap.getValue(PREFIX_BEFORE).isPresent()) {
+            debtsDescriptor.setBefore(parseDate(argumentMultimap.getValue(PREFIX_BEFORE).get()));
+        }
+        if (argumentMultimap.getValue(PREFIX_AFTER).isPresent()) {
+            debtsDescriptor.setAfter(parseDate(argumentMultimap.getValue(PREFIX_AFTER).get()));
+        }
+
+        parseTimesForDescriptor(argumentMultimap.getAllValues(PREFIX_TIME)).ifPresent(debtsDescriptor::setTimes);
+
+        return debtsDescriptor;
     }
 
     /**
@@ -386,7 +420,7 @@ public class ParserUtil {
         }
 
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        return Optional.of(parseTags(tagSet));
     }
 
     /**
@@ -400,7 +434,7 @@ public class ParserUtil {
         if (descriptions.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(ParserUtil.parseDescriptions(descriptions));
+        return Optional.of(parseDescriptions(descriptions));
     }
 
     /**
@@ -412,7 +446,7 @@ public class ParserUtil {
         if (monies.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(ParserUtil.parseMonies(monies));
+        return Optional.of(parseMonies(monies));
     }
 
     /**
@@ -424,7 +458,7 @@ public class ParserUtil {
         if (dates.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(ParserUtil.parseDates(dates));
+        return Optional.of(parseDates(dates));
     }
 
     /**
@@ -436,7 +470,7 @@ public class ParserUtil {
         if (times.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(ParserUtil.parseTimes(times));
+        return Optional.of(parseTimes(times));
     }
 
     /**
@@ -448,10 +482,6 @@ public class ParserUtil {
         private Telegram telegram;
         private Address address;
         private Set<Tag> tags;
-        private Set<Description> descriptions;
-        private Set<Money> monies;
-        private Set<DebtDate> dates;
-        private Set<DebtTime> times;
 
         public PersonDescriptor() {}
 
@@ -465,18 +495,13 @@ public class ParserUtil {
             setTelegram(toCopy.telegram);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
-            setDescriptions(toCopy.descriptions);
-            setMonies(toCopy.monies);
-            setDates(toCopy.dates);
-            setTimes(toCopy.times);
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Returns true if at least one field is set.
          */
         public boolean isAnyFieldSet() {
-            return CollectionUtil.isAnyNonNull(name, phone, telegram, address,
-                                                tags, descriptions, monies, dates, times);
+            return CollectionUtil.isAnyNonNull(name, phone, telegram, address, tags);
         }
 
         public void setName(Name name) {
@@ -528,74 +553,6 @@ public class ParserUtil {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        /**
-         * Sets {@code descriptions} to this object's {@code descriptions}.
-         * A defensive copy of {@code descriptions} is used internally.
-         */
-        public void setDescriptions(Set<Description> descriptions) {
-            this.descriptions = (descriptions != null) ? new HashSet<>(descriptions) : null;
-        }
-
-        /**
-         * Returns an unmodifiable description set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code descriptions} is null.
-         */
-        public Optional<Set<Description>> getDescriptions() {
-            return (descriptions != null) ? Optional.of(Collections.unmodifiableSet(descriptions)) : Optional.empty();
-        }
-
-        /**
-         * Sets {@code monies} to this object's {@code monies}.
-         * A defensive copy of {@code monies} is used internally.
-         */
-        public void setMonies(Set<Money> monies) {
-            this.monies = (monies != null) ? new HashSet<>(monies) : null;
-        }
-
-        /**
-         * Returns an unmodifiable money set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code monies} is null.
-         */
-        public Optional<Set<Money>> getMonies() {
-            return (monies != null) ? Optional.of(Collections.unmodifiableSet(monies)) : Optional.empty();
-        }
-
-        /**
-         * Sets {@code dates} to this object's {@code dates}.
-         * A defensive copy of {@code dates} is used internally.
-         */
-        public void setDates(Set<DebtDate> dates) {
-            this.dates = (dates != null) ? new HashSet<>(dates) : null;
-        }
-
-        /**
-         * Returns an unmodifiable date set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code dates} is null.
-         */
-        public Optional<Set<DebtDate>> getDates() {
-            return (dates != null) ? Optional.of(Collections.unmodifiableSet(dates)) : Optional.empty();
-        }
-
-        /**
-         * Sets {@code times} to this object's {@code times}.
-         * A defensive copy of {@code times} is used internally.
-         */
-        public void setTimes(Set<DebtTime> times) {
-            this.times = (times != null) ? new HashSet<>(times) : null;
-        }
-
-        /**
-         * Returns an unmodifiable time set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code times} is null.
-         */
-        public Optional<Set<DebtTime>> getTimes() {
-            return (times != null) ? Optional.of(Collections.unmodifiableSet(times)) : Optional.empty();
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -615,11 +572,7 @@ public class ParserUtil {
                     && getPhone().equals(pd.getPhone())
                     && getTelegram().equals(pd.getTelegram())
                     && getAddress().equals(pd.getAddress())
-                    && getTags().equals(pd.getTags())
-                    && getDescriptions().equals(pd.getDescriptions())
-                    && getMonies().equals(pd.getMonies())
-                    && getDates().equals(pd.getDates())
-                    && getTimes().equals(pd.getTimes());
+                    && getTags().equals(pd.getTags());
         }
     }
 }

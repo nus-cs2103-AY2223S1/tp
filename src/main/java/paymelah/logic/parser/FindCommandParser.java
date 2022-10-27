@@ -14,6 +14,7 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
+import static paymelah.logic.parser.ParserUtil.argumentMultimapToDebtsDescriptor;
 import static paymelah.logic.parser.ParserUtil.argumentMultimapToPersonDescriptor;
 
 import paymelah.logic.commands.FindCommand;
@@ -43,11 +44,12 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         PersonDescriptor personDescriptor = argumentMultimapToPersonDescriptor(argMultimap);
+        FindCommand.DebtsDescriptor debtsDescriptor = argumentMultimapToDebtsDescriptor(argMultimap);
 
-        if (!personDescriptor.isAnyFieldSet()) {
+        if (!personDescriptor.isAnyFieldSet() && !debtsDescriptor.isAnyFieldSet()) {
             throw new ParseException(FindCommand.MESSAGE_NO_KEYWORDS);
         }
 
-        return new FindCommand(new PersonMatchesDescriptorPredicate(personDescriptor));
+        return new FindCommand(new PersonMatchesDescriptorPredicate(personDescriptor, debtsDescriptor));
     }
 }
