@@ -7,7 +7,7 @@ import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.DeleteCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

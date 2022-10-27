@@ -40,7 +40,7 @@ public class UniqueResidentList implements Iterable<Resident> {
      * Adds a resident to the list.
      * The resident must not already exist in the list.
      */
-    public void add(Resident toAdd) {
+    public void add(Resident toAdd) throws DuplicateResidentException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateResidentException();

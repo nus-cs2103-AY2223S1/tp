@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand;
 import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 

@@ -3,7 +3,7 @@ package seedu.rc4hdb.testutil;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand;
 
 /**
  * Utility class for testing column manipulator command parsers.

@@ -22,7 +22,13 @@ import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.resident.fields.Tag;
+import seedu.rc4hdb.model.venues.VenueName;
+import seedu.rc4hdb.model.venues.booking.fields.Day;
+import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 
+/**
+ * Unit tests for {@link ParserUtil}.
+ */
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
@@ -32,6 +38,9 @@ public class ParserUtilTest {
     private static final String INVALID_HOUSE = "Z";
     private static final String INVALID_MATRIC_NUMBER = "B0000000U";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_VENUE_NAME = "Meeting_Room";
+    private static final String INVALID_HOUR_PERIOD = "11-10";
+    private static final String INVALID_DAY = "Monday";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "91234567";
@@ -42,6 +51,9 @@ public class ParserUtilTest {
     private static final String VALID_MATRIC_NUMBER = "A0000000U";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_VENUE_NAME = "Discussion Room";
+    private static final String VALID_HOUR_PERIOD = "10-11";
+    private static final String VALID_DAY = "TuE";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -271,4 +283,74 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseVenueName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseVenueName(null));
+    }
+
+    @Test
+    public void parseVenueName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseVenueName(INVALID_VENUE_NAME));
+    }
+
+    @Test
+    public void parseVenueName_validValueWithoutWhitespace_returnsVenueName() throws Exception {
+        VenueName expectedVenueName = new VenueName(VALID_VENUE_NAME);
+        assertEquals(expectedVenueName, ParserUtil.parseVenueName(VALID_VENUE_NAME));
+    }
+
+    @Test
+    public void parseVenueName_validValueWithWhitespace_returnsTrimmedVenueName() throws Exception {
+        String venueNameWithWhitespace = WHITESPACE + VALID_VENUE_NAME + WHITESPACE;
+        VenueName expectedVenueName = new VenueName(VALID_VENUE_NAME);
+        assertEquals(expectedVenueName, ParserUtil.parseVenueName(venueNameWithWhitespace));
+    }
+
+    @Test
+    public void parseHourPeriod_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseHourPeriod(null));
+    }
+
+    @Test
+    public void parseHourPeriod_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseHourPeriod(INVALID_HOUR_PERIOD));
+    }
+
+    @Test
+    public void parseHourPeriod_validValueWithoutWhitespace_returnsVenueName() throws Exception {
+        HourPeriod expectedHourPeriod = new HourPeriod(VALID_HOUR_PERIOD);
+        assertEquals(expectedHourPeriod, ParserUtil.parseHourPeriod(VALID_HOUR_PERIOD));
+    }
+
+    @Test
+    public void parseHourPeriod_validValueWithWhitespace_returnsTrimmedVenueName() throws Exception {
+        String hourPeriodWithWhitespace = WHITESPACE + VALID_HOUR_PERIOD + WHITESPACE;
+        HourPeriod expectedHourPeriod = new HourPeriod(VALID_HOUR_PERIOD);
+        assertEquals(expectedHourPeriod, ParserUtil.parseHourPeriod(hourPeriodWithWhitespace));
+    }
+
+    @Test
+    public void parseDay_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDay(null));
+    }
+
+    @Test
+    public void parseDay_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDay(INVALID_DAY));
+    }
+
+    @Test
+    public void parseDay_validValueWithoutWhitespace_returnsVenueName() throws Exception {
+        Day expectedDay = new Day(VALID_DAY);
+        assertEquals(expectedDay, ParserUtil.parseDay(VALID_DAY));
+    }
+
+    @Test
+    public void parseDay_validValueWithWhitespace_returnsTrimmedVenueName() throws Exception {
+        String dayWithWhitespace = WHITESPACE + VALID_DAY + WHITESPACE;
+        Day expectedDay = new Day(VALID_DAY);
+        assertEquals(expectedDay, ParserUtil.parseDay(dayWithWhitespace));
+    }
+
 }

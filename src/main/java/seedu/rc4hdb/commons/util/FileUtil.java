@@ -17,6 +17,10 @@ public class FileUtil {
         return Files.exists(file) && Files.isRegularFile(file);
     }
 
+    public static boolean isFolderExists(Path file) {
+        return Files.exists(file) && Files.isDirectory(file);
+    }
+
     /**
      * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String, String...)},
      * otherwise returns false.
@@ -68,6 +72,15 @@ public class FileUtil {
     }
 
     /**
+     * Creates a file directory if it does not exist
+     */
+    public static void createDirIfMissing(Path folder) throws IOException {
+        if (!isFolderExists(folder)) {
+            Files.createDirectory(folder);
+        }
+    }
+
+    /**
      * Assumes file exists
      */
     public static String readFromFile(Path file) throws IOException {
@@ -79,6 +92,7 @@ public class FileUtil {
      * Will create the file if it does not exist yet.
      */
     public static void writeToFile(Path file, String content) throws IOException {
+        createParentDirsOfFile(file);
         Files.write(file, content.getBytes(CHARSET));
     }
 

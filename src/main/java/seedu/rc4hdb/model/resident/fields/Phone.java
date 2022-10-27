@@ -2,11 +2,13 @@ package seedu.rc4hdb.model.resident.fields;
 
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
+import seedu.rc4hdb.model.StringField;
+
 /**
  * Represents a Resident's phone number in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone extends ResidentField {
+public class Phone extends StringField implements ResidentField {
 
     public static final String IDENTIFIER = "Phone";
 
