@@ -248,7 +248,7 @@ Switches between different lists in InternConnect.
 
 Format: `checkout FILE_NAME`
 
-* New and existing lists will be stored at `data/file_name.json`
+* New and existing lists will be stored at `data/FILE_NAME.json`
 
 Examples:
 * `checkout 27-oct-2022` loads data from `data/27-oct-2022.json` if it exists. Otherwise, a new file will be created and populated with sample data.
