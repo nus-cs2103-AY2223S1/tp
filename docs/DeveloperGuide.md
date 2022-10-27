@@ -519,6 +519,10 @@ the tasks displayed in the UI via the `updateFilteredModuleList` method in the `
 The sequence diagram below details the interactions between the command and the model
 for the `ls mod` and `ls mod -a` commands:
 
+<img src="images/modulePUMLs/ListModule/ListingModuleSequenceDiagram.png" width="1000" />
+
+_Side note: We delegate parsing to JCommander which already has the command object registered_
+
 ### Tasks
 
 ### Task/Deadline Features
