@@ -1,6 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_LINK_NAME_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_LINK_URL_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
@@ -16,7 +21,7 @@ import seedu.address.model.team.Url;
 /**
  * Adds a new link to TruthTable.
  */
-@CommandLine.Command(name = "link", aliases = {"l"})
+@CommandLine.Command(name = "link", aliases = {"l"}, mixinStandardHelpOptions = true)
 public class AddLinkCommand extends Command {
     public static final String COMMAND_WORD = "add link";
 
@@ -33,17 +38,30 @@ public class AddLinkCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in team";
 
-    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true)
+    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true,
+            description = FLAG_LINK_NAME_DESCRIPTION)
     private Name name;
 
-    @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG}, required = true)
+    @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG}, required = true,
+            description = FLAG_LINK_URL_DESCRIPTION)
     private Url url;
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
 
     public AddLinkCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         Link toAdd = new Link(name, url);
 

@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
 
 import java.util.List;
 
@@ -13,7 +17,7 @@ import seedu.address.model.team.Task;
 /**
  * Marks a specified task as incomplete.
  */
-@CommandLine.Command(name = "unmark", aliases = {"u"})
+@CommandLine.Command(name = "unmark", aliases = {"u"}, mixinStandardHelpOptions = true)
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
@@ -27,14 +31,21 @@ public class UnmarkCommand extends Command {
             + "There are less than %1$s tasks in your list.";
     public static final String MESSAGE_ALREADY_UNMARKED = "This task has not been marked as done.";
 
-    @CommandLine.Parameters(arity = "1")
+    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index taskIndex;
 
-    public UnmarkCommand() {
-    }
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();
         if (taskIndex.getZeroBased() >= taskList.size()) {

@@ -3,8 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR_LONG;
-import static seedu.address.logic.parser.CliSyntax.FLAG_INDEX_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_INDEX_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_NAME_DESCRIPTION;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +23,7 @@ import seedu.address.model.team.Task;
 /**
  * Assigns a task to a specific member in the team.
  */
-@CommandLine.Command(name = "task", aliases = {"ta"})
+@CommandLine.Command(name = "task", aliases = {"ta"}, mixinStandardHelpOptions = true)
 public class AssignTaskCommand extends Command {
     public static final String COMMAND_WORD = "assign task";
 
@@ -30,23 +33,34 @@ public class AssignTaskCommand extends Command {
             + "Parameters: MEMBER_INDEX (must be a valid positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1" + " 2";
 
-    public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigned task succesfully. %1$s";
+    public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigned task successfully. %1$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This task has already been assigned to %1$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist."
             + "There are less than %1$s tasks in your list.";
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
 
-    @CommandLine.Option(names = {FLAG_INDEX_STR, FLAG_INDEX_STR_LONG}, required = true)
+    @CommandLine.Parameters(arity = "1", description = FLAG_MEMBER_INDEX_DESCRIPTION)
     private Index taskIndex;
 
-    @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, required = true, arity = "1..*")
+    @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, required = true,
+            description = FLAG_MEMBER_NAME_DESCRIPTION)
     private String[] assignees;
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
 
     public AssignTaskCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();
         if (taskIndex.getZeroBased() >= taskList.size()) {

@@ -3,9 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_COMPLETE_TASKS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_COMPLETE_TASKS_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_COMPLETE_TASK_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_FILTER_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INCOMPLETE_TASKS_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INCOMPLETE_TASKS_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_INCOMPLETE_TASK_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.model.team.TaskList.NO_TASKS;
 
@@ -17,7 +19,7 @@ import seedu.address.model.Model;
 /**
  * Lists all tasks of the current team.
  */
-@CommandLine.Command(name = "tasks", aliases = {"t"})
+@CommandLine.Command(name = "tasks", aliases = {"t"}, mixinStandardHelpOptions = true)
 public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "list tasks";
 
@@ -29,10 +31,12 @@ public class ListTasksCommand extends Command {
 
     public static final String MESSAGE_LIST_TASK_SUCCESS = "Tasks: \n%1$s";
 
-    @CommandLine.Option(names = {FLAG_COMPLETE_TASKS_STR, FLAG_COMPLETE_TASKS_STR_LONG})
+    @CommandLine.Option(names = {FLAG_COMPLETE_TASKS_STR, FLAG_COMPLETE_TASKS_STR_LONG},
+            description = FLAG_COMPLETE_TASK_DESCRIPTION)
     private Boolean isComplete;
 
-    @CommandLine.Option(names = {FLAG_INCOMPLETE_TASKS_STR, FLAG_INCOMPLETE_TASKS_STR_LONG})
+    @CommandLine.Option(names = {FLAG_INCOMPLETE_TASKS_STR, FLAG_INCOMPLETE_TASKS_STR_LONG}, description =
+            FLAG_INCOMPLETE_TASK_DESCRIPTION)
     private Boolean isIncomplete;
 
     public ListTasksCommand() {

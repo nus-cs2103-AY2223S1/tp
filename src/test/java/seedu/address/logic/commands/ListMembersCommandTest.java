@@ -15,6 +15,7 @@ import seedu.address.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListMembersCommand.
  */
+// TODO: Add implementation for tests
 public class ListMembersCommandTest {
 
     private Model model;
