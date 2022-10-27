@@ -1,5 +1,7 @@
 package seedu.address.model.appointment;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -24,6 +26,7 @@ public class Appointment {
      * @param dateTime The provided start date time
      */
     public Appointment(Patient patient, Nurse nurse, LocalDateTime dateTime) {
+        requireAllNonNull(patient, nurse, dateTime);
         this.patient = patient;
         this.nurse = nurse;
         this.startDateTime = dateTime;
