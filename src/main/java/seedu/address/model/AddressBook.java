@@ -224,6 +224,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns a {@code String} containing all tags for printing.
+     */
+    public String printTagsPrettily() {
+        return tags.toString();
+    }
+
+    /**
      * Returns the list of messages as an unmodifiable {@code UnmodifiableList}
      */
     @Override

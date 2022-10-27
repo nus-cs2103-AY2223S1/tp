@@ -86,6 +86,11 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Returns a {@code String} containing all tags for printing.
+     */
+    String printTagsPrettily();
+
+    /**
      * Returns true if the tag exists in the address book.
      */
     boolean hasTag(Tag tag);
