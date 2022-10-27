@@ -115,12 +115,12 @@ public class TypicalPersons {
     /**
      * Returns an {@code Database} with all the typical persons.
      */
-    public static Database getTypicalAddressBook() {
-        Database ab = new Database();
+    public static Database getTypicalDatabase() {
+        Database database = new Database();
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            database.addPerson(person);
         }
-        return ab;
+        return database;
     }
 
     public static List<Person> getTypicalPersons() {

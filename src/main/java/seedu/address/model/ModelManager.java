@@ -66,25 +66,25 @@ public class ModelManager implements Model {
 
     @Override
     public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getDatabaseFilePath();
     }
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setDatabaseFilePath(addressBookFilePath);
     }
 
     //=========== Database ================================================================================
 
     @Override
-    public ReadOnlyDatabase getAddressBook() {
+    public ReadOnlyDatabase getDatabase() {
         return database;
     }
 
     @Override
-    public void setAddressBook(ReadOnlyDatabase addressBook) {
-        this.database.resetData(addressBook);
+    public void setAddressBook(ReadOnlyDatabase database) {
+        this.database.resetData(database);
     }
 
     @Override

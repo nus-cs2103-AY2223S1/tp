@@ -49,7 +49,7 @@ public interface Model {
     /**
      * Returns the Database
      */
-    ReadOnlyDatabase getAddressBook();
+    ReadOnlyDatabase getDatabase();
 
     /**
      * Replaces address book data with the data in {@code addressBook}.

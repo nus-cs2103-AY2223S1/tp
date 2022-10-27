@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyDatabase getAddressBook() {
+        public ReadOnlyDatabase getDatabase() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -185,7 +185,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyDatabase getAddressBook() {
+        public ReadOnlyDatabase getDatabase() {
             return new Database();
         }
 
