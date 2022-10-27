@@ -33,7 +33,7 @@
     -fx-padding: 0 0 0 1;
 }
 
-.tab-pane .tab-header-area {
+.tab-pane .tab-h#resultDisplay {
     -fx-padding: 0 0 0 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
@@ -114,24 +114,22 @@
 .item-card {
     -fx-background-color: #fffae5;
     -fx-text-fill: black;
+    -fx-background-radius: 10px;
 }
 
-.list-cell:filled:even {
+.list-cell:filled {
     -fx-background-color: #ffb238;
     -fx-padding: 5px;
     -fx-background-insets: 5px;
+    -fx-background-radius: 10px;
 }
 
-.list-cell:filled:odd {
-    -fx-background-color: #ffb238;
-    -fx-padding: 5px;
-    -fx-background-insets: 5px;
-}
-
-.list-cell:filled:selected #cardPane{
+.list-cell:filled:selected #cardPane {
     -fx-background-color: #ff9d5b;
     -fx-border-width: 1;
     -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
 }
 
 .cell_big_label {
@@ -175,7 +173,8 @@
 }
 
 .pane-with-border {
-     -fx-background-color: #fffae5;
+    -fx-border-color: transparent;
+    -fx-background-color: #fffae5;
 }
 
 .status-bar {
@@ -186,10 +185,14 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
+    -fx-border-width: 0px;
+    -fx-border-color: transparent;
 }
 
 .result-display .label {
     -fx-text-fill: black !important;
+    -fx-border-width: 0px;
+    -fx-border-color: transparent;
 }
 
 .status-bar .label {
@@ -350,7 +353,7 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: transparent;
     -fx-background-insets: 0;
     -fx-border-color: black;
     -fx-border-insets: 0;
@@ -366,8 +369,25 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent;
+    -fx-background-color: derive(#fffae5, 25%);
 }
+
+#resultDisplay {
+    -fx-background-color: derive(#fffae5, 25%);
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-padding: 2px;
+}
+
+
+
+
+
+
+
+
+
 
 #tags {
     -fx-hgap: 7;
