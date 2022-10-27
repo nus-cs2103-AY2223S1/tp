@@ -10,8 +10,8 @@ import java.time.LocalDate;
  */
 public class MasteryCheck implements Comparable<MasteryCheck> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Desired dates for Mastery Check should be valid dates in the format: "
-            + "YYYY-MM-DD";
+    public static final String MESSAGE_CONSTRAINTS = "Desired dates for Mastery Check should be valid dates in the "
+        + "format: YYYY-MM-DD";
     public static final String VALIDATION_REGEX = "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
 
     // The empty value for when there is no mastery check date attached to a student
