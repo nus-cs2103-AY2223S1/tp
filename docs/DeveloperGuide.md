@@ -361,8 +361,8 @@ The following diagram illustrates how the operation works:
 
 ### Sort-by feature
 
-This feature allows the user(teacher) to sort the students from Teacher's Pet by specified `TYPE` and `ORDER`. `ORDER` is optional
-and will be `ASC` when `TYPE` is `NAME` or `CLASS` and `DESC` when `TYPE` is `OWED`.
+This feature allows the user(teacher) to sort the students from Teacher's Pet by specified `TYPE` and `ORDER`.
+`ORDER` is optional and by default, it will be set to `ASC` for `NAME` and `CLASS` sort, and `DESC` for `OWED` sort, unless otherwise specified.
 
 #### Implementation Details
 
