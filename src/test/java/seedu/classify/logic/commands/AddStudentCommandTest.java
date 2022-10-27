@@ -186,6 +186,11 @@ public class AddStudentCommandTest {
         public Predicate<Student> getPrevPredicate() {
             throw new AssertionError("This method should not be called");
         }
+
+        @Override
+        public boolean excludesAndHasStudent(Student studentToExclude, Student studentToCheck) {
+            throw new AssertionError("This method should not be called");
+        }
     }
 
     /**
