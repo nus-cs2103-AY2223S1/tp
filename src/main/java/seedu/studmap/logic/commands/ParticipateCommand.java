@@ -1,5 +1,6 @@
 package seedu.studmap.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PARTICIPATION;
 
 import java.util.HashSet;
@@ -17,7 +18,7 @@ import seedu.studmap.model.student.StudentData;
  */
 public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.ParticipateCommandStudentEditor> {
 
-    public static final String COMMAND_WORD = "mark";
+    public static final String COMMAND_WORD = "participate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Record the participation for a student identified by the index number used in the displayed"
@@ -32,7 +33,7 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
     public static final String MESSAGE_MARK_SINGLE_SUCCESS_PARTICIPATION = "Recorded Student as %1$s: %2$s";
     public static final String MESSAGE_MARK_MULTI_SUCCESS_PARTICIPATION = "Recorded %1$s students as %2$s";
 
-    public static final String MESSAGE_NO_EDIT = "Attendance or Assignment must be provided.";
+    public static final String MESSAGE_NO_EDIT = "Participation component must be provided.";
 
     public ParticipateCommand(IndexListGenerator indexListGenerator, ParticipateCommandStudentEditor studentEditor) {
         super(indexListGenerator, studentEditor);
@@ -40,19 +41,17 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
 
     @Override
     public String getSingleEditSuccessMessage(Student editedStudent) {
-        if (studentEditor.getParticipation() != null) {
-            return String.format(MESSAGE_MARK_SINGLE_SUCCESS_PARTICIPATION,
-                    studentEditor.getParticipation().getParticipationString(),
-                    editedStudent);
-        }
+        requireNonNull(studentEditor.getParticipation());
+        return String.format(MESSAGE_MARK_SINGLE_SUCCESS_PARTICIPATION,
+                studentEditor.getParticipation().getParticipationString(),
+                editedStudent);
     }
 
     @Override
     public String getMultiEditSuccessMessage(List<Student> editedStudents) {
-        if (studentEditor.getParticipation() != null) {
-            return String.format(MESSAGE_MARK_MULTI_SUCCESS_PARTICIPATION,
-                    editedStudents.size(), studentEditor.getParticipation());
-        }
+        requireNonNull(studentEditor.getParticipation());
+        return String.format(MESSAGE_MARK_MULTI_SUCCESS_PARTICIPATION,
+                editedStudents.size(), studentEditor.getParticipation());
     }
 
     @Override
@@ -73,10 +72,10 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
          * @param participation Participation to edit the student with.
          */
         public ParticipateCommandStudentEditor(Participation participation) {
-            this.participation = ParticipateCommandStudentEditor.this.participation;
+            this.participation = participation;
         }
 
-        public Partipation getParticipation() {
+        public Participation getParticipation() {
             return participation;
         }
 
@@ -98,7 +97,7 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
 
         @Override
         public boolean hasEdits() {
-            return participation != null
+            return participation != null;
         }
 
         @Override
@@ -115,7 +114,8 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
             }
 
             // state check
-            ParticipateCommand.ParticipateCommandStudentEditor e = (ParticipateCommand.ParticipateCommandStudentEditor) other;
+            ParticipateCommand.ParticipateCommandStudentEditor e =
+                    (ParticipateCommand.ParticipateCommandStudentEditor) other;
 
             if (getParticipation() == null && e.getParticipation() != null) {
                 return false;
@@ -123,7 +123,7 @@ public class ParticipateCommand extends EditStudentCommand<ParticipateCommand.Pa
                 return true;
             }
 
-            return getParticipation().equals(e.getParticipation()) && getParticipation().equals(e.getParticipation());
+            return getParticipation().equals(e.getParticipation());
         }
     }
 }

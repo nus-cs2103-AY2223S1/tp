@@ -20,7 +20,7 @@ public class StudentData {
     private Set<Tag> tags = new HashSet<>();
     private Set<Attendance> attendances = new HashSet<>();
     private Set<Assignment> assignments = new HashSet<>();
-    private Set<Assignment> participations = new HashSet<>();
+    private Set<Participation> participations = new HashSet<>();
 
     public StudentID getId() {
         return studentID;
@@ -100,6 +100,10 @@ public class StudentData {
 
     public void setParticipations(Set<Participation> participations) {
         this.participations = participations;
+    }
+
+    public void addParticipations(Set<Participation> participations) {
+        this.participations.addAll(participations);
     }
 
     public void addAssignments(Set<Assignment> assignments) {

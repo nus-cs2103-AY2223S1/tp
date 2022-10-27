@@ -5,7 +5,7 @@ import static seedu.studmap.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Participation object in StudMap.
- * Guarantees: immutable; name is valid as declared in {@link #isValidClassName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidParticipationName(String)}
  */
 public class Participation {
 
@@ -32,7 +32,7 @@ public class Participation {
     }
 
     /**
-     * Returns true if a given string is a valid class name.
+     * Returns true if a given string is a valid participation component name.
      */
     public static boolean isValidParticipationName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -51,7 +51,7 @@ public class Participation {
         return other == this // short circuit if same object
                 || (other instanceof Participation // instanceof handles nulls
                 && participationComponent.equals(((Participation) other).participationComponent)); // state check
-        // no check for hasParticipated to ensure only one attendance record per participationComponent
+                // no check for hasParticipated to ensure only one participation record per participationComponent
     }
 
     @Override
