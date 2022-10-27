@@ -186,6 +186,10 @@
     -fx-background-color: transparent;
 }
 
+.check_icon {
+    -fx-background-color: transparent;
+}
+
 .sub_heading {
     -fx-font-family: "Arial";
     -fx-font-weight: bold;
