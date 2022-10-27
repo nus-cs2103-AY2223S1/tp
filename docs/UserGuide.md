@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-CodeConnect is a **desktop app for managing your daily task and your contacts optimized for use via a Command Line Interface** (CLI)
+CodeConnect is a **desktop app** for managing your **tasks and your contacts**, optimized for use via a **Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, CodeConnect can get your tasks done faster than traditional GUI apps.
 
@@ -16,14 +16,14 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `CodeConnect.jar` from [here]().
+2. Download the latest `CodeConnect.jar` from [here]().
 
-1. Copy the file to the folder you want to use as the _home folder_.
+3. Copy the file to the folder you want to use as the _home folder_.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/UiContacts.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`listc`** : Lists all contacts.
@@ -36,7 +36,7 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of all available commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -46,23 +46,23 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `{curly braces}` are the parameters to be supplied by the user.<br>
-  e.g. in `addc n/{name}`, `{name}` is a parameter which can be used as `addc n/John Doe`.
+* Words in `{curly_braces}` are the parameters to be supplied by the user.<br>
+  e.g. In `addc n/{name}`, `{name}` is a parameter which can be used as `addc n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/{name} [t/{tag}]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. When [adding a contact](#adding-a-contact-addc), it is optional to tag them. Hence, the tag parameter is presented as `[t/{tag}]`
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/{tag}]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/{name} p/{phone_number}`, `p/{phone_number} n/{name}` is also acceptable.
+  e.g. If the command specifies `n/{name} p/{phone_number}`, `p/{phone_number} n/{name}` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
+  e.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. If the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -91,11 +91,11 @@ Examples:
 Edit the specified task from the task list.
 
 Format:
-`edit {task_index} {field prefix + field description}`
+`edit {task_index} {field_prefix + field_description}`
 
 Examples:
-* `edit 2 n/Rewatch lecture 6`
-* `edit 3 m/CS2040S by/2022-12-12 23:59`
+* `edit 2 n/Rewatch lecture 6` - Renames task at index 2 to "Rewatch lecture 6"
+* `edit 3 m/CS2040S by/2022-12-12 23:59` - Changes the module and deadline of the task at index 3
 
 #### Deleting a task: `del`
 
@@ -106,6 +106,14 @@ Format:
 
 Example:
 `del 5`
+
+#### Deleting all completed tasks: `clean`
+
+Deletes all completed tasks from the task manager list.
+
+Format: `clean`
+
+Note: This command has similar spelling to the [clear command](#clearing-all-contacts--clear), which deletes all contacts.
 
 #### Marking a task: `mark`
 
@@ -131,6 +139,10 @@ Example:
 
 Find tasks whose names contain any of the given keywords, or find them by their tagged module.
 
+Keywords and modules are searched for in a case-insensitive manner.
+
+Keywords may also be used to search for a substring (see examples below).
+
 Format:
 `find n/ {task}` `find m/ {module}`
 
@@ -145,10 +157,10 @@ Examples:
 
 Shows a list of all tasks.
 
-Format: `list` /  `list time`
+Format: `list`  `list time`
 
-* `list` displays a list of all tasks in the order of most recent task added
-* `list time` time displays a list of all tasks in the order of the earliest deadline
+* `list` - displays a list of all tasks in the order of most recent task added
+* `list time` - displays a list of all tasks in the order of the earliest deadline
 
 ### Managing contacts
 
@@ -179,7 +191,7 @@ Format: `delc {contact_index}`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `delc 2` deletes the contact at index 2 in the contact list.
+* `delc 2` - deletes the contact at index 2 in the contact list.
 
 #### Editing a contact : `editc`
 
@@ -192,14 +204,14 @@ Format: `editc {contact_index} {field prefix + field description}`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `editc 2 n/ John Wong` edits the name of the contact at index 2 in the contact list to `John Wong`.
+* `editc 2 n/ John Wong` - edits the name of the contact at index 2 in the contact list to `John Wong`.
 
 #### Searching for contacts: `findc`
 
 Finds persons whose names contain any of the given keywords, or find persons who take a particular module.
 
 Format:
-`findc n/ {name}` `findc m/ {module}`
+`findc n/ {name}` `findc m/ {module}` `findc ts/ {task_index}`
 
 Examples:
 * `findc n/ John` returns `john`, `John Doe`
@@ -207,10 +219,19 @@ Examples:
 * `findc n/ jo ja` returns `john`, `james`
 * `findc m/ CS1231S` returns `Alex Yeoh`, `David Li`
 * `findc m/ 1231` returns `Alex Yeoh`, `David Li`
+* `findc ts/ 2` returns contacts that are taking the module that the task at index 2 belongs to
+
+#### Quick-search for contacts: `saveme`
+
+Finds persons that can help with the task at the first index of the task list.
+
+Example:
+* The task at index 1 belongs to the `CS1101S` module.
+* Entering `saveme` will display all contacts that take the `CS1101S` module.
 
 #### Clearing all contacts : `clear`
 
-Clears all entries from the address book.
+Deletes all entries from the address book.
 
 Format: `clear`
 
@@ -233,10 +254,6 @@ CodeConnect data are saved as a JSON file `[JAR file location]/data/codeconnect.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CodeConnect will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
