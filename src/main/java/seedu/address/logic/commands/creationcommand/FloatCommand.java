@@ -26,6 +26,9 @@ public class FloatCommand extends PureCommand {
         return new Parser<FloatCommand>() {
             @Override
             public FloatCommand parse(String userInput) throws ParseException {
+                if (userInput.length() == 0) {
+                    throw new ParseException(INVALID_INPUT);
+                }
                 Float num;
                 try {
                     num = Float.parseFloat(userInput);
