@@ -18,7 +18,7 @@ public class HideOnlyCommand extends ColumnManipulatorCommand {
     public static final String COMMAND_WORD = "hideonly";
     public static final String COMMAND_PAST_TENSE = "hidden only";
     public static final String COMMAND_PRESENT_TENSE = "hide";
-    public static final Logger logger = Logger.getLogger("HideOnlyCommand");
+    private static final Logger logger = Logger.getLogger("HideOnlyCommand");
 
     /**
      * Constructor for a HideOnlyCommand instance.

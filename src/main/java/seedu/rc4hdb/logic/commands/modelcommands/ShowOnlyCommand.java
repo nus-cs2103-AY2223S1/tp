@@ -18,7 +18,7 @@ public class ShowOnlyCommand extends ColumnManipulatorCommand {
     public static final String COMMAND_WORD = "showonly";
     public static final String COMMAND_PAST_TENSE = "shown only";
     public static final String COMMAND_PRESENT_TENSE = "show";
-    public static final Logger logger = Logger.getLogger("ShowOnlyCommand");
+    private static final Logger logger = Logger.getLogger("ShowOnlyCommand");
 
     /**
      * Constructor for a ShowOnlyCommand instance.

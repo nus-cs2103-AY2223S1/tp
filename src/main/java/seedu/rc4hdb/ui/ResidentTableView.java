@@ -45,7 +45,8 @@ public class ResidentTableView extends UiPart<Region> {
     private final TableColumn<Resident, ResidentField> roomColumn = new TableColumn<>(Room.IDENTIFIER);
     private final TableColumn<Resident, Set<Tag>> tagColumn = new TableColumn<>(Tag.IDENTIFIER);
 
-    private final ObservableList<String> visibleFields = FXCollections.observableArrayList(ResidentField.LOWERCASE_FIELDS);
+    private final ObservableList<String> visibleFields = FXCollections.observableArrayList(
+            ResidentField.LOWERCASE_FIELDS);
     private final ObservableList<String> hiddenFields = FXCollections.observableArrayList();
 
     /**
