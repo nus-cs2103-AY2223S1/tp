@@ -433,6 +433,19 @@ Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top r
 
 ---
 
+### Hiding sensitive data
+
+Toggle the visibility of FinBook by clicking on the `open eye` or `close eye` icon on the top right of the application.
+
+* If the icon is an `open eye` FinBook displays all client data.
+* If the icon is a `close eye` FinBook hides all sensitive client data.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Your mode preference will be automatically saved ** 
+</div>
+
+---
+
 ### 4.3.7. Exiting the application : `exit`
 
 Exits the application.
