@@ -77,11 +77,11 @@ Note that the app contains sample data.<br><br>
 9. After running a **`find`** function, you might realise that some of your guests are no longer visible, as they are not in the current list. To see a list of all your guests, you can use the **`list`** command.
     * **`list`**: List all the guests in GuestBook.
 
-10. In the situation that a guest purchases additional necessities, you can bill to the guest using the **`bill`** command. For example, supposed you want bill to a guest at position 3 a service that costs 30.35. You can run the following command.
-    * **`bill`** `3` `b/+30.35`: Adds 30.35 to the bill of the second guest.
+10. In the situation that a guest purchases additional necessities, you can bill to the guest using the **`bill`** command. For example, supposed you want bill the third guest a service that costs 30.35. You can run the following command.
+    * **`bill`** `3` `b/+30.35`: Adds 30.35 to the bill of the third guest.
 
 11. When a guest checkouts, you might want to delete the guest. In that case, you can use the **`delete`** command.
-    * **`delete`**`3` : Deletes the 3rd guest shown in the current list.
+    * **`delete`**`3` : Deletes the third guest shown in the current list.
 
 12. To clear your GuestBook of all entries, you can use the **`clear`** command. Do be warn that it is irreversible, so use with caution!
     * **`clear`** : Deletes all guests.
