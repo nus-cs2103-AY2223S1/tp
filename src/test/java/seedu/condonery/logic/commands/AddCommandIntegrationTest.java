@@ -34,7 +34,8 @@ public class AddCommandIntegrationTest {
         expectedModel.addProperty(validProperty);
 
         CommandTestUtil.assertCommandSuccess(new AddPropertyCommand(validProperty), model,
-            String.format(AddPropertyCommand.MESSAGE_SUCCESS, validProperty), expectedModel);
+            String.format(AddPropertyCommand.MESSAGE_SUCCESS + ". No rejected client names.",
+                validProperty), expectedModel);
     }
 
     @Test

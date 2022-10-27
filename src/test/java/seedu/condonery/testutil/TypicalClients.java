@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.condonery.model.ClientDirectory;
 import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.ClientDirectory;
 import seedu.condonery.model.tag.Tag;
 
 /**
