@@ -24,7 +24,7 @@ This section will explain the parameters and the format of commands.
 | g/     | GENDER          | Gender of person (STRICTLY F or M)                                                                              |
 | git/   | GITHUB_USERNAME | GitHub Username of person                                                                                       |
 | e/     | EMAIL           | Email address of person                                                                                         |
-| m/     | MODULE          | Module that person is participating in                                                                          |
+| m/     | MODULE_CODE     | Module Code that person is participating in                                                                     |
 | t/     | TAG             | Tag person (i.e tag as friend)                                                                                  |
 | r/     | RATING          | Rate Professor/Teaching Assistant (on a scale of 0 to 5)                                                        |
 | y/     | YEAR            | Year of Undergraduate Study (from 1 - 4)                                                                        |
