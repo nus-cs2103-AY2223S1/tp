@@ -28,7 +28,6 @@ public class DeleteTeamCommand extends Command {
     public static final String MESSAGE_DELETE_TEAM_SUCCESS = "Deleted team: %1$s";
     public static final String MESSAGE_AT_LEAST_ONE_TEAM = "You must have at least one team!";
     public static final String MESSAGE_TEAM_NOT_EXISTS = "This team you are trying to delete does not exist!";
-    private Team targetTeam;
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)
     private String targetTeamName;
@@ -75,7 +74,7 @@ public class DeleteTeamCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteTeamCommand // instanceof handles nulls
-                && targetTeam.equals(((DeleteTeamCommand) other).targetTeam)); // state check
+                && targetTeamName.equals(((DeleteTeamCommand) other).targetTeamName)); // state check
     }
 
 }
