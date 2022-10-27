@@ -16,12 +16,12 @@ public class FindCommandParserTest {
     @Test
     public void validateArgs_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ",
-                String.format(MESSAGE_NO_PREFIX_SPECIFIED, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_NO_PREFIX_SPECIFIED, FindCommand.FEEDBACK_MESSAGE));
     }
 
     @Test
     public void validateArgs_noSpecifiedPrefix_throwsParseException() {
         assertParseFailure(parser, "someone",
-                String.format(MESSAGE_KEYWORDS_WITHOUT_PREFIX, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_KEYWORDS_WITHOUT_PREFIX, FindCommand.FEEDBACK_MESSAGE));
     }
 }
