@@ -32,7 +32,7 @@ public class EditTaskDescriptorBuilder {
         descriptor = new EditTaskDescriptor();
         descriptor.setDescription(task.getDescription());
         descriptor.setDeadline(task.getDeadline());
-        descriptor.setIsDone(task.getStatus());
+        descriptor.setIsDone(task.getCompletionStatus());
         descriptor.setTags(task.getTags());
         descriptor.setId(task.getId());
     }
