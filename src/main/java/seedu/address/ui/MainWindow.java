@@ -56,6 +56,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private HelpWindowForCommand helpWindowForCommand;
 
     private boolean isExpanded;
     private Theme currentTheme;
@@ -97,6 +98,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        helpWindowForCommand = new HelpWindowForCommand();
 
         isExpanded = false;
         compactExpandItem.setText(EXPAND_MENUITEM_TEXT);
@@ -208,6 +210,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleHelpForCommand(String helpMessageForCommand) {
+        helpWindowForCommand.setTextString(helpMessageForCommand);
+        if (!helpWindowForCommand.isShowing()) {
+            helpWindowForCommand.show();
+        } else {
+            helpWindowForCommand.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -221,6 +236,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        helpWindowForCommand.hide();
         primaryStage.hide();
     }
 
@@ -237,6 +253,7 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.getScene().getStylesheets().add(darkTheme);
             primaryStage.getScene().getStylesheets().add(extensionsDark);
             helpWindow.setDarkTheme();
+            helpWindowForCommand.setDarkTheme();
         } else if (currentTheme.equals(Theme.DARK)) {
             logger.info("Switching to light theme...");
             currentTheme = Theme.LIGHT;
@@ -245,6 +262,7 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.getScene().getStylesheets().add(lightTheme);
             primaryStage.getScene().getStylesheets().add(extensionsLight);
             helpWindow.setLightTheme();
+            helpWindowForCommand.setLightTheme();
         }
     }
 
@@ -315,7 +333,11 @@ public class MainWindow extends UiPart<Stage> {
                 assert !commandResult.isThemeChange()
                         && !commandResult.isToggleListMode()
                         && !commandResult.isExit();
-                handleHelp();
+                if (commandResult.getShowHelpFor().equals("")) {
+                    handleHelp();
+                } else {
+                    handleHelpForCommand(commandResult.getShowHelpFor());
+                }
             }
 
             if (commandResult.isExit()) {

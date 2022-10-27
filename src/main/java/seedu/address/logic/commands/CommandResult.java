@@ -16,6 +16,9 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** Help information for the specified command to be shown. */
+    private final String showHelpFor;
+
     /** The application should exit. */
     private final boolean exit;
 
@@ -27,34 +30,51 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
-     * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, Theme theme) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = false;
-        this.exit = false;
-        this.theme = theme;
-        this.toggleListMode = false;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified fields.
-     * and Optional fields set to empty
-     */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean toggleListMode) {
+    public CommandResult(String feedbackToUser, boolean showHelp, String showHelpFor, boolean exit,
+                         Theme theme, boolean toggleListMode) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.showHelpFor = showHelpFor;
         this.exit = exit;
-        theme = null;
+        this.theme = theme;
         this.toggleListMode = toggleListMode;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * Constructs a {@code CommandResult} with the specified fields
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, Theme theme) {
+        this(feedbackToUser, false, "", false, theme, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields
+     * and Optional fields set to empty
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, "", exit, null, false);
+    }
+
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean toggleListMode) {
+        this(feedbackToUser, showHelp, "", exit, null, toggleListMode);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, "", false, null, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields
+     * and Optional fields set to empty
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, String showHelpFor) {
+        this(feedbackToUser, showHelp, showHelpFor, false, null, false);
     }
 
     public String getFeedbackToUser() {
@@ -63,6 +83,10 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public String getShowHelpFor() {
+        return this.showHelpFor;
     }
 
     public boolean isExit() {
