@@ -3,6 +3,8 @@ layout: page
 title: Glossary
 ---
 
+#### [Back to Menu](../UserGuide.md)
+
 ## Glossary of terms
 
 ### Idempotent
@@ -28,3 +30,14 @@ For example:
   inactive regardless of whether it was active in the first place
 - filling a (hole-free) bucket with a hose over a long period of time can also be considered *state-independent*, 
   as the bucket will be ultimately filled regardless of the initial water level in the bucket
+
+### CSV
+
+This term is short for Comma-separated values. It is a common file type that can be identified through the `.csv` after a file's name.
+
+### JSON
+
+This term is short for JavaScript Object Notation. It is a common file type that can be identified through the `.json` after a file's name.
+
+[Back to Top](#back-to-menu)
+

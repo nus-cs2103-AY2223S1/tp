@@ -3,6 +3,8 @@ layout: page
 title: Upcoming Features
 ---
 
+#### [Back to Menu](../UserGuide.md)
+
 The following section lists some of our upcoming features that we are excited to bring to you!
 
 ### Exporting to CSV file : `file export`
@@ -18,6 +20,9 @@ Format: `file export FILE_NAME`
 Examples:
 * `file export residents` will export the data from `residents.json` file into a `.csv` file named `residents.csv`.
 
+### *More coming soon!*
+
+[Back to Top](#back-to-menu)
+
 ---
 
-*More coming soon!*

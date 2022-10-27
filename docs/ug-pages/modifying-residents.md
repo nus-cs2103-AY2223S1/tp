@@ -3,7 +3,9 @@ layout: page
 title: Modifying Residents
 ---
 
-In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear`
+#### [Back to Menu](../UserGuide.md)
+
+In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear` 
 to help you manipulate residents within RC4HDB.
 
 ---
@@ -14,6 +16,8 @@ be used in the commands.
 </div>
 
 The resident fields can be found [here](#format-for-resident-fields).
+
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -32,6 +36,8 @@ Examples:
   relevant personal and student information.
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/2-3 p/1234567 m/A3456789B g/F h/A` adds a resident named 
   Betsy Crowe, with relevant personal and student information.
+
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -54,6 +60,8 @@ Examples:
    respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd resident to be `Betsy Crower` and clears all existing tags.
 
+[Back to Top](#back-to-menu)
+
 ---
 
 ### Deleting a resident : `delete`
@@ -70,6 +78,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd resident in the database.
 * `find Betsy` followed by `delete 1` deletes the 1st resident in the results of the `find` command.
 
+[Back to Top](#back-to-menu)
+
 ---
 
 ### Clearing all entries : `clear`
@@ -81,6 +91,8 @@ Format: `clear`
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Deleted data can not be retrieved. Do use this command cautiously!
 </div>
+
+[Back to Top](#back-to-menu)
 
 ---
 
@@ -117,6 +129,8 @@ Deleted data can not be retrieved. Do use this command cautiously!
 * Optional. A resident can have any number of tags, including 0
 * When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
 * You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
+
+[Back to Top](#back-to-menu)
 
 ---
 

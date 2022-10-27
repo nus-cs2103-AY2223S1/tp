@@ -80,6 +80,8 @@ Interface (GUI). If you can type fast, RC4HDB can be a convenient and intuitive 
 workflow as a RC4 housing management staff.
 </div>
 
+[Back to Top](#welcome-to-rc4hdb-user-guide)
+
 ## Using this guide
 
 This user guide encompasses all the information that you will need to know as a user of RC4HDB. We hope that this user
@@ -98,6 +100,8 @@ pay attention to. </div>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** used to highlight tips. </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** used to highlight dangers. </div>
+
+[Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
 
@@ -131,6 +135,8 @@ shows you a quick summary of the available commands.
 
 For more details on commands, refer to the [Command Guide](#command-guide) below.
 
+[Back to Top](#welcome-to-rc4hdb-user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Guide
@@ -160,5 +166,7 @@ may have typed a command incorrectly as RC4HDB will step in as and when needed!
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+[Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---

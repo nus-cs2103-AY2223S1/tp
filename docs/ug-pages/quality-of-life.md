@@ -2,6 +2,9 @@
 layout: page
 title: Quality-Of-Life
 ---
+
+#### [Back to Menu](../UserGuide.md)
+
 As a CLI-optimized application, RC4HDB may not be the most intuitive for someone that is used to using the mouse. As
 such, we have provided several simple *Quality-of-life* features that we hope can improve your experience of using 
 RC4HDB.
@@ -10,16 +13,20 @@ RC4HDB.
 
 To encourage keyboard usage, here are several keyboard shortcuts that you may find useful for your use:
 
-Key | Functionality
-----|------------------
-`Esc`| Closes the Help Window if it's open
-`F1` | Opens the Help Window if it's not open
-`F2` | Highlights the first row of the displayed list
-`F3` | Quick-access to the command input box
-`Ctrl+Tab` | Switch between Resident and Booking tabs
+| Key        | Functionality                                  |
+|------------|------------------------------------------------|
+| `Esc`      | Closes the Help Window if it's open            |
+| `F1`       | Opens the Help Window if it's not open         |
+| `F2`       | Highlights the first row of the displayed list |
+| `F3`       | Quick-access to the command input box          |
+| `Ctrl+Tab` | Switch between Resident and Booking tabs       |
 
 This feature is especially useful if you want to refer to our Help Window which contains a summary of our most basic
 commands. If you want a full summary of all our commands, refer to [here](command-summary.md)
+
+[Back to Top](#back-to-menu)
+
+---
 
 ### Accessing command history
 
@@ -30,3 +37,8 @@ your previous commands.
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Only valid commands will be saved in the history!
 </div>
+
+[Back to Top](#back-to-menu)
+
+---
+
