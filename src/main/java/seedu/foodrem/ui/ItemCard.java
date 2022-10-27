@@ -16,6 +16,8 @@ import seedu.foodrem.views.ItemView;
  * A UI component that displays information of a {@code Item}.
  */
 public class ItemCard extends UiPart<Region> {
+    private static final int TAGS_LIMIT = 5;
+
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -49,8 +51,14 @@ public class ItemCard extends UiPart<Region> {
         quantity.setText(ItemView.buildItemQuantityAndUnitStringFrom(item));
         quantity.setTextAlignment(TextAlignment.RIGHT);
 
-        item.getTagSet().stream().sorted(Comparator.comparing(Tag::getName))
+        final int size = item.getTagSet().size();
+        item.getTagSet().stream().sorted(Comparator.comparing(Tag::getName)).limit(TAGS_LIMIT)
                 .forEach(tag -> tags.getChildren().add(buildTagNodeFrom(tag.getName())));
+        if (size > TAGS_LIMIT) {
+            final Label overflowLabel = new Label(String.format("+%d more...", size - TAGS_LIMIT));
+            overflowLabel.getStyleClass().add("tags-overflow-label");
+            tags.getChildren().add(overflowLabel);
+        }
     }
 
     private static Node buildTagNodeFrom(String tagName) {
