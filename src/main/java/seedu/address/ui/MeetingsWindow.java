@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
