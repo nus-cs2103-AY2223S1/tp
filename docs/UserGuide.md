@@ -24,15 +24,15 @@ should be used. Start by looking at the quick start guide to get you started.
 
 ## Features
 
-Before diving into the features, the examples in this guide are formatted with the following conventions:
+<div markdown="block" class="alert alert-info">
+
+:information_source: Before diving into the features, the examples in this guide are formatted with the following conventions:
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   * e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional.<br>
   * e.g `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
 * Items with `...` after them can be used multiple times.<br>
   * e.g. `[c/CLASS_NAME...]` can be used as ` ` (i.e. 0 times since it is also optional), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
-
-:information_source: Notes about the command format:<br>
 * Parameters can be in any order.<br>
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
@@ -45,6 +45,8 @@ In TA-Assist, you can switch into a mode called the **focus** mode, which lets y
 be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
 
 Let's first begin with the commands available in the default mode.
+
+</div>
 
 | Command    | Format                                   |
 | ---------- | ---------------------------------------- |
@@ -61,6 +63,7 @@ Let's first begin with the commands available in the default mode.
 | `listc`    | `listc`                                  |
 | `exit`     | `exit`                                   |
 | `focus`    | `focus c/CLASS_NAME`                     |
+| `clear`    | `clear`                                  |
 
 ### Viewing help : `help`
 
@@ -267,6 +270,18 @@ Example:
 
 - `class CS1231S` will enter focus mode to the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
 
+### Clear all existing data: `clear`
+
+{% include note.html content="
+
+Clears all existing data in TA Assist.
+
+" %}
+
+Format: `clear`
+
+* Clears all existing data in TA Assist.
+
 ## Features Available in Focus Mode
 
 The following commands are only available in **focus mode.**
@@ -281,6 +296,7 @@ The following commands are only available in **focus mode.**
 | `scores`  | `scores s/SESSION_NAME`                       |
 | `view`    | `view INDEX`                                  |
 | `lists`   | `lists`                                       |
+| `export`  | `export`                                      |
 | `unfocus` | `unfocus`                                     |
 
 
@@ -396,6 +412,16 @@ List the sessions that have been created for the class.
 Format: `lists`
 
 - List the sessions that have been created for the class.
+
+### Export class data: `export`
+
+{% include note.html content="
+
+Export the class as a CSV file containing grade information of the class's students on all sessions of the class.
+
+" %}
+
+Format: `export`
 
 ### Exit focus mode: `unfocus`
 
