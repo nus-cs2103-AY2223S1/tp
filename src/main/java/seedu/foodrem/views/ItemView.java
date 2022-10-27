@@ -53,17 +53,19 @@ public class ItemView {
         remarks.setWrapText(true);
 
         // Combine everything
+        final Separator linedSeparator = new Separator();
+        linedSeparator.getStyleClass().add("lined-separator");
         final VBox itemView = new VBox(
                 name,
                 quantityAndPrice,
-                new Separator(),
-                tags,
                 new Separator(),
                 new Label("Bought Date: " + buildBoughtDateStringFrom(item)),
                 new Label("Expiry Date: " + buildExpiryDateStringFrom(item)),
                 new Separator(),
                 new Label("Remarks:"),
-                remarks);
+                remarks,
+                linedSeparator,
+                tags);
         itemView.setSpacing(SPACING_UNIT);
         return itemView;
     }
