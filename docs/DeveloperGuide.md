@@ -266,7 +266,7 @@ Aspect: How should data archiving be implemented?
     - Pros: Less effort to maintain the previous test case as this implementation makes only minor modification on previous classes.
     - Cons: Too much duplication and maintenance of actual code (Another copy of UniqueList need to be created and maintained).
 
-Aspect: Should user allowed to edit archived application directly?
+Aspect: Should user be allowed to edit archived application directly?
 
 - Alternative 1 (current choice): User are allowed to edit archived application
     - Pros: A more convenient usage for user.
@@ -381,6 +381,42 @@ Aspect: How to allow the `SortCommand` to sort using different possible orders w
 * Alternative 2: Store an enum value inside each `SortCommand` instance indicating what order to use for sorting. Then, in the `execute` method, use a switch statement to make the appropriate function calls on the `Model`.
     * Pros: Will avoid the need for creating multiple classes.
     * Cons: Seems redundant to use another switch statement for controlling the `SortCommand` behaviour after already using one in `SortCommandParser` for determining the order to use.
+
+
+### Remind Feature
+
+#### Implementation
+The remind feature allows the user to view a list of upcoming interviews within the next 1 week, sorted by interview date and time.
+
+The rationale for this enhancement is that the interview list on the main GUI window shows all non-archived interviews, including interviews that have passed and interviews scheduled weeks to months later. This feature enables a focused view of only approaching interviews within the next week.
+
+The sequence diagram below shows the crucial components involved in executing the `remind` command:
+![Remind Sequence Diagram](images/RemindSequenceDiagram.png)
+
+#### Constraints of Remind Feature
+The remind feature can only be used on the main application list page and not on the list-archive page.
+
+#### Design Considerations
+
+Aspect: How should the remind feature be presented? 
+
+* Alternative 1 (current choice): Upcoming interviews presented in a pop-up window upon `remind` command input by user.
+    * Pros: Behaviour lines up better with the rest of CinternS where changes to the display are driven by commands. Better code testability. 
+    * Cons: Users are not reminded of upcoming interviews if they do not enter the `remind` command.
+
+* Alternative 2: Pop-up window appears alongside main GUI window upon starting up the application.
+    * Pros: Better aligns with the purpose of a reminder as a prompt to the user without the user having to input any commands.
+    * Cons: Could complicate the UI design of the application with the use of more than one primary stage or scene in JavaFX.
+
+Aspect: How should the remind command filter out upcoming interviews? 
+
+* Alternative 1 (current choice): By using an `UpcomingInterviewPredicate`.
+    * Pros: Better aligns with the Separation of Concerns principle where the definition of an 'upcoming' interview in terms of time is contained within the predicate.
+    * Cons: Increased coupling between RemindCommand in Logic and a separate predicate class in Model.
+
+* Alternative 2: By maintaining a list of upcoming interviews in the ModelManager.
+    * Pros: Reduced coupling between different classes.
+    * Cons: Each time an action is performed on an application or interview (such as archiving, adding or editing), the list of upcoming interviews has to be informed and updated as well. 
 
 --------------------------------------------------------------------------------------------------------------------
 

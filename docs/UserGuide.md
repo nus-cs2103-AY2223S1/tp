@@ -19,6 +19,7 @@ title: User Guide
     * [Removing an interview: `remove-i`](#removing-an-interview-remove-i)
     * [Archiving an internship application: `archive`](#archiving-an-internship-application-archive)
     * [Retrieving an internship application from archives: `retrieve`](#retrieving-an-internship-application-from-archives-retrieve)
+    * [Viewing a list of upcoming interviews: `remind`](#viewing-a-list-of-upcoming-interviews)
     * [Undoing the previous command: `undo`](#undoing-the-previous-command-undo)
     * [Redoing the previously undone command: `redo`](#redoing-the-previously-undone-command-redo)
     * [Clearing all entries: `clear`](#clearing-all-entries-clear)
@@ -64,6 +65,8 @@ title: User Guide
    
     * **`retrieve`**`1`: Retrieves the 1st application shown in the current list. The application must be archived.
     
+    * **`remind`**: Shows a list of all upcoming interviews within the next 1 week.
+
     * **`undo`**: Undoes the previous command.
     
     * **`redo`**: Redoes the previously undone command.
@@ -295,6 +298,16 @@ Format: `redo`
 Example:
 * `delete 1` followed by `undo` then `redo` deletes the first application in the list (and its interview in the interview list).
 
+### Viewing a list of upcoming interviews: `remind`
+
+Shows a list of all upcoming interviews within the next 1 week, sorted by interview date and time.
+
+Format: `remind`
+
+* Archived interviews will not be displayed even if they fall within the next week.
+* If there are no upcoming interviews, a blank window will be displayed.
+* `remind` can only be used on the main application list page (i.e. not to be used on list-archive page).
+
 ### Clearing all entries: `clear`
 Clears all entries from CinternS.
 
@@ -345,8 +358,9 @@ We will assist you as soon as possible.
 | **Remove-i**    | `remove-i INDEX`<br/> e.g., `remove-i 3`                                                                                                                                                    |
 | **Archive**     | `archive INDEX`<br> e.g., `archive 2`                                                                                                                                                       |
 | **Retrieve**    | `retrieve INDEX`<br> e.g., `retrieve 2`                                                                                                                                                     |
-| **Undo**        | `undo`                                                                                                                                                                                       |
-| **Redo**        | `redo`                                                                                                                                                                                       |
+| **Remind**      | `remind`                                                                                                                                                                                    |
+| **Undo**        | `undo`                                                                                                                                                                                      |
+| **Redo**        | `redo`                                                                                                                                                                                      |
 | **Clear**       | `clear`                                                                                                                                                                                     |
 | **Exit**        | `exit`                                                                                                                                                                                      |
 
