@@ -95,7 +95,7 @@ public class CalculateCommand extends Command {
 
         // Convert infix expression format into Reverse Polish notation
         public static String[] expressionToRPN(String[] inputTokens) {
-            // Reverse Polish notation, small r to make checkstyle happyx
+            // Reverse Polish notation, small r to make checkstyle happy
             ArrayList<String> rPN = new ArrayList<>();
             Stack<String> stack = new Stack<>();
 
@@ -136,7 +136,6 @@ public class CalculateCommand extends Command {
         public static double RPNtoDouble(String[] tokens) {
             Stack<String> stack = new Stack<>();
 
-            // For each token
             for (String token : tokens) {
                 // If the token is a value push it onto the stack
                 if (!isOperator(token)) {
@@ -174,13 +173,6 @@ public class CalculateCommand extends Command {
             try {
                 String[] input =  userInput.split(regex);
                 String[] output = expressionToRPN(input);
-
-//                System.out.print("Stack: ");
-//                for (String token : output) {
-//                    System.out.print("[ ");
-//                    System.out.print(token + " ");
-//                    System.out.print("]");
-//                }
                 System.out.println(" ");
                 // Feed the RPN string to RPNtoDouble to give result
                 Double result = RPNtoDouble(output);
