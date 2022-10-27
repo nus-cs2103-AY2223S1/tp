@@ -28,32 +28,33 @@ contains some sample data.<br>
    [image coming soon]
 
 5. Type the command in the command box and press Enter to execute it. e.g.
-   `add-module`. For more commands, you may refer to the [command summary](#11-command-summary)
+   `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary)
 
 6. Refer to the [Features](#2-features) for details of each command.
 
 ### 1.1. Command summary
 
-| Action                                  | Format                                                                  | Short Description                                                               |
-|-----------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [`add-module`](#211-add-module)         | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
-| [`delete-module`](#212-delete-module)   | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
-| [`edit-module`](#213-edit-module)       | `edit-module     INDEX ([m/MODULE_CODE] <br/><br/><br/>[t/MODULE_TITLE])` | Edit module belonging to the specified index currently displayed on the screen  |
-| *[`find-module`](#214-find-module)      | `find-module     KEYWORD`                            <br/>                   | Find module that starts with specified keyword in home page                     |
-| *[`list-module`](#215-list-module)      | `list-module`                                        <br/>                   | List all modules in home page after finding                                     |
-| [`add-task`](#221-add-task)             | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task)       | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
-| [`swap-task`](#223-reorder-tasks-swap)  | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swaps the order of tasks in the task list of a specified module                 |
-| [`add-link`](#231-add-link)             | `add-link        INDEX l/LINK_URL`                                      | Add link URL to a module by its displayed index                                 |
-| [`delete-link`](#232-delete-link)       | `delete-link     INDEX l/LINK_URL`                                      | Delete link URL from a module by its displayed index                            |
-| [`add-person`](#241-add-person)         | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
-| [`delete-person`](#242-delete-person)   | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
-| [`edit-person`](#243-edit-person)       | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
-| *[`find-person`](#244-find-person)      | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword in home page                   |
-| *[`list-person`](#245-list-person)      | `list-person`                                                           | List all contacts in home page after finding                                    |
-| [`home`](#251-navigate-to-home)         | `home`                                                                  | Navigate to the home page                                                       |
-| [`goto`](#252-navigate-between-modules) | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
-| [`exit`](#26-exiting-the-program)       | `exit`                                                                  | Exit the program                                                                |
+| Action                                              | Format                                                                  | Short Description                                                               |
+|-----------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| [`add-module`](#211-add-module)                     | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
+| [`delete-module`](#212-delete-module)               | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
+| [`edit-module`](#213-edit-module)                   | `edit-module     INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`              | Edit module belonging to the specified index currently displayed on the screen  |
+| *[`find-module`](#214-find-module)                  | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
+| *[`list-module`](#215-list-module)                  | `list-module`                                                           | List all modules in home page after finding                                     |
+| [`add-person-to-module`](#216-add-person-to-module) | `add-person-to-module m/MODULE_CODE <br/>n/NAME`                        | Add person with specified name to the module with the specified module code     |
+| [`add-task`](#221-add-task)                         | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
+| [`delete-task`](#222-delete-task)                   | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
+| [`swap-task`](#223-reorder-tasks-swap)              | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
+| [`add-link`](#231-add-link)                         | `add-link        INDEX l/LINK_URL`                                      | Add link URL to a module by its displayed index                                 |
+| [`delete-link`](#232-delete-link)                   | `delete-link     INDEX l/LINK_URL`                                      | Delete link URL from a module by its displayed index                            |
+| [`add-person`](#241-add-person)                     | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
+| [`delete-person`](#242-delete-person)               | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
+| [`edit-person`](#243-edit-person)                   | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
+| *[`find-person`](#244-find-person)                  | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
+| *[`list-person`](#245-list-person)                  | `list-person`                                                           | List all contacts                                                               |
+| [`home`](#251-navigate-to-home)                     | `home`                                                                  | Navigate to the home page                                                       |
+| [`goto`](#252-navigate-between-modules)             | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
+| [`exit`](#26-exiting-the-program)                   | `exit`                                                                  | Exit the program                                                                |
 
 ## 2. Features
 
@@ -98,7 +99,8 @@ This command will require one flag, and one flag is optional:
 * `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
 
 Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
-
+* Module code will be automatically treated as uppercase. For example, `cs1231s` will be treated 
+  as `CS1231S`.
 * You may optionally add a module title. If provided module title is empty, then Plannit 
 interprets it as that there is no module title. 
 * You cannot add a duplicate module code.
@@ -204,6 +206,26 @@ Example:
 list-module
 ```
 In the above example, we list every module that exist in Plannit.
+
+#### 2.1.6. Add person to module
+You can add a person to a module on Plannit using the `add-person-to-module` command. In other 
+words, an association between a person and a module will be created.
+
+This command will require two flags:
+* `m/`: To be followed by the module code of the module which the person will be added to.
+* `n/`: To be followed by the name of the person who will be added to the module.
+
+Format: `add-person-to-module m/MODULE_CODE n/NAME`
+* You can only add a person to a module if both the person and the module are currently 
+  displayed on screen.
+* If a person has already been added to a module, the person cannot be added to the module again.
+
+Example:
+
+```
+add-person-to-module m/CS2103T n/Dinosaur Lim
+```
+In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T`.
 
 <br>
 

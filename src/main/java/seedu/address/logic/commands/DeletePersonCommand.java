@@ -40,7 +40,7 @@ public class DeletePersonCommand extends Command {
         try {
             personToDelete = model.getPersonUsingName(targetName, true);
         } catch (PersonNotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_NO_SUCH_PERSON);
+            throw new CommandException(Messages.MESSAGE_NO_SUCH_PERSON_DELETE);
         }
         assert personToDelete != null;
         model.deletePerson(personToDelete);

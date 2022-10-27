@@ -138,6 +138,13 @@ public class Module implements Comparable<Module> {
     }
 
     /**
+     * Returns a copied persons set.
+     */
+    public Set<Person> copyPersons() {
+        return new HashSet<>(persons);
+    }
+
+    /**
      * Returns true if both modules have the same moduleCode.
      * This defines a weaker notion of equality between two modules.
      */
@@ -229,6 +236,12 @@ public class Module implements Comparable<Module> {
         if (!tasks.isEmpty()) {
             builder.append("; Tasks: ");
             tasks.forEach(builder::append);
+        }
+
+        Set<Person> persons = getPersons();
+        if (!persons.isEmpty()) {
+            builder.append("; Persons: ");
+            persons.forEach(person -> builder.append("[" + person.toString() + "]"));
         }
 
         return builder.toString();

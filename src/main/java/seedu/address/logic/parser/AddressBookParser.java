@@ -9,12 +9,14 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddLinkCommand;
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddPersonToModuleCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteLinkCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.DeletePersonCommand;
+import seedu.address.logic.commands.DeletePersonFromModuleCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.EditPersonCommand;
@@ -58,6 +60,9 @@ public class AddressBookParser {
         case AddPersonCommand.COMMAND_WORD:
             return new AddPersonCommandParser().parse(arguments);
 
+        case AddPersonToModuleCommand.COMMAND_WORD:
+            return new AddPersonToModuleCommandParser().parse(arguments);
+
         case AddModuleCommand.COMMAND_WORD:
             return new AddModuleCommandParser().parse(arguments);
 
@@ -78,6 +83,9 @@ public class AddressBookParser {
 
         case DeleteLinkCommand.COMMAND_WORD:
             return new DeleteLinkCommandParser().parse(arguments);
+
+        case DeletePersonFromModuleCommand.COMMAND_WORD:
+            return new DeletePersonFromModuleCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -119,5 +127,4 @@ public class AddressBookParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
