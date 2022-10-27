@@ -18,8 +18,9 @@ public class Appointment {
 
     /**
      * Appointment Constructor
-     * @param patient The provided patient
-     * @param nurse The provided nurse
+     *
+     * @param patient  The provided patient
+     * @param nurse    The provided nurse
      * @param dateTime The provided start date time
      */
     public Appointment(Patient patient, Nurse nurse, LocalDateTime dateTime) {
