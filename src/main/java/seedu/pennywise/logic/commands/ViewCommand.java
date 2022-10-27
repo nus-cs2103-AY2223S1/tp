@@ -2,6 +2,7 @@ package seedu.pennywise.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_GRAPH;
+import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_MONTH;
 import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.time.YearMonth;
@@ -26,7 +27,7 @@ public class ViewCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Show graphically all %s by %s";
     public static final String MESSAGE_USAGE =
         COMMAND_WORD + ": View income/expenditure entries to PennyWise. " + "Parameters: " + PREFIX_TYPE + "TYPE " + "["
-        + PREFIX_GRAPH + "GRAPH]\n" + "Example: " + COMMAND_WORD + " " + PREFIX_TYPE + "e " + PREFIX_GRAPH + "c ";
+        + PREFIX_MONTH + "MONTH]\n" + "Example: " + COMMAND_WORD + " " + PREFIX_TYPE + "e " + PREFIX_MONTH + "2022-04";
 
     private final ViewEntriesDescriptor viewEntriesDescriptor;
 
@@ -61,7 +62,6 @@ public class ViewCommand extends Command {
         EntryType entryType = viewEntriesDescriptor.getEntryType();
         GraphType graphType = viewEntriesDescriptor.getGraphType();
         GraphConfiguration graphConfiguration = new GraphConfiguration(entryType, graphType, true);
-
 
         Predicate<Entry> predicate = predicateSelector(viewEntriesDescriptor);
 
@@ -100,7 +100,6 @@ public class ViewCommand extends Command {
     public static class ViewEntriesDescriptor {
         private EntryType entryType;
         private YearMonth yearMonth;
-        private GraphType graphType;
 
         public ViewEntriesDescriptor() {
         }
@@ -110,7 +109,6 @@ public class ViewCommand extends Command {
          */
         public ViewEntriesDescriptor(ViewEntriesDescriptor toCopy) {
             setEntryType(toCopy.entryType);
-            setGraphType(toCopy.graphType);
             setYearMonth(toCopy.yearMonth);
         }
 
@@ -132,35 +130,11 @@ public class ViewCommand extends Command {
             return Optional.ofNullable(yearMonth);
         }
 
-        public void setGraphType(GraphType graphType) {
-            this.graphType = graphType;
-        }
-
-        public GraphType getGraphType() {
-            return graphType;
-        }
-
-        /**
-         * Returns true if and only if the provided view parameter configurations are valid. The
-         * view parameter configurations are valid if:
-         *
-         * <ul>
-         * <li>Entry type must be specified</li>
-         * <li>Graph type must be specified</li>
-         * <li>If graph type is 'm' (month), then month must be specified. Otherwise, month is ignored.</li>
-         * </ul>
-         *
-         * @return True if and only if the provided view parameter configurations are valid.
-         */
-        public boolean isValid() {
-            if (getEntryType() == null || getGraphType() == null) {
-                return false;
+        public final GraphType getGraphType() {
+            if (getYearMonth().isPresent()) {
+                return new GraphType(GraphType.GRAPH_TYPE_MONTH);
             }
-            GraphType graphTypeMonth = new GraphType(GraphType.GRAPH_TYPE_MONTH);
-            if (getGraphType().equals(graphTypeMonth) && getYearMonth().isEmpty()) {
-                return false;
-            }
-            return true;
+            return new GraphType(GraphType.GRAPH_TYPE_CATEGORY);
         }
 
         @Override

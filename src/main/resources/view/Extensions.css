@@ -95,11 +95,11 @@
 }
 
 .axis-label {
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: -pw-white;
 }
 
 .axis {
-    -fx-tick-label-fill: #FFFFFF;
+    -fx-tick-label-fill: -pw-white;
 }
 
 .chart-legend {
@@ -107,5 +107,9 @@
 }
 
 .chart-legend-item {
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: -pw-white;
+}
+
+#noEntryText {
+    -fx-text-fill: -pw-white;
 }

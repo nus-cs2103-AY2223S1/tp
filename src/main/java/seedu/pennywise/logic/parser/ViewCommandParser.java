@@ -23,33 +23,24 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     public ViewCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TYPE, PREFIX_MONTH, PREFIX_GRAPH);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TYPE, PREFIX_MONTH);
 
         ViewEntriesDescriptor viewEntriesDescriptor = new ViewEntriesDescriptor();
         try {
             if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
                 viewEntriesDescriptor.setEntryType(
                         ParserUtil.parseEntryType(argMultimap.getValue(PREFIX_TYPE).get()));
+            } else {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
             }
-            if (argMultimap.getValue(PREFIX_GRAPH).isPresent()) {
-                viewEntriesDescriptor.setGraphType(
-                        ParserUtil.parseGraphType(argMultimap.getValue(PREFIX_GRAPH).get()));
-
-                GraphType graphType = viewEntriesDescriptor.getGraphType();
-                if (graphType.equals(new GraphType(GraphType.GRAPH_TYPE_MONTH))) {
-                    if (argMultimap.getValue(PREFIX_MONTH).isPresent()) {
-                        viewEntriesDescriptor.setYearMonth(
-                                ParserUtil.parseYearMonth(argMultimap.getValue(PREFIX_MONTH).get()));
-                    }
-                }
+            if (argMultimap.getValue(PREFIX_MONTH).isPresent()) {
+                viewEntriesDescriptor.setYearMonth(
+                        ParserUtil.parseYearMonth(argMultimap.getValue(PREFIX_MONTH).get()));
             }
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
-        }
-
-        if (!viewEntriesDescriptor.isValid()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
         return new ViewCommand(viewEntriesDescriptor);
