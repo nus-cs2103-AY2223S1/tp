@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.PastAppointment;
@@ -20,44 +22,48 @@ public class PersonViewPanel extends UiPart<Region> {
 
     private final Person person;
 
+    private final Image identificationImage = new Image(this.getClass().getResourceAsStream("/images/ui/identification-card.png"));
+    private final Image helplineImage = new Image(this.getClass().getResourceAsStream("/images/ui/help-line.png"));
+    private final Image pillImage = new Image(this.getClass().getResourceAsStream("/images/ui/pills.png"));
+    private final Image hospitalbedImage = new Image(this.getClass().getResourceAsStream("/images/ui/hospital-bed.png"));
+    private final Image calendarImage = new Image(this.getClass().getResourceAsStream("/images/ui/calendar.png"));
+
     @FXML
     private Label name;
-
     @FXML
     private Label email;
-
     @FXML
     private Label phone;
-
     @FXML
     private Label nokName;
-
     @FXML
     private Label nokRelationship;
-
     @FXML
     private Label nokContact;
-
     @FXML
     private Label patientType;
-
     @FXML
     private Label hospitalWing;
-
     @FXML
     private Label floorNumber;
-
     @FXML
     private Label wardNumber;
-
     @FXML
     private Label upcomingAppointment;
-
     @FXML
     private ListView<PastAppointment> pastAppointments;
-
     @FXML
     private FlowPane medications;
+    @FXML
+    private ImageView identificationIcon;
+    @FXML
+    private ImageView helplineIcon;
+    @FXML
+    private ImageView pillIcon;
+    @FXML
+    private ImageView hospitalbedIcon;
+    @FXML
+    private ImageView calendarIcon;
 
     /**
      * Generates a Person View Panel.
@@ -86,6 +92,9 @@ public class PersonViewPanel extends UiPart<Region> {
         if (person.getMedications().size() > 0) {
             medications.getChildren().add(new Label(person.getMedicationString()));
         }
+        identificationIcon.setImage(identificationImage);
+        helplineIcon.setImage(helplineImage);
+        pillIcon.setImage(pillImage);
     }
 
     private void setHospitalisationDetails() {
@@ -96,6 +105,7 @@ public class PersonViewPanel extends UiPart<Region> {
                 floorNumber.setVisible(false));
         person.getWardNumber().ifPresentOrElse(wn -> wardNumber.setText(wn.toString()), () ->
                 wardNumber.setVisible(false));
+        hospitalbedIcon.setImage(hospitalbedImage);
     }
 
     private void setAppointmentDetails() {
@@ -104,6 +114,7 @@ public class PersonViewPanel extends UiPart<Region> {
                 new ObservableListWrapper<>(person.getPastAppointments());
         pastAppointments.setItems(pastAppointmentsObservableList);
         pastAppointments.setCellFactory(item -> new PastAppointmentListViewCell());
+        calendarIcon.setImage(calendarImage);
     }
 
     /**
