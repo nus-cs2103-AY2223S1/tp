@@ -110,4 +110,9 @@ public class EmptyUser extends User {
     public Set<Lesson> getLessons() {
         return null;
     }
+
+    @Override
+    public void updatePrevMods() throws CommandException {
+        throw new CommandException("No user created!");
+    }
 }
