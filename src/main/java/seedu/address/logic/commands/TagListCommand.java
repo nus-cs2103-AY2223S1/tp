@@ -23,7 +23,7 @@ public class TagListCommand extends TagCommandGroup {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getAllTagsInPrintableFormat()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.printTagsPrettily()));
     }
 
     @Override

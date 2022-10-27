@@ -223,7 +223,7 @@ public class CommandTestUtil {
         }
 
         @Override
-        public String getAllTagsInPrintableFormat() {
+        public String printTagsPrettily() {
             throw new AssertionError("This method should not be called");
         }
 

@@ -224,9 +224,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns a {@code String} containing all tags in printable format.
+     * Returns a {@code String} containing all tags for printing.
      */
-    public String getAllTagsInPrintableFormat() {
+    public String printTagsPrettily() {
         return tags.toString();
     }
 
