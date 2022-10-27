@@ -25,7 +25,7 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Show graphically all %s by %s";
     public static final String MESSAGE_USAGE =
-        COMMAND_WORD + ": View income/expenditure entries to PennyWise. " + "Parameters: " + PREFIX_TYPE + "TYPE " + "["
+        COMMAND_WORD + ": View income/expenditure entries in PennyWise. " + "Parameters: " + PREFIX_TYPE + "TYPE " + "["
         + PREFIX_MONTH + "MONTH]\n" + "Example: " + COMMAND_WORD + " " + PREFIX_TYPE + "e " + PREFIX_MONTH + "2022-04";
 
     private final ViewEntriesDescriptor viewEntriesDescriptor;
