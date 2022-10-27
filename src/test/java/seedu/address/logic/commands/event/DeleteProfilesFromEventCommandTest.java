@@ -12,7 +12,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROFILE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_EVENT;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
@@ -21,8 +24,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EventBuilder;
-
-import java.util.Set;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for DeleteProfilesFromEventCommand.
@@ -40,7 +41,8 @@ public class DeleteProfilesFromEventCommandTest {
         DeleteProfilesFromEventCommand deleteProfilesFromEventCommand = new DeleteProfilesFromEventCommand(
                 INDEX_FIRST_EVENT, Set.of(INDEX_FIRST_PROFILE, INDEX_SECOND_PROFILE));
 
-        String expectedMessage = String.format(DeleteProfilesFromEventCommand.MESSAGE_EDIT_ATTENDEES_SUCCESS, editedEvent);
+        String expectedMessage = String.format(
+                DeleteProfilesFromEventCommand.MESSAGE_EDIT_ATTENDEES_SUCCESS, editedEvent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);

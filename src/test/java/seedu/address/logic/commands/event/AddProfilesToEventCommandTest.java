@@ -13,7 +13,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROFILE;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.BENSON;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
@@ -25,8 +28,6 @@ import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ProfileBuilder;
-
-import java.util.Set;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddProfilesToEventCommand.
