@@ -327,7 +327,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 
 ## Command summary
 
-### Main page commands
+### Home page commands
 | Action                                                           | Format, Examples                                                                                                                                                  |
 |------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                            |
