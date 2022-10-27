@@ -1,5 +1,6 @@
 package seedu.waddle.model.item.exceptions;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
@@ -27,5 +28,16 @@ public class Period {
 
     public LocalTime getEnd() {
         return this.end;
+    }
+
+    public String getStartString() {
+        return this.start.toString();
+    }
+
+    public String getEndString() {
+        if (this.end.equals(LocalTime.MAX)) {
+            return LocalTime.MIDNIGHT.toString() + " (next day)";
+        }
+        return this.end.toString();
     }
 }

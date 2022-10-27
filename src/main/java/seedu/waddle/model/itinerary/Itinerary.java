@@ -196,7 +196,14 @@ public class Itinerary {
         Item item = this.unscheduledItemList.get(itemIndex.getZeroBased());
         item.setStartTime(startTime);
         Day day = this.days.get(dayNumber.dayNumber.getZeroBased());
-        day.addItem(item);
+        try {
+            day.addItem(item);
+        } catch (CommandException e) {
+            // if time conflict detected, reset the time of the item
+            item.resetStartTime();
+            throw e;
+        }
+
         this.unscheduledItemList.remove(itemIndex.getZeroBased());
         this.budget.updateSpending(item.getCost().getValue());
         return item;

@@ -72,18 +72,21 @@ public class Item {
     }
 
     public LocalTime getEndTime() {
-        LocalTime end = this.startTime.plusMinutes(this.duration.getDuration());
-        // if the time overflows to next day (including 00:00), set to 23:59
-        if (end.isBefore(this.startTime) || end.equals(LocalTime.MIDNIGHT)) {
-            return LocalTime.parse("23:59");
+        LocalTime endTime = this.startTime.plusMinutes(this.duration.getDuration());
+        if (this.startTime.isBefore(LocalTime.MAX) && endTime.equals(LocalTime.MIDNIGHT)) {
+            return LocalTime.MAX;
         }
-        return end;
+        return endTime;
     }
 
     public String getTimeString(int indents) {
         if (this.startTime != null) {
+            String endTime = getEndTime().toString();
+            if (getEndTime().equals(LocalTime.MAX)) {
+                endTime = LocalTime.MIDNIGHT.toString();
+            }
             if (this.duration != null) {
-                return Text.indent("Time: " + this.startTime + " - " + getEndTime(), indents);
+                return Text.indent("Time: " + this.startTime + " - " + endTime, indents);
             } else {
                 return Text.indent("Time: " + this.startTime, indents);
             }
