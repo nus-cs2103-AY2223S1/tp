@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -46,6 +47,12 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String ADD_DEMO_OUTPUT_NURSE = "New person added: Category: N Uid: 3; Name: Cola;" +
             " Gender: F; Phone: 98345432; Email: cola@example.com; " +
             "Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03; Tags: [heartDiseaseSpecialist][Pediatric]";
+    private static final String ADD_PATIENT_USAGE_HELP = "Add Patient \n" +
+            "add c/Category n/Name g/Gender p/Phone e/Email a/Address v/Visted " +
+            "[t/tag] [dt/Date&Time (2022-11-11T12:30)] *[] is optional. ";
+    private static final String ADD_NURSE_USAGE_HELP = "Add Nurse\n" +
+            "add c/Category n/Name g/Gender p/Phone e/Email a/Address v/Visited " +
+            "[t/tag] *[] is optional. ";
     private static final String CLEAR_SEARCH_TEXT = "Clear All";
     private static final String CLEAR_DEMO_INPUT = "clear";
     private static final String CLEAR_DEMO_OUTPUT = "Address book has been cleared!";
@@ -128,7 +135,21 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String MARK_DEMO_OUTPUT = "Marked Patient: Category: P Uid: 3; Name: Alex Yeoh; Gender: M;" +
             " Phone: 87438807; Email: alexyeoh@example.com; Address: Blk 30 Geylang Street 29, #06-40;" +
             " Tags: [friends]; Home Visits Date and Time:11/11/2022 14:00 , ; Visit Status: visited";
-
+    private static final String CLEAR_USAGE_HELP = "";
+    private static final String DELETE_USAGE_HELP = "Delete Person from list: \n" +
+            "delete id/ID ";
+    private static final String EDIT_USAGE_HELP = "Edit Person from list: \n" +
+            "edit [c/Category] [n/Name] [g/gender] [p/Phone] [e/Email] [a/Address] [t/Tags] [dt/Date&Time]" +
+            "*[] is optional.";
+    private static final String EXIT_USAGE_HELP = "";
+    private static final String FIND_USAGE_HELP = "Find a person from the list that contains keyword\n" +
+            "find KEYWORD";
+    private static final String HELP_USAGE_HELP = "";
+    private static final String LIST_USAGE_HELP = "List all that meets the critiera:\n" +
+            "list [c/Category] [g/Gender] [a/Address] [t/Tag]\n" +
+            "*[] is optional";
+    private static final String MARK_USAGE_HELP = "Mark a patient visited:\n" +
+            "mark id/ID";
 
     private final List<String> commandList = Arrays.asList(PATIENT_SEARCH_TEXT, NURSE_SEARCH_TEXT, CLEAR_SEARCH_TEXT,
             DELETE_SEARCH_TEXT, EDIT_NAME_SEARCH_TEXT, EDIT_GENDER_SEARCH_TEXT, EDIT_PHONE_SEARCH_TEXT,
@@ -137,6 +158,7 @@ public class HelpWindow extends UiPart<Stage> {
             LIST_CATEGORY_SEARCH_TEXT, LIST_GENDER_SEARCH_TEXT, LIST_TAG_SEARCH_TEXT, LIST_MIX_SEARCH_TEXT,
             MARK_SEARCH_TEXT);
     private final HashMap<String, String[]> dictionary = new HashMap<String, String[]>();
+    private final HashMap<String, String> dictionaryForUsageHelp = new HashMap<String, String>();
 
     private CommandNameListPanel commandNameListPanel;
     private Timeline currentTimeLine;
@@ -144,6 +166,8 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private VBox resultDisplayPlaceholder;
 
+    @FXML
+    private TextArea tipTextArea;
     @FXML
     private TextField searchTextField;
 
@@ -171,10 +195,11 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Initialize HelpWindow, dictionary and
+     * Initialize HelpWindow, dictionary and add listener to ListView.
      */
     public void init() {
         initDictionary();
+        initDictionaryForUsageHelp();
         String EMPTY_STR = "";
         String[] result = searchResult(EMPTY_STR);
         ObservableList<String> obvListResult = convertStrArrToObservableList(result);
@@ -182,6 +207,9 @@ public class HelpWindow extends UiPart<Stage> {
         addListenerToListView();
     }
 
+    /**
+     * Initialize dictionary.
+     */
     public void initDictionary() {
         dictionary.put(PATIENT_SEARCH_TEXT, new String[]{ADD_DEMO_INPUT_PATIENT, ADD_DEMO_OUTPUT_PATIENT});
         dictionary.put(NURSE_SEARCH_TEXT, new String[]{ADD_DEMO_INPUT_NURSE, ADD_DEMO_OUTPUT_NURSE});
@@ -204,6 +232,33 @@ public class HelpWindow extends UiPart<Stage> {
         dictionary.put(LIST_TAG_SEARCH_TEXT, new String[]{LIST_TAG_DEMO_INPUT, LIST_TAG_DEMO_OUTPUT});
         dictionary.put(LIST_MIX_SEARCH_TEXT, new String[]{LIST_MIX_DEMO_INPUT, LIST_MIX_DEMO_OUTPUT});
         dictionary.put(MARK_SEARCH_TEXT, new String[]{MARK_DEMO_INPUT, MARK_DEMO_OUTPUT});
+    }
+
+    /**
+     * Initialize dictionary for usage help.
+     */
+    public void initDictionaryForUsageHelp() {
+        dictionaryForUsageHelp.put(PATIENT_SEARCH_TEXT,ADD_PATIENT_USAGE_HELP);
+        dictionaryForUsageHelp.put(NURSE_SEARCH_TEXT,ADD_NURSE_USAGE_HELP);
+        dictionaryForUsageHelp.put(CLEAR_SEARCH_TEXT,CLEAR_USAGE_HELP);
+        dictionaryForUsageHelp.put(DELETE_SEARCH_TEXT,DELETE_USAGE_HELP);
+        dictionaryForUsageHelp.put(EDIT_NAME_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(EDIT_GENDER_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(EDIT_PHONE_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(EDIT_EMAIL_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(EDIT_ADDRESS_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(EDIT_TAG_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(EDIT_MIX_SEARCH_TEXT, EDIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(EXIT_SEARCH_TEXT, EXIT_USAGE_HELP);
+        dictionaryForUsageHelp.put(FIND_SEARCH_TEXT, FIND_USAGE_HELP);
+        dictionaryForUsageHelp.put(HELP_SEARCH_TEXT, HELP_USAGE_HELP);
+        dictionaryForUsageHelp.put(LIST_NTH_SEARCH_TEXT, LIST_USAGE_HELP);
+        dictionaryForUsageHelp.put(LIST_ADDRESS_SEARCH_TEXT, LIST_USAGE_HELP);
+        dictionaryForUsageHelp.put(LIST_CATEGORY_SEARCH_TEXT, LIST_USAGE_HELP);
+        dictionaryForUsageHelp.put(LIST_GENDER_SEARCH_TEXT, LIST_USAGE_HELP);
+        dictionaryForUsageHelp.put(LIST_TAG_SEARCH_TEXT, LIST_USAGE_HELP);
+        dictionaryForUsageHelp.put(LIST_MIX_SEARCH_TEXT, LIST_USAGE_HELP);
+        dictionaryForUsageHelp.put(MARK_SEARCH_TEXT, MARK_USAGE_HELP);
     }
 
     /**
@@ -290,6 +345,8 @@ public class HelpWindow extends UiPart<Stage> {
                 String[] inputOutput = dictionary.get(newValue);
                 helpOutputTextField.clear();
                 animateTextInTextField(inputOutput,helpCommandTextField,false);
+                String usageHelp = dictionaryForUsageHelp.get(newValue);
+                tipTextArea.setText(usageHelp);
             }
         });
     }

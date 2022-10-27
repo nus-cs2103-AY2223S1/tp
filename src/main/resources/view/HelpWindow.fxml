@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -23,7 +24,7 @@
     <scene>
         <Scene stylesheets="@HelpWindow.css">
 
-            <VBox prefHeight="268.0" prefWidth="519.0">
+            <VBox prefHeight="358.0" prefWidth="519.0">
                 <MenuBar fx:id="menuBar" styleClass="DarkTheme.css" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="File">
                         <MenuItem fx:id="exitMenuButton" mnemonicParsing="false" onAction="#hide" text="Close" />
@@ -31,10 +32,9 @@
                     <Menu mnemonicParsing="false" text="Help">
                         <MenuItem fx:id="visitHelpButton" mnemonicParsing="false" onAction="#visitHelpButtonAction" text="Visit Help Page" />
                   <MenuItem fx:id="visitGitHubButton" mnemonicParsing="false" onAction="#visitGitHubButtonAction" text="Visit GitHub Page" />
-                  <MenuItem fx:id="aboutUsButton" mnemonicParsing="false" text="About us" />
                     </Menu>
                 </MenuBar>
-            <SplitPane dividerPositions="0.3492822966507177" prefHeight="160.0" prefWidth="524.0" VBox.vgrow="ALWAYS">
+            <SplitPane dividerPositions="0.3492822966507177" prefHeight="331.0" prefWidth="519.0" VBox.vgrow="ALWAYS">
               <items>
                   <VBox prefHeight="110.0" prefWidth="257.0">
                      <children>
@@ -64,75 +64,87 @@
                         <VBox fx:id="resultDisplayPlaceholder" prefHeight="200.0" prefWidth="100.0" />
                      </children>
                   </VBox>
-                  <VBox fx:id="animatedTutorial" maxHeight="175.0" prefHeight="150.0" prefWidth="317.0">
+                  <VBox prefHeight="303.0" prefWidth="333.0">
                      <children>
-                        <VBox fx:id="titleBox" maxHeight="100.0" prefHeight="100.0" prefWidth="307.0" VBox.vgrow="NEVER">
+                        <VBox fx:id="animatedTutorial" maxHeight="175.0" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <HBox maxHeight="100.0" minHeight="20.0" prefHeight="24.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-color: derive(#1d1d1d, 20%) black  derive(#1d1d1d, 20%) black;">
+                              <VBox fx:id="titleBox" maxHeight="24.0" prefHeight="100.0" prefWidth="307.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <HBox maxHeight="24.0" minHeight="20.0" prefHeight="24.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-color: derive(#1d1d1d, 20%) black  derive(#1d1d1d, 20%) black;">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                       <children>
+                                          <ImageView fx:id="tutorialLogo" fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/healthcare_xpress_logo.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="1.0" left="5.0" top="2.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Healthcare Xpress">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                 </children>
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
+                              </VBox>
+                              <VBox maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="307.0" style="-fx-border-color: transparent derive(#1d1d1d, 10%) derive(#1d1d1d, 10%) derive(#1d1d1d, 10%);" VBox.vgrow="NEVER">
                                  <VBox.margin>
-                                    <Insets left="5.0" right="5.0" top="5.0" />
+                                    <Insets left="5.0" right="5.0" />
                                  </VBox.margin>
                                  <children>
-                                    <ImageView fx:id="tutorialLogo" fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/healthcare_xpress_logo.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets bottom="1.0" left="5.0" top="2.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Healthcare Xpress">
-                                       <HBox.margin>
-                                          <Insets left="5.0" />
-                                       </HBox.margin>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="File    Help">
+                                       <font>
+                                          <Font name="Segoe UI Light" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="7.0" top="2.0" />
+                                       </VBox.margin>
                                     </Text>
                                  </children>
-                              </HBox>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                        <VBox maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="307.0" style="-fx-border-color: transparent derive(#1d1d1d, 10%) derive(#1d1d1d, 10%) derive(#1d1d1d, 10%);" VBox.vgrow="NEVER">
-                           <VBox.margin>
-                              <Insets left="5.0" right="5.0" />
-                           </VBox.margin>
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="File    Help">
-                                 <font>
-                                    <Font name="Segoe UI Light" size="14.0" />
-                                 </font>
+                              </VBox>
+                              <VBox fx:id="titleTop" maxHeight="40.0" prefHeight="40.0" prefWidth="307.0" VBox.vgrow="NEVER">
                                  <VBox.margin>
-                                    <Insets left="7.0" top="2.0" />
+                                    <Insets />
                                  </VBox.margin>
-                              </Text>
-                           </children>
-                        </VBox>
-                        <VBox fx:id="titleTop" maxHeight="40.0" prefHeight="40.0" prefWidth="307.0" VBox.vgrow="NEVER">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <children>
-                              <TextField fx:id="helpCommandTextField" editable="false" prefHeight="40.0" prefWidth="307.0" promptText="Enter command here..." style="-fx-background-color: derive(#1d1d1d, 20%); -fx-border-color: derive(#1d1d1d, 20%) derive(#1d1d1d, 10%) derive(#1d1d1d, 10%) derive(#1d1d1d, 10%);" />
-                           </children>
-                           <padding>
-                              <Insets left="5.0" right="5.0" />
-                           </padding>
-                        </VBox>
-                        <VBox fx:id="resultBox" maxHeight="200.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent derive(#1d1d1d, 10%) derive(#1d1d1d, 10%) derive(#1d1d1d, 10%);" VBox.vgrow="NEVER">
-                           <children>
-                              <TextField fx:id="helpOutputTextField" alignment="TOP_LEFT" editable="false" prefHeight="75.0" prefWidth="317.0" style="-fx-background-color: derive(#1d1d1d, 20%); -fx-border-color: derive(#1d1d1d, 10%);" VBox.vgrow="NEVER">
+                                 <children>
+                                    <TextField fx:id="helpCommandTextField" editable="false" prefHeight="40.0" prefWidth="307.0" promptText="Enter command here..." style="-fx-background-color: derive(#1d1d1d, 20%); -fx-border-color: derive(#1d1d1d, 20%) derive(#1d1d1d, 10%) derive(#1d1d1d, 10%) derive(#1d1d1d, 10%);" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox fx:id="resultBox" maxHeight="75.0" prefHeight="75.0" prefWidth="100.0" style="-fx-border-color: transparent derive(#1d1d1d, 10%) derive(#1d1d1d, 10%) derive(#1d1d1d, 10%);" VBox.vgrow="NEVER">
+                                 <children>
+                                    <TextField fx:id="helpOutputTextField" alignment="TOP_LEFT" editable="false" prefHeight="75.0" prefWidth="317.0" style="-fx-background-color: derive(#1d1d1d, 20%); -fx-border-color: derive(#1d1d1d, 10%);" VBox.vgrow="NEVER">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
                                  <VBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets left="5.0" right="5.0" />
                                  </VBox.margin>
-                              </TextField>
+                              </VBox>
                            </children>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="333.0" VBox.vgrow="ALWAYS">
                            <VBox.margin>
-                              <Insets left="5.0" right="5.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                            </VBox.margin>
+                           <children>
+                              <TextArea fx:id="tipTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                           </children>
                         </VBox>
                      </children>
                   </VBox>
