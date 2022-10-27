@@ -10,7 +10,6 @@ import paymelah.model.debt.DebtDate;
 import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
-import paymelah.model.person.Name;
 
 /**
  * Jackson-friendly version of {@link Debt}.
