@@ -69,6 +69,7 @@ public class SummaryCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SummaryCommand
-                && this.predicate.equals(((SummaryCommand) other).predicate)); // state check
+                && (this.predicate == null && ((SummaryCommand) other).predicate == null)// instanceof handles nulls
+                || this.predicate.equals(((SummaryCommand) other).predicate)); // state check
     }
 }

@@ -1,14 +1,14 @@
 {
   "expenditures" : [],
   "incomes" : [{
-    "description" : "Lunch",
+    "description" : "Tuition",
     "amount" : "5.20",
     "date" : "20-08-2022",
-    "tagged" : "Food"
+    "tagged" : "Salary"
   }, {
-    "description" : "Lunch",
+    "description" : "Tuition",
     "amount" : "5.20",
     "date" : "20-08-2022",
-    "tagged" : "Food"
+    "tagged" : "Salary"
   }]
 }
