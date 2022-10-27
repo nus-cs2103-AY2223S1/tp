@@ -37,8 +37,8 @@ public class CreateTagTypeCommandTest {
 
     @Test
     public void equals() {
-        Prefix firstPrefix = new Prefix("abc");
-        Prefix secondPrefix = new Prefix("def");
+        Prefix firstPrefix = new Prefix("abc/");
+        Prefix secondPrefix = new Prefix("def/");
         TagType firstTagType = new TagType("abc", firstPrefix);
         TagType secondTagType = new TagType("def", secondPrefix);
 

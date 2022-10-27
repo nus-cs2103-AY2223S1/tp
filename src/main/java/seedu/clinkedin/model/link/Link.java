@@ -2,6 +2,8 @@ package seedu.clinkedin.model.link;
 
 import static java.util.Objects.requireNonNull;
 
+import java.net.URL;
+
 /**
  * Represents an optional note about a person in the clinkedin book.
  * Guarantees: immutable; is valid as declared in {@link #isValidLink(String)}
@@ -14,7 +16,7 @@ public class Link {
     public static final String VALIDATION_REGEX =
             "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
-    public final String link;
+    public final URL link;
 
     public final String platform;
 
@@ -24,36 +26,35 @@ public class Link {
      *
      * @param link A valid link.
      */
-    public Link(String link) {
+    public Link(URL link) {
         requireNonNull(link);
-        this.link = link.trim();
+        this.link = link;
         this.platform = generatePlatform(link);
     }
 
-    private String generatePlatform(String link) {
-        String beforeFirstDot = link.substring(0, link.indexOf("."));
-        if (beforeFirstDot.contains("instagram")) {
+    private String generatePlatform(URL url) {
+        if (url.getHost().contains("instagram")) {
             return "instagram";
         }
-        if (beforeFirstDot.contains("discord")) {
+        if (url.getHost().contains("discord")) {
             return "discord";
         }
-        if (beforeFirstDot.contains("facebook")) {
+        if (url.getHost().contains("facebook")) {
             return "facebook";
         }
-        if (beforeFirstDot.contains("github")) {
+        if (url.getHost().contains("github")) {
             return "github";
         }
-        if (beforeFirstDot.contains("telegram")) {
+        if (url.getHost().contains("telegram")) {
             return "telegram";
         }
-        if (beforeFirstDot.contains("linkedin")) {
+        if (url.getHost().contains("linkedin")) {
             return "linkedin";
         }
-        if (beforeFirstDot.contains("snapchat")) {
+        if (url.getHost().contains("snapchat")) {
             return "snapchat";
         }
-        if (beforeFirstDot.contains("twitter")) {
+        if (url.getHost().contains("twitter")) {
             return "twitter";
         }
         return "general";
@@ -61,7 +62,7 @@ public class Link {
 
     @Override
     public String toString() {
-        return link;
+        return link.toString();
     }
 
     @Override
