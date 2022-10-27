@@ -3,7 +3,6 @@ package seedu.foodrem.logic.parser.tagcommandparser;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.foodrem.model.tag.Tag.EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS;
-import static seedu.foodrem.model.tag.TagName.MESSAGE_CONSTRAINTS;
 import static seedu.foodrem.testutil.TypicalTags.FRUITS;
 import static seedu.foodrem.testutil.TypicalTags.FRUITS_WITH_WHITESPACE;
 import static seedu.foodrem.testutil.TypicalTags.NUMBERS;
@@ -11,6 +10,7 @@ import static seedu.foodrem.testutil.TypicalTags.NUMBERS;
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.commons.core.Messages;
+import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
 import seedu.foodrem.model.tag.Tag;
@@ -48,20 +48,14 @@ public class NewTagCommandParserTest {
                 "",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, NewTagCommand.getUsage()));
 
-        // invalid name
+        // invalid tag name
         assertParseFailure(parser,
-                CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION,
-                MESSAGE_CONSTRAINTS);
+                           CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION,
+                           StringUtil.getInvalidCharactersMessage("tag name"));
 
-        // invalid quantity
-        assertParseFailure(parser,
-                CommandTestUtil.INVALID_DESC_TAG_NAME_ILLEGAL_FIRST_CHAR,
-                MESSAGE_CONSTRAINTS);
-
-        // invalid unit
+        // invalid length
         assertParseFailure(parser,
                 CommandTestUtil.INVALID_DESC_TAG_NAME_EXCEED_CHAR_LIMIT,
                 EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS);
-
     }
 }

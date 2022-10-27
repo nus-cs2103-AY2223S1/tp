@@ -22,8 +22,6 @@ public class TagTest {
         assertThrows(IllegalArgumentException.class, () -> new Tag(
                 CommandTestUtil.INVALID_TAG_NAME_DISALLOWED_PUNCTUATION));
         assertThrows(IllegalArgumentException.class, () -> new Tag(
-                CommandTestUtil.INVALID_TAG_NAME_ILLEGAL_FIRST_CHAR));
-        assertThrows(IllegalArgumentException.class, () -> new Tag(
                 CommandTestUtil.INVALID_TAG_NAME_EXCEED_CHAR_LIMIT));
     }
 
