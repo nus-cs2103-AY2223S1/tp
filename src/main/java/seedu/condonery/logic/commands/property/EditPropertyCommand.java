@@ -54,6 +54,7 @@ public class EditPropertyCommand extends Command {
 
     private final Index targetIndex;
     private final EditPropertyDescriptor editPropertyDescriptor;
+    private boolean hasImage = false;
 
     /**
      * Creates a EditPropertyCommand to edit the specific {@code Property} at the specified index
@@ -66,6 +67,19 @@ public class EditPropertyCommand extends Command {
 
         this.targetIndex = targetIndex;
         this.editPropertyDescriptor = new EditPropertyDescriptor(editPropertyDescriptor);
+    }
+
+    /**
+     * Overloaded Constructor for hasImage boolean to determine if Command includes image upload.
+     * @param targetIndex of the property to edit
+     * @param editPropertyDescriptor details to edit the property
+     * @param hasImage true if image is uploaded.
+     */
+    public EditPropertyCommand(Index targetIndex,
+                                     EditPropertyDescriptor editPropertyDescriptor,
+                                     boolean hasImage) {
+        this(targetIndex, editPropertyDescriptor);
+        this.hasImage = hasImage;
     }
 
     public EditPropertyDescriptor getEditPropertyDescriptor() {
@@ -95,6 +109,14 @@ public class EditPropertyCommand extends Command {
 
         model.setProperty(propertyToEdit, editedProperty);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+        if (this.hasImage) {
+            return new CommandResult(
+                String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty),
+                false,
+                false,
+                "property-" + editedProperty.getCamelCaseName()
+            );
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty));
     }
 

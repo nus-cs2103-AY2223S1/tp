@@ -49,6 +49,7 @@ public class EditClientCommand extends Command {
 
     private final Index targetIndex;
     private final EditClientDescriptor editClientDescriptor;
+    private boolean hasImage = false;
 
     /**
      * Creates a EditClientCommand to edit the specific {@code Client} at the specified index
@@ -61,6 +62,17 @@ public class EditClientCommand extends Command {
 
         this.targetIndex = targetIndex;
         this.editClientDescriptor = editClientDescriptor;
+    }
+
+    /**
+     * Overloaded Constructor to specify if user is editting the Client image.
+     * @param targetIndex index of the client to edit
+     * @param editClientDescriptor details to edit the client
+     * @param hasImage boolean image is being uploaded
+     */
+    public EditClientCommand(Index targetIndex, EditClientDescriptor editClientDescriptor, boolean hasImage) {
+        this(targetIndex, editClientDescriptor);
+        this.hasImage = true;
     }
 
     @Override
@@ -80,6 +92,9 @@ public class EditClientCommand extends Command {
 
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+        if (this.hasImage) {
+            // TODO: add command result after merge
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
     }
 
