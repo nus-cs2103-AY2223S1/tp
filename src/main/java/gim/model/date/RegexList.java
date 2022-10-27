@@ -38,7 +38,7 @@ public class RegexList {
             Examples (DAY MONTH YEAR):
             01 01 2022, 01 1 2022, 1 01 2022, 1 1 2022, 01 01 22, 01 1 22, 1 01 22, 1 1 22
          */
-        regexList.add("^(0?[0-9]||[1-2][0-9]||3[0-1])[\\s+]?(0?[0-9]||1[0-2])[\\s+]?([0-9][0-9])?[0-9][0-9]$");
+        regexList.add("^(0?[0-9]||[1-2][0-9]||3[0-1])\\s+(0?[0-9]||1[0-2])\\s+([0-9][0-9])?[0-9][0-9]$");
 
         /*
             Examples (YEAR MONTH DAY):
@@ -46,7 +46,7 @@ public class RegexList {
 
             Note: multiple whitespaces have been substituted to a single whitespace in ParserUtil::parseDate
          */
-        regexList.add("^([0-9][0-9])?[0-9][0-9][\\s+]?(0?[0-9]||1[0-2])[\\s+]?(0?[0-9]||[1-2][0-9]||3[0-1])$");
+        regexList.add("^([0-9][0-9])?[0-9][0-9]\\s+(0?[0-9]||1[0-2])\\s+(0?[0-9]||[1-2][0-9]||3[0-1])$");
     }
 
     /**
