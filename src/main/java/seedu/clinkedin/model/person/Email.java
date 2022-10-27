@@ -38,7 +38,7 @@ public class Email {
      *
      * @param email A valid email clinkedin.
      */
-    public Email(String email) {
+    public Email(String email) throws IllegalArgumentException {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;

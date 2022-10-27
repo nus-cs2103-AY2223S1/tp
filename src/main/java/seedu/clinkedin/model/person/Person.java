@@ -188,7 +188,7 @@ public class Person {
         if (!tags.isEmpty()) {
             tags.forEach((tagType, tagList) -> {
                 List<String> tagWithTagType = new ArrayList<>();
-                tagWithTagType.add("Tag:" + tagType.getTagTypeName());
+                tagWithTagType.add("Tag:" + tagType.getPrefix() + "-" + tagType.getTagTypeName());
                 tagWithTagType.addAll(tagList.getAsList());
                 String[] tagWithTagTypeArray = tagWithTagType.toArray(new String[tagWithTagType.size()]);
                 personDetails.add(tagWithTagTypeArray);

@@ -18,7 +18,7 @@ public class Rating {
      *
      * @param ratingStr A valid rating number.
      */
-    public Rating(String ratingStr) {
+    public Rating(String ratingStr) throws IllegalArgumentException {
         requireNonNull(ratingStr);
         checkArgument(isValidRatingStr(ratingStr), MESSAGE_CONSTRAINTS);
         int rating = Integer.parseInt(ratingStr);
