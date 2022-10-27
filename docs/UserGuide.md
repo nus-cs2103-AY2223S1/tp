@@ -255,33 +255,45 @@ Expected outcome:
 
 ### Sorting internship applications: `sort`
 
-Sorts the list of internship applications on the left panel by the date and time of their tasks by `ORDER`, where 
-`ORDER` is either `a` for ascending or `d` for descending.
+Sorts the list of internship applications on the left panel by the time of their tasks or by their salaries 
+via their `ORDERTYPE` which is either `time` or `salary`, in either ascending or descending `ORDER`.
+Format: `sort ORDERTYPE ORDER`
 
-Format: `sort ORDER`
-
-* The internships are also sorted with the current date and time taken into consideration.
+* For sorting by the time of their tasks, internships are also sorted with the current date and time taken
+into consideration.
 * The date of the task that is the earliest and is on or after the current date (if any) in the internship will be used
 as the factor in sorting, if there aren't any, the date of the task with  the
 earliest date will be used instead for that internship.
-* `sort a`  will sort all internships in an ascending manner, with the
+* `sort time a`  will sort all internships in an ascending manner, with the
 internship with the task that has the earliest date and time that is on or after the current time at the top. 
-* If an internship only have one task however, only that task's date and time is taken into consideration, so even if 
+* If an internship only has one task however, only that task's date and time is taken into consideration, so even if 
 that task is before the current date but has the earliest date and time, it will still be at the top.
-* `sort d`  will sort all internships in a descending manner, with the
+* `sort time d`  will sort all internships in a descending manner, with the
     internship with the task that has the earliest date and time that is on or after the current time at the bottom.
-* If an internship only have one task however, only that task's date and time is taken into consideration, so even if
+* If an internship only has one task however, only that task's date and time is taken into consideration, so even if
   that task is before the current date but has the earliest date and time, it will still be at the bottom.
+* If there is one or more internships without any tasks in the list, the list cannot be sorted.
+* For sorting by of their salaries, internships are just sorted by the value of their salaries. 
 
 
 Example of usage:
 
-* `sort a`
+* `sort time a`
 
 Expected outcome:
 
 * The list of internships are sorted in an ascending manner,
-with the internship with the task with the earliest date and time that is after the current date and time at the top.
+with the internship with the task with the earliest date and time that is after the current date and time is at the top.
+
+Example of usage:
+
+* `sort salary a`
+
+Expected outcome:
+
+* The list of internships are sorted in an ascending manner,
+with the internship with the lowest salary at the top.
+
 
 ### Viewing statistics of internship applications : `stats`
 
