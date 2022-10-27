@@ -1,5 +1,9 @@
 package paymelah.storage;
 
+import static paymelah.model.person.Address.EMPTY_ADDRESS_STRING;
+import static paymelah.model.person.Phone.EMPTY_PHONE_STRING;
+import static paymelah.model.person.Telegram.EMPTY_TELEGRAM_STRING;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,10 +17,10 @@ import paymelah.commons.exceptions.IllegalValueException;
 import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
-import paymelah.model.person.Email;
 import paymelah.model.person.Name;
 import paymelah.model.person.Person;
 import paymelah.model.person.Phone;
+import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 
 /**
@@ -28,7 +32,7 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String phone;
-    private final String email;
+    private final String telegram;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedDebt> debts = new ArrayList<>();
@@ -38,12 +42,12 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("telegram") String telegram, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("debts") List<JsonAdaptedDebt> debts) {
         this.name = name;
         this.phone = phone;
-        this.email = email;
+        this.telegram = telegram;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -59,7 +63,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
+        telegram = source.getTelegram().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -96,32 +100,45 @@ class JsonAdaptedPerson {
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
+        final Phone modelPhone;
+        if (phone.equals(EMPTY_PHONE_STRING)) {
+            modelPhone = Phone.EMPTY_PHONE;
+        } else if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        } else {
+            modelPhone = new Phone(phone);
         }
-        final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (telegram == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Telegram.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        final Telegram modelTelegram;
+        if (telegram.equals(EMPTY_TELEGRAM_STRING)) {
+            modelTelegram = Telegram.EMPTY_TELEGRAM;
+        } else if (!Telegram.isValidHandle(telegram)) {
+            throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
+        } else {
+            modelTelegram = new Telegram(telegram);
         }
-        final Email modelEmail = new Email(email);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
+        final Address modelAddress;
+        if (address.equals(EMPTY_ADDRESS_STRING)) {
+            modelAddress = Address.EMPTY_ADDRESS;
+        } else if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        } else {
+            modelAddress = new Address(address);
         }
-        final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final DebtList modelDebts = DebtList.fromList(personDebts);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelDebts);
+        return new Person(modelName, modelPhone, modelTelegram, modelAddress, modelTags, modelDebts);
     }
 
 }

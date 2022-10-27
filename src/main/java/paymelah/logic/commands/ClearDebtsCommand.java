@@ -12,10 +12,10 @@ import paymelah.logic.commands.exceptions.CommandException;
 import paymelah.model.Model;
 import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
-import paymelah.model.person.Email;
 import paymelah.model.person.Name;
 import paymelah.model.person.Person;
 import paymelah.model.person.Phone;
+import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 
 /**
@@ -26,8 +26,9 @@ public class ClearDebtsCommand extends Command {
     public static final String COMMAND_WORD = "cleardebts";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the debts of the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes all the debts of the person identified by the index number used in the "
+            + "displayed person list.\n"
+            + "Parameters: <person index> (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_CLEAR_DEBTS_SUCCESS = "Cleared debts from Person: %1$s";
@@ -56,6 +57,8 @@ public class ClearDebtsCommand extends Command {
         Person debtorToClear = lastShownList.get(index.getZeroBased());
         Person clearedDebtor = createClearedDebtor(debtorToClear);
 
+        model.saveAddressBook();
+        model.saveCommandMessage(String.format(MESSAGE_CLEAR_DEBTS_SUCCESS, clearedDebtor.getName()));
         model.setPerson(debtorToClear, clearedDebtor);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_CLEAR_DEBTS_SUCCESS, clearedDebtor.getName()));
@@ -73,12 +76,12 @@ public class ClearDebtsCommand extends Command {
 
         Name updatedName = debtorToClear.getName();
         Phone updatedPhone = debtorToClear.getPhone();
-        Email updatedEmail = debtorToClear.getEmail();
+        Telegram updatedHandle = debtorToClear.getTelegram();
         Address updatedAddress = debtorToClear.getAddress();
         Set<Tag> updatedTags = debtorToClear.getTags();
         DebtList updatedDebts = new DebtList();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedDebts);
+        return new Person(updatedName, updatedPhone, updatedHandle, updatedAddress, updatedTags, updatedDebts);
     }
 
     @Override

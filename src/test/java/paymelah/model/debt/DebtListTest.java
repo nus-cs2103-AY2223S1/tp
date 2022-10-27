@@ -34,6 +34,20 @@ public class DebtListTest {
     }
 
     @Test
+    public void markDebt_debtMarked() {
+        DebtList debts = new DebtListBuilder().withDebt(MCDONALDS).build();
+        DebtList newDebts = new DebtListBuilder().withDebt(MCDONALDS.setPaid(true)).build();
+        assertEquals(newDebts, debts.markDebt(MCDONALDS));
+    }
+
+    @Test
+    public void unmarkDebt_debtUnmarked() {
+        DebtList debts = new DebtListBuilder().withDebt(MCDONALDS.setPaid(true)).build();
+        DebtList newDebts = new DebtListBuilder().withDebt(MCDONALDS).build();
+        assertEquals(newDebts, debts.unmarkDebt(MCDONALDS));
+    }
+
+    @Test
     public void equals() {
         DebtList debts = new DebtListBuilder().withDebt(MCDONALDS).withDebt(new DebtBuilder().build()).build();
         DebtList debtsCopy = new DebtListBuilder(debts).build();

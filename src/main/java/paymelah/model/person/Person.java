@@ -4,11 +4,10 @@ import static paymelah.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import paymelah.model.debt.Debt;
+import paymelah.logic.parser.ParserUtil.PersonDescriptor;
 import paymelah.model.debt.DebtList;
 import paymelah.model.debt.Money;
 import paymelah.model.tag.Tag;
@@ -22,7 +21,7 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
+    private final Telegram telegram;
 
     // Data fields
     private final Address address;
@@ -32,14 +31,28 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, DebtList debts) {
-        requireAllNonNull(name, phone, email, address, tags, debts);
+    public Person(Name name, Phone phone, Telegram telegram, Address address, Set<Tag> tags, DebtList debts) {
+        requireAllNonNull(name, phone, telegram, address, tags, debts);
         this.name = name;
         this.phone = phone;
-        this.email = email;
+        this.telegram = telegram;
         this.address = address;
         this.tags.addAll(tags);
         this.debts = debts;
+    }
+
+    /**
+     * Constructs a new {@code Person} based off a given {@code PersonDescriptor}.
+     * @param descriptor the {@code PersonDescriptor} to base off of
+     */
+    public Person(PersonDescriptor descriptor) {
+        assert descriptor.getName().isPresent();
+        this.name = descriptor.getName().get();
+        this.phone = descriptor.getPhone().orElse(Phone.EMPTY_PHONE);
+        this.telegram = descriptor.getTelegram().orElse(Telegram.EMPTY_TELEGRAM);
+        this.address = descriptor.getAddress().orElse(Address.EMPTY_ADDRESS);
+        descriptor.getTags().ifPresent(this.tags::addAll);
+        this.debts = new DebtList();
     }
 
     public Name getName() {
@@ -50,8 +63,8 @@ public class Person {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public Telegram getTelegram() {
+        return telegram;
     }
 
     public Address getAddress() {
@@ -80,6 +93,10 @@ public class Person {
 
     public int compareAmountOwedWith(Person o) {
         return getDebtsAmountAsMoney().compareTo(o.getDebtsAmountAsMoney());
+    }
+
+    public int compareEarliestDebtDateTimeWith(Person o) {
+        return debts.compareEarliestDebtDateTimeWith(o.debts);
     }
 
     /**
@@ -112,7 +129,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getTelegram().equals(getTelegram())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getDebts().equals(getDebts());
@@ -121,7 +138,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, debts);
+        return Objects.hash(name, phone, telegram, address, tags, debts);
     }
 
     @Override
@@ -130,8 +147,8 @@ public class Person {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Telegram: ")
+                .append(getTelegram())
                 .append("; Address: ")
                 .append(getAddress());
 
@@ -141,11 +158,8 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        List<Debt> debts = getDebts().asList();
-        if (!debts.isEmpty()) {
-            builder.append("; Debts: ");
-            debts.forEach(builder::append);
-        }
+        builder.append("\nDebts:");
+        builder.append(debts);
 
         return builder.toString();
     }
