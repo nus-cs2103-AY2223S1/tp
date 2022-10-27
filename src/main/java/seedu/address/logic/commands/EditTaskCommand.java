@@ -1,7 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.time.LocalDateTime;
