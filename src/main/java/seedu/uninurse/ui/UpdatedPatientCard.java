@@ -12,6 +12,7 @@ import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.remark.Remark;
+import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -280,6 +281,33 @@ public class UpdatedPatientCard extends UiPart<Region> {
                     // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
                     + "-fx-background-radius: 5;");
         }
+
+        // shit code quality be like
+        /* TODO: improve shit */
+        if (task instanceof RecurringTask) {
+            task = (RecurringTask) task;
+            HBox taskRecurrenceBox = new HBox();
+            taskRecurrenceBox.setMinWidth(62.5);
+            taskRecurrenceBox.setStyle("-fx-background-color: #95b3e8;"
+                    + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+                    // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
+                    + "-fx-background-radius: 5;");
+            Label taskRecurrenceLabel = new Label(task.getRecurrenceString());
+            taskRecurrenceLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
+                    + "-fx-font-size: 13px;"
+                    + "-fx-text-fill: black;");
+            taskRecurrenceBox.getChildren().add(taskRecurrenceLabel);
+
+            if (task.getDateTime().isPastDate()) {
+                taskRecurrenceBox.setStyle("-fx-background-color: #ebc000;"
+                        + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+                        // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
+                        + "-fx-background-radius: 5;");
+            }
+            taskBox.getChildren().addAll(getIndexBox(taskIndex), taskDateBox, taskTimeBox, taskRecurrenceBox, taskNameLabel);
+            return taskBox;
+        }
+        /* */
 
         taskBox.getChildren().addAll(getIndexBox(taskIndex), taskDateBox, taskTimeBox, taskNameLabel);
         return taskBox;
