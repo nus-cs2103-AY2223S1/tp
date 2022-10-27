@@ -14,8 +14,14 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
+    private final String commandToShowHelp;
+
+    public HelpCommand(String commandToShowHelp) {
+        this.commandToShowHelp = commandToShowHelp;
+    }
+
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, true, commandToShowHelp);
     }
 }
