@@ -18,6 +18,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.ThemeCommand;
+import seedu.address.logic.commands.ToggleListModeCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.commands.ViewCommand;
@@ -90,6 +91,9 @@ public class AddressBookParser {
 
         case ThemeCommand.COMMAND_WORD:
             return new ThemeCommandParser().parse(arguments);
+
+        case ToggleListModeCommand.COMMAND_WORD:
+            return new ToggleListModeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

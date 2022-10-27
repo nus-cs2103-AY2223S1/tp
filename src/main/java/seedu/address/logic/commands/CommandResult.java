@@ -25,15 +25,19 @@ public class CommandResult {
     /** The theme to change to, null if no change. */
     private final Theme theme;
 
+    /** Should toggle the list mode */
+    private final boolean toggleListMode;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, String showHelpFor, boolean exit, Theme theme) {
+    public CommandResult(String feedbackToUser, boolean showHelp, String showHelpFor, boolean exit, Theme theme, boolean toggleListMode) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showHelpFor = showHelpFor;
         this.exit = exit;
         this.theme = theme;
+        this.toggleListMode = toggleListMode;
     }
 
     /**
@@ -41,7 +45,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, Theme theme) {
-        this(feedbackToUser, false, "", false, theme);
+        this(feedbackToUser, false, "", false, theme, false);
     }
 
     /**
@@ -49,7 +53,11 @@ public class CommandResult {
      * and Optional fields set to empty
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, "", exit, null);
+        this(feedbackToUser, showHelp, "", exit, null, false);
+    }
+    
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean toggleListMode) {
+        this(feedbackToUser, showHelp, "", exit, null, toggleListMode);
     }
 
     /**
@@ -57,7 +65,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, "", false, null, false);
     }
 
     /**
@@ -65,7 +73,7 @@ public class CommandResult {
      * and Optional fields set to empty
      */
     public CommandResult(String feedbackToUser, boolean showHelp, String showHelpFor) {
-        this(feedbackToUser, showHelp, showHelpFor, false, null);
+        this(feedbackToUser, showHelp, showHelpFor, false, null, false);
     }
 
     public String getFeedbackToUser() {
@@ -94,6 +102,10 @@ public class CommandResult {
 
     public Theme getTheme() {
         return theme;
+    }
+
+    public boolean isToggleListMode() {
+        return toggleListMode;
     }
 
     @Override
