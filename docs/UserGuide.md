@@ -44,13 +44,13 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** :
+    * **`list users`** : 
 
-    * **`add`** :
+    * **`add user n/John Smith p/87006163 e/student123@gmail.com`** :
 
-    * **`delete`**`3` :
+    * **`delete user 1`** :
 
-    * **`clear`** :
+    * **`clear all`** :
 
     * **`exit`** : Exits the app.
 
@@ -93,7 +93,7 @@ delete the user that is currently displayed.
 
 Adds a book to the library.
 
-Format: `add book t/<title> a/<author>`
+Format: `add book t/TITLE a/AUTHOR`
 
 * The title itself cannot contain “a/”, as “a/” marks the start of the author field
 
@@ -108,7 +108,7 @@ Examples:
 
 Adds a user to the library.
 
-Format: `add user n/<name> p/<phone number> e/<email>`
+Format: `add user n/NAME p/PHONE_NUMBER e/EMAIL`
 
 * The name itself cannot have a “p/” and a "e/".
 
@@ -119,7 +119,7 @@ Examples:
 
 Deletes a book from the library.
 
-Format: `delete book <book index>`
+Format: `delete book INDEX`
 
 * Deletes the book at the specified `INDEX`. The index refers to the index number shown in the displayed book list. The index **must be a positive integer** 1, 2, 3,
 
@@ -130,7 +130,7 @@ Examples:
 
 Deletes a user from the library.
 
-Format: `delete user <user index>`
+Format: `delete user INDEX`
 
 * Deletes the user at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3,
 
@@ -141,7 +141,7 @@ Examples:
 
 Returns the book which is loaned by some user.
 
-Format: `return <book index>`
+Format: `return INDEX`
 
 * Returns the book which is loaned by some user at the book's specified `INDEX`.
 * The index refers to the index number shown in the displayed book list respectively.
@@ -154,18 +154,17 @@ Examples:
 
 Loans a book to some user, which has a due date.
 
-Format: `loan <user index> <book index>` or `loan <user index> <book index> <due date>`
+Format: `loan USER_INDEX BOOK_INDEX [DUE DATE]`
 
 * Loans the book to some user at their respective specified `INDEXES`.
 * The indexes refer to the index number shown in the displayed user and book list respectively.
 * The indexes **must be a positive integer** 1, 2, 3, …​
 * The respective specified `INDEXES` **must be present in their lists**.
 * The books that are loaned out will appear at the top of the book list.
-* The first `loan` format without specifying a due date sets a default due date of 14 days from today when the book is loaned out.
-* The second `loan` format allows for specification of due dates, and date formats such as
-  `dd/MM/yyyy`, `yyyy-MM-dd` or even text such as `next sunday` or `tomorrow` would work. Only the
+* If due date is not specified, a default due date of 14 days from today is set when the book is loaned out.
+* Due date formats such as `dd/MM/yyyy`, `yyyy-MM-dd` or even text such as `next sunday` or `tomorrow` would work. Only the
   first date entered would be set as the due date and subsequent dates entered would be ignored.
-* For the second `loan` format, some invalid inputs in February may be assumed to be correct. Refer to example below.
+* Some invalid due date inputs in February may be assumed to be correct. Refer to example below.
 
 Examples:
 * `loan 3 2` loans the second book in the book list to the third user in the user list. The due date is set to
@@ -181,9 +180,9 @@ Examples:
 
 Finds a book using keywords. 
 
-Format: `find book <keywords>`
+Format: `find book KEYWORD [KEYWORD]...`
 
-* Finds books that matches the searched keywords for either title or author.
+* Find books that matches the searched keywords for either title or author.
 * The search is case-insensitive. <br>
 e.g. `computer` will find `Computer`
 * The keywords do not need to be an exact match of the title or author. <br>
@@ -199,7 +198,7 @@ Examples:
 
 Finds a user using keywords.
 
-Format: `find user <keywords>`
+Format: `find user KEYWORD [KEYWORD]...`
 
 * Finds users that matches the searched keywords for name.
 * The search is case-insensitive. <br>
