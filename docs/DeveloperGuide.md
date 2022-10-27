@@ -600,7 +600,6 @@ testers are expected to do more *exploratory* testing.
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
@@ -610,15 +609,15 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `add n/John t/john`.<br>
        Expected: A new batchmate with the name `John` and telegram handle `john` is added at the bottom of the students pane in Mass Linkers.
-       The status message indicates that John has been successfully added.
+       The status message indicates that a batchmate named `John` has been successfully added.
 
-    2. Prerequisite: A batchmate with the name Tom is already in Mass Linkers. <br>
+    2. Prerequisite: A batchmate with the name `Tom` is already in Mass Linkers. <br>
        Test case: `add n/Tom t/tom`.<br>
        Expected: No batchmate is added. The status message indicates that the batchmate already exists in Mass Linkers.
 
     3. Test case: `add n/John t/john i/AI g/john`.<br>
        Expected: A new batchmate with the name `John`, telegram handle `john`, interests `AI` and GitHub `john` is added at the bottom of the students pane in Mass Linkers.
-       The status message indicates that John has been successfully added.
+       The status message indicates that a batchname named `John` has been successfully added.
 
     4. Test case: `add n/John`.<br>
        Expected: No batchmate is added. The status message indicates that the command is of an invalid format.
