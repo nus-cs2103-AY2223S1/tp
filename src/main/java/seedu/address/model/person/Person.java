@@ -260,6 +260,23 @@ public class Person {
     }
 
     /**
+     * Compare the current {@code person} object with another {@code person} object
+     * based on startTime.
+     * @param person a person object to compare with.
+     * @return the result of comparing the two {@code person} object startTime.
+     */
+    public int compareTo(Person person) {
+        if (person.aClass.startTime == null && this.aClass.startTime == null) {
+            return 0;
+        } else if (person.aClass.startTime == null) {
+            return -1;
+        } else if (this.aClass.startTime == null) {
+            return 1;
+        }
+        return this.aClass.startTime.compareTo(person.aClass.startTime);
+    }
+
+    /**
      * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
      */
     public int compareToByNameAsc(Person person) {

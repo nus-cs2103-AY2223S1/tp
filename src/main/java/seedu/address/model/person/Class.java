@@ -22,7 +22,8 @@ public class Class {
     public static final String INVALID_DATETIME_ERROR_MESSAGE =
             "Date should be a valid date in the format of yyyy-MM-dd";
     public static final String INVALID_TIME_ERROR_MESSAGE = "Time should be in the range of 0000 - 2359";
-    public static final String INVALID_DURATION_ERROR_MESSAGE = "EndTime must be after StartTime";
+    public static final String INVALID_DURATION_ERROR_MESSAGE = "EndTime must be after StartTime and duration"
+            + " should be less than or equal to the difference between EndTime and StartTime";
     public static final String VALIDATION_DATETIME_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
     public static final String VALIDATION_TIME_REGEX = "[0-9]{4}";
     public static final String VALIDATION_STANDARD_CLASS_REGEX = VALIDATION_DATETIME_REGEX
@@ -56,6 +57,7 @@ public class Class {
      * @param date LocalDate object.
      * @param startTime LocalTime object.
      * @param endTime LocalTime object.
+     * @param classDateTime String object which is a string representation of the date time.
      */
     public Class(LocalDate date, LocalTime startTime, LocalTime endTime, String classDateTime) {
         requireAllNonNull(date, startTime, endTime, classDateTime);
