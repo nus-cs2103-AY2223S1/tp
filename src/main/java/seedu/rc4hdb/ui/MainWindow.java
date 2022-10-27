@@ -14,7 +14,6 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
@@ -64,13 +63,10 @@ public class MainWindow extends UiPart<Stage> {
     private Tab venueTab;
 
     @FXML
-    private VBox venueTabContainer;
-
-    @FXML
     private StackPane residentTableViewPlaceholder;
 
     @FXML
-    private VBox venueTabViewPlaceholder;
+    private StackPane venueTabViewPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -88,18 +84,13 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
-        // Add listeners to fields to be listened to
-        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
-        this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
-        this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
-        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
-
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
         setTabLabels();
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        setUpListeners();
     }
 
     public Stage getPrimaryStage() {
@@ -150,11 +141,12 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getHiddenFields());
         residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
 
-        venueTabView = new VenueTabView(logic.getObservableVenues(), logic.getObservableBookings());
+        venueTabView = new VenueTabView(logic.getObservableVenues(), logic.getObservableBookings(),
+                logic.getCurrentlyDisplayedVenueName());
         venueTabViewPlaceholder.getChildren().add(venueTabView.getRoot());
 
         residentTab.setContent(residentTableViewPlaceholder);
-        venueTab.setContent(venueTabContainer);
+        venueTab.setContent(venueTabViewPlaceholder);
 
         tableViewPane.getTabs().addAll(residentTab, venueTab);
 
@@ -216,10 +208,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ResidentTableView getResidentTablePanel() {
-        return residentTableView;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -272,6 +260,15 @@ public class MainWindow extends UiPart<Stage> {
     private void setTabLabels() {
         this.residentTab.setText("Residents");
         this.venueTab.setText("Bookings");
+    }
+
+    /**
+     * Add listeners to fields to be listened to.
+     */
+    private void setUpListeners() {
+        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
+        this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
+        this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
     }
 
 }

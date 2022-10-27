@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.DailySchedule;
 import seedu.rc4hdb.model.venues.booking.Booking;
@@ -36,6 +37,9 @@ public class BookingTableView extends UiPart<Region> {
 
     @FXML
     private TableView<DailySchedule> bookingTableView;
+    @FXML
+    private VBox bookingTableContainer;
+
     private ObservableList<DailySchedule> weeklySchedule = FXCollections.observableArrayList();
 
     /**
@@ -107,14 +111,15 @@ public class BookingTableView extends UiPart<Region> {
     }
 
     private void configureTableProperties() {
-        this.bookingTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        this.dayColumn.setSortable(false);
+        dayColumn.setResizable(false);
+        dayColumn.setSortable(false);
+        dayColumn.setReorderable(false);
 
-        for (int i = 0; i < 15; i++) {
-            this.bookingTableView.getColumns().get(i).setSortable(false);
-            this.bookingTableView.getColumns().get(i).setResizable(false);
+        for (TableColumn<DailySchedule, Resident[]> column : hourColumn) {
+            column.setResizable(false);
+            column.setSortable(false);
+            column.setReorderable(false);
         }
-
     }
 
     public void updateTable(List<? extends Booking> bookings) {
