@@ -20,8 +20,7 @@ tasks done faster than traditional GUI apps.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
-   <!-- TODO: ![Ui](images/Ui.png) -->
-   [Sample UI To be added]
+   ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -209,13 +208,35 @@ Examples:
 
 [Coming soon]
 
-### Mark student as present: `mark`
+### Mark attendance of student: `mark`
 
-[Coming soon]
+Mark students as present or absent for a specified class.
+
+Format: `mark INDEX/ALL ATTENDANCE c/CLASS`
+
+* Attendance accepts two values only: `present` and `absent`
+* :warning: Class names should only consist of alphanumerics, spaces, dashes and underscores! Using any other 
+character will lead to your class name being **rejected** 
+* Marking an existing class as either `present` or `absent` will **overwrite** the existing record
+
+Examples:
+
+* `mark 1 present c/T01` marks the 1st student as present for class `T01`
+* `mark all absent c/T04` marks all students in the list as absent for class `T04`
 
 ### Unmark attendance of a student: `unmark`
 
-[Coming soon]
+Removes the attendance record of a specific class from students.
+
+Format: `unmark INDEX/ALL c/CLASS`
+
+* StudMap allows for attendances to be removed even if the student never had any record for that class 
+(i.e. no error will be thrown)
+
+Examples:
+
+* `unmark 1 c/T01` removes the attendance record for class `T01` from the 1st student
+* `unmark all c/T04` marks all students as absent for class `T04` from all students in the list
 
 ### Add tag to a student: `tag`
 
@@ -251,7 +272,16 @@ Examples:
 * `unparticipate 1 p/P01`
 * `unparticipate all p/P03 `
 
+### Import students from CSV file: `import`
 
+Imports student data from a CSV file stored on your computer. 
+
+Format: `import`
+
+* Running the command will open a file browser for you to select the CSV file to import
+* The CSV format accepted by StudMap is strict! Please use the template provided in the link below
+* :warning: StudMap currently does not support any commas in any data field (cell) when importing a CSV file 
+* [template csv](files/import_template.csv)
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -276,8 +306,9 @@ Action | Format, Examples
 **Help** | `help`
 **Sort** | `sort ORDER a/ATTRIBUTE`
 **Filter** | `filter`
-**Mark** | `mark`
-**Unmark** | `unmark`
+**Mark** | `mark INDEX/ALL ATTENDANCE c/CLASS`
+**Unmark** | `unmark INDEX/ALL c/CLASS`
 **Add tag** | `addtag`
 **Record participation** | `participate INDEX/ALL STATUS p/COMPONENT`
 **Remove participation** | `unparticipate INDEX/ALL p/COMPONENT`
+**Import CSV** | `import`
