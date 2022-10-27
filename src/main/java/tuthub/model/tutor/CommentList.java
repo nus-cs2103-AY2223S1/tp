@@ -12,7 +12,7 @@ public class CommentList {
     /**
      * Adds a Comment to the CommentList.
      *
-     * @param comment Comment to be added to the CommentList.
+     * @param comment Comment to be added to the {@code CommentList}.
      * @return The CommentList itself.
      */
     public CommentList addComment(Comment comment) {
@@ -21,9 +21,22 @@ public class CommentList {
     }
 
     /**
-     * Deletes a Comment from the CommentList.
+     * Returns the number of comments in the {@code CommentList}.
      *
-     * @param index The index of the Comment in the CommentList.
+     * @return The size of the {@code CommentList}.
+     */
+    public int size() {
+        return comments.size();
+    }
+
+    public boolean isEmpty() {
+        return comments.size() == 0;
+    }
+
+    /**
+     * Deletes a Comment from the {@code CommentList}.
+     *
+     * @param index The index of the {@code Comment} in the {@code CommentList}.
      */
     public Comment deleteComment(int index) {
         return comments.remove(index);
@@ -31,9 +44,9 @@ public class CommentList {
 
 
     /**
-     * Converts the CommentList to a string for display in the Tutor Card.
+     * Converts the {@code CommentList} to a string for display in the Tutor Card.
      *
-     * @return A string where every Comment is appended with a newline.
+     * @return A string where every {@code Comment} is appended with a newline.
      */
     public String toStringForTutorCard() {
         StringBuilder result = new StringBuilder();
@@ -48,9 +61,9 @@ public class CommentList {
     }
 
     /**
-     * Converts the CommentList into a string.
+     * Converts the {@code CommentList} into a string.
      *
-     * @return A string where every Comment is padded with their position in the CommentList.
+     * @return A string where every {@code Comment} is padded with their position in the {@code CommentList}.
      */
     @Override
     public String toString() {
