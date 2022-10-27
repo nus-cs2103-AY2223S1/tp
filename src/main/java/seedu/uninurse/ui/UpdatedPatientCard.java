@@ -73,7 +73,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
     private VBox remarkHeaderPane;
 
     /**
-     * Creates a {@code UpdatedPatientCard} with the given {@code Patient}.
+     * Creates a {@code UpdatedPatientCard} with the given {@code Patient} and {@code headerString}.
      */
     public UpdatedPatientCard(Patient patient, String headerString) {
         super(FXML);

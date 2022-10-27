@@ -2,6 +2,7 @@ package seedu.uninurse.ui;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -123,5 +124,13 @@ public class OutputPanel extends UiPart<Region> {
         outputView.getChildren().clear();
         RedoCard redoCard = new RedoCard(patientListTracker);
         outputView.getChildren().add(redoCard.getRoot());
+    }
+
+    /**
+     * Updates the outputView panel accordingly with {@code patients} if executed command is Find.
+     */
+    public void handleFind(List<Patient> patients) {
+        outputView.getChildren().clear();
+        outputView.getChildren().add(new UpdatedPersonListPanel(FXCollections.observableList(patients)).getRoot());
     }
 }

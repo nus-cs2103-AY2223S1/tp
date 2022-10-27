@@ -70,6 +70,10 @@ public class CommandResult {
         return this.commandType == commandType.REDO;
     }
 
+    public boolean isFind() {
+        return this.commandType == commandType.FIND;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

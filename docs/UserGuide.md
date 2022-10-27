@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 **UniNurse** is a desktop app tailored for you, a **private duty nurse**, to:
-- Manage your patients' contacts.
+- Manage your patients' contact details.
 - Organize your patient-related tasks.
 - Keep track of your patients' medical conditions.
 
@@ -18,12 +18,23 @@ experience.
 
 </div>
 
+
+In UniNurse, every patient has the following details:
+- Name
+- Contact Number
+- Address
+- Email Address 
+- Medical Conditions
+- Medications
+- List of Tasks
+- Remarks
+
+
 UniNurse offers the following features:
 - Add details such as phone numbers, addresses and more.
-- Find any patient by name _(more to be added later...)_.
+- Find any patient by name, contact details, tasks, conditions and medication.
 - Add tasks to a patient.
 - Categorize patients using tags.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ### Using this guide
@@ -241,9 +252,9 @@ Format: `find [KEYWORD]… [n/NAME]… [p/PHONE]… [e/EMAIL]… [a/ADDRESS]… 
 
 Examples:
 * `find jo` returns patients with names `Joe` and `John`, patients with emails `jo@example.com`, and patients with tag `joints`.
-* `find alex david` returns `Alex Yeoh` & `David Li`.
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-  _Contact list displayed after running the `find alex david` command_
+* `find alice meier` returns `Alice Tan` & `Benson Meier`.
+  ![result for 'find alice meier'](images/findAliceMeierResult.png)
+  _Patient list displayed after running the `find alice meier` command_
 * `find key n/John n/Betsy n/Charlie e/@example.com` returns patients who fulfill all conditions below:
   * The patient's name contains either `John` or `Betsy` or `Charlie`.
   * The patient's email address must contain `@example.com`.

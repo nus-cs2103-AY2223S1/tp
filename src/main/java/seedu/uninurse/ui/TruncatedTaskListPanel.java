@@ -22,7 +22,7 @@ public class TruncatedTaskListPanel extends UiPart<Region> {
     private Label header;
 
     /**
-     * Creates a {@code TruncatedTaskListPanel} with the given list of {@code Patient}.
+     * Creates a {@code TruncatedTaskListPanel} with the given list of {@code patients}.
      */
     public TruncatedTaskListPanel(List<Patient> patients) {
         super(FXML);
