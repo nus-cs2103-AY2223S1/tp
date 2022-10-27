@@ -78,10 +78,10 @@ title: User Guide
 There are 2 types of Add Commands. 
 1. `add -s`: Adds a new FYP of a student to the FYP manager.
 
-    Format: `add -s id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL [t/TAG]…​`
+    Format: `add -s id/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​`
 2. `add -d`: Adds a new deadline task to a student specified by ID.
 
-    Format: `add -d id/STUDENT_ID dn/DEADLINE_NAME dd/DEADLINE_DATETIME`
+    Format: `add -d id/STUDENT_ID nDEADLINE_NAME d/DEADLINE_DATETIME`
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -103,7 +103,7 @@ There are 2 types of Delete Commands.
     Format: `delete -s id/STUDENT_ID`
     * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
 
-2. `delete -d`: Removes a deadline assigned to a student specified by ID.
+2. `delete -d`: Removes a deadline assigned to a student specified by ID & a priority rank.
 
     Format: `delete -d id/STUDENT_ID r/DEADLINE_RANK`
 
@@ -146,7 +146,7 @@ Format for:
 * Partial keywords will also be matched, e.g. `Ne` will match `neural network` and `Genetic Algorithm`
 * Leading and trailing spaces are ignored, e.g. ` neural network  ` will match `neural network`
 * Projects matching at least one keyword will be returned (i.e. `OR` search), 
-  e.g. `find -t neural network/tree` will match project titles with `neural network` or `decision tree`
+  e.g. `find -t neural network/tree` will match project tags with `neural network` or `decision tree`
 
 Examples:
 * `find -t Neural Network` searches for all projects with the tag `Neural Network`.
@@ -209,3 +209,4 @@ Format: `exit`
 | **Help**            | `help [COMMAND]`<br> e.g., `help add`, `help`                                                                                                    |
 | **List**            | `list`                                                                                                                                           |
 | **Exit**            | `exit`                                                                                                                                           |
+

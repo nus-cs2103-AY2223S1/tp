@@ -13,10 +13,10 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -34,10 +34,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_NAME,
                 PREFIX_STUDENT_ID, PREFIX_EMAIL, PREFIX_PROJECT_NAME, PREFIX_TAG);
 
-        Index index;
+        StudentId studentId;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            studentId = ParserUtil.parseStudentId(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
@@ -64,7 +64,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editStudentDescriptor);
+        return new EditCommand(studentId, editStudentDescriptor);
     }
 
     /**
