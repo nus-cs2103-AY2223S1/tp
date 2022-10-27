@@ -5,7 +5,6 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddIterationCommandParser" as AddIterationCommandParser LOGIC_COLOR
-participant "t:AddIterationCommand" as AddIterationCommand LOGIC_COLOR
 end box
 
 [-> LogicManager : execute("additer d/2022-10-10 \nn/Changed the colour scheme\
