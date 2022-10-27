@@ -42,7 +42,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             return new FilterCommand(new ModuleContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
-        if (argMultimap.getValue(PREFIX_TAG).isPresent()){
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             return new FilterCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else {
             throw new ParseException(
