@@ -88,15 +88,16 @@ public class EditTaskCommand extends Command {
     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
     * edited with {@code editTaskDescriptor}.
     */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
+    public static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
         UUID updatedId = taskToEdit.getId();
         TaskName updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getName());
         Optional<Description> updatedDescription = editTaskDescriptor.getDescription().or(taskToEdit::getDescription);
         Optional<Deadline> updatedDeadline = editTaskDescriptor.getDeadline().or(taskToEdit::getDeadline);
+        boolean updatedisDone = editTaskDescriptor.isDone().orElse(taskToEdit.isDone());
 
-        return new Task(updatedId, updatedTaskName, updatedDescription, updatedDeadline);
+        return new Task(updatedId, updatedTaskName, updatedDescription, updatedDeadline, updatedisDone);
     }
 
     @Override
@@ -126,6 +127,7 @@ public class EditTaskCommand extends Command {
         private Description description;
         private Deadline deadline;
         private Index contactIndex;
+        private boolean isDone;
 
         public EditTaskDescriptor() {}
 
@@ -138,6 +140,7 @@ public class EditTaskCommand extends Command {
             setDescription(toCopy.description);
             setDeadline(toCopy.deadline);
             setContactIndex(toCopy.contactIndex);
+            setIsDone(toCopy.isDone);
         }
 
         /**
@@ -177,6 +180,14 @@ public class EditTaskCommand extends Command {
 
         public Optional<Index> getContactIndex() {
             return Optional.ofNullable(contactIndex);
+        }
+
+        public void setIsDone(boolean isDone) {
+            this.isDone = isDone;
+        }
+
+        public Optional<Boolean> isDone() {
+            return Optional.ofNullable(isDone);
         }
 
         @Override

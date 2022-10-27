@@ -247,6 +247,32 @@ Examples:
 - `list_task` followed by `select_task 1` selects the 1st task in the task list and shows all contacts assigned to that task.
 - `find_task sleep` followed by `select_task 1` selects the first task named sleep in the task list if it exists and shows all contacts assigned to that task.
 
+### Marking a task as complete: `mark`
+Marks the specified task as completed.
+
+Format: `mark INDEX`
+
+- The index refers to index number shown in the displayed task list.
+- The index **must be a positive integer** 1, 2, 3, …​
+- Specified task must be currently incomplete for command to succeed.
+
+Examples:
+
+- `mark 1` marks the 1st task in the task list as completed.
+
+### Marking a task as incomplete: `unmark`
+Marks the specified task as completed.
+
+Format: `unmark INDEX`
+
+- The index refers to index number shown in the displayed task list.
+- The index **must be a positive integer** 1, 2, 3, …​
+- Specified task must be currently completed for command to succeed.
+
+Examples:
+
+- `unmark 1` marks the 1st task in the task list as incomplete.
+
 ### Assigning tasks to contacts: `assign`
 
 Assigns a task to a contact shown in the task list and contact list respectively.
@@ -291,6 +317,14 @@ Swift+ data are saved as a JSON file `[JAR file location]/data/addressbook.json`
 If your changes to the data file makes its format invalid, Swift+ will discard all data and start with an empty data file at the next run.
 </div>
 
+### Command Suggestion and Autocomplete
+
+Swift+ prompts the user with command suggestions as they type, which includes the syntax and formatting. This helps new/forgetful users get used to the commands. Swift+ also allows users to autocomplete their commands up to the next user-required input as per the shown suggestion.
+
+Note:
+- Command Suggestion will not be shown if current user input is invalid and the command text will turn red to alert the users.
+- Autocomplete does not guarantee a successful/valid command unless the given syntax is followed.
+
 ---
 
 ## **FAQ**
@@ -314,6 +348,8 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 | **List Tasks**     | `list_task c/CONTACT_INDEX`                                                    |
 | **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                            |
 | **Edit Task**      | `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`                                   |
+| **Mark Task**      | `mark INDEX`                                                                   |
+| **Unmark Task**    | `unmark INDEX`                                                                 |
 | **Delete Task**    | `delete_task INDEX`                                                            |
 | **Select Task**    | `select_task INDEX`                                                            |
 | **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                          |

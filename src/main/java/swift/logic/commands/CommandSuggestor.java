@@ -68,6 +68,12 @@ public class CommandSuggestor {
         commandList.add(SelectTaskCommand.COMMAND_WORD);
         argPrefixList.add(SelectTaskCommand.ARGUMENT_PREFIXES);
 
+        commandList.add(MarkTaskCommand.COMMAND_WORD);
+        argPrefixList.add(MarkTaskCommand.ARGUMENT_PREFIXES);
+
+        commandList.add(UnmarkTaskCommand.COMMAND_WORD);
+        argPrefixList.add(UnmarkTaskCommand.ARGUMENT_PREFIXES);
+
         commandList.add(AssignCommand.COMMAND_WORD);
         argPrefixList.add(AssignCommand.ARGUMENT_PREFIXES);
 
