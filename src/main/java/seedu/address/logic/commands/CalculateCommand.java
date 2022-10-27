@@ -20,27 +20,33 @@ import seedu.address.model.Model;
 public class CalculateCommand extends Command {
 
     /**
-     * Command word for calculator
+     * Command word for calculator.
      */
     public static final String COMMAND_WORD = "calc";
 
     /**
-     * Message for calculator
+     * Message for calculator.
      */
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "Calculate an arithmetic expression"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + "Calculate an arithmetic expression"
             + "Example: " + COMMAND_WORD + "3 * (1 + 2.4)";
 
-    public String expression;
+    private final String expression;
 
-    public CalculateCommand(String expression) {
-        this.expression = expression;
+    /**
+     * Constructor for calculator.
+     * @param exp The arithmetic expression to be computed
+     */
+    public CalculateCommand(String exp) {
+        this.expression = exp;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
-        String calcResult = ExpressionParser.parseCalculation(this.expression);
+        String calcResult =
+                ArithmeticExpressionReader.parseCalculation(this.expression);
         String feedback = "Calculator:\n";
         feedback += this.expression + " = " + calcResult;
         return new CommandResult(feedback);
@@ -49,11 +55,16 @@ public class CalculateCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CalculateCommand // instanceof handles nulls
-                && expression.equals(((CalculateCommand) other).expression)); // state check
+                || (other instanceof CalculateCommand
+                        // instanceof handles nulls
+                && expression.equals(((CalculateCommand) other).expression));
+                        // state check
     }
 
-    private static class ExpressionParser {
+    /**
+     * Class for reading and understanding the arithmetic expression.
+     */
+    private static class ArithmeticExpressionReader {
         private static final int HIGH_PRECEDENCE = 2;
         private static final int LOW_PRECEDENCE = 0;
 
@@ -82,21 +93,22 @@ public class CalculateCommand extends Command {
             return OPERATORS.get(token1) - OPERATORS.get(token2);
         }
 
-        // Convert infix expression format into reverse Polish notation
+        // Convert infix expression format into Reverse Polish notation
         public static String[] expressionToRPN(String[] inputTokens) {
-            ArrayList<String> RPN = new ArrayList<>();
+            // Reverse Polish notation, small r to make checkstyle happyx
+            ArrayList<String> rPN = new ArrayList<>();
             Stack<String> stack = new Stack<>();
 
             // For each token
             for (String token : inputTokens) {
                 if (isOperator(token)) {
-                    // If token is an operator
-                    
+                    // If token is an operator.
                     // While stack not empty AND stack top element
                     // is an operator and have higher precedence
-                    while (!stack.empty() && isOperator(stack.peek()) &&
-                            comparePrecedence(token, stack.peek()) <= 0) {
-                        RPN.add(stack.pop());
+                    while (!stack.empty()
+                            && isOperator(stack.peek())
+                            && comparePrecedence(token, stack.peek()) <= 0) {
+                        rPN.add(stack.pop());
                     }
                     // Push the new operator on the stack
                     stack.push(token);
@@ -106,27 +118,26 @@ public class CalculateCommand extends Command {
                 } else if (token.equals(")")) {
                     // If token is a right parenthesis
                     while (!stack.empty() && !stack.peek().equals("(")) {
-                        RPN.add(stack.pop());
+                        rPN.add(stack.pop());
                     }
                     stack.pop();
                 } else {
                     // If token is a number
-                    RPN.add(token);
+                    rPN.add(token);
                 }
             }
             while (!stack.empty()) {
-                RPN.add(stack.pop());
+                rPN.add(stack.pop());
             }
-            String[] RPNStrArr = new String[RPN.size()];
-            return RPN.toArray(RPNStrArr);
+            String[] rPNStrArr = new String[rPN.size()];
+            return rPN.toArray(rPNStrArr);
         }
 
         public static double RPNtoDouble(String[] tokens) {
             Stack<String> stack = new Stack<>();
 
             // For each token
-            for (String token : tokens) //for each
-            {
+            for (String token : tokens) {
                 // If the token is a value push it onto the stack
                 if (!isOperator(token)) {
                     stack.push(token);
@@ -136,10 +147,13 @@ public class CalculateCommand extends Command {
                     Double d1 = Double.valueOf(stack.pop());
 
                     //Get the result
-                    Double result = token.compareTo("*") == 0 ? d1 * d2 :
-                            token.compareTo("/") == 0 ? d1 / d2 :
-                                    token.compareTo("+") == 0 ? d1 + d2 :
-                                            d1 - d2;
+                    Double result = token.compareTo("*") == 0
+                        ? d1 * d2
+                        : token.compareTo("/") == 0
+                        ? d1 / d2
+                        : token.compareTo("+") == 0
+                        ? d1 + d2
+                        : d1 - d2;
                     // Push result onto stack
                     stack.push(String.valueOf(result));
                 }
@@ -147,23 +161,31 @@ public class CalculateCommand extends Command {
 
             return Double.parseDouble(stack.pop());
         }
+
+        /**
+         * Main logic (method) for the calculation reader.
+         * @param userInput Cashier's input in String
+         * @return The result of calculation, rounded to 2 d.p.
+         */
         public static String parseCalculation(String userInput) {
             String regex = "((?<=[(|)|\\+|\\*|\\-|/])|(?=[(|)|\\+|\\*|\\-|/]))";
             String resultStr;
             System.out.println(userInput);
-            try{
+            try {
                 String[] input =  userInput.split(regex);
                 String[] output = expressionToRPN(input);
 
-                System.out.print("Stack: ");
-                for (String token : output) {
-                    System.out.print("[ ");System.out.print(token + " "); System.out.print("]");
-                }
+//                System.out.print("Stack: ");
+//                for (String token : output) {
+//                    System.out.print("[ ");
+//                    System.out.print(token + " ");
+//                    System.out.print("]");
+//                }
                 System.out.println(" ");
                 // Feed the RPN string to RPNtoDouble to give result
-                Double result = RPNtoDouble( output );
+                Double result = RPNtoDouble(output);
                 resultStr = String.format("%.2f", result);
-            } catch (NumberFormatException | EmptyStackException nfe){
+            } catch (NumberFormatException | EmptyStackException nfe) {
                 resultStr = "INVALID EXPRESSION";
             }
             return resultStr;
