@@ -158,13 +158,13 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The add item command will be executed by `AddItemCommand`. Items added will be stored in `ItemsList`.
+The add item command will be executed by `AddItemCommand`. Items added will be stored in `InventoryList`.
 
 Given below is an example usage scenario and how the add item mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `ItemsList` will contain sample data.
+Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `InventoryList` will contain sample data.
 
-Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into an `AddItemCommand` object. The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
+Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into an `AddItemCommand` object. The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the inventory list.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addItem()`, so the incomplete item will not be saved to `ItemsList`.
 
@@ -211,7 +211,7 @@ should have and is used in the creation of the new `Item` object. In this case, 
 target `Index` 1.
 
 Step 2:. The `EditItemCommand` creates a new `Item` using `createEditedItem()` and the `EditItemDescriptor`. It then
-checks if this `Item` already exists in the inventory list by using `ModelManager#hasItem()`. If it already exists, a
+checks if this `Item` already exists in the inventory list by using `Model#hasItem()`. If it already exists, a
 `CommandException` is thrown with `MESSAGE_DUPLICATE_ITEM`.
 
 An item already exists if there is another item in the
@@ -219,12 +219,17 @@ inventory list with same `ItemName`. `Item#isSameItem()` returns true when both 
 because having 2 `Item` with the same `ItemName` can be confusing to the user and this safeguards the user from such a
 situation.
 
-Step 3. The `Item` at the target index is then replaced by the newly created `Item` using `ModelManager#setItem()`,
+Step 3. The `Item` at the target index is then replaced by the newly created `Item` using `Model#setItem()`,
 successfully executing the edit item command in the `Model`.
 
 The sequence diagram below illustrates this process.
 
 ![EditItemSequenceDiagram](images/developer-guide/EditItemSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `EditItemCommandParser` should end at 
+the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the 
+end of diagram.
+</div>
 
 ### Order Management
 
