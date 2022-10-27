@@ -34,10 +34,12 @@ public class TabContainer extends UiPart<Region> {
 
     /**
      * Toggles tabs in tabcontainer. When id is 0, toggle to Contact tab. When id is 1, toggle to Task tab.
-     * When id is 2, toggle to Tag tab.
+     * When id is 2, toggle to Tag tab. When id is 3, do nothing.
      * @param id the unique id of the tab to be shown.
      */
     public void toggleTabs(int id) {
+        assert id >= 0 && id <= 3 : "Invalid tab";
+
         if (id >= 0 && id < 3) {
             selectionModel.select(id);
         }

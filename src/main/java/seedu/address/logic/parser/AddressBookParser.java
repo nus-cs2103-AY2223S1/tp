@@ -24,16 +24,19 @@ import seedu.address.logic.commands.tag.DeleteAllCommand;
 import seedu.address.logic.commands.tag.DeleteTagCommand;
 import seedu.address.logic.commands.tag.ListTagCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
+import seedu.address.logic.commands.task.ArchiveTaskCommand;
 import seedu.address.logic.commands.task.DeleteTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand;
 import seedu.address.logic.commands.task.FilterTaskCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
+import seedu.address.logic.commands.task.ListArchivedTaskCommand;
 import seedu.address.logic.commands.task.ListTaskCommand;
 import seedu.address.logic.commands.task.MarkTaskCommand;
 import seedu.address.logic.commands.task.ReminderCommand;
 import seedu.address.logic.commands.task.SortByDeadlineCommand;
 import seedu.address.logic.commands.task.SortByIdCommand;
 import seedu.address.logic.commands.task.TaskProgressCommand;
+import seedu.address.logic.commands.task.UnarchiveTaskCommand;
 import seedu.address.logic.commands.task.UnmarkTaskCommand;
 import seedu.address.logic.parser.contact.AddContactCommandParser;
 import seedu.address.logic.parser.contact.CopyContactEmailCommandParser;
@@ -46,6 +49,7 @@ import seedu.address.logic.parser.tag.AddTagCommandParser;
 import seedu.address.logic.parser.tag.DeleteAllCommandParser;
 import seedu.address.logic.parser.tag.DeleteTagCommandParser;
 import seedu.address.logic.parser.task.AddTaskCommandParser;
+import seedu.address.logic.parser.task.ArchiveTaskCommandParser;
 import seedu.address.logic.parser.task.DeleteTaskCommandParser;
 import seedu.address.logic.parser.task.EditTaskCommandParser;
 import seedu.address.logic.parser.task.FilterTaskCommandParser;
@@ -53,6 +57,7 @@ import seedu.address.logic.parser.task.FindTaskCommandParser;
 import seedu.address.logic.parser.task.MarkTaskCommandParser;
 import seedu.address.logic.parser.task.ReminderCommandParser;
 import seedu.address.logic.parser.task.TaskProgressCommandParser;
+import seedu.address.logic.parser.task.UnarchiveTaskCommandParser;
 import seedu.address.logic.parser.task.UnmarkTaskCommandParser;
 
 /**
@@ -142,6 +147,12 @@ public class AddressBookParser {
         case FilterTaskCommand.COMMAND_WORD:
             return new FilterTaskCommandParser().parse(arguments);
 
+        case ArchiveTaskCommand.COMMAND_WORD:
+            return new ArchiveTaskCommandParser().parse(arguments);
+
+        case UnarchiveTaskCommand.COMMAND_WORD:
+            return new UnarchiveTaskCommandParser().parse(arguments);
+
         case ReminderCommand.COMMAND_WORD:
             return new ReminderCommandParser().parse(arguments);
 
@@ -156,6 +167,9 @@ public class AddressBookParser {
 
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();
+
+        case ListArchivedTaskCommand.COMMAND_WORD:
+            return new ListArchivedTaskCommand();
 
         case ListTagCommand.COMMAND_WORD:
             return new ListTagCommand();
@@ -219,8 +233,11 @@ public class AddressBookParser {
         case MarkTaskCommand.COMMAND_WORD:
         case UnmarkTaskCommand.COMMAND_WORD:
         case ListTaskCommand.COMMAND_WORD:
+        case ListArchivedTaskCommand.COMMAND_WORD:
         case SortByDeadlineCommand.COMMAND_WORD:
         case SortByIdCommand.COMMAND_WORD:
+        case ArchiveTaskCommand.COMMAND_WORD:
+        case UnarchiveTaskCommand.COMMAND_WORD:
             return 1;
 
         default:

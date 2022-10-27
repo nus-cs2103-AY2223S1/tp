@@ -48,7 +48,6 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
      * @param  task Task that will be checked for matching keywords.
      * @return boolean indicating if task contains supplied keywords.
      */
-    // TODO Implement for tags
     @Override
     public boolean test(Task task) {
         return task.containsKeywordsCaseInsensitive(descriptionKeywords, deadlineKeywords, tags);

@@ -32,7 +32,9 @@ public class EditTaskDescriptorBuilder {
         descriptor = new EditTaskDescriptor();
         descriptor.setDescription(task.getDescription());
         descriptor.setDeadline(task.getDeadline());
-        descriptor.setIsDone(task.getCompletionStatus());
+        descriptor.setCompletionStatus(task.getCompletionStatus());
+        descriptor.setArchivalStatus(task.getArchivalStatus());
+
         descriptor.setTags(task.getTags());
         descriptor.setId(task.getId());
     }
@@ -56,8 +58,16 @@ public class EditTaskDescriptorBuilder {
     /**
      * Sets the completion status of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withStatus(Boolean isDone) {
-        descriptor.setIsDone(isDone);
+    public EditTaskDescriptorBuilder withCompletionStatus(Boolean isDone) {
+        descriptor.setCompletionStatus(isDone);
+        return this;
+    }
+
+    /**
+     * Sets the archival status of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withArchivalStatus(Boolean isArchived) {
+        descriptor.setArchivalStatus(isArchived);
         return this;
     }
 

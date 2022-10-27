@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.tag.DeleteTagCommand.createEditedPers
 import static seedu.address.logic.commands.tag.DeleteTagCommand.createEditedTask;
 import static seedu.address.logic.commands.task.DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.address.model.task.Task.PREDICATE_SHOW_NON_ARCHIVED_TASKS;
 
 import java.util.List;
 import java.util.Set;
@@ -112,7 +112,7 @@ public class DeleteAllCommand extends Command {
             sb.append(String.format(MESSAGE_DELETE_TASK_SUCCESS, task));
             sb.append(NEW_LINE_CHARACTER);
         }
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
         return sb.toString();
     }
 
