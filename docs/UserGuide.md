@@ -54,7 +54,7 @@ Add a supplier to Salesy’s address book
 
 Add a task to Salesy
 
->`addTask Pass ingredients to XXX Pte Ltd`
+>`addTask d/Pass ingredients to XXX Pte Ltd dl/2022-12-12`
 
 Add a SupplyItem to Salesy's inventory
 
