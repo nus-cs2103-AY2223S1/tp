@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.watson.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.watson.commons.core.GuiSettings;
 import seedu.watson.commons.core.LogsCenter;
+import seedu.watson.model.person.Name;
 import seedu.watson.model.person.Person;
 
 /**
@@ -91,6 +93,18 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return database.hasPerson(person);
+    }
+
+    @Override
+    public Person getPersonByName(Name name) {
+        requireNonNull(name);
+        ObservableList<Person> personList = database.getPersonList();
+        for (Person person : personList) {
+            if (person.getName().equals(name)) {
+                return person;
+            }
+        }
+        throw new NoSuchElementException();
     }
 
     @Override
