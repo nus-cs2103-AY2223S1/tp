@@ -52,10 +52,6 @@ public class StudioParticipation {
         participation.put(editedStudent, studentParticipation);
     }
 
-    public Map<Student, Integer> getParticipation() {
-        return participation;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Studio Participation:\n");

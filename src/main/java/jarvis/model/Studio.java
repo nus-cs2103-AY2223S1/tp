@@ -39,8 +39,8 @@ public class Studio extends Lesson {
 
     public Map<Integer, Integer> getParticipation() {
         Map<Integer, Integer> resMap = new TreeMap<>();
-        for (Student student : participation.getParticipation().keySet()) {
-            resMap.put(getStudentList().indexOf(student), participation.getParticipation().get(student));
+        for (Student student : getStudentList()) {
+            resMap.put(getStudentList().indexOf(student), participation.getParticipationForStudent(student));
         }
         return resMap;
     }
