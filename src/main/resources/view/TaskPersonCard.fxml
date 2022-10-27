@@ -11,30 +11,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<HBox id="cardPane" fx:id="cardPane" prefHeight="90.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
+<HBox id="cardPane" fx:id="cardPane" prefWidth="150.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane prefHeight="70.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="90.0" prefHeight="90.0" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="150.0" GridPane.columnIndex="0">
             <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
+                <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
             </padding>
-            <HBox alignment="CENTER_LEFT" prefHeight="18.0" spacing="5">
+            <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" prefHeight="17.0" prefWidth="400.0" styleClass="cell_big_label" text="\$first" HBox.hgrow="ALWAYS">
+                <Label fx:id="name" prefWidth="400.0" styleClass="side-panel-cell-big-label" text="\$first" HBox.hgrow="ALWAYS">
                     <padding>
                         <Insets bottom="5.0" right="10.0" />
                     </padding>
                 </Label>
-            <FlowPane fx:id="tags" alignment="TOP_RIGHT" columnHalignment="RIGHT" prefHeight="18.0" prefWidth="116.0" />
+            <FlowPane fx:id="tags" alignment="TOP_RIGHT" columnHalignment="RIGHT" prefWidth="116.0" />
             </HBox>
-            <HBox prefHeight="18.0" prefWidth="130.0">
+            <HBox prefWidth="130.0">
             <children>
                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
                   <HBox.margin>
@@ -44,7 +44,7 @@
                      <Insets />
                   </opaqueInsets>
                   <padding>
-                     <Insets left="22.0" />
+                     <Insets left="23.0" />
                   </padding>
                </Label>
                <Label style="-fx-background-color: transparent;">

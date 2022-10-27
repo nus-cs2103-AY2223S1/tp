@@ -192,14 +192,7 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        // Show the associated persons list panel only if there is one task selected in task list.
-        if (logic.getFilteredTaskList().size() == 1) {
-            taskPersonListPanel = new TaskPersonListPanel(logic.getFilteredPersonList());
-            personTaskListPanelPlaceholder.getChildren().clear();
-            personTaskListPanelPlaceholder.getChildren().add(taskPersonListPanel.getRoot());
-        } else {
-            personTaskListPanelPlaceholder.getChildren().clear();
-        }
+        showContactsInTaskTab();
     }
 
     /**
@@ -208,19 +201,52 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void showContactTab() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        // Show the associated tasks list panel only if there is one contact selected in contact list.
-        if (logic.getFilteredPersonList().size() == 1) {
-            personTaskListPanel = new PersonTaskListPanel(logic.getFilteredTaskList(),
-                    logic.getUnfilteredBridgeList(), logic.getUnfilteredPersonList());
-            personTaskListPanelPlaceholder.getChildren().clear();
-            personTaskListPanelPlaceholder.getChildren().add(personTaskListPanel.getRoot());
-        } else {
-            personTaskListPanelPlaceholder.getChildren().clear();
-        }
+        showTasksInContactTab();
+    }
+
+    /**
+     * Show the associated tasks list panel only if there is one contact selected in contact list.
+     */
+    @FXML
+    private void showTasksInContactTab() {
+        removeSidePanel();
+        personTaskListPanel = new PersonTaskListPanel(logic.getFilteredTaskList(),
+                logic.getUnfilteredBridgeList(), logic.getUnfilteredPersonList());
+        personTaskListPanel.switchToAllTasks();
+        personTaskListPanelPlaceholder.getChildren().add(personTaskListPanel.getRoot());
+    }
+
+    /**
+     * Show the associated persons list panel only if there is one task selected in task list.
+     */
+    @FXML
+    private void showContactsInTaskTab() {
+        removeSidePanel();
+        taskPersonListPanel = new TaskPersonListPanel(logic.getFilteredPersonList());
+        taskPersonListPanel.switchToAllContacts();
+        personTaskListPanelPlaceholder.getChildren().add(taskPersonListPanel.getRoot());
+    }
+
+    @FXML
+    private void showAssignedContacts() {
+        taskPersonListPanel.switchToAssignedContacts();
+    }
+
+    @FXML
+    private void showAssignedTasks() {
+        personTaskListPanel.switchToAssignedTasks();
+    }
+
+    /**
+     * Remove list in side panel
+     * @return
+     */
+    @FXML
+    private void removeSidePanel() {
+        personTaskListPanelPlaceholder.getChildren().clear();
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -267,6 +293,14 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             case ASSIGN:
                 refreshTab();
+                break;
+            case SELECT_CONTACT:
+                showContactTab();
+                showAssignedTasks();
+                break;
+            case SELECT_TASK:
+                showTaskTab();
+                showAssignedContacts();
                 break;
             default:
                 break;

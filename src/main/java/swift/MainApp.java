@@ -91,8 +91,8 @@ public class MainApp extends Application {
         }
 
         ModelManager newModelManager = new ModelManager(initialData, userPrefs);
-        // Hide all Tasks by Default
-        newModelManager.updateFilteredTaskList(Model.PREDICATE_HIDE_ALL_TASKS);
+        // Show all Tasks by Default
+        newModelManager.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
         return newModelManager;
     }
 

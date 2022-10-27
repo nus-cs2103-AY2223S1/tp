@@ -33,10 +33,17 @@ public class TaskPersonListPanel extends UiPart<Region> {
     }
 
     /**
-     * Remove heading from the panel.
+     * Change panel to show contacts assigned to task.
      */
-    protected void removeHeading() {
-        heading.setText("");
+    protected void switchToAssignedContacts() {
+        heading.setText("ASSIGNED CONTACTS");
+    }
+
+    /**
+     * Change panel to show all contacts.
+     */
+    protected void switchToAllContacts() {
+        heading.setText("ALL CONTACTS");
     }
 
     /**

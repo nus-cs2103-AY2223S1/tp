@@ -9,5 +9,7 @@ public enum CommandType {
     CONTACTS,
     TASKS,
     CLEAR,
+    SELECT_TASK,
+    SELECT_CONTACT,
     ASSIGN
 }
