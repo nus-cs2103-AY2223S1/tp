@@ -109,8 +109,8 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 ![UserInterfaceExplaination](images/UserInterfaceExplaination.png)
 
 - For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. 
-  The following table shows the`Expenditure` and `Income` entries categories. The category names are <ins>case sensitive</ins>.
-
+  The following table shows the`Expenditure` and `Income` entries categories. The category names are <ins>case insensitive</ins>.
+  
 |   `Expenditure`   |    `Income`     |
 |:-----------------:|:---------------:|
 |     **Food**      |   **Salary**    |
