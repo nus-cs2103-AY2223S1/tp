@@ -124,9 +124,9 @@ Format: `help`
 
 ### Adding a contact or item: `add`
 
-Adds a contact or item to the address book. 
+Adds a contact or item to the address book.
 
-* A contact can be of three categories: Buyer, Deliverer, and Supplier. 
+* A contact can be of three categories: Buyer, Deliverer, and Supplier.
 * An item can be either an Order or Pet.
 
 General Format for add command: `add-KEY prefix/PARAMETERS...`, where:
@@ -136,8 +136,8 @@ General Format for add command: `add-KEY prefix/PARAMETERS...`, where:
 
 Kindly refer to the [Summaries](#summaries) section for more information.
 
-:exclamation:If you are a beginner, we highly recommend you to use the [Add Command using the popup window](#adding-a-person-with-a-popup-window--add) instead of the usual 
-CLI interface.
+:exclamation:If you are a beginner, we highly recommend you to use the [Add Command using the popup window](#adding-a-person-with-a-popup-window--add)
+instead of the usual CLI interface.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -153,7 +153,7 @@ Format: `add-b n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 :bulb: **Tip:** A person can have any number of tags (including 0)
 
-After meeting a new customer with an order and would like to add her/him to your list of contacts, we have a 
+After meeting a new customer with an order and would like to add her/him to your list of contacts, we have a
 nice feature for you to add a buyer and his/her orders in one shot! Check it out below :point_down:
 
 Format: `add-b n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ o/add-o(order1 prefixes and fields) o/add-o(order2 prefixes and fields)…​`
@@ -194,8 +194,8 @@ Adds a supplier to address book. A supplier feeds, trains, and takes care of pet
 
 Format: `add-s n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-Similar to the [Add Buyer](#adding-a-buyer-add-b) command, you may feel that adding a supplier followed by adding 
-her/his pets for sale is too troublesome. For your convenience, we have added a feature where you can add a pet to the 
+Similar to the [Add Buyer](#adding-a-buyer-add-b) command, you may feel that adding a supplier followed by adding
+her/his pets for sale is too troublesome. For your convenience, we have added a feature where you can add a pet to the
 supplier in one shot! Check it out below :point_down:
 
 Format: `add-s n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ pt/add-pt(pet1 prefixeds and fields) pt/add-pt(pet2 prefixeds and fields)…​`
@@ -220,8 +220,8 @@ add a new order :point_down:
 Format: `add-o i/INDEX_OF_BUYER o_s/STATUS o_r/add-r o_a/AGE o_s/SPECIES o_c/COLOR o_cp/COLOR_PATTERN o_p/PRICE o_pr/PRICE_RANGE o_d/DATE [o_ar/ADDITIONAL_REQUEST]…​`
 
 `i/INDEX_OF_BUYER` is the one-based index of the buyer you would like to add this order to. You can find out the index
-in the displayed buyer list. You may want to use the [List Command](#listing-contacts-or-items--list) to find the buyer, 
-if you have filtered the list. 
+in the displayed buyer list. You may want to use the [List Command](#listing-contacts-or-items--list) to find the buyer,
+if you have filtered the list.
 
 :exclamation: Please ensure that `o_r/` is followed by `add-r` immediately and that there are no other prefixes
 between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_s/`. This is because they as a whole specify how the requested pet should be
@@ -337,13 +337,13 @@ Deletes a contact / item at the specified index of the respective contact / item
 Format: `delete-KEY INDEX`
 
 #### KEY Types Table
-| Contact / Item to Delete | KEY | 
+| Contact / Item to Delete | KEY |
 |--------------------------|-----|
-| Buyer                    | b   |          
-| Supplier                 | s   |    
-| Deliverer                | d   |  
-| Order                    | o   |                        
-| Pet                      | p   | 
+| Buyer                    | b   |
+| Supplier                 | s   |
+| Deliverer                | d   |
+| Order                    | o   |
+| Pet                      | p   |
 
 Examples:
 * `delete-b 1`, deletes Buyer contact at index 1 of Buyer Contacts List, if index is found.
@@ -357,7 +357,7 @@ Examples:
 
 ### Finding a contact using keywords : `find`
 
-Displays all contacts which match ONE specific attribute. This command is especially useful when you want to quickly 
+Displays all contacts which match ONE specific attribute. This command is especially useful when you want to quickly
 find contacts based on a keyword.
 
 There are five possible attributes for finding contact(s):
@@ -385,7 +385,7 @@ Examples:
 
 #### Finding a BUYER : `find-b`
 
-Displays all buyers who match ONE specific attribute. Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table) 
+Displays all buyers who match ONE specific attribute. Check out the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information.
 
 Format: `find-b [PREFIX]/INPUT`
@@ -434,7 +434,7 @@ Examples:
 
 ### Filtering lists by tags : `filter`
 
-Displays contacts / items based on the specified tag(s). This command is especially useful when you want to coordinate 
+Displays contacts / items based on the specified tag(s). This command is especially useful when you want to coordinate
 sales between a Buyer and Supplier.
 
 
@@ -567,13 +567,13 @@ Examples:
 
 ### Checking which item belongs to which contact : `check`
 
-Checks a contact at specified index, the application will display different windows for each list input. This command 
-is especially useful for checking which Order belongs to which Buyer, and which Pet belongs to which Supplier.
+Checks a contact at specified index, the application will display different windows for each list input.
+This command is especially useful for checking which Order belongs to which Buyer, and which Pet belongs to which Supplier.
 
 Format: `check LIST_PARAMETER INDEX`
 
 :exclamation: **Please take note of the following:**
-* This command does not support the Deliverers list. 
+* This command does not support the Deliverers list.
 * The input index has to be a valid index.
 
 Check out the acceptable List Parameters for different types of contacts / items [here](#acceptable-list-parameters-for-contacts--items-table).
@@ -618,13 +618,13 @@ Format: `exit`
 ## How data is stored
 ### Saving the data
 
-PetCode data is saved into your computer's hard disk automatically after any command that changes the data. There is no 
-need to save manually.
+PetCode data is saved into your computer's hard disk automatically after any command that changes the data.
+There is no need to save manually.
 
 ### Editing the data file
 
-PetCode data is saved as a JSON file `[JAR file location]/data/PetCode.json`. Advanced users are welcome to update the 
-data directly by editing that data file.
+PetCode data is saved as a JSON file `[JAR file location]/data/PetCode.json`.
+Advanced users are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
 
