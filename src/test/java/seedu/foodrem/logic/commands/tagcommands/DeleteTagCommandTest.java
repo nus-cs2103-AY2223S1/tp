@@ -39,7 +39,7 @@ public class DeleteTagCommandTest {
         expectedModel.deleteTag(tagToDelete);
 
         assertCommandSuccess(deleteTagCommand, model,
-                new TagsWithMessage(List.of(tagToDelete), EXPECTED_SUCCESS_MESSAGE), expectedModel);
+                new TagsWithMessage(EXPECTED_SUCCESS_MESSAGE, List.of(tagToDelete)), expectedModel);
 
         for (Item item : model.getCurrentList()) {
             assertFalse(item.getTagSet().contains(tagToDelete));
@@ -60,7 +60,7 @@ public class DeleteTagCommandTest {
         expectedModel.deleteTag(tagToDelete);
 
         assertCommandSuccess(deleteTagCommand, model,
-                new TagsWithMessage(List.of(tagToDelete) , EXPECTED_SUCCESS_MESSAGE), expectedModel);
+                new TagsWithMessage(EXPECTED_SUCCESS_MESSAGE , List.of(tagToDelete)), expectedModel);
 
         // Tag should be deleted from all items
         for (Item item : model.getCurrentList()) {

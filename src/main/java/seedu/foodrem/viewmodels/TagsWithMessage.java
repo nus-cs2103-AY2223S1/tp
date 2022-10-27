@@ -18,7 +18,7 @@ public class TagsWithMessage {
      * @param tags the tags to display.
      * @param message the message to display.
      */
-    public TagsWithMessage(List<Tag> tags, String message) {
+    public TagsWithMessage(String message, List<Tag> tags) {
         this.tags = tags;
         this.message = message;
     }

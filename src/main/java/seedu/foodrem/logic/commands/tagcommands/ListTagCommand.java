@@ -18,7 +18,7 @@ public class ListTagCommand extends Command {
     public CommandResult<TagsWithMessage> execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTagList(Model.PREDICATE_SHOW_ALL_TAGS);
-        return CommandResult.from(new TagsWithMessage(model.getFilteredTagList(), MESSAGE_SUCCESS));
+        return CommandResult.from(new TagsWithMessage(MESSAGE_SUCCESS, model.getFilteredTagList()));
     }
 
     public static String getUsage() {

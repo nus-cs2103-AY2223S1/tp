@@ -38,7 +38,7 @@ public class NewTagCommandIntegrationTest {
         expectedModel.addTag(validTag);
 
         assertCommandSuccess(new NewTagCommand(validTag), model,
-                new TagsWithMessage(List.of(validTag) , EXPECTED_SUCCESS_MESSAGE), expectedModel);
+                new TagsWithMessage(EXPECTED_SUCCESS_MESSAGE , List.of(validTag)), expectedModel);
     }
 
     @Test
