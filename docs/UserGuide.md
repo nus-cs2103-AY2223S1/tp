@@ -255,7 +255,7 @@ Removes a task from the task list.
 
 Format: `deleteT INDEX`
 
-* Index of a contact is its index number on the contact list.
+* Index of a task is its index number on the task list.
 
 * INDEX must be a positive integer more than 0.
 
