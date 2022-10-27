@@ -6,6 +6,7 @@ import static seedu.watson.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import java.util.ArrayList;
+
 import seedu.watson.logic.commands.FindCommand;
 import seedu.watson.logic.commands.FindNameCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
