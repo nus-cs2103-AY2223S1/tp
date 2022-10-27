@@ -37,8 +37,10 @@ public class Person implements Comparable<Person> {
      */
     public Person(Name name, Address address, Set<Tag> tags,
                   Map<ContactType, Contact> contacts, Role role, Timezone timezone, User githubUser) {
-        requireAllNonNull(name, tags);
-        this.name = name;
+        requireAllNonNull(tags);
+        assert (name != null || githubUser != null);
+
+        this.name = name == null ? githubUser.getName() : name;
         this.address = address;
         this.role = role;
         this.timezone = timezone;

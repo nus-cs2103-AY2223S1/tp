@@ -105,15 +105,22 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this
-            || (other instanceof User)
-            && username.equals(((User) other).username)
-            && url.equals(((User) other).url)
-            && name.equals(((User) other).name)
-            && email.equals(((User) other).email)
-            && address.equals(((User) other).address)
-            && repoList.equals(((User) other).repoList);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof User)) { //this handles null as well.
+            return false;
+        }
+
+        User other = (User) obj;
+
+        return username.equals(other.getUsername())
+            && url.equals(other.getUrl())
+            && name.equals(other.getName())
+            && email.equals(other.getEmail().orElse(null))
+            && address.equals(other.getAddress().orElse(null))
+            && repoList.equals(other.getRepoList());
     }
 
     @Override

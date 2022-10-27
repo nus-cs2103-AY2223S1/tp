@@ -17,8 +17,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.github.exceptions.NetworkConnectionException;
-import seedu.address.github.exceptions.UserInvalidException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -50,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException, UserInvalidException, NetworkConnectionException {
+    public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
             PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE, PREFIX_TIMEZONE,
             PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SLACK, PREFIX_TELEGRAM, PREFIX_GITHUB);
@@ -60,19 +58,20 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        // At least one of the following needs to be non-null
         User githubUser = null;
-        Name name;
 
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
             githubUser = ParserUtil.parseGithubUser(argMultimap.getValue(PREFIX_GITHUB).get());
         }
 
+        Name name = null;
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        } else {
-            assert githubUser != null;
-            name = githubUser.getName();
+        }
+
+        if (githubUser == null || name == null) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
