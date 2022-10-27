@@ -13,7 +13,7 @@ import seedu.pennywise.model.entry.Entry;
 import seedu.pennywise.model.entry.EntryType;
 
 /**
- * Deletes an entry identified using it's displayed index from the penny wise application.
+ * Deletes an entry identified using it's displayed index from the PennyWise application.
  */
 public class DeleteCommand extends Command {
 
@@ -30,7 +30,7 @@ public class DeleteCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates a DeleteCommand to with the {@code targetIndex} and {@code entryType}
+     * Creates a DeleteCommand with the {@code targetIndex} and {@code entryType}
      */
     public DeleteCommand(Index targetIndex, EntryType entryType) {
         this.targetIndex = targetIndex;

@@ -10,7 +10,7 @@ import javafx.scene.layout.StackPane;
 import seedu.pennywise.commons.core.LogsCenter;
 
 /**
- * Panel containing all entries
+ * Panel containing all entries.
  */
 public class EntryPane extends UiPart<Region> {
     private static final String FXML = "EntryPane.fxml";
@@ -36,7 +36,6 @@ public class EntryPane extends UiPart<Region> {
 
 
     /**
-     * TODO: Edit expense and income
      * Creates a {@code EntryPane} with default entries
      */
     public EntryPane(EntryListPanel expenseEntry, EntryListPanel incomeEntry) {
@@ -48,7 +47,7 @@ public class EntryPane extends UiPart<Region> {
     }
 
     /**
-     * Switches the UI tab pane to the Expense entry panel.
+     * Switches the UI tab pane to the {@code Expense} entry panel.
      */
     public void showExpenseEntryPanel() {
         logger.info("Showing expenses entry panel");
@@ -56,7 +55,7 @@ public class EntryPane extends UiPart<Region> {
     }
 
     /**
-     * Switches the UI tab pane to the Income entry panel.
+     * Switches the UI tab pane to the {@code Income} entry panel.
      */
     public void showIncomeEntryPanel() {
         logger.info("Showing income entry panel");
