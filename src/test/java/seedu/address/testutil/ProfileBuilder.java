@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,12 +22,14 @@ public class ProfileBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@u.nus.edu";
     public static final String DEFAULT_TELEGRAM = "";
+    //    public static final List<Event> DEFAULT_EVENTS_ATTENDING = List.of(PRESENTATION);
 
     private Name name;
     private Phone phone;
     private Email email;
     private Telegram telegram;
     private Set<Tag> tags;
+    //    private EventsAttending eventsAttending;
 
     /**
      * Creates a {@code ProfileBuilder} with the default details.
@@ -88,6 +92,14 @@ public class ProfileBuilder {
         this.telegram = new Telegram(telegram);
         return this;
     }
+
+    //    /**
+    //     * Sets the list of events {@code ... events} to attend.
+    //     */
+    //    public ProfileBuilder withEventsAttending(Event... events) {
+    //        this.eventsAttending = new EventsAttending(List.of(events));
+    //        return this;
+    //    }
 
     public Profile build() {
         return new Profile(name, phone, email, telegram, tags);

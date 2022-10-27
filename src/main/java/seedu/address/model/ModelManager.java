@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -141,6 +142,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, profilesToEdit);
+        addressBook.removeEventFromAttendees(target, profilesToEdit);
+    }
+
+    @Override
     public void addEvent(Event event) {
         addressBook.addEvent(event);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
@@ -150,6 +157,31 @@ public class ModelManager implements Model {
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
         addressBook.setEvent(target, editedEvent);
+    }
+
+    @Override
+    public void setEventForAttendees(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        addressBook.setEventForAttendees(target, editedEvent);
+    }
+
+    @Override
+    public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
+        requireAllNonNull(event, profilesToAdd);
+        addEventToAttendees(event, profilesToAdd);
+        addressBook.addEventAttendees(event, profilesToAdd);
+    }
+
+    @Override
+    public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
+        requireAllNonNull(event, profilesToDelete);
+        addressBook.deleteEventAttendees(event, profilesToDelete);
+    }
+
+    @Override
+     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
+        requireAllNonNull(event, profilesToAddEventTo);
+        addressBook.addEventToAttendees(event, profilesToAddEventTo);
     }
 
     //=========== Filtered Profile List Accessors =============================================================

@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.event.AddEventCommand;
+import seedu.address.logic.commands.event.AddProfilesToEventCommand;
 import seedu.address.logic.commands.event.DeleteEventCommand;
+import seedu.address.logic.commands.event.DeleteProfilesFromEventCommand;
 import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.event.ViewEventsCommand;
 import seedu.address.logic.commands.event.ViewUpcomingEventsCommand;
@@ -14,7 +16,9 @@ import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.logic.commands.profile.FindProfileCommand;
 import seedu.address.logic.commands.profile.ViewProfilesCommand;
 import seedu.address.logic.parser.event.AddEventCommandParser;
+import seedu.address.logic.parser.event.AddProfilesToEventCommandParser;
 import seedu.address.logic.parser.event.DeleteEventCommandParser;
+import seedu.address.logic.parser.event.DeleteProfilesFromEventCommandParser;
 import seedu.address.logic.parser.event.EditEventCommandParser;
 import seedu.address.logic.parser.event.FindEventCommandParser;
 import seedu.address.logic.parser.event.ViewEventsCommandParser;
@@ -60,6 +64,10 @@ public class CommandParserTestUtil {
             userInput = " -" + ViewUpcomingEventsCommand.COMMAND_OPTION + " " + userInput;
         } else if (parser instanceof ViewEventsCommandParser) {
             userInput = " -" + ViewEventsCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof AddProfilesToEventCommandParser) {
+            userInput = " -" + AddProfilesToEventCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof DeleteProfilesFromEventCommandParser) {
+            userInput = " -" + DeleteProfilesFromEventCommand.COMMAND_OPTION + " " + userInput;
         }
 
         try {
@@ -99,6 +107,10 @@ public class CommandParserTestUtil {
             userInput = " -" + ViewUpcomingEventsCommand.COMMAND_OPTION + " " + userInput;
         } else if (parser instanceof ViewEventsCommandParser) {
             userInput = " -" + ViewEventsCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof AddProfilesToEventCommandParser) {
+            userInput = " -" + AddProfilesToEventCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof DeleteProfilesFromEventCommandParser) {
+            userInput = " -" + DeleteProfilesFromEventCommand.COMMAND_OPTION + " " + userInput;
         }
 
         try {

@@ -5,8 +5,8 @@ box Logic LOGIC_COLOR_T1
 Participant ":LogicManager" as logicManager LOGIC_COLOR_T3
 Participant ":NuSchedulerParser" as nuSchedulerParser LOGIC_COLOR_T3
 Participant ":EventCommandParser" as eventCommandParser LOGIC_COLOR_T3
-Participant ":AddAttendeesCommandParser" as addAttendeesCommandParser LOGIC_COLOR_T3
-Participant "p:AddAttendeesCommand" as addAttendeesCommand LOGIC_COLOR_T3
+Participant ":AddProfilesToEventCommandParser" as AddProfilesToEventCommandParser LOGIC_COLOR_T3
+Participant "p:AddProfilesToEventCommand" as AddProfilesToEventCommand LOGIC_COLOR_T3
 Participant ":CommandResult" as commandResult LOGIC_COLOR_T3
 endBox
 
@@ -22,26 +22,26 @@ nuSchedulerParser -> eventCommandParser ++
 return
 nuSchedulerParser -> eventCommandParser ++: parse(" -ap...")
 
-create addAttendeesCommandParser
-eventCommandParser -> addAttendeesCommandParser ++
+create AddProfilesToEventCommandParser
+eventCommandParser -> AddProfilesToEventCommandParser ++
 return
-eventCommandParser -> addAttendeesCommandParser ++: parse(" -ap...")
+eventCommandParser -> AddProfilesToEventCommandParser ++: parse(" -ap...")
 
-create addAttendeesCommand
-addAttendeesCommandParser -> addAttendeesCommand ++
+create AddProfilesToEventCommand
+AddProfilesToEventCommandParser -> AddProfilesToEventCommand ++
 return p
 return p
-destroy addAttendeesCommandParser
+destroy AddProfilesToEventCommandParser
 return p
 destroy eventCommandParser
 return p
 
-logicManager -> addAttendeesCommand ++: execute(model)
-addAttendeesCommand -> model ++: updateEventAttendees(profile)
+logicManager -> AddProfilesToEventCommand ++: execute(model)
+AddProfilesToEventCommand -> model ++: addEventAttendees(event, profilesToAdd)
 return
 
 create commandResult
-addAttendeesCommand -> commandResult++
+AddProfilesToEventCommand -> commandResult++
 return
 return
 return
