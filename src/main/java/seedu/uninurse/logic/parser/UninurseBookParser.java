@@ -18,11 +18,7 @@ import seedu.uninurse.logic.commands.DeleteGenericCommand;
 import seedu.uninurse.logic.commands.DeleteMedicationCommand;
 import seedu.uninurse.logic.commands.DeleteRemarkCommand;
 import seedu.uninurse.logic.commands.DeleteTagCommand;
-import seedu.uninurse.logic.commands.EditConditionCommand;
 import seedu.uninurse.logic.commands.EditGenericCommand;
-import seedu.uninurse.logic.commands.EditMedicationCommand;
-import seedu.uninurse.logic.commands.EditRemarkCommand;
-import seedu.uninurse.logic.commands.EditTagCommand;
 import seedu.uninurse.logic.commands.ExitCommand;
 import seedu.uninurse.logic.commands.FindCommand;
 import seedu.uninurse.logic.commands.HelpCommand;
@@ -78,17 +74,11 @@ public class UninurseBookParser {
         case AddTagCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
             return new AddTagCommandParser().parse(arguments);
 
-        case EditTagCommand.COMMAND_WORD: // TODO: integrate with EditGenericCommand
-            return new EditTagCommandParser().parse(arguments);
-
         case DeleteTagCommand.COMMAND_WORD: // TODO: integrate with DeleteGenericCommand
             return new DeleteTagCommandParser().parse(arguments);
 
         case AddConditionCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
             return new AddConditionCommandParser().parse(arguments);
-
-        case EditConditionCommand.COMMAND_WORD: // TODO: integrate with EditGenericCommand
-            return new EditConditionCommandParser().parse(arguments);
 
         case DeleteConditionCommand.COMMAND_WORD: // TODO: integrate with DeleteGenericCommand
             return new DeleteConditionCommandParser().parse(arguments);
@@ -96,17 +86,11 @@ public class UninurseBookParser {
         case AddMedicationCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
             return new AddMedicationCommandParser().parse(arguments);
 
-        case EditMedicationCommand.COMMAND_WORD: // TODO: integrate with EditGenericCommand
-            return new EditMedicationCommandParser().parse(arguments);
-
         case DeleteMedicationCommand.COMMAND_WORD: // TODO: integrate with DeleteGenericCommand
             return new DeleteMedicationCommandParser().parse(arguments);
 
         case AddRemarkCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
             return new AddRemarkCommandParser().parse(arguments);
-
-        case EditRemarkCommand.COMMAND_WORD: // TODO: integrate with EditGenericCommand
-            return new EditRemarkCommandParser().parse(arguments);
 
         case DeleteRemarkCommand.COMMAND_WORD: // TODO: integrate with DeleteGenericCommand
             return new DeleteRemarkCommandParser().parse(arguments);

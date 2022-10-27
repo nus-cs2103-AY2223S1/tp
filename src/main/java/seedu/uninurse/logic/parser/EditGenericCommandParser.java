@@ -2,7 +2,11 @@ package seedu.uninurse.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_CONDITION_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_MEDICATION_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_REMARK_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TAG_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TASK_INDEX;
 
 import seedu.uninurse.logic.commands.EditGenericCommand;
@@ -33,9 +37,37 @@ public class EditGenericCommandParser implements Parser<EditGenericCommand> {
 
         if (ParserUtil.optionsOnlyContains(options,
                 PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TASK_INDEX)) {
-            return new EditPatientCommandParser().parse(
+            return new EditTaskCommandParser().parse(
                     options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " "
-                            + options.getValue(PREFIX_OPTION_TASK_INDEX) + " " + args);
+                            + options.getValue(PREFIX_OPTION_TASK_INDEX).get() + " " + args);
+        }
+
+        if (ParserUtil.optionsOnlyContains(options,
+                PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TAG_INDEX)) {
+            return new EditTagCommandParser().parse(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " "
+                            + options.getValue(PREFIX_OPTION_TAG_INDEX).get() + " " + args);
+        }
+
+        if (ParserUtil.optionsOnlyContains(options,
+                PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_CONDITION_INDEX)) {
+            return new EditConditionCommandParser().parse(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " "
+                            + options.getValue(PREFIX_OPTION_CONDITION_INDEX).get() + " " + args);
+        }
+
+        if (ParserUtil.optionsOnlyContains(options,
+                PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_MEDICATION_INDEX)) {
+            return new EditMedicationCommandParser().parse(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " "
+                            + options.getValue(PREFIX_OPTION_MEDICATION_INDEX).get() + " " + args);
+        }
+
+        if (ParserUtil.optionsOnlyContains(options,
+                PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_REMARK_INDEX)) {
+            return new EditRemarkCommandParser().parse(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).get() + " "
+                            + options.getValue(PREFIX_OPTION_REMARK_INDEX).get() + " " + args);
         }
 
         throw new ParseException(ParserUtil.MESSAGE_INVALID_OPTIONS);
