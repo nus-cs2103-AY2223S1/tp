@@ -3,7 +3,6 @@ package seedu.foodrem.views;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -38,10 +37,7 @@ public class ItemView {
         final HBox quantityAndPrice = new HBox(quantityLabel, region, priceLabel);
 
         // Tag under quantity and price
-        final FlowPane tags = new FlowPane(TagsView.from(item.getTagSet()));
-        tags.setMaxWidth(400);
-        tags.setHgap(SPACING_UNIT);
-        tags.setVgap(SPACING_UNIT);
+        final Node tags = new HBox(TagsView.from(item.getTagSet()));
 
         // Remarks at the bottom
         final Label remarks = new Label(
