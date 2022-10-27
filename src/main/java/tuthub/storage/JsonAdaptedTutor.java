@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tuthub.commons.exceptions.IllegalValueException;
 import tuthub.model.tag.Tag;
-import tuthub.model.tutor.Comment;
+import tuthub.model.tutor.CommentList;
 import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
@@ -35,7 +35,6 @@ class JsonAdaptedTutor {
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
     private final String year;
     private final String studentId;
-    private final String comment;
     private final String teachingNomination;
     private final String rating;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -47,7 +46,6 @@ class JsonAdaptedTutor {
     public JsonAdaptedTutor(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("module") List<JsonAdaptedModule> module,
             @JsonProperty("year") String year, @JsonProperty("studentId") String studentId,
-            @JsonProperty("comment") String comment,
             @JsonProperty("teaching nominations") String teachingNomination,
             @JsonProperty("rating") String rating,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
@@ -60,7 +58,6 @@ class JsonAdaptedTutor {
         this.year = year;
         this.studentId = studentId;
         this.rating = rating;
-        this.comment = comment;
         this.teachingNomination = teachingNomination;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -79,7 +76,6 @@ class JsonAdaptedTutor {
             .collect(Collectors.toList()));
         year = source.getYear().value;
         studentId = source.getStudentId().value;
-        comment = source.getComment().value;
         teachingNomination = source.getTeachingNomination().value;
         rating = source.getRating().value;
         tagged.addAll(source.getTags().stream()
@@ -149,11 +145,6 @@ class JsonAdaptedTutor {
         }
         final StudentId modelStudentId = new StudentId(studentId);
 
-        if (comment == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Comment.class.getSimpleName()));
-        }
-        final Comment modelComment = new Comment(comment);
-
         if (teachingNomination == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TeachingNomination.class.getSimpleName()));
@@ -175,7 +166,7 @@ class JsonAdaptedTutor {
         final Set<Tag> modelTags = new HashSet<>(tutorTags);
 
         return new Tutor(modelName, modelPhone, modelEmail, modelModule, modelYear,
-                modelStudentId, modelComment, modelTeachingNomination, modelRating, modelTags);
+                modelStudentId, new CommentList(), modelTeachingNomination, modelRating, modelTags);
     }
 
 }

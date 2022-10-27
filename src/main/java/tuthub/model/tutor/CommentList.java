@@ -25,8 +25,8 @@ public class CommentList {
      *
      * @param index The index of the Comment in the CommentList.
      */
-    public void deleteComment(int index) {
-        comments.remove(index);
+    public Comment deleteComment(int index) {
+        return comments.remove(index);
     }
 
 
@@ -63,5 +63,17 @@ public class CommentList {
             }
         }
         return result.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CommentList // instanceof handles nulls
+                && comments.equals(((CommentList) other).comments)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return comments.hashCode();
     }
 }
