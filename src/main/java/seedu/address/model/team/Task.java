@@ -19,7 +19,7 @@ public class Task {
     public static final String MESSAGE_CONSTRAINTS =
             "Task names should not be blank and cannot begin with a whitespace";
 
-    public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
+    public static final String DATE_FORMAT = "dd-MMM-yyyy HH:mm";
 
     /*
      * The first character of the task name must not be a whitespace,
@@ -108,7 +108,11 @@ public class Task {
     }
 
     public Optional<LocalDateTime> getDeadline() {
-        return Optional.of(deadline);
+        if (deadline != null) {
+            return Optional.of(deadline);
+        } else {
+            return Optional.empty();
+        }
     }
 
     public String getDeadlineStorage() {

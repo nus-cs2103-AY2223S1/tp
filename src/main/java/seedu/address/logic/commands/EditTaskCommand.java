@@ -11,10 +11,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
@@ -38,14 +38,16 @@ public class EditTaskCommand extends Command {
                     + "Parameters: INDEX (must be a positive integer) "
                     + FLAG_NAME_STR + " NAME "
                     + FLAG_DEADLINE_STR + " DEADLINE \n"
-                    + FLAG_ASSIGNEE_STR + "ASSIGNEE \n"
+                    + FLAG_ASSIGNEE_STR + "MEMBER_INDEX \n"
                     + "Example: " + COMMAND_WORD + " 1 "
                     + FLAG_NAME_STR + " \"Review PR\" "
-                    + FLAG_DEADLINE_STR + " \"2023-12-12 23:59\" "
-                    + FLAG_ASSIGNEE_STR + "\"Alex Yeoh\" ";
+                    + FLAG_DEADLINE_STR + " \"02-Dec-2022 23:59\" "
+                    + FLAG_ASSIGNEE_STR + "1";
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists. ";
+    public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists.";
+    public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
+    public static final String MESSAGE_DEADLINE_BADLY_FORMATTED = "Deadline is badly formatted.";
 
     private final EditTaskDescriptor editTaskDescriptor;
 
@@ -59,12 +61,11 @@ public class EditTaskCommand extends Command {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG})
         private String name;
 
-        @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG})
+        @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG}, defaultValue = "")
         private String deadline;
 
         @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "")
         private String[] assignees;
-
     }
 
     /**
@@ -104,9 +105,15 @@ public class EditTaskCommand extends Command {
         if (arguments.assignees.length != 1 || !Arrays.asList(arguments.assignees).contains("")) {
             editTaskDescriptor.setAssignees(Arrays.asList(arguments.assignees));
         }
-        if (arguments.deadline != null) {
-            editTaskDescriptor.setDeadline(LocalDateTime.parse(arguments.deadline,
-                    DateTimeFormatter.ofPattern(Task.DATE_FORMAT)));
+        if (!arguments.deadline.equals("")) {
+            try {
+                editTaskDescriptor.setDeadline(LocalDateTime.parse(arguments.deadline,
+                        DateTimeFormatter.ofPattern(Task.DATE_FORMAT)));
+            } catch (DateTimeParseException e) {
+                throw new CommandException(MESSAGE_DEADLINE_BADLY_FORMATTED);
+            }
+        } else {
+            editTaskDescriptor.setDeadline(null);
         }
         if (arguments.name != null) {
             editTaskDescriptor.setName(arguments.name);
@@ -114,17 +121,24 @@ public class EditTaskCommand extends Command {
         List<Task> taskList = model.getTeam().getTaskList();
 
         if (index.getZeroBased() >= taskList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_LINK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToEdit = taskList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
         List<Person> memberList = model.getTeam().getTeamMembers();
         if (editTaskDescriptor.getAssignees().isPresent()) {
-            List<Person> assigneePersonList = memberList.stream()
-                    .filter(member -> editTaskDescriptor.getAssignees().get()
-                            .contains(member.getName().fullName))
-                    .collect(Collectors.toList());
+            for (int i = 0; i < arguments.assignees.length; i++) {
+                if (Integer.parseInt(editTaskDescriptor.getAssignees().get().get(i)) < 1
+                    || Integer.parseInt(editTaskDescriptor.getAssignees().get().get(i)) > memberList.size()) {
+                    throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
+                }
+            }
+            List<Person> assigneePersonList = new java.util.ArrayList<>(List.of());
+            for (String index : editTaskDescriptor.assignees) {
+                int assigneeIndex = Integer.parseInt(index);
+                assigneePersonList.add(memberList.get(assigneeIndex - 1));
+            }
             for (Person assignee : assigneePersonList) {
                 editedTask.assignTo(assignee);
             }
