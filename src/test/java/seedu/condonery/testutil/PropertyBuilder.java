@@ -26,7 +26,7 @@ public class PropertyBuilder {
     public static final PropertyTypeEnum DEFAULT_PROPERTY_TYPE = PropertyTypeEnum.CONDO;
     public static final PropertyStatusEnum DEFAULT_PROPERTY_STATUS = PropertyStatusEnum.AVAILABLE;
     public static final Set<Client> DEFAULT_CLIENTS = new HashSet<Client>() {{
-    }};
+        }};
     private Name name;
     private Address address;
     private Price price;
