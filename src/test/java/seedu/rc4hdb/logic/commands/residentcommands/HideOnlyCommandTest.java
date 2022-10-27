@@ -1,12 +1,12 @@
 package seedu.rc4hdb.logic.commands.residentcommands;
 
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.assertCommandFailure;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.assertCommandSuccess;
 import static seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand.AT_LEAST_ONE_VISIBLE_COLUMN;
 import static seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand.INVALID_FIELDS_ENTERED;
 import static seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand.INVALID_SUBSET;
 import static seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand.MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW;
 import static seedu.rc4hdb.logic.commands.residentcommands.HideOnlyCommand.COMMAND_PAST_TENSE;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.assertCommandFailure;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.assertCommandSuccess;
 import static seedu.rc4hdb.testutil.TypicalFieldLists.ALL_VALID_FIELDS;
 import static seedu.rc4hdb.testutil.TypicalFieldLists.DUPLICATE_FIELDS;
 import static seedu.rc4hdb.testutil.TypicalFieldLists.HIDDEN_FIELDS_AFTER_VALID_SUBSEQUENT_HIDEONLY_COMMAND;

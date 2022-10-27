@@ -26,7 +26,7 @@ public class BookingTableView extends UiPart<Region> {
     private static final String FXML = "BookingTableView.fxml";
 
     private static final List<String> hours = List.of("0800", "0900", "1000", "1100", "1200", "1300", "1400", "1500",
-            "1600", "1700", "1800", "1900", "2000", "2100", "2200", "2300");
+            "1600", "1700", "1800", "1900", "2000", "2100", "2200");
 
     private static final int START_HOUR = 8;
 

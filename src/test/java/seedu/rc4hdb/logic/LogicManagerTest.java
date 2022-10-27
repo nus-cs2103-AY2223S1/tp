@@ -2,13 +2,13 @@ package seedu.rc4hdb.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.GENDER_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.HOUSE_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.MATRIC_NUMBER_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.NAME_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.PHONE_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.ROOM_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.GENDER_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.HOUSE_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.MATRIC_NUMBER_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.NAME_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.PHONE_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.ROOM_DESC_AMY;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.io.IOException;

@@ -173,19 +173,23 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/LatestModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the resident book data i.e., all `Resident` objects (which are contained in a `UniqueResidentList` object).
+* stores the currently 'selected' `Resident` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Resident>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores two `ObservableList<String>` attributes of table columns to show and hide in the UI. The UI is able to listen to changes in these lists, and automatically update the column visibilities in the table. 
+* stores an `ObservableList<Venue>` and an `ObservableList<Booking>` which is also used to update changes in `Venue` or `Booking` in the UI.  
+* does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<!-- The references to Resident fields have been removed to reduce clutter -->
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ResidentBook`, which `Resident` references. This allows `ResidentBook` to only require one `Tag` object per unique tag, instead of each `Resident` needing their own `Tag` objects.<br>
+
+<img src="images/UpdatedBetterModelClassDiagram.png" width="450" />
 
 </div>
 
@@ -725,16 +729,13 @@ Extensions:
 &ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
 &ensp; &emsp; &nbsp; Use case resumes at step 2.
 
-
 &ensp; 2b. User enters multiple specifiers i.e. both `/all` and `/any`. <br>
 &ensp; &emsp; &nbsp; 2b1. RC4HDB shows an error message. <br>
 &ensp; &emsp; &nbsp; Use case resumes at step 2.
 
-
 &ensp; 2c. User enters a category that does not exist. <br>
 &ensp; &emsp; &nbsp; 2c1. RC4HDB shows an error message. <br>
 &ensp; &emsp; &nbsp; Use case resumes at step 2.
-
 
 &ensp; 2d. User enters a value that does not exist in the category. <br>
 &ensp; &emsp; &nbsp; 2d1. RC4HDB shows an error message. <br>
