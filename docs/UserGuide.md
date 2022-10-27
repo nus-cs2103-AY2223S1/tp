@@ -56,11 +56,10 @@ So what are you waiting for? Start using FinBook today!
 
 # 2. How to Use this User Guide?
 
-1. To get familiar with this user guide you can continue
-   reading [How to Use this User Guide](#how-to-use-this-user-guide)
-2. If you are a new user, you can get started with [Quick Start](#quick-start) to familiarise yourself with FinBook.
-3. If you are familiar with FinBook, you can refer to the [Features](#features) to see details of all available
-   commands or refer at [Command Summary](#command-summary).
+1. To get familiar with this user guide you can continue reading [How to Use this User Guide](#2-how-to-use-this-user-guide)
+2. If you are a new user, you can get started with [Quick Start](#3-quick-start) to familiarise yourself with FinBook.
+3. If you are familiar with FinBook, you can refer to the [Features](#4-features) to see details of all available
+   commands or refer at [Command Summary](#7-command-summary).
 
 ## 2.1. Icons and symbols
 
@@ -134,15 +133,15 @@ For example,
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `finbook.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-3/tp/releases).
+2. Download the latest `finbook.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the home folder for your FinBook.
+3. Copy the file to the folder you want to use as the home folder for your FinBook.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
    ![Ui](images/Ui_dark.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
 
@@ -157,7 +156,7 @@ For example,
 
     * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -197,7 +196,6 @@ Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower`.
-
 
 ### 4.1.3. Deleting a client : `delete`
 
@@ -258,18 +256,15 @@ Examples:
 
 * `list` followed by `delete all` deletes the all clients in the FinBook.
 
-
 ### 4.1.4. Listing all clients : `list`
 
 Shows a list of all clients in the FinBook.
 
 Format: `list`
 
-
 ### 4.1.5. Finding a client : `find`
 
 (toc)
-
 
 ### 4.1.6. Viewing Portfolio of a specific client: `view`
 
@@ -332,7 +327,6 @@ Financial book data are saved in the hard disk automatically after any command t
 to
 save manually.
 
-
 ### 4.3.2. Editing the data file
 
 Financial book data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
@@ -341,7 +335,6 @@ update data directly by editing that data file.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FinBook will discard all data and start with an empty data file at the next run.
 </div>
-
 
 ### 4.3.3. Importing data : `import`
 
@@ -377,7 +370,6 @@ Examples:
 * `import ../data.csv` imports data from the file `data.csv` which is located one level outside the directory of the
   FinBook executable
 
-
 ### 4.3.4. Exporting data : `export`
 
 Exports data to a `CSV` file
@@ -394,7 +386,6 @@ Examples:
   executable
 * `export ../data.csv` exports data to the file `data.csv` which is located one level outside the directory of the
   FinBook executable
-
 
 ### 4.3.5. Copying a client's data : `copy`
 
@@ -416,13 +407,11 @@ Tags: friends
 
 * Press `Ctrl-V` to paste the copied text.
 
-
 ### Sorting clients : `sort`
 
 Sorts clients in the FinBook according to given parameter.
 
 Format: `sort n/ or i/ or m/ ​`
-
 
 * Sorts clients in ascending order according to parameter.
 * At least one of the parameters must be provided.
@@ -460,7 +449,6 @@ Toggle the visibility of FinBook by clicking on the `open eye` or `close eye` ic
 <div markdown="block" class="alert alert-info">
 **:information_source: Your mode preference will be automatically saved ** 
 </div>
-
 
 ### 4.3.7. Exiting the application : `exit`
 
@@ -508,5 +496,5 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                    |
 | **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                                                                                          |
 | **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                                                                                           |
-| **Sort**             | `sort PARAM`<br> e.g., `sort /n`                                                                                                                                                                                                                                                          |
+| **Sort**             | `sort PARAM`<br> e.g., `sort /n`                                                                                                                                                                                                                                                                                                                      |
 | **Exit application** | `exit`                                                                                                                                                                                                                                                                                                                                                |
