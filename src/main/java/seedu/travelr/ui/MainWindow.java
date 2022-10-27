@@ -87,6 +87,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        summaryWindow = new SummaryWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -132,7 +133,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        summaryWindow = new SummaryWindow(logic.getFilteredTripList(), logic.getSummaryVariables(), completed);
         tripListPanel = new TripListPanel(logic.getFilteredTripList(), logic.getSelectedTrip(), completed);
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         tripListPanelPlaceholder.getChildren().add(tripListPanel.getRoot());
@@ -142,7 +142,6 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-        System.out.println("no problem with statusBar");
 
         TripsLabeler tripsLabel = new TripsLabeler(tripsIcon);
         tripsTextField.getChildren().add(tripsLabel.getRoot());
@@ -153,6 +152,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        summaryWindow.init(logic.getFilteredTripList(), logic.getSummaryVariables(), completed);
     }
 
     /**

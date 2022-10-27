@@ -12,7 +12,7 @@ import seedu.travelr.model.trip.Trip;
  * Represents a Summary Window.
  */
 public class SummaryWindow extends UiPart<Stage> {
-    private static final String FXML = "summaryWindow.fxml";
+    private static final String FXML = "SummaryWindow.fxml";
 
     private CompletedTripListPanel completedTripListPanel;
     private SummaryCard summaryCard;
@@ -35,15 +35,16 @@ public class SummaryWindow extends UiPart<Stage> {
     /**
      * Creates a new SummaryWindow.
      */
-    public SummaryWindow(ObservableList<Trip> tripList, SummaryVariables summaryVariables, Image completed) {
+    public SummaryWindow() {
         this(new Stage());
+    }
 
+    public void init(ObservableList<Trip> tripList, SummaryVariables summaryVariables, Image completed) {
         summaryCard = new SummaryCard(summaryVariables);
         summaryCardPlaceholder.getChildren().add(summaryCard.getRoot());
 
         completedTripListPanel = new CompletedTripListPanel(tripList, completed);
         completedTripListPanelPlaceholder.getChildren().add(completedTripListPanel.getRoot());
-
     }
 
     /**
