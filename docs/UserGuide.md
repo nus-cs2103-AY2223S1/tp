@@ -20,8 +20,7 @@ tasks done faster than traditional GUI apps.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
-   <!-- TODO: ![Ui](images/Ui.png) -->
-   [Sample UI To be added]
+   ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -29,7 +28,7 @@ tasks done faster than traditional GUI apps.
 
     * **`list`** : Lists all students.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student
+    * **`add`**`n/John Doe m/CS2103T s/E1234567` : <br> Adds a student
       named `John Doe` to the StudMap.
 
     * **`delete`**`3` : Deletes the 3rd student shown in the current list.
@@ -72,7 +71,7 @@ tasks done faster than traditional GUI apps.
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 <!-- TODO: ![help message](images/helpMessage.png) -->
 [Sample UI To be added]
@@ -83,7 +82,7 @@ Format: `help`
 
 Adds a student to the StudMap.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME m/MODULE s/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 A student can have any number of tags (including 0)
@@ -91,8 +90,9 @@ A student can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe m/CS2103T s/E1234567`
+* `add n/Betsy Crowe t/PotentialTA e/betsycrowe@example.com s/E3141592 m/CS2101 p/1234567`
+* `add n/Silos Yao t/StrongStudent g/silosyao s/E1234567 m/MA5203`
 
 ### Listing all students : `list`
 
@@ -104,14 +104,15 @@ Format: `list`
 
 Edits an existing student in the StudMap.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITUSER] [h/TELEHANDLE] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
-  The index **must be a positive integer** 1, 2, 3, …​
+  The index **must be a positive integer** 1, 2, 3, …​ or use `all` to edit all students currently displayed.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
 * You can remove all the student's tags by typing `t/` without specifying any tags after it.
+* You can remove the student's phone, email, GitName, TeleHandle by typing `p/`, `e/`, `g/`, `h/` respectively.
 
 Examples:
 
@@ -182,25 +183,105 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 
 ### Sorting the students: `sort`
 
-[Coming soon]
+Sorts the list by the specified attribute in the specified order.
+
+Format: `sort ORDER a/ATTRIBUTE`
+
+- `ORDER` should be `asc` for ascending and `dsc` for descending order
+- `ATTRIBUTE` currently supported are 
+  - `NAME`
+  - `MODULE`
+  - `PHONE`
+  - `ID`
+  - `GIT`
+  - `HANDLE`
+  - `EMAIL`
+  - `ATTENDANCE`
+
+Examples:
+
+* `sort asc a/name`
+* `sort dsc a/phone`
+* `sort asc a/attendance`
 
 ### Filtering the students: `filter`
 
 [Coming soon]
 
-### Mark student as present: `mark`
+### Mark attendance of student: `mark`
 
-[Coming soon]
+Mark students as present or absent for a specified class.
+
+Format: `mark INDEX/ALL ATTENDANCE c/CLASS`
+
+* Attendance accepts two values only: `present` and `absent`
+* :warning: Class names should only consist of alphanumerics, spaces, dashes and underscores! Using any other 
+character will lead to your class name being **rejected** 
+* Marking an existing class as either `present` or `absent` will **overwrite** the existing record
+
+Examples:
+
+* `mark 1 present c/T01` marks the 1st student as present for class `T01`
+* `mark all absent c/T04` marks all students in the list as absent for class `T04`
 
 ### Unmark attendance of a student: `unmark`
 
+Removes the attendance record of a specific class from students.
+
+Format: `unmark INDEX/ALL c/CLASS`
+
+* StudMap allows for attendances to be removed even if the student never had any record for that class 
+(i.e. no error will be thrown)
+
+Examples:
+
+* `unmark 1 c/T01` removes the attendance record for class `T01` from the 1st student
+* `unmark all c/T04` marks all students as absent for class `T04` from all students in the list
+
+### Add tag to a student: `tag`
+
 [Coming soon]
 
-### Add tag to a student: `addtag`
+### Recording participation of a student: `participate`
 
-[Coming soon]
+Record participation of student(s)
 
+Format: `participate INDEX/ALL STATUS p/COMPONENT`
 
+- `INDEX` could be specified or use `ALL` to record participation component for all students in the list
+- `STATUS` is either `yes` for participated or `no` for not participated
+- `COMPONENT` is the participation component
+
+Examples:
+
+* `participate 1 yes p/P01`
+* `participate 1 no p/P02`
+* `participate all yes p/P03`
+
+### Removing participation of a student: `unparticipate`
+
+Remove participation of student(s)
+
+Format: `unparticipate INDEX/ALL p/COMPONENT`
+
+- `INDEX` could be specified or use `ALL` to remove specified participation component for all students in the list
+- `COMPONENT` is the participation component
+
+Examples:
+
+* `unparticipate 1 p/P01`
+* `unparticipate all p/P03 `
+
+### Import students from CSV file: `import`
+
+Imports student data from a CSV file stored on your computer. 
+
+Format: `import`
+
+* Running the command will open a file browser for you to select the CSV file to import
+* The CSV format accepted by StudMap is strict! Please use the template provided in the link below
+* :warning: StudMap currently does not support any commas in any data field (cell) when importing a CSV file 
+* [template csv](files/import_template.csv)
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -215,17 +296,19 @@ the data of your previous StudMap home folder.
 
 Action | Format, Examples
 --------|------------------
-**
-Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+
+**Add** | `add n/NAME m/MODULE s/ID [p/PHONE] [e/EMAIL] [g/GITNAME] [h/HANDLE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com m/CS2103T s/E1234567 g/user1 h/@user1 t/friends t/owesMoney`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**
-Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [s/ID] [g/GITUSER] [h/TELEHANDLE] [t/TAG]…​` <br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Sort** | `sort`
+**Sort** | `sort ORDER a/ATTRIBUTE`
 **Filter** | `filter`
-**Mark** | `mark`
-**Unmark** | `unmark`
+**Mark** | `mark INDEX/ALL ATTENDANCE c/CLASS`
+**Unmark** | `unmark INDEX/ALL c/CLASS`
 **Add tag** | `addtag`
+**Record participation** | `participate INDEX/ALL STATUS p/COMPONENT`
+**Remove participation** | `unparticipate INDEX/ALL p/COMPONENT`
+**Import CSV** | `import`
