@@ -17,7 +17,16 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "[default/alpha/reverse]";
+    public static final String FEEDBACK_MESSAGE = "Valid sort command format:\n"
+            + "sort default/alpha/reverse\n";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sort the current list by chronological, alphabetical or reverse order.\n"
+            + "Parameters:"
+            + "default OR\n"
+            + "alpha OR\n"
+            + "reverse \n"
+            + "Example: " + COMMAND_WORD + "alpha\n";
 
     public static final String MESSAGE_SUCCESS = "List sorted %s";
 

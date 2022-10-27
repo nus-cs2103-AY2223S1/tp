@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
@@ -18,6 +19,9 @@ import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.Name;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.storage.ExportStudentCsv;
+import seedu.address.storage.ExportTuitionClassCsv;
+import seedu.address.storage.ExportTutorCsv;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -187,6 +191,21 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTuitionClass);
 
         addressBook.setTuitionClass(target, editedTuitionClass);
+    }
+
+    @Override
+    public void export() {
+        ExportStudentCsv studentCsv = new ExportStudentCsv(getStudentAddressBookFilePath());
+        ExportTutorCsv tutorCsv = new ExportTutorCsv(getTutorAddressBookFilePath());
+        ExportTuitionClassCsv tuitionClassCsv = new ExportTuitionClassCsv(getTuitionClassAddressBookFilePath());
+        try {
+            studentCsv.generateCsv();
+            tutorCsv.generateCsv();
+            tuitionClassCsv.generateCsv();
+            logger.info("All files converted to csv");
+        } catch (IOException e) {
+            logger.warning("An error occurred while converting the files to csv format :\n\t" + e.getMessage());
+        }
     }
 
     @Override

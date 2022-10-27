@@ -159,7 +159,6 @@
                   </HBox>
                </children>
             </StackPane>
-
                             <StackPane fx:id="statusbarPlaceholder" prefHeight="0.0" prefWidth="539.0" />
             </VBox>
             <StackPane fx:id="animationPanel" mouseTransparent="true" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: black;">

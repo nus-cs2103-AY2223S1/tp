@@ -10,8 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
@@ -35,8 +34,17 @@ public class AddCommand extends Command {
         TUTOR,
         CLASS;
 
-        public static final String MESSAGE_CONSTRAINTS = "Entity should only be either student, tutor or class";
-        public static final String VALIDATION_REGEX = "(?i)student|tutor|class";
+        public static final String MESSAGE_CONSTRAINTS =
+                "Entity type should be one of the valid entity types that can be added to the database.\n"
+                        + "The valid entity types are:\n"
+                        + "1. Student\n"
+                        + "2. Tutor\n "
+                        + "3. Class\n";
+        public static final String MESSAGE_DID_YOU_MEAN_STUDENT = "Did you mean \"student\"?";
+        public static final String MESSAGE_DID_YOU_MEAN_TUTOR = "Did you mean \"tutor\"?";
+        public static final String MESSAGE_DID_YOU_MEAN_CLASS = "Did you mean \"class\"?";
+
+        public static final String VALIDATION_REGEX = "(?i)s|t|c|student|tutor|class";
 
         public static boolean isValidEntity(String test) {
             return test.matches(VALIDATION_REGEX);
@@ -62,6 +70,31 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     //improve in future
+    public static final String FEEDBACK_MESSAGE = "Valid add command format:\n"
+            + "add student "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_SUBJECT_OR_SCHOOL + "SCHOOL "
+            + PREFIX_LEVEL + "LEVEL "
+            + "[" + PREFIX_TAG + "TAG]... OR\n"
+            + "add tutor "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_QUALIFICATION + "QUALIFICATION "
+            + PREFIX_INSTITUTION + "INSTITUTION "
+            + "[" + PREFIX_TAG + "TAG]... OR\n"
+            + "add class "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_SUBJECT_OR_SCHOOL + "SUBJECT "
+            + PREFIX_LEVEL + "LEVEL "
+            + PREFIX_DAY + "DAY "
+            + PREFIX_TIME + "TIME "
+            + "[" + PREFIX_TAG + "TAG]... \n";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds either a student, a tutor or a class to the database.\n"
             + "Parameters:"
@@ -70,7 +103,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_SCHOOL + "SCHOOL "
+            + PREFIX_SUBJECT_OR_SCHOOL + "SCHOOL "
             + PREFIX_LEVEL + "LEVEL "
             + "[" + PREFIX_TAG + "TAG]... OR\n"
             + "tutor "
@@ -83,21 +116,21 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]... OR\n"
             + "class "
             + PREFIX_NAME + "NAME "
-            + PREFIX_SUBJECT + "SUBJECT "
+            + PREFIX_SUBJECT_OR_SCHOOL + "SUBJECT "
             + PREFIX_LEVEL + "LEVEL "
             + PREFIX_DAY + "DAY "
             + PREFIX_TIME + "TIME "
-            + "[" + PREFIX_TAG + "TAG]... OR\n"
+            + "[" + PREFIX_TAG + "TAG]... \n"
             + "Example: " + COMMAND_WORD + " "
             + "student "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_SCHOOL + "Keming Primary School "
+            + PREFIX_SUBJECT_OR_SCHOOL + "Keming Primary School "
             + PREFIX_LEVEL + "Primary3 "
             + PREFIX_TAG + "badBoy "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney";;
 
     public static final String MESSAGE_SUCCESS = "New entity added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student or tutor already exists in the database";

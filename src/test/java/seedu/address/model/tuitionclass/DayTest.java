@@ -11,7 +11,7 @@ public class DayTest {
 
     @Test
     public void createDay_invalidDay_throwsInvalidDayException() {
-        String invalidDay = "mon";
+        String invalidDay = "yesterday";
         assertThrows(InvalidDayException.class, () -> Day.createDay(invalidDay));
     }
 
