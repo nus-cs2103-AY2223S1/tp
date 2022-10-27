@@ -25,8 +25,11 @@ public class Name {
 
     public final String fullName;
 
+    /**
+     * Constructor for noName instance.
+     */
     private Name() {
-        fullName = "NONE";
+        fullName = "None";
     }
 
     /**

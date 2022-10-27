@@ -39,6 +39,9 @@ public class Email {
 
     public final String value;
 
+    /**
+     * Constructor for noEmail instance.
+     */
     private Email() {
         value = "NO PERSON";
     }
