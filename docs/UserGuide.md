@@ -64,8 +64,8 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 **:information_source: Notes about the field format:**<br>
 
-* * Words in `UPPER_CASE` are the parameter details to be supplied by the user.  
-    e.g., in `CURRENT_CAP`, `CURRENT_CAP` is a parameter which can be used as `3.5`.
+* Words in `UPPER_CASE` are the parameter details to be supplied by the user.  
+  e.g., in `CURRENT_CAP`, `CURRENT_CAP` is a parameter which can be used as `3.5`.
 * None of the fields inserted into the command should be blank, except when removing `Tag` through the `edit` command
 
 * Identity fields and Data fields are mandatory
@@ -117,8 +117,8 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 **:information_source: Notes about the command format:**<br>
 
-* An address book cannot have multiple persons with the exact same identity fields (`EMAIL`, and `JOB_ID`)
-  e.g., `n/John e/j@example.com ji/J12332` and `n/Jason e/j@example.com ji/J12332` is considered the same applicant.
+* An address book cannot have multiple persons with the exact same identity fields (`EMAIL` and `JOB_ID`)
+  e.g., `n/John e/j@example.com ji/J12332` and `n/Jason e/j@example.com ji/J12332` are considered the same applicant.
 
 * Words in `UPPER_CASE` are the parameter details to be supplied by the user.  
   e.g., in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Bobby Doe`.
@@ -136,9 +136,9 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
   e.g., if the command specifies `n/NAME p/PHONE e/EMAIL`, `n/NAME e/EMAIL p/PHONE` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. 
-  e.g. if you specify p/12341234 p/56785678, only p/56785678 will be taken.
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, and `clear`) will be ignored.  
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `export` and `clear`) will be ignored.  
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
 * All leading and trailing whitespaces will be trimmed, while multiple whitespaces in between words will be replaced by a single whitespace.
@@ -162,7 +162,7 @@ Adds an applicant to InternConnect.
 
 Format: `add {mandatory_field_parameter/IDENTITY_FIELD} [t/TAG]...`
 
-* For `mandatory_field_parameter` arguments, please refer to the `specifier` of each fields in the [Specifier](#2.4 Specifiers) section above.
+* For `mandatory_field_parameter` arguments, please refer to the `parameter` of each fields in the [Identity Fields](#21-identity-fields) and [Data Fields](#22-data-fields) section above.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV`
@@ -181,15 +181,20 @@ Shows a detailed view of a selected applicant listed in InternConnect.
 
 Format: `view INDEX`
 
+* Views the applicant at the specified `INDEX`.
+* The index refers to the index number shown in the displayed applicants list.
+* The index **must be a positive integer** 1, 2, 3, ... and **not exceed the total records listed**
+
 
 ### 3.5 Editing an applicant: `edit`
 
 Edits an existing applicant in InternConnect.
 
-Format: `edit [parameter/NEW_PARAMETER_DETAIL]...`
+Format: `edit INDEX parameter/NEW_PARAMETER_DETAIL [parameter/NEW_PARAMETER_DETAIL]...`
 
+* For `parameter` arguments, please refer to the `parameter` of each fields in the [Fields](#2-fields) section above.
 * Edits the applicant at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed applicant list. 
+* The index refers to the index number shown in the displayed applicants list. 
 * The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed.
 * At least one of the parameter fields must be provided.
 * Existing values will be updated to the input values.
@@ -197,8 +202,8 @@ Format: `edit [parameter/NEW_PARAMETER_DETAIL]...`
 * You can remove all the applicant’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/bob@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `bob@example.com` respectively.
-*  `edit 2 n/Betty` Edits the name of the 2nd person to be `Betty`.
+*  `edit 1 p/91234567 e/bob@example.com` Edits the phone number and email address of the 1st applicant to be `91234567` and `bob@example.com` respectively.
+*  `edit 2 n/Betty` Edits the name of the 2nd applicant to be `Betty`.
 
 
 ### 3.6 Deleting an applicant: `delete`
@@ -208,24 +213,25 @@ Deletes the specified applicant from InternConnect.
 Format: `delete INDEX`
 
 * Deletes the applicant at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed applicants list.
 * The index **must be a positive integer** 1, 2, 3, ... and **not exceed the total records listed**
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st applicant in the results of the `find` command.
+* `find n/Betsy` followed by `delete 1` deletes the 1st applicant in the results of the `find` command.
 
 
 ### 3.7 Locating applicants by field: `find`
 
-Finds applicants whose has a field containing any of the given keywords among all specified fields.
+Finds applicants who has a field containing any of the given keywords among all specified fields.
 
-Format: `find parameter/KEYWORD [parameter/MORE_KEYWORDS]...`
+Format: `find parameter/KEYWORD [parameter/KEYWORD]...`
 
+* For `parameter` arguments, please refer to the `parameter` of each fields in the [Fields](#2-fields) section above.
 * At least one of the parameter fields must be provided.
+* If a field parameter is given more than once, the command will search only for the latest specifier. E.g., `n/Bobby n/cortez` will only search and return names with `cortez` in them.
 * The search is case-insensitive. E.g., `bobby` will match `Bobby`.
 * The order of the keywords does not matter. E.g., `Bobby cortez` will match `Cortez bobby`.
-* If a field parameter is given more than once, the command will search only for the latest specifier. E.g., `n/Bobby n/cortez` will only search and return names with `cortez` in them.
 * Applicants matching at least one keyword will be returned (i.e., OR search). E.g., `n/Bobby Cortez` will return applicants with the name `Bobby Lacruz`, `Alexander Cortez`
 
 Search Types:
@@ -248,25 +254,25 @@ Search Types:
 | **Job Title**       | Matching word             |
 
 Examples:
-* `find n/Bobby ` Returns applicants with names matching `bobby` and `Bobby Cortez`
-* `find g/Female c/3.5 2 ` returns female applicants with a CAP value of 3.5 or 2.0
+* `find n/Bobby` Returns applicants with names matching `bobby` and `Bobby Cortez`
+* `find g/Female c/3.5 2` returns female applicants with a CAP value of 3.5 or 2.0
 * `find g/Male t/offered KIV` returns male applicants who have an offered or KIV tag attached to them
 * `find g/Male e/gmail` returns male applicants who have a `gmail` substring in their email address
 
 
 ### 3.8 Importing applicants from an external text file: `import`
 
-Imports applicants from the specified file path.
+Imports applicants from an external JSON file.
 
 Format: `import FILE_PATH`
 
 * The file has to exist in the specified file path.
 * More than 1 applicants can be listed in the file, as long as they have all the mandatory fields, satisfy the value constraints, and do not cause duplicates in the InternConnect.
-* The file must be in json format.
+* The file must be in JSON format.
 * For example of valid input file, refer to this [template](templates/template.json) file.
 
 Examples:
-* `import nus_students.json` Imports NUS students listed in the `nus_students.json` file
+* `import nus_students.json` Imports applicants listed in the `nus_students.json` file
 
 
 ### 3.9 Exporting displayed list: `export`
@@ -278,7 +284,7 @@ Format: `export`
 * Exported JSON file will be stored in `data/export/` folder
 
 Examples:
-* `find university/NUS` followed by `export` exports the result of the `find` command to a JSON file.
+* `find u/NUS` followed by `export` exports the result of the `find` command to a JSON file.
 
 
 ### 3.10 Checking-out a new or existing list: `checkout`
@@ -313,7 +319,8 @@ InternConnect data are saved in the hard disk automatically after any command th
 
 ### 3.14 Editing the data file
 
-InternConnect data are saved as a JSON file `[JAR file location]/data/internconnect.json`. Advanced users are welcome to update data directly by editing that data file.
+* The first InternConnect data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Subsequent `checkout` commands may change the active filename.
+* Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, InternConnect will discard all data and start with an empty data file at the next run.
@@ -323,17 +330,17 @@ If your changes to the data file makes its format invalid, InternConnect will di
 
 ## 4. Command summary
 
-| Action       | Format, Examples                                                                                                                                                                                                                                                                  |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**     | `help`                                                                                                                                                                                                                                                                            |
-| **Add**      | `add {mandatory_field_parameter/FIELD_DETAIL} [t/TAGS]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` |
-| **List**     | `list`                                                                                                                                                                                                                                                                            | 
-| **View**     | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                   |
-| **Edit**     | `edit INDEX [parameter/NEW_PARAMETER_DETAIL]...`<br> e.g.,`edit 1 p/91234567 e/bob@example.com`                                                                                                                                                                                   |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                               |
-| **Find**     | `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`<br> e.g., `find g/Male t/offered KIV`                                                                                                                                                                                     |
-| **Import**   | `import FILE_PATH`<br> e.g., `import nus_students.json`                                                                                                                                                                                                                           | 
-| **Export**   | `export`                                                                                                                                                                                                                                                                          |
-| **Checkout** | `checkout FILE_NAME` <br> e.g., `checkout 27-oct-2022`                                                                                                                                                                                                                            |
-| **Clear**    | `clear`                                                                                                                                                                                                                                                                           |
-| **Exit**     | `exit`                                                                                                                                                                                                                                                                            |
+| Action       | Format                                                                          | Examples                                                                                                                                                                                                    |
+|--------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**     | `help`                                                                          | `help`                                                                                                                                                                                                      |
+| **Add**      | `add {mandatory_field_parameter/FIELD_DETAIL} [t/TAG]...`                       | `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` | 
+| **List**     | `list`                                                                          | `list`                                                                                                                                                                                                      |
+| **View**     | `view INDEX`                                                                    | `view 2`                                                                                                                                                                                                    |                                                                                                                                                                                                  |
+| **Edit**     | `edit INDEX parameter/NEW_PARAMETER_DETAIL [parameter/NEW_PARAMETER_DETAIL]...` | `edit 1 p/91234567 e/bob@example.com`                                                                                                                                                                       |
+| **Delete**   | `delete INDEX`                                                                  | `delete 3`                                                                                                                                                                                                  |
+| **Find**     | `find parameter/KEYWORD [parameter/KEYWORD]...`                                 | `find g/Male t/offered KIV`                                                                                                                                                                                 |
+| **Import**   | `import FILE_PATH`                                                              | `import nus_students.json`                                                                                                                                                                                  | 
+| **Export**   | `export`                                                                        | `export`                                                                                                                                                                                                    |
+| **Checkout** | `checkout FILE_NAME`                                                            | `checkout 27-oct-2022`                                                                                                                                                                                      |
+| **Clear**    | `clear`                                                                         | `clear`                                                                                                                                                                                                     |
+| **Exit**     | `exit`                                                                          | `exit`                                                                                                                                                                                                      |
