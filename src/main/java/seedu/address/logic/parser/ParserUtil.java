@@ -23,6 +23,7 @@ import seedu.address.model.task.Priority;
 import seedu.address.model.task.PriorityEnum;
 import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskCategoryType;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskName;
 
@@ -219,6 +220,24 @@ public class ParserUtil {
             throw new ParseException("Deadline must be of the form YYYY-MM-DD");
         }
         return new TaskDeadline(localDate);
+    }
+
+    /**
+     * Parses a {@code String taskDate} into a {@code TaskDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskDate} is does not follow the format YYYY-MM-DD.
+     */
+    public static TaskDate parseTaskDate(String taskDate) throws ParseException {
+        requireNonNull(taskDate);
+        String trimmedDate = taskDate.trim();
+        LocalDate localDate;
+        try {
+            localDate = LocalDate.parse(trimmedDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Date must be of the form YYYY-MM-DD");
+        }
+        return new TaskDate(localDate);
     }
 
     /**

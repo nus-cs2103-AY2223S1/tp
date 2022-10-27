@@ -16,9 +16,7 @@ public class TaskDeadline {
     private final LocalDate deadline;
 
     /**
-     * constructor for deadline
-     *
-     * @param date
+     * Constructor for deadline.
      */
     public TaskDeadline(LocalDate date) {
         requireNonNull(date);
@@ -30,17 +28,13 @@ public class TaskDeadline {
 
     /**
      * Returns the deadline of a task.
-     *
-     * @return The task category.
      */
     public LocalDate getDeadline() {
         return this.deadline;
     }
 
     /**
-     * Returns hashcode of the current object
-     *
-     * @return Hashcode of the object.
+     * Returns hashcode of the current object.
      */
     @Override
     public int hashCode() {
@@ -49,8 +43,6 @@ public class TaskDeadline {
 
     /**
      * Returns the string representation of the task deadline.
-     *
-     * @return Task priority.
      */
     @Override
     public String toString() {
@@ -59,9 +51,8 @@ public class TaskDeadline {
 
     /**
      * Compares another object with the Deadline object.
-     *
-     * @param other The other object to be compared to.
-     * @return If the two objects are equal.
+     * @param other the other object to be compared to
+     * @return true if the two objects are equal
      */
     @Override
     public boolean equals(Object other) {
@@ -71,28 +62,27 @@ public class TaskDeadline {
     }
 
     /**
-     * Checks if this {@code deadline} is before the {@code deadline} of another TaskDeadline.
-     * @param other the other TaskDeadline to compare {@code deadline} to
-     * @return true if this {@code deadline} is before the {@code deadline} of the other TaskDeadline
+     * Checks if this {@code deadline} is before another date.
+     * @param other the other date to compare {@code deadline} to
+     * @return true if this {@code deadline} is before the other date
      */
-    public boolean isBefore(TaskDeadline other) {
-        return deadline.isBefore(other.getDeadline());
+    public boolean isBefore(LocalDate other) {
+        return deadline.isBefore(other);
     }
 
     /**
-     * Checks if this {@code deadline} is after the {@code deadline} of another TaskDeadline.
-     * @param other the other TaskDeadline to compare {@code deadline} to
-     * @return true if this {@code deadline} is after the {@code deadline} of the other TaskDeadline
+     * Checks if this {@code deadline} is after another date.
+     * @param other the other date to compare {@code deadline} to
+     * @return true if this {@code deadline} is after the other date
      */
-    public boolean isAfter(TaskDeadline other) {
-        return deadline.isAfter(other.getDeadline());
+    public boolean isAfter(LocalDate other) {
+        return deadline.isAfter(other);
     }
 
     /**
      * Returns true if deadline is valid.
-     *
-     * @param test String to test.
-     * @return Whether the String is a valid deadline.
+     * @param test String to test
+     * @return true if the String is a valid deadline
      */
     public static boolean isValidTaskDeadline(String test) {
         Boolean errorHappened = false;

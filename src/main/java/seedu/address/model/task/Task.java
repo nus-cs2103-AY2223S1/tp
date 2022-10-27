@@ -20,11 +20,11 @@ public class Task {
 
     // Identity fields
     private TaskName name;
-    private TaskCategory category;
     private Description description;
 
     // Data fields
     private Priority priority;
+    private TaskCategory category;
     private TaskDeadline deadline;
     private Person person;
 
