@@ -43,7 +43,7 @@ faster than other GUI-based applications.
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer 
+1. Ensure you have Java `11` or above installed in your Computer
 (Not sure how? Check out [this](https://www.java.com/en/download/help/version_manual.html) guide).
 
 2. Download the latest `watson.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-1/tp/releases/tag/v.1.3.trial).
@@ -138,7 +138,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CLASS] [rem/REMA
   specifying any tags after it.
 
 Examples:
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person displayed after 
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person displayed after
 using the list/find feature to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 * `edit 4 n/Charlie Crackshot c/1B` Edits the name of the 4th person to be `Charlie Crackshot` and class to be `1B`.
@@ -231,7 +231,7 @@ Example use
 
 
    ![Example GUI](images/GradeCommandGUI.png "Grade Command")
-3) Enter the score achieved by the student and click on `Enter` button. 
+3) Enter the score achieved by the student and click on `Enter` button.
 4) After entering the score, the system will automatically prompt you to enter the score for the next student.
 5) Continue entering the score until the system detects that all of the scores have been entered.
 
