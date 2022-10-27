@@ -38,9 +38,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_MODULE, PREFIX_TUTORIAL);
 
-        ParserUtil.assertAnyPrefixesPresent(argMultimap,
+        ParserUtil.assertAnyPrefixesPresent(argMultimap, FindCommand.MESSAGE_USAGE,
                 PREFIX_NAME, PREFIX_ID, PREFIX_MODULE, PREFIX_TUTORIAL);
-        ParserUtil.assertPrefixesPresentNotEmpty(argMultimap,
+        ParserUtil.assertPrefixesPresentNotEmpty(argMultimap, FindCommand.MESSAGE_USAGE,
                 PREFIX_NAME, PREFIX_ID, PREFIX_MODULE, PREFIX_TUTORIAL);
 
         List<Predicate<Student>> predicates = new ArrayList<>();
