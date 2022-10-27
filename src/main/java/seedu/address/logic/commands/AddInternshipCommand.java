@@ -23,7 +23,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonId;
 
 /**
- * Adds an internship to the address book.
+ * Adds an internship to InterNUS.
  */
 public class AddInternshipCommand extends Command {
     public static final String COMMAND_WORD = "addi";
@@ -43,7 +43,7 @@ public class AddInternshipCommand extends Command {
             + PREFIX_LINK_INDEX + "1 ";
 
     public static final String MESSAGE_SUCCESS = "New internship added: %1$s";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in InterNUS";
 
     private final CompanyName companyName;
     private final InternshipRole internshipRole;
@@ -53,7 +53,7 @@ public class AddInternshipCommand extends Command {
     private final Index linkIndex;
 
     /**
-     * Creates an AddCommand to add the specified {@code Internship}
+     * Creates an AddInternshipCommand to add the specified {@code Internship}
      */
     public AddInternshipCommand(Internship internship) {
         requireNonNull(internship);
@@ -66,9 +66,9 @@ public class AddInternshipCommand extends Command {
     }
 
     /**
-     * Creates an AddCommand to add a {@code Internship} with the specified
-     * {@code name}, {@code phone}, {@code email}, {@code address},
-     * {@code internshipId}, and {@code tags}.
+     * Creates an AddInternshipCommand to add an {@code Internship} with the specified
+     * {@code companyName}, {@code internshipRole}, {@code internshipStatus},
+     * {@code interviewDate}, and {@code linkIndex}.
      */
     public AddInternshipCommand(
             CompanyName companyName,

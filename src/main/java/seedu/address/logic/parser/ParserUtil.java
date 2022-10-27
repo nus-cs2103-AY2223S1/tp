@@ -157,10 +157,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String company} into an {@code Company}.
+     * Parses a {@code String company} into a {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code Company} is invalid.
+     * @throws ParseException if the given {@code company} is invalid.
      */
     public static Company parseCompany(String company) throws ParseException {
         if (company == null || company.isBlank()) {

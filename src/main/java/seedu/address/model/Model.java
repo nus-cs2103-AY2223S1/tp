@@ -47,51 +47,51 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' InterNUS file path.
      */
     Path getAddressBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' InterNUS file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces InterNUS data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     /**
-     * Returns the AddressBook
+     * Returns the instance of InterNUS.
      */
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in InterNUS.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in InterNUS.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in InterNUS.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in InterNUS.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in InterNUS.
      */
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered person list.
      */
     ObservableList<Person> getFilteredPersonList();
 
@@ -110,32 +110,32 @@ public interface Model {
     void sortPersonList(Comparator<Person> comparator);
 
     /**
-     * Returns true if an internship with the same identity as {@code internship} exists in the address book.
+     * Returns true if an internship with the same identity as {@code internship} exists in InterNUS.
      */
     boolean hasInternship(Internship internship);
 
     /**
      * Deletes the given internship.
-     * The internship must exist in the address book.
+     * The internship must exist in InterNUS.
      */
     void deleteInternship(Internship target);
 
     /**
      * Adds the given internship.
-     * {@code internship} must not already exist in the address book.
+     * {@code internship} must not already exist in InterNUS.
      */
     void addInternship(Internship internship);
 
     /**
      * Replaces the given internship {@code target} with {@code editedInternship}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in InterNUS.
      * The internship identity of {@code editedInternship}
-     * must not be the same as another existing internship in the address book.
+     * must not be the same as another existing internship in InterNUS.
      */
     void setInternship(Internship target, Internship editedInternship);
 
     /**
-     * Returns an unmodifiable view of the filtered internship list
+     * Returns an unmodifiable view of the filtered internship list.
      */
     ObservableList<Internship> getFilteredInternshipList();
 
@@ -147,7 +147,7 @@ public interface Model {
     void updateFilteredInternshipList(Predicate<Internship> predicate);
 
     /**
-     * Sorts the filter of the filtered person list by the given {@code comparator}.
+     * Sorts the filtered internship list by the given {@code comparator}.
      */
     void sortInternshipList(Comparator<Internship> comparator);
 
