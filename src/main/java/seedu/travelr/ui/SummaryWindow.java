@@ -39,6 +39,13 @@ public class SummaryWindow extends UiPart<Stage> {
         this(new Stage());
     }
 
+    /**
+     * Initialize the summary window.
+     *
+     * @param tripList TripList.
+     * @param summaryVariables SummaryVariables.
+     * @param completed Image.
+     */
     public void init(ObservableList<Trip> tripList, SummaryVariables summaryVariables, Image completed) {
         summaryCard = new SummaryCard(summaryVariables);
         summaryCardPlaceholder.getChildren().add(summaryCard.getRoot());
