@@ -1,33 +1,69 @@
 ---
 layout: page
-title: TrackAScholar User Guide (v1.2)
+title: User Guide (v1.3)
 ---
-* Table of Contents
+## Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-TrackAScholar (TAS) is **a desktop application for managing scholarship applications,
-optimised for use via a Command Line Interface (CLI)** while still having
-the benefits of a Graphical User Interface (GUI). If you can type fast,
-TAS can get your scholarship applicant management tasks done faster than traditional GUI apps.
+## Introduction
+
+#### What is TrackAScholar?
+
+TrackAScholar (TAS) is the **only** desktop app any university administrative staff needs for managing scholarship applications.
+TAS helps administrative staff manage scholarship applications by storing the applicant's contact details, scholarship applied and majors taken all in one place.
+
+TAS  presenting the administrative staff with the option to pin important applicants, edit their details easily,
+ find or filter for applicants with ease and otherwise speeds up the application process.
+
+TAS is **optimised for use via a Command Line Interface (CLI)** while simultaneously having the benefits of a **Graphical User Interface
+(GUI)**. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
+
+#### Who is this User Guide for?
+
+We have created this user manual for people who want to learn how to use our app.
+It is best suited for administrative staff members who seek an app to streamline their scholarship management procedure.
+
+Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3.github.io/tp/DeveloperGuide.html)
+ to find out more about the technical components of our app.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Legend
+
+:information_source: **Notes:** Notes are placed in this guide to specify extra details and elaboration.
+
+:bulb: **Tip:** Tips are placed in this guide to provide a suggestion.
+
+:exclamation: **Caution:** Cautions are placed in this guide as warnings for certain erroneous actions.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Install Java `11` or above. Check [here](https://nus-cs2103-ay2223s1.github.io/website/admin/programmingLanguages.html#programming-language).
+1. Ensure `Java 11` or a later version is installed on your computer. Otherwise, check [here](https://nus-cs2103-ay2223s1.github.io/website/admin/programmingLanguages.html#programming-language).
 
-1. Download the latest `TrackAScholar.jar`. Check [here](https://github.com/AY2223S1-CS2103T-W10-3/tp/releases).
+2. Download the latest `TrackAScholar.jar` from [here](https://github.com/AY2223S1-CS2103T-W10-3/tp/releases).
 
-1. Move the jar file to an empty folder
+3. Move the jar file to an empty folder you wish to use as the **home folder** for the app.
 
-1.  Double-click the jar file to open the app. If the app does not respond, open your terminal in the current folder and enter `java -jar TrackAScholar.jar` to open the app.
+4. Double-click the jar file to open the app. If the app does not respond, open your terminal in the current folder 
+   where `TrackAScholar.jar` is located and enter `java -jar TrackAScholar.jar` to open the app.
 
-1. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+5. The following screen ought to appear in a few seconds when the app first launches. 
+  Note how the app contains some sample data for you to explore the features with.
    ![Ui](images/Ui.png)
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.
+
+7. Refer to the [Features](#features) below for details of each command.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -37,11 +73,18 @@ TAS can get your scholarship applicant management tasks done faster than traditi
 
 **:information_source: Notes about the command format:**<br>
 
+* Command words and prefixes have to be in `lower_case` **(Case sensitive)**
+  Command words includes `help`, `list`, `exit` etc.
+  Prefixes are used to recognise the different parameters input by the user, these include `n/`, `p/`, `e/` etc.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [m/MAJOR]` can be used as `n/John Doe m/Business` or as `n/John Doe`.
+
+* Items in angle brackets are fixed, precise values.
+  e.g. `<ACCEPTED>` means the parameter must be an input of the value `ACCEPTED`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[m/MAJOR]…​` can be used as ` ` (i.e. 0 times), `m/Business`, `m/Medicine m/Dentistry` etc.
@@ -57,6 +100,10 @@ TAS can get your scholarship applicant management tasks done faster than traditi
 
 </div>
 
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Viewing help window : `help`
 
 Pops open a help window which contains a link that directs the user to this user guide for detailed help
@@ -65,174 +112,286 @@ Pops open a help window which contains a link that directs the user to this user
 
 Format: `help`
 
+[Return to top](#table-of-contents)
 
-### Adding a scholarship application: `add`
+--------------------------------------------------------------------------------------------------------------------
 
-Adds a scholarship application to the TrackAScholar
+### Adding an applicant: `add`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [m/MAJOR]…​`
+Adds an applicant with the following details to the TrackAScholar:
+* `NAME`: Name of applicant.
+* `PHONE_NUMBER`: Phone number of Applicant.
+* `EMAIL`: Email of Applicant.
+* `SSCHOLARSHIP`: Scholarship that applicant has applied for.
+* `APPLICATION_STATUS`: Status of scholarship application for the applicant, can only be either `PENDING`, `ACCEPTED` or `REJECTED`.
+* `MAJOR`: A Major taken up by the applicant.
+
+Format: 
+```
+add n/NAME p/PHONE_NUMBER e/EMAIL s/SCHOLARSHIP as/APPLICATION_STATUS [m/MAJOR]…​
+```
+
+<div markdown="block" class="alert alert-info">:information_source: **Note:**
+An applicant can have at most 2 majors (including 0)
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An applicant can have any number of majors (including 0)
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-It is necessary for a scholarship application to have both an applicant’s name and email, while the other fields are optional.
+Application status is case-insensitive, entering the status PENDING, ACCEPTED or REJECTED in any combination of upper or lower case is acceptable.
 </div>
 
 Examples:
-* `add n/John Cena e/johnCena@yahoo.com`
-* `add n/Samuel Cheong m/Medicine e/samuelcheong1234@gmail.com p/65782310 s/Merit as/pending`
+`add n/Samuel Cheong m/Medicine e/samuelcheong1234@gmail.com p/65782310 s/Merit as/pending`
 
-### Listing all scholarship application : `list`
+[Return to top](#table-of-contents)
 
-Shows a list of all scholarship applications stored in TrackAScholar
+--------------------------------------------------------------------------------------------------------------------
 
-Format: `list`
+### Listing all applicants : `list`
 
-### Editing an existing scholarship application : `edit`
+List out all the applicants stored in TrackAScholar
 
-Edits an existing scholarship application stored in TrackAScholar
+Format: 
+```
+list
+```
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR]…​`
+[Return to top](#table-of-contents)
 
-* Edits the scholarship application at the specified `INDEX`. The index refers to the index number shown in the displayed scholarship application list. The index **must be a positive integer** 1, 2, 3, …​
+--------------------------------------------------------------------------------------------------------------------
+
+### Editing an existing applicant : `edit`
+
+Edits an existing applicant stored in TrackAScholar
+
+Format: 
+```
+edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR]…​
+```
+
+* Edits the applicant at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed applicant list. 
+* The index **must be a positive integer** 1, 2, 3, …​
+* Index specified must not exceed the total number of applicants stored in TrackAScholar. e.g. using index `7` on a list of `6` applicants will cause the edit command to be rejected as `INDEX` specified is invalid.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing majors, the existing majors of the scholarship application will be removed i.e adding of majors is not cumulative.
-* You can remove all the scholarship application’s majors by typing `m/` without
-  specifying any majors after it.
+* When editing majors, the existing majors of the applicant will be removed i.e adding of majors is not cumulative. 
+e.g. `edit INDEX m/Business` on an applicant with Majors `Business` and `Mathematics` will remove the `Mathematics` Major.
+* You can remove all the applicant's majors by typing `m/` without specifying any majors after it.
+
+<div markdown="block" class="alert alert-info">:information_source: **Note:**
+Since an applicant can have at most 2 Majors, any attempts to edit an applicant such that he/she has more than two majors will be rejected
+</div>
 
 Examples:
-*  `edit 1 n/John Cena e/johnCena@yahoo.com` Edits the name and email address of the 1st scholarship application to be `John Cena` and `johnCena@yahoo.com` respectively.
+* `edit 1 n/John Cena e/johnCena@yahoo.com` Edits the name and email address of the 1st applicant to be John Cena and johnCena@yahoo.com respectively.
+* `edit 2 n/Samuel Cheong m/` Edits the name of the 2nd applicant to be Samuel Cheong and clears all existing majors
 
-*  `edit 2 n/Samuel Cheong m/` Edits the name of the 2nd applicant to be `Samuel Cheong` and clears all existing majors.
+[Return to top](#table-of-contents)
 
-### Finding applicants by name : `find`
+--------------------------------------------------------------------------------------------------------------------
 
-Finds scholarship applicants whose names contain any of the given keywords
+### Deleting an applicant : `delete`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Deletes the specified applicant from TrackAScholar
 
-* The search is case-insensitive. e.g `hans` will match `Hans`.
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`.
-* Applicant matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Format: 
+```
+delete INDEX
+```
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`
-
-### Filtering scholarship applicants by application status: `filter`
-
-Filters scholarship applications based on the given keywords
-
-Format: `filter [as/APPLICATIONSTATUS]`
-
-* The search is case-insensitive. e.g `pEnDiNg` will match `pending`.
-* Only full words will be matched e.g. `pen` will not match `pending`.
-* Only 3 keywords are accepted i.e. `pending`, `accepted`, `rejected`.
-
-Examples:
-* `filter pending` displays all applicants with the application status `pending`.
-
-
-### Deleting a scholarship application : `delete`
-
-Deletes the specified scholarship application from TrackAScholar
-
-Format: `delete INDEX`
-
-* Deletes the scholarship application at the specified `INDEX`.
+* Deletes the applicant at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed applicant list.
 * The index **must be a positive integer** 1, 2, 3, …​.
+* Index specified must not exceed the total number of applicants stored in TrackAScholar. e.g. using index `7` on a list of `6` applicants will cause the delete command to be rejected as `INDEX` specified is invalid.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in TrackAScholar.
 
-### Clearing all entries : `clear`
+[Return to top](#table-of-contents)
 
-Clears all entries from data stored in TrackAScholar
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits TrackAScholar
-
-Format: `exit`
+--------------------------------------------------------------------------------------------------------------------
 
 ### Removing applicants by status : `remove`
 
 All applicants with the corresponding statuses stored in TrackAScholar are removed
 
-Format: `remove ACCEPTED/REJECTED`
+Format: 
+```
+remove <ACCEPTED>/<REJECTED>
+```
 
-* The user selects the applicant(s) with application status of either `ACCEPTED` or `REJECTED` to be removed from TrackAScholar. 
+* The user selects the applicant(s) with application status of either `ACCEPTED` or `REJECTED` to be removed from TrackAScholar.
+* remove command is case-insensitive. e.g. `Accepted` or `accepted` both matches `ACCEPTED`
 
 Examples:
-*  `remove accepted` removes all entries with ACCEPTED as an application status from TrackAScholar.
-*  `remove rejected` removes all entries with REJECTED as an application status from TrackAScholar.
-*  `ACCEPTED` and `REJECTED` is case-insensitive.
+* `remove accepted` removes all entries with `ACCEPTED` as an application status from TrackAScholar.
+* `remove rejected` removes all entries with `REJECTED` as an application status from TrackAScholar.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Clearing all entries : `clear`
+
+Clears all entries from data stored in TrackAScholar
+
+Format: 
+```
+clear
+```
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Finding applicants by name, scholarship or major : `find`
+
+Finds all scholarship applicants whose credentials match any of the attributes searched
+
+Format: 
+```
+find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...
+```
+
+* The search is case-insensitive. e.g `find n/hans` will match applicant with Name `Hans`.
+* The order of the keywords does not matter. e.g. `find n/Hans Bo` will match applicant with Name `Bo Hans`.
+* Only full words will be matched e.g. `find m/Engineer` will not match the Major `Software Engineering`.
+* Applicant whose credentials matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `find s/Global Merit` will match applicants with scholarship of `NUS Merit Scholarship` or `NUS Global Merit Scholarship`.
+* At least one of the optional fields must be provided.
+
+Examples:
+* `find n/John n/Sam` returns applicant with Name `john`, applicant with Name `John Doe` and applicant with Name `Sam Ong`
+* `find n/alex m/Business` returns applicant with Name `Alex Yeoh` and Major `Business Analytics`
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Filtering applicants by application status: `filter`
+
+Filters and list all applicants whose application status matches the specified application status
+
+Format: 
+```
+filter <PENDING>/<ACCEPTED>/<REJECTED>
+```
+
+* The user specifies to filter the applicants with application status of either `PENDING` or `ACCEPTED` or `REJECTED`.
+* filter command is case-insensitive. e.g. `pEnDiNg` or `Pending` both matches `PENDING`.
+
+Examples:
+* `filter pending` displays all applicants with the application status `PENDING`.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Sorting applicants by either name, scholarship or application status : `sort`
 
 All applicants in TrackAScholar will be sorted in the specified manner 
 
-Format: `sort APPLICATION_STATUS/NAME/SCHOLARSHIP`
+Format: 
+```
+sort <NAME>/<SCHOLARSHIP>/<STATUS>
+```
 
-* The user can choose to sort the list according the applicant's `APPLICATION_STATUS`, `NAME` or types of `SCHOLARSHIP` they are applying for.
+* The user can choose to sort the list according the applicant's `NAME`, `SCHOLARSHIP` or Application `STATUS`.
+* sort command is case-insensitive. e.g. `NamE` or `name` both matches `NAME`.
 
 Examples:
 * `sort name` All applicants in TrackAScholar will be sorted based on their name in a lexicographical manner.
 * `sort scholarship` All applicants in TrackAScholar will be sorted based on the type of scholarship they have applied for. 
 * `sort status` All applicants in TrackAScholar will be sorted according to their application status.
 
-### Pinning an applicant : `pin`
+[Return to top](#table-of-contents)
 
-An applicant will be pinned in the pinned applicant list on the right side of the screen. The applicant will be displayed on both applicant lists.
-
-Format: `pin INDEX`
-
-* Pins the scholarship applicant with the specified `INDEX`.
-* The index refers to the index number shown in the displayed applicant list.
-* The index **must be a positive integer** 1, 2, 3, …​.
-
-Examples:
-* `list` followed by `pin 2` pins the 2nd applicant in TrackAScholar.
+--------------------------------------------------------------------------------------------------------------------
 
 ### Importing a trackAScholar file : `import`
 
 Imports a trackAScholar file into the current trackAScholar file
 
-Format: `import r/k`
+Format: 
+```
+import <r>/<k>
+```
+
+* The user can choose to import a data file which adds to the current list of applicants.
+* Imported applicants that are duplicates of applicants in the current list are handled with the `r` or `k` input.
+* `r` stands for replacing the duplicate applicants with the imported applicants.
+* `k` stands for keeping the current applicants and disregarding the imported duplicate applicants.
+* import command is case-insensitive. e.g. `import R` is the same as `import r`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-It is necessary for a trackAScholar file in a readable format to be placed in the data directory before.
+It is necessary for a trackAScholar file to be named as a readable format (trackAScholarImport.json) and be placed in the ./data directory. 
+Otherwise, file cannot be read.
 </div>
 
 Examples:
 * `import r` applicants with the same name will be replaced with application data from imported file
 * `import k` applicants with the same name will be kept instead of being replaced with application data from imported file
 
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Pinning an applicant : `pin`
+
+An applicant will be pinned in the pinned applicant list on the right side of the screen.
+The applicant will be displayed on both applicant lists.
+
+Format: 
+```
+pin INDEX
+```
+
+* Pins the applicant with the specified `INDEX`.
+* The index refers to the index number shown in the displayed applicant list.
+* The index **must be a positive integer** 1, 2, 3, …​.
+
+Examples:
+* `list` followed by `pin 2` pins the 2nd applicant in TrackAScholar.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Unpins an applicant : `unpin`
 
 An applicant in the pinned applicant list (on the right side of the screen) will be unpinned. 
 This will result in the removal of the applicant from the pinned applicant list.
 
-Format: `unpin FULL_NAME`
+Format: 
+```
+unpin NAME
+```
 
-* Unpins the scholarship applicant with the specified `FULL_NAME`.
-* The name refers to the name of the scholarship applicant.
-* The name **must be the full name:** `Alex Yeoh` instead of just simply `Alex`.
-* The name is **case-insensitive**.
+* Unpins the scholarship applicant with the specified `NAME`.
+* `NAME` refers to the name of the scholarship applicant.
+* `NAME` **must be a full name:** `Alex Yeoh` instead of `Alex`.
+* `NAME` is **case-insensitive**.
 
 Examples:
 * `unpin Alex Yeoh` unpins the applicant with the name `Alex Yeoh` in TrackAScholar.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
+
+### Exiting the app : `exit`
+
+Exits TrackAScholar
+
+Format: 
+```
+exit
+```
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Further details
 
 ### Saving the data
@@ -247,28 +406,25 @@ TrackAScholar data are saved as a JSON file `[JAR file location]/data/trackAScho
 If your changes to the data file makes its format invalid, TrackAScholar will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action     | Format, Examples                                              |
-|------------|---------------------------------------------------------------|
-| **Add**    | `add n/NAME e/EMAIL p/PHONE_NUMBER s/SCHOLARSHIP [m/MAJOR] …` |
-| **Clear**  | `clear`                                                       |
-| **Delete** | `delete INDEX`                                                |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR]…​`  |
-| **Exit**   | `exit`                                                        |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`                                |
-| **Filter** | `filter PENDING/ACCEPTED/REJECTED`                            |
-| **Help**   | `help`                                                        |
-| **List**   | `list`                                                        |
-| **Remove** | `remove ACCEPTED/REJECTED`                                    |
-| **Sort**   | `sort NAME/SCHOLARSHIP/APPLICATION_STATUS`                    |
-| **Pin**    | `pin INDEX`                                                   |
-| **Unpin**  | `unpin FULL_NAME`                                             |
-| **Import** | `import r/k`                                                  |
-
+| Action     | Format, Examples                                                                                                                                                                           |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**   | `help`                                                                                                                                                                                     |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL s/SCHOLARSHIP as/APPLICATION_STATUS [m/MAJOR]…​` <br/> e.g. `add n/Samuel Cheong m/Medicine e/samuelcheong1234@gmail.com p/65782310 s/Merit as/pending` |
+| **List**   | `list`                                                                                                                                                                                     |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR]…​` <br/> e.g. `edit 1 n/John Cena e/johnCena@yahoo.com`                                                                          |
+| **Delete** | `delete INDEX` <br/> e.g. `delete 1`                                                                                                                                                       |
+| **Remove** | `remove <ACCEPTED>/<REJECTED>` <br/> e.g. `remove rejected`                                                                                                                                |
+| **Clear**  | `clear`                                                                                                                                                                                    |
+| **Find**   | `find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...` <br/> e.g. `find n/alex m/business`                                                                                                     |
+| **Filter** | `filter <PENDING>/<ACCEPTED>/<REJECTED>` <br/> e.g. `filter pending`                                                                                                                       |
+| **Sort**   | `sort <NAME>/<SCHOLARSHIP>/<STATUS>` <br/> e.g. `sort scholarship`                                                                                                                         |
+| **Import** | `import <r>/<k>` <br/> e.g. `import r`                                                                                                                                                     |
+| **Pin**    | `pin INDEX` <br/> e.g. `pin 2`                                                                                                                                                             |
+| **Unpin**  | `unpin FULL_NAME` <br/> e.g. `unpin Alex Yeoh`                                                                                                                                             |
+| **Exit**   | `exit`                                                                                                                                                                                     |
