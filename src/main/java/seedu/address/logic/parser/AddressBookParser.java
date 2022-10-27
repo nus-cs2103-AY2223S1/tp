@@ -78,15 +78,9 @@ public class AddressBookParser {
 
         case UnmarkCommand.COMMAND_WORD:
             return new UnmarkCommandParser().parse(arguments);
-            
+
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);
-
-        case ArchiveCommand.COMMAND_WORD:
-            return new ArchiveCommandParser().parse(arguments);
-
-        case CommandArchive.COMMAND_WORD:
-            return new ArchiveTaskBookParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
