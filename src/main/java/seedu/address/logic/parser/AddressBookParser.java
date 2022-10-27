@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -15,6 +16,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.ShowArchiveCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.commands.list.ListCommand;
@@ -76,6 +78,12 @@ public class AddressBookParser {
 
         case UnmarkCommand.COMMAND_WORD:
             return new UnmarkCommandParser().parse(arguments);
+
+        case ArchiveCommand.COMMAND_WORD:
+            return new ArchiveCommandParser().parse(arguments);
+
+        case ShowArchiveCommand.COMMAND_WORD:
+            return new ShowArchiveCommand();
 
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);

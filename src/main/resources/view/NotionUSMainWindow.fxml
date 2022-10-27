@@ -11,9 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="NotionUS" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
     <icons>
@@ -37,11 +34,14 @@
                     <Menu mnemonicParsing="false" text="Help">
                         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
                     </Menu>
+                    <Menu mnemonicParsing="false" text="Archived">
+                        <MenuItem fx:id="archiveMenuItem" mnemonicParsing="false" onAction="#handleShowArchive" text="Archived"/>
+                    </Menu>
                     <!--          onAction="#handleSortDue"-->
                 </MenuBar>
                     <HBox fx:id="filterStatusDisplayPlaceholder" styleClass="menu-bar">
                         <padding>
-                            <Insets top="5" left="-10"/>
+                            <Insets top="5" left="10"/>
                         </padding>
                     </HBox>
                 </HBox>

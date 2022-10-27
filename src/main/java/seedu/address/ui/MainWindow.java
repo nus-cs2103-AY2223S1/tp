@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private ArchiveWindow archiveWindow;
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -42,6 +43,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem archiveMenuItem;
+
     @FXML
     private HBox filterStatusDisplayPlaceholder;
 
@@ -53,6 +58,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -69,6 +76,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        archiveWindow = new ArchiveWindow(logic);
+
     }
 
     public Stage getPrimaryStage() {
@@ -141,6 +151,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -155,6 +166,19 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+    }
+
+    /**
+     * Opens an archive window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleShowArchive() {
+        if (!archiveWindow.isShowing()) {
+            archiveWindow.show();
+            archiveWindow.fillInnerParts();
+        } else {
+            archiveWindow.focus();
+        }
     }
 
     /**
@@ -187,6 +211,8 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            } else if (commandResult.isShowArchived()) {
+                handleShowArchive();
             }
 
             if (commandResult.isExit()) {

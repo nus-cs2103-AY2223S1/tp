@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root resizable="false" title="Archived" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8"
+         xmlns:fx="http://javafx.com/fxml/1" minWidth="650" minHeight="500">
+    <icons>
+        <Image url="@/images/checkbox_checked.png"/>
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@Fonts.css"/>
+                <URL value="@NotionUS.css"/>
+                <URL value="@Extensions.css"/>
+            </stylesheets>
+
+            <VBox>
+                <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                      VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <StackPane fx:id="archiveListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                </VBox>
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>
