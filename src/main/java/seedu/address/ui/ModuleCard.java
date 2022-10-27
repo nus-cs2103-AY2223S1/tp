@@ -27,6 +27,8 @@ public class ModuleCard extends UiPart<Region> {
     private static final String LINK_HEADER_PLAIN_TEXT = "http";
     private static final String LINK_HEADER_TEXT_WITH_SLASH = "https://";
     private static final String LINK_TEXT_COLOR = "-fx-text-fill: #FFCC66"; //Light Yellow
+    private static final NoLinksCard noLinksCard = new NoLinksCard();
+    private static final NoTasksCard noTasksCard = new NoTasksCard();
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved
@@ -38,7 +40,7 @@ public class ModuleCard extends UiPart<Region> {
      */
 
     public final Module module;
-    public final Boolean isOnHome;
+    public final Boolean isNotOnHome;
 
     @FXML
     private HBox cardPane;
@@ -64,14 +66,22 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         moduleCode.setText(module.getModuleCodeAsUpperCaseString());
         moduleTitle.setText(module.getModuleTitleAsUpperCaseString());
-        module.getLinks().stream()
-                .forEach(link -> links.getChildren()
-                        .add(createHyperLinkNode(link.linkName)));
-        this.isOnHome = !isHomeStatus;
-        if (isOnHome) {
+        Boolean hasLinksAdded = module.getLinks().size() > 0;
+        if (hasLinksAdded) {
+            module.getLinks().stream()
+                    .forEach(link -> links.getChildren()
+                            .add(createHyperLinkNode(link.linkName)));
+        } else {
+            links.getChildren().add(noLinksCard.getRoot());
+        }
+        this.isNotOnHome = !isHomeStatus;
+        Boolean hasTasksAdded = module.getTasks().size() > 0;
+        if (isNotOnHome && hasTasksAdded) {
             ObservableList<Task> taskList = module.getTasks();
             taskListPanel = new TaskListPanel(taskList);
             taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        } else if (isNotOnHome && !hasTasksAdded) {
+            taskListPanelPlaceholder.getChildren().add(noTasksCard.getRoot());
         }
     }
 
@@ -110,15 +120,21 @@ public class ModuleCard extends UiPart<Region> {
         ModuleCard card = (ModuleCard) other;
         return id.getText().equals(card.id.getText())
                 && module.equals(card.module)
-                && isOnHome.equals(card.isOnHome);
+                && isNotOnHome.equals(card.isNotOnHome);
     }
 
-
+    /**
+     * Handles onClick event of a task list panel's card.
+     */
     @FXML
     public void handleClick() {
         boolean isTaskListPanelChildless =
                 taskListPanelPlaceholder.getChildren().size() == 0;
-        if (isTaskListPanelChildless) {
+        boolean isTaskListEmpty = module.getTasks().size() == 0;
+
+        if (isTaskListPanelChildless && isTaskListEmpty) {
+            taskListPanelPlaceholder.getChildren().add(noTasksCard.getRoot());
+        } else if (isTaskListPanelChildless && !isTaskListEmpty) {
             ObservableList<Task> taskList = module.getTasks();
             taskListPanel = new TaskListPanel(taskList);
             taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());

@@ -17,6 +17,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -72,13 +74,14 @@ public class GoToCommandTest {
     @Test
     public void execute_nonMatchingKeywords_noModuleFound() {
         String expectedMessage = MESSAGE_NO_SUCH_MODULE;
+        ObservableList<Boolean> isAtHome = FXCollections.observableArrayList(true);
         ModuleCodeMatchesKeywordPredicate predicate =
                 new ModuleCodeMatchesKeywordPredicate(VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK);
         ModuleCode moduleCode = new ModuleCode(VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK);
         GoToCommand command = new GoToCommand(predicate, moduleCode);
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(model));
-        assertEquals(true, model.getHomeStatus());
+        assertEquals(isAtHome, model.getHomeStatus());
     }
 
     @Test
