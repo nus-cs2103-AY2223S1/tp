@@ -28,7 +28,7 @@
         <ButtonBar fx:id="buttonBar" VBox.vgrow="NEVER">
           <buttons>
             <Button fx:id="classTitle" visible="false" disable="true"/>
-            <Button ButtonBar.buttonData="LEFT" fx:id="unfocusButton" mnemonicParsing="false" visible="false" onAction="#handleUnfocusMode">
+            <Button ButtonBar.buttonData="LEFT" fx:id="unfocusButton" mnemonicParsing="false" visible="false" onAction="#buttonHandleUnfocus">
               <graphic>
                 <ImageView fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
