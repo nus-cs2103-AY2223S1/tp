@@ -132,6 +132,23 @@ public class Customer {
                 || otherCustomer.getEmail().equals(getEmail());
     }
 
+    /**
+     * Compares if two Customers are strictly equals
+     * two customers are strictly equals if all of their attributes are the same
+     * @param other
+     * @return
+     */
+    public boolean strictlyEquals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Customer)) {
+            return false;
+        }
+        Customer otherCustomer = (Customer) other;
+        return otherCustomer.getAllInfo().equals(getAllInfo());
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

@@ -46,12 +46,12 @@ public class CustomerTest {
 
         // same phone number, all other attributes different -> return true
         editedCustomer = new CustomerBuilder(AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_BOB)
-            .withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD).build();
+                .withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD).build();
         assertTrue(AMY.isSamePerson(editedCustomer));
 
         // same email address, all other attributes different -> return true
         editedCustomer = new CustomerBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
-            .withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD).build();
+                .withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD).build();
         assertTrue(AMY.isSamePerson(editedCustomer));
 
         // name differs in case, all other attributes same -> returns true
@@ -109,5 +109,52 @@ public class CustomerTest {
         // different tags -> returns true
         editedAlice = new CustomerBuilder(ALICE).withTags(VALID_TAG_GOLD).build();
         assertTrue(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void strictlyEquals() {
+        // same values -> returns true
+        Customer aliceCopy = new CustomerBuilder(ALICE).build();
+        assertTrue(ALICE.strictlyEquals(aliceCopy));
+
+        // same object -> returns true
+        assertTrue(ALICE.strictlyEquals(ALICE));
+
+        // null -> returns false
+        assertFalse(ALICE.strictlyEquals(null));
+
+        // different type -> returns false
+        assertFalse(ALICE.strictlyEquals(5));
+
+        // different customer -> returns false
+        assertFalse(ALICE.strictlyEquals(BOB));
+
+        // different name -> returns false
+        Customer editedAlice = new CustomerBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertFalse(ALICE.strictlyEquals(editedAlice));
+
+        // different phone, same email -> returns false
+        editedAlice = new CustomerBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertFalse(ALICE.strictlyEquals(editedAlice));
+
+        // different email, same phone -> returns false
+        editedAlice = new CustomerBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.strictlyEquals(editedAlice));
+
+        // different email, different phone -> returns false
+        editedAlice = new CustomerBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.strictlyEquals(editedAlice));
+
+        // different birthdayMonth -> returns false
+        editedAlice = new CustomerBuilder(ALICE).withBirthdayMonth(VALID_BIRTHDAY_MONTH_BOB).build();
+        assertFalse(ALICE.strictlyEquals(editedAlice));
+
+        // different reward -> returns true
+        editedAlice = new CustomerBuilder(ALICE).withReward(VALID_REWARD_BOB).build();
+        assertFalse(ALICE.strictlyEquals(editedAlice));
+
+        // different tags -> returns false
+        editedAlice = new CustomerBuilder(ALICE).withTags(VALID_TAG_GOLD).build();
+        assertFalse(ALICE.strictlyEquals(editedAlice));
     }
 }

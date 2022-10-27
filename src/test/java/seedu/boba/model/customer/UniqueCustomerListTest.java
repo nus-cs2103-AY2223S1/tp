@@ -165,6 +165,6 @@ public class UniqueCustomerListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueCustomerList.asUnmodifiableObservableList().remove(0));
+                -> uniqueCustomerList.asUnmodifiableObservableList().remove(0));
     }
 }

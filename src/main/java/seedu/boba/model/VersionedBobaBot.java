@@ -35,8 +35,8 @@ public class VersionedBobaBot extends BobaBot {
     /**
      * Creates an instance of VersionedBobaBot.
      *
-     * @param bobaBot BobaBot to be initialised as the first state
-     * @param stepLimit   maximum number of previous states tracked
+     * @param bobaBot   BobaBot to be initialised as the first state
+     * @param stepLimit maximum number of previous states tracked
      */
     public VersionedBobaBot(ReadOnlyBobaBot bobaBot, int stepLimit) {
         this.currentStatePointer = 0;
@@ -62,7 +62,7 @@ public class VersionedBobaBot extends BobaBot {
     public void commit(BobaBot bobaBot) {
         requireNonNull(bobaBot);
         BobaBot copiedBobaBot = new BobaBot(bobaBot);
-        if (!copiedBobaBot.equals(this.bobaBotStateList.get(this.currentStatePointer))) {
+        if (!copiedBobaBot.strictlyEquals(this.bobaBotStateList.get(this.currentStatePointer))) {
             this.bobaBotStateList.add(copiedBobaBot);
             this.currentStatePointer++;
         }

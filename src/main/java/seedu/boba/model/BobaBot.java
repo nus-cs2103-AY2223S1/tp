@@ -118,6 +118,17 @@ public class BobaBot implements ReadOnlyBobaBot {
                 && persons.equals(((BobaBot) other).persons));
     }
 
+    /**
+     * Compares if two BobaBot ledgers are strictly equals
+     * @param other
+     * @return
+     */
+    public boolean strictlyEquals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof BobaBot // instanceof handles nulls
+                && persons.strictlyEquals(((BobaBot) other).persons));
+    }
+
     @Override
     public int hashCode() {
         return persons.hashCode();
