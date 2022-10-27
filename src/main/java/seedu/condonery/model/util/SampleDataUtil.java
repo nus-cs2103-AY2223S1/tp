@@ -61,7 +61,8 @@ public class SampleDataUtil {
             new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet(""),
                     getPropertySet(
                             new Property(new Name("PINNACLE@DUXTON"), new Address("Cantonment Rd, #1G, S085301"),
-                                    new Price("1000000"), getTagSet("High-End", "Available"), new HashSet<>(), PropertyTypeEnum.valueOf("CONDO")))),
+                                    new Price("1000000"), getTagSet("High-End", "Available"),
+                                    new HashSet<>(), PropertyTypeEnum.valueOf("CONDO")))),
             new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"), new HashSet<>())
         };
     }

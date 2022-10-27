@@ -46,7 +46,8 @@ public class Property {
     /**
      * Every field must be present and not null.
      */
-    public Property(Name name, Address address, Price price, Set<Tag> tags, Set<Client> interestedClients, PropertyTypeEnum propertyTypeEnum) {
+    public Property(Name name, Address address, Price price, Set<Tag> tags, Set<Client> interestedClients,
+                PropertyTypeEnum propertyTypeEnum) {
         this(name, address, price, tags, propertyTypeEnum);
         this.interestedClients.addAll(interestedClients);
     }
