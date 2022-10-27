@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
  * Represents an Applicant's pin status in TrackAScholar.
  */
 public class Pin {
-    private boolean hasPinned;
+    private final boolean hasPinned;
 
     /**
      * Constructs an {@code Pin}.
@@ -24,15 +24,6 @@ public class Pin {
      */
     public boolean getHasPinned() {
         return this.hasPinned;
-    }
-
-    /**
-     * Sets hasPinned to the stated boolean value
-     *
-     * @param hasPinned A valid boolean value.
-     */
-    public void setHasPinned(boolean hasPinned) {
-        this.hasPinned = hasPinned;
     }
 
     @Override

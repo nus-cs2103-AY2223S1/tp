@@ -38,12 +38,12 @@ public class UnPinCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Applicant> lastShownList = model.getFilteredApplicantList();
+        List<Applicant> lastShownList = model.getPinnedApplicantList();
 
         int indexOfApplicant = getApplicantIndex(lastShownList, name);
 
         Applicant applicantToUnPin = lastShownList.get(indexOfApplicant);
-        if (!applicantToUnPin.getPin().getHasPinned()) {
+        if (!applicantToUnPin.getHasPinned()) {
             throw new CommandException(MESSAGE_APPLICANT_ALREADY_UNPINNED);
         }
         Applicant unPinnedApplicant = createUnPinnedApplicant(applicantToUnPin);
