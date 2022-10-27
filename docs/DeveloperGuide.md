@@ -210,7 +210,36 @@ Commissions are currently stored in the individual `Customer`'s `UniqueCommissio
     * Does not support indexing. Would still need another data structure in `ModelManager` when commands request commissions by index.
     * Edit becomes tedious to implement as it requires a combination of create and delete.
 
-<!-- TODO Deleting a Commission (`delcom`) -->
+#### Deleting a Commission (`delcom`)
+
+Deletes a commission based on user input, and deletes the commission from the active customer.
+
+##### Implementation
+This section explains how the `delcom` command is implemented.
+
+Support for the `delcom` command is integrated with `DeleteCommissionCommandParser` and `DeleteCommissionCommand`.
+
+It is important to note that our commission commands usually require retrieving the customer to operate on the customer's
+commission list directly, due to our method of storing commissions (inside their Customer objects).
+
+1. User specified arguments (the commission index) are passed to the DeleteCommissionCommandParser and the arguments are broken up by the ArgumentTokenizer and ArgumentMultimap.
+
+1. The arguments will then be parsed by ParserUtil. An error will be thrown if the inputs were invalid or if no customer is selected yet.
+
+1. A new DeleteCommissionCommand object will be initialised.
+
+1. DeleteCommissionCommand#execute() will then get the currently shown list of commissions and identify the target commission to delete.
+
+1. This commission is passed into Customer#removeCommission to be removed directly from the customer's commission list.
+
+1. Model updates the GuiTab to show the Commission tab and selectedCommission to not show the deletedCommission and these changes are observed by the UI.
+
+1. The success message will be returned to the user by the CommandResult.
+
+The sequence diagram below shows the interaction between `Logic` and `Model` when `delcom 1` is executed.
+The parser part is omitted for brevity, but it is very similar to the other commands.
+
+<img src="images/DeleteCommissionCommand.png" width="450" />
 
 ### Iterations
 Iterations help users keep track of the progress of their commissions. Each commission iteration
