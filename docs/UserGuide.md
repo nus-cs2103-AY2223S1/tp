@@ -2,14 +2,15 @@
 layout: page
 title: User Guide
 ---
-# Introduction
+# **Introduction**
 HR Pro Max++ is a **desktop app for team leads in SMEs to manage projects and staff members under them. It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, HR Pro Max++ can get your project management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
-## Table of Contents
+## **Table of Contents**
 To quickly return to the Table of Contents, you can click on any of the section headers you navigate to.
 
+* Table of Contents 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -217,7 +218,7 @@ Examples:
 * `delstaff pn/Duke sn/Betty` Delete staff member named `Betty` from project `Duke`.
 
 --------------------------------------------------------------------------------------------------------------------
-### [**View the Staff list within a project:** `view`](#table-of-contents)
+### [**View the Staff list within a project :** `view`](#table-of-contents)
 
 Views the staff list of a specified project in Project list.
 
@@ -250,6 +251,7 @@ Note:
 
 Examples:
 * `editstaff 1 pn/CS2103T sn/John Doe` edits the staff name of the first staff in the staff list of `CS2103T` to `John Doe`
+
 --------------------------------------------------------------------------------------------------------------------
 ### [**Finding a Staff member within a Project :** `findstaff`](#table-of-contents)
 
@@ -271,7 +273,7 @@ Staffs whose name contains `Adrian` or `Lam` only aren't listed.
 
 --------------------------------------------------------------------------------------------------------------------
 ## [**Task Commands**](#table-of-contents)
-### Adding a Task : `addtask`
+### [**Adding a Task :** `addtask`](#table-of-contents)
 
 Adds a Task to the Task list. 
 
