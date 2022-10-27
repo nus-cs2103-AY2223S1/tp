@@ -101,7 +101,7 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney`
 - `add n/Peter Mars j/Chief Operating Officer d/General Management`
 
-### Editting an employee: `edit`
+### Editing an employee: `edit`
 
 Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
 
