@@ -18,6 +18,7 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
     private final List<String> priorityKeywords;
     private final List<String> projectNameKeywords;
     private final List<String> projectIdKeywords;
+    private final List<String> issueIdKeywords;
 
     /**
      * Constructs an IssueContainsKeywordsPredicate object with the user inputs.
@@ -28,12 +29,13 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
      */
     public IssueContainsKeywordsPredicate(List<String> descriptionKeywords, List<String> statusKeywords,
                                           List<String> priorityKeywords, List<String> projectNameKeywords,
-                                          List<String> projectIdKeywords) {
+                                          List<String> projectIdKeywords, List<String> issueIdKeywords) {
         this.descriptionKeywords = descriptionKeywords;
         this.statusKeywords = statusKeywords;
         this.priorityKeywords = priorityKeywords;
         this.projectNameKeywords = projectNameKeywords;
         this.projectIdKeywords = projectIdKeywords;
+        this.issueIdKeywords = = issueIdKeywords;
     }
 
     /**
@@ -115,7 +117,7 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
     /**
      * Checks if the issue's project's id matches the project id keyword being search for.
      * @param issue Issue whose project id is being used to search the keyword in
-     * @return true if the project name fulfills the search criteria and false otherwise
+     * @return true if the project id fulfills the search criteria and false otherwise
      */
     public boolean testProjectId(Issue issue) {
         if (projectIdKeywords.isEmpty()) {
@@ -136,6 +138,33 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
         return Arrays.stream(projIdPresent.trim().split("\\s+"))
                 .anyMatch(words -> StringUtil.containsWordIgnoreCase(projIdGiven, words));
     }
+
+
+    /**
+     * Checks if the issue's id matches the id keyword being search for.
+     * @param issue Issue whose id is being used to search the keyword in
+     * @return true if the id fulfills the search criteria and false otherwise
+     */
+    public boolean testIssueId(Issue issue) {
+        if (issueIdKeywords.isEmpty()) {
+            return true;
+        } else {
+            return issueIdKeywords.stream().anyMatch(
+                    i -> testIssueId(i, issue.getIssueId().toString()));
+        }
+    }
+
+    /**
+     * Checks if given id matches with any word in the id present.
+     * @param idPresent String representing id present
+     * @param idGiven String representing id given (keyword to search for)
+     * @return boolean true if at least one word matches with the keyword and false otherwise
+     */
+    public boolean testIssueId(String idPresent, String idGiven) {
+        return Arrays.stream(idPresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(idGiven, words));
+    }
+
 
     /**
      * Checks if given project name matches with any word in the project name present.
@@ -165,7 +194,7 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
     @Override
     public boolean test(Issue issue) {
         return testDescription(issue) && testPriority(issue) && testStatus(issue)
-                && testProjectName(issue) && testProjectId(issue);
+                && testProjectName(issue) && testProjectId(issue) && testIssueId(issue);
     }
 
     @Override
@@ -176,7 +205,8 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
                 && statusKeywords.equals(((IssueContainsKeywordsPredicate) other).statusKeywords) //state checks
                 && priorityKeywords.equals(((IssueContainsKeywordsPredicate) other).priorityKeywords)
                 && projectNameKeywords.equals(((IssueContainsKeywordsPredicate) other).projectNameKeywords)
-                && projectIdKeywords.equals(((IssueContainsKeywordsPredicate) other).projectIdKeywords));
+                && projectIdKeywords.equals(((IssueContainsKeywordsPredicate) other).projectIdKeywords)
+                && issueIdKeywords.equals(((IssueContainsKeywordsPredicate) other).issueIdKeywords));
     }
 
 }
