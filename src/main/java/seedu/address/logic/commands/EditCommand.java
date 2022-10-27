@@ -49,7 +49,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
         + "by the index number used in the displayed client list. "
-        + "Existing values will be overwritten by the input values.\n"
+        + "For parameters that are not tags, plans or notes, existing values will be overwritten by the input values. "
+        + "For tags, plans, or notes, the input values will be added to existing values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_PHONE + "PHONE] "
@@ -70,7 +71,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the FinBook.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * @param index                of the person in the filtered person list to edit

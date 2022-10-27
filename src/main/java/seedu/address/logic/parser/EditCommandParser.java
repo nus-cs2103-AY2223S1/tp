@@ -96,7 +96,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    public static Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {
@@ -111,7 +111,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code plans} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Plan>} containing zero plans.
      */
-    private Optional<Set<Plan>> parsePlansForEdit(Collection<String> plans) throws ParseException {
+    public static Optional<Set<Plan>> parsePlansForEdit(Collection<String> plans) throws ParseException {
         assert plans != null;
 
         if (plans.isEmpty()) {
@@ -126,7 +126,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code notes} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<note>} containing zero note.
      */
-    private Optional<Set<Note>> parseNotesForEdit(Collection<String> notes) throws ParseException {
+    public static Optional<Set<Note>> parseNotesForEdit(Collection<String> notes) throws ParseException {
         assert notes != null;
 
         if (notes.isEmpty()) {
