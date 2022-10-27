@@ -15,6 +15,7 @@ import seedu.classify.logic.commands.HelpCommand;
 import seedu.classify.logic.commands.ToggleViewCommand;
 import seedu.classify.logic.commands.ViewAllCommand;
 import seedu.classify.logic.commands.ViewClassCommand;
+import seedu.classify.logic.commands.ViewStatsCommand;
 import seedu.classify.logic.parser.exceptions.ParseException;
 
 /**
@@ -73,6 +74,9 @@ public class StudentRecordParser {
 
         case ToggleViewCommand.COMMAND_WORD:
             return new ToggleViewCommand();
+
+        case ViewStatsCommand.COMMAND_WORD:
+            return new ViewStatsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

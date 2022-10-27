@@ -3,6 +3,7 @@ package seedu.classify.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -88,6 +89,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortStudentRecord(Comparator<Student> studentComparator) {
+        this.studentRecord.sortList(studentComparator);
+    }
+
+    @Override
     public boolean hasStudent(Student person) {
         requireNonNull(person);
         return studentRecord.hasStudent(person);
@@ -141,6 +147,11 @@ public class ModelManager implements Model {
     @Override
     public FilteredStudents getFilteredStudents() {
         return this.filteredStudents;
+    }
+
+    @Override
+    public double calculateExamMean(String exam) {
+        return this.filteredStudents.calculateExamMean(exam);
     }
 
     @Override

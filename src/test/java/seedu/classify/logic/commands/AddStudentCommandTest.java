@@ -9,6 +9,7 @@ import static seedu.classify.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -127,6 +128,11 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public void sortStudentRecord(Comparator<Student> studentComparator) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public boolean hasStudent(Student person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -149,6 +155,11 @@ public class AddStudentCommandTest {
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public double calculateExamMean(String exam) {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override

@@ -67,6 +67,13 @@ public class Exam {
         return this.score;
     }
 
+    /**
+     * Returns the name of the exam.
+     */
+    public String getExamName() {
+        return this.name;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
