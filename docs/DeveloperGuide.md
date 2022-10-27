@@ -199,20 +199,20 @@ The command will be used as such:
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 - Words in square brackets are optional, but at least one of them must be present.
 
-### \[Proposed\] Sort feature
+### \[Implemented\] Sort feature
 
-#### Proposed Implementation
+#### current Implementation
 
-The proposed sort command consists of these following classes:
+The sort command consists of these following classes:
 
 - `SortCommand` which extends `Command`
 - `SortCommandParser` which extends `Parser<SortCommand>`
 
-As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It sorts the list of students by their grades or attendance.
+As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It sorts the list of students by their grades in ascending or descending order as specified by the user.
 
-Primarily there are two proposed cases for this command,
-- sort by grade - e.g.`sort g`
-- sort by attendance - e.g. `sort a`
+The command will be used as such:
+- sort by grade in ascending order - e.g.`sort asc`
+- sort by grade in descending order - e.g. `sort desc`
 
 ### \[Proposed\] Undo/redo feature
 
