@@ -98,7 +98,7 @@ public class InTrack implements ReadOnlyInTrack {
      * Sorts the entire list of internships in ascending order based on their respective tasks
      * with the nearest date and time
      */
-    public void sortAscending() {
+    public void sortAscendingTime() {
         internships.dateSortAscending();
     }
 
@@ -106,8 +106,22 @@ public class InTrack implements ReadOnlyInTrack {
      * Sorts the entire list of internships in descending order based on their respective tasks
      * with the furthest date and time
      */
-    public void sortDescending() {
+    public void sortDescendingTime() {
         internships.dateSortDescending();
+    }
+
+    /**
+     * Sorts the entire list of internships in ascending order based on their respective salaries
+     */
+    public void sortAscendingSalary() {
+        internships.salarySortAscending();
+    }
+
+    /**
+     * Sorts the entire list of internships in descending order based on their respective salaries
+     */
+    public void sortDescendingSalary() {
+        internships.salarySortDescending();
     }
 
     //// util methods

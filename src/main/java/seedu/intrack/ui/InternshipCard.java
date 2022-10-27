@@ -48,6 +48,8 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private TextFlow website;
     @FXML
+    private Label salary;
+    @FXML
     private Label upcomingTask;
     @FXML
     private FlowPane tags;
@@ -86,6 +88,8 @@ public class InternshipCard extends UiPart<Region> {
                 System.out.println(ex.getMessage());
             }
         });
+
+        salary.setText(internship.getSalary().toString());
 
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

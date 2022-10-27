@@ -114,13 +114,23 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void ascendSort() {
-        inTrack.sortAscending();
+    public void ascendSortTime() {
+        inTrack.sortAscendingTime();
     }
 
     @Override
-    public void descendSort() {
-        inTrack.sortDescending();
+    public void descendSortTime() {
+        inTrack.sortDescendingTime();
+    }
+
+    @Override
+    public void ascendSortSalary() {
+        inTrack.sortAscendingSalary();
+    }
+
+    @Override
+    public void descendSortSalary() {
+        inTrack.sortDescendingSalary();
     }
 
     //=========== Filtered Internship List Accessors =============================================================

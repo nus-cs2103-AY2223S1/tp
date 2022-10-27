@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.intrack.logic.commands.SortCommand;
+import seedu.intrack.logic.commands.SortSalaryCommand;
+import seedu.intrack.logic.commands.SortTimeCommand;
 import seedu.intrack.logic.parser.exceptions.ParseException;
 
 
@@ -20,19 +22,20 @@ public class SortCommandParser implements Parser<SortCommand> {
         requireNonNull(args);
         String[] splitCommand = args.split("\\s+");
 
-        if (splitCommand.length != 2) { //test this later
+        if (splitCommand.length != 3) { //test this later
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
-        String orderType = splitCommand[1];
+        String sortType = splitCommand[1];
+        String orderType = splitCommand[2].toLowerCase();
 
-        switch (orderType.toUpperCase()) {
-        case "A":
-            return new SortCommand("a");
-        case "D":
-            return new SortCommand("d");
+        switch (sortType.toUpperCase()) {
+        case "TIME":
+            return new SortTimeCommand(orderType);
+        case "SALARY":
+            return new SortSalaryCommand(orderType);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        SortCommand.SORT_COMMAND_CONSTRAINTS));
+                    SortTimeCommand.SORT_COMMAND_CONSTRAINTS));
         }
     }
 }
