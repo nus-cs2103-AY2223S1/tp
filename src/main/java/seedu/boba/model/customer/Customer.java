@@ -119,17 +119,12 @@ public class Customer {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
         if (!(other instanceof Customer)) {
             return false;
         }
 
         Customer otherCustomer = (Customer) other;
-        return otherCustomer.getPhone().equals(getPhone())
-                || otherCustomer.getEmail().equals(getEmail());
+        return otherCustomer.getAllInfo().equals(getAllInfo());
     }
 
     @Override
