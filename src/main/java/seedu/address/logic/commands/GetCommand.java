@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.getcommands.GetPastAppointmentCommand.PAST_APPOINTMENT_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetAppointmentByDateCommand.APPOINTMENT_BY_DATE_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetFloorNumberCommand.FLOOR_NUMBER_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetHospitalWingCommand.HOSPITAL_WING_PREFIX;
@@ -9,6 +8,8 @@ import static seedu.address.logic.commands.getcommands.GetInpatientCommand.INPAT
 import static seedu.address.logic.commands.getcommands.GetNameCommand.NAME_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetNextOfKinCommand.NEXT_OF_KIN_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetOutpatientCommand.OUTPATIENT_PREFIX;
+import static seedu.address.logic.commands.getcommands.GetPastAppointmentCommand.PAST_APPOINTMENT_PREFIX;
+
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
