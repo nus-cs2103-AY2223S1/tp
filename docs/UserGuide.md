@@ -122,6 +122,8 @@ Clears all students, tasks and lessons from JARVIS.
 
 Format: `clear`
 
+**Warning! This action is irreversible! Please think twice before you use this**
+
 ### Exiting the program : `exit`
 
 Exits the program.
