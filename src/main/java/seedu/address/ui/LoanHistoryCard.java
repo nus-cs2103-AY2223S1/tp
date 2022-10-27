@@ -57,9 +57,7 @@ public class LoanHistoryCard extends UiPart<Region> {
                         : DECREASE_IMAGE_PATH))
         ));
 
-        changeInAmount.setText(this.history.getLoanChange().getAmount() > 0
-                ? "+" + this.history.getLoanChange()
-                : this.history.getLoanChange().toString());
+        changeInAmount.setText(this.history.getLoanChange().toString(true));
 
         reason.setText(this.history.getReason().toString());
     }

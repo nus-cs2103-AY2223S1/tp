@@ -72,6 +72,24 @@ public class Loan implements DeepCopyable {
     }
 
     /**
+     * Returns a string version of the loan similar to a normal {@code toString()} call
+     * and appends the plus sign at the front for positive values
+     * @param withSign whether to print the sign
+     * @return a string version of the amount owed with sign if needed
+     */
+    public String toString(boolean withSign) {
+        if (!withSign) {
+            return toString();
+        }
+
+        if (amountOwed < 0) {
+            return String.format("-$%.2f", -amountOwed);
+        } else {
+            return String.format("+$%.2f", amountOwed);
+        }
+    }
+
+    /**
      * Returns true if both loans have the same identity and data fields.
      * This defines the notion of equality between two persons.
      */
@@ -88,7 +106,6 @@ public class Loan implements DeepCopyable {
         if (((Loan) other).amountOwed == amountOwed) {
             return ((Loan) other).amountOwed == amountOwed;
         } else {
-            System.out.printf("%f not equals to %f%n", ((Loan) other).amountOwed, amountOwed);
             return false;
         }
     }
