@@ -91,7 +91,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
         email.setText(patient.getEmail().getValue());
         patient.getTags().getInternalList()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
-        
+
         /* Conditions */
         conditionHeader.setText("Conditions:");
         if (patient.getConditions().isEmpty()) {
@@ -304,7 +304,8 @@ public class UpdatedPatientCard extends UiPart<Region> {
                         // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
                         + "-fx-background-radius: 5;");
             }
-            taskBox.getChildren().addAll(getIndexBox(taskIndex), taskDateBox, taskTimeBox, taskRecurrenceBox, taskNameLabel);
+            taskBox.getChildren().addAll(
+                    getIndexBox(taskIndex), taskDateBox, taskTimeBox, taskRecurrenceBox, taskNameLabel);
             return taskBox;
         }
         /* */

@@ -1,7 +1,5 @@
 package seedu.uninurse.model;
 
-import java.util.List;
-
 /**
  * An association class storing the type of modification and the index of modification in a {@code GenericList}
  */

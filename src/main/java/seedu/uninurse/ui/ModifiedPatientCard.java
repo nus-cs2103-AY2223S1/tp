@@ -23,7 +23,8 @@ import seedu.uninurse.model.task.TaskList;
 
 /**
  * An UI component that displays information of a {@code Patient} without index.
- * ModifiedPatientCard to be used for output panel when undoing and redoing results in adding, editing, or deleting a patient.
+ * ModifiedPatientCard to be used for output panel when undoing and redoing results
+ * in adding, editing, or deleting a patient.
  */
 public class ModifiedPatientCard extends UiPart<Region> {
     private static final String FXML = "ModifiedPatientCard.fxml";
@@ -113,7 +114,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
                 this.patient = patientListTracker.getAddedPatients().get().get(0);
             }
         }
-        
+
         Patient editedPatient = this.patient;
         if (patientListTracker.isEdit() && isUndo) {
             this.header.setStyle("");
@@ -121,7 +122,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
             this.patient = patientListTracker.getDeletedPatients().get().get(0);
             editedPatient = patientListTracker.getAddedPatients().get().get(0);
         }
-        
+
         if (patientListTracker.isEdit() && isRedo) {
             this.header.setStyle("");
             this.header.setText("Modified Patient:");
@@ -166,7 +167,8 @@ public class ModifiedPatientCard extends UiPart<Region> {
 
             if (hasModifiedConditions && modifiedConditions.get(0).isAdd()) {
                 HBox previousEditedConditionBox = getConditionBox(
-                        conditionList.size() + 1, editedPatient.getConditions().get(modifiedConditions.get(0).getIndex()));
+                        conditionList.size() + 1,
+                        editedPatient.getConditions().get(modifiedConditions.get(0).getIndex()));
                 previousEditedConditionBox.setStyle(RED_STYLE);
 
                 conditionContainer.getChildren().add(previousEditedConditionBox);
@@ -192,7 +194,8 @@ public class ModifiedPatientCard extends UiPart<Region> {
                         medicationBox.setStyle(GREEN_STYLE);
                     } else if (modifiedMedications.get(0).isEdit()) {
                         medicationBox.setStyle(GREEN_STYLE);
-                        HBox previousEditedMedicationBox = getMedicationBox(i + 1, editedPatient.getMedications().get(i));
+                        HBox previousEditedMedicationBox =
+                                getMedicationBox(i + 1, editedPatient.getMedications().get(i));
                         previousEditedMedicationBox.setStyle(RED_STYLE);
 
                         medicationContainer.getChildren().add(previousEditedMedicationBox);
@@ -203,7 +206,8 @@ public class ModifiedPatientCard extends UiPart<Region> {
 
             if (hasModifiedMedications && modifiedMedications.get(0).isAdd()) {
                 HBox previousEditedMedicationBox = getMedicationBox(
-                        medicationList.size() + 1, editedPatient.getMedications().get(modifiedMedications.get(0).getIndex()));
+                        medicationList.size() + 1,
+                        editedPatient.getMedications().get(modifiedMedications.get(0).getIndex()));
                 previousEditedMedicationBox.setStyle(RED_STYLE);
 
                 medicationContainer.getChildren().add(previousEditedMedicationBox);
@@ -276,7 +280,8 @@ public class ModifiedPatientCard extends UiPart<Region> {
             }
 
             if (hasModifiedRemarks && modifiedRemarks.get(0).isAdd()) {
-                HBox previousEditedRemarkBox = getRemarkBox(editedPatient.getRemarks().get(modifiedRemarks.get(0).getIndex()));
+                HBox previousEditedRemarkBox = getRemarkBox(
+                        editedPatient.getRemarks().get(modifiedRemarks.get(0).getIndex()));
                 previousEditedRemarkBox.setStyle(RED_STYLE);
 
                 remarkContainer.getChildren().add(previousEditedRemarkBox);
@@ -447,7 +452,8 @@ public class ModifiedPatientCard extends UiPart<Region> {
                         // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
                         + "-fx-background-radius: 5;");
             }
-            taskBox.getChildren().addAll(getIndexBox(taskIndex), taskDateBox, taskTimeBox, taskRecurrenceBox, taskNameLabel);
+            taskBox.getChildren().addAll(
+                    getIndexBox(taskIndex), taskDateBox, taskTimeBox, taskRecurrenceBox, taskNameLabel);
             return taskBox;
         }
         /* */
