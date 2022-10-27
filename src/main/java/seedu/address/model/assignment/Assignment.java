@@ -90,7 +90,7 @@ public class Assignment implements Comparable<Assignment> {
         if (getDeadline() != null && getWorkload() != null) {
             return "(" + workload + ") " + value + " | by: " + deadline.getDeadlineString();
         } else if (getWorkload() != null) {
-            return "(" + workload + ") " + value ;
+            return "(" + workload + ") " + value;
         } else {
             return value;
         }

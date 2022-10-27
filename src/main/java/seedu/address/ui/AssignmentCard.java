@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.awt.Color;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -80,11 +80,11 @@ public class AssignmentCard extends UiPart<Region> {
 
     private Color getColourFromWorkload(int score) {
         //gradual fade for RGB
-        double Red = 255 * Math.sqrt( Math.sin ( score * Math.PI / 200 ));
-        double Green = 255 * Math.sqrt( Math.cos ( score * Math.PI / 200 ));;
+        double Red = 255 * Math.sqrt(Math.sin ( score * Math.PI / 200 ));
+        double Green = 255 * Math.sqrt(Math.cos ( score * Math.PI / 200 ));;
         Color myColor;
         if (Red >= 255 || Green <= 0) {
-            myColor = new Color(255,0,0);
+            myColor = new Color(255, 0, 0);
         } else {
             myColor = new Color((int) Red, (int) Green, 0);
         }
