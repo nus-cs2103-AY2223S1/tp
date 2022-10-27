@@ -3,10 +3,17 @@ layout: page
 title: User Guide
 ---
 
-IdENTify is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, idENTify can get your contact management tasks done faster than traditional GUI apps.
+IdENTify is a **desktop app made for ENT administrative staff to manage patients' contact details and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, idENTify can get your patients/appointments' management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
+
+## Quick Start
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest [idENTify.jar](https://github.com/AY2223S1-CS2103T-T17-4/tp/releases/tag/v1.3) from here.
+3. Copy the file to your preferred folder.
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+![start_up](images/IdENTifyStartUp.png)
 
 ## Features
 
@@ -79,29 +86,33 @@ Examples:
 
 #### Book an appointment:  `book`
 
-Books an appointment for the specified patient at INDEX with a given REASON, DATE and an optional TIME PERIOD.
+Books an appointment for the specified patient at INDEX with a given REASON, DATE, optional TIME PERIOD and optional tags.
+
+Inputting a time period allows the appointment to be recurring: Automatically books a new appointment in the future 
+as given by the time period when the current appointment is marked as completed.
 
 Appointments added are sorted according to their date.
 
 Format: `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​`
 
 * The index refers to the index number shown in the displayed patient list.
-* The index must be a positive integer 1, 2, 3, …​
-* Dates should be inputted in a YYYY-MM-DD HH:MM format or HH:MM YYYY-MM-DD format.
-* Input a time period for the appointment to be recurring, default time period is set to 0Y0M0D otherwise.
+* The index **must be a positive integer** 1, 2, 3, …​
+* Dates **must be inputted** in a YYYY-MM-DD HH:MM format or HH:MM YYYY-MM-DD format.
 * Input at least a Y, M or D value for the time period. Values **must be in the range of** 0-10Y, 0-12M or 0-31D to be considered as valid.
+* Default time period is set to 0Y0M0D if no time period is inputted.
 
 Examples:
-* `book 2 r/Ear Infection d/2022-12-31 18:00`
-* `book 2 r/Ear Infection d/16:30 2022-12-31 pe/1M2D`
-* `book 2 r/Ear Infection d/2022-12-31 13:00 pe/1Y`
+* `book 2 r/Ear Infection d/2022-12-31 18:00` Books an appointment that is non-recurring as no time period is inputted.
+* `book 2 r/Ear Infection d/16:30 2022-12-31 pe/1M2D` Books an appointment that is recurring every 1 month 2days.
+* `book 2 r/Ear Infection d/2022-12-31 13:00 pe/1Y` Books an appointment that is recurring every year.
 
 #### Cancel an appointment: `cancel`
 Cancels a specified appointment in the appointment list. <br>
+
 Format: ```cancel APPOINTMENT_INDEX```
 - Deletes the appointment with `APPOINTMENT_INDEX` in the appointment list.
 - The index refers to the index number shown in the displayed appointment list.
-- The index must be a positive integer 1, 2, 3, …​
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `cancel 1`
@@ -147,8 +158,8 @@ Format: `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​`
 
 Examples:
 * `edit appts 1 r/Cough d/2022-12-10 16:30` Edits the reason and date of the first appointment to be `Cough` and `2022-12-10 16:30`
-respectively. Existing time period will not be edited.
-* `edit appts 1 pe/1Y2M` Edits the time period of the first appointment to be recurring every 1 year 2 months. Existing reason and date will not be edited.
+respectively. Existing time period and tags will not be edited.
+* `edit appts 1 pe/1Y2M` Edits the time period of the first appointment to be recurring every 1 year 2 months. Existing reason, date and tags will not be edited.
 
 #### Mark an appointment as completed:  `mark`
 
@@ -180,9 +191,11 @@ Examples:
 
 #### Listing all patients/appointments : `list`
 
-Shows a list of all patients or appointments, depending on the parameter given. \
+Shows a list of all patients or appointments, depending on the parameter given. Previously hidden patients and appointments will be unhidden as well.
+
 If it is a patient list, then patients will be sorted by their names first; if there are people with the same name, they will be sorted by their 
-phone numbers. \
+phone numbers. 
+
 If it is an appointment list, then appointments will be sorted by their datetime first; if there are appointments 
 with the same datetime, they will be sorted by their attached patients' information.
 
@@ -353,7 +366,7 @@ Examples:
 * `find ds/2020-01-01 00:00` displays all appointments occuring at or after 1st of January 2020. It will also display all patients with at least one of said appointments.
 * `find a/Clementi r/Sleep Apena` displays all patients whose address contains `Clementi` and has at least 1 appointment containing `Sleep Apena` as its reason. It will also only display appointments containing `Sleep Apena` of said patients.
 * `find ta/Throat ta/Nose` displays all appointments with both `Throat` and `Nose` tags, and all patients with at least one of said appointments.
-* `find t/throat` returns `Bernice Yu` and `David Li`, both of which contains the `Throat` tag. <br>
+* `find t/throat` returns `Alex Yeoh`, `Bernice Yu` and `David Li` as they all contain the `Throat` tag. <br>
   ![result for 'find t/throat'](images/FindThroatTagResult.png)
 
 ### Others
@@ -363,7 +376,9 @@ Examples:
 Shows the most recent 10 commands that was inputted.
 Allows cycling through those commands to reduce the need of retyping similar commands fully.
 
-Every new input will reset the index back to the most recent command.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** Every new valid command will reset the index back to the top of the history. 
+Click Down Arrow to get the most recent command immediately and Up Arrow to get the last command in the history.
+</div>
 
 Controls: 
 * `Up Arrow` on keyboard: Cycle to next command
