@@ -13,7 +13,7 @@ import java.util.Set;
 import seedu.classify.logic.commands.AddStudCommand;
 import seedu.classify.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.classify.model.student.Student;
-import seedu.classify.model.tag.Exam;
+import seedu.classify.model.exam.Exam;
 
 /**
  * A utility class for Student.

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.classify.logic.commands.ViewStatsCommand;
 import seedu.classify.model.student.Class;
-import seedu.classify.model.tag.Exam;
+import seedu.classify.model.exam.Exam;
 
 public class ViewStatsCommandParserTest {
 

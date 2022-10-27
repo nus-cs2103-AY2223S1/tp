@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.classify.model.student.exceptions.ExamNotFoundException;
-import seedu.classify.model.tag.Exam;
+import seedu.classify.model.exam.Exam;
 
 
 /**
