@@ -65,6 +65,8 @@ public class MarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        model.saveAddressBook();
+        // Command message is saved to undo history after string is built below.
         Person debtorToUpdate = lastShownList.get(debtorIndex.getZeroBased());
         List<Debt> initialDebts = debtorToUpdate.getDebts().asList();
         Set<Debt> debtsToMark = new HashSet<>();
@@ -88,11 +90,12 @@ public class MarkCommand extends Command {
         int i = 1;
         for (Debt debt : debtsToMark) {
             builder.append(i + ". ")
-                    .append(debt)
+                    .append(debt.setPaid(true))
                     .append("\n");
             i++;
         }
 
+        model.saveCommandMessage(builder.toString());
         return new CommandResult(builder.toString());
     }
 
