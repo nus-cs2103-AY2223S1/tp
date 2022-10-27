@@ -75,8 +75,13 @@ public class CommandSuggestor {
         String[] userInputArray = userInput.split(" ", 2);
         String commandWord = userInputArray[0];
         String suggestedCommand = "";
+        boolean isCommandComplete = userInput.contains(" ");
+
         for (String command : commandList) {
             if (command.startsWith(commandWord)) {
+                if(isCommandComplete && !command.equals(commandWord)) {
+                    continue;
+                }
                 suggestedCommand = command;
                 break;
             }
