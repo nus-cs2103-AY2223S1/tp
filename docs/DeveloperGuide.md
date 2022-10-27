@@ -2,24 +2,27 @@
 layout: page
 title: Developer Guide
 ---
-# Developer Guide
 
 ## Table of contents
 * [Implementation](#implementation)
   * [Edit Class Feature](#edit-class-feature)
     * [Implementation details](#implementation-details)
     * [Design Considerations](#design-considerations)
+  * [Next Available Class Feature](#next-available-class-feature)
   * [Statistics Display Feature](#statistics-display-feature)
+  * [Mark Student Feature](#mark-student-feature)
   * [Schedule List Feature](#schedule-list-feature)
-  * [[Proposed] Sort-by](#proposed-sort-by-feature)
+  * [Sort-by](#proposed-sort-by-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
   * [Value Proposition](#value-proposition)
   * [User Stories](#user-stories)
   * [Use Cases](#use-cases)
     * [Use case: **Delete a student**](#use-case-delete-a-student)
-    * [Use case: **Edit a student contact detail**](#use-case-edit-a-student-contact-detail)
-    * [Use case: **Find student contact details**](#use-case-find-student-contact-details)
+    * [Use case: **Edit a student's contact number**](#use-case-edit-a-students-contact-number)
+    * [Use case: **Edit a student's class date**](#use-case-edit-a-students-class-date-)
+    * [Use case: **Find student by class date**](#use-case-find-student-by-class-date)
+    * [Use case: **Find student by names**](#use-case-find-student-by-name)
     * [Use case: **Find student by address**](#use-case-find-student-by-address)
     * [Use case: **Mark student as present for class**](#use-case-mark-student-as-present-for-class)
     * [Use case: **Allocate a slot for future class**](#use-case-allocate-a-slot-for-future-class)
@@ -159,7 +162,8 @@ The features covered in this guide are:
 
 * [Edit Class Feature](#edit-class-feature)
 * [Statistics Display Feature](#statistics-display-feature)
-* [[Proposed] Sort-by feature](#proposed-sort-by-feature)
+* [Sort-by feature](#sort-by-feature)
+* [Mark Student Feature](#mark-student-feature)
 * [[Proposed] Find-by feature](#proposed-find-by-feature)
 
 ### Edit Class Feature
@@ -202,15 +206,57 @@ The following activity diagram summarizes what happens when a teacher executes a
 ##### Aspect: Input format for edit class:
 
 * **Alternative 1**: dt/yyyy-MM-dd 0000-2359
-  * Pros: Easy to implement.
-  * Cons: The teacher has to fully match the date format and order, which is much more cumbersome.
+    * Pros: Easy to implement.
+    * Cons: The teacher has to fully match the date format and order, which is much more cumbersome.
 
 * **Alternative 2**: dt/Day-of-Week 0000-2359 (case-insensitive)
-  * Pros: More convenient and easier for the teacher to type.
-  * Cons:
-    1. Harder to implement.
-    2. Only can set the class to a date at most 1 week away.
-  
+    * Pros: More convenient and easier for the teacher to type.
+    * Cons:
+        1. Harder to implement.
+        2. Only can set the class to a date at most 1 week away.
+
+### Next Available Class Feature
+
+This feature allows the teacher to find then next available class by specifying the time range and the duration that
+he or she is looking at. For example, if the teacher wants to have a 1 hour class in the range of 1000-1600, but is not
+sure when is the next available date, he or she can simply run `avail 1000-1600 60` and the first available class would
+be output to the teacher.
+
+#### Implementation Details
+
+The main logic of the available class resides in `UniquePersonlist::getAvailableClass`, where it takes a given
+`TimeRange` parameter and outputs the next available class.
+
+The `TimeRange` class stores the `startTimeRange`, `endTimeRange` and `duration` (in minutes).
+
+The `AvailCommandParser` reads the input and passes it to `ParserUtil` which returns a `TimeRange` object. If the
+duration provided is not valid or if the endTime is not valid, a `ParseException` will be thrown. If there are no 
+exceptions being thrown, `AvailCommandParser` will create an `AvailCommand`.
+
+During the execution of `AvailCommand`, a call will be made to `Model` in order to get the available class. `Model`
+will then call `TeachersPet::getAvailableClass`. The `TeachersPet::getAvailableClass` will then call 
+`UniquePersonList::getAvailableClass` which will subsequently return a `Class` object, which will be displayed to 
+the user.
+
+The following sequence diagram shows how the avail operation works:
+
+![AvailClassSequenceDiagram](images/DG-images/AvailClassSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a teacher executes an avail class command:
+
+![AvailClassActivityDiagram](images/DG-images/AvailClassActivityDiagram.png)
+
+#### Design Considerations:
+##### Aspect: Input format for avail class:
+
+* **Alternative 1**: avail
+    * Pros: Easy to implement.
+    * Cons: It will be hard coded to find the next available class of a one hour slot. Inflexible.
+
+* **Alternative 2**: avail 0000-2359 0 (in minutes)
+    * Pros: More flexible, allowing teacher to specify what the time range is and the duration of class interested in.
+    * Cons: Harder to implement.
+
 ### Statistics Display Feature
 
 This feature allows the teacher to get an overall view of his/her teaching statistics, which includes the number of students, total money owed and total money paid by the current list of students.
@@ -283,16 +329,17 @@ This `UniqueScheduleList` would store the filtered version of the original `Addr
   * Pros: Achieved our purpose of a `ScheduleList`
   * Cons: Code duplication
 
-### [Proposed] Sort-by feature
+### Sort-by feature
 
-This feature allows the user (teacher) to sort the students from Teacher's Pet by one of the specified keywords.
+This feature allows the user (teacher) to sort the students from Teacher's Pet by specified `TYPE` and `ORDER`. `ORDER` is optional
+and will be `ASC` when `TYPE` is `NAME` or `CLASS` and `DESC` when `TYPE` is `OWED`.
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
 list of person as per usual. Additionally, it implements the following operation:
-- `TeachersPet#SortBy(ComparatorM<Person>)` -- Updates the `FilteredPersonList` by reordering the list with the given `Comparator`
+- `TeachersPet#SortPersons(ComparatorM<Person>)` -- Updates the `persons` by sorting the list with the given `Comparator`
 
 The following diagram illustrates how the operation works:
 
@@ -302,6 +349,36 @@ The following diagram illustrates how the operation works:
 
 </div>
 
+---
+
+### Mark Student Feature
+
+This feature allows the teacher to mark a student as present for class, which increases the student's amount owed by the rates per class, while setting the student's next class date to be a week later.
+
+#### Implementation Details
+
+This command executes 3 main actions, they are:
+1. Display a cross beside the student's name in the Schedule list.
+   - `ScheduleCard.java` contains a `Label` called `markStatus` to display the cross if the student is marked.
+   - `ScheduleCard#setMarkStatus(Person person)` sets the text of `markStatus` to be `[X]` if the `person` is marked, else `[ ]`.
+
+2. Increment the money owed by the student.
+   - This action will add `ratesPerClass` field to `moneyOwed` field in `Person`.
+   - The addition of money is called through `Money#addTo(Money money)` method.
+   - To prevent integer overflow from happening, `Money#addTo(Money money)` throws a `CommandException` if it occurs.
+
+3. Set the next class to be a week later.
+   - This action will update `Class` to be `7` days later at the same `startTime` and `endTime`.
+   - Addition of days to the current `Class` date is called through `Class#addDays(int numberOfDays)` method.
+   - The next `Class` will be checked if it clashes with another `Class`. If it does not, it will be saved in `ClassStorage`. All these are called through `ClassStorage#saveClass()`.
+   - The marked `Class` will be deleted from `ClassStorage`.
+
+The following diagram illustrates how the operation works:
+
+![MarkActivityDiagram](images/DG-images/MarkActivityDiagram.png)
+
+---
+
 ### [Proposed] Find-by feature
 
 This feature allows the user (teacher) to find a list of students from Teacher's Pet by one of the specified keywords.
@@ -310,10 +387,11 @@ This feature allows the user (teacher) to find a list of students from Teacher's
 
 The proposed `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 There are 4 different variations of `find`:
-1. Find by name: Find all matching student(s) using any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
-2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
-3. Find by address: Find all matching student(s) using any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
-4. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
+1. Find by name: Find all matching student(s) with any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
+3. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
+4. Find by address: Find all matching student(s) with any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
+5. Find by class date: Find all matching student(s) with classes on a particular date`find dt/[CLASS_DATE]`.
+6. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The 4 variations cannot be mixed with one another.</div>
 
@@ -335,6 +413,7 @@ Below is an example of the general flow of a find by address command.
 The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
 
 ![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
+--------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Requirements
 
@@ -435,7 +514,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
   Use case ends.
 
-#### Use case: **Edit a student's class date **
+#### Use case: **Edit a student's class date**
 
 **MSS**
 
@@ -473,24 +552,19 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
       Use case ends.
 
-#### Use case: **Find student contact details**
+#### Use case: **Find student by name**
 
 **MSS**
 
-1. Teacher requests to find the details of a specific student
-2. Teacher’s Pet shows the student’s details
+1. Teacher requests to find all the students with names matching the keywords.
+2. Teacher’s Pet shows a list of filtered students according to their provided query.
 
    Use case ends.
 
 **Extensions**
 
-- 1a. Student name does not exist in the system.
-    - 1a1. Teacher’s Pet shows an error message.
-
-      Use case ends.
-
 - 1b. Multiple students share the same name in the system.
-    - 1b1. Teacher’s Pet lists the details of multiple people.
+    - 1b1. Teacher’s Pet lists the details of multiple students.
 
       Use case ends.
 
@@ -498,8 +572,8 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to [find](#use-case-find-student-by-address) a student by address
-2. Teacher’s Pet shows a list of filtered students according to their provided query
+1. Teacher requests to find a student by address.
+2. Teacher’s Pet shows a list of filtered students according to their provided query.
 
    Use case ends.
 
@@ -519,10 +593,10 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to list students
-2. Teacher’s Pet shows a list of students
-3. Teacher requests to mark a specific student in the list as present for class
-4. Teacher’s Pet marks the student as present for class
+1. Teacher requests to list students.
+2. Teacher’s Pet shows a list of students.
+3. Teacher requests to mark a specific student in the list as present for class.
+4. Teacher’s Pet marks the student as present for class.
 
     Use case ends.
 
@@ -548,13 +622,13 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to find the next available slot for class
-2. Teacher discusses with the student about whether the proposed slot is possible
-3. Teacher [edits](#use-case-edit-a-student-contact-detail) the student record with the next class date
+1. Teacher requests to find the next available slot for class.
+2. Teacher discusses with the student about whether the proposed slot is possible.
+3. Teacher [edits](#use-case-edit-a-student-contact-detail) the student record with the next class date.
 
 **Extensions**
 
-- 2a. The student cannot make it on the proposed slot
+- 2a. The student cannot make it on the proposed slot.
   - Step 1-2 is repeated until a mutually-agreed slot is found.
 
     Use case resumes at step 3.
