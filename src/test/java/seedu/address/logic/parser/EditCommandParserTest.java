@@ -77,7 +77,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5 m/client" + NAME_DESC_AMY, MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertParseFailure(parser, "-5 m/client" + NAME_DESC_AMY, MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX
+            + "\n" + EditCommand.MESSAGE_USAGE);
 
         // zero index
         assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);

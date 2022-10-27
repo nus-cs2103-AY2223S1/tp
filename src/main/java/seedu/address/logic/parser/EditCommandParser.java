@@ -91,8 +91,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX,
-                    EditClientCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX + "\n"
+                    + EditClientCommand.MESSAGE_USAGE, pe);
         }
 
         EditClientCommand.EditClientDescriptor editClientDescriptor = new EditClientCommand.EditClientDescriptor();
@@ -130,8 +130,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX,
-                    EditClientCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX + "\n"
+                    + EditClientCommand.MESSAGE_USAGE, pe);
         }
 
         EditTransactionCommand.EditTransactionDescriptor editTransactionDescriptor =
@@ -171,8 +171,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_REMARK_DISPLAYED_INDEX,
-                    EditClientCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_REMARK_DISPLAYED_INDEX + "\n"
+                    + EditClientCommand.MESSAGE_USAGE, pe);
         }
 
         if (arguments.length < 2 || arguments[1].isEmpty()) {
