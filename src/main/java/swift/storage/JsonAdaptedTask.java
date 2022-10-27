@@ -25,16 +25,20 @@ class JsonAdaptedTask {
     private final String description;
     private final String deadline;
 
+    private final boolean isDone;
+
     /**
      * Constructs a {@code JsonAdaptedTask} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("id") String id, @JsonProperty("taskName") String taskName,
-            @JsonProperty("description") String description, @JsonProperty("deadline") String deadline) {
+            @JsonProperty("description") String description, @JsonProperty("deadline") String deadline,
+            @JsonProperty("isDone") boolean isDone) {
         this.id = id;
         this.taskName = taskName;
         this.description = description;
         this.deadline = deadline;
+        this.isDone = isDone;
     }
 
     /**
@@ -45,6 +49,7 @@ class JsonAdaptedTask {
         taskName = source.getName().fullName;
         description = source.getDescription().map(Description::toString).orElse(null);
         deadline = source.getDeadline().map(Deadline::toString).orElse(null);
+        isDone = source.isDone();
     }
 
     /**
@@ -90,6 +95,6 @@ class JsonAdaptedTask {
             modelDeadline = Optional.of(ParserUtil.parseDeadline(deadline));
         }
 
-        return new Task(modelId, modelName, modelDescription, modelDeadline);
+        return new Task(modelId, modelName, modelDescription, modelDeadline, isDone);
     }
 }
