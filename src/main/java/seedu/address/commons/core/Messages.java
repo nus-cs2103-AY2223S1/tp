@@ -20,6 +20,8 @@ public class Messages {
             + " cannot be deleted as it is tied with an existing task";
     public static final String MESSAGE_INVALID_MODULE_EDIT_AS_TIED_WITH_TASK = "The module"
             + " cannot be edited as it is tied with an existing task";
+    public static final String MESSAGE_INVALID_MODULE_INDEX_TOO_LARGE =
+            "Please provide a module index greater than 0 and less than %d";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
     public static final String MESSAGE_INVALID_TASK_INDEX =
         "Please provide a positive integer for the index of a task.";

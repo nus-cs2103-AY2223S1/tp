@@ -13,6 +13,7 @@ import seedu.address.model.exam.exceptions.ExamIdentityModifiedException;
 import seedu.address.model.exam.exceptions.ExamNotFoundException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.DistinctTaskList;
+import seedu.address.model.task.Task;
 
 /**
  * This class represents a list which contains Exam objects which are distinct from
@@ -161,6 +162,21 @@ public class DistinctExamList implements Iterable<Exam> {
                 replaceExam(exam, editedExam, false);
             }
         });
+    }
+
+    /**
+     * Remove exams that have their module field as {@code module} from the examlist.
+     * @param module The module in the exam's module field.
+     */
+    public void deleteExamsWithModule(Module module) {
+        requireAllNonNull(module);
+        for (int i = 0; i < examList.size(); i++) {
+            Exam exam = examList.get(i);
+            if (exam.getModule().equals(module)) {
+                remove(exam);
+                --i;
+            }
+        }
     }
 
     @Override
