@@ -166,7 +166,7 @@ public class PersonBuilder {
      * @return
      */
     public Person build() {
-        Person p = new Person(name.fullName, fields);
+        Person p = new Person(new Name(name.fullName), fields);
         p.setTags(tags);
         attrs.forEach(attr -> p.addAttribute(attr));
         return p;

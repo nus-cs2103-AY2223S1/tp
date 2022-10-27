@@ -14,6 +14,7 @@ import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueID;
 
 /**
  * Abstract class to represent an item that can contain other items.
@@ -21,18 +22,20 @@ import seedu.address.model.tag.Tag;
 public abstract class AbstractDisplayItem implements DisplayItem {
 
     protected Name name;
+    protected UniqueID uuid;
     private int typeFlag;
     private int parentTypeFlag;
     private List<Attribute<?>> attributes;
     private Set<Tag> tags;
 
-    protected AbstractDisplayItem(String name, int typeFlag, int parentTypeFlag) {
+    protected AbstractDisplayItem(Name name, int typeFlag, int parentTypeFlag) {
         requireAllNonNull(name, typeFlag);
-        this.name = new Name(name);
+        this.name = name;
         this.typeFlag = typeFlag;
         this.parentTypeFlag = parentTypeFlag;
         attributes = new ArrayList<>();
         tags = new HashSet<>();
+        uuid.generateUniqueID(this);
     }
 
     @Override
@@ -69,9 +72,6 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         this.tags = tags;
     }
 
-    protected boolean canBeChildOf(AbstractDisplayItem o) {
-        return (parentTypeFlag & o.typeFlag) > 0;
-    }
 
     protected abstract String getTitle(List<String> sb, AbstractDisplayItem o);
 
@@ -155,5 +155,8 @@ public abstract class AbstractDisplayItem implements DisplayItem {
             return false;
         }
         return stronglyEqual((AbstractDisplayItem) obj);
+    }
+    protected boolean canBeChildOf(AbstractDisplayItem o) {
+        return (parentTypeFlag & o.typeFlag) > 0;
     }
 }

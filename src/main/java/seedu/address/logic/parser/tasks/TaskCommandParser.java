@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.tasks;
 
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
@@ -9,6 +8,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.tasks.AddTaskCommand;
 import seedu.address.logic.commands.tasks.DeleteTaskCommand;
 import seedu.address.logic.commands.tasks.MarkTaskCommand;
+import seedu.address.logic.commands.tasks.ProgressCommand;
 import seedu.address.logic.commands.tasks.TaskCommand;
 import seedu.address.logic.commands.tasks.UnmarkTaskCommand;
 import seedu.address.logic.parser.Parser;
@@ -18,7 +18,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parser for all Task commands
  */
 public class TaskCommandParser implements Parser<TaskCommand> {
-    private static final String MESSAGE_USAGE = TaskCommand.COMMAND_WORD + " [add|delete|mark|unmark|set]";
+    private static final String MESSAGE_USAGE = TaskCommand.COMMAND_WORD + " [add|delete|mark|unmark|set|progress]";
     /**
      * Used for initial separation of command word and args.
      */
@@ -50,6 +50,8 @@ public class TaskCommandParser implements Parser<TaskCommand> {
             return new MarkTaskCommandParser().parse(arguments);
         case UnmarkTaskCommand.SUBCOMMAND_WORD:
             return new UnmarkTaskCommandParser().parse(arguments);
+        case ProgressCommand.SUBCOMMAND_WORD:
+            return new ProgressCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_USAGE);
         }

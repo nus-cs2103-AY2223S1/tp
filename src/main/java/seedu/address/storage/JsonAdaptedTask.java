@@ -29,25 +29,27 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
 
     private final String description;
     private final String localDateTime;
+    private String progress;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("description") String description,
+    public JsonAdaptedTask(@JsonProperty("description") String description, @JsonProperty("progress") String progress,
                            @JsonProperty("localDateTime") String localDateTime, @JsonProperty("name") String name,
                            @JsonProperty("uid") String uid, @JsonProperty("tags") List<JsonAdaptedTag> tags,
                            @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
         super(name, uid, attributes, tags);
         this.description = description;
         this.localDateTime = localDateTime;
+        this.progress = progress;
     }
 
     /**
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        super(source.getName().fullName, source.getUid().toString(),
+        super(source.getName().fullName, source.getUuid().toString(),
                 source.getAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),
@@ -100,8 +102,8 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
             throw new IllegalValueException(String.format(INVALID_FIELD_MESSAGE_FORMAT,
                     LocalDateTime.class.getSimpleName()));
         }
-
-        Task task = new Task(modelName.getAttributeContent(), description, modelLocalDateTime);
+        Name taskName = new Name(modelName.getAttributeContent());
+        Task task = new Task(taskName, description, progress, modelLocalDateTime);
         task.setTags(modelTags);
         modelAttributes.forEach(attribute -> task.addAttribute(attribute));
         return task;

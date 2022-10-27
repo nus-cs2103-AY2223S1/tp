@@ -14,6 +14,7 @@ import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Field;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
+import seedu.address.model.attribute.Progress;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.Path;
 import seedu.address.model.tag.Tag;
@@ -40,6 +41,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String level} into a {@code Progress}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code level} is invalid.
+     */
+    public static Progress parseProgress(String level) throws ParseException {
+        requireNonNull(level);
+        String trimmedProgress = level.trim();
+        if (!Progress.isValidProgress(trimmedProgress)) {
+            throw new ParseException(Progress.MESSAGE_CONSTRAINTS);
+        }
+        return new Progress(level);
     }
 
     /**
@@ -159,7 +175,7 @@ public class ParserUtil {
             throw new ParseException(Group.MESSAGE_CONSTRAINTS);
         }
 
-        return new Group(group);
+        return new Group(new Name(group));
     }
 
     /**

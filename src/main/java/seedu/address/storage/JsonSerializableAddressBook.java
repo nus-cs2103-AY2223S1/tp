@@ -68,16 +68,16 @@ class JsonSerializableAddressBook {
         groups.addAll(groupList.stream().map(JsonAdaptedGroup::new).collect(Collectors.toList()));
         tasks.addAll(taskList.stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
 
-        personList.forEach(person -> itemRelationship.put(person.getUid().toString(),
-                person.getParents().stream().map(parent -> parent.getUid().toString()).collect(Collectors.toList())));
+        personList.forEach(person -> itemRelationship.put(person.getUuid().toString(),
+                person.getParents().stream().map(parent -> parent.getUuid().toString()).collect(Collectors.toList())));
 
         groupList.forEach(group -> itemRelationship.put(
-                group.getUid().toString(),
-                group.getParents().stream().map(parent -> parent.getUid().toString()).collect(Collectors.toList())));
+                group.getUuid().toString(),
+                group.getParents().stream().map(parent -> parent.getUuid().toString()).collect(Collectors.toList())));
 
         taskList.forEach(task -> itemRelationship.put(
-                task.getUid().toString(),
-                task.getParents().stream().map(parent -> parent.getUid().toString()).collect(Collectors.toList())));
+                task.getUuid().toString(),
+                task.getParents().stream().map(parent -> parent.getUuid().toString()).collect(Collectors.toList())));
     }
 
     /**
