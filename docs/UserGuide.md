@@ -38,7 +38,7 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
 
    * **`exit`** : Exits the app.
 
-7. Refer to the [Features](#features) below for details of all available commands.
+6. Refer to the [Features](#features) below for details of all available commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
