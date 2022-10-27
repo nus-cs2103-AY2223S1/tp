@@ -120,7 +120,8 @@ public class EditStaffCommand extends Command {
         }
 
         if (!toFindIn.getStaffList().contains(toEdit)) {
-            throw new CommandException(String.format(MESSAGE_INVALID_STAFF, toEdit.getStaffName()));
+            throw new CommandException(String.format("Staff %1$s not found in specified project: %2$s!",
+                    toEdit.getStaffName(), projectName));
         }
 
         toFindIn.getStaffList().setStaff(toEdit, editedStaff);
