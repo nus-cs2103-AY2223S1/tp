@@ -155,30 +155,6 @@ Expected outcome:
 
 * The first internship application in InTrack is deleted.
 
-### Selecting an internship application : `select`
-
-Selects and shows the details of the internship application at the specified `INDEX`
-`INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note about `select`:**<br>
-
-An internship application entry must be selected via the `select` command before the `edit`, `addtask` and `deltask` 
-commands can be used.
-
-</div>
-
-Format: `select INDEX`
-
-Example of usage:
-
-* `select 1`
-
-Expected outcome:
-
-* The first internship application in InTrack is selected and its details are shown on the right panel.
-
 ### Editing an internship application : `edit`
 
 Edits the details of the currently selected internship application. 
@@ -361,6 +337,30 @@ Displays statistics of the current list of internship applications based on the 
 rejected applications.
 
 Format: `stats`
+
+### Selecting an internship application : `select`
+
+Selects and shows the details of the internship application at the specified `INDEX`
+`INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about `select`:**<br>
+
+An internship application entry must be selected via the `select` command before the `edit`, `addtask` and `deltask`
+commands can be used.
+
+</div>
+
+Format: `select INDEX`
+
+Example of usage:
+
+* `select 1`
+
+Expected outcome:
+
+* The first internship application in InTrack is selected and its details are shown on the right panel.
 
 ### Adding a task to a selected internship application : `addtask`
 
