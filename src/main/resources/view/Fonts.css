@@ -18,6 +18,11 @@
   src: url("fonts/Epilogue/static/EpilogueBold.otf");
 }
 
+@font-face {
+  /* JetBrains Mono */
+  src: url("fonts/JetBrains_Mono/static/JetBrainsMonoRegular.ttf");
+}
+
 .root {
   -fx-font-family: "Epilogue";
 }

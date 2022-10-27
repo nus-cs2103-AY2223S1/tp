@@ -65,8 +65,7 @@
 }
 
 .command-box > TextField {
-  /* TODO: Mono font */
-  -fx-font-family: Menlo;
+  -fx-font-family: "JetBrains Mono";
   -fx-prompt-text-fill: #363636;
 }
 
