@@ -44,6 +44,10 @@ public class TaskCard extends UiPart<Region> {
     private Label deadline;
     @FXML
     private Label description;
+    @FXML
+    private Label checkBox;
+    @FXML
+    private Label uncheckBox;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -57,6 +61,8 @@ public class TaskCard extends UiPart<Region> {
         deadline.setText(task.getDeadline().map(Deadline::toString).orElse("NO DEADLINE"));
         description.setText(task.getDescription().map(Description::toString).orElse("NO DESCRIPTION"));
         setAssociatedContacts(personTaskBridgeList, personList);
+        checkBox.setVisible(task.isDone());
+        uncheckBox.setVisible(!task.isDone());
     }
 
     private void setAssociatedContacts(ObservableList<PersonTaskBridge> personTaskBridgeList,
