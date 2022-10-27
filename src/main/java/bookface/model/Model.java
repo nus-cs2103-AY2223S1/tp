@@ -19,6 +19,12 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Book> PREDICATE_SHOW_ALL_BOOKS = unused -> true;
 
+    /** {@code Predicate} returns true if person loaned a book*/
+    Predicate<Person> PREDICATE_ALL_LOANEES = person -> person.hasBooksOnLoan();
+
+    /** {@code Predicate} returns true if book is loaned*/
+    Predicate<Book> PREDICATE_ALL_LOANED_BOOKS = book -> book.isLoaned();
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
