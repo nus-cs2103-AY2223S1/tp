@@ -91,7 +91,7 @@ public class EditTaskCommand extends Command {
         /* Optional not needed as we edit isDone through markT/unmarkT instead
          * and editTaskDescriptor's isDone is never set to taskToEdit's isDone.
          */
-        Boolean updatedIsDone = taskToEdit.getStatus();
+        Boolean updatedIsDone = taskToEdit.getCompletionStatus();
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
         // Id cannot be updated
         Id id = taskToEdit.getId();

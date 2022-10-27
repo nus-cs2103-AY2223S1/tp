@@ -78,7 +78,7 @@ public class Task {
      * Returns true if task is done, false if task is not done.
      * @return boolean indicating task completion status.
      */
-    public Boolean getStatus() {
+    public Boolean getCompletionStatus() {
         return isDone;
     }
 
@@ -86,7 +86,7 @@ public class Task {
      * Returns a string representing if the task is done.
      * @return String representation of a task completion.
      */
-    public String getStatusForDisplay() {
+    public String getCompletionStatusForDisplay() {
         return (isDone ? MESSAGE_TASK_COMPLETED : MESSAGE_TASK_NOT_COMPLETED);
     }
 
@@ -174,7 +174,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getDescription().equals(getDescription())
                 && otherTask.getDeadline().equals(getDeadline())
-                && otherTask.getStatus().equals(getStatus())
+                && otherTask.getCompletionStatus().equals(getCompletionStatus())
                 && otherTask.getTags().equals(getTags())
                 && otherTask.getId().equals(getId());
     }
@@ -191,7 +191,7 @@ public class Task {
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append("; Status: ")
-                .append(getStatusForDisplay());
+                .append(getCompletionStatusForDisplay());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -1,9 +1,6 @@
 
 package seedu.address.ui;
 
-import static seedu.address.model.task.Task.MESSAGE_TASK_COMPLETED;
-import static seedu.address.model.task.Task.MESSAGE_TASK_NOT_COMPLETED;
-
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -19,6 +16,10 @@ import seedu.address.model.task.Task;
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
+
+    private static final String COLOR_TASK_COMPLETED = "#96D294";
+
+    private static final String COLOR_TASK_NOT_COMPLETED = "#D7504D";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -56,22 +57,12 @@ public class TaskCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        status.setText(task.getStatusForDisplay());
-        if (!isStatusComplete(task.getStatusForDisplay())) {
-            status.setStyle("-fx-text-fill: #D7504D;");
+        status.setText(task.getCompletionStatusForDisplay());
+        if (task.getCompletionStatus()) {
+            status.setStyle(String.format("-fx-text-fill: %s;", COLOR_TASK_COMPLETED));
         } else {
-            status.setStyle("-fx-text-fill: #96D294;");
+            status.setStyle(String.format("-fx-text-fill: %s;", COLOR_TASK_NOT_COMPLETED));
         }
-    }
-
-    /**
-     * Checks if task status is completed.
-     * @param status task status.
-     * @return true if task is completed, false if task is incomplete.
-     */
-    public boolean isStatusComplete(String status) {
-        assert(status.equals(MESSAGE_TASK_COMPLETED) || status.equals(MESSAGE_TASK_NOT_COMPLETED));
-        return status.equals(MESSAGE_TASK_COMPLETED);
     }
 
     @Override
