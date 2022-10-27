@@ -1,0 +1,20 @@
+@startuml
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class Task
+Class Title
+Class Deadline
+Class Project
+Class Contact
+
+Task *--> Title
+Task *--> Deadline
+Task *--> Project
+Task *--> "*" Contact
+
+
+@enduml
