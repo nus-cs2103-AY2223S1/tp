@@ -52,7 +52,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-s id/A0123456X`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete -s id/A0123456X`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -98,9 +98,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete-s id/A0123456X")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete -s id/A0123456X")` API call.
 
-![Interactions Inside the Logic Component for the `delete-s id/A0123456X` Command](images/DeleteStudentSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete -s id/A0123456X` Command](images/DeleteStudentSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -194,7 +194,7 @@ The borrow feature is facilitated by `DeleteStudentCommandParser` and `DeleteStu
 
 Given below is an example usage scenario and how the borrow mechanism behaves at each step:
 
-1. The user enters delete student command and provides the student id of student to be deleted.
+1. The user enters delete student command and provides the student ID of student to be deleted.
 2. `FYPManagerParser` creates a new `DeleteStudentCommandParser` after preliminary processing of user input.
 3. `DeleteStudentCommandParser` creates a new `DeleteStudentCommand` based on the processed input.
 4. `LogicManager` executes the `DeleteStudentCommand`.
@@ -218,10 +218,10 @@ The following activity diagram summarizes what happens when a user executes a de
 #### Design considerations
 
 The delete student command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
-to find students taking machine learning projects before doing `delete-s id/A0123456X` to remove student from FYP Manager.
+to find students taking machine learning projects before doing `delete -s id/A0123456X` to remove student from FYP Manager.
 
 This integration between delete student command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
-By utilizing find student, users can find the student with only partial information and retrieve the student id. Using this student id, users can delete the student from the FYPManager once he/she drops the FYP.
+By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student id, users can delete the student from the FYPManager once he/she drops the FYP.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -276,7 +276,7 @@ The `redo` command does the opposite — it calls `Model#redoFypManager()`, 
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the FYP manager, such as `list`, will usually not call `Model#commitFypManager()`, `Model#undoFypManager()` or `Model#redoFypManager()`. Thus, the `fypManagerStateList` remains unchanged.
+Step 5. The user then decides to execute the command `Exit`. Commands that do not modify the FYP manager, such as `Exit`, will usually not call `Model#commitFypManager()`, `Model#undoFypManager()` or `Model#redoFypManager()`. Thus, the `fypManagerStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -305,32 +305,32 @@ _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] `MarkCommand` Feature
 #### Proposed Implementation
-The proposed MarkCommand Feature marks the Project Status of an FYP project as one of 3 possible statuses 
+The proposed MarkCommand Feature marks the Project Status of an FYP project as one of 3 possible statuses
 {***YTS***, ***IP***, ***DONE***}. Currently these are the only 3 statuses supported, although more may be implemented
 later on if there are other meaningful statuses.
 
-The MarkCommand Feature sets a default status of `YTS` whenever a new FYP project is added to the FYP Manager, and the 
+The MarkCommand Feature sets a default status of `YTS` whenever a new FYP project is added to the FYP Manager, and the
 MarkCommand allows us to accordingly the project Status to either `IP` if the student is still
-working on the FYP project, or `DONE` once the FYP project has been completed. 
+working on the FYP project, or `DONE` once the FYP project has been completed.
 
 Given below is an example usage scenario and how MarkCommand is utilised:
 
-Step 1: The Professor launches the application for the first time. `FypManager` will be initialised with the 
+Step 1: The Professor launches the application for the first time. `FypManager` will be initialised with the
 current FypManager state.
 
-Step 2: The Professor tries adding a student to the FypManager by executing the command 
+Step 2: The Professor tries adding a student to the FypManager by executing the command
 `add id/A0123456G ...`. Note that here we have set the default project Status to be `YTS` since
-the project has just been added. 
+the project has just been added.
 
 ![MarkCommandState1](images/MarkCommandState1.png)
 
-Step 3: Suppose that the student Jane Doe has now started on the project. The Professor wishes to update the 
-project status for Jane to be `IP` instead of `YTS`, hence the Professor will execute the command 
+Step 3: Suppose that the student Jane Doe has now started on the project. The Professor wishes to update the
+project status for Jane to be `IP` instead of `YTS`, hence the Professor will execute the command
 `mark id/A0123456G s/IP` to update the status accordingly.
 
 ![MarkCommandState2](images/MarkCommandState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the student ID is incorrect or the 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the student ID is incorrect or the
 status is not one of the statuses {`YTS`, `IP`, `DONE`}, then the command will not be executed and an appropriate
 error message will be shown.
 
@@ -338,15 +338,15 @@ error message will be shown.
 
 The following sequence diagram shows how the MarkCommand operation works:
 
-![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
+![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.jpg)
 
 #### Design considerations:
 
 **Implementation Choice: Why MarkCommand is implemented this way**
-* We have only chosen to consider 3 general statuses {`YTS`, `IP`, `DONE`} since these are very general 
+* We have only chosen to consider 3 general statuses {`YTS`, `IP`, `DONE`} since these are very general
 labels that the Professor can use to identify the current status of an FYP project. This makes it very user-friendly
   since there are a fixed number of statuses that can be used.
-  
+
 * We have also used the studentId to uniquely identify the project of the student the Professor
 is trying to find. Here we have made an assumption that there the StudentId uniquely identifies the FYP project
   (i.e. a student can only take exactly 1 FYP project under a certain Professor)
@@ -354,7 +354,7 @@ is trying to find. Here we have made an assumption that there the StudentId uniq
 
 **Other Alternatives:**
 
-* **Alternative 1:** Extend the Edit command to include the MarkCommand 
+* **Alternative 1:** Extend the Edit command to include the MarkCommand
     * Pros: Easier to implement.
     * Cons: No clear distinction between tags and project status
 
@@ -385,41 +385,44 @@ The following sequence diagram shows how the help command works:
 <img src="images/helpMessage.png" width="550" />
 
 
-###  `List` Feature
+###  `Exit` Feature
 #### Proposed Implementation
-The proposed `List` Feature allows the professor to list all FYP students in the FYP Manager.
-The `List` feature mechanism is facilitated by `ListCommand`. It extends from the abstract class `Command`.
+The proposed `Exit` Feature allows the professor to list all FYP students in the FYP Manager.
+The `Exit` feature mechanism is facilitated by `ExitCommand`. It extends from the abstract class `Command`.
 To summarize, it implements the following operation:
-* `ListCommand#execute()` — oversees the execution process for `ListCommand`.
+* `ListCommand#execute()` — oversees the execution process for `ExitCommand`.
 
-Given below is an example usage scenario of `ListCommand`:
-1. The user enters the `list` command
-2. `FypManagerParser` creates a new `ListCommand` after preliminary check of user input.
-3. `LogicManager` executes the `ListCommand` using the `LogicManager#execute()` method.
-4. `ListCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+Given below is an example usage scenario of `ExitCommand`:
+1. The user enters the `Exit` command
+2. `FypManagerParser` creates a new `ExitCommand` after preliminary check of user input.
+3. `LogicManager` executes the `ExitCommand` using the `LogicManager#execute()` method.
+4. `ExitCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
 
-The following sequence diagram shows how the add student command works:
+The following sequence diagram shows how the list command works:
 
 <img src="images/ListCommandSequenceDiagram.png" width="550" />
 
+The following activity diagram summarizes what happens when a user executes a list command:
+
+<img src="images/ListCommandActivityDiagram.png" />
 
 ### \[Proposed\] `FindCommand` Feature
 #### Proposed Implementation
 
-The proposed FindCommand Feature allows the user to find for specific keywords in certain fields. The current 
-implementation supports finding keywords in four fields: 
+The proposed FindCommand Feature allows the user to find for specific keywords in certain fields. The current
+implementation supports finding keywords in four fields:
 1) `StudentId`
 2) `StudentName`
 3)  `Tags` (accorded to a student)
 4) `ProjectName`.
 
-This is a new enhancement in v1.3, as older iterations only supported finding projects by their titles, 
-while the newest iteration supports finding projects by any of the above four fields. We hope that this allows the user 
-to be able to filter the projects more efficiently. (for instance, by specialisations: 
+This is a new enhancement in v1.3, as older iterations only supported finding projects by their titles,
+while the newest iteration supports finding projects by any of the above four fields. We hope that this allows the user
+to be able to filter the projects more efficiently. (for instance, by specialisations:
 ***NeuralNetwork***, ***Blockchain***, etc.)
 
 The FindCommand feature takes in a specified field (one of the four aforementioned fields), and a keyword specified
-by the user. FypManager then returns a list of projects whose field contains the keyword inputted. 
+by the user. FypManager then returns a list of projects whose field contains the keyword inputted.
 
 Note that the keyword is case-insensitive, can contain arbitrary spacing, and is field-specific.
 
@@ -428,33 +431,33 @@ Given below is an example usage scenario and how FindCommand is utilised:
 Step 1. The user launches the application for the first time. The 'FypManager' will be initialised with its
 'FypManager' state.
 
-Step 2: The user finds a project by keying in `find-proj tree` to find all projects whose name contains the keyword 
+Step 2: The user finds a project by keying in `find -p tree` to find all projects whose name contains the keyword
 `tree`. FypManager returns a list of projects whose names contain the `tree` keyword.
 
 ![FindCommandState1](images/FindCommandState1.png)
 
 Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in 
-`find-proj blockchain` to find all projects which contain the keyword `blockchain`. FypManager returns an empty list,
+`find -p blockchain` to find all projects which contain the keyword `blockchain`. FypManager returns an empty list,
 as there is no project whose project name contains `blockchain`.
 
 ![FindCommandState2](images/FindCommandState2.png)
 
-The following sequence diagram shows how the MarkCommand operation works:
+The following sequence diagram shows how the FindCommand operation works:
 
 ![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
 
 #### Design considerations:
 
 **Implementation Choice: Why FindCommand is implemented this way**
-* We have implemented FindCommand to find a student's project by four different fields. This is practical, since 
-  different users would want to find the relevant projects by different fields, making this a more versatile tool to use 
+* We have implemented FindCommand to find a student's project by four different fields. This is practical, since
+  different users would want to find the relevant projects by different fields, making this a more versatile tool to use
   as a FypManager tool.
 
-* We have allowed the user to be able to search using different keywords (so long as they are separated by ***/*** ), 
+* We have allowed the user to be able to search using different keywords (so long as they are separated by ***/*** ),
   which lets the user be more stringent in his/her search criteria.
 
 * Furthermore, we have made the input more flexible by making it case-insensitive, helping users who are not particularly
-  careful with their input of capital-cases or lower-cases. This also mimics real-life query engines, which usually 
+  careful with their input of capital-cases or lower-cases. This also mimics real-life query engines, which usually
   allow users to type their search keywords without fretting about whether there are upper-cases in the keyword.
 
 
@@ -465,10 +468,66 @@ The following sequence diagram shows how the MarkCommand operation works:
 * **Alternative 1:** Extend the FindCommand by allowing the user to search by fields other than project name
     * Pros: Allows the users to search using more fields instead of ProjectName alone.
     * Cons: Harder to implement. And requires inclusion of a suffix.
-    
+
 * **Alternative 2:** Allow the user to search for their keywords across all fields without specifying a field
     * Pros: More comprehensive search for projects with the required keyword.
     * Cons: Much harder to implement, as it requires a field-less search.
+
+### `Sort` Feature
+#### Proposed Implementation
+
+This feature allows professors to sort the FYP projects by their specialisation, or by
+the project status in the order {YTS,IP,DONE}. 
+
+#### Implementation details
+The `Sort` feature is facilitated by 2 main Commands: `SortSpecialisationCommand` and `SortProjectStatusCommand`.
+Both of these commands extend from the abstract `Command`class. Note that we have fixed the sorting order
+of `SortProjectStatusCommand` to be sorted in the order {YTS,IP,DONE} since projects that have YTS are more urgent,
+hence we have placed them at the front of our FYP manager, followed by those that are IP, and finally 
+those that are DONE which are of the least urgency.
+
+We give an example usage scenario of `SortSpecialisationCommand` and `SortProjectStatusCommand`
+* `SortSpecialisationCommand`
+    1. The user enters `sort -p` if he wishes to execute the `SortSpecialisationCommand`
+    2. FypManagerParser creates a new `SortSpecialisationCommand` after preliminary check of user input.
+    3. `LogicManager` executes the `SortSpecialisationCommand` using the `LogicManager#execute()` method.
+    4. `SortSpecialisationCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be
+       identified as a `SortSpecialisationCommand` so that our `MainWindow` will show the sorted List.
+
+![SortSpecialisationCommandSequenceDiagram](images/SortSpecialisationCommandSequenceDiagram.jpg)
+
+* `SortProjectStatusCommand`
+    1. The user enters `sort -s` if he wishes to execute the `SortProjectStatusCommand`
+    2. FypManagerParser creates a new `SortSpecialisationCommand` after preliminary check of user input.
+    3. `LogicManager` executes the `SortProjectStatusCommand` using the `LogicManager#execute()` method.
+    4. `SortProjectStatusCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be 
+        identified as a `SortProjectStatusCommand` so that our `MainWindow` will show the sorted List.
+
+![SortProjectStatusCommandSequenceDiagram](images/SortProjectStatusCommandSequenceDiagram.jpg)
+
+#### Future Implementations
+* Sorting of deadlines to be included in future iterations as well
+
+###  `Exit` Feature
+#### Proposed Implementation
+The proposed `Exit` Feature allows the professor to exit the FYP Manager.
+The `Exit` feature mechanism is facilitated by `ExitCommand`. It extends from the abstract class `Command`.
+To summarize, it implements the following operation:
+* `ExitCommand#execute()` — oversees the execution process for `ExitCommand`.
+
+Given below is an example usage scenario of `ExitCommand`:
+1. The user enters the `Exit` command.
+2. `UiManager` calls `MainWindow#fillInnerParts()`.
+3. `MainWindow#fillInnerParts()` executes a `executeCommand()` and creates a `CommandResult`.
+4. `LogicManager` executes the `ExitCommand` using the `LogicManager#execute()` method.
+4.1. `fypManagerParser` will parse the command using `parseCommand` and generate 
+4.2. `ExitCommand` then creates a `CommandResult` and returns it to `MainWindow` to complete the command.
+4.3. `StorageManager` will save the record using method `StorageManager#saveFypManager()`.
+5. `handleExit()` is then executed to hide the main window.
+
+The following sequence diagram shows how the list command works:
+
+<img src="images/ExitSequenceDiagram.png" width="550" />
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -495,7 +554,6 @@ The following sequence diagram shows how the MarkCommand operation works:
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: To provide a platform for easier access to SoC professors to their students’ FYP status, rather than via plain e-mail correspondences.
-
 
 ### User stories
 
@@ -749,7 +807,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Prerequisites: List all students using the `Exit` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.

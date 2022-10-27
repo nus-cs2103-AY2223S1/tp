@@ -45,13 +45,37 @@
           </padding>
                <HBox VBox.vgrow="ALWAYS">
                   <children>
-                <StackPane fx:id="studentListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
-                    <StackPane fx:id="previewPanelPlaceholder" />
+                     <VBox HBox.hgrow="ALWAYS">
+                        <children>
+                           <StackPane fx:id="uncompletedStudentListTitlePlaceholder" style="-fx-background-color: #d9d9d9;" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                              <padding>
+                                 <Insets bottom="5" left="10" right="10" top="5" />
+                              </padding>
+                              <VBox.margin>
+                                 <Insets bottom="5.0" left="5.0" right="5.0" />
+                              </VBox.margin>
+                           </StackPane>
+                      <StackPane fx:id="uncompletedStudentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                        </children>
+                     </VBox>
+                     <VBox HBox.hgrow="ALWAYS">
+                        <children>
+                           <StackPane fx:id="completedStudentListTitlePlaceholder" style="-fx-background-color: #d9d9d9;" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                              <padding>
+                                 <Insets bottom="5" left="10" right="10" top="5" />
+                              </padding>
+                              <VBox.margin>
+                                 <Insets bottom="5.0" left="5.0" right="5.0" />
+                              </VBox.margin>
+                           </StackPane>
+                          <StackPane fx:id="completedStudentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                        </children>
+                     </VBox>
                   </children>
                </HBox>
         </VBox>
 
-                    <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" style="-fx-background-color: #271F1F;" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                    <StackPane fx:id="resultDisplayPlaceholder" maxHeight="150.0" minHeight="150.0" prefHeight="150.0" style="-fx-background-color: #271F1F;" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>

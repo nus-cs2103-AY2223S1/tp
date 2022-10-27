@@ -11,8 +11,10 @@ import jeryl.fyp.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears the FYP manager";
+
+    public static final String MESSAGE_SUCCESS = "FYP manager has been cleared!";
 
     @Override
     public CommandResult execute(Model model) {
@@ -20,4 +22,5 @@ public class ClearCommand extends Command {
         model.setFypManager(new FypManager());
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
 }

@@ -31,14 +31,7 @@ public class Student {
      */
     public Student(StudentName studentName, StudentId studentId, Email email, ProjectName projectName,
                    ProjectStatus projectStatus, Set<Tag> tags) {
-        requireAllNonNull(studentName, studentId, email, projectName, projectStatus, tags);
-        this.studentName = studentName;
-        this.studentId = studentId;
-        this.email = email;
-        this.projectName = projectName;
-        this.projectStatus = projectStatus;
-        this.deadlineList = new DeadlineList();
-        this.tags.addAll(tags);
+        this(studentName, studentId, email, projectName, projectStatus, new DeadlineList(), tags);
     }
 
     /**
@@ -87,17 +80,18 @@ public class Student {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
     /**
-     * Returns true if both students have the same name.
+     * Returns true if both students have the same ID.
      * This defines a weaker notion of equality between two students.
      */
-    public boolean isSameStudentName(Student otherStudent) {
+    public boolean isSameStudentId(Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }
 
         return otherStudent != null
-                && otherStudent.getStudentName().equals(getStudentName());
+                && otherStudent.getStudentId().equals(getStudentId());
     }
 
     /**

@@ -21,6 +21,8 @@ import jeryl.fyp.logic.commands.FindTagsCommand;
 import jeryl.fyp.logic.commands.HelpCommand;
 import jeryl.fyp.logic.commands.ListCommand;
 import jeryl.fyp.logic.commands.MarkCommand;
+import jeryl.fyp.logic.commands.SortProjectStatusCommand;
+import jeryl.fyp.logic.commands.SortSpecialisationCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 
 /**
@@ -31,7 +33,10 @@ public class FypManagerParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern
+            .compile("(?<commandWord>[\\S&&[^-]]+)"
+                    + "(?<flag>\\s*-\\w)?"
+                    + "(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -47,10 +52,14 @@ public class FypManagerParser {
         }
 
         final String commandWord = matcher.group("commandWord");
+        final String flag = matcher.group("flag");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
+        final String newCommandWord = commandWord + (flag == null ? "" : " " + flag.trim());
+
+        switch (newCommandWord) {
 
         case AddStudentCommand.COMMAND_WORD:
+        case AddStudentCommand.ALTERNATIVE_COMMAND_WORD:
             return new AddStudentCommandParser().parse(arguments);
 
         case AddDeadlineCommand.COMMAND_WORD:
@@ -60,6 +69,7 @@ public class FypManagerParser {
             return new EditCommandParser().parse(arguments);
 
         case DeleteStudentCommand.COMMAND_WORD:
+        case DeleteStudentCommand.ALTERNATIVE_COMMAND_WORD:
             return new DeleteStudentCommandParser().parse(arguments);
 
         case DeleteDeadlineCommand.COMMAND_WORD:
@@ -69,6 +79,7 @@ public class FypManagerParser {
             return new ClearCommand();
 
         case FindProjectNameCommand.COMMAND_WORD:
+        case FindProjectNameCommand.ALTERNATIVE_COMMAND_WORD:
             return new FindProjectNameCommandParser().parse(arguments);
 
         case FindStudentNameCommand.COMMAND_WORD:
@@ -91,6 +102,12 @@ public class FypManagerParser {
 
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);
+
+        case SortSpecialisationCommand.COMMAND_WORD:
+            return new SortSpecialisationCommand();
+
+        case SortProjectStatusCommand.COMMAND_WORD:
+            return new SortProjectStatusCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

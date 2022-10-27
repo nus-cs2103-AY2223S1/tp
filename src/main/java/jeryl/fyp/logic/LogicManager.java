@@ -38,7 +38,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException,
+            RuntimeException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
@@ -62,6 +63,31 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Student> getFilteredStudentList() {
         return model.getFilteredStudentList();
+    }
+
+    @Override
+    public ObservableList<Student> getSortedBySpecialisationUncompletedStudentList() {
+        return model.getSortedBySpecialisationUncompletedStudentList();
+    }
+
+    @Override
+    public ObservableList<Student> getSortedByProjectStatusUncompletedStudentList() {
+        return model.getSortedByProjectStatusUncompletedStudentList();
+    }
+
+    @Override
+    public ObservableList<Student> getSortedCompletedStudentList() {
+        return model.getSortedCompletedStudentList();
+    }
+
+    @Override
+    public ObservableList<Student> getUncompletedStudentList() {
+        return model.getUncompletedStudentList();
+    }
+
+    @Override
+    public ObservableList<Student> getCompletedStudentList() {
+        return model.getCompletedStudentList();
     }
 
     @Override
