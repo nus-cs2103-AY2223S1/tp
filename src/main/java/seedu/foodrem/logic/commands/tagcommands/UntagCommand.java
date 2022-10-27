@@ -18,11 +18,16 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
  * Untags an item with a Tag.
  */
 public class UntagCommand extends Command {
+    private static final String MESSAGE_SUCCESS = "Item untagged successfully. Updated item:";
+
     private final Index index;
     private final Tag tag;
 
     /**
-     * Creates a TagCommand to tag the specified {@code Item} with a specified {@code Tag}
+     * Creates an UnTagCommand to untag the specified {@code Item} with a specified {@code Tag}
+     *
+     * @param tagName the name of the tag
+     * @param index the index of the item to untag
      */
     public UntagCommand(String tagName, Index index) {
         requireNonNull(tagName);
@@ -37,14 +42,15 @@ public class UntagCommand extends Command {
 
         Set<Tag> itemTags = itemToUntag.getTagSet();
         if (!itemTags.contains(tag)) {
-            throw new CommandException("This item is not tagged with this tag");
+            throw new CommandException("This item has not been tagged with this tag");
         }
+
         itemTags.remove(tag);
         Item newTagSetItem = Item.createItemWithTags(itemToUntag, itemTags);
         model.setItem(itemToUntag, newTagSetItem);
+        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
 
-        return CommandResult.from(
-                new ItemWithMessage(newTagSetItem, "Item untagged successfully. View updated item below:"));
+        return CommandResult.from(new ItemWithMessage(newTagSetItem, MESSAGE_SUCCESS));
     }
 
     public static String getUsage() {
