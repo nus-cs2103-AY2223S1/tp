@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +20,7 @@ import seedu.address.model.team.Task;
 /**
  * Assigns a task to a random member in the team.
  */
-@CommandLine.Command(name = "random", aliases = {"r"})
+@CommandLine.Command(name = "random", aliases = {"r"}, mixinStandardHelpOptions = true)
 public class AssignTaskRandomlyCommand extends Command {
     public static final String COMMAND_WORD = "assign random";
 
@@ -30,14 +34,24 @@ public class AssignTaskRandomlyCommand extends Command {
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist."
             + "There are less than %1$s tasks in your list.";
 
-    @CommandLine.Parameters(arity = "1")
+    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index taskIndex;
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
 
     public AssignTaskRandomlyCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         List<Task> tasks = model.getTeam().getTaskList();
         List<Person> members = model.getTeam().getTeamMembers();

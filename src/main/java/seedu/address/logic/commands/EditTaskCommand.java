@@ -5,8 +5,15 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_ASSIGNEES_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_DEADLINE_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.time.LocalDateTime;
@@ -28,7 +35,7 @@ import seedu.address.model.team.Task;
 /**
  * Edits the details of an existing task in TruthTable.
  */
-@CommandLine.Command(name = "task")
+@CommandLine.Command(name = "task", mixinStandardHelpOptions = true)
 public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "edit task";
 
@@ -51,22 +58,18 @@ public class EditTaskCommand extends Command {
 
     private final EditTaskDescriptor editTaskDescriptor;
 
-    @CommandLine.Parameters(arity = "1")
+    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index index;
 
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
     private Arguments arguments;
 
-    private static class Arguments {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG})
-        private String name;
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
 
-        @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG}, defaultValue = "")
-        private String deadline;
-
-        @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "")
-        private String[] assignees;
-    }
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
 
     /**
      * Creates an EditTaskCommand to edit a {@code Task}.
@@ -101,6 +104,9 @@ public class EditTaskCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         if (arguments.assignees.length != 1 || !Arrays.asList(arguments.assignees).contains("")) {
             editTaskDescriptor.setAssignees(Arrays.asList(arguments.assignees));
@@ -130,7 +136,7 @@ public class EditTaskCommand extends Command {
         if (editTaskDescriptor.getAssignees().isPresent()) {
             for (int i = 0; i < arguments.assignees.length; i++) {
                 if (Integer.parseInt(editTaskDescriptor.getAssignees().get().get(i)) < 1
-                    || Integer.parseInt(editTaskDescriptor.getAssignees().get().get(i)) > memberList.size()) {
+                        || Integer.parseInt(editTaskDescriptor.getAssignees().get().get(i)) > memberList.size()) {
                     throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
                 }
             }
@@ -168,6 +174,19 @@ public class EditTaskCommand extends Command {
         // state check
         EditTaskCommand e = (EditTaskCommand) other;
         return index.equals(e.index) && editTaskDescriptor.equals(e.editTaskDescriptor);
+    }
+
+    private static class Arguments {
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TASK_NAME_DESCRIPTION)
+        private String name;
+
+        @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},
+                description = FLAG_TASK_DEADLINE_DESCRIPTION)
+        private String deadline;
+
+        @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "", description =
+                FLAG_TASK_ASSIGNEES_DESCRIPTION)
+        private String[] assignees;
     }
 
     /**

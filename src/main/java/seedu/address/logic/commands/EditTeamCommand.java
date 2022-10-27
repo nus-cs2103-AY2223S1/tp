@@ -3,8 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_DESCRIPTION_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +27,7 @@ import seedu.address.model.team.Team;
 /**
  * Edits the currently set team.
  */
-@CommandLine.Command(name = "team", aliases = {"te"})
+@CommandLine.Command(name = "team", aliases = {"te"}, mixinStandardHelpOptions = true)
 public class EditTeamCommand extends Command {
     public static final String COMMAND_WORD = "edit team";
 
@@ -43,18 +48,18 @@ public class EditTeamCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     public static final String MESSAGE_DUPLICATE_TEAM = "This team name already exists in the address book.";
+
+    private final EditTeamDescriptor editTeamDescriptor;
+
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
     private Arguments arguments;
 
-    private static class Arguments {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG})
-        private String name;
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
 
-        @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG})
-        private String description;
-    }
-
-    private final EditTeamDescriptor editTeamDescriptor;
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
 
     public EditTeamCommand() {
         this.editTeamDescriptor = new EditTeamDescriptor();
@@ -78,6 +83,9 @@ public class EditTeamCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
 
         if (arguments.name != null) {
@@ -119,6 +127,15 @@ public class EditTeamCommand extends Command {
         // state check
         EditTeamCommand e = (EditTeamCommand) other;
         return editTeamDescriptor.equals(e.editTeamDescriptor);
+    }
+
+    private static class Arguments {
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TEAM_NAME_DESCRIPTION)
+        private String name;
+
+        @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG},
+                description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
+        private String description;
     }
 
     /**

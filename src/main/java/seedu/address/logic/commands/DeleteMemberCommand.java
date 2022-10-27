@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_INDEX_DESCRIPTION;
 
 import java.util.List;
 
@@ -14,7 +18,7 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a member identified using it's displayed index from the member list.
  */
-@CommandLine.Command(name = "member", aliases = {"m"})
+@CommandLine.Command(name = "member", aliases = {"m"}, mixinStandardHelpOptions = true)
 public class DeleteMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "delete member";
@@ -27,14 +31,24 @@ public class DeleteMemberCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Member: %1$s";
 
-    @CommandLine.Parameters(arity = "1")
+    @CommandLine.Parameters(arity = "1", description = FLAG_MEMBER_INDEX_DESCRIPTION)
     private Index targetIndex;
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
 
     public DeleteMemberCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         List<Person> teamMembers = model.getTeam().getTeamMembers();
 

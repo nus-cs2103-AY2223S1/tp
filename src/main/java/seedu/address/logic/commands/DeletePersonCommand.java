@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_INDEX_DESCRIPTION;
 
 import java.util.List;
 
@@ -14,7 +18,7 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a person identified using its displayed index from the address book.
  */
-@CommandLine.Command(name = "person", aliases = {"p"})
+@CommandLine.Command(name = "person", aliases = {"p"}, mixinStandardHelpOptions = true)
 public class DeletePersonCommand extends Command {
 
     public static final String COMMAND_WORD = "delete person";
@@ -25,14 +29,24 @@ public class DeletePersonCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
-    @CommandLine.Parameters(arity = "1")
+    @CommandLine.Parameters(arity = "1", description = FLAG_PERSON_INDEX_DESCRIPTION)
     private Index targetIndex;
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
 
     public DeletePersonCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 

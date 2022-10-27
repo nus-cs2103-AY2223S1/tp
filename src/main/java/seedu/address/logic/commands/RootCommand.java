@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -26,12 +26,10 @@ import picocli.CommandLine.Command;
 })
 public class RootCommand implements Runnable {
     @CommandLine.Spec
-    private CommandLine.Model.CommandSpec spec;
+    private CommandLine.Model.CommandSpec commandSpec;
 
-    /**
-     * Throws a {@code ParameterException} when called, which should only occur when no subcommands are found.
-     */
+    @Override
     public void run() {
-        throw new CommandLine.ParameterException(spec.commandLine(), MESSAGE_UNKNOWN_COMMAND);
+        throw new CommandLine.ParameterException(commandSpec.commandLine(), MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND);
     }
 }
