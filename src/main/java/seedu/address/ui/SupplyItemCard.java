@@ -133,9 +133,8 @@ public class SupplyItemCard extends UiPart<Region> {
 
         assert input.length() <= MAX_LENGTH;
 
-        int parsedAmount;
         try {
-            parsedAmount = Integer.parseInt(input);
+            int parsedAmount = Integer.parseInt(input);
             if (parsedAmount >= 0) {
                 amountInput.setText(String.valueOf(parsedAmount));
                 changeIncDecHandler.accept(parsedAmount);
@@ -157,9 +156,8 @@ public class SupplyItemCard extends UiPart<Region> {
 
         assert input.length() <= MAX_LENGTH;
 
-        int parsedAmount;
         try {
-            parsedAmount = Integer.parseInt(input);
+            int parsedAmount = Integer.parseInt(input);
             if (parsedAmount >= 0) {
                 amountInput.setText(String.valueOf(parsedAmount));
                 changeIncDecHandler.accept(parsedAmount);
@@ -182,10 +180,14 @@ public class SupplyItemCard extends UiPart<Region> {
 
         assert input.length() <= MAX_LENGTH;
 
-        int parsedAmount = Integer.parseInt(input);
-        if (parsedAmount >= 0) {
-            amountInput.setText(String.valueOf(parsedAmount));
-            changeIncDecHandler.accept(parsedAmount);
+        try {
+            int parsedAmount = Integer.parseInt(input);
+            if (parsedAmount >= 0) {
+                amountInput.setText(String.valueOf(parsedAmount));
+                changeIncDecHandler.accept(parsedAmount);
+            }
+        } catch (NumberFormatException nfe) {
+            logger.info(EMPTY_INPUT_MESSAGE);
         }
     }
 }
