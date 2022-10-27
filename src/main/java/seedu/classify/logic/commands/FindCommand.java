@@ -37,7 +37,8 @@ public class FindCommand extends Command {
         int numberOfStudents = model.getFilteredStudentList().size();
         if (numberOfStudents == 1) {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_SINGLE_PERSON_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+                    String.format(Messages.MESSAGE_SINGLE_PERSON_LISTED_OVERVIEW,
+                            model.getFilteredStudentList().size()));
         } else {
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));

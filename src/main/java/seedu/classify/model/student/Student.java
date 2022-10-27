@@ -159,13 +159,13 @@ public class Student {
                 .append(getId())
                 .append("\nClass: ")
                 .append(getClassName());
-        if(!getParentName().isEmpty()) {
+        if (!getParentName().isEmpty()) {
             builder.append("\nParent Name: ").append(getParentName());
         }
-        if(!getPhone().isEmpty()) {
+        if (!getPhone().isEmpty()) {
             builder.append("\nParent Phone: ").append(getPhone());
         }
-        if(!getEmail().isEmpty()) {
+        if (!getEmail().isEmpty()) {
             builder.append("\nParent Email: ").append(getEmail());;
         }
         Set<Exam> examSet = getExams();
