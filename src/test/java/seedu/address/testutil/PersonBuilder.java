@@ -10,13 +10,13 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.HomeVisit;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
-import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -33,6 +33,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_DATE_AND_SLOT = "2022-06-14,4";
     public static final String DEFAULT_VISIT_STATUS = "false";
+    public static final String DEFAULT_HOME_VISITS = "2022-11-10,4:2";
 
     private Category category;
     private Uid uid;
@@ -43,7 +44,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private List<DateSlot> dateSlotList;
-    private VisitStatus visitStatus;
+    private List<HomeVisit> homeVisitList;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -60,6 +61,7 @@ public class PersonBuilder {
         dateSlotList = new ArrayList<>();
         dateSlotList.add(new DateSlot(DEFAULT_DATE_AND_SLOT));
         visitStatus = new VisitStatus(DEFAULT_VISIT_STATUS);
+        homeVisitList = new ArrayList<>();
     }
 
     /**
@@ -77,6 +79,8 @@ public class PersonBuilder {
         if (personToCopy.getCategory().categoryName.equals("P")) {
             dateSlotList = new ArrayList<>(((Patient) personToCopy).getDatesSlots());
             visitStatus = ((Patient) personToCopy).getVisitStatus();
+        } else {
+            homeVisitList = new ArrayList<>(((Nurse) personToCopy).getHomeVisits());
         }
     }
 
@@ -155,6 +159,17 @@ public class PersonBuilder {
         return this;
     }
 
+
+    /**
+     * Parses the {@code homeVisit} into a {@code Set<HomeVisit>} and
+     * set it to the {@code Person} that we are building.
+     * Applies only to Nurse.
+     */
+    public PersonBuilder withHomeVisits(String... homeVisit) {
+        this.homeVisitList = SampleDataUtil.getHomeVisitsList(homeVisit);
+        return this;
+    }
+
     /**
      * Sets the {@code VisitStatus} of the {@code Person} that we are building.
      */
@@ -177,7 +192,7 @@ public class PersonBuilder {
      */
     public Person build() {
         if (category.categoryName.equals("N")) {
-            return new Nurse(uid, name, gender, phone, email, address, tags);
+            return new Nurse(uid, name, gender, phone, email, address, tags, homeVisitList);
         } else if (this.category.categoryName.equals("P")) {
             return new Patient(uid, name, gender, phone, email, address, tags, dateSlotList, visitStatus);
         }

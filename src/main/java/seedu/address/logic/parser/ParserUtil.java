@@ -13,13 +13,13 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
-import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -80,15 +80,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> dateTimeIndex} into a {@code List<Index>}.
+     * Parses {@code Collection<String> Index} into a {@code List<Index>}.
      */
-    public static List<Index> parseDateTimesIndexes(Collection<String> dateTimeIndexes) throws ParseException {
-        requireNonNull(dateTimeIndexes);
-        List<Index> dateTimeIndexList = new ArrayList<>();
-        for (String dateTimeIndex : dateTimeIndexes) {
-            dateTimeIndexList.add(parseIndex(dateTimeIndex));
+    public static List<Index> parseIndexes(Collection<String> indexes) throws ParseException {
+        requireNonNull(indexes);
+        List<Index> indexList = new ArrayList<>();
+        for (String index : indexes) {
+            indexList.add(parseIndex(index));
         }
-        return dateTimeIndexList;
+        return indexList;
     }
 
     /**
@@ -117,6 +117,34 @@ public class ParserUtil {
             dateTimeSlotList.add(parseDateSlot(dateSlot));
         }
         return dateTimeSlotList;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDate);
+    }
+
+    /**
+     * Parses {@code Collection<String> date} into a {@code List<Date>}.
+     */
+    public static List<Date> parseDates(Collection<String> dates) throws ParseException {
+        requireNonNull(dates);
+        List<Date> dateList = new ArrayList<Date>();
+        for (String date : dates) {
+            dateList.add(parseDate(date));
+        }
+        return dateList;
     }
 
     /**
@@ -221,18 +249,4 @@ public class ParserUtil {
         return new Category(trimmedCategory);
     }
 
-    /**
-     * Parses a {@code String visitStatus} into a {@code VisitStatus}
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code visitStatus} is invalid.
-     */
-    public static VisitStatus parseVisitStatus(String visitStatus) throws ParseException {
-        requireNonNull(visitStatus);
-        String trimmedVisitStatus = visitStatus.trim();
-        if (!VisitStatus.isValidVisitStatus(trimmedVisitStatus)) {
-            throw new ParseException(VisitStatus.MESSAGE_CONSTRAINTS);
-        }
-        return new VisitStatus(visitStatus);
-    }
 }

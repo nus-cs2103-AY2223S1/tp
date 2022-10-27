@@ -2,11 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.MarkCommand;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Uid;
 
@@ -14,25 +16,26 @@ import seedu.address.model.person.Uid;
 /**
  * Parses input arguments and creates a new MarkCommand object
  */
-public class MarkCommandParser implements Parser<MarkCommand> {
+public class UnmarkCommandParser implements Parser<UnmarkCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the MarkCommand
-     * and returns an MarkCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the UnmarkCommand
+     * and returns an UnmarkCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public MarkCommand parse(String args) throws ParseException {
+    public UnmarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UID);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_DATE_AND_SLOT_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_UID)
+        if (!arePrefixesPresent(argMultimap, PREFIX_UID, PREFIX_DATE_AND_SLOT_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkCommand.MESSAGE_USAGE));
         }
         Uid uid = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).get());
+        Index dateSlotIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DATE_AND_SLOT_INDEX).get());
 
-        return new MarkCommand(uid);
+        return new UnmarkCommand(uid, dateSlotIndex);
     }
 
     /**

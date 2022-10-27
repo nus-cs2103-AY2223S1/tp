@@ -34,8 +34,9 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="dateTimes" styleClass="cell_small_label" text="\$date" />
-      <Label fx:id="visitStatus" styleClass="cell_small_label" text="\$visit status" />
+      <Label fx:id="homeVisits" styleClass="cell_small_label" text="\$homeVisit" />
+      <Label fx:id="dateSlots" styleClass="cell_small_label" text="\$date" />
+      <Label fx:id="unavailableDates" styleClass="cell_small_label" text="\$unavailableDate" />
     </VBox>
   </GridPane>
 </HBox>

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNAVAILABLE_DATE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -32,6 +33,8 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]... \n"
             + "If add patient, you can choose to add details:  "
             + PREFIX_DATE_AND_SLOT + "HOME_VISIT_DATE_AND_SLOT \n"
+            + "If add nurse, you can choose to add details: "
+            + PREFIX_UNAVAILABLE_DATE + "UNAVAILABLE_DATE_TO_HOME_VISIT \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CATEGORY + "P "
             + PREFIX_NAME + "John Doe "

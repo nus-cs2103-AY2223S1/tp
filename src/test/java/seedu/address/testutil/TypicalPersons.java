@@ -73,7 +73,8 @@ public class TypicalPersons {
             .withPhone("9482224")
             .withEmail("werner@example.com")
             .withDatesSlots("2022-11-15,4")
-            .withAddress("michegan ave").build();
+            .withAddress("michegan ave")
+            .withHomeVisits("2022-10-15,1:6").build();
     public static final Person FIONA = new PersonBuilder()
             .withUid("6").withCategory("P")
             .withName("Fiona Kunz")

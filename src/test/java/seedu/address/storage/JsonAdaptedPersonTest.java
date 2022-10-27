@@ -19,7 +19,6 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.VisitStatus;
 
 public class JsonAdaptedPersonTest {
 
@@ -62,7 +61,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidCategory_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_UID, VALID_NAME, INVALID_CATEGORY, VALID_GENDER, VALID_PHONE, VALID_EMAIL,
-                        VALID_ADDRESS, VALID_DATESLOT, VALID_TAGS, VALID_VISIT_STATUS);
+                        VALID_ADDRESS, VALID_DATESLOT, VALID_TAGS, VALID_VISIT_STATUS, VALID_);
         String expectedMessage = Category.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

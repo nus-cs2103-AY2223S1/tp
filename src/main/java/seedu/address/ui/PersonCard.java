@@ -46,7 +46,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label uid;
     @FXML
-    private Label dateTimes;
+    private Label dateSlots;
     @FXML
     private Label id;
     @FXML
@@ -60,7 +60,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Label visitStatus;
+    private Label homeVisits;
+    @FXML
+    private Label unavailableDates;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -71,16 +73,19 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
 
         if (person instanceof Nurse) {
-            dateTimes.setText(NOT_APPLICABLE);
-            visitStatus.setText(NOT_APPLICABLE);
+            dateSlots.setText("HomeVisits DateSlot: " + NOT_APPLICABLE);
+            homeVisits.setText("HomeVisits: " + ((Nurse) person).getHomesVisitsInString());
+            unavailableDates.setText("Unavailable Dates: " + ((Nurse) person).getUnavailableDatesInString());
             category.getChildren().add(new Label(NURSE_LABEL_TEXT));
         } else if (person instanceof Patient) {
-            dateTimes.setText(((Patient) person).getDatesSlotsInString());
-            visitStatus.setText(((Patient) person).getVisitStatus().toString());
+            dateSlots.setText("HomeVisits DateSlot: " + ((Patient) person).getDatesSlotsInString());
+            homeVisits.setText("HomeVisits: " + NOT_APPLICABLE);
+            unavailableDates.setText("Unavailable Dates: " + NOT_APPLICABLE);
             category.getChildren().add(new Label(PATIENT_LABEL_TEXT));
         } else {
-            dateTimes.setText(NOT_APPLICABLE);
-            visitStatus.setText(NOT_APPLICABLE);
+            dateSlots.setText(NOT_APPLICABLE);
+            homeVisits.setText(NOT_APPLICABLE);
+            unavailableDates.setText(NOT_APPLICABLE);
             category.getChildren().add(new Label(NAN_LABEL_TEXT));
         }
         name.setText(person.getName().fullName);

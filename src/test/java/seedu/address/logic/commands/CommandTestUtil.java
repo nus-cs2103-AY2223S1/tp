@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;

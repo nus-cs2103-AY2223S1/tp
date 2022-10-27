@@ -16,18 +16,16 @@ import seedu.address.model.tag.Tag;
 public class Patient extends Person {
 
     private static final String MESSAGE_FOR_EMPTY_DATESLOT = "Home Visit date and slot has not been set yet.";
-    private final List<DateSlot> dateSlots = new ArrayList<>();
-    private final VisitStatus visitStatus;
+    public final List<DateSlot> dateSlots = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
-                   Set<Tag> tags, List<DateSlot> dateTimeSlot, VisitStatus visitStatus) {
+                   Set<Tag> tags, List<DateSlot> dateTimeSlot) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateTimeSlot);
         this.dateSlots.addAll(dateTimeSlot);
-        this.visitStatus = visitStatus;
     }
 
     public Category getCategory() {
@@ -68,15 +66,10 @@ public class Patient extends Person {
         return dateSlotListSB.toString();
     }
 
-    public VisitStatus getVisitStatus() {
-        return this.visitStatus;
-    }
-
     @Override
     public String toString() {
         String dateSlotList = getDatesSlotsInString();
-        return "Category: P " + super.toString()
-                + "; Home Visits Date and Time:" + dateSlotList
-                + "; Visit Status: " + getVisitStatus();
+        return "Category: P "+ super.toString()
+                + "; Home Visits Date and Time:" + dateSlotList;
     }
 }

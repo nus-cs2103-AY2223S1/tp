@@ -14,7 +14,6 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
-import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -41,7 +40,6 @@ public class PatientBuilder {
     private Address address;
     private List<DateSlot> dateSlots;
     private Set<Tag> tags;
-    private VisitStatus visitStatus;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -56,7 +54,6 @@ public class PatientBuilder {
         address = new Address(DEFAULT_ADDRESS);
         dateSlots = new ArrayList<>();
         tags = new HashSet<>();
-        visitStatus = new VisitStatus(DEFAULT_VISITSTATUS);
     }
 
     /**

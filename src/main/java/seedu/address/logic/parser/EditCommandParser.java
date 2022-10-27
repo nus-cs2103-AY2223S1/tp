@@ -12,6 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNAVAILABLE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNAVAILABLE_DATE_INDEX;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -23,6 +25,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
@@ -43,7 +46,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_CATEGORY, PREFIX_NAME, PREFIX_GENDER,
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATE_AND_SLOT, PREFIX_TAG,
-                        PREFIX_DATE_AND_SLOT_INDEX);
+                        PREFIX_DATE_AND_SLOT_INDEX, PREFIX_UNAVAILABLE_DATE, PREFIX_UNAVAILABLE_DATE_INDEX);
 
         Uid uid;
 
@@ -80,6 +83,10 @@ public class EditCommandParser implements Parser<EditCommand> {
                 .ifPresent(editPersonDescriptor::setDateSlotIndexes);
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseDatesForEdit(argMultimap.getAllValues(PREFIX_UNAVAILABLE_DATE))
+                .ifPresent(editPersonDescriptor::setUnavailableDates);
+        parseDateIndexesForEdit(argMultimap.getAllValues(PREFIX_UNAVAILABLE_DATE_INDEX))
+                .ifPresent(editPersonDescriptor::setDateIndexes);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -135,8 +142,42 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> dateSlotIndexList = dateSlotIndexes.size() == 1 && dateSlotIndexes.contains("")
                 ? Collections.emptyList() : dateSlotIndexes;
-        return Optional.of(ParserUtil.parseDateTimesIndexes(dateSlotIndexList));
+        return Optional.of(ParserUtil.parseIndexes(dateSlotIndexList));
+    }
+
+    /**
+     * Parses {@code Collection<String> dates} into a {@code List<Date>} if {@code date} is non-empty.
+     * If {@code dates} contain only one element which is an empty string, it will be parsed into a
+     * {@code List<Date>} containing zero date.
+     */
+    private Optional<List<Date>> parseDatesForEdit(Collection<String> dates) throws ParseException {
+        assert dates != null;
+
+        if (dates.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> dateList = dates.size() == 1 && dates.contains("")
+                ? Collections.emptyList() : dates;
+
+        return Optional.of(ParserUtil.parseDates(dateList));
+    }
+
+    /**
+     * Parses {@code Collection<String> dateIndexes} into a {@code List<Integer>}
+     * if {@code dateIndexes} is non-empty.
+     */
+    private Optional<List<Index>> parseDateIndexesForEdit(Collection<String> dateIndexes)
+            throws ParseException {
+        assert dateIndexes != null;
+
+        if (dateIndexes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> dateIndexList = dateIndexes.size() == 1 && dateIndexes.contains("")
+                ? Collections.emptyList() : dateIndexes;
+        return Optional.of(ParserUtil.parseIndexes(dateIndexList));
     }
 
 }
+
 
