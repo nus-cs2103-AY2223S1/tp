@@ -94,6 +94,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void sort(String sortParam) {
+        persons.sort(sortParam);
+    }
+
     //// util methods
 
     @Override

@@ -107,4 +107,9 @@ public interface Model {
      * Updates password if old password provided is correct.
      */
     void updatePassword(String oldPassword, String newPassword);
+
+    /**
+     * Sorts clients according to params.
+     */
+    void sort(String sortParam);
 }
