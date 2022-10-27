@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "command:DeleteGroupCommand" as DeleteGroupCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+DeleteGroupCommand -[hidden]-> Model
+activate DeleteGroupCommand
+
+group sd [DeleteGroupCommand executes]
+loop until all members in group is updated
+    DeleteGroupCommand -> Model : setPerson(currentPerson, editedPerson)
+activate Model
+
+Model --> DeleteGroupCommand
+deactivate Model
+end
+
+DeleteGroupCommand -> Model : deleteGroup("CS2103T")
+activate Model
+
+Model --> DeleteGroupCommand
+deactivate Model
+
+create CommandResult
+DeleteGroupCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteGroupCommand
+deactivate CommandResult
+
+end
+
+@enduml
