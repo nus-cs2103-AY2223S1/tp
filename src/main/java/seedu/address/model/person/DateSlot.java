@@ -139,6 +139,13 @@ public class DateSlot {
     }
 
     /**
+     * Mark DateSlot as success to visit.
+     */
+    public void markSuccess() {
+        this.isSuccessVisit = true;
+    }
+
+    /**
      * Returns true if a given string is a valid date and slot.
      */
     public static boolean isValidDateSlot(String test) {
