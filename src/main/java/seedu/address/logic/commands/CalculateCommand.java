@@ -23,10 +23,8 @@ public class CalculateCommand extends Command {
 
     public static final String COMMAND_WORD = "calc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "Calculate an arithmetic expression"
+            + "Example: " + COMMAND_WORD + "3 * (1 + 2.4)";
 
     public String expression;
 
@@ -39,7 +37,8 @@ public class CalculateCommand extends Command {
 
         requireNonNull(model);
         String calcResult = ExpressionParser.parseCalculation(this.expression);
-        return new CommandResult(calcResult);
+        String feedback = this.expression + " = " + calcResult;
+        return new CommandResult(feedback);
     }
 
     @Override
@@ -50,19 +49,18 @@ public class CalculateCommand extends Command {
     }
 
     private static class ExpressionParser {
-        // Associativity constants for operators
-        private static final int LEFT_ASSOC = 0;
-        private static final int RIGHT_ASSOC = 1;
+        private static final int HIGH_PRECEDENCE = 2;
+        private static final int LOW_PRECEDENCE = 0;
 
-        // Operators
-        private static final Map<String, int[]> OPERATORS = new HashMap<String, int[]>();
+        // All operators set with their precedence
+        private static final Map<String, Integer> OPERATORS = new HashMap<>();
 
         static {
-            // Map<"token", []{precendence, associativity}>
-            OPERATORS.put("+", new int[]{0, LEFT_ASSOC});
-            OPERATORS.put("-", new int[]{0, LEFT_ASSOC});
-            OPERATORS.put("*", new int[]{5, LEFT_ASSOC});
-            OPERATORS.put("/", new int[]{5, LEFT_ASSOC});
+            // Map<"token", precedence>
+            OPERATORS.put("+", LOW_PRECEDENCE);
+            OPERATORS.put("-", LOW_PRECEDENCE);
+            OPERATORS.put("*", HIGH_PRECEDENCE);
+            OPERATORS.put("/", HIGH_PRECEDENCE);
         }
 
         // Test if token is an operator
@@ -70,79 +68,56 @@ public class CalculateCommand extends Command {
             return OPERATORS.containsKey(token);
         }
 
-        // Test associativity of operator token
-        private static boolean isAssociative(String token, int type) {
-            if (!isOperator(token)) {
-                throw new IllegalArgumentException("Invalid token: " + token);
-            }
-
-            if (OPERATORS.get(token)[1] == type) {
-                return true;
-            }
-            return false;
-        }
-
         // Compare precedence of operators.
-        private static final int cmpPrecedence(String token1, String token2) {
+        private static int comparePrecedence(String token1, String token2) {
             if (!isOperator(token1) || !isOperator(token2)) {
                 throw new IllegalArgumentException("Invalid tokens: " + token1
                         + " " + token2);
             }
-            return OPERATORS.get(token1)[0] - OPERATORS.get(token2)[0];
+            return OPERATORS.get(token1) - OPERATORS.get(token2);
         }
 
         // Convert infix expression format into reverse Polish notation
-        public static String[] expToRPN(String[] inputTokens) {
-            ArrayList<String> out = new ArrayList<String>();
-            Stack<String> stack = new Stack<String>();
+        public static String[] expressionToRPN(String[] inputTokens) {
+            ArrayList<String> RPN = new ArrayList<>();
+            Stack<String> stack = new Stack<>();
 
             // For each token
             for (String token : inputTokens) {
-                // If token is an operator
                 if (isOperator(token)) {
+                    // If token is an operator
+                    
                     // While stack not empty AND stack top element
-                    // is an operator
-                    while (!stack.empty() && isOperator(stack.peek())) {
-                        if ((isAssociative(token, LEFT_ASSOC) &&
-                                cmpPrecedence(token, stack.peek()) <= 0) ||
-                                (isAssociative(token, RIGHT_ASSOC) &&
-                                        cmpPrecedence(token, stack.peek()) < 0)) {
-                            out.add(stack.pop());
-                            continue;
-                        }
-                        break;
+                    // is an operator and have higher precedence
+                    while (!stack.empty() && isOperator(stack.peek()) &&
+                            comparePrecedence(token, stack.peek()) <= 0) {
+                        RPN.add(stack.pop());
                     }
                     // Push the new operator on the stack
                     stack.push(token);
-                }
-                // If token is a left bracket '('
-                else if (token.equals("(")) {
+                } else if (token.equals("(")) {
+                    // If token is a left parenthesis
                     stack.push(token);  //
-                }
-                // If token is a right bracket ')'
-                else if (token.equals(")")) {
+                } else if (token.equals(")")) {
+                    // If token is a right parenthesis
                     while (!stack.empty() && !stack.peek().equals("(")) {
-                        out.add(stack.pop());
+                        RPN.add(stack.pop());
                     }
                     stack.pop();
-                }
-                // If token is a number
-                else {
-                    //  if(!isOperator(stack.peek())){
-                    //      out.add(String.valueOf(token*10));
-                    //      }
-                    out.add(token);
+                } else {
+                    // If token is a number
+                    RPN.add(token);
                 }
             }
             while (!stack.empty()) {
-                out.add(stack.pop());
+                RPN.add(stack.pop());
             }
-            String[] output = new String[out.size()];
-            return out.toArray(output);
+            String[] RPNStrArr = new String[RPN.size()];
+            return RPN.toArray(RPNStrArr);
         }
 
         public static double RPNtoDouble(String[] tokens) {
-            Stack<String> stack = new Stack<String>();
+            Stack<String> stack = new Stack<>();
 
             // For each token
             for (String token : tokens) //for each
@@ -165,20 +140,16 @@ public class CalculateCommand extends Command {
                 }
             }
 
-            return Double.valueOf(stack.pop());
+            return Double.parseDouble(stack.pop());
         }
         public static String parseCalculation(String userInput) {
-            String reg = "((?<=[(|)|\\+|\\*|\\-|/])|(?=[(|)|\\+|\\*|\\-|/]))";
-            String resultStr = "Not calculated";
+            String regex = "((?<=[(|)|\\+|\\*|\\-|/])|(?=[(|)|\\+|\\*|\\-|/]))";
+            String resultStr;
             System.out.println(userInput);
             try{
-                //System.out.println("Enter Your Expression");
-                //String[] input = "( 1 + 2 ) * ( 3 / 4 ) - ( 5 + 6 )".split(" ");
-                String[] input =  userInput.split(reg);
-                //System.out.println(input);
-                String[] output = expToRPN(input);
+                String[] input =  userInput.split(regex);
+                String[] output = expressionToRPN(input);
 
-                // Build output RPN string minus the commas
                 System.out.print("Stack: ");
                 for (String token : output) {
                     System.out.print("[ ");System.out.print(token + " "); System.out.print("]");
@@ -188,10 +159,9 @@ public class CalculateCommand extends Command {
                 Double result = RPNtoDouble( output );
                 resultStr = String.format("%.2f", result);
             } catch (NumberFormatException | EmptyStackException nfe){
-                System.out.println("INVALID EXPRESSION");
+                resultStr = "INVALID EXPRESSION";
             }
             return resultStr;
         }
     }
-
 }
