@@ -72,6 +72,8 @@ public interface Model {
      */
     void deletePerson(Task target);
 
+    void deleteArchivedTask(Task target);
+
     /**
      * Adds the given task.
      * {@code task} must not already exist in the address book.

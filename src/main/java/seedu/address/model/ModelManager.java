@@ -117,6 +117,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteArchivedTask(Task target) {
+        archivedTaskBook.removeTask(target);
+    }
+
+    @Override
     public void addPerson(Task task) {
         addressBook.addPerson(task);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

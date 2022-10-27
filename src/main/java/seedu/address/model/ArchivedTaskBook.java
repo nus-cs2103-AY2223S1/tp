@@ -59,12 +59,13 @@ public class ArchivedTaskBook implements ReadOnlyAddressBook {
         archivedTasks.add(task);
     }
 
+
     private void setTasks(Task targetTask, Task editedTask) {
         requireNonNull(editedTask);
         archivedTasks.setPerson(targetTask, editedTask);
     }
 
-    private void removeTask(Task task) {
+    public void removeTask(Task task) {
         archivedTasks.remove(task);
     }
 

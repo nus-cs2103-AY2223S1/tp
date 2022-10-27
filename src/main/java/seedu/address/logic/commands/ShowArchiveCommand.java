@@ -1,16 +1,15 @@
-package seedu.address.logic.commands.list;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
  * List all archived tasks.
  */
-public class ListArchiveCommand extends ListCommand {
+public class ShowArchiveCommand extends Command {
 
-    public static final String COMMAND_WORD = "-archive";
+    public static final String COMMAND_WORD = "showArchive";
     public static final String MESSAGE_SUCCESS = "Listed all archived tasks";
 
     @Override

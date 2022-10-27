@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -33,8 +32,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private ArchiveWindow archiveWindow;
     private TaskListPanel taskListPanel;
-    private TaskListPanel archivedTaskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private FilterStatusDisplay filterStatusDisplay;
@@ -44,6 +43,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem archiveMenuItem;
+
     @FXML
     private HBox filterStatusDisplayPlaceholder;
 
@@ -51,16 +54,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane taskListPanelPlaceholder;
 
     @FXML
-    private StackPane archiveListPanelPlaceholder;
-
-    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
-
-    @FXML
-    private TabPane tabsPlaceholder;
 
 
     /**
@@ -79,6 +76,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        archiveWindow = new ArchiveWindow(logic);
+
     }
 
     public Stage getPrimaryStage() {
@@ -129,9 +129,6 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanel = new TaskListPanel(logic.getFilteredPersonList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        archivedTaskListPanel = new TaskListPanel(logic.getFilteredArchivedTaskList());
-        archiveListPanelPlaceholder.getChildren().add(archivedTaskListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -171,14 +168,17 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    /**
+     * Opens an archive window or focuses on it if it's already opened.
+     */
     @FXML
     public void handleShowArchive() {
-        tabsPlaceholder.getSelectionModel().select(1);
-    }
-
-    @FXML
-    public void handleShowUpcoming() {
-        tabsPlaceholder.getSelectionModel().select(0);
+        if (!archiveWindow.isShowing()) {
+            archiveWindow.show();
+            archiveWindow.fillInnerParts();
+        } else {
+            archiveWindow.focus();
+        }
     }
 
     /**
@@ -213,8 +213,6 @@ public class MainWindow extends UiPart<Stage> {
                 handleHelp();
             } else if (commandResult.isShowArchived()) {
                 handleShowArchive();
-            } else {
-                handleShowUpcoming();
             }
 
             if (commandResult.isExit()) {

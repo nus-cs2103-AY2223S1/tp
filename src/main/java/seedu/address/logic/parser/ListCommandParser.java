@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.List;
 
 import seedu.address.logic.commands.list.ListAllCommand;
-import seedu.address.logic.commands.list.ListArchiveCommand;
 import seedu.address.logic.commands.list.ListCommand;
 import seedu.address.logic.commands.list.ListDeadlineCommand;
 import seedu.address.logic.commands.list.ListMarkedCommand;
@@ -48,8 +47,6 @@ public class ListCommandParser implements Parser<ListCommand> {
             return new ListDeadlineCommandParser().parse(trimmedArgs);
         case ListTagCommand.COMMAND_WORD:
             return new ListTagCommandParser().parse(trimmedArgs);
-        case ListArchiveCommand.COMMAND_WORD:
-            return new ListArchiveCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
