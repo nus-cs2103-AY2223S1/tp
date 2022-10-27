@@ -69,19 +69,13 @@ public class EventCard extends UiPart<Region> {
 
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> {
-                    Label label = new Label(tag.tagName);
-                    label.setMaxWidth(150.0);
-                    tags.getChildren().add(label);
-                });
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         List<Profile> attendeesList = event.getAttendeesList();
         attendeesList.stream()
                 .forEach(attendee -> {
                     int index = attendeesList.indexOf(attendee) + 1;
-                    Label label = new Label(index + " " + attendee.getName().toString());
-                    label.setMaxWidth(250.0);
-                    attendees.getChildren().add(label);
+                    attendees.getChildren().add(new Label(index + " " + attendee.getName().toString()));
                 });
     }
 
