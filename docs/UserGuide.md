@@ -130,7 +130,7 @@ It requires one field:
 - g/: To be followed by INDEX of grade to be removed
 - s/: To be followed by INDEX of session to be removed
 
-Allows for edits of multiple fields in a single command. However, a single command should remove one item from each field. <br>
+Allows for edits of multiple fields in a single command. However, a single command should remove at most one item from each field. <br>
 
 Format: `remove [h/ a/ g/ s/]INDEX`
 
