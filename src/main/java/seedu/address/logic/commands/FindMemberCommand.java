@@ -25,8 +25,10 @@ public class FindMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "find member";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all team members whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all team members whose details contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "If names is used, returns all members with names that contain these keywords\n"
+            + "If email is used, return all members with emails that contain a substring of these keywords\n"
             + "Parameters: "
             + "[-" + FLAG_NAME_STR + " NAME] "
             + "[-" + FLAG_EMAIL_STR + " EMAIL] \n"
