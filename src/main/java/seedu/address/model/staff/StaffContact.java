@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class StaffContact {
     public static final String MESSAGE_CONSTRAINTS =
-            "Staff contact should only contain numbers, and it should not be blank";
+            "Staff contact should only contain numbers and at least 3 digits .Also it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,

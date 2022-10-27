@@ -15,8 +15,9 @@ public class FindStaffCommand extends Command {
     public static final String COMMAND_WORD = "findstaff";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all staffs that are currently displayed "
-            + "whose names contains parts of any specified keywords (but can becase-insensitive) and "
-            + "displays them as a list with index numbers.\n"
+            + "whose names contains parts of any specified keywords "
+            + "(but can be case-insensitive) and displays\n"
+            + "them as a list with index numbers.\n"
             + "A staff called Andy Lee can be found using these keywords: An, Lee, LEE\n"
             + "Parameters: "
             + "KEYWORD [MORE_KEYWORDS]...\n"

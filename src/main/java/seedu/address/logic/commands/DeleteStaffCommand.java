@@ -25,9 +25,10 @@ public class DeleteStaffCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": The project name refers to the project whose staff will be deleted. The command "
-            + "looks for the staff identified by the INDEX\n"
+            + "looks for the staff identified by the index\n"
             + "within the displayed staff list and deletes the "
-            + "staff if its in the project. Make sure you view the correct staff list before deleting a staff.\n"
+            + "staff if its in the project. Checking if the staff is in the project is through staff name only.\n"
+            + "Make sure you view the correct staff list before deleting a staff.\n"
             + "Parameters: "
             + "INDEX (must be a positive integer) "
             + PREFIX_PROJECT_NAME + "PROJECT_NAME\n"
