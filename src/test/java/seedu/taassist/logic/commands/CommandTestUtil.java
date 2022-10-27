@@ -39,7 +39,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_CLASS_CS1101S = "CS1101S";
     public static final String VALID_CLASS_CS1231S = "CS1231S";
-    public static final String VALID_SESSION_LAB1 = "LAB1";
+    public static final String VALID_SESSION_LAB1 = "LAB_1";
     public static final String VALID_SESSION_TUT3 = "Tutorial 3";
     public static final String VALID_DATE = "2022-01-01";
     public static final String VALID_GRADE_VALUE_12345 = "12.345";
@@ -55,7 +55,6 @@ public class CommandTestUtil {
     public static final String CLASS_DESC_CS1231S = " " + PREFIX_MODULE_CLASS + VALID_CLASS_CS1231S;
     public static final String CLASS_DESC_CS1101S = " " + PREFIX_MODULE_CLASS + VALID_CLASS_CS1101S;
     public static final String SESSION_DESC_LAB1 = " " + PREFIX_SESSION + VALID_SESSION_LAB1;
-    public static final String SESSION_DESC_TUT3 = " " + PREFIX_SESSION + VALID_SESSION_TUT3;
     public static final String DATE_DESC = " " + PREFIX_DATE + VALID_DATE;
     public static final String GRADE_VALUE_DESC_12345 = " " + PREFIX_GRADE + VALID_GRADE_VALUE_12345;
 
@@ -64,6 +63,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_CLASS_DESC = " " + PREFIX_MODULE_CLASS + "CS1101S*"; // '*' not allowed
     public static final String INVALID_INDEX = "-1"; // non-positive indices not allowed
+    public static final String INVALID_SESSION_COMMA_DESC = " " + PREFIX_SESSION + "foo,bar"; // ',' not allowed
+    public static final String INVALID_SESSION_EQUAL_DESC = " " + PREFIX_SESSION + "foo=bar"; // '=' not allowed
     public static final String INVALID_DATE = "2022/01/01";
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + INVALID_DATE;
     public static final String INVALID_GRADE_VALUE_DESC = " " + PREFIX_GRADE + "foo"; // strings not allowed
