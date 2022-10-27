@@ -233,6 +233,20 @@ Format: `list`
 
 <br>
 
+### Listing all details of a patient: `focus -p`
+
+Shows all details of a specified patient.
+
+Format: `focus -p PATIENT_INDEX`
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` followed by `focus -p 2` shows all details of the 2nd patient in the patient book. 
+* `find Betsy` followed by `focus -p 1` shows all details of the 1st patient in the results of the `find` command.
+
+<br>
+
 ### Listing all tasks: `view -p --all`
 
 Shows a list of all tasks to be completed.
@@ -594,6 +608,7 @@ the data of your previous UniNurse home folder.
 | **Edit patient**                           | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`                                                                          |
 | **Delete patient**                         | `delete -p INDEX`                                                                                                                        |
 | **List all patients**                      | `list`                                                                                                                                   |
+| **List all details of a patient**          | `focus -p PATIENT_INDEX`                                                                                                                 |
 | **List all tasks**                         | `view -p --all`                                                                                                                          |
 | **View all tasks of a patient**            | `view -p PATIENT_INDEX`                                                                                                                  |
 | **List all patients today**                | `view --today`                                                                                                                           |
