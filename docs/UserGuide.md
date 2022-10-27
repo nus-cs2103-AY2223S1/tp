@@ -9,15 +9,20 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 - [Quick Start](#quick-start)
 - [Features](#features)
   - [Modules-Related Features](#modules-related-features)
+     - [Listing modules](#listing-modules)
+     - [Finding modules](#finding-modules)
   - [Tasks-Related Features](#tasks-related-features)
     - [Adding task functions](#adding-task-functions-coming-soon-in-v12)
     - [Tagging priority of task](#tagging-priority-of-task-coming-soon-in-v12)
-    - [List](#list-coming-soon-in-v12)
+    - [Listing tasks](#listing-tasks)
+    - [Finding tasks](#finding-tasks)
     - [Editing a task](#editing-a-task)
     - [Marking a task](#marking-a-task)
     - [Unmarking a task](#unmarking-a-task)
     - [Deleting task function](#deleting-task-function-coming-soon-in-v12)
   - [Exams-Related Features](#exams-related-features)
+    - [Adding an exam](#adding-an-exam)
+    - [Editing an exam](#editing-an-exam)
 - [Summary Of Commands](#summary-of-commands)
 
 
@@ -194,7 +199,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 ## Exams-related Features
-##Adding exam
+##Adding an exam
 Adds exam into exam list. 
 
 Format: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`
@@ -215,7 +220,7 @@ Examples:
 exam description as 'midterms', exam date as '20-11-2022' into the exam list. 
 
 
-##Editing Exam
+##Editing an exam
 Edits the specified exam by updating the existing values to the input values.
    
 Format: `e edit INDEX (must be a positive integer) [m/MODULE] [ex/EXAM DESCRIPTION] [ed/EXAM DATE]`
