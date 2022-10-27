@@ -19,6 +19,9 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class NetWorth
+Class MeetingTime
+Class FilePath
 
 }
 
@@ -40,7 +43,10 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> Tag
+Person *--> NetWorth
+Person *--> "*" MeetingTime
+Person *--> FilePath
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

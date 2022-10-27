@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.ui.PersonProfile;
-
 /**
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
@@ -39,13 +37,6 @@ public class Phone {
      */
     public String getValue() {
         return value;
-    }
-
-    /**
-     * Returns value of phone number if not null else, EMPTY_VALUE.
-     */
-    public String getDisplayValue() {
-        return value.equals(Person.EMPTY_FIELD_VALUE) ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
     /**
