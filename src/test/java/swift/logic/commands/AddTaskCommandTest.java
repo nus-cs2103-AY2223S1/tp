@@ -211,6 +211,11 @@ public class AddTaskCommandTest {
         }
 
         @Override
+        public void deleteBridge(PersonTaskBridge bridge) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void hotUpdateAssociatedContacts() {
         }
 
