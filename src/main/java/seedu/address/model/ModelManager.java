@@ -39,7 +39,7 @@ public class ModelManager implements Model {
         if (filteredPersons.size() > 0) {
             currentlyViewedPerson = generateFirstPerson();
         } else {
-            currentlyViewedPerson = null;
+            currentlyViewedPerson = new CurrentlyViewedPerson(null, null);
         }
     }
 
@@ -107,13 +107,17 @@ public class ModelManager implements Model {
             currentlyViewedPerson = generateFirstPerson();
         }
         if (filteredPersons.size() <= 0) {
-            currentlyViewedPerson = null;
+            currentlyViewedPerson = new CurrentlyViewedPerson(null, null);
         }
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        // Ensures that adding the first patient in the address book updates the currently viewed person
+        if (filteredPersons.size() == 1) {
+            currentlyViewedPerson = generateFirstPerson();
+        }
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
