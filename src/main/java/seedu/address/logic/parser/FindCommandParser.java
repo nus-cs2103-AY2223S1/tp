@@ -94,8 +94,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_INCOME).isPresent()) {
             List<String> incomeLevels = ParserUtil.parseAllSpaceSeparatedIncomeLevelsToString(argMultimap
                     .getAllValuesSeparatedByRegex(PREFIX_INCOME, SPACE_REGEX));
-//            predicates.add(new IncomeContainsKeywordsPredicate(incomeLevels.stream().map(x -> x.toString())
-//                    .collect(Collectors.toList()), ));
+            String equalityPredicate = incomeLevels.get(0).substring(0, 1);
+            incomeLevels.set(0, incomeLevels.get(0).substring(1));
+            predicates.add(new IncomeContainsKeywordsPredicate(incomeLevels.stream().map(x -> x.toString())
+                    .collect(Collectors.toList()), equalityPredicate));
         }
 
         return new FindCommand(predicates);

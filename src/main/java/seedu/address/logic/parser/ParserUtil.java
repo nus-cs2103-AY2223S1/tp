@@ -340,10 +340,14 @@ public class ParserUtil {
     public static List<String> parseAllSpaceSeparatedIncomeLevelsToString(Collection<String> incomeLevels)
             throws ParseException {
         requireNonNull(incomeLevels);
-        final List<IncomeLevel> incomeLevelList = new ArrayList<>();
-        for (String incomeLevel : incomeLevels) {
-            parseIncomeLevel("$" + incomeLevel.substring(1));
+        final List<String> incomeLevelList = new ArrayList<>(incomeLevels);
+        for (int i = 0; i < incomeLevelList.size(); i++) {
+            if (i == 0) {
+                parseIncomeLevel("$" + incomeLevelList.get(i).substring(1));
+            } else {
+                parseIncomeLevel("$" + incomeLevelList.get(i));
+            }
         }
-        return new ArrayList<>(incomeLevels);
+        return incomeLevelList;
     }
 }

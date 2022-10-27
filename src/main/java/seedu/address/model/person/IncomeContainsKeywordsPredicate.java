@@ -24,27 +24,19 @@ public class IncomeContainsKeywordsPredicate extends FindPredicate {
 
     @Override
     public boolean test(Person person) {
-
         IncomeLevel personIncome = person.getIncome();
         for (String predicateIncomeName : income) {
             if (predicate.equals(">")) {
-                if (personIncome.convertIncomeToLong() >= Integer.parseInt(predicateIncomeName.substring(1))) {
+                if (personIncome.convertIncomeToLong() >= Integer.parseInt(predicateIncomeName)) {
                     return true;
                 }
             } else if (predicate.equals("<")) {
-                if (personIncome.convertIncomeToLong() <= Integer.parseInt(predicateIncomeName.substring(1))) {
+                if (personIncome.convertIncomeToLong() <= Integer.parseInt(predicateIncomeName)) {
                     return true;
                 }
             } else if (predicate.equals("=")) {
-                if (personIncome.convertIncomeToLong() == Integer.parseInt(predicateIncomeName.substring(1))) {
+                if (personIncome.convertIncomeToLong() == Integer.parseInt(predicateIncomeName)) {
                     return true;
-                }
-            } else {
-                try {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            "Please enter >, < or = before the VALUE"));
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
                 }
             }
         }
