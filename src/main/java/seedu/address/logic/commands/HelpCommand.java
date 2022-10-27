@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.ui.HelpWindow.USERGUIDE_URL;
 
 import picocli.CommandLine;
@@ -21,8 +24,15 @@ public class HelpCommand extends Command {
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
 
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
     @Override
     public CommandResult execute(Model model) {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         CommandLine parent = commandSpec.commandLine().getParent();
         return new CommandResult(parent.getUsageMessage() + "\nAccess our user guide here: " + USERGUIDE_URL);
     }
