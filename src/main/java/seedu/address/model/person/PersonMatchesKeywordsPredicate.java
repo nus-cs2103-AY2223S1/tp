@@ -34,29 +34,24 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
         for (int i = 0; i <= str1.length(); i++) {
             for (int j = 0; j <= str2.length(); j++) {
 
-
-                // If str1 is empty, the only possible
-                // method of conversion with minimum operations
-                // would be for all characters of
-                // str2 to be inserted into str1.
                 if (i == 0) {
+                    // If str1 is empty, the only possible
+                    // method of conversion with minimum operations
+                    // would be for all characters of
+                    // str2 to be inserted into str1.
                     arr[i][j] = j;
-                }
-
-
-                // If str2 is empty the only possible
-                // method of conversion with minimum operations
-                // would be for all characters of str1 to be removed.
-                else if (j == 0) {
+                } else if (j == 0) {
+                    // If str2 is empty the only possible
+                    // method of conversion with minimum operations
+                    // would be for all characters of str1 to be removed.
                     arr[i][j] = i;
-                }
-
-                else {
+                } else {
                     //else find minimum among the three operations below
                     arr[i][j] = minEdits(arr[i - 1][j - 1]
                                     + numOfReplacement(str1.charAt(i - 1), str2.charAt(j - 1)),
                             arr[i - 1][j] + 1,
                             arr[i][j - 1] + 1);
+
                 }
             }
         }

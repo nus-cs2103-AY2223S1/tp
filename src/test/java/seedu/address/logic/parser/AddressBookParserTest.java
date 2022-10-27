@@ -24,7 +24,6 @@ import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.commands.SetCommand;
 import seedu.address.logic.commands.SetCommand.SetPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
