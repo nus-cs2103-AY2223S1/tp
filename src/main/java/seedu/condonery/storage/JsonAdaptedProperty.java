@@ -128,7 +128,7 @@ class JsonAdaptedProperty {
         final PropertyTypeEnum modelPropertyType = PropertyTypeEnum.valueOf(propertyType);
         final PropertyStatusEnum modelPropertyStatus = PropertyStatusEnum.valueOf(propertyStatus);
         return new Property(modelName, modelAddress, modelPrice, modelTags,
-               modelInterestedClients, modelPropertyType,modelPropertyStatus);
+               modelInterestedClients, modelPropertyType, modelPropertyStatus);
     }
 
 }
