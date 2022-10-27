@@ -49,11 +49,8 @@
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
-          <VBox fx:id="personInfo" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-            <padding>
-              <Insets top="5" right="10" bottom="5" left="10" />
-            </padding>
-            <StackPane fx:id="personInfoPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          <VBox fx:id="sidePanel" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <StackPane fx:id="sidePanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </HBox>
 

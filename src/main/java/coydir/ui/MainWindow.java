@@ -8,6 +8,9 @@ import coydir.logic.Logic;
 import coydir.logic.commands.CommandResult;
 import coydir.logic.commands.exceptions.CommandException;
 import coydir.logic.parser.exceptions.ParseException;
+import coydir.model.person.EmployeeId;
+import coydir.model.person.Person;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +19,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -33,15 +37,16 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private HomePanel homePanel;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
 
     private DepartmentInfo departmentInfo;
     private HelpWindow helpWindow;
-
     private PersonInfo personInfo;
 
     private int currentIndex;
+    private EmployeeId currentEmployee;
 
     private String currentDepartment;
 
@@ -61,7 +66,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane personInfoPanelPlaceholder;
+    private StackPane sidePanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -128,8 +133,14 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        personInfo = new PersonInfo(logic.getFilteredPersonList().get(0));
-        personInfoPanelPlaceholder.getChildren().add(personInfo.getRoot());
+        // init personInfo component but do not display
+        personInfo = new PersonInfo();
+
+        // init homePanel component
+        homePanel = new HomePanel();
+
+        // set side panel to home panel
+        sidePanelPlaceholder.getChildren().add(homePanel.getRoot());
 
         departmentInfo = new DepartmentInfo(logic.getUnfilteredPersonList());
         resultDisplay = new ResultDisplay();
@@ -145,7 +156,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel.getPersonListView().setOnMouseClicked((new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                handleView(personListPanel.getPersonListView().getSelectionModel().getSelectedIndex());
+                handleViewPerson(personListPanel.getPersonListView().getSelectionModel().getSelectedIndex());
             }
         }));
     }
@@ -202,6 +213,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    private void setSidePanel(UiPart<Region> panel) {
+        sidePanelPlaceholder.getChildren().clear();
+        sidePanelPlaceholder.getChildren().add(panel.getRoot());
+    }
+
     /**
      * Closes the application.
      */
@@ -214,15 +230,20 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handleView(int index) {
+    private void handleViewPerson(int index) {
+        Person currentPerson = logic.getFilteredPersonList().get(index);
+        personInfo.update(currentPerson);
+        setSidePanel(personInfo);
         currentIndex = index;
-        personInfo.update(logic.getFilteredPersonList().get(index));
-        personInfoPanelPlaceholder.getChildren().clear();
-        personInfoPanelPlaceholder.getChildren().add(personInfo.getRoot());
     }
 
-    private void handleViewUpdate(int index) {
-        personInfo.update(logic.getFilteredPersonList().get(index));
+    private void handleUpdate(int index) {
+        ObservableList<Person> personList = logic.getFilteredPersonList();
+        if (index >= personList.size()) {
+            setSidePanel(homePanel);
+        } else {
+            personInfo.update(logic.getFilteredPersonList().get(index));
+        }
     }
 
     private void handleViewDepartmentUpdate(String department) {
@@ -231,8 +252,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleViewDepartment(String department) {
         departmentInfo.update(logic.getUnfilteredPersonList(), department);
-        personInfoPanelPlaceholder.getChildren().clear();
-        personInfoPanelPlaceholder.getChildren().add(departmentInfo.getRoot());
+        sidePanelPlaceholder.getChildren().clear();
+        sidePanelPlaceholder.getChildren().add(departmentInfo.getRoot());
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -249,23 +270,17 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            handleViewUpdate(currentIndex);
+            handleUpdate(currentIndex);
             handleViewDepartmentUpdate(currentDepartment);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
-            }
-
-            if (commandResult.isExit()) {
+            } else if (commandResult.isExit()) {
                 handleExit();
-            }
-
-            if (commandResult.isView()) {
-                currentIndex = commandResult.getViewIndex();
-                handleView(currentIndex);
-            }
-
-            if (commandResult.isViewDepartment()) {
+            } else if (commandResult.isViewPerson()) {
+                int viewIndex = commandResult.getViewIndex();
+                handleViewPerson(viewIndex);
+            } else if (commandResult.isViewDepartment()) {
                 currentDepartment = commandResult.getDepartment();
                 handleViewDepartment(commandResult.getDepartment());
             }

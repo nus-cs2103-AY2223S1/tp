@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 public class HomePanel extends UiPart<Region> {
     private static final String FXML = "HomePanel.fxml";
     private static final coydir.commons.core.Version VERSION = MainApp.VERSION;
-    private static final String MESSAGE = String.format("Welcome To\nCoydir %s", VERSION.toString());
+    private static final String MESSAGE = String.format("\tWelcome To\t\n\tCoydir %s\t", VERSION.toString());
 
     @FXML
     private VBox homePanel;

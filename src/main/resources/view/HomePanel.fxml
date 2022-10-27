@@ -18,4 +18,3 @@
         <Label fx:id="message" text="\$message" styleClass="info_big_label" textAlignment="center" />
     </HBox>
 </VBox>
-:

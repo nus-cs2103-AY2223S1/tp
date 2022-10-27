@@ -17,13 +17,15 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    private final boolean view;
+    /** The application should display a person's profile. */
+    private final boolean viewPerson;
+
+    /** The application should display information on a department. */
+    private final boolean viewDepartment;
 
     private int viewIndex;
 
     private String department;
-
-    private final boolean viewDepartment;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -32,20 +34,21 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.view = false;
+        this.viewPerson = false;
         this.viewDepartment = false;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
+     * Used only for the {@code View} command.
      */
-    public CommandResult(String feedbackToUser, boolean view, int index) {
+    public CommandResult(String feedbackToUser, int index) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
         this.exit = false;
-        this.view = view;
-        this.viewIndex = index;
+        this.viewPerson = true;
         this.viewDepartment = false;
+        this.viewIndex = index;
     }
 
     /**
@@ -55,9 +58,9 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
         this.exit = false;
-        this.view = false;
-        this.viewIndex = 0;
+        this.viewPerson = false;
         this.viewDepartment = true;
+        this.viewIndex = 0;
         this.department = department;
     }
 
@@ -81,8 +84,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isView() {
-        return view;
+    public boolean isViewPerson() {
+        return viewPerson;
     }
 
     public boolean isViewDepartment() {
@@ -96,7 +99,6 @@ public class CommandResult {
     public String getDepartment() {
         return department;
     }
-
 
     @Override
     public boolean equals(Object other) {
@@ -113,13 +115,15 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && view == otherCommandResult.view
-                && viewDepartment == otherCommandResult.viewDepartment;
+                && viewPerson == otherCommandResult.viewPerson
+                && viewIndex == otherCommandResult.viewIndex
+                && viewDepartment == otherCommandResult.viewDepartment
+                && department == otherCommandResult.department;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, viewPerson, viewIndex, viewDepartment, department);
     }
 
 }

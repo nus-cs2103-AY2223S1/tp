@@ -66,9 +66,8 @@ public class PersonInfo extends UiPart<Region> {
     /**
      * Creates a {@code PersonInfo} to display the {@code Person} particulars.
      */
-    public PersonInfo(Person person) {
+    public PersonInfo() {
         super(FXML);
-        update(person);
         initializeLeaveTable();
     }
 
@@ -156,9 +155,5 @@ public class PersonInfo extends UiPart<Region> {
 
         lineChart.getData().clear();
         lineChart.getData().add(series);
-
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }
