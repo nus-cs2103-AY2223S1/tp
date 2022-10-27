@@ -39,8 +39,8 @@ public class BookingTableView extends UiPart<Region> {
     private ObservableList<DailySchedule> weeklySchedule = FXCollections.observableArrayList();
 
     /**
-     * Constructor for a VenueTableView instance. The venue list is processed to remove expired bookings.
-     * @param bookingList The list of venues
+     * Constructor for a BookingTableView
+     * @param bookingList The list of bookings to be displayed.
      */
     public BookingTableView(ObservableList<Booking> bookingList) {
         super(FXML);

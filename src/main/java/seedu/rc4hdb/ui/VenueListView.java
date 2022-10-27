@@ -10,6 +10,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.rc4hdb.model.venues.Venue;
 
+/**
+ * Controller for the venue list ui component.
+ */
 public class VenueListView extends UiPart<Region> {
 
     private static final String FXML = "VenueListView.fxml";
@@ -19,14 +22,18 @@ public class VenueListView extends UiPart<Region> {
 
     private ObservableList<Venue> venues;
 
-    public VenueListView(ObservableList<Venue> venues) {
+    /**
+     * Constructor for a VenueListView instance. The venue list is processed to remove expired bookings.
+     * @param venueList The list of venues to be displayed.
+     */
+    public VenueListView(ObservableList<Venue> venueList) {
         super(FXML);
-        requireNonNull(venues);
+        requireNonNull(venueList);
 
-        this.venues = venues;
-        venues.addListener((ListChangeListener<? super Venue>) c -> updateVenueList(c.getList()));
+        this.venues = venueList;
+        venueList.addListener((ListChangeListener<? super Venue>) c -> updateVenueList(c.getList()));
         venueListView.setCellFactory(this::populateList);
-        updateVenueList(venues);
+        updateVenueList(venueList);
     }
 
     private ListCell<Venue> populateList(ListView<Venue> venueListView) {

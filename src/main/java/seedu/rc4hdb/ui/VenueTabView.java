@@ -12,6 +12,9 @@ import javafx.scene.layout.StackPane;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.booking.Booking;
 
+/**
+ * Controller for the venue tab ui component.
+ */
 public class VenueTabView extends UiPart<Region> {
 
     private static final String FXML = "VenueTabView.fxml";
@@ -32,13 +35,18 @@ public class VenueTabView extends UiPart<Region> {
 
     private ObservableList<Booking> bookings;
 
-    public VenueTabView(ObservableList<Venue> venues, ObservableList<Booking> bookings) {
+    /**
+     * Constructor for a VenueTabView instance.
+     * @param venueList The list of venues to be displayed.
+     * @param bookingList The list of bookings to be displayed.
+     */
+    public VenueTabView(ObservableList<Venue> venueList, ObservableList<Booking> bookingList) {
         super(FXML);
-        requireAllNonNull(venues, bookings);
+        requireAllNonNull(venueList, bookingList);
 
-        this.bookings = bookings;
-        bookings.addListener((ListChangeListener<? super Booking>) c -> updateVenueName());
-        fillInnerParts(venues, bookings);
+        this.bookings = bookingList;
+        bookingList.addListener((ListChangeListener<? super Booking>) c -> updateVenueName());
+        fillInnerParts(venueList, bookingList);
     }
 
     void fillInnerParts(ObservableList<Venue> venues, ObservableList<Booking> bookings) {
