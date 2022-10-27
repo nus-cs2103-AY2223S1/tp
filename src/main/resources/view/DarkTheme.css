@@ -350,3 +350,11 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#personCardPane {
+    -fx-background-color: #282828;
+}
+
+#personCardPane .label {
+    -fx-text-fill: rgb(240, 235, 235);
+}
