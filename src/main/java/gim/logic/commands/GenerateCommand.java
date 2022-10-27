@@ -46,7 +46,7 @@ public class GenerateCommand extends Command {
 
     /**
      * @param indices of the exercises in the filtered exercise list.
-     * @param level   difficulty level of the workout generated.
+     * @param level difficulty level of the workout generated.
      */
     public GenerateCommand(ArrayList<Index> indices, ValidLevel level) {
         requireAllNonNull(indices, level);
@@ -57,7 +57,7 @@ public class GenerateCommand extends Command {
 
     /**
      * @param nameSet containing names of the exercises given by user, not verified as valid.
-     * @param level   difficulty level of the workout generated.
+     * @param level difficulty level of the workout generated.
      */
     public GenerateCommand(Set<Name> nameSet, ValidLevel level) {
         requireAllNonNull(nameSet, level);
