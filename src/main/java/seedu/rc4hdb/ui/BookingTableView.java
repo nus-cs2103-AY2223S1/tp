@@ -106,6 +106,13 @@ public class BookingTableView extends UiPart<Region> {
 
     private void configureTableProperties() {
         this.bookingTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.dayColumn.setSortable(false);
+
+        for (int i = 0; i < 15; i++) {
+            this.bookingTableView.getColumns().get(i).setSortable(false);
+            this.bookingTableView.getColumns().get(i).setResizable(false);
+        }
+
     }
 
     public void updateTable(List<Booking> bookings) {
