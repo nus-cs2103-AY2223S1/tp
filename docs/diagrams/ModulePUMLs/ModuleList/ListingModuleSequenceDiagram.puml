@@ -19,11 +19,24 @@ activate LogicManager
 LogicManager -> ModtrektParser : parseCommand(cmd)
 activate ModtrektParser
 
+create ListModulesCommand
+ModtrektParser -> ListModulesCommand
+activate ListModulesCommand
+
+ListModulesCommand --> ModtrektParser
+deactivate ListModulesCommand
+
 ModtrektParser --> LogicManager : command
 deactivate ModtrektParser
 
 LogicManager -> ListModulesCommand : execute()
 activate ListModulesCommand
+
+ListModulesCommand -> Model : getCurrentModule()
+activate Model
+
+Model --> ListModulesCommand
+deactivate Model
 
 alt -a flag is present
 
