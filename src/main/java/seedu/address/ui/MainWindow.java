@@ -27,8 +27,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-    private static final String COMPACT_MENUITEM_TEXT = "Compacted Cards";
-    private static final String EXPAND_MENUITEM_TEXT = "Expanded Cards";
+    private static final String COMPACT_MENUITEM_TEXT = "Compacted Mode";
+    private static final String EXPAND_MENUITEM_TEXT = "Expanded Mode";
     private static final String LIGHT_THEME_MENUITEM_TEXT = "Light Theme";
     private static final String DARK_THEME_MENUITEM_TEXT = "Dark Theme";
     private static final String ADD_COMMAND_SHORTCUT_TEXT = "add n/ p/ e/ a/ g/ b/ ra/ re/ s/ t/";
@@ -269,11 +269,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleCompactExpand() {
         if (isExpanded) {
-            logger.info("Switching to compacted cards...");
+            logger.info("Switching to compacted mode...");
             isExpanded = false;
             compactExpandItem.setText(EXPAND_MENUITEM_TEXT);
         } else {
-            logger.info("Switching to expanded cards...");
+            logger.info("Switching to expanded mode...");
             isExpanded = true;
             compactExpandItem.setText(COMPACT_MENUITEM_TEXT);
         }
@@ -298,17 +298,30 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isThemeChange()) {
-                assert !commandResult.isShowHelp() && !commandResult.isExit();
+                assert !commandResult.isToggleListMode()
+                        && !commandResult.isShowHelp()
+                        && !commandResult.isExit();
                 handleThemeCommand(commandResult.getTheme());
             }
 
+            if (commandResult.isToggleListMode()) {
+                assert !commandResult.isThemeChange()
+                        && !commandResult.isShowHelp()
+                        && !commandResult.isExit();
+                handleCompactExpand();
+            }
+
             if (commandResult.isShowHelp()) {
-                assert !commandResult.isThemeChange() && !commandResult.isExit();
+                assert !commandResult.isThemeChange()
+                        && !commandResult.isToggleListMode()
+                        && !commandResult.isExit();
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
-                assert !commandResult.isThemeChange() && !commandResult.isShowHelp();
+                assert !commandResult.isThemeChange()
+                        && !commandResult.isToggleListMode()
+                        && !commandResult.isShowHelp();
                 handleExit();
             }
 
