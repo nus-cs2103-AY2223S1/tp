@@ -159,7 +159,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Appointment feature
 
-This feature represents an appointment between a user and a client. An appointment consists of a DateTime and a Location. 
+This feature represents an appointment between a user and a client. An appointment consists of a DateTime and a Location.
 
 Overview of implementation for Appointment:
 
@@ -169,7 +169,7 @@ Overview of implementation for Appointment:
 * `JsonAdaptedAppointment`- This is a class that acts as a bridge between the `Appointment` class and `Storage` layer. It specifies how an `Appointment` object is converted to a JSON and vice versa.
 * `AddAppointmentCommandParser`- This is a class that parses user input from a `String` to an `AddAppointmentCommand` object. Validation for the user's input is performed in this class.
 * `AddAppointmentCommand`- This is a class where the logic for the Add Appointment command is specified and the `execute` method is called. It will access the `Model` layer to ensure that there will not be a duplicate `Appointment` and the maximum number of `Appointments` for the client has not been reached, followed by adding the `Appointment` to the `Model`.
-* `MaximumSortedList`- This is an abstraction that represents the list of `Appointments` for a specific client. It ensures that the `Appointments` are in sorted order according to chronological order, ensures that there is a maximum number, 3, of `Appointments` for each client and ensures that there are no duplicate `Appointments` for each client. 
+* `MaximumSortedList`- This is an abstraction that represents the list of `Appointments` for a specific client. It ensures that the `Appointments` are in sorted order according to chronological order, ensures that there is a maximum number, 3, of `Appointments` for each client and ensures that there are no duplicate `Appointments` for each client.
 
 The appointment feature currently supports 3 different commands.
 1. `add appointment`
@@ -181,7 +181,7 @@ The appointment feature currently supports 3 different commands.
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
 Step 2. If the user input matches the format for the command word for the `AddAppointmentCommand`, `AddressBookParser` will create an `AddAppointmentCommandParser` and will call the `AddAppointmentCommandParser##parse(args)` to parse the command.
 Step 3. Validation for the user input is performed, such as validating the client's `Index`, the format of the `DateTime` and `Location`.
-Step 4. If the user input is valid, a new `AddAppointmentCommand` object is created and returned to the `LogicManager`. 
+Step 4. If the user input is valid, a new `AddAppointmentCommand` object is created and returned to the `LogicManager`.
 Step 5. `LogicManager` will call `AddAppointmentCommand##execute(model)` method. Further validation is performed, such as checking whether a duplicate `Appointment` exists and whether the user has already scheduled the maximum number, 3, of `Appointments` for the specified client.
 Step 6. If the command is valid, the `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
 Step 7. `AddAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
@@ -327,25 +327,48 @@ The feature allows a user to view the correct prefixes and arguments of a comman
 The parameter hints for the command will be shown in the ResultDisplay once the command word is typed out.
 
 ### Calendar features
+The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
+* `Calendar Display` — Can display appointments of a month in a calendar format.
+* `Calendar Navigation` — Can navigate between months with/without a mouse.
+* `Calendar Pop-Up` — Can view the details of each appointment.
 
-#### Calendar navigation
+**Calendar Display**
 
-The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month. 
+Implementation:
+
+The following is a more detailed explanation on how `Calendar Display` works.
+1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`. This then initialises the `CalendarLogic` and the relevant methods to build the the `Calendar Display`.
+2. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
+
+The following activity diagram summarizes what happens when a user selects the Calendar tab:
+![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
+
+**Calendar Navigation**
+The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month.
 This feature uses JavaFX's FocusModel features to obtain different behaviours when a Ui component is focused.
 
-Users have 3 ways to navigate between different months when viewing the calendar:
+Implementation:
 
+The following is a more detailed explanation on how `Calendar Navigation` works.
 1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
 2. Pressing N or B key to view the next/previous month in the calendar
 3. Pressing the ENTER key when the Next/Prev button is focused to view the next/previous month in the calendar
+4. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
 
-Users have 2 ways to navigate between different appointments when viewing the calendar:
+The following activity diagram summarizes what happens when a user selects a navigation feature:
+![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
+#### Calendar Pop-up
+The calendar Pop-up allows user to view the details of the appointment in the calendar
 
-1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar 
+Implementation:
+
+The following is a more detailed explanation on how `Calendar Pop-Up` works.
+1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar
 2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
-3. Clicking on a desired appointment to view the appointment in the calendar 
+3. Clicking on a desired appointment to view the appointment in the calendar
 
-
+The following activity diagram summarizes what happens when a user selects an appointment in the calendar tab:
+![Calendar Pop-Up Activity](images/CalendarPopUpActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -458,10 +481,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. User did not input any arguments.
 
-    * 3a1. Financial Advisor Planner shows an error message. 
-  
+    * 3a1. Financial Advisor Planner shows an error message.
+
       Use case resumes at step 2.
-  
+
 * 3b. The given index is invalid.
 
     * 3b1. Financial Advisor Planner shows an error message.
@@ -490,7 +513,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User inputs add appointment command with the appointment details for a specific client 
+1. User inputs add appointment command with the appointment details for a specific client
 2. Financial Advisor Planner adds the appointment to the list of appointments for the specified client
 
     Use case ends.
@@ -501,26 +524,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Financial Advisor Planner shows an error message.
 
-      Use case ends. 
+      Use case ends.
 
 * 1b. The given index is invalid.
 
     * 1b1. Financial Advisor Planner shows an error message.
 
-      Use case ends. 
-     
+      Use case ends.
+    
 * 1c. The given date and time has an incorrect format.
 
     * 1c1. Financial Advisor Planner shows an error message.
 
       Use case ends.
-     
-* 1d. The input appointment already exists for the specified client 
+    
+* 1d. The input appointment already exists for the specified client
 
     * 1d1. Financial Advisor Planner shows an error message.
 
       Use case ends.
-     
+    
 * 1e. The specified client already has the maximum number of appointments
 
     * 1e1. Financial Advisor Planner shows an error message.
@@ -562,14 +585,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1d1. Financial Advisor Planner shows an error message.
 
       Use case ends.
-     
+    
 * 1e. The newly edited appointment already exists for the specified client
 
     * 1e1. Financial Advisor Planner shows an error message.
 
       Use case ends.
 
-     
+    
 **Use case: UC8 - Sort contacts by keywords**
 
 **MSS**
@@ -616,7 +639,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Financial Advisor Planner shows the appointments of the all the clients in a calendar view.
     * 1a2. User refreshes the calendar display.
     * 1a3. Financial Advisor Planner shows the appointments of the given clients in a calendar view.
-    
+
       Use case ends.
 
 * 2a. User could not see the appointment that was recently added.
@@ -625,7 +648,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a2. Financial Advisor Planner shows the appointments of the all clients in a calendar view, including the recently added appointment.
 
       Use case ends.
-    
+
 
 **Use case: UC10 - Display appointments of a new month in a calendar view**
 
@@ -633,7 +656,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to view all the appointments of a new month in a calendar view
 2. Financial Advisor Planner shows all the appointments in the given new month according to their dates
-    
+
     Use case ends.
 
     *{More to be added}*
@@ -690,7 +713,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Adding an appointment 
+### Adding an appointment
 1. Adding valid appointments until maximum appointment limit for a client is reached while all persons are being shown
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. No person has existing appointments scheduled.
@@ -699,16 +722,16 @@ testers are expected to do more *exploratory* testing.
        Expected: Person at index 1 has an appointment added. Details of the newly added appointment is shown in the status message.
 
     1. Test case: `aa 1 d/23-Jan-2023 12:30 PM l/Jurong Point, Starbucks`<br>
-       Expected: Person at index 1 has an appointment added. Details of the newly added appointment is shown in the status message. 
-       The GUI correctly reorders the appointment list by date and time. 
+       Expected: Person at index 1 has an appointment added. Details of the newly added appointment is shown in the status message.
+       The GUI correctly reorders the appointment list by date and time.
 
     1. Test case: `aa 1 d/22-Jan-2023 12:30 PM l/Jurong Point, Starbucks`<br>
       Expected: Person at index 1 has an appointment added. Details of the newly added appointment is shown in the status message.
       The GUI correctly reorders the appointment list by date and time.
-    
+
     1. Test case: `aa 1 d/24-Jan-2023 12:30 PM l/Jurong Point, Starbucks`<br>
        Expected: No appointment is added. Error details will show that the user has reached the maximum number of appointments(3) scheduled for this client
-    
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown

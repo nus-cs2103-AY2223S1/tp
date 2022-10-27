@@ -28,6 +28,8 @@ Class Appointment
 Class NormalTag
 Class PlanTag
 Class RiskTag
+Class Location
+Class DateTime
 
 
 Class CommandHistoryList
@@ -57,6 +59,8 @@ Person *--> IncomeLevel
 Person *--> Monthly
 Person *--> "0..3" Appointment
 Person *---> "*" Tag
+Appointment *--> "1" Location
+Appointment *--> "1" DateTime
 
 CommandHistory *--> "1" CommandHistoryList
 
