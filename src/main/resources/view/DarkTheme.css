@@ -179,7 +179,7 @@
     -fx-background-color: transparent;
 }
 
-.cell_small_label {
+.cell_small_label, .due_date_label {
     -fx-font-family: "Inter Medium";
     -fx-font-size: 12px;
     -fx-text-fill: #64748B;
@@ -217,14 +217,6 @@
 
 .task_cell_deco_line {
     -fx-stroke: #A1A1AA;
-}
-
-.due_date_label {
-    -fx-font-family: 'Arial';
-    -fx-font-weight: bold;
-    -fx-background-color: transparent;
-    -fx-font-size: 10;
-    -fx-text-fill: #A1A1AA;
 }
 
 .tags_pane .label {

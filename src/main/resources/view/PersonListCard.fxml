@@ -64,7 +64,7 @@
                                 </ImageView>
                             </graphic>
                             <padding>
-                               <Insets top="1.0" />
+                               <Insets top="1.0" right="3.0"/>
                             </padding>
                          </Label>
                       </graphic>
@@ -83,7 +83,7 @@
                                 </ImageView>
                             </graphic>
                             <padding>
-                                <Insets top="1.0" />
+                                <Insets top="1.0" right="3.0"/>
                             </padding>
                         </Label>
                     </graphic>
@@ -102,7 +102,7 @@
                                 </ImageView>
                             </graphic>
                             <padding>
-                                <Insets bottom="0.0" />
+                                <Insets right="3.0" />
                             </padding>
                         </Label>
                     </graphic>
