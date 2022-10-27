@@ -112,6 +112,7 @@ Examples:
 
 - `find_contact John` returns `john` and `John Doe`.
 - `find_contact alex david` returns `Alex Yeoh` and `David Li`.
+    ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Editing a contact: `edit_contact`
 
@@ -322,7 +323,7 @@ Format: `exit`
 To help you familiarize with the commands, Swift+ prompts you with command suggestions as you type and can autocomplete your commands until the next user-required input.
 
 1. Type the first few letters of a command you hope to use and Swift+ will display a suggested command. e.g. `lis`.<br>
-   ![image](images/autocomplete.png)
+   ![autocomplete](images/autocomplete.png)
 
 2. Press Tab to autocomplete your command with the prompted suggestion.
 
