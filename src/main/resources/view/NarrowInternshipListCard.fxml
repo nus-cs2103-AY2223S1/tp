@@ -25,13 +25,8 @@
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="company" styleClass="cell_big_label" text="\$first" />
+        <Label fx:id="id" styleClass="cell_big_label" wrapText="true" maxWidth="200"/>
+        <Label fx:id="company" styleClass="cell_big_label" text="\$first" wrapText="true" maxWidth="200" />
       </HBox>
       <Label fx:id="role" styleClass="cell_big_label" text="\$role" />
       <FlowPane fx:id="tags" />
@@ -44,12 +39,7 @@
          <children>
             <HBox alignment="TOP_RIGHT">
                <children>
-                  <Label fx:id="stage" styleClass="cell_big_label" text="\$stage">
-                     <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                     </minWidth>
-                  </Label>
+                  <Label fx:id="stage" styleClass="cell_big_label" text="\$stage" wrapText="true" maxWidth="200"/>
                </children>
             </HBox>
             <HBox alignment="TOP_RIGHT">
@@ -60,22 +50,6 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                      </minWidth>
                   </Label>
-               </children>
-            </HBox>
-            <HBox alignment="BOTTOM_RIGHT">
-               <children>
-                  <Button fx:id="tipsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showTips" prefHeight="25.0" prefWidth="25.0" text="Tips" textAlignment="CENTER">
-                     <font>
-                        <Font size="4.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" translateX="-6.0">
-                           <image>
-                              <Image url="@../images/lightbulb.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                </children>
             </HBox>
          </children>

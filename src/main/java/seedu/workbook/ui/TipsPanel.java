@@ -5,22 +5,23 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
-import javafx.stage.Stage;
 import seedu.workbook.commons.core.LogsCenter;
 
+
 /**
- * Controller for a tips page
+ * Controller for a tips panel
  */
-public class TipsWindow extends UiPart<Stage> {
+public class TipsPanel extends UiPart<Region> {
 
     private static final Logger logger = LogsCenter.getLogger(TipsWindow.class);
-    private static final String FXML = "TipsWindow.fxml";
+    private static final String FXML = "TipsPanel.fxml";
 
     @FXML
     private Label tipsHeader;
@@ -30,63 +31,9 @@ public class TipsWindow extends UiPart<Stage> {
 
     /**
      * Creates a new TipsWindow.
-     *
-     * @param root Stage to use as the root of the TipsWindow.
      */
-    public TipsWindow(Stage root) {
-        super(FXML, root);
-    }
-
-    /**
-     * Creates a new TipsWindow.
-     */
-    public TipsWindow() {
-        this(new Stage());
-    }
-
-    /**
-     * Shows the help window.
-     * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
-     */
-    public void show() {
-        logger.fine("Showing tips page about the internship stage.");
-        getRoot().show();
-        getRoot().centerOnScreen();
-    }
-
-    /**
-     * Returns true if the tips window is currently being shown.
-     */
-    public boolean isShowing() {
-        return getRoot().isShowing();
-    }
-
-    /**
-     * Hides the tips window.
-     */
-    public void hide() {
-        getRoot().hide();
-    }
-
-    /**
-     * Focuses on the tips window.
-     */
-    public void focus() {
-        getRoot().requestFocus();
+    public TipsPanel() {
+        super(FXML);
     }
 
     /*
@@ -115,8 +62,6 @@ public class TipsWindow extends UiPart<Stage> {
             Label tipLabel = new Label(tip);
 
             //Setting up Label to be fixed width.
-            tipLabel.setMinWidth(400);
-            tipLabel.setMaxWidth(400);
             tipLabel.setWrapText(true);
             tipLabel.getStyleClass().add("tipText");
 
@@ -132,6 +77,27 @@ public class TipsWindow extends UiPart<Stage> {
 
             gridPane.add(hbox, 0, i, 1, 1);
         }
+    }
+
+    /**
+     * Populates the tip panel for an internship that does not yet have customised tips.
+     */
+    public void noTipsPopulate() {
+        Label messageLabel = new Label("Sorry, there are no tips for this stage yet.");
+        messageLabel.setMinWidth(500);
+        messageLabel.setAlignment(Pos.CENTER);
+        messageLabel.getStyleClass().add("tipText");
+
+        HBox hbox = new HBox();
+        hbox.getChildren().add(messageLabel);
+
+        hbox.getStyleClass().add("tipContainer");
+
+        RowConstraints rowConstraint = new RowConstraints();
+        rowConstraint.setVgrow(Priority.ALWAYS);
+        gridPane.getRowConstraints().add(rowConstraint);
+
+        gridPane.add(hbox, 0, 0, 1, 1);
     }
 
 }
