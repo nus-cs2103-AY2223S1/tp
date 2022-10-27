@@ -192,6 +192,9 @@ Examples:
 
 ### Commands on item planning page
 
+Here's an example of how the item planning page looks like:
+![item planning page](images/itemPlanningUi.png)
+
 ### Adding an item : `add`
 
 Adds an item to the list of items.
