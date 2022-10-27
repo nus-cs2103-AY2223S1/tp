@@ -27,6 +27,9 @@ public class InternshipListPanel extends UiPart<Region> {
         super(FXML);
         internshipListView.setItems(internshipList);
         internshipListView.setCellFactory(listView -> new InternshipListViewCell());
+
+        // put first card into focus
+        internshipListView.getSelectionModel().selectFirst();
     }
 
     /**

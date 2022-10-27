@@ -146,11 +146,9 @@ public class MainWindow extends UiPart<Stage> {
                 // toggle to different layout
                 internshipListPanelPlaceholder.getChildren().clear();
                 internshipListPanelPlaceholder.getChildren().add(wideInternshipListPanel.getRoot());
-                logger.info("responsive ui testing:  width is: " + newVal.doubleValue());
             } else {
                 internshipListPanelPlaceholder.getChildren().clear();
                 internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
-                logger.info("responsive ui testing:  width is: " + newVal.doubleValue());
             }
         });
     }

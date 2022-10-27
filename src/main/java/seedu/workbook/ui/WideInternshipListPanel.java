@@ -35,6 +35,9 @@ public class WideInternshipListPanel extends UiPart<Region> {
         wideInternshipListView.setItems(internshipList);
         wideInternshipListView.setCellFactory(listView -> new WideInternshipListViewCell());
         setInternshipSelectedEventHandlers();
+
+        // put first card into focus
+        wideInternshipListView.getSelectionModel().selectFirst();
     }
 
     /**
