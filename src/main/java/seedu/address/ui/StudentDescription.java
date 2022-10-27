@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 import seedu.address.model.person.student.Student;
 
 
@@ -44,7 +44,9 @@ public class StudentDescription extends UiPart<Region> {
     @FXML
     protected FlowPane tags;
     @FXML
-    protected VBox assignedClassList;
+    protected FlowPane classes;
+    @FXML
+    protected StackPane nextOfKinPlaceholder;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -63,8 +65,12 @@ public class StudentDescription extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         student.getTuitionClasses().stream()
                 .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
-                .forEach(tuitionClass -> assignedClassList.getChildren().add(
-                        new AssignedClass(tuitionClass.getName().name).getRoot()));
+                .forEach(tuitionClass -> classes.getChildren().add(
+                        new Label(tuitionClass.getName().name)));
+        if (student.getNextOfKin() != null) {
+            nextOfKinPlaceholder.getChildren().add(new NextOfKinDescription(student.getNextOfKin()).getRoot());
+        }
+
     }
 
     public Student getDisplayedStudent() {
