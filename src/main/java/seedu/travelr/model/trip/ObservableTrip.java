@@ -52,8 +52,12 @@ public class ObservableTrip {
         return tripDescription;
     }
 
-    public SimpleStringProperty getObservableDate() { return tripDate; }
-    public SimpleStringProperty getObservableLocation() { return tripLocation; }
+    public SimpleStringProperty getObservableDate() {
+        return tripDate;
+    }
+    public SimpleStringProperty getObservableLocation() {
+        return tripLocation;
+    }
 
     public boolean isEqual(Trip trip) {
         return trip.getTitle().fullTitle.equals(tripTitle.get());
