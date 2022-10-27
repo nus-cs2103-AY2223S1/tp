@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.UniqueTeamList;
 
@@ -166,6 +167,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         getTeam().deleteLink(link);
     }
 
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+        getTeam().setTask(target, editedTask);
+    }
 
     //// util methods
 
