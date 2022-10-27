@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Tags a user with one or more tags.
  */
-public class TagListCommand extends TagCommandGroup {
+public class ListTagCommand extends TagCommandGroup {
     public static final String COMMAND_SPECIFIER = "list";
     public static final String COMMAND_SPECIFIER_ALIAS = "l";
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
@@ -17,7 +17,7 @@ public class TagListCommand extends TagCommandGroup {
 
     public static final String MESSAGE_SUCCESS = "Tags: %1$s";
 
-    public TagListCommand() {}
+    public ListTagCommand() {}
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -34,7 +34,7 @@ public class TagListCommand extends TagCommandGroup {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TagListCommand)) {
+        if (!(other instanceof ListTagCommand)) {
             return false;
         }
 

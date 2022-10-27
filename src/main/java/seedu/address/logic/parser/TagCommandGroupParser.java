@@ -9,10 +9,10 @@ import java.util.Set;
 
 import seedu.address.logic.commands.CreateTagCommand;
 import seedu.address.logic.commands.DeleteTagCommand;
+import seedu.address.logic.commands.ListTagCommand;
 import seedu.address.logic.commands.RemoveTagCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.TagCommandGroup;
-import seedu.address.logic.commands.TagListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -24,7 +24,7 @@ public class TagCommandGroupParser implements Parser<TagCommandGroup> {
     public static final String MESSAGE_USAGE = String.format("%s\n\n%s\n\n%s\n\n%s",
                     CreateTagCommand.MESSAGE_USAGE,
                     TagCommand.MESSAGE_USAGE,
-                    TagListCommand.MESSAGE_USAGE,
+                    ListTagCommand.MESSAGE_USAGE,
                     RemoveTagCommand.MESSAGE_USAGE);
 
     /**
@@ -45,10 +45,10 @@ public class TagCommandGroupParser implements Parser<TagCommandGroup> {
         String[] argsToPass = Arrays.copyOfRange(argArray, 1, argArray.length);
 
         switch (commandSpecifier) {
-        case TagListCommand.COMMAND_SPECIFIER:
+        case ListTagCommand.COMMAND_SPECIFIER:
             // Fallthrough
-        case TagListCommand.COMMAND_SPECIFIER_ALIAS:
-            return new TagListCommand();
+        case ListTagCommand.COMMAND_SPECIFIER_ALIAS:
+            return new ListTagCommand();
         case CreateTagCommand.COMMAND_SPECIFIER:
             // Fallthrough
         case CreateTagCommand.COMMAND_SPECIFIER_ALIAS:
