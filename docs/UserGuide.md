@@ -28,9 +28,9 @@ For a full list of commands and detailed instructions, head to the [Features](#f
     * [Viewing all students: `list`](#viewing-all-students-list)
     * [Finding a student: `find`](#finding-a-student-find)
       * [Find by Name](#find-by-name)
-      * [Find by Email](#)
-      * [Find by Address](#)
-      * [Find by Student's Contact Number](#)
+      * [Find by Email](#find-by-email)
+      * [Find by Address](#find-by-address)
+      * [Find by Student's Contact Number](#find-by-students-contact-number)
       * [Find by Next of Kin's Contact Number](#find-by-next-of-kins-contact-number)
       * [Find by Class Date](#find-by-class-date)
       * [Find by Tag](#find-by-tag)
@@ -420,6 +420,41 @@ Example:
 `find n/tan` returns `Tan Xiao Ming` and `John Tan`.
 
 ![UiFindName](images/UG-screenshots/UiFindName.png)
+
+#### Find by Email:
+
+Finds all students with a particular email.
+
+Format: `find e/EMAIL`
+
+- The search is case-insensitive. e.g., `ghost@woods.com` will match `ghoSt@woOds.com`.
+- Only one email can be searched at each time.
+- Full email must be used for corresponding student to be found e.g., `ghost` will not match `ghost@woods.com`.
+
+```yaml
+❗Caution:
+  Do not include more than one email such as
+  find e/jonsnow@winterfell.com ghost@woods.com.
+```
+
+Example:
+
+`find e/jonsnow@winterfell.com` returns all students with email set as `jonsnow@winterfell.com`.
+
+#### Find by Address:
+
+Finds all students with addresses matching the keywords.
+
+Format: `find a/KEYWORD [MORE_KEYWORDS]`
+
+- The search is case-insensitive. e.g., `Labrador` will match `LABRADOR`.
+- The order of the keywords does not matter. e.g., `Bukit Timah` will match `Timah Bukit`.
+- Students matching at least one keyword will be returned. e.g., `Bukit Timah` will return `Bukit Batok`, `Timah Hill`.
+- Only full words will be matched e.g., `Labra` will not match `Labrador`.
+
+Example:
+
+`find a/street` returns `Bukit Timah Street 3` and `Labrador Street 27`.
 
 #### Find by Student's Contact Number:
 
