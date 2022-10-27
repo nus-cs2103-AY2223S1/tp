@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <Label fx:id="currentVenueName" />
+   <HBox fx:id="venueListTableContainer" prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <StackPane fx:id="bookingTableViewPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+         <StackPane fx:id="venueListViewPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+      </children>
+   </HBox>
+</VBox>

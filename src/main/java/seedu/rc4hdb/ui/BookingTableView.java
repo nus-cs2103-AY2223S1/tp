@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
@@ -54,6 +55,7 @@ public class BookingTableView extends UiPart<Region> {
         configureTableProperties();
 
         updateTable(bookingList);
+        bookingList.addListener((ListChangeListener<? super Booking>) c -> updateTable(c.getList()));
     }
 
     private void addColumns() {
@@ -115,7 +117,7 @@ public class BookingTableView extends UiPart<Region> {
 
     }
 
-    public void updateTable(List<Booking> bookings) {
+    public void updateTable(List<? extends Booking> bookings) {
         this.weeklySchedule.setAll(DailySchedule.generateWeeklySchedule(bookings));
     }
 

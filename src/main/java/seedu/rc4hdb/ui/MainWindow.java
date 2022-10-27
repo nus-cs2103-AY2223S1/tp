@@ -7,7 +7,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -23,7 +22,6 @@ import seedu.rc4hdb.logic.Logic;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.venues.booking.Booking;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -41,7 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
 
     private ResidentTableView residentTableView;
-    private BookingTableView bookingTableView;
+    private VenueTabView venueTabView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CommandBox commandBoxRegion;
@@ -69,16 +67,10 @@ public class MainWindow extends UiPart<Stage> {
     private VBox venueTabContainer;
 
     @FXML
-    private Label venueName;
-
-    @FXML
-    private Label allVenue;
-
-    @FXML
     private StackPane residentTableViewPlaceholder;
 
     @FXML
-    private StackPane bookingTableViewPlaceholder;
+    private VBox venueTabViewPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -98,8 +90,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // Add listeners to fields to be listened to
         this.logic.getObservableFolderPath().addListener(getFileChangeListener());
-        this.logic.getObservableBookings().addListener(getBookingChangeListener());
-        this.logic.getObservableBookings().addListener(getViewingVenueChangeListener());
         this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
         this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
         this.logic.getObservableFolderPath().addListener(getFileChangeListener());
@@ -160,20 +150,11 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getHiddenFields());
         residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
 
-        bookingTableView = new BookingTableView(logic.getObservableBookings());
-        bookingTableViewPlaceholder.getChildren().addAll(bookingTableView.getRoot());
-
-        try {
-            venueName.setText("Currently Viewing: " + logic.getObservableBookings().get(0).getVenueName().toString());
-        } catch (IndexOutOfBoundsException e) {
-            venueName.setText("Currently Viewing: " + logic.getObservableVenues().get(0).toString());
-        }
-
-        allVenue.setText("All venues in RC4HDB: " + logic.getObservableVenues().toString());
+        venueTabView = new VenueTabView(logic.getObservableVenues(), logic.getObservableBookings());
+        venueTabViewPlaceholder.getChildren().add(venueTabView.getRoot());
 
         residentTab.setContent(residentTableViewPlaceholder);
         venueTab.setContent(venueTabContainer);
-
 
         tableViewPane.getTabs().addAll(residentTab, venueTab);
 
@@ -286,17 +267,6 @@ public class MainWindow extends UiPart<Stage> {
     private ChangeListener<Path> getFileChangeListener() {
         return (observableValue, oldValue, newValue) ->
                 statusBarFooter.updateFilePath(newValue);
-    }
-
-    private ListChangeListener<Booking> getBookingChangeListener() {
-        return c -> bookingTableView.updateTable(logic.getObservableBookings());
-    }
-
-    private ListChangeListener<Booking> getViewingVenueChangeListener() {
-        return c -> venueName.setText(
-                "Currently Viewing: "
-                        +
-                logic.getObservableBookings().get(0).getVenueName().toString());
     }
 
     private void setTabLabels() {
