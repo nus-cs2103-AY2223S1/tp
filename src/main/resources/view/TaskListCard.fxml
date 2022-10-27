@@ -50,6 +50,9 @@
                     </children>
                 </FlowPane>
             </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="18.0" translateX="25.0">
+                <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+            </HBox>
             <HBox prefHeight="18.0">
                 <children>
                     <FlowPane fx:id="contacts" alignment="CENTER_LEFT" prefHeight="18.0" translateX="20.0" HBox.hgrow="ALWAYS">

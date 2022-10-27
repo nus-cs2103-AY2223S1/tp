@@ -12,6 +12,7 @@ import javafx.scene.layout.Region;
 import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Deadline;
+import swift.model.task.Description;
 import swift.model.task.Task;
 
 /**
@@ -41,6 +42,8 @@ public class TaskCard extends UiPart<Region> {
     private FlowPane contacts;
     @FXML
     private Label deadline;
+    @FXML
+    private Label description;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -52,9 +55,8 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         taskName.setText(task.getName().fullName);
         deadline.setText(task.getDeadline().map(Deadline::toString).orElse("NO DEADLINE"));
+        description.setText(task.getDescription().map(Description::toString).orElse("NO DESCRIPTION"));
         setAssociatedContacts(personTaskBridgeList, personList);
-        // TODO: Populate the description
-        // task.getDescription().map(Description::toString).orElse("No description");
     }
 
     private void setAssociatedContacts(ObservableList<PersonTaskBridge> personTaskBridgeList,
