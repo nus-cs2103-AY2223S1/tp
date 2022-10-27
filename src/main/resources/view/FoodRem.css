@@ -73,7 +73,6 @@
   -fx-focus-traversable: false;
 }
 
-/* TODO: Find out what this element actually is */
 .result-box > TextArea * {
   -fx-padding: 0;
   -fx-background-color: transparent;
