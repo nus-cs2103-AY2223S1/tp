@@ -9,6 +9,20 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AssignCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.NextOfKinCommand;
+import seedu.address.logic.commands.ShowCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.UnassignCommand;
 
 /**
  * Controller for a help page
@@ -16,7 +30,8 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL
+            + "example\n"  + "example\n"  + "example\n"  + "example\n"  + "example\n"  + "example\n";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -66,6 +81,57 @@ public class HelpWindow extends UiPart<Stage> {
         logger.fine("Showing help page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    public void set() {
+        helpMessage.setText(HELP_MESSAGE);
+    }
+
+    public void set(CommandResult.CommandType commandType) {
+        switch (commandType) {
+        case ADD:
+            helpMessage.setText(AddCommand.HELP_MESSAGE);
+            break;
+//        case EDIT:
+//            helpMessage.setText(EditCommand.HELP_MESSAGE);
+//            break;
+//        case DELETE:
+//            helpMessage.setText(DeleteCommand.HELP_MESSAGE);
+//            break;
+//        case SORT:
+//            helpMessage.setText(SortCommand.HELP_MESSAGE);
+//            break;
+//        case CLEAR:
+//            helpMessage.setText(ClearCommand.HELP_MESSAGE);
+//            break;
+//        case FIND:
+//            helpMessage.setText(FindCommand.HELP_MESSAGE);
+//            break;
+//        case LIST:
+//            helpMessage.setText(ListCommand.HELP_MESSAGE);
+//            break;
+//        case EXIT:
+//            helpMessage.setText(ExitCommand.HELP_MESSAGE);
+//            break;
+//        case HELP:
+//            helpMessage.setText(HelpCommand.HELP_MESSAGE);
+//            break;
+//        case SHOW:
+//            helpMessage.setText(ShowCommand.HELP_MESSAGE);
+//            break;
+//        case ASSIGN:
+//            helpMessage.setText(AssignCommand.HELP_MESSAGE);
+//            break;
+//        case UNASSIGN:
+//            helpMessage.setText(UnassignCommand.HELP_MESSAGE);
+//            break;
+//        case NOK:
+//            helpMessage.setText(NextOfKinCommand.HELP_MESSAGE);
+//            break;
+        case OTHER:
+        default:
+            helpMessage.setText(HELP_MESSAGE);
+        }
     }
 
     /**
