@@ -3,6 +3,7 @@ package seedu.clinkedin.logic.parser;
 import static seedu.clinkedin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -18,6 +19,7 @@ import java.util.stream.Stream;
 
 import seedu.clinkedin.logic.commands.FindCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.DetailsContainKeywordsPredicate;
 import seedu.clinkedin.model.person.Email;
@@ -48,11 +50,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             Set<Address> addressList = ParserUtil.parseAddresses(argMultimap.getAllValues(PREFIX_ADDRESS));
             Set<Status> statusList = ParserUtil.parseStatuses(argMultimap.getAllValues(PREFIX_STATUS));
             Set<Note> noteList = ParserUtil.parseNotes(argMultimap.getAllValues(PREFIX_NOTE));
+            Set<Rating> ratingList = ParserUtil.parseRatings(argMultimap.getAllValues(PREFIX_RATING));
+            Set<Link> linkList = ParserUtil.parseLinks(argMultimap.getAllValues(PREFIX_LINK));
             Map<Prefix, List<String>> prefToStrings = new HashMap<>();
             CliSyntax.getPrefixTags().stream().forEach(pref -> prefToStrings.put(pref, argMultimap.getAllValues(pref)));
-            Set<Rating> ratingList = ParserUtil.parseRatings(argMultimap.getAllValues(PREFIX_RATING));
             return new FindCommand(new DetailsContainKeywordsPredicate(nameList,
-                    phoneList, emailList, addressList, statusList, noteList, ratingList, prefToStrings));
+                    phoneList, emailList, addressList, statusList, noteList, ratingList, linkList, prefToStrings));
 
         }
 
