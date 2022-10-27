@@ -260,6 +260,19 @@ Examples:
 - `assign c/1 t/1` Assigns the task at index 1 to the contact at index 1.
 - `assign c/3 t/2` Assigns the task at index 2 to the contact at index 3.
 
+### Unassigning tasks to contacts: `unassign`
+
+Unassigns a task to a contact shown in the task list and contact list respectively.
+
+Format: `unassign c/CONTACT_INDEX t/TASK_INDEX`
+
+- Unassigns the task at the specified `TASK_INDEX` to the contact at the specified `CONTACT_INDEX`. The indices refer to the index number shown in the displayed task list and contact list respectively. The indices **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+- `unassign c/1 t/1` Unassigns the task at index 1 to the contact at index 1.
+- `unassign c/3 t/2` Unassigns the task at index 2 to the contact at index 3.
+
 ### Exiting the program : `exit`
 
 Exits the program.
