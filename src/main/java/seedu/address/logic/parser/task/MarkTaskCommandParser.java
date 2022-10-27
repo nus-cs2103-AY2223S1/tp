@@ -32,7 +32,7 @@ public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
         }
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
-        editTaskDescriptor.setIsDone(true);
+        editTaskDescriptor.setCompletionStatus(true);
 
         return new MarkTaskCommand(index, editTaskDescriptor);
     }

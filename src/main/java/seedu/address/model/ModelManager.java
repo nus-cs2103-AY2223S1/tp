@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.task.Task.PREDICATE_SHOW_NON_ARCHIVED_TASKS;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -43,6 +44,9 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
         filteredTags = new FilteredList<>(this.addressBook.getTagList());
+
+        // Show only non-archived tasks
+        updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
     }
 
     public ModelManager() {
@@ -191,6 +195,7 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         addressBook.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
     }
 
     @Override
@@ -250,7 +255,7 @@ public class ModelManager implements Model {
 
         for (int i = 0; i < numOfTasks; i++) {
             Task currTask = filteredTasks.get(i);
-            if (currTask.getStatus()) {
+            if (currTask.getCompletionStatus()) {
                 numCompleted += 1;
             }
         }

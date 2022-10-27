@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.hash;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
@@ -19,6 +21,7 @@ public class EditTaskDescriptor {
     private Description description;
     private Deadline deadline;
     private Boolean isDone;
+    private Boolean isArchived;
     private Set<Tag> tags;
     private Id id;
 
@@ -31,7 +34,8 @@ public class EditTaskDescriptor {
     public EditTaskDescriptor(EditTaskDescriptor toCopy) {
         setDescription(toCopy.description);
         setDeadline(toCopy.deadline);
-        setIsDone(toCopy.isDone);
+        setCompletionStatus(toCopy.isDone);
+        setArchivalStatus(toCopy.isArchived);
         setTags(toCopy.tags);
     }
 
@@ -39,7 +43,7 @@ public class EditTaskDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(description, deadline, isDone, tags);
+        return CollectionUtil.isAnyNonNull(description, deadline, isDone, isArchived, tags);
     }
 
     public void setDescription(Description description) {
@@ -58,12 +62,20 @@ public class EditTaskDescriptor {
         return Optional.ofNullable(deadline);
     }
 
-    public void setIsDone(Boolean isDone) {
+    public void setCompletionStatus(Boolean isDone) {
         this.isDone = isDone;
     }
 
-    public Optional<Boolean> getIsDone() {
+    public Optional<Boolean> getCompletionStatus() {
         return Optional.ofNullable(isDone);
+    }
+
+    public void setArchivalStatus(Boolean isArchived) {
+        this.isArchived = isArchived;
+    }
+
+    public Optional<Boolean> getArchivalStatus() {
+        return Optional.ofNullable(isArchived);
     }
 
     public void setId(Id id) {
@@ -92,6 +104,11 @@ public class EditTaskDescriptor {
     }
 
     @Override
+    public int hashCode() {
+        return hash(description, deadline, isDone, isArchived, tags);
+    }
+
+    @Override
     public boolean equals(Object other) {
         // short circuit if same object
         if (other == this) {
@@ -108,7 +125,8 @@ public class EditTaskDescriptor {
 
         return getDescription().equals(e.getDescription())
                 && getDeadline().equals(e.getDeadline())
-                && getIsDone().equals(e.getIsDone())
+                && getCompletionStatus().equals(e.getCompletionStatus())
+                && getArchivalStatus().equals(e.getArchivalStatus())
                 && getTags().equals(e.getTags());
     }
 }

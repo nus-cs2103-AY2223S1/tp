@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.address.model.tag.Tag;
 
@@ -16,9 +17,16 @@ import seedu.address.model.tag.Tag;
  * Guarantees: description is present and not null, field values are validated, immutable.
  */
 public class Task {
+    /** {@code Predicate} that returns true for archived tasks, false otherwise */
+    public static final Predicate<Task> PREDICATE_SHOW_ARCHIVED_TASKS = Task::getArchivalStatus;
+
+    /** {@code Predicate} that returns true for non-archived tasks, false otherwise */
+    public static final Predicate<Task> PREDICATE_SHOW_NON_ARCHIVED_TASKS = task -> !task.getArchivalStatus();
+
     private final Description description;
     private final Deadline deadline;
     private Boolean isDone;
+    private Boolean isArchived;
     private final Set<Tag> tags = new HashSet<>();
     private final Id id;
 
@@ -34,6 +42,7 @@ public class Task {
         this.description = description;
         this.deadline = deadline;
         this.isDone = isDone;
+        this.isArchived = false;
         this.tags.addAll(tags);
         id = new Id();
     }
@@ -42,15 +51,17 @@ public class Task {
      * A constructor that creates an instance of Task with an existing id.
      * @param description The description of the task.
      * @param deadline The deadline of the task.
-     * @param isDone The status of the task.
+     * @param isDone The completion status of the task.
+     * @param isArchived The archival status of the task.
      * @param tags The set of tags of the task.
      * @param id The id of the task.
      */
-    public Task(Description description, Deadline deadline, Boolean isDone, Set<Tag> tags, Id id) {
+    public Task(Description description, Deadline deadline, Boolean isDone, Boolean isArchived, Set<Tag> tags, Id id) {
         requireAllNonNull(description, deadline, isDone, tags);
         this.description = description;
         this.deadline = deadline;
         this.isDone = isDone;
+        this.isArchived = isArchived;
         this.tags.addAll(tags);
         this.id = id;
     }
@@ -75,15 +86,23 @@ public class Task {
      * Returns true if task is done, false if task is not done.
      * @return boolean indicating task completion status.
      */
-    public Boolean getStatus() {
+    public Boolean getCompletionStatus() {
         return isDone;
+    }
+
+    /**
+     * Returns true if task is archived, false if task is not.
+     * @return boolean indicating task archival status.
+     */
+    public Boolean getArchivalStatus() {
+        return isArchived;
     }
 
     /**
      * Returns a string representing if the task is done.
      * @return String representation of a task completion.
      */
-    public String getStatusForDisplay() {
+    public String getCompletionStatusForDisplay() {
         return (isDone ? "completed" : "incomplete");
     }
 
@@ -171,14 +190,15 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getDescription().equals(getDescription())
                 && otherTask.getDeadline().equals(getDeadline())
-                && otherTask.getStatus().equals(getStatus())
+                && otherTask.getCompletionStatus().equals(getCompletionStatus())
+                && otherTask.getArchivalStatus().equals(getArchivalStatus())
                 && otherTask.getTags().equals(getTags())
                 && otherTask.getId().equals(getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, deadline, isDone, tags, id);
+        return Objects.hash(description, deadline, isDone, isArchived, tags, id);
     }
 
     @Override
@@ -187,14 +207,19 @@ public class Task {
         builder.append(getDescription())
                 .append("; Deadline: ")
                 .append(getDeadline())
-                .append("; Status: ")
-                .append(getStatus());
+                .append("; Completion Status: ")
+                .append(getCompletionStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        if (getArchivalStatus()) {
+            builder.append(";\nTask is Archived");
+        }
+
         return builder.toString();
     }
 }

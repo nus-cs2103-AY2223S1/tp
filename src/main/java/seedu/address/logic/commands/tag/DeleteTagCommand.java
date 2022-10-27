@@ -3,7 +3,7 @@ package seedu.address.logic.commands.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.address.model.task.Task.PREDICATE_SHOW_NON_ARCHIVED_TASKS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -129,7 +129,7 @@ public class DeleteTagCommand extends Command {
             }
 
             model.setTask(taskToEdit, editedTask);
-            model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+            model.updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
             for (String string : tagStrings) {
                 Tag toDelete = new Tag(string);
                 model.decreaseTagCount(toDelete);
@@ -172,7 +172,8 @@ public class DeleteTagCommand extends Command {
 
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getStatus());
+        Boolean updatedIsDone = editTaskDescriptor.getCompletionStatus().orElse(taskToEdit.getCompletionStatus());
+        Boolean updatedIsArchived = editTaskDescriptor.getArchivalStatus().orElse(taskToEdit.getArchivalStatus());
         Set<Tag> newTags = editTaskDescriptor.getTags().orElse(new HashSet<>());
         Set<Tag> updatedTags = new HashSet<>();
         updatedTags.addAll(taskToEdit.getTags());
@@ -182,7 +183,7 @@ public class DeleteTagCommand extends Command {
         // Id cannot be updated
         Id id = taskToEdit.getId();
 
-        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedTags, id);
+        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedIsArchived, updatedTags, id);
     }
 
     @Override

@@ -53,8 +53,8 @@ public class TaskCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        status.setText(task.getStatusForDisplay());
-        if (!isStatusComplete(task.getStatusForDisplay())) {
+        status.setText(task.getCompletionStatusForDisplay());
+        if (!isStatusComplete(task.getCompletionStatusForDisplay())) {
             status.setStyle("-fx-text-fill: #D7504D;");
         } else {
             status.setStyle("-fx-text-fill: #96D294;");
