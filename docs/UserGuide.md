@@ -186,13 +186,16 @@ Format: `view`
 Format: `completed`
 
 ### View lifetime summary: `summary`
-- Displays a summary window.
+Displays a summary window.
+
+Format: `summary`
+
 - Includes list of completed trips.
 - Total number of completed trips and events.
 - Progress indicator for trips and events.
 - Command must be used again to view updates to the summary.
 
-Format: `summary`
+
 
 ### Saving data
 Travelr data are saved locally automatically after any command that changes the data. There is no need to save manually.
