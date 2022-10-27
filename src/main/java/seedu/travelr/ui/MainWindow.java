@@ -44,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private MenuItem summaryMenuItem;
+
+    @FXML
     private StackPane tripsTextField;
 
     @FXML
@@ -183,6 +186,16 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    public void handleAndRefreshSummary() {
+        logic.refreshSummaryVariables();
+        handleSummary();
+    }
+
+    public void exitSummary() {
+        summaryWindow.hide();
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -222,6 +235,8 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            } else {
+                exitSummary();
             }
 
             if (commandResult.isExit()) {

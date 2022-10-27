@@ -33,6 +33,8 @@ public class SummaryCard extends UiPart<Region> {
     private ProgressIndicator TripsProgressIndicator;
     @FXML
     private ProgressIndicator EventsProgressIndicator;
+    @FXML
+    private Label totalUniqueLocations;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -45,5 +47,7 @@ public class SummaryCard extends UiPart<Region> {
         EventsProgress.textProperty().bind(summaryVariables.getEventsProgress());
         TripsProgressIndicator.progressProperty().bind(summaryVariables.getTripProgressPercent());
         EventsProgressIndicator.progressProperty().bind(summaryVariables.getEventProgressPercent());
+        totalUniqueLocations.textProperty().bind(summaryVariables.getTotalUniqueLocations().asString());
+
     }
 }

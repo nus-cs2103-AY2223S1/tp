@@ -16,16 +16,8 @@ public class SummaryCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.updateFilteredTripList(Model.PREDICATE_SHOW_ALL_TRIPS);
-        model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
+
         model.refreshSummaryVariables();
-
-        model.updateFilteredTripList(new TripCompletedPredicate());
-
-        // resets to AllTrips and bucketList
-        model.updateFilteredTripList(Model.PREDICATE_SHOW_ALL_TRIPS);
-        model.updateFilteredEventList(model.getBucketPredicate());
-        model.resetSelectedTrip();
 
         return new CommandResult(SHOWING_SUMMARY_MESSAGE, false, false, true);
     }

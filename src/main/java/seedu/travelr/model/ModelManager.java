@@ -17,6 +17,7 @@ import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
+import seedu.travelr.model.trip.TripCompletedPredicate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -186,7 +187,16 @@ public class ModelManager implements Model {
 
     @Override
     public void refreshSummaryVariables() {
+        updateFilteredTripList(Model.PREDICATE_SHOW_ALL_TRIPS);
+        updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
         summaryVariables.refresh(filteredTrips, filteredEvents);
+
+        updateFilteredTripList(new TripCompletedPredicate());
+
+        // resets to AllTrips and bucketList
+        updateFilteredTripList(Model.PREDICATE_SHOW_ALL_TRIPS);
+        updateFilteredEventList(getBucketPredicate());
+        resetSelectedTrip();
     }
 
     @Override

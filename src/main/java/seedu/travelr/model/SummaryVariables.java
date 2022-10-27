@@ -1,13 +1,17 @@
 package seedu.travelr.model;
 
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.travelr.model.component.Location;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.event.EventCompletedPredicate;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.TripCompletedPredicate;
+
+import java.util.HashSet;
 
 public class SummaryVariables {
 
@@ -17,6 +21,7 @@ public class SummaryVariables {
     private final SimpleStringProperty totalEventsCompleted;
     private final SimpleDoubleProperty tripProgressPercent;
     private final SimpleDoubleProperty eventProgressPercent;
+    private final SimpleIntegerProperty totalUniqueLocations;
 
     public SummaryVariables() {
         // initialise the observable boolean properties
@@ -26,6 +31,7 @@ public class SummaryVariables {
         totalEventsCompleted = new SimpleStringProperty();
         tripProgressPercent = new SimpleDoubleProperty(0.0);
         eventProgressPercent = new SimpleDoubleProperty(0.0);
+        totalUniqueLocations = new SimpleIntegerProperty(0);
     }
 
     public void refresh(ObservableList<Trip> allTripList, ObservableList<Event> allEventList) {
@@ -38,8 +44,14 @@ public class SummaryVariables {
         double tripProgressPercent = (double) totalTripsCompleted / allTripList.size();
         double eventProgressPercent = (double) totalEventsCompleted / allEventList.size();
 
-        this.totalTripsCompleted.set(String.format("%d Trips completed!", totalTripsCompleted));
-        this.totalEventsCompleted.set(String.format("%d Events completed!", totalEventsCompleted));
+        HashSet<Location> uniqueLocations = new HashSet<>();
+        for (Trip trip : completedTripsList) {
+            uniqueLocations.add(trip.getLocation());
+        }
+
+        this.totalUniqueLocations.set(uniqueLocations.size());
+        this.totalTripsCompleted.set(String.format("%d", totalTripsCompleted));
+        this.totalEventsCompleted.set(String.format("%d", totalEventsCompleted));
         this.tripsProgress.set(String.format("%.1f%s of trips completed",
                 tripProgressPercent * 100,
                 "%"));
@@ -72,6 +84,10 @@ public class SummaryVariables {
 
     public SimpleDoubleProperty getEventProgressPercent() {
         return eventProgressPercent;
+    }
+
+    public SimpleIntegerProperty getTotalUniqueLocations() {
+        return totalUniqueLocations;
     }
 
 }
