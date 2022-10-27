@@ -76,8 +76,10 @@ public class MainWindow extends UiPart<Stage> {
 
         // Set dependencies
         this.primaryStage = primaryStage;
-        primaryStage.setMinWidth(1100);
-        primaryStage.setMinHeight(800);
+        this.primaryStage.setWidth(1100);
+        this.primaryStage.setHeight(850);
+        this.primaryStage.setMinWidth(1100);
+        this.primaryStage.setMinHeight(850);
         this.logic = logic;
 
         // Configure the UI
@@ -151,7 +153,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-        //commandBox.focus();
+        commandBox.focus();
 
         personListPanel.getPersonListView().setOnMouseClicked((new EventHandler<MouseEvent>() {
             @Override
