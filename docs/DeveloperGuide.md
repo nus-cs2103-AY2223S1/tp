@@ -191,6 +191,25 @@ The following sequence diagram shows how the add command works.
     * Pros: Easier to implement
     * Cons: Lengthy command
 
+### Delete feature
+
+#### Proposed Implementation
+PHU allows user to delete multiple internships in one command. The proposed delete mechanism involves keeping track of the positions of `Internship` to be deleted, which is implemented by using `Indexes` class, and deleting all the corresponding internships.
+
+The following sequence diagram shows how the delete command works.
+
+![DeleteSequenceDiagram2](images/DeleteSequenceDiagram2.png)
+
+#### Design considerations
+**How to keep track of the positions of `Internship` to be deleted**:
+* **Alternative 1 (current choice)**: Use a new class called `Indexes`
+  * Pros: Improve maintainability
+  * Cons: Harder to implement
+
+* **Alternative 2** Use `java.util.Set`
+  * Pros: Easier to implement
+  * Cons: Harder to maintain in the future
+
 ### Edit feature
 
 #### Proposed Implementation
