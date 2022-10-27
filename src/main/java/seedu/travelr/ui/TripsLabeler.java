@@ -18,6 +18,10 @@ public class TripsLabeler extends UiPart<Region> {
     @FXML
     private Label tripsTextField;
 
+
+    /**
+     * Labels trips.
+     */
     public TripsLabeler(Image icon) {
         super(FXML);
         ImageView tripsIcon = new ImageView(icon);
@@ -27,7 +31,6 @@ public class TripsLabeler extends UiPart<Region> {
         tripsTextField.setContentDisplay(ContentDisplay.RIGHT);
 
     }
-
 
 
 }

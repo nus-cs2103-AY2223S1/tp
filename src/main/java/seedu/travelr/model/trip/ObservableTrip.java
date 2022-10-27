@@ -43,5 +43,11 @@ public class ObservableTrip {
         return tripDescription;
     }
 
-    public SimpleBooleanProperty getObservableBoolean() { return tripIsDone; }
+    public boolean isEqual(Trip trip) {
+        return trip.getTitle().fullTitle.equals(tripTitle.get());
+    }
+
+    public SimpleBooleanProperty getObservableBoolean() {
+        return tripIsDone;
+    }
 }

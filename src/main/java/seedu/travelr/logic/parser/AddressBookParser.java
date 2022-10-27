@@ -14,9 +14,10 @@ import seedu.travelr.logic.commands.Command;
 import seedu.travelr.logic.commands.DeleteCommand;
 import seedu.travelr.logic.commands.DeleteEventCommand;
 import seedu.travelr.logic.commands.DeleteEventFromTripCommand;
+import seedu.travelr.logic.commands.DisplayEventCommand;
+import seedu.travelr.logic.commands.DisplayTripCommand;
 import seedu.travelr.logic.commands.EventListCommand;
 import seedu.travelr.logic.commands.ExitCommand;
-import seedu.travelr.logic.commands.FindCommand;
 import seedu.travelr.logic.commands.HelpCommand;
 import seedu.travelr.logic.commands.ListCommand;
 import seedu.travelr.logic.commands.MarkTripDoneCommand;
@@ -79,11 +80,14 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        case DisplayTripCommand.COMMAND_WORD:
+            return new DisplayTripCommandParser().parse(arguments);
+
+        case DisplayEventCommand.COMMAND_WORD:
+            return new DisplayEventCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
 
         case EventListCommand.COMMAND_WORD:
             return new EventListCommand();

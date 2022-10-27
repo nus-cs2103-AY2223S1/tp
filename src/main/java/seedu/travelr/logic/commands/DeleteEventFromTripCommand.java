@@ -1,9 +1,9 @@
 package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.travelr.commons.core.Messages.MESSAGE_RESET_VIEW;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
-import static seedu.travelr.model.trip.TripComparators.DO_NOTHING;
 
 import java.util.HashSet;
 
@@ -22,7 +22,7 @@ public class DeleteEventFromTripCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-et";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to specified trip. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an event from specified trip. "
             + "Parameters: "
             + PREFIX_TITLE + "Event TITLE "
             + PREFIX_TRIP + "TRIP "
@@ -31,9 +31,9 @@ public class DeleteEventFromTripCommand extends Command {
             + PREFIX_TITLE + "Swim "
             + PREFIX_TRIP + "Honeymoon ";
 
-    public static final String MESSAGE_SUCCESS = "Event removed to trip: %1$s \nThe specified event has been returned "
-            + "to the bucket list. Current bucket list:";
-    public static final String MESSAGE_DUPLICATE_TRIP = "This event doesn't exists in the specified trip";
+    public static final String MESSAGE_SUCCESS = "Event %s removed from Trip %s.\n"
+            + "The specified event has been returned "
+            + "to the bucket list.";
 
     private Title eventToDelete;
     private Title tripToDeleteFrom;
@@ -60,7 +60,7 @@ public class DeleteEventFromTripCommand extends Command {
         Trip toDeleteFrom = model.getTrip(new Trip(tripToDeleteFrom, new Description("random"), new HashSet<>()));
 
 
-        if (!toDeleteFrom.contains(new Event((eventToDelete)))) {
+        if (!toDeleteFrom.containsEvent(new Event((eventToDelete)))) {
             throw new CommandException("Please enter a valid Event");
         }
 
@@ -68,9 +68,10 @@ public class DeleteEventFromTripCommand extends Command {
 
         toDeleteFrom.removeEvent(event);
         model.returnToBucketList(event);
-        model.updateFilteredEventList(model.getBucketPredicate());
-        model.sortTripsByComparator(DO_NOTHING);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, event));
+        model.resetView();
+
+        return new CommandResult(String.format(
+                MESSAGE_SUCCESS + "\n" + MESSAGE_RESET_VIEW, event.getTitle(), toDeleteFrom.getTitle()));
     }
 
     @Override
