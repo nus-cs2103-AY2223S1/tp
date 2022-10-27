@@ -64,11 +64,25 @@ public class PriceRange {
                 && (leftValue - rightValue <= 0);
     }
 
-    /*
-    Checks if a given Price is within the PriceRange.
+    /**
+     * Checks if a given Price is within the PriceRange.
      */
     public boolean isWithinPriceRange(Price p) {
         return (low.isSmallerThanOrEqual(p) && high.isGreaterThanOrEqual(p));
+    }
+
+    /**
+     * Compare the upperbound of two PriceRange objects.
+     */
+    public int compareUpperBound(PriceRange other) {
+        return high.isGreaterThanOrEqual(other.high) ? 1 : -1;
+    }
+
+    /**
+     * Compare the lowerbound of two PriceRange objects.
+     */
+    public int compareLowerBound(PriceRange other) {
+        return low.isGreaterThanOrEqual(other.low) ? 1 : -1;
     }
 
     @Override

@@ -26,6 +26,7 @@ import seedu.address.logic.commands.MatchPropertyCommand;
 import seedu.address.logic.commands.MultiFlagFilterBuyersCommand;
 import seedu.address.logic.commands.MultiFlagFilterPropsCommand;
 import seedu.address.logic.commands.SortBuyersCommand;
+import seedu.address.logic.commands.SortPropertiesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -102,6 +103,9 @@ public class CobbParser {
 
         case SortBuyersCommand.COMMAND_WORD:
             return new SortBuyersCommandParser().parse(arguments);
+
+        case SortPropertiesCommand.COMMAND_WORD:
+            return new SortPropertiesCommandParser().parse(arguments);
 
         case MultiFlagFilterBuyersCommand.COMMAND_WORD:
             return new MultiFlagFilterBuyersCommandParser().parse(arguments);

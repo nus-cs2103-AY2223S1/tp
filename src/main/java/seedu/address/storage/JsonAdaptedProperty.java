@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,6 +14,7 @@ import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
+
 
 /**
  * Jackson-friendly version of {@link Property}.
@@ -26,6 +29,7 @@ class JsonAdaptedProperty {
     private final String description;
     // characteristics cannot be null; converted to "" for saving to storage if null
     private final String characteristics;
+    private final String entryTime;
     private final JsonAdaptedOwner owner;
 
     /**
@@ -35,12 +39,14 @@ class JsonAdaptedProperty {
     public JsonAdaptedProperty(@JsonProperty("name") String propertyName, @JsonProperty("price") String price,
                                @JsonProperty("address") String address, @JsonProperty("description") String description,
                                @JsonProperty("characteristics") String characteristics,
-                               @JsonProperty("owner") JsonAdaptedOwner owner) {
+                               @JsonProperty("owner") JsonAdaptedOwner owner,
+                               @JsonProperty("entryTime") String entryTime) {
         this.propertyName = propertyName;
         this.price = price;
         this.address = address;
         this.description = description;
         this.characteristics = characteristics;
+        this.entryTime = entryTime;
         this.owner = owner;
     }
 
@@ -52,6 +58,7 @@ class JsonAdaptedProperty {
         price = source.getPrice().value;
         address = source.getAddress().value;
         description = source.getDescription().value;
+        entryTime = source.getPropertyEntryTime().toString();
         characteristics = source.getCharacteristics()
                 .map(Characteristics::toString)
                 .orElse("");
@@ -64,6 +71,14 @@ class JsonAdaptedProperty {
      * @throws IllegalValueException if there were any data constraints violated in the adapted property.
      */
     public Property toModelType() throws IllegalValueException {
+
+        if (entryTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    "entry time not found"));
+        }
+
+        final LocalDateTime modelTime = LocalDateTime.parse(entryTime);
+
         if (propertyName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     PropertyName.class.getSimpleName()));
@@ -118,6 +133,6 @@ class JsonAdaptedProperty {
         final Owner modelOwner = owner.toModelType();
 
         return new Property(modelPropertyName, modelPrice, modelAddress, modelDescription,
-                modelCharacteristics, modelOwner);
+                modelCharacteristics, modelOwner, modelTime);
     }
 }

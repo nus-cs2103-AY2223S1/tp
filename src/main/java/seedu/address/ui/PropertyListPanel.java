@@ -21,12 +21,14 @@ public class PropertyListPanel extends UiPart<Region> {
     @FXML
     private ListView<Property> propertyListView;
 
+    private ObservableList<Property> currentlyDisplayedPropertyList;
+
     /**
      * Creates a {@code PropertyListPanel} with the given {@code ObservableList}.
      */
-    public PropertyListPanel(ObservableList<Property> propertyList) {
+    public PropertyListPanel(ObservableList<Property> filteredPropertyList) {
         super(FXML);
-        propertyListView.setItems(propertyList);
+        propertyListView.setItems(filteredPropertyList);
         propertyListView.setCellFactory(listView -> new PropertyListViewCell());
     }
 
