@@ -12,8 +12,8 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest [idENTify.jar](https://github.com/AY2223S1-CS2103T-T17-4/tp/releases/tag/v1.3) from here.
 3. Copy the file to your preferred folder.
-4. Double-click the file to start the app.
-5. Refer to the Features below for the available commands. 
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+![start_up](images/IdENTifyStartUp.png)
 
 ## Features
 
@@ -366,7 +366,7 @@ Examples:
 * `find ds/2020-01-01 00:00` displays all appointments occuring at or after 1st of January 2020. It will also display all patients with at least one of said appointments.
 * `find a/Clementi r/Sleep Apena` displays all patients whose address contains `Clementi` and has at least 1 appointment containing `Sleep Apena` as its reason. It will also only display appointments containing `Sleep Apena` of said patients.
 * `find ta/Throat ta/Nose` displays all appointments with both `Throat` and `Nose` tags, and all patients with at least one of said appointments.
-* `find t/throat` returns `Bernice Yu` and `David Li`, both of which contains the `Throat` tag. <br>
+* `find t/throat` returns `Alex Yeoh`, `Bernice Yu` and `David Li` as they all contain the `Throat` tag. <br>
   ![result for 'find t/throat'](images/FindThroatTagResult.png)
 
 ### Others
