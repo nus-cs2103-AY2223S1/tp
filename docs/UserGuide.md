@@ -24,6 +24,10 @@ faster than other GUI-based applications.
         * Adding a person: [`add`](#adding-a-person-add)
         * Editing a person: [`edit`](#editing-a-person--edit)
         * Locating persons by: [`find`](#locating-persons-by-name-find)
+        * Entering grades by: `grade`
+        * Sorting by grade by: `sort`
+        * Predicting grades by: `predict`
+        * Adding remarks by: `remark`
         * Deleting a person: [`delete`](#deleting-a-person--delete)
     * [FAQ](#faq)
     * [Command Summary](#command-summary)
@@ -198,6 +202,38 @@ Format: `delete INDEX`
 Examples:
 * `delete 1`
 * `delete 5`
+
+### Entering student's grades : `grade`
+
+Opens up a GUI window for the user to enter student's assignment results.
+
+Format: `grade SUBJECT_ASSIGNMENT_TOTALSCORE_WEIGHTAGE_DIFFICULTY`
+
+* The Subject refers to subject of the assignment, eg - math
+* The Assignment refers to the name of the assignment, eg -CA1.
+* The Total score refers to the maximum achievable score in the assignment
+* The weightage refers to the weightage of the assignment, written in decimal form. For example, if the assignment is worth 40% of the total grade, write 0.4
+* The difficulty of an assignment is an arbitrary number out of 5 to denote how difficult the assignment is
+
+Examples:
+* `grade math_CA1_100_0.5_1.0`
+* `grade english_CA1_40_0.2_4.5`
+
+Example use
+
+1) Type in "grade math_CA1_100_0.5_1.0" into the input box as shown:
+
+
+   ![Example Command](images/GradeCommand.png "Grade Command")
+
+
+2) A GUI will appear on the screen for you to start entering the grades of your students
+
+
+   ![Example GUI](images/GradeCommandGUI.png "Grade Command")
+3) Enter the score achieved by the student and click on `Enter` button. 
+4) After entering the score, the system will automatically prompt you to enter the score for the next student.
+5) Continue entering the score until the system detects that all of the scores have been entered.
 
 ### Predicting a student's grade : `predict`
 
