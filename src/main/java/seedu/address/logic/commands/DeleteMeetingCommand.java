@@ -1,14 +1,15 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Deletes a meeting identified using it's displayed index from the address book.
@@ -33,7 +34,7 @@ public class DeleteMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Meeting> lastshownlist =model.getFilteredMeetingList();
+        List<Meeting> lastshownlist = model.getFilteredMeetingList();
 
         if (targetIndex.getZeroBased() >= lastshownlist.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
