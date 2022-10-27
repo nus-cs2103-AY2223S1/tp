@@ -77,7 +77,11 @@ public class ProfileCard extends UiPart<Region> {
         }
         profile.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label label = new Label(tag.tagName);
+                    label.setMaxWidth(150.0);
+                    tags.getChildren().add(label);
+                });
     }
 
     @Override

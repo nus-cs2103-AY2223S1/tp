@@ -50,14 +50,14 @@
         <HBox VBox.vgrow="ALWAYS">
           <VBox fx:id="profileList" styleClass="pane-with-border" minWidth="300" HBox.hgrow="ALWAYS">
             <padding>
-              <Insets top="5" right="0" bottom="10" left="10" />
+              <Insets top="5" right="5" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="profileListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
           <VBox styleClass="pane-with-border" minWidth="500" HBox.hgrow="ALWAYS">
             <padding>
-              <Insets top="5" right="10" bottom="10" left="0" />
+              <Insets top="5" right="10" bottom="10" left="5" />
             </padding>
             <children>
               <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
