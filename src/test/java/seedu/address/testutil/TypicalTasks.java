@@ -23,8 +23,8 @@ public class TypicalTasks {
             new TaskBuilder()
                     .withTitle("Assign contacts to task")
                     .withCompleted(false)
-                    .withProject("CS2103T")
                     .withDeadline("01 January 2023")
+                    .withProject("CS2103T")
                     .withContacts("George Best")
                     .build();
     public static final Task TASK_THREE = new TaskBuilder().withTitle("Set deadline for a task").build();

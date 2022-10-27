@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Marks a task of a person as complete or incomplete.
+ * Marks a task and sets it as complete.
  */
 public class MarkTaskCommand extends TaskCommand {
 

@@ -208,5 +208,18 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
+
+        try {
+            storage.saveAddressBook(model.getAddressBook());
+        } catch (IOException e) {
+            logger.severe("Failed to save Address Book " + StringUtil.getDetails(e));
+        }
+
+        try {
+            storage.saveTaskPanel(model.getTaskPanel());
+        } catch (IOException e) {
+            logger.severe("Failed to save Task Panel " + StringUtil.getDetails(e));
+        }
+
     }
 }
