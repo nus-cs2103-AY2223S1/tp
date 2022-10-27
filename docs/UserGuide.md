@@ -8,22 +8,24 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
 via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 
-* [Quick start](quick-start)
-* [Features](features)
-   * Viewing help : help
-   * Adding a person: add
-   * Listing all persons : list
-   * Editing a person : edit
-   * Deleting a person : delete
-   * Find a person: find
-   * Clearing all entries : clear
-   * Undoing last command : undo
-   * Sorting all entries by a specific field : sort
-   * Add a person to a group: addtogroup
-   * Remove a person from a group: ungroup
-   * Open a group window: group
-   * Email all persons in a group: emailall
-* [Command summary](command-summary)
+* [Quick start](#quick-start)
+* [Features](#features)
+   * Viewing help : [`help`](#viewing-help--help)
+   * Adding a person: [`add`](#adding-a-person-add)
+   * Listing all persons : [`list`](#listing-all-persons--list)
+   * Editing a person : [`edit`](#editing-a-person--edit)
+   * Deleting a person : [`delete`](#deleting-a-person--delete)
+   * Find a person: [`find`](#find-entries-by-keywords-of-fields--find-keyword-eg-find-john)
+   * Clearing all entries : [`clear`](#clearing-all-entries--clear)
+   * Undoing last command : [`undo`](#undo-last-modification--undo)
+   * Sorting entries by field : [`sort`](#sort-entries-by-field--sort-prefix-eg-sort-n)
+   * Add a person to a group: [`addtogroup`](#adding-a-person-to-a-group--addtogroup)
+   * Remove a person from a group: [`ungroup`](#removing-a-person-from-a-group--ungroup)
+   * Open a group window: [`group`](#opening-a-group-window--group)
+   * Email all persons in a group: [`emailall`](#email-all-persons-in-a-group--emailall)
+   * Add a person to favorite : [`fav`](#add-a-person-to-favorite--fav)
+   * Find persons with a preferred social media : [`social`](#find-persons-with-a-preferred-social-media--social)
+* [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,7 +37,8 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
 
 3. Copy the file to the folder you want to use as the _home folder_ for your uNivUSal.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -149,6 +152,21 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in uNivUSal.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Find entries by keywords of fields : `find KEYWORD` e.g. `find John`
+
+Finds entries in uNivUSal that match or contain case-insensitive keyword. Current fields searchable are:
+1. Name
+2. Phone Number
+
+Format: `find KEYWORD`
+* Filters the entries by the specified `KEYWORD`.
+* Displays filtered list.
+
+Examples:
+* `find John` displays the entries filtered by names that contain the case-insensitive KEYWORD `John`.
+* `find J` displays the entries filtered by names that contain the case-insensitive KEYWORD `J`.
+* `find 123456` displays the entries filtered by phone numbers that contain the case-insensitive KEYWORD `123456`.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from uNivUSal.
@@ -181,21 +199,6 @@ Examples:
 * `sort n/` displays the entries sorted by name alphabetically.
 * `sort e/` displays the entries sorted by email address alphabetically.
 * `sort p/` displays the entries sorted by phone number in an ascending manner.
-
-### Find entries by keywords of fields : `find KEYWORD` e.g. `find John`
-
-Finds entries in uNivUSal that match or contain case-insensitive keyword. Current fields searchable are:
-1. Name
-2. Phone Number
-
-Format: `find KEYWORD`
-* Filters the entries by the specified `KEYWORD`.
-* Displays filtered list.
-
-Examples:
-* `find John` displays the entries filtered by names that contain the case-insensitive KEYWORD `John`.
-* `find J` displays the entries filtered by names that contain the case-insensitive KEYWORD `J`.
-* `find 123456` displays the entries filtered by phone numbers that contain the case-insensitive KEYWORD `123456`.
 
 ### Adding a person to a group : `addtogroup`
 
@@ -248,6 +251,32 @@ Format: `emailall GROUPNAME`
 Examples:
 * `emailall friends` opens the email client to all persons in the group `friends`.
 
+### Add a person to favorite : `fav`
+
+Adds the specified person to `favorite` group.
+
+Format: `fav INDEX`
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `fav 1` will add 1st person in the current list to `favorite`. 
+
+### Find persons with a preferred social media : `social`
+
+Filters the current list to people who set their preferred social media to the input.
+
+Format: `social SOCIAL`
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `social telegram` will display a filtered list of persons with `telegram` as their preferred social media.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -297,5 +326,7 @@ _Details coming soon ..._
 | **Add To Group**      | `addtogroup INDEX GROUP`                                                                                                                                    |
 | **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                       |
 | **Open Group Window** | `group GROUPNAME`                                                                                                                                           |
+| **Favorite**          | `fav INDEX`                                                                                                                                                 |
+| **Social**            | `social SOCIAL`                                                                                                                                             |
 | **Email All**         | `emailall GROUPNAME`                                                                                                                                        |
 | **Exit**              | `exit`                                                                                                                                                      |
