@@ -66,7 +66,6 @@ public class FindStudentNameCommandTest {
     @Test
     public void execute_multipleKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 2);
-        System.out.println(expectedMessage);
         StudentNameContainsKeywordsPredicate predicate = preparePredicate("ku  / kurz / IoN ");
         FindStudentNameCommand command = new FindStudentNameCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);

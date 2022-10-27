@@ -43,4 +43,5 @@ public class FindCommand extends Command {
                 || (other instanceof FindCommand // instanceof handles nulls
                 && fieldPredicate.equals(((FindCommand) other).fieldPredicate)); // state check
     }
+
 }

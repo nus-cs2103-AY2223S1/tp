@@ -36,7 +36,7 @@ public class AddDeadlineCommandTest {
         ModelManager model = new ModelManager();
         AddDeadlineCommandTest.DeadlineListStubAcceptingDeadlineAdded deadlineListStub = new AddDeadlineCommandTest
                 .DeadlineListStubAcceptingDeadlineAdded();
-        Deadline validDeadline = SampleDataUtil.getDeadline("Valid name", "1970-01-01 00:00");
+        Deadline validDeadline = SampleDataUtil.getDeadline("Valid name", "01-01-1970 00:00");
         Student validStudent = new StudentBuilder().build();
         model.addStudent(validStudent);
         deadlineListStub.add(validDeadline);
@@ -51,7 +51,7 @@ public class AddDeadlineCommandTest {
     @Test
     public void execute_duplicateDeadline_throwsCommandException() throws CommandException {
         ModelManager model = new ModelManager();
-        Deadline validDeadline = SampleDataUtil.getDeadline("Valid name", "1970-01-01 00:00");
+        Deadline validDeadline = SampleDataUtil.getDeadline("Valid name", "01-01-1970 00:00");
         Student validStudent = new StudentBuilder().build();
         model.addStudent(validStudent);
         AddDeadlineCommand addDeadlineCommand = new AddDeadlineCommand(validDeadline, validStudent.getStudentId());
@@ -65,8 +65,8 @@ public class AddDeadlineCommandTest {
     public void equals() {
         Student alice = new StudentBuilder().withStudentId("A1111111U").build();
         Student bob = new StudentBuilder().withStudentId("A1111112U").build();
-        Deadline aliceDeadline = SampleDataUtil.getDeadline("Task 1", "1970-01-01 00:00");
-        Deadline bobDeadline = SampleDataUtil.getDeadline("Task 2", "1970-01-01 00:00");
+        Deadline aliceDeadline = SampleDataUtil.getDeadline("Task 1", "01-01-1970 00:00");
+        Deadline bobDeadline = SampleDataUtil.getDeadline("Task 2", "01-01-1970 00:00");
         AddDeadlineCommand addAliceTaskCommand = new AddDeadlineCommand(aliceDeadline, alice.getStudentId());
         AddDeadlineCommand addBobTaskCommand = new AddDeadlineCommand(bobDeadline, bob.getStudentId());
 
