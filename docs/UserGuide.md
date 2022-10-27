@@ -11,7 +11,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. **Introduction**
+## **1 Introduction**
 
 ### 1.1 What is Class-ify?
 
@@ -26,7 +26,7 @@ get you started in no time and be your guiding light as you navigate through Cla
 guide, head over to [Quick Start](#3-quick-start) or to learn about Class-ify's features, head over to
 [Features](#4-features) for more information.
 
-## 2. How to use this user guide
+## **2 How to use this user guide**
 
 Class-ify uses a Command Line Interface (CLI), which may be new to some users. If you are a new user, we strongly recommend you to look through
 the user guide from start to end to fully understand how to use Class-ify. However, you may also choose to skip to the relevant sections described below:
@@ -38,7 +38,7 @@ the user guide from start to end to fully understand how to use Class-ify. Howev
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. **Quick start**
+## **3 Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -52,7 +52,7 @@ the user guide from start to end to fully understand how to use Class-ify. Howev
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`addstud`**`nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 exam/CA1 90` : Adds a new student named `John Doe` with his details to *Class-ify*.
+   * **`addStudent`**`nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 exam/CA1 90` : Adds a new student named `John Doe` with his details to *Class-ify*.
 
    * **`viewAll`** : Shows a list of all student records.
 
@@ -66,7 +66,7 @@ Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. **Features**
+## **4 Features**
 Before you begin reading, here are some special notations to help you along the way!
 
 **Tips**
@@ -94,7 +94,7 @@ will delete all data stored locally and this action is irreversible. You will lo
 :exclamation: Stop and read carefully when you see this!
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source:
+<div markdown="block" class="alert alert-info">:information_source:
 **Notes on the Command Format:** <br>
 
 * **Command Words**
@@ -111,13 +111,13 @@ will delete all data stored locally and this action is irreversible. You will lo
   * Additional parameters for commands that do not require parameters will be ignored.<br>
   e.g. `exit hello123` will be accepted as the `exit` command.
   * Optional parameters are indicated by square brackets `[]`. <br>
-  e.g. For the `addStud` command, the command format is `addStud nm/NAME id/ID class/CLASS [pn/PARENTNAME] [hp/PHONENUMBER]...`<br>
+  e.g. For the `addStudent` command, the command format is `addStudent nm/NAME id/ID class/CLASS [pn/PARENTNAME] [hp/PHONENUMBER]...`<br>
   `[pn/PARENTNAME]` and `[hp/PHONENUMBER]` refer to optional parameters that can be supplied by the user.
 </div><br>
 
-## 4.1 Managing student records
+### 4.1 Managing student records
 
-### 4.1.1 Adding a new student record : `addstud`
+#### 4.1.1 Adding a new student record : `addStudent`
 
 Creates a new student record with the following details:
 
@@ -129,7 +129,7 @@ Creates a new student record with the following details:
 * Mobile Number of Parent `hp/`
 * Email Address of Parent `e/`
 
-Format: `addstud nm/[STUDENT-NAME] id/[ID] class/[CLASS] exam/[NAME SCORE] pn/[PARENT-NAME] hp/[PHONE-NUMBER] e/[EMAIL]`
+Format: `addStudent nm/[STUDENT-NAME] id/[ID] class/[CLASS] exam/[NAME SCORE] pn/[PARENT-NAME] hp/[PHONE-NUMBER] e/[EMAIL]`
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip #1:** All **bolded** fields are compulsory. Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
@@ -141,17 +141,17 @@ Example: `exam/CA1 50 exam/SA1 60 exam/CA1 80` will add grades 80 for CA1 and 60
 </div>
 
 Examples:
-* `addstud nm/Peter Tan id/452B class/1F`
-* `addstud nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
-* `addstud nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
+* `addStudent nm/Peter Tan id/452B class/1F`
+* `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
+* `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
 
-### 4.1.2 Clearing all student records : `clear`
+#### 4.1.2 Clearing all student records : `clear`
 
 Clears all student records from local storage.
 
 Format: `clear`
 
-### 4.1.3 Deleting a student record : `delete`
+#### 4.1.3 Deleting a student record : `delete`
 
 Deletes an existing student record from the class list, using the student’s name or the student’s ID.
 
@@ -161,13 +161,13 @@ Examples:
 * `delete nm/Jonathan Tan` deletes student record with student name as 'Jonathan Tan'.
 * `delete id/123A` deletes student record with student ID as '123A'.
 
-### 4.1.4 Editing a student record : `edit`
+#### 4.1.4 Editing a student record : `edit`
 
 Edits the respective details of an existing student.
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3 ...
 * Existing values will be updated to the new input values.
-* Refer to the complete list of tags for each field under [addstud command](#411-adding-a-new-student-record--addstud).
+* Refer to the complete list of tags for each field under [addStudent command](#411-adding-a-new-student-record--addstudent).
 
 Format: `edit [INDEX] nm/[STUDENT-NAME] id/[ID] exam/[NAME SCORE] pn/[PARENT-NAME]...`
 
@@ -175,29 +175,28 @@ Examples:
 *  `edit 1 exam/CA2 70 exam/SA1 60` Adds or updates the CA2 and SA1 exam grades of the 1st student to be `70` and `60` respectively.
 *  `edit 2 nm/Jacob Teo` Edits the name of the 2nd student to `Jacob Teo`.
 
-## 4.2 Managing display of student records
+### 4.2 Managing display of student records
 <div markdown="span" class="alert alert-info">:information_source:
    **Note:**
    The default display, when starting the application, shows all student records in Classify.
    Commands related to managing display are not saved upon exiting the application.
 </div>
 
-### 4.2.1 Finding a student record : `find`
+#### 4.2.1 Finding a student record : `find`
 
-Shows a full record, including all stored details, using the input student's name or student's id. Search for multiple
-students by including more keywords
+Shows a list of students whose name contains the specified name keywords, or whose Id matches the given Id.
 
-Format: `view nm/[name]` or `view id/[id]`
+Format: `find nm/[name]` or `find id/[id]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only the name or the id is searched, depending on the given input.
 * Only full names / full ids will be matched e.g. `Han` will not match `Hans`
 
 Examples:
-* `view nm/John` returns the record for the student named `john`
-* `view nm/john alice` returns the records for the students named `John` and the student named `Alice`.
+* `find nm/John` returns the record for the student named `john`
+* `find nm/john alice` returns the records for the students named `John` and the student named `Alice`.
 
-### 4.2.2 Toggling view : `toggleView`
+#### 4.2.2 Toggling view : `toggleView`
 
 Toggles the display between showing and hiding the students' parent details. 
 
@@ -209,13 +208,13 @@ Format: `toggleView`
    **Tip:** The default display renders the students' parent details as a reminder that these optional fields exists.    
 </div>
 
-### 4.2.3 Viewing all student records : `viewAll`
+#### 4.2.3 Viewing all student records : `viewAll`
 
 Shows a list of all student records in Classify.
 
 Format: `viewAll`
 
-### 4.2.4 Viewing student records from a class : `viewClass`
+#### 4.2.4 Viewing student records from a class : `viewClass`
 
 Shows a list of all students in the specified class.
 
@@ -225,30 +224,47 @@ Format: `viewClass CLASS`
 * Class name is case-insensitive.
 
 Examples:
-* `viewClass 2A` Displays the list of students with the class '2A'.
-* `viewClass Loyalty1` Displays the list of students with the class 'LOYALTY1'.
+* `viewClass 2A` Displays the list of students with the class `2A`.
+* `viewClass Loyalty1` Displays the list of students with the class `LOYALTY1`.
 
-## 4.3 Exam statistics
+### 4.3 Exam statistics
 
-### 4.3.1 Getting exam statistics: `statistics`
+#### 4.3.1 Getting exam statistics: `viewStats`
 
-*To be updated* 
+Shows a list of students in the specified class, and displays the mean of the specified exam for that class. If filter 
+is set to "ON", only students whose score for the specified exam falls below the mean will be displayed.
 
-## 4.4 Miscellaneous
+The list of students displayed will be arranged in ascending grades, using the grade for the specified exam.
 
-### 4.4.1 Exiting the application : `exit`
+Format: `viewStats class/CLASS exam/EXAM filter/FILTER`
+
+* Class name can only contain alphanumeric characters.
+* Class name is case-insensitive.
+* Exam name should be either "CA1", "CA2", "SA1" or "SA2".
+* Exam name is case-insensitive
+* Filter is either "ON" or "OFF", and is case-insensitive.
+
+Examples:
+* `viewStats class/4a exam/sa1 filter/off` Displays the mean obtained by class "4A" for "SA1", as well as the list of 
+all the students in the class '4A', arranged in ascending grades for "SA1".
+* `viewStats class/4A exam/sa1 filter/on` Displays the mean obtained by class "4A" for "SA1", as well as the list of 
+students in class "4A" whose grade for "SA1" falls below the mean, arranged in ascending grades for "SA1".
+
+### 4.4 Miscellaneous
+
+#### 4.4.1 Exiting the application : `exit`
 
 Exits the application.
 
 Format: `exit`
 
-### 4.4.2 Viewing help : `help`
+#### 4.4.2 Viewing help : `help`
 
 Shows a summary of all commands available.
 
 Format: `help`
 
-### 4.4.3 Saving the data
+#### 4.4.3 Saving the data
 
 Student records are saved locally after any command that changes the data. There is no need to save manually.
 
@@ -256,7 +272,7 @@ Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. **FAQ**
+## **5 FAQ**
 
 **Q**: Where can I locate my data file?  
 **A**: You can locate the JSON file in the path `[JAR file location]/data/classify.json`.
@@ -270,26 +286,27 @@ Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. **Command summary**
+## **6 Command summary**
 
-|              Action               | Format                                                                                                           | Example                                                                       |  
-|:---------------------------------:|:-----------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------|
-|     Add a new student record      | `addstud nm/[STUDENT-NAME] id/[ID] class/[CLASS] exam/[NAME SCORE] pn/[PARENT-NAME] hp/[PHONE-NUMBER] e/[EMAIL]` | _addstud nm/Alex Yeoh id/123A class/1A pn/Bernice Yu hp/99272758 exam/CA1 90_ |
-|     View all student records      | `viewAll`                                                                                                        | _viewAll_                                                                     |
-| View student records from a class | `viewClass [class name]`                                                                                         | _viewClass 1A_                                                                |
-|       Edit a student record       | `edit [INDEX] nm/[STUDENT-NAME] id/[ID] exam/[NAME SCORE] pn/[PARENT-NAME]...`                                   | _edit 1 nm/Alexander Yeoh_                                                    |
-|      Delete a student record      | `delete nm/[name]` or `delete id/[id]`                                                                           | _delete nm/Jonathan Tan or delete id/123A_                                    |
-|       Find a student record       | `find nm/[name]` or `find id/[id]`                                                                               | _find nm/Jonathan Tan or find id/123A_                                        |
-|            Toggle view            | `toggleView`                                                                                                     | _toggleView_                                                                  |
-|     Clear all student records     | `clear`                                                                                                          | _clear_                                                                       |
-|    View command summary table     | `help`                                                                                                           | _help_                                                                        |
-|         Exit application          | `exit`                                                                                                           | _exit_                                                                        |
+|              Action               | Format                                                                                                                    | Example                                                                       |  
+|:---------------------------------:|:--------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------|
+|     Add a new student record      | `addstud nm/[STUDENT-NAME] id/[STUDENT-ID] class/[CLASS] exam/[EXAM, SCORE] pn/[PARENT-NAME] hp/[PHONE-NUMBER] e/[EMAIL]` | _addstud nm/Alex Yeoh id/123A class/1A pn/Bernice Yu hp/99272758 exam/CA1 90_ |
+|     View all student records      | `viewAll`                                                                                                                 | _viewAll_                                                                     |
+| View student records from a class | `viewClass [CLASS]`                                                                                                       | _viewClass 1A_                                                                |
+|       Edit a student record       | `edit [INDEX] nm/[STUDENT-NAME] id/[ID] exam/[NAME SCORE] pn/[PARENT-NAME]...`                                            | _edit 1 nm/Alexander Yeoh_                                                    |
+|      Delete a student record      | `delete nm/[STUDENT-NAME]` or `delete id/[STUDENT-ID]`                                                                    | _delete nm/Jonathan Tan or delete id/123A_                                    |
+|       Find a student record       | `find nm/[STUDENT-NAME]` or `find id/[STUDENT-ID]`                                                                        | _find nm/Jonathan Tan or find id/123A_                                        |
+| View exam statistics for a class  | `viewStats class/[CLASS] exam/[EXAM] filter/[BOOLEAN]`                                                                    | _viewStats class/1A exam/CA1 filter/on_                                       |
+|            Toggle view            | `toggleView`                                                                                                              | _toggleView_                                                                  |
+|     Clear all student records     | `clear`                                                                                                                   | _clear_                                                                       |
+|    View command summary table     | `help`                                                                                                                    | _help_                                                                        |
+|         Exit application          | `exit`                                                                                                                    | _exit_                                                                        |
 
 Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. **Glossary**
+## **7 Glossary**
 
 * **CLI**: Command Line Interface (CLI) is a text-based User Interface (UI) used to run programs. Through the CLI,
 users interact with the application by typing in text commands.

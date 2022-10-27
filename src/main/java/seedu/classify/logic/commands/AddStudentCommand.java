@@ -17,9 +17,9 @@ import seedu.classify.model.student.Student;
 /**
  * Adds a student into the record.
  */
-public class AddStudCommand extends Command {
+public class AddStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "addstud";
+    public static final String COMMAND_WORD = "addStudent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student into the record. "
             + "Parameters: "
@@ -44,9 +44,9 @@ public class AddStudCommand extends Command {
     private final Student toAdd;
 
     /**
-     * Creates an AddStudCommand to add the specified {@code Student}
+     * Creates an AddStudentCommand to add the specified {@code Student}
      */
-    public AddStudCommand(Student person) {
+    public AddStudentCommand(Student person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -66,7 +66,7 @@ public class AddStudCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddStudCommand // instanceof handles nulls
-                && toAdd.equals(((AddStudCommand) other).toAdd));
+                || (other instanceof AddStudentCommand // instanceof handles nulls
+                && toAdd.equals(((AddStudentCommand) other).toAdd));
     }
 }

@@ -10,10 +10,10 @@ import static seedu.classify.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 
 import java.util.Set;
 
-import seedu.classify.logic.commands.AddStudCommand;
+import seedu.classify.logic.commands.AddStudentCommand;
 import seedu.classify.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.classify.model.exam.Exam;
 import seedu.classify.model.student.Student;
-import seedu.classify.model.tag.Exam;
 
 /**
  * A utility class for Student.
@@ -24,7 +24,7 @@ public class StudentUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Student person) {
-        return AddStudCommand.COMMAND_WORD + " " + getStudentDetails(person);
+        return AddStudentCommand.COMMAND_WORD + " " + getStudentDetails(person);
     }
 
     /**

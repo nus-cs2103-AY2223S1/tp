@@ -1,6 +1,9 @@
 package seedu.classify.logic.commands;
 
+import java.util.function.Predicate;
+
 import seedu.classify.model.Model;
+import seedu.classify.model.student.Student;
 
 /**
  * Toggles application between showing and hiding students' parent details
@@ -15,12 +18,14 @@ public class ToggleViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         model.toggleStudentListInfoConcise();
-        boolean isShowingParentDetails = !model.isStudentListInfoConcise();
+        model.updateFilteredStudentList(x -> false);
+        Predicate<Student> prevPredicate = model.getPrevPredicate();
+        model.updateFilteredStudentList(prevPredicate);
 
-        if (isShowingParentDetails) {
-            return new CommandResult(MESSAGE_SUCCESS_SHOW, false, true, false);
+        if (model.isStudentListInfoConcise()) {
+            return new CommandResult(MESSAGE_SUCCESS_HIDE);
         }
-        return new CommandResult(MESSAGE_SUCCESS_HIDE, false, true, false);
+        return new CommandResult(MESSAGE_SUCCESS_SHOW);
     }
 
 }

@@ -1,6 +1,7 @@
 package seedu.classify.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.classify.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.classify.testutil.Assert.assertThrows;
@@ -14,11 +15,11 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.classify.logic.parser.exceptions.ParseException;
+import seedu.classify.model.exam.Exam;
 import seedu.classify.model.student.Class;
 import seedu.classify.model.student.Email;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
-import seedu.classify.model.tag.Exam;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -208,5 +209,20 @@ public class ParserUtilTest {
         Set<Exam> expectedTagSet = new HashSet<>(Arrays.asList(new Exam(VALID_TAG_1), new Exam(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseFilter_invalidFilter_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFilter("sdfsdf"));
+    }
+
+    @Test
+    public void parseFilter_validFilterValue_returnsTrue() throws ParseException {
+        assertTrue(ParserUtil.parseFilter("ON"));
+    }
+
+    @Test
+    public void parseFilter_validFilterValue_returnsFalse() throws ParseException {
+        assertFalse(ParserUtil.parseFilter("OFF"));
     }
 }

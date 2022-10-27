@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 
 import seedu.classify.model.ReadOnlyStudentRecord;
 import seedu.classify.model.StudentRecord;
+import seedu.classify.model.exam.Exam;
 import seedu.classify.model.student.Class;
 import seedu.classify.model.student.Email;
 import seedu.classify.model.student.Id;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
 import seedu.classify.model.student.Student;
-import seedu.classify.model.tag.Exam;
 
 /**
  * Contains utility methods for populating {@code StudentRecord} with sample data.

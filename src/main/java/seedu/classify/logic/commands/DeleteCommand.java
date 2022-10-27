@@ -86,6 +86,7 @@ public class DeleteCommand extends Command {
         Student studentToDelete = studentList.get(0);
         model.deleteStudent(studentList.get(0));
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
+        model.storePredicate(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete));
     }
 

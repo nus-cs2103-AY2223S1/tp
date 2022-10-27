@@ -10,8 +10,7 @@ title: Developer Guide
 
 ### 1.1 Purpose
 
-This guide covers the architecture, design choices and implementation in Class-ify to give the reader a clear picture
-of the technical details and inner workings of Class-ify.
+This guide covers the architecture, design choices and implementation details in Class-ify to give the reader a clear picture of the technical details and inner workings of Class-ify.
 
 ### 1.2 Target Audience
 
@@ -129,10 +128,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `StudentRecordParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `StudentRecordParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 #### 4.1.3 Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -169,8 +169,8 @@ This section describes some noteworthy details on how certain features are imple
 
 <u>**Description**</u>
 
-Adding new students is first basic step of using Class-ify. This is primarily done via the `AddStudCommand` and `AddStudCommandParser` classes.
-Before going into the sequence of executing a `addstud` command, let us take a quick look at the `Student` class.
+Adding new students is first basic step of using Class-ify. This is primarily done via the `AddStudentCommand` and `AddStudentCommandParser` classes.
+Before going into the sequence of executing a `addStudent` command, let us take a quick look at the `Student` class.
 
 <img src="images/StudentClassDiagram.png" width="550" />
 
@@ -192,19 +192,19 @@ Adding a student record can be divided into 2 main steps: parsing the user input
 The delete command is first parsed.
 
 1. `MainWindow` calls the `execute` method of `LogicManager` to execute the given user’s command.
-2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a addstud command and creates a new `AddStudCommandParser` instance to parse the user’s command.
-3. Once the command is successfully parsed, `AddStudCommandParser` creates a new `AddStudCommand` instance which will be executed by the `LogicManager`.
+2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be an `addStudent` command and creates a new `AddStudentCommandParser` instance to parse the user’s command.
+3. Once the command is successfully parsed, `AddStudentCommandParser` creates a new `AddStudentCommand` instance which will be executed by the `LogicManager`.
 
 **Step 2: Executing the command**
 
-The `AddStudCommand` instance now interacts with the `ModelManager` to execute the command.
+The `AddStudentCommand` instance now interacts with the `ModelManager` to execute the command.
 1. The `hasStudent` method is called to check if the `Model` contains the student to be added.
 2. Assuming there are no duplicates, the `addStudent` method is then called to add the student into the student record.
 3. The `updateFilteredStudentList` method is called to show the updated list of students in the student record.
 4. A new `CommandResult` instance is created and returned to `LogicManager`.
 5. The control is then passed back to `MainWindow` where the `CommandResult` is displayed to the UI as feedback to the user.
 
-The following activity diagram below summarizes what happens when a user executes an `addstud` command.
+The following activity diagram below summarizes what happens when a user executes an `addStudent` command.
 
 <img src="images/AddStudentCommandActivityDiagram.png" width="550" />
 
@@ -283,9 +283,31 @@ Cons:
 
 #### 4.2.4 Find command
 
-`FindCommand`, which extends `Command`, filters the current list of students based on a `Predicate<Student>` 
-that is generated using the user input. This depends on `FilteredStudents#updateFilteredStudentList(Predicate<Student>)`
-which is exposed in the `Model` interface as `Model#updateFilteredStudentList(Predicate<Student>)`.
+`FindCommand`, which extends `Command`, simulates searching through the `StudentRecord` for particular students. This is
+implemented through filtering the current list of students according to the user input, and displaying the filtered results
+to the user.
+
+`FindCommand` is executed through 2 steps:
+
+**Step 1: Parsing the command**
+
+The user input is first parsed by `StudentRecordParser`, in the same way as other commands. After the input is identified 
+to be a `find`command, a `FindCommandParser` instance will be created to further parse the command arguments.
+
+The `FindCommandParser` searches the input for either `PREFIX_STUDENT_NAME` or `PREFIX_ID` (but not both), and depending
+on which `Prefix` is present, instantiates a `NameContainsKeywordsPredicate` object or `IdPredicate` object respectively.
+Both inherit from `Predicate<Student>`.
+
+This `Predicate<Student>` will then be used to create a `FindCommand` object.
+
+**Step 2: Executing the command**
+
+The `FindCommand` object created will then interact with the `ModelManager` to execute the command.
+
+1. Using the `Preicate<Student>` created when parsing the command, `Model#updateFilteredStudentList(Predicate<Student>)`
+is called, to filter the list of students.
+2. The filtered list is returned to the user, and they will be able to view the list of students whose name contains the
+specified keyword(s), or whose Id matches the specified Id.
 
 Given below is an example usage scenario of `FindCommand`.
 
@@ -301,16 +323,29 @@ Step 3. Classify returns a filtered list of students whose names contain `Alex`.
 
 The following activity diagram summarizes what happens when a user executes the find command. 
 
-*Insert activity diagram*
+<img src="images/FindCommandActivityDiagram.png" />
 
 Design considerations:
 1. `ArgumentTokenizer#tokenize()` used to identify the prefix, to generate the corresponding `Predicate<Student>`.
 
-*to be further updated*
-
 #### 4.2.5 ViewAll command
+Implementation: 
 
-*To be updated*
+The `viewAll` command displays a list of all student records. 
+
+The sequence diagram below illustrates the interaction between the `Logic` and `Model` components. 
+
+*Insert sequence diagram*
+
+Given below is an example usage scenario of how the ViewAll mechanism behaves at each step. 
+
+Step 1. The user executes `viewAll` command. 
+
+Step 2. The `StudentRecordParser` will identify the command and create a `ViewAllCommand` object in the `LogicManager`
+
+Step 3. `ViewAllCommand#execute` is called which updates the `FilteredStudentList` in `Model`
+
+Step 4. Classify updates and displays a list of all student records
 
 #### 4.2.6 ViewClass command
 
@@ -365,11 +400,11 @@ The `ToggleViewCommand` toggles the application to display or hide all students'
 
 The `Model`has an association with `FilteredStudent` where `FilteredStudent` encapsulates the current toggle status and `FilteredStudentList`. Executing the command will change the toggle status. The `StudentListPanel` is dependent on the toggle status in `FilteredStudent` to display or hide the students' parent details properly in the `StudentCard`.
 
-The following sequence diagram shows the interaction between the `UI`, `Logic`, and `Model` component. 
+The following sequence diagram shows the interaction between the `UI`, `Logic`, and `Model` components. 
 
 *Insert sequence diagram*
 
-Given below is explains how the toggle view mechanism behaves at each step.
+Given below is an example usage scenario of how the ToggleView mechanism behaves at each step
 
 Step 1. The user enters the command `toggleView`
 
@@ -397,7 +432,55 @@ Design considerations:
 
 #### 4.2.8 ViewStats command
 
-*To be updated*
+`ViewStatsCommand` is a `Command` to present summary statistics for an `Exam` taken by a particular class of students. 
+In particular, the command is implemented to generate the mean score of the `Exam`. The entire process of generating summary statistics is executed in 2 steps. 
+
+**Step 1: Parsing the command**
+
+The user input is first parsed, in the same way as other commands. After the input is identified to be a viewStats 
+command, a `ViewStatsCommandParser` instance will parse the inputs to retrieve the class and exam of interest.
+
+Furthermore, the command will also be parsed to retrieve an input for an additional `Prefix` "filter/", which will indicate 
+if the list of students returned should be flagged. A flagged list contains only students whose score for that particular 
+`Exam` falls below the mean.
+
+**Step 2: Executing the command**
+
+The `ViewStatsCommand` then interacts with the `ModelManager` to execute the command, which is again done in 2 steps.
+
+Step 1: A `ViewClassCommand` is executed, depending mainly on `Model#updateFilteredStudentList(Predicate<Student)`, in 
+order to retrieve the class of interest.
+
+Step 2: The mean of the exam scores for that class is calculated using `Model#calculateMean(String exam)`. 
+
+Depending on the boolean value returned during the parsing of the filter prefix, the class list is further filtered using
+`Model#updateFilteredStudentList(Predicate<Student)` to show a flagged list. 
+
+The whole list is sorted according to the score of the particular exam, before it is returned and displayed to the user.
+
+The following sequence diagram depicts how different components such as `Logic` and `Model` interact.
+
+<img src="images/ViewStatsCommandSequenceDiagram.png" />
+:information_source: **Note:** The lifeline for `ViewStatsCommandParser` and `ViewClassCommand` should end at the destroy 
+marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+Design Considerations:
+1. Sorting the list of students according to grade
+- Option 1: sort the filtered list of students after retrieving the class
+  - Pros:
+    - Will not modify the current `StudentRecord`
+    - Will not unnecessarily sort students not in the class of interest
+  - Cons:
+    - `FilteredStudents` is meant to be unmodifiable, and sorting potentially breaks this behaviour
+    - `FilteredStudents` is implemented with `FilteredList<Student>` which does not maintain sorting, so additional wrapping
+    needs to be done to sort the filtered list
+- Option 2 (current choice): sort the entire student record, then filter to retrieve class
+  - Pros:
+    - Can maintain sorting even beyond the `ViewStats` command, ie. maintaining a sorted list of students, sorted by name,
+    each time an `addStudent` command or `edit` command is run
+  - Cons:
+    - Reorders the whole `StudentRecord` each time the sorting is done
+    
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -420,9 +503,10 @@ Design considerations:
 Ministry of Education (MOE) Teachers who:
 * Teaches 3 to 5 classes a year
 * Manages about 60 to 100 students with varying needs
+* Is required to identify students who need additional academic assistance and contact their parents if necessary
 * Finds paperwork time-consuming and messy
-* Manually keeps track of the academic progress of each individual student
-* Manually identifies students who are performing poorly academically and finds it tedious to calculate exam statistics
+* Finds it tedious to manually keep track of the academic progress of each individual student
+* Finds it tedious to manually identify students who are performing poorly academically
 * Finds Excel spreadsheet complex and difficult to use
 * Prefers typing to mouse interactions
 * Types fast and is reasonably comfortable using CLI apps
@@ -437,28 +521,38 @@ and Class-ify quickly flags out students who require more support for contacting
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Role (As a/ an)                                       | Goal/ Function (I want to)                                               | Benefit (So that I)                                                           | Priority |
-|-------------------------------------------------------|--------------------------------------------------------------------------|-------------------------------------------------------------------------------|----------|
-| new user                                              | purge all current data                                                   | can get rid of sample/experimental data I used for exploring the application. | ***      |
-| new user                                              | add in individual students' personal information                         | can easily find information pertaining to that student.                       | ***      |
-| new user                                              | add in individual students' academic results                             | I can keep track of their results over time.                                  | ***      |
-| new user                                              | view a summarised list of all students' information                      | get an overview of all the students that I am teaching.                       | ***      |
-| new user                                              | search for a student by his/her name                                     |                                                                               | ***      |
-| new user                                              | search for a student by his/her student ID                               |                                                                               | ***      |
-| new user                                              | search for a class by the class name                                     |                                                                               | ***      |
-| new user                                              | delete a student's record by his/her student ID                          |                                                                               | ***      |
-| new user                                              | delete a student's record by his/her name                                |                                                                               | ***      |
-| new user who is forgetful                             | automatically save the data without having to type in a separate command | do not need to worry about forgetting to save before I quit the application.  | ***      |
-| new user who is non-technical                         | follow a set of instructions/guide                                       | can get a sense of how to use the application.                                | ***      |
-| intermediate user                                     | update the details of any student record                                 | can keep my records accurate and up to date.                                  | ***      |
-| teacher with multiple classes                         | separate my different classes individually                               | can keep my records tidy and organised.                                       | ***      |
-| potential user                                        | see a summary of functionalities                                         | have an idea of what I can do with the app without accessing the user guide.  | **       |
-| potential user                                        | try the application with sample data                                     | can easily see how the application will look like when it is in use.          | **       |
-| intermediate user                                     | delete all student records from a class                                  | can reuse the class for another batch.                                        | **       |
-| intermediate user                                     | view statistics for the exam results of a particular class               | can have an overview of how all my students are doing.                        | **       |
-| intermediate user                                     | view a summary of my students' performance                               | can take note of my students' academic performance.                           | **       |
-| intermediate user                                     | see a list of students whose grades are below average                    | can quickly identify students who will need more help.                        | **       |
-| intermediate user                                     | see the parents' contact information of a student                        | can contact them to let them know that their child is not doing well.         | **       |
+| Role (As a/ an)                                     | Goal/ Function (I want to)                                  | Benefit (So that I)                                                           | Priority |
+|-----------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------------------------|----------|
+| new user                                            | add new student records                                     |                                                                               | ***      |
+| new user                                            | delete student records                                      | can remove irrelevant or incorrect student records.                           | ***      |
+| new user                                            | update student records                                      | can keep my student records accurate and up to date.                          | ***      |
+| new user                                            | view all students that I am teaching                        |                                                                               | ***      |
+| new user                                            | find a particular student's record by name                  |                                                                               | ***      |
+| new user                                            | find a particular student's record by student ID            |                                                                               | ***      |
+| new user                                            | add in individual students' personal information            | can retrieve my student's information when necessary.                         | ***      |
+| new user                                            | add in individual students' academic results                | can keep track of their results over time.                                    | ***      |
+| teacher with multiple classes                       | categorise students into different classes                  | can keep my student records tidy and organised.                               | ***      |
+| new user                                            | store parent's details                                      | can contact and inform them if a student is not doing well.                   | ***      |
+| teacher with multiple classes                       | filter student records based on their class                 | can search for students in a particular class easily.                         | ***      |
+| new user                                            | get exam statistics from a class                            | can get an overview of my students' academic performance.                     | ***      |
+| new user                                            | flag out students who are under performing in class         | can quickly identify students who need more academic assistance.              | ***      |
+| new user                                            | sort the student records in terms of grades                 | can easily view the academic rankings of my student.                          | ***      |
+| teacher with many students                          | hide parent's information from view                         | can have an uncluttered view of my student's information.                     | ***      |
+| new user who is forgetful                           | automatically save the data without inputting a new command | do not need to worry about forgetting to save before I quit the application.  | ***      |
+| potential user                                      | try the application with sample data                        | can easily see how the application will look like when it is in use.          | ***      |
+| potential user                                      | see a summary of functionalities                            | have an idea of what I can do without referencing the user guide.             | **       |
+| new user                                            | purge all current data                                      | can get rid of sample/experimental data I used for exploring the application. | **       |
+| intermediate user                                   | add multiple student records with a single command          | can efficiently enter my students' information at once.                       | **       |
+| new user                                            | filter student records below a certain grade                | can identify students who scored below an acceptable grade.                   | **       |
+| teacher who might teach a different class next year | delete all student records from a particular class          | can remove the records of students that I am no longer teaching.              | **       |
+| new user                                            | undo previous commands                                      | can easily undo an accidental change.                                         | **       |
+| intermediate user                                   | create additional custom fields in student records          | can keep track of additional information of my students.                      | **       |
+| intermediate user                                   | share student details with other teachers                   | can share the data with another teacher who may take over the class.          | *        |
+| advanced user                                       | transfer and backup data from one computer to another       | will not lose my data if I switch to another computer.                        | *        |
+| advanced user                                       | update all students' exam grades with a single command      | can efficiently update my students' grades at once.                           | *        |
+| teacher who might teach the same class next year    | update the class name of all students in that class         | can save time updating each student's information individually.               | *        |
+| advanced user                                       | find out more advanced commands through suggestions         | can learn and extend the functionality of the app.                            | *        |
+| potential user                                      | follow a tutorial to introduce the basic commands           | can learn the basic functionalities step by step.                             | *        |
 
 ### 6.3 Use cases
 
@@ -638,19 +732,19 @@ Expected: The most recent window size and location is retained.
 ### 7.2 Adding a new student record
 
 Prerequisites: Existing student records do not have the names or IDs that will be added.
-1. Test case: `addstud nm/Peter Tan id/452B class/1F`
+1. Test case: `addStudent nm/Peter Tan id/452B class/1F`
    
 Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since no exam grades have been provided, the student card UI does not show anything below the grades section.
 
-2. Test case: `addstud nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
+2. Test case: `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
 
 Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since exam grades have been provided, the student card UI shows the exam scores for each exam that has been provided.
 
-3. Test case: `addstud nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
+3. Test case: `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
 
 Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. This test case includes parents' details as well.
 
-4. Test case: `addstud nm/Jonathan Lim id/abc2 class/2A`
+4. Test case: `addStudent nm/Jonathan Lim id/abc2 class/2A`
 
 Expected: The command entered by the user is highlighted red. The status message shows an error: "Id should only contain 3 digits and 1 character". "abc2" is an invalid value for the ID as Class-ify only accepts the last 3 numbers and last letter of a student's ID.
 
