@@ -362,18 +362,43 @@ Students can search for their teammates, view their repos and view each other’
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​           | I want to …​                              | So that I can…​                                                            |
-|----------|-------------------|-------------------------------------------|----------------------------------------------------------------------------|
-| `* * *`  | new user          | see usage instructions and FAQ            | understand how to use the App                                              |
-| `* * *`  | student           | add a batchmate to the masslinkers        | conveniently refer to their contact details all in one place               |
-| `* * *`  | student           | list all batchmates                       | see a list of all batchmates in my class                                   |
-| `* * *`  | student           | edit a batchmate                          | change their details without deleting them                                 |
-| `* * *`  | student           | delete a batchmate                        | remove unneeded entries                                                    |
-| `* * *`  | student           | find a batchmate by name/Github username  | locate their details to review and give feedback on their iP and tP easily |
-| `* * *`  | student           | tag a batchmate with their interests      | find them easily                                                           |
-| `* * *`  | student           | find batchmates using specified interests | locate batchmates by their interests easily                                |
-| `* *`    | student           | save my data to a file                    | access the data on different devices                                       |
-| `* *`    | technical student | close the App using a command             | close the App easily                                                       |
+| Priority | As a …​            | I want to …​                                                                          | So that I can…​                                                        |
+|----------|--------------------|---------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | student            | add my batchmates to Mass Linkers                                                     | keep track of information about the people I have met                  |
+| `* * *`  | student            | add my batchmate’s name                                                               | identify their details                                                 |
+| `* * *`  | student            | add my batchmate’s phone number                                                       | message or call them, especially in urgent situations.                 |
+| `* * *`  | student            | add my batchmate’s telegram handle                                                    | contact and chat with them conveniently                                |
+| `* * *`  | student            | add my batchmate’s email address                                                      | share documents and files with them                                    |
+| `* * *`  | student            | add my batchmate’s GitHub usernames                                                   | find their profiles                                                    |
+| `* * *`  | student            | edit the list of batchmates in Mass Linkers                                           | keep them up to date                                                   |
+| `* * `   | student            | choose the batchmate I want to edit                                                   | write to the correct person                                            |
+| `* *`    | student            | edit my batchmate’s name                                                              | change the alias or amend if I keyed in wrongly                        |
+| `* *`    | student            | edit my batchmate’s phone number                                                      | change it accordingly when they change                                 |
+| `* *`    | student            | edit my batchmate’s telegram handle                                                   | change it accordingly when they change                                 |
+| `* *`    | student            | edit my batchmate’s GitHub usernames                                                  | change it accordingly when they change                                 |
+| `* *`    | student            | search and access the list of batchmates I have in Mass Linkers                       |                                                                        |
+| `* *`    | student            | easily search for a specific person by their name / GitHub username / Telegram handle | quickly get their details                                              |
+| `* *`    | student            | find a list of batchmates that share the same interests as me                         | find batchmates to whom I can better relate to                         |
+| `* *`    | student            | search the list of batchmates by the mods they have or are taking                     | ask them about the mod when I have a module-specific doubt             |
+| `* *`    | student            | add, edit and see what mods my batchmates have taken or are taking                    | ask them module-related questions when I have any doubts               |
+| `* *`    | student            | add a mod to the list of mods for the selected batchmate                              |                                                                        |
+| `* *`    | student            | delete a mod from the list of mods for the selected batchmate                         |                                                                        |
+| `* *`    | student            | easily see the mods a selected batchmate is currently taking or has taken             |                                                                        |
+| `* *`    | student            | mark a mod as completed or is currently taking for a particular person                | know whether he or she is taking the module or has taken the module    |
+| `* *`    | student            | view mods colour-coded by their mod type                                              | easily identify the mods                                               |
+| `* *`    | user               | fully utilise Mass Linkers with an easy-to-use interface                              |                                                                        | 
+| `* *`    | user               | view all the available commands                                                       | know what to type for the various functions                            |
+| `*`      | user               | have a clean and polished interface that is aesthetically pleasing                    |                                                                        |
+| `*`      | busy user          | have an interface that is self-explanatory                                            | reduce time spent on learning how to use the program                   |
+| `*`      | user               | close the application with a command instead of using the mouse to close the window   |                                                                        |
+| `*`      | student            | save and export the data                                                              | the address book has greater scalability and can be shared with others | 
+| `*`      | student            | save my data to a file and use it on another computer                                 | access the data on different devices                                   |
+| `*`      | student            | export the data                                                                       | share it with my friends                                               |
+| `*`      | user               | have a comprehensive and comprehensible documentation                                 | easily access all the information about Mass Linkers                   | 
+| `*`      | user               | have a help page with Frequently Asked Questions (FAQ)                                | self-diagnose any issues I may encounter                               |
+| `*`      | technical user     | have a short installation guide with concrete steps on how to run the program         | set it up on my own with some technical knowledge                      |
+| `*`      | non-technical user | have an installation video guide                                                      | follow and run the program without much technical knowledge            | 
+| `*`      | advanced user      | have a short guide to all the commands/functions I can do in the application          | save time                                                              |
 
 ### Use cases
 (For all use cases below, the **System** is Mass Linkers and the **Actor** is the student, unless specified otherwise)
