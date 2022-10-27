@@ -79,11 +79,16 @@
       </padding>
       <Separator orientation="VERTICAL" styleClass="separator-inspect"/>
     </HBox>
-    <HBox HBox.hgrow="ALWAYS">
+    <VBox HBox.hgrow="ALWAYS">
       <padding>
         <Insets left="15" right="15"/>
       </padding>
+      <HBox styleClass="history-panel">
+        <Label alignment="CENTER" minWidth="71" maxWidth="71" text="Latest" styleClass="cell_big_label"/>
+        <Label alignment="CENTER" minWidth="101" maxWidth="101" text="Change" styleClass="cell_big_label"/>
+        <Label alignment="CENTER" minWidth="70" maxWidth="70" text="Reason" styleClass="cell_big_label"/>
+      </HBox>
       <ListView fx:id="historyListView" HBox.hgrow="ALWAYS"/>
-    </HBox>
+    </VBox>
   </HBox>
 </VBox>

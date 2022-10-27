@@ -3,7 +3,7 @@ package seedu.address.ui;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -12,7 +12,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.util.Pair;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Loan;
+import seedu.address.model.person.LoanHistory;
 import seedu.address.model.person.Person;
 
 /**
@@ -29,7 +32,7 @@ public class InspectionPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(InspectionPanel.class);
 
     @FXML
-    private ListView<Person> historyListView;
+    private ListView<Pair<Loan, LoanHistory>> historyListView;
 
     @FXML
     private Label name;
@@ -63,10 +66,8 @@ public class InspectionPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public InspectionPanel(ListView<Person> personListView, ObservableList<Person> personList) {
+    public InspectionPanel(ListView<Person> personListView) {
         super(FXML);
-        historyListView.setItems(personList);
-        historyListView.setCellFactory(listView -> new HistoryListViewCell());
         setImageViews();
         personListView.getSelectionModel().selectedItemProperty().addListener(
                 //CHECKSTYLE.OFF: SeparatorWrap
@@ -76,6 +77,9 @@ public class InspectionPanel extends UiPart<Region> {
                     InspectionPanel.this.phone.setText(n.getPhone().value);
                     InspectionPanel.this.address.setText(n.getAddress().value);
                     InspectionPanel.this.birthday.setText(n.getBirthday().value);
+
+                    historyListView.setItems(FXCollections.observableList(n.getHistoryWithTotal()));
+                    historyListView.setCellFactory(listView -> new HistoryListViewCell());
                 });
 
         basicInformation.maxWidthProperty().bind(getRoot().widthProperty().multiply(0.33));
@@ -93,18 +97,22 @@ public class InspectionPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code LoanHistory} using a {@code LoanHistory}.
      */
-    class HistoryListViewCell extends ListCell<Person> {
+    class HistoryListViewCell extends ListCell<Pair<Loan, LoanHistory>> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Pair<Loan, LoanHistory> totalAndHistory, boolean empty) {
+            super.updateItem(totalAndHistory, empty);
 
-            if (empty || person == null) {
+            if (empty || totalAndHistory == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                LoanHistoryCard loanHistoryCard = new LoanHistoryCard(totalAndHistory.getValue(),
+                        totalAndHistory.getKey().toString());
+
+                loanHistoryCard.bindWidth(historyListView, 15);
+                setGraphic(loanHistoryCard.getRoot());
             }
         }
     }

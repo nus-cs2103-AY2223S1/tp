@@ -135,6 +135,11 @@
     -fx-border-width: 1;
 }
 
+.separator-history *.line {
+    -fx-border-color: grey;
+    -fx-border-width: 1;
+}
+
 .inspectionPanel-VBox {
     -fx-background-color: rgba(0, 0, 0, 0.4);
     -fx-padding: 5, 5, 5, 5;
@@ -142,6 +147,10 @@
 }
 
 .inspection-card .label {
+    -fx-text-fill: white;
+}
+
+.history-panel .label {
     -fx-text-fill: white;
 }
 
@@ -203,13 +212,13 @@
 .person-VBox .cell_big_label {
     -fx-padding: 5 5 5 5;
     -fx-font-family: 'MinionPro-Bold';
-    -fx-font-size: 15px;
+    -fx-font-size: 16px;
     -fx-text-fill: white;
 }
 
 .cell_small_label {
     -fx-font-family: "MinionPro-Semibold";
-    -fx-font-size: 10px;
+    -fx-font-size: 12px;
     -fx-text-fill: #010504;
 }
 

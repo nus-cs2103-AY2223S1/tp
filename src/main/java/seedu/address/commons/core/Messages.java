@@ -1,5 +1,7 @@
 package seedu.address.commons.core;
 
+import seedu.address.logic.parser.CliSyntax;
+
 /**
  * Container for user visible messages.
  */
@@ -20,4 +22,9 @@ public class Messages {
             + "Please be more specific, or, if already specifying the full name, use indices to edit.";
     public static final String MESSAGE_INVALID_NAME = "There is no one with the name %s in the list!";
 
+    public static final String AMOUNT_NOT_SPECIFIED = "No amount to was specified to edit the loan with.\n"
+            + "Please use " + CliSyntax.PREFIX_LOAN_AMOUNT + " to specify a change in loan amount!";
+
+    public static final String REASON_NOT_SPECIFIED = "A reason must be given to change loan amounts.\n"
+            + "Please use " + CliSyntax.PREFIX_LOAN_REASON + " to specify a reason to change the loan value!";
 }

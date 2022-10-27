@@ -73,7 +73,7 @@ public class WindowAnchorPane extends UiPart<Region> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        inspectionPanel = new InspectionPanel(personListPanel.getListView(), logic.getFilteredPersonList());
+        inspectionPanel = new InspectionPanel(personListPanel.getListView());
         inspectionPanelPlaceholder.getChildren().add(inspectionPanel.getRoot());
 
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList());

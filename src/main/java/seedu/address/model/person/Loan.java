@@ -27,6 +27,16 @@ public class Loan implements DeepCopyable {
         amountOwed = Double.parseDouble(amountString);
     }
 
+    /**
+     * Constructs a {@code Loan}.
+     *
+     * @param amount A double value to signifies a new loan amount
+     */
+    public Loan(double amount) {
+        checkArgument(isValidLoan(Double.toString(amount)), MESSAGE_CONSTRAINTS);
+        amountOwed = amount;
+    }
+
     public static boolean isValidLoan(String test) {
         return test.matches(VALIDATION_REGEX);
     }
