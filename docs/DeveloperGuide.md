@@ -200,29 +200,34 @@ The edit item command `editi` is implemented through the `Logic`, `Model` and `S
 component parses the user input, the `Model` component then performs the edit on the target item, the `Storage` 
 component then saves the edited data into `data/trackO.json`.
 
-Step 1. The user inputs the command `editi 1 i/Chair q/20`. This calls `LogicCommand#execute()` which calls
-`TrackOParser#parseCommand`. This parses the command as an `EditItemCommand` and returns an `EditItemCommandParser`. 
-`EditItemCommandParser#parse()` parses the arguments and returns an `EditItemCommand` with the target index and the
-appropriate `EditItemDescriptor` as input. The `EditItemDescriptor` contains information which the newly edited `Item`
-should have and is used in the creation of the new `Item` object. In this case, the `EditItemDescriptor` contains a new
-`ItemName` and `Quantity` taken from the user input, while all other fields are copied from the existing item at the
-target index 1.
+Step 1: The user inputs the command `editi 1 i/Chair q/20`. This calls:
+1. `LogicManager#execute()`
+2. `TrackOParser#parseCommand()`. This parses the command as an `EditItemCommand` and returns an `EditItemCommandParser` object.
+3. `EditItemCommandParser#parse()` parses the arguments and returns an `EditItemCommand` with the target `Index` and the
+appropriate `EditItemDescriptor` as input.
 
-Step 2. The `EditItemCommand` creates a new `Item` using `createEditedItem()` and the `EditItemDescriptor`. It then
-checks if this `Item` already exists in the inventory list by using `Model#has()`. If it already exists, a
-`CommandException` is thrown with `MESSAGE_DUPLICATE_ITEM`. An item already exists if there is another item in the
-inventory list with same `ItemName`. `Item#isSameItem` returns true when both `Item` have the same `ItemName`. This is
+The `EditItemDescriptor` contains information which the newly edited `Item`
+should have and is used in the creation of the new `Item` object. In this case, the `EditItemDescriptor` contains a new
+`ItemName` and `Quantity` taken from the user input, while all other fields are copied from the existing `Item` at the
+target `Index` 1.
+
+Step 2:. The `EditItemCommand` creates a new `Item` using `createEditedItem()` and the `EditItemDescriptor`. It then
+checks if this `Item` already exists in the inventory list by using `ModelManager#hasItem()`. If it already exists, a
+`CommandException` is thrown with `MESSAGE_DUPLICATE_ITEM`.
+
+An item already exists if there is another item in the
+inventory list with same `ItemName`. `Item#isSameItem()` returns true when both `Item` have the same `ItemName`. This is
 because having 2 `Item` with the same `ItemName` can be confusing to the user and this safeguards the user from such a
 situation.
 
-Step 3. The `Item` at the target index is then replaced by the newly created `Item` using `Model#setItem()`,
+Step 3. The `Item` at the target index is then replaced by the newly created `Item` using `ModelManager#setItem()`,
 successfully executing the edit item command in the `Model`.
 
-Step 4. `LogicManager#execute()` then calls `Storage#saveTrackO()` which saves the new `Model` to the data file.
+Step 4. `LogicManager#execute()` then calls `Storage#saveTrackO()` which saves the updated `Model` to the data file.
 
 The sequence diagram below illustrates this process.
 
-_**Sequence diagram to be added here**_
+![EditItemSequenceDiagram](images/developer-guide/EditItemSequenceDiagram.png)
 
 ### Order Management
 
