@@ -172,7 +172,9 @@ public class PersonBuilder {
     public Person build() {
         Person p = new Person(name.fullName, fields);
         p.setTags(tags);
-        attrs.forEach(p::addAttribute);
+        if (!fields.toList().isEmpty()) {
+            fields.toList().forEach(p::addAttribute);
+        }
         return p;
     }
 

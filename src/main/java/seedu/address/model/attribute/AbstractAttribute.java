@@ -103,8 +103,9 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Attribute // instanceof handles nulls
-                        && value.equals(((Attribute<?>) other).getAttributeContent())); // state check
+                || (other instanceof AbstractAttribute // instanceof handles nulls
+                && typeName.equals(((AbstractAttribute<?>) other).typeName)
+                && value.equals(((AbstractAttribute<?>) other).value)); // state check
     }
 
     @Override
