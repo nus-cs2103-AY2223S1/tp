@@ -20,6 +20,7 @@ import coydir.logic.commands.HelpCommand;
 import coydir.logic.commands.ListCommand;
 import coydir.logic.commands.RateCommand;
 import coydir.logic.commands.ViewCommand;
+import coydir.logic.commands.ViewDepartmentCommand;
 import coydir.logic.parser.exceptions.ParseException;
 
 /**
@@ -76,6 +77,9 @@ public class DatabaseParser {
         case BatchAddCommand.COMMAND_WORD:
             return new BatchAddCommandParser().parse(arguments);
 
+        case ViewDepartmentCommand.COMMAND_WORD:
+            return new ViewDepartmentCommandParser().parse(arguments);
+
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
 
@@ -87,6 +91,7 @@ public class DatabaseParser {
 
         case DeleteLeaveCommand.COMMAND_WORD:
             return new DeleteLeaveCommandParser().parse(arguments);
+
 
         default:
             throw new ParseException('"' + commandWord + '"' + MESSAGE_UNKNOWN_COMMAND);

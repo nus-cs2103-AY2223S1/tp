@@ -35,6 +35,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
+
+    private DepartmentInfo departmentInfo;
     private HelpWindow helpWindow;
 
     private PersonInfo personInfo;
@@ -125,9 +127,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         personInfo = new PersonInfo(logic.getFilteredPersonList().get(0));
-        personInfo.initializeLeaveTable();
         personInfoPanelPlaceholder.getChildren().add(personInfo.getRoot());
 
+        departmentInfo = new DepartmentInfo(logic.getUnfilteredPersonList());
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -221,6 +223,12 @@ public class MainWindow extends UiPart<Stage> {
         personInfo.update(logic.getFilteredPersonList().get(index));
     }
 
+    private void handleViewDepartment(String department) {
+        departmentInfo.update(logic.getUnfilteredPersonList(), department);
+        personInfoPanelPlaceholder.getChildren().clear();
+        personInfoPanelPlaceholder.getChildren().add(departmentInfo.getRoot());
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -251,6 +259,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isUpdate()) {
                 handleUpdate(currentIndex);
+            }
+
+            if (commandResult.isViewDepartment()) {
+                handleViewDepartment(commandResult.getDepartment());
             }
 
             return commandResult;
