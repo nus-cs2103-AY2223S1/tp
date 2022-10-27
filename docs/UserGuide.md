@@ -124,11 +124,15 @@ Creates a new student record with the following details:
 
 * **Name of Student** `nm/`
 * **Student's ID (last 4 digits of NRIC)** `id/`
+  * ID should only contain 3 digits followed by 1 character.
 * **Student's Class** `class/`
+  * Similar to names, class name should only contain alphanumeric characters and spaces.
 * Exam Grades for CA1, CA2, SA1, and SA2 `exam/`
 * Name of Parent `pn/`
 * Mobile Number of Parent `hp/`
+  * Phone numbers should only contain numbers, and it should be at least 3 digits long. 
 * Email Address of Parent `e/`
+  * Email address should follow standard convention format local-part@domain.
 
 Format: `addStudent nm/STUDENT-NAME id/ID class/CLASS [exam/NAME SCORE] [pn/PARENT-NAME] [hp/PHONE-NUMBER] [e/EMAIL]`
 
