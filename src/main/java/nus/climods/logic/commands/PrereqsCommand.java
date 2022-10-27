@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  * Lists prerequisites for a module.
  */
 public class PrereqsCommand extends Command {
-    public static final String COMMAND_WORD = "deps";
+    public static final String COMMAND_WORD = "preq";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + "<Module Code>: List prerequisites for a module.\n"
             + "Example: " + COMMAND_WORD + " " + "CS2103";
