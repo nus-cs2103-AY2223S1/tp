@@ -26,7 +26,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 # Quick Start
 1. Ensure you have Java 11 or above installed in your Computer.
 
-2. Download the latest HealthContact.jar from here.
+2. Download the latest HealthContact.jar from [here](https://github.com/AY2223S1-CS2103T-W08-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the home folder for your HealthContact application.
 
@@ -74,9 +74,9 @@ email address, home address, remarks and tags.
 
 Notes on symbols in first column:
 
-`*`  Must have(Accept last one when have multiple)
+`*`  Must have(If they are duplicate prefixes, only the last one will be taken into account)
 
-`+`  Accept multiple
+`+`  Can have multiple
 
 #### Examples:
 
@@ -122,7 +122,9 @@ slot, and doctor.
 
 Notes on symbols in first column:
 
-`*`  Must have(Accept last one when have multiple)
+`*`  Must have(If they are duplicate prefixes, only the last one will be taken into account)
+
+`+`  Can have multiple
 
 #### Examples:
 
