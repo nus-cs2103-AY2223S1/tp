@@ -144,6 +144,10 @@ Application status is case-insensitive, entering the status PENDING, ACCEPTED or
 Examples:
 `add n/Samuel Cheong m/Medicine e/samuelcheong1234@gmail.com p/65782310 s/Merit as/pending`
 
+Sample output for `add n/Samuel Cheong m/Medicine e/samuelcheong1234@gmail.com p/65782310 s/Merit as/pending`:
+
+![add message](images/UserGuideCommands/add.png)
+
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -156,6 +160,9 @@ Format:
 ```
 list
 ```
+Sample output for `list`:
+
+![list message](images/UserGuideCommands/list.png)
 
 [Return to top](#table-of-contents)
 
@@ -188,6 +195,10 @@ Examples:
 * `edit 1 n/John Cena e/johnCena@yahoo.com` Edits the name and email address of the 1st applicant to be John Cena and johnCena@yahoo.com respectively.
 * `edit 2 n/Samuel Cheong m/` Edits the name of the 2nd applicant to be Samuel Cheong and clears all existing majors
 
+Sample output for `edit 2 n/Samuel Cheong m/`:
+
+![edit message](images/UserGuideCommands/edit.png)
+
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -209,6 +220,10 @@ delete INDEX
 Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in TrackAScholar.
 
+Sample output for `delete 2`:
+
+![delete message](images/UserGuideCommands/delete.png)
+
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -229,6 +244,12 @@ Examples:
 * `remove accepted` removes all entries with `ACCEPTED` as an application status from TrackAScholar.
 * `remove rejected` removes all entries with `REJECTED` as an application status from TrackAScholar.
 
+Sample output for `remove accepted`:
+
+![remove message](images/UserGuideCommands/remove1.png)
+
+![remove message](images/UserGuideCommands/remove2.png)
+
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -241,6 +262,12 @@ Format:
 ```
 clear
 ```
+
+Sample output for `clear`:
+
+![clear message](images/UserGuideCommands/clear1.png)
+
+![clear message](images/UserGuideCommands/clear2.png)
 
 [Return to top](#table-of-contents)
 
@@ -264,7 +291,11 @@ find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...
 
 Examples:
 * `find n/John n/Sam` returns applicant with Name `john`, applicant with Name `John Doe` and applicant with Name `Sam Ong`
-* `find n/alex m/Business` returns applicant with Name `Alex Yeoh` and Major `Business Analytics`
+* `find n/alex m/Business` returns any applicants with either Name containing `Alex` or Major containing `Business`
+
+Sample output for `find n/alex m/Business`:
+
+![find message](images/UserGuideCommands/find.png)
 
 [Return to top](#table-of-contents)
 
@@ -284,6 +315,10 @@ filter <PENDING>/<ACCEPTED>/<REJECTED>
 
 Examples:
 * `filter pending` displays all applicants with the application status `PENDING`.
+
+Sample output for `filter pending`:
+
+![filter message](images/UserGuideCommands/filter.png)
 
 [Return to top](#table-of-contents)
 
@@ -305,6 +340,10 @@ Examples:
 * `sort name` All applicants in TrackAScholar will be sorted based on their name in a lexicographical manner.
 * `sort scholarship` All applicants in TrackAScholar will be sorted based on the type of scholarship they have applied for. 
 * `sort status` All applicants in TrackAScholar will be sorted according to their application status.
+
+Sample output for `sort name`:
+
+![sort message](images/UserGuideCommands/sort.png)
 
 [Return to top](#table-of-contents)
 
@@ -355,6 +394,10 @@ pin INDEX
 Examples:
 * `list` followed by `pin 2` pins the 2nd applicant in TrackAScholar.
 
+Sample output for `pin 2`:
+
+![pin message](images/UserGuideCommands/pin.png)
+
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -371,11 +414,15 @@ unpin NAME
 
 * Unpins the scholarship applicant with the specified `NAME`.
 * `NAME` refers to the name of the scholarship applicant.
-* `NAME` **must be a full name:** `Alex Yeoh` instead of `Alex`.
+* `NAME` **must be a full name:** `Bernice Yu` instead of `Bernice`.
 * `NAME` is **case-insensitive**.
 
 Examples:
-* `unpin Alex Yeoh` unpins the applicant with the name `Alex Yeoh` in TrackAScholar.
+* `unpin Bernice Yu` unpins the applicant with the name `Bernice Yu` in TrackAScholar.
+
+Sample output for `unpin Bernice Yu`:
+
+![unpin message](images/UserGuideCommands/unpin.png)
 
 [Return to top](#table-of-contents)
 
