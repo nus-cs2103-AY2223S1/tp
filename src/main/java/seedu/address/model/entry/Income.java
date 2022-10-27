@@ -5,7 +5,7 @@ package seedu.address.model.entry;
  */
 public class Income extends Entry {
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. This condition is verified in the parent {@code Entry} constructor.
      */
     public Income(Description description, Date date, Amount amount, Tag tag) {
         super(description, date, amount, tag);
@@ -22,11 +22,6 @@ public class Income extends Entry {
                 .append("; Tag: ")
                 .append(getTag());
 
-        // Set<Tag> tags = getTags();
-        // if (!tags.isEmpty()) {
-        //     builder.append("; Tags: ");
-        //     tags.forEach(builder::append);
-        // }
         return builder.toString();
     }
 }
