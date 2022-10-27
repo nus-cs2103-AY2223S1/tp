@@ -1,8 +1,7 @@
 #copyButton, #helpMessage {
     -fx-text-fill: white;
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-    -fx-font-family: "Arial Semibold";
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
 }
 
 #copyButton {
