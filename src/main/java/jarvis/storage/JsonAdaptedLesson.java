@@ -144,8 +144,26 @@ public abstract class JsonAdaptedLesson {
     /**
      * Converts this Jackson-friendly adapted lesson object into the model's {@code Lesson} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted lesson.
+     * @throws IllegalArgumentException if there were any data constraints violated in the adapted lesson.
      */
-    public abstract Lesson toModelType() throws IllegalValueException, IOException;
+    public abstract Lesson toModelType() throws IllegalArgumentException, IOException;
+
+
+    /**
+     * Checks whether the argument provided is null.
+     *
+     * @param className The class whose constructor is intended to take in the given argument.
+     * @param missingFieldFormat The missing field message used in the error message.
+     * @param arg The argument to check.
+     * @throws IllegalArgumentException If the argument provided is null.
+     */
+    public static void checkNullArgument(Class<?> className, String missingFieldFormat, Object arg)
+            throws IllegalArgumentException {
+        if (arg == null) {
+            throw new IllegalArgumentException(String.format(missingFieldFormat,
+                        className.getSimpleName()));
+        }
+    }
+
 }
 

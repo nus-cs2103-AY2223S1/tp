@@ -52,6 +52,11 @@ public abstract class Lesson {
     public Lesson(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students,
                   LessonAttendance attendance, LessonNotes notes) {
         requireAllNonNull(timePeriod, students, attendance, notes);
+        // check if list of students is the same
+        assert attendance.getAllStudents().containsAll(notes.getAllStudents());
+        assert notes.getAllStudents().containsAll(students);
+        assert students.containsAll(attendance.getAllStudents());
+
         this.lessonDesc = lessonDesc;
         this.timePeriod = timePeriod;
         this.studentList = new ArrayList<>(students);

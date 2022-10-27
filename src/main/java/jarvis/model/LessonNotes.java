@@ -2,7 +2,9 @@ package jarvis.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import jarvis.model.exceptions.NoteNotFoundException;
@@ -20,7 +22,7 @@ public class LessonNotes {
      * @param students Students who are involved in the lesson.
      */
     public LessonNotes(Collection<Student> students) {
-        studentNotes = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
+        studentNotes = new TreeMap<>(Student.NAME_COMPARATOR);
         generalNotes = new ArrayList<>();
         for (Student stu : students) {
             studentNotes.put(stu, new ArrayList<>());
@@ -29,11 +31,17 @@ public class LessonNotes {
 
     /**
      * Creates the notes for a lesson with the given general and student notes.
+     *
+     * @param studentList The list of students in the lesson.
      * @param generalNotes The given general notes.
-     * @param studentNotes The given student notes.
+     * @param indexNotesMap The student notes mapped to student index, which is the student's index in the studentList.
      */
-    public LessonNotes(ArrayList<String> generalNotes,
-                       TreeMap<Student, ArrayList<String>> studentNotes) {
+    public LessonNotes(List<Student> studentList, ArrayList<String> generalNotes,
+                       Map<Integer, ArrayList<String>> indexNotesMap) {
+        TreeMap<Student, ArrayList<String>> studentNotes = new TreeMap<>(Student.NAME_COMPARATOR);
+        for (Integer i : indexNotesMap.keySet()) {
+            studentNotes.put(studentList.get(i), indexNotesMap.get(i));
+        }
         this.generalNotes = generalNotes;
         this.studentNotes = studentNotes;
     }
@@ -138,6 +146,10 @@ public class LessonNotes {
         ArrayList<String> tempNotes = studentNotes.get(targetStudent);
         studentNotes.remove(targetStudent);
         studentNotes.put(editedStudent, tempNotes);
+    }
+
+    public Set<Student> getAllStudents() {
+        return studentNotes.keySet();
     }
 
     @Override

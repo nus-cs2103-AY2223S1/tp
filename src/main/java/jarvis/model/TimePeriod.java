@@ -1,5 +1,8 @@
 package jarvis.model;
 
+import static jarvis.commons.util.AppUtil.checkArgument;
+import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +28,8 @@ public class TimePeriod {
      * @param end Ending time.
      */
     public TimePeriod(LocalDateTime start, LocalDateTime end) {
-        assert isValidTimePeriod(start, end) : "Start time must be before end time";
+        requireAllNonNull(start, end);
+        checkArgument(isValidTimePeriod(start, end), MESSAGE_CONSTRAINTS);
         this.start = start;
         this.end = end;
     }

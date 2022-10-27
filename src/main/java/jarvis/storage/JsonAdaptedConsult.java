@@ -3,15 +3,12 @@ package jarvis.storage;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.Consult;
 import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
@@ -54,61 +51,31 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
      * {@inheritDoc}
      */
     @Override
-    public Consult toModelType() throws IllegalValueException, IOException {
+    public Consult toModelType() throws IllegalArgumentException, IOException {
         // LessonDesc
-        if (this.getLessonDesc() != null && !LessonDesc.isValidLessonDesc(this.getLessonDesc())) {
-            throw new IllegalValueException(LessonDesc.MESSAGE_CONSTRAINTS);
-        }
         final LessonDesc modelLessonDesc = this.getLessonDesc() != null
                 ? new LessonDesc(this.getLessonDesc())
                 : null;
 
         // TimePeriod
-        if (this.getStartDateTime() == null || this.getEndDateTime() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TimePeriod.class.getSimpleName()));
-        }
-        if (!TimePeriod.isValidTimePeriod(this.getStartDateTime(), this.getEndDateTime())) {
-            throw new IllegalValueException(TimePeriod.MESSAGE_CONSTRAINTS);
-        }
+        checkNullArgument(TimePeriod.class, MISSING_FIELD_MESSAGE_FORMAT, this.getStartDateTime());
+        checkNullArgument(TimePeriod.class, MISSING_FIELD_MESSAGE_FORMAT, this.getEndDateTime());
         final TimePeriod modelTimePeriod = new TimePeriod(this.getStartDateTime(),
                 this.getEndDateTime());
 
         // Student list for lesson
-        if (this.getStudentList() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Student.class.getSimpleName()));
-        }
-        List<Student> modelStudentList = new ArrayList<>();
-        for (JsonAdaptedStudent jsonAdaptedStudent : this.getStudentList()) {
-            modelStudentList.add(jsonAdaptedStudent.toModelType());
-        }
+        checkNullArgument(Student.class, MISSING_FIELD_MESSAGE_FORMAT, this.getStudentList());
+        List<Student> modelStudentList = JsonAdaptedStudent.toModelList(this.getStudentList());
 
         // LessonAttendance
-        if (this.getAttendance() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    LessonAttendance.class.getSimpleName()));
-        }
-        TreeMap<Student, Boolean> attendanceMap = new TreeMap<>(Comparator.comparing(s ->
-                s.getName().toString()));
-        for (Integer i : this.getAttendance().keySet()) {
-            attendanceMap.put(modelStudentList.get(i), this.getAttendance().get(i));
-        }
-        LessonAttendance modelAttendance = new LessonAttendance(attendanceMap);
+        checkNullArgument(LessonAttendance.class, MISSING_FIELD_MESSAGE_FORMAT, this.getAttendance());
+        LessonAttendance modelAttendance = new LessonAttendance(modelStudentList, this.getAttendance());
 
         // LessonNotes
-        if (this.getGeneralNotes() == null || this.getStudentNotes() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    LessonNotes.class.getSimpleName()));
-        }
-        TreeMap<Student, ArrayList<String>> modelStudentNotes = new TreeMap<>(Comparator.comparing(s ->
-                s.getName().toString()));
-        for (Integer i : this.getStudentNotes().keySet()) {
-            modelStudentNotes.put(modelStudentList.get(i), this.getStudentNotes().get(i));
-        }
-        LessonNotes modelLessonNotes = new LessonNotes(this.getGeneralNotes(), modelStudentNotes);
-
-
+        checkNullArgument(LessonNotes.class, MISSING_FIELD_MESSAGE_FORMAT, this.getGeneralNotes());
+        checkNullArgument(LessonNotes.class, MISSING_FIELD_MESSAGE_FORMAT, this.getStudentNotes());
+        LessonNotes modelLessonNotes = new LessonNotes(modelStudentList, this.getGeneralNotes(),
+                this.getStudentNotes());
 
         Consult consult = new Consult(modelLessonDesc, modelTimePeriod,
                 modelStudentList, modelAttendance, modelLessonNotes);

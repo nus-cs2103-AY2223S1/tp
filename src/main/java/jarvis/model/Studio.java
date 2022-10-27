@@ -26,6 +26,10 @@ public class Studio extends Lesson {
     public Studio(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students,
                   LessonAttendance attendance, LessonNotes notes, StudioParticipation participation) {
         super(lessonDesc, timePeriod, students, attendance, notes);
+        // check if the students are the same
+        assert participation.getAllStudents().containsAll(students);
+        assert students.containsAll(participation.getAllStudents());
+
         this.participation = participation;
     }
 

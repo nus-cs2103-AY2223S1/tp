@@ -30,10 +30,10 @@ public class JsonSerializableTaskBookTest {
     }
 
     @Test
-    public void toModelType_invalidStudentFile_throwsIllegalValueException() throws Exception {
+    public void toModelType_invalidStudentFile_throwsIllegalArgumentException() throws Exception {
         JsonSerializableStudentBook dataFromFile = JsonUtil.readJsonFile(INVALID_STUDENT_FILE,
                 JsonSerializableStudentBook.class).get();
-        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+        assertThrows(IllegalArgumentException.class, dataFromFile::toModelType);
     }
 
     @Test

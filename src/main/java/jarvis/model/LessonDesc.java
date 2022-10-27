@@ -27,6 +27,9 @@ public class LessonDesc {
      * Returns true if a given string is a valid lesson description.
      */
     public static boolean isValidLessonDesc(String lessonDesc) {
+        if (lessonDesc == null) {
+            return false;
+        }
         return !lessonDesc.isEmpty();
     }
 
