@@ -26,10 +26,7 @@ public class OrderListPanel extends UiPart<Region> {
     public OrderListPanel(ObservableList<Order> orderList) {
         super(FXML);
         orderListView.setItems(orderList);
-        orderListView.setCellFactory(listView -> new OrderListViewCell() {{
-                setStyle("-fx-background-insets: 3px;");
-            }
-        });
+        orderListView.setCellFactory(listView -> new OrderListViewCell());
     }
 
     /**
@@ -44,6 +41,11 @@ public class OrderListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
+                if (!order.isCompleted()) {
+                    this.setStyle("-fx-background-color: #707BE3; -fx-background-insets: 3px;");
+                } else {
+                    this.setStyle("-fx-background-color: #777BB5; -fx-background-insets: 3px;");
+                }
                 setGraphic(new OrderCard(order, getIndex() + 1).getRoot());
             }
         }

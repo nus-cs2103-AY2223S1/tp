@@ -73,12 +73,10 @@ public class ItemCard extends UiPart<Region> {
         sellPrice.setText("$" + inventoryItem.getSellPrice().toString());
         sellPrice.setWrapText(true);
         sellPrice.setPadding(new Insets(0, 10, 0, 0));
-        sellPrice.setMinWidth(150);
 
         costPrice.setText("$" + inventoryItem.getCostPrice().toString());
         costPrice.setWrapText(true);
         costPrice.setPadding(new Insets(0, 10, 0, 0));
-        costPrice.setMinWidth(150);
 
         inventoryItem.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
