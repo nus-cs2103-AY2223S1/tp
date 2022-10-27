@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -49,8 +48,7 @@ public class AppendCommandParser implements Parser<AppendCommand> {
         if (tags.isEmpty()) {
             return Collections.emptySet();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return ParserUtil.parseTags(tagSet);
+        return ParserUtil.parseTags(tags);
     }
 
     /**
@@ -64,8 +62,6 @@ public class AppendCommandParser implements Parser<AppendCommand> {
         if (surveys.isEmpty()) {
             return Collections.emptySet();
         }
-        // THROW ERROR IF "s/" is found
-        Collection<String> surveySet = surveys.size() == 1 && surveys.contains("") ? Collections.emptySet() : surveys;
-        return ParserUtil.parseSurveys(surveySet);
+        return ParserUtil.parseSurveys(surveys);
     }
 }
