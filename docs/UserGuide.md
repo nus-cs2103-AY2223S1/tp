@@ -19,7 +19,7 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
 3. Copy the file to the folder you want to use as the _home folder_ for your HobbyList.
 
 4. Double-click the file to start the app. The default GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/default_gui.jpg)
+   ![Ui](images/default_gui.png)
 
 5. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
@@ -203,7 +203,7 @@ Edits a specified activity from HobbyList.
 
 Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`
 
-* Edits the activity at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The `INDEX` **must be a positive integer** 1, 2, 3, …
+* Edits the activity at the specified `INDEX`. The index refers to the index number shown in the displayed activity list. The `INDEX` **must be a positive integer** 1, 2, 3, …
 * At least **one** of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the activity will be removed i.e. adding of tags is not cumulative.
@@ -288,6 +288,6 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 | **Find**         | `find KEYWORDS` <br/> `find yyyy-mm-dd` `find yyyy-mm` `find yyyy` <br/> `find rate/value`                                                         |
 | **Help**         | `help`                                                                                                                                             |
 | **List**         | `list`                                                                                                                                             |
-| **R/above**      | `r/above VALUE`                                                                                                                                    |
+| **Rate above**   | `r/above VALUE`                                                                                                                                    |
 | **Rate**         | `rate INDEX r/RATING [re/REVIEW]`                                                                                                                  |
 | **Select**       | `select INDEX  `                                                                                                                                   |
