@@ -224,7 +224,7 @@ in the app. Below is an activity diagram reflecting this:
 
 For simplicity, only the `deletegroup` command sequence diagram is shown below. Both commands operate via a similar sequence:
 
-<img src="images/DeleteGroupSequenceDiagram.png" width="700" />
+<img src="images/DeleteGroupSequenceDiagram.png" width="800" />
 
 -----
 
@@ -232,7 +232,7 @@ For simplicity, only the `deletegroup` command sequence diagram is shown below. 
 
 #### **Implementation**
 This feature allows members to be added to and deleted from a group. It is
-achieved by the following operation:
+achieved by the following operations:
 
 - Model#addMember(Name, GroupName) - Adds the person with the input name to the group with input group name.
 - Model#deleteMember(Name, GroupName) - Removes the person with the input name from the group with the input group name.
@@ -247,7 +247,12 @@ Starting from the default persons, the user has executed `addgroup g/CS2103T` to
 
 **Step 2.**
 User executes `addmember g/CS2103T n/Alice` to add `Alice` to the
-group `CS2103T`, as reflected below:
+group `CS2103T`. The associated command `AddGroupMemberCommand` first
+constructs an `editedPerson` and `editedGroup` to replace `Alice` and
+`CS2103T` respectively, before calling `Model#setPerson()` and 
+`Model#setGroup()` with the respective edits to change `Alice` and
+`CS2103T`.
+The `AddressBook` model is reflected below:
 
 <img src="images/AddDeleteMemberState1.png" width="300" />
 
@@ -261,100 +266,57 @@ Suppose the user assigns `Alice` a task under the group. The `AddressBook` model
 
 **Step 4.**
 User executes `deletemember g/CS2103T n/Alice`. This removes `Alice` from `CS2103T` and removes any tasks
-associated with the group.
+associated with the group. The associated command `DeleteGroupMemberCommand` first
+constructs an `editedPerson` and `editedGroup` to replace `Alice` and
+`CS2103T` respectively, before calling `Model#setPerson()` and
+`Model#setGroup()` with the respective edits to change `Alice` and
+`CS2103T`.
 The `AddressBook` model now looks like this:
 
 <img src="images/AddDeleteMemberState0.png" width="300" />
 
 **Note:** The command itself `DeleteGroupMemberCommand` checks that both person `Alice` and group
-`CS2103T` exist in the app, and that `Alice` is a member of `CS2103T`.
+`CS2103T` exist in the app, and that `Alice` is a member of `CS2103T` prior to deletion.
 
 For simplicity, only the `deletemember` command sequence diagram is shown below. Both commands operate via a similar sequence:
 
-<img src="images/DeleteMemberSequenceDiagram.png" width="700" />
+<img src="images/DeleteMemberSequenceDiagram.png" width="800" />
 
 
 -----
 
-### **\[Developed\] Display Group feature**
+### **\[Developed\] Display/List Group feature**
 
 #### **Implementation**
+This feature allows a single group to be listed, or displays all groups. It is facilitated
+by the following operations:
 
-This feature allows an existing group with its members to be displayed, using the `displaygroup` command. This is facilitated by the `DisplayGroupCommand` and `DisplayGroupCommandParser` classes.
+- `Model#displayGroup(GroupName)` - Finds and lists the group with the input name.
+- `Model#listGroups()` - Displays all groups in TABS
 
-The `DisplayGroupCommandParser` class parses the input entered by the user, which is the group name the user wants to display.
+Given below is an example usage scenario and how groups can be individually displayed/displayed altogether in TABS.
 
-The validity of the group name input by the user will be checked with the help of the `FullGroupNamePredicate` class.
+**Step 1.**
+Starting from the default persons, the user has executed `addgroup g/CS2103T` to add a group with
+`GroupName` "CS2103T".
 
-- `FullGroupNamePredicate#test(group)` Tests if the name of a group in the list of groups stored matches the input given by the user.
+**Step 2.**
+User executes `displaygroup g/CS2103T`. The associated command `DisplayGroupCommand` calls
+`Model#updateFilteredGroupList(predicate)` with the given predicate being the `GroupName` CS2103T
+to display just the group with that name.
 
-If the group name is valid, the specified group will be displayed with the help of `Model#updateFilteredGroupList(predicate)`.
+**Note:**
+`DisplayGroupCommand` first checks validity of input against the full group list, obtained as an
+`ObservableList<Group>` from `Model#getFilteredGroupList()`. If the input `GroupName` does not correspond
+to a group in this list, a `CommandException` will be thrown notifying the user accordingly.
 
-Given below is an example of how `DisplayGroupCommand` is being executed.
+**Step 3.**
+User executes `listgroups`. The associated command `ListGroupsCommand` calls
+`Model#updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS)`to display all groups in the app.
 
-**Steps**
+For simplicity, only the `displaygroup` command sequence diagram is shown below. Both commands operate via a similar sequence:
 
-Step 1. The user enters `displaygroup [NAME OF GROUP]` command
-
-Step 2. The  `DisplayGroupCommandParser` class parses the group name input and returns a `DisplayGroupCommand` object with a single `FullGroupNamePredicate` attribute, encapsulating the input group name.
-
-Step 3. The `DisplayGroupCommand` object is executed. `FullGroupNamePredicate#test(group)` will be called to check against all the groups which are already present in TABS. These existing groups can be retrived by calling `ObservableList#get()` method.
-
-Step 4. If an existing group in TABS has name which matches exactly the name given by the user, then `Model#updateFilteredGroupList(predicate)` will be called, and this will display the group as specified.
-
-Step 5. CommandResult is then returned, which provides a feedback to user that the specified group has been successfully
-displayed.
-
-**Activity Diagram**
-
-The user flow can be illustrated in the Activity Diagram as shown below.
-
-<img src="images/DisplayGroupActivityDiagram.png" width="550" />
-
--------
-
-### **\[Developed\] Add Group Member feature**
-
-#### **Implementation**
-
-This feature allows an existing group with its members to be displayed, using the `addgroupmember` command. This is facilitated by the `AddGroupMemberCommand` and `AddGroupMemberCommandParser` classes.
-
-The `AddGroupMemberCommandParser` class parses the input entered by the user, which consists of the person's name and the group's name.
-The person with the given name will then be added to the group with the given name.
-
-The validity of the group name and person name input by the user will be checked with the help of an ObservableList for each field.
-
-`AddGroupMemberCommand` will also check if the person already exits in the specified group.
-
-If the both person and group names are valid, the specified person will be added to the group.
-
-Given below is an example of how `AddGroupMemberCommand` is being executed.
-
-**Steps**
-
-Step 1. The user enters `addmember [g/NAME OF GROUP] [n/ NAME OF PERSON]` command
-
-Step 2. The  `AddGroupMemberCommandParser` class parses the group name input and returns a `AddGroupMemberCommand` object with two attributes in two strings.
-
-Step 3. The `AddGroupMemberCommand` object is executed. The person and group
-can be obtained by calling the `ObservableList#get()` method on each field should they exist.
-
-Step 4. If an existing person in TABS has a name which matches exactly the name given by the user
-, then TABS will check for the group's existence.
-
-Step 5. If an existing group in TABS has a name which matches exactly the name given by the user, then TABS will check if the person already exists in the group.
-
-Step 6. If the person does not yet exist in the group,
-then the person will be added to the specified group.
-
-Step 7. CommandResult is then returned, which provides a feedback to user that the specified person has been successfully
-added to the specified group.
-
-**Activity Diagram**
-
-The user flow can be illustrated in the Activity Diagram as shown below.
-
-<img src="images/AddGroupMemberActivityDiagram.png" width="550" />
+<img src="images/DisplayGroupSequenceDiagram.png" width="800" />
 
 ----
 
