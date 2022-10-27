@@ -1,6 +1,5 @@
 package seedu.address.model;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
@@ -130,7 +129,7 @@ public interface Model {
 
     ObservableList<Image> getPromotionList();
 
-    void parseAllPromotion(String filePath) throws IOException;
+    void parseAllPromotion(String filePath);
 
     void commitAddressBook();
 
