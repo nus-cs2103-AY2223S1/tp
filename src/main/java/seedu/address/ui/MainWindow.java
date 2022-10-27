@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -32,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private CustomerListPanel customerListPanel;
+    private PromotionListPanel promotionListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane promotionListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -109,9 +114,13 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    void fillInnerParts() throws IOException {
         customerListPanel = new CustomerListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
+
+        this.logic.parseAllPromotion("src/main/resources/promotions");
+        promotionListPanel = new PromotionListPanel(this.logic.getPromotionList());
+        promotionListPanelPlaceholder.getChildren().add(promotionListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
