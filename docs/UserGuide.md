@@ -378,11 +378,76 @@ Examples:
 
 ## 1.5 Sort
 
-### 1.5.1 Sorting patients
+### 1.5.1 Sorting patients `sortpatient` 
 
-### 1.5.2 Sorting appointments
+Sorts patients by a single field
 
-### 1.5.3 Sorting bills
+Format:
+```sortpatient <prefix><input> ...```
+
+* The command word is `sortpatient`.
+* The prefixes are c/ for Criteria and o/ for Order.
+* The criteria can be Name of patient (name), Phone number of patient (phone), Email address of patient (email), Address of patient (address).
+* The order can be Ascending (asc) or Descending (desc).
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+Examples:
+* ```sortpatient c/name o/asc``` returns patients sorted by name in ascending order.
+
+<img src="images/sortpatient1.png" width="800px" height ="400px">
+
+* ```sortpatient c/phone o/desc``` returns patients sorted by phone number in descending order.
+
+<img src="images/sortpatient2.png" width="800px" height ="400px">
+
+### 1.5.2 Sorting appointments `sortappointment`
+
+Sorts appointments by a single field
+
+Format:
+```sortappointment <prefix><input> ...```
+
+* The command word is `sortappointment`.
+* The prefixes are c/ for Criteria and o/ for Order.
+* The criteria can be Name of patient (name), Medical Test of appointment (test), Slot of appointment (slot) and Doctor of appointment (doctor).
+* The order can be Ascending (asc) or Descending (desc).
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+Examples:
+* ```sortappointment c/test o/asc``` returns appointments sorted by medical test in ascending order.
+
+<img src="images/sortappointment1.png" width="800px" height ="400px">
+
+* ```sortappointment c/doctor o/desc``` returns appointments sorted by doctor in descending order.
+
+<img src="images/sortappointment2.png" width="800px" height ="400px">
+
+### 1.5.3 Sorting bills `sortbill`
+
+Sorts bills by a single field
+
+Format:
+```sortbill <prefix><input> ...```
+
+* The command word is `sortbill`.
+* The prefixes are c/ for Criteria and o/ for Order.
+* The criteria can be Name of patient (name), Amount (amount), Bill date (date), Payment status (status).
+* The order can be Ascending (asc) or Descending (desc).
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+* If the criteria is Payment status, Ascending will show bills which are paid first and Descending will show bills which are unpaid first.
+
+
+Examples:
+* ```sortbill c/amount o/asc``` returns bills sorted by amount in ascending order.
+
+<img src="images/sortbill1.png" width="800px" height ="400px">
+
+* ```sortbill c/status o/desc``` returns bills sorted by payment status in descending order.
+
+<img src="images/sortbill2.png" width="800px" height ="400px">
 
 ## 1.6 Select
 
@@ -490,9 +555,39 @@ After:
 
 ## 1.8 Remark
 
-## 1.9 Undo
+## 1.9 Undoing `undo`
 
-## 1.10 Redo
+Reverses the most recent command.
+
+Format:
+```undo```
+
+* The command word is `undo`.
+* The command can be used multiple times to undo multiple commands.
+* If there are no commands to undo, an error message will be shown.
+
+Examples:
+* ```undo``` undoes the most recent command.
+
+<img src="images/undo1.png" width="800px" height ="400px">
+
+## 1.10 Redoing `redo`
+
+Reverses the most recent undo command.
+
+Format:
+```redo```
+
+* The command word is `redo`.
+* The command can be used multiple times to redo multiple commands.
+* If there are no commands to redo, an error message will be shown.
+
+Examples:
+* ```redo``` redoes the most recent undo command.
+
+<img src="images/redo1.png" width="800px" height ="400px">
+
+
 
 ## 1.11 Clear
 
@@ -551,6 +646,7 @@ Opens the Help Window.
 <img src="images/othercommands/help.png" width="800px" height ="150px">
 
 
+
 # 2. Commands Reference Sheet
 
 | Feature  |                                      | Command Word        | Shortcut | Parameters                                                                                                                                                                                                                                                                                                                                                                                                   |
@@ -566,10 +662,10 @@ Opens the Help Window.
 |          | a bill to an appointment             | `deletebill`        | `db`     | **`INDEX` Index of bill                                                                                                                                                                                                                                                                                                                                                                                      |
 | Find     | a patient                            | `findpatient`       | `fp`     | `n/` Name of patient<br/>`p/` Phone number of patient <br/>`e/` Email address of patient <br/>`a/` Home address of patient <br/>`r/` Remark of patient <br/>+`t/` Tag(s) of patient                                                                                                                                                                                                                          |
 |          | an appointment of a patient          | `findappointment`   | `fa`     | `n/` Name of patient<br/>`s/` Slot of appointment<br/>`d/` Doctor name of the appointment<br/>`t/` Medical test of patient                                                                                                                                                                                                                                                                                   |
-|          | a bill to an appointment             | `findbill`          | `fb`     | `n/` Name of patient<br/>`a/` Amount of bill<br/>`d/` Bill date of bill                                                                                                                                                                                                                                                                                                                                      |
-| Sort     | a patient                            | `sortpatient`       | `sop`    |                                                                                                                                                                                                                                                                                                                                                                                                              |
-|          | an appointment of a patient          | `sortappointment`   | `soa`    |                                                                                                                                                                                                                                                                                                                                                                                                              |
-|          | a bill to an appointment             | `sortbill`          | `sob`    |                                                                                                                                                                                                                                                                                                                                                                                                              |
+|          | a bill to an appointment             | `findbill`          | `fb`     | `n/` Name of patient<br/>`a/` Amount of bill<br/>`d/` Bill date of bill<br/>`p/` Payment status of bill                                                                                                                                                                                                                                                                                                                                |
+| Sort     | a patient                            | `sortpatient`       | `sop`    | `c/` Criteria (Name of patient (name), Phone number of patient (phone), Email address of patient (email), Address of patient (address)) <br/> `o/` Order (Ascending (asc), Descending (desc))                                                                                                                                                                                                                |
+|          | appointment list                     | `sortappointment`   | `soa`    | `c/` Criteria (Name of patient (name), Medical test (test), Time slot (slot), Doctor (doctor)) <br/> `o/` Order (Ascending (asc), Descending (desc))                                                                                                                                                                                                                                                         |
+|          | bill list                            | `sortbill`          | `sob     | `c/` Criteria (Name of patient (name), Amount (amount), Date (date), Payment status (status)) <br/> `o/` Order (Ascending (asc), Descending (desc))                                                                                                                                                                                                                                                          |                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                            |
 | Select   | a patient                            | `selectpatient`     | `slp`    | **`INDEX` Index of target patient                                                                                                                                                                                                                                                                                                                                                                            |
 |          | an appointment                       | `selectappointment` | `sla`    | **`INDEX` Index of target patient                                                                                                                                                                                                                                                                                                                                                                            |
 | Set bill | as Paid                              | `setpaid`           | `sp`     | **`INDEX` Index of target bill                                                                                                                                                                                                                                                                                                                                                                               |
@@ -581,93 +677,3 @@ Opens the Help Window.
 | List     | all patients, appointments and bills | `list`              | `ls`     |                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Exit     | the program                          | `exit`              |          |                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Help     | the user with user guide             | `help`              |          |                                                                                                                                                                                                                                                                                                                                                                                                              |
-
-
-Notes on symbols in parameters column:
-
-`**` Must be directly after command word
-
-`*`  Must have(Accept last one when have multiple)
-
-`+`  Accept multiple
-
-# 3. Outdated Stuffs
-### Adding a patient: `add` [coming soon]
-
-Adds a patient and his/her details, such as age, contact number and appointment date, to the app.
-
-Format with example of usage: (in Command Terminal)
-
-````
-> add
-
-Enter patient’s name:
-
-> Mrs Angeline Tan
-
-Enter patient’s age:
-
-> 35
-
-Enter patient’s contact number:
-
-> 91234567
-
-Enter patient’s next appointment date:
-
-> 5/10/22
-
-Mrs Angeline Tan has been added!
-Name: Mrs Angeline Tan
-Age: 35
-Contact number: 91234567
-Appointment Date: 5/10/22
-````
-
-### Editing a patient: `editpatient`, `ep`
-
-Edit a patient’s information, such as age, contact number, appointment date and doctor’s notes.
-
-Format: `edit Patient Title: content`
-
-* If there is no such patient or task to edit, it will show an error.
-* Existing values will be updated to the input values.
-
-Examples:
-* `edit John name: Jack` John’s name has been changed to Jack!
-* `edit John number: 12345678` John’s number has been changed to 12345678.
-* `edit John date: 2019-12-25` John’s appointment date has been changed to Dec 25th, 2019.
-* `edit John note: use medicine` Doctor’s notes for John has been changed to use medicine.
-
-
-### Sorting by criteria: `sort` [coming soon]
-
-Sorts the patients according to name or appointment date.
-
-Format :
-```
-sort by <criteria>
-```
-where `criteria` can be either `name` or `appointment date`.
-
-Examples :
-```
-> sort by appointment date
-
-Patients sorted by their appointment dates -
-Jack Oct 12, 2022
-John Oct 20, 2022
-Peter Nov 1, 2022
-Lara Jan 6, 2023
-```
-
-```
-> sort by name
-
-Patients sorted by name -
-Alice
-Bob
-Jack
-John 
-Peter
-```
