@@ -21,6 +21,8 @@ import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
 
+import java.time.LocalDateTime;
+
 /**
  * Parses input arguments and creates a new AddPropertyCommand object
  */
@@ -51,6 +53,7 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
         Name ownerName = ParserUtil.parseName(argMultimap.getValue(PREFIX_OWNER_NAME).get());
         Phone ownerPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Owner newOwner = new Owner(ownerName, ownerPhone);
+        LocalDateTime entryTime = LocalDateTime.now();
 
         // TODO: Consider allowing multiple -c instead of separated by ; in one -c
         Characteristics characteristics = null;
@@ -58,7 +61,8 @@ public class AddPropertyCommandParser extends Parser<AddPropertyCommand> {
             characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
         }
 
-        Property property = new Property(propertyName, price, address, description, characteristics, newOwner);
+        Property property = new Property(propertyName, price, address, description,
+                characteristics, newOwner, entryTime);
 
         return new AddPropertyCommand(property);
     }

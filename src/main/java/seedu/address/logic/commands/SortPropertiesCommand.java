@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Comparator;
 
@@ -16,11 +17,12 @@ import seedu.address.model.property.Property;
 public class SortPropertiesCommand extends Command {
     public static final String COMMAND_WORD = "sortprops";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts properties by name or price "
-            + "in a specified order. You can only sort by one criteria at a time."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts properties by name, price "
+            + "or entry time in a specified order. You can only sort by one criteria at a time."
             + "Parameters: "
             + "[" + PREFIX_NAME + " ASC/DESC] "
-            + "[" + PREFIX_PRICE + " ASC/DESC]\n"
+            + "[" + PREFIX_PRICE + " ASC/DESC]"
+            + "[" + PREFIX_TIME + " ASC/DESC]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " ASC";
 

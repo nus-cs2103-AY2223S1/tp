@@ -7,6 +7,8 @@ import javafx.scene.layout.Region;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Property;
 
+import java.time.format.DateTimeFormatter;
+
 
 /**
  * An UI component that displays information of a {@code Buyer}.
@@ -38,6 +40,8 @@ public class PropertyCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
+    private Label propertyCreatedTime;
+    @FXML
     private Label ownerName;
     @FXML
     private Label ownerPhone;
@@ -57,6 +61,7 @@ public class PropertyCard extends UiPart<Region> {
         price.setText(property.getPrice().value);
         address.setText(property.getAddress().value);
         description.setText(property.getDescription().value);
+        //propertyCreatedTime.setText(property.getPropertyCreatedTime().format(DateTimeFormatter.ISO_DATE_TIME));
         characteristics.setText("Characteristics: " + property
                 .getCharacteristics().map(Characteristics::toString)
                 .orElse("Not Specified"));

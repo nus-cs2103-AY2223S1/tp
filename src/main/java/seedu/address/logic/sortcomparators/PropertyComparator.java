@@ -1,5 +1,6 @@
 package seedu.address.logic.sortcomparators;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Optional;
 
@@ -14,12 +15,17 @@ public class PropertyComparator implements Comparator<Property> {
     private Optional<Comparator<PropertyName>> propertyNameComparator;
     private Optional<Comparator<Price>> priceComparator;
 
+    private Optional<Comparator<LocalDateTime>> timeComparator;
+
     /**
      * Creates a BuyerComparator object.
      */
-    public PropertyComparator(Comparator<PropertyName> propertyNameComparator, Comparator<Price> priceComparator) {
+    public PropertyComparator(Comparator<PropertyName> propertyNameComparator,
+                              Comparator<Price> priceComparator,
+                              Comparator<LocalDateTime> timeComparator) {
         this.propertyNameComparator = Optional.ofNullable(propertyNameComparator);
         this.priceComparator = Optional.ofNullable(priceComparator);
+        this.timeComparator = Optional.ofNullable(timeComparator);
     }
 
     @Override
@@ -27,9 +33,13 @@ public class PropertyComparator implements Comparator<Property> {
         if (propertyNameComparator.isPresent()) {
             return propertyNameComparator.get().compare(firstProperty.getPropertyName(),
                     secondProperty.getPropertyName());
-        } else {
+        } else if (priceComparator.isPresent()) {
             return priceComparator.get()
                     .compare(firstProperty.getPrice(), secondProperty.getPrice());
+        } else {
+            return timeComparator.get()
+                    .compare(firstProperty.getPropertyEntryTime(),
+                            secondProperty.getPropertyEntryTime());
         }
 
 
@@ -39,8 +49,10 @@ public class PropertyComparator implements Comparator<Property> {
     public String toString() {
         if (propertyNameComparator.isPresent()) {
             return propertyNameComparator.get().toString();
-        } else {
+        } else if (priceComparator.isPresent()) {
             return priceComparator.get().toString();
+        } else {
+            return timeComparator.get().toString();
         }
     }
 }

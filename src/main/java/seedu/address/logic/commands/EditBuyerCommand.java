@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -108,8 +109,11 @@ public class EditBuyerCommand extends Command {
                 .orElse(buyerToEdit.getDesiredCharacteristics().orElse(null));
         Priority updatedPriority = editBuyerDescriptor.getPriority().orElse(buyerToEdit.getPriority());
 
+        // Should time be updated
+        LocalDateTime entryTime = buyerToEdit.getEntryTime();
+
         Buyer newBuyer = new Buyer(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedPriceRange, updatedCharacteristics, updatedPriority);
+                updatedPriceRange, updatedCharacteristics, updatedPriority, entryTime);
 
         return newBuyer;
     }

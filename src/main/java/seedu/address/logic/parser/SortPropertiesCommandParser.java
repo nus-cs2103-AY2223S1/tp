@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 
 import seedu.address.logic.commands.SortPropertiesCommand;
@@ -13,6 +15,7 @@ import seedu.address.logic.sortcomparators.Order;
 import seedu.address.logic.sortcomparators.PriceComparator;
 import seedu.address.logic.sortcomparators.PropertyComparator;
 import seedu.address.logic.sortcomparators.PropertyNameComparator;
+import seedu.address.logic.sortcomparators.TimeComparator;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
@@ -31,10 +34,10 @@ public class SortPropertiesCommandParser extends Parser<SortPropertiesCommand> {
     public SortPropertiesCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_TIME);
 
-        if (areMoreThanOnePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE)
-                || !isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE)
+        if (areMoreThanOnePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE, PREFIX_TIME)
+                || !isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE, PREFIX_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortPropertiesCommand.MESSAGE_USAGE));
@@ -45,13 +48,19 @@ public class SortPropertiesCommandParser extends Parser<SortPropertiesCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_NAME).get());
             Comparator<PropertyName> propertyNameComparator = new PropertyNameComparator(order);
-            propertyComparator = new PropertyComparator(propertyNameComparator, null);
+            propertyComparator = new PropertyComparator(propertyNameComparator, null, null);
         }
 
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
             Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_PRICE).get());
             Comparator<Price> priceComparator = new PriceComparator(order);
-            propertyComparator = new PropertyComparator(null, priceComparator);
+            propertyComparator = new PropertyComparator(null, priceComparator, null);
+        }
+
+        if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
+            Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_TIME).get());
+            Comparator<LocalDateTime> timeComparator = new TimeComparator(order);
+            propertyComparator = new PropertyComparator(null, null, timeComparator);
         }
 
         return new SortPropertiesCommand(propertyComparator);

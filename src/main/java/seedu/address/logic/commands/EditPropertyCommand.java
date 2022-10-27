@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -109,8 +110,11 @@ public class EditPropertyCommand extends Command {
                 .orElse(propertyToEdit.getCharacteristics().orElse(null));
         Owner updatedOwner = descriptor.getOwner().orElse(propertyToEdit.getOwner());
 
+        // Should this be updated
+        LocalDateTime entryTime = propertyToEdit.getPropertyEntryTime();
+
         return new Property(updatedPropertyName, updatedPrice, updatedAddress, updatedDescription,
-                updatedCharacteristics, updatedOwner);
+                updatedCharacteristics, updatedOwner, entryTime);
     }
 
     @Override

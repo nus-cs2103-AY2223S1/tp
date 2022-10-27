@@ -2,6 +2,7 @@ package seedu.address.model.buyer;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -28,12 +29,15 @@ public class Buyer {
     private final Optional<Characteristics> desiredCharacteristics;
     private final Priority priority;
 
+    private final LocalDateTime entryTime;
+
     /**
      * Every field must be present and not null.
      */
     public Buyer(Name name, Phone phone, Email email, Address address,
-                 PriceRange priceRange, Characteristics characteristics, Priority priority) {
-        requireAllNonNull(name, phone, email, address, priority);
+                 PriceRange priceRange, Characteristics characteristics,
+                 Priority priority, LocalDateTime entryTime) {
+        requireAllNonNull(name, phone, email, address, priority, entryTime);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -41,6 +45,7 @@ public class Buyer {
         this.priceRange = Optional.ofNullable(priceRange);
         this.desiredCharacteristics = Optional.ofNullable(characteristics);
         this.priority = priority;
+        this.entryTime = entryTime;
     }
 
     public Name getName() {
@@ -57,6 +62,10 @@ public class Buyer {
 
     public Address getAddress() {
         return address;
+    }
+
+    public LocalDateTime getEntryTime() {
+        return entryTime;
     }
 
     public Optional<PriceRange> getPriceRange() {

@@ -1,5 +1,6 @@
 package seedu.address.logic.sortcomparators;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Optional;
 
@@ -15,16 +16,19 @@ public class BuyerComparator implements Comparator<Buyer> {
     private Optional<Comparator<Name>> nameComparator;
     private Optional<Comparator<PriceRange>> priceRangeComparator;
     private Optional<Comparator<Priority>> priorityComparator;
+    private Optional<Comparator<LocalDateTime>> timeComparator;
 
     /**
      * Creates a BuyerComparator object.
      */
     public BuyerComparator(Comparator<Name> nameComparator,
                            Comparator<PriceRange> priceRangeComparator,
-                           Comparator<Priority> priorityComparator) {
+                           Comparator<Priority> priorityComparator,
+                           Comparator<LocalDateTime> timeComparator) {
         this.nameComparator = Optional.ofNullable(nameComparator);
         this.priceRangeComparator = Optional.ofNullable(priceRangeComparator);
         this.priorityComparator = Optional.ofNullable(priorityComparator);
+        this.timeComparator = Optional.ofNullable(timeComparator);
     }
 
     @Override
@@ -34,9 +38,12 @@ public class BuyerComparator implements Comparator<Buyer> {
         } else if (priceRangeComparator.isPresent()) {
             return priceRangeComparator.get()
                     .compare(firstBuyer.getPriceRange().get(), secondBuyer.getPriceRange().get());
-        } else {
+        } else if (priorityComparator.isPresent()) {
             return priorityComparator.get()
                     .compare(firstBuyer.getPriority(), secondBuyer.getPriority());
+        } else {
+            return timeComparator.get()
+                    .compare(firstBuyer.getEntryTime(), secondBuyer.getEntryTime());
         }
 
 
@@ -48,8 +55,10 @@ public class BuyerComparator implements Comparator<Buyer> {
             return nameComparator.get().toString();
         } else if (priceRangeComparator.isPresent()) {
             return priceRangeComparator.get().toString();
-        } else {
+        } else if (priorityComparator.isPresent()) {
             return priorityComparator.get().toString();
+        } else {
+            return timeComparator.get().toString();
         }
     }
 }

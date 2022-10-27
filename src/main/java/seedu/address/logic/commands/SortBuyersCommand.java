@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Comparator;
 
@@ -18,12 +19,14 @@ public class SortBuyersCommand extends Command {
 
     public static final String COMMAND_WORD = "sortbuyers";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts buyers by name or budget range "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts buyers by name, budget range "
+            + "priority, or entry time"
             + "in a specified order. You can only sort by one criteria at a time."
             + "Parameters: "
             + "[" + PREFIX_NAME + " ASC/DESC] "
             + "[" + PREFIX_PRICE_RANGE + " ASC/DESC]"
-            + "[" + PREFIX_PRIORITY + " ASC/DESC]\n"
+            + "[" + PREFIX_PRIORITY + " ASC/DESC]"
+            + "[" + PREFIX_TIME + " ASC/DESC]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " ASC";
 

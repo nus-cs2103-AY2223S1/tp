@@ -9,6 +9,9 @@ import seedu.address.model.buyer.Buyer;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 
+import javax.swing.text.DateFormatter;
+import java.time.format.DateTimeFormatter;
+
 /**
  * An UI component that displays information of a {@code Buyer}.
  */
@@ -38,6 +41,9 @@ public class PersonCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+
+    @FXML
+    private Label createdTime;
     @FXML
     private FlowPane priority;
 
@@ -58,6 +64,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(buyer.getPhone().value);
         address.setText(buyer.getAddress().value);
         email.setText(buyer.getEmail().value);
+        //createdTime.setText(buyer.getCreatedTime().format(DateTimeFormatter.ISO_DATE_TIME));
         priority.getChildren().add(new Label(buyer.getPriority().toString()));
         priceRange.setText("Budget: " + buyer.getPriceRange()
                 .map(PriceRange::toString).orElse("Not Specified"));

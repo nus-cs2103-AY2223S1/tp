@@ -3,6 +3,7 @@ package seedu.address.model.property;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -29,19 +30,21 @@ public class Property {
     private final Description description;
     private final Optional<Characteristics> characteristics;
     private final Owner owner;
+    private final LocalDateTime propertyEntryTime;
 
     /**
      * Every field must be present and not null.
      */
     public Property(PropertyName propertyName, Price price, Address address, Description description,
-                    Characteristics characteristics, Owner owner) {
-        requireAllNonNull(propertyName, price, address, description, owner);
+                    Characteristics characteristics, Owner owner, LocalDateTime propertyEntryTime) {
+        requireAllNonNull(propertyName, price, address, description, owner, propertyEntryTime);
         this.propertyName = propertyName;
         this.price = price;
         this.address = address;
         this.description = description;
         this.characteristics = Optional.ofNullable(characteristics);
         this.owner = owner;
+        this.propertyEntryTime = propertyEntryTime;
     }
 
     public PropertyName getPropertyName() {
@@ -58,6 +61,10 @@ public class Property {
 
     public Description getDescription() {
         return description;
+    }
+
+    public LocalDateTime getPropertyEntryTime() {
+        return propertyEntryTime;
     }
 
     public Owner getOwner() {

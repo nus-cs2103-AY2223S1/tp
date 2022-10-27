@@ -20,6 +20,8 @@ import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 
+import java.time.LocalDateTime;
+
 /**
  * Parses input arguments and creates a new AddCommand object
  */
@@ -45,6 +47,7 @@ public class AddPersonCommandParser extends Parser<AddBuyerCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        LocalDateTime entryTime = LocalDateTime.now();
 
         // if user does not specify a budget for the buyer, then there will be no PriceRange object
         PriceRange priceRange = null;
@@ -63,7 +66,7 @@ public class AddPersonCommandParser extends Parser<AddBuyerCommand> {
             priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         }
 
-        Buyer buyer = new Buyer(name, phone, email, address, priceRange, characteristics, priority);
+        Buyer buyer = new Buyer(name, phone, email, address, priceRange, characteristics, priority, entryTime);
 
         return new AddBuyerCommand(buyer);
     }

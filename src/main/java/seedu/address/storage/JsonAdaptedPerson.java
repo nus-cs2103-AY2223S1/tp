@@ -13,6 +13,8 @@ import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 
+import java.time.LocalDateTime;
+
 
 /**
  * Jackson-friendly version of {@link Buyer}.
@@ -29,6 +31,7 @@ class JsonAdaptedPerson {
     private final String priceRange;
     private final String desiredCharacteristics;
     private final String specifiedPriority;
+    private final String entryTime;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given buyer details.
@@ -38,12 +41,14 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("priceRange") String priceRange,
                              @JsonProperty("desiredCharacteristics") String desiredCharacteristics,
-                             @JsonProperty("priority") String specifiedPriority) {
+                             @JsonProperty("priority") String specifiedPriority,
+                             @JsonProperty("entryTime") String entryTime) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.priceRange = priceRange;
+        this.entryTime = entryTime;
         this.desiredCharacteristics = desiredCharacteristics;
         this.specifiedPriority = specifiedPriority;
     }
@@ -61,6 +66,7 @@ class JsonAdaptedPerson {
                 .map(Characteristics::toString)
                 .orElse("");
         specifiedPriority = source.getPriority().toString();
+        entryTime = source.getEntryTime().toString();
     }
 
     /**
@@ -69,6 +75,14 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted buyer.
      */
     public Buyer toModelType() throws IllegalValueException {
+
+        if (entryTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    "entry time not found"));
+        }
+
+        final LocalDateTime modelTime = LocalDateTime.parse(entryTime);
+
         if (specifiedPriority == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Priority.class.getSimpleName()));
@@ -131,7 +145,8 @@ class JsonAdaptedPerson {
                 ? null
                 : new Characteristics(desiredCharacteristics);
 
+
         return new Buyer(modelName, modelPhone, modelEmail, modelAddress,
-                modelPriceRange, modelCharacteristics, modelPriority);
+                modelPriceRange, modelCharacteristics, modelPriority, modelTime);
     }
 }
