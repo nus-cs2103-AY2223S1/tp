@@ -7,28 +7,28 @@ Table of Contents
 
 1. [Acknowledgements](#1-acknowledgements)
 2. [Setting up, getting started](#2-setting-up-getting-started)
-3. [Design](#3-design)  
-   3.1. [Architecture](#31-architecture)  
-   3.2. [UI component](#32-ui-component)   
-   3.3. [Logic component](#33-logic-component)  
-   3.4. [Model component](#34-model-component)   
-   3.5. [Storage component](#35-storage-component)   
-   3.6. [Common classes](#36-common-classes)   
-4. [Implementation](#4-implementation)   
-   4.1. [Import command](#41-import-command)   
-   4.2. [\[Proposed\] Undo/redo feature](#42-proposed-undoredo-feature)   
-   4.3. [\[Proposed\] Data archiving](#43-proposed-data-archiving)   
-5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)   
-6. [Appendix: Requirements](#6-appendix-requirements)   
-   6.1. [Product scope](#61-product-scope)  
-   6.2. [User stories](#62-user-stories)   
-   6.3. [Use cases](#63-use-cases)   
-   6.4. [Non-Functional Requirements](#64-non-functional-requirements)   
-   6.5. [Glossary](#65-glossary)   
-7. [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing)   
-   7.1. [Launch and shutdown](#71-launch-and-shutdown)   
-   7.2. [Deleting a client](#72-deleting-a-client)   
-   7.3. [Saving data](#73-saving-data)   
+3. [Design](#3-design)
+   3.1. [Architecture](#31-architecture)
+   3.2. [UI component](#32-ui-component)
+   3.3. [Logic component](#33-logic-component)
+   3.4. [Model component](#34-model-component)
+   3.5. [Storage component](#35-storage-component)
+   3.6. [Common classes](#36-common-classes)
+4. [Implementation](#4-implementation)
+   4.1. [Import command](#41-import-command)
+   4.2. [\[Proposed\] Undo/redo feature](#42-proposed-undoredo-feature)
+   4.3. [\[Proposed\] Data archiving](#43-proposed-data-archiving)
+5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)
+6. [Appendix: Requirements](#6-appendix-requirements)
+   6.1. [Product scope](#61-product-scope)
+   6.2. [User stories](#62-user-stories)
+   6.3. [Use cases](#63-use-cases)
+   6.4. [Non-Functional Requirements](#64-non-functional-requirements)
+   6.5. [Glossary](#65-glossary)
+7. [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing)
+   7.1. [Launch and shutdown](#71-launch-and-shutdown)
+   7.2. [Deleting a client](#72-deleting-a-client)
+   7.3. [Saving data](#73-saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -233,13 +233,19 @@ The import command mainly relies on the following classes:
 `CsvToBeanBuilder` is provided by the OpenCSV library.
 
 1. The user executes the `import` command while providing a path as an argument.
-2. `AddressBookParser#parseCommand()` is called, which creates and returns a new `ImportCommandParser` that parses the provided path.
+2. `AddressBookParser#parseCommand()` is called, which creates and returns a new `ImportCommandParser` that parses the
+   provided path.
 3. `ImportCommandParser#parse()` is called, which calls `ParserUtil#parseImportPath()` to parse the provided path.
-4. `ParserUtil` checks if the path is to a `JSON` or `CSV` file, and if the file is readable. If the path is valid, it returns the path.
+4. `ParserUtil` checks if the path is to a `JSON` or `CSV` file, and if the file is readable. If the path is valid, it
+   returns the path.
 5. `ImportCommandParser` creates and returns a new `ImportCommand` using the returned path.
 6. `ImportCommand#execute()` is called.
-    * If the path is to a `JSON` file, `ImportCommand` creates a new `JsonAddressBookStorage` using the path, then uses it to read and add `Person`s to the `Model`.
-    * If the path is to a `CSV` file, `ImportCommand` creates a new `CsvToBeanBuilder` using the path, then uses it to obtain a list of `CsvAdaptedPerson`s. `StringToTag#convertToRead()` is called by `CsvToBeanBuilder` to convert strings from the `CSV` file to `Tag`s. `CsvAdaptedPerson#toModelType()` is called to convert each `CsvAdaptedPerson` to a `Person` before adding them to the `Model`.
+    * If the path is to a `JSON` file, `ImportCommand` creates a new `JsonAddressBookStorage` using the path, then uses
+      it to read and add `Person`s to the `Model`.
+    * If the path is to a `CSV` file, `ImportCommand` creates a new `CsvToBeanBuilder` using the path, then uses it to
+      obtain a list of `CsvAdaptedPerson`s. `StringToTag#convertToRead()` is called by `CsvToBeanBuilder` to convert
+      strings from the `CSV` file to `Tag`s. `CsvAdaptedPerson#toModelType()` is called to convert
+      each `CsvAdaptedPerson` to a `Person` before adding them to the `Model`.
 
 The following sequence diagram shows how the import command works:
 
@@ -383,7 +389,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * should only be used to access and store sensitive information
 * targeted at FAs and does not include features that involve communication with their clients
 * manage contacts faster than a typical mouse/GUI driven app
-* FA's can shorten their time spent on doing administrative duties such as finding a client by showing all clients' details as well as portfolio in one glance
+* FA's can shorten their time spent on doing administrative duties such as finding a client by showing all clients'
+  details as well as portfolio in one glance
 
 ### 6.2. User stories
 
@@ -687,16 +694,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. Test case: Importing an invalid JSON file   
+    1. Test case: Importing an invalid JSON file
        Expected: list of clients will be empty and nothing is shown
 
-    2. Test case: Importing an invalid CSV file   
+    2. Test case: Importing an invalid CSV file
        Expected: list of clients will be empty and nothing is shown
 
-    3. Test case: Editing the JSON file when the application is not launched with invalid datas   
+    3. Test case: Editing the JSON file when the application is not launched with invalid datas
        Expected: list of clients will be empty and nothing is shown
 
-    4. Test case: Missing JSON file   
+    4. Test case: Missing JSON file
        Expected: Creates a new addressbook.json file when there is a new command entered
 
     5. {explain how to simulate a missing/corrupted file, and the expected behavior}_
