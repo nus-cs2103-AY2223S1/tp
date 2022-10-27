@@ -29,9 +29,12 @@ import static paymelah.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static paymelah.testutil.TypicalPersons.AMY;
 import static paymelah.testutil.TypicalPersons.BOB;
 
+import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
 
 import paymelah.logic.commands.AddCommand;
+import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
 import paymelah.model.person.Name;
 import paymelah.model.person.Person;
@@ -80,6 +83,11 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().withDebts().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + TELEGRAM_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedPerson));
+
+        // all fields missing except name
+        expectedPerson = new Person(new Name(VALID_NAME_BOB), Phone.EMPTY_PHONE, Telegram.EMPTY_TELEGRAM,
+                Address.EMPTY_ADDRESS, Collections.emptySet(), new DebtList());
+        assertParseSuccess(parser, NAME_DESC_BOB, new AddCommand(expectedPerson));
     }
 
     @Test
@@ -88,18 +96,6 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + TELEGRAM_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + TELEGRAM_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing telegram prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_TELEGRAM_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TELEGRAM_DESC_BOB + VALID_ADDRESS_BOB,
                 expectedMessage);
 
         // all prefixes missing

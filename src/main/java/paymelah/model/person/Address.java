@@ -8,7 +8,8 @@ import static paymelah.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
-
+    public static final Address EMPTY_ADDRESS = new Address();
+    public static final String EMPTY_ADDRESS_STRING = "Address unknown";
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*
@@ -28,6 +29,10 @@ public class Address {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
+    }
+
+    private Address() {
+        value = EMPTY_ADDRESS_STRING;
     }
 
     /**
