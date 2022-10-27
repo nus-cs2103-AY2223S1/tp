@@ -10,6 +10,20 @@ HealthContact is a software for **XXX**.
   {:toc}
 
 ---
+# Quick Start
+1. Ensure you have Java 11 or above installed in your Computer.
+
+2. Download the latest HealthContact.jar from here.
+
+3. Copy the file to the folder you want to use as the home folder for your HealthContact application.
+
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+
+<img src="images/Ui.png" width="800px" height ="400px">
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
+
+6. Refer to the [Features](#1.-Features) below for details of each command.
 
 # 1. Features
 
@@ -66,7 +80,7 @@ Examples:
 
 <img src="images/findpatientBernice.png" width="800px" height ="400px">
 
-### 1.4.2 Finding an appointment of a patient `findappointment` `fa`
+### 1.4.2 Finding appointments `findappointment` `fa`
 
 Filters appointments by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
@@ -111,9 +125,45 @@ Examples:
 
 ## 1.7 Setting Bill Payment Status
 
-### 1.7.1 Setting Bill As Paid
+### 1.7.1 Setting Bill As Paid `setpaid` `sp`
+
+Sets the payment status of a bill to "paid".
+
+Format:
+```setpaid <index>``` or ```sp <index>```
+
+* The command words are `setpaid` or `sp`.
+* The index refers to the index number of the bill shown in the displayed bill list.
+* The index must be a valid positive integer 1, 2, 3, …​
+
+Example:
+* ```setpaid 1``` sets the first bill in the displayed bill list as paid, in this case, `Bernice Yu`'s bill.
+
+Before:
+<img src="images/setpaidcommand.png" width="800px" height ="400px">
+
+After:
+<img src="images/setpaidcommandafter.png" width="800px" height ="400px">
 
 ### 1.7.2 Setting Bill As Unpaid
+
+Sets the payment status of a bill to "unpaid".
+
+Format:
+```setunpaid <index>``` or ```sup <index>```
+
+* The command words are `setunpaid` or `sup`.
+* The index refers to the index number of the bill shown in the displayed bill list.
+* The index must be a valid positive integer 1, 2, 3, …​
+
+Example:
+* ```setunpaid 1``` sets the first bill in the displayed bill list as unpaid, in this case, `Bernice Yu`'s bill.
+
+Before:
+<img src="images/setunpaidcommand.png" width="800px" height ="400px">
+
+After:
+<img src="images/setunpaidcommandafter.png" width="800px" height ="400px">
 
 ## 1.8 Remarking
 
