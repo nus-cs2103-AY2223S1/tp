@@ -25,7 +25,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
-    private static final int ROW_HEIGHT = 40; // Used to bind cell height
+    private static final int ROW_HEIGHT = 60; // Used to bind cell height
     private static final int HEADER_HEIGHT = 45; // Accurate for current label content
 
     private static Application hostServicesApp = new Application() {
