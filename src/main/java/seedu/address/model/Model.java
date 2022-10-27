@@ -177,6 +177,11 @@ public interface Model {
      */
     void setTutor(Student target, Student editedTutor);
 
+    /**
+     * Views the module with {@code ModuleCode}.
+     */
+    void viewModule(ModuleCode moduleCode);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

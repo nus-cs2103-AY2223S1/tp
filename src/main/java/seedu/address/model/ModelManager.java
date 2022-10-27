@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,7 +15,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleCodeContainsKeywordPredicate;
 import seedu.address.model.module.schedule.Schedule;
+import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 
@@ -208,6 +211,14 @@ public class ModelManager implements Model {
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
         profNus.setModule(target, editedModule);
+    }
+
+    @Override
+    public void viewModule(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        updateFilteredModuleList(new ModuleCodeContainsKeywordPredicate(moduleCode));
+        updateFilteredScheduleList(new ScheduleContainsKeywordsPredicate(Arrays
+                .asList(moduleCode.toString())));
     }
 
 

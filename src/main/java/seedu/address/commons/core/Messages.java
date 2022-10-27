@@ -14,4 +14,6 @@ public class Messages {
     public static final String MESSAGE_MODULE_NOT_SPECIFIED = "Module to edit not specified! \n%1$s";
     public static final String MESSAGE_NOT_A_STUDENT = "The index provided does not refer to a student";
 
+    public static final String MESSAGE_INVALID_MODULE_DISPLAYED_INDEX =
+            "The index provided is invalid in the list of modules";
 }

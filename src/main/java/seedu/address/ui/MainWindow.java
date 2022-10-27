@@ -239,8 +239,14 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabModules() {
-        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList(), logic.getFilteredScheduleList());
+        moduleListPanel = new ModuleListPanel(logic.getAllModuleList(), logic.getAllScheduleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        moduleListPanel.getTargetModuleList().setItems(logic.getFilteredModuleList());
+        moduleListPanel.getTargetModuleList().setCellFactory(listView ->
+                new ModulePanel.ModuleViewCell());
+        moduleListPanel.getScheduleList().setItems(logic.getFilteredScheduleList());
+        moduleListPanel.getScheduleList().setCellFactory(listView ->
+                new ScheduleListPanel.ScheduleListViewCell());
         tabPane.getSelectionModel().select(MODULELIST);
     }
 
