@@ -125,11 +125,11 @@ Exits the application.
 
 Adds a module to the application.
 
-To allow our users to easily add modules via their module code, our module information is fetched from 
+To allow our users to easily add modules via their module code, our module information is fetched from
 [NUSMods](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4),
-hence the module code you specify must be a valid NUS module code. 
-If the module code is invalid, the module will not be added. Additionally, since an integration with NUSMods 
-is a collaboration we would like to seek in future revisions of our app, we have decided to use the AY2022-2023 module 
+hence the module code you specify must be a valid NUS module code.
+If the module code is invalid, the module will not be added. Additionally, since an integration with NUSMods
+is a collaboration we would like to seek in future revisions of our app, we have decided to use the AY2022-2023 module
 list, hence beyond this AY, the module information and codes may have changed.
 
 Format: `add module <module code>`
@@ -203,7 +203,7 @@ Sample execution of command `cd ..`:
 
 #### Marks a module as done: `done module`
 
-Marks a module as done. 
+Marks a module as done.
 - After you mark a module as done, your total completed module credits (MCs) will be updated.
 - Marking a module as done will mark all active tasks belonging to that module as done.
 
@@ -219,7 +219,7 @@ Sample execution of command `done module CS2100`:
 
 #### Marks undone a module: `undone module`
 
-Marks a module as undone. 
+Marks a module as undone.
 - After you unmark a module as done, your total completed module credits (MCs) will be updated.
 - Unmarking a module will not affect its tasks, i.e. your original tasks will not be marked as undone)
 
@@ -333,7 +333,7 @@ Examples:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous ModuleList home folder.
 **Q**: Is my data saved when I close the app?<br>
 **A**: Yes! We keep track of your modules and tasks, and they will automatically be shown when you re-open the application.
