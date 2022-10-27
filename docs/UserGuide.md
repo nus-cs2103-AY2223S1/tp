@@ -9,7 +9,47 @@ myStudents is **a desktop app for managing students of a tuition center, optimiz
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Layout 
 
+
+###Command Box
+
+This is where you key in commands. After typing the commands, simply press `return` on your keyboard to execute them. 
+
+###Feedback Box
+
+This is where the feedback information would be displayed after you execute a command. For example, after you keyed in an invalid command, the feedback “Invalid format” would be shown in the box for your reference.
+
+###List Display Panel
+
+
+This is where the current list of entities is shown. Only one of the three entities, student, tutor and class will be shown at one time.
+
+###List Tabs
+
+There would be three tabs, student, tutor and class indicating the current displayed list shown in the list display panel.
+
+
+### Description Panel
+
+This is where the description of a specified student or tutor is shown. When there is no person on display, the line “No Person Displayed” would be shown.
+
+
+### Toolbar 
+
+#### File 
+
+The ` File`  menu contains `Export` and Exit`. 
+`Export` allows you to export your data into a `.csv` file. 
+ `Exit` allows the software to exit after three seconds of pause.
+
+#### Help
+
+`Help` allows you to view the help information regarding the software.
+
+#### Theme
+
+ `Theme` allows you to change the color scheme of the software. There are four themes provided: `Light Theme`, `Dark Theme`,  `Green Theme` and `Pink Theme`.
 
 ## Features
 
@@ -22,43 +62,79 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the database.
 
-Format: `add [student/tutor] n/[name] p/[phone_number] a/[address]`
+Format:
+
+`add student n/<name> p/<phone> e/<email> a/<address> s/<school> l/<level> [#/<tag>]`
+
+`add tutor n/<name> p/<phone> e/<email> a/<address> q/<qualification> i/<institution> [#/<tag>]`
 
 Examples:
-* `add student n/John Doe p/98765432 a/John street, block 123, #01-01`
-* `add tutor n/Betsy Crowe p/1234567 a/Newgate`
+* `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`
+* `add tutor n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate st, block 123, #01-01 q/MSc, Master of Science i/National University of Singapore #/mostLiked`
 
 ### Adding a class: `add`
 
-Adds a class to the database
+Adds a class to the database.
 
-Format: `add class n/[name] s/[subject] t/[time]`
+Format:
+
+`add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]`
 
 Examples:
-* `add class n/CS2103-F12 s/Computer Science t/Friday 12pm`
+* `add class n/P2-MATH-F12 s/Math l/Primary 2 d/Friday t/12:00 - 14:00`
+* `add class n/S1-ENG-T10 s/Math l/Secondary 1 d/Thursday t/10am to 12pm`
+
+### Editing an entity: `edit`
+
+Edits an entity in the database. 
+
+Format:
+
+`edit 1 [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [s/<school>] [l/<level>] [#/<tag>]`
+
+`edit 1 [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [q/<qualification>] [i/<institution>] [#/<tag>]`
+
+`edit 1 [n/<name>] [s/<subject>] [l/<level>] [d/<day>] [t/<time>] [#/<tag>]`
+
+* Arguments that are valid depends on which list is being displayed currently.
+* Only arguments specified will overwrite the existing values.
+
+Examples:
+* edit 1 n/Tom Doe
+* edit 2 l/Primary 5 d/Monday
 
 ### Listing all persons : `list`
 
-Shows a list of all specified entities in the address book.
+Shows a list of the specified entities in the database.
 
-Format: `list [student/tutor/class]`
-* If no entity type is given, all entities in the database will be listed.
+Format: `list <entity>`
+
+Examples:
+* `list student`
+* `list tutor`
+* `list class`
 
 ### Deleting an entity: `delete`
 
-Deletes the specified entity form the database
+Deletes the specified entity from the current displayed list.
 
-Format: `delete [student/tutor/class] INDEX`
+Format: `delete <index>`
 
 * The index refers to the index number shown in the displayed list.
 * The index must be a positive integer 1, 2, 3, …
 
 Examples:
-* `delete student 2`
-* `delete tutor 1`
-* `delete class 1`
+* `delete 2`
+
+### Clears list: `clear`
+
+Clears the current displayed list of its contents.
+
+Format: `clear`
+
+* Take note of which list you are clearing.
 
 ### Searching by multiple fields: `find`
 
@@ -114,6 +190,34 @@ student/tutor beforehand.
 
 Examples:
 * `unassign 1 n/P3 maths`
+
+### Showing the details of a person: `show`
+
+In the student and tutor list, the details of the persons are hidden due to security concerns. You could access the person’s details by executing the show command.
+
+Format: `show [index]` 
+*`show 1` shows the description of the first student in the list
+
+Note that `show` is an invalid command for class list since the details of classes are already in the class list, thus when you are in the class list.
+*`show 2` is an invalid command 
+
+### Add next of kin to a student: `nok`
+
+Adds a next of kin to an existing student in the current list.
+
+Format: 
+
+`nok <index>`
+
+`nok <index> n/<name> p/<phone> e/<email> a/<address> r/<relationship> [#/tag]`
+
+* The index refers to the index number shown in the displayed list.
+* This command only works when the displayed list is listing students.
+* Not specifying any arguments after index will remove the next of kin from the student of that index.
+
+Examples:
+
+* `nok 1 n/Mama Doe p/87654321 e/mamadoe@example.com a/John street, block 123, #01-01 r/Mother #/bestMomAward`
 
 ### Exporting address books to csv
 
