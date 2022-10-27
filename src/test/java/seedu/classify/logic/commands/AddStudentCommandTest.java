@@ -176,6 +176,16 @@ public class AddStudentCommandTest {
         public FilteredStudents getFilteredStudents() {
             return null;
         }
+
+        @Override
+        public void storePredicate(Predicate<Student> p) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Predicate<Student> getPrevPredicate() {
+            throw new AssertionError("This method should not be called");
+        }
     }
 
     /**
