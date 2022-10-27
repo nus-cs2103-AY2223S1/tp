@@ -1,7 +1,5 @@
 package seedu.watson.model.person;
 
-import static seedu.watson.commons.util.AppUtil.checkArgument;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -94,11 +92,11 @@ public class Attendance {
      * @param command the command with which to parse attendance
      */
     public void updateAttendance(String command) {
-        checkArgument(isValidAttendance(command), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidAttendance(command), MESSAGE_CONSTRAINTS);
         // e.g. "1/3/2022 1" -> sets attendance to 1 for 1/3/2022
         String[] commandSplit = command.split(" ");
-        String date = commandSplit[1];
-        String attendance = commandSplit[2];
+        String date = commandSplit[0];
+        String attendance = commandSplit[1];
         int attended = Integer.parseInt(attendance);
         personAttendance.put(date, attended);
     }
@@ -127,6 +125,17 @@ public class Attendance {
         for (String key : personAttendance.keySet()) {
             sb.append("date/").append(key).append(" attendance/").append(personAttendance.get(key)).append("%%");
         }
+        return sb.toString();
+    }
+
+    public String guiString() {
+        StringBuilder sb = new StringBuilder();
+        if (personAttendance.isEmpty()) {
+            sb.append("0/0");
+            return sb.toString();
+        }
+        int[] attendance = this.getAttendanceDetails();
+        sb.append(attendance[0] + "/" + attendance[1]);
         return sb.toString();
     }
 
