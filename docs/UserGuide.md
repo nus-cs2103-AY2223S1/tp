@@ -421,6 +421,7 @@ Finds all students with a particular email.
 
 Formats: `find e/EMAIL
 
+- The search is case-insensitive. e.g., `ghost@woods.com` will match `ghOst@woOds.com`.
 - Only one email can be searched at each time.
 - Full email must be used for corresponding student to be found.
 
@@ -434,11 +435,11 @@ Examples:
 
 `find e/jonsnow@winterfell.com` returns all students with email set as `jonsnow@winterfell.com`.
 
-#### Find by Name:
+#### Find by address:
 
-Finds all students with names matching the keywords.
+Finds all students with addresses matching the keywords.
 
-Format: `find n/KEYWORD [MORE_KEYWORDS]`
+Format: `find a/KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g., `alex` will match `Alex`.
 - The order of the keywords does not matter. e.g. `Yeoh Alex` will match `Alex Yeoh`.
