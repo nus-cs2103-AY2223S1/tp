@@ -15,7 +15,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
-import seedu.address.logic.commands.AddBuyerCommand;
+import seedu.address.logic.commands.addcommands.AddBuyerCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;

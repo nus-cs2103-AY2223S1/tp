@@ -31,7 +31,8 @@ import static seedu.address.testutil.TypicalDeliverers.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddDelivererCommand;
+import seedu.address.logic.commands.addcommands.AddDelivererCommand;
+import seedu.address.logic.parser.addcommandparser.AddDelivererCommandParser;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Email;

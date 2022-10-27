@@ -7,7 +7,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeletePetCommand;
+import seedu.address.logic.commands.deletecommands.DeletePetCommand;
+import seedu.address.logic.parser.deletecommandparser.DeletePetCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
