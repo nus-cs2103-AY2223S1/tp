@@ -20,11 +20,19 @@ public class Messages {
     public static final String MESSAGE_INVALID_KEYWORD = "Keyword is invalid,keyword cannot contain special characters";
     public static final String MESSAGE_INVALID_AMBIGUOUS_NAME = "There is more than 1 person with %s in their name!\n"
             + "Please be more specific, or, if already specifying the full name, use indices to edit.";
-    public static final String MESSAGE_INVALID_NAME = "There is no one with the name %s in the list!";
+    public static final String MESSAGE_INVALID_NAME = "There is no one with the name %s found!";
 
     public static final String AMOUNT_NOT_SPECIFIED = "No amount to was specified to edit the loan with.\n"
             + "Please use " + CliSyntax.PREFIX_LOAN_AMOUNT + " to specify a change in loan amount!";
 
     public static final String REASON_NOT_SPECIFIED = "A reason must be given to change loan amounts.\n"
             + "Please use " + CliSyntax.PREFIX_LOAN_REASON + " to specify a reason to change the loan value!";
+
+    public static final String OUT_OF_BOUNDS = "The index given to be inspected must be within "
+            + "the bounds of the list!";
+    public static final String NOT_AN_INTEGER = "The index given was not an integer value";
+    public static final String AMBIGUOUS_NAME_INSPECT_FIRST = "There was more than one person of that name found.\n"
+            + "Showing the first person matching the given name.\n"
+            + "Note that inspection works on the currently filtered list, "
+            + "perhaps you would like to filter away some persons first?";
 }

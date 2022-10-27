@@ -15,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
@@ -199,21 +200,18 @@ public class MainWindow extends UiPart<Stage> {
 
         ListView<Person> personListView = getPersonListPanel().getListView();
 
-        if (inspectingName.length == 1) {
-            try {
-                int index = Integer.parseInt(inspectingName[0]) - 1;
-                if (index < 0 || index >= personListView.getItems().size()) {
-                    resultDisplay.setFeedbackToUser("The index given to be inspected must be within "
-                            + "the bounds of the list!");
-                    return;
-                }
-
-                personListView.getSelectionModel().clearSelection();
-                personListView.getSelectionModel().select(index);
+        try {
+            int index = Integer.parseInt(inspectingName[0]) - 1;
+            if (index < 0 || index >= personListView.getItems().size()) {
+                resultDisplay.setFeedbackToUser(Messages.OUT_OF_BOUNDS);
                 return;
-            } catch (NumberFormatException e) {
-                logger.info("Input given was not an Integer");
             }
+
+            personListView.getSelectionModel().clearSelection();
+            personListView.getSelectionModel().select(index);
+            return;
+        } catch (NumberFormatException e) {
+            logger.info(Messages.NOT_AN_INTEGER);
         }
 
         Person[] personsArray = personListView.getItems()
@@ -221,17 +219,12 @@ public class MainWindow extends UiPart<Stage> {
                 .toArray(Person[]::new);
 
         if (personsArray.length == 0) {
-            resultDisplay.setFeedbackToUser("There was nobody of that name found.\n"
-                    + "Note that inspection works only on the currently filtered list, "
-                    + "perhaps you would like to list all persons available first?");
+            resultDisplay.setFeedbackToUser(Messages.MESSAGE_INVALID_NAME);
             return;
         }
 
         if (personsArray.length > 1) {
-            resultDisplay.setFeedbackToUser("There was more than one person of that name found.\n"
-                    + "Showing the first person matching the given name.\n"
-                    + "Note that inspection works on the currently filtered list, "
-                    + "perhaps you would like to filter away some persons first?");
+            resultDisplay.setFeedbackToUser(Messages.AMBIGUOUS_NAME_INSPECT_FIRST);
         }
 
         int index = personListView.getItems().indexOf(personsArray[0]);
