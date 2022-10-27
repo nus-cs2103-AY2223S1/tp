@@ -9,10 +9,10 @@ import java.util.Objects;
  * Guarantees: immutable.
  */
 public class GuiSettings implements Serializable {
-    public static final String LIGHT_THEME_STRING = "./view/LightTheme.css";
-    public static final String DARK_THEME_STRING = "./view/DarkTheme.css";
-    public static final String GREEN_THEME_STRING = "./view/GreenTheme.css";
-    public static final String PINK_THEME_STRING = "./view/PinkTheme.css";
+    public static final String LIGHT_THEME_STRING = "view/LightTheme.css";
+    public static final String DARK_THEME_STRING = "view/DarkTheme.css";
+    public static final String GREEN_THEME_STRING = "view/GreenTheme.css";
+    public static final String PINK_THEME_STRING = "view/PinkTheme.css";
     private static final double DEFAULT_HEIGHT = 950;
     private static final double DEFAULT_WIDTH = 670;
     private final double windowWidth;

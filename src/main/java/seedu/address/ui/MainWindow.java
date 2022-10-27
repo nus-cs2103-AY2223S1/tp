@@ -368,16 +368,20 @@ public class MainWindow extends UiPart<Stage> {
         Model.ListType type = logic.getCurrentListType();
         switch (type) {
         case STUDENT_LIST:
+            //to make sure list will list the latest filterest list
+            studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
             tutorListPanel.getTutorListView().getSelectionModel().clearSelection();
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             break;
         case TUTOR_LIST:
+            tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
             studentListPanel.getStudentListView().getSelectionModel().clearSelection();
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
             break;
         case TUITIONCLASS_LIST:
+            tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
             entityListPanelPlaceholder.getChildren().clear();
             entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
             break;

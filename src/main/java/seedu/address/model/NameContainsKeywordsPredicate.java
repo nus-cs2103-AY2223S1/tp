@@ -39,5 +39,4 @@ public class NameContainsKeywordsPredicate<T> implements Predicate<T> {
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
     }
-
 }
