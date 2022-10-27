@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.residentcommands;
+package seedu.rc4hdb.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,8 +17,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.rc4hdb.commons.core.index.Index;
-import seedu.rc4hdb.logic.commands.CommandResult;
-import seedu.rc4hdb.logic.commands.ModelCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ResidentBook;

@@ -184,6 +184,12 @@ Clears all entries from the database.
 
 Format: `clear`
 
+### Venue Booking : `book`
+
+Creates a booking for the specified resident, at the specified `TimePeriod`, `Day` and `Venue`.
+
+Format: `book INDEX v/VENUE`
+
 ### Exiting the program : `exit`
 
 Exits the program.

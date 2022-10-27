@@ -6,6 +6,9 @@ import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Unit tests for {@link Name}.
+ */
 public class NameTest {
 
     @Test
@@ -17,6 +20,11 @@ public class NameTest {
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "";
         assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
+    }
+
+    @Test
+    public void constructor_validName_constructName() {
+        assertTrue(new Name("validName") instanceof Name);
     }
 
     @Test
