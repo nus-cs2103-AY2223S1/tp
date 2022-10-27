@@ -132,16 +132,6 @@ public class PersonBuilder {
             }
 
             @Override
-            public boolean isAnyStyleMatch(int flag) {
-                return false;
-            }
-
-            @Override
-            public boolean isAllStyleMatch(int flag) {
-                return false;
-            }
-
-            @Override
             public Node getJavaFxRepresentation() {
                 return null;
             }
