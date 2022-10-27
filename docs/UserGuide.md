@@ -65,7 +65,7 @@ NUScheduler is a desktop app for **managing contacts, optimised for use via a Co
 
 * Under `Profile`, the `Name`, `Email` and `Phone` number will always be displayed while `Telegram` and `Tag`s will only be displayed if they exist.
 
-* Under `Event`, the `Title`, `StartDate`, `EndDate` and duration of event will always be displayed while `Attendees`, the participants of an `Event` and `Tag`s will only be displayed if they exist. 
+* Under `Event`, the `Title`, `StartDate`, `EndDate` and duration of event will always be displayed while `Attendees`, the participants of an `Event` and `Tag`s will only be displayed if they exist.
 
 </div>
 
