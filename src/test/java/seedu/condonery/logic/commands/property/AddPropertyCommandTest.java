@@ -20,13 +20,13 @@ import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
-import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.ReadOnlyUserPrefs;
 import seedu.condonery.model.UserPrefs;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.client.ReadOnlyClientDirectory;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyDirectory;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 import seedu.condonery.testutil.PropertyBuilder;
 
 public class AddPropertyCommandTest {
@@ -239,6 +239,21 @@ public class AddPropertyCommandTest {
 
         @Override
         public Client getUniqueClientByName(String clientName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPropertyName(String propertyName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasUniquePropertyName(String propertyName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Property getUniquePropertyByName(String propertyName) {
             throw new AssertionError("This method should not be called.");
         }
     }

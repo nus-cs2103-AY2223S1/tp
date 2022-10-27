@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.ReadOnlyPropertyDirectory;
+import seedu.condonery.model.property.PropertyDirectory;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.property.exceptions.DuplicatePropertyException;
 import seedu.condonery.testutil.PropertyBuilder;
 
