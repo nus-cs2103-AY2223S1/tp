@@ -48,6 +48,13 @@ public class NetWorth {
         return test.equals(EMPTY_NETWORTH) || test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if value is empty.
+     */
+    public boolean isEmpty() {
+        return value.equals(EMPTY_NETWORTH);
+    }
+
     @Override
     public String toString() {
         return value;

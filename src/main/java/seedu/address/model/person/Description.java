@@ -36,6 +36,13 @@ public class Description {
         return value == EMPTY_DESCRIPTION ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
+    /**
+     * Returns true if value is empty.
+     */
+    public boolean isEmpty() {
+        return value.equals(EMPTY_DESCRIPTION);
+    }
+
     @Override
     public String toString() {
         return value;

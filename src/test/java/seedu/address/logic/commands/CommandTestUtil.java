@@ -51,8 +51,8 @@ public class CommandTestUtil {
     public static final String EMPTY_EMAIL = "";
     public static final String EMPTY_FILEPATH = "";
     public static final String EMPTY_NETWORTH = "";
-    public static final String VALID_TAG_AMY = "SECURED";
     public static final String VALID_TAG_BOB = "POTENTIAL";
+    public static final String VALID_TAG_AMY = "SECURED";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -70,8 +70,9 @@ public class CommandTestUtil {
     public static final String MEETING_TIME_DESC_BOB = " " + PREFIX_MEETING_TIME + VALID_MEETING_TIME_BOB;
     public static final String FILEPATH_DESC_AMY = " " + PREFIX_FILEPATH + VALID_FILEPATH_AMY;
     public static final String FILEPATH_DESC_BOB = " " + PREFIX_FILEPATH + VALID_FILEPATH_BOB;
-    public static final String TAG_DESC_AMY = " " + PREFIX_TAG + VALID_TAG_BOB;
-    public static final String TAG_DESC_BOB = " " + PREFIX_TAG + VALID_TAG_AMY;
+
+    public static final String TAG_DESC_BOB = " " + PREFIX_TAG + VALID_TAG_BOB;
+    public static final String TAG_DESC_AMY = " " + PREFIX_TAG + VALID_TAG_AMY;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -91,11 +92,11 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withNetWorth(VALID_NETWORTH_AMY).withMeetingTimes(VALID_MEETING_TIME_AMY)
-                .withTags(VALID_TAG_BOB).build();
+                .withTags(VALID_TAG_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withNetWorth(VALID_NETWORTH_BOB).withMeetingTimes(VALID_MEETING_TIME_BOB)
-                .withTags(VALID_TAG_AMY, VALID_TAG_BOB).build();
+                .withTags(VALID_TAG_BOB, VALID_TAG_AMY).build();
     }
 
     /**

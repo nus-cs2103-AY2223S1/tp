@@ -8,6 +8,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,7 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
@@ -92,6 +95,18 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void syncMeetingTimes() {
+        Person pastMeetingGuy = new PersonBuilder().withMeetingTimes("28-07-2020-15:00").build();
+        AddressBook addressBook = new AddressBookBuilder().withPerson(pastMeetingGuy).withPerson(CARL).build();
+        AddressBook addressBook2 = new AddressBookBuilder().withPerson(pastMeetingGuy).withPerson(CARL).build();
+        modelManager = new ModelManager(addressBook, new UserPrefs());
+        modelManager.syncMeetingTimes();
+        addressBook2.syncMeetingTimes();
+        ModelManager expectedModelManager = new ModelManager(addressBook2, new UserPrefs());
+        assertEquals(modelManager, expectedModelManager);
     }
 
     @Test

@@ -57,6 +57,13 @@ public class Name {
         return fullName == EMPTY_NAME ? PersonProfile.EMPTY_DISPLAY_VALUE : fullName;
     }
 
+    /**
+     * Returns true if fullName is empty.
+     */
+    public boolean isEmpty() {
+        return fullName.equals(EMPTY_NAME);
+    }
+
     @Override
     public String toString() {
         return fullName;
