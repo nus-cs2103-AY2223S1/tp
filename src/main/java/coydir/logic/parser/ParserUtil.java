@@ -25,7 +25,7 @@ import coydir.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Number should be non-zero positive integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Number should be a non-zero positive integer.";
     public static final String MESSAGE_INVALID_ARGUMENT = "Keyword argument cannot be empty.";
 
     /**

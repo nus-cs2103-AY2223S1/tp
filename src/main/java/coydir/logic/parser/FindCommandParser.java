@@ -51,8 +51,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             keywordDepartment = ParserUtil.parseKeyword(argMultimap.getValue(PREFIX_DEPARTMENT).get());
         }
 
-
-
         return new FindCommand(new PersonMatchesKeywordsPredicate(keywordName, keywordPosition, keywordDepartment));
     }
 
