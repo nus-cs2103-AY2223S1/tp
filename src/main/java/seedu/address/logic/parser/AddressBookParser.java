@@ -81,7 +81,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case MakeStatsCommand.COMMAND_WORD:
-            return new MakeStatsCommand();
+            return new MakeStatsCommandParser().parse(arguments);
 
         case ListEventsCommand.COMMAND_WORD:
             return new ListEventsCommandParser().parse(arguments);
