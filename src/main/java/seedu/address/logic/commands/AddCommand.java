@@ -154,12 +154,16 @@ public class AddCommand extends Command {
             + "Depending on the entity type specified to be added, a specific set of arguments must be included.\n"
             + "The respective prefixes must be prepended to each argument except the entity type.\n "
             + "To add a student, follow 'add student " + PREFIX_NAME + "<name> " + PREFIX_PHONE + "<phone> "
-            + PREFIX_EMAIL + "<email> " + PREFIX_ADDRESS + "<address> " + PREFIX_SUBJECT_OR_SCHOOL + "<school> " + PREFIX_LEVEL
+            + PREFIX_EMAIL + "<email> " + PREFIX_ADDRESS + "<address> " + PREFIX_SUBJECT_OR_SCHOOL + "<school> "
+            + PREFIX_LEVEL
             + "<level> [" + PREFIX_TAG + "<tag>]'.\n"
-            + "To add a tutor, follow 'add student " + PREFIX_NAME + "<name> " + PREFIX_PHONE + "<phone> " + PREFIX_EMAIL + "<email> "
-            + PREFIX_ADDRESS + "<address> " + PREFIX_QUALIFICATION + "<qualification> " + PREFIX_INSTITUTION + "<institution> [" + PREFIX_TAG
+            + "To add a tutor, follow 'add student " + PREFIX_NAME + "<name> " + PREFIX_PHONE + "<phone> "
+            + PREFIX_EMAIL + "<email> "
+            + PREFIX_ADDRESS + "<address> " + PREFIX_QUALIFICATION + "<qualification> " + PREFIX_INSTITUTION
+            + "<institution> [" + PREFIX_TAG
             + "<tag>]'.\n"
-            + "To add a class, follow 'add class "+ PREFIX_NAME + "<name> " + PREFIX_SUBJECT_OR_SCHOOL + "<subject> " + PREFIX_LEVEL + "<level> "
+            + "To add a class, follow 'add class " + PREFIX_NAME + "<name> " + PREFIX_SUBJECT_OR_SCHOOL + "<subject> "
+            + PREFIX_LEVEL + "<level> "
             + PREFIX_DAY + "<day> " + PREFIX_TIME + "<time> [" + PREFIX_TAG + "<tag>]'. \n"
             + "\n"
             + "Regarding prefixes,\n"

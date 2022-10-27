@@ -33,7 +33,7 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
-    public CommandType commandType;
+    private CommandType commandType;
 
     public HelpCommand(CommandType commandType) {
         this.commandType = commandType;
