@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
 <HBox id="cardPane" fx:id="cardPane" prefHeight="90.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
@@ -42,13 +43,23 @@
                   <opaqueInsets>
                      <Insets />
                   </opaqueInsets>
+                  <padding>
+                     <Insets left="22.0" />
+                  </padding>
+               </Label>
+               <Label style="-fx-background-color: transparent;">
+                  <graphic>
+                     <Circle fill="#e0d1ff" radius="3.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  </graphic>
+                  <padding>
+                     <Insets left="3.0" right="8.0" />
+                  </padding>
                </Label>
                <Label fx:id="email" layoutX="10.0" layoutY="10.0" styleClass="cell_small_label" text="\$email">
                   <HBox.margin>
                      <Insets right="5.0" />
                   </HBox.margin>
                </Label>
-               <Label fx:id="address" layoutX="40.0" layoutY="10.0" styleClass="cell_small_label" text="\$address" />
             </children>
             <opaqueInsets>
                <Insets />

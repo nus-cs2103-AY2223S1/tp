@@ -163,4 +163,10 @@ public interface Model {
      * @param bridge The bridge to be added.
      */
     void addBridge(PersonTaskBridge bridge);
+
+    /** Returns an unmodifiable view of the unfiltered bridge list */
+    ObservableList<PersonTaskBridge> getUnfilteredBridgeList();
+
+    /** Returns an unmodifiable view of the unfiltered person list */
+    ObservableList<Person> getUnfilteredPersonList();
 }

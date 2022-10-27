@@ -14,6 +14,7 @@ import swift.commons.core.GuiSettings;
 import swift.commons.core.LogsCenter;
 import swift.logic.Logic;
 import swift.logic.commands.CommandResult;
+import swift.logic.commands.CommandType;
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.exceptions.ParseException;
 
@@ -122,7 +123,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        personTaskListPanel = new PersonTaskListPanel(logic.getFilteredTaskList());
+        personTaskListPanel = new PersonTaskListPanel(logic.getFilteredTaskList(),
+                logic.getUnfilteredBridgeList(), logic.getFilteredPersonList());
         personTaskListPanelPlaceholder.getChildren().add(personTaskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -179,39 +181,46 @@ public class MainWindow extends UiPart<Stage> {
      * Switch to tasks tab.
      */
     @FXML
-    private void handleTaskTab() {
-        logic.showAllLists();
-
-        personListPanel.removeHeading();
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getFilteredBridgeList(),
+    private void showTaskTab() {
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getUnfilteredBridgeList(),
                 logic.getFilteredPersonList());
+
+        listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        personTaskListPanel.removeHeading();
-        taskPersonListPanel = new TaskPersonListPanel(logic.getFilteredPersonList());
-        personTaskListPanelPlaceholder.getChildren().add(taskPersonListPanel.getRoot());
+        // Show the associated persons list panel only if there is one task selected in task list.
+        if (logic.getFilteredTaskList().size() == 1) {
+            taskPersonListPanel = new TaskPersonListPanel(logic.getFilteredPersonList());
+            personTaskListPanelPlaceholder.getChildren().clear();
+            personTaskListPanelPlaceholder.getChildren().add(taskPersonListPanel.getRoot());
+        } else {
+            personTaskListPanelPlaceholder.getChildren().clear();
+        }
     }
 
     /**
      * Switch to contacts tab.
      */
     @FXML
-    private void handleContactTab() {
-        taskListPanel.removeHeading();
+    private void showContactTab() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+
+        listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        taskPersonListPanel.removeHeading();
-        personTaskListPanel = new PersonTaskListPanel(logic.getFilteredTaskList());
-        personTaskListPanelPlaceholder.getChildren().add(personTaskListPanel.getRoot());
+        // Show the associated tasks list panel only if there is one contact selected in contact list.
+        if (logic.getFilteredPersonList().size() == 1) {
+            personTaskListPanel = new PersonTaskListPanel(logic.getFilteredTaskList(),
+                    logic.getUnfilteredBridgeList(), logic.getUnfilteredPersonList());
+            personTaskListPanelPlaceholder.getChildren().clear();
+            personTaskListPanelPlaceholder.getChildren().add(personTaskListPanel.getRoot());
+        } else {
+            personTaskListPanelPlaceholder.getChildren().clear();
+        }
     }
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
-    }
-
-    public TaskListPanel getTaskListPanel() {
-        return taskListPanel;
     }
 
     /**
@@ -225,20 +234,22 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            CommandType commandType = commandResult.getCommandType();
+            switch (commandType) {
+            case HELP:
                 handleHelp();
-            }
-
-            if (commandResult.isExit()) {
+                break;
+            case EXIT:
                 handleExit();
-            }
-
-            if (commandResult.isListContact()) {
-                handleContactTab();
-            }
-
-            if (commandResult.isListTask() || commandResult.isAddTask()) {
-                handleTaskTab();
+                break;
+            case CONTACTS:
+                showContactTab();
+                break;
+            case TASKS:
+                showTaskTab();
+                break;
+            default:
+                break;
             }
 
             return commandResult;

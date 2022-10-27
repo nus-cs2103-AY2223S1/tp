@@ -28,10 +28,10 @@
       <VBox maxWidth="1600.0" prefHeight="66.0" prefWidth="1200.0">
         <MenuBar fx:id="menuBar" translateX="-6.0" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="CONTACTS">
-            <MenuItem mnemonicParsing="false" onAction="#handleContactTab" text="Switch to Contacts tab" />
+            <MenuItem mnemonicParsing="false" onAction="#showContactTab" text="Switch to Contacts tab" />
           </Menu>
           <Menu mnemonicParsing="false" text="TASKS">
-            <MenuItem mnemonicParsing="false" onAction="#handleTaskTab" text="Switch to Tasks tab" />
+            <MenuItem mnemonicParsing="false" onAction="#showTaskTab" text="Switch to Tasks tab" />
           </Menu>
           <Menu mnemonicParsing="false" text="HELP">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Get Help" />

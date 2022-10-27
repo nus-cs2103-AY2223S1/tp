@@ -10,12 +10,10 @@ import org.junit.jupiter.api.Test;
 public class CommandResultTest {
     @Test
     public void equals() {
-        CommandResult commandResult = new CommandResult("feedback");
+        CommandResult commandResult = new CommandResult("feedback", CommandType.TASKS);
 
         // same values -> returns true
-        assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false,
-                false, false, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", CommandType.TASKS)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -27,33 +25,41 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(0.5f));
 
         // different feedbackToUser value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("different")));
+        assertFalse(commandResult.equals(new CommandResult("different", CommandType.TASKS)));
 
-        // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false,
-                false, false, false)));
+        // different command type -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", CommandType.HELP)));
 
-        // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true,
-                false, false, false)));
+        // different command type -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", CommandType.EXIT)));
+
+        // different command type -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", CommandType.CONTACTS)));
+
+        // different command type -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", CommandType.CLEAR)));
     }
 
     @Test
     public void hashcode() {
-        CommandResult commandResult = new CommandResult("feedback");
+        CommandResult commandResult = new CommandResult("feedback", CommandType.TASKS);
 
         // same values -> returns same hashcode
-        assertEquals(commandResult.hashCode(), new CommandResult("feedback").hashCode());
+        assertEquals(commandResult.hashCode(), new CommandResult("feedback", CommandType.TASKS).hashCode());
 
         // different feedbackToUser value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("different", CommandType.TASKS).hashCode());
 
-        // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true,
-                false, false, false, false).hashCode());
+        // different command type -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", CommandType.HELP).hashCode());
 
-        // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
-                true, false, false, false).hashCode());
+        // different command type -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", CommandType.EXIT).hashCode());
+
+        // different command type -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", CommandType.CONTACTS).hashCode());
+
+        // different command type -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", CommandType.CLEAR).hashCode());
     }
 }

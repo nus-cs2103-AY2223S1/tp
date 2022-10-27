@@ -11,64 +11,23 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
-
-    /** The application should exit. */
-    private final boolean exit;
-
-    /** The application should switch to contacts tab. */
-    private final boolean isListContact;
-
-    /** The application should switch to tasks tab. */
-    private final boolean isListTask;
-
-    /** The application should display all tasks with associated contacts. */
-    private final boolean isAddTask;
+    /** Type of the command. */
+    private final CommandType commandType;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isListContact,
-                         boolean isListTask, boolean isAddTask) {
+    public CommandResult(String feedbackToUser, CommandType commandType) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.isListContact = isListContact;
-        this.isListTask = isListTask;
-        this.isAddTask = isAddTask;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false, false);
+        this.commandType = commandType;
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
-    }
-
-    public boolean isExit() {
-        return exit;
-    }
-
-    public boolean isListContact() {
-        return isListContact;
-    }
-
-    public boolean isListTask() {
-        return isListTask;
-    }
-
-    public boolean isAddTask() {
-        return isAddTask;
+    public CommandType getCommandType() {
+        return commandType;
     }
 
     @Override
@@ -84,16 +43,12 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && isListContact == otherCommandResult.isListContact
-                && isListTask == otherCommandResult.isListTask
-                && isAddTask == otherCommandResult.isAddTask;
+                && commandType == otherCommandResult.commandType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, commandType);
     }
 
 }

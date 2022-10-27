@@ -70,7 +70,7 @@ That should be fine because the [Architecture section of the Developer Guide](..
 
 Next, let's find out which statement(s) in the `UI` code is calling this method, thus transferring control from the `UI` to the `Logic`.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Intellij Tip** <br> 
+<div markdown="span" class="alert alert-primary">:bulb: **Intellij Tip** <br>
 The ['**Find Usages**' feature](https://www.jetbrains.com/help/idea/find-highlight-usages.html#find-usages) can find from which parts of the code a class/method/variable is being used.
 </div>
 
@@ -85,7 +85,7 @@ Now let’s set the breakpoint. First, double-click the item to reach the corres
 
 Recall from the User Guide that the `edit` command has the format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` For this tutorial we will be issuing the command `edit 1 n/Alice Yeoh`.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip** <br> 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
 Over the course of the debugging session, you will encounter every major component in the application. Try to keep track of what happens inside the component and where the execution transfers to another component.
 </div>
 
