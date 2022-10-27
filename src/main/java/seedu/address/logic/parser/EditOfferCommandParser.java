@@ -39,7 +39,7 @@ public class EditOfferCommandParser implements Parser<EditOfferCommand> {
             editOfferDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_LISTING_ID).isPresent()) {
-            editOfferDescriptor.setListing(ParserUtil.parseListingID(argMultimap.getValue(PREFIX_LISTING_ID).get()));
+            editOfferDescriptor.setListing(ParserUtil.parseListingId(argMultimap.getValue(PREFIX_LISTING_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_OFFER).isPresent()) {
             editOfferDescriptor.setOfferPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_OFFER).get()));

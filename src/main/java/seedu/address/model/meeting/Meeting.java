@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
@@ -25,7 +25,7 @@ public class Meeting implements Comparable<Meeting> {
     /**
      * Listing involved in the meeting.
      */
-    private final ListingID listing;
+    private final ListingId listing;
 
     /**
      * Tag for type of Meeting.
@@ -38,7 +38,7 @@ public class Meeting implements Comparable<Meeting> {
      * @param listing Listing
      * @param dateTime dateTime
      */
-    public Meeting(Name client, ListingID listing, LocalDateTime dateTime) {
+    public Meeting(Name client, ListingId listing, LocalDateTime dateTime) {
         this.client = client;
         this.listing = listing;
         this.dateTime = dateTime;
@@ -50,7 +50,7 @@ public class Meeting implements Comparable<Meeting> {
      * @param listing Listing
      * @param dateTime dateTime
      */
-    public Meeting(Name client, ListingID listing, LocalDateTime dateTime, Set<Tag> tags) {
+    public Meeting(Name client, ListingId listing, LocalDateTime dateTime, Set<Tag> tags) {
         this.client = client;
         this.listing = listing;
         this.dateTime = dateTime;
@@ -69,7 +69,7 @@ public class Meeting implements Comparable<Meeting> {
      * Getter for listing.
      * @return Listing
      */
-    public ListingID getListing() {
+    public ListingId getListing() {
         return listing;
     }
 

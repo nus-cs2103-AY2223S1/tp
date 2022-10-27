@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 
@@ -34,7 +34,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
-        ListingID listing = ParserUtil.parseListingID(argMultiMap.getValue(PREFIX_LISTING_ID).get());
+        ListingId listing = ParserUtil.parseListingId(argMultiMap.getValue(PREFIX_LISTING_ID).get());
         Name name = ParserUtil.parseName(argMultiMap.getValue(PREFIX_NAME).get());
         LocalDateTime dateTime = ParserUtil.parseDateTime(argMultiMap.getValue(PREFIX_DATETIME).get());
 

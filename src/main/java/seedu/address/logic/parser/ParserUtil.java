@@ -12,7 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -142,15 +142,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code int id} into a {@code ListingID}.
+     * Parses {@code int id} into a {@code ListingId}.
      */
-    public static ListingID parseListingID(String id) throws ParseException {
+    public static ListingId parseListingId(String id) throws ParseException {
         requireNonNull(id);
         String trimmedListingID = id.trim();
-        if (!ListingID.isValidListingID(trimmedListingID)) {
-            throw new ParseException(ListingID.MESSAGE_CONSTRAINTS);
+        if (!ListingId.isValidListingId(trimmedListingID)) {
+            throw new ParseException(ListingId.MESSAGE_CONSTRAINTS);
         }
-        return new ListingID(trimmedListingID);
+        return new ListingId(trimmedListingID);
     }
 
     /**

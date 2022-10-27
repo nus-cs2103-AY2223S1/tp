@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.model.offer.Offer;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
@@ -19,15 +18,13 @@ import seedu.address.model.tag.Tag;
 public class Listing implements Comparable<Listing> {
 
     // Identity fields
-    private final ListingID id;
+    private final ListingId id;
     private final Address address;
     private final Person owner;
     private final Price askingPrice;
 
     // Data fields
-    private int highestOffer;
     private final List<Person> interestedClients;
-    private final List<Offer> currentOffers;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -36,21 +33,19 @@ public class Listing implements Comparable<Listing> {
      * @param owner Person
      * @param askingPrice int
      */
-    public Listing(ListingID id, Address address, Person owner, Price askingPrice) {
+    public Listing(ListingId id, Address address, Person owner, Price askingPrice) {
         this.id = id;
         this.address = address;
         this.owner = owner;
         this.askingPrice = askingPrice;
-        this.highestOffer = 0;
         interestedClients = new ArrayList<>();
-        currentOffers = new ArrayList<>();
     }
 
     /**
      * Gets the id of this listing.
      * @return id of listing
      */
-    public ListingID getId() {
+    public ListingId getId() {
         return this.id;
     }
 
@@ -103,14 +98,6 @@ public class Listing implements Comparable<Listing> {
     }
 
     /**
-     * Getter for a list of Offers.
-     * @return List(Offer)
-     */
-    public List<Offer> getCurrentOffers() {
-        return currentOffers;
-    }
-
-    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -138,26 +125,6 @@ public class Listing implements Comparable<Listing> {
             }
         }
         return false;
-    }
-
-    /**
-     * Adds a new offer to the currentOffers list.
-     * @param offer the new offer made
-     */
-    public void addOffer(Offer offer) {
-        this.currentOffers.add(offer);
-        int offerPrice = Integer.parseInt(offer.getOfferPrice().value);
-        if (offerPrice > this.highestOffer) {
-            this.highestOffer = offerPrice;
-        }
-    }
-
-    /**
-     * Returns the highest offer made.
-     * @return the highest offer made
-     */
-    public int getHighestOffer() {
-        return this.highestOffer;
     }
 
     /**
@@ -203,14 +170,6 @@ public class Listing implements Comparable<Listing> {
             builder.append("; Interested Clients: ");
             for (Person client : interestedClients) {
                 builder.append(client).append("\n");
-            }
-        }
-
-        List<Offer> currentOffers = getCurrentOffers();
-        if (!currentOffers.isEmpty()) {
-            builder.append("; Current Offers: ");
-            for (Offer offer : currentOffers) {
-                builder.append(offer).append("\n");
             }
         }
 

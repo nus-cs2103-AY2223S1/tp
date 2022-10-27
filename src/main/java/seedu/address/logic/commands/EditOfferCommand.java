@@ -14,7 +14,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Name;
@@ -84,7 +84,7 @@ public class EditOfferCommand extends Command {
         assert offerToEdit != null;
 
         Name updatedName = editOfferDescriptor.getName().orElse(offerToEdit.getClient());
-        ListingID updatedListingId = editOfferDescriptor.getListing().orElse(offerToEdit.getListing());
+        ListingId updatedListingId = editOfferDescriptor.getListing().orElse(offerToEdit.getListing());
         Price offerPrice = editOfferDescriptor.getOfferPrice().orElse(offerToEdit.getOfferPrice());
 
         return new Offer(updatedName, updatedListingId, offerPrice);
@@ -114,7 +114,7 @@ public class EditOfferCommand extends Command {
      */
     public static class EditOfferDescriptor {
         private Name name;
-        private ListingID listing;
+        private ListingId listing;
         private Price offerPrice;
 
         public EditOfferDescriptor() {}
@@ -143,11 +143,11 @@ public class EditOfferCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setListing(ListingID listing) {
+        public void setListing(ListingId listing) {
             this.listing = listing;
         }
 
-        public Optional<ListingID> getListing() {
+        public Optional<ListingId> getListing() {
             return Optional.ofNullable(listing);
         }
 
