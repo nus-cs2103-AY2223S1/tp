@@ -1,7 +1,7 @@
 package seedu.address.logic.nusmodules;
 
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 //TODO to throw error when module not available
 public class NusModulesParser {
-    private final File nusModuleJson = new File("src/main/java/seedu/address/logic/NUSModules/NUSModules.json");
+    private final URL nusModuleJson = new URL("file:src/main/java/seedu/address/logic/NUSModules/NUSModules.json");
     private ObjectMapper mapper = new ObjectMapper();
 
     private List<NusModule> nusModuleLists = mapper.readValue(nusModuleJson, new TypeReference<List<NusModule>>() {
