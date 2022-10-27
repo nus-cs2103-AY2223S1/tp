@@ -18,6 +18,7 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.ClassContainsDatePredicate;
+import seedu.address.model.person.predicate.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
 
@@ -102,8 +103,14 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validEmailPrefix_returnsFindCommand() {
-        // TODO: Update test case with e/ prefix
-        assertParseFailure(parser, EMAIL_DESC_AMY, "e/ search not implemented yet.");
+        FindCommand expectedFindCommand = new FindCommand(
+                new EmailContainsKeywordsPredicate(Arrays.asList("john_yang@gmail.com")));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, " e/john_yang@gmail.com", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " e/     john_yang@gmail.com    ", expectedFindCommand);
     }
 
     @Test

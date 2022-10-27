@@ -19,6 +19,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.ClassContainsDatePredicate;
+import seedu.address.model.person.predicate.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
 
@@ -57,10 +58,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException("np/ search not implemented yet.");
 
         } else if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-
-            // TODO: Implement email search here, remove the exception below
-            throw new ParseException("e/ search not implemented yet.");
-
+            String emailToFind = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()).value.trim();
+            String[] emailKeywords = emailToFind.split("\\s+");
+            return new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList(emailKeywords)));
         } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             String addressToFind = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()).value.trim();
             String[] addressKeywords = addressToFind.split("\\s+");
