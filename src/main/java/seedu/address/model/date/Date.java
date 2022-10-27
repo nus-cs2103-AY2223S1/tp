@@ -59,7 +59,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Returns the String representation of the Date in a format suitable for storage logging.
-     * @return String the string that will be logged.
+     * @return String the string that is in the correct format for logging.
      */
     public String toLogFormat() {
         return this.date.format(logFormatter);
