@@ -77,7 +77,7 @@ public class StorageManager implements Storage {
     @Override
     public void savePropertyDirectory(ReadOnlyPropertyDirectory propertyDirectory, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        propertyDirectoryStorage.savePropertyDirectory(propertyDirectory, filePath);
+        propertyDirectoryStorage.savePropertyDirectory(propertyDirectory);
     }
 
     // ================ ClientDirectory methods ==============================

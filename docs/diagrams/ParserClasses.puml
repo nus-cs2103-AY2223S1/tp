@@ -9,7 +9,7 @@ Class XYZCommand
 
 package "Parser classes"{
 Class "<<interface>>\nParser" as Parser
-Class AddressBookParser
+Class CondoneryParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil

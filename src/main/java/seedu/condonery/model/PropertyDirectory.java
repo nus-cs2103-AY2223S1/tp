@@ -2,6 +2,7 @@ package seedu.condonery.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Path;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -32,9 +33,12 @@ public class PropertyDirectory implements ReadOnlyPropertyDirectory {
     /**
      * Creates an PropertyDirectory using the Properties in the {@code toBeCopied}
      */
-    public PropertyDirectory(ReadOnlyPropertyDirectory toBeCopied) {
+    public PropertyDirectory(ReadOnlyPropertyDirectory toBeCopied, Path imageDirectoryPath) {
         this();
         resetData(toBeCopied);
+        for (Property property : this.properties) {
+            property.setImageDirectoryPath(imageDirectoryPath);
+        }
     }
 
     //// list overwrite operations

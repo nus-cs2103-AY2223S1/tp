@@ -17,6 +17,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should prompt for image upload. */
+    private String imageToUploadName;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +27,16 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, String imageToUploadName) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.imageToUploadName = imageToUploadName;
     }
 
     /**
@@ -38,12 +51,20 @@ public class CommandResult {
         return feedbackToUser;
     }
 
+    public String getImageToUploadName() {
+        return imageToUploadName;
+    }
+
     public boolean isShowHelp() {
         return showHelp;
     }
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isImageUpload() {
+        return imageToUploadName != null;
     }
 
     @Override

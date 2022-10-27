@@ -61,9 +61,12 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         PropertyDirectoryStorage propertyDirectoryStorage =
-                new JsonPropertyDirectoryStorage(userPrefs.getPropertyDirectoryFilePath());
+                new JsonPropertyDirectoryStorage(
+                    userPrefs.getPropertyDirectoryFilePath()
+                );
         ClientDirectoryStorage clientDirectoryStorage =
-                new JsonClientDirectoryStorage(userPrefs.getClientDirectoryFilePath());
+                new JsonClientDirectoryStorage(
+                    userPrefs.getClientDirectoryFilePath());
         storage = new StorageManager(propertyDirectoryStorage, clientDirectoryStorage, userPrefsStorage);
 
         initLogging(config);
@@ -107,7 +110,8 @@ public class MainApp extends Application {
             if (!clientDirectoryOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PropertyDirectory");
             }
-            initialClientDirectoryData = clientDirectoryOptional.orElseGet(SampleDataUtil::getSampleClientDirectory);
+            initialClientDirectoryData =
+                    clientDirectoryOptional.orElseGet(SampleDataUtil::getSampleClientDirectory);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ClientDirectory");
             initialClientDirectoryData = new ClientDirectory();
