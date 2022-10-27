@@ -1,11 +1,17 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ContainsTagPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -19,15 +25,27 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        String namesJoined = argMultimap.getPreamble();
+        List<String> nameKeywords = Arrays.asList(namesJoined.split("\\s+"));
+        if (namesJoined.equals("")) {
+            nameKeywords = new ArrayList<>();
+        }
+
+        List<String> tagKeywords = argMultimap.getAllValues(PREFIX_TAG);
+        tagKeywords = tagKeywords.stream().map(x -> x.trim().toLowerCase()).collect(Collectors.toList());
+
+        return new FindCommand(new NameContainsKeywordsPredicate(nameKeywords),
+                new ContainsTagPredicate(tagKeywords));
     }
 
 }
