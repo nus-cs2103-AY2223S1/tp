@@ -31,7 +31,7 @@ public class SelectTaskCommand extends TaskCommand implements PureCommandInterfa
     public SelectTaskCommand(Index targetIndex, String nextCmd) throws ParseException {
         this.targetIndex = targetIndex;
         try {
-            this.nextCmd = new AddressBookParser().parseCommand(nextCmd);
+            this.nextCmd = AddressBookParser.get().parseCommand(nextCmd);
         } catch (ParseException ps) {
             throw new ParseException("Syntax Error: \n" + ps.getMessage());
         }

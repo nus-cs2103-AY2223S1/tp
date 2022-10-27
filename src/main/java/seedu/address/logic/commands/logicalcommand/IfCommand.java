@@ -23,7 +23,7 @@ public class IfCommand extends Command {
     public IfCommand(String ifString, String trueString, String elseString) throws ParseException {
         requireNonNull(ifString);
         requireNonNull(trueString);
-        AddressBookParser p = new AddressBookParser();
+        AddressBookParser p = AddressBookParser.get();
         try {
 
             ifC = p.parseCommand(ifString);
@@ -34,7 +34,7 @@ public class IfCommand extends Command {
                 elseC = p.parseCommand(elseString);
             }
         } catch (Exception e) {
-            throw new ParseException("Syntax error parsing if" );
+            throw new ParseException("Syntax error parsing if");
         }
     }
 

@@ -25,7 +25,7 @@ public class seqCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        AddressBookParser compiler = new AddressBookParser();
+        AddressBookParser compiler = AddressBookParser.get();
         Object prevResult = ctx;
         Object toApply = ctx;
         String tmp;

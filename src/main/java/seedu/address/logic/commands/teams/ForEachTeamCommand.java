@@ -30,7 +30,7 @@ public class ForEachTeamCommand extends TeamCommand implements PureCommandInterf
 
     public ForEachTeamCommand(String nextCmd) throws ParseException {
         try {
-            this.nextCmd = new AddressBookParser().parseCommand(nextCmd);
+            this.nextCmd = AddressBookParser.get().parseCommand(nextCmd);
         } catch (ParseException ps) {
             throw new ParseException("Syntax Error");
         }

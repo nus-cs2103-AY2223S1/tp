@@ -33,7 +33,7 @@ public class SelectTeamCommand extends TeamCommand implements PureCommandInterfa
     public SelectTeamCommand(Index targetIndex, String nextCmd) throws ParseException {
         this.targetIndex = targetIndex;
         try {
-            this.nextCmd = new AddressBookParser().parseCommand(nextCmd);
+            this.nextCmd = AddressBookParser.get().parseCommand(nextCmd);
         } catch (ParseException e) {
             throw new ParseException("Syntax error parsing select");
         }

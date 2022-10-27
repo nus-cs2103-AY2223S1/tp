@@ -30,7 +30,7 @@ public class ForEachPersonCommand extends PersonCommand implements PureCommandIn
 
     public ForEachPersonCommand(String nextCmd) throws ParseException {
         try {
-            this.nextCmd = new AddressBookParser().parseCommand(nextCmd);
+            this.nextCmd = AddressBookParser.get().parseCommand(nextCmd);
         } catch (ParseException ps) {
             throw new ParseException("Syntax Error: \n" + ps.getMessage());
         }
