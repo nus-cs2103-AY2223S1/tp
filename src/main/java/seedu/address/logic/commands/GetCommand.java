@@ -10,7 +10,6 @@ import static seedu.address.logic.commands.getcommands.GetNextOfKinCommand.NEXT_
 import static seedu.address.logic.commands.getcommands.GetOutpatientCommand.OUTPATIENT_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetPastAppointmentCommand.PAST_APPOINTMENT_PREFIX;
 
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
