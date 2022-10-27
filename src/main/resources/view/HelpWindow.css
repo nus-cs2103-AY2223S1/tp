@@ -1,9 +1,14 @@
 #copyButton, #helpMessage {
     -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: 300;
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: #e28743;
+    -fx-background-radius: 12;
+    -fx-border-width: 3;
+    -fx-border-radius: 12;
 }
 
 #copyButton:hover {
