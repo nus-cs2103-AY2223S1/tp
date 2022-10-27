@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -44,9 +43,8 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_SAME_FIELDS_PROVIDED =
         "Please provide a module or description different from the task's current module and description";
     public static final String MESSAGE_EXAM_UNLINKED = "Warning: The task has been unlinked from its exam.\n";
-    public static final String MESSAGE_EDITED_TASK_DUPLICATED =
+    public static final String MESSAGE_DUPLICATE_TASK =
         "The edited task is the same as another task in the task list";
-
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -68,7 +66,8 @@ public class EditTaskCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(
+                String.format(Messages.MESSAGE_INVALID_TASK_INDEX_TOO_LARGE, lastShownList.size() + 1));
         }
 
         if (editTaskDescriptor.getModule().isPresent() && !model.hasModule(editTaskDescriptor.module)) {
@@ -85,7 +84,7 @@ public class EditTaskCommand extends Command {
         try {
             model.replaceTask(taskToEdit, editedTask, false);
         } catch (DuplicateTaskException e) {
-            throw new CommandException(MESSAGE_EDITED_TASK_DUPLICATED);
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
@@ -130,6 +129,7 @@ public class EditTaskCommand extends Command {
         }
 
         public void setModule(Module module) {
+            requireNonNull(module);
             this.module = module;
         }
 
@@ -138,6 +138,7 @@ public class EditTaskCommand extends Command {
         }
 
         public void setDescription(TaskDescription description) {
+            requireNonNull(description);
             this.description = description;
         }
 

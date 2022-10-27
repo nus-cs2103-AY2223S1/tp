@@ -38,7 +38,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_TASK_INDEX, pe);
+            throw new ParseException(MESSAGE_INVALID_TASK_INDEX);
         }
 
         EditTaskCommand.EditTaskDescriptor editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor();
