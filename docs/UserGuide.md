@@ -66,7 +66,7 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -78,7 +78,7 @@ Adds a student/teaching assistant to the module.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags, modules, ta modules and class groups (including 0).
+A student can have any number of tags, modules, ta modules and class groups (including 0).
 </div>
 
 Examples:
@@ -171,9 +171,9 @@ Examples:
 *  `editta 2 n/Betsy Crower ta/` Edits the name of the 2nd teaching assistant to be `Betsy Crower` and clears all ta modules.
 
 
-### Locating persons by name: `find`
+### Locating students by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds students/teaching assistants whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -225,29 +225,6 @@ Format: `mdel c/MODULE CODE`
 
 Examples:
 * `mdel c/CS2103T`
-
-### Clearing all entries : `clear`
-
-Clears all entries from the ProfNUS application.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-ProfNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Viewing your teaching schedule
-ProfNUS data are saved as a JSON file `[JAR file location]/data/profnus.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, ProfNUS will discard all data and start with an empty data file at the next run.
-</div>
 
 ### Add a teaching schedule `sadd`
 
@@ -340,27 +317,28 @@ Shows the timetable of all schedules from the ProfNUS.
 **Format**: `tview`
 **Example**: `tview`
 
+### Clearing all entries : `clear`
 
-### Finding a student
+Clears all entries from the ProfNUS application.
 
-Finds a student based on some keywords, with all information showing up.
+Format: `clear`
 
-Format: `find keyword`
+### Exiting the program : `exit`
 
+Exits the program.
 
-**Tip:** Keyword  person can have any number of tags or modules (including 0).
+Format: `exit`
 
-**Tip:** The result is a list of persons which keywords matching with their name, phone number or email.
+### Saving the data
 
-**Example**
+ProfNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+### Editing the data
+ProfNUS data are saved as a JSON file `[JAR file location]/data/profnus.json`. Advanced users are welcome to update data directly by editing that data file.
 
-- `find Adam Do`
-
-  <div align=center><img src="./images/find Adam Do.png" width="500px"></div>
-
-
-
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, ProfNUS will discard all data and start with an empty data file at the next run.
+</div>
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -378,17 +356,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                     | Format                                                               | Example                                                                                                                                                                     |
-|----------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| add a person               | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [m/MODULE]…​` | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br> `add n/Adam Doink t/TA e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 m/CS1101S` |
-| edit a person              | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`      | `edit 1 p/91234567 e/johndoe@example.com` <br> `edit 2 n/Betsy Crower t/`                                                                                                   |
-| delete a person            | `delete INDEX`                                                       | `delete 1`                                                                                                                                                                  |
-| clear                      | `clear`                                                              | `clear`                                                                                                                                                                     |
-| add a module               | `madd`                                                               | `madd CS2100`                                                                                                                                                               |
-| list modules               | `list MODULE_NAME [MORE_MODULE_NAMES]`                               | `list CS1101S` <br>`list CS1101S CS1231S`                                                                                                                                   |
-| list all modules           | `mlist`                                                              | `mlist`                                                                                                                                                                     |
-| view the teaching schedule | `view schedule [-w WEEKDAY] [-m MODULE_CODE] [-d DATE] [-h] [-v]`    | `view schedule -w Monday -m CS2103T` <br>`view schedule -d 2022-09-12` <br> `view schedule -h`                                                                              |
-| find a person              | `find KEYWORD [MORE_KEYWORD]`                                        | `find Adam Do`                                                                                                                                                              |
-| help                       | `help`                                                               | `help`                                                                                                                                                                      |
-| exit                       | `exit`                                                               | `exit`                                                                                                                                                                      |
+| Action                                | Format                                                                                                             | Example                                                                                                                                                                     |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| add a student/teaching assistant      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`            | `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` <br> `add n/Adam Doink t/TA e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 m/CS1101S` |
+| edit a student                        | `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​` | `editstu 1 p/91234567 e/johndoe@example.com` <br> `editstu 2 n/Betsy Crower c/`                                                                                             |
+| edit a teaching assistant             | `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`  | `editta 1 p/97384723 e/davidlim@example.com` <br> `editta 2 n/Beth ta/CS2030S`                                                                                              |
+| delete a student                      | `delstu INDEX`                                                                                                     | `delstu 1`                                                                                                                                                                  |
+| delete a teaching assistant           | `delta INDEX`                                                                                                      | `delta 1`                                                                                                                                                                   |
+| clear                                 | `clear`                                                                                                            | `clear`                                                                                                                                                                     |
+| add a module                          | `madd`                                                                                                             | `madd CS2100`                                                                                                                                                               |
+| list all students/teaching assistants | `list`                                                                                                             | `list`                                                                                                                                                                      |
+| list all modules                      | `mlist`                                                                                                            | `mlist`                                                                                                                                                                     |
+| view the teaching schedule            | `view schedule [-w WEEKDAY] [-m MODULE_CODE] [-d DATE] [-h] [-v]`                                                  | `view schedule -w Monday -m CS2103T` <br>`view schedule -d 2022-09-12` <br> `view schedule -h`                                                                              |
+| find a student/teaching assistant     | `find KEYWORD [MORE_KEYWORD]`                                                                                      | `find Adam Do`                                                                                                                                                              |
+| help                                  | `help`                                                                                                             | `help`                                                                                                                                                                      |
+| exit                                  | `exit`                                                                                                             | `exit`                                                                                                                                                                      |
 
