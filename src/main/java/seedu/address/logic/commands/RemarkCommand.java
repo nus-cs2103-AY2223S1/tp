@@ -26,7 +26,7 @@ public class RemarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2 "
             + "Fast buyer";
 
-    public static final String MESSAGE_SUCCESS = "New Remark created: %1$s\nLinked to Client: %2$s";
+    public static final String MESSAGE_SUCCESS = "New Remark created: %1$s\nLinked to Client: %2$s; Email: %3$s";
     public static final String MESSAGE_DUPLICATE_REMARK = "This client already has %1$s as Remark";
     public static final String MESSAGE_REMARK_INVALID = "Remark cannot be created. Enter a valid Remark details:\n"
             + "INDEX "
@@ -68,7 +68,8 @@ public class RemarkCommand extends Command {
         editedClient.addRemark(remark);
         model.setClient(clientToEdit, editedClient);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, remark.getText(), editedClient));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, remark.getText(), editedClient.getName(),
+                editedClient.getEmail()));
     }
 
     @Override

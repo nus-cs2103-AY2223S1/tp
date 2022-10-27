@@ -56,7 +56,7 @@ public class JsonAdaptedTransactionTest {
         JsonAdaptedTransaction transaction =
                 new JsonAdaptedTransaction(VALID_GOODS, INVALID_PRICE, VALID_QUANTITY,
                         TransactionType.SELL, VALID_DATE);
-        String expectedMessage = Price.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Price.MESSAGE_CONSTRAINTS_GENERAL;
         assertThrows(IllegalValueException.class, expectedMessage, transaction::toModelType);
     }
 
