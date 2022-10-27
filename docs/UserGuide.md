@@ -265,6 +265,32 @@ Format: `rate INDEX rate/<RATING>`
 Examples:
 * `rate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
 
+### Exporting the addressbook: `export`
+
+Format: `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>`
+* The format of the file must be JSON, CSV or TXT.
+* Any directory in the path which does not exist will automatically be created.
+* Only the displayed list of candidates will be exported
+
+Examples:
+* `export path//Desktop/sample/data.csv` exports the filtered list of candidates to `data.csv` in the `sample` directory of the `Desktop`.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Alternatively, you can go to `Export` -> `Export` to export using the GUI.
+</div>
+
+### Importing an addressbook: `import`
+
+Format: `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>`
+* The format of the file must be JSON, CSV or TXT.
+* Candidates whose name already exists in the addressbook will be ignored.
+
+Examples:
+* `import path//Desktop/sample/data.csv` imports the list of candidates from `data.csv` in the `sample` directory of the `Desktop` to the addressbook.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Alternatively, you can go to `Import` -> `Import` to import using the GUI.
+</div>
 
 ### Clearing all entries : `clear`
 
@@ -313,9 +339,11 @@ If your changes to the data file makes its format invalid, CLInkedIn will discar
 | **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                             |
 | **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                     |
 | **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                              |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                           |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                          |
 | **List**          | `list`                                                                                                                                                                                                                                                               |
 | **Status**        | `status INDEX s/STATUS` <br> e.g., `status 1 s/Rejected`                                                                                                                                                                                                             |
+| **Export**        | `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>` <br> e.g., `export path//Desktop/sample/data.csv`                                                                                                                                                           |
+| **Import**        | `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>` <br> e.g., `import path//Desktop/sample/data.csv`                                                                                                                                                         |
 | **Help**          | `help`                                                                                                                                                                                                                                                               |
 
 
