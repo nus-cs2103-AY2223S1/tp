@@ -51,8 +51,13 @@ public class ExportCommand extends Command {
         String fileName = focusedClass.getClassName();
 
         Path filePath = CSV_EXPORT_PATH.resolve(fileName + CSV_EXTENSION);
-        String fileData = moduleClassToCsvString(focusedClass, students);
-
+        String fileData;
+        try {
+            fileData = moduleClassToCsvString(focusedClass, students);
+        } catch (AssertionError e) {
+            throw new CommandException(String.format(MESSAGE_EXPORT_FAILED, fileName));
+        }
+        
         String feedback;
         try {
             FileUtil.writeToFile(filePath, fileData);
@@ -68,7 +73,8 @@ public class ExportCommand extends Command {
      * Returns a string containing data to be written to the output CSV file based on
      * the {@code moduleClass} and the {@code students}.
      */
-    private static String moduleClassToCsvString(ModuleClass moduleClass, List<Student> students) {
+    private static String moduleClassToCsvString(ModuleClass moduleClass, List<Student> students)
+            throws AssertionError {
 
         List<List<String>> fileData = new ArrayList<>();
         List<Session> sessions = moduleClass.getSessions();
@@ -89,9 +95,7 @@ public class ExportCommand extends Command {
             row.add(student.getName().toString());
 
             Optional<StudentModuleData> moduleDataOptional = student.findStudentModuleData(moduleClass);
-            if (!moduleDataOptional.isPresent()) {
-                continue;
-            }
+            assert(moduleDataOptional.isPresent());
             StudentModuleData moduleData = moduleDataOptional.get();
 
             for (Session s : sessions) {
