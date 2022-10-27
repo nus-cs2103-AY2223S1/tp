@@ -2,11 +2,11 @@ package seedu.address.logic.parser.util;
 
 import java.util.Comparator;
 
-import seedu.address.logic.commands.SortBuyerCommand;
-import seedu.address.logic.commands.SortDelivererCommand;
-import seedu.address.logic.commands.SortOrderCommand;
-import seedu.address.logic.commands.SortPetCommand;
-import seedu.address.logic.commands.SortSupplierCommand;
+import seedu.address.logic.commands.sortcommands.SortBuyerCommand;
+import seedu.address.logic.commands.sortcommands.SortDelivererCommand;
+import seedu.address.logic.commands.sortcommands.SortOrderCommand;
+import seedu.address.logic.commands.sortcommands.SortPetCommand;
+import seedu.address.logic.commands.sortcommands.SortSupplierCommand;
 import seedu.address.logic.commands.util.CommandUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;

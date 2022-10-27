@@ -9,7 +9,8 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FilterOrderCommand;
+import seedu.address.logic.commands.filtercommands.FilterOrderCommand;
+import seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderStatus;
 import seedu.address.model.order.Price;

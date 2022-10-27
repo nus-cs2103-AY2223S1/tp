@@ -5,9 +5,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import seedu.address.logic.commands.FilterOrderCommand;
-import seedu.address.logic.commands.FilterPetCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.filtercommands.FilterOrderCommand;
+import seedu.address.logic.commands.filtercommands.FilterPetCommand;
+import seedu.address.logic.commands.findcommands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderStatus;

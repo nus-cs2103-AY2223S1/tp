@@ -8,12 +8,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.SortBuyerCommand;
-import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.commands.SortDelivererCommand;
-import seedu.address.logic.commands.SortOrderCommand;
-import seedu.address.logic.commands.SortPetCommand;
-import seedu.address.logic.commands.SortSupplierCommand;
+import seedu.address.logic.commands.sortcommands.SortBuyerCommand;
+import seedu.address.logic.commands.sortcommands.SortCommand;
+import seedu.address.logic.commands.sortcommands.SortDelivererCommand;
+import seedu.address.logic.commands.sortcommands.SortOrderCommand;
+import seedu.address.logic.commands.sortcommands.SortPetCommand;
+import seedu.address.logic.commands.sortcommands.SortSupplierCommand;
 import seedu.address.logic.commands.util.CommandUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.SortCommandParserUtil;

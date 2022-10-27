@@ -9,8 +9,8 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.FilterPetCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.filtercommands.FilterPetCommand;
+import seedu.address.logic.commands.findcommands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;

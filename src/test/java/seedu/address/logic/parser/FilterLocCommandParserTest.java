@@ -8,7 +8,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FilterLocCommand;
+import seedu.address.logic.commands.filtercommands.FilterLocCommand;
+import seedu.address.logic.parser.filtercommandparser.FilterLocCommandParser;
 import seedu.address.model.person.predicates.LocationContainsKeywordsPredicate;
 
 public class FilterLocCommandParserTest {

@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.sortcommands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.SortCommandParserUtil;
 import seedu.address.model.order.Order;

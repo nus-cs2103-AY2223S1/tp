@@ -9,7 +9,8 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.findcommands.FindCommand;
+import seedu.address.logic.parser.findcommandparser.FindSupplierCommandParser;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.PersonCategory;
