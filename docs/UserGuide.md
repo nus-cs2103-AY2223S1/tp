@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-                                                                                                                                                               |
+
 TrackO is a **desktop app built for small business owners to help them manage orders and their inventory, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you prefer and are fast at typing, TrackO can get your order and inventory management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -26,7 +26,7 @@ TrackO is a **desktop app built for small business owners to help them manage or
 
     * **`listo`** : Lists all orders.
 
-    * **`addi`**`n/Keychain q/200 d/This is a metal keychain` : Adds an inventory item named `Keychain`, which has quantity `200` and description `This is a metal keychain` to the inventory list.
+    * **`addi`**`n/Keychain q/200 d/This is a metal keychain sp/15.00 cp/10.00` : Adds an inventory item named `Keychain`, which has quantity `200`, description `This is a metal keychain`, selling price `$15.00` and cost price `$10.00` to the inventory list.
 
     * **`deleteo`**`3` : Deletes the 3rd order shown in the current list.
 
@@ -48,7 +48,7 @@ TrackO is a **desktop app built for small business owners to help them manage or
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `listi`, `listo` and `exit`) will be ignored.<br>
@@ -143,28 +143,40 @@ Examples:
 
 Edits an existing order in the order list.
 
-Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME] [q/QUANTITY]`
+Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]`
 
 * Edits the order at the specified `INDEX`.
+* This feature is case-insensitive.
 * The index refers to the index number shown in the displayed order list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Every field is optional, except for `i/ITEM_NAME` and `q/QUANTITY`. Both fields need to be present to update
-  the customer's ordered items.
-* When editing items in the order list, this feature is case-insensitive.
-* You can only edit the order list to consist of items that exists in your inventory. <br> 
-  e.g. If your inventory does not have `Apples`, then you cannot edit your customer's order list to have `Apples`.
-* Editing an item that does not exist in your customer's order list, but exists in your inventory 
-  will add the item to the order list.
-* Setting an ordered item quantity to `0` will remove the item from the order list.
+* Every field is optional, but if you were to include `i/ITEM_NAME`, you must also include 
+  `q/QUANTITY`. Both fields need to be present to update an order's list of ordered items.
+* You can only edit an order's list of ordered items to consist of items that exists in your inventory. <br> 
+  e.g. If your inventory does not have `Apples`, then you cannot edit any of your order's list of ordered items to `Apples`.
+* Editing an item that does not exist in your order's list of ordered items, but exists in your inventory 
+  will add the item to the order's list of ordered items. <br> e.g. Your inventory has `Apples` and `Bananas`. Right now, the third order's list of ordered items only has `Apples`.
+  `edito 3 i/Bananas q/3` will add `3` `Bananas` to the third order's list of ordered items.
+* Setting `q/0` to any item in the order's list of ordered items will remove the item from the list. <br> e.g. The fourth order's list of ordered items has
+`2` `Apples` and `3` `Bananas`. Inputting `edito 4 i/Bananas q/0` will remove the `Bananas` from the fourth order's list of ordered items, leaving only
+the `2` `Apples`.
+
+Note:
+* The order's created time cannot be edited.
+* An order's paid status and delivery status also cannot be edited through this command. To modify those, 
+  see [`marko`](#marking-an-order-as-paid-or-delivered-marko) instead.
 
 Examples:
 * `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`
   Edits the name, phone, email, and address of the second order in the list to `Peter`,`98765432`, `peter@email.com`, 
   and `123 Apartment Unit, #05-11` respectively.
-* When the third order in the list has `Chairs` in quantity `5`, `editi 3 i/chairs q/0` 
+* When the third order in the list has `Chairs` in quantity `5`, `edito 3 i/chairs q/0` 
   will remove the item from the order list. 
-* When the fifth order in the list has `Tables` in quantity `3` and you have `Chairs` in your inventory, 
-` editi 5 i/chairs q/15` will add `15 chairs` to the order list.
+* When the fifth order in the list has `Tables` in quantity `3` in its order list, and you have `Chairs` in your inventory, 
+` edito 5 i/chairs q/15` will add `15` `Chairs` to the order list.
+
+### Marking an order as paid or delivered: `marko`
+
+Placeholder content
 
 ### Adding an inventory item: `addi`
 
@@ -243,18 +255,18 @@ Format: `exit`
 
 ## Command summary
 
-| Action                       | Format, Examples                                                                                                                                                                                                                                    |
-|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action                       | Format, Examples                                                                                                                                                                                                          |
+|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add An Order**             | `addo n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g., `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` <br> then, `i/ITEM_NAME q/QUANTITY` as many times as required <br>e.g. `i/Pillow q/2` <br>followed by `done` or `cancel` |
-| **List All Orders**          | `listo`                                                                                                                                                                                                                                             |
-| **Find Order(s)**            | `findo KEYWORD [MORE_KEYWORDS]`                                                                                                                                                                                                                     |
-| **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                                              |
-| **Edit An Order**            | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME] [q/QUANTITY]` <br> e.g., `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                                            |                                                                                                                                                                              
-| **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                                          |
-| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79/99 cp/50.00`                                                                                    |
-| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                                               |                                                                                                                                                        
-| **List All Inventory Items** | `listi`                                                                                                                                                                                                                                             |
-| **Find Inventory Item(s)**   | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `findi blue shirt`                                                                                                                                                                                      |
-| **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                                                        |
-| **Tag An Inventory Item**    | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium`                                                                                                                                                                                    |
-| **Exit**                     | `exit`                                                                                                                                                                                                                                              |
+| **List All Orders**          | `listo`                                                                                                                                                                                                                   |
+| **Find Order(s)**            | `findo KEYWORD [MORE_KEYWORDS]`                                                                                                                                                                                           |
+| **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                    |
+| **Edit An Order**            | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME] [q/QUANTITY]` <br> e.g., `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                  |                                                                                                                                                                              
+| **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                |
+| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79.99 cp/50.00`                                                          |
+| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                     |                                                                                                                                                        
+| **List All Inventory Items** | `listi`                                                                                                                                                                                                                   |
+| **Find Inventory Item(s)**   | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `findi blue shirt`                                                                                                                                                            |
+| **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                              |
+| **Tag An Inventory Item**    | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium`                                                                                                                                                          |
+| **Exit**                     | `exit`                                                                                                                                                                                                                    |

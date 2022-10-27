@@ -145,7 +145,7 @@ public class Order {
      * Returns a copy of this {@code Order}, that holds immutable copies of its list of ordered {@code Item}s.
      * @return A copy of this {@code Order}, that holds immutable copies of its list of ordered {@code Item}s.
      */
-    public Order getImmutableItemsCopy() {
+    public Order getCopyWithRecordedItems() {
         List<ItemQuantityPair> recordedItems = itemList.stream()
             .map(ItemQuantityPair::getImmutableItemCopy).collect(Collectors.toList());
         return new Order(name, phone, email, address, timeCreated, recordedItems, isPaid, isDelivered);
