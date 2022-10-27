@@ -107,13 +107,8 @@ public class Book {
      * Checks if the book is overdue.
      * @return True if book is overdue, false otherwise
      */
-    public boolean isOverdue() {
-        if (this.isLoaned()) {
-            long millis = System.currentTimeMillis();
-            Date todayDate = new Date(millis);
-            return todayDate.after(this.getReturnDate());
-        }
-        return false;
+    public Optional<Boolean> isOverdue() {
+        return this.getReturnDate().map((x) -> new Date().after(x));
     }
 
     /**
