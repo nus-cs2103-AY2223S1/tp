@@ -77,7 +77,6 @@ public class AddPersonCommand extends Command {
             parameterConsumer = TagsConverter.class, arity = "*")
     private Set<Tag> tags = new HashSet<>();
 
-
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
     private boolean help;

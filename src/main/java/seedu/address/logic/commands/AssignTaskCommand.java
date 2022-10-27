@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INDEX_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INDEX_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_NAME_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
@@ -38,10 +40,12 @@ public class AssignTaskCommand extends Command {
             + "There are less than %1$s tasks in your list.";
     public static final String MESSAGE_MEMBER_DOES_NOT_EXIST = "This member does not exist.";
 
-    @CommandLine.Option(names = {FLAG_INDEX_STR, FLAG_INDEX_STR_LONG}, required = true)
+    @CommandLine.Option(names = {FLAG_INDEX_STR, FLAG_INDEX_STR_LONG}, required = true,
+            description = FLAG_MEMBER_INDEX_DESCRIPTION)
     private Index taskIndex;
 
-    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true)
+    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true,
+            description = FLAG_MEMBER_NAME_DESCRIPTION)
     private Name memberName;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,

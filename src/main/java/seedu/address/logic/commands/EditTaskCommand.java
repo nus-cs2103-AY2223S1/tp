@@ -7,6 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_ASSIGNEES_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_DEADLINE_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.time.LocalDateTime;
@@ -49,23 +53,11 @@ public class EditTaskCommand extends Command {
 
     private final EditTaskDescriptor editTaskDescriptor;
 
-    @CommandLine.Parameters(arity = "1")
+    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index index;
 
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
     private Arguments arguments;
-
-    private static class Arguments {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG})
-        private String name;
-
-        @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG})
-        private String deadline;
-
-        @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "")
-        private String[] assignees;
-
-    }
 
     /**
      * Creates an EditTaskCommand to edit a {@code Task}.
@@ -154,6 +146,19 @@ public class EditTaskCommand extends Command {
         // state check
         EditTaskCommand e = (EditTaskCommand) other;
         return index.equals(e.index) && editTaskDescriptor.equals(e.editTaskDescriptor);
+    }
+
+    private static class Arguments {
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TASK_NAME_DESCRIPTION)
+        private String name;
+
+        @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},
+                description = FLAG_TASK_DEADLINE_DESCRIPTION)
+        private String deadline;
+
+        @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "", description =
+                FLAG_TASK_ASSIGNEES_DESCRIPTION)
+        private String[] assignees;
     }
 
     /**
