@@ -64,9 +64,9 @@ public class EmailContainsKeywordsPredicateTest {
         predicate = new EmailContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new PersonBuilder().withEmail("Alice Bob").build()));
 
-        // Mixed-case keywords
-        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new PersonBuilder().withEmail("Alice Bob").build()));
+        // Mixed-case keywords: email different case, assert false
+        predicate = new EmailContainsKeywordsPredicate(Arrays.asList("jOn_SnoW@winterfell.com", "gHoSt@woOds.cOm"));
+        assertFalse(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com ghost@woods.com").build()));
 
         // Keywords match phone, name and address, but does not match email
         predicate = new EmailContainsKeywordsPredicate(Arrays.asList("81234567", "alice@email.com", "Main", "Street"));
