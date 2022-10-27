@@ -6,7 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listing.Listing;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -21,9 +21,9 @@ public class DeleteListingCommand extends Command {
 
     public static final String MESSAGE_DELETE_LISTING_SUCCESS = "Deleted Listing: %1$s";
 
-    private final ListingID id;
+    private final ListingId id;
 
-    public DeleteListingCommand(ListingID id) {
+    public DeleteListingCommand(ListingId id) {
         this.id = id;
     }
 

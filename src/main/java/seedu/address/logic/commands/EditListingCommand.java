@@ -14,7 +14,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listing.Listing;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
@@ -45,14 +45,14 @@ public class EditListingCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LISTING = "This person already exists in the address book.";
 
-    private final ListingID id;
+    private final ListingId id;
     private final EditListingDescriptor editListingDescriptor;
 
     /**
      * @param id of the person in the filtered person list to edit
      * @param editListingDescriptor details to edit the person with
      */
-    public EditListingCommand(ListingID id, EditListingDescriptor editListingDescriptor) {
+    public EditListingCommand(ListingId id, EditListingDescriptor editListingDescriptor) {
         requireNonNull(editListingDescriptor);
 
         this.id = id;
@@ -87,7 +87,7 @@ public class EditListingCommand extends Command {
                                               Model model) {
         assert listingToEdit != null;
 
-        ListingID updatedId = editListingDescriptor.getId().orElse(listingToEdit.getId());
+        ListingId updatedId = editListingDescriptor.getId().orElse(listingToEdit.getId());
         Name updatedName = editListingDescriptor.getName().orElse(listingToEdit.getName());
         Person updatedPerson = model.getPerson(updatedName);
         Address updatedAddress = editListingDescriptor.getAddress().orElse(listingToEdit.getAddress());
@@ -119,7 +119,7 @@ public class EditListingCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditListingDescriptor {
-        private ListingID id;
+        private ListingId id;
         private Name name;
         private Address address;
         private Price askingPrice;
@@ -152,11 +152,11 @@ public class EditListingCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setId(ListingID id) {
+        public void setId(ListingId id) {
             this.id = id;
         }
 
-        public Optional<ListingID> getId() {
+        public Optional<ListingId> getId() {
             return Optional.ofNullable(id);
         }
 
