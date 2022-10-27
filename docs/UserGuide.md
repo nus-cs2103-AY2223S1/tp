@@ -166,19 +166,19 @@ HackAssist data are saved in the hard disk automatically after any command that 
 HackAssist data are saved as a JSON file `[JAR file location]/data/HackAssist.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, HackASsist will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, HackAssist will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Adding a task: `addTask`
 
 Adds a task to the tasklist.
 
-Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED`
+Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE [pe/EMAIL OF PERSON ASSIGNED]`
 
 Examples:
 
 * `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` add Fix toggle to the task list
-* `addTask n/Fix routing 3  d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/John@example.com` add Fix routing to the task list
+* `addTask n/Fix routing 3 d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/John@example.com` add Fix routing to the task list
 
 
 ### Deleting a task: `deleteTask`
@@ -200,11 +200,11 @@ Existing values will be overwritten by the input values.
 
 Format: `listTasks`
 
-### Editing a Task : `edit`
+### Editing a Task : `editTask`
 
 Edits an existing task in the tasklist.
 
-Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]`
+Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/STATUS]`
 
 * Edits the task at the specified INDEX. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -212,7 +212,7 @@ Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK
 
 Examples:
 *  `edit 1 n/Create UI pr/high` Edits the name and priority of the 1st task to be Create UI and HIGH respectively.
-*  `edit 2 c/frontend pe/charlotte@example.com` Edits the category of the 2nd task to be frontend and assign the task to new person(charlotte).
+*  `edit 2 c/frontend pe/charlotte@example.com` Edits the category of the 2nd task to be frontend and assigns the task to new person (Charlotte).
 
 ### Filtering a Task : `filter`
 
@@ -230,6 +230,32 @@ Examples:
 *  `filter dl/2022-12-12` Only displays tasks that have **DEADLINE** before or equal to 2022-12-12
 *  `filter c/backend dl/2022-12-12` Only displays tasks that have backend as **TASK_CATEGORY** and **DEADLINE** before or equal to 2022-12-12
 
+### Sorting the task list by deadline: `sortByDeadline`
+
+Sorts the tasklist by task deadline.
+
+Format: `sortByDeadline [o/ORDER]`
+
+* Order can be `asc` for ascending (earliest first) or `desc` for descending (latest first).
+* If order is not specified, it will default to ascending order.
+
+Examples:
+* `sortByDeadline` Sorts tasks by deadline in ascending order.
+* `sortByDeadline o/desc` Sorts tasks by deadline in descending order.
+
+### Sorting the task list by priority: `sortByPriority`
+
+Sorts the tasklist by task priority.
+
+Format: `sortByPriority [o/ORDER]`
+
+* Order can be `asc` for ascending (LOW to HIGH) or `desc` for descending (HIGH to LOW).
+* If order is not specified, it will default to descending order.
+
+Examples:
+* `sortByPriority` Sorts tasks by priority in descending order.
+* `sortByPriority o/asc` Sorts tasks by priority in ascending order.
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -240,19 +266,22 @@ Examples:
 ## Command summary
 
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
-**List** | `list`
-**Clear** | `clear`
-**Help** | `help`
-**Add Task** | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com`
-**Edit Task** | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`
-**Delete Task** | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`
-**list Tasks** | `listTasks`
-**Filter Task** | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`
+| Action               | Format, Examples                                                                                                                                                                                                               |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                          |
+| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                            |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
+| **Find**             | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                                    |
+| **List**             | `list`                                                                                                                                                                                                                         |
+| **Clear**            | `clear`                                                                                                                                                                                                                        |
+| **Help**             | `help`                                                                                                                                                                                                                         |
+| **Add Task**         | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` |
+| **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                        |
+| **Delete Task**      | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`                                                                                                                                                                             |
+| **list Tasks**       | `listTasks`                                                                                                                                                                                                                    |
+| **Filter Task**      | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                           |
+| **Sort by Deadline** | `sortByDeadline [o/ORDER]` <br> e.g., `sortByDeadline o/asc`                                                                                                                                                                   |
+| **Sort by Priority** | `sortByPriority [o/ORDER]` <br> e.g., `sortByPriority o/desc`                                                                                                                                                                  |
+
 
 
