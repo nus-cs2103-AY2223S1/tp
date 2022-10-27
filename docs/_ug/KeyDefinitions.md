@@ -7,11 +7,11 @@ The following are the attributes stored for each item:
 
 * Item name
 * Item quantity
-* Item unit (Unit of measurement e.g. `kg`, `packets`)
+* Item unit (unit of measurement e.g. `kg`, `packets`)
 * Item bought date
 * Item expiry date
 * Item price
-* Item remark
+* Item remarks
 * Item tags
 
 FoodRem Items are unique by name and case-sensitive. This means you cannot add two or more items of the same name.
@@ -38,18 +38,24 @@ FoodRem Tags are unique by name and case-sensitive. This means you cannot add tw
 
 Flags are delimiters that enable FoodRem to distinguish different parameters without ambiguity.
 
-| Flags | Related Placeholder   |
-|-------|-----------------------|
-| n/    | ITEM_NAME<br>TAG_NAME |
-| qty/  | QUANTITY              |
-| u/    | UNIT                  |
-| buy/  | BOUGHT_DATE           |
-| exp/  | EXPIRY_DATE           |
-| p/    | PRICE                 |
-| r/    | REMARKS               |
+You would put in the corresponding [Placeholder](#placeholders) immediately after each flag.
+
+Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
+
+| Flag  | Corresponding Placeholder |
+|-------|---------------------------|
+| n/    | ITEM_NAME<br>TAG_NAME     |
+| qty/  | QUANTITY                  |
+| u/    | UNIT                      |
+| buy/  | BOUGHT_DATE               |
+| exp/  | EXPIRY_DATE               |
+| p/    | PRICE                     |
+| r/    | REMARKS                   |
 
 #### Placeholders
 
-Placeholders are words in uppercase to show you what type of parameters you can supply to a command.
+Placeholders show you what type of parameters you can supply to a command. These follow immediately after a [Flag](#flag). 
+
+Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
 
 {% include_relative _ug/Placeholders.md %}
