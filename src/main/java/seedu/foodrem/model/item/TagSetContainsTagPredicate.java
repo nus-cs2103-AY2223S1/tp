@@ -32,6 +32,7 @@ public class TagSetContainsTagPredicate implements Predicate<Item> {
                 && tag.equals(((TagSetContainsTagPredicate) other).tag));
     }
 
+    // TODO: Refactor and remove accessor
     public Tag getTag() {
         return this.tag;
     }
