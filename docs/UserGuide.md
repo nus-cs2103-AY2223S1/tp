@@ -154,7 +154,7 @@ Format: `f p/NUMBER...`
 
 ### Locating persons by address: `find`
 
-Format: `find a/ADDRESS`
+Format: `find a/ADDRESS...`
 
 * The search is case-insensitive. e.g `serangoon` will match `Serangoon`
 * The order of the keywords does not matter. e.g. `Kio Mo Ang` will match `Ang Mo Kio`
@@ -171,6 +171,20 @@ Examples:
 :white_check_mark: **Tip:**
 Input shortcut: `f` can be used in place of `find`.
 Format: `f a/ADDRESS…`
+
+### Filter persons by tag: `find`
+
+Format: `find t/TAG`
+
+* TAG can only be either `SECURED` or `POTENTIAL`
+* If multiple tags are given, only the last one is used.
+
+Examples:
+* `find t/SECURED` displays the list of all `SECURED` contacts.
+
+:white_check_mark: **Tip:**
+Input shortcut: `f` can be used in place of `find`.
+Format: `f t/TAG`   
 
 ### Giving a description to a person: `description`
 
@@ -329,6 +343,7 @@ If your changes to the data file makes its format invalid, FABook will discard a
 | **Update**      | `update INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [mt/TIME]`<br> e.g.,`edit 2 p/91234567 a/21 Lower Kent Ridge Rd`        | u        |
 | **Description** | `description INDEX d/DESCRIPTION` <br> e.g., `description 3 d/Accident prone`                                               | desc     |
 | **Find**        | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`| f        |
+| **Filter**      | `find t/TAG` <br> e.g., `find t/POTENTIAL`                                                                                  | f        |
 | **List**        | `list`                                                                                                                      | l        |
 | **Open File**   | `file INDEX`<br/> e.g. `file 2`                                                                                             |          |
 | **Assign File** | `filepath INDEX f/FILEPATH`<br/> e.g. `find 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                 |          |
