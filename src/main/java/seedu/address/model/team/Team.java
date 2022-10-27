@@ -176,6 +176,8 @@ public class Team {
      */
     public void removeMember(Person person) {
         teamMembers.remove(person);
+        // when a member is removed from a team, all corresponding tasks have to remove member as assignee.
+        taskList.removeAssigneeIfExists(person);
     }
 
     public ObservableList<Task> getTaskList() {

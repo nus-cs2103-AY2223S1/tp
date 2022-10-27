@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 /**
  * Lists all members of the current team.
  */
-@CommandLine.Command(name = "members")
+@CommandLine.Command(name = "members", aliases = {"m"})
 public class ListMembersCommand extends Command {
     public static final String COMMAND_WORD = "list members";
 

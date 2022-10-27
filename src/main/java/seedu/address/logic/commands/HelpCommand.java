@@ -6,7 +6,7 @@ import seedu.address.model.Model;
 /**
  * Format full help instructions for every command for display.
  */
-@CommandLine.Command(name = "help")
+@CommandLine.Command(name = "help", aliases = {"h"})
 public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";

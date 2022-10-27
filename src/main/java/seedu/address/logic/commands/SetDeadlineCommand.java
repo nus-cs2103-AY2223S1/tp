@@ -15,7 +15,7 @@ import seedu.address.model.team.Task;
 /**
  * Sets a deadline for a specified task.
  */
-@CommandLine.Command(name = "deadline")
+@CommandLine.Command(name = "deadline", aliases = {"d"})
 public class SetDeadlineCommand extends Command {
     public static final String COMMAND_WORD = "set deadline";
 

@@ -31,6 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
+
     {
         persons = new UniquePersonList();
         teams = new UniqueTeamList();
@@ -112,7 +113,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
+        requireNonNull(key);
         persons.remove(key);
+        // need to delete the person from the teams as well. So, check all teams and delete if the person exists.
+        teams.removePersonIfExists(key);
     }
 
     //// team-level operations
@@ -120,6 +124,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public Team getTeam() {
         return currentTeam.getValue();
     }
+
     public ObjectProperty<Team> getTeamAsProperty() {
         return currentTeam;
     }
@@ -143,6 +148,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setTeams(List<Team> teams) {
         this.teams.setTeams(teams);
     }
+
     //// link related operations
     public boolean hasLink(Link link) {
         return getTeam().hasLink(link);
@@ -191,9 +197,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddressBook // instanceof handles nulls
-            && persons.equals(((AddressBook) other).persons)
-            );
+                || (other instanceof AddressBook // instanceof handles nulls
+                && persons.equals(((AddressBook) other).persons));
     }
 
     @Override
