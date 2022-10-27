@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -21,29 +23,34 @@
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
       <HBox fx:id="textBox" fillHeight="false" prefWidth="200.0">
-      <children>
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label fx:id="id" style="-fx-font-size: 20px;" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
+            <Region fx:constant="USE_PREF_SIZE"/>
           </minWidth>
         </Label>
         <AnchorPane HBox.hgrow="SOMETIMES">
-          <children>
-            <Label fx:id="title" text="\$first" styleClass="cell_big_label" />
-          </children>
+          <Label fx:id="title" style="-fx-font-size: 20px;" text="\$first" styleClass="cell_big_label"/>
         </AnchorPane>
         <AnchorPane HBox.hgrow="NEVER">
-          <children>
-            <CheckBox fx:id="isCompleted" mnemonicParsing="false"
-                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-          </children>
+          <CheckBox fx:id="isCompleted" mnemonicParsing="false"
+                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
         </AnchorPane>
-      </children>
       </HBox>
-      <Label fx:id="deadline" text="\$first" styleClass="cell_big_label" />
-      <Label fx:id="project" text="\$first" styleClass="cell_big_label" />
-      <FlowPane fx:id="assignedContacts" />
+      <VBox spacing="5">
+        <HBox alignment="CENTER_LEFT" spacing="5">
+          <ImageView fitWidth="25" fitHeight="25"><Image url="@/images/deadline.png" /></ImageView>
+          <Label fx:id="deadline" text="\$first" styleClass="cell_big_label" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="5">
+          <ImageView fitWidth="25" fitHeight="25"><Image url="@/images/project.png" /></ImageView>
+          <Label fx:id="project" text="\$first" styleClass="cell_big_label" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="5">
+          <ImageView fitWidth="25" fitHeight="25"><Image url="@/images/contact.png" /></ImageView>
+          <FlowPane fx:id="assignedContacts" />
+        </HBox>
+      </VBox>
     </VBox>
   </GridPane>
 </HBox>
