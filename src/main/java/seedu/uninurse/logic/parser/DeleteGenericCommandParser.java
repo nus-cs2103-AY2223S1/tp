@@ -13,8 +13,8 @@ import seedu.uninurse.logic.commands.DeleteGenericCommand;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates either a new DeletePatientCommand object or
- * a new DeleteTaskCommand object based on option values.
+ * Parses input arguments and creates either a new DeleteGenericCommand
+ * object based on option values.
  */
 public class DeleteGenericCommandParser implements Parser<DeleteGenericCommand> {
     /**

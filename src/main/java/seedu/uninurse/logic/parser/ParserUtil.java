@@ -399,15 +399,16 @@ public class ParserUtil {
         requireNonNull(arguments);
         requireNonNull(option);
         String[] options = arguments.trim().split("\\s+");
+        Optional<String> ret = Optional.empty();
         for (int i = 0; i < options.length; i++) {
             if (isOptionLimit(options[i])) {
                 break;
             }
             if (i > 0 && options[i - 1].equals(option)) {
-                return Optional.of(options[i]);
+                ret = Optional.of(options[i]);
             }
         }
-        return Optional.empty();
+        return ret;
     }
 
     /**
@@ -435,15 +436,18 @@ public class ParserUtil {
         requireNonNull(arguments);
         requireNonNull(option);
         String[] options = arguments.trim().split("\\s+");
+        int ret = -1;
         for (int i = 0; i < options.length; i++) {
             if (isOptionLimit(options[i])) {
                 break;
             }
             if (i > 0 && options[i - 1].equals(option)) {
-                options[i - 1] = "";
-                options[i] = "";
-                break;
+                ret = i;
             }
+        }
+        if (ret != -1) {
+            options[ret - 1] = "";
+            options[ret] = "";
         }
         return Arrays.stream(options).reduce((x, y) -> x + " " + y).get().trim();
     }

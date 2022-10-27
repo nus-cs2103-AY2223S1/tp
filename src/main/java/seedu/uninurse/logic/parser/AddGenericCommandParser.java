@@ -13,8 +13,8 @@ import seedu.uninurse.logic.commands.AddGenericCommand;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates either a new AddPatientCommand object or
- * a new AddTaskCommand object based on option values.
+ * Parses input arguments and creates either a new AddGenericCommand
+ * object based on option values.
  */
 public class AddGenericCommandParser implements Parser<AddGenericCommand> {
     /**
