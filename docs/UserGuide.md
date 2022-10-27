@@ -8,22 +8,35 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
 via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 
-* [Quick start](quick-start)
-* [Features](features)
-   * Viewing help : help
-   * Adding a person: add
-   * Listing all persons : list
-   * Editing a person : edit
-   * Deleting a person : delete
-   * Find a person: find
-   * Clearing all entries : clear
-   * Undoing last command : undo
-   * Sorting all entries by a specific field : sort
-   * Add a person to a group: addtogroup
-   * Remove a person from a group: ungroup
-   * Open a group window: group
-   * Email all persons in a group: emailall
-* [Command summary](command-summary)
+* [Quick start](#quick-start)
+* [Features](#features)
+  * [Person Fields](#person-fields):
+    1. [occupation](#a-occupation--o) : `o/`
+    2. [name](#b-name--n) : `n/`
+    3. [phone](#c-phone--pphone) : `p/`
+    4. [tutorial](#d-tutorial--tuttutorial) : `tut/`
+    5. [social medias](#e-social-medias--ssocial-medias) : `s/`
+    6. [tags](#f-tags--ttags) : `t/`
+   * [Basic Features](#basic-features):
+     1. [Adding a person](#a-adding-a-person-add) : `add`
+     2. [Editing a person](#b-editing-a-person--edit) : `edit`
+     3. [Deleting a person](#c-deleting-a-person--delete) : `delete`
+     4. [Listing all persons](#d-listing-all-persons--list) : `list`
+     5. [Clearing all entries](#e-clearing-all-entries--clear) : `clear`
+     6. [Find a person](#f-find-entries-by-keywords-of-fields--find-keyword-eg-find-john) : `find`
+     7. [Sorting entries by field](#g-sort-entries-by-field--sort-prefix-eg-sort-n) : `sort`
+   * [Enhanced Features](#enhanced-features):
+     1. [Add a person to favorite](#a-add-a-person-to-favorite--fav) : `fav`
+     2. [Add a person to a group](#b-adding-a-person-to-a-group--addtogroup): `addtogroup`
+     3. [Remove a person from a group](#c-removing-a-person-from-a-group--ungroup) : `ungroup`
+     4. [Open a group window](#d-opening-a-group-window--group) : `group`
+     5. [Email all persons in a group](#e-email-all-persons-in-a-group--emailall) : `emailall`
+     6. [Find persons with a preferred social media](#f-find-persons-with-a-preferred-social-media--social) : `social`
+   * [General App Features](#general-app-features):
+       1. [Viewing help](#a-viewing-help--help) : `help`
+       2. [Undoing last command](#b-undo-last-modification--undo) : `undo`
+       3. [Exiting the app](#c-exiting-the-program--exit) : `exit`
+* [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,27 +48,12 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
 
 3. Copy the file to the folder you want to use as the _home folder_ for your uNivUSal.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all CS2103T personnels.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to uNivUSal.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`undo`** : Undoes last modifying command.
-
-   * **`sort`** : Sorts entries.
-
-   * **`find`** : Finds a contact based on partial name/phone number
-
-  * **`exit`** : Exits the app.
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+open the help window.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -87,42 +85,77 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
 
 </div>
 
-### Viewing help : `help`
+## Person Fields
 
-Shows a message explaining the basic features of the app and also provides a link to the website.
+### a. occupation : `o/`
 
-![help message](images/helpMessage.png)
+Sets the occupation of a person in uNivUSal.
 
-Format: `help`
+Format: `o/OCCUPATION`
+* `OCCUPATION` includes `STUDENT`, `TA`, `PROFESSOR`
 
+### b. name : `n/`
 
-### Adding a person: `add`
+Sets the name of a person in uNivUSal.
+
+Format: `n/NAME`
+* `NAME` can be more than one word long but cannot be empty.
+
+### c. phone : `p/PHONE`
+
+Sets the phone number of a person in uNivUSal.
+
+Format : `p/PHONE`
+* `PHONE` must only contain digits and not alphabets.
+
+Example : `p/97865486`
+
+### d. tutorial : `tut/TUTORIAL`
+
+Sets the tutorial group of a person in uNivUSal.
+
+Format : `tut/TUTORIAL`
+* `TUTORIAL` must contain a letter from `[W/T/F]` followed by two digits.
+
+Example : `tut/T08`
+
+### e. social medias : `s/SOCIAL MEDIAS`
+
+Sets the social medias of a person in uNivUSal.
+
+Format : `s/SOCIAL MEDIAS`
+
+Example : 
+
+### f. tags : `t/TAGS`
+
+Sets tag(s) of a person in uNivUSal.
+
+Format : `t/TAG`
+
+Example : `t/ classmate`
+
+## Basic Features
+
+### a. Adding a person: `add`
 
 Adds a person to uNivUSal.
 
-
-Format: `add o/OCCUPATION n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
+Format: `add o/OCCUPATION n/NAME p/PHONE_NUMBER e/EMAIL tut/TUTORIAL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add o/STUDENT n/John Doe p/98765432 e/johnd@example.com tut/T08 a/John street, block 123, #01-01`
+* `add o/TA n/Betsy Crowe e/betsycrowe@u.nus.edu p/1234567`
 
-### Listing all persons : `list`
-
-Shows a list of all persons in the CS2103T module.
-
-Format: `list`
-
-### Editing a person : `edit`
+### b. Editing a person : `edit`
 
 Edits an existing person in uNivUSal.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
+Format: `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -132,10 +165,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/janedoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `janedoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and **clears** all existing tags.
+* `edit 1 p/91234567 e/janedoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` 
+and `janedoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and **clears** all existing tags.
 
-### Deleting a person : `delete`
+### c. Deleting a person : `delete`
 
 Deletes the specified person from uNivUSal.
 
@@ -149,7 +183,13 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in uNivUSal.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### d. Listing all persons : `list`
+
+Shows a list of all persons in uNivUSal.
+
+Format: `list`
+
+### e. Clearing all entries : `clear`
 
 Clears all entries from uNivUSal.
 
@@ -157,32 +197,7 @@ Format: `clear`
 * Deletes every person in uNivUSal.
 * Only a blank uNivUSal will remain.
 
-### Undo last modification : `undo`
-
-Undoes the last command that modifies the address book.
-
-Format: `undo`
-* Undoes the last modifying command.
-* Ignores modifying commands if they don't modify the address book.
-* Will cancel out when trying to undo an undo command.
-
-### Sort entries by field : `sort PREFIX/` e.g. `sort n/`
-
-Sorts entries in uNivUSal by specific field prefix in an ascending manner. Current fields implemented are:
-1. Name `n/`
-2. Email address `e/`
-3. Phone `p/`
-
-Format: `sort PREFIX/`
-* Sorts the entries by the specified `PREFIX/`.
-* Displays sorted list.
-
-Examples:
-* `sort n/` displays the entries sorted by name alphabetically.
-* `sort e/` displays the entries sorted by email address alphabetically.
-* `sort p/` displays the entries sorted by phone number in an ascending manner.
-
-### Find entries by keywords of fields : `find KEYWORD` e.g. `find John`
+### f. Find entries by keywords of fields : `find KEYWORD` e.g. `find John`
 
 Finds entries in uNivUSal that match or contain case-insensitive keyword. Current fields searchable are:
 1. Name
@@ -197,7 +212,36 @@ Examples:
 * `find J` displays the entries filtered by names that contain the case-insensitive KEYWORD `J`.
 * `find 123456` displays the entries filtered by phone numbers that contain the case-insensitive KEYWORD `123456`.
 
-### Adding a person to a group : `addtogroup`
+### g. Sort entries by field : `sort FIELD_PREFIX/` e.g. `sort n/`
+
+Sorts entries in uNivUSal by specific field prefix in an ascending manner. Current fields implemented are:
+1. Name `n/`
+2. Email address `e/`
+3. Phone `p/`
+
+Format: `sort FIELD_PREFIX/`
+* Sorts the entries by the specified `FIELD_PREFIX/`.
+* Displays sorted list.
+
+Examples:
+* `sort n/` displays the entries sorted by name alphabetically.
+* `sort e/` displays the entries sorted by email address alphabetically.
+* `sort p/` displays the entries sorted by phone number in an ascending manner.
+
+## Enhanced Features
+
+### a. Add a person to favorite : `fav`
+
+Adds the specified person to `favorite` group.
+
+Format: `fav INDEX`
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `fav 1` will add 1st person in the current list to `favorite`.
+
+### b. Adding a person to a group : `addtogroup`
 
 Adds the specified person to the specified group.
 
@@ -211,7 +255,7 @@ Examples:
 * `addtogroup 1 friends` adds the 1st person in the current list to the group `friends`.
 
 
-### Removing a person from a group : `ungroup`
+### c. Removing a person from a group : `ungroup`
 
 Removes the specified person from the specified group.
 
@@ -224,7 +268,7 @@ Format: `ungroup INDEX GROUP`
 Examples:
 * `ungroup 1 friends` ungroups the 1st person in the current list from the group `friends`.
 
-### Opening a group window : `group`
+### d. Opening a group window : `group`
 
 Open a new window containing the persons in the group.
 
@@ -236,7 +280,7 @@ Format: `group GROUPNAME`
 Examples:
 * `group friends` opens a group window containing persons in the group `friends`.
 
-### Email all persons in a group : `emailall`
+### e. Email all persons in a group : `emailall`
 
 Open an email link to all persons in the specified group.
 
@@ -248,7 +292,41 @@ Format: `emailall GROUPNAME`
 Examples:
 * `emailall friends` opens the email client to all persons in the group `friends`.
 
-### Exiting the program : `exit`
+### f. Find persons with a preferred social media : `social`
+
+Filters the current list to people who set their preferred social media to the input.
+
+Format: `social SOCIAL`
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `social telegram` will display a filtered list of persons with `telegram` as their preferred social media.
+
+## General App Features
+
+### a. Viewing help : `help`
+
+Shows a message explaining the basic features of the app and also provides a link to the website.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+### b. Undo last modification : `undo`
+
+Undoes the last command that modifies the address book.
+
+Format: `undo`
+* Undoes the last modifying command.
+* Ignores modifying commands if they don't modify the address book.
+* Will cancel out when trying to undo an undo command.
+
+### c. Exiting the program : `exit`
 
 Exits the program.
 
@@ -283,19 +361,21 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                            |
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**              | `help`                                                                                                                                                      |
-| **Add**               | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **List**              | `list`                                                                                                                                                      |
-| **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                             |
-| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
-| **Clear**             | `clear`                                                                                                                                                     |                                                                             |                                                                                                          |
-| **Undo**              | `undo`                                                                                                                                                      |
-| **Sort**              | `sort PREFIX/` <br> e.g., `sort n/`                                                                                                                         |
-| **Find**              | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                              |
-| **Add To Group**      | `addtogroup INDEX GROUP`                                                                                                                                    |
-| **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                       |
-| **Open Group Window** | `group GROUPNAME`                                                                                                                                           |
-| **Email All**         | `emailall GROUPNAME`                                                                                                                                        |
-| **Exit**              | `exit`                                                                                                                                                      |
+| Action                | Format, Examples                                                                                                                                                                                       |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**              | `help`                                                                                                                                                                                                 |
+| **Add**               | `add o/OCCUPATION n/NAME p/PHONE_NUMBER e/EMAIL tut/TUTORIAL [t/TAG]…​` <br>e.g., `add o/STUDENT n/James Ho p/22224444 e/jamesho@example.com tut/T08 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **List**              | `list`                                                                                                                                                                                                 |
+| **Edit**              | `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                          |
+| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                    |
+| **Clear**             | `clear`                                                                                                                                                                                                |                                                                             |                                                                                                          |
+| **Undo**              | `undo`                                                                                                                                                                                                 |
+| **Sort**              | `sort FIELD_PREFIX/` <br> e.g., `sort n/`                                                                                                                                                              |
+| **Find**              | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                                                                         |
+| **Add To Group**      | `addtogroup INDEX GROUP`                                                                                                                                                                               |
+| **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                                                                  |
+| **Open Group Window** | `group GROUPNAME`                                                                                                                                                                                      |
+| **Favorite**          | `fav INDEX`                                                                                                                                                                                            |
+| **Social**            | `social SOCIAL`                                                                                                                                                                                        |
+| **Email All**         | `emailall GROUPNAME`                                                                                                                                                                                   |
+| **Exit**              | `exit`                                                                                                                                                                                                 |
