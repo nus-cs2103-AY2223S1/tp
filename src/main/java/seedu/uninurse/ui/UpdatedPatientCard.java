@@ -268,6 +268,17 @@ public class UpdatedPatientCard extends UiPart<Region> {
                 + "-fx-text-fill: black;");
         taskTimeBox.getChildren().add(taskTimeLabel);
 
+        if (task.getDateTime().isPastDate()) {
+            taskDateBox.setStyle("-fx-background-color: #ebc000;"
+                    + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+                    // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
+                    + "-fx-background-radius: 5;");
+            taskTimeBox.setStyle("-fx-background-color: #ebc000;"
+                    + "-fx-padding: 0 2 0 2;" + "-fx-border-radius: 2;"
+                    // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
+                    + "-fx-background-radius: 5;");
+        }
+
         taskBox.getChildren().addAll(getIndexBox(taskIndex),taskDateBox, taskTimeBox, taskNameLabel);
         return taskBox;
     }
