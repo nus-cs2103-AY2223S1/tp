@@ -42,7 +42,11 @@
       </HBox>
       <VBox styleClass="pane-with-header" GridPane.rowIndex="1">
          <children>
-            <Label styleClass="label-subheader" text="Information" />
+            <Label styleClass="label-subheader" text="Information">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
             <GridPane>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="143.0" />
@@ -103,28 +107,29 @@
                      </padding>
                   </Label>
                </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
+               <VBox.margin>
+                  <Insets left="12.0" right="12.0" />
+               </VBox.margin>
             </GridPane>
          </children>
          <GridPane.margin>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </GridPane.margin>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="pane-with-header" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <children>
+            <Label styleClass="label-subheader" text="Upcoming meetings:">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
             <VBox minHeight="300.0" spacing="10.0">
                <children>
-                  <Label styleClass="label-subheader" text="Upcoming meetings:" />
-                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="300.0" prefWidth="200.0" vbarPolicy="NEVER">
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="300.0" prefWidth="200.0" styleClass="scrollpane-client" vbarPolicy="NEVER">
                     <content>
-                      <AnchorPane maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+                      <AnchorPane maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" styleClass="scrollpane-client">
                            <children>
-                              <VBox fx:id="meetings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <VBox fx:id="meetings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="scrollpane-client" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -133,14 +138,14 @@
                     </content>
                   </ScrollPane>
                </children>
+               <VBox.margin>
+                  <Insets bottom="12.0" left="12.0" right="12.0" />
+               </VBox.margin>
             </VBox>
          </children>
          <GridPane.margin>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </GridPane.margin>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
       </VBox>
    </children>
    <padding>

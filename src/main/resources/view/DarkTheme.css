@@ -107,11 +107,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #383838;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #383838;
 }
 
 .list-cell:filled:selected {
@@ -345,7 +345,7 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #383838 #383838;
+    -fx-border-color: white;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
@@ -360,6 +360,7 @@
 #resultDisplay .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
+    -fx-border-color: white;
 }
 
 #products {
@@ -377,7 +378,7 @@
 }
 
 .pane-with-header {
-    -fx-border-color: black;
+    -fx-border-color: lightgrey;
     -fx-border-radius: 15;
     -fx-background-color: #383838;
     -fx-background-radius: 15;
@@ -386,14 +387,7 @@
 .pane-with-header .grid-pane {
     -fx-background-color: #383838;
     -fx-background-radius: 15;
-    -fx-border-color: black;
-    -fx-border-width: 0 0 1 0;
-}
-
-.pane-with-header .grid-pane {
-    -fx-background-color: #383838;
-    -fx-background-radius: 15;
-    -fx-border-color: black;
+    -fx-border-color: lightgrey;
     -fx-border-width: 0 0 1 0;
 }
 
@@ -403,4 +397,8 @@
 
 .table-header {
     -fx-text-fill: white;
+}
+
+.meeting-condensed {
+    -fx-background-color: #4D4D4D;
 }
