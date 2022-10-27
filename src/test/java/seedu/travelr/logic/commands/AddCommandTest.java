@@ -232,6 +232,16 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void sortBucketList(Comparator<Event> comp) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEventInBucketList(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
@@ -273,6 +283,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public void sortTripsByComparator(Comparator<Trip> comp) {
+            tripsAdded.sort(comp);
         }
     }
 

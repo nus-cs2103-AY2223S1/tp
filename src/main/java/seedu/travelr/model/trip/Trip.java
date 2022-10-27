@@ -58,7 +58,7 @@ public class Trip {
     }
 
     /**
-     * Main constructor, used in Add Command
+     * Constructs trip
      * Every field must be present and not null.
      */
     public Trip(Title title, Description description, Set<Event> events, Location location, DateField dateField) {
@@ -66,6 +66,19 @@ public class Trip {
         this.title = title;
         this.description = description;
         this.events.setInternalList(events);
+        this.location = location;
+        this.done = false;
+        this.dateField = dateField;
+    }
+
+    /**
+     * Constructs a trip. used in Add Command
+     * Every field must be present and not null.
+     */
+    public Trip(Title title, Description description, Location location, DateField dateField) {
+        requireAllNonNull(title, description, location, dateField);
+        this.title = title;
+        this.description = description;
         this.location = location;
         this.done = false;
         this.dateField = dateField;
