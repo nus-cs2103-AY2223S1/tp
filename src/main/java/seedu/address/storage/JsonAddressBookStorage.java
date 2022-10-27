@@ -26,9 +26,9 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
-    private Path tutorFilePath;
-    private Path studentFilePath;
-    private Path tuitionClassFilePath;
+    private final Path tutorFilePath;
+    private final Path studentFilePath;
+    private final Path tuitionClassFilePath;
 
     /**
      * Constructor for JsonAddressBookStorage.
@@ -60,56 +60,95 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     /**
      * Returns a ReadOnlyAddressBook containing all Tutors, Students and TuitionClasses.
      *   Returns {@code Optional.empty()} if no save data at all.
-     *
-     * @throws DataConversionException if the file is not in the correct format.
      */
     @Override
-    public Optional<ReadOnlyAddressBook> readAllAddressBook()
-            throws DataConversionException, IllegalValueException, IOException {
+    public Optional<ReadOnlyAddressBook> readAllAddressBook() {
         AddressBook addressBook = new AddressBook();
-        Optional<JsonSerializableTutorAddressBook> jsonTutorAddressBook = JsonUtil.readJsonFile(
-                tutorFilePath, JsonSerializableTutorAddressBook.class);
-        Optional<JsonSerializableStudentAddressBook> jsonStudentAddressBook = JsonUtil.readJsonFile(
-                studentFilePath, JsonSerializableStudentAddressBook.class);
-        Optional<JsonSerializableTuitionClassAddressBook> jsonTuitionClassAddressBook = JsonUtil.readJsonFile(
-                tuitionClassFilePath, JsonSerializableTuitionClassAddressBook.class);
+        Optional<ReadOnlyAddressBook> studBook = Optional.empty();
+        Optional<ReadOnlyAddressBook> tutBook = Optional.empty();
+        Optional<ReadOnlyAddressBook> tuitionBook = Optional.empty();
 
-        int isNew = 3;
-        if (jsonTutorAddressBook.isPresent()) {
-            List<Tutor> tutorList = jsonTutorAddressBook.get().getTutorsList();
-            for (Tutor t : tutorList) {
-                addressBook.addPerson(t);
-            }
-        } else {
-            isNew--;
-            FileUtil.createFile(tutorFilePath);
-            logger.info("Empty tutoraddressbook.json created");
+        try {
+            studBook = readStudentAddressBook(studentFilePath);
+        } catch (DataConversionException e) {
+            logger.info(String.format("An error occurred while reading %s", studentFilePath));
         }
-        if (jsonStudentAddressBook.isPresent()) {
-            List<Student> studentList = jsonStudentAddressBook.get().getStudentsList();
-            for (Student s : studentList) {
-                addressBook.addPerson(s);
-            }
-        } else {
-            isNew--;
-            FileUtil.createFile(studentFilePath);
-            logger.info("Empty studentaddressbook.json created");
+        try {
+            tutBook = readTutorAddressBook(tutorFilePath);
+        } catch (DataConversionException e) {
+            logger.info(String.format("An error occurred while reading %s", tutorFilePath));
         }
-        if (jsonTuitionClassAddressBook.isPresent()) {
-            List<TuitionClass> tuitionClassList = jsonTuitionClassAddressBook.get().getTuitionClassesList();
-            for (TuitionClass tc : tuitionClassList) {
-                addressBook.addTuitionClass(tc);
-            }
-        } else {
-            isNew--;
-            FileUtil.createFile(tuitionClassFilePath);
-            logger.info("Empty tuitionclassaddressbook.json created");
+        try {
+            tuitionBook = readTuitionClassAddressBook(tuitionClassFilePath);
+        } catch (DataConversionException e) {
+            logger.info(String.format("An error occurred while reading %s", tuitionClassFilePath));
         }
 
-        if (isNew == 0) {
-            return Optional.empty();
-        } else {
-            return Optional.of(addressBook);
+        loadAddressBook(addressBook, studBook, AddressBookCategories.STUDENTS);
+        loadAddressBook(addressBook, tutBook, AddressBookCategories.TUTORS);
+        loadAddressBook(addressBook, tuitionBook, AddressBookCategories.TUITIONCLASSES);
+
+        return Optional.of(addressBook);
+    }
+
+    /**
+     * Loads an address book containing only a list of 1 entity into a general address book.
+     * @param main The general address book to load the entities in.
+     * @param book The address book containing a list of 1 entity.
+     * @param type The entity type i.e. {@link Student}, {@link Tutor}, or {@link TuitionClass}.
+     */
+    private void loadAddressBook(AddressBook main, Optional<ReadOnlyAddressBook> book,
+                                 AddressBookCategories type) {
+        switch (type) {
+        case STUDENTS:
+            if (book.isPresent()) {
+                List<Student> studentList = book.get().getStudentList();
+                for (Student s : studentList) {
+                    main.addPerson(s);
+                }
+            } else {
+                try {
+                    FileUtil.createFile(studentFilePath);
+                    saveAddressBook(new AddressBook(), type);
+                    logger.info("Empty studentaddressbook.json created");
+                } catch (IOException e) {
+                    logger.info(String.format("Failed to create missing file: %s", studentFilePath));
+                }
+            }
+            break;
+        case TUTORS:
+            if (book.isPresent()) {
+                List<Tutor> tutorList = book.get().getTutorList();
+                for (Tutor t : tutorList) {
+                    main.addPerson(t);
+                }
+            } else {
+                try {
+                    FileUtil.createFile(tutorFilePath);
+                    saveAddressBook(new AddressBook(), type);
+                    logger.info("Empty tutoraddressbook.json created");
+                } catch (IOException e) {
+                    logger.info(String.format("Failed to create missing file: %s", tutorFilePath));
+                }
+            }
+            break;
+        case TUITIONCLASSES:
+            if (book.isPresent()) {
+                List<TuitionClass> tuitionClassList = book.get().getTuitionClassList();
+                for (TuitionClass tc : tuitionClassList) {
+                    main.addTuitionClass(tc);
+                }
+            } else {
+                try {
+                    FileUtil.createFile(tuitionClassFilePath);
+                    saveAddressBook(new AddressBook(), type);
+                    logger.info("Empty tuitionclassaddressbook.json created");
+                } catch (IOException e) {
+                    logger.info(String.format("Failed to create missing file: %s", tuitionClassFilePath));
+                }
+            }
+            break;
+        default:
         }
     }
 
@@ -139,7 +178,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
         Optional<JsonSerializableTutorAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableTutorAddressBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (jsonAddressBook.isEmpty()) {
             return Optional.empty();
         }
 
@@ -163,7 +202,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
         Optional<JsonSerializableStudentAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableStudentAddressBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (jsonAddressBook.isEmpty()) {
             return Optional.empty();
         }
 
@@ -187,7 +226,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
         Optional<JsonSerializableTuitionClassAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableTuitionClassAddressBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (jsonAddressBook.isEmpty()) {
             return Optional.empty();
         }
 
