@@ -8,6 +8,25 @@
   background-color: #383838; /* Used in the default.html file */
 }
 
+/* Styling Titled panes: https://stackoverflow.com/questions/21451386/titled-pane-css-settings */
+.titled-pane:focused
+{
+-fx-text-fill: grey;
+}
+
+.titled-pane > .content {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+
 .label {
   -fx-font-size: 11pt;
   -fx-font-family: "Segoe UI Semibold";
