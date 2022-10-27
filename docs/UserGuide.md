@@ -226,7 +226,7 @@ Format: `exit`
 
 ###### Session-Based Command History
 
-NUScheduler keeps track of all the successful commands you've made within each session.
+Access the previous commands you've made within each session.
 
 * Use the up arrow key, <kbd>&#8593;</kbd> to navigate to the previous command.
 * Use the down arrow key, <kbd>&#8595;</kbd> to navigate to the next command.
@@ -235,6 +235,7 @@ NUScheduler keeps track of all the successful commands you've made within each s
 
 :information_source: **Notes about the command history**:
 
+* Only successful commands are tracked, commands that results in an error are not stored.
 * Every time NUScheduler is closed, the command history is reset.
 * Edits made on the command history are not tracked.
 
