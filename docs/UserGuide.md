@@ -130,9 +130,9 @@ Beyond individual products, you can also:
 
 * This symbol `||` indicates that only one of the optional parameters can be used. <br> 
   **Using more than one optional parameter is strictly not allowed.** <br>
-  e.g. `listClient` can be used as 
+  e.g. `listClient [pd/PRODUCT || b/BIRTHDAY]` can be used as 
   * `listClient pd/Product1`
-  * `listClient bd/week`
+  * `listClient b/week`
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
