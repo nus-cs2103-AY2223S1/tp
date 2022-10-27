@@ -15,7 +15,7 @@ add, remove bookings for those venues.
 
 To view the bookings, you will have to click on the tab labelled as bookings.
 
-<!-- add the venue tab here -->
+![Booking tab](../images/venue_tab_ui.png)
 
 As you perform the booking commands, the table will automatically update to reflect the changes you have made.
 
