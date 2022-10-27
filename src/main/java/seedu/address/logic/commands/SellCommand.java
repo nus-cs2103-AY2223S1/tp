@@ -21,13 +21,13 @@ import seedu.address.model.transaction.Transaction;
 public class SellCommand extends Command {
     public static final String COMMAND_WORD = "sell";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the client. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the client. \n"
             + "Parameters: "
             + "INDEX (must be a positive integer) "
             + PREFIX_QUANTITY + "QUANTITY "
             + PREFIX_GOODS + "GOODS "
             + PREFIX_PRICE + "PRICE "
-            + "[" + PREFIX_DATE + "DATE]...\n"
+            + "[" + PREFIX_DATE + "DATE]\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_QUANTITY + "1000 "
             + PREFIX_GOODS + "Apples "

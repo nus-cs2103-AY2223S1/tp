@@ -6,14 +6,14 @@ import seedu.address.model.JeeqTracker;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears all entries in the address book.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
 
-    public static final String MESSAGE_USAGE = "Clears all entries in JeeqTracker\n"
-            + "Usage: clear";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all entries in JeeqTracker\n"
+            + "Example: clear";
 
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 

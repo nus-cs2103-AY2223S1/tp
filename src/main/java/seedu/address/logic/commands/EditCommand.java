@@ -19,7 +19,8 @@ public abstract class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of "
+            + "an entity (client/transaction/remark) identified "
             + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -33,7 +34,5 @@ public abstract class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MODE + "client" + "a/Blk 221 Yishun St 81"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MODE + "transaction" + "g/oranges price/1.30"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MODE + "remark" + "new Remark that I want to add";
-
-
 }
 

@@ -12,8 +12,8 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = "Lists all clients in JeeqTracker\n"
-            + "Usage: list";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all clients in JeeqTracker\n"
+            + "Example: list";
 
     public static final String MESSAGE_SUCCESS = "Listed all clients";
 
