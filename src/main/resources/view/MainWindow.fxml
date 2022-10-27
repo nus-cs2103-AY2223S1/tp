@@ -5,9 +5,6 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -27,7 +24,7 @@
       </stylesheets>
 
       <VBox prefHeight="66.0" prefWidth="1200.0">
-        <HBox style="-fx-background-color: #FAFAFA; -fx-padding: 0 0 0 20;">
+        <HBox styleClass="menu-bar">
           <Button fx:id="contactsButton" mnemonicParsing="false" onAction="#showContactTab" text="CONTACTS"/>
           <Button fx:id="tasksButton" mnemonicParsing="false" onAction="#showTaskTab" text="TASKS"/>
           <Button fx:id="helpButton" mnemonicParsing="false" onAction="#handleHelp" text="HELP"/>
