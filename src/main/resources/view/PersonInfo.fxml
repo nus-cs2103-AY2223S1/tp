@@ -10,7 +10,7 @@
 <?import javafx.scene.chart.NumberAxis?>
 
 <?import javafx.geometry.Insets?>
-<HBox fx:id="personInfo" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" prefHeight="400.0" prefWidth="600.0">
+<VBox fx:id="personInfo" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" prefHeight="400.0" prefWidth="600.0">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -62,4 +62,4 @@
             </HBox>
         </VBox>
     </GridPane>
-</HBox>
+</VBox>

@@ -4,7 +4,9 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Comparator;
+import java.util.regex.Pattern;
 
 import javafx.beans.property.SimpleStringProperty;
 
@@ -14,8 +16,17 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class Leave {
     public static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    public static final String MESSAGE_CONSTRAINTS = "Input for leave period is invalid \n";
+    public static final String MESSAGE_CONSTRAINTS = "Invalid Date, Start Date should be earlier than End Date "
+            + "and both Dates should be in dd-MM-YYYY \n";
     public static final CustomLeaveComparator COMPARATOR = new CustomLeaveComparator();
+
+    private static final Pattern DATE_PATTERN = Pattern.compile(
+                "^(29-02-(2000|2400|2800|(19|2[0-9])(0[48]|[2468][048]|[13579][26])))$"
+                        + "|^((0[1-9]|1[0-9]|2[0-8])-02-((19|2[0-9])[0-9]{2}))$"
+                        + "|^((0[1-9]|[12][0-9]|3[01])-(0[13578]|10|12)-((19|2[0-9])[0-9]{2}))$"
+                        + "|^((0[1-9]|[12][0-9]|30)-(0[469]|11)-((19|2[0-9])[0-9]{2}))$");
+
+
     public final LocalDate startDate;
     public final LocalDate endDate;
 
@@ -30,12 +41,11 @@ public class Leave {
      * @param endDate A valid end date.
      */
     public Leave(String startDate, String endDate) {
-
         this.startDate = LocalDate.parse(startDate, FORMAT);
         this.endDate = LocalDate.parse(endDate, FORMAT);
         this.col1 = new SimpleStringProperty(this.startDate.format(FORMAT));
         this.col2 = new SimpleStringProperty(this.endDate.format(FORMAT));
-        if (getTotalDays() <= 1) {
+        if (getTotalDays() == 1) {
             this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()) + " day");
         } else {
             this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()) + " days");
@@ -67,8 +77,18 @@ public class Leave {
      * Returns true if a endDate and StartDate makes sense.
      */
     public static boolean isValidLeave(String startDate, String endDate) {
-        final int b = LocalDate.parse(endDate, FORMAT).compareTo(LocalDate.parse(startDate, FORMAT));
-        return b >= 0;
+        try {
+            boolean startDateValid = DATE_PATTERN.matcher(startDate).matches();
+            boolean endDateValid = DATE_PATTERN.matcher(endDate).matches();
+            if (startDateValid && endDateValid) {
+                final int b = LocalDate.parse(endDate, FORMAT).compareTo(LocalDate.parse(startDate, FORMAT));
+                return b >= 0;
+            } else {
+                return false;
+            }
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     /**

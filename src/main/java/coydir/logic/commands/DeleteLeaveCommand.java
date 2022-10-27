@@ -2,7 +2,6 @@ package coydir.logic.commands;
 
 import static coydir.logic.parser.CliSyntax.PREFIX_ID;
 import static coydir.logic.parser.CliSyntax.PREFIX_INDEX;
-import static coydir.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -27,10 +26,10 @@ public class DeleteLeaveCommand extends Command {
             + ": Deletes a leave period for an employee.\n"
             + "Parameters: "
             + PREFIX_ID + "ID "
-            + PREFIX_INDEX + "INDEX"
+            + PREFIX_INDEX + "INDEX "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ID + "1 "
-            + PREFIX_STARTDATE + "1 ";
+            + PREFIX_INDEX + "1 ";
 
     public static final String MESSAGE_LEAVE_REMOVE_SUCCESS = "Leave removed successfully for %1$s";
     public static final String MESSAGE_NO_SUCH_LEAVE = "There is no such leave";
@@ -51,14 +50,13 @@ public class DeleteLeaveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getDatabase().getPersonList();
         if (index < 0) {
             throw new CommandException(MESSAGE_INVALID_INDEX);
         }
         for (Person person : lastShownList) {
             if (person.getEmployeeId().equals(targetId)) {
                 if (index > person.getLeaves().size()) {
-                    System.out.println("hey");
                     throw new CommandException(MESSAGE_INVALID_INDEX);
                 }
                 Leave removedLeave = null;

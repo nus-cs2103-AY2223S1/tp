@@ -11,21 +11,20 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
  * An UI component that displays detailed information of a {@code Person}.
  */
 public class PersonInfo extends UiPart<Region> {
     private static final String FXML = "PersonInfo.fxml";
-
-    private Person person;
 
     @FXML
     private CategoryAxis xAxis;
@@ -34,7 +33,7 @@ public class PersonInfo extends UiPart<Region> {
     private NumberAxis yAxis;
 
     @FXML
-    private HBox personInfo;
+    private VBox personInfo;
     @FXML
     private Label name;
     @FXML
@@ -64,8 +63,6 @@ public class PersonInfo extends UiPart<Region> {
     @FXML
     private LineChart<String, Number> lineChart;
 
-    private Person current;
-
     /**
      * Creates a {@code PersonInfo} to display the {@code Person} particulars.
      */
@@ -85,18 +82,10 @@ public class PersonInfo extends UiPart<Region> {
     }
 
     /**
-     * Update the information on the display panel if any changes were made.
-     */
-    public void update() {
-        update(current);
-    }
-
-    /**
      * Update the person particulars in the {@code PersonInfo} panel.
      * @param person the person to be displayed
      */
     public void update(Person person) {
-        this.current = person;
         name.setText(person.getName().fullName);
         employeeId.setText("Employee ID:  " + String.format("%6s", person.getEmployeeId().value).replace(' ', '0'));
         phone.setText("Phone number:  " + person.getPhone().value);
@@ -110,6 +99,26 @@ public class PersonInfo extends UiPart<Region> {
         onLeave.setText("On leave: " + person.onLeaveStatus());
         tags.getChildren().clear();
         leaveTable.setItems(person.getObservableListLeaves());
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        TableColumn<Leave, String> index = new TableColumn<>("No.");
+        index.setCellFactory(col -> new TableCell<Leave, String>() {
+            @Override
+            public void updateIndex(int index) {
+                super.updateIndex(index);
+                if (isEmpty() || index < 0) {
+                    setText(null);
+                } else {
+                    setText(Integer.toString(index + 1));
+                }
+            }
+        });
+        index.setSortable(false);
+        index.setReorderable(false);
+        index.setMaxWidth(2000);
+
         TableColumn<Leave, String> startDate = new TableColumn<>("Start Date");
         startDate.setCellValueFactory(new PropertyValueFactory<>("col1"));
         startDate.setSortable(false);
@@ -125,7 +134,7 @@ public class PersonInfo extends UiPart<Region> {
         durations.setSortable(false);
         durations.setReorderable(false);
         leaveTable.getColumns().clear();
-        leaveTable.getColumns().addAll(startDate, endDate, durations);
+        leaveTable.getColumns().addAll(index, startDate, endDate, durations);
 
         lineChart.setAnimated(false);
         lineChart.setTitle("Performance History");
