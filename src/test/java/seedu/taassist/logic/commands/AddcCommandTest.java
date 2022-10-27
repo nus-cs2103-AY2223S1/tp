@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.commands.AddcCommand.MESSAGE_DUPLICATE_MODULE_CLASS;
 import static seedu.taassist.logic.commands.AddcCommand.getCommandMessage;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -18,7 +19,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +50,7 @@ public class AddcCommandTest {
 
         CommandResult commandResult = new AddcCommand(validModuleClasses).execute(modelStub);
 
-        String validClassesStr = validModuleClasses.stream().map(Object::toString).collect(Collectors.joining(" "));
+        String validClassesStr = commaSeparate(validModuleClasses, ModuleClass::toString);
 
         assertEquals(String.format(AddcCommand.MESSAGE_SUCCESS, validClassesStr), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(CS1101S), modelStub.moduleClassesAdded);

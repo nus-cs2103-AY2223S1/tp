@@ -2,10 +2,10 @@ package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
@@ -68,8 +68,7 @@ public class AssignCommand extends Command {
     }
 
     public static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {
-        String studentNames = students.stream().map(student -> student.getName().toString())
-                .collect(Collectors.joining(", "));
+        String studentNames = commaSeparate(students, student -> student.getName().toString());
         return String.format(MESSAGE_SUCCESS, moduleClass, studentNames);
     }
 

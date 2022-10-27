@@ -4,11 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_SESSION;
 import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
@@ -80,8 +80,7 @@ public class GradeCommand extends Command {
     }
 
     public static String getSuccessMessage(List<Student> students, Session session, Double grade) {
-        String studentNames = students.stream().map(student -> student.getName().toString())
-                .collect(Collectors.joining(", "));
+        String studentNames = commaSeparate(students, student -> student.getName().toString());
         return String.format(MESSAGE_SUCCESS, grade, session.getSessionName(), studentNames);
     }
 

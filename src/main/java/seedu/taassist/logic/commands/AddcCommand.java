@@ -2,11 +2,11 @@ package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
@@ -75,14 +75,13 @@ public class AddcCommand extends Command {
 
     private static String getClassesAddedMessage(Set<ModuleClass> newClasses) {
         requireAllNonNull(newClasses);
-        String newClassesStr = newClasses.stream().map(Object::toString).collect(Collectors.joining(", "));
+        String newClassesStr = commaSeparate(newClasses, ModuleClass::toString);
         return String.format(MESSAGE_SUCCESS, newClassesStr);
     }
 
     private static String getDuplicateClassesMessage(Set<ModuleClass> duplicateClasses) {
         requireAllNonNull(duplicateClasses);
-        String duplicateClassesStr = duplicateClasses.stream().map(Object::toString)
-                .collect(Collectors.joining(", "));
+        String duplicateClassesStr = commaSeparate(duplicateClasses, ModuleClass::toString);
         return String.format(MESSAGE_DUPLICATE_MODULE_CLASS, duplicateClassesStr);
     }
 

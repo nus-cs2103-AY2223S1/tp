@@ -5,11 +5,14 @@ import static seedu.taassist.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Collection;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Helper functions for handling strings.
  */
-public class StringUtil {
+public class StringUtil<T> {
 
     /**
      * Returns true if the {@code sentence} contains the {@code word} ignoring case.
@@ -65,5 +68,9 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    public static <T> String commaSeparate(Collection<? extends T> objects, Function<T, String> fn) {
+        return objects.stream().map(fn).collect(Collectors.joining(", "));
     }
 }

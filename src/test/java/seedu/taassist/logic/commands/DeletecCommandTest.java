@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taassist.logic.commands.DeletecCommand.MESSAGE_MODULE_CLASSES_DOES_NOT_EXIST;
 import static seedu.taassist.testutil.Assert.assertThrows;
@@ -16,7 +17,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -114,7 +114,7 @@ public class DeletecCommandTest {
         Set<ModuleClass> moduleClasses = new HashSet<>(Arrays.asList(expectedModel.getModuleClassList().get(0)));
         new DeletecCommand(moduleClasses).execute(expectedModel);
 
-        String moduleClassesStr = moduleClasses.stream().map(Object::toString).collect(Collectors.joining(" "));
+        String moduleClassesStr = commaSeparate(moduleClasses, ModuleClass::toString);
 
         assertCommandSuccess(new DeletecCommand(moduleClasses), model,
                 String.format(DeletecCommand.MESSAGE_SUCCESS, moduleClassesStr), expectedModel);

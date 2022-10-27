@@ -14,6 +14,8 @@ public class ListcCommand extends Command {
     public static final String COMMAND_WORD = "listc";
 
     public static final String MESSAGE_SUCCESS = "All classes:\n%1$s";
+    public static final String MESSAGE_EMPTY_CLASS_LIST = "No classes have been added. "
+            + "Add classes with [ " + AddcCommand.COMMAND_WORD + " ] command.";
 
     @Override
     public CommandResult execute(Model model) {

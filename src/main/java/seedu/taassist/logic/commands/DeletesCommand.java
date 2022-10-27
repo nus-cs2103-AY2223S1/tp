@@ -3,10 +3,10 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.commaSeparate;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
@@ -62,8 +62,7 @@ public class DeletesCommand extends Command {
 
     public static String getCommandMessage(Set<Session> sessions) {
         requireAllNonNull(sessions);
-        String sessionsString = sessions.stream().map(Session::getSessionName).collect(
-                Collectors.joining(", "));
+        String sessionsString = commaSeparate(sessions, Session::getSessionName);
         return String.format(MESSAGE_SUCCESS, sessionsString);
     }
 
