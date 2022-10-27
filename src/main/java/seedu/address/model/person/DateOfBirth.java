@@ -69,7 +69,7 @@ public class DateOfBirth implements Comparable<DateOfBirth> {
     }
 
     /**
-     * Returns the integer age in years of a person with this date of birth.
+     * Returns the integer age of a person.
      */
     public int toAge() {
         LocalDate currDate = LocalDate.now();

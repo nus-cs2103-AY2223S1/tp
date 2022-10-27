@@ -42,7 +42,6 @@ public class MakeStatsCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        //todo: add UID list integration
         ObservableList<Event> eventList = model.getFilteredEventList();
         Event targetEvent = eventList.get(index.getZeroBased());
         ObservableList<Person> personList = targetEvent.getUids().getPersons(model);
