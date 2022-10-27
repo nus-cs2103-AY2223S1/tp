@@ -43,7 +43,7 @@ public class EditExamCommand extends Command {
             + PREFIX_EXAM_DATE + "20-12-2022";
 
     public static final String MESSAGE_EDIT_EXAM_SUCCESS = "Successfully Edited Exam: %1$s";
-    public static final String MESSAGE_EXAM_NOT_EDITED = "Please provide a module or exam description or exam date"
+    public static final String MESSAGE_EXAM_NOT_EDITED = "Please provide a module or exam description or exam date "
             + "different from the exam's current module and description and exam date";;
     public static final String MESSAGE_NO_FIELDS_PROVIDED =
             "Please provide at least one of the fields to edit: m/MODULE, ex/EXAMDESCRIPTION, ed/EXAMDATE";
