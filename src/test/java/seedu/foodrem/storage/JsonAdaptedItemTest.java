@@ -22,21 +22,22 @@ import seedu.foodrem.testutil.TypicalTags;
 
 public class JsonAdaptedItemTest {
     private static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT =
-            "The item unit should only contain alphanumeric characters and spaces.";
+            "The item unit should only contain alphanumeric characters, spaces and the following symbols "
+                    + "[]{}()-+*=.,_'\"^$?@!#%&:;";
     private static final String MESSAGE_FOR_QUANTITY_NOT_A_NUMBER =
             "The item quantity should be a number.";
     private static final String MESSAGE_FOR_PRICE_NOT_A_NUMBER =
             "The item price should be a number.";
     private static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME =
-            "The item name should only contain alphanumeric characters and spaces. It should not start with a blank "
-                    + "space.";
+            "The item name should only contain alphanumeric characters, spaces and the following symbols "
+                    + "[]{}()-+*=.,_'\"^$?@!#%&:;";
     private static final String MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE =
             "The item expiry date must follow the format dd-mm-yyyy.";
     private static final String MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE =
             "The item bought date must follow the format dd-mm-yyyy.";
     private static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_REMARKS =
-            "The item remark should only contain alphanumeric characters and spaces. It should not start with a blank "
-                    + "space.";
+            "The item remark should only contain alphanumeric characters, spaces and the following symbols "
+                    + "[]{}()-+*=.,_'\"^$?@!#%&:;";
 
     private static final String INVALID_NAME = "Po|a|oes\\";
     private static final String INVALID_QUANTITY = "1/2";
@@ -44,7 +45,7 @@ public class JsonAdaptedItemTest {
     private static final String INVALID_BOUGHT_DATE = "september11";
     private static final String INVALID_EXPIRY_DATE = "september11";
     private static final String INVALID_PRICE = "$10";
-    private static final String INVALID_REMARKS = "@.@";
+    private static final String INVALID_REMARKS = "@.@||";
     private static final String INVALID_TAG = "//";
 
     private static final String VALID_NAME = "Potatoes";
