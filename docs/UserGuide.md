@@ -147,7 +147,7 @@ Filters contacts whose label(s) contain any of the given keywords.
 
 Format: `filterC KEYWORD [MORE_KEYWORDS]`
 
-* The filer is case-insensitive, e.g. `cs2103t` will match `CS2103T`.
+* The filter is case-insensitive, e.g. `cs2103t` will match `CS2103T`.
 
 * The order of the keywords does not matter, e.e. `software cs2103t` will match
   `CS2103T Software Engineering`.
@@ -170,19 +170,42 @@ Shows all tasks stored in the task list.
 
 Format: `listT`
 
-### Adding Tasks: `addT`
+### Adding a task: `addT`
 
 Adds a task to the task list.
-The description and deadline of the task are not allowed to be empty. Newly added tasks are marked as not done.
-Throws an exception if the description of the task is empty.
-Throws an exception if the deadline of the task is empty.
-Throws an exception if the deadline of the task is not in dd-mm-yyyy format.
 
 Format: `addT d/DESCRIPTION D/DEADLINE`
+
+* Tasks are unique. There cannot be more than one task with the same description in the task list.
+
+* The description and deadline of the task are not allowed to be empty. 
+
+* Newly added tasks are marked as not done by default.
+
+Throws an exception if:
+- If the description of the task is empty.
+- If the deadline of the task is empty.
+- The deadline of the task is not in dd-mm-yyyy format.
 
 Example:
 
 * `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022.
+
+### Removing a tasks: `deleteT`
+
+Removes a task from the task list.
+
+Format: `deleteT INDEX`
+
+* Index of a contact is its index number on the contact list.
+
+* INDEX must be a positive integer more than 0.
+
+Examples:
+
+* `listT` followed by `deleteT 1` deletes the first task in the task list.
+
+* `findT milk` followed by `deleteT 1` deletes the first result of the `findT` command.
 
 ### Editing a task: `editT`
 
@@ -263,10 +286,10 @@ Format: `filterT KEYWORD [MORE_KEYWORDS]`
 
 * The filter is case-insensitive, e.g. `cs2103t` will match `CS2103T`.
 
-* The order of the keywords does not matter, e.e. `software cs2103t` will match
+* The order of the keywords does not matter, e.g. `software cs2103t` will match
   `CS2103T Software Engineering`.
 
-* Only the tasks's label is filtered.
+* Only the task's label is filtered.
 
 * Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
 
@@ -277,9 +300,46 @@ Example:
 
 * `filterT cs2103t` may return a tasks with label `CS2103T Software Engineering`.
 
+### List tasks with deadlines up to and including the specified date: `remindT`
+
+List tasks in YellowBook with deadlines up to and including the specified date.
+
+Both completed and incomplete tasks are listed.
+Task with deadline that are already past are also listed.
+
+Throws an exception if:
+- The deadline of the task is not in dd-mm-yyyy format.
+
+Format: `remindT DEADLINE`
+
+Example:
+
+* `remindT 12-09-2022` will list all tasks with deadlines up to and including 12-09-2022.
+
+### Show the percentage of tasks with the specified tags that are completed: `progressT`
+
+Show the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
+
+Format: `progressT KEYWORD [MORE_KEYWORDS]`
+
+* Both complete and incomplete tasks are listed. 
+
+* Tasks with deadlines that are already past are also listed.
+
+* Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
+
+* Tasks with labels matching at least one keyword will be returned.
+
+Throws an exception if:
+- The deadline of the task is not in dd-mm-yyyy format.
+
+Example:
+
+* `progressT cs2103t` will show the percentage of tasks with label `cs2103t` that are completed, then list all tasks with labels matching at least one keyword.
+
 ### Sorting all tasks by deadline: `sortD`
 
-Sorts all tasks in the task list by deadline. 
+Sorts all tasks in the task list by deadline.
 
 * Adding or editing a task will not affect the sorted order of the task list.
 
@@ -291,7 +351,7 @@ Format: `sortD`
 
 Sorts all tasks in the task list by id.
 
-* Id is the order in which the tasks were added. 
+* Id is the order in which the tasks were added.
 
 * Adding or editing a task will not affect the sorted order of the task list.
 
@@ -401,24 +461,27 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                       |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **listC**   | `listC`                                                                                                                                                |
-| **addC**   | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **deleteC** | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                 |
-| **editC**   | `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `editC 1 n/John p/12345678`                                               |
-| **findC** | `findC KEYWORD [MORE_KEYWORDS]` <br> e.g., `findC Phineas Ferb`                                                                                        |
-| **filterC** | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |                                                                                                 |
-| **listT**   | `listT`                                                                                                                                                |
-| **addT**   | `addT d/DESCRIPTION D/DEADLINE`                                                                                                                        |
-| **editT**   | `editT INDEX [d/DESCRIPTION] [D/DEADLINE]` <br> e.g., `editT 1 d/sleep D/22-10-2022`                                                                   |
-| **markT**    | `markT INDEX` <br> e.g., `mark 1`                                                                                                                      |
-| **unmarkT**  | `unmarkT INDEX` <br> e.g., `unmark 1`                                                                                                                  |
-| **searchT** | `findT KEYWORD [MORE_KEYWORDS]` <br> e.g., `findT cs2103t`                                                                                             |
-| **filterT** | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |
-| **sortD**   | `sortD`                                                                                                                                                 |
-| **sortI**   | `sortI`                                                                                                                                                 |
-| **listL**   | `listL`                                                                                                                                                |
-| **addL**   | `addL c/INDEX n/LABEL_NAME` OR  `addL t/INDEX n/LABEL_NAME`                                                                                            |
+| Action        | Format, Examples                                                                                                                                       |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **listC**     | `listC`                                                                                                                                                |
+| **addC**      | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **deleteC**   | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                 |
+| **editC**     | `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `editC 1 n/John p/12345678`                                               |
+| **findC**     | `findC KEYWORD [MORE_KEYWORDS]` <br> e.g., `findC Phineas Ferb`                                                                                        |
+| **filterC**   | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |                                                                                                 |
+| **listT**     | `listT`                                                                                                                                                |
+| **addT**      | `addT d/DESCRIPTION D/DEADLINE`                                                                                                                        |
+| **deleteT**   | `deleteT INDEX` <br/> e.g., `deleteT 12`                                                                                                               |
+| **editT**     | `editT INDEX [d/DESCRIPTION] [D/DEADLINE]` <br> e.g., `editT 1 d/sleep D/22-10-2022`                                                                   |
+| **markT**     | `markT INDEX` <br> e.g., `mark 1`                                                                                                                      |
+| **unmarkT**   | `unmarkT INDEX` <br> e.g., `unmark 1`                                                                                                                  |
+| **findT**     | `findT KEYWORD [MORE_KEYWORDS]` <br> e.g., `findT cs2103t`                                                                                             |
+| **filterT**   | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |
+| **remindT**   | `remindT DEADLINE` <br/> e.g., `remindT 12-09-2022`                                                                                                    |
+| **progressT** | `progressT KEYWORD [MORE_KEYWORDS]` <br/> e.g., `progressT cs2103t`                                                                                    |
+| **sortD**     | `sortD`                                                                                                                                                 |
+| **sortI**     | `sortI`                                                                                                                                                 |
+| **listL**     | `listL`                                                                                                                                                |
+| **addL**      | `addL c/INDEX n/LABEL_NAME` OR  `addL t/INDEX n/LABEL_NAME`                                                                                            |
 | **deleteL**   | `deleteL c/INDEX n/LABEL_NAME` OR `deleteL t/INDEX n/LABEL_NAME`                                                                                       |
-| **deleteA** | `deleteA LABEL_NAME [MORE_LABEL_NAMES]` <br> e.g., `deleteA cs2103t`                                                                                   |
+| **deleteA**   | `deleteA LABEL_NAME [MORE_LABEL_NAMES]` <br> e.g., `deleteA cs2103t`                                                                                   |

@@ -15,12 +15,13 @@ public class ReminderCommand extends Command {
     public static final String COMMAND_WORD = "remindT";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows tasks with deadlines up to and including the "
-            + "date provided. "
+            + "date provided.\n"
             + "Parameters: DEADLINE (must be in dd-mm-yyyy format)\n"
             + "Example: " + COMMAND_WORD + " "
             + "12-09-2022";
 
-    public static final String REMINDER_SUCCESS = "Here are your upcoming deadlines.";
+    public static final String REMINDER_SUCCESS = "Here are your tasks with deadlines up to including the "
+                                                    + "specified date.";
 
     private final TaskUntilDeadlinePredicate predicate;
 
@@ -35,5 +36,11 @@ public class ReminderCommand extends Command {
         return new CommandResult(REMINDER_SUCCESS);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ReminderCommand // instanceof handles nulls
+                && predicate.equals(((ReminderCommand) other).predicate));
+    }
 
 }

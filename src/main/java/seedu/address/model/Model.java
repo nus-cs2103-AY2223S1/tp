@@ -169,6 +169,15 @@ public interface Model {
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * Returns the percentage of completed tasks in the filtered task list.
+     *
+     * @param predicate The predicate the task list is filtered by.
+     * @return the percentage of completed tasks in the filtered task list.
+     */
+    double getPercentageCompletion(Predicate<Task> predicate);
+
     /** Sorts the task list by deadline */
     void sortByDeadline();
 
