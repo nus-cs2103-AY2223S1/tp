@@ -54,8 +54,7 @@ public class ApplicationCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         company.setText(application.getCompany().company);
         isArchived.setVisible(application.isArchived());
-        status.setText(application.getStatus().getValue());
-        status.setStyle("-fx-background-color: " + application.getStatus().getColor());
+        setStatus();
         contact.setText(application.getContact().value);
         position.setText(application.getPosition().value);
         email.setText(application.getEmail().value);
@@ -63,6 +62,25 @@ public class ApplicationCard extends UiPart<Region> {
         application.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private void setStatus() {
+        status.setText(application.getStatus().getValue());
+        switch (application.getStatus()) {
+        case INTERVIEW:
+            status.setStyle("-fx-background-color: darkblue");
+            break;
+        case OFFERED:
+            status.setStyle("-fx-background-color: green");
+            break;
+        case PENDING:
+            status.setStyle("-fx-background-color: orange");
+            break;
+        case REJECTED:
+            status.setStyle("-fx-background-color: red");
+            break;
+        default: // should not happen
+        }
     }
 
     @Override
