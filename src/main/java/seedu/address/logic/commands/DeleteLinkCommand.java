@@ -20,18 +20,18 @@ import seedu.address.model.module.task.Task;
 import seedu.address.model.person.Person;
 
 /**
- * Delete link/s from an existing module in Plannit.
+ * Delete link(s) from an existing module in Plannit.
  */
 public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "delete-link";
-    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Delete link/s from a module "
+    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Delete link(s) from a module "
             + "using its module code and user-defined alias.\n"
             + "A 'm/' flag should be appended to the front the module code;\n"
             + "A 'la/' flag should be appended to the front of each link alias.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "GEA1000 "
             + PREFIX_MODULE_LINK_ALIAS + "coursemo " + PREFIX_MODULE_LINK_ALIAS + "kattis";
 
-    public static final String MESSAGE_DELETE_LINK_SUCCESS = "Successfully deleted link/s from module code [%1$s]!";
+    public static final String MESSAGE_DELETE_LINK_SUCCESS = "Successfully deleted link(s) from module code [%1$s]!";
     public static final String MESSAGE_NOT_EDITED = "At least one link must be deleted.";
     public static final String MESSAGE_MISSING_LINK_ALIAS = "The link alias [%1$s] does not currently exist"
             + " in the module with module code [%2$s]";

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GE3238_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_WITH_PREFIX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_2;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
@@ -42,23 +43,23 @@ public class OpenLinkCommandParserTest {
 
     @Test
     public void parse_invalidArgsEmptyModuleAlias_throwsParseException() {
-        assertParseFailure(parser, " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE + " "
+        assertParseFailure(parser, VALID_MODULE_CODE_WITH_PREFIX + " "
                         + PREFIX_MODULE_LINK_ALIAS + " ",
                 Link.MESSAGE_CONSTRAINTS_ALIAS);
     }
 
     @Test
     public void parse_invalidArgsOnlyWhiteSpace_throwsParseException() {
-        assertParseFailure(parser, " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE + " "
+        assertParseFailure(parser, VALID_MODULE_CODE_WITH_PREFIX + " "
                         + PREFIX_MODULE_LINK_ALIAS + "            ",
                 Link.MESSAGE_CONSTRAINTS_ALIAS);
     }
 
-    //Specific testing of link alias validity performed at ParserUtilTest and LinkTest ==========
+    //Specific testing of link alias validity performed at ParserUtilTest and LinkTest
     //Integration testing of OpenLinkCommandParser with ParserUtil
     @Test
-    public void parse_links_success() {
-        String moduleCodeString = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE;
+    public void parse_validLinkAliases_success() {
+        String moduleCodeString = VALID_MODULE_CODE_WITH_PREFIX;
         String moduleAliases = " " + PREFIX_MODULE_LINK_ALIAS + VALID_MODULE_LINK_ALIAS
                 + " " + PREFIX_MODULE_LINK_ALIAS + VALID_MODULE_LINK_ALIAS_2;
         String userInput = moduleCodeString + moduleAliases;

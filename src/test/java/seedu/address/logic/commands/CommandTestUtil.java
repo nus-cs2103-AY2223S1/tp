@@ -56,6 +56,7 @@ public class CommandTestUtil {
     public static final String VALID_MA2001_MODULE_CODE = "MA2001";
     public static final String VALID_MA2001_MODULE_TITLE = "Linear Algebra I";
     public static final String VALID_MODULE_CODE = CS2103T.getModuleCode().toString();
+    public static final String VALID_MODULE_CODE_WITH_PREFIX = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE;
     public static final String VALID_MODULE_TITLE = CS2103T.getModuleTitle().toString();
     public static final String VALID_TASK_A = "Complete assignment for week 8";
     public static final String VALID_TASK_B = "Submit the quiz@LumiNUS";

@@ -122,7 +122,7 @@ public class Link implements Comparable<Link> {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + linkAlias + ";" + linkUrl + ']';
+        return String.format("[%s]", linkAlias);
     }
 
     //Java TreeSet uses compareTo for equality

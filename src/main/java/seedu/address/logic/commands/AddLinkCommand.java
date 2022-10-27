@@ -21,12 +21,12 @@ import seedu.address.model.module.task.Task;
 import seedu.address.model.person.Person;
 
 /**
- * Add link/s to an existing module in Plannit.
+ * Add link(s) to an existing module in Plannit.
  */
 public class AddLinkCommand extends Command {
 
     public static final String COMMAND_WORD = "add-link";
-    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Add link/s to a the module "
+    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Add link(s) to a the module "
             + "using its module code, link URL, and a user-defined alias.\n"
             + "A 'm/' flag should be appended to the front the module code;\n"
             + "a 'l/' flag should be appended to the front of each link URL;\n"
@@ -34,7 +34,7 @@ public class AddLinkCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "GEA1000 "
             + PREFIX_MODULE_LINK_ALIAS + "coursemo " + PREFIX_MODULE_LINK_URL + "coursemology.org";
 
-    public static final String MESSAGE_ADD_LINK_SUCCESS = "Successfully added link/s to module code [%1$s]!";
+    public static final String MESSAGE_ADD_LINK_SUCCESS = "Successfully added link(s) to module code [%1$s]!";
     public static final String MESSAGE_NOT_EDITED = "At least one link url and alias must be added.";
     public static final String MESSAGE_DUPLICATE_LINK_ALIAS = "The link alias [%1$s] already exists"
             + " in the module with module code [%2$s].";

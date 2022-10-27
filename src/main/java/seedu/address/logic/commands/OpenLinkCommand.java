@@ -20,19 +20,18 @@ import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.module.link.Link;
 
 /**
- * Open link/s from an existing module in Plannit.
+ * Open link(s) from an existing module in Plannit.
  */
 public class OpenLinkCommand extends Command {
     public static final String COMMAND_WORD = "open-link";
-    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Open link/s from a module "
+    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Open link(s) from a module "
             + "using its module code and user-defined alias.\n"
             + "A 'm/' flag should be appended to the front the module code;\n"
             + "A 'la/' flag should be appended to the front of each link alias.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "GEA1000 "
             + PREFIX_MODULE_LINK_ALIAS + "coursemo " + PREFIX_MODULE_LINK_ALIAS + "kattis";
 
-    public static final String MESSAGE_OPEN_LINK_SUCCESS = "Successfully opened the following link/s "
-            + "from module code [%1$s]!\n%2$s";
+    public static final String MESSAGE_OPEN_LINK_SUCCESS = "Successfully opened link(s) from module code [%1$s]!";
     public static final String MESSAGE_NOT_EDITED = "At least one link must be opened.";
     public static final String MESSAGE_MISSING_LINK_ALIAS = "The link alias [%1$s] does not currently exist"
             + " in the module with module code [%2$s].";
@@ -74,9 +73,9 @@ public class OpenLinkCommand extends Command {
         }
         assert moduleToOpenLinks != null;
 
-        String linksOpened = openLinksFromModule(moduleToOpenLinks, linkAliases);
+        openLinksFromModule(moduleToOpenLinks, linkAliases);
         return new CommandResult(String.format(MESSAGE_OPEN_LINK_SUCCESS,
-                moduleCode.getModuleCodeAsUpperCaseString(), linksOpened));
+                moduleCode.getModuleCodeAsUpperCaseString()));
     }
 
     /**
@@ -86,11 +85,10 @@ public class OpenLinkCommand extends Command {
      * the collection {@code linksToOpen} or till a non-matching link alias between the collection and
      * the links from the specified module is encountered.
      */
-    private static String openLinksFromModule(Module moduleToOpenLinks, List<String> linkAliasesToOpen)
+    private static void openLinksFromModule(Module moduleToOpenLinks, List<String> linkAliasesToOpen)
             throws CommandException {
         assert moduleToOpenLinks != null;
         Set<Link> moduleLinksCopy = moduleToOpenLinks.copyLinks();
-        StringBuilder linksOpened = new StringBuilder();
         for (String linkAlias : linkAliasesToOpen) {
             Link linkToOpen = moduleLinksCopy.stream()
                     .filter(link -> link.hasLinkAlias(linkAlias))
@@ -98,19 +96,17 @@ public class OpenLinkCommand extends Command {
                     .orElseThrow(() -> new CommandException(String.format(MESSAGE_MISSING_LINK_ALIAS,
                             linkAlias, moduleToOpenLinks.getModuleCode().getModuleCodeAsUpperCaseString())));
             try {
-                launchLinkFromPlannit(linkToOpen.linkUrl);
-                linksOpened.append(String.format("[%s]\n", linkToOpen.linkUrl));
+                openLinkFromPlannit(linkToOpen.linkUrl);
             } catch (IOException | SecurityException ex) {
                 throw new CommandException(MESSAGE_LINK_LAUNCH_FAILURE);
             }
         }
-        return linksOpened.toString();
     }
 
     //@@author shwene-reused
     //Reused from https://stackoverflow.com/questions/5226212/how-to-open-the-default-webbrowser-using-java
     //with slight modification
-    private static void launchLinkFromPlannit(String linkUrl) throws IOException, SecurityException {
+    private static void openLinkFromPlannit(String linkUrl) throws IOException, SecurityException {
         assert linkUrl != null;
         boolean isLinkUrlPaddedWithHttps = linkUrl.startsWith(LINK_HEADER_PROTOCOL_HTTPS);
         boolean isLinkUrlPaddedWithHttp = linkUrl.startsWith(LINK_HEADER_PROTOCOL_HTTP);

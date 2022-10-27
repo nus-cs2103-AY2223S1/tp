@@ -287,7 +287,7 @@ Link URL (Plannit provides no guarantee of the link's existence):
 * Supported by 'https' or 'http'
 
 #### 2.3.1. Add link
-You may add link/s to a specific module using the `add-link` command. 
+You may add link(s) to a specific module using the `add-link` command. 
 Each link URL is to be paired with a link alias, both of which are unique within a module.
 
 Multiple links can be added at once. Link aliases will be paired with link URLs according to their respective
@@ -319,7 +319,7 @@ In the above example, we are adding the links with the URL `https://www.nusmods.
 to the module with module code `CS2040`, represented by the link alias `nus mods` and `kattis` respectively.
 
 #### 2.3.2. Delete link
-You may delete link/s from a specific module using the `delete-link` command. 
+You may delete link(s) from a specific module using the `delete-link` command. 
 Links will be deleted by means of their corresponding alias.
 
 Multiple links can be deleted at once using their corresponding alias.
@@ -348,7 +348,7 @@ In the above example, we are deleting the links with the URL `https://www.nusmod
 from the module with module code `CS2040`, using their corresponding link alias `nus mods` and `kattis` respectively.
 
 #### 2.3.3. Open link
-You may open link/s from a specific module to your default browser using the `open-link` command.
+You may open link(s) from a specific module to your default browser using the `open-link` command.
 Links will be opened by means of their corresponding alias.
 
 An alternative way to open links is by means of clicking on their aliases on the application window.

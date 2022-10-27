@@ -45,7 +45,7 @@ public class OpenLinkCommandTest {
                 new ModuleCode(MODULE_CODE_WITH_LINK), moduleLinkAliasesToOpen);
 
         String expectedMessage = String.format(OpenLinkCommand.MESSAGE_OPEN_LINK_SUCCESS,
-                moduleCode.getModuleCodeAsUpperCaseString(), moduleLinkUrlsToOpen);
+                moduleCode.getModuleCodeAsUpperCaseString());
 
         assertCommandSuccess(openLinkCommand, model, expectedMessage, expectedModel);
     }
