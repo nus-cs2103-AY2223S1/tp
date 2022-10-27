@@ -93,7 +93,7 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
 
     @Override
     public <U> boolean isSameType(Attribute<U> o) {
-        return o.getAttributeType().equals(typeName);
+        return o.getAttributeType().toLowerCase().equals(typeName.toLowerCase());
     }
 
     @Override
