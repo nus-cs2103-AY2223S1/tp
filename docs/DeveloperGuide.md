@@ -291,24 +291,25 @@ Step 5. The user presses and releases the Up arrow again. `CommandBox#handleKeyR
 no more previous commands, nothing happens.
 
 Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyReleased` is fired. Since this is the last
-element in `commandHistory`, the text field is set to display the string `currentCommand`. This would be the user's 
+element in `commandHistory`, the text field is set to display the string `currentCommand`. This would be the user's
 unexecuted command from Step 3.
 
 ### Creating a buyer
 
-The `Person` class represents a buyer with buyer-specific fields. `Price Range`, `Characteristics`, and `Priority` denote his budget, requirements for the property, and buyer priority respectively. 
+The `Person` class represents a buyer with buyer-specific fields. `Price Range`, `Characteristics`, and `Priority` 
+denote his budget, requirements for the property, and buyer priority respectively.
 
-These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`. 
+These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
 When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
 
-This is the class diagram of a `Person`. 
+This is the class diagram of a `Person`.
 
 ![PersonClassDiagram](images/PersonClassDiagram.png)
 
-The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide. 
+The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
-Design considerations: 
-No duplicate buyers can be added to the buyer list. This means that no two buyers with the same name can exist. We considered using not only name but also contact number to identify a buyer, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user. 
+Design considerations:
+No duplicate buyers can be added to the buyer list. This means that no two buyers with the same name can exist. We considered using not only name but also contact number to identify a buyer, so that two people with the same name but different contact numbers can be added. However, we decided against it as users likely differentiate their contacts by name and would not want to save a duplicated name contact, hence the current implementation would serve as a needed warning of a duplicated name attempt to the user.
 
 ### Creating a property
 
@@ -340,7 +341,7 @@ To support retrieving the `Owner` of a `Property`, we added the following method
 This is the class diagram showing the full `Property` class diagram, with the `Owner` class included:
 ![FullPropertyClassDiagram](images/FullPropertyClassDiagram.png)
 
-The `Owner` class enacts the Composition relationship, as the `Property` class contains the `Owner` object. Hence, if the property is deleted, it's associated owner will also be deleted. 
+The `Owner` class enacts the Composition relationship, as the `Property` class contains the `Owner` object. Hence, if the property is deleted, it's associated owner will also be deleted.
 The tradeoffs for this approach is examined below:
 
 #### Design considerations:
@@ -352,26 +353,32 @@ The tradeoffs for this approach is examined below:
       * The `Owner` class is only used in the `Property` class, so it makes sense to couple them together.
       * You do not need to create an owner object separately using another command.
       * This reduces complexity of the system, and unexpected behaviours.
-    * Cons: 
+    * Cons:
       * This creates a 1-to-1 relationship between the owner and the property.
       * Each owner is coupled tightly with the property, and cannot be used for other properties.
 
 * **Alternative 2:** Users will have to create an `Owner` object separately, and link it to the property manually.
     * Pros:
       * This allows for a many-to-many relationship between the owners and properties.
-      * This allows for better OOP design, as owners will be treated as a separate, first-class entity, similar to `Buyer`.
+      * This allows for better OOP design, as owners will be treated as a separate, first-class entity, similar to 
+      `Buyer`.
     * Cons:
       * Increases complexity for a possibly limited use case of linking an owner to multiple properties.
-      * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when the owner is deleted.
+      * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when 
+      the owner is deleted.
 
 ### Filtering properties by price range
 
-The `Properties` list is filtered using a predicate, `filterPropsByPricePredicate`. This predicate checks if the property's price falls within a specified price range. 
+The `Properties` list is filtered using a predicate, `filterPropsByPricePredicate`. This predicate checks if the 
+property's price falls within a specified price range.
 
-The structure for executing a `filterprops` command follows the flow as mentioned in the “Logic component” section of this guide. 
+The structure for executing a `filterprops` command follows the flow as mentioned in the “Logic component” section of 
+this guide.
 
-Design considerations: 
-As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is unlikely to match any property. Instead, we decided to filter by a price range instead, where any property whose price falls within this range would be displayed. 
+Design considerations:
+As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is
+unlikely to match any property. Instead, we decided to filter by a price range instead, where any property whose price
+falls within this range would be displayed.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -527,7 +534,7 @@ Use case continues at 3.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should work on any computer fewer than five years old. 
+2.  Should work on any computer fewer than five years old.
 3. Should be able to hold up to 1000 buyers without a noticeable sluggishness in performance for typical usage.
 4. Should be able to respond within two seconds.
 5. Should be downloaded and available to use within one minute.
