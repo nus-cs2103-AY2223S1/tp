@@ -71,6 +71,4 @@ public class PrereqsCommandTest {
             throw new RuntimeException(e);
         }
     }
-
-
 }

@@ -14,8 +14,6 @@ import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.module.Module;
 
-
-
 /**
  * Lists prerequisites for a module.
  */
