@@ -35,7 +35,7 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
         this.priorityKeywords = priorityKeywords;
         this.projectNameKeywords = projectNameKeywords;
         this.projectIdKeywords = projectIdKeywords;
-        this.issueIdKeywords = = issueIdKeywords;
+        this.issueIdKeywords = issueIdKeywords;
     }
 
     /**

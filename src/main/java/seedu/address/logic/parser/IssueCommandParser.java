@@ -178,10 +178,10 @@ public class IssueCommandParser implements Parser<IssueCommand> {
     private FindIssueCommand parseFindIssueCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_PROJECT_NAME, PREFIX_TITLE,
-                        PREFIX_STATUS, PREFIX_URGENCY, PREFIX_PROJECT_ID);
+                        PREFIX_STATUS, PREFIX_URGENCY, PREFIX_PROJECT_ID, PREFIX_ISSUE_ID);
 
         if (noPrefixesPresent(argMultimap, PREFIX_PROJECT_NAME, PREFIX_URGENCY, PREFIX_STATUS,
-                PREFIX_TITLE, PREFIX_PROJECT_ID)
+                PREFIX_TITLE, PREFIX_PROJECT_ID, PREFIX_ISSUE_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindIssueCommand.MESSAGE_FIND_ISSUE_USAGE));
@@ -208,6 +208,10 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             parseIndexValidity(argMultimap.getValue(PREFIX_PROJECT_ID).get());
         }
 
+        if (anyPrefixesPresent(argMultimap, PREFIX_ISSUE_ID)) {
+            parseIndexValidity(argMultimap.getValue(PREFIX_ISSUE_ID).get());
+        }
+
         if (anyPrefixesPresent(argMultimap, PREFIX_URGENCY)) {
             parseUrgencyValidity(argMultimap.getValue(PREFIX_URGENCY).get());
         }
@@ -221,7 +225,8 @@ public class IssueCommandParser implements Parser<IssueCommand> {
                         argMultimap.getAllValues(PREFIX_STATUS),
                         argMultimap.getAllValues(PREFIX_URGENCY),
                         argMultimap.getAllValues(PREFIX_PROJECT_NAME),
-                        argMultimap.getAllValues(PREFIX_PROJECT_ID));
+                        argMultimap.getAllValues(PREFIX_PROJECT_ID),
+                        argMultimap.getAllValues(PREFIX_ISSUE_ID));
 
 
         return new FindIssueCommand(predicate);
