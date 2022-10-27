@@ -24,6 +24,8 @@ public class FindProfileCommandParser implements Parser<FindProfileCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindProfileCommand parse(String args) throws ParseException {
+        assert args != null;
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
         String trimmedArgs = argMultimap.getOptionArgs();
 

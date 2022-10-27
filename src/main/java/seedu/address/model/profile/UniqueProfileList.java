@@ -97,6 +97,9 @@ public class UniqueProfileList implements Iterable<Profile> {
             throw new SimilarProfileException();
         }
 
+        target.removeFromAttendingEvents();
+        editedProfile.addToAllEvents();
+
         internalList.set(index, editedProfile);
     }
 
@@ -109,6 +112,7 @@ public class UniqueProfileList implements Iterable<Profile> {
         if (!internalList.remove(toRemove)) {
             throw new ProfileNotFoundException();
         }
+        toRemove.removeFromAttendingEvents();
     }
 
     public void setProfiles(UniqueProfileList replacement) {

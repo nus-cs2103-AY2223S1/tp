@@ -102,11 +102,11 @@ public class EditProfileCommand extends ProfileCommand {
             throw new CommandException(MESSAGE_SIMILAR_TELEGRAM);
         }
 
-        List<Event> events = profileToEdit.getEventsToAttend().getEventsList();
+        List<Event> events = profileToEdit.getEventsAttendingList();
         model.setProfile(profileToEdit, editedProfile);
+
+        // trigger re-render
         for (Event e : events) {
-            e.removeAttendee(profileToEdit);
-            e.addAttendee(editedProfile);
             Event eventCopy = new Event(e.getTitle(), e.getStartDateTime(), e.getEndDateTime(),
                     e.getTags(), e.getAttendees());
             model.setEvent(e, eventCopy);

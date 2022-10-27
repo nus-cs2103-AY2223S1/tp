@@ -75,6 +75,10 @@ public class Event implements Comparable<Event> {
         return attendees;
     }
 
+    public List<Profile> getAttendeesList() {
+        return attendees.getAttendeesList();
+    }
+
     // attendee operations
 
     /**

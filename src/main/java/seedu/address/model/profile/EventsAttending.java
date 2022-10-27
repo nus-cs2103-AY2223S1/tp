@@ -110,7 +110,7 @@ public class EventsAttending {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder("Attendees: ");
+        final StringBuilder builder = new StringBuilder("Events Attending: ");
         List<Event> sortedEvents = this.getEventsList();
 
         for (int i = 0; i < sortedEvents.size() - 1; i++) {
