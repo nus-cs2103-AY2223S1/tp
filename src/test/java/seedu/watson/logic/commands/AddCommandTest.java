@@ -20,6 +20,7 @@ import seedu.watson.model.Database;
 import seedu.watson.model.Model;
 import seedu.watson.model.ReadOnlyDatabase;
 import seedu.watson.model.ReadOnlyUserPrefs;
+import seedu.watson.model.person.Name;
 import seedu.watson.model.person.Person;
 import seedu.watson.testutil.PersonBuilder;
 
@@ -75,7 +76,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -120,6 +121,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getPersonByName(Name name) {
             throw new AssertionError("This method should not be called.");
         }
 

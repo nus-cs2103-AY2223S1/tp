@@ -4,6 +4,7 @@ package seedu.watson.model.person.subject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class Grades {
 
     // the double array contains 3 values: the score for the assessment,
     // the total score for the assessment, and the weightage of the assessment
-    private final HashMap<String, double[]> assessmentMarks;
+    private final LinkedHashMap<String, double[]> assessmentMarks;
 
     private double currentPercentageObtained;
 
@@ -26,7 +27,7 @@ public class Grades {
      * Constructs a {@code Grades}.
      */
     public Grades() {
-        assessmentMarks = new HashMap<>();
+        assessmentMarks = new LinkedHashMap<>();
     }
 
     /**
@@ -36,10 +37,11 @@ public class Grades {
      */
     public void updateAssessment(Assessment updatedAssessment) {
         if (assessmentMarks.containsKey(updatedAssessment.getAssessmentName())) {
-            double[] updatedMarks = new double[3];
+            double[] updatedMarks = new double[4];
             updatedMarks[0] = updatedAssessment.getAssessmentScore();
             updatedMarks[1] = updatedAssessment.getAssessmentTotalScore();
             updatedMarks[2] = updatedAssessment.getAssessmentWeightage();
+            updatedMarks[3] = updatedAssessment.getAssessmentDifficulty();
             assessmentMarks.put(updatedAssessment.getAssessmentName(), updatedMarks);
         } else {
             assessmentMarks.put(updatedAssessment.getAssessmentName(), updatedAssessment.getScoreArray());
@@ -73,6 +75,26 @@ public class Grades {
         }
     }
 
+    public double[] getRawPercentages() {
+        double[] rawPercentages = new double[assessmentMarks.size()];
+        int i = 0;
+        for (double[] marks : assessmentMarks.values()) {
+            rawPercentages[i] = marks[0] / marks[1];
+            i++;
+        }
+        return rawPercentages;
+    }
+
+    public double[] getDifficulties() {
+        double[] difficulties = new double[assessmentMarks.size()];
+        int i = 0;
+        for (double[] marks : assessmentMarks.values()) {
+            difficulties[i] = marks[3];
+            i++;
+        }
+        return difficulties;
+    }
+
     @Override
     public int hashCode() {
         return assessmentMarks.hashCode();
@@ -84,21 +106,21 @@ public class Grades {
      * @return a String which represents the data of the grades of the individual subject taken by the person.
      */
     public String dataString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         Set<String> keys = assessmentMarks.keySet();
         for (String key : keys) {
             String keyValue = Arrays.toString(assessmentMarks.get(key));
-            str += key + ":" + keyValue + ", ";
+            str.append(key).append(":").append(keyValue).append(", ");
         }
         int stringLength = str.length();
-        str = str.substring(0, stringLength - 2);
-        return str;
+        str = new StringBuilder(str.substring(0, stringLength - 2));
+        return str.toString();
     }
 
     @Override
     public String toString() {
         currentPercentageObtained = getCurrentPercentageObtained(assessmentMarks);
-        return String.format("Grades: %.1f", currentPercentageObtained);
+        return String.format("Grade = %.1f", currentPercentageObtained);
     }
 
 }

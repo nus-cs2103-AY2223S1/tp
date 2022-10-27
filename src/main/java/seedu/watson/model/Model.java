@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.watson.commons.core.GuiSettings;
+import seedu.watson.model.person.Name;
 import seedu.watson.model.person.Person;
 
 /**
@@ -62,6 +63,8 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the watson book.
      */
     boolean hasPerson(Person person);
+
+    Person getPersonByName(Name name);
 
     /**
      * Deletes the given person.
