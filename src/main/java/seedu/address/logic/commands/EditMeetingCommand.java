@@ -16,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
@@ -72,15 +73,17 @@ public class EditMeetingCommand extends Command {
         Meeting meetingToEdit = lastShownList.get(index.getZeroBased());
         Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
 
-        if (!meetingToEdit.equals(editedMeeting) && model.hasSpecificMeeting(editedMeeting)) {
+        if (model.hasMeeting(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
         // update meeting list
         model.setMeeting(meetingToEdit, editedMeeting);
 
-        // update client list
-        model.setClient(meetingToEdit.getClient(), editedMeeting.getClient());
+        // update meeting in client
+        Client client = meetingToEdit.getClient();
+        client.removeMeeting(meetingToEdit);
+        client.addMeeting(editedMeeting);
 
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting), CommandSpecific.MEETING);
     }
@@ -102,8 +105,6 @@ public class EditMeetingCommand extends Command {
         }
         Meeting meeting = new Meeting(meetingToEdit.getClient(), updatedDescription, updatedDate,
                 updatedStartTime, updatedEndTime);
-        meeting.getClient().removeMeeting(meetingToEdit);
-        meeting.getClient().addMeeting(meeting);
         return meeting;
     }
 
