@@ -111,7 +111,7 @@ Examples:
 
 Edits an existing item in the inventory list.
 
-Format: `edit INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`
+Format: `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`
 
 * Edits the item at the specified `INDEX`.
 * The index refers to the index number shown in the displayed inventory list.
