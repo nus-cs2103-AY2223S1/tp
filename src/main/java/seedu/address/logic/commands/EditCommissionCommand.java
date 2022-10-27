@@ -130,8 +130,6 @@ public class EditCommissionCommand extends Command {
         }
 
         selectedCustomer.setCommission(commissionToEdit, editedCommission);
-        model.setCommissionInUniverse(commissionToEdit, editedCommission);
-
         model.selectCommission(editedCommission);
 
         model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);
