@@ -16,7 +16,7 @@ import seedu.address.model.patient.Patient;
 public class SortPatientCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("sortpatient", "sop");
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Sorts the list of appointments according to the specified field"
+            COMMAND_WORD + ": Sorts the list of patients according to the specified field"
                     + "by alphabetical order.\n"
                     + "Parameters: c/CRITERIA (name, phone, email, address) o/ORDER (asc, desc) "
                     + "Example: " + COMMAND_WORD + " " + "c/name o/asc";
