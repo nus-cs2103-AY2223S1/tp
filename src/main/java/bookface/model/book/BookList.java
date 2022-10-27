@@ -173,9 +173,4 @@ public class BookList implements Iterable<Book> {
         int index = internalList.indexOf(book);
         internalList.set(index, book);
     }
-
-    /**
-     * TODO: Empties the BookList.
-     */
-    public void clear() {}
 }

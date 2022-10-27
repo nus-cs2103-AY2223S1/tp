@@ -127,12 +127,10 @@ public class Book {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append("; Author: ")
-                .append(getAuthor())
-                .append("; ")
-                .append(getReturnDateString());
-        return builder.toString();
+        return getTitle()
+                + "; Author: "
+                + getAuthor()
+                + "; "
+                + getReturnDateString();
     }
 }

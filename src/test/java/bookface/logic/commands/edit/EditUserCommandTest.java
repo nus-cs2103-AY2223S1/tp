@@ -102,7 +102,7 @@ public class EditUserCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditUserCommand editUserCommand = new EditUserCommand(TypicalIndexes.INDEX_SECOND_PERSON, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editUserCommand, model, EditUserCommand.MESSAGE_DUPLICATE_PERSON);
+        CommandTestUtil.assertCommandFailure(editUserCommand, model, Messages.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
@@ -115,7 +115,7 @@ public class EditUserCommandTest {
         EditUserCommand editUserCommand = new EditUserCommand(TypicalIndexes.INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
 
-        CommandTestUtil.assertCommandFailure(editUserCommand, model, EditUserCommand.MESSAGE_DUPLICATE_PERSON);
+        CommandTestUtil.assertCommandFailure(editUserCommand, model, Messages.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test

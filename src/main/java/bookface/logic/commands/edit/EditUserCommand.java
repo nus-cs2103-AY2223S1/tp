@@ -33,22 +33,15 @@ public class EditUserCommand extends EditCommand {
     public static final String COMMAND_WORD = "user";
 
     public static final String MESSAGE_USAGE =
-            EditCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Edits the details "
-            + "of the user identified "
-            + "by the index number used in the displayed user list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            EditCommand.generateMessage(COMMAND_WORD, "INDEX (must be a positive integer) "
+                    + "[" + PREFIX_NAME + "NAME] "
+                    + "[" + PREFIX_PHONE + "PHONE] "
+                    + "[" + PREFIX_EMAIL + "EMAIL] "
+                    + "[" + PREFIX_TAG + "TAG]...", COMMAND_WORD
+                    + " 1 " + PREFIX_PHONE + "91234567 "
+                    + PREFIX_EMAIL + "johndoe@example.com");
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited User: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the user list.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -78,7 +71,7 @@ public class EditUserCommand extends EditCommand {
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PERSON);
         }
 
         model.setPerson(personToEdit, editedPerson);

@@ -19,7 +19,6 @@ public class AddCommandParser extends CommandParser<AddCommand> {
         try {
             addType = AddSubcommand.valueOf(commandWord.toUpperCase());
         } catch (IllegalArgumentException e) {
-            //todo return Messages.UKNOWN COMMAND instead?
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         return addType.runParseFunction(args);

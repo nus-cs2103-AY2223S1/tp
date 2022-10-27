@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import bookface.commons.core.GuiSettings;
+import bookface.commons.core.Messages;
 import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.BookFace;
@@ -49,7 +50,7 @@ public class AddUserCommandTest {
         AddUserCommand addCommand = new AddUserCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddUserCommand
+        assertThrows(CommandException.class, Messages
                 .MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 

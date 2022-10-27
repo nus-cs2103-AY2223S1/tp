@@ -6,6 +6,7 @@ import static bookface.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookface.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
+import bookface.commons.core.Messages;
 import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.Model;
@@ -18,24 +19,18 @@ public class AddUserCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "user";
 
-    public static final String MESSAGE_USAGE = AddCommand.COMMAND_WORD
-            + " " + COMMAND_WORD
-            + ": Adds a user to the user list. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + AddCommand.COMMAND_WORD
-            + " " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+    public static final String MESSAGE_USAGE =
+            AddCommand.generateMessage(COMMAND_WORD, PREFIX_NAME + "NAME "
+                    + PREFIX_PHONE + "PHONE "
+                    + PREFIX_EMAIL + "EMAIL "
+                    + "[" + PREFIX_TAG + "TAG]...", COMMAND_WORD + " "
+                    + PREFIX_NAME + "John Doe "
+                    + PREFIX_PHONE + "98765432 "
+                    + PREFIX_EMAIL + "johnd@example.com "
+                    + PREFIX_TAG + "friends "
+                    + PREFIX_TAG + "owesMoney");
 
     public static final String MESSAGE_SUCCESS = "New user added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This user already exists in the user list.";
 
     private final Person toAdd;
 
@@ -52,7 +47,7 @@ public class AddUserCommand extends AddCommand {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PERSON);
         }
 
         model.addPerson(toAdd);
