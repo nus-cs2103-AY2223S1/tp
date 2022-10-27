@@ -264,6 +264,44 @@ Step 9: `ReminderCommand` then returns a new `CommandResult` with the result of 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+#### Design considerations:
+
+**Aspect: How to store a reminder:**
+
+* **Alternative 1 (current choice):** Store Reminder as a field under a Person.
+    * Pros: Allows for more features to be built on reminders (e.g: automated birthday reminders)
+    * Cons: Results in higher coupling which may make maintenance and testing harder.
+
+* **Alternative 2:** Store Reminder as a separate class
+    * Pros: Easy to implement.
+    * Cons: May be harder to implement automatically generated reminders.
+
+### Delete Reminder feature
+
+#### Implementation
+
+The mechanism to delete a reminder is facilitated by `DeleteReminderCommand` and `DeleteReminderCommandParser`. 
+
+#### Example Usage
+
+Step 1: The user inputs `deleteR 2` to delete the 2nd person in the displayed contact list.
+
+Step 2: `LogicManager` calls `AddressBookParser#parseCommand` with the user input.
+
+Step 3: `AddressBookParser` will parse the `deleteR` command word and create a new `DeleteReminderCommandParser` and call its function `parse` with the index as the arguments.
+
+Step 4: The `DeleteReminderCommandParser#parse` will then parse the index and create a new `DeleteReminderCommand` object.
+
+Step 5: The `LogicManager` then calls `DeleteReminderCommand#execute`.
+
+Step 6: The `DeleteReminderCommand` communicates with the `Model` to delete the reminder by calling `Model#deleteReminder`.
+
+Step 7: `DeleteReminderCommand` then returns a `CommandResult` indicating the result of the execution.
+
+![Sequence diagram for the DeleteR Command](images/DeleteReminderSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
