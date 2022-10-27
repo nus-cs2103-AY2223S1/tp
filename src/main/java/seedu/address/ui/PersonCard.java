@@ -99,13 +99,13 @@ public class PersonCard extends UiPart<Region> {
 
     private Color getColourFromWorkload(int score) {
         //gradual fade for RGB
-        double Red = 255 * Math.sqrt(Math.sin(score * Math.PI / 200));
-        double Green = 255 * Math.sqrt(Math.cos(score * Math.PI / 200));;
+        double red = 255 * Math.sqrt(Math.sin(score * Math.PI / 200));
+        double green = 255 * Math.sqrt(Math.cos(score * Math.PI / 200));;
         Color myColor;
-        if (Red >= 255 || Green <= 0) {
+        if (red >= 255 || green <= 0) {
             myColor = new Color(255, 0, 0);
         } else {
-            myColor = new Color((int) Red, (int) Green, 0);
+            myColor = new Color((int) red, (int) green, 0);
         }
         return myColor;
     }
