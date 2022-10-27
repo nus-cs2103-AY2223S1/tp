@@ -350,7 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user    | remove debts                                                       | I do not mistakenly think I have not yet been paid                  |
 | `* * *`  | user    | see how much I am owed in total                                    | I know how much I expect to be paid                                 |
 | `* * *`  | user    | split a debt fairly among several people                           | I do not need to manually divide the amount that each person owes   |
-| `* * *`  | user    | mark debts as paid/unpaid                                       | I know whether the debts has been paid or not                       |
+| `* * *`  | user    | mark debts as paid/unpaid                                          | I know whether the debts has been paid or not                       |
 | `* * *`  | user    | close the application                                              |                                                                     |
 | `* *`    | user    | see an overview of all the debts owed                              | I am in better control of my overall financial situation            |
 | `* *`    | user    | search for a person’s contact                                      | I can easily access his contact details                             |
