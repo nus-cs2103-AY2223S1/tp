@@ -1,0 +1,13 @@
+@font-face {
+  /* Montserrat */
+  src: url("fonts/Montserrat/static/MontserratRegular.ttf");
+}
+
+@font-face {
+  /* Montserrat Bold */
+  src: url("fonts/Montserrat/static/MontserratBold.otf");
+}
+
+.root {
+  -fx-font-family: "Montserrat";
+}
