@@ -283,6 +283,15 @@ public enum CommandType {
         }
     },
 
+    // STATISTICS COMMAND
+    STATS_COMMAND("stats") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": Display statistics collected by FoodRem."
+                    + "Example: " + getCommandWord();
+        }
+    },
+
     // INVALID
     DEFAULT("default") {
         @Override
