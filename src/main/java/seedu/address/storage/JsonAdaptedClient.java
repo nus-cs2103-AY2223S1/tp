@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
@@ -26,6 +27,7 @@ class JsonAdaptedClient {
     private final String mobile;
     private final String email;
     private final String clientId;
+    private final String pin;
 
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
 
@@ -36,11 +38,13 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("mobile") String mobile,
                              @JsonProperty("email") String email,
                              @JsonProperty("clientId") String clientId,
-                             @JsonProperty("projects") List<JsonAdaptedProject> projects) {
+                             @JsonProperty("projects") List<JsonAdaptedProject> projects,
+                             @JsonProperty("pin") String pin) {
         this.name = name;
         this.mobile = mobile;
         this.email = email;
         this.clientId = clientId;
+        this.pin = pin;
         if (projects != null) {
             this.projects.addAll(projects);
         }
@@ -54,6 +58,7 @@ class JsonAdaptedClient {
         mobile = source.getClientMobile().toString();
         email = source.getClientEmail().toString();
         clientId = source.getClientId().toString();
+        pin = String.valueOf(source.isPinned());
     }
 
     /**
@@ -109,6 +114,16 @@ class JsonAdaptedClient {
             modelEmail = new ClientEmail(email);
         }
 
+        Pin modelPin;
+        if (pin == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Pin.class.getSimpleName()));
+        }
+        if (!Pin.isValidPin(pin)) {
+            throw new IllegalValueException(Pin.MESSAGE_CONSTRAINTS);
+        }
+        modelPin = new Pin(Boolean.parseBoolean(pin));
+
         if (clientId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ClientId.class.getSimpleName()));
@@ -122,7 +137,7 @@ class JsonAdaptedClient {
 
         assert modelClientId.getIdInt() >= 0 : "Client ID should be positive";
 
-        return new Client(modelName, modelMobile, modelEmail, clientProjects, modelClientId);
+        return new Client(modelName, modelMobile, modelEmail, clientProjects, modelClientId, modelPin);
     }
 
 }

@@ -47,8 +47,9 @@ public class ProjectCard extends UiPart<Region> {
     public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
-        name.setText(displayedIndex + ". " + project.getProjectName().toString()
-                + " " + project.getProjectId().uiRepresentation());
+        name.setText(project.getProjectName().toString()
+                + " " + project.getProjectId().uiRepresentation()
+                + (project.isPinned() ? " \uD83D\uDCCC" : ""));
         repository.setText(project.getRepository().isEmpty() ? "No Repository Set"
                 : project.getRepository().getUiRepresentation());
         repository.setOnMouseClicked(e -> copyRepoUrl(project.getRepository().isEmpty() ? ""
@@ -57,8 +58,9 @@ public class ProjectCard extends UiPart<Region> {
                 : project.getDeadline().uiRepresentation());
         client.setText(project.getClient().isEmpty()
                 ? "No Client Set"
-                : "Client in charge: " + project.getClient().uiRepresentation());
-        issueCount.setText(project.getIssueList().size() + " issues ("
+                : "Client: " + project.getClient().uiRepresentation());
+        issueCount.setText(project.getIssueList().size()
+                + (project.getIssueList().size() == 1 ? " issue (" : " issues (")
                 + project.getCompletedIssueCount() + " complete, "
                 + project.getIncompleteIssueCount() + " incomplete)");
 

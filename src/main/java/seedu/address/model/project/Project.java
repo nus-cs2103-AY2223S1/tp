@@ -2,10 +2,12 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.client.Client;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
@@ -35,12 +37,13 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     private Client client;
     private ProjectId projectId;
     private List<Issue> issueList;
+    private Pin pin;
 
     /**
      * Name field must be present and not null and other fields may be optional.
      */
     public Project(Name name, Repository repository, Deadline deadline,
-                   Client client, List<Issue> issueList, ProjectId projectId) {
+                   Client client, List<Issue> issueList, ProjectId projectId, Pin pin) {
         requireAllNonNull(name);
         this.name = name;
         this.repository = repository;
@@ -48,6 +51,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         this.client = client;
         this.issueList = issueList;
         this.projectId = projectId;
+        this.pin = pin;
     }
 
     /**
@@ -56,7 +60,12 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     public Project(Name name) {
         requireAllNonNull(name);
         this.name = name;
-        //todo: set other fields to emptyOptionals post-merge
+        this.repository = Repository.EmptyRepository.EMPTY_REPOSITORY;
+        this.deadline = Deadline.EmptyDeadline.EMPTY_DEADLINE;
+        this.client = Client.EmptyClient.EMPTY_CLIENT;
+        this.issueList = new ArrayList<>();
+        this.projectId = ProjectId.EmptyProjectId.EMPTY_PROJECT_ID;
+        this.pin = new Pin(false);
     }
 
     public void setClient(Client toAddClient) {
@@ -147,6 +156,13 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         getIssueList().remove(i);
     }
 
+    public void togglePin() {
+        this.pin.togglePinned();
+    }
+
+    public boolean isPinned() {
+        return this.pin.isPinned();
+    }
 
     /**
      * Checks if input is a valid deadline sort key.
@@ -272,7 +288,12 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
                 && otherProject.getDeadline().equals(getDeadline())
                 && otherProject.getClient().equals(getClient())
                 && otherProject.getIssueList().equals(getIssueList())
-                && otherProject.getProjectId().equals(getProjectId());
+                && otherProject.getProjectId().equals(getProjectId())
+                && otherProject.getPin().equals(getPin());
+    }
+
+    private Pin getPin() {
+        return this.pin;
     }
 
     /**

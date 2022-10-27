@@ -60,6 +60,7 @@ public class SortClientCommand extends ClientCommand {
             model.sortClientsByName(sortOrder);
             sortKeyString = "name.";
         }
+        model.sortClientsByPin();
 
         ui.showClients();
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
