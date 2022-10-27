@@ -26,7 +26,7 @@ Given below are my contributions to the project.
     * Possibility of adding a person with missing information 
     * Quick edit by clicking a person card.
   * Developer Guide:
-    * to be added soon
+    * Quick edit manual check procedure.
 
 * **Community**:
   * to be added soon
