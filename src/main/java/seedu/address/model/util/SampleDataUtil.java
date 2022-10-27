@@ -20,7 +20,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
-        return new Person[] {
+        return new Person[]{
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Telegram("@alexyeoh"), new ModuleCode("CS1101S"),
                 getTagSet("friends")),
@@ -37,7 +37,7 @@ public class SampleDataUtil {
                 new Telegram("@irfan"), new ModuleCode("CS3243"),
                 getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Telegram("@roy"), new ModuleCode("CS2040S"),
+                new Telegram("@Balak"), new ModuleCode("CS2040S"),
                 getTagSet("colleagues"))
         };
     }
@@ -55,8 +55,8 @@ public class SampleDataUtil {
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+            .map(Tag::new)
+            .collect(Collectors.toSet());
     }
 
     /**
@@ -64,7 +64,7 @@ public class SampleDataUtil {
      */
     public static Set<AssignmentDetails> getAssignmentDetailsSet(String... strings) {
         return Arrays.stream(strings)
-                .map(AssignmentDetails::new)
-                .collect(Collectors.toSet());
+            .map(AssignmentDetails::new)
+            .collect(Collectors.toSet());
     }
 }
