@@ -99,8 +99,8 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().withRemarks()
                 .withSubjectHandler(VALID_SUBJECTHANDLER).build();
-        assertParseSuccess(parser, NAME_DESC_AMY + INDEX_NUMBER_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                                   + STUDENTCLASS_DUMMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + INDEX_NUMBER_DESC_AMY + PHONE_DESC_AMY
+                                   + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + STUDENTCLASS_DUMMY,
                            new AddCommand(expectedPerson));
     }
 
