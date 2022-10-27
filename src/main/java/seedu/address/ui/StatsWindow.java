@@ -49,10 +49,10 @@ public class StatsWindow extends UiPart<Stage> {
         chart.setData(newData);
         for (Node node : chart.lookupAll(".chart-legend-item")) {
             if (node instanceof Label) {
-                Label n = (Label) node;
-                n.setWrapText(true);
-                n.setManaged(true);
-                n.setPrefWidth(100);
+                Label legendElement = (Label) node;
+                legendElement.setWrapText(true);
+                legendElement.setManaged(true);
+                legendElement.setPrefWidth(100);
             }
         }
     }
