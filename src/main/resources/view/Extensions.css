@@ -101,3 +101,11 @@
 .axis {
     -fx-tick-label-fill: #FFFFFF;
 }
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #FFFFFF;
+}
