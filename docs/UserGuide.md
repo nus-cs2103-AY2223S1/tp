@@ -202,7 +202,6 @@ Format: `listTasks`
 
 ### Editing a Task : edit
 
-
 Edits an existing task in the tasklist.
 
 Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]`
@@ -215,6 +214,21 @@ Examples:
 *  `edit 1 n/Create UI pr/high` Edits the name and priority of the 1st task to be Create UI and HIGH respectively.
 *  `edit 2 c/frontend pe/charlotte@example.com` Edits the category of the 2nd task to be frontend and assign the task to new person(charlotte).
 
+### Filtering a Task : filter
+
+Filters the tasklist based on either **TASK_CATEGORY** or **TASK_DEADLINE** or **BOTH**.
+
+Format: `filter [c/TASK_CATEGORY] [dl/DEADLINE]`
+
+* Filters the task based on the user input. 
+* At least one of the optional fields must be provided.
+* Filtered tasks will be displayed in the tasklist.
+* To list all tasks, call the `listTasks` command.
+
+Examples:
+*  `filter c/backend` Only display tasks that have backend as **TASK_CATEGORY**
+*  `filter dl/2022-12-12` Only displays tasks that have **DEADLINE** before or equal to 2022-12-12
+*  `filter c/backend dl/2022-12-12` Only displays tasks that have backend as **TASK_CATEGORY** and **DEADLINE** before or equal to 2022-12-12
 
 ## FAQ
 
@@ -237,7 +251,8 @@ Action | Format, Examples
 **Help** | `help`
 **Add Task** | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com`
 **Edit Task** | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`
-**deleteTask** | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`
+**Delete Task** | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`
 **list Tasks** | `listTasks`
+**Filter Task** | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`
 
 
