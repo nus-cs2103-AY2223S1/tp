@@ -303,4 +303,4 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 | **Edit Task**      | `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`                                   |
 | **Delete Task**    | `delete_task INDEX`                                                            |
 | **Select Task**    | `select_task INDEX`                                                            |
-| **Assign Task**    | `assign CONTACT_INDEX TASK_INDEX`                                              |
+| **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                          |
