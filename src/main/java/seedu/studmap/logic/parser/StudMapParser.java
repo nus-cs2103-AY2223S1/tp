@@ -6,23 +6,7 @@ import static seedu.studmap.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.studmap.logic.commands.AddCommand;
-import seedu.studmap.logic.commands.AddTagCommand;
-import seedu.studmap.logic.commands.ClearCommand;
-import seedu.studmap.logic.commands.Command;
-import seedu.studmap.logic.commands.DelTagCommand;
-import seedu.studmap.logic.commands.DeleteCommand;
-import seedu.studmap.logic.commands.EditCommand;
-import seedu.studmap.logic.commands.ExitCommand;
-import seedu.studmap.logic.commands.FilterCommand;
-import seedu.studmap.logic.commands.FindCommand;
-import seedu.studmap.logic.commands.GradeCommand;
-import seedu.studmap.logic.commands.HelpCommand;
-import seedu.studmap.logic.commands.ListCommand;
-import seedu.studmap.logic.commands.MarkCommand;
-import seedu.studmap.logic.commands.SortCommand;
-import seedu.studmap.logic.commands.UngradeCommand;
-import seedu.studmap.logic.commands.UnmarkCommand;
+import seedu.studmap.logic.commands.*;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 
 /**
@@ -99,6 +83,9 @@ public class StudMapParser {
 
         case UngradeCommand.COMMAND_WORD:
             return new UngradeCommandParser().parse(arguments);
+
+        case ParticipateCommand.COMMAND_WORD:
+            return new ParticipateCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

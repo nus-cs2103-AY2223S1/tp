@@ -422,3 +422,11 @@
 #info {
     -fx-text-fill: white;
 }
+
+#participated {
+    -fx-background-color: #00C851;
+}
+
+#didNotParticipate {
+    -fx-background-color: #FF4444;
+}

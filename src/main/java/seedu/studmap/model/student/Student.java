@@ -182,6 +182,15 @@ public class Student {
     }
 
     /**
+     * Returns participation in percentage.
+     */
+    public float getParticipationPercentage() {
+        float numOfPart = getParticipations().size();
+        float participatedFor = (float) getParticipations().stream().filter(x -> x.hasParticipated).count();
+        return participatedFor / numOfPart * 100;
+    }
+
+    /**
      * Returns number of assignments marked.
      */
     public int getAssignmentMarkedCount() {
@@ -249,7 +258,7 @@ public class Student {
         // use this method for custom fields hashing instead of implementing your own
 
         return Objects.hash(name, phone, email, id, gitName, teleHandle, module,
-                tags, attendances, assignments);
+                tags, attendances, assignments, participations);
 
     }
 
