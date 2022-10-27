@@ -305,6 +305,15 @@ Format:
 Examples
 * `find task -n User Guide`
 
+### Filter tasks by team member : `tasksof`
+Find all tasks in the current team assigned to a particular team member.
+
+Format:
+* `tasksof MEMBER_INDEX`
+
+Examples
+* `tasksof 1` will show all tasks assigned to the first member in the team's member list.
+
 ### Clearing all entries : `clear`
 
 Deletes all the people from the application.
