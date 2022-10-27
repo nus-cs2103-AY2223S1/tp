@@ -96,6 +96,16 @@ public class FypManagerTest {
         public ObservableList<Student> getStudentList() {
             return students;
         }
+
+        @Override
+        public ObservableList<Student> getUncompletedStudentList() {
+            return students.filtered(student -> !student.getProjectStatus().projectStatus.equals("DONE"));
+        }
+
+        @Override
+        public ObservableList<Student> getCompletedStudentList() {
+            return students.filtered(student -> student.getProjectStatus().projectStatus.equals("DONE"));
+        }
     }
 
 }

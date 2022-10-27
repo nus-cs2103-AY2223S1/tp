@@ -5,6 +5,7 @@ import static jeryl.fyp.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_DEADLINE_RANK;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 
+import jeryl.fyp.commons.core.Messages;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
@@ -49,9 +50,13 @@ public class DeleteDeadlineCommand extends Command {
         if (student == null) {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
-        Deadline deadlineToDelete = student.getDeadlineList().getDeadlineByRank(Index.fromOneBased(rank)
-                .getZeroBased());
-        student.getDeadlineList().remove(deadlineToDelete);
+
+        int index = Index.fromOneBased(rank).getZeroBased();
+        if (index >= student.getDeadlineList().size() || index < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DEADLINE_RANK);
+        }
+        Deadline deadlineToDelete = student.getDeadlineList().getDeadlineByRank(index);
+        model.deleteDeadline(student, deadlineToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_DEADLINE_SUCCESS, deadlineToDelete));
     }
 

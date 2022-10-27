@@ -24,10 +24,8 @@
             <children>
               <GridPane maxHeight="-Infinity" style="-fx-background-radius: 10; -fx-border-radius: 10;">
                 <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" maxWidth="180" minWidth="10.0" prefWidth="180" />
-                     <ColumnConstraints hgrow="NEVER" maxWidth="180" prefWidth="180" />
-                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
-                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+                     <ColumnConstraints hgrow="NEVER" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+                     <ColumnConstraints hgrow="NEVER" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
                 </columnConstraints>
                   <rowConstraints>
@@ -58,6 +56,14 @@
                            </VBox.margin>
                      </HBox>
                      <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
+                        <Label fx:id="projectStatus" style="-fx-background-radius: 20" text="\$projectStatus">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
+                           </padding>
+                        </Label>
                         <Region prefHeight="15.0" />
                      <Label fx:id="projectName" styleClass="cell_medium_label" text="\$projectName">
                            <font>
@@ -70,31 +76,10 @@
                               <ImageView fx:id="emailImage" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Hyperlink>
+                        <Region prefHeight="5.0" />
                      <FlowPane fx:id="tags" minHeight="-Infinity" VBox.vgrow="ALWAYS" />
                    </VBox>
-                     <VBox maxHeight="1.7976931348623157E308" minHeight="105" prefHeight="109.0" prefWidth="92.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.vgrow="ALWAYS">
-                        <padding>
-                           <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
-                        </padding>
-                        <children>
-                           <HBox alignment="CENTER_LEFT" spacing="5">
-                              <children>
-                                 <Label fx:id="projectStatus" style="-fx-background-radius: 20" text="\$projectStatus">
-                                    <font>
-                                       <Font name="System Bold" size="15.0" />
-                                    </font>
-                                    <padding>
-                                       <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
-                                    </padding>
-                                 </Label>
-                              </children>
-                              <padding>
-                                 <Insets top="2.0" />
-                              </padding>
-                           </HBox>
-                        </children>
-                     </VBox>
-                     <VBox maxHeight="-Infinity" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                     <VBox maxHeight="-Infinity" GridPane.columnIndex="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                         <padding>
                            <Insets bottom="5" left="15" right="5" top="5" />
                         </padding>

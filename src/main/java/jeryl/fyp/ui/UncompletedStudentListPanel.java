@@ -13,9 +13,9 @@ import jeryl.fyp.model.student.Student;
 /**
  * Panel containing the list of students.
  */
-public class StudentListPanel extends UiPart<Region> {
-    private static final String FXML = "StudentListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
+public class UncompletedStudentListPanel extends UiPart<Region> {
+    private static final String FXML = "UncompletedStudentListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(UncompletedStudentListPanel.class);
 
     @FXML
     private ListView<Student> studentListView;
@@ -23,7 +23,7 @@ public class StudentListPanel extends UiPart<Region> {
     /**
      * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
      */
-    public StudentListPanel(ObservableList<Student> studentList) {
+    public UncompletedStudentListPanel(ObservableList<Student> studentList) {
         super(FXML);
         studentListView.setItems(studentList);
         studentListView.setCellFactory(listView -> new StudentListViewCell());

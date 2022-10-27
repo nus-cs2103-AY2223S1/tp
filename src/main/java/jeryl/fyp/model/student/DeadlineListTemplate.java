@@ -11,15 +11,15 @@ import jeryl.fyp.commons.core.index.Index;
 public interface DeadlineListTemplate extends Iterable<Deadline> {
     boolean contains(Deadline toCheck);
 
-    void add(Deadline toAdd);
+    void add(Deadline toAdd) throws RuntimeException;
 
-    void setDeadline(Deadline target, Deadline editedDeadline);
+    void setDeadline(Deadline target, Deadline editedDeadline) throws RuntimeException;
 
-    void remove(Deadline toRemove);
+    void remove(Deadline toRemove) throws RuntimeException;
 
     void setDeadlines(DeadlineList replacement);
 
-    void setDeadlines(List<Deadline> deadlines);
+    void setDeadlines(List<Deadline> deadlines) throws RuntimeException;
 
     ObservableList<Deadline> asUnmodifiableObservableList();
 
@@ -27,6 +27,7 @@ public interface DeadlineListTemplate extends Iterable<Deadline> {
 
     Index getIndexByName(String taskName);
 
-    // Pending implementation
-    Deadline getDeadlineByRank(Integer rank);
+    Deadline getDeadlineByRank(Integer rank) throws RuntimeException;
+
+    int size();
 }

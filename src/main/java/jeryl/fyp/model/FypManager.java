@@ -91,11 +91,11 @@ public class FypManager implements ReadOnlyFypManager {
     }
 
     /**
-     * Removes {@code key} from this {@code FypManager}.
-     * {@code key} must exist in the FYP manager.
+     * Removes {@code student} from this {@code FypManager}.
+     * {@code student} must exist in the FYP manager.
      */
-    public void removeStudent(Student key) {
-        students.remove(key);
+    public void removeStudent(Student student) {
+        students.remove(student);
     }
 
     /**
@@ -143,6 +143,7 @@ public class FypManager implements ReadOnlyFypManager {
      */
     public void removeDeadline(Student student, Deadline deadline) {
         student.getDeadlineList().remove(deadline);
+        setStudent(student, student);
     }
 
     /**
@@ -151,6 +152,7 @@ public class FypManager implements ReadOnlyFypManager {
      */
     public void addDeadline(Student student, Deadline deadline) {
         student.getDeadlineList().add(deadline);
+        setStudent(student, student);
     }
     /**
      * Replaces the given deadline {@code target} in the list with {@code editedDeadline}.
@@ -161,6 +163,7 @@ public class FypManager implements ReadOnlyFypManager {
     public void setDeadline(Student student, Deadline target, Deadline editedDeadline) {
         requireAllNonNull(student, target, editedDeadline);
         student.getDeadlineList().setDeadline(target, editedDeadline);
+        setStudent(student, student);
     }
 
     public ObservableList<Student> getSortedBySpecialisationStudentList() {
@@ -183,6 +186,16 @@ public class FypManager implements ReadOnlyFypManager {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Student> getUncompletedStudentList() {
+        return students.filter(student -> !student.getProjectStatus().projectStatus.equals("DONE"));
+    }
+
+    @Override
+    public ObservableList<Student> getCompletedStudentList() {
+        return students.filter(student -> student.getProjectStatus().projectStatus.equals("DONE"));
     }
 
     @Override

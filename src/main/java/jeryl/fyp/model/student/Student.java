@@ -31,14 +31,7 @@ public class Student {
      */
     public Student(StudentName studentName, StudentId studentId, Email email, ProjectName projectName,
                    ProjectStatus projectStatus, Set<Tag> tags) {
-        requireAllNonNull(studentName, studentId, email, projectName, projectStatus, tags);
-        this.studentName = studentName;
-        this.studentId = studentId;
-        this.email = email;
-        this.projectName = projectName;
-        this.projectStatus = projectStatus;
-        this.deadlineList = new DeadlineList();
-        this.tags.addAll(tags);
+        this(studentName, studentId, email, projectName, projectStatus, new DeadlineList(), tags);
     }
 
     /**
