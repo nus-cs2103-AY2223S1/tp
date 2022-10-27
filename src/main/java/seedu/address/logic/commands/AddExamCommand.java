@@ -25,7 +25,7 @@ public class AddExamCommand extends Command {
             + PREFIX_EXAM_DESCRIPTION + "EXAMDESCRIPTION "
             + PREFIX_EXAM_DATE + "EXAMDATE "
             + "\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: e " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_EXAM_DESCRIPTION + "Midterms "
             + PREFIX_EXAM_DATE + "20-12-2022";

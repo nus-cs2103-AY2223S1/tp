@@ -37,7 +37,7 @@ public class EditExamCommand extends Command {
             + "[" + PREFIX_MOD_NAME + "MODULE] "
             + "[" + PREFIX_EXAM_DESCRIPTION + "EXAM DESCRIPTION] "
             + "[" + PREFIX_EXAM_DATE + "EXAM DATE] " + "\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: e " + COMMAND_WORD + " 1 "
             + PREFIX_MOD_NAME + "cs2030s "
             + PREFIX_EXAM_DESCRIPTION + "finals "
             + PREFIX_EXAM_DATE + "20-12-2022";

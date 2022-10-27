@@ -19,7 +19,7 @@ public class FindModulesCommand extends Command {
             + " partially or fully contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD \n"
-            + "Example: " + COMMAND_WORD + " cs2030s";
+            + "Example: m " + COMMAND_WORD + " cs2030s";
 
     private final ModuleCodeContainsKeywordsPredicate predicate;
 

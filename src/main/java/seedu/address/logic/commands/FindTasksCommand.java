@@ -17,7 +17,7 @@ public class FindTasksCommand extends Command {
             + "contain partially or fully any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD \n"
-            + "Example: " + COMMAND_WORD + " watch lecture rec";
+            + "Example: t " + COMMAND_WORD + " watch lecture rec";
 
     private final DescriptionContainsKeywordsPredicate predicate;
 
