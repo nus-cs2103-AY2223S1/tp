@@ -98,6 +98,9 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /** Replaces the given new task list {@code newTasks} with {@code editedTasks}. */
+    void setFilteredTaskList(ObservableList<Task> newTasks);
+
     /** Returns the TaskPanel */
     ReadOnlyTaskPanel getTaskPanel();
 
