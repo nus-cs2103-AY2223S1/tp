@@ -69,7 +69,8 @@ public class LessonAttendance {
     }
 
     public void setStudent(Student targetStudent, Student editedStudent) {
-        boolean b = attendance.get(targetStudent);
+        Boolean b = attendance.get(targetStudent);
+        assert b != null;
         attendance.remove(targetStudent);
         attendance.put(editedStudent, b);
     }

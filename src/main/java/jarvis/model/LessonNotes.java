@@ -117,6 +117,7 @@ public class LessonNotes {
 
     public void setStudent(Student targetStudent, Student editedStudent) {
         ArrayList<String> tempNotes = studentNotes.get(targetStudent);
+        assert tempNotes != null;
         studentNotes.remove(targetStudent);
         studentNotes.put(editedStudent, tempNotes);
     }
