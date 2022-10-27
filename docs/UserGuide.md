@@ -12,7 +12,7 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
 
 1. Download the latest `paymelah.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases).
 
@@ -99,7 +99,7 @@ Adds a person to PayMeLah.
 Format: `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -156,6 +156,24 @@ Format: `cleardebts <person index>`
 Example:
 * `cleardebts 3`
 
+### Marking debts as paid: `mark`
+
+Marks the debts specified from a person in PayMeLah as paid. Multiple debts can be specified for marking as paid.
+
+Format: `mark <person index> debt/<debt index…>`
+
+Example:
+* `mark 2 debt/2 3`
+
+### Marking debts as unpaid: `unmark`
+
+Marks the debts specified from a person in PayMeLah as unpaid. Multiple debts can be specified for marking as unpaid.
+
+Format: `unmark <person index> debt/<debt index…>`
+
+Example:
+* `unmark 2 debt/2 3`
+
 ### Deleting debts: `deletedebts`
 
 Deletes the debts specified from a person in PayMeLah. Multiple debts can be specified for deletion.
@@ -181,9 +199,23 @@ Format: `list`
 
 ### Listing all debtors : `listdebtors`
 
-Shows a list of all persons that owe you money in PayMeLah.
+Shows a list of all persons that owe you more than or equal to a certain amount of money in PayMeLah. If no amount is provided, a list of persons who owe any amount of debt is displayed.
 
-Format: `listdebtors`
+Format: `listdebtors [m/<money>]`
+
+Example: `listdebtors m/10` displays the list of persons that owe more than $10.00.
+
+### Sorting list of persons : `sort`
+
+Sorts and displays the list of persons using the given criteria and order. The criteria that you can sort by are name, amount owed, and time since oldest debt. Use the `+` symbol to indicate ascending order, and the `-` symbol for descending order.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When you sort by time since oldest debt, all persons who do not owe any debt will be placed at the end of the list, regardless of whether ascending or descending order is specified.
+</div>
+
+Format: `sort [n/<order>] OR [m/<order>] OR [date/<order>]`
+
+Example: `sort n/+` sorts and displays the list of persons in ascending alphabetical order of their names.
 
 ### Editing a person : `edit`
 
@@ -207,10 +239,13 @@ Examples:
 
 Finds persons who match all the given conditions.
 
-Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…
-[d/<debt description>]… [m/<debt money>]… [date/<debt date>]… [time/<debt time>]…`
+Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>…]
+[d/<description>…] [m/<money>…] [above/<money>] [below/<money>]
+[date/<date>…] [before/<date>] [after/<date>] [time/<time>…]`
 
 * Name and Address are case-insensitive partial matches. All other fields are exact matches.
+* The above and below fields look for people with a debt that lies in the specified monetary range.
+* The before and after fields look for people with a debt that lies within the specified date range.
 * The order of the conditions does not matter.
   e.g. `d/burger n/hans` will match `Hansel` if he owes money for a burger.
 * Only persons matching all conditions will be returned (i.e. `AND` search).
@@ -294,14 +329,17 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Add person**    | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`                                       |
 | **Add debt**      | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`                                                                                                                       |
 | **Split debt**    | `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]` <br> e.g., `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`                                                            |
+| **Mark debts**    | `mark <person index> debt/<debt index…>` <br> e.g., `mark 2 debt/2 3`                                                                                                                                              |
+| **Unmark debts**  | `unmark <person index> debt/<debt index…>` <br> e.g., `unmark 2 debt/2 3`                                                                                                                                          |
 | **Clear debts**   | `cleardebts <person index>` <br> e.g., `cleardebts 3`                                                                                                                                                              |
 | **Delete debts**  | `deletedebts <person index> debt/<debt index…>` <br> e.g., `deletedebts 2 debt/2 3`                                                                                                                                |
 | **Clear**         | `clear`                                                                                                                                                                                                            |
 | **Delete**        | `delete <index>`<br> e.g., `delete 3`                                                                                                                                                                              |
 | **Edit**          | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                                                               |
-| **Find**          | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]… [d/<debt description>]… [m/<debt money>]… [date/<debt date>]… [time/<debt time>]…`<br> e.g., `find d/bowling t/friends t/classmate` |
+| **Find**          | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag> ...] [d/<description> ...] [m/<money> ...] [above/<money>] [below/<money>] [date/<date> ...] [before/<date>] [after/<date>] [time/<time> ...]`<br> e.g., `find d/burger above/10.0`                                                                                                                                                                                                           |
 | **Find debts**    | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                          |
 | **List**          | `list`                                                                                                                                                                                                             |
-| **List debtors**  | `listdebtors`                                                                                                                                                                                                      |
+| **List debtors**  | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                             |
+| **Sort**          | `sort [n/<order>] OR [m/<order>] OR [date/<order>]`<br> e.g., `sort n/+`                                                                                                                                           |
 | **Get statement** | `statement`                                                                                                                                                                                                        |
 | **Help**          | `help`                                                                                                                                                                                                             |

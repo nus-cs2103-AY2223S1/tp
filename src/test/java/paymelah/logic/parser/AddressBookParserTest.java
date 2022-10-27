@@ -26,6 +26,7 @@ import paymelah.logic.parser.ParserUtil.PersonDescriptor;
 import paymelah.logic.parser.exceptions.ParseException;
 import paymelah.model.person.Person;
 import paymelah.model.person.PersonMatchesDescriptorPredicate;
+import paymelah.testutil.DebtsDescriptorBuilder;
 import paymelah.testutil.PersonBuilder;
 import paymelah.testutil.PersonDescriptorBuilder;
 import paymelah.testutil.PersonUtil;
@@ -76,7 +77,7 @@ public class AddressBookParserTest {
                 FindCommand.COMMAND_WORD + " " + PREFIX_DESCRIPTION
                         + keywords.stream().collect(Collectors.joining(" " + PREFIX_DESCRIPTION)));
         assertEquals(new FindCommand(new PersonMatchesDescriptorPredicate(
-                new PersonDescriptorBuilder().withDescriptions(keywords.toArray(new String[0])).build())), command);
+                new DebtsDescriptorBuilder().withDescriptions(keywords.toArray(new String[0])).build())), command);
     }
 
     @Test
