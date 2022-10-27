@@ -29,6 +29,10 @@ public class TutorListPanel extends UiPart<Region> {
         tutorListView.setCellFactory(listView -> new TutorListViewCell());
     }
 
+    public ListView<Tutor> getTutorListView() {
+        return this.tutorListView;
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Tutor} using a {@code TutorCard}.
      */
