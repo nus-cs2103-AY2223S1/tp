@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -60,6 +62,8 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         final List<Attribute> modelAttributes = new ArrayList<>();
+
+        // Exception handling is not supported in Java streams.
         for (JsonAdaptedTag tag : getTags()) {
             personTags.add(tag.toModelType());
         }
