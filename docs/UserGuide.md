@@ -138,13 +138,13 @@ Format: `add-et n/EVENT NAME t/TRIP NAME`
 - The EVENT NAME must exist in the events list.
 
 Examples:
-- `add-et n/asd t/qwe` adds the event titled asd in the bucket list to the itinerary of the trip with the title qwe 
+- `add-et n/asd t/qwe` adds the event titled asd in the bucket list to the itinerary of the trip with the title qwe
 
 ### Removing events from trips: `delete-et`
 Remove the specified event from the specified trip to the bucket list.
 
 Format: `delete-et n/EVENT NAME t/TRIP NAME`
-- Remove the event with the specified event titled EVENT NAME from the specified trip titled TRIP NAME 
+- Remove the event with the specified event titled EVENT NAME from the specified trip titled TRIP NAME
 - Event is added to the bucket list.
 - The TRIP NAME must exist in the trips list.
 - The EVENT NAME must exist in the trip itinerary.
@@ -159,7 +159,7 @@ Format: `sort by/FACTOR r/`
 - Sorts the trip according to provided FACTOR.
 - Marked and unmarked trips are sorted separately.
 - Order of sort reversed when the `r/` prefix is provided.
-- The parameters for this command are optional. 
+- The parameters for this command are optional.
 - The trips will be sorted by their title in alphabetical order by default.
 - A valid FACTOR must be provided if the `by/` prefix is provided.
 - Extraneous parameters for `r/` prefix will be ignored and treated as just `r/`.
@@ -183,7 +183,7 @@ Displays all trips and events
 Format: `view`
 
 ### Display single trip: `display`
-Displays the full title, description, location (if a location has been defined for the trip), 
+Displays the full title, description, location (if a location has been defined for the trip),
 date (if a date has been defined for the trip) of the trip at the specified INDEX of the displayed trip list in the command box.
 
 Format: `display INDEX`
