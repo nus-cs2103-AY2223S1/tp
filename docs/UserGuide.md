@@ -646,7 +646,7 @@ Teacher’s Pet data are saved in the hard disk automatically after any command 
 Students' data is saved as a JSON file `[JAR file location]/data/teachersPet.json`. Advanced users are welcome to edit the data file.
 
 ```yaml
-⚠️Warning: 
+⚠️ Warning: 
   Proceed with care! If your changes to the data file makes its format invalid,
   Teacher’s Pet will discard all data and start with an empty data file at the next run!
 ```
