@@ -71,6 +71,9 @@ public class PropertyCard extends UiPart<Region> {
                 Image img = new Image(this.getClass().getResourceAsStream(DEFAULT_PROPERTY_IMAGE));
                 displayPicture.setImage(img);
             }
+        } else {
+            Image img = new Image(this.getClass().getResourceAsStream(DEFAULT_PROPERTY_IMAGE));
+            displayPicture.setImage(img);
         }
     }
 
