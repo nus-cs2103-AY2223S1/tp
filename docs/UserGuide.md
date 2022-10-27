@@ -295,11 +295,17 @@ Note that only one sample workout is generated for each unique exercise name. Fo
 
 ![GenerateCommandExample2](images/GenerateCommandExample2.png)
 
+<br>
+
 Format (2): `:gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL`
 
 ##### Parameter constraints:
 * Name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**
 * The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
+Extraneous parameters (before the first `n/` flag) will be ignored. <br> e.g. if the command specifies `:gen 1,2,3 n/Squat level/easy`, it will be interpreted as `:gen n/Squat level/easy`.
+</div>
 
 ##### Examples:
 `:gen n/Squat n/Deadlift level/easy` Generates a sample workout for exercises Squat and Deadlift
