@@ -5,6 +5,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.function.Predicate;
 
@@ -38,14 +40,14 @@ import seedu.address.model.task.TaskName;
 public class AddTaskCommandTest {
     private final TaskList testList = new TaskList();
     private final TaskName testName = new TaskName("Test");
-    private final TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
+    private final TaskCategory testCat = new TaskCategory(TaskCategoryType.OTHERS);
     private final Description testDisc = new Description("Test");
     private final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
     private final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
     private final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
-            new Email("test@gmail.com"), new Address("test"), new HashSet());
+            new Email("test@gmail.com"), new Address("test"), new HashSet(), new ArrayList<>());
     private final Task testTask = new Task(testName, testDisc, testPriority, testCat,
-            testDeadline, testPerson.getEmail(), true);
+            testDeadline, testPerson, true);
 
     private final Email test = new Email("test@gmail.com");
 
@@ -160,12 +162,22 @@ public class AddTaskCommandTest {
         }
 
         @Override
+        public void update() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortingCriteria(Comparator<Task> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }

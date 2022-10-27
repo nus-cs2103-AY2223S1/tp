@@ -19,6 +19,8 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class TaskList
+Class Task
 
 }
 
@@ -35,12 +37,15 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
+AddressBook *--> "1" TaskList
 UniquePersonList --> "~* all" Person
+TaskList --> "~* all" Task
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person "1" <--> "*" Task
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

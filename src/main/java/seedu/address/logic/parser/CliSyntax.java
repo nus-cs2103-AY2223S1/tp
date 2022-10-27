@@ -18,5 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATE = new Prefix("dl/");
     public static final Prefix PREFIX_PERSON = new Prefix("pe/");
     public static final Prefix PREFIX_DONE = new Prefix("do/");
+    public static final Prefix PREFIX_ORDER = new Prefix("o/");
 
 }

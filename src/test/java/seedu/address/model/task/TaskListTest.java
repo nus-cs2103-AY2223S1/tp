@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -23,14 +24,14 @@ public class TaskListTest {
 
     private final TaskList testList = new TaskList();
     private final TaskName testName = new TaskName("Test");
-    private final TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
+    private final TaskCategory testCat = new TaskCategory(TaskCategoryType.OTHERS);
     private final Description testDisc = new Description("Test");
     private final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
     private final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
     private final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
-            new Email("test@gmail.com"), new Address("test"), new HashSet());
+            new Email("test@gmail.com"), new Address("test"), new HashSet(), new ArrayList<>());
     private final Task testTask = new Task(testName, testDisc, testPriority, testCat, testDeadline,
-            testPerson.getEmail(), true);
+            testPerson, true);
 
     @Test
     public void contains_null_throwsNullPointerException() {

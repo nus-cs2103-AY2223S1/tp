@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Task in the address book.
@@ -26,9 +27,8 @@ public class Task {
     private Priority priority;
     private TaskCategory category;
     private TaskDeadline deadline;
-    private Email personEmailAddress;
+    private Person person;
 
-    private Name personName;
     private boolean isDone;
 
     /**
@@ -39,19 +39,41 @@ public class Task {
      * @param desc               Description of task
      * @param priority           Priority of task
      * @param deadline           Deadline of task
-     * @param personEmailAddress Email address of person assigned to this task
+     * @param person             Person assigned to this task
      * @param status             status of task
      */
     public Task(TaskName name, Description desc, Priority priority, TaskCategory category,
-                TaskDeadline deadline, Email personEmailAddress, boolean status) {
+                TaskDeadline deadline, Person person, boolean status) {
         requireAllNonNull(name, category, desc, priority, deadline, status);
         this.name = name;
         this.category = category;
         description = desc;
         this.priority = priority;
         this.deadline = deadline;
-        this.personEmailAddress = personEmailAddress;
-        this.personName = null;
+        this.person = person;
+        isDone = status;
+    }
+
+    /**
+    * A method used to update the value of the task/
+     *
+     * @param name               Name of task
+     * @param category           Category of task
+     * @param desc               Description of task
+     * @param priority           Priority of task
+     * @param deadline           Deadline of task
+     * @param person             Person assigned to this task
+     * @param status             status of task
+     */
+    public void editTask(TaskName name, Description desc, Priority priority, TaskCategory category,
+                TaskDeadline deadline, Person person, boolean status) {
+        requireAllNonNull(name, category, desc, priority, deadline, status);
+        this.name = name;
+        this.category = category;
+        description = desc;
+        this.priority = priority;
+        this.deadline = deadline;
+        this.person = person;
         isDone = status;
     }
 
@@ -63,26 +85,6 @@ public class Task {
      */
     public static String covertIsDoneFromBooleanToString(boolean isDone) {
         return isDone ? IS_DONE_TRUE_STRING : IS_DONE_FALSE_STRING;
-    }
-
-    /**
-     * Returns the Boolean representation of isDone.
-     *
-     * @param isDone in String form.
-     * @return isDone in Boolean form.
-     */
-    public static Boolean covertIsDoneFromStringToBoolean(String isDone) {
-        return isDone == IS_DONE_TRUE_STRING;
-    }
-
-    /**
-     * Returns true if test String is a valid isDone.
-     *
-     * @param test String to test.
-     * @return Whether the String is a valid isDone value.
-     */
-    public static boolean isValidIsDone(String test) {
-        return test == IS_DONE_TRUE_STRING || test == IS_DONE_FALSE_STRING;
     }
 
     /**
@@ -198,17 +200,17 @@ public class Task {
      *
      * @return assigned to this Task
      */
-    public Email getPersonEmailAddress() {
-        return personEmailAddress;
+    public Person getPerson() {
+        return person;
     }
 
     /**
      * Setter method for personEmailAddress field.
      *
-     * @param personEmailAddress Email of the new person assigned to this Task
+     * @param person Email of the new person assigned to this Task
      */
-    public void setPersonEmailAddress(Email personEmailAddress) {
-        this.personEmailAddress = personEmailAddress;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     /**
@@ -216,20 +218,17 @@ public class Task {
      *
      * @return the name of the person assigned to this task
      */
+
     public Name getPersonName() {
-        return this.personName;
+        return this.person.getName();
     }
 
-    public void setPersonName(Name personName) {
-        this.personName = personName;
+    public Email getEmail() {
+        return this.person.getEmail();
     }
 
     public boolean getStatus() {
         return isDone;
-    }
-
-    public void updateName(String name) {
-        this.personName = new Name(name);
     }
 
     /**
@@ -269,7 +268,7 @@ public class Task {
                 && otherTask.getCategory().equals(getCategory())
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getDescription().equals(getDescription())
-                && otherTask.getPersonEmailAddress().equals(getPersonEmailAddress())
+                && otherTask.getPerson().equals(getPerson())
                 && otherTask.getPriority().equals(getPriority())
                 && (otherTask.isDone() == (this.isDone()));
     }
@@ -281,7 +280,7 @@ public class Task {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, priority, category, deadline, personEmailAddress, isDone);
+        return Objects.hash(name, description, priority, category, deadline, person, isDone);
     }
 
     @Override
@@ -297,7 +296,7 @@ public class Task {
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append("; Assigned to: ")
-                .append(getPersonEmailAddress())
+                .append(getPerson())
                 .append("; Status: ");
 
         if (isDone) {
@@ -314,17 +313,20 @@ public class Task {
      *
      * @return a copy of the task.
      */
-
     public Task copy() {
         TaskName copyName = new TaskName(this.name.toString());
-        TaskCategory copyCat = new TaskCategory(this.category.getLevel(), this.category.getTaskCategoryType());
+        TaskCategory copyCat = new TaskCategory(this.category.getTaskCategoryType());
         Description copyDescription = new Description(this.description.toString());
-        Priority copyPriority = new Priority(this.getPriority().getPriority());
+        Priority copyPrioirty = new Priority(this.getPriority().getPriority());
         TaskDeadline copyDeadline = new TaskDeadline(this.deadline.getDeadline());
-        Email copyEmail = new Email(this.personEmailAddress.toString());
+        Person copyPerson = this.person;
         Boolean copyIsDone = this.isDone;
-        Task copy = new Task(copyName, copyDescription, copyPriority, copyCat, copyDeadline, copyEmail, copyIsDone);
+        Task copy = new Task(copyName, copyDescription, copyPrioirty, copyCat, copyDeadline, copyPerson, copyIsDone);
         return copy;
+    }
+
+    public static String convertIsDoneFromBooleanToString(boolean isDone) {
+        return isDone ? IS_DONE_TRUE_STRING : IS_DONE_FALSE_STRING;
     }
 
     /**
@@ -333,8 +335,17 @@ public class Task {
      * @param isDone in String form.
      * @return isDone in Boolean form.
      */
-    public static String convertIsDoneFromBooleanToString(boolean isDone) {
-        return isDone ? IS_DONE_TRUE_STRING : IS_DONE_FALSE_STRING;
+    public static Boolean covertIsDoneFromStringToBoolean(String isDone) {
+        return isDone.equals(IS_DONE_TRUE_STRING);
     }
 
+    /**
+     * Returns true if test String is a valid isDone.
+     *
+     * @param test String to test.
+     * @return Whether the String is a valid isDone value.
+     */
+    public static boolean isValidIsDone(String test) {
+        return test.equals(IS_DONE_TRUE_STRING) || test.equals(IS_DONE_FALSE_STRING);
+    }
 }

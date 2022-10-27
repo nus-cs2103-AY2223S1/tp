@@ -45,7 +45,7 @@ public class TaskCard extends UiPart<Region> {
     private Label personName;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code TaskCard} with the given {@code Task} and index to display.
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
@@ -60,8 +60,14 @@ public class TaskCard extends UiPart<Region> {
         personName.setText("Assignee: " + task.getPersonName());
     }
 
+    /**
+     * Converts a boolean value to its string representation
+     * @param isDone the boolean value to be converted
+     * @return the string representation of the boolean value
+     */
     public String booleanConvertor(boolean isDone) {
         return isDone ? "Completed" : "Not Completed";
+
     }
 
     @Override

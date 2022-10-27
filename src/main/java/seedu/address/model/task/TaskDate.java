@@ -37,7 +37,7 @@ public class TaskDate {
     }
 
     /**
-     * Returns the string representation of the task deadline.
+     * Returns the string representation of the date.
      */
     @Override
     public String toString() {
@@ -46,7 +46,6 @@ public class TaskDate {
 
     /**
      * Compares another object with this TaskDate object.
-     *
      * @param other The other object to be compared to
      * @return true if the two objects are equal
      */
@@ -58,18 +57,18 @@ public class TaskDate {
     }
 
     /**
-     * Checks if this {@code date} is before the {@code date} of another TaskDate.
-     * @param other the other TaskDate to compare {@code date} to
-     * @return true if this {@code date} is before the {@code date} of the other TaskDate
+     * Checks if this {@code date} is before another date.
+     * @param other the other date to compare {@code date} to
+     * @return true if this {@code date} is before the other date
      */
     public boolean isBefore(LocalDate other) {
         return date.isBefore(other);
     }
 
     /**
-     * Checks if this {@code date} is after the {@code date} of another TaskDate.
-     * @param other the other TaskDate to compare {@code date} to
-     * @return true if this {@code date} is after the {@code date} of the other TaskDate
+     * Checks if this {@code date} is after another date.
+     * @param other the other date to compare {@code date} to
+     * @return true if this {@code date} is after the other date
      */
     public boolean isAfter(LocalDate other) {
         return date.isAfter(other);
@@ -77,11 +76,10 @@ public class TaskDate {
 
     /**
      * Returns true if date is valid.
-     *
      * @param test String to test
      * @return true if the String is a valid date
      */
-    public static boolean isValidTaskDeadline(String test) {
+    public static boolean isValidTaskDate(String test) {
         Boolean errorHappened = false;
         try {
             LocalDate value = LocalDate.parse(test);

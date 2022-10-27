@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -7,24 +8,46 @@ import java.util.function.Predicate;
  * matches any of the keywords and date given respectively.
  */
 public class TaskCategoryAndDeadlinePredicate implements Predicate<Task> {
-    private final TaskCategory category;
-    private final TaskDate date;
+    private final Optional<TaskCategory> category;
+    private final Optional<TaskDate> date;
+    private final int option;
 
     /**
      * Constructor method for {@code TaskCategoryAndDeadlinePredicate} class.
-     * @param category the TaskCategory to be used as comparison
-     * @param date the TaskDeadline to be used as comparison
      */
-    public TaskCategoryAndDeadlinePredicate(TaskCategory category, TaskDate date) {
+    public TaskCategoryAndDeadlinePredicate(Optional<TaskCategory> category, Optional<TaskDate> date) {
         this.category = category;
         this.date = date;
+
+        if (category.isPresent() && date.isPresent()) {
+            option = 0;
+        } else if (category.isPresent()) {
+            option = 1;
+        } else {
+            option = 2;
+        }
     }
 
     @Override
     public boolean test(Task task) {
-        return task.getCategory().equals(category)
-                && (date.isAfter(task.getDeadline().getDeadline())
-                || date.getDate().equals(task.getDeadline().getDeadline()));
+        boolean result = false;
+
+        if (option == 0) {
+            result = task.getCategory().equals(category.get())
+                    && (date.get().isAfter(task.getDeadline().getDeadline())
+                    || date.get().getDate().equals(task.getDeadline().getDeadline()));
+        }
+
+        if (option == 1) {
+            result = task.getCategory().equals(category.get());
+        }
+
+        if (option == 2) {
+            result = date.get().isAfter(task.getDeadline().getDeadline())
+                    || date.get().getDate().equals(task.getDeadline().getDeadline());
+        }
+
+        return result;
     }
 
     @Override

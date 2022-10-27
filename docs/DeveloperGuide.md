@@ -252,7 +252,7 @@ This will be implemented by modifying 3 already existing commands
 
 Given below is an example usage scenario.
 
-Step 1. The user launches the application for the first time. 
+Step 1. The user launches the application for the first time.
 
 Step 2. A new person (John) is added, with an email of test@example.com
 
@@ -267,7 +267,7 @@ Step 5. James is deleted as a Person. The task is changed to be not assigned to 
 #### Proposed Implementation
 
 We save tasks in Json format which contains the details of the task such as the task's name, description, etc.
-We can then read the Json data file to obtain the details of each task and create a list of JsonAdaptedTask which can 
+We can then read the Json data file to obtain the details of each task and create a list of JsonAdaptedTask which can
 then be converted to a list of tasks. Hence, our Json data file contains a list of task details.
 
 When reading Json file we also check whether the values saved are valid before converting it back to a Task object.
@@ -276,7 +276,7 @@ such illegal values when creating a task through commands. However, they do not 
 values that is done by editing Json data file. Thus, the checks when creating Task from Json data file is necessary.
 
 We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a
-a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative 
+a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative
 to this is to keep a person object in a task object but this will prevent the change in the person object that is
 supposed to be associated with the task object from being displayed in the task as they are two separate objects.
 
@@ -284,7 +284,7 @@ supposed to be associated with the task object from being displayed in the task 
 
 #### Proposed Implementation
 
-The proposed filter mechanism allows A `Task` to be filtered based on its `Task Category`. 
+The proposed filter mechanism allows A `Task` to be filtered based on its `Task Category`.
 The command is executed using the `FilterTaskCategoryCommand`class which extends the `Command` class and the category is determined from the `FilterTaskCategoryParser` class which parses the user input. The `TaskContainsCategoryPredicate` class will filter the existing task list based on the keyword parsed from the `FilterTaskCategoryParser` class and return the filtered tasklist, which will be displayed on the application.
 
 Given below is an example usage scenario and how the filter mechanism behaves at each step.
@@ -307,18 +307,18 @@ Step 5. After looking through all the tasks that are related to backend, the use
 
 * **Alternative 1 (current choice):** Filters entire tasklist
   * Pros: Easy to implement.
-  * Cons: 
+  * Cons:
 
-* **Alternative 2:** 
+* **Alternative 2:**
   itself.
-  * Pros: 
-  * Cons: 
+  * Pros:
+  * Cons:
 
 ### \[Proposed\] Filtering of tasks by Task Deadline
 
 #### Proposed Implementation
 
-The proposed filter mechanism allows A `Task` to be filtered based on its `TaskDeadline`. 
+The proposed filter mechanism allows A `Task` to be filtered based on its `TaskDeadline`.
 The command is executed using the `FilterTaskDeadlineCommand` class which extends the `Command` class and the deadline is determined from the `FilterTaskDeadlineParser` class which parses the user input. The `TaskDeadlineBeforeDatePredicate` class will filter the existing task list based on the date parsed from the `FilterTaskDeadlineParser` class and return the filtered tasklist, which will be displayed on the application.
 
 Given below is an example usage scenario and how the filter mechanism behaves at each step.
@@ -343,7 +343,7 @@ Step 5. After looking through all the tasks with deadlines of 12 December 2022 a
   * Pros: Easy to implement.
   * Cons: May have performance issues as the entire tasklist must be parsed.
 
-* **Alternative 2:** 
+* **Alternative 2:**
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 

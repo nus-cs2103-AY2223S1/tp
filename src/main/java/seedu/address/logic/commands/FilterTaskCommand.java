@@ -11,9 +11,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.Model;
 import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskCategoryAndDeadlinePredicate;
-import seedu.address.model.task.TaskContainsCategoryPredicate;
 import seedu.address.model.task.TaskDate;
-import seedu.address.model.task.TaskDeadlineBeforeDatePredicate;
 
 /**
  * Filters and lists all tasks in address book with category that matches the argument category
@@ -34,11 +32,7 @@ public class FilterTaskCommand extends Command {
             + PREFIX_DATE + "2022-12-12";
 
     private final FilterTaskDescriptor filterTaskDescriptor;
-    private final TaskCategoryAndDeadlinePredicate both;
-    private final TaskContainsCategoryPredicate category;
-    private final TaskDeadlineBeforeDatePredicate date;
-    private final boolean hasCategory;
-    private final boolean hasDate;
+    private final TaskCategoryAndDeadlinePredicate predicate;
 
     /**
      * @param filterTaskDescriptor details to filter the list of tasks with
@@ -46,54 +40,14 @@ public class FilterTaskCommand extends Command {
     public FilterTaskCommand(FilterTaskDescriptor filterTaskDescriptor) {
         requireNonNull(filterTaskDescriptor);
         this.filterTaskDescriptor = new FilterTaskDescriptor(filterTaskDescriptor);
-
-        if (filterTaskDescriptor.getCategory().isPresent() && filterTaskDescriptor.getDate().isPresent()) {
-
-            both = new TaskCategoryAndDeadlinePredicate(
-                    filterTaskDescriptor.getCategory().get(), filterTaskDescriptor.getDate().get());
-            category = null;
-            date = null;
-
-            hasCategory = true;
-            hasDate = true;
-
-        } else if (filterTaskDescriptor.getCategory().isPresent() && filterTaskDescriptor.getDate().isEmpty()) {
-
-            both = null;
-            category = new TaskContainsCategoryPredicate(filterTaskDescriptor.getCategory().get());
-            date = null;
-
-            hasCategory = true;
-            hasDate = false;
-
-        } else {
-
-            both = null;
-            category = null;
-            date = new TaskDeadlineBeforeDatePredicate(filterTaskDescriptor.getDate().get());
-
-            hasCategory = false;
-            hasDate = true;
-
-        }
+        predicate = new TaskCategoryAndDeadlinePredicate(
+                filterTaskDescriptor.getCategory(), filterTaskDescriptor.getDate());
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-
-        if (hasCategory && hasDate) {
-            model.updateFilteredTaskList(both);
-        }
-
-        if (hasCategory && !hasDate) {
-            model.updateFilteredTaskList(category);
-        }
-
-        if (!hasCategory && hasDate) {
-            model.updateFilteredTaskList(date);
-        }
-
+        model.updateFilteredTaskList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASK_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }

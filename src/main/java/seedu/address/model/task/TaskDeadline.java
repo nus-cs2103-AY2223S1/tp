@@ -34,7 +34,7 @@ public class TaskDeadline {
     }
 
     /**
-     * Returns hashcode of the current object
+     * Returns hashcode of the current object.
      */
     @Override
     public int hashCode() {
@@ -51,8 +51,7 @@ public class TaskDeadline {
 
     /**
      * Compares another object with the Deadline object.
-     *
-     * @param other The other object to be compared to
+     * @param other the other object to be compared to
      * @return true if the two objects are equal
      */
     @Override
@@ -63,26 +62,25 @@ public class TaskDeadline {
     }
 
     /**
-     * Checks if this {@code deadline} is before the {@code deadline} of another TaskDeadline.
-     * @param other the other TaskDeadline to compare {@code deadline} to
-     * @return true if this {@code deadline} is before the {@code deadline} of the other TaskDeadline
+     * Checks if this {@code deadline} is before another date.
+     * @param other the other date to compare {@code deadline} to
+     * @return true if this {@code deadline} is before the other date
      */
-    public boolean isBefore(TaskDeadline other) {
-        return deadline.isBefore(other.getDeadline());
+    public boolean isBefore(LocalDate other) {
+        return deadline.isBefore(other);
     }
 
     /**
-     * Checks if this {@code deadline} is after the {@code deadline} of another TaskDeadline.
-     * @param other the other TaskDeadline to compare {@code deadline} to
-     * @return true if this {@code deadline} is after the {@code deadline} of the other TaskDeadline
+     * Checks if this {@code deadline} is after another date.
+     * @param other the other date to compare {@code deadline} to
+     * @return true if this {@code deadline} is after the other date
      */
-    public boolean isAfter(TaskDeadline other) {
-        return deadline.isAfter(other.getDeadline());
+    public boolean isAfter(LocalDate other) {
+        return deadline.isAfter(other);
     }
 
     /**
      * Returns true if deadline is valid.
-     *
      * @param test String to test
      * @return true if the String is a valid deadline
      */
