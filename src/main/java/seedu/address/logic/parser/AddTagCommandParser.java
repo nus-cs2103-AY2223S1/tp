@@ -22,7 +22,7 @@ public class AddTagCommandParser implements Parser<Command> {
     @Override
     public Command parse(String args) throws ParseException {
         requireNonNull(args);
-        String[] indexWithTags = args.strip().split(" ", 2);
+        String[] indexWithTags = args.strip().split("\\s", 2);
         if (indexWithTags.length != 2) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTagCommand.MESSAGE_USAGE));

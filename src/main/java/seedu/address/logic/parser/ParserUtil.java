@@ -240,6 +240,9 @@ public class ParserUtil {
     public static DeadlineTag parseDeadlineTag(String deadline) throws ParseException {
         requireNonNull(deadline);
         final LocalDate date;
+        if (!DeadlineTag.checkDateFormat(deadline)) {
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_FORMAT_CONSTRAINTS);
+        }
         //@@author dlimyy-reused
         //Reused from https://stackoverflow.com/questions/32823368/
         //with minor modifications.
@@ -249,10 +252,10 @@ public class ParserUtil {
         try {
             date = LocalDate.parse(deadline, dtf);
         } catch (DateTimeParseException dtp) {
-            throw new ParseException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_INVALID_DATE);
         }
         if (!DeadlineTag.isValidDeadline(date)) {
-            throw new ParseException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_DATE_HAS_PASSED);
         }
         return new DeadlineTag(date);
     }
