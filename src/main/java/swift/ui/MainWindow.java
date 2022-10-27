@@ -198,7 +198,7 @@ public class MainWindow extends UiPart<Stage> {
         resetMenuButtonStyle(contactsButton);
 
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getUnfilteredBridgeList(),
-                logic.getFilteredPersonList());
+                logic.getUnfilteredPersonList());
 
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
