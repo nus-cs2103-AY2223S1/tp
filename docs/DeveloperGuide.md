@@ -432,8 +432,16 @@ to `UniquePersonList` and vice versa, resulting in less coupling and ease of int
 in the future.
 
 One issue is that the `UniquePersonList` and `BookList` do not refresh their UI
-automatically and we resorted to getting the index of each list to set their
-internal `ObservableLists` to 'refresh' their UI.
+automatically, and we resorted to getting the index of each list to set their
+internal `ObservableLists` to 'refresh' their UI. 
+
+We have chosen to use an external `PrettyTimeParser` library is used here to make the creation of 
+due dates more flexible. One downside however is that it uses Natural Language Processing, and 
+it may cause unintended parsing behaviours that is difficult to resolve since Natural Language Processing
+is beyond the scope of this module. In this case, invalid dates such as `2075-99-99` are accepted as
+valid dates by the library, and we have decided to check only for the two most common date formats,
+`dd/MM/yyyy` and `yyyy-MM-dd`.
+
 
 ### Return feature
 
