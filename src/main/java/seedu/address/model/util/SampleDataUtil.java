@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
 
-    public static final Description EMPTY_DESCRIPTION = new Description("");
+    public static final Description EMPTY_DESCRIPTION = new Description(Person.EMPTY_FIELD_VALUE);
 
 
     public static Person[] getSamplePersons() {

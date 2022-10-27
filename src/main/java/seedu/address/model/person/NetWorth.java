@@ -10,7 +10,6 @@ import seedu.address.ui.PersonProfile;
  */
 public class NetWorth {
 
-    public static final String EMPTY_NETWORTH = "";
     public static final String MESSAGE_CONSTRAINTS =
             "Net worth should only contain numbers and net worth should be at least 4 digits";
     public static final String VALIDATION_REGEX = "[$][1-9]\\d{3,}";
@@ -38,21 +37,21 @@ public class NetWorth {
      * Returns value of net worth if not null else, EMPTY_DISPLAY_VALUE.
      */
     public String getDisplayValue() {
-        return value == EMPTY_NETWORTH ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
+        return value.equals(Person.EMPTY_FIELD_VALUE) ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
     /**
      * Returns true if a given string is a valid networth.
      */
     public static boolean isValidNetWorth(String test) {
-        return test.equals(EMPTY_NETWORTH) || test.matches(VALIDATION_REGEX);
+        return test.equals(Person.EMPTY_FIELD_VALUE) || test.matches(VALIDATION_REGEX);
     }
 
     /**
      * Returns true if value is empty.
      */
     public boolean isEmpty() {
-        return value.equals(EMPTY_NETWORTH);
+        return value.equals(Person.EMPTY_FIELD_VALUE);
     }
 
     @Override
