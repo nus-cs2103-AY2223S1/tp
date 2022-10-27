@@ -20,7 +20,8 @@ public class ReminderCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "12-09-2022";
 
-    public static final String REMINDER_SUCCESS = "Here are your upcoming deadlines.";
+    public static final String REMINDER_SUCCESS = "Here are your tasks with deadlines up to including the "
+                                                    + "specified date.";
 
     private final TaskUntilDeadlinePredicate predicate;
 
