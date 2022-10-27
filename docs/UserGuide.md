@@ -131,7 +131,7 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 Adds an entry to the specified list. <br>
 1. Add expense <br>
    - Example: `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`<br>
-   - An expense of 15.60 on 10/10/2022 will be added to the Expenditure list, under the Food category.
+   - An expense of $15.60 on 10/10/2022 will be added to the Expenditure list, under the Food category.
 
 1. Add income <br>
    - Example: `add t/i d/Tuition a/40.00 da/10-10-2022 c/Salary`<br>
