@@ -8,5 +8,7 @@ public enum CommandType {
     EXIT,
     CONTACTS,
     TASKS,
-    CLEAR
+    CLEAR,
+    SELECT_TASK,
+    SELECT_CONTACT
 }

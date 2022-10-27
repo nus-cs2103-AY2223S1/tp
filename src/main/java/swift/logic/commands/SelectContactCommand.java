@@ -64,7 +64,7 @@ public class SelectContactCommand extends Command {
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.updateFilteredTaskList(isTaskExist);
 
-        return new CommandResult(Messages.MESSAGE_PERSONS_SELECTED_OVERVIEW, CommandType.CONTACTS);
+        return new CommandResult(Messages.MESSAGE_PERSONS_SELECTED_OVERVIEW, CommandType.SELECT_CONTACT);
     }
 
     @Override

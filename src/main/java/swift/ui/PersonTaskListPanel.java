@@ -36,10 +36,17 @@ public class PersonTaskListPanel extends UiPart<Region> {
     }
 
     /**
-     * Remove heading from the panel.
+     * Change panel to show contacts assigned to task.
      */
-    protected void removeHeading() {
-        heading.setText("");
+    protected void switchToAssignedTasks() {
+        heading.setText("ASSIGNED TASKS");
+    }
+
+    /**
+     * Change panel to show all contacts.
+     */
+    protected void switchToAllTasks() {
+        heading.setText("ALL TASKS");
     }
 
     /**

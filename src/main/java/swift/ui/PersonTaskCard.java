@@ -51,7 +51,7 @@ public class PersonTaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().fullName);
-        deadline.setText(task.getDeadline().map(Deadline::toString).orElse("No deadline"));
+        deadline.setText(task.getDeadline().map(Deadline::toString).orElse("NO DEADLINE"));
         setAssociatedContacts(personTaskBridgeList, personList);
     }
 
