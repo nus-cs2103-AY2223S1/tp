@@ -16,7 +16,7 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 ## Table of contents
 * [Quick Start](#quick-start)
 * [UI Overview](#ui-overview)
-* [Readingthe User Guide](#reading-the-user-guide)
+* [Reading the User Guide](#reading-the-user-guide)
     * [Command format](#notes-about-the-command-format)
     * [Callouts](#callouts)
 * [Features](#features)
@@ -77,7 +77,7 @@ the money collected/owed.
 - Day’s Schedule List - A scroll window which shows the schedule for the day, sorted by time.
 
 Basic Instructions:
-1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open
+1. Type the command in the command box and press Enter to execute it. e.g., typing `help` and pressing Enter will open
    the help window. Some example commands you can try:
     - `list`: Lists all students.
     - `add n/John Doe p/98765432 np/81239090 e/johnd@example.com a/John street, block 123, #01-01`: Adds a student named
@@ -95,17 +95,17 @@ Basic Instructions:
 
 ### Notes about the command format:
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter
+- Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g., in `add n/NAME`, `NAME` is a parameter
   which can be used as `add n/John Doe`.
-- Items in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/python` or as `n/John Doe`.
-- Items with `…` after them can be used multiple times including zero times. e.g. `[t/TAG]…` can be used as ` ` (e.g.
+- Items in square brackets are optional. e.g., `n/NAME [t/TAG]` can be used as `n/John Doe t/python` or as `n/John Doe`.
+- Items with `…` after them can be used multiple times including zero times. e.g., `[t/TAG]…` can be used as ` ` (e.g.
   0 times), `t/python`, `t/javascript t/react` etc.
-- Parameters can be in any order. e.g. if the command specifies `n/NAME p/CONTACT_NUMBER`, `p/CONTACT_NUMBER n/NAME`
+- Parameters can be in any order. e.g., if the command specifies `n/NAME p/CONTACT_NUMBER`, `p/CONTACT_NUMBER n/NAME`
   is also acceptable.
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
-  of the parameter will be taken. e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  of the parameter will be taken. e.g., if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
-  be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  be ignored. e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 - Commands that require the use of index from the Schedule panel list (right side) will be represented as `INDEX-s`,
   while index from the Student's Details panel list (left side) will be represented as `INDEX`.
 
@@ -244,8 +244,8 @@ the same convention as [adding a student](#adding-a-student-add).
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
 
 ```yaml
-❗ Caution: If a chosen date is occupied by another student, a class conflict error
-          will arise.
+❗ Caution: If a chosen date is occupied by another student, a class
+            conflict error will arise.
 ```
 
 4. Amount Paid:
@@ -257,7 +257,7 @@ the same convention as [adding a student](#adding-a-student-add).
     - Amount owed must be non-negative.
 
 ```yaml
-ℹ️ Note: Amount Owed and Amount Paid can only be between $0 and $2147483647.
+ℹ️ Note: Amount Owed and Amount Paid must be between $0 and $2147483647.
       They are modified independent of each other.
 ```
 
@@ -268,12 +268,13 @@ the same convention as [adding a student](#adding-a-student-add).
     - Use `nt-a/` to append the additional notes.
 
 ```yaml
-❗ Caution: Using both nt/ and nt-a/ in a single command will reset the content
-      of Additional Notes to the content behind both nt/ and nt-a/ prefixes.
+❗ Caution: Using both nt/ and nt-a/ in a single command will reset the
+            content of Additional Notes to the content behind both
+            nt/ and nt-a/ prefixes.
 ```
 
 ```yaml
-❗ Caution: Note at least one of these fields must exist in order to make the
+❗ Caution: At least one of these fields must exist in order to make the
            edit command valid.
 ```
 
@@ -304,7 +305,7 @@ Format: `mark INDEX-s`
 
 - Marks the student as present at the specified `INDEX-s`.
 - The index refers to the index number shown in the Schedule panel (bottom right).
-- The index must be a positive integer. e.g. `1, 2, 3, ...`.
+- The index must be a positive integer. e.g., `1, 2, 3, ...`.
 
 Example:
 - `mark 2` marks the 2nd student in the Schedule panel.
@@ -312,8 +313,9 @@ Example:
 ![UiMark](images/UG-screenshots/UiMark.png)
 
 ```yaml
-💡 Tip: If you want to charge the student for missing the class, you can do so by the
-        mark command. This increases the amount owed but frees up that time slot for
+💡 Tip: If you want to charge the student for missing the class, you can
+        do so by executing the mark command.
+        This increases the amount owed but frees up that time slot for
         another student.
 ```
 
@@ -331,8 +333,8 @@ Format: `pay INDEX-s AMOUNT_PAID`
 
 - Marks the student as present at the specified `INDEX-s`.
 - The index refers to the index number shown in the Schedule panel (bottom right).
-- The index must be a positive integer. e.g. `1, 2, 3, ...`.
-- The amount paid must be an integer and cannot be negative. e.g. `0, 1, 2, ...`.
+- The index must be a positive integer. e.g., `1, 2, 3, ...`.
+- The amount paid must be an integer and cannot be negative. e.g., `0, 1, 2, ...`.
 
 Example:
 - `pay 2 40` indicates that the 2nd student in the Schedule panel has paid $40.
@@ -340,8 +342,8 @@ Example:
 ![UiPay](images/UG-screenshots/UiPay.png)
 
 ```yaml
-ℹ️ Note: The student cannot pay more than what he/she owes. There is also a maximum cap
-      of $2147483647 for every payment.
+ℹ️ Note: The student cannot pay more than what he/she owes. There is also
+        a maximum cap of $2147483647 for every payment.
 ```
 
 [Back to top](#table-of-contents)
@@ -394,10 +396,10 @@ Finds all students with names matching the keywords.
 
 Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
-- The search is case-insensitive. e.g. `alex` will match `Alex`.
+- The search is case-insensitive. e.g., `alex` will match `Alex`.
 - The order of the keywords does not matter. e.g. `Yeoh Alex` will match `Alex Yeoh`.
-- Only full words will be matched e.g. `Han` will not match `Hans`.
-- Students matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+- Only full words will be matched e.g., `Han` will not match `Hans`.
+- Students matching at least one keyword will be returned. e.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Example:
 
@@ -407,11 +409,11 @@ Example:
 
 #### Find by Student's Contact Number:
 
-Finds student with the matching phone number.
+Finds student with the matching contact number.
 
 Format: `find p/CONTACT_NUMBER`
 
-- Only full numbers will be matched e.g. `8123` will not match `81234567`.
+- Only full numbers will be matched e.g., `8123` will not match `81234567`.
 
 Example:
 
@@ -491,8 +493,8 @@ Format: `avail TIME_RANGE DURATION`
 
 ```yaml
 ❗ Caution: The duration should not exceed the time range.
-       e.g. If the time range is 1000-1100 and the duration is 70, this would
-            be invalid.
+      e.g., If the time range is 1000-1100 and the duration is 70, this
+            would be invalid.
 ```
 
 Examples:
@@ -571,7 +573,7 @@ Format: `delete INDEX [MORE_INDEXES]`
 
 - Deletes the student(s) at the specified `INDEX(ES)`.
 - The index(es) refers to the index numbers shown in the Student's Details panel (bottom left section of the display).
-- The index(es) must be a positive integer within the size of the displayed student list. e.g. `1, 2, 3, ...`.
+- The index(es) must be a positive integer within the size of the displayed student list. e.g., `1, 2, 3, ...`.
 
 Examples:
 - `list` followed by `delete 1 2` deletes the 1st and 2nd person in the Student's Details panel.
@@ -592,7 +594,7 @@ Clears all students and their details from the list.
 Format: `clear`
 
 ```yaml
-💡 Tip: Clearing all students by mistake can be reversed by "undo" command!
+💡 Tip: Clearing all students by mistake can be reversed by undo command!
 ```
 
 [Back to top](#table-of-contents)
@@ -633,8 +635,9 @@ Students' data is saved as a JSON file `[JAR file location]/data/teachersPet.jso
 
 ```yaml
 ⚠️ Warning: Proceed with care!
-            If your changes to the data file makes its format invalid, Teacher’s Pet
-            will discard all data and start with an empty data file at the next run!
+            If your changes to the data file makes its format invalid,
+            Teacher’s Pet will discard all data and start with an
+            empty data file at the next run!
 ```
 
 [Back to top](#table-of-contents)
@@ -658,15 +661,15 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON     |
 | INDEX       | The index number shown in the Student's Details panel list |
 | INDEX-s     | The index number shown in the Schedule panel list          |
-| Prefix      | e.g. `n/`, `p/`, `np`                                      |
-| Parameter   | e.g. `NAME`, `EMAIL`, `ADDRESS`                            |
+| Prefix      | e.g., `n/`, `p/`, `np`                                     |
+| Parameter   | e.g., `NAME`, `EMAIL`, `ADDRESS`                           |
 
 ## Command Summary
 
 | Action                       | Format, Examples                                                                                                                                                                                                                  |
 |------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Add a student                | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL [t/TAG]... `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com t/python t/beginner`                                         |
-| Edit a student               | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] `e.g., edit 2 p/98765431` |
+| Edit a student               | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [a/ADDRESS] [e/EMAIL] [dt/CLASS_DATE] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] `e.g., edit 2 p/98765431` |
 | Get help                     | `help`                                                                                                                                                                                                                            |
 | List all students            | `list`                                                                                                                                                                                                                            |
 | Find a student               | find n/NAME `e.g., find n/John Doe` or other supported fields                                                                                                                                                                     |
