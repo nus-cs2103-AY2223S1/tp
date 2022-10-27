@@ -30,7 +30,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String INVALID_QUANTITY = "100h";
-    private static final String INVALID_QUANTITY_NEGATIVE = "-10";
+    private static final String INVALID_QUANTITY_NEGATIVE = " -10";
     private static final String INVALID_QUANTITY_ZERO = "0";
     private static final String INVALID_QUANTITY_NEGATIVE_ZERO = "-0";
 

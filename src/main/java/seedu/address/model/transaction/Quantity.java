@@ -10,7 +10,7 @@ public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, and it should be at least 1 digits long";
     public static final String MESSAGE_CONSTRAINTS_POSITIVE =
-            "Price should be not be negative.";
+            "Quantity should be not be negative.";
 
     public final String quantity;
 
@@ -29,6 +29,7 @@ public class Quantity {
      * Returns true if a given string is a valid quantity.
      */
     public static boolean isValidQuantity(String test) {
+        requireNonNull(test);
         boolean isInteger = true;
         int num = 0;
 
@@ -38,7 +39,7 @@ public class Quantity {
             isInteger = false;
         }
 
-        return isInteger && num > 0 && !test.equals("null");
+        return isInteger && num != 0 && !test.equals("null");
     }
 
     /**

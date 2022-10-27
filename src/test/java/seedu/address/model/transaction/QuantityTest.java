@@ -22,6 +22,9 @@ class QuantityTest {
     @Test
     public void isValidQuantity() {
 
+        assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity(null));
+
+
         // invalid quantity numbers
         assertFalse(Quantity.isValidQuantity("")); // empty string
         assertFalse(Quantity.isValidQuantity(" ")); // spaces only
@@ -47,11 +50,10 @@ class QuantityTest {
         assertThrows(NullPointerException.class, () -> Quantity.isPositiveQuantity(null));
 
         // negative quantity numbers
-        assertFalse(Quantity.isPositiveQuantity("-1.0"));
-        assertFalse(Quantity.isPositiveQuantity("-0.8"));
-        assertFalse(Quantity.isPositiveQuantity("-09.0"));
-        assertFalse(Quantity.isPositiveQuantity("-1.09"));
-        assertFalse(Quantity.isPositiveQuantity("-0.0"));
+        assertFalse(Quantity.isPositiveQuantity("-1"));
+        assertFalse(Quantity.isPositiveQuantity("-8"));
+        assertFalse(Quantity.isPositiveQuantity("-09"));
+        assertFalse(Quantity.isPositiveQuantity("-1000"));
         assertFalse(Quantity.isPositiveQuantity("-0"));
 
         // positive quantity numbers

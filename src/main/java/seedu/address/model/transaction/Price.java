@@ -31,7 +31,7 @@ public class Price {
      * Returns true if a given string is a valid price.
      */
     public static boolean isValidPrice(String test) {
-
+        requireNonNull(test);
         boolean isDouble = true;
         double num = 0.00;
         try {
