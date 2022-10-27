@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandResult.CommandType.NOK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -63,7 +64,8 @@ public class NextOfKinCommandTest {
         String expectedMessage =
                 String.format(NextOfKinCommand.MESSAGE_ADD_NEXTOFKIN_SUCCESS, AMY_NEXTOFKIN, editedStudent);
 
-        assertCommandSuccess(nextOfKinCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(nextOfKinCommand, model, expectedMessage, expectedModel,
+                NOK, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test
@@ -85,7 +87,8 @@ public class NextOfKinCommandTest {
         String expectedMessage =
                 String.format(NextOfKinCommand.MESSAGE_ADD_NEXTOFKIN_SUCCESS, BOB_NEXTOFKIN, editedStudent);
 
-        assertCommandSuccess(nextOfKinCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(nextOfKinCommand, model, expectedMessage, expectedModel,
+                NOK, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test
@@ -108,7 +111,8 @@ public class NextOfKinCommandTest {
         String expectedMessage =
                 String.format(NextOfKinCommand.MESSAGE_REMOVE_NEXTOFKIN_SUCCESS, editedStudent);
 
-        assertCommandSuccess(nextOfKinCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(nextOfKinCommand, model, expectedMessage, expectedModel,
+                NOK, INDEX_FIRST_PERSON.getZeroBased());
 
         //no existing next of kin
         model = new ModelManager(getTypicalStudentsAddressBook(), new UserPrefs());
@@ -122,7 +126,8 @@ public class NextOfKinCommandTest {
         expectedMessage =
                 String.format(NextOfKinCommand.MESSAGE_REMOVE_NEXTOFKIN_SUCCESS, editedStudent);
 
-        assertCommandSuccess(nextOfKinCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(nextOfKinCommand, model, expectedMessage, expectedModel,
+                NOK, INDEX_FIRST_PERSON.getZeroBased());
     }
 
     @Test

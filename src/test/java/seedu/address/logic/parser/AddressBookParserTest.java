@@ -36,6 +36,7 @@ import seedu.address.logic.commands.ListTuitionClassCommand;
 import seedu.address.logic.commands.ListTutorCommand;
 import seedu.address.logic.commands.NextOfKinCommand;
 import seedu.address.logic.commands.ShowCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -148,11 +149,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_listTuitionClass() throws Exception {
-        assertTrue(
-                parser.parseCommand(ListCommand.COMMAND_WORD + ENTITY_DESC_CLASS, listType)
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + ENTITY_DESC_CLASS, listType)
                         instanceof ListTuitionClassCommand);
-        //assertTrue(parser.parseCommand(ListTuitionClassCommand.COMMAND_WORD + " 3", listType)
-        // instanceof ListTuitionClassCommand);
     }
 
     @Test
@@ -176,6 +174,12 @@ public class AddressBookParserTest {
         NextOfKin nextOfKin = new NextOfKinBuilder().build();
         assertTrue(parser.parseCommand(PersonUtil.getNokCommand(nextOfKin), listType)
                 instanceof NextOfKinCommand);
+    }
+
+    @Test
+    public void parseCommand_sortCommand() throws Exception {
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " " + SortCommand.SortBy.ALPHA, listType)
+                instanceof SortCommand);
     }
 
     @Test

@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="entityDescription" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
@@ -28,6 +27,12 @@
                   </HBox.margin>
                </Label>
                <FlowPane fx:id="tags" />
+            </children>
+         </HBox>
+         <HBox prefHeight="0.0" prefWidth="130.0" spacing="5.0">
+            <children>
+               <Label styleClass="prefix-label" text="Class:" />
+               <FlowPane id="classes" fx:id="classes" orientation="VERTICAL" prefHeight="0.0" prefWidth="60.0" />
             </children>
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
@@ -60,16 +65,6 @@
             <Label fx:id="qualification" styleClass="cell_small_label" text="\\$qualidication" />
             </children>
          </HBox>
-         <Label styleClass="prefix-label" text="Class:" />
-         <StackPane fx:id="belongedClassListPlaceholder" VBox.vgrow="ALWAYS">
-            <children>
-               <VBox fx:id="assignedClassList" alignment="TOP_CENTER" spacing="5.0">
-                  <StackPane.margin>
-                     <Insets bottom="5.0" top="5.0" />
-                  </StackPane.margin>
-               </VBox>
-            </children>
-         </StackPane>
     </VBox>
       <rowConstraints>
          <RowConstraints />

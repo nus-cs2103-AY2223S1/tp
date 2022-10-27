@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandResult.CommandType.EDIT;
 import static seedu.address.logic.commands.CommandResult.CommandType.EXIT;
 import static seedu.address.logic.commands.CommandResult.CommandType.HELP;
 import static seedu.address.logic.commands.CommandResult.CommandType.LIST;
+import static seedu.address.logic.commands.CommandResult.CommandType.NOK;
 import static seedu.address.logic.commands.CommandResult.CommandType.SHOW;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.STUDENT1;
@@ -55,10 +56,26 @@ public class CommandResultTest {
     }
 
     @Test
-    public void isUpdateDescription_assignUnassignEditCommandType_assertTrue() {
+    public void isUpdateDescription_assignUnassignCommandType_assertTrue() {
         CommandResult commandResult = new CommandResult("feedback", ASSIGN, 0);
         assertTrue(commandResult.isUpdateDescription());
-        commandResult = new CommandResult("feedback", EDIT, 0);
+    }
+
+    @Test
+    public void isUpdateDescription_editCommandType_assertTrue() {
+        CommandResult commandResult = new CommandResult("feedback", EDIT, 0);
+        assertTrue(commandResult.isUpdateDescription());
+    }
+
+    @Test
+    public void isUpdateDescription_showCommandType_assertTrue() {
+        CommandResult commandResult = new CommandResult("feedback", SHOW, 0);
+        assertTrue(commandResult.isUpdateDescription());
+    }
+
+    @Test
+    public void isUpdateDescription_nextOfKinCommandType_assertTrue() {
+        CommandResult commandResult = new CommandResult("feedback", NOK, 0);
         assertTrue(commandResult.isUpdateDescription());
     }
 
