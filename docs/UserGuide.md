@@ -97,17 +97,17 @@ Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 * `:add n/Deadlift w/60 s/1 r/1 d/27-10-22` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th October 2022.
 
 
-### Deleting an exercise : `:d`
+### Deleting an exercise : `:del`
 
-Deletes a particular exercise from our list. The index refers to the index number shown in the displayed exercise list.
+Deletes a particular exercise from our list. The index refers to the index number shown in the displayed exercise list. If the deleted exercise was the last exercise with the same name, then the exercise is automatically un-registered from the list of unique exercises.
 
-Format: `:d <index>`
+Format: `:del <index>`
 
 ##### Parameter constraints:
 * The index must be a positive integer 1, 2, 3, ...
 
 ##### Examples:
-* `:d 3` Deletes an exercise at index 3 of the list
+* `:del 3` Deletes an exercise at index 3 of the list
 
 
 ### Listing all exercises : `:ls`
