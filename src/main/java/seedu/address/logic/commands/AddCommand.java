@@ -15,7 +15,7 @@ import seedu.address.model.project.Project;
  */
 public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addproj";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to HR Pro Max++.\n"
             + "Parameters: "
