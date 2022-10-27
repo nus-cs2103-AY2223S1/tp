@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NOK_PHONE_DESC_AMY;
@@ -17,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.ClassContainsDatePredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
@@ -108,8 +108,23 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validAddressPrefix_returnsFindCommand() {
-        // TODO: Update test case with a/ prefix
-        assertParseFailure(parser, ADDRESS_DESC_AMY, "a/ search not implemented yet.");
+        FindCommand expectedSingleWordAddressCommand =
+                new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList("Tampines", "Labrador")));
+
+        FindCommand expectedMultipleWordAddressCommand =
+                new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList("Pasir", "Ris", "Bukit", "Timah")));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, " a/Tampines Labrador", expectedSingleWordAddressCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " a/Tampines             Labrador", expectedSingleWordAddressCommand);
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, " a/Pasir Ris Bukit Timah", expectedMultipleWordAddressCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " a/Pasir Ris             Bukit Timah", expectedMultipleWordAddressCommand);
     }
 
     @Test
