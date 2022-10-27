@@ -36,6 +36,9 @@ import seedu.address.storage.Storage;
  */
 public class SampleDataUtil {
     private static Random random = new Random();
+    private static String placeholderImagePath = System.getProperty("user.dir")
+            + "/src/main/resources/images/placeholderart.png";
+
     public static Customer[] getSampleCustomers(Storage storage) {
         Customer[] customers = new Customer[] {
             new Customer.CustomerBuilder(new Name("Alex Yeoh"), new Phone("87438807"),
@@ -58,30 +61,11 @@ public class SampleDataUtil {
                     .setAddress(new Address("Blk 45 Aljunied Street 85, #11-31")).build()
         };
 
-        String placeholderImagePath = System.getProperty("user.dir") + "/src/main/resources/images/placeholderart.png";
+
         try {
-            FileInputStream fis = new FileInputStream(placeholderImagePath);
-            BufferedImage placeholderImage = ImageIO.read(fis);
             for (Customer customer: customers) {
                 for (int i = 1; i <= 3; i++) {
-                    Commission commission = new Commission.CommissionBuilder(
-                            new Title(customer.getName().fullName + " Commission " + (i + 1)),
-                            new Fee(random.nextDouble() * 20),
-                            new Deadline(LocalDate.now()),
-                            new CompletionStatus(random.nextBoolean()),
-                            new HashSet<>()).build(customer);
-                    for (int j = 1; j <= 3; j++) {
-                        Path imageCopyPath = storage.getRandomImagePath();
-                        storage.saveImage(placeholderImage, imageCopyPath);
-                        Iteration iteration = new Iteration(
-                                new Date(LocalDate.now()),
-                                new IterationDescription("iteration description " + j),
-                                imageCopyPath,
-                                new Feedback("feedback " + j)
-                        );
-                        commission.addIteration(iteration);
-                    }
-                    customer.addCommission(commission);
+                    addCommissionToCustomer(customer, storage, i);
                 }
             }
         } catch (IOException e) {
@@ -91,6 +75,37 @@ public class SampleDataUtil {
         }
 
         return customers;
+    }
+
+    /**
+     * Adds a sample commission with 3 iterations to a customer.
+     * @param customer Customer to add commissions to.
+     * @param storage Storage to save placeholder images to for a commission's iterations.
+     * @param index Index of the commission.
+     * @throws IOException If the placeholder image cannot be found.
+     */
+    public static void addCommissionToCustomer(Customer customer, Storage storage, int index) throws IOException {
+        Commission commission = new Commission.CommissionBuilder(
+                new Title(customer.getName().fullName + " Commission " + index),
+                new Fee(random.nextDouble() * 20),
+                new Deadline(LocalDate.now()),
+                new CompletionStatus(random.nextBoolean()),
+                new HashSet<>()).build(customer);
+
+        FileInputStream fis = new FileInputStream(placeholderImagePath);
+        BufferedImage placeholderImage = ImageIO.read(fis);
+        for (int j = 1; j <= 3; j++) {
+            Path imageCopyPath = storage.getRandomImagePath();
+            storage.saveImage(placeholderImage, imageCopyPath);
+            Iteration iteration = new Iteration(
+                    new Date(LocalDate.now()),
+                    new IterationDescription("iteration description " + j),
+                    imageCopyPath,
+                    new Feedback("feedback " + j)
+            );
+            commission.addIteration(iteration);
+        }
+        customer.addCommission(commission);
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook(Storage storage) {
