@@ -137,6 +137,20 @@ Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find m/CS2103T` returns list of students in CS2103T<br>
 
+#### 3.1.6 Extracting student's emails : `extract emails`
+
+Copies all emails in the displayed student list onto the clipboard.
+
+Format: `extract emails`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Paste the link in the address bar of a browser and a pop-up will appear, prompting you to open up your email apps e.g.Outlook !
+</div>
+
+Examples:
+* `find m/CS2103T` followed by `extract emails` copies all the emails of the students in the results of the `find` command.
+
+
 ### 3.2 Tutorial Features
 #### 3.2.1 Adding a tutorial : `add tutorial`
 
@@ -280,7 +294,7 @@ Sort reminders by their deadline, with the earliest deadline on top of the list.
 
 Format: `sort reminder deadline`
 
-### Showing grades
+### 3.5 Switch Features
 
 Shows a pie chart representing proportions of students' grade.
 
