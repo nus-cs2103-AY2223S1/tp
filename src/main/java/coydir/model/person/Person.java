@@ -2,7 +2,9 @@ package coydir.model.person;
 
 import static coydir.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -105,7 +107,9 @@ public class Person {
     }
 
     public ObservableList<Leave> getObservableListLeaves() {
-        return FXCollections.observableArrayList(leaves);
+        ObservableList<Leave> list = FXCollections.observableArrayList(leaves);
+        list.sort(Leave.COMPARATOR);
+        return list;
     }
 
     public int getTotalNumberOfLeaves() {
