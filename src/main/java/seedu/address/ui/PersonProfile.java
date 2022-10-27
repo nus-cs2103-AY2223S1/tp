@@ -19,6 +19,7 @@ public class PersonProfile extends UiPart<Region> {
     private static final String FXML = "PersonProfile.fxml";
     private static final String FILE_EXISTS = "Client Information";
     private static final String NO_FILE_EXISTS = "No File Exists";
+    private static final String EMPTY_FILEPATH = "No Client Information";
     private static final String VALID_BUTTON_BGCOLOUR =
             "-fx-background-color: -fx-background-color: #1d1d1d;";
     private static final String INVALID_BUTTON_BGCOLOUR =
@@ -201,7 +202,8 @@ public class PersonProfile extends UiPart<Region> {
      */
     private void setPersonFileButton() {
         if (person.getFilePath().isEmpty()) {
-            personFileButton.setManaged(false);
+            personFileButton.setText(EMPTY_FILEPATH);
+            personFileButton.setDisable(true);
             return;
         }
     }
@@ -211,6 +213,9 @@ public class PersonProfile extends UiPart<Region> {
      */
     @FXML
     private void openPersonFile() {
+        if (person.getFilePath().isEmpty()) {
+            return;
+        }
         try {
             FileUtil.openPdfFile(person.getFilePath().toString());
             showValidFilePathButton();
