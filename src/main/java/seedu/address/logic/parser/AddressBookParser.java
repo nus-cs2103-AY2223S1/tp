@@ -84,7 +84,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case UpdateContactCommand.COMMAND_WORD:
-            return new SetPhysicianCommandParser().parse(arguments);
+            return new UpdateContactCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
