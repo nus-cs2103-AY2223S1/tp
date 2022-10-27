@@ -2,8 +2,9 @@ package seedu.address.logic.parser.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -35,7 +36,8 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
     public EditTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DEADLINE, PREFIX_PROJECT, PREFIX_CONTACT);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DEADLINE, PREFIX_PROJECT,
+                        PREFIX_ADD_CONTACT, PREFIX_DELETE_CONTACT);
 
         Index targetIndex;
 
@@ -53,7 +55,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editTaskDescriptor.setDeadline(TaskParserUtil
-                .parseDeadline(argMultimap.getValue(PREFIX_TITLE).get()));
+                .parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_PROJECT).isPresent()) {
@@ -64,8 +66,14 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
                         .parseProject(argMultimap.getValue(PREFIX_PROJECT).get()));
             }
         }
-        parseContactsForEdit(
-            argMultimap.getAllValues(PREFIX_CONTACT)).ifPresent(editTaskDescriptor::setAssignedContacts);
+        if (argMultimap.getValue(PREFIX_ADD_CONTACT).isPresent()) {
+            editTaskDescriptor.setAssignedContactIndexes(TaskParserUtil
+                    .parseIndexes(argMultimap.getAllValues(PREFIX_ADD_CONTACT)));
+        }
+        if (argMultimap.getValue(PREFIX_DELETE_CONTACT).isPresent()) {
+            editTaskDescriptor.setUnassignedContactsIndexes(TaskParserUtil
+                    .parseIndexes(argMultimap.getAllValues(PREFIX_DELETE_CONTACT)));
+        }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
