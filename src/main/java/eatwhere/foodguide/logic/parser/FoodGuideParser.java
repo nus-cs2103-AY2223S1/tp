@@ -91,10 +91,10 @@ public class FoodGuideParser {
             return new FindLocationCommandParser().parse(arguments);
 
         case FavouriteCommand.COMMAND_WORD:
-             return new FavouriteCommandParser().parse(arguments);
+            return new FavouriteCommandParser().parse(arguments);
 
         case UnfavouriteCommand.COMMAND_WORD:
-             return new UnfavouriteCommandParser().parse(arguments);
+            return new UnfavouriteCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
