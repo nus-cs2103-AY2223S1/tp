@@ -3,6 +3,7 @@ package seedu.foodrem.logic.commands.itemcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.NEW_COMMAND;
 
+import seedu.foodrem.commons.exceptions.ItemStorageFullException;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -32,7 +33,12 @@ public class NewCommand extends Command {
             throw new CommandException("This item already exists in FoodRem");
         }
 
-        model.addItem(newItem);
+        try {
+            model.addItem(newItem);
+        } catch (ItemStorageFullException sfe) {
+            throw new CommandException(sfe.getMessage());
+        }
+
         return CommandResult.from(new ItemWithMessage(newItem, "New item added as follows:"));
     }
 
