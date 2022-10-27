@@ -22,16 +22,16 @@ public class DeleteEventFromTripCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-et";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to specified trip. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Remove the event from the specified trip. "
             + "Parameters: "
-            + PREFIX_TITLE + "Event TITLE "
+            + PREFIX_TITLE + "EVENTTITLE "
             + PREFIX_TRIP + "TRIP "
             + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Swim "
             + PREFIX_TRIP + "Honeymoon ";
 
-    public static final String MESSAGE_SUCCESS = "Event removed to trip: %1$s \nThe specified event has been returned "
+    public static final String MESSAGE_SUCCESS = "Event removed from trip: %1$s \nThe specified event has been returned "
             + "to the bucket list. Current bucket list:";
     public static final String MESSAGE_DUPLICATE_TRIP = "This event doesn't exists in the specified trip";
 
