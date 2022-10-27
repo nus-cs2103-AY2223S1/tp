@@ -36,7 +36,7 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
 
     1. `cd CS2103T`: Sets the current module page to CS2103T.
 
-    1. `add task "iP Week 6" -d 16/09/2022`: Adds a task called iP week 6, with a deadline of 16/09/2022, to the module tracker.
+    1. `add task "tP v1.3" -d 2022-10-28`: Adds a task called iP week 6, with a deadline of 28/10/2022, to the module tracker.
 
     1. `list`: Lists all the active tasks.
 
@@ -64,8 +64,8 @@ Fret not about the specifics of the commands in this section; we will cover each
 Most commands have **parameters** which are prefixed with a dash (`-`). Each parameter can have _at most_ a **_single_ value**
 immediately after it (and the mandatory space).
 
-> Let's break down the command `add task "tP v1.3" -d 2022-10-28`.</br>
-> We know from above that `add task` is the command phrase, and `"tP v1.3"` is the main parameter.</br>
+> Let's break down the command `add task "tP v1.3" -d 2022-10-28`.
+> We know from above that `add task` is the command phrase, and `tP v1.3` is the main parameter.
 > Here, `-d` is a parameter, and `2022-10-28` is its value.
 
 Some commands even have **multiple parameters**, each separated by a space.
@@ -81,22 +81,20 @@ contains a space.
 Some parameters are optional. By default all parameters in the command formats we specify are mandatory.
 We will surround **optional parameters** with square brackets (`[]`).
 
-> For example, we define the list command format to be `list task [-a]`. This means you need not specify the `-a` parameter
-> depending on your intention with the usage of the command.
+> For example, we define the list command format to be `list task [-a]`. This means you need not specify the `-a` parameter depending on your intention with the usage of the command.
 
 That's it! You should now be able to understand the command syntax for the rest of this document.
 
 ### Command Quirks
 
-You may be wondering how to include quotes in your parameter values. For example, what if you want to add a task with the name
-`CS2103T "iP" Week 6`?
+You may be wondering how to include quotes in your parameter values. For example, what if you want to add a task with the name `CS2103T "iP" Week 6`?
 
 You can do so by enclosing the entire value in quotes of the other type. For example, if you use double-quotes in your
 value, you can enclose the entire value in single-quotes, and vice versa.
 
 > For example, `add task 'CS2103T "iP" Week 6' -d 2022-10-28` includes the double-quotes in the task description.
 
-Alternatively, you can escape the quotes (or any symbol) by using a backslash (\) before the quote,
+Alternatively, you can escape the quotes (or any symbol) by using a backslash (`\`) before the quote,
 which tells ModtRekt to treat the quote as a normal character.
 
 > The command `add task "CS2103T \"iP\" Week 6" -d 2022-10-28` is equivalent to the previous example.
@@ -371,14 +369,14 @@ the data of your previous ModuleList home folder.
 
 ### Tasks
 
-| Action                    | Format                                                                                  | Examples                                                     |
-|---------------------------|-----------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| **Add a task**            | `add task <description> -c <module code> [-d <deadline>] [-p <priority>]`               | `add task "do Assignment 1" -d 15/09/2022 -c CS2100 -p high` |
-| **Remove a task**         | `remove task <index> `<br/>`rm task <index>`                                            | `remove task 1`<br/>`rm task 1`                              |
-| **Edit a task**           | `edit task <index> [-c <mod code>] [-d <deadline>] [-ds <description>] [-p <priority>]` | `edit task 1 -p low`                                         |
-| **Mark a task as done**   | `done task <index>`                                                                     | `done task 1`                                                |
-| **Mark a task as undone** | `undone task <index>`                                                                   | `undone task 1`                                              |
-| **List tasks**            | `list task [-a]` <br/> `ls task [-a]`                                                   | `list task`<br/>`ls task -a`                                 |
+| Action                    | Format                                                                                  | Examples                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|------------------------------------------------------|
+| **Add a task**            | `add task <description> -c <module code> [-d <deadline>] [-p <priority>]`               | `add task "tP v1.3" -d 2022-10-28 -c CS2100 -p high` |
+| **Remove a task**         | `remove task <index> `<br/>`rm task <index>`                                            | `remove task 1`<br/>`rm task 1`                      |
+| **Edit a task**           | `edit task <index> [-c <mod code>] [-d <deadline>] [-ds <description>] [-p <priority>]` | `edit task 1 -p low`                                 |
+| **Mark a task as done**   | `done task <index>`                                                                     | `done task 1`                                        |
+| **Mark a task as undone** | `undone task <index>`                                                                   | `undone task 1`                                      |
+| **List tasks**            | `list task [-a]` <br/> `ls task [-a]`                                                   | `list task`<br/>`ls task -a`                         |
 
 
 ### Glossary
