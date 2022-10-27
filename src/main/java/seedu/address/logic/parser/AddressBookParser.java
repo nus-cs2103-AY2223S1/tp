@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS_FORMAT;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
@@ -11,7 +13,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Phone;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.Url;
@@ -27,9 +28,7 @@ public class AddressBookParser {
             .registerConverter(Address.class, new AddressConverter())
             .registerConverter(Index.class, new IndexConverter())
             .registerConverter(Url.class, new UrlConverter())
-            .registerConverter(Task.class, new TaskConverter())
-            .registerConverter(NameContainsKeywordsPredicate.class, new NameContainsKeywordsPredicateConverter());
-
+            .registerConverter(Task.class, new TaskConverter());
     /**
      * Parses user input into command for execution.
      *
@@ -54,8 +53,15 @@ public class AddressBookParser {
             }
 
             return (Command) commandExecuted.commandSpec().userObject();
+        } catch (CommandLine.MissingParameterException e) {
+            String commandName = e.getCommandLine().getCommandSpec().qualifiedName().trim();
+            throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS_FORMAT, e.getMessage(), commandName));
         } catch (CommandLine.UnmatchedArgumentException e) {
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            String commandName = e.getCommandLine().getCommandSpec().qualifiedName().trim();
+            if (commandName.equals("")) {
+                throw new ParseException(MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND);
+            }
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_FORMAT, commandName));
         } catch (CommandLine.PicocliException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }

@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.UniqueTeamList;
 
@@ -30,6 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
+
     {
         persons = new UniquePersonList();
         teams = new UniqueTeamList();
@@ -111,7 +113,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
+        requireNonNull(key);
         persons.remove(key);
+        // need to delete the person from the teams as well. So, check all teams and delete if the person exists.
+        teams.removePersonIfExists(key);
     }
 
     //// team-level operations
@@ -119,6 +124,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public Team getTeam() {
         return currentTeam.getValue();
     }
+
     public ObjectProperty<Team> getTeamAsProperty() {
         return currentTeam;
     }
@@ -142,6 +148,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setTeams(List<Team> teams) {
         this.teams.setTeams(teams);
     }
+
     //// link related operations
     public boolean hasLink(Link link) {
         return getTeam().hasLink(link);
@@ -160,6 +167,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         getTeam().deleteLink(link);
     }
 
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+        getTeam().setTask(target, editedTask);
+    }
 
     //// util methods
 
@@ -174,7 +185,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-
     @Override
     public ObservableList<Team> getTeamList() {
         return teams.asUnmodifiableObservableList();
@@ -187,9 +197,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddressBook // instanceof handles nulls
-            && persons.equals(((AddressBook) other).persons)
-            );
+                || (other instanceof AddressBook // instanceof handles nulls
+                && persons.equals(((AddressBook) other).persons));
     }
 
     @Override

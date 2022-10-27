@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -27,7 +29,11 @@ public class Team {
     private final String teamName;
     private final String description;
     private final UniquePersonList teamMembers = new UniquePersonList();
+
+    private final DisplayList<Person> filteredMembers;
     private final TaskList taskList = new TaskList();
+
+    private final DisplayList<Task> filteredTasks;
     private final UniqueLinkList links = new UniqueLinkList();
 
     /**
@@ -40,6 +46,8 @@ public class Team {
         checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
         this.description = DEFAULT_DESCRIPTION;
+        filteredMembers = new DisplayList<>(getTeamMembers());
+        filteredTasks = new DisplayList<>(getTaskList());
     }
 
     /**
@@ -54,6 +62,8 @@ public class Team {
         checkArgument(isValidTeamDescription(description), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
         this.description = description;
+        filteredMembers = new DisplayList<>(getTeamMembers());
+        filteredTasks = new DisplayList<>(getTaskList());
     }
 
     /**
@@ -119,6 +129,30 @@ public class Team {
         return teamMembers.asUnmodifiableObservableList();
     }
 
+    public FilteredList<Person> getFilteredMemberList() {
+        return filteredMembers.getFilteredDisplayList();
+    }
+
+    /**
+     * Updates the displayed members that matches a certain criteria.
+     */
+    public void updateFilteredMembersList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredMembers.setPredicate(predicate);
+    }
+
+    public FilteredList<Task> getFilteredTaskList() {
+        return filteredTasks.getFilteredDisplayList();
+    }
+
+    /**
+     * Updates the displayed tasks that matches a certain criteria.
+     */
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the team.
      */
@@ -140,6 +174,8 @@ public class Team {
      */
     public void removeMember(Person person) {
         teamMembers.remove(person);
+        // when a member is removed from a team, all corresponding tasks have to remove member as assignee.
+        taskList.removeAssigneeIfExists(person);
     }
 
     public ObservableList<Task> getTaskList() {
@@ -160,6 +196,11 @@ public class Team {
      */
     public void removeTask(Task task) {
         taskList.remove(task);
+    }
+
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+        taskList.setTask(target, editedTask);
     }
 
     /**

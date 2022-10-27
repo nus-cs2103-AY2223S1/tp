@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_NAME_DESCRIPTION;
 
 import java.util.List;
 
@@ -15,7 +19,7 @@ import seedu.address.model.team.Team;
 /**
  * Adds the person with the specified name to the current team.
  */
-@CommandLine.Command(name = "member")
+@CommandLine.Command(name = "member", aliases = {"m"}, mixinStandardHelpOptions = true)
 public class AddMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "add member";
@@ -29,14 +33,25 @@ public class AddMemberCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person is already in the team";
     public static final String MESSAGE_PERSON_NOT_EXISTS = "The person you are trying to add does not exist";
 
-    @CommandLine.Parameters(arity = "1")
+    @CommandLine.Parameters(arity = "1", description = FLAG_PERSON_NAME_DESCRIPTION)
     private Name targetPersonName;
+
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
+
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
 
     public AddMemberCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         List<Person> matchingPersons = model.getFilteredPersonList(new NamePredicate(targetPersonName));
 

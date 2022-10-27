@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
 
 /**
@@ -171,6 +172,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setTask(Task target, Task editedTask) {
+        addressBook.setTask(target, editedTask);
+    }
+
+    @Override
     public void deleteLink(Link link) {
         addressBook.deleteLink(link);
     }
@@ -211,6 +217,28 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Person> getFilteredMemberList() {
+        return addressBook.getTeam().getFilteredMemberList();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return addressBook.getTeam().getFilteredTaskList();
+    }
+
+    @Override
+    public void updateFilteredMembersList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        addressBook.getTeam().updateFilteredMembersList(predicate);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        addressBook.getTeam().updateFilteredTaskList(predicate);
     }
 
     @Override
