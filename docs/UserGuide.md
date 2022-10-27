@@ -219,6 +219,9 @@ Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
+* `find d/burger n/hans` returns `Hansel` if he owes money for a burger
+* `find d/burger d/fries n/hans` returns `Hans Gruber` if he owes money for both a burger and fries,
+  but not `Hansel`  if he only owes money for a burger and not for fries.
 
 ### Locating persons by debt description: `finddebt`
 
