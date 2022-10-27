@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 
 import seedu.clinkedin.commons.util.StringUtil;
 import seedu.clinkedin.logic.parser.Prefix;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.tag.UniqueTagList;
 
 /**
@@ -24,6 +25,7 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
     private final Set<Status> statusKeywords;
     private final Set<Note> noteKeywords;
     private final Set<Rating> ratingKeywords;
+    private final Set<Link> linkKeywords;
     private final Map<Prefix, List<String>> tagMap;
 
     /**
@@ -41,6 +43,7 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
         this.noteKeywords = new HashSet<>();
         this.tagMap = new HashMap<>();
         this.ratingKeywords = new HashSet<>();
+        this.linkKeywords = new HashSet<>();
     }
 
     /**
@@ -54,7 +57,7 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
      */
     public DetailsContainKeywordsPredicate(Set<Name> nameKeywords, Set<Phone> phoneKeywords, Set<Email> emailKeywords,
                                            Set<Address> addressKeywords, Set<Status> statusKeywords,
-                                           Set<Note> noteKeywords, Set<Rating> ratingKeywords,
+                                           Set<Note> noteKeywords, Set<Rating> ratingKeywords, Set<Link> linkKeywords,
                                            Map<Prefix, List<String>> prefToStrings) {
         this.keywords = new ArrayList<>();
         this.nameKeywords = nameKeywords;
@@ -65,6 +68,7 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
         this.noteKeywords = noteKeywords;
         this.tagMap = prefToStrings;
         this.ratingKeywords = ratingKeywords;
+        this.linkKeywords = linkKeywords;
     }
 
     @Override
@@ -103,6 +107,9 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
                             keyword.value))
                     || ratingKeywords.stream()
                     .anyMatch(keyword -> StringUtil.containsSequenceIgnoreCase(person.getRating().toString(),
+                            keyword.toString()))
+                    || linkKeywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsSequenceIgnoreCase(person.getLinks().toString(),
                             keyword.toString()));
         }
     }
