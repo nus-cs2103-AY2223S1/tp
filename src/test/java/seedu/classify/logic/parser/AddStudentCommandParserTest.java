@@ -39,13 +39,13 @@ import static seedu.classify.testutil.TypicalStudents.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.classify.logic.commands.AddStudentCommand;
+import seedu.classify.model.exam.Exam;
 import seedu.classify.model.student.Class;
 import seedu.classify.model.student.Email;
 import seedu.classify.model.student.Id;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
 import seedu.classify.model.student.Student;
-import seedu.classify.model.tag.Exam;
 import seedu.classify.testutil.StudentBuilder;
 
 public class AddStudentCommandParserTest {
