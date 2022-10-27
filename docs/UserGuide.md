@@ -290,7 +290,7 @@ Format: `copy`
 
 ### Exporting to PDF file : `pdf`
 
-Exports the itinerary into a PDF file.
+Exports the itinerary into a PDF file. The file can be found under the "Waddle" folder in your "Documents" folder.
 
 Format: `pdf`
 
