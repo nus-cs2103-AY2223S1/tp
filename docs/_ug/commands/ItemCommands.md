@@ -257,7 +257,7 @@ Tags: {vegetables}
 
 #### Edit the information of an item: `edit`
 
-Command: `edit INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE] [p/PRICE] [r/REMARKS]`
+**Format**: `edit INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE] [p/PRICE] [r/REMARKS]`
 
 > Updates the details of the item at the specified index
 
@@ -301,7 +301,7 @@ Tags: {vegetables}
 
 #### Add a remark to an item: `rmk`
 
-Command: `rmk INDEX [r/REMARKS]`
+**Format**: `rmk INDEX [r/REMARKS]`
 
 > Adds a remark to the item at the specified index
 
@@ -335,7 +335,7 @@ Tags: {vegetables}
 
 #### Delete an item: `del`
 
-Command: `del INDEX`
+**Format**: `del INDEX`
 
 > Deletes the item at the specified index.
 
