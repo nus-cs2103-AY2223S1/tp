@@ -6,12 +6,13 @@ import static seedu.condonery.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.condonery.logic.commands.ClearCommand;
+import seedu.condonery.logic.commands.property.ClearPropertyCommand;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.UndoCommand;
 import seedu.condonery.logic.commands.client.AddClientCommand;
+import seedu.condonery.logic.commands.client.ClearClientCommand;
 import seedu.condonery.logic.commands.client.FilterClientCommand;
 import seedu.condonery.logic.commands.client.FindClientCommand;
 import seedu.condonery.logic.commands.client.ListClientCommand;
@@ -73,8 +74,11 @@ public class CondoneryParser {
         case DeletePropertyCommand.COMMAND_WORD:
             return new DeletePropertyCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case ClearPropertyCommand.COMMAND_WORD:
+            return new ClearPropertyCommand();
+
+        case ClearClientCommand.COMMAND_WORD:
+            return new ClearClientCommand();
 
         case FindPropertyCommand.COMMAND_WORD:
             return new FindPropertyCommandParser().parse(arguments);

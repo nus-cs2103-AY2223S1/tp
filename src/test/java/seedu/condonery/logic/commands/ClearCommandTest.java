@@ -5,6 +5,7 @@ import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirec
 
 import org.junit.jupiter.api.Test;
 
+import seedu.condonery.logic.commands.property.ClearPropertyCommand;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
 import seedu.condonery.model.PropertyDirectory;
@@ -17,7 +18,7 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        CommandTestUtil.assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertCommandSuccess(new ClearPropertyCommand(), model, ClearPropertyCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -27,7 +28,7 @@ public class ClearCommandTest {
                 getTypicalClientDirectory(), new UserPrefs());
         expectedModel.setPropertyDirectory(new PropertyDirectory());
 
-        CommandTestUtil.assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertCommandSuccess(new ClearPropertyCommand(), model, ClearPropertyCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }
