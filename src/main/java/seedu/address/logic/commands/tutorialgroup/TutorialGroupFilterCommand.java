@@ -17,7 +17,7 @@ import seedu.address.model.student.TutorialGroup;
  * Adds a tutorial group to the address book.
  */
 public class TutorialGroupFilterCommand extends Command {
-    public static final String COMMAND_WORD = "tutorialFilter";
+    public static final String COMMAND_WORD = "tutorial filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters students based on tutorial groups. "
         + "Parameters: ";

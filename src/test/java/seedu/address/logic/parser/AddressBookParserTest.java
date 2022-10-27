@@ -7,22 +7,17 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.student.StudentAddCommand;
+import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.commands.student.StudentEditCommand;
+import seedu.address.logic.commands.student.StudentListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
@@ -35,8 +30,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Student student = new StudentBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
-        assertEquals(new AddCommand(student), command);
+        StudentAddCommand command = (StudentAddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
+        assertEquals(new StudentAddCommand(student), command);
     }
 
     @Test
@@ -47,9 +42,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        StudentDeleteCommand command = (StudentDeleteCommand) parser.parseCommand(
+                StudentDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new StudentDeleteCommand(new Index[]{INDEX_FIRST_PERSON}), command);
     }
 
     @Test
@@ -68,14 +63,6 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    }
-
-    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
@@ -83,8 +70,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(StudentListCommand.COMMAND_WORD) instanceof StudentListCommand);
+        assertTrue(parser.parseCommand(StudentListCommand.COMMAND_WORD + " 3") instanceof StudentListCommand);
     }
 
     @Test
@@ -95,6 +82,6 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknown ommand"));
     }
 }

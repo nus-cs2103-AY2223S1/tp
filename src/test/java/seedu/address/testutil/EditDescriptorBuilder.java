@@ -4,8 +4,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.address.logic.commands.student.StudentEditCommand;
+import seedu.address.logic.commands.student.StudentEditCommand.EditStudentDescriptor;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -13,7 +13,7 @@ import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditStudentDescriptor objects.
  */
 public class EditDescriptorBuilder {
 
@@ -23,8 +23,8 @@ public class EditDescriptorBuilder {
         descriptor = new EditStudentDescriptor();
     }
 
-    public EditDescriptorBuilder(EditCommand.EditStudentDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditStudentDescriptor(descriptor);
+    public EditDescriptorBuilder(StudentEditCommand.EditStudentDescriptor descriptor) {
+        this.descriptor = new StudentEditCommand.EditStudentDescriptor(descriptor);
     }
 
     /**
@@ -72,7 +72,7 @@ public class EditDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditStudentDescriptor build() {
+    public StudentEditCommand.EditStudentDescriptor build() {
         return descriptor;
     }
 }

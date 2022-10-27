@@ -27,7 +27,7 @@ import seedu.address.model.tag.Tag;
  */
 public class StudentEnrollCommand extends Command {
 
-    public static final String COMMAND_WORD = "studentEnroll";
+    public static final String COMMAND_WORD = "student enroll";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enroll the student identified to the given tutorial "
             + "by the index number used in the displayed student list. "

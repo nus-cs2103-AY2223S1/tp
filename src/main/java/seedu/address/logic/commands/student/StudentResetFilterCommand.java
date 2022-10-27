@@ -15,7 +15,7 @@ import seedu.address.model.student.Student;
  * Resets any filter applied to student list.
  */
 public class StudentResetFilterCommand extends Command {
-    public static final String COMMAND_WORD = "studentUnfilter";
+    public static final String COMMAND_WORD = "student unfilter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Revert back to unfiltered state.";
 

@@ -17,7 +17,7 @@ import seedu.address.model.student.TutorialGroup;
  */
 public class TutorialGroupListCommand extends Command {
 
-    public static final String COMMAND_WORD = "tutorialList";
+    public static final String COMMAND_WORD = "tutorial list";
 
     public static final String MESSAGE_SUCCESS = "Listed all tutorial groups";
 

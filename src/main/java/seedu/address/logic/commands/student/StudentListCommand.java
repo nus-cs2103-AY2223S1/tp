@@ -15,7 +15,7 @@ import seedu.address.model.student.Student;
  */
 public class StudentListCommand extends Command {
 
-    public static final String COMMAND_WORD = "studentList";
+    public static final String COMMAND_WORD = "student list";
 
     public static final String MESSAGE_SUCCESS = "Listed all students";
 

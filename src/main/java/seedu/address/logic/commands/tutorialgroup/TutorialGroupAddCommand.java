@@ -13,7 +13,7 @@ import seedu.address.model.student.TutorialGroup;
  * Adds a tutorial group to the address book.
  */
 public class TutorialGroupAddCommand extends Command {
-    public static final String COMMAND_WORD = "tutorialAdd";
+    public static final String COMMAND_WORD = "tutorial add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial group to the address book. "
         + "Parameters: ";

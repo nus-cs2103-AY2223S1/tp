@@ -33,7 +33,7 @@ import seedu.address.model.task.TaskName;
  */
 public class TaskEditCommand extends Command {
 
-    public static final String COMMAND_WORD = "taskEdit";
+    public static final String COMMAND_WORD = "task edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the displayed person list. "
