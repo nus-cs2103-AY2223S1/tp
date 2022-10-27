@@ -40,10 +40,6 @@ public class TabContainer extends UiPart<Region> {
     public void toggleTabs(int id) {
         assert id >= 0 && id <= 3 : "Invalid tab";
 
-        if (id == 3) {
-            return;
-        }
-
         if (id >= 0 && id < 3) {
             selectionModel.select(id);
         }
