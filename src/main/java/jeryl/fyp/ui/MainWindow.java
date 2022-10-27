@@ -205,16 +205,24 @@ public class MainWindow extends UiPart<Stage> {
      * Outputs the sorted list of projects by specialisation
      */
     private void handleSortBySpecialisation() {
-        studentListPanel = new StudentListPanel(logic.getSortedBySpecialisationStudentList());
-        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        uncompletedStudentListPanel = new UncompletedStudentListPanel(logic.
+                getSortedBySpecialisationUncompletedStudentList());
+        uncompletedStudentListPanelPlaceholder.getChildren().add(uncompletedStudentListPanel.getRoot());
+
+        completedStudentListPanel = new CompletedStudentListPanel(logic.getSortedCompletedStudentList());
+        completedStudentListPanelPlaceholder.getChildren().add(completedStudentListPanel.getRoot());
     }
 
     /**
      * Outputs the sorted list of projects by project status followed by alphabetical order
      */
     private void handleSortByProjectStatus() {
-        studentListPanel = new StudentListPanel(logic.getSortedByProjectStatusStudentList());
-        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        uncompletedStudentListPanel = new UncompletedStudentListPanel(logic.
+                getSortedByProjectStatusUncompletedStudentList());
+        uncompletedStudentListPanelPlaceholder.getChildren().add(uncompletedStudentListPanel.getRoot());
+
+        completedStudentListPanel = new CompletedStudentListPanel(logic.getSortedCompletedStudentList());
+        completedStudentListPanelPlaceholder.getChildren().add(completedStudentListPanel.getRoot());
     }
 
     /**

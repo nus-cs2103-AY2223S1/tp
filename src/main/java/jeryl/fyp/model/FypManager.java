@@ -3,6 +3,7 @@ package jeryl.fyp.model;
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -113,22 +114,6 @@ public class FypManager implements ReadOnlyFypManager {
         return students.getIndexByStudentId(studentId);
     }
 
-    /**
-     * Sorts our project list by specialisation (which naturally sorts it by alphabetical order as well)
-     */
-    public void sortFilteredStudentListBySpecialisation() {
-        students.sortFilteredStudentListBySpecialisation();
-    }
-
-    /**
-     * Sorts our project list by project status fist, followed by alphabetical order
-     */
-    public void sortFilteredStudentListByProjectStatus() {
-        students.sortFilteredStudentListByProjectStatus();
-    }
-
-
-
     //// deadline-level operations
     /**
      * Returns true if a deadline with the same identity as {@code deadline} exists in the {@code student}.
@@ -166,12 +151,40 @@ public class FypManager implements ReadOnlyFypManager {
         setStudent(student, student);
     }
 
-    public ObservableList<Student> getSortedBySpecialisationStudentList() {
-        return students.sortFilteredStudentListBySpecialisation();
+    /**
+     * Sorts our Uncompleted student list by specialisation (which naturally sorts it by alphabetical order as well)
+     */
+    public ObservableList<Student> getSortedBySpecialisationUncompletedStudentList() {
+        return getUncompletedStudentList().sorted((Student a, Student b) -> a.getProjectName().toString()
+                .toLowerCase().compareTo(b.getProjectName().toString().toLowerCase()));
     }
 
-    public ObservableList<Student> getSortedByProjectStatusStudentList() {
-        return students.sortFilteredStudentListByProjectStatus();
+    /**
+     * Sorts our Uncompleted student list by project Status(YTS, IP then DONE) then by alphabetical order
+     */
+    public ObservableList<Student> getSortedByProjectStatusUncompletedStudentList() {
+        return getUncompletedStudentList().sorted(new Comparator<Student>() {
+
+            public int compare(Student a, Student b) {
+                int statusComp = b.getProjectStatus().toString().toLowerCase()
+                        .compareTo(a.getProjectStatus().toString().toLowerCase());
+
+                if (statusComp != 0) {
+                    return statusComp;
+                }
+
+                return a.getProjectName().toString().toLowerCase()
+                        .compareTo(b.getProjectName().toString().toLowerCase());
+            }
+        });
+    }
+
+    /**
+     * Sorts our Completed student list by specialisation, which naturally sorts it in alphabetical order
+     */
+    public ObservableList<Student> getSortedCompletedStudentList() {
+        return getCompletedStudentList().sorted((Student a, Student b) -> a.getProjectName().toString()
+                .toLowerCase().compareTo(b.getProjectName().toString().toLowerCase()));
     }
 
 
