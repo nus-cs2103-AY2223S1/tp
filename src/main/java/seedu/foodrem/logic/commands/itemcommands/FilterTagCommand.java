@@ -17,12 +17,15 @@ import seedu.foodrem.viewmodels.FilterByTag;
 public class FilterTagCommand extends Command {
     private final TagSetContainsTagPredicate pred;
 
+    private final Tag tag;
+
     /**
      * @param tag to filter the Item list for Items tagged with it
      */
     public FilterTagCommand(Tag tag) {
         requireNonNull(tag);
         this.pred = new TagSetContainsTagPredicate(tag);
+        this.tag = tag;
     }
 
     @Override
@@ -36,7 +39,7 @@ public class FilterTagCommand extends Command {
         model.updateFilteredItemList(pred);
         String primaryMessage = "Filtered by tag:";
         String secondaryMessage = String.format("%s items filtered", model.getCurrentList().size());
-        return CommandResult.from(new FilterByTag(pred.getTag(), primaryMessage, secondaryMessage));
+        return CommandResult.from(new FilterByTag(tag, primaryMessage, secondaryMessage));
     }
 
     public static String getUsage() {

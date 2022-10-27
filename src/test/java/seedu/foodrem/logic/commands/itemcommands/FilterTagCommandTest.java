@@ -16,11 +16,11 @@ import seedu.foodrem.model.ModelManager;
 import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
+import seedu.foodrem.viewmodels.FilterByTag;
 
 public class FilterTagCommandTest {
     private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in the FoodRem";
-    private static final String EXPECTED_SUCCESS_TAG_NAME = "Filtered by tag: %s\n";
-    private static final String EXPECTED_SUCCESS_LIST_AFTER_FILTERING = "%1$d items after filtering!";
+    private static final String EXPECTED_SUCCESS_LIST_AFTER_FILTERING = "%1$d items filtered";
 
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
     private final Tag fruitsTag = new TagBuilder()
@@ -37,30 +37,32 @@ public class FilterTagCommandTest {
                 .filter(item -> item.getTagSet().contains(vegetableTag))
                 .count();
 
-        String expectedMessageVegetable = String.format(EXPECTED_SUCCESS_TAG_NAME, vegetableTag.getName())
-                + String.format(EXPECTED_SUCCESS_LIST_AFTER_FILTERING, expectedSizeVegetable);
+        String expectedMessageVegetable = String.format(EXPECTED_SUCCESS_LIST_AFTER_FILTERING, expectedSizeVegetable);
 
         FilterTagCommand filterVegetableTagCommand = new FilterTagCommand(vegetableTag);
 
         Model expectedModelVegetable = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         expectedModelVegetable.updateFilteredItemList(item -> item.getTagSet().contains(vegetableTag));
 
-        assertCommandSuccess(filterVegetableTagCommand, model, expectedMessageVegetable, expectedModelVegetable);
+        assertCommandSuccess(filterVegetableTagCommand, model,
+                new FilterByTag(vegetableTag, "Filtered by tag:", expectedMessageVegetable),
+                             expectedModelVegetable);
 
         long expectedSizeNumbers = model.getCurrentList()
                 .stream()
                 .filter(item -> item.getTagSet().contains(fruitsTag))
                 .count();
 
-        String expectedMessageNumbers = String.format(EXPECTED_SUCCESS_TAG_NAME, fruitsTag.getName())
-                + String.format(EXPECTED_SUCCESS_LIST_AFTER_FILTERING, expectedSizeNumbers);
+        String expectedMessageNumbers = String.format(EXPECTED_SUCCESS_LIST_AFTER_FILTERING, expectedSizeNumbers);
 
         FilterTagCommand filterNumbersTagCommand = new FilterTagCommand(fruitsTag);
 
         Model expectedModelNumbers = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         expectedModelNumbers.updateFilteredItemList(item -> item.getTagSet().contains(fruitsTag));
 
-        assertCommandSuccess(filterNumbersTagCommand, model, expectedMessageNumbers, expectedModelNumbers);
+        assertCommandSuccess(filterNumbersTagCommand, model,
+                             new FilterByTag(fruitsTag, "Filtered by tag:", expectedMessageNumbers),
+                             expectedModelNumbers);
     }
 
     @Test

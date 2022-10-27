@@ -46,7 +46,6 @@ public class UntagCommand extends Command {
         itemTags.remove(tag);
         Item newTagSetItem = Item.createItemWithTags(itemToUntag, itemTags);
         model.setItem(itemToUntag, newTagSetItem);
-        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
 
         return CommandResult.from(new ItemWithMessage(newTagSetItem, "Item untagged successfully. Updated item:"));
     }
