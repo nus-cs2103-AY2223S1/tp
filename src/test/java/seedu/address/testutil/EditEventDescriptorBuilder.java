@@ -1,13 +1,16 @@
 package seedu.address.testutil;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.event.EditEventCommand.EditEventDescriptor;
+import seedu.address.model.event.Attendees;
 import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Title;
+import seedu.address.model.profile.Profile;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,6 +37,7 @@ public class EditEventDescriptorBuilder {
         descriptor.setStartDateTime(event.getStartDateTime());
         descriptor.setEndDateTime(event.getEndDateTime());
         descriptor.setTags(event.getTags());
+        descriptor.setAttendees(event.getAttendees());
     }
 
     /**
@@ -67,6 +71,14 @@ public class EditEventDescriptorBuilder {
     public EditEventDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code attendees} of the {@code EditEventDescriptor} that we are building.
+     */
+    public EditEventDescriptorBuilder withAttendees(Profile... profiles) {
+        descriptor.setAttendees(new Attendees(List.of(profiles)));
         return this;
     }
 

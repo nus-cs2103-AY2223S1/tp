@@ -3,13 +3,11 @@ package seedu.address.model.profile;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import seedu.address.model.profile.exceptions.ProfileNotFoundException;
 import seedu.address.model.profile.exceptions.SimilarProfileException;
 
@@ -34,14 +32,7 @@ public class UniqueProfileList implements Iterable<Profile> {
     private final ObservableList<Profile> internalList = FXCollections.observableArrayList();
     private final ObservableList<Profile> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final SortedList<Profile> unmodifiableSortedList = internalUnmodifiableList.sorted(
-            new Comparator<Profile>() {
-                @Override
-                public int compare(Profile p1, Profile p2) {
-                    return p1.compareTo(p2);
-                }
-            });
-
+    private final ObservableList<Profile> unmodifiableSortedList = internalUnmodifiableList.sorted(Profile::compareTo);
     /**
      * Returns true if the list contains a profile with an equivalent email as the given argument.
      */
@@ -67,6 +58,14 @@ public class UniqueProfileList implements Iterable<Profile> {
     }
 
     /**
+     * Returns true if the list contains an equivalent profile as the given argument.
+     */
+    public boolean contains(Profile toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
+    }
+
+    /**
      * Adds a profile to the list.
      * The profile must not already exist in the list. The email, phone and telegram must also not exist in the list.
      */
@@ -83,6 +82,7 @@ public class UniqueProfileList implements Iterable<Profile> {
      * {@code target} must exist in the list.
      * The profile email, phone and telegram of {@code editedProfile} must not be the same as another existing
      * profile in the list.
+     * Updates the changes for all events the profile is attending.
      */
     public void setProfile(Profile target, Profile editedProfile) {
         requireAllNonNull(target, editedProfile);
@@ -98,18 +98,23 @@ public class UniqueProfileList implements Iterable<Profile> {
             throw new SimilarProfileException();
         }
 
+        target.removeFromAttendingEvents();
+        editedProfile.addToAllEvents();
+
         internalList.set(index, editedProfile);
     }
 
     /**
      * Removes the equivalent profile from the list.
      * The profile must exist in the list.
+     * Also removes the profile from Events which contain the profile.
      */
     public void remove(Profile toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new ProfileNotFoundException();
         }
+        toRemove.removeFromAttendingEvents();
     }
 
     public void setProfiles(UniqueProfileList replacement) {

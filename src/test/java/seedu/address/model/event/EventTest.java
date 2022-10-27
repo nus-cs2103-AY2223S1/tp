@@ -9,6 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_PRACTICE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.PRACTICE;
 import static seedu.address.testutil.TypicalEvents.PRESENTATION;
+import static seedu.address.testutil.TypicalProfiles.AMY;
+import static seedu.address.testutil.TypicalProfiles.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +32,7 @@ public class EventTest {
         assertFalse(PRESENTATION.isSameEvent(null));
 
         // same identity, all other attributes different -> returns true
-        Event editedPresentation = new EventBuilder(PRESENTATION)
+        Event editedPresentation = new EventBuilder(PRESENTATION).withAttendees(AMY, BOB)
                 .withTags(VALID_TAG_CCA).build();
         assertTrue(PRESENTATION.isSameEvent(editedPresentation));
 
@@ -81,5 +83,9 @@ public class EventTest {
         // different tags -> returns false
         editedPresentation = new EventBuilder(PRESENTATION).withTags(VALID_TAG_CCA).build();
         assertFalse(PRESENTATION.equals(editedPresentation));
+
+        // different attendees -> returns true
+        editedPresentation = new EventBuilder(PRESENTATION).withAttendees(AMY, BOB).build();
+        assertTrue(PRESENTATION.equals(editedPresentation));
     }
 }
