@@ -29,7 +29,7 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.FEEDBACK_MESSAGE), pe);
         }
 
         return new UnassignCommand(index, ParserUtil.parseClassName(argMultimap.getValue(PREFIX_NAME).get()));

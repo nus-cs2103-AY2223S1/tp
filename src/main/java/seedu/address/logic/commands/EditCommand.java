@@ -90,54 +90,36 @@ public class EditCommand extends Command {
     public static String getMessageUsage(Model.ListType listType) {
         switch (listType) {
         case STUDENT_LIST:
-            return COMMAND_WORD + ": Edits the details of the student identified "
-                    + "by the index number used in the displayed student list. "
-                    + "Existing values will be overwritten by the input values.\n"
-                    + "Parameters: INDEX (must be a positive integer) "
+            return "Valid edit command index:\n"
+                    + "edit INDEX "
                     + "[" + PREFIX_NAME + "NAME] "
                     + "[" + PREFIX_PHONE + "PHONE] "
                     + "[" + PREFIX_EMAIL + "EMAIL] "
                     + "[" + PREFIX_ADDRESS + "ADDRESS] "
                     + "[" + PREFIX_SUBJECT_OR_SCHOOL + "SCHOOL] "
                     + "[" + PREFIX_LEVEL + "LEVEL] "
-                    + "[" + PREFIX_TAG + "TAG]...\n"
-                    + "Example: " + COMMAND_WORD + " 1 "
-                    + PREFIX_PHONE + "91234567 "
-                    + PREFIX_EMAIL + "johndoe@example.com "
-                    + PREFIX_SUBJECT_OR_SCHOOL + "Katong Primary School";
+                    + "[" + PREFIX_TAG + "TAG]...\n";
 
         case TUTOR_LIST:
-            return COMMAND_WORD + ": Edits the details of the tutor identified "
-                    + "by the index number used in the displayed tutor list. "
-                    + "Existing values will be overwritten by the input values.\n"
-                    + "Parameters: INDEX (must be a positive integer) "
+            return "Valid edit command index:\n"
+                    + "edit INDEX "
                     + "[" + PREFIX_NAME + "NAME] "
                     + "[" + PREFIX_PHONE + "PHONE] "
                     + "[" + PREFIX_EMAIL + "EMAIL] "
                     + "[" + PREFIX_ADDRESS + "ADDRESS] "
                     + "[" + PREFIX_QUALIFICATION + "QUALIFICATION] "
                     + "[" + PREFIX_INSTITUTION + "INSTITUTION] "
-                    + "[" + PREFIX_TAG + "TAG]...\n"
-                    + "Example: " + COMMAND_WORD + " 1 "
-                    + PREFIX_PHONE + "91234567 "
-                    + PREFIX_EMAIL + "johndoe@example.com "
-                    + PREFIX_QUALIFICATION + "MSc";
+                    + "[" + PREFIX_TAG + "TAG]...\n";
 
         case TUITIONCLASS_LIST:
-            return COMMAND_WORD + ": Edits the details of the class identified "
-                    + "by the index number used in the displayed class list. "
-                    + "Existing values will be overwritten by the input values.\n"
-                    + "Parameters: INDEX (must be a positive integer) "
+            return "Valid edit command index:\n"
+                    + "edit INDEX "
                     + "[" + PREFIX_NAME + "NAME] "
                     + "[" + PREFIX_SUBJECT_OR_SCHOOL + "SUBJECT] "
                     + "[" + PREFIX_LEVEL + "LEVEL] "
                     + "[" + PREFIX_DAY + "DAY] "
                     + "[" + PREFIX_TIME + "TIME] "
-                    + "[" + PREFIX_TAG + "TAG]...\n"
-                    + "Example: " + COMMAND_WORD + " 1 "
-                    + PREFIX_SUBJECT_OR_SCHOOL + "Mathematics "
-                    + PREFIX_DAY + "Monday "
-                    + PREFIX_TIME + "12:00-14:00";
+                    + "[" + PREFIX_TAG + "TAG]...\n";
 
         default:
             return MESSAGE_USAGE;

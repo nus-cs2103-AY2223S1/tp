@@ -53,11 +53,11 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_RELATIONSHIP);
 
         if (argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
         }
 
         if (areAnyPrefixesPresent(argMultimap, PREFIX_RELATIONSHIP)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
         }
 
         AddCommand.Entity entity = ParserUtil.parseEntity(argMultimap.getPreamble());
@@ -85,7 +85,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_SUBJECT_OR_SCHOOL, PREFIX_LEVEL))
                 || (areAnyPrefixesPresent(argMultimap, PREFIX_QUALIFICATION, PREFIX_INSTITUTION,
                 PREFIX_DAY, PREFIX_TIME))) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
         }
         seedu.address.model.person.Name name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
@@ -103,7 +103,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_QUALIFICATION, PREFIX_INSTITUTION))
                 || (areAnyPrefixesPresent(argMultimap, PREFIX_LEVEL, PREFIX_SUBJECT_OR_SCHOOL,
                 PREFIX_DAY, PREFIX_TIME))) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
         }
         seedu.address.model.person.Name name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
@@ -121,7 +121,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_TIME))
                 || (areAnyPrefixesPresent(argMultimap, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_QUALIFICATION, PREFIX_INSTITUTION))) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.FEEDBACK_MESSAGE));
         }
         seedu.address.model.tuitionclass.Name name = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_NAME).get());
         Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT_OR_SCHOOL).get());
