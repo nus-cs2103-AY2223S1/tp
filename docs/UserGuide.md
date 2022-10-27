@@ -187,7 +187,7 @@ The default date is the current date on your computer!
 * Provides a financial summary recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application displays the summary for all entries.
 
-### View entries by category : `view t/ENTRY_TYPE g/GRAPH_TYPE`
+### View entries by category : `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/month]`
 
 1. View a PieChart of all expenditures by categories
     * Examples: `view t/e g/c`
