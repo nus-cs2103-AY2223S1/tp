@@ -24,6 +24,10 @@ faster than other GUI-based applications.
         * Adding a person: [`add`](#adding-a-person-add)
         * Editing a person: [`edit`](#editing-a-person--edit)
         * Locating persons by: [`find`](#locating-persons-by-name-find)
+        * Entering grades by: `grade`
+        * Sorting by grade by: `sort`
+        * Predicting grades by: `predict`
+        * Adding remarks by: `remark`
         * Deleting a person: [`delete`](#deleting-a-person--delete)
     * [FAQ](#faq)
     * [Command Summary](#command-summary)
@@ -54,9 +58,9 @@ faster than other GUI-based applications.
 
     * **`list`** : Lists all students in Watson.
 
-    * **`add`**`id/12345678 n/John Doe p/98765432 a/John street, #01-01` : Adds a student named `John Doe` to Watson, with `p`hone number 98765432 and `a`ddress "John Street, #01-01".
+    * **`add`**`n/John Doe p/98765432 a/John street, #01-01` : Adds a student named `John Doe` to Watson, with `p`hone number 98765432 and `a`ddress "John Street, #01-01".
 
-    * **`delete`**`id/12345678` : Deletes the student with `ID number 12345678` from Watson.
+    * **`delete`**`1` : Deletes the student with `INDEX number 1` from Watson.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -101,7 +105,7 @@ Format: `help`
 
 Adds a person to Watson.
 
-Format: `add id/ID_NUMBER n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] c/STUDENT_CLASS…​`
 
 * Adds a person’s detail to Watson. The person must not exist in Watson.
 * Minimal details are required to add a person’s detail at the beginning. Any other information can be added through the `edit` feature.
@@ -111,8 +115,8 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add id/1234 n/John Doe p/98765432 a/John street, block 123, #01-01`
-* `add id/1235 n/Amy Lim a/Bugis Crescent p/12345678 t/Enjoys ice cream`
+* `add n/John Doe p/98765432 a/John street, block 123, #01-01 c/1.1`
+* `add n/Amy Lim a/Bugis Crescent p/12345678 t/Enjoys ice cream c/4B`
 
 ### Listing all persons : `list`
 
@@ -188,17 +192,48 @@ Examples:
 
 Deletes the specified person from Watson.
 
-Format: `delete id/ID` <br> `delete index/INDEX`
+Format: `delete INDEX`
 
-* Deletes the person at the specified ID or index.
-* The ID refers to the unique identification number assigned to the person
+* Deletes the person at the specified index.
 * The index refers to the index of the person after using the find/list feature.
-* The id or index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 
 Examples:
-* `delete id/2356`
-* `delete index/1`
+* `delete 1`
+* `delete 5`
+
+### Entering student's grades : `grade`
+
+Opens up a GUI window for the user to enter student's assignment results.
+
+Format: `grade SUBJECT_ASSIGNMENT_TOTALSCORE_WEIGHTAGE_DIFFICULTY`
+
+* The Subject refers to subject of the assignment, eg - math
+* The Assignment refers to the name of the assignment, eg -CA1.
+* The Total score refers to the maximum achievable score in the assignment
+* The weightage refers to the weightage of the assignment, written in decimal form. For example, if the assignment is worth 40% of the total grade, write 0.4
+* The difficulty of an assignment is an arbitrary number out of 5 to denote how difficult the assignment is
+
+Examples:
+* `grade math_CA1_100_0.5_1.0`
+* `grade english_CA1_40_0.2_4.5`
+
+Example use
+
+1) Type in "grade math_CA1_100_0.5_1.0" into the input box as shown:
+
+
+   ![Example Command](images/GradeCommand.png "Grade Command")
+
+
+2) A GUI will appear on the screen for you to start entering the grades of your students
+
+
+   ![Example GUI](images/GradeCommandGUI.png "Grade Command")
+3) Enter the score achieved by the student and click on `Enter` button. 
+4) After entering the score, the system will automatically prompt you to enter the score for the next student.
+5) Continue entering the score until the system detects that all of the scores have been entered.
 
 ### Predicting a student's grade : `predict`
 
@@ -253,10 +288,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add id/ID_NUMBER n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`…​` <br> e.g., add id/1234 n/John Doe p/98765432 a/John street, block 123, #01-01`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`…​` <br> e.g., add n/John Doe p/98765432 a/John street, block 123, #01-01 c/1.5`
 **Clear** | `clear`
-**Delete** | `delete INDEX/ID`<br> e.g., `delete index/1`, `delete id/2356`
-**Edit** | `edit INDEX/ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit index/2 n/James Lee e/jameslee@example.com`,`edit id/1234 n/James Lee e/jameslee@example.com`
+**Delete** | `delete INDEX`<br> e.g., `delete 1`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)`<br> e.g., `find n/alice bob charlie c/1A s/English`, `find s/English Math`
 **Sort** | `sort asc` or `sort desc`
 **Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`
