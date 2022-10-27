@@ -336,7 +336,6 @@ _Details coming soon ..._
 
 ## Command summary
 
-<<<<<<< HEAD
 | Action            | Format, Examples                                                                                                                                                                        |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **AddPerson**     | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] [d/DOB]` <br> e.g., `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20 MAR 2002`  |
