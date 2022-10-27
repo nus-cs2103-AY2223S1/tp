@@ -74,6 +74,7 @@ public class AddStuCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
+        //check if module exists
         if (toAdd.getStudentModuleInfo().size() > 0 || toAdd.isTeachingAssistant()) {
             List<Module> moduleList = model.getFilteredModuleList();
             List<ModuleCode> studentModules = new ArrayList<>();

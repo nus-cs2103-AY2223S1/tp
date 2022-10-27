@@ -98,6 +98,17 @@ public class EditStuCommand extends Command {
         }
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
+        //checks for same module in student and ta
+        Set<ModuleCode> student = editedStudent.getStudentModuleInfo();
+        Set<ModuleCode> teacher = editedStudent.getTeachingAssistantInfo();
+        for (ModuleCode moduleCode : student) {
+            for (ModuleCode otherModuleCode: teacher) {
+                if (moduleCode.equals(otherModuleCode)) {
+                    throw new CommandException(Messages.MESSAGE_STUDENT_AND_TA);
+                }
+            }
+        }
+
         if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }

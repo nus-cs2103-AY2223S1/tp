@@ -65,6 +65,7 @@ public class CommandTestUtil {
     public static final String VALID_STUDENT_ID = "A0123123X";
     public static final String VALID_STUDENT_TELEGRAM = "@amyb123";
     public static final String VALID_STUDENT_INFO = "CS1101S";
+    public static final String VALID_TEACHING_INFO = "CS2107";
     public static final String VALID_TAG_IMPORTANT = "important";
     public static final String VALID_TAG_MODULE_COORDINATOR = "ModuleCoordinator";
 
@@ -85,7 +86,7 @@ public class CommandTestUtil {
     public static final String STUDENT_DESC_ID = " " + PREFIX_ID + VALID_STUDENT_ID;
     public static final String STUDENT_DESC_TELEGRAM = " " + PREFIX_HANDLE + VALID_STUDENT_TELEGRAM;
     public static final String STUDENT_DESC_STUDENT_INFO = " " + PREFIX_MODULE_CODE + VALID_STUDENT_INFO;
-    public static final String STUDENT_DESC_TEACHING_INFO = " " + PREFIX_STUDENT_TA + VALID_STUDENT_INFO;
+    public static final String STUDENT_DESC_TEACHING_INFO = " " + PREFIX_STUDENT_TA + VALID_TEACHING_INFO;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

@@ -15,6 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
@@ -59,6 +60,13 @@ public class AddStuCommandParser implements Parser<AddStuCommand> {
         Set<ModuleCode> teachingAssistantInfo = ParserUtil.parseStudentInfo(
                 argMultimap.getAllValues(PREFIX_STUDENT_TA));
         Set<String> classGroups = ParserUtil.parseClassGroups(argMultimap.getAllValues(PREFIX_CLASS_GROUP));
+        for (ModuleCode moduleCode : studentInfo) {
+            for (ModuleCode otherModuleCode : teachingAssistantInfo) {
+                if (moduleCode.equals(otherModuleCode)) {
+                    throw new ParseException(Messages.MESSAGE_STUDENT_AND_TA);
+                }
+            }
+        }
 
         Student student = new Student(name, phone, email, address, tagList,
                 id, handle, studentInfo, teachingAssistantInfo, classGroups);
