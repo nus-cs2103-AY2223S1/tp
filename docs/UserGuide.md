@@ -36,7 +36,7 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
 Note how the app contains some sample data.
 <br><br>
-![TABS example](Ui.png)
+![TABS example](images/user-guide/Ui.png)
 <br><br>
 5. Refer to the [Features](#features) below for details of each command.
 
@@ -73,7 +73,7 @@ Note how the app contains some sample data.
 
 Shows a list of commands explaining how to use TABS and a message to the TABS' user guide.
 
-![Help Example](Help.png)
+![Help Example](images/user-guide/Help.png)
 
 Format: help
 
@@ -135,7 +135,7 @@ Examples:
 * `findperson alex david` returns `Alex Yeoh`, `David Li`
 <br>
 <br>
-  ![result for 'find alex david'](findAlexDavidResult.png)
+  ![result for 'find alex david'](images/user-guide/findAlexDavidResult.png)
 
 ### Listing all persons: `listpersons`
 
@@ -185,7 +185,7 @@ Examples:
 
 Displays the group members allocated to the specified `GROUP`. Instead of details, assigned tasks will be listed.
 
-![TABS example](displaygroup_example.png)
+![TABS example](images/user-guide/displaygroup_example.png)
 
 Format: `displaygroup GROUP`
 * Displays the members associated with the `GROUP` and their tasks.
@@ -218,10 +218,10 @@ assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0`
   :information_source: **Extra note:** 
 
   A workload indicator is shown beside each person in TABS.
-
+  </br>
   When the workload of the person increase, the workload indicator will gradually change from green to red.
 
-![Workload_Indicator](workload_indicator.png)
+![Workload_Indicator](images/user-guide/workload_indicator.png)
 </div>
 
 ### Deleting a task from a member: `deletetask`
