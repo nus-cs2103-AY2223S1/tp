@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.Accordion?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
@@ -39,14 +40,17 @@
             </Text>
             <Label fx:id="preclusion" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-size: 15;" text="\$preclusion" />
 
-
-        <padding>
+          <padding>
           <Insets right="10.0">
             <top>10.0</top>
             <bottom>10.0</bottom>
           </Insets>
         </padding>
       </VBox>
+        <!-- Lesson Info -->
+        <VBox fx:id="lessonInfo" maxHeight="600">
+
+        </VBox>
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>

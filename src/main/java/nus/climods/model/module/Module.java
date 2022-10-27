@@ -39,7 +39,10 @@ public class Module {
     private org.openapitools.client.model.Module apiModule;
     private boolean isFocused = false;
 
-    static class ModuleLessonIdMap extends HashMap<String, List<Lesson>> {
+    /**
+     * Hashmap for lessons
+     */
+    public static class ModuleLessonIdMap extends HashMap<String, List<Lesson>> {
 
     }
 
