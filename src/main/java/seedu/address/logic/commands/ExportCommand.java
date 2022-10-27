@@ -48,6 +48,4 @@ public class ExportCommand extends Command {
         }
         return new CommandResult(MESSAGE_EXPORT_SUCCESS + exportLocation.toAbsolutePath());
     }
-
-
 }
