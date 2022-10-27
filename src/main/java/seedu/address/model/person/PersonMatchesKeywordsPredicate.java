@@ -25,7 +25,6 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
      * @param str2 string2 to be compared
      * @return the Levenshtein distance between the 2 strings
      */
-    //
     private int getLevenshteinDist(String str1, String str2) {
 
         // A 2-D matrix to store previously calculated answers of subproblems
@@ -65,7 +64,6 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
      * @param y second string to be compared
      * @return the similarity between the 2 strings in the range [0,1]
      */
-
     private double findSimilarity(String x, String y) {
         double maxLength = Double.max(x.length(), y.length());
         if (maxLength > 0) {
@@ -82,7 +80,6 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
      * @param c2 char2 to be compared
      * @return 0 if both chars are same, else 1
      */
-    //
     private int numOfReplacement(char c1, char c2) {
         return c1 == c2 ? 0 : 1;
     }
@@ -95,7 +92,6 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
      * @param nums the number of operations
      * @return minimum number of operations
      */
-
     private int minEdits(int... nums) {
         return Arrays.stream(nums).min().orElse(Integer.MAX_VALUE);
     }
@@ -144,19 +140,11 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        if (matchesName(person)) {
-            return true;
-        } else if (matchesAddress(person)) {
-            return true;
-        } else if (matchesRole(person)) {
-            return true;
-        } else if (matchesTags(person)) {
-            return true;
-        } else if (matchesGitHubUser(person)) {
-            return true;
-        } else {
-            return false;
-        }
+        return matchesName(person)
+                || matchesAddress(person)
+                || matchesTags(person)
+                ||matchesRole(person)
+                || matchesGitHubUser(person);
     }
 
     @Override
