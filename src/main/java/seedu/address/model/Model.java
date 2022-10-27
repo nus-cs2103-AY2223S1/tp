@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.listing.Listing;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Address;
@@ -133,7 +133,7 @@ public interface Model {
      * @param id id of the listing
      * @return listing with given id
      */
-    Listing getListing(ListingID id);
+    Listing getListing(ListingId id);
 
     /**
      * Replaces the given listing {@code target} with {@code editedListing}.

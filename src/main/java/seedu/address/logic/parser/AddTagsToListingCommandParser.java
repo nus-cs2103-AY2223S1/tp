@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTagsToListingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,7 +33,7 @@ public class AddTagsToListingCommandParser implements Parser<AddTagsToListingCom
         }
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        ListingID listingId = ParserUtil.parseListingID(argMultimap.getValue(PREFIX_LISTING_ID).get());
+        ListingId listingId = ParserUtil.parseListingId(argMultimap.getValue(PREFIX_LISTING_ID).get());
 
         return new AddTagsToListingCommand(tagList, listingId);
     }

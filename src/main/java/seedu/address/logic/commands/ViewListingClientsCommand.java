@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,11 +15,11 @@ public class ViewListingClientsCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all listing clients";
 
-    private final ListingID id;
+    private final ListingId id;
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public ViewListingClientsCommand(ListingID id) {
+    public ViewListingClientsCommand(ListingId id) {
         this.id = id;
     }
 

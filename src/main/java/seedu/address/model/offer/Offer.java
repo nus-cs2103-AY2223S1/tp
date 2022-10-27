@@ -1,6 +1,6 @@
 package seedu.address.model.offer;
 
-import seedu.address.model.listing.ListingID;
+import seedu.address.model.listing.ListingId;
 import seedu.address.model.person.Name;
 
 /**
@@ -15,7 +15,7 @@ public class Offer implements Comparable<Offer> {
     /**
      * The listing the offer is for.
      */
-    private final ListingID listing;
+    private final ListingId listing;
     /**
      * Price client is offering for the listing.
      */
@@ -28,7 +28,7 @@ public class Offer implements Comparable<Offer> {
      * @param listing Address
      * @param offerPrice Price
      */
-    public Offer(Name client, ListingID listing, Price offerPrice) {
+    public Offer(Name client, ListingId listing, Price offerPrice) {
         this.client = client;
         this.listing = listing;
         this.offerPrice = offerPrice;
@@ -46,7 +46,7 @@ public class Offer implements Comparable<Offer> {
      * Getter for listing.
      * @return Listing
      */
-    public ListingID getListing() {
+    public ListingId getListing() {
         return listing;
     }
 

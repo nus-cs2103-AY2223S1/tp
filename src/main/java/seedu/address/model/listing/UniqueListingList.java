@@ -56,7 +56,7 @@ public class UniqueListingList implements Iterable<Listing> {
      * @param id id of the listing
      * @return listing with given id
      */
-    public Listing getListing(ListingID id) {
+    public Listing getListing(ListingId id) {
         for (Listing listing : internalList) {
             if (listing.getId().equals(id.value)) {
                 return listing;
