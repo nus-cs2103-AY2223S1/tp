@@ -7,7 +7,7 @@ import static seedu.clinkedin.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.clinkedin.logic.commands.DeleteNoteCommand;
+import seedu.clinkedin.logic.commands.DeleteLinkCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -22,12 +22,12 @@ public class DeleteLinkCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteNoteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new DeleteLinkCommand(INDEX_FIRST_PERSON));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteNoteCommand.MESSAGE_USAGE));
+                DeleteLinkCommand.MESSAGE_USAGE));
     }
 }
