@@ -24,6 +24,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private FilteredStudents filteredStudents;
 
+    private Predicate<Student> prevPredicate;
+
     /**
      * Initializes a ModelManager with the given studentRecord and userPrefs.
      */
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.studentRecord = new StudentRecord(studentRecord);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredStudents = new FilteredStudents(new FilteredList<>(this.studentRecord.getStudentList()));
+        this.prevPredicate = PREDICATE_SHOW_ALL_STUDENTS;
     }
 
     public ModelManager() {
@@ -108,6 +111,7 @@ public class ModelManager implements Model {
     public void addStudent(Student person) {
         studentRecord.addStudent(person);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        storePredicate(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
@@ -152,6 +156,21 @@ public class ModelManager implements Model {
     @Override
     public double calculateExamMean(String exam) {
         return this.filteredStudents.calculateExamMean(exam);
+    }
+
+    @Override
+    public void storePredicate(Predicate<Student> predicate) {
+        this.prevPredicate = predicate;
+    }
+
+    @Override
+    public Predicate<Student> getPrevPredicate() {
+        return this.prevPredicate;
+    }
+
+    @Override
+    public boolean excludesAndHasStudent(Student studentToExclude, Student studentToCheck) {
+        return studentRecord.excludesAndHasStudent(studentToExclude, studentToCheck);
     }
 
     @Override

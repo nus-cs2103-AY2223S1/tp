@@ -60,6 +60,13 @@ public class Email {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if current Email value is empty.
+     */
+    public boolean isEmpty() {
+        return this.value == "";
+    }
+
     @Override
     public String toString() {
         return value;

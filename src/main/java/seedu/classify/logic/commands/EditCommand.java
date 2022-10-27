@@ -19,13 +19,13 @@ import seedu.classify.commons.core.index.Index;
 import seedu.classify.commons.util.CollectionUtil;
 import seedu.classify.logic.commands.exceptions.CommandException;
 import seedu.classify.model.Model;
+import seedu.classify.model.exam.Exam;
 import seedu.classify.model.student.Class;
 import seedu.classify.model.student.Email;
 import seedu.classify.model.student.Id;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
 import seedu.classify.model.student.Student;
-import seedu.classify.model.tag.Exam;
 
 /**
  * Edits the details of an existing student in the student record.
@@ -78,12 +78,14 @@ public class EditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.hasSameNameOrId(editedStudent) && model.hasStudent(editedStudent)) {
+        if (model.excludesAndHasStudent(studentToEdit, editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         model.setStudent(studentToEdit, editedStudent);
+
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
+        model.storePredicate(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 

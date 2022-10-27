@@ -1,4 +1,4 @@
-package seedu.classify.model.tag;
+package seedu.classify.model.exam;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.classify.commons.util.AppUtil.checkArgument;

@@ -2,6 +2,8 @@ package seedu.classify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.classify.commons.core.Messages;
 import seedu.classify.logic.commands.exceptions.CommandException;
 import seedu.classify.logic.parser.CliSyntax;
@@ -10,6 +12,7 @@ import seedu.classify.model.student.Class;
 import seedu.classify.model.student.ClassPredicate;
 import seedu.classify.model.student.GradeComparator;
 import seedu.classify.model.student.GradeLessThanMeanPredicate;
+import seedu.classify.model.student.Student;
 import seedu.classify.model.student.exceptions.ExamNotFoundException;
 
 /**
@@ -53,13 +56,14 @@ public class ViewStatsCommand extends Command {
                 model.sortStudentRecord(new GradeComparator(exam, className));
                 double mean = model.calculateExamMean(exam);
                 if (isFilterOn) {
-                    model.updateFilteredStudentList(new GradeLessThanMeanPredicate(className, mean, exam));
+                    Predicate<Student> predicate = new GradeLessThanMeanPredicate(className, mean, exam);
+                    model.updateFilteredStudentList(predicate);
+                    model.storePredicate(predicate);
                 }
                 return new CommandResult(String.format(Messages.MESSAGE_CLASS_SORTED_BY_GRADE, className)
                         + String.format(Messages.MESSAGE_DISPLAY_MEAN, exam, className, mean));
             } catch (ExamNotFoundException e) {
-                throw new CommandException(e.getMessage()
-                        + "\nMean cannot be calculated, class will be sorted by alphabetical order");
+                return new CommandResult(e.getMessage() + "\nMean cannot be calculated.");
             }
         }
     }

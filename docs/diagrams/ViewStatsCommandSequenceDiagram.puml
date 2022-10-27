@@ -1,0 +1,104 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StudentRecordParser" as StudentRecordParser LOGIC_COLOR
+participant ":ViewStatsCommandParser" as ViewStatsCommandParser LOGIC_COLOR
+participant "d:ViewStatsCommand" as ViewStatsCommand LOGIC_COLOR
+participant ":ViewClassCommand" as ViewClassCommand LOGIC_COLOR
+participant "c:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("viewStats class/4a exam/sa1 filter/on")
+activate LogicManager
+
+LogicManager -> StudentRecordParser : parseCommand("viewStats class/4a exam/sa1 filter/on")
+activate StudentRecordParser
+
+create ViewStatsCommandParser
+StudentRecordParser -> ViewStatsCommandParser
+activate ViewStatsCommandParser
+
+ViewStatsCommandParser --> StudentRecordParser
+deactivate ViewStatsCommandParser
+
+StudentRecordParser -> ViewStatsCommandParser : parse(" class/4a exam/sa1 filter/on")
+activate ViewStatsCommandParser
+
+create ViewStatsCommand
+ViewStatsCommandParser -> ViewStatsCommand
+activate ViewStatsCommand
+
+ViewStatsCommand --> ViewStatsCommandParser : d
+deactivate ViewStatsCommand
+
+ViewStatsCommandParser --> StudentRecordParser : d
+deactivate ViewStatsCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewStatsCommandParser -[hidden]-> StudentRecordParser
+destroy ViewStatsCommandParser
+
+StudentRecordParser --> LogicManager : d
+deactivate StudentRecordParser
+
+LogicManager -> ViewStatsCommand : execute(Model)
+activate ViewStatsCommand
+
+create ViewClassCommand
+ViewStatsCommand -> ViewClassCommand
+activate ViewClassCommand
+
+ViewClassCommand --> ViewStatsCommand
+deactivate ViewClassCommand
+
+ViewStatsCommand -> ViewClassCommand : execute(Model)
+activate ViewClassCommand
+
+ViewClassCommand -> Model : updateFilteredStudentList(ClassPredicate)
+activate Model
+
+Model --> ViewClassCommand
+deactivate Model
+
+ViewClassCommand --> ViewStatsCommand
+deactivate ViewClassCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewClassCommand -[hidden]-> ViewStatsCommand
+destroy ViewClassCommand
+
+ViewStatsCommand -> Model : sortStudentRecord(GradeComparator)
+activate Model
+
+Model --> ViewStatsCommand
+deactivate Model
+
+ViewStatsCommand -> Model : calculateExamMean(exam)
+activate Model
+
+Model --> ViewStatsCommand : mean
+deactivate Model
+
+ViewStatsCommand -> Model : updateFilteredStudentList(GradeLessThanMeanPredicate)
+activate Model
+
+Model --> ViewStatsCommand
+deactivate Model
+
+create CommandResult
+ViewStatsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewStatsCommand : c
+deactivate CommandResult
+
+ViewStatsCommand --> LogicManager : c
+deactivate ViewStatsCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
