@@ -146,11 +146,13 @@ public class MainWindow extends UiPart<Stage> {
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, t -> {
             if (t.getCode() == KeyCode.SPACE && !commandBox.getCommandTextField().isFocused()) {
+                commandBox.getCommandTextField().setEditable(false);
                 commandBox.getCommandTextField().requestFocus();
                 new Timer().schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        commandBox.getCommandTextField().clear();
+                        commandBox.getCommandTextField().setEditable(true);
+                        commandBox.getCommandTextField().selectEnd();
                     }
                 }, 10);
             }
