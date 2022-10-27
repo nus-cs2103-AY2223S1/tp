@@ -62,7 +62,6 @@ class DeleteTaskCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToDeleteTask, editedPatient);
-        expectedModel.updateFilteredPersonList(patient -> patient.equals(editedPatient));
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage,
