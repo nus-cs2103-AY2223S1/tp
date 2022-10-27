@@ -209,7 +209,7 @@ Examples:
 
 Edits an existing task in task list.
 
-Format: `edit_task INDEX [n/NAME] [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]`
+Format: `edit_task INDEX [n/NAME] [d/DESCRIPTION] [dl/DEADLINE]`
 
 - Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
@@ -353,20 +353,20 @@ Note:
 | Action             | Format                                                                         |
 |--------------------|--------------------------------------------------------------------------------|
 | **Add Contact**    | `add_contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                |
-| **List Contacts**  | `list_contact`                                                                 |
-| **Find Contact**   | `find_contact KEYWORD [MORE_KEYWORDS]`                                         |
-| **Edit Contact**   | `edit_contact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
-| **Delete Contact** | `delete_contact INDEX`                                                         |
-| **Select Contact** | `select_contact INDEX`                                                         |
 | **Add Task**       | `add_task n/NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`            |
-| **List Tasks**     | `list_task c/CONTACT_INDEX`                                                    |
-| **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                            |
-| **Edit Task**      | `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`                                   |
-| **Mark Task**      | `mark INDEX`                                                                   |
-| **Unmark Task**    | `unmark INDEX`                                                                 |
-| **Delete Task**    | `delete_task INDEX`                                                            |
-| **Select Task**    | `select_task INDEX`                                                            |
 | **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                          |
-| **Unassign Task**  | `unassign c/CONTACT_INDEX t/TASK_INDEX`                                        |
 | **Clear Data**     | `clear`                                                                        |
+| **Delete Contact** | `delete_contact INDEX`                                                         |
+| **Delete Task**    | `delete_task INDEX`                                                            |
+| **Edit Contact**   | `edit_contact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
+| **Edit Task**      | `edit_task INDEX [n/NAME] [d/DESCRIPTION] [dl/DEADLINE]`                       |
+| **Find Contacts**  | `find_contact KEYWORD [MORE_KEYWORDS]`                                         |
+| **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                            |
 | **Help**           | `help`                                                                         |
+| **List Contacts**  | `list_contact`                                                                 |
+| **List Tasks**     | `list_task`                                                                    |
+| **Mark Task**      | `mark INDEX`                                                                   |
+| **Select Contact** | `select_contact INDEX`                                                         |
+| **Select Task**    | `select_task INDEX`                                                            |
+| **Unassign Task**  | `unassign c/CONTACT_INDEX t/TASK_INDEX`                                        |
+| **Unmark Task**    | `unmark INDEX`                                                                 |
