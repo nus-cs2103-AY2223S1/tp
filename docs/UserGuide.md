@@ -149,6 +149,10 @@ Format: `opencom INDEX`
 Example:
 * `opencom 14`
 
+After running an opencom command e.g `opencom 7`, you should be switched to the commissions tab to view commission details.
+
+![opencom](images/opencom.png)
+
 ### Editing a commission: `editcom`
 
 Edits a commission.
