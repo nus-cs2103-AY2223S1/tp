@@ -159,7 +159,16 @@ public class SubjectHandler {
 
     @Override
     public String toString() {
-        return subjectsTaken.toString();
+        StringBuilder str = new StringBuilder();
+        Set<String> keys = subjectsTaken.keySet();
+        if (subjectsTaken.isEmpty()) {
+            return str.toString();
+        }
+        for (String key : keys) {
+            Subject keyValue = subjectsTaken.get(key);
+            str.append(keyValue.toString() + "\n");
+        }
+        return str.toString();
     }
 
 }

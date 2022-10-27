@@ -62,7 +62,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         studentClass.setText("Class: " + person.getStudentClass().toString());
         attendance.setText(person.getAttendance().toString());
-        subjects.setText(person.getSubjectsTaken().toString());
+        subjects.setText(person.getSubjectHandler().toString());
 
         person.getTags().stream()
               .sorted(Comparator.comparing(tag -> tag.tagName))
