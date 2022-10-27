@@ -163,15 +163,11 @@ HackAssist data are saved in the hard disk automatically after any command that 
 
 ### Editing the data file
 
-HackASsist data are saved as a JSON file `[JAR file location]/data/HackAssist.json`. Advanced users are welcome to update data directly by editing that data file.
+HackAssist data are saved as a JSON file `[JAR file location]/data/HackAssist.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, HackASsist will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 ### Adding a task: `addTask`
 
@@ -185,7 +181,7 @@ Examples:
 * `addTask n/Fix routing 3  d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/John@example.com` add Fix routing to the task list
 
 
-### Deleting a task: `Delete Task`
+### Deleting a task: `deleteTask`
 
 Deletes a task from the tasklist.
 
@@ -199,7 +195,8 @@ Examples:
 
 ### viewing all tasks: `list Tasks`
 
-Lists out all the tasks in the tasklist.
+Edits the details of the task identified by the index number used in the displayed task list. 
+Existing values will be overwritten by the input values.
 
 Format: `listTasks`
 
@@ -228,6 +225,7 @@ Examples:
 
 ## Command summary
 
+
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
@@ -241,6 +239,5 @@ Action | Format, Examples
 **Edit Task** | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`
 **deleteTask** | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`
 **list Tasks** | `listTasks`
-
 
 
