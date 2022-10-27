@@ -14,5 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PHONE = new Prefix("hp/");
     public static final Prefix PREFIX_STUDENT_NAME = new Prefix("nm/");
     public static final Prefix PREFIX_EXAM = new Prefix("exam/");
+    public static final Prefix PREFIX_FILTER = new Prefix("filter/");
 
 }
