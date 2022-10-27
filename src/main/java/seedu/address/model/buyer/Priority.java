@@ -9,7 +9,7 @@ import java.util.Arrays;
  * Represents a Priority in the person book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidPriority(String)}
  */
-public class Priority {
+public class Priority implements Comparable<Priority> {
 
     private enum PriorityName {
         HIGH, NORMAL, LOW;
@@ -36,6 +36,11 @@ public class Priority {
      */
     public static boolean isValidPriority(String test) {
         return Arrays.stream(PriorityName.values()).anyMatch(p -> test.equalsIgnoreCase(p.name()));
+    }
+
+    @Override
+    public int compareTo(Priority other) {
+        return specifiedPriority.compareTo(other.specifiedPriority);
     }
 
     @Override

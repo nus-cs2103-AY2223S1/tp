@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
-import seedu.address.ui.PersonListPanel;
 
 /**
  * The API of the Model component.
@@ -24,7 +23,6 @@ public interface Model {
      */
     Predicate<Property> PREDICATE_SHOW_ALL_PROPERTIES = unused -> true;
 
-    void setPersonListPanel(PersonListPanel personListPanel);
     //=========== UserPrefs ==================================================================================
 
     /**
@@ -117,24 +115,11 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Buyer> predicate);
 
-    //=========== Sorted Buyer List Accessors =============================================================
-
     /**
-     * Returns an unmodifiable view of the sorted buyer list
-     */
-    ObservableList<Buyer> getSortedPersonList();
-
-    /**
-     * Updates the comparator of the sorted buyer list to sort by the given {@code comparator}.
-     *
+     * Sorts the person book's buyer list by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-    void updateSortedPersonList(Comparator<Buyer> comparator);
-
-    /**
-     * Returns the last shown buyers list; either the sorted or filtered list.
-     */
-    ObservableList<Buyer> getLastShownBuyersList();
+    void sortBuyerList(Comparator<Buyer> comparator);
 
     //=========== PropertyBook ================================================================================
 
@@ -186,4 +171,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPropertyList(Predicate<Property> predicate);
+
+    /**
+     * Sorts the property book's property list by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortPropertyList(Comparator<Property> comparator);
+
 }

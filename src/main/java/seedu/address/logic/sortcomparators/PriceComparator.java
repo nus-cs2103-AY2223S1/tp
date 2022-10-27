@@ -4,33 +4,33 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
-import seedu.address.model.buyer.Name;
+import seedu.address.model.property.Price;
 
 /**
- * A comparator to compare two Names.
+ * A comparator to compare two Prices.
  */
-public class NameComparator implements Comparator<Name> {
+public class PriceComparator implements Comparator<Price> {
 
     private final Order order;
 
     /**
-     * Constructs a {@code NameComparator}.
+     * Constructs a {@code PriceComparator}.
      *
      * @param order The specified order of comparison.
      */
-    public NameComparator(Order order) {
+    public PriceComparator(Order order) {
         requireNonNull(order);
         this.order = order;
     }
 
     @Override
-    public int compare(Name firstName, Name secondName) {
-        int comparisonValue = firstName.fullName.compareTo(secondName.fullName);
+    public int compare(Price firstPrice, Price secondPrice) {
+        int comparisonValue = firstPrice.isGreaterThanOrEqual(secondPrice) ? 1 : -1;
         return order.equals(new Order("ASC")) ? comparisonValue : -comparisonValue;
     }
 
     @Override
     public String toString() {
-        return "Sorted by name in " + order;
+        return "Sorted by price in " + order;
     }
 }

@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
+import java.time.LocalDateTime;
+
 import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
@@ -19,6 +21,7 @@ import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
+
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -45,6 +48,7 @@ public class AddPersonCommandParser extends Parser<AddBuyerCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        LocalDateTime entryTime = LocalDateTime.now();
 
         // if user does not specify a budget for the buyer, then there will be no PriceRange object
         PriceRange priceRange = null;
@@ -63,7 +67,7 @@ public class AddPersonCommandParser extends Parser<AddBuyerCommand> {
             priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         }
 
-        Buyer buyer = new Buyer(name, phone, email, address, priceRange, characteristics, priority);
+        Buyer buyer = new Buyer(name, phone, email, address, priceRange, characteristics, priority, entryTime);
 
         return new AddBuyerCommand(buyer);
     }

@@ -7,7 +7,6 @@ import javafx.scene.layout.Region;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Property;
 
-
 /**
  * An UI component that displays information of a {@code Buyer}.
  */

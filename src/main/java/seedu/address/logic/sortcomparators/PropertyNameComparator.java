@@ -4,27 +4,28 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
-import seedu.address.model.buyer.Name;
+import seedu.address.model.property.PropertyName;
+
 
 /**
- * A comparator to compare two Names.
+ * A comparator to compare two PropertyNames.
  */
-public class NameComparator implements Comparator<Name> {
+public class PropertyNameComparator implements Comparator<PropertyName> {
 
     private final Order order;
 
     /**
-     * Constructs a {@code NameComparator}.
+     * Constructs a {@code PropertyNameComparator}.
      *
      * @param order The specified order of comparison.
      */
-    public NameComparator(Order order) {
+    public PropertyNameComparator(Order order) {
         requireNonNull(order);
         this.order = order;
     }
 
     @Override
-    public int compare(Name firstName, Name secondName) {
+    public int compare(PropertyName firstName, PropertyName secondName) {
         int comparisonValue = firstName.fullName.compareTo(secondName.fullName);
         return order.equals(new Order("ASC")) ? comparisonValue : -comparisonValue;
     }

@@ -25,7 +25,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.ui.PersonListPanel;
 
 public class AddBuyerCommandTest {
 
@@ -83,10 +82,6 @@ public class AddBuyerCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
-        @Override
-        public void setPersonListPanel(PersonListPanel personListPanel) {
-            throw new AssertionError("This method should not be called.");
-        }
 
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -169,19 +164,24 @@ public class AddBuyerCommandTest {
         }
 
         @Override
-        public ObservableList<Buyer> getSortedPersonList() {
+        public void sortBuyerList(Comparator<Buyer> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void updateSortedPersonList(Comparator<Buyer> comparator) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Buyer> getLastShownBuyersList() {
-            throw new AssertionError("This method should not be called.");
-        }
+        //        @Override
+        //        public ObservableList<Buyer> getSortedPersonList() {
+        //            throw new AssertionError("This method should not be called.");
+        //        }
+        //
+        //        @Override
+        //        public void updateSortedPersonList(Comparator<Buyer> comparator) {
+        //            throw new AssertionError("This method should not be called.");
+        //        }
+        //
+        //        @Override
+        //        public ObservableList<Buyer> getLastShownBuyersList() {
+        //            throw new AssertionError("This method should not be called.");
+        //        }
 
         @Override
         public void addProperty(Property property) {
@@ -220,6 +220,11 @@ public class AddBuyerCommandTest {
 
         @Override
         public void updateFilteredPropertyList(Predicate<Property> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortPropertyList(Comparator<Property> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 

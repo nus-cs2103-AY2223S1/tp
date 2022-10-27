@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
+
 import seedu.address.model.address.Address;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Email;
@@ -27,6 +29,7 @@ public class PersonBuilder {
     private PriceRange priceRange;
     private Characteristics characteristics;
     private Priority priority;
+    private LocalDateTime entryTime;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -39,6 +42,7 @@ public class PersonBuilder {
         priceRange = null;
         characteristics = null;
         priority = new Priority(DEFAULT_PRIORITY);
+        entryTime = LocalDateTime.now();
     }
 
     /**
@@ -52,6 +56,7 @@ public class PersonBuilder {
         priceRange = buyerToCopy.getPriceRange().orElse(null);
         characteristics = buyerToCopy.getDesiredCharacteristics().orElse(null);
         priority = buyerToCopy.getPriority();
+        entryTime = buyerToCopy.getEntryTime();
     }
 
     /**
@@ -127,7 +132,7 @@ public class PersonBuilder {
     }
 
     public Buyer build() {
-        return new Buyer(name, phone, email, address, priceRange, characteristics, priority);
+        return new Buyer(name, phone, email, address, priceRange, characteristics, priority, entryTime);
     }
 
 }
