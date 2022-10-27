@@ -1,13 +1,14 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-Here is an overview of what FoodRem consists of and how you can perform a command.
+
+This section covers all you should know about FoodRem, as well as a [guided tutorial](#trying-your-first-command). Of special note is the [Key Definitions](#key-definitions) and [Command Format](#command-format) sections, which covers essential knowledge to using FoodRem's features.  
 
 ### Layout
 
 {% include_relative _ug/Layout.md %}
 
-### Items and Tags
+### Key Definitions 
 
-{% include_relative _ug/ItemsTags.md %}
+{% include_relative _ug/KeyDefinitions.md %}
 
 ### Command Format
 
@@ -19,29 +20,9 @@ Here is an example:
 
 A command consists of:
 
-1. Command Word to tell FoodRem what action you wish to execute. These actions are covered in [Commands](#commands)
-1. [Flags](#flags) to distinguish parameters
-1. [Placeholders](#placeholders) that you can replace with your parameter inputs
-
-### Flags
-
-Flags are delimiters that enable FoodRem to distinguish different parameters without ambiguity.
-
-| Flags | Related Placeholder   |
-|-------|-----------------------|
-| n/    | ITEM_NAME<br>TAG_NAME |
-| qty/  | QUANTITY              |
-| u/    | UNIT                  |
-| buy/  | BOUGHT_DATE           |
-| exp/  | EXPIRY_DATE           |
-| p/    | PRICE                 |
-| r/    | REMARKS               |
-
-### Placeholders
-
-Placeholders are words in uppercase to show you what type of parameters you can supply to a command.
-
-{% include_relative _ug/Placeholders.md %}
+1. Command Word: Tells FoodRem what action you wish to execute. These actions are covered in [Commands](#commands).
+1. [Flags](#flags): Distinguishes between inputs. This follows before your Placeholder data.
+1. [Placeholders](#placeholders): Represents data that you wish to input. Replace this with valid data. For example, `ITEM_NAME` in `n/ITEM_NAME` can be replaced with `n/Potato`. Placeholders should follow after a Flag. 
 
 ### Trying your first command
 

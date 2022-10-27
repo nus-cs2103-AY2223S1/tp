@@ -30,19 +30,19 @@
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
 <!-- WE USE :variable: FOR VALUES THAT ARE TO BE SUBSTITUTED -->
 {% capture TABLE %}
-| Placeholders | Related Flags | Description    |
-|--------------|---------------|----------------|
-| INDEX        |               | :INDEX:        |
-| ITEM_NAME    | n/            | :ITEM_NAME:    |
-| TAG_NAME     | n/            | :TAG_NAME:     |
-| QUANTITY     | qty/          | :QUANTITY:     |
-| UNIT         | u/            | :UNIT:         |
-| BOUGHT_DATE  | bgt/          | :BOUGHT_DATE:  |
-| EXPIRY_DATE  | exp/          | :EXPIRY_DATE:  |
-| PRICE        | p/            | :PRICE:        |
-| REMARKS      | r/            | :REMARKS:      |
-| COMMAND_WORD |               | :COMMAND_WORD: |
-| KEYWORD      |               | :KEYWORD:      |
+| Placeholder  | Corresponding Flag  | Description    |
+|--------------|---------------------|----------------|
+| INDEX        | (Not Applicable)    | :INDEX:        |
+| ITEM_NAME    | n/                  | :ITEM_NAME:    |
+| TAG_NAME     | n/                  | :TAG_NAME:     |
+| QUANTITY     | qty/                | :QUANTITY:     |
+| UNIT         | u/                  | :UNIT:         |
+| BOUGHT_DATE  | bgt/                | :BOUGHT_DATE:  |
+| EXPIRY_DATE  | exp/                | :EXPIRY_DATE:  |
+| PRICE        | p/                  | :PRICE:        |
+| REMARKS      | r/                  | :REMARKS:      |
+| COMMAND_WORD | (Not Applicable)    | :COMMAND_WORD: |
+| KEYWORD      | (Not Applicable)    | :KEYWORD:      |
 {% endcapture %}
 
 <!-- ===== RENDER THE ACTUAL TABLE ===== -->

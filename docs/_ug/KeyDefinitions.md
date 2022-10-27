@@ -7,11 +7,11 @@ The following are the attributes stored for each item:
 
 * Item name
 * Item quantity
-* Item unit (Unit of measurement e.g. `kg`, `packets`)
+* Item unit (unit of measurement e.g. `kg`, `packets`)
 * Item bought date
 * Item expiry date
 * Item price
-* Item remark
+* Item remarks
 * Item tags
 
 FoodRem Items are unique by name and case-sensitive. This means you cannot add two or more items of the same name.
@@ -33,3 +33,33 @@ Feel free to add tags as you see fit to organize your inventory. Examples of how
 Tags can be renamed and these changes would be reflected on all items immediately.
 
 FoodRem Tags are unique by name and case-sensitive. This means you cannot add two or more tags of the same name.
+
+#### Flags
+
+Flags are delimiters that enable FoodRem to distinguish different parameters without ambiguity.
+
+You would put in the corresponding [Placeholder](#placeholders) immediately after each flag.
+
+Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
+
+| Flag | Corresponding Placeholder |
+|------|---------------------------|
+| n/   | ITEM_NAME<br>TAG_NAME     |
+| qty/ | QUANTITY                  |
+| u/   | UNIT                      |
+| bgt/ | BOUGHT_DATE               |
+| exp/ | EXPIRY_DATE               |
+| p/   | PRICE                     |
+| r/   | REMARKS                   |
+
+#### Placeholders
+
+Placeholders show you what type of parameters you can supply to a command. These follow immediately after a [Flag](#flag). 
+
+Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
+
+```note
+The placeholders `INDEX`, `COMMAND_WORD`, and `KEYWORD` do not have any corresponding flags. They are marked as "Not Applicable" in the table below.
+```
+
+{% include_relative _ug/Placeholders.md %}

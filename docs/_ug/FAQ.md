@@ -5,7 +5,7 @@
 **Q:** Do I need internet connection to run FoodRem? <br>
 **A:** No, FoodRem can boot up and run all functionalities without an internet connection.
 
-**Q:** Can I use FooRem on my mobile device?<br>
+**Q:** Can I use FoodRem on my mobile device?<br>
 **A:** Unfortunately, no. FoodRem is designed to run on your desktop/laptop such that you can use the command line interface.
 
 **Q:** How do I transfer my data to another Computer?<br>
