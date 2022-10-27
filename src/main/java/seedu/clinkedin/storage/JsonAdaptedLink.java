@@ -1,5 +1,8 @@
 package seedu.clinkedin.storage;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -25,7 +28,7 @@ class JsonAdaptedLink {
      * Converts a given {@code Link} into this class for Jackson use.
      */
     public JsonAdaptedLink(Link source) {
-        link = source.link;
+        link = source.link.toString();
     }
 
     @JsonValue
@@ -39,9 +42,11 @@ class JsonAdaptedLink {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Link toModelType() throws IllegalValueException {
-        if (!Link.isValidLink(link)) {
-            throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
+        try {
+            URL url = new URL(link);
+            return new Link(url);
+        } catch (MalformedURLException m) {
+            throw new IllegalValueException(m.getMessage());
         }
-        return new Link(link);
     }
 }

@@ -7,11 +7,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.clinkedin.logic.commands.AddCommand;
+import seedu.clinkedin.logic.commands.AddLinkCommand;
+import seedu.clinkedin.logic.commands.AddNoteCommand;
 import seedu.clinkedin.logic.commands.AddTagCommand;
+import seedu.clinkedin.logic.commands.AddToCommand;
 import seedu.clinkedin.logic.commands.ClearCommand;
 import seedu.clinkedin.logic.commands.Command;
 import seedu.clinkedin.logic.commands.CreateTagTypeCommand;
 import seedu.clinkedin.logic.commands.DeleteCommand;
+import seedu.clinkedin.logic.commands.DeleteLinkCommand;
+import seedu.clinkedin.logic.commands.DeleteNoteCommand;
 import seedu.clinkedin.logic.commands.DeleteTagCommand;
 import seedu.clinkedin.logic.commands.DeleteTagTypeCommand;
 import seedu.clinkedin.logic.commands.EditCommand;
@@ -22,7 +27,6 @@ import seedu.clinkedin.logic.commands.FindCommand;
 import seedu.clinkedin.logic.commands.HelpCommand;
 import seedu.clinkedin.logic.commands.ImportCommand;
 import seedu.clinkedin.logic.commands.ListCommand;
-import seedu.clinkedin.logic.commands.NoteCommand;
 import seedu.clinkedin.logic.commands.RateCommand;
 import seedu.clinkedin.logic.commands.RedoCommand;
 import seedu.clinkedin.logic.commands.StatsCommand;
@@ -49,6 +53,7 @@ public class AddressBookParser {
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
@@ -72,8 +77,20 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case NoteCommand.COMMAND_WORD:
-            return new NoteCommandParser().parse(arguments);
+        case AddNoteCommand.COMMAND_WORD:
+            return new AddNoteCommandParser().parse(arguments);
+
+        case DeleteNoteCommand.COMMAND_WORD:
+            return new DeleteNoteCommandParser().parse(arguments);
+
+        case AddLinkCommand.COMMAND_WORD:
+            return new AddLinkCommandParser().parse(arguments);
+
+        case DeleteLinkCommand.COMMAND_WORD:
+            return new DeleteLinkCommandParser().parse(arguments);
+
+        case AddToCommand.COMMAND_WORD:
+            return new AddToCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
