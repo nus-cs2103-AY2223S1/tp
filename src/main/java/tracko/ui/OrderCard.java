@@ -51,6 +51,8 @@ public class OrderCard extends UiPart<Region> {
     private VBox items;
     @FXML
     private HBox dateContainer;
+    @FXML
+    private HBox orderStatus;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -83,10 +85,21 @@ public class OrderCard extends UiPart<Region> {
         email.setWrapText(true);
         email.setPadding(new Insets(0, 10, 0, 0));
 
+        setOrderStatusStyle();
+
         totalOrderPrice.setText("$" + String.format("%.2f", order.calculateTotalOrderPrice()));
         totalOrderPrice.setWrapText(true);
         totalOrderPrice.setPadding(new Insets(0, 10, 0, 0));
 
+        items.setPadding(new Insets(8, 10, 8, 10));
+        items.setStyle("-fx-background-insets: 5 0 5 0;");
+        items.getStyleClass().add("ordered-items-container");
+        order.getItemList().stream()
+                .forEach(pair -> items.getChildren().add(
+                        constructItemLabel(pair.toString())));
+    }
+
+    public void setOrderStatusStyle() {
         if (order.getPaidStatus()) {
             paidStatus.setText("Paid");
             paidStatus.setStyle("-fx-background-color: #D9DCFF; -fx-text-fill: #707BE3");
@@ -103,13 +116,12 @@ public class OrderCard extends UiPart<Region> {
             deliveryStatus.setStyle("-fx-background-color: #FF6C64; -fx-text-fill: #FFEDEC");
         }
 
-        items.setPadding(new Insets(8, 10, 8, 10));
-        items.setStyle("-fx-background-insets: 5 0 5 0;");
-        items.getStyleClass().add("ordered-items-container");
-        order.getItemList().stream()
-                .forEach(pair -> items.getChildren().add(
-                        constructItemLabel(pair.toString())));
-
+        if (order.isCompleted()) {
+            paidStatus.setText("Completed");
+            paidStatus.setStyle("-fx-background-color: #DFDFEB; -fx-text-fill: #7A7CA5");
+            deliveryStatus.setText(null);
+            deliveryStatus.setStyle("-fx-background-color: #7A7CA5");
+        }
     }
 
     /**
