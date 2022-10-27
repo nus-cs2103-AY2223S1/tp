@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import javafx.scene.image.Image;
 
 /**
  * Represents a Person in the address book.
