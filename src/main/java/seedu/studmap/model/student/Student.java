@@ -28,6 +28,7 @@ public class Student {
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Attendance> attendances = new HashSet<>();
     private final Set<Assignment> assignments = new HashSet<>();
+    private final Set<Participation> participations = new HashSet<>();
 
     /**
      * Constructor using a StudentData parameter object.
@@ -134,6 +135,14 @@ public class Student {
         return Collections.unmodifiableSet(assignments);
     }
 
+    /**
+     * Returns an immutable Participation set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Participation> getParticipations() {
+        return Collections.unmodifiableSet(participations);
+    }
+
     public StudentData getStudentData() {
 
         StudentData studentData = new StudentData();
@@ -149,6 +158,7 @@ public class Student {
         studentData.setTags(new HashSet<>(this.getTags()));
         studentData.setAttendances(new HashSet<>(this.getAttendances()));
         studentData.setAssignments(new HashSet<>(this.getAssignments()));
+        studentData.setParticipations(new HashSet<>(this.getParticipations()));
 
         return studentData;
     }
@@ -237,6 +247,12 @@ public class Student {
         if (!assignments.isEmpty()) {
             builder.append("; Assignment: ");
             assignments.forEach(builder::append);
+        }
+
+        Set<Participation> participations = getParticipations();
+        if (!participations.isEmpty()) {
+            builder.append("; Participation: ");
+            participations.forEach(builder::append);
         }
         return builder.toString();
     }
