@@ -32,12 +32,13 @@
                     </Label>
                     <Label fx:id="studentClass" text="Label">
                     </Label>
-                    <TextField fx:id ="enteredScore"></TextField>
-                    <Button fx:id="copyButton" mnemonicParsing="false" onAction = "#enterGradeForStudent" text="Enter">
-                        <HBox.margin>
-                            <Insets left="5.0"/>
-                        </HBox.margin>
-                    </Button>
+                    <HBox fx:id = "inputBox"> <TextField fx:id ="enteredScore" promptText="Enter grade here"></TextField>
+                        <Button fx:id="copyButton" mnemonicParsing="false" onAction = "#enterGradeForStudent" text="Enter">
+                            <HBox.margin>
+                                <Insets left="5.0"/>
+                            </HBox.margin>
+                        </Button></HBox>
+
                 </children>
                 <opaqueInsets>
                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
