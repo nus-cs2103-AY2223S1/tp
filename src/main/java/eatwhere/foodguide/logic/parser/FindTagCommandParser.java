@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.function.Predicate;
 
 import eatwhere.foodguide.commons.core.Messages;
-import eatwhere.foodguide.logic.commands.FindCommand;
 import eatwhere.foodguide.logic.commands.FindTagCommand;
 import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
