@@ -14,7 +14,7 @@
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="105" style="-fx-background-radius: 20;" GridPane.columnIndex="0">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
@@ -27,18 +27,39 @@
         </Label>
         <Label fx:id="title" styleClass="cell_big_label" text="\$first" />
       </HBox>
-         <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-      <Label fx:id="eventCount" styleClass="cell_small_label" text="\$eventCount" />
+         <Label fx:id="description" styleClass="cell_small_label" text="\$description">
+            <padding>
+               <Insets bottom="3.0" />
+            </padding></Label>
+      <Label fx:id="eventCount" style="-fx-background-radius: 10; -fx-background-color: #0F893C;" styleClass="cell_small_label" text="\$eventCount">
+            <padding>
+               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            </padding>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin></Label>
         <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-            <Label fx:id="tripLocation" styleClass="cell_small_label" text="\$tripLocation" />
-               <Label fx:id="tripDate" layoutX="15.0" layoutY="10.0" styleClass="cell_small_label" text="\$tripDate" />
+            <Label fx:id="tripLocation" styleClass="cell_small_label" text="\$tripLocation">
+                  <padding>
+                     <Insets right="4.0" />
+                  </padding></Label>
+               <Label fx:id="tripDate" layoutX="15.0" layoutY="10.0" styleClass="cell_small_label" text="\$tripDate">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin></Label>
 
             </children>
+            <padding>
+               <Insets top="5.0" />
+            </padding>
          </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>
+      <HBox.margin>
+         <Insets />
+      </HBox.margin>
   </GridPane>
 </HBox>
