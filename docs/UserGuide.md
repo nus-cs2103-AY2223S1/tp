@@ -174,13 +174,13 @@ Format: `:list`
 
 Filters exercises from the displayed list with names containing any of the given keywords.
 
-Format: `:filter NAME [NAME]...`
+Format: `:filter KEYWORD [KEYWORD]...`
 
-* The filter is case-insensitive. e.g bench will match Bench
-* The order of the keywords does not matter. e.g. Deadlift Squat will match Squat Deadlift
 * Only the exercise name is searched.
-* Only full words will be matched e.g. Squat will not match Squats
-* Exercises matching at least one keyword will be returned e.g. `:filter Bench press` will return Bench press and Leg press
+* The keyword is case-insensitive. e.g bench will match Bench.
+* The order of the keywords does not matter. e.g. Deadlift Squat will match Squat Deadlift.
+* Only full words will be matched e.g. Squat will not match Squats.
+* Exercises matching at least one keyword will be returned e.g. `:filter Bench press` will return Bench press and Leg press.
 
 ##### Example:
 * `:filter Deadlift Squat` shows the list of Deadlift and Squat exercises.
@@ -330,7 +330,7 @@ Format: `:wq`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: The way you format the exercise name when you first add it will be the way it is displayed in the system. After that, all exercises added that have the [same name](#adding-and-aeleting-from-the-exercise-name-list) will be categorised under the same exercise.**<br>
+**:information_source: The way you format the exercise name when you first add it will be the way it is displayed in the system. After that, all exercises added that have the [same name](#adding-and-deleting-from-the-exercise-name-list) will be categorised under the same exercise.**<br>
 
 </div>
 
@@ -352,7 +352,7 @@ Format: `:wq`
 | **Add exercise**                | :add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]    | :add n/Deadlift w/60 s/1 r/1 d/27-10-22 |
 | **Delete exercise**             | :del INDEX                                     | :d 3                                    |
 | **List all exercises**          | :list                                          | :list                                   |
-| **Filter exercise(s)**          | :filter NAME [NAME]...                         | :filter Deadlift Squat                  |
+| **Filter exercise(s)**          | :filter KEYWORD [KEYWORD]...                   | :filter Deadlift Squat                  |
 | **Clear all exercises**         | :clear                                         | :clear                                  |
 | **Sort exercises**              | :sort                                          | :sort                                   |
 | **View range (1)**              | :range start/START_DATE end/END_DATE           | :range start/25/10/2022 end/26/10/2022  |
