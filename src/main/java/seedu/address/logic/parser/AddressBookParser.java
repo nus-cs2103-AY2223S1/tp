@@ -19,11 +19,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.ThemeCommand;
-<<<<<<< HEAD
 import seedu.address.logic.commands.UnappendCommand;
-=======
 import seedu.address.logic.commands.ToggleListModeCommand;
->>>>>>> master
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.commands.ViewCommand;
