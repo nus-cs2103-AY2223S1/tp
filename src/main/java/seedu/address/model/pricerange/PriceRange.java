@@ -73,13 +73,15 @@ public class PriceRange {
 
     /**
      * Compare the upperbound of two PriceRange objects.
+     * Upperbounds will always be compared in descending order.
      */
     public int compareUpperBound(PriceRange other) {
-        return high.isGreaterThanOrEqual(other.high) ? 1 : -1;
+        return high.isSmallerThanOrEqual(other.high) ? 1 : -1;
     }
 
     /**
      * Compare the lowerbound of two PriceRange objects.
+     * Lowerbounds will always be compared in ascending order.
      */
     public int compareLowerBound(PriceRange other) {
         return low.isGreaterThanOrEqual(other.low) ? 1 : -1;
