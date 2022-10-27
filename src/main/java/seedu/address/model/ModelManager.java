@@ -346,11 +346,11 @@ public class ModelManager implements Model {
                     && this.filteredAppointments.getPredicate() == null
                     && this.filteredBills.getPredicate() == null);
             if (!shouldNotAdd) {
+                setAddressBook(history.getAddressBookHistory(history.getAddressBookHistorySize() - 2));
                 history.updateRedoAddressBookHistory();
                 history.updateRedoPatientsHistory();
                 history.updateRedoAppointmentsHistory();
                 history.updateRedoBillsHistory();
-                setAddressBook(history.getAddressBookHistory(history.getAddressBookHistorySize() - 2));
                 history.deleteAddressBookHistory(history.getAddressBookHistorySize() - 1);
                 filteredPatients.setPredicate(history.getPatientsPredicate(history.getPatientsHistorySize() - 1));
                 filteredAppointments.setPredicate(history
