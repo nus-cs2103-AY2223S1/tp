@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.listing.Listing;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.offer.Offer;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -52,6 +54,14 @@ public class Client extends Person implements Comparable<Client> {
      */
     public boolean doNotOwn(Listing toCheck) {
         return !this.equals(toCheck.getOwner());
+    }
+
+    public boolean doNotHaveMeeting(Meeting toCheck) {
+        return !this.getName().equals(toCheck.getClient());
+    }
+
+    public boolean doNotHaveOffer(Offer toCheck) {
+        return !this.getName().equals(toCheck.getClient());
     }
 
     @Override

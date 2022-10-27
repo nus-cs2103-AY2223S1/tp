@@ -37,6 +37,8 @@ public class DeleteListingCommand extends Command {
         }
 
         model.deleteListing(target);
+        model.deleteOffersFor(target);
+        model.deleteMeetingsAbout(target);
         return new CommandResult(String.format(MESSAGE_DELETE_LISTING_SUCCESS, target));
     }
 

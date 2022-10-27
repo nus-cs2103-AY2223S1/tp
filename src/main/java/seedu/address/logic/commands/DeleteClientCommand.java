@@ -42,6 +42,8 @@ public class DeleteClientCommand extends Command {
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteClient(clientToDelete);
         model.deleteListingsOwnedBy(clientToDelete);
+        model.deleteOffersMadeBy(clientToDelete);
+        model.deleteMeetingsWith(clientToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete));
     }
 

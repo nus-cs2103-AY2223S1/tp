@@ -119,7 +119,7 @@ public class UniqueListingList implements Iterable<Listing> {
     /**
      * Remove all listing owned by the client.
      */
-    public void deleteListingsofClient(Client toBeRemoved) {
+    public void deleteListingsOfClient(Client toBeRemoved) {
         List<Listing> newInternalList = internalList.stream().filter(toBeRemoved::doNotOwn)
             .collect(Collectors.toList());
         setListings(newInternalList);
