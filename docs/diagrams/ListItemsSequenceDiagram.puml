@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+skinparam noteTextAlignment left
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -51,5 +52,7 @@ deactivate CommandResult
 ListItemsCommand --> LogicManager : result
 deactivate ListItemsCommand
 [<--LogicManager
+
+destroy ListItemsCommand
 deactivate LogicManager
 @enduml

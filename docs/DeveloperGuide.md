@@ -211,6 +211,11 @@ The sequence diagram below illustrates this process.
 
 ![ListItemsSequenceDiagram](images/ListItemsSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListItemsCommand` 
+should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+reaches the end of diagram.
+</div>
+
 #### Design Considerations
 
 **Aspect: How the `listi` command executes**
@@ -243,7 +248,9 @@ The sequence diagram below illustrates this process.
 
 ![FindItemSequenceDiagram](images/FindItemSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser` 
+and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+reaches the end of diagram.
 </div>
 
 #### Design Considerations
@@ -489,7 +496,8 @@ The sequence diagram below illustrates this process.
 
 ![EditOrderSequenceDiagram](images/EditOrderSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditOrderCommandParser` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditOrderCommandParser` 
+and `EditOrderCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 #### Design Considerations
