@@ -1,8 +1,5 @@
 package seedu.address.model.person;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
@@ -10,6 +7,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import javafx.scene.image.Image;
 
 /**
  * Represents a Person in the address book.

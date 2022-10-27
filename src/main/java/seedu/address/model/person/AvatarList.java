@@ -1,12 +1,12 @@
 package seedu.address.model.person;
 
-import javafx.scene.image.Image;
-
 import java.io.File;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import javafx.scene.image.Image;
+
 
 /**
  * Randomly choose an image for Person's avatar
@@ -14,27 +14,27 @@ import java.util.Random;
 public class AvatarList {
 
     public static final Image STEVE_IMAGE = new Image(
-            new File("src/main/resources/images/steve.png").toURI().toString()
+            new File("images/steve.png").toURI().toString()
     );
 
     public static final Image RANDOM_SKIN_1 = new Image(
-            new File("src/main/resources/images/randomSkin1.png").toURI().toString()
+            new File("images/randomSkin1.png").toURI().toString()
     );
 
     public static final Image RANDOM_SKIN_2 = new Image(
-            new File("src/main/resources/images/randomSkin2.png").toURI().toString()
+            new File("images/randomSkin2.png").toURI().toString()
     );
 
     public static final Image RANDOM_SKIN_3 = new Image(
-            new File("src/main/resources/images/randomSkin3.png").toURI().toString()
+            new File("images/randomSkin3.png").toURI().toString()
     );
 
     public static final Image RANDOM_SKIN_4 = new Image(
-            new File("src/main/resources/images/randomSkin4.png").toURI().toString()
+            new File("images/randomSkin4.png").toURI().toString()
     );
 
     public static final Image RANDOM_SKIN_5 = new Image(
-            new File("src/main/resources/images/randomSkin5.png").toURI().toString()
+            new File("images/randomSkin5.png").toURI().toString()
     );
 
     public static final Random RANDOM = new Random();
