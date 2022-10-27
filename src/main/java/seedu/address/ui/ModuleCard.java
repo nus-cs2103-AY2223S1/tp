@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 
+import javafx.beans.value.ObservableBooleanValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -28,7 +29,6 @@ public class ModuleCard extends UiPart<Region> {
     private static final String LINK_HEADER_TEXT_WITH_SLASH = "https://";
     private static final String LINK_TEXT_COLOR = "-fx-text-fill: #FFCC66"; //Light Yellow
 
-
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved
      * keywords in JavaFX. As a consequence, UI elements' variable names
@@ -39,6 +39,7 @@ public class ModuleCard extends UiPart<Region> {
      */
 
     public final Module module;
+    public final Boolean displayTasks;
 
     @FXML
     private HBox cardPane;
@@ -58,7 +59,7 @@ public class ModuleCard extends UiPart<Region> {
      * Creates a {@code ModuleCode} with the given {@code Module} and index to
      * display.
      */
-    public ModuleCard(Module module, int displayedIndex) {
+    public ModuleCard(Module module, int displayedIndex, Boolean isHomeStatus) {
         super(FXML);
         this.module = module;
         id.setText(displayedIndex + ". ");
@@ -67,9 +68,12 @@ public class ModuleCard extends UiPart<Region> {
         module.getLinks().stream()
                 .forEach(link -> links.getChildren()
                         .add(createHyperLinkNode(link.linkName)));
-        ObservableList<Task> taskList = module.getTasks();
-        taskListPanel = new TaskListPanel(taskList);
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        this.displayTasks = !isHomeStatus;
+        if (displayTasks) {
+            ObservableList<Task> taskList = module.getTasks();
+            taskListPanel = new TaskListPanel(taskList);
+            taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        }
     }
 
     private static Hyperlink createHyperLinkNode(String linkUrl) {
@@ -106,6 +110,7 @@ public class ModuleCard extends UiPart<Region> {
         // state check
         ModuleCard card = (ModuleCard) other;
         return id.getText().equals(card.id.getText())
-                && module.equals(card.module);
+                && module.equals(card.module)
+                && displayTasks.equals(card.displayTasks);
     }
 }

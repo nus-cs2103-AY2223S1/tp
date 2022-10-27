@@ -140,7 +140,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean getHomeStatus() {
+    public ObservableList<Boolean> getHomeStatus() {
         throw new AssertionError("This method should not be called.");
     }
 

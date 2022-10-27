@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -24,7 +25,8 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private boolean isHome = true;
+    // Single observable boolean with ObservableList as wrapper.
+    private ObservableList<Boolean> isHome = FXCollections.singletonObservableList(true);
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -169,7 +171,8 @@ public class ModelManager implements Model {
     @Override
     public void deleteModule(Module target) {
         addressBook.removeModule(target);
-        this.isHome = true;
+        isHome.set(0, true);
+        assert isHome.size() == 1;
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -177,7 +180,8 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
-        this.isHome = true;
+        isHome.set(0, true);
+        assert isHome.size() == 1;
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -267,22 +271,23 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return isHome == other.isHome
+        return isHome.equals(other.isHome)
                 && addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredModules.equals(other.filteredModules);
     }
 
-    //// navigation-related methods
-
+    //=========== Navigation-related Methods =============================================================
     @Override
-    public boolean getHomeStatus() {
+    public ObservableList<Boolean> getHomeStatus() {
+        assert isHome.size() == 1;
         return isHome;
     }
 
     @Override
     public void setHomeStatus(boolean isHome) {
-        this.isHome = isHome;
+        assert this.isHome.size() == 1;
+        this.isHome.set(0, isHome);
     }
 }
