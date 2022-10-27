@@ -52,17 +52,17 @@ public class TypicalProperties {
             .withAddress("michegan ave")
             .withPropertyType("CONDO")
             .withPropertyStatus("PENDING")
-            .withPrice("1,000,000").build();
+            .withPrice("5,000,000").build();
     public static final Property FIONA = new PropertyBuilder().withName("Fiona Kunz")
             .withAddress("little tokyo")
             .withPropertyType("CONDO")
             .withPropertyStatus("SOLD")
-            .withPrice("1,000,000").build();
+            .withPrice("6,000,000").build();
     public static final Property GEORGE = new PropertyBuilder().withName("George Best")
             .withAddress("4th street")
             .withPropertyType("CONDO")
             .withPropertyStatus("SOLD")
-            .withPrice("1,000,000").build();
+            .withPrice("7,000,000").build();
 
     // Manually added
     public static final Property HOON = new PropertyBuilder().withName("Hoon Meier")
