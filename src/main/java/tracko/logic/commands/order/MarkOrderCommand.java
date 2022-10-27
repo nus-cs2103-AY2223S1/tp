@@ -47,7 +47,7 @@ public class MarkOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Order> lastShownList = model.getFilteredOrderList();
+        ObservableList<Order> lastShownList = model.getSortedOrderList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
