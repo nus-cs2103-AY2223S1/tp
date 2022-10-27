@@ -30,9 +30,9 @@
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
 <!-- WE USE :variable: FOR VALUES THAT ARE TO BE SUBSTITUTED -->
 {% capture TABLE %}
-| Placeholder  | Corresponding Flags | Description    |
+| Placeholder  | Corresponding Flag  | Description    |
 |--------------|---------------------|----------------|
-| INDEX        |                     | :INDEX:        |
+| INDEX        | (Not Applicable)    | :INDEX:        |
 | ITEM_NAME    | n/                  | :ITEM_NAME:    |
 | TAG_NAME     | n/                  | :TAG_NAME:     |
 | QUANTITY     | qty/                | :QUANTITY:     |
@@ -41,8 +41,8 @@
 | EXPIRY_DATE  | exp/                | :EXPIRY_DATE:  |
 | PRICE        | p/                  | :PRICE:        |
 | REMARKS      | r/                  | :REMARKS:      |
-| COMMAND_WORD |                     | :COMMAND_WORD: |
-| KEYWORD      |                     | :KEYWORD:      |
+| COMMAND_WORD | (Not Applicable)    | :COMMAND_WORD: |
+| KEYWORD      | (Not Applicable)    | :KEYWORD:      |
 {% endcapture %}
 
 <!-- ===== RENDER THE ACTUAL TABLE ===== -->
