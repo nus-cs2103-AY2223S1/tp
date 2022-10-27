@@ -278,6 +278,28 @@ Format: `unmark id/PATIENT_ID dsi/DATE_AND_SLOT_INDEX`
 Examples:
 * `unmark id/1 dsi/1` marks the dateslots of index 1 in the dateslot list of the patient with id of 1 as having been failed visited.
 
+### Updating a patient's emergency contact information: `updatecontact`
+
+Updates a patient's contact information for next-of-kin or attending physician.
+
+Format: `updatecontact id/PATIENT_ID c/CATEGORY n/CONTACT_NAME p/CONTACT_PHONE e/CONTACT_EMAIL`
+
+* PATIENT_ID: Unique ID of the patient whose emergency contact is to be updated.
+* CATEGORY: Only accepts N for next-of-kin or D for attending physician.
+* CONTACT_NAME: Name of the emergency contact.
+* CONTACT_PHONE: Phone number of the emergency contact.
+* CONTACT_EMAIL: Email address of the emergency contact.
+* Note: The UID must belong to a patient.
+* Note: Only N or D are accepted.
+* Note: This command replaces the current next-of-kin or attending physician contact info, 
+  * if there is already an existing one.
+
+Examples:
+* `updatecontact id/3 c/N n/John Doe p/81234567 e/johndoe@example.com` 
+  * updates NoK contact information for patient UID 3.
+* `updatecontact id/3 c/D n/Aziz Shavershian p/91234598 e/itsfnzyzzbro@example.com` 
+  * updates attending physician contact information for patient UID 3.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
