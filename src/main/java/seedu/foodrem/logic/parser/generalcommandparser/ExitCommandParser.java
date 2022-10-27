@@ -20,7 +20,7 @@ public class ExitCommandParser implements Parser<ExitCommand> {
     public ExitCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        if (args.trim().isBlank()) {
+        if (!args.trim().isBlank()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ExitCommand.getUsage()));
         }
 

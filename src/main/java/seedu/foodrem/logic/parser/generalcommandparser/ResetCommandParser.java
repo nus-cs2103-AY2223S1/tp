@@ -20,7 +20,7 @@ public class ResetCommandParser implements Parser<ResetCommand> {
     public ResetCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        if (args.trim().isBlank()) {
+        if (!args.trim().isBlank()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ResetCommand.getUsage()));
         }
 

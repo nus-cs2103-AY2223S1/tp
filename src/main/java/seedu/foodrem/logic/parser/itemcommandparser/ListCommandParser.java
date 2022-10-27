@@ -20,7 +20,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        if (args.trim().isBlank()) {
+        if (!args.trim().isBlank()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.getUsage()));
         }
 
