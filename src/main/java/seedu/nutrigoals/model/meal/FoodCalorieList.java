@@ -32,6 +32,8 @@ public class FoodCalorieList {
         foodToCalorieMap.put(new Name("white bread"), new Calorie("77"));
     }
 
+
+
     /**
      * Replaces the {@code HashMap} with the given {@code Map}.
      * @param replacement The {@code Map} to replace the current {@code HashMap} with.

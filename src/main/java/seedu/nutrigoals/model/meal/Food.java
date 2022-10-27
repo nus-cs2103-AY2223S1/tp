@@ -19,6 +19,7 @@ public class Food {
     private final Tag tag;
     private final DateTime dateTime;
 
+
     /**
      * Every field must be present and not null.
      */

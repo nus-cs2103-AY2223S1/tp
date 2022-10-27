@@ -197,6 +197,11 @@ public class SetupCommandTest {
         }
 
         @Override
+        public ObservableList<Food> getUnFilteredFoodList() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Test
         public boolean isAddedTotalCalorieTooLarge(Food toAdd) {
             throw new AssertionError("This method should not be called.");
         }

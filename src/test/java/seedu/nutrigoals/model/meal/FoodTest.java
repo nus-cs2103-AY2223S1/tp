@@ -42,9 +42,9 @@ public class FoodTest {
         editedApple = new FoodBuilder(APPLE).withName(VALID_BISCUIT_NAME).build();
         assertFalse(APPLE.isSameFood(editedApple));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         editedApple = new FoodBuilder(APPLE).withName(VALID_APPLE_NAME.toLowerCase()).build();
-        assertFalse(APPLE.isSameFood(editedApple));
+        assertTrue(APPLE.isSameFood(editedApple));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_APPLE_NAME + " ";

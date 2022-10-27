@@ -124,6 +124,8 @@ public interface Model {
 
     Calorie getTotalCalorie();
 
+    ObservableList<Food> getUnFilteredFoodList();
+
     boolean isAddedTotalCalorieTooLarge(Food toAdd);
 
     boolean isEditedTotalCalorieTooLarge(Food toAdd, Food toDelete);
