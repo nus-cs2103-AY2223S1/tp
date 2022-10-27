@@ -31,7 +31,8 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, String showHelpFor, boolean exit, Theme theme, boolean toggleListMode) {
+    public CommandResult(String feedbackToUser, boolean showHelp, String showHelpFor, boolean exit,
+                         Theme theme, boolean toggleListMode) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showHelpFor = showHelpFor;
