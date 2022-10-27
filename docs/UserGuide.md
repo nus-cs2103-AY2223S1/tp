@@ -128,9 +128,11 @@ Examples:
 * `profile -e 2 n/Betsy Crower t/` Edits the name of the 2nd profile to be `Betsy Crower` and clears all existing tags.
 * `profile -e 3 tg/ t/` Clears the telegram username and tags of the 3rd profile.
 
-#### Finding profiles by name: `profile -f KEYWORD [MORE_KEYWORDS]…`
+#### Finding profiles by name: `profile -f`
 
 Find profiles whose names contain any of the given keywords.
+
+Format: `profile -f KEYWORD [MORE_KEYWORDS]…`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -261,9 +263,11 @@ Format: `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`
 Example:
 * `event -e 1 n/Formal Dinner t/RC4` Edits the title of the first event in the displayed list to `Formal Dinner` and clears existing tags before adding the tag `RC4`.
 
-#### Finding events by date or title: `event -f KEYWORD_OR_DATE [MORE]…`
+#### Finding events by date or title: `event -f`
 
 Find events whose title contain any of the given keywords or start times contain any of the given start times.
+
+Format: `event -f KEYWORD_OR_DATE [MORE]…`
 
 * Date search will occur when all inputs are [valid dates](#accepted-date-time-formats), otherwise, keyword search will occur.
 * The date search occurs only by date, ignoring the time, e.g. `11/10/2022 08:00` will match any events that start on `11/10/2022`.
