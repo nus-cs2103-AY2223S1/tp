@@ -21,9 +21,9 @@ import gim.model.UserPrefs;
 import gim.model.exercise.NameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FilterCommand}.
  */
-public class FindCommandTest {
+public class FilterCommandTest {
     private Model model = new ModelManager(getTypicalExerciseTracker(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalExerciseTracker(), new UserPrefs());
 
@@ -34,31 +34,31 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FilterCommand filterFirstCommand = new FilterCommand(firstPredicate);
+        FilterCommand filterSecondCommand = new FilterCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(filterFirstCommand.equals(filterFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        FilterCommand filterFirstCommandCopy = new FilterCommand(firstPredicate);
+        assertTrue(filterFirstCommand.equals(filterFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertFalse(filterFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertFalse(filterFirstCommand.equals(null));
 
         // different exercise -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertFalse(filterFirstCommand.equals(filterSecondCommand));
     }
 
     @Test
     public void execute_zeroKeywords_noExerciseFound() {
         String expectedMessage = String.format(MESSAGE_EXERCISES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        FilterCommand command = new FilterCommand(predicate);
         expectedModel.filterFilteredExerciseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredExerciseList());
@@ -68,7 +68,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleExercisesFound() {
         String expectedMessage = String.format(MESSAGE_EXERCISES_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("CALF ELEVATED FRONT");
-        FindCommand command = new FindCommand(predicate);
+        FilterCommand command = new FilterCommand(predicate);
         expectedModel.filterFilteredExerciseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CALF_RAISES, ELEVATED_SQUATS, FRONT_SQUATS), model.getFilteredExerciseList());

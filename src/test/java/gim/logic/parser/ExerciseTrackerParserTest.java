@@ -20,7 +20,7 @@ import gim.logic.commands.AddCommand;
 import gim.logic.commands.ClearCommand;
 import gim.logic.commands.DeleteCommand;
 import gim.logic.commands.ExitCommand;
-import gim.logic.commands.FindCommand;
+import gim.logic.commands.FilterCommand;
 import gim.logic.commands.GenerateCommand;
 import gim.logic.commands.HelpCommand;
 import gim.logic.commands.ListCommand;
@@ -61,11 +61,11 @@ public class ExerciseTrackerParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_filter() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FilterCommand command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

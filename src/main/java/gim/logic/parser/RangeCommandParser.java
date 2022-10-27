@@ -1,9 +1,9 @@
 package gim.logic.parser;
 
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_END_DATE;
-import static gim.logic.parser.CliSyntax.PREFIX_RANGE_ADVANCED;
+import static gim.logic.parser.CliSyntax.PREFIX_RANGE_VARIATION_TWO;
+import static gim.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import java.util.stream.Stream;
 
@@ -16,6 +16,7 @@ import gim.model.exercise.DateWithinRangePredicate;
  * Parses input arguments and creates a new RangeCommand object
  */
 public class RangeCommandParser implements Parser<RangeCommand> {
+    private enum Variation { ONE, TWO }
 
     /**
      * Parses the given {@code String} of arguments in the context of the RangeCommand
@@ -23,47 +24,70 @@ public class RangeCommandParser implements Parser<RangeCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public RangeCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_END_DATE,
-                PREFIX_RANGE_ADVANCED);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_RANGE_VARIATION_TWO);
+        Variation variation = parseArguments(argMultimap);
 
-        // advanced version: when the user does not input any of the dates, but only inputs an integer with prefix last/
-        if (arePrefixesPresent(argMultimap, PREFIX_RANGE_ADVANCED)
-                && !arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_END_DATE)) {
-            int days;
-            try {
-                days = Integer.parseInt(argMultimap.getValue(PREFIX_RANGE_ADVANCED).get());
-            } catch (NumberFormatException e) {
-                // Ensure that the argument is a number and not other characters
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        RangeCommand.MESSAGE_USAGE_TWO));
-            }
-
-            // Only accept non-negative integers for the number of days
-            if (days < 0) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        RangeCommand.MESSAGE_USAGE_TWO));
-            }
-            Date today = new Date();
-            Date startDate = today.getPreviousDaysDate(days);
-            return new RangeCommand(new DateWithinRangePredicate(startDate, today), true);
+        if (variation.equals(Variation.TWO)) {
+            return getVariationTwo(argMultimap);
+        } else if (variation.equals(Variation.ONE)) {
+            return getVariationOne(argMultimap);
         }
 
-        // basic version: the user inputs both start date with prefix d/ and end date with prefix e/
-        // both date inputs are compulsory for the basic version
-        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_END_DATE)
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
+    }
+
+    private Variation parseArguments(ArgumentMultimap argMultimap) throws ParseException {
+        // invalid command format if user inputs all keywords or mixes the keywords
+        if (arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_RANGE_VARIATION_TWO)
+                || arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_RANGE_VARIATION_TWO)
+                || arePrefixesPresent(argMultimap, PREFIX_END_DATE, PREFIX_RANGE_VARIATION_TWO)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
+        }
+        if (arePrefixesPresent(argMultimap, PREFIX_RANGE_VARIATION_TWO)
+                && !arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE)) {
+            return Variation.TWO;
+        }
+        if (!arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
         }
+        return Variation.ONE;
+    }
+
+    private RangeCommand getVariationOne(ArgumentMultimap argMultimap) throws ParseException {
         Date startDate;
         Date endDate;
+        // basic version: the user inputs both start date with prefix start/ and end date with prefix end/
+        // both date inputs are compulsory for the basic version
         try {
-            startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+            startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
             endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
         } catch (ParseException | IllegalArgumentException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
         }
-
         return new RangeCommand(new DateWithinRangePredicate(startDate, endDate));
+    }
+
+    private RangeCommand getVariationTwo(ArgumentMultimap argMultimap) throws ParseException {
+        int days;
+        // advanced version: when the user does not input any of the dates, but only inputs an integer with prefix last/
+        try {
+            days = Integer.parseInt(argMultimap.getValue(PREFIX_RANGE_VARIATION_TWO).get());
+        } catch (NumberFormatException e) {
+            // Ensure that the argument is a number and not other characters
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RangeCommand.MESSAGE_USAGE_TWO));
+        }
+
+        // Only accept non-negative integers for the number of days
+        if (days < 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RangeCommand.MESSAGE_USAGE_TWO));
+        }
+        Date today = new Date();
+        Date startDate = today.getPreviousDaysDate(days);
+        return new RangeCommand(new DateWithinRangePredicate(startDate, today), true);
     }
 
     /**
