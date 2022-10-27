@@ -44,7 +44,9 @@ public class ChartUtil {
         XYChart.Series<String, Number> seriesResult = new XYChart.Series<>();
         seriesResult.setName("Maximum Score");
         for (Map.Entry<String, Number> entry : maxResult.entrySet()) {
-            seriesResult.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+            Number x = results.get(entry.getKey());
+            seriesResult.getData().add(new XYChart.Data<>(entry.getKey(),
+                    entry.getValue().doubleValue() - x.doubleValue()));
         }
         barChart.getData().add(seriesResult);
         barChart.setLegendVisible(false);

@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -189,7 +189,7 @@ public class Student extends Position {
     }
 
     public Map<String, Number> getAssignmentsAndGrade() {
-        Map<String, Number> map = new HashMap<>();
+        Map<String, Number> map = new LinkedHashMap<>();
         for (Assignment a: assignmentsList) {
             map.put(a.getAssignmentName() + " (" + a.getWeightage() + "%)", a.getScore());
         }
@@ -197,7 +197,7 @@ public class Student extends Position {
     }
 
     public Map<String, Number> getAssignmentsAndMaximumGrade() {
-        Map<String, Number> map = new HashMap<>();
+        Map<String, Number> map = new LinkedHashMap<>();
         for (Assignment a: assignmentsList) {
             map.put(a.getAssignmentName() + " (" + a.getWeightage() + "%)", a.getMaximumScore());
         }
