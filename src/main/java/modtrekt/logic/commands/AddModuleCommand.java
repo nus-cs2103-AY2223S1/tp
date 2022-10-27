@@ -74,7 +74,9 @@ public class AddModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.hasModuleWithModCode(modCode) || model.hasModuleWithModCode(modCode)) {
+
+        /* Module equality validated only via modCode, as some modules have the same name. */
+        if (model.hasModuleWithModCode(modCode)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 

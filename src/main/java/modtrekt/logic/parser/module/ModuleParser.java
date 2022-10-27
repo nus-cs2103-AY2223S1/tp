@@ -45,6 +45,8 @@ public class ModuleParser {
             /* A non-200 response code indicates that our request has failed, hence we use fallback data files. */
             if (response.statusCode() != 200) {
                 try {
+                    /* The case where the module does not exist is also handled here, as null is returned if no such
+                    * code exists. */
                     return parseModuleFromFile(code);
                 } catch (IOException e) {
                     /* Error reading data file with code */
@@ -77,6 +79,9 @@ public class ModuleParser {
     private static Module parseModuleFromFile(String code) throws IOException {
         JsonNode fallbackData = new ObjectMapper().readValue(
                 FileUtil.readFromFile(backupFilePath), JsonNode.class);
+        if (!(fallbackData.has(code))) {
+            return null;
+        }
         String moduleData = fallbackData.get(code).toString();
         JsonNode moduleNode = new ObjectMapper().readValue(moduleData, JsonNode.class);
         String moduleName = moduleNode.get("title").toString();
