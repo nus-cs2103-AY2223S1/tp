@@ -20,15 +20,18 @@ public class CommandResult {
     private final boolean isUndo;
     private final boolean isRedo;
 
+    private final boolean isShowCalculator;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean isShowHelp, boolean isExit, boolean isUndo, boolean isRedo) {
+    public CommandResult(String feedbackToUser, boolean isShowHelp, boolean isExit, boolean isUndo, boolean isRedo, boolean isShowCalculator) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.isShowHelp = isShowHelp;
         this.isExit = isExit;
         this.isUndo = isUndo;
         this.isRedo = isRedo;
+        this.isShowCalculator = isShowCalculator;
     }
 
     /**
@@ -36,7 +39,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+        this(feedbackToUser, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
