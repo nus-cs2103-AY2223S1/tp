@@ -322,7 +322,7 @@ Format: `:wq`
 
 **Q**: When should I use the `:list` command? 
 <br>
-**A**: The `:list` command resets the display of the exercise list, displaying all the exercise entries in the system (in the order the entries were input in the system). This can be used after commands such as `:find` or `:range` are used to change the display list.
+**A**: The `:list` command resets the display of the exercise list, displaying all the exercise entries in the system (in the order the entries were input in the system). This can be used after commands, such as `:find` or `:range` are used to change the display list.
 
 **Q**: Can I change the name of my uniquely registered exercise?
 <br>
