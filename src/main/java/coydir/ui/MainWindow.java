@@ -39,6 +39,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private PersonInfo personInfo;
 
+    private int currentIndex;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -65,6 +67,8 @@ public class MainWindow extends UiPart<Stage> {
 
         // Set dependencies
         this.primaryStage = primaryStage;
+        primaryStage.setMinWidth(1100);
+        primaryStage.setMinHeight(800);
         this.logic = logic;
 
         // Configure the UI
@@ -172,7 +176,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleDarkTheme() {
-        getPrimaryStage().getScene().getStylesheets().remove(0, 2);
+        getPrimaryStage().getScene().getStylesheets().clear();
         getPrimaryStage().getScene().getStylesheets().addAll(
                 getClass().getClassLoader().getResource("view/DarkTheme.css").toExternalForm(),
                 getClass().getClassLoader().getResource("view/Extensions.css").toExternalForm());
@@ -184,7 +188,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleLightTheme() {
-        getPrimaryStage().getScene().getStylesheets().remove(0, 2);
+        getPrimaryStage().getScene().getStylesheets().clear();
         getPrimaryStage().getScene().getStylesheets().addAll(
                 getClass().getClassLoader().getResource("view/LightTheme.css").toExternalForm(),
                 getClass().getClassLoader().getResource("view/Extensions.css").toExternalForm());
@@ -207,15 +211,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void handleView(int index) {
+        currentIndex = index;
         personInfo.update(logic.getFilteredPersonList().get(index));
-        personInfoPanelPlaceholder.getChildren().removeAll();
-        personInfoPanelPlaceholder.getChildren().set(0, personInfo.getRoot());
+        personInfoPanelPlaceholder.getChildren().clear();
+        personInfoPanelPlaceholder.getChildren().add(personInfo.getRoot());
     }
 
-    private void handleUpdate() {
-        personInfo.update();
-        personInfoPanelPlaceholder.getChildren().removeAll();
-        personInfoPanelPlaceholder.getChildren().set(0, personInfo.getRoot());
+    private void handleUpdate(int index) {
+        personInfo.update(logic.getFilteredPersonList().get(index));
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -242,11 +245,12 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isView()) {
-                handleView(commandResult.getViewIndex());
+                currentIndex = commandResult.getViewIndex();
+                handleView(currentIndex);
             }
 
             if (commandResult.isUpdate()) {
-                handleUpdate();
+                handleUpdate(currentIndex);
             }
 
             return commandResult;

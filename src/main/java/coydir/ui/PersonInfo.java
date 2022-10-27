@@ -4,15 +4,17 @@ import java.util.Comparator;
 
 import coydir.model.person.Leave;
 import coydir.model.person.Person;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.ObjectBinding;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -21,10 +23,8 @@ import javafx.scene.layout.Region;
 public class PersonInfo extends UiPart<Region> {
     private static final String FXML = "PersonInfo.fxml";
 
-    private Person person;
-
     @FXML
-    private HBox personInfo;
+    private VBox personInfo;
     @FXML
     private Label name;
     @FXML
@@ -50,8 +50,6 @@ public class PersonInfo extends UiPart<Region> {
     @FXML
     private TableView<Leave> leaveTable;
 
-    private Person current;
-
     /**
      * Creates a {@code PersonInfo} to display the {@code Person} particulars.
      */
@@ -71,18 +69,10 @@ public class PersonInfo extends UiPart<Region> {
     }
 
     /**
-     * Update the information on the display panel if any changes were made.
-     */
-    public void update() {
-        update(current);
-    }
-
-    /**
      * Update the person particulars in the {@code PersonInfo} panel.
      * @param person the person to be displayed
      */
     public void update(Person person) {
-        this.current = person;
         name.setText(person.getName().fullName);
         employeeId.setText("Employee ID:  " + String.format("%6s", person.getEmployeeId().value).replace(' ', '0'));
         phone.setText("Phone number:  " + person.getPhone().value);
@@ -95,6 +85,31 @@ public class PersonInfo extends UiPart<Region> {
         onLeave.setText("On leave: " + person.onLeaveStatus());
         tags.getChildren().clear();
         leaveTable.setItems(person.getObservableListLeaves());
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        TableColumn<Leave, String> index = new TableColumn<>("No.");
+        index.setCellFactory(col -> {
+            TableCell<Leave, String> indexCell = new TableCell<>();
+            ReadOnlyObjectProperty<TableRow<Leave>> rowProperty = indexCell.tableRowProperty();
+            ObjectBinding<String> rowBinding = Bindings.createObjectBinding(() -> {
+                TableRow<Leave> row = rowProperty.get();
+                if (row != null) {
+                    int rowIndex = row.getIndex();
+                    if (rowIndex < row.getTableView().getItems().size()) {
+                        return Integer.toString(rowIndex + 1);
+                    }
+                }
+                return null;
+            }, rowProperty);
+            indexCell.textProperty().bind(rowBinding);
+            return indexCell;
+        });
+        index.setSortable(false);
+        index.setReorderable(false);
+        index.setMaxWidth(2000);
+
         TableColumn<Leave, String> startDate = new TableColumn<>("Start Date");
         startDate.setCellValueFactory(new PropertyValueFactory<>("col1"));
         startDate.setSortable(false);
@@ -110,10 +125,6 @@ public class PersonInfo extends UiPart<Region> {
         durations.setSortable(false);
         durations.setReorderable(false);
         leaveTable.getColumns().clear();
-        leaveTable.getColumns().addAll(startDate, endDate, durations);
-
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        leaveTable.getColumns().addAll(index, startDate, endDate, durations);
     }
 }
