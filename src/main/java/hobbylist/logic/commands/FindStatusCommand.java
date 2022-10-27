@@ -10,8 +10,8 @@ import hobbylist.model.activity.StatusMatchesGivenStatus;
  * Finds and lists all activities in HobbyList whose status matches the given status.
  * Status matching is case insensitive.
  */
-public class FilterStatusCommand extends Command {
-    private static String commandWord = "filterStatus";
+public class FindStatusCommand extends Command {
+    private static String commandWord = "findStatus";
 
     public static final String MESSAGE_USAGE = commandWord + ": Finds all activities whose status matches"
             + "the given status (case-insensitive) and displays them as a list with index numbers.\n"
@@ -20,7 +20,7 @@ public class FilterStatusCommand extends Command {
 
     private final StatusMatchesGivenStatus predicate;
 
-    public FilterStatusCommand(StatusMatchesGivenStatus predicate) {
+    public FindStatusCommand(StatusMatchesGivenStatus predicate) {
         this.predicate = predicate;
     }
 
@@ -51,7 +51,7 @@ public class FilterStatusCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterStatusCommand // instanceof handles nulls
-                && predicate.equals(((FilterStatusCommand) other).predicate)); // state check
+                || (other instanceof FindStatusCommand // instanceof handles nulls
+                && predicate.equals(((FindStatusCommand) other).predicate)); // state check
     }
 }
