@@ -13,7 +13,7 @@
 
 <?import javafx.scene.layout.HBox?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<fx:root type="javafx.stage.Stage"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="TrackAScholar" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/track_a_scholar_logo.png" />
@@ -35,7 +35,7 @@
           </Menu>
         </MenuBar>
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="150">
+                   minHeight="200" prefHeight="100" maxHeight="300">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
@@ -44,8 +44,8 @@
 
         <VBox fx:id="applicantList"  minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <HBox VBox.vgrow="ALWAYS">
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" minWidth="400" />
-          <StackPane fx:id="pinnedPersonListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" minWidth="400"/>
+          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" minWidth="400"  />
+          <StackPane fx:id="pinnedPersonListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" minWidth="400" />
           </HBox>
         </VBox>
 
