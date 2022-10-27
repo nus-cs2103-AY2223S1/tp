@@ -3,15 +3,10 @@ package seedu.address.ui;
 import java.math.BigDecimal;
 import java.util.logging.Logger;
 
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -26,16 +21,9 @@ public class CalculatorWindow extends UiPart<Stage> {
     @FXML
     private TextField display;
 
-//    public CalculatorWindow() {
-//
-//        this.left = BigDecimal.ZERO;
-//        this.selectedOperator = "";
-//        this.numberInputting = false;
-//    }
 
     public CalculatorWindow(Stage root) {
         super(FXML, root);
-        //helpMessage.setText(HELP_MESSAGE);
         this.left = BigDecimal.ZERO;
         this.selectedOperator = "";
         this.numberInputting = false;
@@ -93,17 +81,6 @@ public class CalculatorWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
-//    @Override
-//    public void start(Stage stage) throws Exception {
-//        stage.setTitle("Calculator");
-//        stage.setOnCloseRequest(x -> {
-//            Platform.exit();
-//        });
-//        stage.setResizable(false);
-//        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("main.fxml"))));
-//        stage.show();
-//    }
-
     /**
      * Handle the bottom clicks on calculator.
      * Reused from https://gist.github.com/argius/08834fab73b91de8d79b
@@ -142,7 +119,6 @@ public class CalculatorWindow extends UiPart<Stage> {
             left = calculate(selectedOperator, left, right);
             display.setText(left.toString());
             numberInputting = false;
-            return;
         }
     }
 
@@ -160,9 +136,5 @@ public class CalculatorWindow extends UiPart<Stage> {
         }
         return right;
     }
-
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
 
 }
