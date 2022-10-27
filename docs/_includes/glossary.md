@@ -8,7 +8,6 @@
 <thead>
   <td>Quick Reference</td>
 </thead>
-<!-- TODO: We need to manually check that the links work -->
 {% tablerow entry in filtered %}
 <a href="#glossary-{{ entry.name | slugify }}">{{ entry.name }}</a>
 {% endtablerow %}
