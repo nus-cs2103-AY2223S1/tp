@@ -47,7 +47,7 @@ public class ProgressCommand extends TaskCommand{
         if (editedTask == task) {
             throw new CommandException(ALREADY_SET);
         }
-        model.setProgress(task, task.setProgress(String.valueOf(level)));
+        model.setTask(task, task.setProgress(String.valueOf(level)));
         return new CommandResult(String.format(COMPLETE_SUCCESS, task));
     }
 }
