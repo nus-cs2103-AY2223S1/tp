@@ -35,17 +35,19 @@ public class EditClientCommand extends EditCommand {
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
+    private final String warningMessage;
 
     /**
      * @param index of the client in the filtered client list to edit.
      * @param editClientDescriptor details to edit the client with.
      */
-    public EditClientCommand(Index index, EditClientDescriptor editClientDescriptor) {
+    public EditClientCommand(Index index, EditClientDescriptor editClientDescriptor, String warningMessage) {
         requireNonNull(index);
         requireNonNull(editClientDescriptor);
 
         this.index = index;
         this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
+        this.warningMessage = warningMessage;
     }
 
     @Override
@@ -66,7 +68,10 @@ public class EditClientCommand extends EditCommand {
 
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
+        return warningMessage.isEmpty()
+                ? new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient))
+                : new CommandResult(String.format("WARNING!\n" + warningMessage
+                + "\n" + MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
     }
 
     /**

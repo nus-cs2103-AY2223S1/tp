@@ -126,7 +126,7 @@ public class EditCommandParserTest {
         EditClientCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor, "");
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -138,33 +138,33 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + " m/client" + NAME_DESC_AMY;
         EditClientCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder()
                 .withName(VALID_NAME_AMY).build();
-        EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor, "");
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
         userInput = targetIndex.getOneBased() + " m/client" + ADDRESS_DESC_AMY;
         descriptor = new EditClientDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
-        expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        expectedCommand = new EditClientCommand(targetIndex, descriptor, "");
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + " m/client" + PHONE_DESC_AMY;
         descriptor = new EditClientDescriptorBuilder()
                 .withPhone(VALID_PHONE_AMY).build();
-        expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        expectedCommand = new EditClientCommand(targetIndex, descriptor, "");
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + " m/client" + EMAIL_DESC_AMY;
         descriptor = new EditClientDescriptorBuilder()
                 .withEmail(VALID_EMAIL_AMY).build();
-        expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        expectedCommand = new EditClientCommand(targetIndex, descriptor, "");
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + " m/client" + TAG_DESC_FRIEND;
         descriptor = new EditClientDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
-        expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        expectedCommand = new EditClientCommand(targetIndex, descriptor, "");
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -223,7 +223,7 @@ public class EditCommandParserTest {
         EditClientCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder()
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
-        EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor, "");
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -234,7 +234,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + " m/client" + TAG_EMPTY;
 
         EditClientCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withTags().build();
-        EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor, "");
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

@@ -27,6 +27,8 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditRemarkCommand;
 import seedu.address.logic.commands.EditTransactionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientPhone;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.remark.Text;
 import seedu.address.model.tag.Tag;
@@ -86,6 +88,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     protected EditClientCommand parseEditClientCommand(ArgumentMultimap argMultimap)
             throws ParseException {
 
+        StringBuilder warningMessage = new StringBuilder();
         Index index;
 
         try {
@@ -102,10 +105,18 @@ public class EditCommandParser implements Parser<EditCommand> {
             editClientDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editClientDescriptor.setPhone(ParserUtil.parseClientPhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            ClientPhone phone = ParserUtil.parseClientPhone(argMultimap.getValue(PREFIX_PHONE).get());
+            editClientDescriptor.setPhone(phone);
+            if (phone.hasWarning()) {
+                warningMessage.append(ClientPhone.WARNING + "\n");
+            }
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editClientDescriptor.setEmail(ParserUtil.parseClientEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            ClientEmail email = ParserUtil.parseClientEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            editClientDescriptor.setEmail(email);
+            if (email.hasWarning()) {
+                warningMessage.append(ClientEmail.WARNING + "\n");
+            }
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editClientDescriptor::setTags);
 
@@ -113,7 +124,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditClientCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditClientCommand(index, editClientDescriptor);
+        return new EditClientCommand(index, editClientDescriptor, warningMessage.toString());
     }
 
     /**

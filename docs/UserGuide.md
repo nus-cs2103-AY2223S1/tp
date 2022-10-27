@@ -120,7 +120,7 @@ Formats:
 `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]`
 
 * The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 * The `INDEX` **must not contain any signs** e.g +1, -3, …​
 * The `QUANTITY` refers to the amount of the goods transacted.
 * The `QUANTITY` should only contain non-negative integers and be at least 1 digit long.
@@ -156,7 +156,7 @@ Creates a new remark for the specified client.
 Format: `remark INDEX REMARK [t/TAG]...`
 
 * The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 * `TAG` is optional.
 * Multiple `TAG` can be tagged to the client.
 * The parameter `REMARK` cannot be empty.
@@ -174,7 +174,7 @@ Deletes the specified `client`, `transaction` or `remark` from JeeqTracker.
 Format: `delete INDEX m/MODE`
 
 * The `INDEX` refers to the index number shown in the displayed list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 * The `MODE` refers to which entity is being deleted. It must be `client`, `transaction` or `remark`.
 * `view` command must be used before the deletion of `remark` or `transaction` as the deletion can only happen when they are visible in the application.
 
@@ -194,7 +194,7 @@ Edits the details of the `client`, `transaction` or `remark` specified by the in
 Format: `edit INDEX m/MODE FIELDS [MORE_FIELDS]...`
 
 * The `INDEX` refers to the index number shown in the displayed list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 * The `INDEX` **must not contain any signs** e.g +1, -3, …​
 * The `MODE` refers to which entity is being deleted. It must be `client`, `transaction` or `remark`.
 * The `FIELDS` refers to the parameters to be changed for the entity. E.g:
@@ -287,7 +287,7 @@ Sorts the specified client's transaction by either the latest transaction or old
 Format: `sort INDEX ORDER`
 
 * The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 * The `INDEX` **must not contain any signs** e.g +1, -3, …​
 * The `ORDER` refers to how the transaction will be sorted. It can only be sorted by
   `oldest` or `latest`.
@@ -357,7 +357,7 @@ _Details coming soon ..._
 | Action         | Format, Examples                                                                                                                                       |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**        | `add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`<br> e.g., `add n/Alice a/Yishun Street 81 p/9876543 e/alice@gmail.com`                             |
-| **Buy**        | `buy INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g `buy 2 q/100 g/apples price/1.5`                                                         |
+| **Buy**        | `buy INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g., `buy 2 q/100 g/apples price/1.5`                                                       |
 | **Clear**      | `clear`                                                                                                                                                |
 | **Delete**     | `delete INDEX m/MODE`<br> e.g., `delete 3 m/client` or `view 1` followed by `delete 3 m/remark`                                                        |
 | **Edit**       | `edit INDEX m/MODE FIELDS [MORE_FIELDS]...` <br> e.g.,`edit 1 a/Blk 221 Yishun St 81 p/818181` or `view 1` followed by `edit 3 m/transaction g/mango ` |
@@ -367,7 +367,7 @@ _Details coming soon ..._
 | **Help**       | `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                         |
 | **List**       | `list`                                                                                                                                                 |
 | **Remark**     | `remark INDEX REMARK [t/TAG]...`<br> e.g., `remark 3 Punctual Buyer` or `remark 5 Fast and Decisive Buyer t/favourite`                                 |                                                                     |
-| **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g `sell 2 q/100 g/apples price/1.5 d/07/11/2022`                                          |
+| **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g., `sell 2 q/100 g/apples price/1.5 d/07/11/2022`                                        |
 | **Sort**       | `sort INDEX ORDER` <br> e.g.,`sort 1 latest` or `sort 3 oldest`                                                                                        | 
 | **User Guide** | `user_guide`                                                                                                                                           |
 | **View**       | `view INDEX` <br> e.g., `view 5`                                                                                                                       |
@@ -378,7 +378,7 @@ _Details coming soon ..._
 |------------|------------------------------------------------|-----------------------------------------------------|-------------------------------|
 | **n/**     | Name of the client                             | Alphanumeric characters and spaces, required        | `n/Alice`                     |
 | **a/**     | Address of the client                          | Required                                            | `a/321 Clementi Road, #02-22` |
-| **p/**     | Phone number of the client                     | Required                                            | `n/98765432`                  |
+| **p/**     | Phone number of the client                     | Required                                            | `p/98765432`                  |
 | **e/**     | Email of the client                            | Required                                            | `e/alice@gmail.com`           |
 | **g/**     | Goods name involved in the transaction         | Alphanumeric characters and spaces, required        | `g/Apples`                    |
 | **q/**     | Quantity of goods involved in the transaction  | Positive integer, required                          | `q/10`                        |

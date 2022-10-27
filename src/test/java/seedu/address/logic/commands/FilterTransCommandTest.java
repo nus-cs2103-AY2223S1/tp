@@ -47,7 +47,7 @@ class FilterTransCommandTest {
 
         // another object
         assertFalse(command.equals(new EditClientCommand(INDEX_FIRST_CLIENT,
-                new EditClientDescriptorBuilder().build())));
+                new EditClientDescriptorBuilder().build(), "")));
         // same values -> returns true
         assertTrue(command.equals(new FilterTransCommand(true)));
 
