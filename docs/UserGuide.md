@@ -51,7 +51,9 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+In this section, we will cover the features of ModtRekt, and introduce the command syntaxes.
+
+<div markdown="block" class="alert alert-info"/>
 
 ```< >``` for mandatory arguments
 
@@ -62,7 +64,10 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
 ### General
 `help`
 
-Shows a message which explains the basic commands and links to the user guide.
+Shows a message which provides a link to this user guide.
+
+Sample execution of command `help`:
+![help-message](images/UserGuidePictures/help-message.png)
 
 `exit`
 
@@ -72,29 +77,45 @@ Exits the application.
 
 #### Adding a module: `add module`
 
-Adds a module to the program.
+Adds a module to the application.
 
-- The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
-- Only modules that are on NUSMods can be added with just the module code.
-- If module name is added, module code also has to be added and vice versa.
-- Module credit must be a numeric and cannot be negative
+To allow our users to easily add modules via their module code, our module information is fetched from 
+[NUSMods](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4),
+hence the module code you specify must be a valid NUS module code. 
+If the module code is invalid, the module will not be added. Additionally, since an integration with NUSMods 
+is a collaboration we would like to seek in future revisions of our app, we have decided to use the AY2022-2023 module 
+list, hence beyond this AY, the module information and codes may have changed.
 
-Format: `add module <module code> [-n <module name> -cr <module credit>]`
+Format: `add module <module code>`
 
-Shorthand: `add mod <module code> [-n <module name> -cr <module credit>]`
+Shorthand: `add mod <module code>`
+
+- The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
 
 Examples:
 - `add module CS2103T`
 - `add mod CS2103T`
-- `add mod ST2334 -n "Probability and Statistics" -cr 4`
 
-![](./images/UserGuidePictures/add_module.png)
+The app also supports the addition of customised modules, which may or may not be in NUSMods.
+This is useful for users with other commitments, such as internships, that they would like to track in the app.
+Note that if your customised module is not in NUSMods, you would still need to specify the module credits, for example, 0.
+
+Format: `add module <module code> -n <custom module name> -cr <module credits>`
+
+Shorthand: `add mod <module code> -n <custom module name> -cr <module credits>`
+
+Sample execution of command `add mod CS2100`:
+![add-mod-sample](images/UserGuidePictures/add-mod-sample.png)
 
 #### Removing a module: `remove module`
 
-Deletes a module from the program.
+Deletes a module from the program. Users specify a module code to delete.
 
-- The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
+Format: `remove module <module code>`
+
+Shorthand: `rm mod <module code>`
+
+- The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
 - Module code must match an existing module.
 
 Format: `remove module <module code>`
@@ -105,15 +126,18 @@ Examples:
 - `remove module CS2103T`
 - `rm mod CS2103T`
 
-![](./images/UserGuidePictures/rm_module.png)
+Sample execution of command `remove mod CS2100`:
+![remove-mod-sample](images/UserGuidePictures/remove-mod-sample.png)
 
 #### Entering a module: `cd`
 
 Sets the current module page to the specified module.
 
-- The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
-- Allows user to view information relating to the specified module.
+Format: `cd <module code>`
+
+Allows user to view information relating to the specified module.
 - Scopes the user’s actions to the specified module.
+- The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
 - Module code must match an existing module.
 
 Format: `cd <module code>`
@@ -121,13 +145,22 @@ Format: `cd <module code>`
 Examples:
 - `cd CS2103T`
 
+Sample execution of command `cd CS2100`:
+![cd-module-sample](images/UserGuidePictures/cd-module-sample.png)
 
-Example of CDing into a module
-![](./images/UserGuidePictures/cd_module.png)
+### Exiting a module: `cd`
 
+Exits the current module page to revert to showing all modules.
 
-Example of CDing back to all modules
-![](./images/UserGuidePictures/cd_back_module.png)
+Format: `cd ..`
+
+Allows user to view all active tasks instead of tasks belonging to a specific module.
+
+Examples:
+- `cd ..`
+
+Sample execution of command `cd ..`:
+![cd-default-sample](images/UserGuidePictures/cd-default-sample.png)
 
 #### Marks done a module: `done`
 
@@ -146,7 +179,8 @@ Shorthand: `done mod <module code>`
 Examples:
 - `done module CS1101S`
 
-![](./images/UserGuidePictures/done_module.png)
+Sample execution of command `done module CS2100`:
+![done-module-sample](images/UserGuidePictures/done-module-sample.png)
 
 #### Marks undone a module: `undone`
 
@@ -164,7 +198,8 @@ Shorthand: `done mod <module code>`
 Examples:
 - `undone module CS1101S`
 
-![](./images/UserGuidePictures/undone_module.png)
+Sample execution of command `done module CS2105`, with CS2105 marked as done initially:
+![undone-module-sample](images/UserGuidePictures/undone-module-sample.png)
 
 #### Listing all modules: `list module`
 
@@ -180,7 +215,8 @@ Shorthand: `ls module [-a]`, `list mod [-a]`, `ls mod [-a]`
 Examples:
 - `list module -a`
 
-![](./images/UserGuidePictures/list_module.png)
+Sample execution of command `list module -a`:
+![list-module-sample](images/UserGuidePictures/list-modules-sample.png)
 
 #### Editing modules: `edit module`
 
@@ -206,19 +242,26 @@ Examples:
 
 Adds a task under specific module.
 
-- User must be within a module page.
-- User may optionally include a deadline for the task by specifying the -d flag along with the deadline in DD/MM/YYYY format.
-- Description of a task can **only** contain American Standard Code for Information Interchange (ASCII) characters
+- User can optionally be in a module page (i.e. Executing the [`cd` command](#entering-a-module-cd) to enter a module).
+- User may optionally include a deadline for the task by specifying the -d flag along with the deadline in YYYY-MM-DD format.
+- Description of a task can **only** contain American Standard Code for Information Interchange 
+  [(ASCII)](https://en.wikipedia.org/wiki/ASCII) characters
 
-Format: `add task <task> [-d <deadline>]`
+Format(if CDed): `add task <description> [-d <deadline>]`
 
-Shorthand: `add -t <task> [-d <deadline>]`
+Format(otherwise): `add task <description> [-d <deadline>] -c <module code>`
 
-Examples:
-- `add task do ip tasks -d 15/09/2022`
-- `add -t do ip tasks`
 
-![](./images/UserGuidePictures/add_task.png)
+Examples (CDed into a module):
+- `add task "do ip tasks" -d 2022-09-15`
+- `add task -d 15/09/2022 "do ip tasks"`
+
+Examples (Not CDed into a module):
+- `add task -c CS2103T "do ip tasks" -d 2022-09-15`
+- `add task -d 2022-09-15 "do ip tasks" -c CS2103T`
+
+Sample execution of command `add "Assignment 1" -c CS2100 -d 2022-10-29`:
+![add-task-sample](images/UserGuidePictures/add-task-sample.png)
 
 #### Removing a task: `remove task`
 
@@ -229,29 +272,55 @@ Removes a task under a specific module.
 
 Format: `remove task <task index>`
 
-Shorthand: `rm -t <task index>`
+Shorthand: `rm task <task index>`
 
 Examples:
 - `remove task 1`
-- `rm -t 1`
+- `rm task 1`
 
-![](./images/UserGuidePictures/remove_task.png)
+Sample execution of command `remove task 1` with 2 active tasks displayed:
+![remove-task-sample](images/UserGuidePictures/remove-task-sample.png)
+
+#### Marking a task as done: `done task`
+
+Marks a task as done, specified via its index on the displayed list.
+- Index must be a valid integer. Users may use the list tasks command to find the indexes of their tasks.
+
+Format: `done task <task index>`
+
+Examples:
+- `done task 1`
+
+Sample execution of command `done task 1` with 6 active tasks displayed:
+![done-task-sample](images/UserGuidePictures/done-task-sample.png)
+
+#### Marking a task as undone: `undone task`
+
+Marks a task as undone, specified via its index on the displayed list.
+- Index must be a valid integer. Users may use the list tasks command to find the indexes of their tasks.
+
+Format: `undone task <task index>`
+
+Examples:
+- `undone task 1`
+
+Sample execution of command `undone task 6` with 6 active tasks displayed:
+![undone-task-sample](images/UserGuidePictures/undone-task-sample.png)
 
 #### Listing all tasks: `list tasks`
 
 Lists all tasks under either all modules or a specific module.
 
-- Module code is inferred from the current module page if the user is currently within a module page.
-- The module code is case insensitive e.g. cs2103t will match CS2103T
-- Module code must match an existing module.
+- Using the command without `-a` tag will show you all active tasks.
+- Using the command with `-a` tag will show you all tasks, including those marked as done.
 
-Format: `list tasks [-m <module code>]`
+Format: `list task [-a]`
 
-Shorthand: `ls -t [-m <module code>]`
+Shorthand: `ls task [-a]`
 
 Examples:
-- `list tasks -m cs2103t`
-- `ls -t -m CS2103T`
+- `list tasks`
+- `ls task -a`
 
 #### Editing tasks: `edit task`
 
@@ -283,6 +352,11 @@ Examples:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous ModuleList home folder.
+**Q**: Is my data saved when I close the app?<br>
+**A**: Yes! We keep track of your modules and tasks, and they will automatically be shown when you re-open the application.
+**Q**: Do I need a working internet connection to use this application?<br>
+**A**: No, it is not required. We have a backup data file of all NUS modules for AY2022-2023, so no internet is required.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
