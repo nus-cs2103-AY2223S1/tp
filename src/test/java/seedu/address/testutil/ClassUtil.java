@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
@@ -33,7 +33,7 @@ public class ClassUtil {
         StringBuilder sb = new StringBuilder();
         sb.append("class ");
         sb.append(PREFIX_NAME + tuitionClass.getName().name + " ");
-        sb.append(PREFIX_SUBJECT + tuitionClass.getSubject().subject + " ");
+        sb.append(PREFIX_SUBJECT_OR_SCHOOL + tuitionClass.getSubject().subject + " ");
         sb.append(PREFIX_LEVEL + tuitionClass.getLevel().level + " ");
         sb.append(PREFIX_DAY + tuitionClass.getDay().day + " ");
         sb.append(PREFIX_TIME + tuitionClass.getTime().timeFrame + " ");
@@ -49,7 +49,8 @@ public class ClassUtil {
     public static String getEditTuitionClassDescriptorDetails(EditTuitionClassDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.name).append(" "));
-        descriptor.getSubject().ifPresent(subject -> sb.append(PREFIX_SUBJECT).append(subject.subject).append(" "));
+        descriptor.getSubject().ifPresent(subject -> sb.append(PREFIX_SUBJECT_OR_SCHOOL).append(subject.subject)
+                .append(" "));
         descriptor.getLevel().ifPresent(level -> sb.append(PREFIX_LEVEL).append(level.level).append(" "));
         descriptor.getDay().ifPresent(day -> sb.append(PREFIX_DAY).append(day.day).append(" "));
         descriptor.getTime().ifPresent(time -> sb.append(PREFIX_TIME).append(time.timeFrame).append(" "));

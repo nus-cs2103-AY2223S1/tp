@@ -107,7 +107,7 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate<>(Arrays.asList("P2MATH", "123"));
         assertTrue(predicate.test(TUITIONCLASS1));
     }
-    
+
     @Test
     public void test_studentNameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
