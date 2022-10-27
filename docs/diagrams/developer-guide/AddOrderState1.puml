@@ -6,9 +6,9 @@ skinparam classBackgroundColor ORDER_MODEL_COLOR
 skinparam objectBackgroundColor ORDER_MODEL_COLOR
 hide empty members
 
-title "Initial TrackO Model State"
+title "TrackO Application State After Step 1"
 
-package {
+package "Model" {
     package Inventory {
         Object "__:InventoryList__" as InventoryList ITEM_MODEL_COLOR_T4 {
         }
@@ -33,5 +33,27 @@ package {
         }
     }
 }
+
+package Logic {
+Object "__:LogicManager__" as LogicManager LOGIC_COLOR_T4 {
+
+}
+
+Object "__:AddOrderCommand__" as AddOrderCommand LOGIC_COLOR_T4 {
+    isAwaitingInput = true
+}
+
+LogicManager -> AddOrderCommand :inProgressCommand >
+
+Object "__toAdd:Order__" as OrderToAdd ORDER_MODEL_COLOR {
+    name = "John Doe"
+    phone = 98765432
+    email = "johnd@example.com"
+    address = "311, Clementi Ave 2, #02-25"
+}
+
+AddOrderCommand --> OrderToAdd
+}
+
 
 @enduml

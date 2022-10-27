@@ -260,11 +260,12 @@ The add order feature allows the user to add an `Order` to be tracked by the sys
 This feature is facilitated by the `AddOrderCommand`, which extends from the `MultiLevelCommand` class.
 The user will enter multiple rounds of input before an `Order` is successfully added to the system.
 
-Given below is an example usage scenario and how the add order mechanism behaves at each step. We assume that the user
-has already added some inventory items to be tracked by the system, such that our initial state before the add order command
-is initiated, is illustrated as such.
+Before giving an example usage scenario, lets assume that the user has already added some inventory items to be tracked by the system, but has not added any orders yet.
+Hence that our initial state before the add order command is initiated, is illustrated as such.
 
 ![AddOrderState0](images/developer-guide/AddOrderState0.png)
+
+Given below is an example usage scenario that works with the given model state as depicted above, and how the add order mechanism behaves at each step.
 
 Step 1. The user enters the following input into the UI's command box:
 `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`. This instantiates an `AddOrderCommand`, that references
@@ -273,23 +274,23 @@ a new `Order` which encapsulates the input customer data. This then sets the sys
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format)
 </div>
 
-**_Object diagram to be added here_**
+![AddOrderState1](images/developer-guide/AddOrderState1.png);
 
-Step 2a. The user then enters `i/Pen q/3`, representing that the order requires 3 units (quantities) of 'Pens' to fulfill.
-The system updates the instantiated command, by first having the `AddOrderCommand` stages the input item name and quantity for validation,
+Step 2a. The user then enters `i/Eraser q/3`, representing that the order requires 3 quantities (or units) of `Erasers` to fulfill.
+The system updates the instantiated command, by first having the `AddOrderCommand` stage the input item name and quantity for validation,
 using the `AddOrderCommand#stageForValidation()` method.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format)
 </div>
 
-**_Object diagram to be added here_**
+![AddOrderState2](images/developer-guide/AddOrderState2.png);
 
 Step 2b. The system searches the inventory items for an item that has a matching name. In this scenario,
 we assume that the user has already added an `Item` with its `ItemName` value to be `Pen`, to the system's list of tracked items.
 Hence, upon execution, a valid item was found based on the user's input item name, and the system adds a new `ItemQuantityPair` that
 references the found item to the list of items ordered in the instantiated `Order`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the user has entered an item name that cannot be matched to the system's inventory, the state will remain unchanged and the UI will notify the user and provide a prompt to re-enter inputs)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the user has entered an item name that does not match any of the items in the model's inventory, the state will remain unchanged and the UI will notify the user and provide a prompt to re-enter inputs)
 </div>
 
 **_Object diagram to be added here_**
