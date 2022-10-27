@@ -18,7 +18,7 @@ class JsonAdaptedTag {
      */
     @JsonCreator
     public JsonAdaptedTag(String tagName) {
-        this.tagName = tagName;
+        this.tagName = tagName == null ? "" : tagName;
     }
 
     /**

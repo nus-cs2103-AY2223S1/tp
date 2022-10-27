@@ -60,6 +60,8 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         final List<Attribute> modelAttributes = new ArrayList<>();
+
+        // Exception handling is not supported in Java streams.
         for (JsonAdaptedTag tag : getTags()) {
             personTags.add(tag.toModelType());
         }
