@@ -4,7 +4,6 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 
-import javafx.beans.value.ObservableBooleanValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -39,7 +38,7 @@ public class ModuleCard extends UiPart<Region> {
      */
 
     public final Module module;
-    public final Boolean displayTasks;
+    public final Boolean isOnHome;
 
     @FXML
     private HBox cardPane;
@@ -68,8 +67,8 @@ public class ModuleCard extends UiPart<Region> {
         module.getLinks().stream()
                 .forEach(link -> links.getChildren()
                         .add(createHyperLinkNode(link.linkName)));
-        this.displayTasks = !isHomeStatus;
-        if (displayTasks) {
+        this.isOnHome = !isHomeStatus;
+        if (isOnHome) {
             ObservableList<Task> taskList = module.getTasks();
             taskListPanel = new TaskListPanel(taskList);
             taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
@@ -111,6 +110,20 @@ public class ModuleCard extends UiPart<Region> {
         ModuleCard card = (ModuleCard) other;
         return id.getText().equals(card.id.getText())
                 && module.equals(card.module)
-                && displayTasks.equals(card.displayTasks);
+                && isOnHome.equals(card.isOnHome);
+    }
+
+
+    @FXML
+    public void handleClick() {
+        boolean isTaskListPanelChildless =
+                taskListPanelPlaceholder.getChildren().size() == 0;
+        if (isTaskListPanelChildless) {
+            ObservableList<Task> taskList = module.getTasks();
+            taskListPanel = new TaskListPanel(taskList);
+            taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        } else if (!isTaskListPanelChildless) {
+            taskListPanelPlaceholder.getChildren().clear();
+        }
     }
 }
