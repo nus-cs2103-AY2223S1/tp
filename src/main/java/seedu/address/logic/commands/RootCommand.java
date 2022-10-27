@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND;
+
+import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
 /**
@@ -21,5 +24,12 @@ import picocli.CommandLine.Command;
     HelpCommand.class,
     ThemeCommand.class
 })
-public class RootCommand {
+public class RootCommand implements Runnable {
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
+    @Override
+    public void run() {
+        throw new CommandLine.ParameterException(commandSpec.commandLine(), MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND);
+    }
 }
