@@ -15,9 +15,6 @@ public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain a positive integer.";
 
-    public static final String MESSAGE_CONSTRAINTS_REGEX =
-            "Quantity should not contain decimal point.";
-
     public static final String MESSAGE_CONSTRAINTS_ZERO =
             "Quantity should not be 0.";
     public static final String MESSAGE_CONSTRAINTS_POSITIVE =
