@@ -92,20 +92,23 @@
                     <Label text="Total revenue generated"/>
                 </VBox>
 
-                <HBox GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="3" spacing="12"
-                      minWidth="83.3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" id="commissionCountCard"
-                      alignment="CENTER_LEFT">
-                    <Label fx:id="commissionCount" id="commissionCount" text="\$commissionCount">
-                        <minHeight>
-                            <!-- Ensures that the label text is never truncated -->
-                            <Region fx:constant="USE_PREF_SIZE"/>
-                        </minHeight>
-                        <VBox.margin>
-                            <Insets bottom="4.0" />
-                        </VBox.margin>
-                    </Label>
-                    <Label fx:id="commissionLabel" text="Commissions" minHeight="26"
-                           style="-fx-text-alignment: bottom;"/>
+                <HBox GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="3" spacing="8">
+                    <VBox spacing="12" minWidth="100" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
+                          id="commissionCountCard" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                        <Label fx:id="commissionCount" id="commissionCount" text="\$commissionCount">
+                            <minHeight>
+                                <!-- Ensures that the label text is never truncated -->
+                                <Region fx:constant="USE_PREF_SIZE"/>
+                            </minHeight>
+                            <VBox.margin>
+                                <Insets bottom="4.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label fx:id="commissionLabel" text="Commissions" minHeight="26"/>
+                    </VBox>
+
+                    <HBox fx:id="pieChartPlaceholder"
+                          minWidth="150" maxWidth="150" minHeight="150" maxHeight="150" HBox.hgrow="NEVER"/>
                 </HBox>
 
                 <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="1"
