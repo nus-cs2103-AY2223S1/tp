@@ -361,7 +361,7 @@
 }
 
 #assignments .label {
-    -fx-text-fill: #white;
+    -fx-text-fill: black;
     -fx-background-color: #FFC2E0;
     -fx-padding: 2 5 2 5;
     -fx-border-radius: 0;
