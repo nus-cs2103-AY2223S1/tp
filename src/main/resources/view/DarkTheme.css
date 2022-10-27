@@ -305,9 +305,7 @@
     -fx-opacity:0.7;
     -fx-control-inner-background: transparent;
 }
-.cover2 > .corner {
-      -fx-background-color: black;
-}
+
 .cover2 .scroll-bar{
     -fx-background-color:black;
 }
