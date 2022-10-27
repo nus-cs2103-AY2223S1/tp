@@ -73,7 +73,7 @@ Danger zone! Do pay attention to the information here carefully.
 
 ### Formatting
 
-- `Highlights` are used to denote commands or output from the applicatoin.
+- `Highlights` are used to denote commands or output from the application.
 
 ## Features
 
