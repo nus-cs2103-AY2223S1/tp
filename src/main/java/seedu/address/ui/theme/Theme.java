@@ -3,6 +3,9 @@ package seedu.address.ui.theme;
 /**
  * Theme represents the stylesheet being used for the GUI.
  */
+//@@author junlong4321-reused
+//Reused from https://github.com/junlong4321/tp/blob/master/src/main/java/tutorspet/ui/stylesheet/Stylesheet.java
+// with minor modifications
 public enum Theme {
     LIGHT("LightTheme.css"),
     DARK("DarkTheme.css"),
