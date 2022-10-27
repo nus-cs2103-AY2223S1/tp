@@ -202,7 +202,7 @@ public class ParserUtil {
     public static Set<String> parseDeleteTagKeywords(String keywords) throws ParseException {
         requireNonNull(keywords);
         String trimmedKeywords = keywords.strip();
-        String[] keywordsList = trimmedKeywords.split(" ");
+        String[] keywordsList = trimmedKeywords.split("\\s+");
         final Set<String> keywordSet = new HashSet<>();
         for (String keyword : keywordsList) {
             if (!(keyword.equalsIgnoreCase("priority")
