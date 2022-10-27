@@ -64,7 +64,7 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 
 </div>
 
-### 3.1 Students Features
+### 3.1 Student Features
 
 #### 3.1.1 Adding a student: `add student`
 
@@ -137,7 +137,7 @@ Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find m/CS2103T` returns list of students in CS2103T<br>
 
-### 3.2 Tutorials Features
+### 3.2 Tutorial Features
 #### 3.2.1 Adding a tutorial : `add tutorial`
 
 Adds a tutorial to the tutorial database.
@@ -178,7 +178,7 @@ Examples:
 * `edit tutorial 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
 * `edit tutorial 2 T/14:00-16:00 D/2` Edits the timeslot of the 2nd tutorial to be `14:00 to 16:00` and sets tutorial day to `Tue`.
 
-### 3.3 Consultations Features
+### 3.3 Consultation Features
 
 #### 3.3.1 Adding a consultation : `add consultation`
 
@@ -217,23 +217,21 @@ Examples:
 * `edit consultation 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
 * `edit consultation 2 T/14:00-16:00 D/2022-10-10` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2022 Oct 10`.
 
+### 3.4 Reminder Features
 
-### Showing grades
-
-Shows a pie chart representing proportions of students' grade.
-
-Format: `show grade`
-
-
-
-
-### Adding a reminder : `add reminder`
+#### 3.4.1 Adding a reminder : `add reminder`
 
 Adds a reminder to the list of reminders.
 
 Format: `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION`
 
-### Deleting a reminder : `delete reminder`
+* Adds a reminder with either `HIGH`, `MEDIUM` or `LOW` priority.
+
+Examples:
+* `add reminder n/mark midterms T/2022-10-26 20:00 p/high d/300 papers to mark`
+
+
+#### 3.4.2 Deleting a reminder : `delete reminder`
 
 Deletes the specified reminder from the list of reminders.
 
@@ -246,29 +244,52 @@ Format: `delete reminder INDEX`
 Examples:
 * `delete reminder 3`
 
-### Mark a reminder : `mark reminder`
+#### 3.4.3 Mark a reminder : `mark reminder`
 
-Marks a reminder as completed.
+Marks a reminder as complete.
 
 Format: `mark reminder INDEX`
 
 Examples:
-* `mark reminder 3`
+* `mark reminder 1`
 
-### Unmark a reminder : `unmark reminder`
+![Before marking reminder](images/UnmarkedReminder.png)
+_Figure 1. Before executing command: `mark reminder 1`_
 
-Unmarks a reminder as not completed.
+![After marking reminder](images/MarkedReminder.png)
+_Figure 1.2. After executing command: `mark reminder 1`_
+
+#### 3.4.4 Unmark a reminder : `unmark reminder`
+
+Unmarks a reminder as incomplete.
 
 Format: `unmark reminder INDEX`
 
 Examples:
 * `unmark reminder 3`
- 
-### Sort reminders by priority : `sort reminder`
 
-Sort reminders by their priority.
+#### 3.4.5 Sort reminders by priority : `sort reminder priority`
 
-Format: `sort reminder`
+Sort reminders by their priority, with `HIGH` on top of the list, followed by `MEDIUM` and `LOW`.
+
+Format: `sort reminder priority`
+
+#### 3.4.6 Sort reminders by deadline : `sort reminder deadline`
+
+Sort reminders by their deadline, with the earliest deadline on top of the list.
+
+Format: `sort reminder deadline`
+
+### Showing grades
+
+Shows a pie chart representing proportions of students' grade.
+
+Format: `show grade`
+
+
+
+
+
 
 ### Clearing all data: `clear`
 
