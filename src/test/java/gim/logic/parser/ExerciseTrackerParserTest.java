@@ -3,6 +3,7 @@ package gim.logic.parser;
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static gim.logic.commands.CommandTestUtil.VALID_LEVEL_EASY;
+import static gim.logic.parser.CliSyntax.PREFIX_CONFIRM;
 import static gim.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
@@ -43,8 +44,11 @@ public class ExerciseTrackerParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " " + PREFIX_CONFIRM) instanceof ClearCommand);
+        assertTrue(parser.parseCommand(
+                ClearCommand.COMMAND_WORD + " " + PREFIX_CONFIRM + "placeholder") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(
+                ClearCommand.COMMAND_WORD + " placeholder " + PREFIX_CONFIRM) instanceof ClearCommand);
     }
 
     @Test

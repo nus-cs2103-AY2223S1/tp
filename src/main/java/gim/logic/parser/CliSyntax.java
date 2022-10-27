@@ -16,4 +16,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_RANGE_VARIATION_TWO = new Prefix("last/");
     public static final Prefix PREFIX_LEVEL = new Prefix("l/");
     public static final Prefix PREFIX_ALL = new Prefix("all/");
+    public static final Prefix PREFIX_CONFIRM = new Prefix("confirm/");
 }
