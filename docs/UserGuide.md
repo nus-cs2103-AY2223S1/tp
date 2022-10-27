@@ -81,13 +81,13 @@ Format: `help`
 
 {% include note.html content="
 
-Add a student to TA Assist.
+Add a student to TA-Assist.
 
 " %}
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/CLASS_NAME...]`
 
-- Adds a student named `NAME` into TA Assist.
+- Adds a student named `NAME` into TA-Assist.
 
 Examples:
 
@@ -98,7 +98,7 @@ Examples:
 
 {% include note.html content="
 
-Edits an existing student in TA Assist.
+Edits an existing student in TA-Assist.
 
 " %}
 
@@ -118,7 +118,7 @@ Examples:
 
 {% include note.html content="
 
-Deletes the specified student from TA Assist.
+Deletes the specified student from TA-Assist.
 
 " %}
 
@@ -130,7 +130,7 @@ Format: `delete INDEX`
 
 Examples:
 
-- `list` followed by `delete 2` deletes the 2nd student in TA Assist.
+- `list` followed by `delete 2` deletes the 2nd student in TA-Assist.
 - `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 - `class c/CS2103T` followed by `delete 3` deletes the 3rd student in the CS2103T class.
 
@@ -172,7 +172,7 @@ Format: `list`
 
 {% include note.html content="
 
-Add one or more classes to TA Assist.
+Add one or more classes to TA-Assist.
 
 " %}
 
@@ -188,7 +188,7 @@ Examples:
 
 {% include note.html content="
 
-Delete one or more classes from TA Assist.
+Delete one or more classes from TA-Assist.
 
 " %}
 
@@ -214,7 +214,7 @@ Format: `assign INDEX... c/CLASS_NAME`
 
 Example:
 
-- `list` followed by `assign 1 3 5 6 c/CS1231S` assigns **1st**, **3rd**, **5th** and **6th** student in TA Assist to the **CS1231S** class.
+- `list` followed by `assign 1 3 5 6 c/CS1231S` assigns **1st**, **3rd**, **5th** and **6th** student in TA-Assist to the **CS1231S** class.
 
 ### Unassign students from class: `unassign`
 
@@ -230,7 +230,7 @@ Format: `unassign INDEX... c/CLASS_NAME`
 
 Example:
 
-- `list` followed by `unassign 1 3 5 6 c/CS1231S` unassigns **1st**, **3rd**, **5th** and **6th** student in TA Assist from the **CS1231S** class.
+- `list` followed by `unassign 1 3 5 6 c/CS1231S` unassigns **1st**, **3rd**, **5th** and **6th** student in TA-Assist from the **CS1231S** class.
 
 ### List classes: `listc`
 
@@ -268,19 +268,19 @@ Format: `focus CLASS_NAME`
 
 Example:
 
-- `class CS1231S` will enter focus mode to the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
+- `focus CS1231S` will enter focus mode to the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
 
 ### Clear all existing data: `clear`
 
 {% include note.html content="
 
-Clears all existing data in TA Assist.
+Clears all existing data in TA-Assist.
 
 " %}
 
 Format: `clear`
 
-* Clears all existing data in TA Assist.
+* Clears all existing data in TA-Assist.
 
 ## Features Available in Focus Mode
 
@@ -436,5 +436,5 @@ Format: `unfocus`
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TA Assist home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TA-Assist home folder.
 
