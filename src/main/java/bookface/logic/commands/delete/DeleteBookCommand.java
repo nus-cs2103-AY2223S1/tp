@@ -39,6 +39,9 @@ public class DeleteBookCommand extends DeleteCommand {
         }
 
         Book bookToDelete = lastShownList.get(targetIndex.getZeroBased());
+        if (bookToDelete.isLoaned()) {
+            throw new CommandException(Messages.MESSAGE_BOOK_STILL_ON_LOAN);
+        }
         model.deleteBook(bookToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_BOOK_SUCCESS, bookToDelete));
     }
