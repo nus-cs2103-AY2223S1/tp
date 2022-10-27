@@ -144,6 +144,15 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    /** Replaces the given new task list {@code newTasks} with {@code editedTasks}. */
+    @Override
+    public void setFilteredTaskList(ObservableList<Task> newTasks) {
+        int len = filteredTasks.size();
+        for (int i = 0; i < len; i++) {
+            filteredTasks.set(i, newTasks.get(i));
+        }
+    }
+
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
