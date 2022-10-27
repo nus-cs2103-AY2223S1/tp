@@ -2,7 +2,8 @@ package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
-import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+
+import java.util.List;
 
 import jeryl.fyp.commons.core.Messages;
 import jeryl.fyp.commons.core.index.Index;
@@ -10,8 +11,6 @@ import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
-
-import java.util.List;
 
 /**
  * Lists all Deadlines under one specific students in the FYP manager to the user.
