@@ -22,6 +22,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_OPTION_MEDICATION_INDEX = new Prefix("-m");
     public static final Prefix PREFIX_OPTION_REMARK_INDEX = new Prefix("-r");
 
+    public static final String SPECIAL_CHARACTER_ALL = "--all";
+    public static final String SPECIAL_CHARACTER_TODAY = "--today";
+
     public static final Prefix[] PREFIXES_PATIENT_ALL = {
         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
         PREFIX_TASK_DESCRIPTION, PREFIX_TAG, PREFIX_CONDITION, PREFIX_MEDICATION, PREFIX_REMARK

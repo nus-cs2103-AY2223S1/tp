@@ -10,18 +10,15 @@ import seedu.uninurse.logic.commands.AddGenericCommand;
 import seedu.uninurse.logic.commands.ClearCommand;
 import seedu.uninurse.logic.commands.Command;
 import seedu.uninurse.logic.commands.DeleteGenericCommand;
+import seedu.uninurse.logic.commands.DisplayTasksGenericCommand;
 import seedu.uninurse.logic.commands.EditGenericCommand;
 import seedu.uninurse.logic.commands.ExitCommand;
 import seedu.uninurse.logic.commands.FindCommand;
 import seedu.uninurse.logic.commands.HelpCommand;
 import seedu.uninurse.logic.commands.ListCommand;
-import seedu.uninurse.logic.commands.ListTaskCommand;
-import seedu.uninurse.logic.commands.PatientsTodayCommand;
 import seedu.uninurse.logic.commands.RedoCommand;
-import seedu.uninurse.logic.commands.TasksOnCommand;
 import seedu.uninurse.logic.commands.UndoCommand;
 import seedu.uninurse.logic.commands.ViewPatientCommand;
-import seedu.uninurse.logic.commands.ViewTaskCommand;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 
 /**
@@ -63,6 +60,9 @@ public class UninurseBookParser {
         case DeleteGenericCommand.COMMAND_WORD:
             return new DeleteGenericCommandParser().parse(arguments);
 
+        case DisplayTasksGenericCommand.COMMAND_WORD:
+            return new DisplayTasksGenericCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -71,18 +71,6 @@ public class UninurseBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-
-        case PatientsTodayCommand.COMMAND_WORD:
-            return new PatientsTodayCommand();
-
-        case TasksOnCommand.COMMAND_WORD:
-            return new TasksOnCommandParser().parse(arguments);
-
-        case ViewTaskCommand.COMMAND_WORD:
-            return new ViewTaskCommandParser().parse(arguments);
-
-        case ListTaskCommand.COMMAND_WORD:
-            return new ListTaskCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

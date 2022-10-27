@@ -13,7 +13,7 @@ import seedu.uninurse.model.person.Patient;
 /**
  * Shows all tasks associcated with the given patient in the uninurse book to the user.
  */
-public class ViewTaskCommand extends Command {
+public class ViewTaskCommand extends DisplayTasksGenericCommand {
     public static final String COMMAND_WORD = "viewTask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD

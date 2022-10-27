@@ -21,7 +21,7 @@ public class ViewPatientCommandParser implements Parser<ViewPatientCommand> {
         ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIXES_OPTION_ALL);
 
         try {
-            Index index =  ParserUtil.parseIndex(options.getValue(PREFIX_OPTION_PATIENT_INDEX).orElse(""));
+            Index index = ParserUtil.parseIndex(options.getValue(PREFIX_OPTION_PATIENT_INDEX).orElse(""));
             return new ViewPatientCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(

@@ -11,7 +11,7 @@ import seedu.uninurse.model.task.DateTime;
 /**
  * Lists all patients for today.
  */
-public class PatientsTodayCommand extends Command {
+public class PatientsTodayCommand extends DisplayTasksGenericCommand {
     public static final String COMMAND_WORD = "patientsToday";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients with tasks today";
