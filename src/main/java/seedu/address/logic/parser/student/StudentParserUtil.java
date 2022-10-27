@@ -145,9 +145,12 @@ public class StudentParserUtil {
      *
      * @throws ParseException if the given {@code grade} is invalid.
      */
-    public static Grade parseGrade(String grade) {
+    public static Grade parseGrade(String grade) throws ParseException {
         Objects.requireNonNull(grade);
         String trimmedGrade = grade.trim();
+        if (!Grade.isValidGrade(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
         return new Grade(trimmedGrade);
     }
 
@@ -157,9 +160,12 @@ public class StudentParserUtil {
      *
      * @throws ParseException if the given {@code attendance} is invalid.
      */
-    public static Attendance parseAttendance(String attendance) {
+    public static Attendance parseAttendance(String attendance) throws ParseException {
         Objects.requireNonNull(attendance);
         String trimmedAttendance = attendance.trim();
+        if (!Attendance.isValidAttendance(trimmedAttendance)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+        }
         return new Attendance(trimmedAttendance);
     }
 
@@ -169,9 +175,12 @@ public class StudentParserUtil {
      *
      * @throws ParseException if the given {@code participation} is invalid.
      */
-    public static Participation parseParticipation(String participation) {
+    public static Participation parseParticipation(String participation) throws ParseException {
         Objects.requireNonNull(participation);
         String trimmedParticipation = participation.trim();
+        if (!TelegramHandle.isValidTelegram(trimmedParticipation)) {
+            throw new ParseException(Participation.MESSAGE_CONSTRAINTS);
+        }
         return new Participation(trimmedParticipation);
     }
 }
