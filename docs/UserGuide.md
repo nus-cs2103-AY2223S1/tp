@@ -337,7 +337,8 @@ Listed here are some frequently asked questions. Should you require any other as
 | **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                     |
 | **Help**               | `help`                                                                                                                                                                                         |
 | **List**               | `list`                                                                                                                                                                                         |
-| **Mark Rooms Unclean** | `markRoomsUnclean`                                                                                                                                                                             |                                                                                                                                                                                     |
+| **Mark Rooms Unclean** | `markRoomsUnclean`                                                                                                                                                                             |
+| **Exit**               | `exit`                                                                                                                                                                                         |
 
 [Return to Table of Contents](#table-of-contents)
 
