@@ -193,6 +193,13 @@ public interface Model {
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
 
     /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    void setConsultation(Consultation target, Consultation editedConsultation);
+
+    /**
      * Clears all existing consultations.
      */
     void resetStudents();

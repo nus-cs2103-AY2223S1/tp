@@ -315,6 +315,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setConsultation(Consultation target, Consultation editedConsultation) {
+        requireAllNonNull(target, editedConsultation);
+
+        addressBook.setConsultation(target, editedConsultation);
+    }
+
+    @Override
     public void deleteConsultation(Consultation target) {
         addressBook.removeConsultation(target);
     }

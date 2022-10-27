@@ -20,7 +20,7 @@ import seedu.address.model.student.Name;
 
 public class EditConsultationCommand extends Command {
     
-    public static final String COMMAND_WORD = "editConsult";
+    public static final String COMMAND_WORD = "editConsultation";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the consult identified "
             + "by the index number used in the displayed consult list. "
@@ -29,7 +29,7 @@ public class EditConsultationCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_VENUE + "VENUE] "
-            + "[" + PREFIX_DAY + "DAY] "
+            + "[" + PREFIX_DAY + "DAY] and"
             + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "Example: " + COMMAND_WORD + " 1 "
@@ -71,7 +71,7 @@ public class EditConsultationCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULTATION);
         }
 
-        model.setConsult(consultToEdit, editedConsult);
+        model.setConsultation(consultToEdit, editedConsult);
         model.updateFilteredConsultationList(Model.PREDICATE_SHOW_ALL_CONSULTATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_CONSULTATION_SUCCESS, editedConsult));
     }
@@ -87,7 +87,7 @@ public class EditConsultationCommand extends Command {
         ConsultationName updatedName = editConsultDescriptor.getName().orElse(consultToEdit.getName());
         ConsultationModule updatedModule = editConsultDescriptor.getModule().orElse(consultToEdit.getModule());
         ConsultationVenue updatedVenue = editConsultDescriptor.getVenue().orElse(consultToEdit.getVenue());
-        DatetimeRange updatedTimeSlot = editConsultDescriptor.getTimeslot().orElse(consultToEdit.getName());
+        DatetimeRange updatedTimeSlot = editConsultDescriptor.getTimeslot().orElse(consultToEdit.getTimeslot());
         ConsultationDescription updatedDescription = editConsultDescriptor.getDescription()
                 .orElse(consultToEdit.getDescription());
 

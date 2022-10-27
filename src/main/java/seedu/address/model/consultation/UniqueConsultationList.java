@@ -9,6 +9,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.consultation.exceptions.ConsultationNotFoundException;
 import seedu.address.model.consultation.exceptions.DuplicateConsultationException;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.DuplicatePersonException;
+import seedu.address.model.student.exceptions.PersonNotFoundException;
 
 /**
  * A list of consultations that enforces uniqueness between its elements and does not allow nulls.
@@ -54,6 +57,26 @@ public class UniqueConsultationList implements Iterable<Consultation> {
             throw new DuplicateConsultationException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the list.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     */
+    public void setConsultation(Consultation target, Consultation editedConsultation) {
+        requireAllNonNull(target, editedConsultation);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ConsultationNotFoundException();
+        }
+
+        if (!target.isSameConsultation(editedConsultation) && contains(editedConsultation)) {
+            throw new DuplicateConsultationException();
+        }
+
+        internalList.set(index, editedConsultation);
     }
 
     /**
