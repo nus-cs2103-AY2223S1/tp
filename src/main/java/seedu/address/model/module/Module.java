@@ -238,6 +238,12 @@ public class Module implements Comparable<Module> {
             tasks.forEach(builder::append);
         }
 
+        Set<Person> persons = getPersons();
+        if (!persons.isEmpty()) {
+            builder.append("; Persons: ");
+            persons.forEach(person -> builder.append("[" + person.toString() + "]"));
+        }
+
         return builder.toString();
     }
 
