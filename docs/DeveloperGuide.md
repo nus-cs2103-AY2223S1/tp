@@ -352,7 +352,7 @@ In addition, the sequence diagram below illustrates how the ```AddInterestComman
 **Target user profile**:
 
 * Computer Science students at NUS <br>
-  Provides a centralised platform for Computer Science (CS) students to find study support from batchmates with common modules. It allows students to save their CS batchmates’ contact details in one place, find common modules and form study groups.
+  * Provides a centralised platform for Computer Science (CS) students to find study support from batchmates with common modules. It allows students to save their CS batchmates’ contact details in one place, find common modules and form study groups.
 
 
 **Value proposition**: Easily find batchmates to form study groups or asking for module-related advice.
@@ -673,11 +673,11 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all batchmates using the `list` command. There are multiple batchmates in the list.
 
-    2. Prerequisite: There exists a batchmate with telegram handle `charlie`.
+    2. Prerequisite: There exists a batchmate with telegram handle `charlie`.<br>
        Test case: `find char`.<br>
        Expected: The batchmate with telegram handle `charlie` appears in the student panel after executing the command.
    
-    3. Prerequisite: There exists a batchmate with telegram handle `charlie` and a batchmate with name `Tom`.
+    3. Prerequisite: There exists a batchmate with telegram handle `charlie` and a batchmate with name `Tom`.<br>
        Test case: `find char Tom`.<br>
        Expected: The batchmate with telegram handle `charlie` and batchmate named `Tom`
        appear in the student panel after executing the command.
@@ -715,11 +715,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files.
 
-    1. Go to the data file located at `data/Mass Linkers.json`. If the directory is not present,
+    1. Go to the data file located at `data/massLinkers.json`. If the directory is not present,
        run Mass Linkers, modify the data, and exit. The data file should be present in the directory.
     2. Attempt to corrupt the data by deleting a closing brace `}` at the end of the file.
     3. Reopen Mass Linkers. <br>
-       Expected: Mass Linkers will run and start with an empty data file. (no batchmates will be shown on the student pane)
+       Expected: Mass Linkers will run and start with an empty data file. No batchmates will be shown on the student pane.
 
 2. All data saved.
 
