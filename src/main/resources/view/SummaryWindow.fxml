@@ -10,28 +10,29 @@
 
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-    <icons>
-        <Image url="@/images/help_icon.png" />
-    </icons>
+
+<fx:root resizable="false" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
+         title="Summary">
     <scene>
         <Scene>
             <stylesheets>
                 <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
             </stylesheets>
 
             <VBox>
-                <StackPane styleClass="pane-with-border">
+                <StackPane styleClass="pane-with-border" VBox.vgrow="NEVER">
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10" />
                     </padding>
                     <Label text="Summary" styleClass="cell_big_label" />
                 </StackPane>
-                <HBox fx:id="summaryPanelPlaceholder" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                <HBox styleClass="pane-with-border" minWidth="340" VBox.vgrow="ALWAYS" spacing="10">
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10" />
                     </padding>
-                    <StackPane fx:id="completedTripListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
+                    <StackPane fx:id="completedTripListPanelPlaceholder" prefWidth="340" HBox.hgrow="ALWAYS"/>
+                    <StackPane fx:id="summaryCardPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
                 </HBox>
             </VBox>
         </Scene>

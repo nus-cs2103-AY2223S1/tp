@@ -1,18 +1,23 @@
 package seedu.travelr.ui;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.travelr.model.SummaryVariables;
+import seedu.travelr.model.trip.Trip;
 
 public class SummaryWindow extends UiPart<Stage> {
     private static final String FXML = "summaryWindow.fxml";
 
-    @FXML
-    private HBox summaryPanelPlaceholder;
+    private CompletedTripListPanel completedTripListPanel;
+    private SummaryCard summaryCard;
 
     @FXML
     private StackPane completedTripListPanelPlaceholder;
+
+    @FXML
+    private StackPane summaryCardPlaceholder;
 
     /**
      * Creates a new SummaryWindow.
@@ -26,8 +31,15 @@ public class SummaryWindow extends UiPart<Stage> {
     /**
      * Creates a new SummaryWindow.
      */
-    public SummaryWindow() {
+    public SummaryWindow(ObservableList<Trip> tripList, SummaryVariables summaryVariables) {
         this(new Stage());
+
+        summaryCard = new SummaryCard(summaryVariables);
+        summaryCardPlaceholder.getChildren().add(summaryCard.getRoot());
+
+        completedTripListPanel = new CompletedTripListPanel(tripList);
+        completedTripListPanelPlaceholder.getChildren().add(completedTripListPanel.getRoot());
+
     }
 
     public void show() {

@@ -14,6 +14,7 @@ import seedu.travelr.logic.parser.AddressBookParser;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.SummaryVariables;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
@@ -90,4 +91,14 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public SummaryVariables getSummaryVariables() {
+        return model.getSummaryVariables();
+    };
+
+    @Override
+    public void refreshSummaryVariables() {
+        model.refreshSummaryVariables();
+    };
 }

@@ -79,7 +79,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        summaryWindow = new SummaryWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -125,6 +124,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        summaryWindow = new SummaryWindow(logic.getFilteredTripList(), logic.getSummaryVariables());
         tripListPanel = new TripListPanel(logic.getFilteredTripList(), logic.getSelectedTrip());
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         tripListPanelPlaceholder.getChildren().add(tripListPanel.getRoot());

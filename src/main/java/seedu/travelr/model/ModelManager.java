@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.travelr.commons.core.GuiSettings;
@@ -30,6 +31,11 @@ public class ModelManager implements Model {
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Event> bucketList;
 
+    /**
+     * For use by Summary Command only.
+     */
+    private final SummaryVariables summaryVariables;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -44,7 +50,12 @@ public class ModelManager implements Model {
         filteredTrips = new FilteredList<>(this.addressBook.getTripList());
         filteredEvents = new FilteredList<>(this.addressBook.getAllEventList());
         bucketList = new FilteredList<>(this.addressBook.getEventList());
+
+        // Initialize the selected trip
         selectedTrip = new ObservableTrip();
+
+        // Initialize the summary variables
+        summaryVariables = new SummaryVariables();
 
         // Set initial view to Bucket List
         filteredEvents.setPredicate(getBucketPredicate());
@@ -159,6 +170,33 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setTrip(Trip target, Trip editedTrip) {
+        requireAllNonNull(target, editedTrip);
+
+        addressBook.setTrip(target, editedTrip);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        addressBook.setEvent(target, editedEvent);
+    }
+
+    //=========== Summary Variables Accessors =============================================================
+
+    @Override
+    public void refreshSummaryVariables() {
+        summaryVariables.refresh(filteredTrips, filteredEvents);
+    }
+
+    @Override
+    public SummaryVariables getSummaryVariables() {
+        return summaryVariables;
+    }
+
+    //=========== Selected Trip Accessors =============================================================
+
+    @Override
     public ObservableTrip getSelectedTrip() {
         return selectedTrip;
     }
@@ -171,19 +209,6 @@ public class ModelManager implements Model {
     @Override
     public void resetSelectedTrip() {
         selectedTrip.resetTrip();
-    }
-
-    @Override
-    public void setTrip(Trip target, Trip editedTrip) {
-        requireAllNonNull(target, editedTrip);
-
-        addressBook.setTrip(target, editedTrip);
-    }
-
-    @Override
-    public void setEvent(Event target, Event editedEvent) {
-        requireAllNonNull(target, editedEvent);
-        addressBook.setEvent(target, editedEvent);
     }
 
     //=========== Filtered Trip List Accessors =============================================================
