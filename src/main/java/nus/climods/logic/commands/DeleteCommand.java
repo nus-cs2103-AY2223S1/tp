@@ -24,6 +24,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Creates a DeleteCommand with the given UserModule
+     *
      * @param targetCode module code of UserModule to delete
      */
     public DeleteCommand(String targetCode) {
@@ -38,11 +39,10 @@ public class DeleteCommand extends Command {
             model.deleteUserModule(targetCode);
         } catch (UserModuleNotFoundException e) {
             return new CommandResult(String.format(MESSAGE_DELETE_MODULE_FAILED, targetCode.toUpperCase()),
-                    COMMAND_WORD, model);
+                COMMAND_WORD);
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, targetCode.toUpperCase()),
-                COMMAND_WORD, model);
+        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, targetCode.toUpperCase()), COMMAND_WORD);
     }
 
     @Override

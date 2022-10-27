@@ -18,7 +18,6 @@ public class AddCommandTest {
     private final Model model = new ModelManager(new ModuleList(testAcademicYear), new UniqueUserModuleList(),
             new UserPrefs());
 
-    // TODO: add more tests once we have infrastructure to compare expected vs actual model state
     @Test
     public void construct_nullModule_throwsException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null, null));

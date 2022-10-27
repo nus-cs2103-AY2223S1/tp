@@ -40,7 +40,7 @@ public class FindCommand extends Command {
 
         return new CommandResult(
             String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()),
-                COMMAND_WORD, model);
+            COMMAND_WORD);
     }
 
     @Override

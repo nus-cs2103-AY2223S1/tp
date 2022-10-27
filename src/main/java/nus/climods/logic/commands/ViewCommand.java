@@ -40,7 +40,6 @@ public class ViewCommand extends Command {
             throw new CommandException(MESSAGE_API_ERROR);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode.toUpperCase()),
-                COMMAND_WORD, model);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode.toUpperCase()), COMMAND_WORD);
     }
 }

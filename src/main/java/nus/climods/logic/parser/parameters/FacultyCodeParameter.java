@@ -3,7 +3,7 @@ package nus.climods.logic.parser.parameters;
 import nus.climods.logic.parser.ParserUtil;
 
 /**
- * Represents a User Flag parameter
+ * Represents a Faculty Code parameter
  */
 
 public class FacultyCodeParameter extends OptionalPositionalParameter<String> {
