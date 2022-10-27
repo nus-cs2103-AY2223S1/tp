@@ -140,7 +140,7 @@ Format:
 
 - `list members`
 
-### Add task to team : `addtask`
+### Add task to team : `add task`
 
 Add a new task to the current team. The task name is compulsory, while the other fields are optional.
 
