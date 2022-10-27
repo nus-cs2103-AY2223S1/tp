@@ -18,6 +18,7 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
    * Clearing all entries : clear
    * Undoing last command : undo
    * Sorting all entries by a specific field : sort
+   * Add a person to a group: addtogroup
 * Command summary
 
 --------------------------------------------------------------------------------------------------------------------
@@ -49,6 +50,9 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
    * **`sort`** : Sorts entries.
 
    * **`find`** : Finds a contact based on partial name/phone number
+
+   * **`addtogroup 1 friends`** : Adds the 1st person in the list to group "friends"
+
 
   * **`exit`** : Exits the app.
 
@@ -192,6 +196,20 @@ Examples:
 * `find J` displays the entries filtered by names that contain the case-insensitive KEYWORD `J`.
 * `find 123456` displays the entries filtered by phone numbers that contain the case-insensitive KEYWORD `123456`.
 
+### Adding a person to a group : `addtogroup`
+
+Adds the specified person to specified group.
+
+Format: `addtogroup INDEX GROUP`
+
+* Adds the person at the specified `INDEX` to the specified `GROUP`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `addtogroup 1 friends` adds the 1st person in the current list to the group `friends`.
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -227,15 +245,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                            |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**   | `help`                                                                                                                                                      |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **List**   | `list`                                                                                                                                                      |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                             |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
-| **Clear**  | `clear`                                                                                                                                                     |                                                                             |                                                                                                          |
-| **Undo**   | `undo`                                                                                                                                                      |
-| **Sort**   | `sort PREFIX/` <br> e.g., `sort n/`                                                                                                                         |
-| **Find**   | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                              |
-| **Exit**   | `exit`                                                                                                                                                      |
+| Action           | Format, Examples                                                                                                                                            |
+|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**         | `help`                                                                                                                                                      |
+| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **List**         | `list`                                                                                                                                                      |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                             |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
+| **Clear**        | `clear`                                                                                                                                                     |                                                                             |                                                                                                          |
+| **Undo**         | `undo`                                                                                                                                                      |
+| **Sort**         | `sort PREFIX/` <br> e.g., `sort n/`                                                                                                                         |
+| **Find**         | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                              |
+| **Add To Group** | `addtogroup INDEX GROUP`                                                                                                                                    |
+| **Exit**         | `exit`                                                                                                                                                      |
