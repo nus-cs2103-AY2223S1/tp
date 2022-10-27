@@ -47,9 +47,11 @@ Note how the app contains some sample data.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Shortcut key to switch between *Contact details* and *Assignments*:**<br>
+**:information_source: Shortcut keys to use the application:**<br>
 
-Use the `TAB` key to switch between *Contact details* and *Assignments*.
+* Use arrow keys to navigate around TABS.
+
+* Use the `TAB` key to switch between *Contact details* and *Assignments*.
 
 **:information_source: Notes about the command format:**<br>
 
