@@ -1,28 +1,32 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Stack;
 import java.util.EmptyStackException;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * A build-in calculator for bobaBot for cashiers to do basic arithmetic
+ * calculation including +, -, /, -, with precedence enabled
+ * e.g. calc 3*(1+4)/2
  */
 public class CalculateCommand extends Command {
 
+    /**
+     * Command word for calculator
+     */
     public static final String COMMAND_WORD = "calc";
 
+    /**
+     * Message for calculator
+     */
     public static final String MESSAGE_USAGE = COMMAND_WORD + "Calculate an arithmetic expression"
             + "Example: " + COMMAND_WORD + "3 * (1 + 2.4)";
 
@@ -37,7 +41,8 @@ public class CalculateCommand extends Command {
 
         requireNonNull(model);
         String calcResult = ExpressionParser.parseCalculation(this.expression);
-        String feedback = this.expression + " = " + calcResult;
+        String feedback = "Calculator:\n";
+        feedback += this.expression + " = " + calcResult;
         return new CommandResult(feedback);
     }
 
