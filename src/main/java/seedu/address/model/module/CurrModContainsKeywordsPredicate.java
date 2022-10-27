@@ -29,3 +29,4 @@ public class CurrModContainsKeywordsPredicate implements Predicate<Person> {
                 && keywords.equals(((CurrModContainsKeywordsPredicate) other).keywords)); // state check
     }
 }
+

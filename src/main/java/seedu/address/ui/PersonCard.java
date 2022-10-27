@@ -27,8 +27,8 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
     public final String githubUrl;
+    private Person person;
 
     @FXML
     private Button copyButton;
@@ -96,6 +96,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Copies the URL to the github profile to the clipboard.
      */
+
     @FXML
     private void copyUrl() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();

@@ -40,3 +40,4 @@ public class FilterTagCommand extends Command {
                 && predicate.equals(((FilterTagCommand) other).predicate)); // state check
     }
 }
+
