@@ -97,15 +97,28 @@ public interface Model {
     double calculateExamMean(String exam);
 
     /**
-     * Toggles between showing all students' information and hiding students' parent details
+     * Toggles between showing all students' information and hiding students' parent details.
      */
     void toggleStudentListInfoConcise();
 
     /**
-     * Returns true if the filtered student list should only show the student's name and ID
+     * Returns true if the filtered student list should only show the student's name and ID.
      */
     boolean isStudentListInfoConcise();
 
+    /**
+     * Returns the filtered student object.
+     * @return
+     */
     FilteredStudents getFilteredStudents();
 
+    /**
+     * Updates the previous predicate with the current predicate.
+     */
+    void storePredicate(Predicate<Student> p);
+
+    /**
+     * Returns the predicate of the last executed command.
+     */
+    Predicate<Student> getPrevPredicate();
 }

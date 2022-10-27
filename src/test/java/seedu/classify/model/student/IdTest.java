@@ -21,10 +21,10 @@ public class IdTest {
 
     @Test
     public void isValidId() {
-        // null phone number
+        // null id
         assertThrows(NullPointerException.class, () -> Id.isValidId(null));
 
-        // invalid phone numbers
+        // invalid id
         assertFalse(Id.isValidId("")); // empty string
         assertFalse(Id.isValidId(" ")); // spaces only
         assertFalse(Id.isValidId("91")); // less than 3 numbers
@@ -32,9 +32,9 @@ public class IdTest {
         assertFalse(Id.isValidId("9011p041")); // alphabets within digits
         assertFalse(Id.isValidId("9312 1534")); // spaces within digits
 
-        // valid phone numbers
+        // valid id
         assertTrue(Id.isValidId("911A")); // exactly 3 numbers and 1 character
         assertTrue(Id.isValidId("932B"));
-        assertTrue(Id.isValidId("123C")); // long phone numbers
+        assertTrue(Id.isValidId("123C"));
     }
 }
