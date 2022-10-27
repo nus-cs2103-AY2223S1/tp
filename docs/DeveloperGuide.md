@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The lesson plan feature allows the user to keep track of a lesson plan for a student. It is a required parameter when a new person is added, through `AddCommandParser`.
+The lesson plan feature allows the user to keep track of a lesson plan for a person in the form of a string. It is a required parameter when a new person is added, through `AddCommandParser`.
 
 It can also be added independently, and is facilitated by `LessonPlanCommand` in the Logic component. It extends `Commmand` with a `LessonPlan` object stored internally.
 `LessonPlanCommand` is created by `LessonPlanCommandParser` which implements `Parser<LessonPlanCommand>`.
@@ -256,18 +256,18 @@ Aspect: How grade progress command executes
   - Cons: Implementation details are greatly exposed, damages code's maintainability
 
 Aspect: Addition of Grade progress
-- Alternative 1 (current choice): Creation of `Person` object first with empty `GradeProgressList` and thereafter executing `GradeProgressCommand`
+- **Alternative 1 (current choice):** Creation of `Person` object first with empty `GradeProgressList` and thereafter executing `GradeProgressCommand`
   - Pros: Users would not have to key in a long statement when adding a new `Person` to the `AddressBook`
   - Cons: 2 command lines to be written for addition of new `Person` with non-empty `GradeProgressList`
-- Alternative 2: Grade progress to be added during the creation of the new object
+- **Alternative 2:** Grade progress to be added during the creation of the new object
   - Pros: Reduce the need to recreate new `Person` object for the addition of grade progress
   - Cons: Increase tendency of user-made errors when inputting longer command lines
 
 Aspect: Data Structure of `GradeProgressList`
-- Alternative 1 (current choice): ArrayList
+- **Alternative 1 (current choice):** ArrayList
   - Pros: Easy to perform basic functions such as add, delete and remove of respective grade progress elements in the list.
   - Cons: Deletion of data from the middle is time-consuming as data needs to be shifted to update the list.
-- Alternative 2: Singly Linked list
+- **Alternative 2:** Singly Linked list
   - Pros: Insertion and deletion are easier in the linked list. There is no need to shift elements after the insertion or deletion of any element only the address present in the next pointer needs to be updated.
   - Cons: More memory is required in the linked list as compared to an array.
 
@@ -331,11 +331,11 @@ Step 6. The user executes a `remove s/3` command which removes the instance of `
 
 **Aspect: How to encapsulate user input in Session**
 
-***Alternative 1 (current choice):** Use defaulting of `LocalDateTimeFormatter` as formatter for `LocalDateTime`.
+* **Alternative 1 (current choice):** Use defaulting of `LocalDateTimeFormatter` as formatter for `LocalDateTime`.
   * Pros: Easier to implement, uses only one imported Java class `LocalDateTime` for encapsulating user input.
   * Cons: Have to default to a *Black Box* year, month and week which is a workaround. 
 
-***Alternative 2:** Use of extra `DayOfWeek` class alongside `LocalDateTime`.
+* **Alternative 2:** Use of extra `DayOfWeek` class alongside `LocalDateTime`.
   * Pros: Less of a workaround. More accurate backstage representation of user input.
   * Cons: Harder to implement. Have to concatenate `DayOfWeek` and `LocalDateTime` in `toString` method, which may affect performance with a large `SessionList`.
 
@@ -363,20 +363,54 @@ The following activity diagram summarises what happens when a user executes the 
 
 #### Design Consideration
 
-**Aspect: Where to implement Remove function
+**Aspect: Where to implement Remove function**
 
-***Alternative 1 (current choice):** Have a dedicated function for removing specified details of a Person from the various lists in their details. 
+* **Alternative 1 (current choice):** Have a dedicated function for removing specified details of a Person from the various lists in their details. 
   * Pros: Easier to implement
   * Cons: Less intuitive, users must know difference between `edit` and `remove` functions
 
-***Alternative 2:** Integrate remove function into edit function.
+* **Alternative 2:** Integrate remove function into edit function.
   * Pros: More intuitive as removing a feature is also instinctively understood as editing details. 
   * Cons: Harder to implement, can lead to potential errors if user means to edit as opposed to remove 
   
 
 ### Schedule feature
 
-_{to be added}_
+#### Implementation
+
+The session feature is facilitated by `ShowCommand` and `TimeSlot` which is an association class. Each `TimeSlot` contains a `Person` and a `Session`.
+Below is a partial class diagram of the relationship:
+
+_{diagram to be added}_
+
+Given below is an example usage scenario of how the user can view the schedule by day:
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `session 1 s/Mon 12:30`, adding a session time to the first person in the list.
+
+Step 3. The user executes a `show Mon` command which displays a list of persons with sessions on Monday.
+
+The following sequence shows how viewing the schedule works:
+_{diagram to be added}_
+
+#### Design considerations
+**Aspect: Retrieval of individual sessions**
+* **Alternative 1 (current choice):** An association class between `Session` and `Person`
+  * Pros: Simple to retrieve a `Person` and a `Session` when bound together
+  * Cons: Association has to be explicitly added and created when needed instead of existing throughout
+* **Alternative 2:** Bidirectional navigability
+  * Pros: Easy to identify the corresponding `Person` for each `Session`
+  * Cons: Increases coupling
+
+**Aspect: Populating of `TimeSlot` objects**
+* **Alternative 1 (current choice):** Populated and retrieved only when user inputs `show`
+  * Pros: Lesser things to store and keep track of, easier to implement
+  * Cons: Has to iterate through the list multiple times if user enters the command multiple times without making changes to the session timings
+* **Alternative 2:** Global list that gets updated each time a session changes
+  * Pros: Easy to retrieve list of time slots
+  * Cons: Unnecessary storing as it only depends on `Session` and `Person` which are both already stored, have to constantly update whenever `SessionList` is updated.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -622,45 +656,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. Pupilist detects an error in the lesson plan description.
+* 3a. Pupilist detects an error in the selected index.
 
     * 3a1. Pupilist displays an error message.
 
       Use case resumes at step 3.
 
-
-* 3b. Pupilist detects an error in the selected index.
-
-    * 3b1. Pupilist displays an error message.
-
-      Use case resumes at step 3.
-    
-
-**Use case: Purge data**
-
-**MSS**
-
-1. User requests to purge data.
-2. Pupilist requests for confirmation.
-3. User confirms.
-4. Pupilist clears the data in the file and system.
-
-    Use case ends.  
-  
-**Extensions**
-
-* 2a. User chooses to cancel.
-  * 2a1. User cancels the command.
-
-    Use case ends.
-
-
-* 3a. Pupilist detects an error in clearing the file.
-
-    * 3a1. Pupilist displays an error message.
-
-      Use case ends.
-    
     *{More to be added}*
 
 ### Non-Functional Requirements
