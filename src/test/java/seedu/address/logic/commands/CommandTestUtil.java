@@ -21,6 +21,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.student.StuNameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
@@ -162,5 +163,8 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredStudentList().size());
     }
+
+
+
 
 }
