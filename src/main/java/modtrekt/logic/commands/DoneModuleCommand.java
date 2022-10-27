@@ -46,7 +46,7 @@ public class DoneModuleCommand extends Command {
         ModCode previousCode = model.getCurrentModule();
 
         if (previousCode != null) {
-            throw new CommandException("Please exit current module first!");
+            throw new CommandException("Please exit the current module using 'cd ..' command!");
         }
 
         if (!model.hasModuleWithModCode(moduleCode)) {
@@ -62,7 +62,8 @@ public class DoneModuleCommand extends Command {
         }
 
         // Done the module.
-        model.setModule(target, target.done());
+        Module doneTarget = target.done();
+        model.setModule(target, doneTarget);
         model.setDoneModuleTasksAsDone(moduleCode);
         return new CommandResult("Yay! I successfully marked this module as done!");
     }
