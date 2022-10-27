@@ -20,6 +20,9 @@ public class SessionCard extends UiPart<Region> {
     @FXML
     private Label name;
 
+    @FXML
+    private Label sessionDate;
+
     /**
      * Creates a {@code SessionCode} with the given {@code Session} and index to display.
      */
@@ -27,6 +30,7 @@ public class SessionCard extends UiPart<Region> {
         super(FXML);
         this.session = session;
         name.setText(session.getSessionName());
+        sessionDate.setText(session.getDate().toString());
     }
 
     @Override
