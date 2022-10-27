@@ -58,7 +58,7 @@ public class DebtList {
     public int compareEarliestDebtDateTimeWith(DebtList o) {
         assert !isEmpty() && !o.isEmpty() : "compareEarliestDebtDateTimeWith should not be called "
                                                 + "when DebtLists are empty";
-        return debts.get(0).compareDateTimeWith(o.debts.get(0));
+        return debts.get(0).compareTo(o.debts.get(0));
     }
 
     /**
@@ -76,7 +76,7 @@ public class DebtList {
 
         int index = 0;
         for (Debt prevDebt : edited.debts) {
-            if (toAdd.compareDateTimeWith(prevDebt) < 0) {
+            if (toAdd.compareTo(prevDebt) < 0) {
                 break;
             }
             index++;
