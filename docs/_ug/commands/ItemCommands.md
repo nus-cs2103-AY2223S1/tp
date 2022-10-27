@@ -129,6 +129,7 @@ Item List Box:
 
 ```warning
 You should only provide one sorting criteria. 
+The sort can only be done in an ascending order.
 ```
 
 **Example Input:**
