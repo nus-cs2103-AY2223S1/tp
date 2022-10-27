@@ -221,7 +221,7 @@ remove <ACCEPTED>/<REJECTED>
 ```
 
 * The user selects the applicant(s) with application status of either `ACCEPTED` or `REJECTED` to be removed from TrackAScholar.
-* `remove` is case-insensitive. e.g. `Accepted` or `accepted` both matches `ACCEPTED`
+* remove command is case-insensitive. e.g. `Accepted` or `accepted` both matches `ACCEPTED`
 
 Examples:
 * `remove accepted` removes all entries with `ACCEPTED` as an application status from TrackAScholar.
@@ -244,9 +244,9 @@ clear
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Finding applicants by name : `find`
+### Finding applicants by name, scholarship or major : `find`
 
-Finds scholarship applicants whose credentials match any of the attributes searched
+Finds all scholarship applicants whose credentials match any of the attributes searched
 
 Format: 
 ```
@@ -268,9 +268,9 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Filtering scholarship applicants by application status: `filter`
+### Filtering scholarship applications by status: `filter`
 
-Filters and list all scholarship applications matching application status specified
+Filters and list all scholarship applications matching the application status specified
 
 Format: 
 ```
@@ -278,7 +278,7 @@ filter <PENDING>/<ACCEPTED>/<REJECTED>
 ```
 
 * The user specifies to filter the applications with application status of either `PENDING` or `ACCEPTED` or `REJECTED`.
-* `filter` is case-insensitive. e.g. `pEnDiNg` or `Pending` both matches `PENDING`.
+* filter command is case-insensitive. e.g. `pEnDiNg` or `Pending` both matches `PENDING`.
 
 Examples:
 * `filter pending` displays all applicants with the application status `PENDING`.
@@ -297,7 +297,7 @@ sort <NAME>/<SCHOLARSHIP>/<STATUS>
 ```
 
 * The user can choose to sort the list according the applicant's `NAME`, `SCHOLARSHIP` or Application `STATUS`.
-* `sort` is case-insensitive. e.g. `NamE` or `name` both matches `NAME`.
+* sort command is case-insensitive. e.g. `NamE` or `name` both matches `NAME`.
 
 Examples:
 * `sort name` All applicants in TrackAScholar will be sorted based on their name in a lexicographical manner.
@@ -318,7 +318,10 @@ import <r>/<k>
 ```
 
 * The user can choose to import a data file which adds to the current list of applicants.
-* `import` is case-insensitive. e.g. `import R` is valid.
+* Imported applicants that are duplicates of applicants in the current list are handled with the `r` or `k` input.
+* `r` stands for replacing the duplicate applicants with the imported applicants.
+* `k` stands for keeping the current applicants and disregarding the imported duplicate applicants.
+* import command is case-insensitive. e.g. `import R` is the same as `import r`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 It is necessary for a trackAScholar file to be named as a readable format (trackAScholarImport.json) and be placed in the ./data directory. 
@@ -333,30 +336,31 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Pinning an applicant : `pin`
+### Pinning a scholarship application : `pin`
 
-An applicant will be pinned in the pinned applicant list on the right side of the screen. The applicant will be displayed on both applicant lists.
+A scholarship application will be pinned in the pinned application list on the right side of the screen.
+The application will be displayed on both application lists.
 
 Format: 
 ```
 pin INDEX
 ```
 
-* Pins the scholarship applicant with the specified `INDEX`.
-* The index refers to the index number shown in the displayed applicant list.
+* Pins the scholarship application with the specified `INDEX`.
+* The index refers to the index number shown in the displayed application list.
 * The index **must be a positive integer** 1, 2, 3, …​.
 
 Examples:
-* `list` followed by `pin 2` pins the 2nd applicant in TrackAScholar.
+* `list` followed by `pin 2` pins the 2nd application in TrackAScholar.
 
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Unpins an applicant : `unpin`
+### Unpins a scholarship application : `unpin`
 
-An applicant in the pinned applicant list (on the right side of the screen) will be unpinned. 
-This will result in the removal of the applicant from the pinned applicant list.
+A scholarship application in the pinned application list (on the right side of the screen) will be unpinned. 
+This will result in the removal of the application from the pinned application list.
 
 Format: 
 ```
@@ -375,7 +379,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Exiting the program : `exit`
+### Exiting the application : `exit`
 
 Exits TrackAScholar
 
@@ -424,4 +428,3 @@ If your changes to the data file makes its format invalid, TrackAScholar will di
 | **Pin**    | `pin INDEX`                                                                         |
 | **Unpin**  | `unpin FULL_NAME`                                                                   |
 | **Exit**   | `exit`                                                                              |
-

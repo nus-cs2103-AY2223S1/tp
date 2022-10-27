@@ -1,0 +1,94 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackAScholarParser" as TrackAScholarParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "applicant:Applicant" as Applicant MODEL_COLOR
+end box
+
+[-> LogicManager : execute(edit n/Sam \n p/98886767 \n e/sam@example.com \n s/NUS Merit Scholarship \n as/pending)
+activate LogicManager
+
+LogicManager -> TrackAScholarParser : parseCommand(args)
+activate TrackAScholarParser
+
+create EditCommandParser
+TrackAScholarParser -> EditCommandParser : EditCommandParser()
+activate EditCommandParser
+
+EditCommandParser --> TrackAScholarParser
+deactivate EditCommandParser
+
+
+TrackAScholarParser -> EditCommandParser : parse(n/Sam \n p/98886767 \n e/sam@example.com \n s/NUS Merit Scholarship \n as/pending)
+activate EditCommandParser
+
+
+EditCommandParser -> EditCommandParser : arePrefixesPresent()
+activate EditCommandParser
+
+
+create Applicant
+EditCommandParser -> Applicant : Applicant()
+activate Applicant
+
+Applicant --> EditCommandParser
+deactivate Applicant
+
+create EditCommand
+EditCommandParser -> EditCommand : EditCommand(applicant)
+activate EditCommand
+
+EditCommand --> EditCommandParser
+deactivate EditCommand
+deactivate EditCommandParser
+
+EditCommandParser --> TrackAScholarParser
+deactivate EditCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> TrackAScholarParser
+destroy EditCommandParser
+
+TrackAScholarParser --> LogicManager
+deactivate TrackAScholarParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : hasApplicant(applicant)
+activate Model
+
+Model --> EditCommand
+deactivate
+
+
+EditCommand -> Model : setApplicant(applicantToEdit, editedApplicant)
+activate Model
+
+Model --> EditCommand
+deactivate
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
