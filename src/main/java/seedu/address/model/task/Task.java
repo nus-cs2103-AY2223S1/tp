@@ -19,7 +19,6 @@ public class Task {
 
     // data fields
     private final Deadline deadline; // optional
-
     private final Project project; // optional
     private final Set<Contact> assignedContacts = new HashSet<>();
 
@@ -29,7 +28,7 @@ public class Task {
      * @param title Title of task
      */
     public Task(Title title) {
-        this(title, false, Deadline.UNSPECIFIED, Project.UNSPECIFIED, new HashSet<Contact>());
+        this(title, false, Deadline.UNSPECIFIED, Project.UNSPECIFIED, new HashSet<>());
     }
 
     /**

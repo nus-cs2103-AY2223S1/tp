@@ -33,7 +33,7 @@ public class AddTaskCommand extends TaskCommand {
             + PREFIX_CONTACT + "2 ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task panel";
+    public static final String MESSAGE_DUPLICATE_TASK = "Task with the name '%s' already exists.";
 
     private final Task toAdd;
 
@@ -50,7 +50,7 @@ public class AddTaskCommand extends TaskCommand {
         requireNonNull(model);
 
         if (model.hasTask(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_TASK, toAdd.getTitle()));
         }
 
         model.addTask(toAdd);
