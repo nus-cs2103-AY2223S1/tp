@@ -201,15 +201,10 @@ _Details coming soon ..._
 
 ## Command summary
 
-  | Action    | Format, Examples                                                                                                                             
-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-  | **Add** | APPEAR NICELY! :^) Customers can choose not to disclose private details such as phone number and email address.  The user just needs to `add n/Bob` without asking for phone number or email address.                           |
-  | Cons | User cannot add customers that have same names.                                               The user cannot `add n/Alex` if there already exists an `Alex` in the database, since `Alex` is a common name. |
-
-
 |  Action      | Format, Examples                                                                                                                         |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., `add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold` |
+| **Edit**     | `edit p/PHONE_NUMBER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/BIRTHDAY] [r/REWARD] [t/TAG]…` or <br> `edit e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/BIRTHDAY] [r/REWARD] [t/TAG]…` <br> e.g., `edit p/98765432 n/Miles Morales`, `edit e/alexyeoh@example.com r/1000 p/11111111`    |
 | **Increase** | `incr 100 p/PHONE_NUMBER` or `incr 100 e/EMAIL` <br> e.g., `incr 100 p/87438807`, `incr 100 e/alexyeoh@example.com`                      |
 | **Decrease** | `decr 100 p/PHONE_NUMBER` or `decr 100 e/EMAIL` <br> e.g., `decr 100 p/87438807`, `decr 100 e/alexyeoh@example.com`                      |
 | **Delete**   | `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete p/87438807`, `delete e/alexyeoh@example.com`                              |
@@ -218,18 +213,3 @@ _Details coming soon ..._
 | **List**     | `list`                                                                                                                                   |
 | **Help**     | `help`                                                                                                                                   |
 | **Exit**     | `exit`                                                                                                                                   |
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add [n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]...` <br> e.g., `add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold`
-**Increase** | `clear`
-**Decrease** | `delete INDEX`<br> e.g., `delete 1`
-**Delete** | `edit [n/NAME p/PHONE_NUMBER lp/LESSON_PLAN]`<br> `edit [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g.,`edit 2 n/James Lee h/1 math`
-**Find** | `exit`
-**Clear** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `help`
-**Help** | `lesson INDEX lp/LESSON_PLAN`<br> e.g., `lesson 1 lp/Biology`
-**Exit** | `list`
-
