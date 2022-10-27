@@ -1,7 +1,6 @@
 package seedu.pennywise.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_GRAPH;
 import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_MONTH;
 import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_TYPE;
 

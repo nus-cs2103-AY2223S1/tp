@@ -2,14 +2,12 @@ package seedu.pennywise.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.pennywise.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_GRAPH;
 import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_MONTH;
 import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import seedu.pennywise.logic.commands.ViewCommand;
 import seedu.pennywise.logic.commands.ViewCommand.ViewEntriesDescriptor;
 import seedu.pennywise.logic.parser.exceptions.ParseException;
-import seedu.pennywise.model.entry.GraphType;
 
 /**
  * Parses input arguments and creates a new ViewCommand object

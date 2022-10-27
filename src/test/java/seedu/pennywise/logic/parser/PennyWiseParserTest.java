@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pennywise.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pennywise.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_MONTH_APRIL;
+import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_TYPE_EXPENDITURE;
 import static seedu.pennywise.testutil.Assert.assertThrows;
 import static seedu.pennywise.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 
@@ -30,7 +32,7 @@ import seedu.pennywise.testutil.ViewEntriesDescriptorBuilder;
 public class PennyWiseParserTest {
 
     private final PennyWiseParser parser = new PennyWiseParser();
-    private final EntryType expenditureType = new EntryType(CommandTestUtil.VALID_TYPE_EXPENDITURE);
+    private final EntryType expenditureType = new EntryType(VALID_TYPE_EXPENDITURE);
     @Test
     public void parseCommand_add() throws Exception {
         Entry expenditure = new ExpenditureBuilder().build();
@@ -51,7 +53,7 @@ public class PennyWiseParserTest {
                         + " " + INDEX_FIRST_ENTRY.getOneBased()
                         + " "
                         + CliSyntax.PREFIX_TYPE
-                        + CommandTestUtil.VALID_TYPE_EXPENDITURE);
+                        + VALID_TYPE_EXPENDITURE);
         assertEquals(new DeleteCommand(INDEX_FIRST_ENTRY, expenditureType), command);
     }
 
@@ -86,18 +88,28 @@ public class PennyWiseParserTest {
 
     @Test
     public void parseCommand_view() throws Exception {
-        ViewCommand.ViewEntriesDescriptor viewEntriesDescriptor = new ViewEntriesDescriptorBuilder(
-                new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
-                new GraphType(GraphType.GRAPH_TYPE_CATEGORY),
-                null).build();
+        ViewCommand.ViewEntriesDescriptor viewEntriesDescriptor = new ViewEntriesDescriptorBuilder()
+                .withEntryType(VALID_TYPE_EXPENDITURE)
+                .build();
         ViewCommand viewCommand = new ViewCommand(viewEntriesDescriptor);
         assertEquals(parser.parseCommand(
                 ViewCommand.COMMAND_WORD
                         + " "
                         + CliSyntax.PREFIX_TYPE
-                        + EntryType.ENTRY_TYPE_EXPENDITURE
-                        + " " + CliSyntax.PREFIX_GRAPH
-                        + GraphType.GRAPH_TYPE_CATEGORY), viewCommand);
+                        + VALID_TYPE_EXPENDITURE), viewCommand);
+
+        ViewCommand.ViewEntriesDescriptor viewEntriesDescriptorWithMonth = new ViewEntriesDescriptorBuilder()
+                .withEntryType(VALID_TYPE_EXPENDITURE)
+                .withMonth(VALID_MONTH_APRIL)
+                .build();
+        ViewCommand viewCommandWithMonth = new ViewCommand(viewEntriesDescriptorWithMonth);
+        assertEquals(parser.parseCommand(
+                ViewCommand.COMMAND_WORD
+                        + " "
+                        + CliSyntax.PREFIX_TYPE
+                        + VALID_TYPE_EXPENDITURE
+                        + " " + CliSyntax.PREFIX_MONTH
+                        + VALID_MONTH_APRIL), viewCommandWithMonth);
     }
 
     @Test

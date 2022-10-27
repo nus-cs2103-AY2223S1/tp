@@ -26,10 +26,9 @@ public class ViewEntriesDescriptorBuilder {
     /**
      * Returns a {@code ViewEntriesDescriptor} with fields containing {@code entry}'s details
      */
-    public ViewEntriesDescriptorBuilder(EntryType entryType, GraphType graphType, YearMonth yearMonth) {
+    public ViewEntriesDescriptorBuilder(EntryType entryType, YearMonth yearMonth) {
         descriptor = new ViewEntriesDescriptor();
         descriptor.setEntryType(entryType);
-        descriptor.setGraphType(graphType);
         descriptor.setYearMonth(yearMonth);
     }
 
@@ -38,14 +37,6 @@ public class ViewEntriesDescriptorBuilder {
      */
     public ViewEntriesDescriptorBuilder withEntryType(String entryType) {
         descriptor.setEntryType(new EntryType(entryType));
-        return this;
-    }
-
-    /**
-     * Sets the {@code GraphType} of the {@code ViewEntriesDescriptor} that we are building.
-     */
-    public ViewEntriesDescriptorBuilder withGraphType(String graphType) {
-        descriptor.setGraphType(new GraphType(graphType));
         return this;
     }
 
