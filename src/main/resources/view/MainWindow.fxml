@@ -43,7 +43,7 @@
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="detailedPersonCard" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+          <VBox fx:id="personView" styleClass="pane-with-border" minWidth="340" prefWidth="340"
                 HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
